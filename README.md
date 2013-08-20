@@ -1,4 +1,5 @@
 modeling
 =========
 
-WP3b
+WP3b - top level project for modeling
+
