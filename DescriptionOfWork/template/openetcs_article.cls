@@ -3,7 +3,8 @@
 
 
 
-%% For openETCS ITEA2 Project 
+%% For openETCS ITEA2 Project
+
 
 
 %
@@ -11,6 +12,11 @@
 \ProvidesClass{openetcs}
 [2012/10/11 v0.1 Typesetting Technical Information Article of
 openETCS project ]
+%% David Mentres FIXME macro
+\newcommand{\FIXME}[1]{\marginpar{FIXME}\textsf{FIXME: #1}}
+\newcommand{\IsLicensedUnderCC}[1]{#1}
+\newcommand{\IsNonPublic}[1]{}
+\DeclareOption{nocc}{\renewcommand{\IsLicensedUnderCC}[1]{} \renewcommand{\IsNonPublic}[1]{#1}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
 \LoadClass[11pt,twoside]{article}
@@ -23,37 +29,12 @@ openETCS project ]
 \RequirePackage{amsmath}
 \RequirePackage{microtype}
 \RequirePackage[utf8x]{inputenc}
-%\renewcommand\normalsize{%
-%   \@setfontsize\normalsize\@xiipt{16}%
-%   \abovedisplayskip 16\p@ \@plus3\p@ \@minus7\p@
-%   \abovedisplayshortskip \z@ \@plus3\p@
-%   \belowdisplayshortskip 6.5\p@ \@plus3.5\p@ \@minus3\p@
-%   \belowdisplayskip \abovedisplayskip
-%   \let\@listi\@listI}
 \normalsize
-
-% Original fonts (� tester sur miktex)
-%\usepackage{mathgifg}
-%\usepackage{courier}
 
 % PdfLaTeX Choix 1 "times Helvet et math" http://www.cuk.ch/articles/4237
 \usepackage[T1]{fontenc}
 \usepackage{txfonts}
 
-% PdfLaTeX Choix 2 http://www.cuk.ch/articles/4237
-% \usepackage{fourier}
-% \usepackage[scaled=0.875]{helvet}
-% \usepackage{courier}
-
-% XeLaTeX
-%\usepackage{fontspec}
-%\usepackage{xltxtra}
-%\defaultfontfeatures{Mapping=tex-text}
-%\setmainfont{Georgia}
-%\setmathrm{Georgia}
-%\setsansfont{Verdana}
-%\setmathsf{Verdana}
-%\setmonofont{Courier New}
 
 \def\@projectfont{%
   \sffamily\itshape\bfseries\fontsize{22pt}{25pt}\selectfont}
@@ -66,7 +47,7 @@ openETCS project ]
 \def\@distributionfont{%
   \sffamily\fontseries{k}\fontsize{9pt}{11pt}\selectfont}
 \def\@eqtagfont{\sffamily\bfseries\footnotesize}
-\RequirePackage[a4paper, top=1in, bottom=0.7in,
+\RequirePackage[a4paper, top=1in, bottom=1.0in,
   left=1.25in, right=1.25in]{geometry}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{\baselineskip}
@@ -97,14 +78,16 @@ openETCS project ]
 \raggedbottom
 \RequirePackage{fancyhdr}
 \renewcommand{\headrulewidth}{0.5pt}
-\renewcommand{\footrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.5pt}
 \fancyhfoffset{35pt}
 \pagestyle{fancy}
 \lhead{\textsf{\textbf{\footnotesize\@reportnum}}}
 \rhead{\textsf{\textbf{\footnotesize\thepage}}}
 \chead{}
 \lfoot{}
-\cfoot{\color{blue}\textsf{\textbf{\textit{openETCS}}}\color{black} - \includegraphics[width=3em]{template/ccbysa.png}}
+\IsLicensedUnderCC{\cfoot{\scriptsize \textit{This work is licensed under the "openETCS Open License Terms" (oOLT).}}}
+\IsNonPublic{\cfoot{\scriptsize \textit{Confidential -- only for members of the consortium, including ITEA2 services.}}}
+%\cfoot{\color{blue}\textsf{\textbf{\textit{openETCS}}}\color{black}\IsLicensedUnderCC{ - \includegraphics[width=3em]{ccbysa.png}}}
 \rfoot{}
 \newif\if@frontmatter
 \@frontmatterfalse
@@ -197,10 +180,9 @@ openETCS project ]
 \def\reporttype#1{\gdef\@reporttype{#1}}
 \reporttype{}
 \def\distribution#1{\gdef\@distribution{#1}}
-\distribution{This work is licensed under a Creative Commons
-  Attribution-ShareAlike 3.0 Unported License.\\ \includegraphics[width=40pt]{template/ccbysabig.png}}
+\distribution{This work is licensed under the "openETCS Open License Terms" (oOLT) dual Licensing:  \includegraphics[width=30pt]{oOLT.png}}
 \def\preparedfor#1{\gdef\@preparedfor{#1}}
-\preparedfor{ITEA2 openETCS consortium\\ Europa}
+\preparedfor{openETCS@ITEA2 Project}
 \def\contractnum#1{\gdef\@contractnum{#1}}
 \contractnum{}
 \def\monitoredby#1{\gdef\@monitoredby{#1}}
@@ -217,18 +199,21 @@ openETCS project ]
       \parsep16\p@ \topsep\z@
       \let\fullwidthdisplay\relax
     }%
-    \item[\hskip\labelsep\bfseries Abstract:]% 
-}{% 
+    \item[\hskip\labelsep\bfseries Abstract:]%
+}{%
  \endlist\egroup}
       \long\def\disclaimer#1{\long\gdef\@disclaimer{#1}}
       \disclaimer{
-\textbf{This work is licensed under a Creative Commons
+\textbf{This work is licensed under the "openETCS Open License Terms" (oOLT) dual Licensing: European Union Public Licence (EUPL v.1.1+) AND Creative Commons
   Attribution-ShareAlike 3.0 -- (cc by-sa 3.0)}
 
-THE WORK IS PROVIDED UNDER THE TERMS OF THIS CREATIVE COMMONS PUBLIC
-LICENSE ("CCPL" OR "LICENSE"). THE WORK IS PROTECTED BY COPYRIGHT
-AND/OR OTHER APPLICABLE LAW. ANY USE OF THE WORK OTHER THAN AS
-AUTHORIZED UNDER THIS LICENSE OR COPYRIGHT LAW IS PROHIBITED.
+THE WORK IS PROVIDED UNDER openETCS OPEN LICENSE TERMS (oOLT) WHICH IS A DUAL 
+LICENSE AGREEMENT INCLUDING THE TERMS OF THE EUROPEAN UNION
+PUBLIC LICENSE (VERSION 1.1 OR ANY LATER VERSION) AND THE TERMS OF
+THE CREATIVE COMMONS PUBLIC LICENSE ("CCPL"). THE WORK 
+IS PROTECTED BY COPYRIGHT AND/OR OTHER APPLICABLE LAW. ANY USE OF
+THE WORK OTHER THAN AS AUTHORIZED UNDER THIS OLT LICENSE OR COPYRIGHT
+LAW IS PROHIBITED.
 
 BY EXERCISING ANY RIGHTS TO THE WORK PROVIDED HERE, YOU ACCEPT AND
 AGREE TO BE BOUND BY THE TERMS OF THIS LICENSE. TO THE EXTENT THIS
@@ -236,7 +221,8 @@ LICENSE MAY BE CONSIDERED TO BE A CONTRACT, THE LICENSOR GRANTS YOU
 THE RIGHTS CONTAINED HERE IN CONSIDERATION OF YOUR ACCEPTANCE OF SUCH
 TERMS AND CONDITIONS.
 
-\url{http://creativecommons.org/licenses/by-sa/3.0/}
+\url{http://creativecommons.org/licenses/by-sa/3.0/}\\
+\url{http://joinup.ec.europa.eu/software/page/eupl/licence-eupl}
 }
 \newenvironment{@coverlist}{\begin{list}{}{%
       \leftmargin40\p@\rightmargin-85\p@%
@@ -271,9 +257,9 @@ TERMS AND CONDITIONS.
    \begin{@coverlist}%
      \sffamily\fontseries{k}\selectfont%
      \hfill\parbox{145\p@}{\centering
-       \includegraphics[width=145\p@]{template/itea.jpg}\\
+       \includegraphics[width=145\p@]{itea}\\
        {\bfseries
-         ITEA2 Project\\2012 -- 2015}}\\
+         ITEA2 Project\\Call 6 11025\\2012 -- 2015}}\\
        \par
      \vspace{0.5cm}%
      {\@wpfont\@wp\par}%
@@ -291,12 +277,14 @@ TERMS AND CONDITIONS.
    \end{@coverlist}%
    \vfill
    \begin{@coverlist}%
-     \@distributionfont\@distribution
+     \IsLicensedUnderCC{\@distributionfont\@distribution}
+     \IsNonPublic{\@distributionfont \centering \large Confidential -- only for members of the consortium, including ITEA2 services.}
    \end{@coverlist}%
-   \newpage\thispagestyle{empty}\hbox{}\newpage
-  \thispagestyle{empty}%
+   \newpage
+   This page is intentionally left blank
+   \thispagestyle{empty}\hbox{}\newpage
   \setcounter{page}{1}%
-  \vspace*{-1.5in}%
+  \vspace*{-0.5in}%
   \vspace*{-\topmargin}%
   \begin{@titlelist}%
     \sffamily\fontseries{k}\selectfont
@@ -321,7 +309,7 @@ TERMS AND CONDITIONS.
    \end{minipage}\rule[-2.7in]{\z@}{3.7in}\par
    \begin{minipage}{\textwidth}
      \@reporttype\par\vspace*{3\p@}%
-     {\@distributionfont\@distribution\par}%
+%     {\IsLicensedUnderCC{\@distributionfont\@distribution\par}}%
    \end{minipage}
  \end{@titlelist}%
   \vfill
@@ -352,6 +340,7 @@ TERMS AND CONDITIONS.
     \box\abstractbox
     \prevdepth\z@
   \fi
+  \IsLicensedUnderCC{
   \vfill
   \bgroup
   \setlength{\fboxsep}{5\p@}%
@@ -360,6 +349,7 @@ TERMS AND CONDITIONS.
         \parskip\baselineskip
         \textbf{Disclaimer:} \@disclaimer}}}%
   \egroup
+  }
   \clearpage}
 \def\cl@chapter{}
 \@addtoreset{section}{chapter}%
@@ -425,6 +415,45 @@ TERMS AND CONDITIONS.
   \addcontentsline{toc}{subsection}{\itshape\fontsize{9}{12}\selectfont#1}%
   {\noindent\raggedright\interlinepenalty\@M
    \normalsize\sffamily\bfseries#1}\nobreak\par}
+\renewcommand\subsubsection{\par
+  \addpenalty\@secpenalty\nobreak
+  \secdef\@subsubsection\@ssubsubsection}
+\def\@subsubsection[#1]#2{%
+  \ifnum2>\c@secnumdepth
+     \addcontentsline{toc}{subsubsection}{\itshape#1}%
+  \else
+    \refstepcounter{subsubsection}%
+    \addcontentsline{toc}{subsubsection}{\itshape\fontsize{9}{12}\selectfont
+      \protect\numberline{\thesubsubsection}%
+      #1}%
+  \fi
+  {\noindent\raggedright\interlinepenalty\@M
+   \normalsize\sffamily\bfseries
+   \ifnum2>\c@secnumdepth\else\thesubsubsection\hspace{1em}\fi#2}\nobreak\par}
+\def\@ssubsubsection#1{%
+  \addcontentsline{toc}{subsubsection}{\itshape\fontsize{9}{12}\selectfont#1}%
+  {\noindent\raggedright\interlinepenalty\@M
+   \normalsize\sffamily\bfseries#1}\nobreak\par}
+\renewcommand\paragraph{\par
+  \addpenalty\@secpenalty\nobreak
+  \secdef\@paragraph\@sparagraph}
+\def\@paragraph[#1]#2{%
+  \ifnum2>\c@secnumdepth
+     \addcontentsline{toc}{paragraph}{\itshape#1}%
+  \else
+    \refstepcounter{paragraph}%
+    \addcontentsline{toc}{paragraph}{\itshape\fontsize{9}{12}\selectfont
+      \protect\numberline{\theparagraph}%
+      #1}%
+  \fi
+  {\noindent\raggedright\interlinepenalty\@M
+   \normalsize\sffamily\bfseries
+   #2}
+ \nobreak\par}
+\def\@sparagraph#1{%
+  \addcontentsline{toc}{paragraph}{\itshape\fontsize{9}{12}\selectfont#1}%
+  {\noindent\raggedright\interlinepenalty\@M
+   \normalsize\sffamily\bfseries#1}\nobreak\par}
 \def\specialchapter#1{%
   \clearpage
   \global\@topnum\z@
@@ -482,18 +511,18 @@ TERMS AND CONDITIONS.
   {\parskip2.5\p@\footnotesize\sffamily\fontseries{k}\selectfont\raggedright
     \@starttoc{toc}}}
 \renewcommand\listoffigures{%
-  \chapter{\listfigurename}%
+  \specialchapter{\listfigurename}%
   \def\numberline##1{Figure ##1. }%
   {\parskip2.5\p@\footnotesize\sffamily\fontseries{k}\selectfont\raggedright
     \@starttoc{lof}}}
 \renewcommand\listoftables{%
-  \chapter{\listtablename}%
+  \specialchapter{\listtablename}%
   \def\numberline##1{Table ##1. }%
   {\parskip2.5\p@\footnotesize\sffamily\fontseries{k}\selectfont\raggedright
     \@starttoc{lot}}}
 \def\listfiguretablename{Figures and Tables}
 \newcommand\listoffiguresandtables{%
-  \chapter{\listfiguretablename}
+  \specialchapter{\listfiguretablename}
   {\sffamily\bfseries\normalsize Figures\par}%
   \vspace*{10pt}%
   \def\numberline##1{Figure ##1. }%
@@ -518,4 +547,4 @@ labelsep=period,aboveskip=3pt}
 \def\tagform@@#1{\maketag@@@@{(\ignorespaces#1\unskip\@@italiccorr)}}
 \endinput
 %%
-%% End of file `erdc.cls'.
+%% End of file `openetcs_article.cls'.
