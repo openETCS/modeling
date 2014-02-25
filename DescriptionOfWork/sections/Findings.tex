@@ -1,5 +1,43 @@
 %-----------------------------------------------------------------------
 \section{How to Handle Findings in the SRS}
 %-----------------------------------------------------------------------
-%\tbc
-by Bernd
+
+The work of the openETCS project is based on several standards and standardised specifications, in particular the SRS. During modelling activities, issues with the specifications will arise. While some may be caused by insufficient domain knowledge of the modeller, others may be errors that need to be reported back to the standardisation institutions.
+
+(Confirmed) specification findings can be classified according to the following categories:
+
+\begin{description}
+  \item[Unclearity] The specification/standard is not precise enough with an item, the specification should be detailed. The (semi-)formal model to be built in openETCS will certainly help here.
+  \item[Ambiguity] An item can be interpreted in different ways that can lead to erroneous, incompatible or even harmful implementations.
+  \item[Error] There is an error in the specification that may lead to a faulty implementation with possibly safety-critical effects.
+  \item[Improvement Proposal] Proposal on how to improve a certain standard/specification based on project experience/results.
+\end{description}
+
+The formal model to be built in WP3 can be the basis for improving the existing standards and thus it is vital to collect findings and their (potential) resolution. Figure~\ref{fig:srs_findings_process} depicts the process that is proposed for openETCS.
+
+\begin{figure}
+\begin{center}
+\sf\footnotesize
+\begin{tikzpicture}
+  \draw [fill=blue!40!white] (0,0) -- (3,0) -- (4,-2) -- (3,-4) -- (0, -4) -- cycle;
+\foreach \x in {3.5,7,10.5}
+  \draw [fill=blue!40!white] ($(0,0)+(\x,0)$) -- ($(3,0)+(\x,0)$) -- ($(4,-2)+(\x,0)$) -- ($(3,-4)+(\x,0)$) -- ($(0, -4)+(\x,0)$) -- ($(1, -2)+(\x,0)$) -- cycle;
+\node [align=left] at (1.75,-2) {\textbf{Detection} of issue\\(e.g., during modelling)\\~\\~};
+\node [align=left] at (5.9,-2) {\textbf{Validation}\\(check by expert,\\if not confirmed\\it is discarded)};
+\node [align=left] at (9.4,-2) {\textbf{Collection}\\(create database\\of findings)\\};
+\node [align=left] (d) at (12.9,-2) {\textbf{Reporting}\\(Feedback to\\standardisation\\institutions)};
+\end{tikzpicture}
+\end{center}
+\caption{Process for handling specification findings}
+\label{fig:srs_findings_process}
+\end{figure}
+
+If an issue is detected during modelling it should be recorded. If the modeller is unable to resolve the issue it should be checked by some domain expert who can either resolve it, or confirm it as an SRS finding. If possible, a resolution of the issue should be proposed and stored along with the finding in a database of findings. At a later point in time the specification findings are then reported back to the standardisation institutions to improve the existing standards.
+
+To implement this process in the project, the following steps are necessary:
+\begin{enumerate}
+  \item Setup an infrastructure for reporting findings (GitHub-Repository?)
+  \item Identify experts with the standard that can help in resolving issues.
+  \item Collect resolved issues, transform them into change requests.
+  \item Designate (a) responsible person(s) for this process.
+\end{enumerate}
