@@ -7,12 +7,24 @@
     <availablePage>
       <emfPageIdentifier href="ManageLocationRelatedInformation/ManageLocationRelatedInformation.notation#_RTiRkH9gEeORG9nwlaWlyQ"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="WP3-Initial-Architecture.notation#_PYF9MKhgEeOOqsKB194pCA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/ManageBaliseInformation.notation#_pG5BMKhhEeOOqsKB194pCA"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
       <children xsi:type="di:TabFolder">
         <children>
           <emfPageIdentifier href="WP3-Initial-Architecture.notation#_GLteAH9fEeORG9nwlaWlyQ"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="WP3-Initial-Architecture.notation#_PYF9MKhgEeOOqsKB194pCA"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/ManageBaliseInformation.notation#_pG5BMKhhEeOOqsKB194pCA"/>
         </children>
         <children>
           <emfPageIdentifier href="ManageLocationRelatedInformation/ManageLocationRelatedInformation.notation#_RTiRkH9gEeORG9nwlaWlyQ"/>
