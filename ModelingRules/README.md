@@ -11,6 +11,6 @@ ETCS Documents:
 ===============
 
 * [Baseline 3](http://www.era.europa.eu/Document-Register/Pages/New-Annex-A-for-ETCS-Baseline-3-and-GSM-R-Baseline-0.aspx)
-* [Baseline 2](http://www.era.europa.eu/Core-Activities/ERTMS/Pages/Set-of-specifications-1.aspx)
+* [Baseline 2](http://www.era.europa.eu/Core-Activities/ERTMS/Pages/Set-of-specifications-1.aspx) (in case Baseline 3 is not yet released)
 
 
