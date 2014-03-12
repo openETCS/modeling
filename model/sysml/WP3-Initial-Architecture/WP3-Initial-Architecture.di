@@ -23,12 +23,6 @@
         <children>
           <emfPageIdentifier href="WP3-Initial-Architecture.notation#_PYF9MKhgEeOOqsKB194pCA"/>
         </children>
-        <children>
-          <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/ManageBaliseInformation.notation#_pG5BMKhhEeOOqsKB194pCA"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="ManageLocationRelatedInformation/ManageLocationRelatedInformation.notation#_RTiRkH9gEeORG9nwlaWlyQ"/>
-        </children>
       </children>
     </windows>
   </sashModel>
