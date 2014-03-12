@@ -4,12 +4,18 @@
     <availablePage>
       <emfPageIdentifier href="DetermineBGorientation_LRBG.notation#_bdmrQKnFEeOYtKUDSxdWfA"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="DetermineBGorientation_LRBG.notation#_G565EKn3EeOLEa0FSTGh4A"/>
+    </availablePage>
   </pageList>
   <sashModel>
     <windows>
       <children xsi:type="di:TabFolder">
         <children>
           <emfPageIdentifier href="DetermineBGorientation_LRBG.notation#_bdmrQKnFEeOYtKUDSxdWfA"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="DetermineBGorientation_LRBG.notation#_G565EKn3EeOLEa0FSTGh4A"/>
         </children>
       </children>
     </windows>
