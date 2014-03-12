@@ -5,7 +5,7 @@
       <emfPageIdentifier href="DetermineBGorientation_LRBG.notation#_bdmrQKnFEeOYtKUDSxdWfA"/>
     </availablePage>
   </pageList>
-  <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
+  <sashModel>
     <windows>
       <children xsi:type="di:TabFolder">
         <children>
