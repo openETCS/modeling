@@ -7,10 +7,17 @@
     <availablePage>
       <emfPageIdentifier href="DetermineBGorientation_LRBG/DetermineBGorientation_LRBG.notation#_G565EKn3EeOLEa0FSTGh4A"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="ManageBaliseInformation.notation#_I7Q_UKqzEeO2sY0LRf6mJA"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
-      <children xsi:type="di:TabFolder"/>
+      <children xsi:type="di:TabFolder">
+        <children>
+          <emfPageIdentifier href="ManageBaliseInformation.notation#_I7Q_UKqzEeO2sY0LRf6mJA"/>
+        </children>
+      </children>
     </windows>
   </sashModel>
 </di:SashWindowsMngr>

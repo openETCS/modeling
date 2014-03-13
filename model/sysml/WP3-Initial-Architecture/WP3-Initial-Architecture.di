@@ -13,6 +13,9 @@
     <availablePage>
       <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/ManageBaliseInformation.notation#_pG5BMKhhEeOOqsKB194pCA"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="ManageLocationRelatedInformation/ManageLocationRelatedInformation.notation#_ruDXsKqFEeO4rOUv3P1-Cg"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -22,6 +25,9 @@
         </children>
         <children>
           <emfPageIdentifier href="WP3-Initial-Architecture.notation#_PYF9MKhgEeOOqsKB194pCA"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="ManageLocationRelatedInformation/ManageLocationRelatedInformation.notation#_ruDXsKqFEeO4rOUv3P1-Cg"/>
         </children>
       </children>
     </windows>
