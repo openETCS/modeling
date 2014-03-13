@@ -10,10 +10,17 @@
     <availablePage>
       <emfPageIdentifier href="ManageBaliseInformation/DetermineBGorientation_LRBG/DetermineBGorientation_LRBG.notation#_bdmrQKnFEeOYtKUDSxdWfA"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="ManageLocationRelatedInformation.notation#_ruDXsKqFEeO4rOUv3P1-Cg"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
-      <children xsi:type="di:TabFolder"/>
+      <children xsi:type="di:TabFolder">
+        <children>
+          <emfPageIdentifier href="ManageLocationRelatedInformation.notation#_ruDXsKqFEeO4rOUv3P1-Cg"/>
+        </children>
+      </children>
     </windows>
   </sashModel>
 </di:SashWindowsMngr>
