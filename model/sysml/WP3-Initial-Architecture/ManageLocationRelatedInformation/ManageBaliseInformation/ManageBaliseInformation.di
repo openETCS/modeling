@@ -4,6 +4,9 @@
     <availablePage>
       <emfPageIdentifier href="DetermineBGorientation_LRBG/DetermineBGorientation_LRBG.notation#_bdmrQKnFEeOYtKUDSxdWfA"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="DetermineBGorientation_LRBG/DetermineBGorientation_LRBG.notation#_G565EKn3EeOLEa0FSTGh4A"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
