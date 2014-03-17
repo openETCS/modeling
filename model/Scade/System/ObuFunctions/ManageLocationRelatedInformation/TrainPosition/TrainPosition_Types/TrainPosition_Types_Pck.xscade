@@ -2,11 +2,171 @@
 <File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
 	<declarations>
 		<Package name="TrainPosition_Types_Pck">
+			<declarations>
+				<Constant name="cLocWithInAcc_0">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="LocWithInAcc_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- {nominal : 0, d_min : 0, d_max : 0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="nominal">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="d_min">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="d_max">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/244a3/A63/1714/530e272d10a1"/>
+					</pragmas>
+				</Constant>
+				<Type name="Location_Type">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/24475/A63/1714/530e26e441b9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Generic for all length, distance and location calculation: in cm</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="LocWithInAcc_Type">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="nominal">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/24482/A63/1714/530e270534a8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Nominal location</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="d_min">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/24483/A63/1714/530e27056d64" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Min Location = nominal + d_min (typically &lt; 0)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="d_max">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/24484/A63/1714/530e27055b38" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Max Location = nominal + d_max</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/24481/A63/1714/530e27053eff" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Location with +/- tolerance</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="OdometryLocations_Type">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="o_nominal">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/268ca/5516/DE4/530e2f944199" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Nominal odometry value</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="o_min">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/268cb/5516/DE4/530e2f94622" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Min. distance = o_min2 - o_min1</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="o_max">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/268cc/5516/DE4/530e2f9468b6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Max distance = o_max2 - o_max1</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/268c9/5516/DE4/530e2f943ea3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Location information provided by odometry</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/3a829/1CAF/1A3C/5304ab986f05" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 					<diagrams>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a82a/1CAF/1A3C/5304ab985908" blockKind="constants"/>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a82b/1CAF/1A3C/5304ab9869ba" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a82b/1CAF/1A3C/5304ab9869ba" blockKind="types" columnsSize="0, 190, 283, 300"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a82c/1CAF/1A3C/5304ab985566" blockKind="sensors"/>
 					</diagrams>
 				</ed:Package>
