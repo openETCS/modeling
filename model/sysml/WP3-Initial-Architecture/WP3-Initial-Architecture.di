@@ -16,6 +16,12 @@
     <availablePage>
       <emfPageIdentifier href="ManageLocationRelatedInformation/ManageLocationRelatedInformation.notation#_ruDXsKqFEeO4rOUv3P1-Cg"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/DetermineBGorientation_LRBG/DetermineBGorientation_LRBG.notation#_G565EKn3EeOLEa0FSTGh4A"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/ManageBaliseInformation.notation#_I7Q_UKqzEeO2sY0LRf6mJA"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -25,9 +31,6 @@
         </children>
         <children>
           <emfPageIdentifier href="WP3-Initial-Architecture.notation#_PYF9MKhgEeOOqsKB194pCA"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="ManageLocationRelatedInformation/ManageLocationRelatedInformation.notation#_ruDXsKqFEeO4rOUv3P1-Cg"/>
         </children>
       </children>
     </windows>

@@ -20,9 +20,6 @@
         <children>
           <emfPageIdentifier href="ManageLocationRelatedInformation.notation#_ruDXsKqFEeO4rOUv3P1-Cg"/>
         </children>
-        <children>
-          <emfPageIdentifier href="ManageLocationRelatedInformation.notation#_Em2goKqvEeO2sY0LRf6mJA"/>
-        </children>
       </children>
     </windows>
   </sashModel>
