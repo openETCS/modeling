@@ -7,6 +7,15 @@
     <availablePage>
       <emfPageIdentifier href="DataDictionary.notation#_2BbQsKqgEeO6StG9XATgkw"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="DataDictionary.notation#_zDWAoLUBEeO19KEsASxFCw"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="DataDictionary.notation#_hafr4LUHEeO19KEsASxFCw"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="DataDictionary.notation#_A5A2ULUKEeO19KEsASxFCw"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -16,6 +25,15 @@
         </children>
         <children>
           <emfPageIdentifier href="DataDictionary.notation#_2BbQsKqgEeO6StG9XATgkw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="DataDictionary.notation#_zDWAoLUBEeO19KEsASxFCw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="DataDictionary.notation#_hafr4LUHEeO19KEsASxFCw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="DataDictionary.notation#_A5A2ULUKEeO19KEsASxFCw"/>
         </children>
       </children>
     </windows>
