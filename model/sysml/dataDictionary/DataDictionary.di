@@ -22,6 +22,9 @@
     <availablePage>
       <emfPageIdentifier href="DataDictionary.notation#_C-L10LWIEeOLWspo_Gxrfg"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="DataDictionary.notation#_SBH2QLWYEeOFuO01m4XL1Q"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -46,6 +49,9 @@
         </children>
         <children>
           <emfPageIdentifier href="DataDictionary.notation#_C-L10LWIEeOLWspo_Gxrfg"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="DataDictionary.notation#_SBH2QLWYEeOFuO01m4XL1Q"/>
         </children>
       </children>
     </windows>
