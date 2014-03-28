@@ -25,33 +25,30 @@
     <availablePage>
       <emfPageIdentifier href="DataDictionary.notation#_SBH2QLWYEeOFuO01m4XL1Q"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="DataDictionary.notation#_iwnr0LZ8EeO8ztMxAijhmA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="DataDictionary.notation#__XyEELZ9EeO8ztMxAijhmA"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
       <children xsi:type="di:TabFolder">
         <children>
-          <emfPageIdentifier href="DataDictionary.notation#_0nnM0KqaEeO6StG9XATgkw"/>
+          <emfPageIdentifier href="DataDictionary.notation#_C-L10LWIEeOLWspo_Gxrfg"/>
         </children>
         <children>
-          <emfPageIdentifier href="DataDictionary.notation#_2BbQsKqgEeO6StG9XATgkw"/>
+          <emfPageIdentifier href="DataDictionary.notation#_SBH2QLWYEeOFuO01m4XL1Q"/>
         </children>
         <children>
-          <emfPageIdentifier href="DataDictionary.notation#_zDWAoLUBEeO19KEsASxFCw"/>
+          <emfPageIdentifier href="DataDictionary.notation#_iwnr0LZ8EeO8ztMxAijhmA"/>
         </children>
         <children>
           <emfPageIdentifier href="DataDictionary.notation#_hafr4LUHEeO19KEsASxFCw"/>
         </children>
         <children>
-          <emfPageIdentifier href="DataDictionary.notation#_A5A2ULUKEeO19KEsASxFCw"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="DataDictionary.notation#_uBYokLWDEeOLWspo_Gxrfg"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="DataDictionary.notation#_C-L10LWIEeOLWspo_Gxrfg"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="DataDictionary.notation#_SBH2QLWYEeOFuO01m4XL1Q"/>
+          <emfPageIdentifier href="DataDictionary.notation#__XyEELZ9EeO8ztMxAijhmA"/>
         </children>
       </children>
     </windows>
