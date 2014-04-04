@@ -40,33 +40,30 @@
     <availablePage>
       <emfPageIdentifier href="DataDictionary.notation#_Gw__ELs5EeOvosries-3lw"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="DataDictionary.notation#_G628ELvxEeOiVtMNvICbCg"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="DataDictionary.notation#_nU8PgLv2EeOiVtMNvICbCg"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="DataDictionary.notation#_oLO-ULv2EeOiVtMNvICbCg"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="DataDictionary.notation#_oNgPMLv2EeOiVtMNvICbCg"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
       <children xsi:type="di:TabFolder">
         <children>
-          <emfPageIdentifier href="DataDictionary.notation#_C-L10LWIEeOLWspo_Gxrfg"/>
+          <emfPageIdentifier href="DataDictionary.notation#_nU8PgLv2EeOiVtMNvICbCg"/>
         </children>
         <children>
-          <emfPageIdentifier href="DataDictionary.notation#__XyEELZ9EeO8ztMxAijhmA"/>
+          <emfPageIdentifier href="DataDictionary.notation#_oLO-ULv2EeOiVtMNvICbCg"/>
         </children>
         <children>
-          <emfPageIdentifier href="DataDictionary.notation#_zDWAoLUBEeO19KEsASxFCw"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="DataDictionary.notation#_-20EoLsVEeOZ3crMJDa2tg"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="DataDictionary.notation#_t0zqQLsXEeOZ3crMJDa2tg"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="DataDictionary.notation#_2BbQsKqgEeO6StG9XATgkw"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="DataDictionary.notation#_QRQRgLsyEeOvosries-3lw"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="DataDictionary.notation#_Gw__ELs5EeOvosries-3lw"/>
+          <emfPageIdentifier href="DataDictionary.notation#_oNgPMLv2EeOiVtMNvICbCg"/>
         </children>
       </children>
     </windows>
