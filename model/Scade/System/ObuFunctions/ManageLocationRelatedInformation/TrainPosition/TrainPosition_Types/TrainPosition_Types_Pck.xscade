@@ -37,6 +37,23 @@
 						<ed:Constant oid="!ed/244a3/A63/1714/530e272d10a1"/>
 					</pragmas>
 				</Constant>
+				<Constant name="cMaxNoOfLinkedBGs">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="10"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/4074d/113E/16A8/5346d10e6f55" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Max. number of linked balise groups announced by a BG (arbitrarily value)</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
 				<Type name="Location_Type">
 					<definition>
 						<NamedType>
@@ -161,12 +178,873 @@
 						</ed:Type>
 					</pragmas>
 				</Type>
+				<Type name="passedBG_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/80d0/113E/16A8/5346c1381327"/>
+									</pragmas>
+								</Field>
+								<Field name="timestamp">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/80d1/113E/16A8/5346c170d14"/>
+									</pragmas>
+								</Field>
+								<Field name="odometrystamp">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="OdometryLocations_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/80d2/113E/16A8/5346c1717573" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Odometry values when the balise group was passed</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="BG_centerDetectionInaccuraccuracies">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="LocWithInAcc_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/80d3/113E/16A8/5346c1715f0f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Location inaccuries caused by the balise group center detection</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="BG_Header">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BG_Header_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/80d4/113E/16A8/5346c171a80" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Common header of the balise group datagram</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="linkedBGs">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="LinkedBGs_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/80d5/113E/16A8/5346c1711e10" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>The linked balise groups announced from this BG.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/80cf/113E/16A8/5346c1273627" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Information reveived from a BG passede</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="BG_Header_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="q_updown">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_UPDOWN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/810e/113E/16A8/5346c4383d63"/>
+									</pragmas>
+								</Field>
+								<Field name="m_version">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_VERSION"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/810f/113E/16A8/5346c43c2e3e"/>
+									</pragmas>
+								</Field>
+								<Field name="q_media">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_MEDIA"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/8110/113E/16A8/5346c43d5be"/>
+									</pragmas>
+								</Field>
+								<Field name="n_pig">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="N_PIG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/8111/113E/16A8/5346c43d58b6"/>
+									</pragmas>
+								</Field>
+								<Field name="n_total">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="N_TOTAL"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/8112/113E/16A8/5346c43dc53"/>
+									</pragmas>
+								</Field>
+								<Field name="m_dup">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_DUP"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/8113/113E/16A8/5346c43d120"/>
+									</pragmas>
+								</Field>
+								<Field name="m_mcount">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_MCOUNT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/8114/113E/16A8/5346c43d743a"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_c">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_C"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/8115/113E/16A8/5346c43d651c"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_bg">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_BG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/8116/113E/16A8/5346c43d37d5"/>
+									</pragmas>
+								</Field>
+								<Field name="q_link">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_LINK"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/8117/113E/16A8/5346c43e3be"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/810d/113E/16A8/5346c3e750da" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Common header of the balise group datagram</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="LinkedBG_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/40734/113E/16A8/5346d0c9a93" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>This element has valid data</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_LRBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_LRBG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/40735/113E/16A8/5346d0c940d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>8.4.4.61: ID of the reference LRBG</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_packet">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_PACKET"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/40736/113E/16A8/5346d0c912c0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Packet identifier: probably not needed here: Packet 5 = constant</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="q_dir">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_DIR"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/40737/113E/16A8/5346d0c972b4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Validity direction of transmitted data with reference to directionality of the balise group sending the information or to directionality of the LRBG</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="q_scale">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_SCALE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/40738/113E/16A8/5346d0c9765e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>7.5.1.129: Qualifier for the distance scale: 10 cm, 1 m, 10 m</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="d_link">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_LINK"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/40739/113E/16A8/5346d0c969bf" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>7.5.1.10: Incremental linking distance to next linked balise group</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="q_newcountry">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_NEWCOUNTRY"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4073a/113E/16A8/5346d0c919ad" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>7.5.1.121: New Country Qualifier</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_c">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_C"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4073b/113E/16A8/5346d0c91c20" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Identity number of the country or region</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_bg">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_BG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4073c/113E/16A8/5346d0c9cc3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Identity number of the balise group</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="q_linkorientation">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_LINKORIENTATION"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4073d/113E/16A8/5346d0c96d5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>7.5.1.116: Qualifier for the direction of the linked balise group: Indicates whether the linked balise group will be overpassed by the train in nominal or reverse direction.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="q_linkreaction">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_LINKREACTION"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4073e/113E/16A8/5346d0c958df" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>7.5.1.117: Qualifier for the reaction to be performed if a linking or a balise group message consistency problem occurs with the balise group linked to</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="q_locacc">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_LOCACC"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4073f/113E/16A8/5346d0c97576" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>7.5.1.115: defines the absolute value of the accuracy of the Balise location (max +/- 63 m)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/40733/113E/16A8/5346d0c921d6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>7.4.2.2: Single, but complete, element from LinkingPacket_Type</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="LinkedBGs_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="LinkedBG_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cMaxNoOfLinkedBGs"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/40754/113E/16A8/5346d12819f4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Array of linked balise groups. This array replaces the linking packet (TrackToTrain::Linking )</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="trainProperties_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="d_baliseAntenna_2_frontend">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="LocWithInAcc_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/77eaf/113E/16A8/5346d4753383" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Distance from the trains balise antenna to the trains front end.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="d_frontend_2_rearend">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="LocWithInAcc_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/77eb0/113E/16A8/5346d4b9392b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Distance from the trains front end to rear end</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/77eae/113E/16A8/5346d44884a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>The trains properties required for train position calculation.</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="trainPosition_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/93a93/113E/16A8/5346d672577"/>
+									</pragmas>
+								</Field>
+								<Field name="trainPositionIsUnknown">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/93a94/113E/16A8/5346d67235e2" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.6.3.1.3.1</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="noCoordinateSystemHasBeenAssigned">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/93a95/113E/16A8/5346d672258c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.6.3.1.4</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="trainPosition">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="LocWithInAcc_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/93a9f/113E/16A8/5346d6b261f6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>The calculated train position with inaccuracies.#</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="estimatedFrontEndPosition">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Location_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/93a96/113E/16A8/5346d6725201" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.6.4.4 a): Absolute train front end position since system start</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="minSafeFrontEndPosition">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Location_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/93a97/113E/16A8/5346d6721fb8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.6.4.4 c) :Minimum safe front end position</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="maxSafeFrontEndPostion">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Location_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/93a98/113E/16A8/5346d6722cfa" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.6.4.4.b) :Maximum safe front end position</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_LRBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_BG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/93a99/113E/16A8/5346d67212ee" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Identity of  last relevant balise group </comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_PrvLRB">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_PRVLRBG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/93a9a/113E/16A8/5346d6722518" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Identity of previous LRBG (7.4.3.2, 7.5.1.94), for position report based on 2 balise groups</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nominalOrReverseToLRBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_DLRBG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/93a9b/113E/16A8/5346d6721aff" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>7.5.1.106: Q_DLRBG: Qualifier telling on which side of the LRBG the estimated front end is</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="trainOrientationToLRBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_DIRLRBG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/93a9c/113E/16A8/5346d672ac7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.6.1.3: Orientation of the train in relation to the direction of the LRBG</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="trainRunningDirectionToLRBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_DIRTRAIN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/93a9d/113E/16A8/5346d6722e5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.6.1.3: Direction of train movement in relation to the LRBG orientation</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="speed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Speed_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/93a9e/113E/16A8/5346d672505c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Actual train speed</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/93a92/113E/16A8/5346d6722fb6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.6.1.3</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="positionedBG_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/bd585/113E/16A8/5346db023e1f"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_c">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_C"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/e7151/113E/16A8/5346df513ad5"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_bg">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_BG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/e7152/113E/16A8/5346df5219db"/>
+									</pragmas>
+								</Field>
+								<Field name="q_link">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_LINK"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/e7153/113E/16A8/5346df522db4"/>
+									</pragmas>
+								</Field>
+								<Field name="location">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="LocWithInAcc_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/bd586/113E/16A8/5346db1a5886" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>The best known location calculated from linking and from passing information</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="infoFromLinking">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="infoFromLinking_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/bd587/113E/16A8/5346db1b6c5d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>If linked, this is the BG info as announced from a linked BG. Most of the data is taken from the linking information.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="infoFromPassing">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="passedBG_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/bd588/113E/16A8/5346db1b73a9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>If the balise group was passed, this is the relevant information received from the BG.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/af707/113E/16A8/5346da6f2604"/>
+					</pragmas>
+				</Type>
+				<Type name="infoFromLinking_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/f5009/113E/16A8/5346dfbe87"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_bg_fromLinkingBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_BG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/f500a/113E/16A8/5346e0033765" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>ID of the BG, where the linking information originates from</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_c_fromLinkingBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_BG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/f500b/113E/16A8/5346e00476bf"/>
+									</pragmas>
+								</Field>
+								<Field name="expectedLocation">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="LocWithInAcc_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/f500c/113E/16A8/5346e00413c1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Location, where the BG is expected to be found, calculated from announced linking distance.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="d_link">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="LocWithInAcc_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/f500d/113E/16A8/5346e00456ba" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Linking distance with inaccuracies, converted from Q_SCALE, D_LINK, Q_LOCACC of the linking packet.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="linkingInfo">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="LinkedBG_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/f500e/113E/16A8/5346e0047e48" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Linking info as announced from the linking BG, where this BG.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/e7146/113E/16A8/5346df131518" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Describes a linked BG as announced from the linking BG. </comment>
+							<comment>Mainly, this information is taken from the linking packet.</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/3a829/1CAF/1A3C/5304ab986f05" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 					<diagrams>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a82a/1CAF/1A3C/5304ab985908" blockKind="constants"/>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a82b/1CAF/1A3C/5304ab9869ba" blockKind="types" columnsSize="0, 190, 283, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a82a/1CAF/1A3C/5304ab985908" blockKind="constants" columnsSize="0, 210, 150, 150, 734"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a82b/1CAF/1A3C/5304ab9869ba" blockKind="types" columnsSize="0, 257, 283, 617"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a82c/1CAF/1A3C/5304ab985566" blockKind="sensors"/>
 					</diagrams>
 				</ed:Package>
