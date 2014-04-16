@@ -7,6 +7,18 @@
     <availablePage>
       <emfPageIdentifier href="SelectUseableInfo.notation#_9RlzIL8OEeORbNrNo1BPEQ"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="SelectUseableInfo.notation#_voUAEMVbEeOWFuXiceWInw"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="SelectUseableInfo.notation#_2xCWQMVbEeOWFuXiceWInw"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="SelectUseableInfo.notation#_kD7SsMViEeOWFuXiceWInw"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="SelectUseableInfo.notation#_08ADEMViEeOWFuXiceWInw"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -16,6 +28,18 @@
         </children>
         <children>
           <emfPageIdentifier href="SelectUseableInfo.notation#_9RlzIL8OEeORbNrNo1BPEQ"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="SelectUseableInfo.notation#_voUAEMVbEeOWFuXiceWInw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="SelectUseableInfo.notation#_2xCWQMVbEeOWFuXiceWInw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="SelectUseableInfo.notation#_kD7SsMViEeOWFuXiceWInw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="SelectUseableInfo.notation#_08ADEMViEeOWFuXiceWInw"/>
         </children>
       </children>
     </windows>
