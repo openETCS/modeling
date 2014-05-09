@@ -1,0 +1,159 @@
+\documentclass{template/openetcs_article}
+% Use the option "nocc" if the document is not licensed under Creative Commons
+%\documentclass[nocc]{template/openetcs_article}
+\usepackage{lipsum,url}
+\usepackage{supertabular}
+\usepackage{multirow}
+\usepackage{color, colortbl}
+\definecolor{gray}{rgb}{0.8,0.8,0.8}
+\usepackage[modulo]{lineno}
+\graphicspath{{./template/}{.}{./images/}}
+\begin{document}
+\frontmatter
+\project{openETCS}
+
+%Please do not change anything above this line
+%============================
+
+
+
+% The document metadata is defined below
+
+%assign a report number here
+\reportnum{OETCS/TODO}
+
+%define your workpackage here
+\wp{Work-Package 3: ``Modeling''}
+
+%set a title here
+\title{Definition of Constraints for Modeling in SysML}
+
+%set a subtitle here
+\subtitle{A template for short document. Adapted from report template.}
+
+%set the date of the report here
+\date{May 2014}
+
+%define a list of authors and their affiliation here
+
+\author{Alexander Stante}
+
+\affiliation{Fraunhofer Institute for Embedded Systems \\
+  and Communication Technologies ESK\\
+  Hansastr. 32\\
+  80686 Muenchen, Germany}
+
+% define the coverart
+\coverart[width=350pt]{openETCS_EUPL}
+
+%define the type of report
+\reporttype{Description of work}
+
+
+\begin{abstract}
+%define an abstract here
+  \lipsum[12-13]
+\end{abstract}
+
+%=============================
+\maketitle
+
+%Modification history
+%if you do not need a modification history table for your document simply comment out the eight lines below
+%=============================
+\section*{Modification History}
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Version & Section & Modification / Description & Author \\\hline}
+\begin{supertabular}{| m{1.2cm} | m{1.2cm} | m{6.6cm} | m{4cm} |}
+ & & & \\\hline
+\end{supertabular}
+
+
+\tableofcontents
+\listoffiguresandtables
+\newpage
+%=============================
+
+%Uncomment the next line if you need line numbers for tracebility when the document is in review
+%\linenumbers
+%=============================
+
+
+% The actual document starts below this line
+%=============================
+
+\section{Introduction}
+
+\section{Constraints}
+\label{sec:constraints}
+
+\subsection{Modelng Guidelines}
+\label{sec:modeling-guidelines}
+
+\subsection{Tool Constraints}
+\label{sec:tool-constraints}
+
+\subsubsection{C99 Code Generation}
+
+\begin{longtable}{|l||>{\raggedright}p{0.85\linewidth}|}
+  \hline
+  \textbf{Name}        & Name is not a reserved C99 keyword \tabularnewline \hline
+  \textbf{Target}      & \texttt{uml.NamedElement} \tabularnewline \hline
+  \textbf{Stereotype}  & n/a \tabularnewline \hline
+  \textbf{Severity}    & Error \tabularnewline \hline
+  \textbf{Mode}        & Batch \tabularnewline \hline
+  \textbf{Message}     & The used name '\texttt{[name]}' is a reserved C99 keyword in ISO/IEC 9899:1999. 
+                         Please change the name of the element. \tabularnewline \hline
+  \textbf{Rationale}   & If the SysML model is used to generate C code (for example through Scade), 
+                         a straight-forward implementation uses the same names of NamedElements as 
+                         for the generated C data structures, functions, etc. Using reserved keywords 
+                         for variables, functions, etc. would result in  compilation errors. Therefore, 
+                         all NamedElements are restricted to not contain reserved C99 keywords according
+                         to ISO/IEC 9899:1999. \tabularnewline \hline
+  \textbf{Description} & The name of each NamedElement is checked against a list of C99 keywords which 
+                         are defined in ISO/IEC 9899:1999 section ``6.4.1 Keywords''. \tabularnewline \hline
+\end{longtable}
+
+\begin{longtable}{|l||>{\raggedright}p{0.85\linewidth}|}
+  \hline
+  \textbf{Name}        &  Name is valid C99 identifier \tabularnewline \hline
+  \textbf{Target}      &  \texttt{uml.NamedElement} \tabularnewline \hline
+  \textbf{Stereotype}  &  n/a \tabularnewline \hline
+  \textbf{Severity}    &  Error \tabularnewline \hline
+  \textbf{Mode}        &  Batch \tabularnewline \hline
+  \textbf{Message}     &  The used name '\texttt{[name]}' is not a valid C99 identifier as specified in 
+                          ISO/IEC 9899:1999. Please change the name of the element. \tabularnewline \hline
+  \textbf{Rationale}   &  Same rational as for previous constraint \tabularnewline \hline
+  \textbf{Description} &  The name of each NamedElement is checked against the identifier specification
+                          in ISO/IEC 9899:1999 section ``6.4.2 Identifiers''. The sepecification equals to the
+                          following regular expression: \texttt{[\_a-zA-Z][0-9a-zA-Z\*]}. \tabularnewline \hline
+\end{longtable}
+
+
+\subsubsection{Classical B Generation}
+
+\subsubsection{POSIX Platform Generation}
+
+
+\bibliographystyle{unsrt}
+\bibliography{erdc}
+
+
+
+\begin{thebibliography}{9}
+
+\bibitem{lamport94}
+  Leslie Lamport,
+  \emph{\LaTeX: A Document Preparation System}.
+  Addison Wesley, Massachusetts,
+  2nd Edition,
+  1994.
+
+\end{thebibliography}
+
+%===================================================
+%Do NOT change anything below this line
+
+\end{document}
