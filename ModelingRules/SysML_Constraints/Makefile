@@ -4,4 +4,4 @@ constraints.pdf: constraints.tex
 	pdflatex constraints.tex
 
 clean:
-	rm -rf *.pdf *.log *.blg *.bbl *.aux
+	rm -rf *.pdf *.log *.blg *.bbl *.aux *.lof *.lot *.toc
