@@ -4,9 +4,9 @@
     <packagedElement xmi:type="uml:Class" xmi:id="_V6WD0H-QEeORG9nwlaWlyQ" name="SelectUsableInfo">
       <ownedComment xmi:type="uml:Comment" xmi:id="_0bO1MMSaEeO-r_Liow0FHg">
         <body>@mahlmann:&#xD;
-This function filters information received from balises, radio or euroloop depending on the current ETCS level, train mode, source of the information and the actual content. Moreover it provides a small buffer for messages to store messages that will become relevant when the ETCS level will change.</body>
+This function filters information received from balises, radio or euroloop depending on the current ETCS level, train mode, source of the information and the actual content. Moreover it provides a small buffer to store messages in case of level transitions and RBC handovers.</body>
       </ownedComment>
-      <ownedAttribute xmi:type="uml:Port" xmi:id="_wO4HkH-QEeORG9nwlaWlyQ" name="FilteredBGMessage" visibility="public" aggregation="composite">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_wO4HkH-QEeORG9nwlaWlyQ" name="FilteredMessage" visibility="public" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_wquWEH-QEeORG9nwlaWlyQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wquWEX-QEeORG9nwlaWlyQ" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_wq0csH-QEeORG9nwlaWlyQ">
@@ -27,7 +27,7 @@ This function filters information received from balises, radio or euroloop depen
           <value xsi:nil="true"/>
         </defaultValue>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Port" xmi:id="_85m4UH-REeORG9nwlaWlyQ" name="BGData" visibility="public" aggregation="composite">
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_85m4UH-REeORG9nwlaWlyQ" name="Message" visibility="public" aggregation="composite">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9VdG0H-REeORG9nwlaWlyQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9VdG0X-REeORG9nwlaWlyQ" value="1"/>
         <defaultValue xmi:type="uml:LiteralString" xmi:id="_9VdG0n-REeORG9nwlaWlyQ">
@@ -37,7 +37,7 @@ This function filters information received from balises, radio or euroloop depen
       <ownedAttribute xmi:type="uml:Property" xmi:id="_2C5X0b8OEeORbNrNo1BPEQ" name="FirstFilter" type="_kzMOwL8HEeORbNrNo1BPEQ" aggregation="composite" association="_2C3ioL8OEeORbNrNo1BPEQ"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_GPEEcb8PEeORbNrNo1BPEQ" name="SecondFilter" type="_sRZokL8OEeORbNrNo1BPEQ" aggregation="composite" association="_GPC2UL8PEeORbNrNo1BPEQ"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_TJI4wb8QEeORbNrNo1BPEQ" name="ThirdFilter" type="_PNSuQL8QEeORbNrNo1BPEQ" aggregation="composite" association="_TJHqoL8QEeORbNrNo1BPEQ"/>
-      <ownedAttribute xmi:type="uml:Port" xmi:id="_f7tOMMVkEeOWFuXiceWInw" name="RadioTransitionEffective" aggregation="composite"/>
+      <ownedAttribute xmi:type="uml:Port" xmi:id="_f7tOMMVkEeOWFuXiceWInw" name="SupervisingRBCID" aggregation="composite"/>
       <ownedConnector xmi:type="uml:Connector" xmi:id="_zszUEL8XEeORbNrNo1BPEQ" name="connector1">
         <end xmi:type="uml:ConnectorEnd" xmi:id="_zs1JQL8XEeORbNrNo1BPEQ" role="_x0D8sH-QEeORG9nwlaWlyQ"/>
         <end xmi:type="uml:ConnectorEnd" xmi:id="_zs1JQb8XEeORbNrNo1BPEQ" partWithPort="_2C5X0b8OEeORbNrNo1BPEQ" role="_usDzgL8WEeORbNrNo1BPEQ"/>
@@ -91,13 +91,15 @@ This function filters information received from balises, radio or euroloop depen
     </packagedElement>
     <packagedElement xmi:type="uml:Model" xmi:id="_VWQBgMVbEeOWFuXiceWInw" name="Parts">
       <packagedElement xmi:type="uml:Class" xmi:id="_kzMOwL8HEeORbNrNo1BPEQ" name="FirstFilter">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_MhdX4NW-EeOGH9kefGrdeA">
+          <body>@mahlmann: This function filters information depending on the ETCS Level and content of the message.</body>
+        </ownedComment>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_usDzgL8WEeORbNrNo1BPEQ" name="Level" aggregation="composite"/>
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_-bz0cL8XEeORbNrNo1BPEQ" name="BGData" aggregation="composite"/>
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_GsROwL8YEeORbNrNo1BPEQ" name="BGData" aggregation="composite"/>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_-bz0cL8XEeORbNrNo1BPEQ" name="Message" aggregation="composite"/>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_GsROwL8YEeORbNrNo1BPEQ" name="Message" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_UhUO0L8fEeORbNrNo1BPEQ" name="Buffer" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_yzMnsMVbEeOWFuXiceWInw" name="FirstFilterTransitionBuffer" type="_piiUoMVbEeOWFuXiceWInw" aggregation="composite" association="_yzIWQMVbEeOWFuXiceWInw"/>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_H5--wMVdEeOWFuXiceWInw" name="FirstFilterLogic" type="_AM_d4MVdEeOWFuXiceWInw" aggregation="composite" association="_H59JkMVdEeOWFuXiceWInw"/>
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_bk1jUMVeEeOWFuXiceWInw" name="flowport1" aggregation="composite"/>
         <ownedConnector xmi:type="uml:Connector" xmi:id="_wayT8MVdEeOWFuXiceWInw" name="connector1">
           <end xmi:type="uml:ConnectorEnd" xmi:id="_wa0JIMVdEeOWFuXiceWInw" partWithPort="_H5--wMVdEeOWFuXiceWInw" role="_coLFEMVdEeOWFuXiceWInw"/>
           <end xmi:type="uml:ConnectorEnd" xmi:id="_wa0JIcVdEeOWFuXiceWInw" role="_GsROwL8YEeORbNrNo1BPEQ"/>
@@ -128,12 +130,15 @@ This function filters information received from balises, radio or euroloop depen
         </ownedConnector>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_sRZokL8OEeORbNrNo1BPEQ" name="SecondFilter">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_Remv8L8YEeORbNrNo1BPEQ" name="BGData" aggregation="composite"/>
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_Ry_EgL8YEeORbNrNo1BPEQ" name="BGData" aggregation="composite"/>
+        <ownedComment xmi:type="uml:Comment" xmi:id="_Xg79MNW-EeOGH9kefGrdeA">
+          <body>@mahlmann: This function filters RBC messages and provides a small buffer for messages that were not received from the supervising RBC.</body>
+        </ownedComment>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_Remv8L8YEeORbNrNo1BPEQ" name="Message" aggregation="composite"/>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_Ry_EgL8YEeORbNrNo1BPEQ" name="Message" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_ijSUwL8fEeORbNrNo1BPEQ" name="Buffer" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_uAmXMsViEeOWFuXiceWInw" name="secondfilterlogic" type="_85O00MVhEeOWFuXiceWInw" aggregation="composite" association="_uAlJEMViEeOWFuXiceWInw"/>
         <ownedAttribute xmi:type="uml:Property" xmi:id="_ujisMcViEeOWFuXiceWInw" name="secondfilterbuffer" type="_qkxJgMViEeOWFuXiceWInw" aggregation="composite" association="_ujheEMViEeOWFuXiceWInw"/>
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_L2snwMVkEeOWFuXiceWInw" name="RBCTransaitionEffective" aggregation="composite"/>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_L2snwMVkEeOWFuXiceWInw" name="SupervisingRBCID" aggregation="composite"/>
         <ownedConnector xmi:type="uml:Connector" xmi:id="_WZ-OsMVjEeOWFuXiceWInw" name="connector1">
           <end xmi:type="uml:ConnectorEnd" xmi:id="_WZ-1wMVjEeOWFuXiceWInw" role="_Remv8L8YEeORbNrNo1BPEQ"/>
           <end xmi:type="uml:ConnectorEnd" xmi:id="_WZ-1wcVjEeOWFuXiceWInw" partWithPort="_uAmXMsViEeOWFuXiceWInw" role="_IXub8MVjEeOWFuXiceWInw"/>
@@ -166,10 +171,10 @@ This function filters information received from balises, radio or euroloop depen
         <ownedAttribute xmi:type="uml:Port" xmi:id="_ThtaYMVeEeOWFuXiceWInw" name="DataOut" aggregation="composite"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_AM_d4MVdEeOWFuXiceWInw" name="FirstFilterLogic">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_XIM1YMVdEeOWFuXiceWInw" name="BGData" aggregation="composite"/>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_XIM1YMVdEeOWFuXiceWInw" name="Message" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_as4dEMVdEeOWFuXiceWInw" name="Level" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_bXYLkMVdEeOWFuXiceWInw" name="SecondFilterBuffer" aggregation="composite"/>
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_coLFEMVdEeOWFuXiceWInw" name="BGData" aggregation="composite"/>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_coLFEMVdEeOWFuXiceWInw" name="Message" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_cvKd4MVdEeOWFuXiceWInw" name="FirstFilterTransitionBuffer" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_Cfvm0MVhEeOWFuXiceWInw" name="FirstFilterBuffer" aggregation="composite"/>
       </packagedElement>
@@ -186,14 +191,14 @@ This function filters information received from balises, radio or euroloop depen
         <ownedEnd xmi:type="uml:Property" xmi:id="_H5--wcVdEeOWFuXiceWInw" name="firstfilter" type="_kzMOwL8HEeORbNrNo1BPEQ" association="_H59JkMVdEeOWFuXiceWInw"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_85O00MVhEeOWFuXiceWInw" name="SecondFilterLogic">
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_IXub8MVjEeOWFuXiceWInw" name="BGData" aggregation="composite"/>
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_KwFacMVjEeOWFuXiceWInw" name="BGData" aggregation="composite"/>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_IXub8MVjEeOWFuXiceWInw" name="Message" aggregation="composite"/>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_KwFacMVjEeOWFuXiceWInw" name="Message" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_mWvNYMVjEeOWFuXiceWInw" name="Buffer" aggregation="composite"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_qkxJgMViEeOWFuXiceWInw" name="SecondFilterBuffer">
         <ownedAttribute xmi:type="uml:Port" xmi:id="_crny8MVjEeOWFuXiceWInw" name="DataOut" aggregation="composite"/>
         <ownedAttribute xmi:type="uml:Port" xmi:id="_e31y4MVjEeOWFuXiceWInw" name="DataIn" aggregation="composite"/>
-        <ownedAttribute xmi:type="uml:Port" xmi:id="_FfNhQMVkEeOWFuXiceWInw" name="RBCTransitionEffective" aggregation="composite"/>
+        <ownedAttribute xmi:type="uml:Port" xmi:id="_FfNhQMVkEeOWFuXiceWInw" name="SupervisingRBCID" aggregation="composite"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Association" xmi:id="_uAlJEMViEeOWFuXiceWInw" name="Association3" memberEnd="_uAmXMsViEeOWFuXiceWInw _uAm-QMViEeOWFuXiceWInw">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_uAmXMMViEeOWFuXiceWInw" source="org.eclipse.papyrus">
@@ -314,7 +319,6 @@ This function filters information received from balises, radio or euroloop depen
   <PortAndFlows:FlowPort xmi:id="_2l5LUMVdEeOWFuXiceWInw" base_Port="_2l1g8MVdEeOWFuXiceWInw" direction="in"/>
   <PortAndFlows:FlowPort xmi:id="_4P8SUMVdEeOWFuXiceWInw" base_Port="_4P5PAMVdEeOWFuXiceWInw" direction="in"/>
   <PortAndFlows:FlowPort xmi:id="_ThwdsMVeEeOWFuXiceWInw" base_Port="_ThtaYMVeEeOWFuXiceWInw" direction="out"/>
-  <PortAndFlows:FlowPort xmi:id="_bk6b0MVeEeOWFuXiceWInw" base_Port="_bk1jUMVeEeOWFuXiceWInw" direction="in"/>
   <PortAndFlows:FlowPort xmi:id="_Cfz4QMVhEeOWFuXiceWInw" base_Port="_Cfvm0MVhEeOWFuXiceWInw" direction="in"/>
   <Blocks:Block xmi:id="_85QC8MVhEeOWFuXiceWInw" base_Class="_85O00MVhEeOWFuXiceWInw"/>
   <Blocks:Block xmi:id="_qkyXoMViEeOWFuXiceWInw" base_Class="_qkxJgMViEeOWFuXiceWInw"/>

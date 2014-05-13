@@ -1,0 +1,199 @@
+\documentclass{template/openetcs_article}
+% Use the option "nocc" if the document is not licensed under Creative Commons
+%\documentclass[nocc]{template/openetcs_article}
+\usepackage{lipsum,url}
+\usepackage{supertabular}
+\usepackage{multirow}
+\usepackage{color, colortbl}
+\definecolor{gray}{rgb}{0.8,0.8,0.8}
+\usepackage[modulo]{lineno}
+\graphicspath{{./template/}{.}{./images/}}
+\begin{document}
+\frontmatter
+\project{openETCS}
+
+%Please do not change anything above this line
+%============================
+
+
+
+% The document metadata is defined below
+
+%assign a report number here
+\reportnum{OETCS/TODO}
+
+%define your workpackage here
+\wp{Work-Package 3: ``Modeling''}
+
+%set a title here
+\title{Definition of Constraints for Modeling in SysML}
+
+%set a subtitle here
+\subtitle{A template for short document. Adapted from report template.}
+
+%set the date of the report here
+\date{May 2014}
+
+%define a list of authors and their affiliation here
+
+\author{Alexander Stante}
+
+\affiliation{Fraunhofer Institute for Embedded Systems \\
+  and Communication Technologies ESK\\
+  Hansastr. 32\\
+  80686 Muenchen, Germany}
+
+% define the coverart
+\coverart[width=350pt]{openETCS_EUPL}
+
+%define the type of report
+\reporttype{Description of work}
+
+
+\begin{abstract}
+%define an abstract here
+  \lipsum[12-13]
+\end{abstract}
+
+%=============================
+\maketitle
+
+%Modification history
+%if you do not need a modification history table for your document simply comment out the eight lines below
+%=============================
+\section*{Modification History}
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Version & Section & Modification / Description & Author \\\hline}
+\begin{supertabular}{| m{1.2cm} | m{1.2cm} | m{6.6cm} | m{4cm} |}
+ & & & \\\hline
+\end{supertabular}
+
+
+\tableofcontents
+\listoffiguresandtables
+\newpage
+%=============================
+
+%Uncomment the next line if you need line numbers for tracebility when the document is in review
+%\linenumbers
+%=============================
+
+
+% The actual document starts below this line
+%=============================
+
+\section{Introduction}
+
+\section{Constraints}
+\label{sec:constraints}
+
+\subsection{Modelng Guidelines}
+\label{sec:modeling-guidelines}
+
+\begin{longtable}{|l||>{\raggedright}p{0.85\linewidth}|}
+  \hline
+  \textbf{Name}        &  Ports have an associated type \tabularnewline \hline
+  \textbf{Target}      &  \texttt{uml.Port} \tabularnewline \hline
+  \textbf{Stereotype}  &  n/a \tabularnewline \hline
+  \textbf{Severity}    &  Error \tabularnewline \hline
+  \textbf{Mode}        &  Batch \tabularnewline \hline
+  \textbf{Message}     &  The Port '\texttt{[name]}' has no associated type. Please add a 
+                          type to the port. \tabularnewline \hline
+  \textbf{Rationale}   &  Ports define an interface between different SysML blocks. The type is a necessary 
+                          part of the port definition to completely specify the interface and to allow code 
+                          generation and V\&V of the SysML model. \tabularnewline \hline
+  \textbf{Description} &  For every UML Port check if a associated type is set, i.e. the type is not 
+                          \texttt{null}. \tabularnewline \hline
+\end{longtable}
+
+
+
+\subsection{Tool Constraints}
+\label{sec:tool-constraints}
+
+\subsubsection{C99 Code Generation}
+
+\begin{longtable}{|l||>{\raggedright}p{0.85\linewidth}|}
+  \hline
+  \textbf{Name}        & Name is not a reserved C99 keyword \tabularnewline \hline
+  \textbf{Target}      & \texttt{uml.NamedElement} \tabularnewline \hline
+  \textbf{Stereotype}  & n/a \tabularnewline \hline
+  \textbf{Severity}    & Error \tabularnewline \hline
+  \textbf{Mode}        & Batch \tabularnewline \hline
+  \textbf{Message}     & The used name '\texttt{[name]}' is a reserved C99 keyword in ISO/IEC 9899:1999. 
+                         Please change the name of the element. \tabularnewline \hline
+  \textbf{Rationale}   & If the SysML model is used to generate C code (for example through Scade), 
+                         a straight-forward implementation uses the name of NamedElements  
+                         for the generated C data structures, functions, etc. Using reserved keywords 
+                         for variables, functions, etc. would result in  compilation errors. Therefore, 
+                         all NamedElements are restricted to not contain reserved C99 keywords according
+                         to ISO/IEC 9899:1999. \tabularnewline \hline
+  \textbf{Description} & The name of each NamedElement is checked against a list of C99 keywords which 
+                         are defined in ISO/IEC 9899:1999 section ``6.4.1 Keywords''. The keywords are: 
+                         \begin{tabular}{l l l}
+                           \texttt{auto}     & \texttt{if}       & \texttt{unsigned}       \\
+                           \texttt{break}    & \texttt{inline}   & \texttt{void}           \\
+                           \texttt{case}     & \texttt{int}      & \texttt{volatile}       \\
+                           \texttt{char}     & \texttt{long}     & \texttt{while}          \\
+                           \texttt{const}    & \texttt{register} & \texttt{\_Alignas}       \\
+                           \texttt{continue} & \texttt{restrict} & \texttt{\_Alignof}       \\
+                           \texttt{default}  & \texttt{return}   & \texttt{\_Atomic}        \\
+                           \texttt{do}       & \texttt{short}    & \texttt{\_Bool}          \\
+                           \texttt{double}   & \texttt{signed}   & \texttt{\_Complex}       \\
+                           \texttt{else}     & \texttt{sizeof}   & \texttt{\_Generic}       \\
+                           \texttt{enum}     & \texttt{static}   & \texttt{\_Imaginary}     \\
+                           \texttt{extern}   & \texttt{struct}   & \texttt{\_Noreturn}      \\
+                           \texttt{float}    & \texttt{switch}   & \texttt{\_Static\_assert} \\
+                           \texttt{for}      & \texttt{typedef}  & \texttt{\_Thread\_local}  \\
+                           \texttt{goto}     & \texttt{union} \\
+                         \end{tabular}\tabularnewline \hline
+\end{longtable}
+
+\begin{longtable}{|l||>{\raggedright}p{0.85\linewidth}|}
+  \hline
+  \textbf{Name}        &  Name is valid C99 identifier \tabularnewline \hline
+  \textbf{Target}      &  \texttt{uml.NamedElement} \tabularnewline \hline
+  \textbf{Stereotype}  &  n/a \tabularnewline \hline
+  \textbf{Severity}    &  Error \tabularnewline \hline
+  \textbf{Mode}        &  Batch \tabularnewline \hline
+  \textbf{Message}     &  The used name '\texttt{[name]}' is not a valid C99 identifier as specified in 
+                          ISO/IEC 9899:1999. Please change the name of the element. \tabularnewline \hline
+  \textbf{Rationale}   &  Same rational as for previous constraint \tabularnewline \hline
+  \textbf{Description} &  The name of each NamedElement is checked against the identifier specification
+                          in ISO/IEC 9899:1999 section ``6.4.2 Identifiers''. The sepecification equals to the
+                          following regular expression: \texttt{[\_a-zA-Z][0-9a-zA-Z\*]}. \tabularnewline \hline
+\end{longtable}
+
+
+\subsubsection{Classical B Generation}
+
+\subsubsection{POSIX Platform Generation}
+
+\begin{longtable}{|l||>{\raggedright}p{0.85\linewidth}|}
+  \hline
+  \textbf{Name}        &  Name does not conflict with POSIX.1-2008 reserved names \tabularnewline \hline
+  \textbf{Target}      &  \texttt{uml.NamedElement} \tabularnewline \hline
+  \textbf{Stereotype}  &  n/a \tabularnewline \hline
+  \textbf{Severity}    &  Error \tabularnewline \hline
+  \textbf{Mode}        &  Batch \tabularnewline \hline
+  \textbf{Message}     &  The name '\texttt{[name]}' ends with '\texttt{\_t}' which is reserved for
+                          implementors and a POSIX.1-2008 conforming application shall avoid. 
+                          Please change the name of the element. \tabularnewline \hline
+  \textbf{Rationale}   &  Implementors of POSIX.1-2008 can introduce new types. To avoid clashes with this types,
+                          POSIX.1-2008 requires that conforming applications avoid names which 
+                          ends with '\texttt{\_t}'. \tabularnewline \hline
+  \textbf{Description} &  The name of each NamedElement is checked if its ends with '\texttt{\_t}'. This is equal to 
+                          the following regular expression: \texttt{![.*\_t]}. \tabularnewline \hline
+\end{longtable}
+
+
+
+% \bibliographystyle{unsrt}
+% \bibliography{erdc}
+
+%===================================================
+%Do NOT change anything below this line
+
+\end{document}
