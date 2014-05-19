@@ -232,6 +232,53 @@ Version & Section & Modification / Description & Author \\\hline}
                           \end{tabular}\tabularnewline \hline
 \end{longtable}
 
+\begin{longtable}{|l||>{\raggedright}p{0.85\linewidth}|}
+  \hline
+  \textbf{Name}        &  Model contains only Elements transferable to SCADE \tabularnewline \hline
+  \textbf{Target}      &  \texttt{uml.Element} \tabularnewline \hline
+  \textbf{Stereotype}  &  n/a \tabularnewline \hline
+  \textbf{Severity}    &  Error \tabularnewline \hline
+  \textbf{Mode}        &  Batch \tabularnewline \hline
+  \textbf{Message}     &  The element '\texttt{[name]}' can't be used in a Model which will be transformed 
+                          to SCADE. Please remove the element. \tabularnewline \hline
+  \textbf{Rationale}   &  SCADE System defines a SysML subset and also adds new Elements like \texttt{Array} 
+                          that is used to model the System Architecture. Only this subset is guaranteed to be
+                          transformable to SCADE Suite. \tabularnewline \hline
+  \textbf{Description} &  Each model element is checked to be one of the following elements.
+                          \begin{tabular}{l l l}
+                            \textbf{General Constructs}                                                           \\
+                            \texttt{Element}            & \texttt{Package}           & \texttt{Property}          \\
+                            \texttt{Comment}            & \texttt{Model}             & \texttt{Association}       \\
+                            \texttt{NamedElement}       & \texttt{Type}              & \texttt{Constant}          \\
+                            \texttt{Declaration}        & \texttt{TypedElement}      & \texttt{Expression}        \\
+                            \texttt{Annotable}          & \texttt{StructuralFeature}                              \\
+                            \textbf{Data Types}                                                                   \\
+                            \texttt{DataType}           & \texttt{Array}             & \texttt{Dimension}         \\
+                            \texttt{Enumeration}        & \texttt{Signal}            & \texttt{Typedef}           \\
+                            \texttt{EnumerationLiteral} & \texttt{Unit}                                           \\
+                            \textbf{Structural Modeling}                                                          \\
+                            \texttt{Actor}              & \texttt{PartType}          & \texttt{Connector}         \\
+                            \texttt{Block}              & \texttt{Port}              & \texttt{ConnectorEnd}      \\
+                            \texttt{Part \& Reference}  & \texttt{PortType}                                       \\
+                            \multicolumn{3}{l}{\textbf{Dataflow-Oriented Communications}}                         \\
+                            \texttt{FlowPort}           & \texttt{NonAtomicFlowPort} & \texttt{FlowSpecification} \\
+                            \texttt{AtomicFlowPort}     & \texttt{FlowType}          & \texttt{FlowProperty}      \\
+                            \textbf{Allocations}                                                                  \\
+                            \texttt{Allocation}                                                                   \\
+                            \textbf{Diagrams}                                                                     \\
+                            \multicolumn{3}{l}{\texttt{Block Definition Diagram}}                                 \\
+                            \multicolumn{3}{l}{\texttt{Internal Block Diagram}}                                   \\
+                          \end{tabular} 
+                          \vspace
+                          Esterel adds certain modeling elements which are not SysML, like \texttt{Array}. Also certain aspects
+                          of SysML modeling are hidden. For example, if a \texttt{Datatype} is added to the model, the actual 
+                          UML element is as expected a Datatype. However, as soon as \texttt{Dimension} or \texttt{Unit} 
+                          is added, the \texttt{ValueType} stereotype is applied. This fact is hidden in the graphical user
+                          interface, but present in the \texttt{.uml} file.
+                          TODO: Provide a detailed description how non UML/SysML Elements are mapped to UML/SysML.
+                          \tabularnewline \hline
+\end{longtable}
+
 
 
 \subsubsection{Classical B Generation}
