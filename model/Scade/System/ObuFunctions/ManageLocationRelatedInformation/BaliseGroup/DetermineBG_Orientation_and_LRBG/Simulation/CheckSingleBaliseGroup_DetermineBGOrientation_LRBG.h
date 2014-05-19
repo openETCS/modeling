@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/Users/GiovanniTrotta/Desktop/SoftwareBGO/Simulation\kcg_s2c_config.txt
-** Generation date: 2014-05-12T18:26:15
+** Generation date: 2014-05-19T12:23:30
 *************************************************************$ */
 #ifndef _CheckSingleBaliseGroup_DetermineBGOrientation_LRBG_H_
 #define _CheckSingleBaliseGroup_DetermineBGOrientation_LRBG_H_
@@ -57,8 +57,6 @@ typedef struct {
   M_MODE_DetermineBGOrientation_LRBG_DataDctionary_Variable /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L173 */ _L173;
   M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L172 */ _L172;
   TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L174 */ _L174;
-  kcg_bool /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L175 */ _L175;
-  M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L176 */ _L176;
   Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L178 */ _L178;
   kcg_bool /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L179 */ _L179;
   AdditionalInformation_DetermineBGOrientation_LRBG_DataDctionary_BTM /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L183 */ _L183;
@@ -121,6 +119,11 @@ typedef struct {
   Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L296 */ _L296;
   Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L300 */ _L300;
   Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L251 */ _L251;
+  M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L176 */ _L176;
+  kcg_bool /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L175 */ _L175;
+  kcg_bool /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L306 */ _L306;
+  kcg_bool /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L307 */ _L307;
+  M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable /* DetermineBGOrientation_LRBG::CheckSingleBaliseGroup::_L308 */ _L308;
 } outC_CheckSingleBaliseGroup_DetermineBGOrientation_LRBG;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -137,6 +140,6 @@ extern void CheckSingleBaliseGroup_reset_DetermineBGOrientation_LRBG(
 #endif /* _CheckSingleBaliseGroup_DetermineBGOrientation_LRBG_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** CheckSingleBaliseGroup_DetermineBGOrientation_LRBG.h
-** Generation date: 2014-05-12T18:26:15
+** Generation date: 2014-05-19T12:23:30
 *************************************************************$ */
 

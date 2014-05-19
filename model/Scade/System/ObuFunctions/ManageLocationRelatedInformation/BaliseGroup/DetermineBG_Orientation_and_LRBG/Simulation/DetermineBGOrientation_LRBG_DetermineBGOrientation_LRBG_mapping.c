@@ -425,71 +425,74 @@ void _SCSIM_Mapping_CheckSingleBaliseGroup_DetermineBGOrientation_LRBG(const cha
 	pSimulator->m_pfnAddLocal(pSimulator, "_L173", &_SCSIM_M_MODE_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 136, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L172", &_SCSIM_M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 137, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L174", &_SCSIM_TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo_Utils, 138, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L175", &_SCSIM_kcg_bool_Utils, 139, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L176", &_SCSIM_M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 140, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L178", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 141, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L179", &_SCSIM_kcg_bool_Utils, 142, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L183", &_SCSIM_AdditionalInformation_DetermineBGOrientation_LRBG_DataDctionary_BTM_Utils, 143, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L182", &_SCSIM_HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 144, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L199", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 145, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L198", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 146, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L197", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 147, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L196", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 148, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L195", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 149, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L194", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 150, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L193", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 151, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L192", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 152, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L203", &_SCSIM_Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 153, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L202", &_SCSIM_Header_DetermineBGOrientation_LRBG_DataDctionary_BTM_Utils, 154, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L225", &_SCSIM_M_DUP_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 155, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L224", &_SCSIM_M_MCOUNT_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 156, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L223", &_SCSIM_NID_C_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 157, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L222", &_SCSIM_NID_BG_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 158, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L221", &_SCSIM_Q_LINK_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 159, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L220", &_SCSIM_Q_UPDOWN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 160, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L219", &_SCSIM_Q_MEDIA_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 161, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L218", &_SCSIM_N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 162, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L217", &_SCSIM_N_TOTAL_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 163, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L216", &_SCSIM_M_PLATFORM_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 164, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L226", &_SCSIM_Q_LINK_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 165, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L252", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 166, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L253", &_SCSIM_kcg_bool_Utils, 167, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L274", &_SCSIM_HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 168, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L275", &_SCSIM_AdditionalInformation_DetermineBGOrientation_LRBG_DataDctionary_BTM_Utils, 169, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L264", &_SCSIM_M_PLATFORM_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 170, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L265", &_SCSIM_N_TOTAL_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 171, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L266", &_SCSIM_N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 172, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L267", &_SCSIM_Q_MEDIA_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 173, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L268", &_SCSIM_Q_UPDOWN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 174, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L269", &_SCSIM_Q_LINK_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 175, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L270", &_SCSIM_NID_BG_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 176, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L271", &_SCSIM_NID_C_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 177, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L272", &_SCSIM_M_MCOUNT_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 178, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L273", &_SCSIM_M_DUP_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 179, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L256", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 180, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L257", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 181, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L258", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 182, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L259", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 183, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L260", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 184, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L261", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 185, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L262", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 186, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L263", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 187, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L254", &_SCSIM_Header_DetermineBGOrientation_LRBG_DataDctionary_BTM_Utils, 188, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L255", &_SCSIM_Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 189, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L276", &_SCSIM_kcg_bool_Utils, 190, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L277", &_SCSIM_N_TOTAL_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 191, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L278", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 192, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L282", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 193, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L283", &_SCSIM_kcg_bool_Utils, 194, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L286", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 195, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L287", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 196, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L299", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 197, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L298", &_SCSIM_kcg_bool_Utils, 198, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L297", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 199, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L296", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 200, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L300", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 201, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L251", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 202, valid, 0, 0);
-	pSimulator->m_pfnAddOutput(pSimulator, "Orientation", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 203, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L178", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 139, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L179", &_SCSIM_kcg_bool_Utils, 140, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L183", &_SCSIM_AdditionalInformation_DetermineBGOrientation_LRBG_DataDctionary_BTM_Utils, 141, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L182", &_SCSIM_HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 142, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L199", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 143, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L198", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 144, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L197", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 145, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L196", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 146, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L195", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 147, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L194", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 148, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L193", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 149, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L192", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 150, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L203", &_SCSIM_Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 151, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L202", &_SCSIM_Header_DetermineBGOrientation_LRBG_DataDctionary_BTM_Utils, 152, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L225", &_SCSIM_M_DUP_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 153, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L224", &_SCSIM_M_MCOUNT_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 154, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L223", &_SCSIM_NID_C_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 155, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L222", &_SCSIM_NID_BG_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 156, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L221", &_SCSIM_Q_LINK_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 157, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L220", &_SCSIM_Q_UPDOWN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 158, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L219", &_SCSIM_Q_MEDIA_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 159, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L218", &_SCSIM_N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 160, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L217", &_SCSIM_N_TOTAL_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 161, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L216", &_SCSIM_M_PLATFORM_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 162, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L226", &_SCSIM_Q_LINK_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 163, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L252", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 164, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L253", &_SCSIM_kcg_bool_Utils, 165, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L274", &_SCSIM_HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 166, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L275", &_SCSIM_AdditionalInformation_DetermineBGOrientation_LRBG_DataDctionary_BTM_Utils, 167, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L264", &_SCSIM_M_PLATFORM_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 168, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L265", &_SCSIM_N_TOTAL_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 169, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L266", &_SCSIM_N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 170, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L267", &_SCSIM_Q_MEDIA_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 171, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L268", &_SCSIM_Q_UPDOWN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 172, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L269", &_SCSIM_Q_LINK_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 173, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L270", &_SCSIM_NID_BG_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 174, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L271", &_SCSIM_NID_C_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 175, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L272", &_SCSIM_M_MCOUNT_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 176, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L273", &_SCSIM_M_DUP_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 177, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L256", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 178, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L257", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 179, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L258", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 180, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L259", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 181, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L260", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 182, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L261", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 183, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L262", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 184, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L263", &_SCSIM_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 185, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L254", &_SCSIM_Header_DetermineBGOrientation_LRBG_DataDctionary_BTM_Utils, 186, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L255", &_SCSIM_Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 187, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L276", &_SCSIM_kcg_bool_Utils, 188, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L277", &_SCSIM_N_TOTAL_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 189, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L278", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 190, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L282", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 191, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L283", &_SCSIM_kcg_bool_Utils, 192, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L286", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 193, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L287", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 194, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L299", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 195, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L298", &_SCSIM_kcg_bool_Utils, 196, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L297", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 197, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L296", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 198, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L300", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 199, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L251", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 200, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L176", &_SCSIM_M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 201, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L175", &_SCSIM_kcg_bool_Utils, 202, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L306", &_SCSIM_kcg_bool_Utils, 203, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L307", &_SCSIM_kcg_bool_Utils, 204, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L308", &_SCSIM_M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 205, valid, 0, 0);
+	pSimulator->m_pfnAddOutput(pSimulator, "Orientation", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 206, valid, 0, 0);
 	pSimulator->m_pfnPopInstance(pSimulator);
 }
 
@@ -571,134 +574,140 @@ void* _SCSIM_Get_CheckSingleBaliseGroup_DetermineBGOrientation_LRBG_Handle(void*
 		case 138:
 			return &((*pContext)._L174);
 		case 139:
-			return &((*pContext)._L175);
-		case 140:
-			return &((*pContext)._L176);
-		case 141:
 			return &((*pContext)._L178);
-		case 142:
+		case 140:
 			return &((*pContext)._L179);
-		case 143:
+		case 141:
 			return &((*pContext)._L183);
-		case 144:
+		case 142:
 			return &((*pContext)._L182);
-		case 145:
+		case 143:
 			return &((*pContext)._L199);
-		case 146:
+		case 144:
 			return &((*pContext)._L198);
-		case 147:
+		case 145:
 			return &((*pContext)._L197);
-		case 148:
+		case 146:
 			return &((*pContext)._L196);
-		case 149:
+		case 147:
 			return &((*pContext)._L195);
-		case 150:
+		case 148:
 			return &((*pContext)._L194);
-		case 151:
+		case 149:
 			return &((*pContext)._L193);
-		case 152:
+		case 150:
 			return &((*pContext)._L192);
-		case 153:
+		case 151:
 			return &((*pContext)._L203);
-		case 154:
+		case 152:
 			return &((*pContext)._L202);
-		case 155:
+		case 153:
 			return &((*pContext)._L225);
-		case 156:
+		case 154:
 			return &((*pContext)._L224);
-		case 157:
+		case 155:
 			return &((*pContext)._L223);
-		case 158:
+		case 156:
 			return &((*pContext)._L222);
-		case 159:
+		case 157:
 			return &((*pContext)._L221);
-		case 160:
+		case 158:
 			return &((*pContext)._L220);
-		case 161:
+		case 159:
 			return &((*pContext)._L219);
-		case 162:
+		case 160:
 			return &((*pContext)._L218);
-		case 163:
+		case 161:
 			return &((*pContext)._L217);
-		case 164:
+		case 162:
 			return &((*pContext)._L216);
-		case 165:
+		case 163:
 			return &((*pContext)._L226);
-		case 166:
+		case 164:
 			return &((*pContext)._L252);
-		case 167:
+		case 165:
 			return &((*pContext)._L253);
-		case 168:
+		case 166:
 			return &((*pContext)._L274);
-		case 169:
+		case 167:
 			return &((*pContext)._L275);
-		case 170:
+		case 168:
 			return &((*pContext)._L264);
-		case 171:
+		case 169:
 			return &((*pContext)._L265);
-		case 172:
+		case 170:
 			return &((*pContext)._L266);
-		case 173:
+		case 171:
 			return &((*pContext)._L267);
-		case 174:
+		case 172:
 			return &((*pContext)._L268);
-		case 175:
+		case 173:
 			return &((*pContext)._L269);
-		case 176:
+		case 174:
 			return &((*pContext)._L270);
-		case 177:
+		case 175:
 			return &((*pContext)._L271);
-		case 178:
+		case 176:
 			return &((*pContext)._L272);
-		case 179:
+		case 177:
 			return &((*pContext)._L273);
-		case 180:
+		case 178:
 			return &((*pContext)._L256);
-		case 181:
+		case 179:
 			return &((*pContext)._L257);
-		case 182:
+		case 180:
 			return &((*pContext)._L258);
-		case 183:
+		case 181:
 			return &((*pContext)._L259);
-		case 184:
+		case 182:
 			return &((*pContext)._L260);
-		case 185:
+		case 183:
 			return &((*pContext)._L261);
-		case 186:
+		case 184:
 			return &((*pContext)._L262);
-		case 187:
+		case 185:
 			return &((*pContext)._L263);
-		case 188:
+		case 186:
 			return &((*pContext)._L254);
-		case 189:
+		case 187:
 			return &((*pContext)._L255);
-		case 190:
+		case 188:
 			return &((*pContext)._L276);
-		case 191:
+		case 189:
 			return &((*pContext)._L277);
-		case 192:
+		case 190:
 			return &((*pContext)._L278);
-		case 193:
+		case 191:
 			return &((*pContext)._L282);
-		case 194:
+		case 192:
 			return &((*pContext)._L283);
-		case 195:
+		case 193:
 			return &((*pContext)._L286);
-		case 196:
+		case 194:
 			return &((*pContext)._L287);
-		case 197:
+		case 195:
 			return &((*pContext)._L299);
-		case 198:
+		case 196:
 			return &((*pContext)._L298);
-		case 199:
+		case 197:
 			return &((*pContext)._L297);
-		case 200:
+		case 198:
 			return &((*pContext)._L296);
-		case 201:
+		case 199:
 			return &((*pContext)._L300);
-		case 202:
+		case 200:
 			return &((*pContext)._L251);
+		case 201:
+			return &((*pContext)._L176);
+		case 202:
+			return &((*pContext)._L175);
 		case 203:
+			return &((*pContext)._L306);
+		case 204:
+			return &((*pContext)._L307);
+		case 205:
+			return &((*pContext)._L308);
+		case 206:
 			return &((*pContext).Orientation);
 		default:
 			break;
@@ -711,32 +720,32 @@ void* _SCSIM_Get_CheckSingleBaliseGroup_DetermineBGOrientation_LRBG_Handle(void*
  ****************************************************************/
 void _SCSIM_Mapping_ArrCheck_DetermineBGOrientation_LRBG(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
 	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_ArrCheck_DetermineBGOrientation_LRBG_Handle, nClockHandleIdent, pfnClockActive);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L13", &_SCSIM_N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 204, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L17", &_SCSIM_Orientation_DetermineBGOrientation_LRBG_DataDctionary_Utils, 205, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L20", &_SCSIM_kcg_bool_Utils, 206, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L34", &_SCSIM_N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 207, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L38", &_SCSIM_Orientation_DetermineBGOrientation_LRBG_DataDctionary_Utils, 208, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L37", &_SCSIM_Orientation_DetermineBGOrientation_LRBG_DataDctionary_Utils, 209, valid, 0, 0);
-	pSimulator->m_pfnAddOutput(pSimulator, "Orientation", &_SCSIM_Orientation_DetermineBGOrientation_LRBG_DataDctionary_Utils, 210, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L13", &_SCSIM_N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 207, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L17", &_SCSIM_Orientation_DetermineBGOrientation_LRBG_DataDctionary_Utils, 208, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L20", &_SCSIM_kcg_bool_Utils, 209, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L34", &_SCSIM_N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 210, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L38", &_SCSIM_Orientation_DetermineBGOrientation_LRBG_DataDctionary_Utils, 211, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L37", &_SCSIM_Orientation_DetermineBGOrientation_LRBG_DataDctionary_Utils, 212, valid, 0, 0);
+	pSimulator->m_pfnAddOutput(pSimulator, "Orientation", &_SCSIM_Orientation_DetermineBGOrientation_LRBG_DataDctionary_Utils, 213, valid, 0, 0);
 	pSimulator->m_pfnPopInstance(pSimulator);
 }
 
 void* _SCSIM_Get_ArrCheck_DetermineBGOrientation_LRBG_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
 	outC_ArrCheck_DetermineBGOrientation_LRBG* pContext = (outC_ArrCheck_DetermineBGOrientation_LRBG*)pInstance;
 	switch (nHandleIdent) {
-		case 204:
-			return &((*pContext)._L13);
-		case 205:
-			return &((*pContext)._L17);
-		case 206:
-			return &((*pContext)._L20);
 		case 207:
-			return &((*pContext)._L34);
+			return &((*pContext)._L13);
 		case 208:
-			return &((*pContext)._L38);
+			return &((*pContext)._L17);
 		case 209:
-			return &((*pContext)._L37);
+			return &((*pContext)._L20);
 		case 210:
+			return &((*pContext)._L34);
+		case 211:
+			return &((*pContext)._L38);
+		case 212:
+			return &((*pContext)._L37);
+		case 213:
 			return &((*pContext).Orientation);
 		default:
 			break;

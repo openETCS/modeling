@@ -1,57 +1,855 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--$*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/Users/GiovanniTrotta/Desktop/SoftwareBGO/Simulation\kcg_s2c_config.txt
-** Generation date: 2014-05-13T14:52:26
+** Generation date: 2014-05-19T12:23:30
 *************************************************************$-->
-<Model date="2014-05-13T14:52:26" commandLine="s2c613 -config C:/Users/GiovanniTrotta/Desktop/SoftwareBGO/Simulation\kcg_s2c_config.txt">
+<Model date="2014-05-19T12:23:30" commandLine="s2c613 -config C:/Users/GiovanniTrotta/Desktop/SoftwareBGO/Simulation\kcg_s2c_config.txt">
   <Package scadeName="DetermineBGOrientation_LRBG">
-    <RootNode scadeName="Operator7" headerFile="Operator7_DetermineBGOrientation_LRBG.h"
-        targetCycleFct="Operator7_DetermineBGOrientation_LRBG"
-        targetInitFct="Operator7_reset_DetermineBGOrientation_LRBG">
-      <Input scadeName="Input1" scadeType="int" targetName="Input1" targetType="kcg_int" inCtx="true"/>
-      <Input scadeName="in" scadeType="bool" targetName="in" targetType="kcg_bool" inCtx="true"/>
-      <Output scadeName="Output1" scadeType="int" targetName="Output1" targetType="kcg_int" inCtx="true"/>
-      <Automaton scadeName="SM1" targetStatesType="SSM_ST_SM1" targetTransitionsType="SSM_TR_SM1">
-        <State scadeName="Off" targetName="SSM_st_Off_SM1">
-          <Fork priority="1">
-            <Condition>
-              <NodeInstance scadeName="=" instName="1"/>
-            </Condition>
-            <Transition targetName="SSM_TR_Off_1_SM1" kind="strong" scadeDest="On"/>
-          </Fork>
-        </State>
-        <State scadeName="On" targetName="SSM_st_On_SM1">
-          <Signal scadeName="Signal1" targetName="Signal1_SM1_On" clockVar="SM1_state_act" clockVal="SSM_st_On_SM1"
-              inCtx="true"/>
-          <Local scadeName="_L2" scadeType="int" targetName="_L2_SM1_On" targetType="kcg_int" clockVar="SM1_state_act"
-              clockVal="SSM_st_On_SM1" inCtx="true"/>
-          <Local scadeName="_L3" scadeType="int" targetName="_L3_SM1_On" targetType="kcg_int" clockVar="SM1_state_act"
-              clockVal="SSM_st_On_SM1" inCtx="true"/>
-          <Local scadeName="_L4" scadeType="int" targetName="_L4_SM1_On" targetType="kcg_int" clockVar="SM1_state_act"
-              clockVal="SSM_st_On_SM1" inCtx="true"/>
-          <NodeInstance scadeName="+" instName="1"/>
-          <Fork priority="1">
-            <Condition>
-              <NodeInstance scadeName="=" instName="2"/>
-            </Condition>
-            <Transition targetName="SSM_TR_On_1_SM1" kind="strong" scadeDest="Off"/>
-          </Fork>
-        </State>
-        <ActiveState targetName="SM1_state_act" inCtx="true"/>
-        <NextState targetName="SM1_state_nxt" inCtx="true"/>
-        <SelectedState targetName="SM1_state_sel" inCtx="true"/>
-        <ResetActiveState targetName="SM1_reset_act" inCtx="true"/>
-        <ResetNextState targetName="SM1_reset_nxt" inCtx="true"/>
-        <ResetSelectedState targetName="SM1_reset_sel"/>
-        <StrongTransition targetName="SM1_fired_strong" inCtx="true"/>
-        <WeakTransition targetName="SM1_fired" inCtx="true"/>
-      </Automaton>
-      <Init targetName="init" targetType="kcg_bool" inCtx="true"/>
-      <OutCtxType targetName="outC_Operator7_DetermineBGOrientation_LRBG"/>
-      <InCtxType targetName="inC_Operator7_DetermineBGOrientation_LRBG"/>
+    <RootNode scadeName="DetermineBGOrientation_LRBG"
+        headerFile="DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG.h"
+        targetCycleFct="DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG"
+        targetInitFct="DetermineBGOrientation_LRBG_reset_DetermineBGOrientation_LRBG">
+      <Input scadeName="CurrentLRBG" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="CurrentLRBG" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Input scadeName="CheckedBGMessage"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::CheckedBGMessage"
+          targetName="CheckedBGMessage"
+          targetType="CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage" inCtx="true"/>
+      <Input scadeName="ListOfBGs" scadeType="DetermineBGOrientation_LRBG::DataDctionary::ListOfBGs::ListOfBGs"
+          targetName="ListOfBGs" targetType="ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs"
+          inCtx="true"/>
+      <Input scadeName="TrainInfo" scadeType="DetermineBGOrientation_LRBG::DataDctionary::TrainInfo::TrainInfo"
+          targetName="TrainInfo" targetType="TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo"
+          inCtx="true"/>
+      <Input scadeName="RBCOrientationReport"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::RBCOrientationReport::RBCOrientationReport"
+          targetName="RBCOrientationReport"
+          targetType="RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport"
+          inCtx="true"/>
+      <Output scadeName="FilterBGMessage"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::FilteredBGMessage::FilteredBGMessage"
+          targetName="FilterBGMessage"
+          targetType="FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage" inCtx="true"/>
+      <Output scadeName="RBCReport"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::Packets::Train_Position_Report" targetName="RBCReport"
+          targetType="Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets" inCtx="true"/>
+      <Local scadeName="_LCurrentLRBG" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_LCurrentLRBG" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_LCheckedBGMessage"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::CheckedBGMessage"
+          targetName="_LCheckedBGMessage"
+          targetType="CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage" inCtx="true"/>
+      <Local scadeName="_LListOfBGs" scadeType="DetermineBGOrientation_LRBG::DataDctionary::ListOfBGs::ListOfBGs"
+          targetName="_LListOfBGs" targetType="ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs"
+          inCtx="true"/>
+      <Local scadeName="_LTrainInfo" scadeType="DetermineBGOrientation_LRBG::DataDctionary::TrainInfo::TrainInfo"
+          targetName="_LTrainInfo" targetType="TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo"
+          inCtx="true"/>
+      <Local scadeName="_LRBCOrientationReport"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::RBCOrientationReport::RBCOrientationReport"
+          targetName="_LRBCOrientationReport"
+          targetType="RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport"
+          inCtx="true"/>
+      <Local scadeName="_Lchecksinglebalisegroup_Orientation"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_Lchecksinglebalisegroup_Orientation"
+          targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_Lfinalcheck_RBCReport"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::Packets::Train_Position_Report"
+          targetName="_Lfinalcheck_RBCReport"
+          targetType="Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets" inCtx="true"/>
+      <Local scadeName="_Lgetbgmessageorientation_BGOOrientationAndType"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::Orientation"
+          targetName="_Lgetbgmessageorientation_BGOOrientationAndType"
+          targetType="Orientation_DetermineBGOrientation_LRBG_DataDctionary" inCtx="true"/>
+      <Local scadeName="_Lfinalcheck_FilteredBGMessage"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::FilteredBGMessage::FilteredBGMessage"
+          targetName="_Lfinalcheck_FilteredBGMessage"
+          targetType="FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage" inCtx="true"/>
+      <NodeInstance scadeName="DetermineBGOrientation_LRBG::CheckBaliseGroup" instName="1"
+          refName="CheckBaliseGroup_DetermineBGOrientation_LRBG">
+        <OutCtxVar targetName="_1_Context_1"/>
+      </NodeInstance>
+      <NodeInstance scadeName="DetermineBGOrientation_LRBG::FinalCheck" instName="1"
+          refName="FinalCheck_DetermineBGOrientation_LRBG">
+        <OutCtxVar targetName="_2_Context_1"/>
+      </NodeInstance>
+      <NodeInstance scadeName="DetermineBGOrientation_LRBG::GetBGMessageOrientation" instName="1"
+          refName="GetBGMessageOrientation_DetermineBGOrientation_LRBG">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+      <OutCtxType targetName="outC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG"/>
+      <InCtxType targetName="inC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG"/>
     </RootNode>
+    <NoExpNode scadeName="CheckBaliseGroup" headerFile="CheckBaliseGroup_DetermineBGOrientation_LRBG.h"
+        targetCycleFct="CheckBaliseGroup_DetermineBGOrientation_LRBG"
+        targetInitFct="CheckBaliseGroup_reset_DetermineBGOrientation_LRBG">
+      <Input scadeName="CurrentLRBG" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="CurrentLRBG" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"/>
+      <Input scadeName="ListOfBGs" scadeType="DetermineBGOrientation_LRBG::DataDctionary::ListOfBGs::ListOfBGs"
+          targetName="ListOfBGs" targetType="ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs"/>
+      <Input scadeName="BGOOrientationAndType" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Orientation"
+          targetName="BGOOrientationAndType" targetType="Orientation_DetermineBGOrientation_LRBG_DataDctionary"/>
+      <Input scadeName="TrainInfo" scadeType="DetermineBGOrientation_LRBG::DataDctionary::TrainInfo::TrainInfo"
+          targetName="TrainInfo" targetType="TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo"/>
+      <Output scadeName="Orientation" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="Orientation" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable"
+          inCtx="true"/>
+      <Local scadeName="_LCurrentLRBG" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_LCurrentLRBG" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_LListOfBGs" scadeType="DetermineBGOrientation_LRBG::DataDctionary::ListOfBGs::ListOfBGs"
+          targetName="_LListOfBGs" targetType="ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs"
+          inCtx="true"/>
+      <Local scadeName="_LBGOOrientationAndType" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Orientation"
+          targetName="_LBGOOrientationAndType" targetType="Orientation_DetermineBGOrientation_LRBG_DataDctionary"
+          inCtx="true"/>
+      <Local scadeName="_LTrainInfo" scadeType="DetermineBGOrientation_LRBG::DataDctionary::TrainInfo::TrainInfo"
+          targetName="_LTrainInfo" targetType="TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo"
+          inCtx="true"/>
+      <Local scadeName="_Lchecksinglebalisegroup_Orientation"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_Lchecksinglebalisegroup_Orientation"
+          targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L1" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="bool" targetName="_L2" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L3" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Orientation" targetName="_L3"
+          targetType="Orientation_DetermineBGOrientation_LRBG_DataDctionary" inCtx="true"/>
+      <Local scadeName="_L8" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L8" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L6" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Orientation" targetName="_L6"
+          targetType="Orientation_DetermineBGOrientation_LRBG_DataDctionary" inCtx="true"/>
+      <Local scadeName="_L7" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L7" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L5" scadeType="bool" targetName="_L5" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L4" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <NodeInstance scadeName="DetermineBGOrientation_LRBG::CheckSingleBaliseGroup" instName="1"
+          refName="CheckSingleBaliseGroup_DetermineBGOrientation_LRBG">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+      <NodeInstance scadeName="=" instName="1"/>
+      <NodeInstance scadeName="=" instName="2"/>
+      <OutCtxType targetName="outC_CheckBaliseGroup_DetermineBGOrientation_LRBG"/>
+    </NoExpNode>
+    <NoExpNode scadeName="CheckSingleBaliseGroup" headerFile="CheckSingleBaliseGroup_DetermineBGOrientation_LRBG.h"
+        targetCycleFct="CheckSingleBaliseGroup_DetermineBGOrientation_LRBG"
+        targetInitFct="CheckSingleBaliseGroup_reset_DetermineBGOrientation_LRBG">
+      <Input scadeName="CurrentLRBG" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="CurrentLRBG" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"/>
+      <Input scadeName="ListOFBgs" scadeType="DetermineBGOrientation_LRBG::DataDctionary::ListOfBGs::ListOfBGs"
+          targetName="ListOFBgs" targetType="ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs"/>
+      <Input scadeName="TrainInfo" scadeType="DetermineBGOrientation_LRBG::DataDctionary::TrainInfo::TrainInfo"
+          targetName="TrainInfo" targetType="TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo"/>
+      <Output scadeName="Orientation" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="Orientation" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable"
+          inCtx="true"/>
+      <Local scadeName="_L1" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L1" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="DetermineBGOrientation_LRBG::DataDctionary::ListOfBGs::ListOfBGs"
+          targetName="_L2" targetType="ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs" inCtx="true"/>
+      <Local scadeName="_L57" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L57" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L56" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L56" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L55" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L55" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L54" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L54" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L53" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L53" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L52" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L52" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L51" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L51" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L50" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L50" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L49" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L49" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L48" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L48" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L47" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L47" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L46" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L46" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L45" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L45" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L44" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L44" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L43" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L43" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L42" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L42" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L41" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L41" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L40" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L40" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L39" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L39" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L38" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG"
+          targetName="_L38" targetType="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+          inCtx="true"/>
+      <Local scadeName="_L79" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L79" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L81" scadeType="bool" targetName="_L81" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L82" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L82" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L125" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::Position"
+          targetName="_L125" targetType="Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG" inCtx="true"/>
+      <Local scadeName="_L124"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::FilteredBGMessage::FilteredBGMessage"
+          targetName="_L124" targetType="FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L126"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::FilteredBGMessage::FilteredBGMessage"
+          targetName="_L126" targetType="FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L127" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::Position"
+          targetName="_L127" targetType="Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG" inCtx="true"/>
+      <Local scadeName="_L131"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::CheckedBGMessage" targetName="_L131"
+          targetType="CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage" inCtx="true"/>
+      <Local scadeName="_L130" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L130" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L132" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L132" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L133"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::CheckedBGMessage" targetName="_L133"
+          targetType="CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage" inCtx="true"/>
+      <Local scadeName="_L135" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L135" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L173" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_MODE"
+          targetName="_L173" targetType="M_MODE_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L172" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_LEVELTR"
+          targetName="_L172" targetType="M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L174" scadeType="DetermineBGOrientation_LRBG::DataDctionary::TrainInfo::TrainInfo"
+          targetName="_L174" targetType="TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo" inCtx="true"/>
+      <Local scadeName="_L178" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L178" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L179" scadeType="bool" targetName="_L179" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L183" scadeType="DetermineBGOrientation_LRBG::DataDctionary::BTM::AdditionalInformation"
+          targetName="_L183" targetType="AdditionalInformation_DetermineBGOrientation_LRBG_DataDctionary_BTM"
+          inCtx="true"/>
+      <Local scadeName="_L182" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HederArray"
+          targetName="_L182" targetType="HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L199" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L199" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L198" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L198" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L197" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L197" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L196" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L196" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L195" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L195" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L194" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L194" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L193" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L193" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L192" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L192" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L203" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::Flag"
+          targetName="_L203" targetType="Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage" inCtx="true"/>
+      <Local scadeName="_L202" scadeType="DetermineBGOrientation_LRBG::DataDctionary::BTM::Header" targetName="_L202"
+          targetType="Header_DetermineBGOrientation_LRBG_DataDctionary_BTM" inCtx="true"/>
+      <Local scadeName="_L225" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_DUP"
+          targetName="_L225" targetType="M_DUP_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L224" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_MCOUNT"
+          targetName="_L224" targetType="M_MCOUNT_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L223" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::NID_C"
+          targetName="_L223" targetType="NID_C_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L222" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::NID_BG"
+          targetName="_L222" targetType="NID_BG_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L221" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_LINK"
+          targetName="_L221" targetType="Q_LINK_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L220" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_UPDOWN"
+          targetName="_L220" targetType="Q_UPDOWN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L219" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_MEDIA"
+          targetName="_L219" targetType="Q_MEDIA_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L218" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::N_PIG"
+          targetName="_L218" targetType="N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L217" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::N_TOTAL"
+          targetName="_L217" targetType="N_TOTAL_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L216" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_PLATFORM"
+          targetName="_L216" targetType="M_PLATFORM_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L226" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_LINK"
+          targetName="_L226" targetType="Q_LINK_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L252" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L252" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L253" scadeType="bool" targetName="_L253" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L274" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HederArray"
+          targetName="_L274" targetType="HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L275" scadeType="DetermineBGOrientation_LRBG::DataDctionary::BTM::AdditionalInformation"
+          targetName="_L275" targetType="AdditionalInformation_DetermineBGOrientation_LRBG_DataDctionary_BTM"
+          inCtx="true"/>
+      <Local scadeName="_L264" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_PLATFORM"
+          targetName="_L264" targetType="M_PLATFORM_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L265" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::N_TOTAL"
+          targetName="_L265" targetType="N_TOTAL_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L266" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::N_PIG"
+          targetName="_L266" targetType="N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L267" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_MEDIA"
+          targetName="_L267" targetType="Q_MEDIA_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L268" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_UPDOWN"
+          targetName="_L268" targetType="Q_UPDOWN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L269" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_LINK"
+          targetName="_L269" targetType="Q_LINK_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L270" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::NID_BG"
+          targetName="_L270" targetType="NID_BG_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L271" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::NID_C"
+          targetName="_L271" targetType="NID_C_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L272" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_MCOUNT"
+          targetName="_L272" targetType="M_MCOUNT_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L273" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_DUP"
+          targetName="_L273" targetType="M_DUP_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L256" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L256" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L257" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L257" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L258" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L258" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L259" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L259" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L260" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L260" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L261" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L261" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L262" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L262" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L263" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L263" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L254" scadeType="DetermineBGOrientation_LRBG::DataDctionary::BTM::Header" targetName="_L254"
+          targetType="Header_DetermineBGOrientation_LRBG_DataDctionary_BTM" inCtx="true"/>
+      <Local scadeName="_L255" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::Flag"
+          targetName="_L255" targetType="Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage" inCtx="true"/>
+      <Local scadeName="_L276" scadeType="bool" targetName="_L276" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L277" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::N_TOTAL"
+          targetName="_L277" targetType="N_TOTAL_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L278" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L278" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L282" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L282" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L283" scadeType="bool" targetName="_L283" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L286" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L286" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L287" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L287" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L299" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L299" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L298" scadeType="bool" targetName="_L298" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L297" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L297" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L296" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L296" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L300" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L300" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L251" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L251" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L176" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_LEVELTR"
+          targetName="_L176" targetType="M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L175" scadeType="bool" targetName="_L175" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L306" scadeType="bool" targetName="_L306" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L307" scadeType="bool" targetName="_L307" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L308" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_LEVELTR"
+          targetName="_L308" targetType="M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <NodeInstance scadeName="&lt;&gt;" instName="1"/>
+      <NodeInstance scadeName="=" instName="2"/>
+      <NodeInstance scadeName="=" instName="5"/>
+      <NodeInstance scadeName="=" instName="6"/>
+      <NodeInstance scadeName="=" instName="8"/>
+      <NodeInstance scadeName="=" instName="11"/>
+      <NodeInstance scadeName="=" instName="1"/>
+      <NodeInstance scadeName="=" instName="12"/>
+      <NodeInstance scadeName="or" instName="2"/>
+      <OutCtxType targetName="outC_CheckSingleBaliseGroup_DetermineBGOrientation_LRBG"/>
+    </NoExpNode>
+    <NoExpNode scadeName="FinalCheck" headerFile="FinalCheck_DetermineBGOrientation_LRBG.h"
+        targetCycleFct="FinalCheck_DetermineBGOrientation_LRBG"
+        targetInitFct="FinalCheck_reset_DetermineBGOrientation_LRBG">
+      <Input scadeName="CheckedBGMessage"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::CheckedBGMessage"
+          targetName="CheckedBGMessage"
+          targetType="CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"/>
+      <Input scadeName="Orientation" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="Orientation" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+      <Input scadeName="RBCOrientationReport"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::RBCOrientationReport::RBCOrientationReport"
+          targetName="RBCOrientationReport"
+          targetType="RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport"/>
+      <Input scadeName="TrainInfo" scadeType="DetermineBGOrientation_LRBG::DataDctionary::TrainInfo::TrainInfo"
+          targetName="TrainInfo" targetType="TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo"/>
+      <Output scadeName="RBCReport"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::Packets::Train_Position_Report" targetName="RBCReport"
+          targetType="Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets" inCtx="true"/>
+      <Output scadeName="FilteredBGMessage"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::FilteredBGMessage::FilteredBGMessage"
+          targetName="FilteredBGMessage"
+          targetType="FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::CheckedBGMessage"
+          targetName="_L1" targetType="CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L2" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L2" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L3"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::RBCOrientationReport::RBCOrientationReport"
+          targetName="_L3"
+          targetType="RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport"
+          inCtx="true"/>
+      <Local scadeName="_L27" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Packets::Train_Position_Report"
+          targetName="_L27" targetType="Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets"
+          inCtx="true"/>
+      <Local scadeName="_L28"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::FilteredBGMessage::FilteredBGMessage" targetName="_L28"
+          targetType="FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage" inCtx="true"/>
+      <Local scadeName="_L29" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L29" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L54" scadeType="DetermineBGOrientation_LRBG::DataDctionary::TrainInfo::TrainInfo"
+          targetName="_L54" targetType="TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo" inCtx="true"/>
+      <Local scadeName="_L58" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_MODE" targetName="_L58"
+          targetType="M_MODE_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L57" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_LEVELTR"
+          targetName="_L57" targetType="M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L60" scadeType="bool" targetName="_L60" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L61" scadeType="bool" targetName="_L61" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L62" scadeType="bool" targetName="_L62" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L63" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_LEVELTR"
+          targetName="_L63" targetType="M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L64" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_LEVELTR"
+          targetName="_L64" targetType="M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L66"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::Packets::Assignment_of_coordinate_system"
+          targetName="_L66"
+          targetType="Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets" inCtx="true"/>
+      <Local scadeName="_L90" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_ORIENTATION"
+          targetName="_L90" targetType="Q_ORIENTATION_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L89" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::NID_LRBG"
+          targetName="_L89" targetType="NID_LRBG_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L88" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_ACK" targetName="_L88"
+          targetType="M_ACK_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L87" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::T_TRAIN"
+          targetName="_L87" targetType="T_TRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L86" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::L_MESSAGE"
+          targetName="_L86" targetType="L_MESSAGE_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L85" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::NID_MESSAGE"
+          targetName="_L85" targetType="NID_MESSAGE_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L91" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L91" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L92" scadeType="bool" targetName="_L92" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L93" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_ACK" targetName="_L93"
+          targetType="M_ACK_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L95" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L95" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L96" scadeType="bool" targetName="_L96" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L97" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_ORIENTATION"
+          targetName="_L97" targetType="Q_ORIENTATION_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L98" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L98" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L99" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+          targetName="_L99" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <NodeInstance scadeName="&lt;&gt;" instName="1"/>
+      <NodeInstance scadeName="or" instName="1"/>
+      <NodeInstance scadeName="&lt;&gt;" instName="2"/>
+      <NodeInstance scadeName="=" instName="2"/>
+      <NodeInstance scadeName="=" instName="4"/>
+      <OutCtxType targetName="outC_FinalCheck_DetermineBGOrientation_LRBG"/>
+    </NoExpNode>
+    <NoExpNode scadeName="GetBGMessageOrientation" headerFile="GetBGMessageOrientation_DetermineBGOrientation_LRBG.h"
+        targetCycleFct="GetBGMessageOrientation_DetermineBGOrientation_LRBG"
+        targetInitFct="GetBGMessageOrientation_reset_DetermineBGOrientation_LRBG">
+      <Input scadeName="CheckedBGMessage"
+          scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::CheckedBGMessage"
+          targetName="CheckedBGMessage"
+          targetType="CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"/>
+      <Output scadeName="Orientation" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Orientation"
+          targetName="Orientation" targetType="Orientation_DetermineBGOrientation_LRBG_DataDctionary" inCtx="true"/>
+      <Local scadeName="_L101" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_PLATFORM"
+          targetName="_L101" targetType="M_PLATFORM_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L102" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::N_TOTAL"
+          targetName="_L102" targetType="N_TOTAL_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L103" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::N_PIG"
+          targetName="_L103" targetType="N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L104" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_MEDIA"
+          targetName="_L104" targetType="Q_MEDIA_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L105" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_UPDOWN"
+          targetName="_L105" targetType="Q_UPDOWN_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L106" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_LINK"
+          targetName="_L106" targetType="Q_LINK_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L107" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::NID_BG"
+          targetName="_L107" targetType="NID_BG_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L108" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::NID_C"
+          targetName="_L108" targetType="NID_C_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L109" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_MCOUNT"
+          targetName="_L109" targetType="M_MCOUNT_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L110" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_DUP"
+          targetName="_L110" targetType="M_DUP_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L34" scadeType="DetermineBGOrientation_LRBG::DataDctionary::BTM::Header" targetName="_L34"
+          targetType="Header_DetermineBGOrientation_LRBG_DataDctionary_BTM" inCtx="true"/>
+      <Local scadeName="_L35" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::Flag"
+          targetName="_L35" targetType="Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage" inCtx="true"/>
+      <Local scadeName="_L24" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L24" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L25" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L25" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L26" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L26" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L27" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L27" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L28" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L28" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L29" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L29" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L30" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L30" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L31" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag"
+          targetName="_L31" targetType="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L12" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HederArray"
+          targetName="_L12" targetType="HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L13" scadeType="DetermineBGOrientation_LRBG::DataDctionary::BTM::AdditionalInformation"
+          targetName="_L13" targetType="AdditionalInformation_DetermineBGOrientation_LRBG_DataDctionary_BTM"
+          inCtx="true"/>
+      <Local scadeName="_L1" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::CheckedBGMessage"
+          targetName="_L1" targetType="CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+          inCtx="true"/>
+      <Local scadeName="_L310" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Orientation" targetName="_L310"
+          targetType="Orientation_DetermineBGOrientation_LRBG_DataDctionary" inCtx="true"/>
+      <Local scadeName="_L311" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Orientation" targetName="_L311"
+          targetType="Orientation_DetermineBGOrientation_LRBG_DataDctionary" inCtx="true"/>
+      <Local scadeName="_L315" scadeType="bool" targetName="_L315" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L316" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::N_TOTAL"
+          targetName="_L316" targetType="N_TOTAL_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L317" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Orientation" targetName="_L317"
+          targetType="Orientation_DetermineBGOrientation_LRBG_DataDctionary" inCtx="true"/>
+      <Local scadeName="_L318" scadeType="bool" targetName="_L318" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L319" scadeType="bool" targetName="_L319" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L320" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::N_TOTAL"
+          targetName="_L320" targetType="N_TOTAL_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L321" scadeType="bool" targetName="_L321" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L323" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_DUP"
+          targetName="_L323" targetType="M_DUP_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L324" scadeType="bool" targetName="_L324" targetType="kcg_bool" inCtx="true"/>
+      <NodeInstance scadeName="DetermineBGOrientation_LRBG::ArrCheck" instName="1"
+          refName="ArrCheck_DetermineBGOrientation_LRBG">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+      <NodeInstance scadeName="=" instName="1"/>
+      <NodeInstance scadeName="or" instName="1"/>
+      <NodeInstance scadeName="=" instName="2"/>
+      <NodeInstance scadeName="or" instName="2"/>
+      <NodeInstance scadeName="&lt;&gt;" instName="1"/>
+      <OutCtxType targetName="outC_GetBGMessageOrientation_DetermineBGOrientation_LRBG"/>
+    </NoExpNode>
+    <NoExpNode scadeName="ArrCheck" headerFile="ArrCheck_DetermineBGOrientation_LRBG.h"
+        targetCycleFct="ArrCheck_DetermineBGOrientation_LRBG"
+        targetInitFct="ArrCheck_reset_DetermineBGOrientation_LRBG">
+      <Input scadeName="N_PIG" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::N_PIG"
+          targetName="N_PIG" targetType="N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+      <Output scadeName="Orientation" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Orientation"
+          targetName="Orientation" targetType="Orientation_DetermineBGOrientation_LRBG_DataDctionary" inCtx="true"/>
+      <Local scadeName="_L13" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::N_PIG" targetName="_L13"
+          targetType="N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L17" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Orientation" targetName="_L17"
+          targetType="Orientation_DetermineBGOrientation_LRBG_DataDctionary" inCtx="true"/>
+      <Local scadeName="_L20" scadeType="bool" targetName="_L20" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L34" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::N_PIG" targetName="_L34"
+          targetType="N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable" inCtx="true"/>
+      <Local scadeName="_L38" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Orientation" targetName="_L38"
+          targetType="Orientation_DetermineBGOrientation_LRBG_DataDctionary" inCtx="true"/>
+      <Local scadeName="_L37" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Orientation" targetName="_L37"
+          targetType="Orientation_DetermineBGOrientation_LRBG_DataDctionary" inCtx="true"/>
+      <NodeInstance scadeName="=" instName="1"/>
+      <OutCtxType targetName="outC_ArrCheck_DetermineBGOrientation_LRBG"/>
+    </NoExpNode>
+    <Package scadeName="DataDctionary">
+      <EnumType scadeName="Orientation" targetName="Orientation_DetermineBGOrientation_LRBG_DataDctionary">
+        <EnumVal scadeName="Single_Balise_Group"
+            targetName="Single_Balise_Group_DetermineBGOrientation_LRBG_DataDctionary"/>
+        <EnumVal scadeName="DIR_Nominal" targetName="DIR_Nominal_DetermineBGOrientation_LRBG_DataDctionary"/>
+        <EnumVal scadeName="DIR_Reverse" targetName="DIR_Reverse_DetermineBGOrientation_LRBG_DataDctionary"/>
+      </EnumType>
+      <Package scadeName="ListOfBGs">
+        <NamedType scadeName="ListOfBGs" targetName="ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs"
+            refType="array__823"/>
+      </Package>
+      <Package scadeName="CurrentLRBG">
+        <NamedType scadeName="CurrentLRBG"
+            targetName="CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG" refType="struct__818"/>
+        <NamedType scadeName="Position" targetName="Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG"
+            refType="struct__814"/>
+      </Package>
+      <Package scadeName="FilteredBGMessage">
+        <NamedType scadeName="FilteredBGMessage"
+            targetName="FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage"
+            refType="struct__809"/>
+      </Package>
+      <Package scadeName="Variable">
+        <EnumType scadeName="Q_DIRTRAIN" targetName="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable">
+          <EnumVal scadeName="Q_DIRTRAIN__Reverse"
+              targetName="Q_DIRTRAIN__Reverse_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="Q_DIRTRAIN__Nominal"
+              targetName="Q_DIRTRAIN__Nominal_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="Q_DIRTRAIN__Unknown"
+              targetName="Q_DIRTRAIN__Unknown_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="Q_DIRTRAIN__Spare"
+              targetName="Q_DIRTRAIN__Spare_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+        </EnumType>
+        <EnumType scadeName="M_PLATFORM" targetName="M_PLATFORM_DetermineBGOrientation_LRBG_DataDctionary_Variable">
+          <EnumVal scadeName="M_PLATFORM__200_mm"
+              targetName="M_PLATFORM__200_mm_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_PLATFORM__300_380_mm"
+              targetName="M_PLATFORM__300_380_mm_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_PLATFORM__550_mm"
+              targetName="M_PLATFORM__550_mm_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_PLATFORM__580_mm"
+              targetName="M_PLATFORM__580_mm_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_PLATFORM__680_mm"
+              targetName="M_PLATFORM__680_mm_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_PLATFORM__685_mm"
+              targetName="M_PLATFORM__685_mm_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_PLATFORM__730_mm"
+              targetName="M_PLATFORM__730_mm_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_PLATFORM__760_mm"
+              targetName="M_PLATFORM__760_mm_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_PLATFORM__840_mm"
+              targetName="M_PLATFORM__840_mm_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_PLATFORM__900_mm"
+              targetName="M_PLATFORM__900_mm_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_PLATFORM__915_mm"
+              targetName="M_PLATFORM__915_mm_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_PLATFORM__920_mm"
+              targetName="M_PLATFORM__920_mm_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_PLATFORM__960_mm"
+              targetName="M_PLATFORM__960_mm_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_PLATFORM__1100_mm"
+              targetName="M_PLATFORM__1100_mm_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+        </EnumType>
+        <EnumType scadeName="N_TOTAL" targetName="N_TOTAL_DetermineBGOrientation_LRBG_DataDctionary_Variable">
+          <EnumVal scadeName="one_balise_in_the_group"
+              targetName="one_balise_in_the_group_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="two_balises_in_the_group"
+              targetName="two_balises_in_the_group_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="tree_balises_in_the_group"
+              targetName="tree_balises_in_the_group_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="four_balises_in_the_group"
+              targetName="four_balises_in_the_group_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="five_balises_in_the_group"
+              targetName="five_balises_in_the_group_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="six_balises_in_the_group"
+              targetName="six_balises_in_the_group_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="seven_balises_in_the_group"
+              targetName="seven_balises_in_the_group_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="eight_balises_in_the_group"
+              targetName="eight_balises_in_the_group_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+        </EnumType>
+        <EnumType scadeName="N_PIG" targetName="N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable">
+          <EnumVal scadeName="I_am_the_1th"
+              targetName="I_am_the_1th_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="I_am_the_2nd"
+              targetName="I_am_the_2nd_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="I_am_the_3rd"
+              targetName="I_am_the_3rd_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="I_am_the_4th"
+              targetName="I_am_the_4th_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="I_am_the_5th"
+              targetName="I_am_the_5th_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="I_am_the_6th"
+              targetName="I_am_the_6th_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="I_am_the_7th"
+              targetName="I_am_the_7th_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="I_am_the_8th"
+              targetName="I_am_the_8th_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="none" targetName="none_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+        </EnumType>
+        <EnumType scadeName="Q_MEDIA" targetName="Q_MEDIA_DetermineBGOrientation_LRBG_DataDctionary_Variable">
+          <EnumVal scadeName="Q_MEDIA__Balise"
+              targetName="Q_MEDIA__Balise_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="Q_MEDIA__Loop"
+              targetName="Q_MEDIA__Loop_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+        </EnumType>
+        <EnumType scadeName="Q_UPDOWN" targetName="Q_UPDOWN_DetermineBGOrientation_LRBG_DataDctionary_Variable">
+          <EnumVal scadeName="Q_UPDOWN__Down_link_telegram"
+              targetName="Q_UPDOWN__Down_link_telegram_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="Q_UPDOWN__Up_link_telegram"
+              targetName="Q_UPDOWN__Up_link_telegram_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+        </EnumType>
+        <EnumType scadeName="Q_LINK" targetName="Q_LINK_DetermineBGOrientation_LRBG_DataDctionary_Variable">
+          <EnumVal scadeName="Q_LINK__Unlinked"
+              targetName="Q_LINK__Unlinked_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="Q_LINK__Linked"
+              targetName="Q_LINK__Linked_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+        </EnumType>
+        <NamedType scadeName="NID_BG" targetName="NID_BG_DetermineBGOrientation_LRBG_DataDctionary_Variable"
+            refType="kcg_int"/>
+        <NamedType scadeName="NID_C" targetName="NID_C_DetermineBGOrientation_LRBG_DataDctionary_Variable"
+            refType="kcg_int"/>
+        <EnumType scadeName="M_MCOUNT" targetName="M_MCOUNT_DetermineBGOrientation_LRBG_DataDctionary_Variable">
+          <EnumVal scadeName="M_MCOUNT__The_telegram_never_fits_any_message_of_the_group"
+              targetName="M_MCOUNT__The_telegram_never_fits_any_message_of_the_group_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MCOUNT__The_telegram_fits_with_all_telegrams_of_the_same_balise_group"
+              targetName="M_MCOUNT__The_telegram_fits_with_all_telegrams_of_the_same_balise_group_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+        </EnumType>
+        <EnumType scadeName="M_DUP" targetName="M_DUP_DetermineBGOrientation_LRBG_DataDctionary_Variable">
+          <EnumVal scadeName="M_DUP__No_duplicates"
+              targetName="M_DUP__No_duplicates_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_DUP__This_balise_is_a_duplicate_of_the_next_balise__seen_in_the_nominal_direction_of_the_balise_group__"
+              targetName="_2_M_DUP__This_balise_is_a_duplicate_of_the_next_balise__seen_in_the_nominal_direction_of_the_balise_group___DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_DUP__This_balise_is_a_duplicate_of_the_previous_balise__seen_in_the_nominal_direction_of_the_balise_group__"
+              targetName="M_DUP__This_balise_is_a_duplicate_of_the_previous_balise__seen_in_the_nominal_direction_of_the_balise_group___DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+        </EnumType>
+        <EnumType scadeName="M_LEVELTR" targetName="M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable">
+          <EnumVal scadeName="M_LEVELTR__Level_0"
+              targetName="M_LEVELTR__Level_0_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_LEVELTR__Level_NTC_specified_by_NID_NTC"
+              targetName="M_LEVELTR__Level_NTC_specified_by_NID_NTC_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_LEVELTR__Level_1"
+              targetName="M_LEVELTR__Level_1_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_LEVELTR__Level_2"
+              targetName="M_LEVELTR__Level_2_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_LEVELTR__Level_3"
+              targetName="M_LEVELTR__Level_3_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+        </EnumType>
+        <EnumType scadeName="M_MODE" targetName="M_MODE_DetermineBGOrientation_LRBG_DataDctionary_Variable">
+          <EnumVal scadeName="M_MODE__Full_Supervision"
+              targetName="M_MODE__Full_Supervision_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__On_Sight"
+              targetName="M_MODE__On_Sight_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__Staff_Responsible"
+              targetName="M_MODE__Staff_Responsible_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__Shunting"
+              targetName="M_MODE__Shunting_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__Unfitted"
+              targetName="M_MODE__Unfitted_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__Sleeping"
+              targetName="M_MODE__Sleeping_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__Stand_By"
+              targetName="M_MODE__Stand_By_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__Trip"
+              targetName="M_MODE__Trip_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__Post_Trip"
+              targetName="M_MODE__Post_Trip_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__System_Failure"
+              targetName="M_MODE__System_Failure_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__Isolation"
+              targetName="M_MODE__Isolation_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__Non_Leading"
+              targetName="M_MODE__Non_Leading_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__Limited_Supervision"
+              targetName="M_MODE__Limited_Supervision_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__National_System"
+              targetName="M_MODE__National_System_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__Reversing"
+              targetName="M_MODE__Reversing_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_MODE__Passive_Shunting"
+              targetName="M_MODE__Passive_Shunting_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+        </EnumType>
+        <NamedType scadeName="NID_MESSAGE" targetName="NID_MESSAGE_DetermineBGOrientation_LRBG_DataDctionary_Variable"
+            refType="kcg_int"/>
+        <NamedType scadeName="L_MESSAGE" targetName="L_MESSAGE_DetermineBGOrientation_LRBG_DataDctionary_Variable"
+            refType="kcg_real"/>
+        <NamedType scadeName="T_TRAIN" targetName="T_TRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable"
+            refType="kcg_real"/>
+        <EnumType scadeName="M_ACK" targetName="M_ACK_DetermineBGOrientation_LRBG_DataDctionary_Variable">
+          <EnumVal scadeName="M_ACK__No_acknowledgement_required"
+              targetName="M_ACK__No_acknowledgement_required_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="M_ACK__Acknowledgement_required"
+              targetName="M_ACK__Acknowledgement_required_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+        </EnumType>
+        <NamedType scadeName="NID_LRBG" targetName="NID_LRBG_DetermineBGOrientation_LRBG_DataDctionary_Variable"
+            refType="kcg_int"/>
+        <EnumType scadeName="Q_ORIENTATION"
+            targetName="Q_ORIENTATION_DetermineBGOrientation_LRBG_DataDctionary_Variable">
+          <EnumVal scadeName="Q_ORIENTATION__The_balise_group_has_been_passed_by_the_train_in_reverse_direction"
+              targetName="_1_Q_ORIENTATION__The_balise_group_has_been_passed_by_the_train_in_reverse_direction_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+          <EnumVal scadeName="Q_ORIENTATION__The_balise_group_has_been_passed_by_the_train_in_nominal_direction"
+              targetName="Q_ORIENTATION__The_balise_group_has_been_passed_by_the_train_in_nominal_direction_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+        </EnumType>
+      </Package>
+      <Package scadeName="CheckedBGMessage">
+        <NamedType scadeName="CheckedBGMessage"
+            targetName="CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+            refType="struct__804"/>
+        <NamedType scadeName="HederArray"
+            targetName="HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage" refType="array__801"/>
+        <NamedType scadeName="HeaderFlag"
+            targetName="HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage" refType="struct__796"/>
+        <NamedType scadeName="Flag" targetName="Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage"
+            refType="struct__792"/>
+      </Package>
+      <Package scadeName="BTM">
+        <NamedType scadeName="Header" targetName="Header_DetermineBGOrientation_LRBG_DataDctionary_BTM"
+            refType="struct__779"/>
+        <EnumType scadeName="AdditionalInformation"
+            targetName="AdditionalInformation_DetermineBGOrientation_LRBG_DataDctionary_BTM">
+          <EnumVal scadeName="value1" targetName="value1_DetermineBGOrientation_LRBG_DataDctionary_BTM"/>
+        </EnumType>
+      </Package>
+      <Package scadeName="TrainInfo">
+        <NamedType scadeName="TrainInfo" targetName="TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo"
+            refType="struct__774"/>
+      </Package>
+      <Package scadeName="Packets">
+        <NamedType scadeName="Train_Position_Report"
+            targetName="Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets" refType="struct__768"/>
+        <NamedType scadeName="Assignment_of_coordinate_system"
+            targetName="Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets"
+            refType="struct__755"/>
+      </Package>
+      <Package scadeName="RBCOrientationReport">
+        <NamedType scadeName="RBCOrientationReport"
+            targetName="RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport"
+            refType="struct__764"/>
+      </Package>
+    </Package>
   </Package>
-  <Option name="root_node_name" value="DetermineBGOrientation_LRBG::Operator7"/>
+  <Option name="root_node_name" value="DetermineBGOrientation_LRBG::DetermineBGOrientation_LRBG"/>
   <Option name="target" value="C"/>
   <Option name="target_dir" value="C:/Users/GiovanniTrotta/Desktop/SoftwareBGO/Simulation"/>
   <Option name="exp" value="#off#"/>
@@ -81,8 +879,101 @@
   <PredefType scadeName="bool" targetName="kcg_bool"/>
   <PredefType scadeName="char" targetName="kcg_char"/>
   <PredefType scadeName="int" targetName="kcg_int"/>
+  <StructType targetName="struct__755" targetCopyFct="kcg_copy_struct__755" targetCompFct="kcg_comp_struct__755">
+    <Field scadeName="NID_MESSAGE" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::NID_MESSAGE"
+        targetName="NID_MESSAGE" targetType="kcg_int"/>
+    <Field scadeName="L_MESSAGE" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::L_MESSAGE"
+        targetName="L_MESSAGE" targetType="kcg_real"/>
+    <Field scadeName="T_TRAIN" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::T_TRAIN"
+        targetName="T_TRAIN" targetType="kcg_real"/>
+    <Field scadeName="M_ACK" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_ACK" targetName="M_ACK"
+        targetType="M_ACK_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+    <Field scadeName="NID_LRBG" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::NID_LRBG"
+        targetName="NID_LRBG" targetType="kcg_int"/>
+    <Field scadeName="Q_ORIENTATION" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_ORIENTATION"
+        targetName="Q_ORIENTATION" targetType="Q_ORIENTATION_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+  </StructType>
+  <StructType targetName="struct__764" targetCopyFct="kcg_copy_struct__764" targetCompFct="kcg_comp_struct__764">
+    <Field scadeName="assignment_of_coordinate_system"
+        scadeType="DetermineBGOrientation_LRBG::DataDctionary::Packets::Assignment_of_coordinate_system"
+        targetName="assignment_of_coordinate_system" targetType="struct__755"/>
+  </StructType>
+  <StructType targetName="struct__768" targetCopyFct="kcg_copy_struct__768" targetCompFct="kcg_comp_struct__768">
+    <Field scadeName="NID_MESSAGE" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::NID_MESSAGE"
+        targetName="NID_MESSAGE" targetType="kcg_int"/>
+    <Field scadeName="L_MESSAGE" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::L_MESSAGE"
+        targetName="L_MESSAGE" targetType="kcg_real"/>
+    <Field scadeName="T_TRAIN" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::T_TRAIN"
+        targetName="T_TRAIN" targetType="kcg_real"/>
+  </StructType>
+  <StructType targetName="struct__774" targetCopyFct="kcg_copy_struct__774" targetCompFct="kcg_comp_struct__774">
+    <Field scadeName="m_leveltr" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_LEVELTR"
+        targetName="m_leveltr" targetType="M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+    <Field scadeName="m_mode" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_MODE"
+        targetName="m_mode" targetType="M_MODE_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+  </StructType>
+  <StructType targetName="struct__779" targetCopyFct="kcg_copy_struct__779" targetCompFct="kcg_comp_struct__779">
+    <Field scadeName="m_version" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_PLATFORM"
+        targetName="m_version" targetType="M_PLATFORM_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+    <Field scadeName="n_total" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::N_TOTAL"
+        targetName="n_total" targetType="N_TOTAL_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+    <Field scadeName="n_pig" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::N_PIG" targetName="n_pig"
+        targetType="N_PIG_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+    <Field scadeName="q_media" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_MEDIA"
+        targetName="q_media" targetType="Q_MEDIA_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+    <Field scadeName="q_updown" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_UPDOWN"
+        targetName="q_updown" targetType="Q_UPDOWN_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+    <Field scadeName="q_link" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_LINK"
+        targetName="q_link" targetType="Q_LINK_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+    <Field scadeName="nid_bg" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::NID_BG"
+        targetName="nid_bg" targetType="kcg_int"/>
+    <Field scadeName="nid_c" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::NID_C" targetName="nid_c"
+        targetType="kcg_int"/>
+    <Field scadeName="m_mcount" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_MCOUNT"
+        targetName="m_mcount" targetType="M_MCOUNT_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+    <Field scadeName="m_dup" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::M_DUP" targetName="m_dup"
+        targetType="M_DUP_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+  </StructType>
+  <StructType targetName="struct__792" targetCopyFct="kcg_copy_struct__792" targetCompFct="kcg_comp_struct__792">
+    <Field scadeName="boolean_" scadeType="bool" targetName="boolean_" targetType="kcg_bool"/>
+  </StructType>
+  <StructType targetName="struct__796" targetCopyFct="kcg_copy_struct__796" targetCompFct="kcg_comp_struct__796">
+    <Field scadeName="header" scadeType="DetermineBGOrientation_LRBG::DataDctionary::BTM::Header" targetName="header"
+        targetType="struct__779"/>
+    <Field scadeName="flag" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::Flag"
+        targetName="flag" targetType="struct__792"/>
+  </StructType>
+  <ArrayType targetName="array__801" cellType="struct__796" size="8" targetCopyFct="kcg_copy_array__801"
+      targetCompFct="kcg_comp_array__801"/>
+  <StructType targetName="struct__804" targetCopyFct="kcg_copy_struct__804" targetCompFct="kcg_comp_struct__804">
+    <Field scadeName="headerflag" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HederArray"
+        targetName="headerflag" targetType="array__801"/>
+    <Field scadeName="additionalinformation"
+        scadeType="DetermineBGOrientation_LRBG::DataDctionary::BTM::AdditionalInformation"
+        targetName="additionalinformation"
+        targetType="AdditionalInformation_DetermineBGOrientation_LRBG_DataDctionary_BTM"/>
+  </StructType>
+  <StructType targetName="struct__809" targetCopyFct="kcg_copy_struct__809" targetCompFct="kcg_comp_struct__809">
+    <Field scadeName="q_dirlrbg" scadeType="DetermineBGOrientation_LRBG::DataDctionary::Variable::Q_DIRTRAIN"
+        targetName="q_dirlrbg" targetType="Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable"/>
+    <Field scadeName="checkedbgmessage"
+        scadeType="DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::CheckedBGMessage"
+        targetName="checkedbgmessage" targetType="struct__804"/>
+  </StructType>
+  <StructType targetName="struct__814" targetCopyFct="kcg_copy_struct__814" targetCompFct="kcg_comp_struct__814">
+    <Field scadeName="Position_1" scadeType="int" targetName="Position_1" targetType="kcg_int"/>
+  </StructType>
+  <StructType targetName="struct__818" targetCopyFct="kcg_copy_struct__818" targetCompFct="kcg_comp_struct__818">
+    <Field scadeName="filteredbgmessage"
+        scadeType="DetermineBGOrientation_LRBG::DataDctionary::FilteredBGMessage::FilteredBGMessage"
+        targetName="filteredbgmessage" targetType="struct__809"/>
+    <Field scadeName="position" scadeType="DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::Position"
+        targetName="position" targetType="struct__814"/>
+  </StructType>
+  <ArrayType targetName="array__823" cellType="struct__818" size="20" targetCopyFct="kcg_copy_array__823"
+      targetCompFct="kcg_comp_array__823"/>
 </Model>
 <!--$*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_trace.xml
-** Generation date: 2014-05-13T14:52:26
+** Generation date: 2014-05-19T12:23:30
 *************************************************************$-->

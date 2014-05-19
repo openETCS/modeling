@@ -1,7 +1,7 @@
 #include "DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG_interface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "814048de482edb138b3b2340c8f04ef5";
+const char* _SCSIM_CheckSum = "0eecae3e1b04c1f684c30f00b745c781";
 const char* _SCSIM_SmuTypesCheckSum = "28e18c1b393c1cd143584174bcc1ba87";
 
 /*******************************
@@ -28,11 +28,11 @@ static outC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG outputs_ctx_
 /* separate_io: outputs instanciation */
 
 static void _SCSIM_RestoreInterface(void) {
-	kcg_copy_struct__810(&(inputs_ctx.CurrentLRBG), &(inputs_ctx_restore.CurrentLRBG));
-	kcg_copy_struct__796(&(inputs_ctx.CheckedBGMessage), &(inputs_ctx_restore.CheckedBGMessage));
-	kcg_copy_array__815(&(inputs_ctx.ListOfBGs), &(inputs_ctx_restore.ListOfBGs));
-	kcg_copy_struct__766(&(inputs_ctx.TrainInfo), &(inputs_ctx_restore.TrainInfo));
-	kcg_copy_struct__756(&(inputs_ctx.RBCOrientationReport), &(inputs_ctx_restore.RBCOrientationReport));
+	kcg_copy_struct__818(&(inputs_ctx.CurrentLRBG), &(inputs_ctx_restore.CurrentLRBG));
+	kcg_copy_struct__804(&(inputs_ctx.CheckedBGMessage), &(inputs_ctx_restore.CheckedBGMessage));
+	kcg_copy_array__823(&(inputs_ctx.ListOfBGs), &(inputs_ctx_restore.ListOfBGs));
+	kcg_copy_struct__774(&(inputs_ctx.TrainInfo), &(inputs_ctx_restore.TrainInfo));
+	kcg_copy_struct__764(&(inputs_ctx.RBCOrientationReport), &(inputs_ctx_restore.RBCOrientationReport));
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -40,11 +40,11 @@ static void _SCSIM_RestoreInterface(void) {
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	kcg_copy_struct__810(&(inputs_ctx_execute.CurrentLRBG), &(inputs_ctx.CurrentLRBG));
-	kcg_copy_struct__796(&(inputs_ctx_execute.CheckedBGMessage), &(inputs_ctx.CheckedBGMessage));
-	kcg_copy_array__815(&(inputs_ctx_execute.ListOfBGs), &(inputs_ctx.ListOfBGs));
-	kcg_copy_struct__766(&(inputs_ctx_execute.TrainInfo), &(inputs_ctx.TrainInfo));
-	kcg_copy_struct__756(&(inputs_ctx_execute.RBCOrientationReport), &(inputs_ctx.RBCOrientationReport));
+	kcg_copy_struct__818(&(inputs_ctx_execute.CurrentLRBG), &(inputs_ctx.CurrentLRBG));
+	kcg_copy_struct__804(&(inputs_ctx_execute.CheckedBGMessage), &(inputs_ctx.CheckedBGMessage));
+	kcg_copy_array__823(&(inputs_ctx_execute.ListOfBGs), &(inputs_ctx.ListOfBGs));
+	kcg_copy_struct__774(&(inputs_ctx_execute.TrainInfo), &(inputs_ctx.TrainInfo));
+	kcg_copy_struct__764(&(inputs_ctx_execute.RBCOrientationReport), &(inputs_ctx.RBCOrientationReport));
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 

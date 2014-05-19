@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/Users/GiovanniTrotta/Desktop/SoftwareBGO/Simulation\kcg_s2c_config.txt
-** Generation date: 2014-05-12T18:26:15
+** Generation date: 2014-05-19T12:23:30
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -193,6 +193,14 @@ void CheckSingleBaliseGroup_DetermineBGOrientation_LRBG(
   outC->_L266 = outC->_L254.n_pig;
   outC->_L265 = outC->_L254.n_total;
   outC->_L275 = outC->_L133.additionalinformation;
+  outC->_L308 =
+    M_LEVELTR__Level_0_DetermineBGOrientation_LRBG_DataDctionary_Variable;
+  outC->_L172 = outC->_L174.m_leveltr;
+  outC->_L306 = outC->_L172 == outC->_L308;
+  outC->_L176 =
+    M_LEVELTR__Level_1_DetermineBGOrientation_LRBG_DataDctionary_Variable;
+  outC->_L175 = outC->_L172 == outC->_L176;
+  outC->_L307 = outC->_L306 | outC->_L175;
   outC->_L130 = outC->_L124.q_dirlrbg;
   outC->_L132 = outC->_L126.q_dirlrbg;
   outC->_L253 = outC->_L130 == outC->_L132;
@@ -235,11 +243,7 @@ void CheckSingleBaliseGroup_DetermineBGOrientation_LRBG(
     Q_DIRTRAIN__Unknown_DetermineBGOrientation_LRBG_DataDctionary_Variable;
   outC->_L299 =
     Q_DIRTRAIN__Reverse_DetermineBGOrientation_LRBG_DataDctionary_Variable;
-  outC->_L172 = outC->_L174.m_leveltr;
-  outC->_L176 =
-    M_LEVELTR__Level_1_DetermineBGOrientation_LRBG_DataDctionary_Variable;
-  outC->_L175 = outC->_L172 == outC->_L176;
-  if (outC->_L175) {
+  if (outC->_L307) {
     outC->_L135 = outC->_L79;
   }
   else {
@@ -272,6 +276,6 @@ void CheckSingleBaliseGroup_DetermineBGOrientation_LRBG(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** CheckSingleBaliseGroup_DetermineBGOrientation_LRBG.c
-** Generation date: 2014-05-12T18:26:15
+** Generation date: 2014-05-19T12:23:30
 *************************************************************$ */
 

@@ -57,86 +57,66 @@ TypeUtils _SCSIM_kcg_int_Utils = {kcg_int_to_string,
 	get_kcg_int_filter_utils,
 	kcg_int_filter_size,
 	kcg_int_filter_values};
-TypeUtils _SCSIM_struct__747_Utils = {struct__747_to_string,
-	check_struct__747_string,
-	string_to_struct__747,
-	is_struct__747_allow_double_convertion,
+TypeUtils _SCSIM_struct__755_Utils = {struct__755_to_string,
+	check_struct__755_string,
+	string_to_struct__755,
+	is_struct__755_allow_double_convertion,
 	0,
-	compare_struct__747_type,
-	get_struct__747_signature,
-	get_struct__747_filter_utils,
-	struct__747_filter_size,
-	struct__747_filter_values};
-TypeUtils _SCSIM_struct__756_Utils = {struct__756_to_string,
-	check_struct__756_string,
-	string_to_struct__756,
-	is_struct__756_allow_double_convertion,
+	compare_struct__755_type,
+	get_struct__755_signature,
+	get_struct__755_filter_utils,
+	struct__755_filter_size,
+	struct__755_filter_values};
+TypeUtils _SCSIM_struct__764_Utils = {struct__764_to_string,
+	check_struct__764_string,
+	string_to_struct__764,
+	is_struct__764_allow_double_convertion,
 	0,
-	compare_struct__756_type,
-	get_struct__756_signature,
-	get_struct__756_filter_utils,
-	struct__756_filter_size,
-	struct__756_filter_values};
-TypeUtils _SCSIM_struct__760_Utils = {struct__760_to_string,
-	check_struct__760_string,
-	string_to_struct__760,
-	is_struct__760_allow_double_convertion,
+	compare_struct__764_type,
+	get_struct__764_signature,
+	get_struct__764_filter_utils,
+	struct__764_filter_size,
+	struct__764_filter_values};
+TypeUtils _SCSIM_struct__768_Utils = {struct__768_to_string,
+	check_struct__768_string,
+	string_to_struct__768,
+	is_struct__768_allow_double_convertion,
 	0,
-	compare_struct__760_type,
-	get_struct__760_signature,
-	get_struct__760_filter_utils,
-	struct__760_filter_size,
-	struct__760_filter_values};
-TypeUtils _SCSIM_struct__766_Utils = {struct__766_to_string,
-	check_struct__766_string,
-	string_to_struct__766,
-	is_struct__766_allow_double_convertion,
+	compare_struct__768_type,
+	get_struct__768_signature,
+	get_struct__768_filter_utils,
+	struct__768_filter_size,
+	struct__768_filter_values};
+TypeUtils _SCSIM_struct__774_Utils = {struct__774_to_string,
+	check_struct__774_string,
+	string_to_struct__774,
+	is_struct__774_allow_double_convertion,
 	0,
-	compare_struct__766_type,
-	get_struct__766_signature,
-	get_struct__766_filter_utils,
-	struct__766_filter_size,
-	struct__766_filter_values};
-TypeUtils _SCSIM_struct__771_Utils = {struct__771_to_string,
-	check_struct__771_string,
-	string_to_struct__771,
-	is_struct__771_allow_double_convertion,
+	compare_struct__774_type,
+	get_struct__774_signature,
+	get_struct__774_filter_utils,
+	struct__774_filter_size,
+	struct__774_filter_values};
+TypeUtils _SCSIM_struct__779_Utils = {struct__779_to_string,
+	check_struct__779_string,
+	string_to_struct__779,
+	is_struct__779_allow_double_convertion,
 	0,
-	compare_struct__771_type,
-	get_struct__771_signature,
-	get_struct__771_filter_utils,
-	struct__771_filter_size,
-	struct__771_filter_values};
-TypeUtils _SCSIM_struct__784_Utils = {struct__784_to_string,
-	check_struct__784_string,
-	string_to_struct__784,
-	is_struct__784_allow_double_convertion,
+	compare_struct__779_type,
+	get_struct__779_signature,
+	get_struct__779_filter_utils,
+	struct__779_filter_size,
+	struct__779_filter_values};
+TypeUtils _SCSIM_struct__792_Utils = {struct__792_to_string,
+	check_struct__792_string,
+	string_to_struct__792,
+	is_struct__792_allow_double_convertion,
 	0,
-	compare_struct__784_type,
-	get_struct__784_signature,
-	get_struct__784_filter_utils,
-	struct__784_filter_size,
-	struct__784_filter_values};
-TypeUtils _SCSIM_struct__788_Utils = {struct__788_to_string,
-	check_struct__788_string,
-	string_to_struct__788,
-	is_struct__788_allow_double_convertion,
-	0,
-	compare_struct__788_type,
-	get_struct__788_signature,
-	get_struct__788_filter_utils,
-	struct__788_filter_size,
-	struct__788_filter_values};
-TypeUtils _SCSIM_array__793_Utils = {array__793_to_string,
-	check_array__793_string,
-	string_to_array__793,
-	is_array__793_allow_double_convertion,
-	0,
-	compare_array__793_type,
-	get_array__793_signature,
-	get_array__793_filter_utils,
-	array__793_filter_size,
-	array__793_filter_values};
+	compare_struct__792_type,
+	get_struct__792_signature,
+	get_struct__792_filter_utils,
+	struct__792_filter_size,
+	struct__792_filter_values};
 TypeUtils _SCSIM_struct__796_Utils = {struct__796_to_string,
 	check_struct__796_string,
 	string_to_struct__796,
@@ -147,46 +127,66 @@ TypeUtils _SCSIM_struct__796_Utils = {struct__796_to_string,
 	get_struct__796_filter_utils,
 	struct__796_filter_size,
 	struct__796_filter_values};
-TypeUtils _SCSIM_struct__801_Utils = {struct__801_to_string,
-	check_struct__801_string,
-	string_to_struct__801,
-	is_struct__801_allow_double_convertion,
+TypeUtils _SCSIM_array__801_Utils = {array__801_to_string,
+	check_array__801_string,
+	string_to_array__801,
+	is_array__801_allow_double_convertion,
 	0,
-	compare_struct__801_type,
-	get_struct__801_signature,
-	get_struct__801_filter_utils,
-	struct__801_filter_size,
-	struct__801_filter_values};
-TypeUtils _SCSIM_struct__806_Utils = {struct__806_to_string,
-	check_struct__806_string,
-	string_to_struct__806,
-	is_struct__806_allow_double_convertion,
+	compare_array__801_type,
+	get_array__801_signature,
+	get_array__801_filter_utils,
+	array__801_filter_size,
+	array__801_filter_values};
+TypeUtils _SCSIM_struct__804_Utils = {struct__804_to_string,
+	check_struct__804_string,
+	string_to_struct__804,
+	is_struct__804_allow_double_convertion,
 	0,
-	compare_struct__806_type,
-	get_struct__806_signature,
-	get_struct__806_filter_utils,
-	struct__806_filter_size,
-	struct__806_filter_values};
-TypeUtils _SCSIM_struct__810_Utils = {struct__810_to_string,
-	check_struct__810_string,
-	string_to_struct__810,
-	is_struct__810_allow_double_convertion,
+	compare_struct__804_type,
+	get_struct__804_signature,
+	get_struct__804_filter_utils,
+	struct__804_filter_size,
+	struct__804_filter_values};
+TypeUtils _SCSIM_struct__809_Utils = {struct__809_to_string,
+	check_struct__809_string,
+	string_to_struct__809,
+	is_struct__809_allow_double_convertion,
 	0,
-	compare_struct__810_type,
-	get_struct__810_signature,
-	get_struct__810_filter_utils,
-	struct__810_filter_size,
-	struct__810_filter_values};
-TypeUtils _SCSIM_array__815_Utils = {array__815_to_string,
-	check_array__815_string,
-	string_to_array__815,
-	is_array__815_allow_double_convertion,
+	compare_struct__809_type,
+	get_struct__809_signature,
+	get_struct__809_filter_utils,
+	struct__809_filter_size,
+	struct__809_filter_values};
+TypeUtils _SCSIM_struct__814_Utils = {struct__814_to_string,
+	check_struct__814_string,
+	string_to_struct__814,
+	is_struct__814_allow_double_convertion,
 	0,
-	compare_array__815_type,
-	get_array__815_signature,
-	get_array__815_filter_utils,
-	array__815_filter_size,
-	array__815_filter_values};
+	compare_struct__814_type,
+	get_struct__814_signature,
+	get_struct__814_filter_utils,
+	struct__814_filter_size,
+	struct__814_filter_values};
+TypeUtils _SCSIM_struct__818_Utils = {struct__818_to_string,
+	check_struct__818_string,
+	string_to_struct__818,
+	is_struct__818_allow_double_convertion,
+	0,
+	compare_struct__818_type,
+	get_struct__818_signature,
+	get_struct__818_filter_utils,
+	struct__818_filter_size,
+	struct__818_filter_values};
+TypeUtils _SCSIM_array__823_Utils = {array__823_to_string,
+	check_array__823_string,
+	string_to_array__823,
+	is_array__823_allow_double_convertion,
+	0,
+	compare_array__823_type,
+	get_array__823_signature,
+	get_array__823_filter_utils,
+	array__823_filter_size,
+	array__823_filter_values};
 TypeUtils _SCSIM_Orientation_DetermineBGOrientation_LRBG_DataDctionary_Utils = {Orientation_DetermineBGOrientation_LRBG_DataDctionary_to_string,
 	check_Orientation_DetermineBGOrientation_LRBG_DataDctionary_string,
 	string_to_Orientation_DetermineBGOrientation_LRBG_DataDctionary,
@@ -861,9 +861,9 @@ int check_kcg_int_string(const char* strValue) {
 
 
 /****************************************************************
- ** struct__747
+ ** struct__755
  ****************************************************************/
-static void Fill_struct__747_StructSimValue(struct__747 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__755_StructSimValue(struct__755 * pStruct, StructSimValue * pValues) {
 	/*NID_MESSAGE label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->NID_MESSAGE) : 0;
 	pValues[0].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
@@ -890,118 +890,118 @@ static void Fill_struct__747_StructSimValue(struct__747 * pStruct, StructSimValu
 	pValues[5].m_pszName = "Q_ORIENTATION";
 }
 
-const char * struct__747_to_string(const void* pValue) {
+const char * struct__755_to_string(const void* pValue) {
 	static StructSimValue values[6];
-	Fill_struct__747_StructSimValue(((struct__747*)pValue), values);
+	Fill_struct__755_StructSimValue(((struct__755*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 6);
 }
 
-int string_to_struct__747(const char* strValue, void* pValue) {
-	static struct__747 rTemp;
+int string_to_struct__755(const char* strValue, void* pValue) {
+	static struct__755 rTemp;
 	int nResult = 0;
 	static StructSimValue values[6];
-	kcg_copy_struct__747(&(rTemp), &(*((struct__747*)pValue)));
-	Fill_struct__747_StructSimValue(&rTemp, values);
+	kcg_copy_struct__755(&(rTemp), &(*((struct__755*)pValue)));
+	Fill_struct__755_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 6);
 	if (nResult == 1)
-		kcg_copy_struct__747(&(*((struct__747*)pValue)), &(rTemp));
+		kcg_copy_struct__755(&(*((struct__755*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__747_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__755_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[6];
-	Fill_struct__747_StructSimValue((struct__747*)pValue, values);
+	Fill_struct__755_StructSimValue((struct__755*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 6);
 }
 
 
-int is_struct__747_allow_double_convertion() {
+int is_struct__755_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__747_signature() {
+const char * get_struct__755_signature() {
 	static StructSimValue values[6];
-	Fill_struct__747_StructSimValue(0, values);
+	Fill_struct__755_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 6);
 }
 
-FilterUtils get_struct__747_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__755_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[6];
-	Fill_struct__747_StructSimValue((struct__747*)pValue, values);
+	Fill_struct__755_StructSimValue((struct__755*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 6, strFilter);
 }
 
-const char * struct__747_filter_values[6] = {"NID_MESSAGE", "L_MESSAGE", "T_TRAIN", "M_ACK", "NID_LRBG", "Q_ORIENTATION"};
-int check_struct__747_string(const char* strValue) {
-	static struct__747 rTemp;
-	return string_to_struct__747(strValue, &rTemp);
+const char * struct__755_filter_values[6] = {"NID_MESSAGE", "L_MESSAGE", "T_TRAIN", "M_ACK", "NID_LRBG", "Q_ORIENTATION"};
+int check_struct__755_string(const char* strValue) {
+	static struct__755 rTemp;
+	return string_to_struct__755(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** struct__756
+ ** struct__764
  ****************************************************************/
-static void Fill_struct__756_StructSimValue(struct__756 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__764_StructSimValue(struct__764 * pStruct, StructSimValue * pValues) {
 	/*assignment_of_coordinate_system label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->assignment_of_coordinate_system) : 0;
-	pValues[0].m_pTypeUtils = &_SCSIM_struct__747_Utils;
+	pValues[0].m_pTypeUtils = &_SCSIM_struct__755_Utils;
 	pValues[0].m_pszName = "assignment_of_coordinate_system";
 }
 
-const char * struct__756_to_string(const void* pValue) {
+const char * struct__764_to_string(const void* pValue) {
 	static StructSimValue values[1];
-	Fill_struct__756_StructSimValue(((struct__756*)pValue), values);
+	Fill_struct__764_StructSimValue(((struct__764*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 1);
 }
 
-int string_to_struct__756(const char* strValue, void* pValue) {
-	static struct__756 rTemp;
+int string_to_struct__764(const char* strValue, void* pValue) {
+	static struct__764 rTemp;
 	int nResult = 0;
 	static StructSimValue values[1];
-	kcg_copy_struct__756(&(rTemp), &(*((struct__756*)pValue)));
-	Fill_struct__756_StructSimValue(&rTemp, values);
+	kcg_copy_struct__764(&(rTemp), &(*((struct__764*)pValue)));
+	Fill_struct__764_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 1);
 	if (nResult == 1)
-		kcg_copy_struct__756(&(*((struct__756*)pValue)), &(rTemp));
+		kcg_copy_struct__764(&(*((struct__764*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__756_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__764_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[1];
-	Fill_struct__756_StructSimValue((struct__756*)pValue, values);
+	Fill_struct__764_StructSimValue((struct__764*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 1);
 }
 
 
-int is_struct__756_allow_double_convertion() {
+int is_struct__764_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__756_signature() {
+const char * get_struct__764_signature() {
 	static StructSimValue values[1];
-	Fill_struct__756_StructSimValue(0, values);
+	Fill_struct__764_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 1);
 }
 
-FilterUtils get_struct__756_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__764_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[1];
-	Fill_struct__756_StructSimValue((struct__756*)pValue, values);
+	Fill_struct__764_StructSimValue((struct__764*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 1, strFilter);
 }
 
-const char * struct__756_filter_values[1] = {"assignment_of_coordinate_system"};
-int check_struct__756_string(const char* strValue) {
-	static struct__756 rTemp;
-	return string_to_struct__756(strValue, &rTemp);
+const char * struct__764_filter_values[1] = {"assignment_of_coordinate_system"};
+int check_struct__764_string(const char* strValue) {
+	static struct__764 rTemp;
+	return string_to_struct__764(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** struct__760
+ ** struct__768
  ****************************************************************/
-static void Fill_struct__760_StructSimValue(struct__760 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__768_StructSimValue(struct__768 * pStruct, StructSimValue * pValues) {
 	/*NID_MESSAGE label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->NID_MESSAGE) : 0;
 	pValues[0].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
@@ -1016,59 +1016,59 @@ static void Fill_struct__760_StructSimValue(struct__760 * pStruct, StructSimValu
 	pValues[2].m_pszName = "T_TRAIN";
 }
 
-const char * struct__760_to_string(const void* pValue) {
+const char * struct__768_to_string(const void* pValue) {
 	static StructSimValue values[3];
-	Fill_struct__760_StructSimValue(((struct__760*)pValue), values);
+	Fill_struct__768_StructSimValue(((struct__768*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 3);
 }
 
-int string_to_struct__760(const char* strValue, void* pValue) {
-	static struct__760 rTemp;
+int string_to_struct__768(const char* strValue, void* pValue) {
+	static struct__768 rTemp;
 	int nResult = 0;
 	static StructSimValue values[3];
-	kcg_copy_struct__760(&(rTemp), &(*((struct__760*)pValue)));
-	Fill_struct__760_StructSimValue(&rTemp, values);
+	kcg_copy_struct__768(&(rTemp), &(*((struct__768*)pValue)));
+	Fill_struct__768_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 3);
 	if (nResult == 1)
-		kcg_copy_struct__760(&(*((struct__760*)pValue)), &(rTemp));
+		kcg_copy_struct__768(&(*((struct__768*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__760_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__768_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[3];
-	Fill_struct__760_StructSimValue((struct__760*)pValue, values);
+	Fill_struct__768_StructSimValue((struct__768*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 3);
 }
 
 
-int is_struct__760_allow_double_convertion() {
+int is_struct__768_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__760_signature() {
+const char * get_struct__768_signature() {
 	static StructSimValue values[3];
-	Fill_struct__760_StructSimValue(0, values);
+	Fill_struct__768_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 3);
 }
 
-FilterUtils get_struct__760_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__768_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[3];
-	Fill_struct__760_StructSimValue((struct__760*)pValue, values);
+	Fill_struct__768_StructSimValue((struct__768*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 3, strFilter);
 }
 
-const char * struct__760_filter_values[3] = {"NID_MESSAGE", "L_MESSAGE", "T_TRAIN"};
-int check_struct__760_string(const char* strValue) {
-	static struct__760 rTemp;
-	return string_to_struct__760(strValue, &rTemp);
+const char * struct__768_filter_values[3] = {"NID_MESSAGE", "L_MESSAGE", "T_TRAIN"};
+int check_struct__768_string(const char* strValue) {
+	static struct__768 rTemp;
+	return string_to_struct__768(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** struct__766
+ ** struct__774
  ****************************************************************/
-static void Fill_struct__766_StructSimValue(struct__766 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__774_StructSimValue(struct__774 * pStruct, StructSimValue * pValues) {
 	/*m_leveltr label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->m_leveltr) : 0;
 	pValues[0].m_pTypeUtils = &_SCSIM_M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils;
@@ -1079,59 +1079,59 @@ static void Fill_struct__766_StructSimValue(struct__766 * pStruct, StructSimValu
 	pValues[1].m_pszName = "m_mode";
 }
 
-const char * struct__766_to_string(const void* pValue) {
+const char * struct__774_to_string(const void* pValue) {
 	static StructSimValue values[2];
-	Fill_struct__766_StructSimValue(((struct__766*)pValue), values);
+	Fill_struct__774_StructSimValue(((struct__774*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 2);
 }
 
-int string_to_struct__766(const char* strValue, void* pValue) {
-	static struct__766 rTemp;
+int string_to_struct__774(const char* strValue, void* pValue) {
+	static struct__774 rTemp;
 	int nResult = 0;
 	static StructSimValue values[2];
-	kcg_copy_struct__766(&(rTemp), &(*((struct__766*)pValue)));
-	Fill_struct__766_StructSimValue(&rTemp, values);
+	kcg_copy_struct__774(&(rTemp), &(*((struct__774*)pValue)));
+	Fill_struct__774_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 2);
 	if (nResult == 1)
-		kcg_copy_struct__766(&(*((struct__766*)pValue)), &(rTemp));
+		kcg_copy_struct__774(&(*((struct__774*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__766_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__774_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[2];
-	Fill_struct__766_StructSimValue((struct__766*)pValue, values);
+	Fill_struct__774_StructSimValue((struct__774*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 2);
 }
 
 
-int is_struct__766_allow_double_convertion() {
+int is_struct__774_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__766_signature() {
+const char * get_struct__774_signature() {
 	static StructSimValue values[2];
-	Fill_struct__766_StructSimValue(0, values);
+	Fill_struct__774_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 2);
 }
 
-FilterUtils get_struct__766_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__774_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[2];
-	Fill_struct__766_StructSimValue((struct__766*)pValue, values);
+	Fill_struct__774_StructSimValue((struct__774*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 2, strFilter);
 }
 
-const char * struct__766_filter_values[2] = {"m_leveltr", "m_mode"};
-int check_struct__766_string(const char* strValue) {
-	static struct__766 rTemp;
-	return string_to_struct__766(strValue, &rTemp);
+const char * struct__774_filter_values[2] = {"m_leveltr", "m_mode"};
+int check_struct__774_string(const char* strValue) {
+	static struct__774 rTemp;
+	return string_to_struct__774(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** struct__771
+ ** struct__779
  ****************************************************************/
-static void Fill_struct__771_StructSimValue(struct__771 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__779_StructSimValue(struct__779 * pStruct, StructSimValue * pValues) {
 	/*m_version label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->m_version) : 0;
 	pValues[0].m_pTypeUtils = &_SCSIM_M_PLATFORM_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils;
@@ -1174,215 +1174,111 @@ static void Fill_struct__771_StructSimValue(struct__771 * pStruct, StructSimValu
 	pValues[9].m_pszName = "m_dup";
 }
 
-const char * struct__771_to_string(const void* pValue) {
+const char * struct__779_to_string(const void* pValue) {
 	static StructSimValue values[10];
-	Fill_struct__771_StructSimValue(((struct__771*)pValue), values);
+	Fill_struct__779_StructSimValue(((struct__779*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 10);
 }
 
-int string_to_struct__771(const char* strValue, void* pValue) {
-	static struct__771 rTemp;
+int string_to_struct__779(const char* strValue, void* pValue) {
+	static struct__779 rTemp;
 	int nResult = 0;
 	static StructSimValue values[10];
-	kcg_copy_struct__771(&(rTemp), &(*((struct__771*)pValue)));
-	Fill_struct__771_StructSimValue(&rTemp, values);
+	kcg_copy_struct__779(&(rTemp), &(*((struct__779*)pValue)));
+	Fill_struct__779_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 10);
 	if (nResult == 1)
-		kcg_copy_struct__771(&(*((struct__771*)pValue)), &(rTemp));
+		kcg_copy_struct__779(&(*((struct__779*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__771_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__779_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[10];
-	Fill_struct__771_StructSimValue((struct__771*)pValue, values);
+	Fill_struct__779_StructSimValue((struct__779*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 10);
 }
 
 
-int is_struct__771_allow_double_convertion() {
+int is_struct__779_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__771_signature() {
+const char * get_struct__779_signature() {
 	static StructSimValue values[10];
-	Fill_struct__771_StructSimValue(0, values);
+	Fill_struct__779_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 10);
 }
 
-FilterUtils get_struct__771_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__779_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[10];
-	Fill_struct__771_StructSimValue((struct__771*)pValue, values);
+	Fill_struct__779_StructSimValue((struct__779*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 10, strFilter);
 }
 
-const char * struct__771_filter_values[10] = {"m_version", "n_total", "n_pig", "q_media", "q_updown", "q_link", "nid_bg", "nid_c", "m_mcount", "m_dup"};
-int check_struct__771_string(const char* strValue) {
-	static struct__771 rTemp;
-	return string_to_struct__771(strValue, &rTemp);
+const char * struct__779_filter_values[10] = {"m_version", "n_total", "n_pig", "q_media", "q_updown", "q_link", "nid_bg", "nid_c", "m_mcount", "m_dup"};
+int check_struct__779_string(const char* strValue) {
+	static struct__779 rTemp;
+	return string_to_struct__779(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** struct__784
+ ** struct__792
  ****************************************************************/
-static void Fill_struct__784_StructSimValue(struct__784 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__792_StructSimValue(struct__792 * pStruct, StructSimValue * pValues) {
 	/*boolean_ label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->boolean_) : 0;
 	pValues[0].m_pTypeUtils = &_SCSIM_kcg_bool_Utils;
 	pValues[0].m_pszName = "boolean_";
 }
 
-const char * struct__784_to_string(const void* pValue) {
+const char * struct__792_to_string(const void* pValue) {
 	static StructSimValue values[1];
-	Fill_struct__784_StructSimValue(((struct__784*)pValue), values);
+	Fill_struct__792_StructSimValue(((struct__792*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 1);
 }
 
-int string_to_struct__784(const char* strValue, void* pValue) {
-	static struct__784 rTemp;
+int string_to_struct__792(const char* strValue, void* pValue) {
+	static struct__792 rTemp;
 	int nResult = 0;
 	static StructSimValue values[1];
-	kcg_copy_struct__784(&(rTemp), &(*((struct__784*)pValue)));
-	Fill_struct__784_StructSimValue(&rTemp, values);
+	kcg_copy_struct__792(&(rTemp), &(*((struct__792*)pValue)));
+	Fill_struct__792_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 1);
 	if (nResult == 1)
-		kcg_copy_struct__784(&(*((struct__784*)pValue)), &(rTemp));
+		kcg_copy_struct__792(&(*((struct__792*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__784_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__792_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[1];
-	Fill_struct__784_StructSimValue((struct__784*)pValue, values);
+	Fill_struct__792_StructSimValue((struct__792*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 1);
 }
 
 
-int is_struct__784_allow_double_convertion() {
+int is_struct__792_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__784_signature() {
+const char * get_struct__792_signature() {
 	static StructSimValue values[1];
-	Fill_struct__784_StructSimValue(0, values);
+	Fill_struct__792_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 1);
 }
 
-FilterUtils get_struct__784_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__792_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[1];
-	Fill_struct__784_StructSimValue((struct__784*)pValue, values);
+	Fill_struct__792_StructSimValue((struct__792*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 1, strFilter);
 }
 
-const char * struct__784_filter_values[1] = {"boolean_"};
-int check_struct__784_string(const char* strValue) {
-	static struct__784 rTemp;
-	return string_to_struct__784(strValue, &rTemp);
-}
-
-
-/****************************************************************
- ** struct__788
- ****************************************************************/
-static void Fill_struct__788_StructSimValue(struct__788 * pStruct, StructSimValue * pValues) {
-	/*header label.*/
-	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->header) : 0;
-	pValues[0].m_pTypeUtils = &_SCSIM_struct__771_Utils;
-	pValues[0].m_pszName = "header";
-	/*flag label.*/
-	pValues[1].m_pPtr = pStruct != 0 ? &(pStruct->flag) : 0;
-	pValues[1].m_pTypeUtils = &_SCSIM_struct__784_Utils;
-	pValues[1].m_pszName = "flag";
-}
-
-const char * struct__788_to_string(const void* pValue) {
-	static StructSimValue values[2];
-	Fill_struct__788_StructSimValue(((struct__788*)pValue), values);
-	return pSimulator->m_pfnStructureToString(values, 2);
-}
-
-int string_to_struct__788(const char* strValue, void* pValue) {
-	static struct__788 rTemp;
-	int nResult = 0;
-	static StructSimValue values[2];
-	kcg_copy_struct__788(&(rTemp), &(*((struct__788*)pValue)));
-	Fill_struct__788_StructSimValue(&rTemp, values);
-	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 2);
-	if (nResult == 1)
-		kcg_copy_struct__788(&(*((struct__788*)pValue)), &(rTemp));
-	return nResult;
-}
-
-int compare_struct__788_type(int* pResult, const char* toCompare, const void* pValue) {
-	static StructSimValue values[2];
-	Fill_struct__788_StructSimValue((struct__788*)pValue, values);
-	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 2);
-}
-
-
-int is_struct__788_allow_double_convertion() {
-	return 0;
-}
-
-
-const char * get_struct__788_signature() {
-	static StructSimValue values[2];
-	Fill_struct__788_StructSimValue(0, values);
-	return pSimulator->m_pfnStructureSignature(values, 2);
-}
-
-FilterUtils get_struct__788_filter_utils(const char* strFilter, void* pValue) {
-	static StructSimValue values[2];
-	Fill_struct__788_StructSimValue((struct__788*)pValue, values);
-	return pSimulator->m_pfnGetStructureFilterUtils(values, 2, strFilter);
-}
-
-const char * struct__788_filter_values[2] = {"header", "flag"};
-int check_struct__788_string(const char* strValue) {
-	static struct__788 rTemp;
-	return string_to_struct__788(strValue, &rTemp);
-}
-
-
-/****************************************************************
- ** array__793
- ****************************************************************/
-void* array__793_projection(void** pValues, int nIndex) {
-	return &((*(array__793*)pValues)[nIndex]);
-}
-
-const char * array__793_to_string(const void* pValue) {
-	return (char*) pSimulator->m_pfnArrayToString((const void**)pValue, struct__788_to_string, 8, array__793_projection);
-}
-
-int compare_array__793_type(int* pResult, const char* toCompare, const void* pValue) {
-	return pSimulator->m_pfnArrayComparison(pResult, toCompare, (const void**)pValue, compare_struct__788_type , 8, array__793_projection);
-}
-
-int is_array__793_allow_double_convertion() {
-	return 0;
-}
-
-int string_to_array__793(const char* strValue, void* pValue) {
-	static array__793 rTemp;
-	int nResult = pSimulator->m_pfnArrayFromString(strValue, (void**)(void*)&rTemp, string_to_struct__788, 8, array__793_projection);
-	if (nResult == 1)
-		kcg_copy_array__793(&(*((array__793*)pValue)), &(rTemp));
-	return nResult;
-}
-
-const char * get_array__793_signature() {
-	return pSimulator->m_pfnArraySignature(get_struct__788_signature, 8);
-}
-
-FilterUtils get_array__793_filter_utils(const char* strFilter, void* pValue) {
-	return pSimulator->m_pfnGetArrayFilterUtils(&_SCSIM_struct__788_Utils, strFilter, (void**)pValue, 8, array__793_projection);
-}
-
-int check_array__793_string(const char* strValue) {
-	static array__793 rTemp;
-	return string_to_array__793(strValue, &rTemp);
+const char * struct__792_filter_values[1] = {"boolean_"};
+int check_struct__792_string(const char* strValue) {
+	static struct__792 rTemp;
+	return string_to_struct__792(strValue, &rTemp);
 }
 
 
@@ -1390,14 +1286,14 @@ int check_array__793_string(const char* strValue) {
  ** struct__796
  ****************************************************************/
 static void Fill_struct__796_StructSimValue(struct__796 * pStruct, StructSimValue * pValues) {
-	/*headerflag label.*/
-	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->headerflag) : 0;
-	pValues[0].m_pTypeUtils = &_SCSIM_array__793_Utils;
-	pValues[0].m_pszName = "headerflag";
-	/*additionalinformation label.*/
-	pValues[1].m_pPtr = pStruct != 0 ? &(pStruct->additionalinformation) : 0;
-	pValues[1].m_pTypeUtils = &_SCSIM_AdditionalInformation_DetermineBGOrientation_LRBG_DataDctionary_BTM_Utils;
-	pValues[1].m_pszName = "additionalinformation";
+	/*header label.*/
+	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->header) : 0;
+	pValues[0].m_pTypeUtils = &_SCSIM_struct__779_Utils;
+	pValues[0].m_pszName = "header";
+	/*flag label.*/
+	pValues[1].m_pPtr = pStruct != 0 ? &(pStruct->flag) : 0;
+	pValues[1].m_pTypeUtils = &_SCSIM_struct__792_Utils;
+	pValues[1].m_pszName = "flag";
 }
 
 const char * struct__796_to_string(const void* pValue) {
@@ -1442,7 +1338,7 @@ FilterUtils get_struct__796_filter_utils(const char* strFilter, void* pValue) {
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 2, strFilter);
 }
 
-const char * struct__796_filter_values[2] = {"headerflag", "additionalinformation"};
+const char * struct__796_filter_values[2] = {"header", "flag"};
 int check_struct__796_string(const char* strValue) {
 	static struct__796 rTemp;
 	return string_to_struct__796(strValue, &rTemp);
@@ -1450,228 +1346,332 @@ int check_struct__796_string(const char* strValue) {
 
 
 /****************************************************************
- ** struct__801
+ ** array__801
  ****************************************************************/
-static void Fill_struct__801_StructSimValue(struct__801 * pStruct, StructSimValue * pValues) {
+void* array__801_projection(void** pValues, int nIndex) {
+	return &((*(array__801*)pValues)[nIndex]);
+}
+
+const char * array__801_to_string(const void* pValue) {
+	return (char*) pSimulator->m_pfnArrayToString((const void**)pValue, struct__796_to_string, 8, array__801_projection);
+}
+
+int compare_array__801_type(int* pResult, const char* toCompare, const void* pValue) {
+	return pSimulator->m_pfnArrayComparison(pResult, toCompare, (const void**)pValue, compare_struct__796_type , 8, array__801_projection);
+}
+
+int is_array__801_allow_double_convertion() {
+	return 0;
+}
+
+int string_to_array__801(const char* strValue, void* pValue) {
+	static array__801 rTemp;
+	int nResult = pSimulator->m_pfnArrayFromString(strValue, (void**)(void*)&rTemp, string_to_struct__796, 8, array__801_projection);
+	if (nResult == 1)
+		kcg_copy_array__801(&(*((array__801*)pValue)), &(rTemp));
+	return nResult;
+}
+
+const char * get_array__801_signature() {
+	return pSimulator->m_pfnArraySignature(get_struct__796_signature, 8);
+}
+
+FilterUtils get_array__801_filter_utils(const char* strFilter, void* pValue) {
+	return pSimulator->m_pfnGetArrayFilterUtils(&_SCSIM_struct__796_Utils, strFilter, (void**)pValue, 8, array__801_projection);
+}
+
+int check_array__801_string(const char* strValue) {
+	static array__801 rTemp;
+	return string_to_array__801(strValue, &rTemp);
+}
+
+
+/****************************************************************
+ ** struct__804
+ ****************************************************************/
+static void Fill_struct__804_StructSimValue(struct__804 * pStruct, StructSimValue * pValues) {
+	/*headerflag label.*/
+	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->headerflag) : 0;
+	pValues[0].m_pTypeUtils = &_SCSIM_array__801_Utils;
+	pValues[0].m_pszName = "headerflag";
+	/*additionalinformation label.*/
+	pValues[1].m_pPtr = pStruct != 0 ? &(pStruct->additionalinformation) : 0;
+	pValues[1].m_pTypeUtils = &_SCSIM_AdditionalInformation_DetermineBGOrientation_LRBG_DataDctionary_BTM_Utils;
+	pValues[1].m_pszName = "additionalinformation";
+}
+
+const char * struct__804_to_string(const void* pValue) {
+	static StructSimValue values[2];
+	Fill_struct__804_StructSimValue(((struct__804*)pValue), values);
+	return pSimulator->m_pfnStructureToString(values, 2);
+}
+
+int string_to_struct__804(const char* strValue, void* pValue) {
+	static struct__804 rTemp;
+	int nResult = 0;
+	static StructSimValue values[2];
+	kcg_copy_struct__804(&(rTemp), &(*((struct__804*)pValue)));
+	Fill_struct__804_StructSimValue(&rTemp, values);
+	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 2);
+	if (nResult == 1)
+		kcg_copy_struct__804(&(*((struct__804*)pValue)), &(rTemp));
+	return nResult;
+}
+
+int compare_struct__804_type(int* pResult, const char* toCompare, const void* pValue) {
+	static StructSimValue values[2];
+	Fill_struct__804_StructSimValue((struct__804*)pValue, values);
+	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 2);
+}
+
+
+int is_struct__804_allow_double_convertion() {
+	return 0;
+}
+
+
+const char * get_struct__804_signature() {
+	static StructSimValue values[2];
+	Fill_struct__804_StructSimValue(0, values);
+	return pSimulator->m_pfnStructureSignature(values, 2);
+}
+
+FilterUtils get_struct__804_filter_utils(const char* strFilter, void* pValue) {
+	static StructSimValue values[2];
+	Fill_struct__804_StructSimValue((struct__804*)pValue, values);
+	return pSimulator->m_pfnGetStructureFilterUtils(values, 2, strFilter);
+}
+
+const char * struct__804_filter_values[2] = {"headerflag", "additionalinformation"};
+int check_struct__804_string(const char* strValue) {
+	static struct__804 rTemp;
+	return string_to_struct__804(strValue, &rTemp);
+}
+
+
+/****************************************************************
+ ** struct__809
+ ****************************************************************/
+static void Fill_struct__809_StructSimValue(struct__809 * pStruct, StructSimValue * pValues) {
 	/*q_dirlrbg label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->q_dirlrbg) : 0;
 	pValues[0].m_pTypeUtils = &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils;
 	pValues[0].m_pszName = "q_dirlrbg";
 	/*checkedbgmessage label.*/
 	pValues[1].m_pPtr = pStruct != 0 ? &(pStruct->checkedbgmessage) : 0;
-	pValues[1].m_pTypeUtils = &_SCSIM_struct__796_Utils;
+	pValues[1].m_pTypeUtils = &_SCSIM_struct__804_Utils;
 	pValues[1].m_pszName = "checkedbgmessage";
 }
 
-const char * struct__801_to_string(const void* pValue) {
+const char * struct__809_to_string(const void* pValue) {
 	static StructSimValue values[2];
-	Fill_struct__801_StructSimValue(((struct__801*)pValue), values);
+	Fill_struct__809_StructSimValue(((struct__809*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 2);
 }
 
-int string_to_struct__801(const char* strValue, void* pValue) {
-	static struct__801 rTemp;
+int string_to_struct__809(const char* strValue, void* pValue) {
+	static struct__809 rTemp;
 	int nResult = 0;
 	static StructSimValue values[2];
-	kcg_copy_struct__801(&(rTemp), &(*((struct__801*)pValue)));
-	Fill_struct__801_StructSimValue(&rTemp, values);
+	kcg_copy_struct__809(&(rTemp), &(*((struct__809*)pValue)));
+	Fill_struct__809_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 2);
 	if (nResult == 1)
-		kcg_copy_struct__801(&(*((struct__801*)pValue)), &(rTemp));
+		kcg_copy_struct__809(&(*((struct__809*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__801_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__809_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[2];
-	Fill_struct__801_StructSimValue((struct__801*)pValue, values);
+	Fill_struct__809_StructSimValue((struct__809*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 2);
 }
 
 
-int is_struct__801_allow_double_convertion() {
+int is_struct__809_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__801_signature() {
+const char * get_struct__809_signature() {
 	static StructSimValue values[2];
-	Fill_struct__801_StructSimValue(0, values);
+	Fill_struct__809_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 2);
 }
 
-FilterUtils get_struct__801_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__809_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[2];
-	Fill_struct__801_StructSimValue((struct__801*)pValue, values);
+	Fill_struct__809_StructSimValue((struct__809*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 2, strFilter);
 }
 
-const char * struct__801_filter_values[2] = {"q_dirlrbg", "checkedbgmessage"};
-int check_struct__801_string(const char* strValue) {
-	static struct__801 rTemp;
-	return string_to_struct__801(strValue, &rTemp);
+const char * struct__809_filter_values[2] = {"q_dirlrbg", "checkedbgmessage"};
+int check_struct__809_string(const char* strValue) {
+	static struct__809 rTemp;
+	return string_to_struct__809(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** struct__806
+ ** struct__814
  ****************************************************************/
-static void Fill_struct__806_StructSimValue(struct__806 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__814_StructSimValue(struct__814 * pStruct, StructSimValue * pValues) {
 	/*Position_1 label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->Position_1) : 0;
 	pValues[0].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
 	pValues[0].m_pszName = "Position_1";
 }
 
-const char * struct__806_to_string(const void* pValue) {
+const char * struct__814_to_string(const void* pValue) {
 	static StructSimValue values[1];
-	Fill_struct__806_StructSimValue(((struct__806*)pValue), values);
+	Fill_struct__814_StructSimValue(((struct__814*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 1);
 }
 
-int string_to_struct__806(const char* strValue, void* pValue) {
-	static struct__806 rTemp;
+int string_to_struct__814(const char* strValue, void* pValue) {
+	static struct__814 rTemp;
 	int nResult = 0;
 	static StructSimValue values[1];
-	kcg_copy_struct__806(&(rTemp), &(*((struct__806*)pValue)));
-	Fill_struct__806_StructSimValue(&rTemp, values);
+	kcg_copy_struct__814(&(rTemp), &(*((struct__814*)pValue)));
+	Fill_struct__814_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 1);
 	if (nResult == 1)
-		kcg_copy_struct__806(&(*((struct__806*)pValue)), &(rTemp));
+		kcg_copy_struct__814(&(*((struct__814*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__806_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__814_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[1];
-	Fill_struct__806_StructSimValue((struct__806*)pValue, values);
+	Fill_struct__814_StructSimValue((struct__814*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 1);
 }
 
 
-int is_struct__806_allow_double_convertion() {
+int is_struct__814_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__806_signature() {
+const char * get_struct__814_signature() {
 	static StructSimValue values[1];
-	Fill_struct__806_StructSimValue(0, values);
+	Fill_struct__814_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 1);
 }
 
-FilterUtils get_struct__806_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__814_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[1];
-	Fill_struct__806_StructSimValue((struct__806*)pValue, values);
+	Fill_struct__814_StructSimValue((struct__814*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 1, strFilter);
 }
 
-const char * struct__806_filter_values[1] = {"Position_1"};
-int check_struct__806_string(const char* strValue) {
-	static struct__806 rTemp;
-	return string_to_struct__806(strValue, &rTemp);
+const char * struct__814_filter_values[1] = {"Position_1"};
+int check_struct__814_string(const char* strValue) {
+	static struct__814 rTemp;
+	return string_to_struct__814(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** struct__810
+ ** struct__818
  ****************************************************************/
-static void Fill_struct__810_StructSimValue(struct__810 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__818_StructSimValue(struct__818 * pStruct, StructSimValue * pValues) {
 	/*filteredbgmessage label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->filteredbgmessage) : 0;
-	pValues[0].m_pTypeUtils = &_SCSIM_struct__801_Utils;
+	pValues[0].m_pTypeUtils = &_SCSIM_struct__809_Utils;
 	pValues[0].m_pszName = "filteredbgmessage";
 	/*position label.*/
 	pValues[1].m_pPtr = pStruct != 0 ? &(pStruct->position) : 0;
-	pValues[1].m_pTypeUtils = &_SCSIM_struct__806_Utils;
+	pValues[1].m_pTypeUtils = &_SCSIM_struct__814_Utils;
 	pValues[1].m_pszName = "position";
 }
 
-const char * struct__810_to_string(const void* pValue) {
+const char * struct__818_to_string(const void* pValue) {
 	static StructSimValue values[2];
-	Fill_struct__810_StructSimValue(((struct__810*)pValue), values);
+	Fill_struct__818_StructSimValue(((struct__818*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 2);
 }
 
-int string_to_struct__810(const char* strValue, void* pValue) {
-	static struct__810 rTemp;
+int string_to_struct__818(const char* strValue, void* pValue) {
+	static struct__818 rTemp;
 	int nResult = 0;
 	static StructSimValue values[2];
-	kcg_copy_struct__810(&(rTemp), &(*((struct__810*)pValue)));
-	Fill_struct__810_StructSimValue(&rTemp, values);
+	kcg_copy_struct__818(&(rTemp), &(*((struct__818*)pValue)));
+	Fill_struct__818_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 2);
 	if (nResult == 1)
-		kcg_copy_struct__810(&(*((struct__810*)pValue)), &(rTemp));
+		kcg_copy_struct__818(&(*((struct__818*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__810_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__818_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[2];
-	Fill_struct__810_StructSimValue((struct__810*)pValue, values);
+	Fill_struct__818_StructSimValue((struct__818*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 2);
 }
 
 
-int is_struct__810_allow_double_convertion() {
+int is_struct__818_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__810_signature() {
+const char * get_struct__818_signature() {
 	static StructSimValue values[2];
-	Fill_struct__810_StructSimValue(0, values);
+	Fill_struct__818_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 2);
 }
 
-FilterUtils get_struct__810_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__818_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[2];
-	Fill_struct__810_StructSimValue((struct__810*)pValue, values);
+	Fill_struct__818_StructSimValue((struct__818*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 2, strFilter);
 }
 
-const char * struct__810_filter_values[2] = {"filteredbgmessage", "position"};
-int check_struct__810_string(const char* strValue) {
-	static struct__810 rTemp;
-	return string_to_struct__810(strValue, &rTemp);
+const char * struct__818_filter_values[2] = {"filteredbgmessage", "position"};
+int check_struct__818_string(const char* strValue) {
+	static struct__818 rTemp;
+	return string_to_struct__818(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** array__815
+ ** array__823
  ****************************************************************/
-void* array__815_projection(void** pValues, int nIndex) {
-	return &((*(array__815*)pValues)[nIndex]);
+void* array__823_projection(void** pValues, int nIndex) {
+	return &((*(array__823*)pValues)[nIndex]);
 }
 
-const char * array__815_to_string(const void* pValue) {
-	return (char*) pSimulator->m_pfnArrayToString((const void**)pValue, struct__810_to_string, 20, array__815_projection);
+const char * array__823_to_string(const void* pValue) {
+	return (char*) pSimulator->m_pfnArrayToString((const void**)pValue, struct__818_to_string, 20, array__823_projection);
 }
 
-int compare_array__815_type(int* pResult, const char* toCompare, const void* pValue) {
-	return pSimulator->m_pfnArrayComparison(pResult, toCompare, (const void**)pValue, compare_struct__810_type , 20, array__815_projection);
+int compare_array__823_type(int* pResult, const char* toCompare, const void* pValue) {
+	return pSimulator->m_pfnArrayComparison(pResult, toCompare, (const void**)pValue, compare_struct__818_type , 20, array__823_projection);
 }
 
-int is_array__815_allow_double_convertion() {
+int is_array__823_allow_double_convertion() {
 	return 0;
 }
 
-int string_to_array__815(const char* strValue, void* pValue) {
-	static array__815 rTemp;
-	int nResult = pSimulator->m_pfnArrayFromString(strValue, (void**)(void*)&rTemp, string_to_struct__810, 20, array__815_projection);
+int string_to_array__823(const char* strValue, void* pValue) {
+	static array__823 rTemp;
+	int nResult = pSimulator->m_pfnArrayFromString(strValue, (void**)(void*)&rTemp, string_to_struct__818, 20, array__823_projection);
 	if (nResult == 1)
-		kcg_copy_array__815(&(*((array__815*)pValue)), &(rTemp));
+		kcg_copy_array__823(&(*((array__823*)pValue)), &(rTemp));
 	return nResult;
 }
 
-const char * get_array__815_signature() {
-	return pSimulator->m_pfnArraySignature(get_struct__810_signature, 20);
+const char * get_array__823_signature() {
+	return pSimulator->m_pfnArraySignature(get_struct__818_signature, 20);
 }
 
-FilterUtils get_array__815_filter_utils(const char* strFilter, void* pValue) {
-	return pSimulator->m_pfnGetArrayFilterUtils(&_SCSIM_struct__810_Utils, strFilter, (void**)pValue, 20, array__815_projection);
+FilterUtils get_array__823_filter_utils(const char* strFilter, void* pValue) {
+	return pSimulator->m_pfnGetArrayFilterUtils(&_SCSIM_struct__818_Utils, strFilter, (void**)pValue, 20, array__823_projection);
 }
 
-int check_array__815_string(const char* strValue) {
-	static array__815 rTemp;
-	return string_to_array__815(strValue, &rTemp);
+int check_array__823_string(const char* strValue) {
+	static array__823 rTemp;
+	return string_to_array__823(strValue, &rTemp);
 }
 
 
@@ -1770,7 +1770,7 @@ struct SimTypeVTable* pSimListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_Li
 const char * ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs_to_string(const void* pValue) {
 	if (pSimListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGsVTable != 0 && pSimListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGsVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGsVTable->m_pfnToType(SptString, pValue);
-	return array__815_to_string(pValue);
+	return array__823_to_string(pValue);
 }
 
 int string_to_ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs(const char* strValue, void* pValue) {
@@ -1778,10 +1778,10 @@ int string_to_ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs(cons
 		static ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs rTemp;
 		int nResult = pSimListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGsVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_array__815(&(*((ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs*)pValue)), &(rTemp));
+			kcg_copy_array__823(&(*((ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_array__815(strValue, pValue);
+	return string_to_array__823(strValue, pValue);
 }
 
 int is_ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs_allow_double_convertion() {
@@ -1793,7 +1793,7 @@ int is_ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs_allow_doubl
 		nConvertionAllowed |= pSimListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGsVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_array__815_allow_double_convertion();
+	return is_array__823_allow_double_convertion();
 }
 
 int ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs_to_double(double * nValue, const void* pValue) {
@@ -1810,8 +1810,8 @@ int ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs_to_double(doub
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_array__815_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_array__815_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_array__823_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_array__823_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -1828,7 +1828,7 @@ struct SimTypeVTable* pSimCurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_
 const char * CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG_to_string(const void* pValue) {
 	if (pSimCurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBGVTable != 0 && pSimCurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBGVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimCurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBGVTable->m_pfnToType(SptString, pValue);
-	return struct__810_to_string(pValue);
+	return struct__818_to_string(pValue);
 }
 
 int string_to_CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG(const char* strValue, void* pValue) {
@@ -1836,10 +1836,10 @@ int string_to_CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG(
 		static CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG rTemp;
 		int nResult = pSimCurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBGVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__810(&(*((CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG*)pValue)), &(rTemp));
+			kcg_copy_struct__818(&(*((CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__810(strValue, pValue);
+	return string_to_struct__818(strValue, pValue);
 }
 
 int is_CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG_allow_double_convertion() {
@@ -1851,7 +1851,7 @@ int is_CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG_allow_d
 		nConvertionAllowed |= pSimCurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBGVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__810_allow_double_convertion();
+	return is_struct__818_allow_double_convertion();
 }
 
 int CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG_to_double(double * nValue, const void* pValue) {
@@ -1868,8 +1868,8 @@ int CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG_to_double(
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__810_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__810_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__818_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__818_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -1886,7 +1886,7 @@ struct SimTypeVTable* pSimPosition_DetermineBGOrientation_LRBG_DataDctionary_Cur
 const char * Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG_to_string(const void* pValue) {
 	if (pSimPosition_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBGVTable != 0 && pSimPosition_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBGVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimPosition_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBGVTable->m_pfnToType(SptString, pValue);
-	return struct__806_to_string(pValue);
+	return struct__814_to_string(pValue);
 }
 
 int string_to_Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG(const char* strValue, void* pValue) {
@@ -1894,10 +1894,10 @@ int string_to_Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG(con
 		static Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG rTemp;
 		int nResult = pSimPosition_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBGVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__806(&(*((Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG*)pValue)), &(rTemp));
+			kcg_copy_struct__814(&(*((Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__806(strValue, pValue);
+	return string_to_struct__814(strValue, pValue);
 }
 
 int is_Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG_allow_double_convertion() {
@@ -1909,7 +1909,7 @@ int is_Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG_allow_doub
 		nConvertionAllowed |= pSimPosition_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBGVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__806_allow_double_convertion();
+	return is_struct__814_allow_double_convertion();
 }
 
 int Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG_to_double(double * nValue, const void* pValue) {
@@ -1926,8 +1926,8 @@ int Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG_to_double(dou
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__806_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__806_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__814_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__814_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -1944,7 +1944,7 @@ struct SimTypeVTable* pSimFilteredBGMessage_DetermineBGOrientation_LRBG_DataDcti
 const char * FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage_to_string(const void* pValue) {
 	if (pSimFilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessageVTable != 0 && pSimFilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessageVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimFilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessageVTable->m_pfnToType(SptString, pValue);
-	return struct__801_to_string(pValue);
+	return struct__809_to_string(pValue);
 }
 
 int string_to_FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage(const char* strValue, void* pValue) {
@@ -1952,10 +1952,10 @@ int string_to_FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_Filter
 		static FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage rTemp;
 		int nResult = pSimFilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessageVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__801(&(*((FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage*)pValue)), &(rTemp));
+			kcg_copy_struct__809(&(*((FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__801(strValue, pValue);
+	return string_to_struct__809(strValue, pValue);
 }
 
 int is_FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage_allow_double_convertion() {
@@ -1967,7 +1967,7 @@ int is_FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMes
 		nConvertionAllowed |= pSimFilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessageVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__801_allow_double_convertion();
+	return is_struct__809_allow_double_convertion();
 }
 
 int FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage_to_double(double * nValue, const void* pValue) {
@@ -1984,8 +1984,8 @@ int FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessag
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__801_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__801_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__809_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__809_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -3750,7 +3750,7 @@ struct SimTypeVTable* pSimCheckedBGMessage_DetermineBGOrientation_LRBG_DataDctio
 const char * CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_to_string(const void* pValue) {
 	if (pSimCheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable != 0 && pSimCheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimCheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnToType(SptString, pValue);
-	return struct__796_to_string(pValue);
+	return struct__804_to_string(pValue);
 }
 
 int string_to_CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage(const char* strValue, void* pValue) {
@@ -3758,10 +3758,10 @@ int string_to_CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_Checked
 		static CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage rTemp;
 		int nResult = pSimCheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__796(&(*((CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage*)pValue)), &(rTemp));
+			kcg_copy_struct__804(&(*((CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__796(strValue, pValue);
+	return string_to_struct__804(strValue, pValue);
 }
 
 int is_CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_allow_double_convertion() {
@@ -3773,7 +3773,7 @@ int is_CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessa
 		nConvertionAllowed |= pSimCheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__796_allow_double_convertion();
+	return is_struct__804_allow_double_convertion();
 }
 
 int CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_to_double(double * nValue, const void* pValue) {
@@ -3790,8 +3790,8 @@ int CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__796_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__796_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__804_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__804_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -3808,7 +3808,7 @@ struct SimTypeVTable* pSimHederArray_DetermineBGOrientation_LRBG_DataDctionary_C
 const char * HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_to_string(const void* pValue) {
 	if (pSimHederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable != 0 && pSimHederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimHederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnToType(SptString, pValue);
-	return array__793_to_string(pValue);
+	return array__801_to_string(pValue);
 }
 
 int string_to_HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage(const char* strValue, void* pValue) {
@@ -3816,10 +3816,10 @@ int string_to_HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMess
 		static HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage rTemp;
 		int nResult = pSimHederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_array__793(&(*((HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage*)pValue)), &(rTemp));
+			kcg_copy_array__801(&(*((HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_array__793(strValue, pValue);
+	return string_to_array__801(strValue, pValue);
 }
 
 int is_HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_allow_double_convertion() {
@@ -3831,7 +3831,7 @@ int is_HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_all
 		nConvertionAllowed |= pSimHederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_array__793_allow_double_convertion();
+	return is_array__801_allow_double_convertion();
 }
 
 int HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_to_double(double * nValue, const void* pValue) {
@@ -3848,8 +3848,8 @@ int HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_to_dou
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_array__793_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_array__793_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_array__801_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_array__801_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -3866,7 +3866,7 @@ struct SimTypeVTable* pSimHeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_C
 const char * HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_to_string(const void* pValue) {
 	if (pSimHeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable != 0 && pSimHeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimHeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnToType(SptString, pValue);
-	return struct__788_to_string(pValue);
+	return struct__796_to_string(pValue);
 }
 
 int string_to_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage(const char* strValue, void* pValue) {
@@ -3874,10 +3874,10 @@ int string_to_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMess
 		static HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage rTemp;
 		int nResult = pSimHeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__788(&(*((HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage*)pValue)), &(rTemp));
+			kcg_copy_struct__796(&(*((HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__788(strValue, pValue);
+	return string_to_struct__796(strValue, pValue);
 }
 
 int is_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_allow_double_convertion() {
@@ -3889,7 +3889,7 @@ int is_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_all
 		nConvertionAllowed |= pSimHeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__788_allow_double_convertion();
+	return is_struct__796_allow_double_convertion();
 }
 
 int HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_to_double(double * nValue, const void* pValue) {
@@ -3906,8 +3906,8 @@ int HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_to_dou
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__788_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__788_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__796_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__796_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -3924,7 +3924,7 @@ struct SimTypeVTable* pSimFlag_DetermineBGOrientation_LRBG_DataDctionary_Checked
 const char * Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_to_string(const void* pValue) {
 	if (pSimFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable != 0 && pSimFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnToType(SptString, pValue);
-	return struct__784_to_string(pValue);
+	return struct__792_to_string(pValue);
 }
 
 int string_to_Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage(const char* strValue, void* pValue) {
@@ -3932,10 +3932,10 @@ int string_to_Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage(co
 		static Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage rTemp;
 		int nResult = pSimFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__784(&(*((Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage*)pValue)), &(rTemp));
+			kcg_copy_struct__792(&(*((Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__784(strValue, pValue);
+	return string_to_struct__792(strValue, pValue);
 }
 
 int is_Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_allow_double_convertion() {
@@ -3947,7 +3947,7 @@ int is_Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_allow_dou
 		nConvertionAllowed |= pSimFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessageVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__784_allow_double_convertion();
+	return is_struct__792_allow_double_convertion();
 }
 
 int Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_to_double(double * nValue, const void* pValue) {
@@ -3964,8 +3964,8 @@ int Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_to_double(do
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__784_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__784_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__792_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__792_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -3982,7 +3982,7 @@ struct SimTypeVTable* pSimHeader_DetermineBGOrientation_LRBG_DataDctionary_BTMVT
 const char * Header_DetermineBGOrientation_LRBG_DataDctionary_BTM_to_string(const void* pValue) {
 	if (pSimHeader_DetermineBGOrientation_LRBG_DataDctionary_BTMVTable != 0 && pSimHeader_DetermineBGOrientation_LRBG_DataDctionary_BTMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimHeader_DetermineBGOrientation_LRBG_DataDctionary_BTMVTable->m_pfnToType(SptString, pValue);
-	return struct__771_to_string(pValue);
+	return struct__779_to_string(pValue);
 }
 
 int string_to_Header_DetermineBGOrientation_LRBG_DataDctionary_BTM(const char* strValue, void* pValue) {
@@ -3990,10 +3990,10 @@ int string_to_Header_DetermineBGOrientation_LRBG_DataDctionary_BTM(const char* s
 		static Header_DetermineBGOrientation_LRBG_DataDctionary_BTM rTemp;
 		int nResult = pSimHeader_DetermineBGOrientation_LRBG_DataDctionary_BTMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__771(&(*((Header_DetermineBGOrientation_LRBG_DataDctionary_BTM*)pValue)), &(rTemp));
+			kcg_copy_struct__779(&(*((Header_DetermineBGOrientation_LRBG_DataDctionary_BTM*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__771(strValue, pValue);
+	return string_to_struct__779(strValue, pValue);
 }
 
 int is_Header_DetermineBGOrientation_LRBG_DataDctionary_BTM_allow_double_convertion() {
@@ -4005,7 +4005,7 @@ int is_Header_DetermineBGOrientation_LRBG_DataDctionary_BTM_allow_double_convert
 		nConvertionAllowed |= pSimHeader_DetermineBGOrientation_LRBG_DataDctionary_BTMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__771_allow_double_convertion();
+	return is_struct__779_allow_double_convertion();
 }
 
 int Header_DetermineBGOrientation_LRBG_DataDctionary_BTM_to_double(double * nValue, const void* pValue) {
@@ -4022,8 +4022,8 @@ int Header_DetermineBGOrientation_LRBG_DataDctionary_BTM_to_double(double * nVal
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__771_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__771_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__779_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__779_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -4112,7 +4112,7 @@ struct SimTypeVTable* pSimTrainInfo_DetermineBGOrientation_LRBG_DataDctionary_Tr
 const char * TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo_to_string(const void* pValue) {
 	if (pSimTrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfoVTable != 0 && pSimTrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfoVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimTrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfoVTable->m_pfnToType(SptString, pValue);
-	return struct__766_to_string(pValue);
+	return struct__774_to_string(pValue);
 }
 
 int string_to_TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo(const char* strValue, void* pValue) {
@@ -4120,10 +4120,10 @@ int string_to_TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo(cons
 		static TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo rTemp;
 		int nResult = pSimTrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfoVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__766(&(*((TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo*)pValue)), &(rTemp));
+			kcg_copy_struct__774(&(*((TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__766(strValue, pValue);
+	return string_to_struct__774(strValue, pValue);
 }
 
 int is_TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo_allow_double_convertion() {
@@ -4135,7 +4135,7 @@ int is_TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo_allow_doubl
 		nConvertionAllowed |= pSimTrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfoVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__766_allow_double_convertion();
+	return is_struct__774_allow_double_convertion();
 }
 
 int TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo_to_double(double * nValue, const void* pValue) {
@@ -4152,8 +4152,8 @@ int TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo_to_double(doub
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__766_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__766_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__774_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__774_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -4170,7 +4170,7 @@ struct SimTypeVTable* pSimTrain_Position_Report_DetermineBGOrientation_LRBG_Data
 const char * Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets_to_string(const void* pValue) {
 	if (pSimTrain_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_PacketsVTable != 0 && pSimTrain_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_PacketsVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimTrain_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_PacketsVTable->m_pfnToType(SptString, pValue);
-	return struct__760_to_string(pValue);
+	return struct__768_to_string(pValue);
 }
 
 int string_to_Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets(const char* strValue, void* pValue) {
@@ -4178,10 +4178,10 @@ int string_to_Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Pa
 		static Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets rTemp;
 		int nResult = pSimTrain_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_PacketsVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__760(&(*((Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets*)pValue)), &(rTemp));
+			kcg_copy_struct__768(&(*((Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__760(strValue, pValue);
+	return string_to_struct__768(strValue, pValue);
 }
 
 int is_Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets_allow_double_convertion() {
@@ -4193,7 +4193,7 @@ int is_Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets_a
 		nConvertionAllowed |= pSimTrain_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_PacketsVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__760_allow_double_convertion();
+	return is_struct__768_allow_double_convertion();
 }
 
 int Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets_to_double(double * nValue, const void* pValue) {
@@ -4210,8 +4210,8 @@ int Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets_to_d
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__760_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__760_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__768_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__768_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -4228,7 +4228,7 @@ struct SimTypeVTable* pSimAssignment_of_coordinate_system_DetermineBGOrientation
 const char * Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets_to_string(const void* pValue) {
 	if (pSimAssignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_PacketsVTable != 0 && pSimAssignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_PacketsVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimAssignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_PacketsVTable->m_pfnToType(SptString, pValue);
-	return struct__747_to_string(pValue);
+	return struct__755_to_string(pValue);
 }
 
 int string_to_Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets(const char* strValue, void* pValue) {
@@ -4236,10 +4236,10 @@ int string_to_Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDc
 		static Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets rTemp;
 		int nResult = pSimAssignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_PacketsVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__747(&(*((Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets*)pValue)), &(rTemp));
+			kcg_copy_struct__755(&(*((Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__747(strValue, pValue);
+	return string_to_struct__755(strValue, pValue);
 }
 
 int is_Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets_allow_double_convertion() {
@@ -4251,7 +4251,7 @@ int is_Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary
 		nConvertionAllowed |= pSimAssignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_PacketsVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__747_allow_double_convertion();
+	return is_struct__755_allow_double_convertion();
 }
 
 int Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets_to_double(double * nValue, const void* pValue) {
@@ -4268,8 +4268,8 @@ int Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Pa
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__747_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__747_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__755_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__755_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -4286,7 +4286,7 @@ struct SimTypeVTable* pSimRBCOrientationReport_DetermineBGOrientation_LRBG_DataD
 const char * RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport_to_string(const void* pValue) {
 	if (pSimRBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReportVTable != 0 && pSimRBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReportVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimRBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReportVTable->m_pfnToType(SptString, pValue);
-	return struct__756_to_string(pValue);
+	return struct__764_to_string(pValue);
 }
 
 int string_to_RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport(const char* strValue, void* pValue) {
@@ -4294,10 +4294,10 @@ int string_to_RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBC
 		static RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport rTemp;
 		int nResult = pSimRBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReportVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__756(&(*((RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport*)pValue)), &(rTemp));
+			kcg_copy_struct__764(&(*((RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__756(strValue, pValue);
+	return string_to_struct__764(strValue, pValue);
 }
 
 int is_RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport_allow_double_convertion() {
@@ -4309,7 +4309,7 @@ int is_RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrienta
 		nConvertionAllowed |= pSimRBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReportVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__756_allow_double_convertion();
+	return is_struct__764_allow_double_convertion();
 }
 
 int RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport_to_double(double * nValue, const void* pValue) {
@@ -4326,8 +4326,8 @@ int RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientatio
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__756_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__756_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__764_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__764_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
