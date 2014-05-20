@@ -20,7 +20,7 @@ void _SCSIM_Mapping_Create() {
 void _SCSIM_Mapping_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG() {
 	pSimulator->m_pfnSetRoot(pSimulator, "DetermineBGOrientation_LRBG::DetermineBGOrientation_LRBG/", &outputs_ctx, _SCSIM_Get_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG_Handle);
 	_SCSIM_Mapping_CheckBaliseGroup_DetermineBGOrientation_LRBG("DetermineBGOrientation_LRBG::CheckBaliseGroup", "1", 1, 0, 0);
-	_SCSIM_Mapping_FinalCheck_DetermineBGOrientation_LRBG("DetermineBGOrientation_LRBG::FinalCheck", "1", 2, 0, 0);
+	_SCSIM_Mapping_FinalCheck3_DetermineBGOrientation_LRBG("DetermineBGOrientation_LRBG::FinalCheck3", "1", 2, 0, 0);
 	_SCSIM_Mapping_GetBGMessageOrientation_DetermineBGOrientation_LRBG("DetermineBGOrientation_LRBG::GetBGMessageOrientation", "1", 3, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_LCurrentLRBG", &_SCSIM_CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG_Utils, 4, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_LCheckedBGMessage", &_SCSIM_CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 5, valid, 0, 0);
@@ -149,10 +149,10 @@ void* _SCSIM_Get_CheckBaliseGroup_DetermineBGOrientation_LRBG_Handle(void* pInst
 }
 
 /****************************************************************
- ** DetermineBGOrientation_LRBG::FinalCheck/ mapping function
+ ** DetermineBGOrientation_LRBG::FinalCheck3/ mapping function
  ****************************************************************/
-void _SCSIM_Mapping_FinalCheck_DetermineBGOrientation_LRBG(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
-	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_FinalCheck_DetermineBGOrientation_LRBG_Handle, nClockHandleIdent, pfnClockActive);
+void _SCSIM_Mapping_FinalCheck3_DetermineBGOrientation_LRBG(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
+	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_FinalCheck3_DetermineBGOrientation_LRBG_Handle, nClockHandleIdent, pfnClockActive);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage_Utils, 35, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L2", &_SCSIM_Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable_Utils, 36, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L3", &_SCSIM_RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport_Utils, 37, valid, 0, 0);
@@ -187,8 +187,8 @@ void _SCSIM_Mapping_FinalCheck_DetermineBGOrientation_LRBG(const char* pszPath, 
 	pSimulator->m_pfnPopInstance(pSimulator);
 }
 
-void* _SCSIM_Get_FinalCheck_DetermineBGOrientation_LRBG_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
-	outC_FinalCheck_DetermineBGOrientation_LRBG* pContext = (outC_FinalCheck_DetermineBGOrientation_LRBG*)pInstance;
+void* _SCSIM_Get_FinalCheck3_DetermineBGOrientation_LRBG_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
+	outC_FinalCheck3_DetermineBGOrientation_LRBG* pContext = (outC_FinalCheck3_DetermineBGOrientation_LRBG*)pInstance;
 	switch (nHandleIdent) {
 		case 35:
 			return &((*pContext)._L1);

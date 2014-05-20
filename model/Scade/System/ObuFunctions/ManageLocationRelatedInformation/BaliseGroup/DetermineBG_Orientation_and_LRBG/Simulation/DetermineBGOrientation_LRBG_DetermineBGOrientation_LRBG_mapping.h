@@ -15,9 +15,9 @@ void* _SCSIM_Get_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG_Handle(
 void _SCSIM_Mapping_CheckBaliseGroup_DetermineBGOrientation_LRBG(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_CheckBaliseGroup_DetermineBGOrientation_LRBG_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "FinalCheck_DetermineBGOrientation_LRBG.h"
-void _SCSIM_Mapping_FinalCheck_DetermineBGOrientation_LRBG(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_FinalCheck_DetermineBGOrientation_LRBG_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "FinalCheck3_DetermineBGOrientation_LRBG.h"
+void _SCSIM_Mapping_FinalCheck3_DetermineBGOrientation_LRBG(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_FinalCheck3_DetermineBGOrientation_LRBG_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
 #include "GetBGMessageOrientation_DetermineBGOrientation_LRBG.h"
 void _SCSIM_Mapping_GetBGMessageOrientation_DetermineBGOrientation_LRBG(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));

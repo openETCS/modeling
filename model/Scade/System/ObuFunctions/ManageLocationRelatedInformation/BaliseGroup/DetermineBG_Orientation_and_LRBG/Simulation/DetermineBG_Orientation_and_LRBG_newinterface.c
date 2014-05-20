@@ -1,7 +1,7 @@
 #include "DetermineBG_Orientation_and_LRBG_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "e83e40ac6839061cd05410ad68fe4ace";
+const char* _SCSIM_CheckSum = "3cf4b851ff09e795b48417e653d33582";
 const char* _SCSIM_SmuTypesCheckSum = "d5b51fa9eff9683da46173266ac496c5";
 
 /*******************************

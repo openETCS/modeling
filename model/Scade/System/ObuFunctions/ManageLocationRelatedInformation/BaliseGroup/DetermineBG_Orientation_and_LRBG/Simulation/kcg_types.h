@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/Users/GiovanniTrotta/Desktop/SoftwareBGO/Simulation\kcg_s2c_config.txt
-** Generation date: 2014-05-19T12:23:30
+** Generation date: 2014-05-20T18:38:18
 *************************************************************$ */
 #ifndef _KCG_TYPES_H_
 #define _KCG_TYPES_H_
@@ -450,6 +450,6 @@ extern kcg_bool kcg_comp_array__823(array__823 *kcg_c1, array__823 *kcg_c2);
 #endif /* _KCG_TYPES_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_types.h
-** Generation date: 2014-05-19T12:23:30
+** Generation date: 2014-05-20T18:38:18
 *************************************************************$ */
 

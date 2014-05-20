@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/Users/GiovanniTrotta/Desktop/SoftwareBGO/Simulation\kcg_s2c_config.txt
-** Generation date: 2014-05-19T12:23:30
+** Generation date: 2014-05-20T18:38:18
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -10,7 +10,7 @@
 void DetermineBGOrientation_LRBG_reset_DetermineBGOrientation_LRBG(
   outC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG *outC)
 {
-  /* 1 */ FinalCheck_reset_DetermineBGOrientation_LRBG(&outC->_2_Context_1);
+  /* 1 */ FinalCheck3_reset_DetermineBGOrientation_LRBG(&outC->_2_Context_1);
   /* 1 */
   CheckBaliseGroup_reset_DetermineBGOrientation_LRBG(&outC->_1_Context_1);
   /* 1 */
@@ -52,7 +52,7 @@ void DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG(
     &outC->_LRBCOrientationReport,
     &inC->RBCOrientationReport);
   /* 1 */
-  FinalCheck_DetermineBGOrientation_LRBG(
+  FinalCheck3_DetermineBGOrientation_LRBG(
     &outC->_LCheckedBGMessage,
     outC->_Lchecksinglebalisegroup_Orientation,
     &outC->_LRBCOrientationReport,
@@ -74,6 +74,6 @@ void DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG.c
-** Generation date: 2014-05-19T12:23:30
+** Generation date: 2014-05-20T18:38:18
 *************************************************************$ */
 

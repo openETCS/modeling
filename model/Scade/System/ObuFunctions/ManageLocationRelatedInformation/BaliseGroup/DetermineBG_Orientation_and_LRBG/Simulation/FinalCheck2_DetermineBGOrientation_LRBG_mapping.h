@@ -1,0 +1,29 @@
+#ifndef FINALCHECK2_DETERMINEBGORIENTATION_LRBG_SCSIM_MAPPING
+#define FINALCHECK2_DETERMINEBGORIENTATION_LRBG_SCSIM_MAPPING
+
+#include "SmuTypes.h"
+#include "FinalCheck2_DetermineBGOrientation_LRBG_type.h"
+
+void _SCSIM_Mapping_Create();
+static ControlUtils _SCSIM_BoolEntity_Control_Utils;
+#include "FinalCheck2_DetermineBGOrientation_LRBG.h"
+void _SCSIM_Mapping_FinalCheck2_DetermineBGOrientation_LRBG();
+
+void* _SCSIM_Get_FinalCheck2_DetermineBGOrientation_LRBG_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+
+extern ControlUtils _SCSIM_SSM_TR_Initial_1_SM1_Utils;
+extern ControlUtils _SCSIM_SSM_TR_Initial_2_SM1_Utils;
+extern ControlUtils _SCSIM_SSM_st_Initial_SM1_Utils;
+extern ControlUtils _SCSIM_SSM_st_Level0or1_SM1_Utils;
+extern ControlUtils _SCSIM_SSM_TR_Init_1_SM2_SM1_Level2or3_Utils;
+extern ControlUtils _SCSIM_SSM_TR_Init_2_SM2_SM1_Level2or3_Utils;
+extern ControlUtils _SCSIM_SSM_st_Init_SM1_Level2or3_SM2_Utils;
+extern ControlUtils _SCSIM_SSM_st_Ack_SM1_Level2or3_SM2_Utils;
+extern ControlUtils _SCSIM_SSM_st_NoAck_SM1_Level2or3_SM2_Utils;
+extern ControlUtils _SCSIM_SSM_st_Level2or3_SM1_Utils;
+static int _SCSIM_ClockActive_SSM_st_NoAck_SM1_Level2or3_SM2(void*);
+static int _SCSIM_ClockActive_SSM_st_Ack_SM1_Level2or3_SM2(void*);
+static int _SCSIM_ClockActive_SSM_st_Level2or3_SM1(void*);
+static int _SCSIM_ClockActive_SSM_st_Level0or1_SM1(void*);
+
+#endif /*FINALCHECK2_DETERMINEBGORIENTATION_LRBG_SCSIM_MAPPING */

@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/Users/GiovanniTrotta/Desktop/SoftwareBGO/Simulation\kcg_s2c_config.txt
-** Generation date: 2014-05-19T12:23:30
+** Generation date: 2014-05-20T18:38:18
 *************************************************************$ */
 #ifndef _ArrCheck_DetermineBGOrientation_LRBG_H_
 #define _ArrCheck_DetermineBGOrientation_LRBG_H_
@@ -40,6 +40,6 @@ extern void ArrCheck_reset_DetermineBGOrientation_LRBG(
 #endif /* _ArrCheck_DetermineBGOrientation_LRBG_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** ArrCheck_DetermineBGOrientation_LRBG.h
-** Generation date: 2014-05-19T12:23:30
+** Generation date: 2014-05-20T18:38:18
 *************************************************************$ */
 
