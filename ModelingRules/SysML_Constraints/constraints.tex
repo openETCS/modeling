@@ -113,6 +113,23 @@ Version & Section & Modification / Description & Author \\\hline}
 \subsection{Tool Constraints}
 \label{sec:tool-constraints}
 
+\subsubsection{General}
+
+\begin{longtable}{|l||>{\raggedright}p{0.85\linewidth}|}
+  \hline
+  \textbf{Name}        &  Name is unique within the namespace \tabularnewline \hline
+  \textbf{Target}      &  \texttt{uml.NamedElement} \tabularnewline \hline
+  \textbf{Stereotype}  &  n/a \tabularnewline \hline
+  \textbf{Severity}    &  Error \tabularnewline \hline
+  \textbf{Mode}        &  Batch \tabularnewline \hline
+  \textbf{Message}     &  The name 'name' is not unique within the namespace. Please change the name of
+                          the element. \tabularnewline \hline
+  \textbf{Rationale}   &  rationale \tabularnewline \hline
+  \textbf{Description} &  description \tabularnewline \hline
+\end{longtable}
+
+
+
 \subsubsection{C99 Code Generation}
 
 \begin{longtable}{|l||>{\raggedright}p{0.85\linewidth}|}
@@ -165,6 +182,103 @@ Version & Section & Modification / Description & Author \\\hline}
                           in ISO/IEC 9899:1999 section ``6.4.2 Identifiers''. The sepecification equals to the
                           following regular expression: \texttt{[\_a-zA-Z][0-9a-zA-Z\*]}. \tabularnewline \hline
 \end{longtable}
+
+\subsection{Scade Suite Generation}
+
+\begin{longtable}{|l||>{\raggedright}p{0.85\linewidth}|}
+  \hline
+  \textbf{Name}        &  Name is not a reserved SCADE Language Keyword \tabularnewline \hline
+  \textbf{Target}      &  \texttt{uml.NamedElement} \tabularnewline \hline
+  \textbf{Stereotype}  &  n/a \tabularnewline \hline
+  \textbf{Severity}    &  Error \tabularnewline \hline
+  \textbf{Mode}        &  Batch \tabularnewline \hline
+  \textbf{Message}     &  The used name '\texttt{[name]}' is a reserved SCADE keyword according to 
+                          the SCADE language reference manual. Please change the name of the element. \tabularnewline \hline
+  \textbf{Rationale}   &  Esterel Technologies restricts the usage of SCADE language keywords 
+                          in SCADE System.  \tabularnewline \hline
+  \textbf{Description} &  The name of each NamedElement is checked against a list of SCADE Suite 
+                          keywords which are defined in the SCADE Language Reference Manual section 
+                          ``3.4 Keyword List''. The keywords are:
+
+                          \begin{tabular}{l l l}
+                            \texttt{abstract}  & \texttt{guarantee} & \texttt{private}    \\
+                            \texttt{activate}  & \texttt{group}     & \texttt{probe}      \\
+                            \texttt{and}       & \texttt{if}        & \texttt{public}     \\
+                            \texttt{assume}    & \texttt{imported}  & \texttt{real}       \\
+                            \texttt{automaton} & \texttt{initial}   & \texttt{restart}    \\
+                            \texttt{bool}      & \texttt{int}       & \texttt{resume}     \\
+                            \texttt{case}      & \texttt{is}        & \texttt{returns}    \\
+                            \texttt{char}      & \texttt{last}      & \texttt{reverse}    \\
+                            \texttt{clock}     & \texttt{let}       & \texttt{sensor}     \\
+                            \texttt{const}     & \texttt{make}      & \texttt{sig}        \\
+                            \texttt{default}   & \texttt{map}       & \texttt{specialize} \\
+                            \texttt{div}       & \texttt{mapfold}   & \texttt{state}      \\
+                            \texttt{do}        & \texttt{mapi}      & \texttt{synchro}    \\
+                            \texttt{else}      & \texttt{mapw}      & \texttt{tel}        \\
+                            \texttt{elsif}     & \texttt{mapwi}     & \texttt{then}       \\
+                            \texttt{emit}      & \texttt{match}     & \texttt{times}      \\
+                            \texttt{end}       & \texttt{merge}     & \texttt{transpose}  \\
+                            \texttt{enum}      & \texttt{mod}       & \texttt{true}       \\
+                            \texttt{every}     & \texttt{node}      & \texttt{type}       \\
+                            \texttt{false}     & \texttt{not}       & \texttt{unless}     \\
+                            \texttt{fby}       & \texttt{numeric}   & \texttt{until}      \\
+                            \texttt{final}     & \texttt{of}        & \texttt{var}        \\
+                            \texttt{flatten}   & \texttt{onreset}   & \texttt{when}       \\
+                            \texttt{fold}      & \texttt{open}      & \texttt{where}      \\
+                            \texttt{foldi}     & \texttt{or}        & \texttt{with}       \\
+                            \texttt{foldw}     & \texttt{package}   & \texttt{xor}        \\
+                            \texttt{foldwi}    & \texttt{parameter}                       \\
+                            \texttt{function}  & \texttt{pre}                             \\
+                          \end{tabular}\tabularnewline \hline
+\end{longtable}
+
+\begin{longtable}{|l||>{\raggedright}p{0.85\linewidth}|}
+  \hline
+  \textbf{Name}        &  Model contains only Elements transferable to SCADE \tabularnewline \hline
+  \textbf{Target}      &  \texttt{uml.Element} \tabularnewline \hline
+  \textbf{Stereotype}  &  n/a \tabularnewline \hline
+  \textbf{Severity}    &  Error \tabularnewline \hline
+  \textbf{Mode}        &  Batch \tabularnewline \hline
+  \textbf{Message}     &  The element '\texttt{[name]}' can't be used in a Model which will be transformed 
+                          to SCADE. Please remove the element. \tabularnewline \hline
+  \textbf{Rationale}   &  SCADE System defines a SysML subset and also adds new Elements like \texttt{Array} 
+                          that is used to model the System Architecture. Only this subset is guaranteed to be
+                          transformable to SCADE Suite. \tabularnewline \hline
+  \textbf{Description} &  Each model element is checked to be one of the following elements.
+                          \begin{tabular}{l l l}
+                            \textbf{General Constructs}                                                           \\
+                            \texttt{Element}            & \texttt{Package}           & \texttt{Property}          \\
+                            \texttt{Comment}            & \texttt{Model}             & \texttt{Association}       \\
+                            \texttt{NamedElement}       & \texttt{Type}              & \texttt{Constant}          \\
+                            \texttt{Declaration}        & \texttt{TypedElement}      & \texttt{Expression}        \\
+                            \texttt{Annotable}          & \texttt{StructuralFeature}                              \\
+                            \textbf{Data Types}                                                                   \\
+                            \texttt{DataType}           & \texttt{Array}             & \texttt{Dimension}         \\
+                            \texttt{Enumeration}        & \texttt{Signal}            & \texttt{Typedef}           \\
+                            \texttt{EnumerationLiteral} & \texttt{Unit}                                           \\
+                            \textbf{Structural Modeling}                                                          \\
+                            \texttt{Actor}              & \texttt{PartType}          & \texttt{Connector}         \\
+                            \texttt{Block}              & \texttt{Port}              & \texttt{ConnectorEnd}      \\
+                            \texttt{Part \& Reference}  & \texttt{PortType}                                       \\
+                            \multicolumn{3}{l}{\textbf{Dataflow-Oriented Communications}}                         \\
+                            \texttt{FlowPort}           & \texttt{NonAtomicFlowPort} & \texttt{FlowSpecification} \\
+                            \texttt{AtomicFlowPort}     & \texttt{FlowType}          & \texttt{FlowProperty}      \\
+                            \textbf{Allocations}                                                                  \\
+                            \texttt{Allocation}                                                                   \\
+                            \textbf{Diagrams}                                                                     \\
+                            \multicolumn{3}{l}{\texttt{Block Definition Diagram}}                                 \\
+                            \multicolumn{3}{l}{\texttt{Internal Block Diagram}}                                   \\
+                          \end{tabular} 
+                          \vspace
+                          Esterel adds certain modeling elements which are not SysML, like \texttt{Array}. Also certain aspects
+                          of SysML modeling are hidden. For example, if a \texttt{Datatype} is added to the model, the actual 
+                          UML element is as expected a Datatype. However, as soon as \texttt{Dimension} or \texttt{Unit} 
+                          is added, the \texttt{ValueType} stereotype is applied. This fact is hidden in the graphical user
+                          interface, but present in the \texttt{.uml} file.
+                          TODO: Provide a detailed description how non UML/SysML Elements are mapped to UML/SysML.
+                          \tabularnewline \hline
+\end{longtable}
+
 
 
 \subsubsection{Classical B Generation}
