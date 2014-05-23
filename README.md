@@ -17,5 +17,5 @@ Upcoming Events:
 ================
 
 * WP3 Team Meeting Brussels, 26th - 28th of May.
- You can find the agenda and other important information [here](https://github.com/openETCS/modeling/tree/master/meetings/Team-Meeting_Brussel-2014-05-26)
+ You can find the agenda and other important information [here](https://github.com/openETCS/modeling/blob/master/meetings/Team-Meeting_Brussels-2014-05-26/OpenETCS_WP3_meeting_agenda.pdf)
 
