@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/Users/GiovanniTrotta/Desktop/SoftwareBGO/Simulation\kcg_s2c_config.txt
-** Generation date: 2014-05-20T18:38:18
+** Generation date: 2014-05-28T10:33:10
 *************************************************************$ */
 #ifndef _KCG_TYPES_H_
 #define _KCG_TYPES_H_
@@ -169,6 +169,30 @@ typedef enum {
   _1_Q_ORIENTATION__The_balise_group_has_been_passed_by_the_train_in_reverse_direction_DetermineBGOrientation_LRBG_DataDctionary_Variable,
   Q_ORIENTATION__The_balise_group_has_been_passed_by_the_train_in_nominal_direction_DetermineBGOrientation_LRBG_DataDctionary_Variable
 } Q_ORIENTATION_DetermineBGOrientation_LRBG_DataDctionary_Variable;
+/* DetermineBGOrientation_LRBG::FinalCheck::SM1 */
+typedef enum {
+  SSM_TR_no_trans_SM1,
+  SSM_TR_Initial_1_SM1,
+  SSM_TR_Initial_2_SM1
+} SSM_TR_SM1;
+/* DetermineBGOrientation_LRBG::FinalCheck::SM1 */
+typedef enum {
+  SSM_st_Initial_SM1,
+  SSM_st_Level0or1_SM1,
+  SSM_st_Level2or3_SM1
+} SSM_ST_SM1;
+/* DetermineBGOrientation_LRBG::FinalCheck::SM1::Level2or3::SM2 */
+typedef enum {
+  SSM_TR_no_trans_SM2_SM1_Level2or3,
+  SSM_TR_Init_1_SM2_SM1_Level2or3,
+  SSM_TR_Init_2_SM2_SM1_Level2or3
+} SSM_TR_SM2_SM1_Level2or3;
+/* DetermineBGOrientation_LRBG::FinalCheck::SM1::Level2or3::SM2 */
+typedef enum {
+  SSM_st_Init_SM1_Level2or3_SM2,
+  SSM_st_Ack_SM1_Level2or3_SM2,
+  SSM_st_NoAck_SM1_Level2or3_SM2
+} SSM_ST_SM2_SM1_Level2or3;
 /* DetermineBGOrientation_LRBG::DataDctionary::Variable::L_MESSAGE */
 typedef kcg_real L_MESSAGE_DetermineBGOrientation_LRBG_DataDctionary_Variable;
 
@@ -194,34 +218,34 @@ typedef struct {
   M_ACK_DetermineBGOrientation_LRBG_DataDctionary_Variable M_ACK;
   NID_LRBG_DetermineBGOrientation_LRBG_DataDctionary_Variable NID_LRBG;
   Q_ORIENTATION_DetermineBGOrientation_LRBG_DataDctionary_Variable Q_ORIENTATION;
-} struct__755;
+} struct__980;
 
 /* DetermineBGOrientation_LRBG::DataDctionary::Packets::Assignment_of_coordinate_system */
-typedef struct__755 Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets;
+typedef struct__980 Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets;
 
 typedef struct {
   Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets assignment_of_coordinate_system;
-} struct__764;
+} struct__989;
 
 /* DetermineBGOrientation_LRBG::DataDctionary::RBCOrientationReport::RBCOrientationReport */
-typedef struct__764 RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport;
+typedef struct__989 RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport;
 
 typedef struct {
   NID_MESSAGE_DetermineBGOrientation_LRBG_DataDctionary_Variable NID_MESSAGE;
   L_MESSAGE_DetermineBGOrientation_LRBG_DataDctionary_Variable L_MESSAGE;
   T_TRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable T_TRAIN;
-} struct__768;
+} struct__993;
 
 /* DetermineBGOrientation_LRBG::DataDctionary::Packets::Train_Position_Report */
-typedef struct__768 Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets;
+typedef struct__993 Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets;
 
 typedef struct {
   M_LEVELTR_DetermineBGOrientation_LRBG_DataDctionary_Variable m_leveltr;
   M_MODE_DetermineBGOrientation_LRBG_DataDctionary_Variable m_mode;
-} struct__774;
+} struct__999;
 
 /* DetermineBGOrientation_LRBG::DataDctionary::TrainInfo::TrainInfo */
-typedef struct__774 TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo;
+typedef struct__999 TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo;
 
 typedef struct {
   M_PLATFORM_DetermineBGOrientation_LRBG_DataDctionary_Variable m_version;
@@ -234,222 +258,236 @@ typedef struct {
   NID_C_DetermineBGOrientation_LRBG_DataDctionary_Variable nid_c;
   M_MCOUNT_DetermineBGOrientation_LRBG_DataDctionary_Variable m_mcount;
   M_DUP_DetermineBGOrientation_LRBG_DataDctionary_Variable m_dup;
-} struct__779;
+} struct__1004;
 
 /* DetermineBGOrientation_LRBG::DataDctionary::BTM::Header */
-typedef struct__779 Header_DetermineBGOrientation_LRBG_DataDctionary_BTM;
+typedef struct__1004 Header_DetermineBGOrientation_LRBG_DataDctionary_BTM;
 
-typedef struct { kcg_bool boolean_; } struct__792;
+typedef struct { kcg_bool boolean_; } struct__1017;
 
 /* DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::Flag */
-typedef struct__792 Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage;
+typedef struct__1017 Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage;
 
 typedef struct {
   Header_DetermineBGOrientation_LRBG_DataDctionary_BTM header;
   Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage flag;
-} struct__796;
+} struct__1021;
 
 /* DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HeaderFlag */
-typedef struct__796 HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage;
+typedef struct__1021 HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage;
 
-typedef HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage array__801[8];
+typedef HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage array__1026[8];
 
 /* DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::HederArray */
-typedef array__801 HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage;
+typedef array__1026 HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage;
 
 typedef struct {
   HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage headerflag;
   AdditionalInformation_DetermineBGOrientation_LRBG_DataDctionary_BTM additionalinformation;
-} struct__804;
+} struct__1029;
 
 /* DetermineBGOrientation_LRBG::DataDctionary::CheckedBGMessage::CheckedBGMessage */
-typedef struct__804 CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage;
+typedef struct__1029 CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage;
 
 typedef struct {
   Q_DIRTRAIN_DetermineBGOrientation_LRBG_DataDctionary_Variable q_dirlrbg;
   CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage checkedbgmessage;
-} struct__809;
+} struct__1034;
 
 /* DetermineBGOrientation_LRBG::DataDctionary::FilteredBGMessage::FilteredBGMessage */
-typedef struct__809 FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage;
+typedef struct__1034 FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage;
 
-typedef struct { kcg_int Position_1; } struct__814;
+typedef struct { kcg_int Position_1; } struct__1039;
 
 /* DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::Position */
-typedef struct__814 Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG;
+typedef struct__1039 Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG;
 
 typedef struct {
   FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage filteredbgmessage;
   Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG position;
-} struct__818;
+} struct__1043;
 
 /* DetermineBGOrientation_LRBG::DataDctionary::CurrentLRBG::CurrentLRBG */
-typedef struct__818 CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG;
+typedef struct__1043 CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG;
 
-typedef CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG array__823[20];
+typedef CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG array__1048[20];
 
 /* DetermineBGOrientation_LRBG::DataDctionary::ListOfBGs::ListOfBGs */
-typedef array__823 ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs;
+typedef array__1048 ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs;
 
-#ifndef kcg_copy_struct__755
-#define kcg_copy_struct__755(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__755)))
-#endif /* kcg_copy_struct__755 */
+#ifndef kcg_copy_struct__980
+#define kcg_copy_struct__980(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__980)))
+#endif /* kcg_copy_struct__980 */
 
-#ifndef kcg_copy_struct__764
-#define kcg_copy_struct__764(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__764)))
-#endif /* kcg_copy_struct__764 */
+#ifndef kcg_copy_struct__989
+#define kcg_copy_struct__989(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__989)))
+#endif /* kcg_copy_struct__989 */
 
-#ifndef kcg_copy_struct__768
-#define kcg_copy_struct__768(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__768)))
-#endif /* kcg_copy_struct__768 */
+#ifndef kcg_copy_struct__993
+#define kcg_copy_struct__993(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__993)))
+#endif /* kcg_copy_struct__993 */
 
-#ifndef kcg_copy_struct__774
-#define kcg_copy_struct__774(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__774)))
-#endif /* kcg_copy_struct__774 */
+#ifndef kcg_copy_struct__999
+#define kcg_copy_struct__999(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__999)))
+#endif /* kcg_copy_struct__999 */
 
-#ifndef kcg_copy_struct__779
-#define kcg_copy_struct__779(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__779)))
-#endif /* kcg_copy_struct__779 */
+#ifndef kcg_copy_struct__1004
+#define kcg_copy_struct__1004(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__1004)))
+#endif /* kcg_copy_struct__1004 */
 
-#ifndef kcg_copy_struct__792
-#define kcg_copy_struct__792(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__792)))
-#endif /* kcg_copy_struct__792 */
+#ifndef kcg_copy_struct__1017
+#define kcg_copy_struct__1017(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__1017)))
+#endif /* kcg_copy_struct__1017 */
 
-#ifndef kcg_copy_struct__796
-#define kcg_copy_struct__796(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__796)))
-#endif /* kcg_copy_struct__796 */
+#ifndef kcg_copy_struct__1021
+#define kcg_copy_struct__1021(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__1021)))
+#endif /* kcg_copy_struct__1021 */
 
-#ifndef kcg_copy_struct__804
-#define kcg_copy_struct__804(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__804)))
-#endif /* kcg_copy_struct__804 */
+#ifndef kcg_copy_struct__1029
+#define kcg_copy_struct__1029(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__1029)))
+#endif /* kcg_copy_struct__1029 */
 
-#ifndef kcg_copy_struct__809
-#define kcg_copy_struct__809(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__809)))
-#endif /* kcg_copy_struct__809 */
+#ifndef kcg_copy_struct__1034
+#define kcg_copy_struct__1034(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__1034)))
+#endif /* kcg_copy_struct__1034 */
 
-#ifndef kcg_copy_struct__814
-#define kcg_copy_struct__814(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__814)))
-#endif /* kcg_copy_struct__814 */
+#ifndef kcg_copy_struct__1039
+#define kcg_copy_struct__1039(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__1039)))
+#endif /* kcg_copy_struct__1039 */
 
-#ifndef kcg_copy_struct__818
-#define kcg_copy_struct__818(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__818)))
-#endif /* kcg_copy_struct__818 */
+#ifndef kcg_copy_struct__1043
+#define kcg_copy_struct__1043(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__1043)))
+#endif /* kcg_copy_struct__1043 */
 
-#ifndef kcg_copy_array__801
-#define kcg_copy_array__801(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array__801)))
-#endif /* kcg_copy_array__801 */
+#ifndef kcg_copy_array__1026
+#define kcg_copy_array__1026(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array__1026)))
+#endif /* kcg_copy_array__1026 */
 
-#ifndef kcg_copy_array__823
-#define kcg_copy_array__823(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array__823)))
-#endif /* kcg_copy_array__823 */
+#ifndef kcg_copy_array__1048
+#define kcg_copy_array__1048(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array__1048)))
+#endif /* kcg_copy_array__1048 */
 
-#ifndef kcg_comp_struct__755
-extern kcg_bool kcg_comp_struct__755(struct__755 *kcg_c1, struct__755 *kcg_c2);
-#endif /* kcg_comp_struct__755 */
+#ifndef kcg_comp_struct__980
+extern kcg_bool kcg_comp_struct__980(struct__980 *kcg_c1, struct__980 *kcg_c2);
+#endif /* kcg_comp_struct__980 */
 
-#ifndef kcg_comp_struct__764
-extern kcg_bool kcg_comp_struct__764(struct__764 *kcg_c1, struct__764 *kcg_c2);
-#endif /* kcg_comp_struct__764 */
+#ifndef kcg_comp_struct__989
+extern kcg_bool kcg_comp_struct__989(struct__989 *kcg_c1, struct__989 *kcg_c2);
+#endif /* kcg_comp_struct__989 */
 
-#ifndef kcg_comp_struct__768
-extern kcg_bool kcg_comp_struct__768(struct__768 *kcg_c1, struct__768 *kcg_c2);
-#endif /* kcg_comp_struct__768 */
+#ifndef kcg_comp_struct__993
+extern kcg_bool kcg_comp_struct__993(struct__993 *kcg_c1, struct__993 *kcg_c2);
+#endif /* kcg_comp_struct__993 */
 
-#ifndef kcg_comp_struct__774
-extern kcg_bool kcg_comp_struct__774(struct__774 *kcg_c1, struct__774 *kcg_c2);
-#endif /* kcg_comp_struct__774 */
+#ifndef kcg_comp_struct__999
+extern kcg_bool kcg_comp_struct__999(struct__999 *kcg_c1, struct__999 *kcg_c2);
+#endif /* kcg_comp_struct__999 */
 
-#ifndef kcg_comp_struct__779
-extern kcg_bool kcg_comp_struct__779(struct__779 *kcg_c1, struct__779 *kcg_c2);
-#endif /* kcg_comp_struct__779 */
+#ifndef kcg_comp_struct__1004
+extern kcg_bool kcg_comp_struct__1004(
+  struct__1004 *kcg_c1,
+  struct__1004 *kcg_c2);
+#endif /* kcg_comp_struct__1004 */
 
-#ifndef kcg_comp_struct__792
-extern kcg_bool kcg_comp_struct__792(struct__792 *kcg_c1, struct__792 *kcg_c2);
-#endif /* kcg_comp_struct__792 */
+#ifndef kcg_comp_struct__1017
+extern kcg_bool kcg_comp_struct__1017(
+  struct__1017 *kcg_c1,
+  struct__1017 *kcg_c2);
+#endif /* kcg_comp_struct__1017 */
 
-#ifndef kcg_comp_struct__796
-extern kcg_bool kcg_comp_struct__796(struct__796 *kcg_c1, struct__796 *kcg_c2);
-#endif /* kcg_comp_struct__796 */
+#ifndef kcg_comp_struct__1021
+extern kcg_bool kcg_comp_struct__1021(
+  struct__1021 *kcg_c1,
+  struct__1021 *kcg_c2);
+#endif /* kcg_comp_struct__1021 */
 
-#ifndef kcg_comp_struct__804
-extern kcg_bool kcg_comp_struct__804(struct__804 *kcg_c1, struct__804 *kcg_c2);
-#endif /* kcg_comp_struct__804 */
+#ifndef kcg_comp_struct__1029
+extern kcg_bool kcg_comp_struct__1029(
+  struct__1029 *kcg_c1,
+  struct__1029 *kcg_c2);
+#endif /* kcg_comp_struct__1029 */
 
-#ifndef kcg_comp_struct__809
-extern kcg_bool kcg_comp_struct__809(struct__809 *kcg_c1, struct__809 *kcg_c2);
-#endif /* kcg_comp_struct__809 */
+#ifndef kcg_comp_struct__1034
+extern kcg_bool kcg_comp_struct__1034(
+  struct__1034 *kcg_c1,
+  struct__1034 *kcg_c2);
+#endif /* kcg_comp_struct__1034 */
 
-#ifndef kcg_comp_struct__814
-extern kcg_bool kcg_comp_struct__814(struct__814 *kcg_c1, struct__814 *kcg_c2);
-#endif /* kcg_comp_struct__814 */
+#ifndef kcg_comp_struct__1039
+extern kcg_bool kcg_comp_struct__1039(
+  struct__1039 *kcg_c1,
+  struct__1039 *kcg_c2);
+#endif /* kcg_comp_struct__1039 */
 
-#ifndef kcg_comp_struct__818
-extern kcg_bool kcg_comp_struct__818(struct__818 *kcg_c1, struct__818 *kcg_c2);
-#endif /* kcg_comp_struct__818 */
+#ifndef kcg_comp_struct__1043
+extern kcg_bool kcg_comp_struct__1043(
+  struct__1043 *kcg_c1,
+  struct__1043 *kcg_c2);
+#endif /* kcg_comp_struct__1043 */
 
-#ifndef kcg_comp_array__801
-extern kcg_bool kcg_comp_array__801(array__801 *kcg_c1, array__801 *kcg_c2);
-#endif /* kcg_comp_array__801 */
+#ifndef kcg_comp_array__1026
+extern kcg_bool kcg_comp_array__1026(array__1026 *kcg_c1, array__1026 *kcg_c2);
+#endif /* kcg_comp_array__1026 */
 
-#ifndef kcg_comp_array__823
-extern kcg_bool kcg_comp_array__823(array__823 *kcg_c1, array__823 *kcg_c2);
-#endif /* kcg_comp_array__823 */
+#ifndef kcg_comp_array__1048
+extern kcg_bool kcg_comp_array__1048(array__1048 *kcg_c1, array__1048 *kcg_c2);
+#endif /* kcg_comp_array__1048 */
 
-#define kcg_comp_RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport kcg_comp_struct__764
+#define kcg_comp_RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport kcg_comp_struct__989
 
-#define kcg_copy_RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport kcg_copy_struct__764
+#define kcg_copy_RBCOrientationReport_DetermineBGOrientation_LRBG_DataDctionary_RBCOrientationReport kcg_copy_struct__989
 
-#define kcg_comp_Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets kcg_comp_struct__755
+#define kcg_comp_Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets kcg_comp_struct__980
 
-#define kcg_copy_Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets kcg_copy_struct__755
+#define kcg_copy_Assignment_of_coordinate_system_DetermineBGOrientation_LRBG_DataDctionary_Packets kcg_copy_struct__980
 
-#define kcg_comp_Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets kcg_comp_struct__768
+#define kcg_comp_Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets kcg_comp_struct__993
 
-#define kcg_copy_Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets kcg_copy_struct__768
+#define kcg_copy_Train_Position_Report_DetermineBGOrientation_LRBG_DataDctionary_Packets kcg_copy_struct__993
 
-#define kcg_comp_TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo kcg_comp_struct__774
+#define kcg_comp_TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo kcg_comp_struct__999
 
-#define kcg_copy_TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo kcg_copy_struct__774
+#define kcg_copy_TrainInfo_DetermineBGOrientation_LRBG_DataDctionary_TrainInfo kcg_copy_struct__999
 
-#define kcg_comp_Header_DetermineBGOrientation_LRBG_DataDctionary_BTM kcg_comp_struct__779
+#define kcg_comp_Header_DetermineBGOrientation_LRBG_DataDctionary_BTM kcg_comp_struct__1004
 
-#define kcg_copy_Header_DetermineBGOrientation_LRBG_DataDctionary_BTM kcg_copy_struct__779
+#define kcg_copy_Header_DetermineBGOrientation_LRBG_DataDctionary_BTM kcg_copy_struct__1004
 
-#define kcg_comp_Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_comp_struct__792
+#define kcg_comp_Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_comp_struct__1017
 
-#define kcg_copy_Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_copy_struct__792
+#define kcg_copy_Flag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_copy_struct__1017
 
-#define kcg_comp_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_comp_struct__796
+#define kcg_comp_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_comp_struct__1021
 
-#define kcg_copy_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_copy_struct__796
+#define kcg_copy_HeaderFlag_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_copy_struct__1021
 
-#define kcg_comp_HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_comp_array__801
+#define kcg_comp_HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_comp_array__1026
 
-#define kcg_copy_HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_copy_array__801
+#define kcg_copy_HederArray_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_copy_array__1026
 
-#define kcg_comp_CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_comp_struct__804
+#define kcg_comp_CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_comp_struct__1029
 
-#define kcg_copy_CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_copy_struct__804
+#define kcg_copy_CheckedBGMessage_DetermineBGOrientation_LRBG_DataDctionary_CheckedBGMessage kcg_copy_struct__1029
 
-#define kcg_comp_FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage kcg_comp_struct__809
+#define kcg_comp_FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage kcg_comp_struct__1034
 
-#define kcg_copy_FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage kcg_copy_struct__809
+#define kcg_copy_FilteredBGMessage_DetermineBGOrientation_LRBG_DataDctionary_FilteredBGMessage kcg_copy_struct__1034
 
-#define kcg_comp_Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG kcg_comp_struct__814
+#define kcg_comp_Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG kcg_comp_struct__1039
 
-#define kcg_copy_Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG kcg_copy_struct__814
+#define kcg_copy_Position_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG kcg_copy_struct__1039
 
-#define kcg_comp_CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG kcg_comp_struct__818
+#define kcg_comp_CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG kcg_comp_struct__1043
 
-#define kcg_copy_CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG kcg_copy_struct__818
+#define kcg_copy_CurrentLRBG_DetermineBGOrientation_LRBG_DataDctionary_CurrentLRBG kcg_copy_struct__1043
 
-#define kcg_comp_ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs kcg_comp_array__823
+#define kcg_comp_ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs kcg_comp_array__1048
 
-#define kcg_copy_ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs kcg_copy_array__823
+#define kcg_copy_ListOfBGs_DetermineBGOrientation_LRBG_DataDctionary_ListOfBGs kcg_copy_array__1048
 
 #endif /* _KCG_TYPES_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_types.h
-** Generation date: 2014-05-20T18:38:18
+** Generation date: 2014-05-28T10:33:10
 *************************************************************$ */
 

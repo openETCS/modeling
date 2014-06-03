@@ -1,13 +1,13 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/Users/GiovanniTrotta/Desktop/SoftwareBGO/Simulation\kcg_s2c_config.txt
-** Generation date: 2014-05-20T18:38:18
+** Generation date: 2014-05-28T10:33:10
 *************************************************************$ */
 #ifndef _DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG_H_
 #define _DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG_H_
 
 #include "kcg_types.h"
 #include "CheckBaliseGroup_DetermineBGOrientation_LRBG.h"
-#include "FinalCheck3_DetermineBGOrientation_LRBG.h"
+#include "FinalCheck_DetermineBGOrientation_LRBG.h"
 #include "GetBGMessageOrientation_DetermineBGOrientation_LRBG.h"
 
 /* ========================  input structure  ====================== */
@@ -28,7 +28,7 @@ typedef struct {
   /* -----------------  no initialization variables  ----------------- */
   /* -----------------------  no local memory  ----------------------- */
   /* ---------------------  sub nodes' contexts  --------------------- */
-  outC_FinalCheck3_DetermineBGOrientation_LRBG /* 1 */ _2_Context_1;
+  outC_FinalCheck_DetermineBGOrientation_LRBG /* 1 */ _2_Context_1;
   outC_CheckBaliseGroup_DetermineBGOrientation_LRBG /* 1 */ _1_Context_1;
   outC_GetBGMessageOrientation_DetermineBGOrientation_LRBG /* 1 */ Context_1;
   /* ----------------- no clocks of observable data ------------------ */
@@ -57,6 +57,6 @@ extern void DetermineBGOrientation_LRBG_reset_DetermineBGOrientation_LRBG(
 #endif /* _DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG.h
-** Generation date: 2014-05-20T18:38:18
+** Generation date: 2014-05-28T10:33:10
 *************************************************************$ */
 
