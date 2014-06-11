@@ -1,7 +1,7 @@
 #include "DetermineBG_Orientation_and_LRBG_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "af82b279b726e530e5790f263ce7b2f5";
+const char* _SCSIM_CheckSum = "43a89569c261567cd3354c261d619148";
 const char* _SCSIM_SmuTypesCheckSum = "d5b51fa9eff9683da46173266ac496c5";
 
 /*******************************
@@ -17,18 +17,22 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-inC_Operator7_DetermineBGOrientation_LRBG inputs_ctx;
-static inC_Operator7_DetermineBGOrientation_LRBG inputs_ctx_restore;
-static inC_Operator7_DetermineBGOrientation_LRBG inputs_ctx_execute;
-outC_Operator7_DetermineBGOrientation_LRBG outputs_ctx;
-static outC_Operator7_DetermineBGOrientation_LRBG outputs_ctx_restore;
+inC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG inputs_ctx;
+static inC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG inputs_ctx_restore;
+static inC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG inputs_ctx_execute;
+outC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG outputs_ctx;
+static outC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG outputs_ctx_restore;
 
 /* separate_io: inputs instanciation */
 
 /* separate_io: outputs instanciation */
 
 static void _SCSIM_RestoreInterface(void) {
-	inputs_ctx.Input1 = inputs_ctx_restore.Input1;
+	kcg_copy_CurrentLRBG(&(inputs_ctx.CurrentLRBG_), &(inputs_ctx_restore.CurrentLRBG_));
+	kcg_copy_CheckedBGMessage(&(inputs_ctx.CheckedBGMessage_), &(inputs_ctx_restore.CheckedBGMessage_));
+	kcg_copy_ListOfBGs(&(inputs_ctx.ListiOfBGs_), &(inputs_ctx_restore.ListiOfBGs_));
+	kcg_copy_TrainInfo(&(inputs_ctx.TrainInfo_), &(inputs_ctx_restore.TrainInfo_));
+	kcg_copy_RBCOrientationReport(&(inputs_ctx.RBCOrientatioReport_), &(inputs_ctx_restore.RBCOrientatioReport_));
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -36,7 +40,11 @@ static void _SCSIM_RestoreInterface(void) {
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	inputs_ctx_execute.Input1 = inputs_ctx.Input1;
+	kcg_copy_CurrentLRBG(&(inputs_ctx_execute.CurrentLRBG_), &(inputs_ctx.CurrentLRBG_));
+	kcg_copy_CheckedBGMessage(&(inputs_ctx_execute.CheckedBGMessage_), &(inputs_ctx.CheckedBGMessage_));
+	kcg_copy_ListOfBGs(&(inputs_ctx_execute.ListiOfBGs_), &(inputs_ctx.ListiOfBGs_));
+	kcg_copy_TrainInfo(&(inputs_ctx_execute.TrainInfo_), &(inputs_ctx.TrainInfo_));
+	kcg_copy_RBCOrientationReport(&(inputs_ctx_execute.RBCOrientatioReport_), &(inputs_ctx.RBCOrientatioReport_));
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
@@ -49,8 +57,8 @@ void SimInit(void) {
 #ifdef EXTENDED_SIM
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
-	Operator7_init_DetermineBGOrientation_LRBG(&outputs_ctx);
-	Operator7_reset_DetermineBGOrientation_LRBG(&outputs_ctx);
+	DetermineBGOrientation_LRBG_init_DetermineBGOrientation_LRBG(&outputs_ctx);
+	DetermineBGOrientation_LRBG_reset_DetermineBGOrientation_LRBG(&outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimInit();
 #endif /* EXTENDED_SIM */
@@ -65,7 +73,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	Operator7_DetermineBGOrientation_LRBG(&inputs_ctx_execute, &outputs_ctx);
+	DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG(&inputs_ctx_execute, &outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -80,12 +88,12 @@ void SimStop(void) {
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(inC_Operator7_DetermineBGOrientation_LRBG);
+	nSize += sizeof(inC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG);
 
 /* separate_io: add (not in ctx) inputs size */
 
 /* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_Operator7_DetermineBGOrientation_LRBG);
+	nSize += sizeof(outC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -94,14 +102,14 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &inputs_ctx, sizeof(inC_Operator7_DetermineBGOrientation_LRBG));
-	pCurrent += sizeof(inC_Operator7_DetermineBGOrientation_LRBG);
+	memcpy(pCurrent, &inputs_ctx, sizeof(inC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG));
+	pCurrent += sizeof(inC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG);
 
 	/* separate_io: dump (not in ctx) inputs */
 
 	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_Operator7_DetermineBGOrientation_LRBG));
-	pCurrent += sizeof(outC_Operator7_DetermineBGOrientation_LRBG);
+	memcpy(pCurrent, &outputs_ctx, sizeof(outC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG));
+	pCurrent += sizeof(outC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -109,14 +117,14 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&inputs_ctx, pCurrent, sizeof(inC_Operator7_DetermineBGOrientation_LRBG));
-	pCurrent += sizeof(inC_Operator7_DetermineBGOrientation_LRBG);
+	memcpy(&inputs_ctx, pCurrent, sizeof(inC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG));
+	pCurrent += sizeof(inC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG);
 
 	/* separate_io: restore (not in ctx) inputs */
 
 	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_Operator7_DetermineBGOrientation_LRBG));
-	pCurrent += sizeof(outC_Operator7_DetermineBGOrientation_LRBG);
+	memcpy(&outputs_ctx, pCurrent, sizeof(outC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG));
+	pCurrent += sizeof(outC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
