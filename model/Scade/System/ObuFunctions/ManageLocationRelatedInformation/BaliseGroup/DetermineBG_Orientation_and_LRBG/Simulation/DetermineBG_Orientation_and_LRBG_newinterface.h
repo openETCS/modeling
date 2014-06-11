@@ -1,18 +1,18 @@
-#ifndef DETERMINEBGORIENTATION_LRBG_DETERMINEBGORIENTATION_LRBG_INTERFACE
-#define DETERMINEBGORIENTATION_LRBG_DETERMINEBGORIENTATION_LRBG_INTERFACE
+#ifndef OPERATOR7_DETERMINEBGORIENTATION_LRBG_INTERFACE
+#define OPERATOR7_DETERMINEBGORIENTATION_LRBG_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG.h"
+#include "Operator7_DetermineBGOrientation_LRBG.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG inputs_ctx;
-extern outC_DetermineBGOrientation_LRBG_DetermineBGOrientation_LRBG outputs_ctx;
+extern inC_Operator7_DetermineBGOrientation_LRBG inputs_ctx;
+extern outC_Operator7_DetermineBGOrientation_LRBG outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*DETERMINEBGORIENTATION_LRBG_DETERMINEBGORIENTATION_LRBG_INTERFACE */
+#endif /*OPERATOR7_DETERMINEBGORIENTATION_LRBG_INTERFACE */
