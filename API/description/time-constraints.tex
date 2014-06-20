@@ -1,5 +1,124 @@
 \chapter{Real-time and ordering constraints}
 
-No message shall be lost. Messages sent from two units towards a
+For proper functioning of the system, the openETCS API specifies
+real-time and ordering constraints that both the Application software
+as well as the Basic software and remaining of the system shall
+ensure. Those constraints are described in this chapter.
+
+Overall, those constraints shall ensure the ETCS Requirements on
+performance (\cite{subset-041}) are fulfilled. Some of those
+constraints are coming from Alstom Transport (\cite{alstom-api}).
+
+\section{Cyclic execution of the Basic and Application software}
+
+Both Basic and Application software shall be initialized once, in an
+\define{initialization phase}, and then shall be executed cyclically
+in a sequence of \define{cycles}.
+
+During initialization phase, all units of the system shall be
+initialized and be ready to proceed at the end of initialization
+phase.
+
+\section{Ordering constraints on message exchange}
+\label{sec:ordering-constraints}
+
+Between units of the system (DMI, EVC, ...), following constraints
+shall be ensured:
+\begin{itemize}
+\item No message shall be lost;
+\item Messages sent from one unit towards another one shall be
+  received in emission order;
+\item Messages sent from two units towards a
 single one or received by a single units from two other units shall be
 received in any order.
+\end{itemize}
+
+\section{Real-time constraints}
+
+\subsection{Event propagation delay}
+\label{sec:event-propagation-delay}
+
+The \define{external world} is the physical world out of the ETCS
+system. This external world sends and receives \define{events} to/from
+the ETCS system.
+
+When an external world event is seen on a unit of the system
+(e.g. balise received in BTM), this event is processed and a message
+might be sent to another unit (e.g. EVC). In the reverse, a unit
+(e.g. EVC) might send a message to another unit (e.g. DMI) that might
+produce an event to the external world (e.g. display a message to the
+driver).
+
+The system shall ensure following constraints:
+\begin{itemize}
+\item The minimum delay from an input event received of the external
+  world until it is received (in a message) by the Application
+  software shall be \FIXME{XX ms};
+\item The maximum delay from an input event of the external world
+  until it is received (in a message) by the Application software
+  shall be \FIXME{XX ms};
+\item The minimum delay from a message sent by the Application
+  software until an event is sent to the external world shall be
+  \FIXME{XX ms};
+\item The maximum delay from a message sent by the Application
+  software until an event is sent to the external world shall be
+  \FIXME{XX ms}.
+\end{itemize}
+
+\subsection{Event re-ordering}
+
+As a consequence of ordering constrains on message exchange
+(§\ref{sec:ordering-constraints}) and event propagation delay
+(§\ref{sec:event-propagation-delay}), two messages corresponding to
+two events (e.g. reception of a balise and a radio message) on two
+different units (e.g. BTM and EURORADIO) send towards a third unit
+(e.g. EVC) might not be received in real time order, i.e. the message
+corresponding to the first real time event might arrive in second
+position on the reception unit.
+
+\subsection{Event time-stamping}
+
+The system is asynchronous: an event is received on a unit and some
+time is spent before seeing the corresponding message in another
+unit. In order to do its computations, the Application software needs
+to know at which real time the event was received. In order to do so,
+a time-stamp shall be applied on all events requiring such
+computations. \FIXME{Make a list of such events?}
+
+This time-stamp shall fulfill
+following constraints:
+\begin{itemize}
+\item Time-stamp clock shall have a precision of 1 µs, with a
+  deviation compared to real time of less than 0.1\%;
+\item Time-stamp clock shall be the same on all units of the system.
+\end{itemize}
+
+\subsection{Execution time constraints}
+
+The following real-time constrains shall be ensured:
+\begin{itemize}
+\item The maximum execution time taken by Application software for
+  initialization step is 100 ms;
+\item The maximum execution time of the Basic and Application software
+  in a cycle shall be \FIXME{300 + XX ms};
+\item The maximum execution time of the Application software in a
+  cycle shall be 100 ms.
+\end{itemize}
+
+\section{Event burst}
+
+In some situation, a burst of events can occur. The following
+dimensioning shall be ensured:
+\begin{itemize}
+\item The maximum number of event sent by a unit shall be at most
+  \FIXME{XX events};
+\item The maximum number of event received by a unit shall be at most
+  \FIXME{XX events}.
+\end{itemize}
+
+\FIXME{Do we need to define the total number of events?}
+
+\FIXME{Do we need to define what to do when those maximums are
+  reached?}
+
+% LocalWords:  openETCS DMI EVC API ETCS Alstom BTM balise EURORADIO
