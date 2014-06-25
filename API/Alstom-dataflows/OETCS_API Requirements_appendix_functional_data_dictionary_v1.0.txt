@@ -1,0 +1,3557 @@
+﻿
+456.	basic_to_generic_app_info (data flow) =
+logical_voted_time
++TIU_input_info
++MMU_input_info
++EUROBALISE_input_info
++EUROCAB_input_info
++EURORADIO_input_info
++EUROLOOP_input_info
++LLRU_status_input_msg_info
++coded_config_data
++coded_data_restored_at_power_up
++power_up_tests_info
++maintenance_data_from_basic
++specific_config_data
++key_mgt_input_info
++language_info_from_basic
++events_from_basic.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : information from basic software to generic application
+
+
+1818.	logical_voted_time (data flow, cel) =
+**.
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : 0..2**31 - 1;
+resolution   : 0.01
+units        : s;
+value_names  : N/A;
+description  : voted time input.
+
+
+3558.	TIU_input_info (data flow) =
+TIU_input_msgs_info.
+
+--------
+rate         : at each cycle
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : TIU input information
+
+
+3565.	TIU_input_msgs_info (data flow) =
+max_n_of_TIU_input_msgs{TIU_input_msg_info
+                               }max_n_of_TIU_input_msgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : TIU input messages information
+
+
+
+
+1945.	max_n_of_TIU_input_msgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A;
+range        : 24..24;
+resolution   : N/A;
+units        : N/A;
+value names  : N/A;
+description  : maximum number of messages from the TIU. This number is equal to 24;
+
+
+3564.	TIU_input_msg_info (data flow) =
+is_present
++coded_TIU_input_msg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : TIU input message information
+
+
+
+1514.	is_present (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A;
+range        : N/A;  
+resolution   : N/A;   
+units        : N/A;
+value names  : N/A
+description  : indicates if the considered data is or is not present;
+
+
+644.	coded_TIU_input_msg (data flow) =
+n_of_bits_in_TIU_i_msg{bit}n_of_bits_in_TIU_i_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded TIU input message;
+
+
+
+2140.	n_of_bits_in_TIU_i_msg (data flow, cel) =
+**.
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : 0..2000;
+resolution   : 1;
+units        : N/A;
+value_names  : N/A;
+description  : number of bits in current TIU input message
+
+
+
+507.	bit (data flow, pel) =
+**.
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : 0..1;
+resolution   : 1;
+units        : N/A;
+value_names  : N/A;
+description  : bit;
+
+
+1979.	MMU_input_info (data flow) =
+current_MMU_data
++tachymeter_out_of_scale.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : MMU input information.
+
+
+775.	current_MMU_data (data flow) =
+MMU_data_time_stamp
++ covered_dist_nominal_value
++ covered_dist_upper_bound
++ covered_dist_lower_bound
++ train_speed_nominal_value
++ train_speed_upper_bound
++ train_speed_lower_bound
++ train_acceleration_nominal_value
++ train_acceleration_upper_bound
++ train_accelration_lower_bound
++ MMU_motion_direction
++ train_motion_state
+
+--------
+rate         : at each cycle
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : train movement data from the MMU
+
+
+1976.	MMU_data_time_stamp (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : 0..2**31 - 1
+resolution   : 0.01
+units        : s (in logical_voted_time reference)
+value_names  : N/A
+description  : time stamp of the data from the MMU
+
+
+753.	covered_dist_nominal_value (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : -20_000_000.0  .. 20_000_000.0  
+resolution   : 0.01
+units        : m
+value_names  : N/A
+description  : nominal value of the distance covered by the train since the last MMU 
+reference.
+
+
+754.	covered_dist_upper_bound (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : -20_000_000.0  .. 20_000_000.0 
+resolution   : 0.01
+units        : m
+value_names  : N/A
+description  : upper bound of the covered distance since the last MMU reference.
+This is an absolute value, not a delta to the nominal value of the covered
+distance.
+
+
+752.	covered_dist_lower_bound (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : -20_000_000.0  .. 20_000_000.0 
+resolution   : 0.01
+units        : m
+value_names  : N/A
+description  : lower bound of the covered distance since the last MMU reference.
+This is an absolute value, not a delta to the nominal value of the covered
+distance.
+
+
+3805.	train_speed_nominal_value (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : 0.0 .. 167
+resolution   : 0.01
+units        : m/s
+value_names  : N/A
+description  : nominal value of the train speed.
+
+
+3807.	train_speed_upper_bound (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : 0.0 .. 167
+resolution   : 0.01
+units        : m/s
+value_names  : N/A
+description  : upper bound of the train speed.This is an absolute value, not a delta
+ to the nominal value of the train speed.
+
+
+3804.	train_speed_lower_bound (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : 0.0 .. 167
+resolution   : 0.01
+units        : m/s
+value_names  : N/A
+description  : lower bound of the train speed.This is an absolute value, not a delta
+ to the nominal value of the train speed.
+
+
+3715.	train_acceleration_nominal_value (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : -6.35 .. 6.35
+resolution   : 0.01
+units        : m/s**2
+value_names  : N/A
+description  : nominal value of the train acceleration.
+
+
+3716.	train_acceleration_upper_bound (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : -6.35 .. 6.35
+resolution   : 0.01
+units        : m/s**2
+value_names  : N/A
+description  : upper bound value of the train acceleration.
+
+
+3717.	train_accelration_lower_bound (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : -6.35 .. 6.35
+resolution   : 0.01
+units        : m/s**2
+value_names  : N/A
+description  : lower bound value of the train acceleration.
+
+
+1980.	MMU_motion_direction (data flow, del) =
+["CAB_A_FIRST"|"CAB_B_FIRST"|"UNKNOWN"]
+
+--------
+rate         : N/A 
+range        : N/A
+resolution   : N/A
+units        : N/A
+value_names  : "CAB_A_FIRST" = train is running from cab B to cab A.
+               "CAB_B_FIRST" = train is running from cab A to cab B.
+               "UNKNOWN" = train motion direction is unknown.
+description  : train motion direction in relation to the driving cabs.
+
+
+3785.	train_motion_state (data flow, del) =
+["MOTION"|"NO_MOTION"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : train motion state
+
+
+3454.	tachymeter_out_of_scale (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Set to "TRUE" during the "out of scale" mode of the
+                  tachymeter;
+
+
+1296.	EUROBALISE_input_info (data flow) =
+active_antenna
++EUROBALISE_input_telegrams_info.
+
+--------
+rate         : at each cycle
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EUROBALISE input information
+
+
+
+50.	active_antenna (data flow, del) =
+["NONE"|"ANTENNA_1"|"ANTENNA_2"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Indicates which is the current reception antenna.
+                  If set to "NONE", both reception antennae are failed.
+
+
+1300.	EUROBALISE_input_telegrams_info (data flow) =
+max_n_of_EUROBALISE_input_tgs{EUROBALISE_input_telegram_info
+                             }max_n_of_EUROBALISE_input_tgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : coded EUROBALISE input telegrams information
+
+
+
+1921.	max_n_of_EUROBALISE_input_tgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maximum number of EUROBALISE input telegrams. This number is equal to
+ 16.
+
+
+1298.	EUROBALISE_input_telegram_info (data flow) =
+is_present
++EUROBALISE_reception_time_stamp
++dist_nominal_value_at_EUROBALISE_detection
++dist_upper_bound_at_EUROBALISE_detection 
++dist_lower_bound_at_EUROBALISE_detection
++EUROBALISE_centre_detection_accuracy
++EUROBALISE_antenna_origin
++coded_EUROBALISE_input_telegram.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EUROBALISE input telegram information
+
+
+1304.	EUROBALISE_reception_time_stamp (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..2**31 - 1 (in logical_voted_time reference);
+resolution   : 0.01
+units        : s;
+value names  : N/A
+description  : time of reception of the EUROBALISE telegram
+
+
+923.	dist_nominal_value_at_EUROBALISE_detection (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : -15_000_000.0 .. 15_000_000.0;
+resolution   : 0.01;
+units        : m;
+value_names  : N/A;
+description  : nominal value of the distance measurement delivered by the MMU at 
+balise detection.
+ 
+
+
+928.	dist_upper_bound_at_EUROBALISE_detection (data flow, del) =
+**.
+--------
+rate         : At each balise detection.
+range        : -15_000_000.0 .. 15_000_000.0;
+resolution   : 0.01;
+units        : m;
+value_names  : N/A;
+description  : upper bound of the covered distance at balise detection. This is an 
+absolute value, not a delta to the nominal value of the covered distance.
+
+
+920.	dist_lower_bound_at_EUROBALISE_detection (data flow, cel) =
+**.
+--------
+rate         : N/A;
+range        : -15_000_000.0 .. 15_000_000.0;
+resolution   : 0.01;
+units        : m;
+value_names  : N/A;
+description  : lower bound of the covered distance at balise detection. This is an 
+absolute value, not a delta to the nominal value of the covered distance.
+
+
+
+1295.	EUROBALISE_centre_detection_accuracy (data flow, cel) =
+**.
+--------
+rate         : N/A;
+range        : 0 .. 2**16 - 1;
+resolution   : 0.001;
+units        : m;
+value_names  : N/A;
+description  : accuracy of the detection of the EUROBALISE centre.
+
+
+1289.	EUROBALISE_antenna_origin (data flow, del) =
+["ANTENNA_1"|"ANTENNA_2"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Indicates from which antenna of the active cabin
+                  the balise telegram is received;
+
+
+632.	coded_EUROBALISE_input_telegram (data flow) =
+n_of_bits_in_EUROBALISE_telegram{bit}n_of_bits_in_EUROBALISE_telegram
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded EUROBALISE telegram;
+
+
+2129.	n_of_bits_in_EUROBALISE_telegram (data flow, cel) =
+**.
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : 1..830;
+resolution   : 1;
+units        : N/A;
+value_names  : N/A;
+description  : number of bits in current EUROBALISE telegram;
+
+
+1305.	EUROCAB_input_info (data flow) =
+DMI_input_info
++STM_input_info
++JRU_input_info
++DRU_input_info
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EUROCAB input information
+
+
+950.	DMI_input_info (data flow) =
+DMI_input_msgs_info.
+
+--------
+rate         : at each cycle
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : DMI input information
+
+
+953.	DMI_input_msgs_info (data flow) =
+max_n_of_DMI_input_msgs{DMI_input_msg_info
+                               }max_n_of_DMI_input_msgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : DMI input messages information
+
+
+
+1918.	max_n_of_DMI_input_msgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maximum number of input DMI messages.
+                  Equal to 8.
+
+
+
+
+952.	DMI_input_msg_info (data flow) =
+is_present
++kind
++coded_DMI_input_msg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : MMI input message information
+
+
+1692.	kind (data flow, del) =
+["DATA"|"CONNECTED"|"DISCONNECTED"|"TEMPORARY_DISCONNECTED"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Indicates the type of profibus data or the type of 
+                  profibus disconnection to request;
+
+
+629.	coded_DMI_input_msg (data flow) =
+n_of_bits_in_DMI_i_msg{bit}n_of_bits_in_DMI_i_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded MMI input message;
+
+
+2126.	n_of_bits_in_DMI_i_msg (data flow, cel) =
+**.
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : 1..2296;
+resolution   : 1;
+units        : N/A;
+value_names  : N/A;
+description  : number of bits in a DMI input message
+
+
+
+3186.	STM_input_info (data flow) =
+STM_input_msgs_info
++STM_specific_input_msgs_info.
+
+--------
+rate         : at each cycle
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : STM input information
+
+
+3190.	STM_input_msgs_info (data flow) =
+max_n_of_STM_input_msgs{STM_input_msg_info
+                               }max_n_of_STM_input_msgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : STM input messages information
+
+
+
+
+1939.	max_n_of_STM_input_msgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : 80..80  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maximum number of messages from the STMs.
+
+
+3189.	STM_input_msg_info (data flow) =
+is_present
++kind
++nid_STM
++coded_STM_input_msg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : STM input message information
+
+
+
+2447.	nid_STM (data flow, pel) =
+**.
+
+--------
+rate         : N/A;
+range        : 0..255;  
+resolution   : 1;   
+units        : N/A;
+value names  : N/A;
+description  : NID_STM variable. Refer to Subset 058 for further information;
+
+
+
+641.	coded_STM_input_msg (data flow) =
+n_of_bits_in_STM_i_msg{bit}n_of_bits_in_STM_i_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded STM input message;
+
+
+
+2137.	n_of_bits_in_STM_i_msg (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..1856  
+resolution   : 1   
+units        : N/A
+value names  : N/A
+description  : number of bits in the STM input message.
+
+
+3249.	STM_specific_input_msgs_info (data flow) =
+max_n_of_STM_specific_input_msgs{STM_specific_input_msg_info
+                               }max_n_of_STM_specific_input_msgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : STM input messages information
+
+
+
+
+1942.	max_n_of_STM_specific_input_msgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : 12..12  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maximum number of specific messages from the STMs.
+
+
+3248.	STM_specific_input_msg_info (data flow) =
+is_present
++kind
++nid_STM
++coded_STM_specific_input_msg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : STM input message information
+
+
+
+643.	coded_STM_specific_input_msg (data flow) =
+n_of_bits_in_STM_specific_i_msg{bit}n_of_bits_in_STM_specific_i_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded STM input message;
+
+
+
+2139.	n_of_bits_in_STM_specific_i_msg (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..160  
+resolution   : 1   
+units        : N/A
+value names  : N/A
+description  : number of bits in the STM specific input message.
+
+
+1541.	JRU_input_info (data flow) =
+JRU_input_msgs_info.
+
+--------
+rate         : at each cycle
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : JRU input information
+
+
+1544.	JRU_input_msgs_info (data flow) =
+max_n_of_JRU_input_msgs{JRU_input_msg_info
+                               }max_n_of_JRU_input_msgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : JRU input messages information
+
+
+
+
+1926.	max_n_of_JRU_input_msgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maximum number of JRU input messages.
+This number is equal to 6.
+
+
+1543.	JRU_input_msg_info (data flow) =
+is_present
++kind
++coded_JRU_input_msg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : JRU input message information
+
+
+637.	coded_JRU_input_msg (data flow) =
+n_of_bits_in_JRU_i_msg{bit}n_of_bits_in_JRU_i_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded JRU input message;
+
+
+
+
+2134.	n_of_bits_in_JRU_i_msg (data flow, cel) =
+**.
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : 1..240;
+resolution   : 1;
+units        : N/A;
+value_names  : N/A;
+description  : number of bits in a JRU input message
+
+
+
+
+1130.	DRU_input_info (data flow) =
+DRU_input_msgs_info.
+
+--------
+rate         : at each cycle
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : DRU input information
+
+
+1132.	DRU_input_msgs_info (data flow) =
+max_n_of_DRU_input_msgs{DRU_input_msg_info
+                               }max_n_of_DRU_input_msgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : DRU input messages information
+
+
+
+
+1920.	max_n_of_DRU_input_msgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maximum number of DRU input messages.
+This number is equal to 1.
+
+
+1131.	DRU_input_msg_info (data flow) =
+is_present
++kind.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : DRU input message information
+
+
+1333.	EURORADIO_input_info (data flow) =
+n_of_handable_EURORADIO_physical_connections_info
++EURORADIO_safe_connection_confirmation_info
++EURORADIO_safe_connection_failure_info
++EURORADIO_safe_connection_loss_info
++EURORADIO_safe_connection_not_re_established_info 
++EURORADIO_input_msgs_info
++EURORADIO_input_emergency_msgs_info
++2{mobile_status}2
++2{mobile_network}2.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO input information
+
+
+2224.	n_of_handable_EURORADIO_physical_connections_info (data flow) =
+is_present
++ n_of_handable_EURORADIO_physical_connections.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : information about the number of EURORADIO physical connections that the
+ on board equipment can handle simultaneously. 
+
+
+1348.	EURORADIO_safe_connection_confirmation_info (data flow) =
+is_present
++nid_trackside_radio_device.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO safe connection confirmation information
+
+
+2454.	nid_trackside_radio_device (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : ETCS identifier of trackside radio device
+ (refer to NID_C, NID_RBC or NID_RIU variables for definition)
+
+
+1349.	EURORADIO_safe_connection_failure_info (data flow) =
+is_present
++nid_trackside_radio_device
++disconnection_indication.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO safe connection definitive failure information
+
+
+896.	disconnection_indication (data flow, del) =
+["UNKNOWN"|"UNDETERMINED"|"TRAINBORNE"|"TRACKSIDE"|"AUTHENTIFICATION_FAILURE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  :
+"UNKNOWN"         = the reason of the disconnection is unknown,
+"UNDETERMINED"    = the reason of the disconnection could be due to a trainborne or trackside problem,
+"TRAINBORNE"      = the reason of the disconnection is due to a trainborne problem,
+"TRACKSIDE"       = the reason of the disconnection is due to a trackside problem,
+"AUTHENTIFICATION_FAILURE" = the reason of the disconnection is due to a KMAC problem.
+description  : Indicates the reason of a connection failure;
+
+
+1350.	EURORADIO_safe_connection_loss_info (data flow) =
+is_present
++nid_trackside_radio_device.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO safe connection loss information
+
+
+1351.	EURORADIO_safe_connection_not_re_established_info (data flow) =
+is_present
++nid_trackside_radio_device
++disconnection_indication.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO safe connection not re-established information
+
+
+1339.	EURORADIO_input_msgs_info (data flow) =
+max_n_of_EURORADIO_input_msgs{EURORADIO_input_msg_info}max_n_of_EURORADIO_input_msgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO input messages information
+
+
+1924.	max_n_of_EURORADIO_input_msgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maximum number of input EURORADIO messages. 
+This number is equal to 5.
+
+
+
+1337.	EURORADIO_input_msg_info (data flow) =
+is_present
++nid_trackside_radio_device
++coded_EURORADIO_input_msg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO input message information
+
+
+635.	coded_EURORADIO_input_msg (data flow) =
+n_of_bits_in_EURORADIO_i_msg{bit}n_of_bits_in_EURORADIO_i_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded EURORADIO input message
+
+
+2132.	n_of_bits_in_EURORADIO_i_msg (data flow, cel) =
+**.
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : 1..4000
+resolution   : 1;
+units        : N/A;
+value_names  : N/A;
+description  : number of bits in current EURORADIO input message
+
+
+
+1332.	EURORADIO_input_emergency_msgs_info (data flow) =
+max_n_of_EURORADIO_input_emergency_msgs{EURORADIO_input_emergency_msg_info
+                                        }max_n_of_EURORADIO_input_emergency_msgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO input emergency messages information
+
+
+
+1923.	max_n_of_EURORADIO_input_emergency_msgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maximum number of input EURORADIO emergency messages.
+This number is equal to 3.
+
+
+1331.	EURORADIO_input_emergency_msg_info (data flow) =
+is_present
++nid_trackside_radio_device
++coded_EURORADIO_input_emergency_msg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO input emergency message information
+
+
+634.	coded_EURORADIO_input_emergency_msg (data flow) =
+n_of_bits_in_EURORADIO_emergency_i_msg{bit}n_of_bits_in_EURORADIO_emergency_i_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded EURORADIO input emergency message
+
+
+
+2131.	n_of_bits_in_EURORADIO_emergency_i_msg (data flow, cel) =
+**.
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : 1..200
+resolution   : 1;
+units        : N/A;
+value_names  : N/A;
+description  : number of bits in current EURORADIO input emergency
+message
+
+
+
+1987.	mobile_status (data flow, del) =
+["REGISTER_REQUEST"|"REGISTER_CONFIRM"|"BUSY"|"FAILED"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  :  "REGISTER_REQUEST" = the mobile is under registration
+                  "REGISTER_CONFIRM" = the mobile is registred to a network but not yet used
+                  "BUSY" = the mobile is used for a connection
+                  "FAILED" = the mobile is in failure
+description  : status of radio mobile
+
+
+1986.	mobile_network (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates the network for which the mobile is registered.
+
+
+1307.	EUROLOOP_input_info (data flow) =
+EUROLOOP_input_msgs_info
++EUROLOOP_receiver_failure_info.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EUROLOOP input information
+
+
+1310.	EUROLOOP_input_msgs_info (data flow) =
+max_n_of_EUROLOOP_input_msgs{
+EUROLOOP_input_msg_info
++EUROLOOP_reception_time_stamp
+}max_n_of_EUROLOOP_input_msgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EUROLOOP input messages information
+
+
+1922.	max_n_of_EUROLOOP_input_msgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maximum number of input EUROLOOP messages. 
+This number is equal to 1(only the last received message is
+considered).
+
+
+
+1309.	EUROLOOP_input_msg_info (data flow) =
+loop_message_received
++coded_EUROLOOP_input_msg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EUROLOOP input message information
+
+
+1823.	loop_message_received (data flow, del) =
+["NONE"|"NEW"|"SAME"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  :  "NONE"=the message is not present
+                  "NEW" =a new loop message (different from
+                           the previous one) is received
+                  "SAME"=the same loop message than the
+                           previous one is received again
+description  : Indicates the type of the received euroloop
+                  message
+
+
+633.	coded_EUROLOOP_input_msg (data flow) =
+n_of_bits_in_EUROLOOP_i_msg{bit}n_of_bits_in_EUROLOOP_i_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded EUROLOOP input message
+
+
+2130.	n_of_bits_in_EUROLOOP_i_msg (data flow, cel) =
+**.
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : 1..830
+resolution   : 1;
+units        : N/A;
+value_names  : N/A;
+description  : number of bits in current EUROLOOP input message
+
+
+
+1321.	EUROLOOP_reception_time_stamp (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..2**31 - 1 (in logical_voted_time reference);
+resolution   : 0.01
+units        : s;
+value names  : N/A
+description  : time of reception of the EUROLOOP message
+
+
+1318.	EUROLOOP_receiver_failure_info (data flow) =
+is_present.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Indicates that the basic has detected the failure
+                  of the EUROLOOP receiver device;
+
+
+1794.	LLRU_status_input_msg_info (data flow) =
+is_present
++coded_LLRU_status_input_msg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : LLRU status input message information
+                  (received from basic softawre);
+
+
+639.	coded_LLRU_status_input_msg (data flow) =
+n_of_bits_in_LLRU_status_i_msg{bit}n_of_bits_in_LLRU_status_i_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded LLRU status input message
+                  (received from basic softawre);
+
+
+2136.	n_of_bits_in_LLRU_status_i_msg (data flow, cel) =
+**.
+
+--------
+rate         : N/A;
+range        : 480..480;  
+resolution   : 1;  
+units        : N/A
+value names  : N/A
+description  : number of bits in a LLRU status input message
+
+
+626.	coded_config_data (data flow) =
+is_present
++config_data_binary.
+
+--------
+full_name       :       ;
+rate            :       N/A;
+range           :       N/A;
+resolution      :       N/A;
+units           :       N/A;
+value_names     :       N/A;
+component_of    :       N/A;
+description     :       ;
+
+
+
+663.	config_data_binary (data flow) =
+config_data_binary_length
++config_data_binary_length{bit}config_data_binary_length.
+
+--------
+full_name       :       ;
+rate            :       N/A;
+range           :       N/A;
+resolution      :       N/A;
+units           :       N/A;
+value_names     :       N/A;
+component_of    :       N/A;
+description     :       ;
+
+
+
+664.	config_data_binary_length (data flow, del) =
+**.
+
+--------
+full_name       :       ;
+rate            :       N/A;
+range           :       1..240000;
+resolution      :       1;
+units           :       bit;
+value_names     :       N/A;
+component_of    :       N/A;
+description     :       ;
+
+
+
+627.	coded_data_restored_at_power_up (data flow) =
+is_present
++data_restored_at_po_binary.
+
+--------
+full_name       :       ;
+rate            :       N/A;
+range           :       N/A;
+resolution      :       N/A;
+units           :       N/A;
+value_names     :       N/A;
+component_of    :       N/A;
+description     :       ;
+
+
+
+
+851.	data_restored_at_po_binary (data flow) =
+data_restored_at_po_binary_length
++data_restored_at_po_binary_length{bit}data_restored_at_po_binary_length
+
+--------
+full_name       :       ;
+rate            :       N/A;
+range           :       N/A;
+resolution      :       N/A;
+units           :       N/A;
+value_names     :       N/A;
+component_of    :       N/A;
+description     :       ;
+
+
+
+
+852.	data_restored_at_po_binary_length (data flow, cel) =
+**.
+
+--------
+full_name       :       ;
+rate            :       N/A;
+range           :       1..8000;
+resolution      :       1;
+units           :       bit;
+value_names     :       N/A;
+component_of    :       N/A;
+description     :       ;
+
+
+
+
+2594.	power_up_tests_info (data flow, del) =
+["NOT_RELEVANT" | "ON_GOING" | "SUCCESSFUL" | "SUCCESSFUL_WITH_LOW_AVAILABILTY" | "FAILED"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : 
+"NOT_RELEVANT"                               = No power-up tests results available
+"ON_GOING"                                   = Power-up tests are on going
+"SUCCESSFUL"                                 = Power-up tests are successful
+"SUCCESSFUL_WITH_LOW_AVAILABILTY"   = Power-up tests are partially successful, implying low availability
+"FAILED"                            = Power-up tests have failed
+description  : Gives the result of the power-up tests.
+
+
+1882.	maintenance_data_from_basic (data flow) =
+is_present
++ wheel_diameter_A
++ wheel_diameter_B
++ inter_coefficient_A
++ inter_coefficient_B
++ doppler_coefficient_A
++ doppler_coefficient_B
++ sdmu_coefficient_A
++ sdmu_coefficient_B
+
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maintenance data information provided
+by basic
+
+
+3951.	wheel_diameter_A (data flow) =
+wheel_diameter_value
++ maintenance_data_state
++ last_modification_date
++ value_has_been_entered
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : contains the information concerning the wheel diameter A entered by the driver
+
+
+
+3959.	wheel_diameter_value (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..2047
+resolution   : 1   
+units        : N/A
+value names  : N/A
+initialisation : Empty
+description  : wheel diameter value entered by the driver
+
+
+1884.	maintenance_data_state (data flow, del) =
+["NOT_RELEVANT"| "RANGE_ERROR" | "CONSISTENCY_ERROR" | "VALID"]
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  :"NOT_RELEVANT " = the data is either undefined or is not available
+"RANGE_ERROR" = the data entered is out of the authorised range
+"CONSISTENCY_ERROR" = at power-up: the vote of the data fails / 
+                        after data entry by driver: the data entered is not coherent
+"VALID" = the data has been checked and is the correct one
+description  : Indicates the state of the data.
+
+
+
+1731.	last_modification_date (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..4294967296
+resolution   : 1   
+units        : N/A
+value names  : N/A
+description  : gives the date of the last modification of the parameter entered by the driver
+
+
+3937.	value_has_been_entered (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Indicates if the related parameter value
+                  has already been entered;
+
+
+3954.	wheel_diameter_B (data flow) =
+wheel_diameter_value
++ maintenance_data_state
++ last_modification_date
++ value_has_been_entered
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : contains the information concerning the wheel diameter B entered by the driver
+
+
+
+
+1481.	inter_coefficient_A (data flow) =
+inter_coefficient_value
++ maintenance_data_state
++ last_modification_date
++ value_has_been_entered
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : contains the information concerning the inter coefficient A entered by the driver
+
+
+1487.	inter_coefficient_value (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : -256..256
+resolution   : 1   
+units        : N/A
+value names  : N/A
+initialisation : Empty
+description  : inter coefficient value entered by the driver
+
+
+1484.	inter_coefficient_B (data flow) =
+inter_coefficient_value
++ maintenance_data_state
++ last_modification_date
++ value_has_been_entered
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : contains the information concerning the inter coefficient B entered by the driver
+
+
+1087.	doppler_coefficient_A (data flow) =
+doppler_coefficient_value
++ maintenance_data_state
++ last_modification_date
++ value_has_been_entered
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : contains the information concerning the doppler coefficient A entered by the driver
+
+
+
+
+1093.	doppler_coefficient_value (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : -256..256
+resolution   : 1   
+units        : N/A
+value names  : N/A
+initialisation : Empty
+description  : Doppler coefficient value entered by the driver
+
+
+1090.	doppler_coefficient_B (data flow) =
+doppler_coefficient_value
++ maintenance_data_state
++ last_modification_date
++ value_has_been_entered
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : contains the information concerning the doppler coefficient B entered by the driver
+
+
+
+2995.	sdmu_coefficient_A (data flow) =
+sdmu_coefficient_value
++ maintenance_data_state
++ last_modification_date
++ value_has_been_entered
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : contains the information concerning the sdmu coefficient B entered by the driver
+
+
+
+3003.	sdmu_coefficient_value (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..100000
+resolution   : 1   
+units        : N/A
+value names  : N/A
+initialisation : Empty
+description  : sdmu coefficient value entered by the driver
+
+
+
+2998.	sdmu_coefficient_B (data flow) =
+sdmu_coefficient_value
++ maintenance_data_state
++ last_modification_date
++ value_has_been_entered
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : contains the information concerning the sdmu coefficient B entered by the driver
+
+
+
+3097.	specific_config_data (data flow) =
+is_present
++ nid_engine.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : specific configuration data received from the BSW at the first EVC cycle.
+
+
+2437.	nid_engine (data flow, pel) =
+**.
+
+--------
+rate         : N/A;
+range        : 0..16777215;
+resolution   : 1;
+units        : N/A;
+value names  : N/A;
+description  : European Train Control Sysyem equipment ID;
+
+
+
+1686.	key_mgt_input_info (data flow) =
+dialogue_with_KMC_not_possible
++ dialogue_with_KMC_possible
++ dialogue_with_KMC_on_going
++ dialogue_with_KMC_failure
++ key_mgt_info_updated
++ key_db_updated.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : information coming from the basic software associated to the key management. 
+
+
+885.	dialogue_with_KMC_not_possible (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates if the dialogue with the KMC has become impossible (according to mobiles state).
+
+
+890.	dialogue_with_KMC_possible (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates if the dialogue with the KMC has become possible (according to mobiles state).
+
+
+886.	dialogue_with_KMC_on_going (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates that the dialogue with the KMC has just started.
+
+
+882.	dialogue_with_KMC_failure (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates a failure of the dialogue with KMC.
+
+
+1683.	key_mgt_info_updated (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates that the key management info have just been updated.
+
+
+1679.	key_db_updated (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates that the key database has just been updated.
+
+
+1716.	language_info_from_basic (data flow) =
+2{driver_language}2
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : driver language information for both cabins.
+
+
+1107.	driver_language (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : DMI_NID_DRV_LANG variable;
+
+
+1366.	events_from_basic (data flow) =
+external_small_availability_detected
++ btm_is_not_blind
++ btm_is_probably_blind
++ btm_is_blind
++ btm_unvoted_balise_detected
++ BTM_antenna_raw_tests_in_failure
++ BTM_antenna_valid
++ max_n_of_maintenance_events_from_basic{
+                                              maintenance_event_i
+                                              }max_n_of_maintenance_events_from_basic
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : events from basic.
+
+
+1370.	external_small_availability_detected (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : event (set to "TRUE" during one cycle)
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Indicates that the basic has detected an EVC external
+                  low availability (e.g. loss of a profibus node).
+
+
+559.	btm_is_not_blind (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : event (set to "TRUE" during one cycle)
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Indicates that there is no "blind" BTM failure anymore.
+
+
+560.	btm_is_probably_blind (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : event (set to "TRUE" during one cycle)
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Indicates that the basic has detected a possible "blind" BTM failure.
+
+
+558.	btm_is_blind (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : event (set to "TRUE" during one cycle)
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Indicates that the basic has detected a "blind" BTM failure.
+
+
+562.	btm_unvoted_balise_detected (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : event (set to "TRUE" during one cycle)
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Indicates that the basic has detected an unvoted balise BTM failure.
+
+
+546.	BTM_antenna_raw_tests_in_failure (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : event (set to "TRUE" during one cycle)
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Indicates that the EUROBALISE antenna tests have failed.
+                  This flag is set even within Big Metal Masses.
+
+
+547.	BTM_antenna_valid (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : event (set to "TRUE" during one cycle)
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Indicates that the EUROBALISE antenna tests have recovered.
+
+
+1932.	max_n_of_maintenance_events_from_basic (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 16..16  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : ;
+
+
+1887.	maintenance_event_i (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : event (set to "TRUE" during one cycle)
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Indicates that the basic has detected the i_th maintenance event (i = 1 to 16). 
+
+
+
+
+1402.	generic_app_to_basic_info (data flow) =
+TIU_output_msgs_info
++EUROBALISE_output_info
++EUROCAB_output_info
++EURORADIO_output_info
++EUROLOOP_output_info
++isolation_from_other_equipment_is_required
++channels_extinction_is_required
++coded_data_to_be_restored_at_power_up
++cab_status_for_basic
++antenna_to_be_activated_for_basic
++maintenance_data_to_basic
++LLRU_status_screen_reset_is_required
++MMU_output_info
++BTM_configuration_data_to_basic
++packet_44_info_to_basic
++STMs_state_info_to_basic
++key_mgt_request_info
++generic_context_info_to_basic
++SIL2_display_function_info_to_basic
++EB_intervention_requested.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : information from generic application to basic software
+
+
+3582.	TIU_output_msgs_info (data flow) =
+max_n_of_TIU_output_msgs{TIU_output_msg_info
+                               }max_n_of_TIU_output_msgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : TIU output messages information
+
+
+
+
+
+1946.	max_n_of_TIU_output_msgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maximum number of output TIU messages.
+This number is equal to 1.
+
+
+3581.	TIU_output_msg_info (data flow) =
+is_present
++coded_TIU_output_msg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : TIU output message information
+
+
+
+
+645.	coded_TIU_output_msg (data flow) =
+n_of_bits_in_TIU_o_msg{bit}n_of_bits_in_TIU_o_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded TIU output message;
+
+
+
+
+2141.	n_of_bits_in_TIU_o_msg (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..2000;  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : number of bits in a TIU output message
+
+
+1303.	EUROBALISE_output_info (data flow) =
+EUROBALISE_antenna_test_failure_has_to_be_ignored_d_metal_sup
++ EUROBALISE_antenna_test_failure_d_metal_value_info
++ EUROBALISE_antenna_test_failure_has_to_be_ignored_track_cond_sup.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EUROBALISE output information
+
+
+1291.	EUROBALISE_antenna_test_failure_has_to_be_ignored_d_metal_sup (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates whether the EUROBALISE antenna test failure has to be ignored due
+                  to the d_metal supervision (in level 0, STM).
+
+
+1290.	EUROBALISE_antenna_test_failure_d_metal_value_info (data flow) =
+is_finite
++ d_metal_value.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : D_METAL value information. The distance D_METAL is used by the BSW. It indicates during
+                  which distance the failure of the EUROBALISE antenna test can be ignored.
+
+
+1508.	is_finite (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates if the value of the variable is finite or not
+
+
+808.	d_metal_value (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..1023  
+resolution   : 1  
+units        : m
+value names  : 1023 means no value
+description  : D_METAL value.
+
+
+1292.	EUROBALISE_antenna_test_failure_has_to_be_ignored_track_cond_sup (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates whether the EUROBALISE antenna test failure has to be ignored due
+                  to the a BMM track condition.
+
+
+1306.	EUROCAB_output_info (data flow) =
+DMI_output_msgs_info
++STM_output_msgs_info
++JRU_output_msgs_info
++DRU_output_msg_info
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EUROCAB output information
+
+
+996.	DMI_output_msgs_info (data flow) =
+max_n_of_DMI_output_msgs{DMI_output_msg_info
+                               }max_n_of_DMI_output_msgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : DMI output messages information
+
+
+
+
+1919.	max_n_of_DMI_output_msgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maximum number of messages to send to the DMI in a cycle.
+                  Equal to 5.
+
+
+995.	DMI_output_msg_info (data flow) =
+is_present
++DMI_msg_destination_cabin
++coded_DMI_output_msg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : DMI output message information
+
+
+
+969.	DMI_msg_destination_cabin (data flow, del) =
+["CAB_A"|"CAB_B"|"NO_CAB"].
+
+-------
+rate         : N/A 
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : "CAB_A" = the DMI message shall be sent to the cab named by convention CAB_A 
+                "CAB_B" = the DMI message shall be sent to the cab named by convention CAB_B
+               "NO_CAB" = no DMI message shall be sent.
+description  : Indicates the destination of the DMI message to send.
+
+
+630.	coded_DMI_output_msg (data flow) =
+n_of_bits_in_DMI_o_msg{bit}n_of_bits_in_DMI_o_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded DMI output message;
+
+
+
+2127.	n_of_bits_in_DMI_o_msg (data flow, cel) =
+**.
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : 1..12000;
+resolution   : 1;
+units        : N/A;
+value_names  : N/A;
+description  : number of bits in a DMI output message
+
+
+
+3215.	STM_output_msgs_info (data flow) =
+max_n_of_STM_output_msgs{STM_output_msg_info
+                               }max_n_of_STM_output_msgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : STM output messages information
+
+
+
+
+
+1940.	max_n_of_STM_output_msgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : 24..24  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maximum number of output STM messages.
+
+
+3213.	STM_output_msg_info (data flow) =
+is_present
++nid_STM
++coded_STM_output_msg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : STM output message information. 
+
+
+642.	coded_STM_output_msg (data flow) =
+n_of_bits_in_STM_o_msg{bit}n_of_bits_in_STM_o_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded STM output message;
+
+
+2138.	n_of_bits_in_STM_o_msg (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..1856  
+resolution   : 1   
+units        : N/A
+value names  : N/A
+description  : number of bits in the STM output message.
+
+
+1606.	JRU_output_msgs_info (data flow) =
+max_n_of_JRU_output_msgs{JRU_output_msg_info
+                               }max_n_of_JRU_output_msgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : JRU output messages information
+
+
+
+
+
+1927.	max_n_of_JRU_output_msgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maximum number of JRU output messages. 
+This number is equal to 11.
+
+
+
+1605.	JRU_output_msg_info (data flow) =
+is_present
++coded_JRU_output_msg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : JRU output message information
+
+
+
+638.	coded_JRU_output_msg (data flow) =
+n_of_bits_in_JRU_o_msg{bit}n_of_bits_in_JRU_o_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded JRU output message;
+
+
+2135.	n_of_bits_in_JRU_o_msg (data flow, cel) =
+**.
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : 1..16000;
+resolution   : 1;
+units        : N/A;
+value_names  : N/A;
+description  : number of bits in a JRU output message
+
+
+
+
+1149.	DRU_output_msg_info (data flow) =
+is_present 
++coded_DRU_output_msg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : DRU output message information
+
+
+631.	coded_DRU_output_msg (data flow) =
+n_of_bits_in_DRU_o_msg{bit}n_of_bits_in_DRU_o_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded DRU output message;
+
+
+2128.	n_of_bits_in_DRU_o_msg (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..2232  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : number of bits in the DRU output message.
+
+
+1344.	EURORADIO_output_info (data flow) =
+EURORADIO_connection_request_info
++EURORADIO_connection_retries_number_is_infinite
++EURORADIO_disconnection_request_info
++EURORADIO_connection_reset_request_info
++network_registration_request_info
++train_is_in_a_radio_hole_with_front_end
++EURORADIO_output_msgs_info.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO output information
+
+
+1326.	EURORADIO_connection_request_info (data flow) =
+is_present
++nid_trackside_radio_device
++nid_radio.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO connection request information
+
+
+2441.	nid_radio (store) =
+number_of_nid_radio_digits
++number_of_nid_radio_digits{digit}number_of_nid_radio_digits.
+
+--------
+rate         : N/A;
+range        : N/A;  
+resolution   : N/A;   
+units        : N/A;
+value names  : N/A;
+description  : NID_RADIO variable (refer to NID_RADIO variable definition in SRS chapter 7);
+
+
+2490.	number_of_nid_radio_digits (data flow, pel) =
+**.
+
+--------
+rate         : N/A;
+range        : 0..16; 
+resolution   : 1;   
+units        : N/A;
+value names  : N/A;
+description  : number of decimal digit in the radio number;
+
+
+891.	digit (data flow, pel) =
+**.
+
+--------
+rate         : N/A;
+range        : 0..9; 
+resolution   : 1;   
+units        : N/A;
+value names  : N/A;
+description  : ;
+
+
+1328.	EURORADIO_connection_retries_number_is_infinite (data flow) =
+is_present
++nid_trackside_radio_device.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indication to the basic software, about the connection retries number,
+                  in case of connection loss.
+
+
+1329.	EURORADIO_disconnection_request_info (data flow) =
+is_present
++nid_trackside_radio_device.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO disconnection request information
+
+
+1327.	EURORADIO_connection_reset_request_info (data flow) =
+is_present
++nid_trackside_radio_device.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO connection reset request information
+                  (used in case of T_NVCONTACT expiration);
+
+
+2410.	network_registration_request_info (data flow) =
+is_present
++ radio_network_id_value.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : radio network registration request info.
+
+
+2805.	radio_network_id_value (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : radio network id value.
+
+
+3767.	train_is_in_a_radio_hole_with_front_end (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates whether the train max safe front end is or is not in a radio hole. 
+
+
+1347.	EURORADIO_output_msgs_info (data flow) =
+max_n_of_EURORADIO_output_msgs{EURORADIO_output_msg_info
+                               }max_n_of_EURORADIO_output_msgs.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO output messages information
+
+
+
+
+1925.	max_n_of_EURORADIO_output_msgs (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maximum number of output EURORADIO messages.
+This number is equal to 15.
+
+
+
+
+1346.	EURORADIO_output_msg_info (data flow) =
+is_present
++nid_trackside_radio_device
++coded_EURORADIO_output_msg .
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EURORADIO output message information
+
+
+
+636.	coded_EURORADIO_output_msg (data flow) =
+n_of_bits_in_EURORADIO_o_msg{bit}n_of_bits_in_EURORADIO_o_msg
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : N/A;
+resolution   : N/A;
+units        : N/A;
+value_names  : N/A;
+description  : coded EURORADIO output message;
+
+
+2133.	n_of_bits_in_EURORADIO_o_msg (data flow, cel) =
+**.
+--------
+full_name    : N/A;
+rate         : N/A;
+range        : 1..4000;
+resolution   : 1;
+units        : N/A;
+value_names  : N/A;
+description  : number of bits in current EURORADIO output message
+
+
+
+1317.	EUROLOOP_output_info (data flow) =
+q_sscode.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : EUROLOOP output information
+
+
+2774.	q_sscode (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Q_SSCODE variable (see UNISIG SRS);
+
+
+1520.	isolation_from_other_equipment_is_required (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+value names  : "TRUE" = the ERTMS ETCS trainborne equipment
+                        that it is in mode IS to the basic 
+                        and the basic has to take the properly actions
+               "FALSE"= the ERTMS ETCS trainborne equipment
+                        that it is not in mode IS to the basic 
+                        and the basic has not to take the properly actions
+description  : indicates to the basic whether the ERTMS ETCS trainborne equipment is or is not 
+               in isolation mode and the basic, on this information, has or has not to take actions
+
+
+624.	channels_extinction_is_required (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates if the application software requires
+                  the channel extinctions to the basic software
+                  (when in SF mode).
+
+
+
+
+628.	coded_data_to_be_restored_at_power_up (data flow) =
+is_present
++data_to_be_restored_at_po_binary.
+
+--------
+full_name       :       ;
+rate            :       N/A;
+range           :       N/A;
+resolution      :       N/A;
+units           :       N/A;
+value_names     :       N/A;
+component_of    :       N/A;
+description     :       ;
+
+
+
+856.	data_to_be_restored_at_po_binary (data flow) =
+data_restored_at_po_binary_length
++data_restored_at_po_binary_length{bit}data_restored_at_po_binary_length
+
+--------
+full_name       :       ;
+rate            :       N/A;
+range           :       N/A;
+resolution      :       N/A;
+units           :       N/A;
+value_names     :       N/A;
+component_of    :       N/A;
+description     :       ;
+
+
+
+
+
+579.	cab_status_for_basic (data flow, del) =
+["CAB_A"|"CAB_B"|"NO_CAB"].
+
+-------
+rate         : N/A 
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : "CAB_A" = the activated driver's cab is the cab named by convention CAB_A 
+                "CAB_B" = the activated driver's cab is the cab named by convention CAB_B
+               "NO_CAB" = no cab is activated
+description  : cab status information from generic application to basic software
+
+
+
+
+421.	antenna_to_be_activated_for_basic (data flow, del) =
+["NONE"|"ANTENNA_1"|"ANTENNA_2"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : antenna to be activated according to the selected cabin, from applicatif software to basic software.
+
+
+1885.	maintenance_data_to_basic (data flow) =
+wheel_diameters_to_be_recorded
++wheel_diameter_to_be_checked
++wheel_diameter_A
++wheel_diameter_B
++radar_coefficient_to_be_recorded
++radar_coefficient_to_be_checked
++inter_coefficient_A
++inter_coefficient_B
++doppler_coefficient_A
++doppler_coefficient_B
++sdmu_coefficient_to_be_recorded
++sdmu_coefficient_to_be_checked
++sdmu_coefficient_A
++sdmu_coefficient_B
++accelerometer_bias_to_be_recorded
++accelerometer_bias_to_be_checked
++accelerometer_bias.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : maintenance to transmit to basic
+
+
+3960.	wheel_diameters_to_be_recorded (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates if the wheel diameters have to
+be recorded by basic
+
+
+
+3958.	wheel_diameter_to_be_checked (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates if the wheel diameters have to
+be checked by basic
+
+
+
+2787.	radar_coefficient_to_be_recorded (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates if the radar coefficient have to
+be recorded by basic
+
+
+
+2786.	radar_coefficient_to_be_checked (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates if the radar coefficient have to
+be checked by basic
+
+
+3002.	sdmu_coefficient_to_be_recorded (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates if the sdmu coefficient have to
+be recorded by basic
+
+
+3001.	sdmu_coefficient_to_be_checked (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates if the sdmu coefficient have to
+be checked by basic
+
+
+
+36.	accelerometer_bias_to_be_recorded (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates if the accelerometer bias has to be recorded by basic
+
+
+35.	accelerometer_bias_to_be_checked (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates if the accelerometer bias has to be checked by basic.
+
+
+1800.	LLRU_status_screen_reset_is_required (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates to the basic software that the reset of the LLRU status is required.
+
+
+1981.	MMU_output_info (data flow) =
+line_speed_value
++ MMU_gradient_data
++ MMU_sb_data
++ MMU_eb_data
++ MMU_traction_data
++ slippery_track.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Information to the Movement Measuring Unit;
+
+
+1776.	line_speed_value (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..600
+resolution   : 5
+units        : kph
+value names  : 
+"UNKNOWN" (coded 127) = The line speed profile known onboard is not
+                           sufficient to compute the current line speed;
+description  : Value of the line speed applicable to the current engine location;
+
+
+1978.	MMU_gradient_data (data flow) =
+engine_gradient_value
++ train_gradient_value
++ gradient_is_available.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : information about gradient transmitted to the MMU.
+
+
+1226.	engine_gradient_value (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : -0.254..0.254  
+resolution   : 0.001
+units        : N/A
+value names  : note: -0.254 is called the "safe gradient value"
+description  : Value of the minimum gradient found within
+                  the train engine area.;
+
+
+
+3755.	train_gradient_value (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : -0.254..0.254  
+resolution   : 0.001
+units        : N/A
+value names  : note: -0.254 is called the "safe gradient value"
+description  : Value of the minimum gradient found within
+                  the train area.
+
+
+1419.	gradient_is_available (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates to the MMU if the gradient information is available
+                  according to the current level.
+
+
+1982.	MMU_sb_data (data flow) =
+sb_intervention_requested
++ sb_applied_not_filtered
++ sb_braking_capicity
++ sb_application_delay.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : information linked to the service brake, transmitted to the MMU.
+
+
+2979.	sb_intervention_requested (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates to the MMU if the Core requests serivce brake application.
+
+
+2971.	sb_applied_not_filtered (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : non-filtered status of the service brake
+                  
+
+
+2972.	sb_braking_capicity (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates to the MMU the service deceleration model, used to carry out speed supervision.
+
+
+2970.	sb_application_delay (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..25.5  
+resolution   : 0.1   
+units        : s
+value names  : N/A
+description  : indicates to the MMU the service application time, used to carry out speed supervision.
+
+
+1977.	MMU_eb_data (data flow) =
+EB_intervention_requested
++ eb_applied_not_filtered.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : information linked to the emergency brake, transmitted to the MMU.
+
+
+1191.	EB_intervention_requested (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : information to basic.
+
+
+1183.	eb_applied_not_filtered (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : non-filtered status of the emergency brake
+                  
+
+
+1983.	MMU_traction_data (data flow) =
+traction_cut_off_not_filtered
++ traction_status.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : information linked to the traction, transmitted to the MMU.
+
+
+3710.	traction_cut_off_not_filtered (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : non-filtered status of the traction cut-off
+                  
+
+
+3711.	traction_status (data flow, del) =
+["NULL"|"POSITIVE"|"NEGATIVE"|"NOT_NULL"|"FAIL_STATE"|"INFORMATION_NOT_AVAILABLE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : traction status computed by the TIU, transmitted to the MMU.
+
+
+3059.	slippery_track (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates to the MMU if the rail adhesion is set to "SLIPPERY".
+
+
+551.	BTM_configuration_data_to_basic (data flow) =
+is_present
++ BTM_configuration.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : BTM configuration data to transmit to basic
+
+
+2545.	packet_44_info_to_basic (data flow) =
+n_of_packet_44_to_be_sent_on_serial_link
++n_of_packet_44_to_be_sent_on_serial_link{packet_44_to_be_sent_on_serial_link}n_of_packet_44_to_be_sent_on_serial_link.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : packets 44 sent to basic.
+
+
+2296.	n_of_packet_44_to_be_sent_on_serial_link (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..5  
+resolution   : 1  
+units        : N/A
+value names  : N/A
+description  : number of packets 44 sent to basic software.
+
+
+2547.	packet_44_to_be_sent_on_serial_link (data flow) =
+bg_id
++nid_xuser
++xuser_data.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : packet 44 information sent to basic software.
+
+
+474.	bg_id (data flow) =
+nid_c
++nid_bg.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : "UNKNOWN" = the ETCS identifier of the balise group is unknown
+description  : balise group ETCS identifier
+                
+
+
+2418.	nid_c (data flow, pel) =
+**.
+
+--------
+rate         : N/A;
+range        : N/A;  
+resolution   : N/A;   
+units        : N/A;
+value names  : N/A;
+description  : NID_C variable; 
+
+
+2416.	nid_bg (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : NID_BG variable;
+
+
+2455.	nid_xuser (data flow, del) =
+**.
+
+--------
+rate         : N/A
+range        : 0..511  
+resolution   : 1   
+units        : N/A
+value names  : N/A
+description  : NID_XUSER variable (see subset 26).
+
+
+3972.	xuser_data (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : XUSER_DATA variable (see subset 26).
+
+
+3297.	STMs_state_info_to_basic (data flow) =
+n_of_STMs_state_info
++ n_of_STMs_state_info{nid_STM
+                         + nid_stmstate}n_of_STMs_state_info.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : STMs state info transmitted to BSW.
+
+
+2346.	n_of_STMs_state_info (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..12  
+resolution   : 1   
+units        : N/A
+value names  : N/A
+description  : number of STM state info transmitted to the BSW.
+
+
+2450.	nid_stmstate (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : NID_STMSTATE variable 
+                  exception : for internal use only, use of state DA_FOR_TEST. 
+
+
+1689.	key_mgt_request_info (data flow) =
+is_present
++ key_mgt_request_type.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : key management request info to basic software.
+
+
+1690.	key_mgt_request_type (data flow, del) =
+["UPDATE"|"INSTALLATION"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : key management request type.
+
+
+1403.	generic_context_info_to_basic (data flow) =
+is_present
++ DRU_nid_lrbg
++ DRU_d_lrbg
++ DRU_q_dirlrbg
++ DRU_q_dlrbg
++ DRU_l_doubtover
++ DRU_l_doubtunder
++ DRU_q_dirtrain
++ DRU_v_train
++ DRU_m_level
++ DRU_nid_NTC
++ DRU_m_mode
++ DRU_active_cab
++ DRU_active_antenna
++ DRU_EVC_equipment_id
+
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : 
+
+
+1144.	DRU_nid_lrbg (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : See [Applic 5]
+
+
+1126.	DRU_d_lrbg (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : See [Applic 5]
+
+
+1153.	DRU_q_dirlrbg (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : See [Applic 5]
+
+
+1155.	DRU_q_dlrbg (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : See [Applic 5]
+
+
+1134.	DRU_l_doubtover (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : See [Applic 5]
+
+
+1135.	DRU_l_doubtunder (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : See [Applic 5]
+
+
+1154.	DRU_q_dirtrain (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : See [Applic 5]
+
+
+1157.	DRU_v_train (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : See [Applic 5]
+
+
+1138.	DRU_m_level (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : See [Applic 5]
+
+
+1145.	DRU_nid_NTC (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : See [Applic 5]
+
+
+1139.	DRU_m_mode (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : See [Applic 5]
+
+
+1122.	DRU_active_cab (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : See [Applic 5]
+
+
+1121.	DRU_active_antenna (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : See [Applic 5]
+
+
+1128.	DRU_EVC_equipment_id (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : See [Applic 5]
+
+
+3056.	SIL2_display_function_info_to_basic (data flow) =
+train_speed_for_SIL2
++ SIL2_display_function_is_active
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : SIL2 display function information transmitted to the BSW.
+
+
+3803.	train_speed_for_SIL2 (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..600/3.6  
+resolution   : N/A   
+units        : m/s
+value names  : N/A
+description  : train speed value transmitted to BSW, for SIL2 display function.
+
+
+3057.	SIL2_display_function_is_active (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates if the SIL2 display function is active or not.
+

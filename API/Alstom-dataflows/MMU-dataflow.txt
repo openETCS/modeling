@@ -1,0 +1,430 @@
+﻿
+1979.	MMU_input_info (data flow) =
+current_MMU_data
++tachymeter_out_of_scale.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : MMU input information.
+
+
+775.	current_MMU_data (data flow) =
+MMU_data_time_stamp
++ covered_dist_nominal_value
++ covered_dist_upper_bound
++ covered_dist_lower_bound
++ train_speed_nominal_value
++ train_speed_upper_bound
++ train_speed_lower_bound
++ train_acceleration_nominal_value
++ train_acceleration_upper_bound
++ train_accelration_lower_bound
++ MMU_motion_direction
++ train_motion_state
+
+--------
+rate         : at each cycle
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : train movement data from the MMU
+
+
+1976.	MMU_data_time_stamp (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : 0..2**31 - 1
+resolution   : 0.01
+units        : s (in logical_voted_time reference)
+value_names  : N/A
+description  : time stamp of the data from the MMU
+
+
+753.	covered_dist_nominal_value (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : -20_000_000.0  .. 20_000_000.0  
+resolution   : 0.01
+units        : m
+value_names  : N/A
+description  : nominal value of the distance covered by the train since the last MMU 
+reference.
+
+
+754.	covered_dist_upper_bound (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : -20_000_000.0  .. 20_000_000.0 
+resolution   : 0.01
+units        : m
+value_names  : N/A
+description  : upper bound of the covered distance since the last MMU reference.
+This is an absolute value, not a delta to the nominal value of the covered
+distance.
+
+
+752.	covered_dist_lower_bound (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : -20_000_000.0  .. 20_000_000.0 
+resolution   : 0.01
+units        : m
+value_names  : N/A
+description  : lower bound of the covered distance since the last MMU reference.
+This is an absolute value, not a delta to the nominal value of the covered
+distance.
+
+
+3805.	train_speed_nominal_value (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : 0.0 .. 167
+resolution   : 0.01
+units        : m/s
+value_names  : N/A
+description  : nominal value of the train speed.
+
+
+3807.	train_speed_upper_bound (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : 0.0 .. 167
+resolution   : 0.01
+units        : m/s
+value_names  : N/A
+description  : upper bound of the train speed.This is an absolute value, not a delta
+ to the nominal value of the train speed.
+
+
+3804.	train_speed_lower_bound (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : 0.0 .. 167
+resolution   : 0.01
+units        : m/s
+value_names  : N/A
+description  : lower bound of the train speed.This is an absolute value, not a delta
+ to the nominal value of the train speed.
+
+
+3715.	train_acceleration_nominal_value (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : -6.35 .. 6.35
+resolution   : 0.01
+units        : m/s**2
+value_names  : N/A
+description  : nominal value of the train acceleration.
+
+
+3716.	train_acceleration_upper_bound (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : -6.35 .. 6.35
+resolution   : 0.01
+units        : m/s**2
+value_names  : N/A
+description  : upper bound value of the train acceleration.
+
+
+3717.	train_accelration_lower_bound (data flow, cel) =
+**.
+--------
+rate         : N/A
+range        : -6.35 .. 6.35
+resolution   : 0.01
+units        : m/s**2
+value_names  : N/A
+description  : lower bound value of the train acceleration.
+
+
+1980.	MMU_motion_direction (data flow, del) =
+["CAB_A_FIRST"|"CAB_B_FIRST"|"UNKNOWN"]
+
+--------
+rate         : N/A 
+range        : N/A
+resolution   : N/A
+units        : N/A
+value_names  : "CAB_A_FIRST" = train is running from cab B to cab A.
+               "CAB_B_FIRST" = train is running from cab A to cab B.
+               "UNKNOWN" = train motion direction is unknown.
+description  : train motion direction in relation to the driving cabs.
+
+
+3785.	train_motion_state (data flow, del) =
+["MOTION"|"NO_MOTION"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : train motion state
+
+
+3454.	tachymeter_out_of_scale (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Set to "TRUE" during the "out of scale" mode of the
+                  tachymeter;
+
+
+
+1981.	MMU_output_info (data flow) =
+line_speed_value
++ MMU_gradient_data
++ MMU_sb_data
++ MMU_eb_data
++ MMU_traction_data
++ slippery_track.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : Information to the Movement Measuring Unit;
+
+
+1776.	line_speed_value (data flow, pel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..600
+resolution   : 5
+units        : kph
+value names  : 
+"UNKNOWN" (coded 127) = The line speed profile known onboard is not
+                           sufficient to compute the current line speed;
+description  : Value of the line speed applicable to the current engine location;
+
+
+1978.	MMU_gradient_data (data flow) =
+engine_gradient_value
++ train_gradient_value
++ gradient_is_available.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : information about gradient transmitted to the MMU.
+
+
+1226.	engine_gradient_value (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : -0.254..0.254  
+resolution   : 0.001
+units        : N/A
+value names  : note: -0.254 is called the "safe gradient value"
+description  : Value of the minimum gradient found within
+                  the train engine area.;
+
+
+
+3755.	train_gradient_value (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : -0.254..0.254  
+resolution   : 0.001
+units        : N/A
+value names  : note: -0.254 is called the "safe gradient value"
+description  : Value of the minimum gradient found within
+                  the train area.
+
+
+1419.	gradient_is_available (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates to the MMU if the gradient information is available
+                  according to the current level.
+
+
+1982.	MMU_sb_data (data flow) =
+sb_intervention_requested
++ sb_applied_not_filtered
++ sb_braking_capicity
++ sb_application_delay.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : information linked to the service brake, transmitted to the MMU.
+
+
+2979.	sb_intervention_requested (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates to the MMU if the Core requests serivce brake application.
+
+
+2971.	sb_applied_not_filtered (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : non-filtered status of the service brake
+                  
+
+
+2972.	sb_braking_capicity (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates to the MMU the service deceleration model, used to carry out speed supervision.
+
+
+2970.	sb_application_delay (data flow, cel) =
+**.
+
+--------
+rate         : N/A
+range        : 0..25.5  
+resolution   : 0.1   
+units        : s
+value names  : N/A
+description  : indicates to the MMU the service application time, used to carry out speed supervision.
+
+
+1977.	MMU_eb_data (data flow) =
+EB_intervention_requested
++ eb_applied_not_filtered.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : information linked to the emergency brake, transmitted to the MMU.
+
+
+1191.	EB_intervention_requested (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : information to basic.
+
+
+1183.	eb_applied_not_filtered (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : non-filtered status of the emergency brake
+                  
+
+
+1983.	MMU_traction_data (data flow) =
+traction_cut_off_not_filtered
++ traction_status.
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : information linked to the traction, transmitted to the MMU.
+
+
+3710.	traction_cut_off_not_filtered (data flow, del) =
+["FALSE"|"TRUE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : non-filtered status of the traction cut-off
+                  
+
+
+3711.	traction_status (data flow, del) =
+["NULL"|"POSITIVE"|"NEGATIVE"|"NOT_NULL"|"FAIL_STATE"|"INFORMATION_NOT_AVAILABLE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : traction status computed by the TIU, transmitted to the MMU.
+
+
+3059.	slippery_track (data flow, del) =
+["TRUE"|"FALSE"].
+
+--------
+rate         : N/A
+range        : N/A  
+resolution   : N/A   
+units        : N/A
+value names  : N/A
+description  : indicates to the MMU if the rail adhesion is set to "SLIPPERY".
+
