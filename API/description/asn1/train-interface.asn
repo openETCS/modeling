@@ -53,4 +53,111 @@ BEGIN
         m-electropneumaticbrake-st      M-brake-status,
         m-additionalbrake-st            M-brake-status
   }
+
+  P-brake-pressure-value ::= CHOICE {
+        info-not-available      NULL,
+        pressure                -- 0 to 6 bar with 0.1 increment
+                        REAL (WITH COMPONENTS { mantissa        (0..60),
+                                                base            (10),
+                                                exponent        (-1) })
+  }
+
+  M-brake-signal-command ::=
+        ENUMERATED { info-not-available, apply-brake, release-brake }
+
+  Brake-command ::= SEQUENCE {
+        m-servicebrake-cm       M-brake-signal-command,
+        m-emergencybrake-cm     M-brake-signal-command
+  }
+
+  M-brake-inhibit-command ::=
+        ENUMERATED { info-not-available, inhibit-brake,
+                     do-not-inhibit-brake }
+
+  M-eddy-current-brake-inhibition ::=
+        ENUMERATED { info-not-available,
+                     inhibit-for-service-brake,
+                     inhibit-for-emergency-brake,
+                     inhibit-for-both-service-emergency-brake,
+                     do-not-inhibit-for-service-brake,
+                     do-not-inhibit-for-emergency-brake,
+                     do-not-inhibit-for-both-service-emergency-brake
+                   }
+
+  Brake-inhibition-command ::= SEQUENCE {
+        m-regenerativebrake-cm  M-brake-inhibit-command,
+        m-eddycurrentbrake-cm   M-eddy-current-brake-inhibition,
+        m-magneticshoebrake-cm  M-brake-inhibit-command
+  }
+
+  M-train-data-entry-type ::=
+        ENUMERATED { info-not-available, fixed-entry-type,
+                     flexible-entry-type, switchable-entry-type }
+
+  M-train-data-info ::= NULL -- FIXME: to do
+
+  M-pantograph-command ::=
+        ENUMERATED { info-not-available, lower-pantograph,
+                     raise-pantograph }
+
+  M-airtightness-command ::=
+        ENUMERATED { info-not-available, tunnel-condition-active,
+                     tunnel-condition-not-active }
+
+  M-mainpowerswitch-command ::=
+        ENUMERATED { info-not-available, open-main-power-swicth,
+                     close-main-power-switch }
+
+  M-traction-cutoff-command ::=
+        ENUMERATED { info-not-available, apply-traction-cutoff,
+                     release-traction-cutoff }
+
+  Type-I-train-commands ::= SEQUENCE {
+        m-pantograph-cm         M-pantograph-command,
+        m-airtightness-cm       M-airtightness-command,
+        m-mainpowerswitch-cm    M-mainpowerswitch-command,
+        m-traction-cutoff-cm    M-traction-cutoff-command
+  }
+
+  D-test-distance ::= CHOICE {
+        now      NULL,
+        distance -- 0..42949672940 mm with 10 mm increment
+                 REAL (WITH COMPONENTS { mantissa        (0..4294967294),
+                                         base            (10),
+                                         exponent        (-2) }) -- cm
+  }
+
+  D-test-trackcond ::= D-test-distance
+
+  L-test-trackcond ::= D-test-distance
+
+  M-trackcond ::=
+        ENUMERATED { non-stopping-area,
+                     tunnel-stopping-area,
+                     sound-horn,
+                     powerless-section-lower-pantograph,
+                     radio-hole,
+                     air-tightness,
+                     switch-off-regenerative-brake,
+                     switch-off-eddy-current-brake-for-service-brake,
+                     switch-off-magnetic-shoe-brake,
+                     powerless-section-switch-off-main-power-switch,
+                     switch-off-eddy-current-brake-for-emergency-brake }
+
+  D-test-trackinit ::= D-test-distance
+
+  Type-I-train-and-brake-inhibition-with-distance-commands ::=
+        CHOICE { -- Q_TRACKINIT
+                nothing-to-resume-profile-follow [0] SEQUENCE {
+                        d-test-trackcond        D-test-trackcond,
+                        l-test-trackcond        L-test-trackcond,
+                        m-trackcond             M-trackcond,
+                        n-iter  SEQUENCE (SIZE (0..31)) OF SEQUENCE {
+                                  d-test-trackcond      D-test-trackcond,
+                                  l-test-trackcond      L-test-trackcond,
+                                  m-trackcond           M-trackcond
+                                }
+                },
+                empty-profile-initial-state-to-be-resumed [1] D-test-trackinit
+               }
 END
