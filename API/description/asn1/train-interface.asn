@@ -1,0 +1,56 @@
+
+Train-interface DEFINITIONS ::=
+BEGIN
+  M-sleeping-signal-status ::=
+        ENUMERATED { info-not-available, signal-active, signal-not-active }
+
+  M-passiveshunting-signal-status ::=
+        ENUMERATED { info-not-available, passive-shunting-permitted,
+                     passive-shunting-not-permitted }
+
+  M-nonleading-signal-status ::=
+        ENUMERATED { info-not-available, non-leading-permitted,
+                     non-leading-not-permitted }
+
+  M-cab-signal-status ::=
+        ENUMERATED { info-not-available, both-desks-are-closed,
+                     desk-A-is-open, desk-B-is-open,
+                     both-desks-are-open }
+
+  M-directioncontroller-signal-status ::=
+        ENUMERATED { info-not-available, direction-controller-in-neutral,
+                     direction-controller-in-forward,
+                     direction-controller-in-backward }
+
+  M-trainintegrity-signal-status ::=
+        ENUMERATED { info-not-available, train-is-not-integer,
+                     train-is-integer }
+
+  M-traction-signal-status ::=
+        ENUMERATED { info-not-available, traction-on-traction-off }
+
+  Mode-control-and-train-status ::= SEQUENCE {
+        m-sleeping-st                   M-sleeping-signal-status,
+        m-passiveshunting-st            M-passiveshunting-signal-status,
+        m-nonleading-st                 M-nonleading-signal-status,
+        m-cab-st                        M-cab-signal-status,
+        m-directioncontroller-st        M-directioncontroller-signal-status,
+        m-trainintegrity-st             M-trainintegrity-signal-status,
+        m-traction-st                   M-traction-signal-status
+  }
+
+  Isolation-status ::=
+        ENUMERATED { info-not-available, on-board-equipment-is-isolated,
+                     on-board-equipement-is-not-isolated }
+
+  M-brake-status ::=
+        ENUMERATED { info-not-available, is-active, is-not-active }
+
+  Brake-status ::= SEQUENCE {
+        m-regenerativebrake-st          M-brake-status,
+        m-eddycurrentbrake-st           M-brake-status,
+        m-magneticshoebrake-st          M-brake-status,
+        m-electropneumaticbrake-st      M-brake-status,
+        m-additionalbrake-st            M-brake-status
+  }
+END
