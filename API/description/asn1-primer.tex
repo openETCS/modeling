@@ -30,13 +30,15 @@ understanding the ASN.1 definitions of this document.
 The basic data types of ASN.1 are \ASN{INTEGER}, \ASN{REAL}
 (mathematical real values following formula $m \times b^e$ with $m$
 mantissa, $b$ 2 or 10 base and $e$ exponent), \ASN{BOOLEAN},
-\ASN{NULL} (no type) and various types of strings.
+\ASN{NULL} (no type) and various types of strings. $a$\ASN{..}$b$
+denotes are range of values from $a$ to $b$.
 
-The basic structures of ASN.1 are:
+The basic structures of ASN.1 are as followed and can be composed at
+will:
 \begin{itemize}
-\item \index{ENUMERATED@\ASN{ENUMERATED}}\ASN{ENUMERATED}: an
+\item \index{ENUMERATED@\ASN{ENUMERATED}}\ASN{ENUMERATED \{ \}}: an
   enumeration of fixed values;
-\item \index{SEQUENCE@\ASN{SEQUENCE}}\ASN{SEQUENCE}: a record of
+\item \index{SEQUENCE@\ASN{SEQUENCE}}\ASN{SEQUENCE \{ \}}: a record of
   elements;
 \item \index{SEQUENCE OF@\ASN{SEQUENCE OF}}\ASN{SEQUENCE OF}: a list
   of element;
@@ -44,17 +46,18 @@ The basic structures of ASN.1 are:
     (SIZE(}$a$\ASN{..}$b$\ASN{)) OF}}\ASN{SEQUENCE
   (SIZE(}$a$\ASN{..}$b$\ASN{)) OF}: an array of elements with indexes
   from $a$ to $b$;
-\item \index{CHOICE@\ASN{CHOICE}}\ASN{CHOICE}: a choice between
+\item \index{CHOICE@\ASN{CHOICE}}\ASN{CHOICE \{ \}}: a choice between
   several elements (i.e. alternative, like a union in C or a variant
   record in Ada).
 \end{itemize}
 
-A data type definition has form \emph{name} \ASN{::=}
-\emph{definition}. Names can use characters \ASN{A-Z a-z 0-9 -}.
+A data type definition has form ``\emph{name} \ASN{::=}
+\emph{definition}''. Names can use characters \ASN{A-Z a-z 0-9 -}.
 
-ASN.1 is case sensitive. Names starting with a capital letter are
-reserved for type definitions while names starting with a lower case
-later are used for field identifier or enumeration values.
+ASN.1 is case sensitive. ASN.1 keywords are uppercase. Names starting
+with a capital letter are reserved for type definitions while names
+starting with a lower case later are used for field identifier or
+enumeration values.
 
 Definitions are grouped in modules grouping
 \index{DEFINITIONS@\ASN{DEFINITIONS}}\ASN{DEFINITIONS}:
@@ -98,7 +101,8 @@ List-of-possible-values ::= SEQUENCE OF Possible-value
 \end{lstlisting}
 
 A value that can be either an integer between 0 and 1023 or a real
-between 0 and 10 with a 0.1 increment:
+between 0 and 10 with a 0.1 increment ($0 \times 10^{-1}$ to $100
+\times 10^{-1}$):
 \begin{lstlisting}[language=ASN1]
 A-value ::= CHOICE {
   a-limited-integer     INTEGER(0..1023),
