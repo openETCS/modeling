@@ -1,0 +1,112 @@
+\chapter{ASN.1 Primer}
+\label{asn1-primer}
+
+\define{ASN.1} (Abstract Syntax Notation number One) is a formalism
+for the specification of abstract data types. Such a specification is
+made independently of programming language or wire transmission
+format. From such an abstract specification, automated encoder/decoder
+in any programming languages can be generated, for various encoding
+formats (strings of bytes, strings of bits, XML).
+
+ASN.1 is an international standard freely available
+(\cite{asn1-standard}).
+
+Example of encoder/decoder generator for ASN.1:
+\begin{itemize}
+\item asn1c: open source ASN.1 compiler
+  \url{http://lionet.info/asn1c/compiler.html}
+\item ASN1SCC compiler: open source ASN.1 compiler that targets C and
+  Ada, while placing specific emphasis on embedded systems
+  \url{https://github.com/ttsiodras/asn1scc}
+\item Other ASN.1 tools can be found at
+  \url{http://www.itu.int/ITU-T/studygroups/com17/languages/index.html}
+\end{itemize}
+
+\section{Overview of ASN.1 syntax}
+
+We describe in this appendix a very basic knowledge of ASN.1 aiming at
+understanding the ASN.1 definitions of this document.
+
+The basic data types of ASN.1 are \ASN{INTEGER}, \ASN{REAL}
+(mathematical real values following formula $m \times b^e$ with $m$
+mantissa, $b$ 2 or 10 base and $e$ exponent), \ASN{BOOLEAN},
+\ASN{NULL} (no type) and various types of strings.
+
+The basic structures of ASN.1 are:
+\begin{itemize}
+\item \index{ENUMERATED@\ASN{ENUMERATED}}\ASN{ENUMERATED}: an
+  enumeration of fixed values;
+\item \index{SEQUENCE@\ASN{SEQUENCE}}\ASN{SEQUENCE}: a record of
+  elements;
+\item \index{SEQUENCE OF@\ASN{SEQUENCE OF}}\ASN{SEQUENCE OF}: a list
+  of element;
+\item \index{SEQUENCE (SIZE(a..b)) OF@\ASN{SEQUENCE
+    (SIZE(}$a$\ASN{..}$b$\ASN{)) OF}}\ASN{SEQUENCE
+  (SIZE(}$a$\ASN{..}$b$\ASN{)) OF}: an array of elements with indexes
+  from $a$ to $b$;
+\item \index{CHOICE@\ASN{CHOICE}}\ASN{CHOICE}: a choice between
+  several elements (i.e. alternative, like a union in C or a variant
+  record in Ada).
+\end{itemize}
+
+A data type definition has form \emph{name} \ASN{::=}
+\emph{definition}. Names can use characters \ASN{A-Z a-z 0-9 -}.
+
+ASN.1 is case sensitive. Names starting with a capital letter are
+reserved for type definitions while names starting with a lower case
+later are used for field identifier or enumeration values.
+
+Definitions are grouped in modules grouping
+\index{DEFINITIONS@\ASN{DEFINITIONS}}\ASN{DEFINITIONS}:
+\begin{lstlisting}[language=ASN1]
+The-module-name DEFINITIONS ::=
+BEGIN
+  -- some definitions
+END
+\end{lstlisting}
+
+Comments start with \ASN{--} until end of line or next \ASN{--}.
+
+\section{ASN.1 examples}
+
+We now show some examples (all validated with asn1c tool).
+
+A record of 2 elements, one Boolean and one integer:
+\begin{lstlisting}[language=ASN1]
+Record-2-elements ::= SEQUENCE {
+  a-boolean  BOOLEAN,
+  an-integer INTEGER
+}
+\end{lstlisting}
+
+A choice between nothing or an array of 100 integer elements:
+\begin{lstlisting}[language=ASN1]
+Choice-between-2-elements ::= CHOICE {
+  nothing     NULL,
+  an-array    SEQUENCE (SIZE (1..100)) OF INTEGER
+}
+\end{lstlisting}
+
+A list of which elements are made of three possible values (value1,
+value2 or value3):
+\begin{lstlisting}[language=ASN1]
+Possible-value ::= ENUMERATED {
+  value1, value2, value3
+}
+
+List-of-possible-values ::= SEQUENCE OF Possible-value
+\end{lstlisting}
+
+A value that can be either an integer between 0 and 1023 or a real
+between 0 and 10 with a 0.1 increment:
+\begin{lstlisting}[language=ASN1]
+A-value ::= CHOICE {
+  a-limited-integer     INTEGER(0..1023),
+  a-limited-real        REAL (WITH COMPONENTS { mantissa (0..100),
+                                                base (10),
+                                                exponent (-1) })
+}
+\end{lstlisting}
+
+
+% LocalWords:  ASN lstlisting

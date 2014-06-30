@@ -3,6 +3,10 @@ IMAGES= \
   images/abstract-hardware-architecture.pdf \
   images/software-architecture.pdf
 
+ASN1= \
+  asn1/train-interface.asn \
+  asn1/example.asn
+
 LATEXFILES= \
   api-description.tex \
   concrete-interface.tex \
@@ -10,14 +14,24 @@ LATEXFILES= \
   info-flows.tex \
   intro-chapter.tex \
   software-arch.tex \
-  time-constraints.tex
+  time-constraints.tex \
+  asn1-primer.tex
 
 
 default: api-description.pdf
 
-api-description.pdf: $(LATEXFILES) $(IMAGES)
+api-description.pdf: $(LATEXFILES) $(IMAGES) $(ASN1) \
+	api-description.bib asn1.sty
 	$(PDFLATEX) api-description.tex
 	bibtex api-description
 	makeindex api-description.idx
 	$(PDFLATEX) api-description.tex
 	$(PDFLATEX) api-description.tex
+
+clean:
+	-rm api-description.pdf
+	-rm *.aux *.lof *.log *.lot *.toc *.bbl *.blg *.idx *.ilg *.ind *.out
+
+validate-asn1: $(ASN1)
+	asn1c -E -F asn1/train-interface.asn
+	asn1c -E -F asn1/example.asn
