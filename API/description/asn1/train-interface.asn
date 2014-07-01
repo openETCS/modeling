@@ -162,21 +162,20 @@ BEGIN
 
   D-test-traction ::= D-test-distance
 
-  M-voltage ::=
-        ENUMERATED { line-not-fitted-with-any-traction-system(0),
-                     ac-25kV-50Hz,
-                     ac-15kV-16-7Hz,
-                     dc-3kV,
-                     dc-1-5kV,
-                     dc-600-750kV }
-
   NID-ctraction ::= INTEGER (0..1023)
+
+  M-voltage ::= CHOICE {
+        line-not-fitted-with-any-traction-system        NULL,
+        ac-25kV-50Hz                                    NID-ctraction,
+        ac-15kV-16-7Hz                                  NID-ctraction,
+        dc-3kV                                          NID-ctraction,
+        dc-1-5kV                                        NID-ctraction,
+        dc-600-750kV                                    NID-ctraction
+  }
 
   M-change-traction-system ::= SEQUENCE {
         d-test-traction         D-test-traction,
-        m-voltage               M-voltage,
-        nid-ctraction           NID-ctraction -- FIXME: can we express
-        -- in ASN.1 that it depends only on m-voltage /= 0?
+        m-voltage               M-voltage
   }
 
   Passenger-door-control-info ::= NULL -- FIXME: to do
