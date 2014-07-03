@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" name="BTM">
 	<declarations>
+		<Constant name="maxNoBalises">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="8"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4411/1986/1434/53b567ac7611"/>
+			</pragmas>
+		</Constant>
+		<Constant name="maxListBGs">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="20"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4471/1986/1434/53b56b171544"/>
+			</pragmas>
+		</Constant>
 		<Type name="TelegramHeader_T">
 			<definition>
 				<Struct>
@@ -170,7 +200,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="BalisePacket_T"/>
+										<TypeRef name="AdditionalInformation_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -187,11 +217,11 @@
 				<ed:Type oid="!ed/87c1/10B0/14E4/53b169da5287"/>
 			</pragmas>
 		</Type>
-		<Type name="BalisePacket_T">
+		<Type name="AdditionalInformation_T">
 			<definition>
 				<Struct>
 					<fields>
-						<Field name="additional_packets">
+						<Field name="addInfo">
 							<type>
 								<NamedType>
 									<type>
@@ -211,31 +241,6 @@
 			<pragmas>
 				<ed:Type oid="!ed/8839/10B0/14E4/53b16c997fae" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 					<comment>Packets received from balises</comment>
-				</ed:Type>
-			</pragmas>
-		</Type>
-		<Type name="Bad_Balise_Received_T">
-			<definition>
-				<Struct>
-					<fields>
-						<Field name="valid">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="bool"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Field oid="!ed/1104a/10B0/14E4/53b171b559a0"/>
-							</pragmas>
-						</Field>
-					</fields>
-				</Struct>
-			</definition>
-			<pragmas>
-				<ed:Type oid="!ed/11049/10B0/14E4/53b171122856" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-					<comment>This message indicates a balise has been passed but could not be decoded by the BTM</comment>
 				</ed:Type>
 			</pragmas>
 		</Type>
@@ -261,7 +266,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="BalisePacket_T"/>
+										<TypeRef name="AdditionalInformation_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -294,12 +299,319 @@
 				</ed:Type>
 			</pragmas>
 		</Type>
+		<Type name="BG_Message_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="TelegramHeaders">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TelegramHeaderArray_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/43e8/1986/1434/53b564ae780"/>
+							</pragmas>
+						</Field>
+						<Field name="AddInfo">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AdditionalInformation_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4407/1986/1434/53b56709bca" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment> For all balises of the group: Packets collected into a combined information</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/43e7/1986/1434/53b564927fce"/>
+			</pragmas>
+		</Type>
+		<Type name="TelegramHeaderFlag_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="valid">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4422/1986/1434/53b56841ab3"/>
+							</pragmas>
+						</Field>
+						<Field name="header">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TelegramHeader_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/442b/1986/1434/53b568603bbc"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/43fc/1986/1434/53b566b475a8"/>
+			</pragmas>
+		</Type>
+		<Type name="TelegramHeaderArray_T">
+			<definition>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TelegramHeaderFlag_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="maxNoBalises"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/4406/1986/1434/53b566ee6fc"/>
+			</pragmas>
+		</Type>
+		<Type name="CurrentLRBG">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="filteredBGMessage">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="FilteredBGMessage_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4447/1986/1434/53b5699a1aa3"/>
+							</pragmas>
+						</Field>
+						<Field name="position">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Position_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4452/1986/1434/53b569e73d0f"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/4446/1986/1434/53b569791d39"/>
+			</pragmas>
+		</Type>
+		<Type name="FilteredBGMessage_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="q_dirlrbg">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Q_DIRTRAIN"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/445d/1986/1434/53b56a72ed2"/>
+							</pragmas>
+						</Field>
+						<Field name="checkedMessage">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="BG_Message_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4467/1986/1434/53b56aa97fd1"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/4451/1986/1434/53b569cd3cc9"/>
+			</pragmas>
+		</Type>
+		<Type name="Position_T">
+			<definition>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/445c/1986/1434/53b56a0eaaf"/>
+			</pragmas>
+		</Type>
+		<Type name="ListOfBG">
+			<definition>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="CurrentLRBG"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="maxListBGs"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/4482/1986/1434/53b56b4678"/>
+			</pragmas>
+		</Type>
+		<Type name="Orientation_T">
+			<definition>
+				<Enum>
+					<values>
+						<Value name="Single_Balise_Group">
+							<pragmas>
+								<ed:Value oid="!ed/4495/1986/1434/53b56be2568b"/>
+							</pragmas>
+						</Value>
+						<Value name="DIR_Nominal">
+							<pragmas>
+								<ed:Value oid="!ed/4496/1986/1434/53b56c06a2f"/>
+							</pragmas>
+						</Value>
+						<Value name="DIR_Reverse">
+							<pragmas>
+								<ed:Value oid="!ed/4497/1986/1434/53b56c1771ff"/>
+							</pragmas>
+						</Value>
+					</values>
+				</Enum>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/4494/1986/1434/53b56bc646d1"/>
+			</pragmas>
+		</Type>
+		<Type name="RBCOrientationReport_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="assignement_of_coordinate_system">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Radio_TrackToTrain::Assignment_of_coordinate_system"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/44a1/1986/1434/53b56c7f25af"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/44a0/1986/1434/53b56c565ae0"/>
+			</pragmas>
+		</Type>
+		<Type name="RBCReport_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="train_position_report">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Radio_TrainToTrack::Train_Position_Report"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/44ac/1986/1434/53b56cf0339f"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/44ab/1986/1434/53b56cd422d9"/>
+			</pragmas>
+		</Type>
+		<Type name="TrainInfo_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="m_leveltr">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="M_LEVELTR"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/44c0/1986/1434/53b56dbf2730"/>
+							</pragmas>
+						</Field>
+						<Field name="m_mode">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="M_MODE"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/44ca/1986/1434/53b56de21779"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/44b6/1986/1434/53b56d781684"/>
+			</pragmas>
+		</Type>
 	</declarations>
 	<pragmas>
 		<ed:Package oid="!ed/87b2/10B0/14E4/53b1690c3ae4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 			<diagrams>
 				<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/87b3/10B0/14E4/53b1690c6237" blockKind="constants"/>
-				<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/87b4/10B0/14E4/53b1690c59ba" blockKind="types" columnsSize="0, 150, 150, 386"/>
+				<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/87b4/10B0/14E4/53b1690c59ba" blockKind="types" columnsSize="0, 259, 150, 386"/>
 				<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/87b5/10B0/14E4/53b1690c2cf1" blockKind="sensors"/>
 			</diagrams>
 		</ed:Package>
