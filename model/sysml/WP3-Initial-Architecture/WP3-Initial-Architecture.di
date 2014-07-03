@@ -22,6 +22,18 @@
     <availablePage>
       <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/ManageBaliseInformation.notation#_I7Q_UKqzEeO2sY0LRf6mJA"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="WP3-Initial-Architecture.notation#_08SAQP0jEeOp4IlGN1M5tw"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/PerformEuroBaliseDecoding/PerformEuroBaliseDecoding.notation#_C2HJwLssEeOP84wBioPrEA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/PerformEuroBaliseDecoding/PerformEuroBaliseDecoding.notation#_Dorc4LsxEeOP84wBioPrEA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/BuildBGMessage/BuildBGMessage.notation#__3vqML5XEeOqg93D1wi9Og"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -31,6 +43,21 @@
         </children>
         <children>
           <emfPageIdentifier href="WP3-Initial-Architecture.notation#_PYF9MKhgEeOOqsKB194pCA"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="ManageLocationRelatedInformation/ManageLocationRelatedInformation.notation#_ruDXsKqFEeO4rOUv3P1-Cg"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="WP3-Initial-Architecture.notation#_08SAQP0jEeOp4IlGN1M5tw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/PerformEuroBaliseDecoding/PerformEuroBaliseDecoding.notation#_C2HJwLssEeOP84wBioPrEA"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/PerformEuroBaliseDecoding/PerformEuroBaliseDecoding.notation#_Dorc4LsxEeOP84wBioPrEA"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/BuildBGMessage/BuildBGMessage.notation#__3vqML5XEeOqg93D1wi9Og"/>
         </children>
       </children>
     </windows>
