@@ -81,7 +81,8 @@ phase.
 Between units of the system (DMI, EVC, ...), following constraints
 shall be ensured:
 \begin{itemize}
-\item No message shall be lost;
+\item No message shall be lost \FIXME{Real meaning? Distinguish SIL0
+  and SIL4?};
 \item Messages sent from one unit towards another one shall be
   received in emission order;
 \item Messages sent from two units towards a
@@ -121,6 +122,8 @@ The system shall ensure following constraints:
   \FIXME{XX ms}.
 \end{itemize}
 
+\FIXME{We could impose different delays depending on considered unit.}
+
 \subsection{Event re-ordering}
 
 As a consequence of ordering constrains on message exchange
@@ -134,17 +137,28 @@ position on the reception unit.
 
 \subsection{Event time-stamping}
 
-The system is asynchronous: an event is received on a unit and some
+The system is asynchronous: an external event is received on a unit and some
 time is spent before seeing the corresponding message in another
 unit. In order to do its computations, the Application software needs
 to know at which real time the event was received. In order to do so,
 a time-stamp shall be applied on all events requiring such
 computations. \FIXME{Make a list of such events?}
 
+The time-stamp shall mark the full reception of the external event at
+the input unit. It shall be applied as follow:
+\begin{itemize}
+\item For radio-message, the time-stamp shall correspond to date of
+  reception of the last byte of the message;
+\item For balise, the time-stamp shall correspond to the passage of
+  the train antenna over the balise center;
+\item For odometry, the time-stamp shall correspond to the
+  corresponding odometry event.
+\end{itemize}
+
 This time-stamp shall fulfill
 following constraints:
 \begin{itemize}
-\item Time-stamp clock shall have a precision of 1 µs, with a
+\item Time-stamp clock shall have a precision of 1 ms, with a
   deviation compared to real time of less than 0.1\%;
 \item Time-stamp clock shall be the same on all units of the system.
 \end{itemize}
