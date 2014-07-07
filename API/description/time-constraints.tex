@@ -5,8 +5,9 @@ real-time and ordering constraints that both the Application software
 as well as the Basic software and remaining of the system shall
 ensure. Those constraints are described in this chapter.
 
-Some of constraints defined below are coming from Alstom Transport
-(\cite{alstom-api}).
+Some of constraints defined in sections \ref{sec:ordering-constraints}
+to \ref{sec:execution-time-constraints} are derived from Alstom
+Transport proposal (\cite{alstom-api}).
 
 \section{System-wide constraints}
 
@@ -137,15 +138,15 @@ position on the reception unit.
 
 \subsection{Event time-stamping}
 
-The system is asynchronous: an external event is received on a unit and some
+The system is asynchronous: an event is received on a unit and some
 time is spent before seeing the corresponding message in another
 unit. In order to do its computations, the Application software needs
 to know at which real time the event was received. In order to do so,
 a time-stamp shall be applied on all events requiring such
 computations. \FIXME{Make a list of such events?}
 
-The time-stamp shall mark the full reception of the external event at
-the input unit. It shall be applied as follow:
+The time-stamp shall mark the full reception of the event at the input
+unit. It shall be applied as follow:
 \begin{itemize}
 \item For radio-message, the time-stamp shall correspond to date of
   reception of the last byte of the message;
@@ -155,8 +156,7 @@ the input unit. It shall be applied as follow:
   corresponding odometry event.
 \end{itemize}
 
-This time-stamp shall fulfill
-following constraints:
+This time-stamp shall fulfill following constraints:
 \begin{itemize}
 \item Time-stamp clock shall have a precision of 1 ms, with a
   deviation compared to real time of less than 0.1\%;
@@ -164,6 +164,7 @@ following constraints:
 \end{itemize}
 
 \subsection{Execution time constraints}
+\label{sec:execution-time-constraints}
 
 The following real-time constrains shall be ensured:
 \begin{itemize}
