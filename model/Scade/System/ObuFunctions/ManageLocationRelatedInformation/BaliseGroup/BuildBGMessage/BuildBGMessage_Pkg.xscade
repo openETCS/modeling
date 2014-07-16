@@ -3,6 +3,139 @@
 	<declarations>
 		<Package name="BuildBGMessage_Pkg">
 			<declarations>
+				<Constant name="Collector_Init">
+					<type>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Constant oid="!ed/45bf/7730/780/53c3df30f09"/>
+					</pragmas>
+				</Constant>
+				<Type name="BGCollector_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="status">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BGBuildStatus_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4597/7730/780/53c3de1578e6"/>
+									</pragmas>
+								</Field>
+								<Field name="BG_ID">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_BG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/45ca/7730/780/53c3e2247b3b"/>
+									</pragmas>
+								</Field>
+								<Field name="telegram_odometry">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="TrainPosition_Types_Pck::odometry_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/45d4/7730/780/53c3e29f5673" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Information where the first telegram of the bg has been received. The information will be used to calculate whether a BG is already passed completely.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="expectedTelegrams">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/45a1/7730/780/53c3de643b19"/>
+									</pragmas>
+								</Field>
+								<Field name="receivedTelegrams">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/45aa/7730/780/53c3de8f38e3"/>
+									</pragmas>
+								</Field>
+								<Field name="BG_Message">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Coordinate_System::BTM::BG_Message_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/45b3/7730/780/53c3dea655fa"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/4596/7730/780/53c3dddb7c1f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>This data strucvture is used internally to collect balise telegrams</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="BGBuildStatus_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="initialised1">
+									<pragmas>
+										<ed:Value oid="!ed/4593/7730/780/53c3da841901" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>no telegrams received, data initialised and ready to start</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="BGComplete">
+									<pragmas>
+										<ed:Value oid="!ed/4594/7730/780/53c3dac31ee9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>collecting of the telegrams is completed, BG-message is ready to send</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="BGCollecting">
+									<pragmas>
+										<ed:Value oid="!ed/4595/7730/780/53c3db7e79f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>data are initialised, first telegrams have been received</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/4592/7730/780/53c3d9fc163" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>This type defines the status of collecting telegrams</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
 				<Operator kind="function" name="BuildBGMessage">
 					<inputs>
 						<Variable name="BaliseTelegram">
@@ -155,12 +288,60 @@
 						</ed:Operator>
 					</pragmas>
 				</Operator>
-				<Operator name="initialiseBG" href="Operator2.xscade"/>
-				<Operator name="copyTelegramHeaderToBG" href="Operator3.xscade"/>
-				<Operator name="checkCompleteBG" href="Operator4.xscade"/>
-				<Operator name="SendBG" href="Operator5.xscade"/>
-				<Operator name="copyAdditionalInformationToBG" href="Operator6.xscade"/>
-				<Operator name="checkOdometry" href="Operator7.xscade"/>
+				<Operator kind="node" name="initialiseBG">
+					<pragmas>
+						<ed:Operator oid="!ed/4575/225B/1144/53bf94a73529" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<diagrams>
+								<NetDiagram name="diagram_initialiseBG_1" landscape="true" format="A4 (210 297)" oid="!ed/4576/225B/1144/53bf94a72716"/>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="copyTelegramHeaderToBG">
+					<pragmas>
+						<ed:Operator oid="!ed/4577/225B/1144/53bf94d6e01" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<diagrams>
+								<NetDiagram name="diagram_copyTelegramHeaderToBG_1" landscape="true" format="A4 (210 297)" oid="!ed/4578/225B/1144/53bf94d66da0"/>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="checkCompleteBG">
+					<pragmas>
+						<ed:Operator oid="!ed/4579/225B/1144/53bf95317250" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<diagrams>
+								<NetDiagram name="diagram_checkCompleteBG_1" landscape="true" format="A4 (210 297)" oid="!ed/457a/225B/1144/53bf95311785"/>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="SendBG">
+					<pragmas>
+						<ed:Operator oid="!ed/457b/225B/1144/53bf9571744a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<diagrams>
+								<NetDiagram name="diagram_SendBG_1" landscape="true" format="A4 (210 297)" oid="!ed/457c/225B/1144/53bf957163d"/>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="copyAdditionalInformationToBG">
+					<pragmas>
+						<ed:Operator oid="!ed/457d/225B/1144/53bf95b86f4d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<diagrams>
+								<NetDiagram name="diagram_copyAdditionalInformationToBG_1" landscape="true" format="A4 (210 297)" oid="!ed/457e/225B/1144/53bf95b85052"/>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="checkOdometry">
+					<pragmas>
+						<ed:Operator oid="!ed/457f/225B/1144/53bf977d2dd8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<diagrams>
+								<NetDiagram name="diagram_checkOdometry_1" landscape="true" format="A4 (210 297)" oid="!ed/4580/225B/1144/53bf977d53f5"/>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/196d9/1CAF/1A3C/530497e979e7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
