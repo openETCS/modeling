@@ -81,9 +81,6 @@
     <windows>
       <children xsi:type="di:TabFolder">
         <children>
-          <emfPageIdentifier href="DataDictionary.notation#_G628ELvxEeOiVtMNvICbCg"/>
-        </children>
-        <children>
           <emfPageIdentifier href="DataDictionary.notation#_Gw__ELs5EeOvosries-3lw"/>
         </children>
         <children>
