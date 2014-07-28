@@ -3,13 +3,13 @@
 	<declarations>
 		<Package name="PerformEuroBaliseDecoding_Pkg">
 			<declarations>
-				<Operator kind="node" name="PerformEuroBaliseDecoding">
+				<Operator kind="function" name="PerformEuroBaliseDecoding">
 					<inputs>
 						<Variable name="API_balise">
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="BG_Types_Pkg::API_Telegram_T"/>
+										<TypeRef name="API_Telegram_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -73,7 +73,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="BG_Types_Pkg::API_Telegram_T"/>
+										<TypeRef name="API_Telegram_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -260,7 +260,7 @@
 									<then>
 										<Action>
 											<data>
-												<IfBlock name="has_valid_data_blk">
+												<IfBlock name="has_fresh_data_blk">
 													<block>
 														<IfNode>
 															<if>
@@ -273,7 +273,31 @@
 															<then>
 																<Action>
 																	<locals>
-																		<Variable name="_L7">
+																		<Variable name="_L6">
+																			<type>
+																				<NamedType>
+																					<type>
+																						<TypeRef name="API_Telegram_T"/>
+																					</type>
+																				</NamedType>
+																			</type>
+																			<pragmas>
+																				<ed:Variable oid="!ed/d678/6247/221C/53cbd6ea5ca6"/>
+																			</pragmas>
+																		</Variable>
+																		<Variable name="_L8">
+																			<type>
+																				<NamedType>
+																					<type>
+																						<TypeRef name="api_centerOfBalise_T"/>
+																					</type>
+																				</NamedType>
+																			</type>
+																			<pragmas>
+																				<ed:Variable oid="!ed/4828/7393/1E74/53cfb37845ab"/>
+																			</pragmas>
+																		</Variable>
+																		<Variable name="_L9">
 																			<type>
 																				<NamedType>
 																					<type>
@@ -282,72 +306,12 @@
 																				</NamedType>
 																			</type>
 																			<pragmas>
-																				<ed:Variable oid="!ed/d677/6247/221C/53cbd6ea6239"/>
-																			</pragmas>
-																		</Variable>
-																		<Variable name="_L6">
-																			<type>
-																				<NamedType>
-																					<type>
-																						<TypeRef name="BG_Types_Pkg::API_Telegram_T"/>
-																					</type>
-																				</NamedType>
-																			</type>
-																			<pragmas>
-																				<ed:Variable oid="!ed/d678/6247/221C/53cbd6ea5ca6"/>
-																			</pragmas>
-																		</Variable>
-																		<Variable name="_L5">
-																			<type>
-																				<NamedType>
-																					<type>
-																						<TypeRef name="BG_Types_Pkg::AdditionalInformation_T"/>
-																					</type>
-																				</NamedType>
-																			</type>
-																			<pragmas>
-																				<ed:Variable oid="!ed/d679/6247/221C/53cbd6ea29ff"/>
-																			</pragmas>
-																		</Variable>
-																		<Variable name="_L4">
-																			<type>
-																				<NamedType>
-																					<type>
-																						<TypeRef name="BG_Types_Pkg::TelegramHeader_T"/>
-																					</type>
-																				</NamedType>
-																			</type>
-																			<pragmas>
-																				<ed:Variable oid="!ed/d67a/6247/221C/53cbd6ea4ac4"/>
-																			</pragmas>
-																		</Variable>
-																		<Variable name="_L3">
-																			<type>
-																				<NamedType>
-																					<type>
-																						<TypeRef name="bool"/>
-																					</type>
-																				</NamedType>
-																			</type>
-																			<pragmas>
-																				<ed:Variable oid="!ed/d67b/6247/221C/53cbd6ea51f5"/>
+																				<ed:Variable oid="!ed/b15a/1F77/1BA0/53d643e95267"/>
 																			</pragmas>
 																		</Variable>
 																	</locals>
 																	<data>
-																		<!-- _L3 = false; -->
-																		<Equation>
-																			<lefts>
-																				<VariableRef name="_L3"/>
-																			</lefts>
-																			<right>
-																				<ConstValue value="false"/>
-																			</right>
-																			<pragmas>
-																				<ed:Equation oid="!ed/d66f/6247/221C/53cbd6ea7445"/>
-																			</pragmas>
-																		</Equation>
-																		<!-- Decoded_Telegram = _L7; -->
+																		<!-- Decoded_Telegram = _L9; -->
 																		<Equation>
 																			<lefts>
 																				<VariableRef name="Decoded_Telegram"/>
@@ -355,60 +319,12 @@
 																			<right>
 																				<IdExpression>
 																					<path>
-																						<ConstVarRef name="_L7"/>
+																						<ConstVarRef name="_L9"/>
 																					</path>
 																				</IdExpression>
 																			</right>
 																			<pragmas>
 																				<ed:Equation oid="!ed/d670/6247/221C/53cbd6ea6476"/>
-																			</pragmas>
-																		</Equation>
-																		<!-- _L4 = bad_balise_init; -->
-																		<Equation>
-																			<lefts>
-																				<VariableRef name="_L4"/>
-																			</lefts>
-																			<right>
-																				<IdExpression>
-																					<path>
-																						<ConstVarRef name="bad_balise_init"/>
-																					</path>
-																				</IdExpression>
-																			</right>
-																			<pragmas>
-																				<ed:Equation oid="!ed/d671/6247/221C/53cbd6ea4036"/>
-																			</pragmas>
-																		</Equation>
-																		<!-- _ = _L6; -->
-																		<Equation>
-																			<lefts>
-																				<VariableRef name="_"/>
-																			</lefts>
-																			<right>
-																				<IdExpression>
-																					<path>
-																						<ConstVarRef name="_L6"/>
-																					</path>
-																				</IdExpression>
-																			</right>
-																			<pragmas>
-																				<ed:Equation oid="!ed/d672/6247/221C/53cbd6ea48b4"/>
-																			</pragmas>
-																		</Equation>
-																		<!-- _L5 = empty_packets_init; -->
-																		<Equation>
-																			<lefts>
-																				<VariableRef name="_L5"/>
-																			</lefts>
-																			<right>
-																				<IdExpression>
-																					<path>
-																						<ConstVarRef name="empty_packets_init"/>
-																					</path>
-																				</IdExpression>
-																			</right>
-																			<pragmas>
-																				<ed:Equation oid="!ed/d673/6247/221C/53cbd6ea39ec"/>
 																			</pragmas>
 																		</Equation>
 																		<!-- _L6 = API_balise; -->
@@ -427,42 +343,60 @@
 																				<ed:Equation oid="!ed/d674/6247/221C/53cbd6ea6c59"/>
 																			</pragmas>
 																		</Equation>
-																		<!-- _L7 = (make BG_Types_Pkg::Telegram_T)(_L3, _L4, _L5); -->
+																		<!-- _L8 = _L6.centerOfBalisePosition; -->
 																		<Equation>
 																			<lefts>
-																				<VariableRef name="_L7"/>
+																				<VariableRef name="_L8"/>
 																			</lefts>
 																			<right>
-																				<!-- (make BG_Types_Pkg::Telegram_T)(_L3, _L4, _L5) -->
-																				<CallExpression>
-																					<operator>
-																						<MakeOp name="8">
-																							<type>
-																								<TypeRef name="BG_Types_Pkg::Telegram_T"/>
-																							</type>
-																						</MakeOp>
-																					</operator>
-																					<callParameters>
+																				<!-- _L6.centerOfBalisePosition -->
+																				<PrjOp name="7">
+																					<flow>
 																						<IdExpression>
 																							<path>
-																								<ConstVarRef name="_L3"/>
+																								<ConstVarRef name="_L6"/>
 																							</path>
 																						</IdExpression>
-																						<IdExpression>
-																							<path>
-																								<ConstVarRef name="_L4"/>
-																							</path>
-																						</IdExpression>
-																						<IdExpression>
-																							<path>
-																								<ConstVarRef name="_L5"/>
-																							</path>
-																						</IdExpression>
-																					</callParameters>
-																				</CallExpression>
+																					</flow>
+																					<with>
+																						<Label name="centerOfBalisePosition"/>
+																					</with>
+																				</PrjOp>
 																			</right>
 																			<pragmas>
-																				<ed:Equation oid="!ed/d675/6247/221C/53cbd6ea1044"/>
+																				<ed:Equation oid="!ed/4827/7393/1E74/53cfb3785dee"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- _ = _L8; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="_"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="_L8"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/b12d/1F77/1BA0/53d63e3b5dd"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- _L9 = cEmptyBaliseTelegramInit; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="_L9"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="cEmptyBaliseTelegramInit"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/b159/1F77/1BA0/53d643e92498"/>
 																			</pragmas>
 																		</Equation>
 																	</data>
@@ -474,100 +408,68 @@
 																					<comment>Infomration about the balise is not known.</comment>
 																					<comment>However, information about the event has to be passed to the bg-message builder</comment>
 																					<presentationElements>
-																						<EquationGE kind="OBJ_LIT" presentable="!ed/d66f/6247/221C/53cbd6ea7445">
-																							<position>
-																								<Point x="11377" y="714"/>
-																							</position>
-																							<size>
-																								<Size width="212" height="318"/>
-																							</size>
-																						</EquationGE>
 																						<EquationGE presentable="!ed/d670/6247/221C/53cbd6ea6476">
 																							<position>
-																								<Point x="22225" y="1508"/>
+																								<Point x="21616" y="5212"/>
 																							</position>
 																							<size>
 																								<Size width="318" height="503"/>
 																							</size>
 																						</EquationGE>
-																						<EquationGE kind="OBJ_LIT" presentable="!ed/d671/6247/221C/53cbd6ea4036">
-																							<position>
-																								<Point x="12753" y="1614"/>
-																							</position>
-																							<size>
-																								<Size width="212" height="317"/>
-																							</size>
-																						</EquationGE>
-																						<EquationGE presentable="!ed/d672/6247/221C/53cbd6ea48b4">
-																							<position>
-																								<Point x="3889" y="1244"/>
-																							</position>
-																							<size>
-																								<Size width="503" height="502"/>
-																							</size>
-																						</EquationGE>
-																						<EquationGE kind="OBJ_LIT" presentable="!ed/d673/6247/221C/53cbd6ea39ec">
-																							<position>
-																								<Point x="12541" y="2487"/>
-																							</position>
-																							<size>
-																								<Size width="212" height="318"/>
-																							</size>
-																						</EquationGE>
 																						<EquationGE presentable="!ed/d674/6247/221C/53cbd6ea6c59">
 																							<position>
-																								<Point x="1296" y="1244"/>
+																								<Point x="1296" y="4683"/>
 																							</position>
 																							<size>
 																								<Size width="265" height="502"/>
 																							</size>
 																						</EquationGE>
-																						<EquationGE presentable="!ed/d675/6247/221C/53cbd6ea1044">
+																						<EquationGE presentable="!ed/4827/7393/1E74/53cfb3785dee">
 																							<position>
-																								<Point x="13891" y="0"/>
+																								<Point x="3307" y="4207"/>
 																							</position>
 																							<size>
-																								<Size width="4127" height="3519"/>
+																								<Size width="2408" height="1482"/>
 																							</size>
 																						</EquationGE>
-																						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/d673/6247/221C/53cbd6ea39ec" dstEquation="!ed/d675/6247/221C/53cbd6ea1044">
+																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d674/6247/221C/53cbd6ea6c59" dstEquation="!ed/4827/7393/1E74/53cfb3785dee">
 																							<positions>
-																								<Point x="12753" y="2646"/>
-																								<Point x="13309" y="2646"/>
-																								<Point x="13309" y="2646"/>
-																								<Point x="13891" y="2646"/>
+																								<Point x="1561" y="4948"/>
+																								<Point x="2434" y="4948"/>
+																								<Point x="2434" y="4948"/>
+																								<Point x="3307" y="4948"/>
 																							</positions>
 																						</Edge>
-																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d66f/6247/221C/53cbd6ea7445" dstEquation="!ed/d675/6247/221C/53cbd6ea1044">
+																						<EquationGE presentable="!ed/b12d/1F77/1BA0/53d63e3b5dd">
+																							<position>
+																								<Point x="7276" y="4577"/>
+																							</position>
+																							<size>
+																								<Size width="741" height="741"/>
+																							</size>
+																						</EquationGE>
+																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/4827/7393/1E74/53cfb3785dee" dstEquation="!ed/b12d/1F77/1BA0/53d63e3b5dd">
 																							<positions>
-																								<Point x="11589" y="873"/>
-																								<Point x="12726" y="873"/>
-																								<Point x="12726" y="873"/>
-																								<Point x="13891" y="873"/>
+																								<Point x="5715" y="4948"/>
+																								<Point x="6668" y="4948"/>
+																								<Point x="6668" y="4948"/>
+																								<Point x="7646" y="4948"/>
 																							</positions>
 																						</Edge>
-																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d674/6247/221C/53cbd6ea6c59" dstEquation="!ed/d672/6247/221C/53cbd6ea48b4">
+																						<EquationGE kind="OBJ_LIT" presentable="!ed/b159/1F77/1BA0/53d643e92498">
+																							<position>
+																								<Point x="18415" y="5318"/>
+																							</position>
+																							<size>
+																								<Size width="212" height="318"/>
+																							</size>
+																						</EquationGE>
+																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/b159/1F77/1BA0/53d643e92498" dstEquation="!ed/d670/6247/221C/53cbd6ea6476">
 																							<positions>
-																								<Point x="1561" y="1508"/>
-																								<Point x="2858" y="1508"/>
-																								<Point x="2858" y="1508"/>
-																								<Point x="4154" y="1508"/>
-																							</positions>
-																						</Edge>
-																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d675/6247/221C/53cbd6ea1044" dstEquation="!ed/d670/6247/221C/53cbd6ea6476">
-																							<positions>
-																								<Point x="18018" y="1773"/>
-																								<Point x="20135" y="1773"/>
-																								<Point x="20135" y="1773"/>
-																								<Point x="22278" y="1773"/>
-																							</positions>
-																						</Edge>
-																						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/d671/6247/221C/53cbd6ea4036" dstEquation="!ed/d675/6247/221C/53cbd6ea1044">
-																							<positions>
-																								<Point x="12965" y="1773"/>
-																								<Point x="13414" y="1773"/>
-																								<Point x="13414" y="1773"/>
-																								<Point x="13891" y="1773"/>
+																								<Point x="18627" y="5477"/>
+																								<Point x="20161" y="5477"/>
+																								<Point x="20161" y="5477"/>
+																								<Point x="21669" y="5477"/>
 																							</positions>
 																						</Edge>
 																					</presentationElements>
@@ -584,7 +486,7 @@
 																			<type>
 																				<NamedType>
 																					<type>
-																						<TypeRef name="BG_Types_Pkg::API_Telegram_T"/>
+																						<TypeRef name="API_Telegram_T"/>
 																					</type>
 																				</NamedType>
 																			</type>
@@ -592,7 +494,7 @@
 																				<ed:Variable oid="!ed/d668/6247/221C/53cbd6ea5281"/>
 																			</pragmas>
 																		</Variable>
-																		<Variable name="_L6">
+																		<Variable name="_L11">
 																			<type>
 																				<NamedType>
 																					<type>
@@ -601,48 +503,12 @@
 																				</NamedType>
 																			</type>
 																			<pragmas>
-																				<ed:Variable oid="!ed/d669/6247/221C/53cbd6ea311c"/>
-																			</pragmas>
-																		</Variable>
-																		<Variable name="_L5">
-																			<type>
-																				<NamedType>
-																					<type>
-																						<TypeRef name="bool"/>
-																					</type>
-																				</NamedType>
-																			</type>
-																			<pragmas>
-																				<ed:Variable oid="!ed/d66a/6247/221C/53cbd6ea1e69"/>
-																			</pragmas>
-																		</Variable>
-																		<Variable name="_L9">
-																			<type>
-																				<NamedType>
-																					<type>
-																						<TypeRef name="BG_Types_Pkg::TelegramHeader_T"/>
-																					</type>
-																				</NamedType>
-																			</type>
-																			<pragmas>
-																				<ed:Variable oid="!ed/d682/6247/221C/53cbd9f235bc"/>
-																			</pragmas>
-																		</Variable>
-																		<Variable name="_L10">
-																			<type>
-																				<NamedType>
-																					<type>
-																						<TypeRef name="BG_Types_Pkg::AdditionalInformation_T"/>
-																					</type>
-																				</NamedType>
-																			</type>
-																			<pragmas>
-																				<ed:Variable oid="!ed/d698/6247/221C/53cbda853883"/>
+																				<ed:Variable oid="!ed/b2a0/1F77/1BA0/53d64f2e34a2"/>
 																			</pragmas>
 																		</Variable>
 																	</locals>
 																	<data>
-																		<!-- Decoded_Telegram = _L6; -->
+																		<!-- Decoded_Telegram = _L11; -->
 																		<Equation>
 																			<lefts>
 																				<VariableRef name="Decoded_Telegram"/>
@@ -650,62 +516,12 @@
 																			<right>
 																				<IdExpression>
 																					<path>
-																						<ConstVarRef name="_L6"/>
+																						<ConstVarRef name="_L11"/>
 																					</path>
 																				</IdExpression>
 																			</right>
 																			<pragmas>
 																				<ed:Equation oid="!ed/d662/6247/221C/53cbd6ea3c0a"/>
-																			</pragmas>
-																		</Equation>
-																		<!-- _L5 = true; -->
-																		<Equation>
-																			<lefts>
-																				<VariableRef name="_L5"/>
-																			</lefts>
-																			<right>
-																				<ConstValue value="true"/>
-																			</right>
-																			<pragmas>
-																				<ed:Equation oid="!ed/d663/6247/221C/53cbd6ea4687"/>
-																			</pragmas>
-																		</Equation>
-																		<!-- _L6 = (make BG_Types_Pkg::Telegram_T)(_L5, _L9, _L10); -->
-																		<Equation>
-																			<lefts>
-																				<VariableRef name="_L6"/>
-																			</lefts>
-																			<right>
-																				<!-- (make BG_Types_Pkg::Telegram_T)(_L5, _L9, _L10) -->
-																				<CallExpression>
-																					<operator>
-																						<MakeOp name="7">
-																							<type>
-																								<TypeRef name="BG_Types_Pkg::Telegram_T"/>
-																							</type>
-																						</MakeOp>
-																					</operator>
-																					<callParameters>
-																						<IdExpression>
-																							<path>
-																								<ConstVarRef name="_L5"/>
-																							</path>
-																						</IdExpression>
-																						<IdExpression>
-																							<path>
-																								<ConstVarRef name="_L9"/>
-																							</path>
-																						</IdExpression>
-																						<IdExpression>
-																							<path>
-																								<ConstVarRef name="_L10"/>
-																							</path>
-																						</IdExpression>
-																					</callParameters>
-																				</CallExpression>
-																			</right>
-																			<pragmas>
-																				<ed:Equation oid="!ed/d665/6247/221C/53cbd6ea595"/>
 																			</pragmas>
 																		</Equation>
 																		<!-- _L7 = API_balise; -->
@@ -724,52 +540,32 @@
 																				<ed:Equation oid="!ed/d666/6247/221C/53cbd6ea3159"/>
 																			</pragmas>
 																		</Equation>
-																		<!-- _L9 = _L7.api_header; -->
+																		<!-- _L11 = btmSupportPkg::transferTelegram(_L7); -->
 																		<Equation>
 																			<lefts>
-																				<VariableRef name="_L9"/>
+																				<VariableRef name="_L11"/>
 																			</lefts>
 																			<right>
-																				<!-- _L7.api_header -->
-																				<PrjOp name="5">
-																					<flow>
+																				<!-- btmSupportPkg::transferTelegram(_L7) -->
+																				<CallExpression>
+																					<operator>
+																						<OpCall name="1">
+																							<operator>
+																								<OperatorRef name="btmSupportPkg::transferTelegram"/>
+																							</operator>
+																						</OpCall>
+																					</operator>
+																					<callParameters>
 																						<IdExpression>
 																							<path>
 																								<ConstVarRef name="_L7"/>
 																							</path>
 																						</IdExpression>
-																					</flow>
-																					<with>
-																						<Label name="api_header"/>
-																					</with>
-																				</PrjOp>
+																					</callParameters>
+																				</CallExpression>
 																			</right>
 																			<pragmas>
-																				<ed:Equation oid="!ed/d681/6247/221C/53cbd9f2179"/>
-																			</pragmas>
-																		</Equation>
-																		<!-- _L10 = _L7.api_packets; -->
-																		<Equation>
-																			<lefts>
-																				<VariableRef name="_L10"/>
-																			</lefts>
-																			<right>
-																				<!-- _L7.api_packets -->
-																				<PrjOp name="6">
-																					<flow>
-																						<IdExpression>
-																							<path>
-																								<ConstVarRef name="_L7"/>
-																							</path>
-																						</IdExpression>
-																					</flow>
-																					<with>
-																						<Label name="api_packets"/>
-																					</with>
-																				</PrjOp>
-																			</right>
-																			<pragmas>
-																				<ed:Equation oid="!ed/d697/6247/221C/53cbda8519fd"/>
+																				<ed:Equation oid="!ed/b29f/1F77/1BA0/53d64f2e6528"/>
 																			</pragmas>
 																		</Equation>
 																	</data>
@@ -777,101 +573,47 @@
 																		<ed:Action oid="!ed/d660/6247/221C/53cbd6ea6e06" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 																			<diagrams>
 																				<NetDiagram name="diagram_Else_1" landscape="true" format="A4 (210 297)" oid="!ed/d667/6247/221C/53cbd6ea40fa">
+																					<comment>Situation: fresh data have been delivered and balise data are valid.</comment>
+																					<comment>In this situation copieng of telegram, odometry and packets is to be done.</comment>
 																					<presentationElements>
 																						<EquationGE presentable="!ed/d662/6247/221C/53cbd6ea3c0a">
 																							<position>
-																								<Point x="25294" y="2275"/>
+																								<Point x="9234" y="2170"/>
 																							</position>
 																							<size>
 																								<Size width="318" height="503"/>
 																							</size>
 																						</EquationGE>
-																						<EquationGE kind="OBJ_LIT" presentable="!ed/d663/6247/221C/53cbd6ea4687">
-																							<position>
-																								<Point x="15822" y="1455"/>
-																							</position>
-																							<size>
-																								<Size width="212" height="317"/>
-																							</size>
-																						</EquationGE>
-																						<EquationGE presentable="!ed/d665/6247/221C/53cbd6ea595">
-																							<position>
-																								<Point x="17039" y="767"/>
-																							</position>
-																							<size>
-																								<Size width="4128" height="3519"/>
-																							</size>
-																						</EquationGE>
 																						<EquationGE presentable="!ed/d666/6247/221C/53cbd6ea3159">
 																							<position>
-																								<Point x="1296" y="1984"/>
+																								<Point x="1323" y="2170"/>
 																							</position>
 																							<size>
 																								<Size width="265" height="503"/>
 																							</size>
 																						</EquationGE>
-																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d663/6247/221C/53cbd6ea4687" dstEquation="!ed/d665/6247/221C/53cbd6ea595">
-																							<positions>
-																								<Point x="16034" y="1614"/>
-																								<Point x="16563" y="1614"/>
-																								<Point x="16563" y="1614"/>
-																								<Point x="17039" y="1614"/>
-																							</positions>
-																						</Edge>
-																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d665/6247/221C/53cbd6ea595" dstEquation="!ed/d662/6247/221C/53cbd6ea3c0a">
-																							<positions>
-																								<Point x="21167" y="2540"/>
-																								<Point x="23257" y="2540"/>
-																								<Point x="23257" y="2540"/>
-																								<Point x="25347" y="2540"/>
-																							</positions>
-																						</Edge>
-																						<EquationGE presentable="!ed/d681/6247/221C/53cbd9f2179">
+																						<EquationGE presentable="!ed/b29f/1F77/1BA0/53d64f2e6528">
 																							<position>
-																								<Point x="5847" y="1217"/>
+																								<Point x="4040" y="1500"/>
 																							</position>
 																							<size>
-																								<Size width="3784" height="1111"/>
+																								<Size width="3218" height="1868"/>
 																							</size>
 																						</EquationGE>
-																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d666/6247/221C/53cbd6ea3159" dstEquation="!ed/d681/6247/221C/53cbd9f2179">
+																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/b29f/1F77/1BA0/53d64f2e6528" dstEquation="!ed/d662/6247/221C/53cbd6ea3c0a">
 																							<positions>
-																								<Point x="1561" y="2249"/>
-																								<Point x="3704" y="2249"/>
-																								<Point x="3704" y="1773"/>
-																								<Point x="5847" y="1773"/>
+																								<Point x="7250" y="2434"/>
+																								<Point x="8176" y="2434"/>
+																								<Point x="8176" y="2434"/>
+																								<Point x="9287" y="2434"/>
 																							</positions>
 																						</Edge>
-																						<EquationGE presentable="!ed/d697/6247/221C/53cbda8519fd">
-																							<position>
-																								<Point x="5847" y="2884"/>
-																							</position>
-																							<size>
-																								<Size width="3784" height="1032"/>
-																							</size>
-																						</EquationGE>
-																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d666/6247/221C/53cbd6ea3159" dstEquation="!ed/d697/6247/221C/53cbda8519fd">
+																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d666/6247/221C/53cbd6ea3159" dstEquation="!ed/b29f/1F77/1BA0/53d64f2e6528">
 																							<positions>
-																								<Point x="1561" y="2249"/>
-																								<Point x="3704" y="2249"/>
-																								<Point x="3704" y="3413"/>
-																								<Point x="5847" y="3413"/>
-																							</positions>
-																						</Edge>
-																						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/d697/6247/221C/53cbda8519fd" dstEquation="!ed/d665/6247/221C/53cbd6ea595">
-																							<positions>
-																								<Point x="9631" y="3413"/>
-																								<Point x="13335" y="3413"/>
-																								<Point x="13335" y="3413"/>
-																								<Point x="17039" y="3413"/>
-																							</positions>
-																						</Edge>
-																						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/d681/6247/221C/53cbd9f2179" dstEquation="!ed/d665/6247/221C/53cbd6ea595">
-																							<positions>
-																								<Point x="9631" y="1773"/>
-																								<Point x="13335" y="1773"/>
-																								<Point x="13335" y="2540"/>
-																								<Point x="17039" y="2540"/>
+																								<Point x="1588" y="2434"/>
+																								<Point x="2805" y="2434"/>
+																								<Point x="2805" y="2434"/>
+																								<Point x="4048" y="2434"/>
 																							</positions>
 																						</Edge>
 																					</presentationElements>
@@ -915,6 +657,10 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/3055f/1CAF/1A3C/5304a9b05d79" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>This module defines the interface to the API.</comment>
+							<comment>Assumption is we do not perform a decoding in scade. we get proper decoded telegrams from the API.</comment>
+							<comment></comment>
+							<comment>Preferred Interface : (Header + Flag + odometry ) + addInf</comment>
 							<diagrams>
 								<NetDiagram name="diagram_PerformEuroBaliseDecoding_1" landscape="true" format="A4 (210 297)" oid="!ed/30560/1CAF/1A3C/5304a9b0141c">
 									<presentationElements>
@@ -946,8 +692,8 @@
 											<positions>
 												<Point x="2381" y="2540"/>
 												<Point x="4683" y="2540"/>
-												<Point x="4683" y="2540"/>
-												<Point x="6985" y="2540"/>
+												<Point x="4683" y="2514"/>
+												<Point x="6985" y="2514"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/d325/6247/221C/53cbcc9c21ce">
@@ -986,8 +732,8 @@
 											<positions>
 												<Point x="11748" y="5741"/>
 												<Point x="13653" y="5741"/>
-												<Point x="13653" y="5741"/>
-												<Point x="13679" y="5741"/>
+												<Point x="13653" y="5715"/>
+												<Point x="13679" y="5715"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/d399/6247/221C/53cbd48f52c0">
