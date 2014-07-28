@@ -3,6 +3,76 @@
 	<declarations>
 		<Package name="Obu_BasicTypes_Pkg">
 			<declarations>
+				<Constant name="cLocWithInAcc_0">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="LocWithInAcc_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- {nominal : 0, d_min : 0, d_max : 0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="nominal">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="d_min">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="d_max">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/28cff/565E/1EF0/53d12304240f"/>
+					</pragmas>
+				</Constant>
+				<Constant name="cOdometryInitialValue">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="OdometryLocations_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- {o_nominal : 0, o_min : 0, o_max : 0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="o_nominal">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="o_min">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="o_max">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/28d1e/565E/1EF0/53d123c6c69" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Initial odometry values</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
 				<Type name="L_internal_Type">
 					<definition>
 						<NamedType>
@@ -73,13 +143,214 @@
 						</ed:Type>
 					</pragmas>
 				</Type>
+				<Type name="Location_T">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="L_internal_Type"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1c796/1CCC/1EE4/53d0e7cd3b13" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Generic for all length, distance and location calculation: in cm</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="LocWithInAcc_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="nominal">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c7a3/1CCC/1EE4/53d0e8277d4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Nominal location</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="d_min">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c7a4/1CCC/1EE4/53d0e827101d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Min Location = nominal + d_min (typically &lt; 0)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="d_max">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c7a5/1CCC/1EE4/53d0e82742a9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Max Location = nominal + d_max</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1c7a2/1CCC/1EE4/53d0e82738dd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Location with +/- tolerance</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="OdometryLocations_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="o_nominal">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c7b2/1CCC/1EE4/53d0e86279f2" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Nominal odometry value</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="o_min">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c7b3/1CCC/1EE4/53d0e8623e8a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Min. distance = o_min2 - o_min1</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="o_max">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c7b4/1CCC/1EE4/53d0e8626b13" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Max distance = o_max2 - o_max1</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1c7b1/1CCC/1EE4/53d0e8622070" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Location information provided by odometry</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="odometry_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c7c2/1CCC/1EE4/53d0e87d7fec"/>
+									</pragmas>
+								</Field>
+								<Field name="timestamp">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c7c3/1CCC/1EE4/53d0e87d5b25"/>
+									</pragmas>
+								</Field>
+								<Field name="odo">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="OdometryLocations_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c7c4/1CCC/1EE4/53d0e87d36ad" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Odometry values</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="speed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Speed_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c7c5/1CCC/1EE4/53d0e87d1f6a"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1c7c1/1CCC/1EE4/53d0e87d25d5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Odometry values with time stamp</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="Speed_T">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="V_internal_Type"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1c7cc/1CCC/1EE4/53d0e893263a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>General speed type: in km/h.</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/816b/4AD8/11D4/5304c4d14d95" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 					<comment>Standardized basic type definitions to be used within all internal OBU functions</comment>
 					<diagrams>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/816c/4AD8/11D4/5304c4d13614" blockKind="constants"/>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/816d/4AD8/11D4/5304c4d1657f" blockKind="types" columnsSize="0, 367, 150, 499"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/816d/4AD8/11D4/5304c4d1657f" blockKind="types" columnsSize="0, 308, 164, 499"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/816e/4AD8/11D4/5304c4d131f9" blockKind="sensors"/>
 					</diagrams>
 				</ed:Package>

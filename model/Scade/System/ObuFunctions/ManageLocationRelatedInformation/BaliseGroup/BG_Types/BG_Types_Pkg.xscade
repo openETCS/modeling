@@ -20,7 +20,24 @@
 						</ed:Constant>
 					</pragmas>
 				</Constant>
-				<Constant name="cMaxListBGs">
+				<Constant name="cNID_LRBG_unknown">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="NID_LRBG"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="16777215"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/9ae9e/565E/1EF0/53d1270cbdd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>type NID_LRBG = int&#x9; -- 16777215 = Unknown </comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cNID_LRBG_14Bits_Multiplicator">
 					<type>
 						<NamedType>
 							<type>
@@ -29,10 +46,29 @@
 						</NamedType>
 					</type>
 					<value>
-						<ConstValue value="20"/>
+						<ConstValue value="16384"/>
 					</value>
 					<pragmas>
-						<ed:Constant oid="!ed/164a2/45B6/1324/53c7af696ddc"/>
+						<ed:Constant oid="!ed/9ae8f/565E/1EF0/53d1270c7291" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>16384: Serves to calculate NID_LRBG = 16384 * NID_C + NID_BG</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cNID_BG_unknown">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="NID_BG"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="16383"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/9ae81/565E/1EF0/53d1270c455c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>type NID_BG = int&#x9; /* MinVal = 0, MaxVal = 16382 */&#x9; -- 16383 = Identity_is_unknown_(only_to_be_used_for_Linking_information)</comment>
+						</ed:Constant>
 					</pragmas>
 				</Constant>
 				<Constant name="cMaxNoBalises">
@@ -47,9 +83,24 @@
 						<ConstValue value="8"/>
 					</value>
 					<pragmas>
-						<ed:Constant oid="!ed/164b0/45B6/1324/53c7af7211a6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+						<ed:Constant oid="!ed/1c895/4F04/13D0/53d60101176b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 							<comment>Max. number of balises in a balise group</comment>
 						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cMaxListBGs">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="20"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1c887/4F04/13D0/53d601011662"/>
 					</pragmas>
 				</Constant>
 				<Type name="BG_Header_T">
@@ -391,6 +442,327 @@
 						</ed:Type>
 					</pragmas>
 				</Type>
+				<Type name="passedBG_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/172725/1CCC/1EE4/53d11ef94306"/>
+									</pragmas>
+								</Field>
+								<Field name="timestamp">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/172726/1CCC/1EE4/53d11ef94d8f"/>
+									</pragmas>
+								</Field>
+								<Field name="odometrystamp">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::OdometryLocations_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/172727/1CCC/1EE4/53d11ef923e4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Odometry values when the balise group was passed</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="BG_centerDetectionInaccuraccuracies">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::LocWithInAcc_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/172728/1CCC/1EE4/53d11ef9238b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Location inaccuries caused by the balise group center detection</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="BG_Header">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BG_Header_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/172729/1CCC/1EE4/53d11ef92f57" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Common header of the balise group datagram</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="linkedBGs">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="LinkedBGs_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/17272a/1CCC/1EE4/53d11ef9739e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>The linked balise groups announced from this BG.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="noCoordinateSystemHasBeenAssigned">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/17272b/1CCC/1EE4/53d11ef917f5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.4.2, 3.6.3.1.4: Every balise group has its own co-ordinate system</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="trainOrientationToBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_DIRLRBG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/17272c/1CCC/1EE4/53d11ef91edf" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.6.1.3: Orientation of the train in relation to the direction of the BG</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="trainRunningDirectionToBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_DIRTRAIN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/17272d/1CCC/1EE4/53d11ef91805" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.6.1.3: Direction of train movement in relation to the BG orientation</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="passingSpeed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::Speed_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/17272e/1CCC/1EE4/53d11ef95d6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Train speed while passing the BG; its sign characterizes the passing direction based on odometry information</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/172724/1CCC/1EE4/53d11ef9129e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Information reveived from a BG passede</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="AdditionalInformation_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="addInfo">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c854/4F04/13D0/53d600154b3f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>This type is not yet defined</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="linkingPackets">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="LinkedBGs_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c855/4F04/13D0/53d600155c5b"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1c853/4F04/13D0/53d600152835" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Packets received from balises</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="TelegramHeader_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="q_updown">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_UPDOWN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c870/4F04/13D0/53d6006b5e59"/>
+									</pragmas>
+								</Field>
+								<Field name="m_version">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_VERSION"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c871/4F04/13D0/53d6006b2a5f"/>
+									</pragmas>
+								</Field>
+								<Field name="q_media">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_MEDIA"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c872/4F04/13D0/53d6006b1187"/>
+									</pragmas>
+								</Field>
+								<Field name="n_pig">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="N_PIG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c873/4F04/13D0/53d6006b5d15"/>
+									</pragmas>
+								</Field>
+								<Field name="n_total">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="N_TOTAL"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c874/4F04/13D0/53d6006bf4b"/>
+									</pragmas>
+								</Field>
+								<Field name="m_dup">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_DUP"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c875/4F04/13D0/53d6006b3239"/>
+									</pragmas>
+								</Field>
+								<Field name="m_mcount">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_MCOUNT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c876/4F04/13D0/53d6006b7430"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_c">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_C"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c877/4F04/13D0/53d6006b67b3"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_bg">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_BG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c878/4F04/13D0/53d6006b73e1"/>
+									</pragmas>
+								</Field>
+								<Field name="q_link">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_LINK"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c879/4F04/13D0/53d6006b225f"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1c86f/4F04/13D0/53d6006b2c00" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>This structure is not &quot;packed&quot; to bit boundaries</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
 				<Type name="TrainInfo_T">
 					<definition>
 						<Struct>
@@ -404,7 +776,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16567/45B6/1324/53c7af902955"/>
+										<ed:Field oid="!ed/1c949/4F04/13D0/53d601497a05"/>
 									</pragmas>
 								</Field>
 								<Field name="m_mode">
@@ -416,14 +788,14 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16568/45B6/1324/53c7af901987"/>
+										<ed:Field oid="!ed/1c94a/4F04/13D0/53d601497490"/>
 									</pragmas>
 								</Field>
 							</fields>
 						</Struct>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/16566/45B6/1324/53c7af908c6"/>
+						<ed:Type oid="!ed/1c948/4F04/13D0/53d601497d15"/>
 					</pragmas>
 				</Type>
 				<Type name="TelegramHeaderFlag_T">
@@ -439,26 +811,26 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1655b/45B6/1324/53c7af906d39"/>
+										<ed:Field oid="!ed/1c93d/4F04/13D0/53d60149626c"/>
 									</pragmas>
 								</Field>
 								<Field name="header">
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="TelegramHeader_T"/>
+												<TypeRef name="TelegramHeader_T1"/>
 											</type>
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1655c/45B6/1324/53c7af905c2f"/>
+										<ed:Field oid="!ed/1c93e/4F04/13D0/53d601497649"/>
 									</pragmas>
 								</Field>
 							</fields>
 						</Struct>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/1655a/45B6/1324/53c7af901f06"/>
+						<ed:Type oid="!ed/1c93c/4F04/13D0/53d601494afb"/>
 					</pragmas>
 				</Type>
 				<Type name="TelegramHeaderArray_T">
@@ -481,10 +853,10 @@
 						</Table>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/16551/45B6/1324/53c7af903174"/>
+						<ed:Type oid="!ed/1c933/4F04/13D0/53d601496a23"/>
 					</pragmas>
 				</Type>
-				<Type name="TelegramHeader_T">
+				<Type name="TelegramHeader_T1">
 					<definition>
 						<Struct>
 							<fields>
@@ -497,7 +869,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16541/45B6/1324/53c7af902987"/>
+										<ed:Field oid="!ed/1c923/4F04/13D0/53d6014917d7"/>
 									</pragmas>
 								</Field>
 								<Field name="m_version">
@@ -509,7 +881,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16542/45B6/1324/53c7af901e05"/>
+										<ed:Field oid="!ed/1c924/4F04/13D0/53d601491825"/>
 									</pragmas>
 								</Field>
 								<Field name="q_media">
@@ -521,7 +893,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16543/45B6/1324/53c7af90672c"/>
+										<ed:Field oid="!ed/1c925/4F04/13D0/53d601492344"/>
 									</pragmas>
 								</Field>
 								<Field name="n_pig">
@@ -533,7 +905,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16544/45B6/1324/53c7af903a00"/>
+										<ed:Field oid="!ed/1c926/4F04/13D0/53d601495940"/>
 									</pragmas>
 								</Field>
 								<Field name="n_total">
@@ -545,7 +917,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16545/45B6/1324/53c7af90101c"/>
+										<ed:Field oid="!ed/1c927/4F04/13D0/53d601497ef6"/>
 									</pragmas>
 								</Field>
 								<Field name="m_dup">
@@ -557,7 +929,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16546/45B6/1324/53c7af9055ae"/>
+										<ed:Field oid="!ed/1c928/4F04/13D0/53d60149dc8"/>
 									</pragmas>
 								</Field>
 								<Field name="m_mcount">
@@ -569,7 +941,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16547/45B6/1324/53c7af905239"/>
+										<ed:Field oid="!ed/1c929/4F04/13D0/53d601491ca4"/>
 									</pragmas>
 								</Field>
 								<Field name="nid_c">
@@ -581,7 +953,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16548/45B6/1324/53c7af904600"/>
+										<ed:Field oid="!ed/1c92a/4F04/13D0/53d601494c8c"/>
 									</pragmas>
 								</Field>
 								<Field name="nid_bg">
@@ -593,7 +965,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16549/45B6/1324/53c7af907ae2"/>
+										<ed:Field oid="!ed/1c92b/4F04/13D0/53d601493c0a"/>
 									</pragmas>
 								</Field>
 								<Field name="q_link">
@@ -605,14 +977,14 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1654a/45B6/1324/53c7af90647"/>
+										<ed:Field oid="!ed/1c92c/4F04/13D0/53d6014971d9"/>
 									</pragmas>
 								</Field>
 							</fields>
 						</Struct>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/16540/45B6/1324/53c7af904553" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+						<ed:Type oid="!ed/1c922/4F04/13D0/53d60149d42" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 							<comment>This structure is not &quot;packed&quot; to bit boundaries</comment>
 						</ed:Type>
 					</pragmas>
@@ -630,7 +1002,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16524/45B6/1324/53c7af904e5e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+										<ed:Field oid="!ed/1c905/4F04/13D0/53d6014931fb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 											<comment>The element has valid data</comment>
 										</ed:Field>
 									</pragmas>
@@ -639,12 +1011,12 @@
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="TelegramHeader_T"/>
+												<TypeRef name="TelegramHeader_T1"/>
 											</type>
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16525/45B6/1324/53c7af904853" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+										<ed:Field oid="!ed/1c906/4F04/13D0/53d6014958bb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 											<comment>Information received from the balise</comment>
 										</ed:Field>
 									</pragmas>
@@ -658,7 +1030,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16526/45B6/1324/53c7af907314" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+										<ed:Field oid="!ed/1c907/4F04/13D0/53d6014963a0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 											<comment>Packets received via the balises</comment>
 										</ed:Field>
 									</pragmas>
@@ -672,7 +1044,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/4462/7DFA/19E0/53cf8ae213d5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+										<ed:Field oid="!ed/1c908/4F04/13D0/53d60149476" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 											<comment>Information from BTM about where the telegram has been received</comment>
 										</ed:Field>
 									</pragmas>
@@ -681,7 +1053,7 @@
 						</Struct>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/16523/45B6/1324/53c7af9064e7"/>
+						<ed:Type oid="!ed/1c904/4F04/13D0/53d60149a9d"/>
 					</pragmas>
 				</Type>
 				<Type name="RBCReport_T">
@@ -697,14 +1069,14 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/16518/45B6/1324/53c7af9052e1"/>
+										<ed:Field oid="!ed/1c8f8/4F04/13D0/53d6014945cd"/>
 									</pragmas>
 								</Field>
 							</fields>
 						</Struct>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/16517/45B6/1324/53c7af906b35"/>
+						<ed:Type oid="!ed/1c8f7/4F04/13D0/53d601493a7d"/>
 					</pragmas>
 				</Type>
 				<Type name="RBCOrientationReport_T">
@@ -720,14 +1092,14 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1650f/45B6/1324/53c7af9050b4"/>
+										<ed:Field oid="!ed/1c8ef/4F04/13D0/53d60149b67"/>
 									</pragmas>
 								</Field>
 							</fields>
 						</Struct>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/1650e/45B6/1324/53c7af90680a"/>
+						<ed:Type oid="!ed/1c8ee/4F04/13D0/53d601493330"/>
 					</pragmas>
 				</Type>
 				<Type name="Position_T">
@@ -739,7 +1111,7 @@
 						</NamedType>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/16506/45B6/1324/53c7af903611"/>
+						<ed:Type oid="!ed/1c8e6/4F04/13D0/53d60149681f"/>
 					</pragmas>
 				</Type>
 				<Type name="Orientation_T">
@@ -748,24 +1120,24 @@
 							<values>
 								<Value name="Single_Balise_Group">
 									<pragmas>
-										<ed:Value oid="!ed/164fe/45B6/1324/53c7af9057f6"/>
+										<ed:Value oid="!ed/1c8de/4F04/13D0/53d60149533b"/>
 									</pragmas>
 								</Value>
 								<Value name="DIR_Nominal">
 									<pragmas>
-										<ed:Value oid="!ed/164ff/45B6/1324/53c7af90308f"/>
+										<ed:Value oid="!ed/1c8df/4F04/13D0/53d60149e43"/>
 									</pragmas>
 								</Value>
 								<Value name="DIR_Reverse">
 									<pragmas>
-										<ed:Value oid="!ed/16500/45B6/1324/53c7af9064fb"/>
+										<ed:Value oid="!ed/1c8e0/4F04/13D0/53d601497fa0"/>
 									</pragmas>
 								</Value>
 							</values>
 						</Enum>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/164fd/45B6/1324/53c7af9076b8"/>
+						<ed:Type oid="!ed/1c8dd/4F04/13D0/53d601491ff7"/>
 					</pragmas>
 				</Type>
 				<Type name="ListOfBG">
@@ -788,7 +1160,7 @@
 						</Table>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/164f4/45B6/1324/53c7af9067b9"/>
+						<ed:Type oid="!ed/1c8d4/4F04/13D0/53d601496666"/>
 					</pragmas>
 				</Type>
 				<Type name="FilteredBGMessage_T">
@@ -804,7 +1176,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/164ec/45B6/1324/53c7af902f73"/>
+										<ed:Field oid="!ed/1c8cc/4F04/13D0/53d60149723c"/>
 									</pragmas>
 								</Field>
 								<Field name="checkedMessage">
@@ -816,14 +1188,14 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/164ed/45B6/1324/53c7af90244f"/>
+										<ed:Field oid="!ed/1c8cd/4F04/13D0/53d601497a49"/>
 									</pragmas>
 								</Field>
 							</fields>
 						</Struct>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/164eb/45B6/1324/53c7af906b5a"/>
+						<ed:Type oid="!ed/1c8cb/4F04/13D0/53d60149470f"/>
 					</pragmas>
 				</Type>
 				<Type name="CurrentLRBG">
@@ -839,7 +1211,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/164e0/45B6/1324/53c7af901ff1"/>
+										<ed:Field oid="!ed/1c8c0/4F04/13D0/53d601492e46"/>
 									</pragmas>
 								</Field>
 								<Field name="position">
@@ -851,14 +1223,14 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/164e1/45B6/1324/53c7af9078"/>
+										<ed:Field oid="!ed/1c8c1/4F04/13D0/53d601496bae"/>
 									</pragmas>
 								</Field>
 							</fields>
 						</Struct>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/164df/45B6/1324/53c7af9015cf"/>
+						<ed:Type oid="!ed/1c8bf/4F04/13D0/53d601491b20"/>
 					</pragmas>
 				</Type>
 				<Type name="BG_Message_T">
@@ -874,7 +1246,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/164d4/45B6/1324/53c7af903d34"/>
+										<ed:Field oid="!ed/1c8b3/4F04/13D0/53d60149352e"/>
 									</pragmas>
 								</Field>
 								<Field name="AddInfo">
@@ -886,7 +1258,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/164d5/45B6/1324/53c7af9061f5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+										<ed:Field oid="!ed/1c8b4/4F04/13D0/53d60149d16" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 											<comment> For all balises of the group: Packets collected into a combined information</comment>
 										</ed:Field>
 									</pragmas>
@@ -900,14 +1272,14 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/eea4/75FD/AE0/53ce6275936"/>
+										<ed:Field oid="!ed/1c8b5/4F04/13D0/53d601493a98"/>
 									</pragmas>
 								</Field>
 							</fields>
 						</Struct>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/164d3/45B6/1324/53c7af90407f"/>
+						<ed:Type oid="!ed/1c8b2/4F04/13D0/53d601492227"/>
 					</pragmas>
 				</Type>
 				<Type name="API_Telegram_T">
@@ -923,7 +1295,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/4453/6320/15C8/53cbbc392dcc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+										<ed:Field oid="!ed/1c8a3/4F04/13D0/53d601493464" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 											<comment>Indicates the presence of new and valid information at the start of the routine</comment>
 										</ed:Field>
 									</pragmas>
@@ -932,12 +1304,12 @@
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="TelegramHeader_T"/>
+												<TypeRef name="TelegramHeader_T1"/>
 											</type>
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/164c7/45B6/1324/53c7af906cb6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+										<ed:Field oid="!ed/1c8a4/4F04/13D0/53d6014923d6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 											<comment>Telegram_Header</comment>
 										</ed:Field>
 									</pragmas>
@@ -951,7 +1323,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/164c8/45B6/1324/53c7af9023a8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+										<ed:Field oid="!ed/1c8a5/4F04/13D0/53d60149342f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 											<comment>Packets received with this balise</comment>
 										</ed:Field>
 									</pragmas>
@@ -965,7 +1337,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/164c9/45B6/1324/53c7af905291" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+										<ed:Field oid="!ed/1c8a6/4F04/13D0/53d60149284" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 											<comment>inicates, whether a bad balise has been received. In this scenario, dta are not valid.</comment>
 										</ed:Field>
 									</pragmas>
@@ -979,7 +1351,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/457e/7DFA/19E0/53cf8cde672a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+										<ed:Field oid="!ed/1c8a7/4F04/13D0/53d60149718" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 											<comment>actual odometry of where the telegram has been received</comment>
 										</ed:Field>
 									</pragmas>
@@ -988,47 +1360,8 @@
 						</Struct>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/164c6/45B6/1324/53c7af90352c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+						<ed:Type oid="!ed/1c8a2/4F04/13D0/53d601494643" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 							<comment>Telegram as received via the API</comment>
-						</ed:Type>
-					</pragmas>
-				</Type>
-				<Type name="AdditionalInformation_T">
-					<definition>
-						<Struct>
-							<fields>
-								<Field name="addInfo">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="int"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/164ba/45B6/1324/53c7af903ea7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-											<comment>This type is not yet defined</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-								<Field name="linkingPackets">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="LinkedBGs_T"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/164bb/45B6/1324/53c7af901a1"/>
-									</pragmas>
-								</Field>
-							</fields>
-						</Struct>
-					</definition>
-					<pragmas>
-						<ed:Type oid="!ed/164b9/45B6/1324/53c7af904b00" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-							<comment>Packets received from balises</comment>
 						</ed:Type>
 					</pragmas>
 				</Type>
@@ -1037,7 +1370,7 @@
 				<ed:Package oid="!ed/1456a/1CAF/1A3C/530493501fc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 					<diagrams>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1456b/1CAF/1A3C/53049350e3b" blockKind="constants" columnsSize="0, 150, 150, 150, 597"/>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1456c/1CAF/1A3C/530493501c9" blockKind="types" columnsSize="0, 277, 150, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1456c/1CAF/1A3C/530493501c9" blockKind="types" columnsSize="0, 351, 459, 300"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1456d/1CAF/1A3C/530493502070" blockKind="sensors"/>
 					</diagrams>
 				</ed:Package>
