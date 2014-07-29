@@ -19,7 +19,7 @@
 						</Variable>
 					</inputs>
 					<outputs>
-						<Variable name="Decoded_Telegram">
+						<Variable name="outDecodedTelegram">
 							<type>
 								<NamedType>
 									<type>
@@ -27,6 +27,13 @@
 									</type>
 								</NamedType>
 							</type>
+							<default>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cInitDecodedTelegram"/>
+									</path>
+								</IdExpression>
+							</default>
 							<pragmas>
 								<ed:Variable oid="!ed/4433/39F1/B38/53b268b25558"/>
 							</pragmas>
@@ -41,6 +48,25 @@
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/d390/6247/221C/53cbd4111bd9"/>
+							</pragmas>
+						</Variable>
+						<Variable name="outcenterOfBalisePosition">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="BG_Types_Pkg::centerOfBalisePosition_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<default>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cInitEmptyPosition"/>
+									</path>
+								</IdExpression>
+							</default>
+							<pragmas>
+								<ed:Variable oid="!ed/10a03/2600/1714/53d769b2e8b"/>
 							</pragmas>
 						</Variable>
 					</outputs>
@@ -289,7 +315,7 @@
 																			<type>
 																				<NamedType>
 																					<type>
-																						<TypeRef name="api_centerOfBalise_T"/>
+																						<TypeRef name="BG_Types_Pkg::centerOfBalisePosition_T"/>
 																					</type>
 																				</NamedType>
 																			</type>
@@ -311,10 +337,10 @@
 																		</Variable>
 																	</locals>
 																	<data>
-																		<!-- Decoded_Telegram = _L9; -->
+																		<!-- outDecodedTelegram = _L9; -->
 																		<Equation>
 																			<lefts>
-																				<VariableRef name="Decoded_Telegram"/>
+																				<VariableRef name="outDecodedTelegram"/>
 																			</lefts>
 																			<right>
 																				<IdExpression>
@@ -506,12 +532,24 @@
 																				<ed:Variable oid="!ed/b2a0/1F77/1BA0/53d64f2e34a2"/>
 																			</pragmas>
 																		</Variable>
+																		<Variable name="_L12">
+																			<type>
+																				<NamedType>
+																					<type>
+																						<TypeRef name="BG_Types_Pkg::centerOfBalisePosition_T"/>
+																					</type>
+																				</NamedType>
+																			</type>
+																			<pragmas>
+																				<ed:Variable oid="!ed/109e5/2600/1714/53d76885207e"/>
+																			</pragmas>
+																		</Variable>
 																	</locals>
 																	<data>
-																		<!-- Decoded_Telegram = _L11; -->
+																		<!-- outDecodedTelegram = _L11; -->
 																		<Equation>
 																			<lefts>
-																				<VariableRef name="Decoded_Telegram"/>
+																				<VariableRef name="outDecodedTelegram"/>
 																			</lefts>
 																			<right>
 																				<IdExpression>
@@ -540,10 +578,11 @@
 																				<ed:Equation oid="!ed/d666/6247/221C/53cbd6ea3159"/>
 																			</pragmas>
 																		</Equation>
-																		<!-- _L11 = btmSupportPkg::transferTelegram(_L7); -->
+																		<!-- _L11, _L12 = btmSupportPkg::transferTelegram(_L7); -->
 																		<Equation>
 																			<lefts>
 																				<VariableRef name="_L11"/>
+																				<VariableRef name="_L12"/>
 																			</lefts>
 																			<right>
 																				<!-- btmSupportPkg::transferTelegram(_L7) -->
@@ -568,6 +607,22 @@
 																				<ed:Equation oid="!ed/b29f/1F77/1BA0/53d64f2e6528"/>
 																			</pragmas>
 																		</Equation>
+																		<!-- outcenterOfBalisePosition = _L12; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="outcenterOfBalisePosition"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="_L12"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/10a04/2600/1714/53d769b957a9"/>
+																			</pragmas>
+																		</Equation>
 																	</data>
 																	<pragmas>
 																		<ed:Action oid="!ed/d660/6247/221C/53cbd6ea6e06" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
@@ -578,7 +633,7 @@
 																					<presentationElements>
 																						<EquationGE presentable="!ed/d662/6247/221C/53cbd6ea3c0a">
 																							<position>
-																								<Point x="9234" y="2170"/>
+																								<Point x="9181" y="1852"/>
 																							</position>
 																							<size>
 																								<Size width="318" height="503"/>
@@ -602,10 +657,10 @@
 																						</EquationGE>
 																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/b29f/1F77/1BA0/53d64f2e6528" dstEquation="!ed/d662/6247/221C/53cbd6ea3c0a">
 																							<positions>
-																								<Point x="7250" y="2434"/>
-																								<Point x="8176" y="2434"/>
-																								<Point x="8176" y="2434"/>
-																								<Point x="9287" y="2434"/>
+																								<Point x="7250" y="2117"/>
+																								<Point x="8176" y="2117"/>
+																								<Point x="8176" y="2117"/>
+																								<Point x="9234" y="2117"/>
 																							</positions>
 																						</Edge>
 																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d666/6247/221C/53cbd6ea3159" dstEquation="!ed/b29f/1F77/1BA0/53d64f2e6528">
@@ -614,6 +669,22 @@
 																								<Point x="2805" y="2434"/>
 																								<Point x="2805" y="2434"/>
 																								<Point x="4048" y="2434"/>
+																							</positions>
+																						</Edge>
+																						<EquationGE presentable="!ed/10a04/2600/1714/53d769b957a9">
+																							<position>
+																								<Point x="9208" y="2487"/>
+																							</position>
+																							<size>
+																								<Size width="317" height="502"/>
+																							</size>
+																						</EquationGE>
+																						<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/b29f/1F77/1BA0/53d64f2e6528" dstEquation="!ed/10a04/2600/1714/53d769b957a9">
+																							<positions>
+																								<Point x="7250" y="2752"/>
+																								<Point x="8255" y="2752"/>
+																								<Point x="8255" y="2752"/>
+																								<Point x="9260" y="2752"/>
 																							</positions>
 																						</Edge>
 																					</presentationElements>
@@ -692,8 +763,8 @@
 											<positions>
 												<Point x="2381" y="2540"/>
 												<Point x="4683" y="2540"/>
-												<Point x="4683" y="2514"/>
-												<Point x="6985" y="2514"/>
+												<Point x="4683" y="2540"/>
+												<Point x="6985" y="2540"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/d325/6247/221C/53cbcc9c21ce">
@@ -732,8 +803,8 @@
 											<positions>
 												<Point x="11748" y="5741"/>
 												<Point x="13653" y="5741"/>
-												<Point x="13653" y="5715"/>
-												<Point x="13679" y="5715"/>
+												<Point x="13653" y="5741"/>
+												<Point x="13679" y="5741"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/d399/6247/221C/53cbd48f52c0">
@@ -781,7 +852,7 @@
 												<Point x="3228" y="15743"/>
 											</position>
 											<size>
-												<Size width="1323" height="926"/>
+												<Size width="5530" height="2090"/>
 											</size>
 										</ActionGE>
 										<IfNodeGE labelWidth="794" presentable="!ed/d3bd/6247/221C/53cbd68dcb9">
