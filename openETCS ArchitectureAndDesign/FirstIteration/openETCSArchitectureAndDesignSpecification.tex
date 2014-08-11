@@ -110,18 +110,6 @@ Version & Section & Modification / Description & Author \\\hline}
 % The actual document starts below this line
 %=============================
 
-%Start here
-
-
-
-
-
-
-
-
-
-%Examples are below
-
 
 \section{Introduction}
 
@@ -129,21 +117,62 @@ Version & Section & Modification / Description & Author \\\hline}
 
 \subsection{History}
 
-\subsection{Scope}
+\input{sections/objectives.tex}
 
 \subsection{Glossary and Abbreviations}
 
 \subsection{References}
 
+\textbf{SRS-Subset 26}\\
+\textbf{QA-Plan: D1.3.1}\\
+\textbf{Process: D2.3}\\
+\textbf{Methods: D2.4}\\
+\textbf{API: D2.7}\\
+
 \section{The openETCS Architecture of the initial kernel functions}
 
-\subsection{The Tools-Chain and its impacts on the actual model}
+\subsection{The openETCS Tools-Chain and its impacts on the actual model}
+
+For understanding the modelling process and the modeling guidelines, please have a look at the \url{https://github.com/openETCS/modeling/blob/master/DescriptionOfWork/NewModelingDescriptionOfWork.pdf}\\
+
+To summarize the design process, the following ruls are in use:
+\begin{itemize}
+\item Papyrus / SysML is used for modelling the architecture. Functions are visible in this SysML level.
+\item No behaviour model is allowed on SysML level.
+\item For referencing the requirements links from the SysML model to the requirements document (in ProR) are being used.
+\item Details and especially behaviour is part of the Scade models.
+\item All interfaces (see also data-dictionary below) are available on bit-level.
+\item In the architecture model in SysML, all interfaces are available on a functional level for interfaces inside and outside the model and for interfaces between dedicated functions. Due to tool constrains the current model does not show all details for all interfaces (see dataDictionary).
+
+\end{itemize}
+
+The openETCS tools-chain for doing the modelling work consists of the following components:
+\begin{itemize}
+	\item [\textbf{Papyrus}]: for modelling the architecture (Kepler version).\\
+	In this phase only the Kepler version of the tool can be used due to incompatibilities of the Kepler and the Luna version on the SysML model. The SysML models are stored in the following location: \url{https://github.com/openETCS/modeling/tree/master/model/sysml}.
+	\item [\textbf{ProR}]: for keeping the requirements (REQIF).\\
+	The subset 26 is converted into a REQIF-format and also stored in the modeling repository on Github. The openETCS toolchain supports the linking of SysML model parts to SRS-Requirements. These results are also part of the architecture.
+	\item [\textbf{Scade}]: for designing and formalisation of the functions Scade version 15.2 is in use.\\
+	The models are stored in this location: \url{https://github.com/openETCS/modeling/tree/master/model/Scade}.
+	With the component Scade System Scade also has a component for architecture work.
+
+\end{itemize}
+
+In principle, the synch-mechanism of Scade was planned to be used for synchronisation of SysML architecture and Scade models. The idea is to automatically synchronise the SysML types and blocks with the Scade type definitions and the Scade Operators. Unfortunately, with the current set of tools this proposal was not possible to be realised. Further analysis on tools and models will look for a solution. 
+
+In addition, faults  in the Kepler Papyrus version made it difficult for severla members of the team to work on different submodels of the openETCS model. The issue will be solved when changing to the Luna version of Papyrus.
+
+
 
 \section{Functions of the openETCS Model}
 
 \subsection{openETCS Data Dictionary}
 
+\input{sections/dataDictionary.tex}
+
 \subsection{openETCS Generic API}
+
+\input{sections/GenericAPI.tex}
 
 \subsection{openETCS Balise Group}
 
