@@ -1,1 +1,25 @@
-/subsubsection{Calculate Train Poition}
+\subsubsection{Calculate Train Position}
+
+\begin{itemize}
+\item \textbf{Short Description of Functionality}\\
+\item \textbf{Reference to the SRS (or other requirements}\\
+\item \textbf{Design Constrains and Choices}\\
+\end{itemize}
+
+\subsubsection{Provide Position Report}\label{sss:provposrep}
+
+\begin{itemize}
+\item \textbf{Short Description of Functionality}\\
+This function takes the current train position and generates a position report which is sent to the RBC. The point in time when such a report is sent is determined from event, on the one hand, and position report parameters---which are basically triggers---provided by the RBC, on the other hand. 
+\item \textbf{Reference to the SRS (or other requirements}\\
+Most of the functionality is described in subset 26, chapter~3.6.5.
+\item \textbf{Design Constrains and Choices}\\
+\begin{enumerate}
+	\item The message length (i.e., attribute \verb+L_MESSAGE+) is by default set to 0; the actual value will be set by the Bitwalker/API.
+	\item The attribute \verb+Q_SCALE+ is assumed to be constant; that is, all operations using this attribute do not convert between different values of that attribute.
+	\item PositionReportHeader: The time stamp (i.e., attribute \verb+T_TRAIN+) is not set; this should be done once the message is being sent by the API
+	\item Packet4: When aggregating the data for this packet, an error message might be overwritten by another error message. Because the specification only allows to sent one error in one position report, errors are not being stored in a queue, for instance.
+	\item Packet44: This packet is currently not contained in a position report as it is not part of the kernel functions.
+	\item The usage of attributes \verb+D_CYCLOC+ and \verb+T_CYCLOC+ as part of the triggers specified by the position report parameters (i.e., Packet 58 sent by the RBC) may lead to unexpected results if a big clock cycle together with small values for the attributes is used. The cause is that the current model increments at every clock cycle the reference value for the distance and time by at most \verb+D_CYCLOC+ and \verb+T_CYCLOC+, respectively and not a factor of it.
+\end{enumerate}
+\end{itemize}
