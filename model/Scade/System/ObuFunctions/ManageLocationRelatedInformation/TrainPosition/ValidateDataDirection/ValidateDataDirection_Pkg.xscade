@@ -3,11 +3,418 @@
 	<declarations>
 		<Package name="ValidateDataDirection_Pkg">
 			<declarations>
-				<Operator kind="node" name="ValidateDataDirection">
+				<Operator kind="function" name="validateDataDirection">
+					<inputs>
+						<Variable name="passedBG_in">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="BG_Types_Pkg::passedBG_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/28a05/6C21/1BB8/540575a4eb0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Input event reporting a balise group during its passage, if there is one.</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+						<Variable name="LRBG">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrainPosition_Types_Pck::positionedBG_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2e072/6C21/1BB8/54057ebf1123" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>The LRBG used for RBC communication.</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+						<Variable name="trainPosition">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrainPosition_Types_Pck::trainPosition_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/28a36/6C21/1BB8/54057a62930" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>The resulting train position with reference to the LRBG</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="passedBG_out">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="BG_Types_Pkg::passedBG_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/28a0c/6C21/1BB8/540575cb6a7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Input event reporting a balise group during its passage, if there is one.</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="BG_Types_Pkg::passedBG_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/28a0e/6C21/1BB8/540575d74b82"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L5">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrainPosition_Types_Pck::trainPosition_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/28a3d/6C21/1BB8/54057a7556e6"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L10">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/28b55/6C21/1BB8/54057be36d24"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L11">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Q_DIRLRBG"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/28b67/6C21/1BB8/54057bfb1b46"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L13">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrainPosition_Types_Pck::positionedBG_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2e07a/6C21/1BB8/54057ed14070"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L1 = passedBG_in; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="passedBG_in"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/28a0d/6C21/1BB8/540575d73aa4"/>
+							</pragmas>
+						</Equation>
+						<!-- passedBG_out = _L1; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="passedBG_out"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/28a0f/6C21/1BB8/540575d71bdd"/>
+							</pragmas>
+						</Equation>
+						<!-- _L5 = trainPosition; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L5"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="trainPosition"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/28a37/6C21/1BB8/54057a683b7e"/>
+							</pragmas>
+						</Equation>
+						<!-- _L10 = _L5.trainPositionIsUnknown; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L10"/>
+							</lefts>
+							<right>
+								<!-- _L5.trainPositionIsUnknown -->
+								<PrjOp name="5">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L5"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="trainPositionIsUnknown"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/28b54/6C21/1BB8/54057be3227b"/>
+							</pragmas>
+						</Equation>
+						<!-- _L11 = _L5.trainOrientationToLRBG; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L11"/>
+							</lefts>
+							<right>
+								<!-- _L5.trainOrientationToLRBG -->
+								<PrjOp name="6">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L5"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="trainOrientationToLRBG"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/28b66/6C21/1BB8/54057bfb7512"/>
+							</pragmas>
+						</Equation>
+						<!-- _ = _L11; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L11"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/28b78/6C21/1BB8/54057c2649ca"/>
+							</pragmas>
+						</Equation>
+						<!-- _ = _L10; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L10"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/28b7d/6C21/1BB8/54057c285d9e"/>
+							</pragmas>
+						</Equation>
+						<!-- _L13 = LRBG; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L13"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="LRBG"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2e079/6C21/1BB8/54057ed17225"/>
+							</pragmas>
+						</Equation>
+						<!-- _ = _L13; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L13"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2e080/6C21/1BB8/54057ed916f9"/>
+							</pragmas>
+						</Equation>
+					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/44b03/1CAF/1A3C/5304ae7a2262" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 							<diagrams>
-								<NetDiagram name="diagram_ValidateDataDirection_1" landscape="true" format="A4 (210 297)" oid="!ed/44b04/1CAF/1A3C/5304ae7a5588"/>
+								<NetDiagram name="diagram_validateDataDirection_1" landscape="true" format="A4 (210 297)" oid="!ed/44b04/1CAF/1A3C/5304ae7a5588">
+									<presentationElements>
+										<EquationGE presentable="!ed/28a0d/6C21/1BB8/540575d73aa4">
+											<position>
+												<Point x="8387" y="4921"/>
+											</position>
+											<size>
+												<Size width="264" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/28a0f/6C21/1BB8/540575d71bdd">
+											<position>
+												<Point x="11324" y="4921"/>
+											</position>
+											<size>
+												<Size width="264" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/28a0d/6C21/1BB8/540575d73aa4" dstEquation="!ed/28a0f/6C21/1BB8/540575d71bdd">
+											<positions>
+												<Point x="8652" y="5186"/>
+												<Point x="9895" y="5186"/>
+												<Point x="9895" y="5186"/>
+												<Point x="11377" y="5186"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/28a37/6C21/1BB8/54057a683b7e">
+											<position>
+												<Point x="8334" y="7699"/>
+											</position>
+											<size>
+												<Size width="318" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/28b54/6C21/1BB8/54057be3227b">
+											<position>
+												<Point x="10054" y="8996"/>
+											</position>
+											<size>
+												<Size width="3429" height="969"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/28a37/6C21/1BB8/54057a683b7e" dstEquation="!ed/28b54/6C21/1BB8/54057be3227b">
+											<positions>
+												<Point x="8652" y="7964"/>
+												<Point x="9340" y="7964"/>
+												<Point x="9340" y="9499"/>
+												<Point x="10054" y="9499"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/28b66/6C21/1BB8/54057bfb7512">
+											<position>
+												<Point x="10054" y="7488"/>
+											</position>
+											<size>
+												<Size width="3429" height="969"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/28a37/6C21/1BB8/54057a683b7e" dstEquation="!ed/28b66/6C21/1BB8/54057bfb7512">
+											<positions>
+												<Point x="8652" y="7964"/>
+												<Point x="9234" y="7964"/>
+												<Point x="9234" y="7964"/>
+												<Point x="10054" y="7964"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/28b78/6C21/1BB8/54057c2649ca">
+											<position>
+												<Point x="14499" y="7699"/>
+											</position>
+											<size>
+												<Size width="502" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/28b7d/6C21/1BB8/54057c285d9e">
+											<position>
+												<Point x="14631" y="9208"/>
+											</position>
+											<size>
+												<Size width="503" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/28b66/6C21/1BB8/54057bfb7512" dstEquation="!ed/28b78/6C21/1BB8/54057c2649ca">
+											<positions>
+												<Point x="13494" y="7990"/>
+												<Point x="14076" y="7990"/>
+												<Point x="14076" y="7990"/>
+												<Point x="14764" y="7990"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/28b54/6C21/1BB8/54057be3227b" dstEquation="!ed/28b7d/6C21/1BB8/54057c285d9e">
+											<positions>
+												<Point x="13494" y="9499"/>
+												<Point x="14182" y="9499"/>
+												<Point x="14182" y="9499"/>
+												<Point x="14896" y="9499"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/2e079/6C21/1BB8/54057ed17225">
+											<position>
+												<Point x="7938" y="12568"/>
+											</position>
+											<size>
+												<Size width="264" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/2e080/6C21/1BB8/54057ed916f9">
+											<position>
+												<Point x="9710" y="12568"/>
+											</position>
+											<size>
+												<Size width="503" height="502"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2e079/6C21/1BB8/54057ed17225" dstEquation="!ed/2e080/6C21/1BB8/54057ed916f9">
+											<positions>
+												<Point x="8202" y="12832"/>
+												<Point x="9075" y="12832"/>
+												<Point x="9075" y="12832"/>
+												<Point x="9975" y="12832"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
 							</diagrams>
 						</ed:Operator>
 					</pragmas>
