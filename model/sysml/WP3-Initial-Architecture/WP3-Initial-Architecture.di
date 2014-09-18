@@ -26,10 +26,10 @@
       <emfPageIdentifier href="WP3-Initial-Architecture.notation#_08SAQP0jEeOp4IlGN1M5tw"/>
     </availablePage>
     <availablePage>
-      <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/PerformEuroBaliseDecoding/PerformEuroBaliseDecoding.notation#_C2HJwLssEeOP84wBioPrEA"/>
+      <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/ReceiveEuroBaliseFromAPI/ReceiveEuroBaliseFromAPI.notation#_C2HJwLssEeOP84wBioPrEA"/>
     </availablePage>
     <availablePage>
-      <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/PerformEuroBaliseDecoding/PerformEuroBaliseDecoding.notation#_Dorc4LsxEeOP84wBioPrEA"/>
+      <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/ReceiveEuroBaliseFromAPI/ReceiveEuroBaliseFromAPI.notation#_Dorc4LsxEeOP84wBioPrEA"/>
     </availablePage>
     <availablePage>
       <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/BuildBGMessage/BuildBGMessage.notation#__3vqML5XEeOqg93D1wi9Og"/>
@@ -51,10 +51,10 @@
           <emfPageIdentifier href="WP3-Initial-Architecture.notation#_08SAQP0jEeOp4IlGN1M5tw"/>
         </children>
         <children>
-          <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/PerformEuroBaliseDecoding/PerformEuroBaliseDecoding.notation#_C2HJwLssEeOP84wBioPrEA"/>
+          <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/ReceiveEuroBaliseFromAPI/ReceiveEuroBaliseFromAPI.notation#_C2HJwLssEeOP84wBioPrEA"/>
         </children>
         <children>
-          <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/PerformEuroBaliseDecoding/PerformEuroBaliseDecoding.notation#_Dorc4LsxEeOP84wBioPrEA"/>
+          <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/ReceiveEuroBaliseFromAPI/ReceiveEuroBaliseFromAPI.notation#_Dorc4LsxEeOP84wBioPrEA"/>
         </children>
         <children>
           <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/BuildBGMessage/BuildBGMessage.notation#__3vqML5XEeOqg93D1wi9Og"/>
