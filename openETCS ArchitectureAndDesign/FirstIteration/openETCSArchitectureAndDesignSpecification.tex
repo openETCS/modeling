@@ -5,6 +5,7 @@
 \usepackage{supertabular}
 \usepackage{multirow}
 \usepackage{color, colortbl}
+\usepackage{hyperref}
 \definecolor{gray}{rgb}{0.8,0.8,0.8}
 \usepackage[modulo]{lineno}
 \graphicspath{{./template/}{.}{./images/}}
@@ -21,7 +22,7 @@
 % The document metadata is defined below
 
 %assign a report number here
-\reportnum{OETCS/WP3/D3.5~--~01.01}
+\reportnum{OETCS/WP3/D3.5.1.1}
 
 %define your workpackage here
 \wp{Work-Package 3: ``Modeling''}
@@ -53,9 +54,9 @@
 
 %define a list of authors and their affiliation here
 
-\author{Bernd Hekele}
+\author{Bernd Hekele, Peter Mahlmann, Peyman Farhangi}
 
-\affiliation{DB-Netz AG, Peter Mahlmann, Peyman Farhangi\\
+\affiliation{DB-Netz AG\\
   V\"olckerstrasse 5\\
   D-80959 M\"unchen Freimann, Germany}
 
@@ -71,7 +72,7 @@
 \coverart[width=350pt]{openETCS_EUPL}
 
 %define the type of report
-\reporttype{Description of work}
+\reporttype{Architecture and Design Specification}
 
 
 \begin{abstract}
@@ -92,9 +93,11 @@ This document gives an introduction to the architecture of the first openETCS it
 \hline 
 \rowcolor{gray} 
 Version & Section & Modification / Description & Author \\\hline}
-\begin{supertabular}{| m{1.2cm} | m{1.2cm} | m{6.6cm} | m{4cm} |}
+%\begin{supertabular}{| m{1.2cm} | m{1.2cm} | m{6.6cm} | m{4cm} |}
+\begin{supertabular}{| c | c | l | l |}
 0.1 & Document & Initial document providing the structure & Bernd Hekele \\\hline
 0.2 & Sect.~\ref{sss:provposrep} & initial contribution and some pretty printing & Christian Stahl \\\hline
+0.3 & Document & collecting feedback and completion on initial sections & Bernd Hekele \\\hline
 \end{supertabular}
 
 
@@ -114,27 +117,92 @@ Version & Section & Modification / Description & Author \\\hline}
 
 \section{Introduction}
 
-\input{sections/introduction.tex}
+
+\subsection{Motivation}
+\label{sec:Motivation}
+
+The openETCS work package WP3 aims to provide the architecture and the design of the openETCS OBU software as mainly specified in \cite{subset-026} UNISIG Subset\_026 version\_3.3.0. 
+
+The appropriate functionality has been divided into a list of functions of different complexity (see the WP3 function list \cite{functions}).
+
+All these functions are object of the openETCS project and have to be analysed from their requirements and subsequently modelled and implemented. With limited manpower, a reasonable selection and order of these functions is required for the practical work that allows the distribution of the workload, more openETCS participants to join and leads to an executable---limited---kernel function as soon as possible. 
+
+While the first version of this document focuses on the first version of the limited kernel function, it is intended to grow in parallel to the growing openETCS software.
+
+
+\subsection{Objectives}
+\label{sec:Objectives}
+
+
+
+The first objective of WP3 software shall be
+\begin{itemize}
+	\item ``Make the train run as soon as possible, with a very minimum functionality, and in the form of a rapid prototype.''
+\end{itemize}
+This does not contradict the openETCS goal to conform to EN50128.
+\begin{itemize}
+	\item After a phase of prototyping, the openETCS software shall be implemented in compliance to EN50128 for SIL4 systems.
+\end{itemize}
+Additional goals for this document are
+\begin{itemize}
+	\item Identification of the functions required for a minimum OBU kernel
+	\item Architecture overview regarding the minimum OBU kernel
+	\item Technical approach: Description of the proceeding and methods to be used
+	\item Road map of the minimum OBU kernel functions
+	\item Road map thereafter
+\end{itemize}
+
+Note: This document will be extended according to the progress of WP3. 
+
 
 \subsection{History}
 
-\input{sections/objectives.tex}
+%-----------------------------------------------------------------------
+\subsection{Goals of the openETCS Modelling Work}
+%-----------------------------------------------------------------------
+%\tbc
+%by Uwe
+
+
+\subsubsection{Functional Scope: The Minimum OBU Kernel Function}
+\label{sec:FunctionalScopeTheMinimumOBUKernelFunction}
+
+The objective ``Make the train run with a very minimum functionality'' shall be in terms of ETCS OBU translated into 
+\begin{itemize}
+	\item The Train moves on a track equipped with balises and determines its position.
+\end{itemize}
+That means, for this very first step, the train shall not supervise the maximum speed nor activate the brakes. The minimum function set shall be limited to:
+\begin{itemize}
+	\item Receive, filter and manage balise information received from track (see \url{https://github.com/openETCS/SRS-Analysis/issues/12})
+	\item Calculate the actual train position based on balise and odometry information (see \url{https://github.com/openETCS/SRS-Analysis/issues/8})
+	\item Calculate the distances between the actual train position to track elements in its front
+\end{itemize}
+The activities of the first iteration are collected in the \cite{firstIteration} openETCS WP3 backlog for the first iteration.
+
+A more detailed architectural breakdown of these functions is available as a SysML model \cite{sysml-model}. Diagrams used in this document describing the architecture are taken from this model.
+
+The design is implemented in the \cite{scade-model} Scade Model. Design documents are taken from this model. Design diagrams used in this document are generated from the model. The design documents produced from the scade model are provided in the design location on Github \cite{designFI}.
+
+In addition, the work on this minimum functionality requires to be supported by
+\begin{itemize}
+	\item The availability of the ETCS language as specified in Subset UNISIG Subset\_026, chapters 7 and 8
+	\item The abiltiy to link intermediate and final results with the requirements of the ETCS specification (subset\_026, \dots) 
+\end{itemize}
+These supporting prerequisites are under construction and therefore not completely operable actually. How to deal with these restrictions, will be outlined in chapter ???
+
+\subsubsection{Practical Approach}
+\label{sec:PracticalApproach}
+
+The architecture and design of the minimum OBU kernel shall be developed in consideration of the actual status, restricted prerequisites and limited resources as follows. 
 
 \subsection{Glossary and Abbreviations}
 
-\subsection{References}
-
-\textbf{SRS-Subset 26}\\
-\textbf{QA-Plan: D1.3.1}\\
-\textbf{Process: D2.3}\\
-\textbf{Methods: D2.4}\\
-\textbf{API: D2.7}\\
 
 \section{The openETCS Architecture of the initial kernel functions}
 
 \subsection{The openETCS Tool-Chain and its impacts on the actual model}
 
-For understanding the modelling process and the modeling guidelines, we refer to \url{https://github.com/openETCS/modeling/blob/master/DescriptionOfWork/NewModelingDescriptionOfWork.pdf}.
+For understanding the modelling process and the modeling guidelines, we refer to \cite{wp3-dow}. 
 
 To summarize the design process, the following rules are in use:
 \begin{itemize}
@@ -163,7 +231,30 @@ In addition, faults in the Kepler Papyrus version made it difficult for several 
 
 
 
-\section{Functions of the openETCS Model}
+\subsection{The openETCS Architecture}
+
+The following diagrams are taken from the SysML model \cite{sysml-model}.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.7]{../images/Model_FunctionalArchitecture_FunctionalArchitecture.PNG}
+	\caption{Block Definition Diagram of the First Iteration Architecture}
+\end{figure}
+
+The diagram shows the hierarchy of the EVC model. The boundaries of the model are given with the API (interfaces into and outside the EVC model), which actually is not part of the diagram. The runtime-system of the EVC is also seen as a part outside the model.
+
+\begin{figure}[p]
+	\centering
+	\includegraphics[scale=0.2]{../images/Block_Class_ManageLocationRelatedInformation_ManageLocationInformationIBD.PNG}
+	\caption{Internal Block Diagram of the First Iteration Architecture}
+\end{figure}
+
+Green blocks in this diagram are seen as data collected by the "train" without making use of the function in focus.
+
+Input to the model is via API. The border is inside the EVC Scade model. 
+
+\section{openETCS Subfunctions}
+
 
 \subsection{openETCS Data Dictionary}
 
@@ -173,33 +264,68 @@ In addition, faults in the Kepler Papyrus version made it difficult for several 
 
 \input{sections/GenericAPI.tex}
 
-\subsection{openETCS Balise Group}
+\subsection{F.1 Manage Balise Information}
 
-\input{sections/baliseGroup.tex}
 
-\subsubsection{Perform Balise Decoding}
-\subsection{openETCS Train Position}
+\subsubsection{F.1.1 Receive Eurobalise From API}
+\begin{itemize}
+	\item \textbf{Short Description of Functionality}\\
+	This function defines the interface of the OBU model to the openETCS generic API for Eurobalise Messages. On the interface, either a valid telegram is provided or a telegram is indicated which could not be received correct when passing the balise. The function passes the telegram without major changes of the information to the next entity for collecting the balise group information.
+	
+	%\item \textbf{{Reference to the SRS (or other requirements}\\
+	\item \textbf{Design Constrains and Choices}\\
+	\begin{enumerate}
+		\item Decoding of balises is done at the API. Also, packets received via the interface are already transformed into a usable shape.
+		\item Only packets used inside the current model are passed via the interface:\\
+		Packet 5: Linking Information.\\
+		Linking Information is filled into the linking array starting from index 0 without gaps. Used elements are marked as valid. Elements are sorted according to the order given by the telegram sequence.
+	\end{enumerate}
+\end{itemize}
+
+
+\subsubsection{F.1.2 Build BG Group Message}
+\begin{itemize}
+	\item \textbf{Short Description of Functionality}\\
+	This entity collects telegrams received via the interface into Balise Group Information.
+	\item \textbf{Reference to the SRS (or other requirements}\\
+	\item \textbf{Design Constrains and Choices}\\
+	\begin{enumerate}
+		\item Telegrams received as invalid are passed to the ``Check-Function'' in order to process errors in communication with the trackside according to the requirements and in a single place.
+		Telegrams are filled into the telegram array starting from index 0 without gaps. Used elements are marked as valid. Elements are stored according to the order given by the telegram sequence. 
+		\item Only packets used inside the current model are passed via the interface:\\
+		Packet 5: Linking Information.\\
+		\item In this function packets past with the telegrams is accumulated into a balise group information.\\
+		\item Further assumption on packet 5 (based on SRS subset 26, section 8.4.1.4)\\
+		(In this statement the term ``message'' is ambiguous since it can reflect to a telegram or a balise group message)
+		Linking Information can only be passed once. This means, if linking information for the balise group is already collected with one of the earlier telegrams, the information will not be accumulated but overwritten.\\
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{F.1.3 Check BG Consistency}
+
+\subsubsection{F.1.4 Determine BG- Orientation and LRBG}
+\begin{itemize}
+	\item \textbf{Short Description of Functionality}\\
+	\item \textbf{Reference to the SRS (or other requirements}\\
+	\item \textbf{Design Constrains and Choices}\\
+\end{itemize}
+
+\subsubsection{F.1.5 Select Usable Info}
+
+
+\subsection{F.2 Manage Train Position}
 
 \input{sections/trainPosition.tex}
 
 
-\nocite{*}
-
+%\nocite{*}
 \bibliographystyle{unsrt}
-\bibliography{erdc}
+%\bibliographystyle{plain}
+%\bibliographystyle{alpha}
+%\bibliographystyle{annotate}
+%\bibliographystyle{klunamed}
+\bibliography{architecture}
 
-
-
-\begin{thebibliography}{9}
-
-\bibitem{lamport94}
-  Leslie Lamport,
-  \emph{\LaTeX: A Document Preparation System}.
-  Addison Wesley, Massachusetts,
-  2nd Edition,
-  1994.
-
-\end{thebibliography}
 
 %===================================================
 %Do NOT change anything below this line
