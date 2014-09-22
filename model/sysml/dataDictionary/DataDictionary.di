@@ -76,6 +76,9 @@
     <availablePage>
       <emfPageIdentifier href="DataDictionary.notation#_zWbJUO1XEeO0NLlMhnX0Qw"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="DataDictionary.notation#_vABb8EIpEeSpf-4fvfh0zw"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -121,6 +124,9 @@
         </children>
         <children>
           <emfPageIdentifier href="DataDictionary.notation#_zWbJUO1XEeO0NLlMhnX0Qw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="DataDictionary.notation#_vABb8EIpEeSpf-4fvfh0zw"/>
         </children>
       </children>
     </windows>
