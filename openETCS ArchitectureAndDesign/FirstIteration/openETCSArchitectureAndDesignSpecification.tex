@@ -190,13 +190,12 @@ In addition, the work on this minimum functionality requires to be supported by
 \end{itemize}
 These supporting prerequisites are under construction and therefore not completely operable actually. How to deal with these restrictions, will be outlined in chapter ???
 
-\subsubsection{Practical Approach}
-\label{sec:PracticalApproach}
-
-The architecture and design of the minimum OBU kernel shall be developed in consideration of the actual status, restricted prerequisites and limited resources as follows. 
-
 \subsection{Glossary and Abbreviations}
 
+\textbf{API} Application Programming Interface\\
+\textbf{EVC} European Vital Computer\\
+\textbf{BTM} Balise Transmission Module\\
+\textbf{SRS} System Requirements Specification\\
 
 \section{The openETCS Architecture of the initial kernel functions}
 
@@ -236,29 +235,42 @@ In addition, faults in the Kepler Papyrus version made it difficult for several 
 The following diagrams are taken from the SysML model \cite{sysml-model}.
 
 \begin{figure}[h]
-	\centering
-	\includegraphics[scale=0.7]{../images/Model_FunctionalArchitecture_FunctionalArchitecture.PNG}
-	\caption{Block Definition Diagram of the First Iteration Architecture}
+\centering
+\includegraphics[scale=0.6]{../images/FunctionalArchitectureBDD.PNG}
+\caption{Block Definition Diagram of the First Iteration Architecture}
 \end{figure}
 
 The diagram shows the hierarchy of the EVC model. The boundaries of the model are given with the API (interfaces into and outside the EVC model), which actually is not part of the diagram. The runtime-system of the EVC is also seen as a part outside the model.
 
 \begin{figure}[p]
-	\centering
-	\includegraphics[scale=0.2]{../images/Block_Class_ManageLocationRelatedInformation_ManageLocationInformationIBD.PNG}
-	\caption{Internal Block Diagram of the First Iteration Architecture}
+\centering
+\includegraphics[scale=0.2]{../images/ManageLocationInformationIBD.PNG}
+\caption{Internal Block Diagram of the First Iteration Architecture}
 \end{figure}
 
 Green blocks in this diagram are seen as data collected by the "train" without making use of the function in focus.
 
 Input to the model is via API. The border is inside the EVC Scade model. 
 
-\section{openETCS Subfunctions}
+\section{openETCS Functions}
 
 
 \subsection{openETCS Data Dictionary}
 
-\input{sections/dataDictionary.tex}
+The openETCS data Dictionary in the first iteration gives some basic constructs for the project, the definition of interfaces in a central place and the definition of the ETCS language \cite{dataDictionary}.
+
+\subsubsection{ETCS Language}
+The typedefinitions of Subset 26 chapters 7 and 8 (called the ETCS language) are provided as SysML resp. Scade types to the openETCS model. For the SysML model the types have been generated based on tools and provided as <>package<> imported to the openETCS toolschain.
+
+\subsubsection{openETCS Interfaces}
+Interfaces used within the between submodels and interfaces from ouside and to outside the EVC kernel are defined as types in the dataDictionary.
+
+In the Scade model  the ETCS language is available in the oETCS projects S026-7 and S026-8.
+
+\subsubsection{dataDictionary Outlook}
+In the first iteration the use of the data dictionary concept is reduced to a minimum. The full openETCS process is tailored for a bigger team to cooperate and make use of tools to collect data and generate code. 
+
+In the scade model the types needed to build the ointerfaces between models are defined in the projects Obu\_Basic\_Types.etp, BG\_Types.etp, and TrainPosition\_Types.etp.
 
 \subsection{openETCS Generic API}
 
@@ -268,22 +280,36 @@ Input to the model is via API. The border is inside the EVC Scade model.
 
 
 \subsubsection{F.1.1 Receive Eurobalise From API}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.5]{../images/ReceiveEuroBaliseFromAPI_diagram.png}
+\caption{Structure of ReceiveEuroBaliseFromAPI}
+\end{figure}
+
 \begin{itemize}
-	\item \textbf{Short Description of Functionality}\\
-	This function defines the interface of the OBU model to the openETCS generic API for Eurobalise Messages. On the interface, either a valid telegram is provided or a telegram is indicated which could not be received correct when passing the balise. The function passes the telegram without major changes of the information to the next entity for collecting the balise group information.
+\item \textbf{Short Description of Functionality}\\
+This function defines the interface of the OBU model to the openETCS generic API for Eurobalise Messages. On the interface, either a valid telegram is provided or a telegram is indicated which could not be received correct when passing the balise. The function passes the telegram without major changes of the information to the next entity for collecting the balise group information.
 	
-	%\item \textbf{{Reference to the SRS (or other requirements}\\
-	\item \textbf{Design Constrains and Choices}\\
-	\begin{enumerate}
-		\item Decoding of balises is done at the API. Also, packets received via the interface are already transformed into a usable shape.
-		\item Only packets used inside the current model are passed via the interface:\\
-		Packet 5: Linking Information.\\
-		Linking Information is filled into the linking array starting from index 0 without gaps. Used elements are marked as valid. Elements are sorted according to the order given by the telegram sequence.
-	\end{enumerate}
+%\item \textbf{{Reference to the SRS (or other requirements}\\
+\item \textbf{Design Constrains and Choices}\\
+\begin{enumerate}
+\item Decoding of balises is done at the API. Also, packets received via the interface are already transformed into a usable shape.
+\item Only packets used inside the current model are passed via the interface:\\
+Packet 5: Linking Information.\\
+Linking Information is filled into the linking array starting from index 0 without gaps. Used elements are marked as valid. Elements are sorted according to the order given by the telegram sequence.
+\end{enumerate}
 \end{itemize}
 
 
 \subsubsection{F.1.2 Build BG Group Message}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.5]{../images/BuildBGMessage_diagram.png}
+\caption{Structure of BuildBGMessage}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Short Description of Functionality}\\
 	This entity collects telegrams received via the interface into Balise Group Information.
@@ -291,17 +317,26 @@ Input to the model is via API. The border is inside the EVC Scade model.
 	\item \textbf{Design Constrains and Choices}\\
 	\begin{enumerate}
 		\item Telegrams received as invalid are passed to the ``Check-Function'' in order to process errors in communication with the trackside according to the requirements and in a single place.
-		Telegrams are filled into the telegram array starting from index 0 without gaps. Used elements are marked as valid. Elements are stored according to the order given by the telegram sequence. 
-		\item Only packets used inside the current model are passed via the interface:\\
-		Packet 5: Linking Information.\\
-		\item In this function packets past with the telegrams is accumulated into a balise group information.\\
-		\item Further assumption on packet 5 (based on SRS subset 26, section 8.4.1.4)\\
-		(In this statement the term ``message'' is ambiguous since it can reflect to a telegram or a balise group message)
-		Linking Information can only be passed once. This means, if linking information for the balise group is already collected with one of the earlier telegrams, the information will not be accumulated but overwritten.\\
+		Telegrams are filled into the telegram array starting from index 0 without gaps. Used elements are marked as valid. Elements are stored according to the order given by the telegram sequence.
+\item This function does not process information from the packets. The information is passed forward to the check without furhter processing of the values. 
 	\end{enumerate}
 \end{itemize}
 
 \subsubsection{F.1.3 Check BG Consistency}
+
+\begin{itemize}
+\item \textbf{Short Description of Functionality}\\
+
+
+%\begin{enumerate}
+%\item Only packets used inside the current model are passed via the interface:\\
+%Packet 5: Linking Information.\\
+%\item In this function packets past with the telegrams is accumulated into a balise group information.\\
+%\item Further assumption on packet 5 (based on SRS subset 26, section 8.4.1.4)\\
+%(In this statement the term ``message'' is ambiguous since it can reflect to a telegram or a balise group message)
+%Linking Information can only be passed once. This means, if linking information for the balise group is already collected with one of the earlier telegrams, the information will not be accumulated but overwritten.\\
+%\end{enumerate}
+\end{itemize}
 
 \subsubsection{F.1.4 Determine BG- Orientation and LRBG}
 \begin{itemize}
@@ -314,6 +349,13 @@ Input to the model is via API. The border is inside the EVC Scade model.
 
 
 \subsection{F.2 Manage Train Position}
+
+\subsubsection{F.2.1 Validate Data Direct}
+\begin{itemize}
+	\item \textbf{Short Description of Functionality}\\
+	\item \textbf{Reference to the SRS (or other requirements}\\
+	\item \textbf{Design Constrains and Choices}\\
+\end{itemize}
 
 \input{sections/trainPosition.tex}
 
