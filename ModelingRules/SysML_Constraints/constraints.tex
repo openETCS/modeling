@@ -32,7 +32,7 @@
 \subtitle{A template for short document. Adapted from report template.}
 
 %set the date of the report here
-\date{May 2014}
+\date{Sept. 2014}
 
 %define a list of authors and their affiliation here
 
@@ -270,6 +270,7 @@ Version & Section & Modification / Description & Author \\\hline}
                             \multicolumn{3}{l}{\texttt{Internal Block Diagram}}                                   \\
                           \end{tabular} 
                           \vspace
+
                           Esterel adds certain modeling elements which are not SysML, like \texttt{Array}. Also certain aspects
                           of SysML modeling are hidden. For example, if a \texttt{Datatype} is added to the model, the actual 
                           UML element is as expected a Datatype. However, as soon as \texttt{Dimension} or \texttt{Unit} 
@@ -279,7 +280,23 @@ Version & Section & Modification / Description & Author \\\hline}
                           \tabularnewline \hline
 \end{longtable}
 
-
+\begin{longtable}{|l||>{\raggedright}p{0.85\linewidth}|}
+  \hline
+  \textbf{Name}        &  Flow Port has at most one incoming connection \tabularnewline \hline
+  \textbf{Target}      &  \texttt{uml.Connector} \tabularnewline \hline
+  \textbf{Stereotype}  &  n/a \tabularnewline \hline
+  \textbf{Severity}    &  Error \tabularnewline \hline
+  \textbf{Mode}        &  Batch \tabularnewline \hline
+  \textbf{Message}     &  The Flow Port '\texttt{[name]}' has more than one incoming connections. SCADE can only handle 
+                          ports with at most one incoming connection. Please fix the connections. \tabularnewline \hline
+  \textbf{Rationale}   &  SysML Flow Ports are transformed to variables in SCADE. SCADE restricts writing to these 
+                          variables, which makes it not possible to realize Flow Ports with more than one incoming
+                          connection. \tabularnewline \hline
+  \textbf{Description} &  Flow Ports are connected via \texttt{uml.Connector}. For each \texttt{uml.Connector} check the 
+                          connector ends and build a hash table. If a connector has an end, that is 
+                          already in the hash table, issue a warning for the connected FlowPort.
+                          \tabularnewline \hline
+\end{longtable}
 
 \subsubsection{Classical B Generation}
 
