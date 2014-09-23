@@ -14,7 +14,11 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/1dfbf/39F1/B38/53b2c3025a30"/>
+								<ed:Variable oid="!ed/1dfbf/39F1/B38/53b2c3025a30" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Input: The balise information received via the API.</comment>
+									<comment>It is assumed there is at most one telegram  passed with this interface.</comment>
+									<comment>The present flag indicates the input whether the input is availabe for processing.</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</inputs>
@@ -35,7 +39,14 @@
 								</IdExpression>
 							</default>
 							<pragmas>
-								<ed:Variable oid="!ed/4433/39F1/B38/53b268b25558"/>
+								<ed:Variable oid="!ed/4433/39F1/B38/53b268b25558" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Decoded Telegram passed to the balise group message.</comment>
+									<comment>The present flag indicates output is available.</comment>
+									<comment>The valid flag being part of the telegram has at this interface an additional meaning:</comment>
+									<comment> - present = false -&gt; ignore telegram, no input</comment>
+									<comment> - present = true and valid = true: a proper telegram ha been received via btm.</comment>
+									<comment> - present = true and valid = false: BTM has indicated reception of an invalid telegram (e.g., CRC failure).</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="outcenterOfBalisePosition">
@@ -54,7 +65,9 @@
 								</IdExpression>
 							</default>
 							<pragmas>
-								<ed:Variable oid="!ed/10a03/2600/1714/53d769b2e8b"/>
+								<ed:Variable oid="!ed/10a03/2600/1714/53d769b2e8b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Position reported by the antenna where the telegram has been received.</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="outTelegramPresent">
@@ -66,7 +79,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/10111/7A9D/4F4/54180f65315"/>
+								<ed:Variable oid="!ed/10111/7A9D/4F4/54180f65315" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Presence indicatio for the output</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</outputs>
@@ -291,7 +306,7 @@
 																				<ed:Variable oid="!ed/4828/7393/1E74/53cfb37845ab"/>
 																			</pragmas>
 																		</Variable>
-																		<Variable name="_L9">
+																		<Variable name="_L19">
 																			<type>
 																				<NamedType>
 																					<type>
@@ -300,27 +315,11 @@
 																				</NamedType>
 																			</type>
 																			<pragmas>
-																				<ed:Variable oid="!ed/b15a/1F77/1BA0/53d643e95267"/>
+																				<ed:Variable oid="!ed/6add/5AFF/1B20/542179b311cb"/>
 																			</pragmas>
 																		</Variable>
 																	</locals>
 																	<data>
-																		<!-- outDecodedTelegram = _L9; -->
-																		<Equation>
-																			<lefts>
-																				<VariableRef name="outDecodedTelegram"/>
-																			</lefts>
-																			<right>
-																				<IdExpression>
-																					<path>
-																						<ConstVarRef name="_L9"/>
-																					</path>
-																				</IdExpression>
-																			</right>
-																			<pragmas>
-																				<ed:Equation oid="!ed/d670/6247/221C/53cbd6ea6476"/>
-																			</pragmas>
-																		</Equation>
 																		<!-- _L6 = API_balise; -->
 																		<Equation>
 																			<lefts>
@@ -377,99 +376,41 @@
 																				<ed:Equation oid="!ed/b12d/1F77/1BA0/53d63e3b5dd"/>
 																			</pragmas>
 																		</Equation>
-																		<!-- _L9 = cEmptyBaliseTelegramInit; -->
+																		<!-- _L19 = cInitDecodedTelegram; -->
 																		<Equation>
 																			<lefts>
-																				<VariableRef name="_L9"/>
+																				<VariableRef name="_L19"/>
 																			</lefts>
 																			<right>
 																				<IdExpression>
 																					<path>
-																						<ConstVarRef name="cEmptyBaliseTelegramInit"/>
+																						<ConstVarRef name="cInitDecodedTelegram"/>
 																					</path>
 																				</IdExpression>
 																			</right>
 																			<pragmas>
-																				<ed:Equation oid="!ed/b159/1F77/1BA0/53d643e92498"/>
+																				<ed:Equation oid="!ed/6adc/5AFF/1B20/542179b31a52"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- outDecodedTelegram = _L19; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="outDecodedTelegram"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="_L19"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/6ade/5AFF/1B20/542179b378d0"/>
 																			</pragmas>
 																		</Equation>
 																	</data>
 																	<pragmas>
-																		<ed:Action oid="!ed/d66e/6247/221C/53cbd6ea39e0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-																			<diagrams>
-																				<NetDiagram name="diagram_Then_1" landscape="true" format="A4 (210 297)" oid="!ed/d676/6247/221C/53cbd6ea4a9c">
-																					<comment>This path is meant to indicate the situation where a bad balise telegram has been received.</comment>
-																					<comment>Infomration about the balise is not known.</comment>
-																					<comment>However, information about the event has to be passed to the bg-message builder</comment>
-																					<presentationElements>
-																						<EquationGE presentable="!ed/d670/6247/221C/53cbd6ea6476">
-																							<position>
-																								<Point x="21616" y="5212"/>
-																							</position>
-																							<size>
-																								<Size width="318" height="503"/>
-																							</size>
-																						</EquationGE>
-																						<EquationGE presentable="!ed/d674/6247/221C/53cbd6ea6c59">
-																							<position>
-																								<Point x="1296" y="4683"/>
-																							</position>
-																							<size>
-																								<Size width="265" height="502"/>
-																							</size>
-																						</EquationGE>
-																						<EquationGE presentable="!ed/4827/7393/1E74/53cfb3785dee">
-																							<position>
-																								<Point x="3307" y="4207"/>
-																							</position>
-																							<size>
-																								<Size width="2408" height="1482"/>
-																							</size>
-																						</EquationGE>
-																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d674/6247/221C/53cbd6ea6c59" dstEquation="!ed/4827/7393/1E74/53cfb3785dee">
-																							<positions>
-																								<Point x="1561" y="4948"/>
-																								<Point x="2434" y="4948"/>
-																								<Point x="2434" y="4948"/>
-																								<Point x="3307" y="4948"/>
-																							</positions>
-																						</Edge>
-																						<EquationGE presentable="!ed/b12d/1F77/1BA0/53d63e3b5dd">
-																							<position>
-																								<Point x="7276" y="4577"/>
-																							</position>
-																							<size>
-																								<Size width="741" height="741"/>
-																							</size>
-																						</EquationGE>
-																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/4827/7393/1E74/53cfb3785dee" dstEquation="!ed/b12d/1F77/1BA0/53d63e3b5dd">
-																							<positions>
-																								<Point x="5715" y="4948"/>
-																								<Point x="6668" y="4948"/>
-																								<Point x="6668" y="4948"/>
-																								<Point x="7646" y="4948"/>
-																							</positions>
-																						</Edge>
-																						<EquationGE kind="OBJ_LIT" presentable="!ed/b159/1F77/1BA0/53d643e92498">
-																							<position>
-																								<Point x="18415" y="5318"/>
-																							</position>
-																							<size>
-																								<Size width="212" height="318"/>
-																							</size>
-																						</EquationGE>
-																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/b159/1F77/1BA0/53d643e92498" dstEquation="!ed/d670/6247/221C/53cbd6ea6476">
-																							<positions>
-																								<Point x="18627" y="5477"/>
-																								<Point x="20161" y="5477"/>
-																								<Point x="20161" y="5477"/>
-																								<Point x="21669" y="5477"/>
-																							</positions>
-																						</Edge>
-																					</presentationElements>
-																				</NetDiagram>
-																			</diagrams>
-																		</ed:Action>
+																		<ed:Action oid="!ed/d66e/6247/221C/53cbd6ea39e0"/>
 																	</pragmas>
 																</Action>
 															</then>
@@ -593,72 +534,7 @@
 																		</Equation>
 																	</data>
 																	<pragmas>
-																		<ed:Action oid="!ed/d660/6247/221C/53cbd6ea6e06" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-																			<diagrams>
-																				<NetDiagram name="diagram_Else_1" landscape="true" format="A4 (210 297)" oid="!ed/d667/6247/221C/53cbd6ea40fa">
-																					<comment>Situation: fresh data have been delivered and balise data are valid.</comment>
-																					<comment>In this situation copieng of telegram, odometry and packets is to be done.</comment>
-																					<presentationElements>
-																						<EquationGE presentable="!ed/d662/6247/221C/53cbd6ea3c0a">
-																							<position>
-																								<Point x="9181" y="1852"/>
-																							</position>
-																							<size>
-																								<Size width="318" height="503"/>
-																							</size>
-																						</EquationGE>
-																						<EquationGE presentable="!ed/d666/6247/221C/53cbd6ea3159">
-																							<position>
-																								<Point x="1323" y="2170"/>
-																							</position>
-																							<size>
-																								<Size width="265" height="503"/>
-																							</size>
-																						</EquationGE>
-																						<EquationGE presentable="!ed/b29f/1F77/1BA0/53d64f2e6528">
-																							<position>
-																								<Point x="4040" y="1500"/>
-																							</position>
-																							<size>
-																								<Size width="3218" height="1868"/>
-																							</size>
-																						</EquationGE>
-																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/b29f/1F77/1BA0/53d64f2e6528" dstEquation="!ed/d662/6247/221C/53cbd6ea3c0a">
-																							<positions>
-																								<Point x="7250" y="2117"/>
-																								<Point x="8176" y="2117"/>
-																								<Point x="8176" y="2117"/>
-																								<Point x="9234" y="2117"/>
-																							</positions>
-																						</Edge>
-																						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d666/6247/221C/53cbd6ea3159" dstEquation="!ed/b29f/1F77/1BA0/53d64f2e6528">
-																							<positions>
-																								<Point x="1588" y="2434"/>
-																								<Point x="2805" y="2434"/>
-																								<Point x="2805" y="2434"/>
-																								<Point x="4048" y="2434"/>
-																							</positions>
-																						</Edge>
-																						<EquationGE presentable="!ed/10a04/2600/1714/53d769b957a9">
-																							<position>
-																								<Point x="9208" y="2487"/>
-																							</position>
-																							<size>
-																								<Size width="317" height="502"/>
-																							</size>
-																						</EquationGE>
-																						<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/b29f/1F77/1BA0/53d64f2e6528" dstEquation="!ed/10a04/2600/1714/53d769b957a9">
-																							<positions>
-																								<Point x="7250" y="2752"/>
-																								<Point x="8255" y="2752"/>
-																								<Point x="8255" y="2752"/>
-																								<Point x="9260" y="2752"/>
-																							</positions>
-																						</Edge>
-																					</presentationElements>
-																				</NetDiagram>
-																			</diagrams>
-																		</ed:Action>
+																		<ed:Action oid="!ed/d660/6247/221C/53cbd6ea6e06"/>
 																	</pragmas>
 																</Action>
 															</else>
@@ -777,8 +653,8 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d27b/6247/221C/53cbc69215d" dstEquation="!ed/d325/6247/221C/53cbcc9c21ce">
 											<positions>
-												<Point x="9102" y="2540"/>
-												<Point x="13309" y="2540"/>
+												<Point x="9128" y="2566"/>
+												<Point x="13309" y="2566"/>
 												<Point x="13309" y="2514"/>
 												<Point x="13388" y="2514"/>
 											</positions>
@@ -804,7 +680,7 @@
 												<Point x="1323" y="8890"/>
 											</position>
 											<size>
-												<Size width="8599" height="9102"/>
+												<Size width="23654" height="12568"/>
 											</size>
 										</IfBlockGE>
 										<ActionGE presentable="!ed/d3be/6247/221C/53cbd68d59de">
@@ -812,12 +688,12 @@
 												<Point x="3149" y="9393"/>
 											</position>
 											<size>
-												<Size width="5688" height="6138"/>
+												<Size width="21272" height="8678"/>
 											</size>
 										</ActionGE>
 										<ActionGE presentable="!ed/d3bf/6247/221C/53cbd68d9d3">
 											<position>
-												<Point x="3228" y="15743"/>
+												<Point x="2910" y="19050"/>
 											</position>
 											<size>
 												<Size width="5530" height="2090"/>
@@ -830,31 +706,31 @@
 										</IfNodeGE>
 										<IfBlockGE presentable="!ed/d65e/6247/221C/53cbd6ea79ef">
 											<position>
-												<Point x="3387" y="10345"/>
+												<Point x="3572" y="10239"/>
 											</position>
 											<size>
-												<Size width="4419" height="4921"/>
+												<Size width="20452" height="7620"/>
 											</size>
 										</IfBlockGE>
 										<IfNodeGE labelWidth="794" presentable="!ed/d65f/6247/221C/53cbd6ea4f17">
 											<position>
-												<Point x="3837" y="10927"/>
+												<Point x="4022" y="10821"/>
 											</position>
 										</IfNodeGE>
-										<ActionGE display="split" presentable="!ed/d66e/6247/221C/53cbd6ea39e0">
+										<ActionGE presentable="!ed/d66e/6247/221C/53cbd6ea39e0">
 											<position>
-												<Point x="5213" y="10848"/>
+												<Point x="5398" y="10742"/>
 											</position>
 											<size>
-												<Size width="1905" height="1376"/>
+												<Size width="14341" height="3360"/>
 											</size>
 										</ActionGE>
-										<ActionGE display="split" presentable="!ed/d660/6247/221C/53cbd6ea6e06">
+										<ActionGE presentable="!ed/d660/6247/221C/53cbd6ea6e06">
 											<position>
-												<Point x="5160" y="12753"/>
+												<Point x="5159" y="14658"/>
 											</position>
 											<size>
-												<Size width="1958" height="1640"/>
+												<Size width="14526" height="3069"/>
 											</size>
 										</ActionGE>
 										<EquationGE presentable="!ed/6014/4900/1E70/541812d95571">
@@ -887,6 +763,126 @@
 												<Point x="11351" y="4948"/>
 												<Point x="11351" y="4948"/>
 												<Point x="13494" y="4948"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/d674/6247/221C/53cbd6ea6c59">
+											<position>
+												<Point x="8943" y="11509"/>
+											</position>
+											<size>
+												<Size width="265" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/4827/7393/1E74/53cfb3785dee">
+											<position>
+												<Point x="10954" y="11033"/>
+											</position>
+											<size>
+												<Size width="2408" height="1482"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d674/6247/221C/53cbd6ea6c59" dstEquation="!ed/4827/7393/1E74/53cfb3785dee">
+											<positions>
+												<Point x="9208" y="11774"/>
+												<Point x="10081" y="11774"/>
+												<Point x="10081" y="11774"/>
+												<Point x="10954" y="11774"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/b12d/1F77/1BA0/53d63e3b5dd">
+											<position>
+												<Point x="14923" y="11404"/>
+											</position>
+											<size>
+												<Size width="741" height="741"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/4827/7393/1E74/53cfb3785dee" dstEquation="!ed/b12d/1F77/1BA0/53d63e3b5dd">
+											<positions>
+												<Point x="13361" y="11774"/>
+												<Point x="14314" y="11774"/>
+												<Point x="14314" y="11774"/>
+												<Point x="15293" y="11774"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/6adc/5AFF/1B20/542179b31a52">
+											<position>
+												<Point x="10398" y="12938"/>
+											</position>
+											<size>
+												<Size width="212" height="318"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/6ade/5AFF/1B20/542179b378d0">
+											<position>
+												<Point x="12965" y="12832"/>
+											</position>
+											<size>
+												<Size width="318" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6adc/5AFF/1B20/542179b31a52" dstEquation="!ed/6ade/5AFF/1B20/542179b378d0">
+											<positions>
+												<Point x="10610" y="13097"/>
+												<Point x="11800" y="13097"/>
+												<Point x="11800" y="13097"/>
+												<Point x="13018" y="13097"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/d662/6247/221C/53cbd6ea3c0a">
+											<position>
+												<Point x="14975" y="15425"/>
+											</position>
+											<size>
+												<Size width="318" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/d666/6247/221C/53cbd6ea3159">
+											<position>
+												<Point x="7091" y="15743"/>
+											</position>
+											<size>
+												<Size width="265" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/b29f/1F77/1BA0/53d64f2e6528">
+											<position>
+												<Point x="9843" y="15081"/>
+											</position>
+											<size>
+												<Size width="3218" height="1868"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/b29f/1F77/1BA0/53d64f2e6528" dstEquation="!ed/d662/6247/221C/53cbd6ea3c0a">
+											<positions>
+												<Point x="13070" y="15716"/>
+												<Point x="13970" y="15716"/>
+												<Point x="13970" y="15716"/>
+												<Point x="15028" y="15716"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d666/6247/221C/53cbd6ea3159" dstEquation="!ed/b29f/1F77/1BA0/53d64f2e6528">
+											<positions>
+												<Point x="7355" y="16007"/>
+												<Point x="7964" y="16007"/>
+												<Point x="7964" y="16007"/>
+												<Point x="9843" y="16007"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/10a04/2600/1714/53d769b957a9">
+											<position>
+												<Point x="15002" y="16060"/>
+											</position>
+											<size>
+												<Size width="317" height="502"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/b29f/1F77/1BA0/53d64f2e6528" dstEquation="!ed/10a04/2600/1714/53d769b957a9">
+											<positions>
+												<Point x="13070" y="16325"/>
+												<Point x="14049" y="16325"/>
+												<Point x="14049" y="16325"/>
+												<Point x="15055" y="16325"/>
 											</positions>
 										</Edge>
 									</presentationElements>
@@ -1213,6 +1209,10 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/b166/1F77/1BA0/53d644fb1234" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Transfers a telegram received via the API interface into a telegram to be used for handling balises of balise groups. The format is defined to fit to the BTM interface.defined in section .8.4.2 of the SRS.</comment>
+							<comment>However, it is assumed the decoding of telegrams is task of the API. This implies:</comment>
+							<comment> - no fields of the telegram on bit-boundary</comment>
+							<comment>- variant size information is mapped to arrays wherever visible.</comment>
 							<diagrams>
 								<NetDiagram name="diagram_transferTelegram_1" landscape="true" format="A4 (210 297)" oid="!ed/b167/1F77/1BA0/53d644fb34ef">
 									<comment>Transfer of the telegram from api to openETCS model structure.</comment>
@@ -1502,6 +1502,13 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/b21a/1F77/1BA0/53d64bdf4004" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Transfers of packets of the telegram received via the API interface into a telegram to be used for handling balises of balise groups. The format is defined to fit to the BTM interface.defined in section .8.4.2 of the SRS.</comment>
+							<comment>However, it is assumed the decoding of telegrams is task of the API. This implies:</comment>
+							<comment> - no fields of the telegram on bit-boundary</comment>
+							<comment>- variant size information is mapped to arrays wherever visible.</comment>
+							<comment></comment>
+							<comment>In the scope of the first iteration only packet 5 is relevant (linking). </comment>
+							<comment>Other packets are not considered.</comment>
 							<diagrams>
 								<NetDiagram name="diagram_transferPackets_1" landscape="true" format="A4 (210 297)" oid="!ed/b21b/1F77/1BA0/53d64bdf10a8">
 									<presentationElements>
@@ -1539,10 +1546,10 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/b282/1F77/1BA0/53d64e114e5c" dstEquation="!ed/b269/1F77/1BA0/53d64dfd5d93">
 											<positions>
-												<Point x="16378" y="10054"/>
-												<Point x="17595" y="10054"/>
-												<Point x="17595" y="10054"/>
-												<Point x="18759" y="10054"/>
+												<Point x="16404" y="10081"/>
+												<Point x="17595" y="10081"/>
+												<Point x="17595" y="10081"/>
+												<Point x="18759" y="10081"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/b263/1F77/1BA0/53d64dfa5b3e" dstEquation="!ed/b273/1F77/1BA0/53d64e0578af">
