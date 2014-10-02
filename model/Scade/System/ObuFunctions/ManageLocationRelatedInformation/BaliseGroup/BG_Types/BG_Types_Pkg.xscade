@@ -8971,6 +8971,23 @@
 						</ed:Constant>
 					</pragmas>
 				</Constant>
+				<Constant name="cMaxNoOfLevelTransitionOrders">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="4"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/7504e/4AF8/1D30/542bf88168d7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Max. number = 31</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
 				<Type name="BG_Header_T">
 					<definition>
 						<Struct>
@@ -10093,12 +10110,226 @@
 						</ed:Type>
 					</pragmas>
 				</Type>
+				<Type name="levelTransitionOrder_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/6f5f7/4AF8/1D30/542bf64f1b"/>
+									</pragmas>
+								</Field>
+								<Field name="q_dir">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_DIR"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/6f600/4AF8/1D30/542bf675458f"/>
+									</pragmas>
+								</Field>
+								<Field name="q_scale">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_SCALE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/6f601/4AF8/1D30/542bf675558e"/>
+									</pragmas>
+								</Field>
+								<Field name="d_leveltr">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_LEVELTR"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/6f602/4AF8/1D30/542bf675574c"/>
+									</pragmas>
+								</Field>
+								<Field name="m_leveltr">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_LEVELTR"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/6f603/4AF8/1D30/542bf6757890"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_ntc">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_NTC"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/6f604/4AF8/1D30/542bf6752e39"/>
+									</pragmas>
+								</Field>
+								<Field name="l_ackleveltr">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="L_ACKLEVELTR"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/6f605/4AF8/1D30/542bf6755a10"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/6f5f6/4AF8/1D30/542bf6356ab8"/>
+					</pragmas>
+				</Type>
+				<Type name="levelTransitionOrders_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="levelTransitionOrder_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cMaxNoOfLevelTransitionOrders"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/7503b/4AF8/1D30/542bf81554a2"/>
+					</pragmas>
+				</Type>
+				<Type name="levelTransitionOrderBGMsg_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/75068/4AF8/1D30/542bfbc33d2b"/>
+									</pragmas>
+								</Field>
+								<Field name="BG_Header">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BG_Header_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/75071/4AF8/1D30/542bfbe255fd"/>
+									</pragmas>
+								</Field>
+								<Field name="orders">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="levelTransitionOrders_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/7507b/4AF8/1D30/542bfbfd6647"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/75067/4AF8/1D30/542bfb841ba8"/>
+					</pragmas>
+				</Type>
+				<Type name="levelTransitionOrderCmd_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/75086/4AF8/1D30/542c023b33a3"/>
+									</pragmas>
+								</Field>
+								<Field name="distanceSinceLTORef">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/7508f/4AF8/1D30/542c0244fc3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Estimated distance since refBG of LTO passed</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nextLTO">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="levelTransitionOrder_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/75090/4AF8/1D30/542c02d0938"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/75085/4AF8/1D30/542c021c32e6"/>
+					</pragmas>
+				</Type>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/1456a/1CAF/1A3C/530493501fc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 					<diagrams>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1456b/1CAF/1A3C/53049350e3b" blockKind="constants" columnsSize="0, 150, 150, 150, 597"/>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1456c/1CAF/1A3C/530493501c9" blockKind="types" columnsSize="0, 203, 245, 807"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1456b/1CAF/1A3C/53049350e3b" blockKind="constants" columnsSize="0, 264, 150, 150, 597"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1456c/1CAF/1A3C/530493501c9" blockKind="types" columnsSize="0, 259, 245, 807"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1456d/1CAF/1A3C/530493502070" blockKind="sensors"/>
 					</diagrams>
 				</ed:Package>
