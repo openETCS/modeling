@@ -100,7 +100,7 @@ Version & Section & Modification / Description & Author \\\hline}
 \begin{supertabular}{| m{1.2cm} | m{1.2cm} | m{6.6cm} | m{4cm} |}
 0.1 & Document & Initial document providing the structure & Bernd Hekele \\\hline
 0.2 & Sect.~\ref{sss:provposrep} & initial contribution and some pretty printing & Christian Stahl \\\hline
-0.3 &Sect. & overtaking the author lead for the architecture & Baseliyos Jacob \\\hline
+0.3 &Sect. & taking over the author lead for the second iteration architecture & Baseliyos Jacob \\\hline
 \end{supertabular}
 
 
@@ -186,17 +186,151 @@ CCS Systems.
 \end{figure}
 
 \newpage
-\subsection{Description of the SRS Functions}
+\section{Description of the SRS Functions}
 
  \subsection{F1 Exchange input}
  F1: Exchange input\\
- See Figure 2 - Block F 1
+ See Figure 2 - Block F 1\\
  
-  \subsection{F2 Elaboration track messages}
+ Inputs:\\
+``will be complete''\\
+ 
+ Outputs:\\
+ ``will be complete''\\
+ 
+ Description: 
+ This function module manages the interaction with the functional modules at the input and output 
+of equipment: \\
+- TIU, \\
+- DMI, \\
+- BTM, \\
+- EURORADIO, \\
+- Parameterization board, \\
+- Displacement measurement.\\ 
+
+It complements their functionalities at the level: 
+the protocols and exchange "safety layer" with the kernel external modules, with 
+Exception of Wegmessungsmoduls (this manages its own exchange protocols.
+The summary of telepowering telegrams of the BTM module in a complete Eurobalise message a balise group with the same ID, with review of the 
+Balisentelegramheader, management of the duplicated beacons and detecting the direction. 
+In addition, the receipt of a Referenzbalise from the linked type, in addition to the 
+Balise group, reported for the computational comparison of path measure modul. \\
+
+ \subsection{F2 Elaboration track messages}
  F2: Elaboration track messages\\
- 	F21: Receive Eurobalise Messages SRS § 3.4, § 3.6, § 3.16, § 3.17, § 4.8\\
- 	F22: Receive Euroradio Messages SRS § 3.4, § 3.6, § 3.16, § 4.8\\
- 	F23: Manage Eurobalise Messages SRS § 3.4, § 3.6, § 3.16\\
+  Inputs:\\
+``will be complete''\\
+
+ Outputs:\\
+ ``will be complete''\\
+ 
+ Description: This function module provides the encoding and decoding of track messages that 
+Management of the port and power off RBC, and the management of reference 
+Beacons, which are based on the track messages.\\
+
+ \subsection{	F21: Receive Eurobalise Messages} 
+ \textbf{SRS:} § 3.4, § 3.6, § 3.16, § 3.17, § 4.8\\
+ 
+  \textbf{Inputs:}\\
+``will be complete''\\
+
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+ \textbf{Description:} 
+ This function module provides the summary of telepowering information and the 
+review of coherence the content of telepowering message. 
+This module separates the eurobalise message as follows: 
+ 
+ - The Balise telegram heads for checking the consistency of the different 
+Telegrams, the management of the duplicated beacons and the acquisition of meaning. \\
+
+- Then the information that the balise group, their reading direction and are 
+Wegmessungsposition where the first balise group was read, in 
+Baliseninformationen for monitoring the function "Manage the eurobalises" 
+summarized (see the term Identifzierung and meaning in this function), which the 
+Continuation of reading via the information Referenzbalise with a Balisenposition in 
+Kernel-reference document approved. \\
+
+\textbf{- The ETCS ETCS version and packages:} \\
+
+The first review is the version ETCS ETCS track with the version Zugbord 
+(Version 1.x Class1 =) to compare; these must be compatible (that means 1.y) to 
+continue processing (a Balise version of the type is 0.y as incompatible 
+considered, but they must not generate a negative reception report). \\
+
+The second review is in compliance with the ETCS grammar in the resulting 
+Packets with a packet 255, which terminates the beacon information of each of the group. \\
+
+The reception of a packet 245 (standard package) in a eurobalise) includes the 
+Rejection of all other packets received and generated a the same mistake as 
+Grammatical errors ETCS, unless the OBU is in Level 2. \\
+
+Only the packets 44, 65, 66 and 136 may be located several times in a same eurobalise message\\ 
+For the 136 package: \\
+• a single packet 136 per Balise telegram, \\
+• the different packages 136 in a same message are identical. \\
+
+The read packets are filtered as a function: \\
+
+- from the direction of the transition to the balise group (the packet is the variable 
+QDIR oriented), 
+the bi-default state (level, level of announced and ERTMS / ETCS mode). \\
+
+The tables of filtering per level and ERTMS / ETCS mode are in the description of the 
+Function "received EUR radio messages" contain.\\
+
+\textbf{These packets are transmitted in four different groups:}
+
+- Geographical information (packet 79 for the "train locations") \\
+
+- Information CNX / DCNX (packets 42, 131) for the "the CNX and DCNX 
+Euro Radio Management "\\
+
+- Information Balise (package 136: Referenzbalise for in-fill information) for the function 
+"Manage eurobalises" \\
+
+- Track-mail received (other packages) for the "monitor train". \\
+
+\textbf{Any error of Referenzbalise, the version or the grammar ETCS is in CR (radio channel) 
+Receiving reported.}\\
+ 
+ 
+ \subsection{F22: Receive Euroradio Messages}
+  \textbf{SRS} § 3.4, § 3.6, § 3.16, § 4.8\\
+  
+    \textbf{Inputs:}\\
+``will be complete''\\
+
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+\textbf{Description:} 
+This function module provides the summary of the Euro radio information and the 
+Verify the consistency of the contents of the Euro radio message. 
+The first guaranteed by this module check is to monitor the radio link. 
+This only applies to a normal communication channel (see § 8.3.1 interface gSM-R). \\
+
+\textbf{The review is broken down as follows:}
+
+- Basic principle: the RBC is providing its messages with a time stamp based on the 
+Time marking the bi-standard the equipment (if the timestamp of the messages on 
+position is undefined, the message is accepted, but only during the initialization of the 
+Communication session EVC - RBC).\\
+
+Verification of the sequence: \\
+
+- the ETCS OBU train equipment rejects any message that is "older" than the last 
+received message.\\
+
+- the ETCS OBU train equipment is up to any message that is "younger" than the last 
+received message.\\
+ 	 
+ 	 
+\subsection{F23: Manage Eurobalise Messages}
+\textbf{SRS} § 3.4, § 3.6, § 3.16\\
+  
+  
  	F24: Manage Cnx and Dncx Euroradio SRS § 3.5, § 3.15.1, § 5.15\\
  	F35: Send Euroradio Messages § 3.4, § 3.16\\
  	See Figure 3 - Block 2
