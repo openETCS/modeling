@@ -294,13 +294,13 @@ In the scade model the types needed to build the ointerfaces between models are 
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.5]{../images/ReceiveEuroBaliseFromAPI_diagram.png}
+\includegraphics[width=.9\textwidth]{../images/ReceiveEuroBaliseFromAPI_diagram.png}
 \caption{Structure of ReceiveEuroBaliseFromAPI}
 \end{figure}
 \subsubsection{Short Description of Functionality}
 This function defines the interface of the OBU model to the openETCS generic API for Eurobalise Messages. On the interface, either a valid telegram is provided or a telegram is indicated which could not be received correct when passing the balise. The function passes the telegram without major changes of the information to the next entity for collecting the balise group information.
 	
-%\item \textbf{{Reference to the SRS (or other requirements}\\
+\subsubsection{Reference to the SRS (or other requirements)}
 
 \subsubsection{Design Constrains and Choices}
 
@@ -324,7 +324,7 @@ Linking Information is filled into the linking array starting from index 0 witho
 \subsubsection{Short Description of Functionality}
 This entity collects telegrams received via the interface into Balise Group Information.
 	
-\subsubsection{Reference to the SRS (or other requirements}
+\subsubsection{Reference to the SRS (or other requirements)}
 \subsubsection{Design Constrains and Choices}
 \begin{enumerate}
 \item Telegrams received as invalid are passed to the ``Check-Function'' in order to process errors in communication with the trackside according to the requirements and in a single place.
@@ -337,7 +337,7 @@ Telegrams are filled into the telegram array starting from index 0 without gaps.
 \subsection{F.1.3 Check BG Consistency}
 
 \subsubsection{Short Description of Functionality}
-\subsubsection{Reference to the SRS (or other requirements}
+\subsubsection{Reference to the SRS (or other requirements)}
 \subsubsection{Design Constrains and Choices}
 
 %\begin{enumerate}
@@ -353,16 +353,28 @@ Telegrams are filled into the telegram array starting from index 0 without gaps.
 \subsection{F.1.4 Determine BG- Orientation and LRBG}
 
 \subsubsection{Short Description of Functionality}
-\subsubsection{Reference to the SRS (or other requirements}
+\subsubsection{Reference to the SRS (or other requirements)}
 \subsubsection{Design Constrains and Choices}
 
 
-\subsection{F.1.5 Select Usable Info}
+\subsection{F.1.5 Select Useable Info}
 
 \subsubsection{Short Description of Functionality}
-\subsubsection{Reference to the SRS (or other requirements}
-\subsubsection{Design Constrains and Choices}
+The function Select Useable Info filters information received from balises that have been passed, radio, and euroloop. Filtering is done depending on the mode of the train, the current ETCS level, the type/content of the information, and the transition media of the information. Since neither radio messages nor euroloop are part of the first iteration of work not all functionalty of the filter described in the specification is implemented currently.
 
+\subsubsection{Reference to the SRS (or other requirements)}
+The functionality of Select Useable Info is decribed in Chapter 4.8 of the SRS. The following list gives an overview of the most important sections for each of the blocks in the model.
+
+\begin{description}
+\item[First filter] The first filter, i.e. the filter on the level, is described in Section 4.8.3 of Subset-026.
+\item[Second filter] The second filter, i.e.~the filter on the transition media, is described in Section 4.8.3 of Subset-026.
+\item[Third filter]
+ The second filter, i.e.~the filter on the modes, is described in Section 4.8.4 of Subset-026.
+\item[Transition buffers] Details on the handling of the transition buffers used in the first filter and the second filter are described in Section 4.8.5 of Subset-026.
+\end{description}
+
+\subsubsection{Design Constrains and Choices}
+ Since in the first iteration of the model takes only balise group messages into account this implies that a large part of the specification of this function described in subset-026 is not relevant for the first iteration. This in particular applies to the filter on the transition medium, since radio messages are not part of the model so far and the filter on level, since the first iteration of the model only implements ETCS level 1.
 
 \section{F.2 Manage Train Position}
 
