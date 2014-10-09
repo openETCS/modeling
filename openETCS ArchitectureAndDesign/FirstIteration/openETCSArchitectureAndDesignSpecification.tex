@@ -1,4 +1,4 @@
-\documentclass{template/openetcs_article}
+\documentclass{template/openetcs_report}
 % Use the option "nocc" if the document is not licensed under Creative Commons
 %\documentclass[nocc]{template/openetcs_article}
 \usepackage{lipsum,url}
@@ -34,7 +34,7 @@
 \subtitle{First Iteration: ETCS Kernel Functions}
 
 %set the date of the report here
-\date{September 2014}
+\date{October 2014}
 
 
 %document approval
@@ -96,13 +96,16 @@ This document gives an introduction to the architecture of the first openETCS it
 \hline 
 \rowcolor{gray} 
 Version & Section & Modification / Description & Author \\\hline}
-%\begin{supertabular}{| m{1.2cm} | m{1.2cm} | m{6.6cm} | m{4cm} |}
-\begin{supertabular}{| c | c | l | l |}
-0.1 & Document & Initial document providing the structure & Bernd Hekele \\\hline
-0.2 & Sect.~\ref{sss:provposrep} & initial contribution and some pretty printing & Christian Stahl \\\hline
-0.3 & Document & collecting feedback and completion on initial sections & Bernd Hekele \\\hline
+\begin{supertabular}{| m{1.2cm} | m{1.2cm} | m{6.6cm} | m{4cm} |}
+%\begin{supertabular}{| c | c | l | l |}
+0.1 & all & Initial document providing the structure & Bernd Hekele \\\hline
+0.2 & \ref{sss:provposrep} & initial contribution and some pretty printing & Christian Stahl \\\hline
+0.3 & all & collecting feedback and completion on initial sections & Bernd Hekele \\\hline
+0.4 & all & changed document style to openETCS report improved pretty printing & Peter Mahlmann \\\hline
 \end{supertabular}
 
+% list subsubsections in table of contents
+\setcounter{tocdepth}{3}
 
 \tableofcontents
 \listoffiguresandtables
@@ -116,12 +119,12 @@ Version & Section & Modification / Description & Author \\\hline}
 
 % The actual document starts below this line
 %=============================
+\mainmatter
+
+\chapter{Introduction}
 
 
-\section{Introduction}
-
-
-\subsection{Motivation}
+\section{Motivation}
 \label{sec:Motivation}
 
 The openETCS work package WP3 aims to provide the architecture and the design of the openETCS OBU software as mainly specified in \cite{subset-026} UNISIG Subset\_026 version\_3.3.0. 
@@ -133,7 +136,7 @@ All these functions are object of the openETCS project and have to be analysed f
 While the first version of this document focuses on the first version of the limited kernel function, it is intended to grow in parallel to the growing openETCS software.
 
 
-\subsection{Objectives}
+\section{Objectives}
 \label{sec:Objectives}
 
 
@@ -158,16 +161,16 @@ Additional goals for this document are
 Note: This document will be extended according to the progress of WP3. 
 
 
-\subsection{History}
+\section{History}
 
 %-----------------------------------------------------------------------
-\subsection{Goals of the openETCS Modelling Work}
+\section{Goals of the openETCS Modelling Work}
 %-----------------------------------------------------------------------
 %\tbc
 %by Uwe
 
 
-\subsubsection{Functional Scope: The Minimum OBU Kernel Function}
+\subsection{Functional Scope: The Minimum OBU Kernel Function}
 \label{sec:FunctionalScopeTheMinimumOBUKernelFunction}
 
 The objective ``Make the train run with a very minimum functionality'' shall be in terms of ETCS OBU translated into 
@@ -193,16 +196,21 @@ In addition, the work on this minimum functionality requires to be supported by
 \end{itemize}
 These supporting prerequisites are under construction and therefore not completely operable actually. How to deal with these restrictions, will be outlined in chapter ???
 
-\subsection{Glossary and Abbreviations}
+\section{Glossary and Abbreviations}
 
 \textbf{API} Application Programming Interface\\
 \textbf{EVC} European Vital Computer\\
 \textbf{BTM} Balise Transmission Module\\
 \textbf{SRS} System Requirements Specification\\
 
-\section{The openETCS Architecture of the initial kernel functions}
 
-\subsection{The openETCS Tool-Chain and its impacts on the actual model}
+
+
+%==================================================================
+
+\chapter{The openETCS Architecture of the Initial Kernel Functions}
+
+\section{The openETCS Tool Chain and its Impacts on the Actual Model}
 
 For understanding the modelling process and the modeling guidelines, we refer to \cite{wp3-dow}. 
 
@@ -217,15 +225,15 @@ To summarize the design process, the following rules are in use:
 \end{itemize}
 
 The openETCS tool-chain for doing the modelling work consists of the following components:
-\begin{itemize}
-	\item [\textbf{Papyrus}]: for modelling the architecture (Kepler version).\\
+\begin{description}
+	\item[Papyrus] for modelling the architecture (Kepler version).
 	In this phase only the Kepler version of the tool can be used due to incompatibilities of the Kepler and the Luna version on the SysML model. The SysML models are stored in the following location: \url{https://github.com/openETCS/modeling/tree/master/model/sysml}.
-	\item [\textbf{ProR}]: for keeping the requirements (REQIF).\\
+	\item[ProR] for keeping the requirements (REQIF).
 	The subset 26 is converted into a REQIF-format and also stored in the modeling repository on Github. The openETCS toolchain supports the linking of SysML model parts to SRS-Requirements. These results are also part of the architecture.
-	\item [\textbf{Scade}]: for designing and formalising the functions Scade version 15.2 is used.\\
+	\item[Scade] for designing and formalising the functions Scade version 15.2 is used.
 	The models are stored in this location: \url{https://github.com/openETCS/modeling/tree/master/model/Scade}.
 	With the component Scade System Scade also has a component for designing the architecture.
-\end{itemize}
+\end{description}
 
 In principle, the synchronisation mechanism of Scade was planned to be used for synchronising the SysML architecture and the Scade models. The idea is to automatically synchronise the SysML types and blocks with the Scade type definitions and the Scade Operators. Unfortunately, with the current set of tools this idea cannot be realised. We will investigate other tools and models to find a solution. 
 
@@ -233,7 +241,7 @@ In addition, faults in the Kepler Papyrus version made it difficult for several 
 
 
 
-\subsection{The openETCS Architecture}
+\section{The openETCS Architecture}
 
 The following diagrams are taken from the SysML model \cite{sysml-model}.
 
@@ -255,81 +263,82 @@ Green blocks in this diagram are seen as data collected by the "train" without m
 
 Input to the model is via API. The border is inside the EVC Scade model. 
 
-\section{openETCS Functions}
 
 
-\subsection{openETCS Data Dictionary}
+\chapter{openETCS Functions}
 
+\section{openETCS Data Dictionary}
 The openETCS data Dictionary in the first iteration gives some basic constructs for the project, the definition of interfaces in a central place and the definition of the ETCS language \cite{dataDictionary}.
 
-\subsubsection{ETCS Language}
+\subsection{ETCS Language}
 The typedefinitions of Subset 26 chapters 7 and 8 (called the ETCS language) are provided as SysML resp. Scade types to the openETCS model. For the SysML model the types have been generated based on tools and provided as <>package<> imported to the openETCS toolschain.
 
-\subsubsection{openETCS Interfaces}
+\subsection{openETCS Interfaces}
 Interfaces used within the between submodels and interfaces from ouside and to outside the EVC kernel are defined as types in the dataDictionary.
 
 In the Scade model  the ETCS language is available in the oETCS projects S026-7 and S026-8.
 
-\subsubsection{dataDictionary Outlook}
+\subsection{dataDictionary Outlook}
 In the first iteration the use of the data dictionary concept is reduced to a minimum. The full openETCS process is tailored for a bigger team to cooperate and make use of tools to collect data and generate code. 
 
 In the scade model the types needed to build the ointerfaces between models are defined in the projects Obu\_Basic\_Types.etp, BG\_Types.etp, and TrainPosition\_Types.etp.
 
-\subsection{openETCS Generic API}
+\section{openETCS Generic API}
 
 \input{sections/GenericAPI.tex}
 
-\subsection{F.1 Manage Balise Information}
+\section{F.1 Manage Balise Information}
 
 
-\subsubsection{F.1.1 Receive Eurobalise From API}
+\subsection{F.1.1 Receive Eurobalise From API}
 
 \begin{figure}[hbtp]
 \centering
 \includegraphics[scale=0.5]{../images/ReceiveEuroBaliseFromAPI_diagram.png}
 \caption{Structure of ReceiveEuroBaliseFromAPI}
 \end{figure}
-
-\begin{itemize}
-\item \textbf{Short Description of Functionality}\\
+\subsubsection{Short Description of Functionality}
 This function defines the interface of the OBU model to the openETCS generic API for Eurobalise Messages. On the interface, either a valid telegram is provided or a telegram is indicated which could not be received correct when passing the balise. The function passes the telegram without major changes of the information to the next entity for collecting the balise group information.
 	
 %\item \textbf{{Reference to the SRS (or other requirements}\\
-\item \textbf{Design Constrains and Choices}\\
+
+\subsubsection{Design Constrains and Choices}
+
 \begin{enumerate}
 \item Decoding of balises is done at the API. Also, packets received via the interface are already transformed into a usable shape.
 \item Only packets used inside the current model are passed via the interface:\\
 Packet 5: Linking Information.\\
 Linking Information is filled into the linking array starting from index 0 without gaps. Used elements are marked as valid. Elements are sorted according to the order given by the telegram sequence.
 \end{enumerate}
-\end{itemize}
 
 
-\subsubsection{F.1.2 Build BG Group Message}
+
+\subsection{F.1.2 Build BG Group Message}
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=0.5]{../images/BuildBGMessage_diagram.png}
+\includegraphics[width=\textwidth]{../images/BuildBGMessage_diagram.png}
 \caption{Structure of BuildBGMessage}
 \end{figure}
 
-\begin{itemize}
-	\item \textbf{Short Description of Functionality}\\
-	This entity collects telegrams received via the interface into Balise Group Information.
-	\item \textbf{Reference to the SRS (or other requirements}\\
-	\item \textbf{Design Constrains and Choices}\\
-	\begin{enumerate}
-		\item Telegrams received as invalid are passed to the ``Check-Function'' in order to process errors in communication with the trackside according to the requirements and in a single place.
-		Telegrams are filled into the telegram array starting from index 0 without gaps. Used elements are marked as valid. Elements are stored according to the order given by the telegram sequence.
+\subsubsection{Short Description of Functionality}
+This entity collects telegrams received via the interface into Balise Group Information.
+	
+\subsubsection{Reference to the SRS (or other requirements}
+\subsubsection{Design Constrains and Choices}
+\begin{enumerate}
+\item Telegrams received as invalid are passed to the ``Check-Function'' in order to process errors in communication with the trackside according to the requirements and in a single place.
+Telegrams are filled into the telegram array starting from index 0 without gaps. Used elements are marked as valid. Elements are stored according to the order given by the telegram sequence.
 \item This function does not process information from the packets. The information is passed forward to the check without furhter processing of the values. 
-	\end{enumerate}
-\end{itemize}
+\end{enumerate}
 
-\subsubsection{F.1.3 Check BG Consistency}
 
-\begin{itemize}
-\item \textbf{Short Description of Functionality}\\
 
+\subsection{F.1.3 Check BG Consistency}
+
+\subsubsection{Short Description of Functionality}
+\subsubsection{Reference to the SRS (or other requirements}
+\subsubsection{Design Constrains and Choices}
 
 %\begin{enumerate}
 %\item Only packets used inside the current model are passed via the interface:\\
@@ -339,26 +348,30 @@ Linking Information is filled into the linking array starting from index 0 witho
 %(In this statement the term ``message'' is ambiguous since it can reflect to a telegram or a balise group message)
 %Linking Information can only be passed once. This means, if linking information for the balise group is already collected with one of the earlier telegrams, the information will not be accumulated but overwritten.\\
 %\end{enumerate}
-\end{itemize}
-
-\subsubsection{F.1.4 Determine BG- Orientation and LRBG}
-\begin{itemize}
-	\item \textbf{Short Description of Functionality}\\
-	\item \textbf{Reference to the SRS (or other requirements}\\
-	\item \textbf{Design Constrains and Choices}\\
-\end{itemize}
-
-\subsubsection{F.1.5 Select Usable Info}
 
 
-\subsection{F.2 Manage Train Position}
+\subsection{F.1.4 Determine BG- Orientation and LRBG}
 
-\subsubsection{F.2.1 Validate Data Direct}
-\begin{itemize}
-	\item \textbf{Short Description of Functionality}\\
-	\item \textbf{Reference to the SRS (or other requirements}\\
-	\item \textbf{Design Constrains and Choices}\\
-\end{itemize}
+\subsubsection{Short Description of Functionality}
+\subsubsection{Reference to the SRS (or other requirements}
+\subsubsection{Design Constrains and Choices}
+
+
+\subsection{F.1.5 Select Usable Info}
+
+\subsubsection{Short Description of Functionality}
+\subsubsection{Reference to the SRS (or other requirements}
+\subsubsection{Design Constrains and Choices}
+
+
+\section{F.2 Manage Train Position}
+
+
+\subsection{F.2.1 Validate Data Direct}
+
+\subsubsection{Short Description of Functionality}
+\subsubsection{Reference to the SRS (or other requirements}
+\subsubsection{Design Constrains and Choices}
 
 \input{sections/trainPosition.tex}
 
