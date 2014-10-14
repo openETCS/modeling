@@ -34,6 +34,9 @@
     <availablePage>
       <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/BuildBGMessage/BuildBGMessage.notation#__3vqML5XEeOqg93D1wi9Og"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="../dataDictionary/DataDictionary.notation#_0nnM0KqaEeO6StG9XATgkw"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -57,7 +60,7 @@
           <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/ReceiveEuroBaliseFromAPI/ReceiveEuroBaliseFromAPI.notation#_Dorc4LsxEeOP84wBioPrEA"/>
         </children>
         <children>
-          <emfPageIdentifier href="ManageLocationRelatedInformation/ManageBaliseInformation/BuildBGMessage/BuildBGMessage.notation#__3vqML5XEeOqg93D1wi9Og"/>
+          <emfPageIdentifier href="../dataDictionary/DataDictionary.notation#_0nnM0KqaEeO6StG9XATgkw"/>
         </children>
       </children>
     </windows>

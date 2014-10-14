@@ -5,35 +5,29 @@
       <emfPageIdentifier href="ManageLevelsAndModes.notation#_UultAE-yEeSDqqehp7V01A"/>
     </availablePage>
     <availablePage>
-      <emfPageIdentifier href="ManageLevelsAndModes.notation#_RGDa4E_EEeSDqqehp7V01A"/>
-    </availablePage>
-    <availablePage>
       <emfPageIdentifier href="ManageLevelsAndModes.notation#_LFVKYE_LEeSDqqehp7V01A"/>
     </availablePage>
     <availablePage>
-      <emfPageIdentifier href="ManageModes/ManageModes.notation#_wLV0oFCEEeSZQvWbPXmDgA"/>
+      <emfPageIdentifier href="ManageLevelsAndModes.notation#_wLV0oFCEEeSZQvWbPXmDgA"/>
     </availablePage>
     <availablePage>
-      <emfPageIdentifier href="ManageModes/ManageModes.notation#_5LNLQFCHEeSZQvWbPXmDgA"/>
+      <emfPageIdentifier href="ManageLevelsAndModes.notation#_Agd74FLpEeSjSsm9A7qaSw"/>
     </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
       <children xsi:type="di:TabFolder">
         <children>
-          <emfPageIdentifier href="ManageLevelsAndModes.notation#_UultAE-yEeSDqqehp7V01A"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="ManageLevelsAndModes.notation#_RGDa4E_EEeSDqqehp7V01A"/>
-        </children>
-        <children>
           <emfPageIdentifier href="ManageLevelsAndModes.notation#_LFVKYE_LEeSDqqehp7V01A"/>
         </children>
         <children>
-          <emfPageIdentifier href="ManageModes/ManageModes.notation#_wLV0oFCEEeSZQvWbPXmDgA"/>
+          <emfPageIdentifier href="ManageLevelsAndModes.notation#_UultAE-yEeSDqqehp7V01A"/>
         </children>
         <children>
-          <emfPageIdentifier href="ManageModes/ManageModes.notation#_5LNLQFCHEeSZQvWbPXmDgA"/>
+          <emfPageIdentifier href="ManageLevelsAndModes.notation#_Agd74FLpEeSjSsm9A7qaSw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="ManageLevelsAndModes.notation#_wLV0oFCEEeSZQvWbPXmDgA"/>
         </children>
       </children>
     </windows>
