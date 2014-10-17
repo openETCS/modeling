@@ -6,12 +6,16 @@
 \usepackage{multirow}
 \usepackage{color, colortbl}
 \usepackage{hyperref}
+\usepackage{listings}
+\usepackage{makeidx}
 \definecolor{gray}{rgb}{0.8,0.8,0.8}
 \usepackage[modulo]{lineno}
 \graphicspath{{./template/}{.}{./images/}}
 \begin{document}
 \frontmatter
 \project{openETCS}
+
+\newcommand{\define}[1]{\index{#1}\emph{#1}}
 
 %Please do not change anything above this line
 %============================
@@ -102,6 +106,7 @@ Version & Section & Modification / Description & Author \\\hline}
 0.2 & \ref{sss:provposrep} & initial contribution and some pretty printing & Christian Stahl \\\hline
 0.3 & all & collecting feedback and completion on initial sections & Bernd Hekele \\\hline
 0.4 & all & changed document style to openETCS report improved pretty printing & Peter Mahlmann \\\hline
+0.4.1 & all & adding content & Bernd Hekele \\\hline
 \end{supertabular}
 
 % list subsubsections in table of contents
@@ -239,9 +244,8 @@ In principle, the synchronisation mechanism of Scade was planned to be used for 
 
 In addition, faults in the Kepler Papyrus version made it difficult for several members of the team to work on different submodels of the openETCS model. The issue will be solved when changing to the Luna version of Papyrus.
 
+\section{The openETCS Application Software Architecture}
 
-
-\section{The openETCS Architecture}
 
 The following diagrams are taken from the SysML model \cite{sysml-model}.
 
@@ -263,15 +267,13 @@ Green blocks in this diagram are seen as data collected by the "train" without m
 
 Input to the model is via API. The border is inside the EVC Scade model. 
 
-
-
-\chapter{openETCS Functions}
-
 \section{openETCS Data Dictionary}
 The openETCS data Dictionary in the first iteration gives some basic constructs for the project, the definition of interfaces in a central place and the definition of the ETCS language \cite{dataDictionary}.
 
 \subsection{ETCS Language}
 The typedefinitions of Subset 26 chapters 7 and 8 (called the ETCS language) are provided as SysML resp. Scade types to the openETCS model. For the SysML model the types have been generated based on tools and provided as <>package<> imported to the openETCS toolschain.
+
+
 
 \subsection{openETCS Interfaces}
 Interfaces used within the between submodels and interfaces from ouside and to outside the EVC kernel are defined as types in the dataDictionary.
@@ -283,12 +285,94 @@ In the first iteration the use of the data dictionary concept is reduced to a mi
 
 In the scade model the types needed to build the ointerfaces between models are defined in the projects Obu\_Basic\_Types.etp, BG\_Types.etp, and TrainPosition\_Types.etp.
 
-\section{openETCS Generic API}
+
+\chapter{openETCS Kernel Functions}
+
+\section{openETCS Model Runtime System}
+The openETCS model runtime system also provides:
+
+\begin{itemize}
+\item Input Functions From other Units\\
+In this entity messages from other connected units are received.
+\item Output Functions to other Units\\
+The entity writes messages to other connected units.
+\item Conversation Functions for Messages (Bitwalker)\\
+The conversion function are triggered by Input and Ouput Functions. The main task is to convert input messages from an bit-packed format into logical ETCS messages (the ETCS language) and Output messages from Logical into a bit-packed format. The logical format of the messages is defined for all used types in the openETCS data dictonary. \\
+Variable size elements in the Messages are converted to fixed length arrays with an used elements indicator.\\
+Optional elements are indicated with an valid flag.
+The conversion routines are responsible for checking the data received is valid. If  faults are detected the information is passed to the openETCS executable model for further reaction. 
+\item Model Cycle\\
+The executable model is called in cycles. In the cycle 
+\begin{itemize}
+\item First the received input messages are decoded
+\item The input data is passed to the executable model in a predefined order. \textbf{(Details for the interface to be defined)}.
+\item Output is encoded according to the SRS and passed to the  buffers to the units.
+\end{itemize}
+
+%==================================================================
+\end{itemize}
 
 \input{sections/GenericAPI.tex}
 
-\section{F.1 Manage Balise Information}
 
+\section{First Iteration: Used API Functions and Interfaces to the Basic Software}
+Note: The basic functions and the API is not implemented in the first iteration. Instead, the Scade test environment is used for this purpose. However, the interfaces used in the model are described as if they were available.
+
+\begin{enumerate}
+\item Runtime System\\
+The Runtime System calls the openETCS kernel model in a cyclic way. Input parameters are updated with every cycle.
+\item Input
+\begin{enumerate}
+\item Control Interface\\
+The control interface triggers the reset of the application software. The reset is mapped to a reset flag in the scade model.
+
+\item BTM Services\\
+The BTM service passes decoded telegrams to the executable model. The telegram is handed over to the api_balise parameter of the model (see ReceiveEuroBaliseFromAPI). In each cycle only one telegram is expected to be passed. For details in the interfaces, The application may need the service brake function. The trigger needs to be passed to a corresponding function inside the application software (not part of the kernel)
+
+\item Odometry\\
+The input from odometry is updated with every cycle. The information from odometry is updated in the parameter actual_odometry of the executable model.
+\end{enumerate}
+
+\item Output
+\begin{enumerate}
+\item Runtime System\\
+\item DMI\\
+The application may indicate balise group interface errors to the driver. The trigger needs to be passed to a corresponding function inside the application software (not part of the kernel).
+\item Traininterface Unit (TIU)\\
+The application may need the service brake function. The trigger needs to be passed to a corresponding function inside the application software (not part of the kernel).
+\item EuroRadio\\
+The application may trigger the PositionReport via radio interface. The message needs to be passed to a corresponding function inside the application software (not part of the kernel).
+\end{enumerate}
+
+\end{enumerate}
+
+\section{First Iteration: Interfaces to other Functions of the Application Software (not part of First Iteration)}
+This section mainly refers to interfaces replaced by data implemented in the model.
+
+\begin{enumerate}
+\item Train-Info\\
+The parameters of the train are seen as a constant to the kernel model. The data re not changed by any function of the kernel model. Only data used in the kernel are listed here.
+Used Information:
+\begin{enumerate}
+\item Level = 1\\
+\item Mode = ?\\
+\end{enumerate}
+\end{enumerate}
+
+diagram to be added
+
+\section{F.1 Manage Balise Information}
+This function manages telegrams of the balise channel. 
+Diagram needs to be added.
+
+\begin{enumerate}
+\item Functional Description
+\item Reference to teh Standards
+\item Deviations from the Standards, Open Issues
+\item Input
+\item Output
+\item Data
+\end{enumerate}
 
 \subsection{F.1.1 Receive Eurobalise From API}
 
@@ -297,6 +381,7 @@ In the scade model the types needed to build the ointerfaces between models are 
 \includegraphics[width=.9\textwidth]{../images/ReceiveEuroBaliseFromAPI_diagram.png}
 \caption{Structure of ReceiveEuroBaliseFromAPI}
 \end{figure}
+
 \subsubsection{Short Description of Functionality}
 This function defines the interface of the OBU model to the openETCS generic API for Eurobalise Messages. On the interface, either a valid telegram is provided or a telegram is indicated which could not be received correct when passing the balise. The function passes the telegram without major changes of the information to the next entity for collecting the balise group information.
 	
@@ -387,6 +472,7 @@ The functionality of Select Useable Info is decribed in Chapter 4.8 of the SRS. 
 
 \input{sections/trainPosition.tex}
 
+\appendix
 
 %\nocite{*}
 \bibliographystyle{unsrt}
@@ -396,6 +482,9 @@ The functionality of Select Useable Info is decribed in Chapter 4.8 of the SRS. 
 %\bibliographystyle{klunamed}
 \bibliography{architecture}
 
+\newpage
+\addcontentsline{toc}{chapter}{Index}
+\printindex
 
 %===================================================
 %Do NOT change anything below this line
