@@ -132,7 +132,7 @@ Version & Section & Modification / Description & Author \\\hline}
 \section{Motivation}
 \label{sec:Motivation}
 
-The openETCS work package WP3 aims to provide the architecture and the design of the openETCS OBU software as mainly specified in \cite{subset-026} UNISIG Subset\_026 version\_3.3.0. 
+The openETCS work package WP3 aims to provide the architecture and the design of the openETCS OBU software as mainly specified in UNISIG Subset\_026 version\_3.3.0 \cite{subset-026}. 
 
 The appropriate functionality has been divided into a list of functions of different complexity (see the WP3 function list \cite{functions}).
 
@@ -156,10 +156,10 @@ This does not contradict the openETCS goal to conform to EN50128.
 \end{itemize}
 Additional goals for this document are
 \begin{itemize}
-	\item Identification of the functions required for a minimum OBU kernel
-	\item Architecture overview regarding the minimum OBU kernel
-	\item Technical approach: Description of the proceeding and methods to be used
-	\item Road map of the minimum OBU kernel functions
+	\item Identification of the functions required for a minimum OBU kernel,
+	\item Architecture overview regarding the minimum OBU kernel,
+	\item Technical approach: Description of the proceeding and methods to be used,
+	\item Road map of the minimum OBU kernel functions, and
 	\item Road map thereafter
 \end{itemize}
 
@@ -178,28 +178,28 @@ Note: This document will be extended according to the progress of WP3.
 \subsection{Functional Scope: The Minimum OBU Kernel Function}
 \label{sec:FunctionalScopeTheMinimumOBUKernelFunction}
 
-The objective ``Make the train run with a very minimum functionality'' shall be in terms of ETCS OBU translated into 
+The objective ``Make the train run with a very minimum functionality'' (see Chapter~\ref{sec:Objectives}) shall be in terms of ETCS OBU translated into 
 \begin{itemize}
-	\item The Train moves on a track equipped with balises and determines its position.
+	\item ``The Train moves on a track equipped with balises and determines its position.''
 \end{itemize}
-That means, for this very first step, the train shall not supervise the maximum speed nor activate the brakes. The minimum function set shall be limited to:
+That means, for this very first step, the train shall neither supervise the maximum speed nor activate the brakes. The minimum function set shall be limited to:
 \begin{itemize}
-	\item Receive, filter and manage balise information received from track (see \url{https://github.com/openETCS/SRS-Analysis/issues/12})
-	\item Calculate the actual train position based on balise and odometry information (see \url{https://github.com/openETCS/SRS-Analysis/issues/8})
-	\item Calculate the distances between the actual train position to track elements in its front
+	\item Receive, filter and manage balise information received from track (see \url{https://github.com/openETCS/SRS-Analysis/issues/12});
+	\item Calculate the actual train position based on balise and odometry information (see \url{https://github.com/openETCS/SRS-Analysis/issues/8});
+	\item Calculate the distances between the actual train position to track elements in its front.
 \end{itemize}
-The activities of the first iteration are collected in the \cite{firstIteration} openETCS WP3 backlog for the first iteration.
+The activities of the first iteration are collected in the openETCS WP3 backlog for the first iteration \cite{firstIteration}.
 
-A more detailed architectural breakdown of these functions is available as a SysML model \cite{sysml-model}. Diagrams used in this document describing the architecture are taken from this model.
+A more detailed architectural breakdown of these functions is available as a SysML model \cite{sysml-model}. Diagrams used in the document at hand describing the architecture are taken from the model in \cite{sysml-model}.
 
-The design is implemented in the \cite{scade-model} Scade Model. Design documents are taken from this model. Design diagrams used in this document are generated from the model. The design documents produced from the scade model are provided in the design location on Github \cite{designFI}.
+The design is implemented in the Scade Model \cite{scade-model}. Design documents are taken from this model. Design diagrams used in this document are generated from the model. The design documents produced from the scade model are provided in the design location on Github \cite{designFI}.
 
 In addition, the work on this minimum functionality requires to be supported by
 \begin{itemize}
-	\item The availability of the ETCS language as specified in Subset UNISIG Subset\_026, chapters 7 and 8
-	\item The abiltiy to link intermediate and final results with the requirements of the ETCS specification (subset\_026, \dots) 
+	\item The availability of the ETCS language as specified in Subset UNISIG Subset\_026, chapters 7 and 8;
+	\item The abiltiy to link intermediate and final results with the requirements of the ETCS specification (subset\_026, etc.). 
 \end{itemize}
-These supporting prerequisites are under construction and therefore not completely operable actually. How to deal with these restrictions, will be outlined in chapter ???
+These supporting prerequisites are under construction and therefore currently not completely operable. How to deal with these restrictions, will be outlined in Chapter~\ref{}.
 
 \section{Glossary and Abbreviations}
 
@@ -224,19 +224,19 @@ To summarize the design process, the following rules are in use:
 \item Papyrus / SysML is used for modelling the architecture. Functions are visible on this SysML level.
 \item No behaviour model is allowed on SysML level.
 \item For referencing the requirements, links from the SysML model to the requirements document (in ProR) are being used.
-\item Details and especially behaviour is part of the Scade models.
+\item Details and especially behaviour is modelled in Scade.
 \item All interfaces (see also data-dictionary below) are available on bit-level.
-\item In the architecture model in SysML, all interfaces are available on a functional level for interfaces inside and outside the model and for interfaces between dedicated functions. Due to tool constrains the current model does not show all details for all interfaces (see dataDictionary).
+\item In the architecture model in SysML, all interfaces are available on a functional level for interfaces inside and outside the model and for interfaces between dedicated functions. Due to tool constrains the current model does not show all details for all interfaces (see the data dictionary \cite{dataDictionary}).
 \end{itemize}
 
 The openETCS tool-chain for doing the modelling work consists of the following components:
 \begin{description}
 	\item[Papyrus] for modelling the architecture (Kepler version).
-	In this phase only the Kepler version of the tool can be used due to incompatibilities of the Kepler and the Luna version on the SysML model. The SysML models are stored in the following location: \url{https://github.com/openETCS/modeling/tree/master/model/sysml}.
+	In this phase only the Kepler version of the tool can be used due to incompatibilities of the Kepler and the Luna version on the SysML model. The SysML models are stored at \url{https://github.com/openETCS/modeling/tree/master/model/sysml}.
 	\item[ProR] for keeping the requirements (REQIF).
 	The subset 26 is converted into a REQIF-format and also stored in the modeling repository on Github. The openETCS toolchain supports the linking of SysML model parts to SRS-Requirements. These results are also part of the architecture.
 	\item[Scade] for designing and formalising the functions Scade version 15.2 is used.
-	The models are stored in this location: \url{https://github.com/openETCS/modeling/tree/master/model/Scade}.
+	The models are stored at \url{https://github.com/openETCS/modeling/tree/master/model/Scade}.
 	With the component Scade System Scade also has a component for designing the architecture.
 \end{description}
 
@@ -255,7 +255,7 @@ The following diagrams are taken from the SysML model \cite{sysml-model}.
 \caption{Block Definition Diagram of the First Iteration Architecture}
 \end{figure}
 
-The diagram shows the hierarchy of the EVC model. The boundaries of the model are given with the API (interfaces into and outside the EVC model), which actually is not part of the diagram. The runtime-system of the EVC is also seen as a part outside the model.
+The diagram shows the hierarchy of the EVC model. The boundaries of the model are given with the API (interfaces into and outside the EVC model), which actually is not part of the diagram. The runtime system of the EVC is also seen as a part outside the model.
 
 \begin{figure}[p]
 \centering
@@ -263,27 +263,27 @@ The diagram shows the hierarchy of the EVC model. The boundaries of the model ar
 \caption{Internal Block Diagram of the First Iteration Architecture}
 \end{figure}
 
-Green blocks in this diagram are seen as data collected by the "train" without making use of the function in focus.
+Green blocks in this diagram are seen as data collected by the ``train'' without making use of the function in focus.
 
-Input to the model is via API. The border is inside the EVC Scade model. 
+Input to the model is via the API\marginpar{The interface of the model is defined by the API?}. The border\marginpar{of what?} is inside the EVC Scade model. 
 
 \section{openETCS Data Dictionary}
-The openETCS data Dictionary in the first iteration gives some basic constructs for the project, the definition of interfaces in a central place and the definition of the ETCS language \cite{dataDictionary}.
+In the first iteration, the openETCS data dictionary gives some basic constructs for the project, the definition of interfaces in a central place and the definition of the ETCS language \cite{dataDictionary}.
 
 \subsection{ETCS Language}
-The typedefinitions of Subset 26 chapters 7 and 8 (called the ETCS language) are provided as SysML resp. Scade types to the openETCS model. For the SysML model the types have been generated based on tools and provided as <>package<> imported to the openETCS toolschain.
+The type definitions of Subset 26 chapters 7 and 8 (called the ETCS language) are provided as SysML resp. Scade types to the openETCS model. For the SysML model the types have been generated based on tools and provided as <>package<> imported to the openETCS toolschain.
 
 
 
 \subsection{openETCS Interfaces}
-Interfaces used within the between submodels and interfaces from ouside and to outside the EVC kernel are defined as types in the dataDictionary.
+Interfaces used between submodels and interfaces from outside and to outside the EVC kernel are defined as types in the data dictionary.
 
-In the Scade model  the ETCS language is available in the oETCS projects S026-7 and S026-8.
+In the Scade model the ETCS language is available in the oETCS projects S026-7 and S026-8.
 
-\subsection{dataDictionary Outlook}
+\subsection{Data Dictionary Outlook}
 In the first iteration the use of the data dictionary concept is reduced to a minimum. The full openETCS process is tailored for a bigger team to cooperate and make use of tools to collect data and generate code. 
 
-In the scade model the types needed to build the ointerfaces between models are defined in the projects Obu\_Basic\_Types.etp, BG\_Types.etp, and TrainPosition\_Types.etp.
+In the Scade model the types needed to build the interface between models are defined in the projects Obu\_Basic\_Types.etp, BG\_Types.etp, and TrainPosition\_Types.etp.
 
 
 \chapter{openETCS Kernel Functions}
@@ -292,19 +292,19 @@ In the scade model the types needed to build the ointerfaces between models are 
 The openETCS model runtime system also provides:
 
 \begin{itemize}
-\item Input Functions From other Units\\
+\item Input Functions from other Units\\\marginpar{maybe use a description}
 In this entity messages from other connected units are received.
 \item Output Functions to other Units\\
 The entity writes messages to other connected units.
 \item Conversation Functions for Messages (Bitwalker)\\
-The conversion function are triggered by Input and Ouput Functions. The main task is to convert input messages from an bit-packed format into logical ETCS messages (the ETCS language) and Output messages from Logical into a bit-packed format. The logical format of the messages is defined for all used types in the openETCS data dictonary. \\
+The conversion function are triggered by Input and Ouput Functions. The main task is to convert input messages from an bit-packed format into logical ETCS messages (the ETCS language) and Output messages from Logical into a bit-packed format. The logical format of the messages is defined for all used types in the openETCS data dictionary. \\
 Variable size elements in the Messages are converted to fixed length arrays with an used elements indicator.\\
 Optional elements are indicated with an valid flag.
 The conversion routines are responsible for checking the data received is valid. If  faults are detected the information is passed to the openETCS executable model for further reaction. 
 \item Model Cycle\\
 The executable model is called in cycles. In the cycle 
 \begin{itemize}
-\item First the received input messages are decoded
+\item First the received input messages are decoded.
 \item The input data is passed to the executable model in a predefined order. \textbf{(Details for the interface to be defined)}.
 \item Output is encoded according to the SRS and passed to the  buffers to the units.
 \end{itemize}
@@ -316,7 +316,7 @@ The executable model is called in cycles. In the cycle
 
 
 \section{First Iteration: Used API Functions and Interfaces to the Basic Software}
-Note: The basic functions and the API is not implemented in the first iteration. Instead, the Scade test environment is used for this purpose. However, the interfaces used in the model are described as if they were available.
+Note: The basic functions and the API is not implemented in the first iteration. Instead, the Scade test environment is used for this purpose. However, the interface used in the model is described as if they were available.
 
 \begin{enumerate}
 \item Runtime System\\
@@ -324,24 +324,24 @@ The Runtime System calls the openETCS kernel model in a cyclic way. Input parame
 \item Input
 \begin{enumerate}
 \item Control Interface\\
-The control interface triggers the reset of the application software. The reset is mapped to a reset flag in the scade model.
+The control interface triggers the reset of the application software. The reset is modelled as reset flag in the Scade model.
 
 \item BTM Services\\
-The BTM service passes decoded telegrams to the executable model. The telegram is handed over to the api_balise parameter of the model (see ReceiveEuroBaliseFromAPI). In each cycle only one telegram is expected to be passed. For details in the interfaces, The application may need the service brake function. The trigger needs to be passed to a corresponding function inside the application software (not part of the kernel)
+The BTM service passes decoded telegrams to the executable model. The telegram is handed over to the API\_balise parameter of the model (see Chapter~\ref{ss:ReceiveEurobaliseFromAPI}). In each cycle only one telegram is expected to be passed. For details in the interfaces\marginpar{??}, The application may need the service brake function. The trigger needs to be passed to a corresponding function inside the application software (not part of the kernel)
 
 \item Odometry\\
-The input from odometry is updated with every cycle. The information from odometry is updated in the parameter actual_odometry of the executable model.
+The input from the odometry is updated with every cycle\marginpar{cycle=clock?}. The information from the odometry is updated in the parameter actual\_odometry of the executable model.
 \end{enumerate}
 
 \item Output
 \begin{enumerate}
 \item Runtime System\\
 \item DMI\\
-The application may indicate balise group interface errors to the driver. The trigger needs to be passed to a corresponding function inside the application software (not part of the kernel).
-\item Traininterface Unit (TIU)\\
+The application may indicate errors at the balise group interface to the driver. The trigger needs to be passed to a corresponding function inside the application software (not part of the kernel).
+\item Train Interface Unit (TIU)\\
 The application may need the service brake function. The trigger needs to be passed to a corresponding function inside the application software (not part of the kernel).
 \item EuroRadio\\
-The application may trigger the PositionReport via radio interface. The message needs to be passed to a corresponding function inside the application software (not part of the kernel).
+The application may trigger the position report via radio interface. The message needs to be passed to a corresponding function inside the application software (not part of the kernel).
 \end{enumerate}
 
 \end{enumerate}
@@ -355,11 +355,11 @@ The parameters of the train are seen as a constant to the kernel model. The data
 Used Information:
 \begin{enumerate}
 \item Level = 1\\
-\item Mode = ?\\
+\item Mode = \marginpar{?}\\
 \end{enumerate}
 \end{enumerate}
 
-diagram to be added
+\FIXME{diagram to be added}
 
 \section{F.1 Manage Balise Information}
 This function manages telegrams of the balise channel. 
@@ -374,7 +374,7 @@ Diagram needs to be added.
 \item Data
 \end{enumerate}
 
-\subsection{F.1.1 Receive Eurobalise From API}
+\subsection{F.1.1 Receive Eurobalise From API}\label{ss:ReceiveEurobaliseFromAPI}
 
 \begin{figure}[hbtp]
 \centering
@@ -390,10 +390,10 @@ This function defines the interface of the OBU model to the openETCS generic API
 \subsubsection{Design Constrains and Choices}
 
 \begin{enumerate}
-\item Decoding of balises is done at the API. Also, packets received via the interface are already transformed into a usable shape.
+\item The decoding of balises is done at the API. Also, packets received via the interface are already transformed into a usable shape.
 \item Only packets used inside the current model are passed via the interface:\\
 Packet 5: Linking Information.\\
-Linking Information is filled into the linking array starting from index 0 without gaps. Used elements are marked as valid. Elements are sorted according to the order given by the telegram sequence.
+Linking Information is added to the linking array starting from index 0 without gaps. Used elements are marked as valid. Elements are sorted according to the order given by the telegram sequence.
 \end{enumerate}
 
 
@@ -412,9 +412,9 @@ This entity collects telegrams received via the interface into Balise Group Info
 \subsubsection{Reference to the SRS (or other requirements)}
 \subsubsection{Design Constrains and Choices}
 \begin{enumerate}
-\item Telegrams received as invalid are passed to the ``Check-Function'' in order to process errors in communication with the trackside according to the requirements and in a single place.
-Telegrams are filled into the telegram array starting from index 0 without gaps. Used elements are marked as valid. Elements are stored according to the order given by the telegram sequence.
-\item This function does not process information from the packets. The information is passed forward to the check without furhter processing of the values. 
+\item Telegrams received as invalid are passed to the ``Check-Function'' to process errors in communication with the track side according to the requirements and in a single place.
+Telegrams are added to the telegram array starting from index 0 without gaps. Used elements are marked as valid. Elements are stored according to the order given by the telegram sequence.
+\item This function does not process information from the packets. The information is passed to the check without further processing of the values. 
 \end{enumerate}
 
 
@@ -445,26 +445,26 @@ Telegrams are filled into the telegram array starting from index 0 without gaps.
 \subsection{F.1.5 Select Useable Info}
 
 \subsubsection{Short Description of Functionality}
-The function Select Useable Info filters information received from balises that have been passed, radio, and euroloop. Filtering is done depending on the mode of the train, the current ETCS level, the type/content of the information, and the transition media of the information. Since neither radio messages nor euroloop are part of the first iteration of work not all functionalty of the filter described in the specification is implemented currently.
+The function Select Useable Info filters information received from balises that have been passed, radio, and EUROLOOP. Filtering is done depending on the mode of the train, the current ETCS level, the type/content of the information, and the transition media of the information. As neither radio messages nor EUROLOOP are part of the first iteration of work, not all functionality of the filter described in the specification is currently implemented.
 
 \subsubsection{Reference to the SRS (or other requirements)}
-The functionality of Select Useable Info is decribed in Chapter 4.8 of the SRS. The following list gives an overview of the most important sections for each of the blocks in the model.
+The functionality of Select Useable Info is described in Chapter 4.8 of the SRS. The following list gives an overview of the most important sections for each of the blocks in the model.
 
 \begin{description}
-\item[First filter] The first filter, i.e. the filter on the level, is described in Section 4.8.3 of Subset-026.
-\item[Second filter] The second filter, i.e.~the filter on the transition media, is described in Section 4.8.3 of Subset-026.
+\item[First filter] The first filter, i.e., the filter on the level, is described in \cite[Chapter~4.8.3]{subset-026}.
+\item[Second filter] The second filter, i.e., the filter on the transition media, is described in\cite[Chapter~4.8.3]{subset-026}.
 \item[Third filter]
- The second filter, i.e.~the filter on the modes, is described in Section 4.8.4 of Subset-026.
-\item[Transition buffers] Details on the handling of the transition buffers used in the first filter and the second filter are described in Section 4.8.5 of Subset-026.
+ The second filter, i.e., the filter on the modes, is described in \cite[Chapter~4.8.4]{subset-026}.
+\item[Transition buffers] Details on the handling of the transition buffers used in the first and the second filter are described in \cite[Chapter~4.8.5]{subset-026}.
 \end{description}
 
 \subsubsection{Design Constrains and Choices}
- Since in the first iteration of the model takes only balise group messages into account this implies that a large part of the specification of this function described in subset-026 is not relevant for the first iteration. This in particular applies to the filter on the transition medium, since radio messages are not part of the model so far and the filter on level, since the first iteration of the model only implements ETCS level 1.
+The first iteration of the model takes only balise group messages into account. This implies that a large part of the specification of this function described in \cite{subset-026} is not relevant for the first iteration. This in particular applies to the filter on the transition medium, because radio messages are not part of the model so far, and to the filter on level, because the first iteration of the model implements only ETCS level 1.
 
 \section{F.2 Manage Train Position}
 
 
-\subsection{F.2.1 Validate Data Direct}
+\subsection{F.2.1 Validate Data Direction}
 
 \subsubsection{Short Description of Functionality}
 \subsubsection{Reference to the SRS (or other requirements}
