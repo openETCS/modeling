@@ -1,0 +1,1482 @@
+\documentclass{template/openetcs_report}
+% Use the option "nocc" if the document is not licensed under Creative Commons
+%\documentclass[nocc]{template/openetcs_article}
+\usepackage{lipsum,url}
+\usepackage{supertabular}
+\usepackage{multirow}
+\usepackage{color, colortbl}
+\usepackage{hyperref}
+%\usepackage{listings}
+\usepackage{makeidx}
+\definecolor{gray}{rgb}{0.8,0.8,0.8}
+\usepackage[modulo]{lineno}
+\graphicspath{{./template/}{.}{./images/}}
+
+\newcommand{\define}[1]{\index{#1}\emph{#1}}
+
+\begin{document}
+\frontmatter
+\project{openETCS}
+
+%Please do not change anything above this line
+%============================
+
+%user specified macros
+%\input{sections/macros.tex}
+
+% The document metadata is defined below
+
+%assign a report number here
+\reportnum{OETCS/WP3/D3.5.1.2}
+
+%define your workpackage here
+\wp{Work-Package 3: ``Modeling''}
+
+%set a title here
+\title{openETCS System Architecture and Design Specification}
+
+%set a subtitle here
+\subtitle{Second Iteration: Scope of openETCS ITEA2 Functions}
+
+%set the date of the report here
+\date{October 2014}
+
+
+%document approval
+%define the name and affiliation of the people involved in the documents approbation here
+\creatorname{Baseliyos Jacob}
+\creatoraffil{DB Netz}
+
+\techassessorname{[assessor name]}
+\techassessoraffil{[affiliation]}
+
+\qualityassessorname{Izaskun de la Torre}
+\qualityassessoraffil{SQS}
+
+\approvalname{Klaus-R\"udiger Hase}
+\approvalaffil{DB Netz}
+
+
+%define a list of authors and their affiliation here
+
+\author{Baseliyos Jacob, Bernd Hekele}
+
+\affiliation{DB Netz AG}
+
+\author{xxx}
+
+\affiliation{DB Netz AG\\
+  V\"olckerstrasse 5\\
+  D-80959 M\"unchen Freimann, Germany}
+
+\author{Marc Behrens}
+\affiliation{DLR}
+
+\author{David Mentre}
+\affiliation{Mitsubishi Electric R\&D Centre Europe}
+
+\author{Jos Holtzer, Jan Welvaarts, Vincent Nuhaan}
+\affiliation{NS}
+
+\author{Jacob G\"artner}
+\affiliation{LEA Engineering}
+
+% define the coverart
+\coverart[width=350pt]{openETCS_EUPL}
+
+%define the type of report
+\reporttype{Architecture and Functional Specification}
+
+
+\begin{abstract}
+%define an abstract here
+This document gives an introduction to the architecture of openETCS. The functional scope is tailored to cover the functionality required for the openETCS demonstration as a target of the ITEA2 project: the Utrecht Amsterdam use-case. It has to be read as an add-on to the models in SysML, Scade and to additional reading referenced from the document.
+\end{abstract}
+
+%=============================
+\maketitle
+
+%Modification history
+%if you do not need a modification history table for your document simply comment out the eight lines below
+%=============================
+
+
+\chapter*{Modification History}
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Version & Section & Modification / Description & Author \\\hline}
+\begin{supertabular}{| m{1.2cm} | m{1.5cm} | m{6.6cm} | m{3.7cm} |}
+0.1 & Document & Initial document providing the structure & Baseliyos Jacob \\\hline
+0.2 & Document & Workshop Results included and some pretty-printing & Bernd Hekele \\\hline
+
+\end{supertabular}
+
+% list subsubsections in table of contents
+\setcounter{tocdepth}{3}
+
+
+\tableofcontents
+\listoffiguresandtables
+\newpage
+%=============================
+
+%Uncomment the next line if you need line numbers for tracebility when the document is in review
+%\linenumbers
+%=============================
+
+
+% The actual document starts below this line
+%=============================
+
+\mainmatter
+
+\chapter{Introduction}
+
+\input{sections/introduction.tex}
+
+\section{Assumption and Preconditions}
+\begin{itemize}
+\item All future contributions sahll be fully aligned an compliant with final documents
+\item Alls documents produced by the partners with i.e. constrains with document; other contributions will be discarted
+\end{itemize}
+
+\section{Process}
+\begin{itemize}
+\item Alstom as WP 3 leader will be responsible for plannings
+\item Time and quality aspects
+\item openETCS tools and methodology
+\end{itemize}
+
+
+\section{Functions ERTMS/ETCS}
+
+
+The ERTMS / ETCS system was developed with a view to interoperability of trains on the 
+different European rail networks. It is divided into "tracks" - and "board" finishes 
+and shall establish a mutual message operation, by beacons or through a "radio" - 
+The transmission system (in this case a mobile telephone network GSM-R) is performed. 
+It defines several operating levels, and the system must also interfaces with the 
+existing monitoring systems of the trains (using STM) have. 
+The ERTMS / ETCS system provides the transport operator (the track) the choice of conditions 
+concerning the use and operation. 
+The train must therefore may go with different operating conditions on routes. 
+Thus has the onboard equipment but must be implemented, 
+to the interoperability of the train to ensure on the other networks. 
+These functions must therefore correspond to one standard: the SRS (version x.x.x). 
+
+application functions, which have two different species of origin: 
+defined in the SRS: here one finds in particular the 
+speed monitoring- and transfer functions; these functions 
+must be implemented in full accordance with the SRS; they can in 
+indeed be on any network on which the train is used; these functions 
+are described below in Section x.x.x; 
+
+
+Moreover, there are functions to adapt to the train: so, for example, the processing 
+a "separation distance" in the airborne equipment trigger: 
+This is dependent on the distribution of functions between the 
+Control monitoring equipment (which the ERTMS / ETCS), and the other 
+CCS Systems.
+
+\section{openETCS Architecture: Iterations and History}
+
+The openETCS Architecture and Design is implemented in iterations \cite{deployment}. The current step (second iteration) is based on a step to implement the kernel functions of the ETCS system \cite{firstIteration}. For a better understanding of the scope the Iteration is described in the following.
+
+\subsection{First Iteration Functional Scope: The Minimum OBU Kernel Function}
+\label{sec:FunctionalScopeTheMinimumOBUKernelFunction}
+
+The openETCS first iteration architecture and the design of the openETCS OBU software as mainly specified in \cite{subset-026} UNISIG Subset\_026 version\_3.3.0. 
+
+The appropriate functionality has been divided into a list of functions of different complexity (see the WP3 function list \cite{functions}).
+
+All these functions are object of the openETCS project and have to be analysed from their requirements and subsequently modelled and implemented. With limited manpower, a reasonable selection and order of these functions is required for the practical work that allows the distribution of the workload, more openETCS participants to join and leads to an executable---limited---kernel function as soon as possible. 
+
+While the first version of this document focuses on the first version of the limited kernel function, it is intended to grow in parallel to the growing openETCS software.
+
+The first objective of WP3 software shall be
+\begin{itemize}
+	\item ``Make the train run as soon as possible, with a very minimum functionality, and in the form of a rapid prototype.''
+\end{itemize}
+This does not contradict the openETCS goal to conform to EN50128.
+\begin{itemize}
+	\item After a phase of prototyping, the openETCS software shall be implemented in compliance to EN50128 for SIL4 systems.
+\end{itemize}
+Additional goals for this document are
+\begin{itemize}
+	\item Identification of the functions required for a minimum OBU kernel
+	\item Architecture overview regarding the minimum OBU kernel
+	\item Technical approach: Description of the proceeding and methods to be used
+	\item Road map of the minimum OBU kernel functions
+	\item Road map thereafter
+\end{itemize}
+
+\subsection{How to find the functions of the First Iteration in the Architecture}
+The functions will be merged with the new architecture. Wherever a function has already been in the scope it will be marked as "first iteration".
+
+\section{Glossary and Abbreviations}
+
+\textbf{API} Application Programming Interface\\
+\textbf{EVC} European Vital Computer\\
+\textbf{BTM} Balise Transmission Module\\
+\textbf{SRS} System Requirements Specification\\
+
+
+\textbf{SRS-Subset 26}\\
+\textbf{QA-Plan: D1.3.1}\\
+\textbf{Process: D2.3}\\
+\textbf{Methods: D2.4}\\
+\textbf{API: D2.7}\\
+
+\chapter{The openETCS Architecture}
+
+
+\begin{figure}[hbtp]
+\chapter{SRS Architecture}
+\centering
+\includegraphics[angle=90, scale=0.9] {images/HighLevelArchitecture.png}
+\caption{SRS architecture}
+\end{figure}
+
+
+
+\begin{figure}[hbtp]
+\chapter{Functional Breakdown}
+\centering
+\includegraphics [angle=90, scale=0.45] {images/HighLevelFunctionalbreakdown}
+\caption{SRS Breakdown}
+\end{figure}
+\newpage
+
+
+
+\chapter{Description of the SRS Functions}
+
+\section{Reference abstract hardware architecture}
+
+\subsection{Why a reference abstract hardware architecture?}
+
+For proper understanding of openETCS API and of constraints imposed on
+both sides of the API, we need to define a \define{reference abstract hardware architecture}. This hardware architecture is ``abstract''
+is the sense that the actual vendor specific hardware architecture
+might be totally different of the abstract architecture described in
+this chapter. For example, several units might be grouped together on
+the same processor.
+
+However the actual vendor specific architecture shall fulfil all the
+requirements and constraints of this reference abstract hardware
+architecture and shall not request additional constraints.
+
+\subsection{Definition of the reference abstract hardware architecture}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{abstract-hardware-architecture.pdf}
+  \caption{Reference abstract hardware architecture}
+  \label{fig:hardware-arch}
+\end{figure}
+
+The reference abstract hardware architecture is shown in figure
+\ref{fig:hardware-arch}.
+
+The reference abstract hardware architecture is made of a bus on which
+are connected \define{units}:
+\begin{itemize}
+\item EVC (European Vital Computer);
+\item TIU (Train Interface Unit);
+\item ODO (Odometry);
+\item DMI (Driver Machine Interface);
+\item STM (Specific Transmission Module, up to 8 units);
+\item BTM (Balise Transmission Module);
+\item LTM (Loop Transmission Module);
+\item EURORADIO;
+\item JRU (Juridical Recording Unit);
+\item Zero or more Vendor specific unit.
+\end{itemize}
+
+A given instance of openETCS might not have all of above
+units. \FIXME{Define a set of mandatory units?}
+
+Those units shall working concurrently. They shall exchange
+information with other units through asynchronous message passing.
+
+% LocalWords:  Alstom openETCS EVC BIU TIU Odometry DMI STM BTM Balise LTM API
+% LocalWords:  EURORADIO JRU
+
+\subsection{Reference abstract software architecture}
+\label{software-arch}
+
+\subsection{Overall architecture}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{software-architecture.pdf}
+  \caption{Reference abstract software architecture}
+  \label{fig:software-arch}
+\end{figure}
+
+The \define{reference abstract software architecture} is shown in figure
+\ref{fig:software-arch}. This architecture is made of following
+elements:
+\begin{itemize}
+\item \define{openETCS executable model} produced by the
+  \cite{scade-model}. It shall contain the program implementing core
+  ETCS functions;
+\item\define{openETCS model run-time system} shall help the execution
+  of the openETCS executable model by providing additional functions
+  like encode/decode messages, proper execution of the model through
+  appropriate scheduling, re-order or prioritize messages, etc. This
+  block shall be described in another openETCS document. \FIXME{ref?}
+\item \define{Vendor specific API adapter} shall make the link between
+  the Vendor specific platform and the openETCS model run-time system.
+  It can buffer message parts, encode/decode messages, route messages
+  to other EVC components, etc.
+\item All above three elements shall be included in the EVC;
+\item \define{Vendor specific platform} shall be all other elements of
+  the system, bus and other units, as shown in figure
+  \ref{fig:hardware-arch}.
+\end{itemize}
+
+We have thus three interfaces:
+\begin{itemize}
+\item \define{model interface}
+ is the interface between openETCS
+  executable model and openETCS model run-time system. It shall be
+  described in another openETCS document \FIXME{ref?};
+\item \define{openETCS API}
+ is the interface between openETCS model
+  run-time system and Vendor specific API adapter. It is described in
+  this document;
+\item \define{Vendor specific API}
+ is the interface between Vendor
+  specific API adapter and Vendor specific platform. This interface is
+  not publicly described.
+\end{itemize}
+
+The two blocks openETCS executable model and openETCS model run-time
+system are making the \define{Application software}
+ part. This Application software might be either openETCS reference software or
+vendor specific software.
+
+The Vendor specific API adapter is making the \define{Basic software} part.
+
+\subsection{Information exchange between blocks}
+
+At this level of description, we do not explain how the various blocks
+of above architecture are calling themselves. We only assume they are
+exchanging \define{messages} in an asynchronous way. A message is a set
+of information corresponding to an event of a particular unit, e.g. a
+balise received from the BTM. The possible kind of messages are
+described in chapter \ref{information-flows}.
+
+How the exchange of messages in implemented in actual software,
+e.g. function call, storage of data in a shared buffer, ..., is
+described in chapter \ref{concrete-interface}.
+
+\subsection{Architectural variations}
+Please note that the reference abstract hardware and software
+architectures do not forbid architectural variations. For example, the
+Odometry function could be put within the EVC (see ODO on figure
+\ref{fig:software-arch}) instead of a separate hardware unit (as it
+was shown on figure \ref{fig:hardware-arch}). Such Odometry function
+would be part of the Application software. But communication between
+this Odometry function within EVC and the openETCS model run-time
+system shall be done through the openETCS API and shall follow its
+conventions.
+
+
+\subsection{openETCS Model Runtime System}
+The openETCS model runtime system also provides:
+
+\begin{itemize}
+\item Input Functions From other Units\\
+In this entity messages from other connected units are received.
+\item Output Functions to other Units\\
+The entity writes messages to other connected units.
+\item Conversation Functions for Messages (Bitwalker)\\
+The conversion function are triggered by Input and Ouput Functions. The main task is to convert input messages from an bit-packed format into logical ETCS messages (the ETCS language) and Output messages from Logical into a bit-packed format. The logical format of the messages is defined for all used types in the openETCS data dictonary. \\
+Variable size elements in the Messages are converted to fixed length arrays with an used elements indicator.\\
+Optional elements are indicated with an valid flag.
+The conversion routines are responsible for checking the data received is valid. If  faults are detected the information is passed to the openETCS executable model for further reaction. 
+\item Model Cycle\\
+The executable model is called in cycles. In the cycle 
+\begin{itemize}
+\item First the received input messages are decoded
+\item The input data is passed to the executable model in a predefined order. \textbf{(Details for the interface to be defined)}.
+\item Output is encoded according to the SRS and passed to the  buffers to the units.
+\end{itemize}
+
+\end{itemize}
+
+As another example, part of Vendor specific platform could be on EVC
+and thus the Vendor specific API would be within the EVC.
+
+\subsection{F1: openETCS API (Input)}
+
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics [angle=90, scale=0.6] {images/F1 Exchange input.png}
+\caption{Exchange input - API input}
+\end{figure}
+\newpage
+
+\textbf{See Figure 5}\\
+
+\textbf{Interfaces aligned with the Alstom API to be added}\\
+The exchange input needs to be seperated in 
+Basic SW\\
+and\\
+Application SW \\
+since the functions CRC and Bitwalker belong to a basic function. The integrity Check belongs to Application function.\\
+ 
+Inputs:\\
+\begin{itemize}
+\item TIU
+\item DMI
+\item BTM
+\item EURORADIO
+\item ODOMETRY
+\item JRU
+\item Parameterization board ?
+\item Displacement measurement?
+\end{itemize}
+
+Outputs:\\
+\begin{itemize}
+\item The decoded and checked messages from other units are  are output of F1. The information is processed by procedure call provided by the executable model.
+\item Details of the granualarity of those interfaces are to be clarified.
+\end{itemize}
+
+\section{F1.2: Manage Input}
+\begin{figure}[hbtp]
+\centering
+\includegraphics [angle=90, scale=1.0] {images/Manage inputs.png}
+\caption{Manage input}
+\end{figure}
+\newpage
+
+  Inputs:\\
+``will be complete''\\
+
+ Outputs:\\
+ ``will be complete''\\
+ 
+ \textbf{ Description:} ???
+ 
+ \section{F1.4: Data structure}
+\begin{figure}[hbtp]
+\centering
+\includegraphics [angle=90, scale=0.8] {images/F 1.png}
+\caption{data structure}
+\end{figure}
+\newpage
+
+  Inputs:\\
+``will be complete''\\
+
+ Outputs:\\
+ ``will be complete''\\
+ 
+ \textbf{ Description:} ???
+ 
+
+ \section{F2 Elaboration track messages}
+ 
+ \textbf{See Figure 2 - Block F 2}\\
+ 
+  Inputs:\\
+``will be complete''\\
+
+ Outputs:\\
+ ``will be complete''\\
+ 
+ Description: This function module provides the encoding and decoding of track messages that 
+Management of the port and power off RBC, and the management of reference 
+Beacons, which are based on the track messages.\\
+
+ \subsection{	F21: Receive Eurobalise Messages} 
+ \textbf{SRS:} § 3.4, § 3.6, § 3.16, § 3.17, § 4.8\\
+ 
+  \textbf{Inputs:}\\
+``will be complete''\\
+
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+ \textbf{Description:} 
+ This function module provides the summary of telepowering information and the 
+review of coherence the content of telepowering message. 
+This module separates the eurobalise message as follows: 
+ 
+ - The Balise telegram heads for checking the consistency of the different 
+Telegrams, the management of the duplicated beacons and the acquisition of meaning. \\
+
+- Then the information that the balise group, their reading direction and are 
+Wegmessungsposition where the first balise group was read, in 
+Baliseninformationen for monitoring the function "Manage the eurobalises" 
+summarized (see the term Identifzierung and meaning in this function), which the 
+Continuation of reading via the information Referenzbalise with a Balisenposition in 
+Kernel-reference document approved. \\
+
+\textbf{- The ETCS ETCS version and packages:} \\
+
+The first review is the version ETCS ETCS track with the version Zugbord 
+(Version 1.x Class1 =) to compare; these must be compatible (that means 1.y) to 
+continue processing (a Balise version of the type is 0.y as incompatible 
+considered, but they must not generate a negative reception report). \\
+
+The second review is in compliance with the ETCS grammar in the resulting 
+Packets with a packet 255, which terminates the beacon information of each of the group. \\
+
+The reception of a packet 245 (standard package) in a eurobalise) includes the 
+Rejection of all other packets received and generated a the same mistake as 
+Grammatical errors ETCS, unless the OBU is in Level 2. \\
+
+Only the packets 44, 65, 66 and 136 may be located several times in a same eurobalise message\\ 
+For the 136 package: \\
+• a single packet 136 per Balise telegram, \\
+• the different packages 136 in a same message are identical. \\
+
+The read packets are filtered as a function: \\
+
+- from the direction of the transition to the balise group (the packet is the variable 
+QDIR oriented), 
+the bi-default state (level, level of announced and ERTMS / ETCS mode). \\
+
+The tables of filtering per level and ERTMS / ETCS mode are in the description of the 
+Function "received EUR radio messages" contain.\\
+
+\textbf{These packets are transmitted in four different groups:}
+
+- Geographical information (packet 79 for the "train locations") \\
+
+- Information CNX / DCNX (packets 42, 131) for the "the CNX and DCNX 
+Euro Radio Management "\\
+
+- Information Balise (package 136: Referenzbalise for in-fill information) for the function 
+"Manage eurobalises" \\
+
+- Track-mail received (other packages) for the "monitor train". \\
+
+\textbf{Any error of Referenzbalise, the version or the grammar ETCS is in CR (radio channel) 
+Receiving reported.}\\
+ 
+ 
+ \subsection{F22: Receive Euroradio Messages}
+  \textbf{SRS} § 3.4, § 3.6, § 3.16, § 4.8\\
+  
+    \textbf{Inputs:}\\
+``will be complete''\\
+
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+\textbf{Description:} 
+This function module provides the summary of the Euro radio information and the 
+Verify the consistency of the contents of the Euro radio message. 
+The first guaranteed by this module check is to monitor the radio link. 
+This only applies to a normal communication channel (see § 8.3.1 interface gSM-R). \\
+
+\textbf{The review is broken down as follows:}
+
+- Basic principle: the RBC is providing its messages with a time stamp based on the 
+Time marking the bi-standard the equipment (if the timestamp of the messages on 
+position is undefined, the message is accepted, but only during the initialization of the 
+Communication session EVC - RBC).\\
+
+Verification of the sequence: \\
+
+- the ETCS OBU train equipment rejects any message that is "older" than the last 
+received message.\\
+
+- the ETCS OBU train equipment is up to any message that is "younger" than the last 
+received message.\\
+ 	 
+ 	 
+\subsection{F23: Manage Eurobalise Messages}
+\textbf{SRS} § 3.4, § 3.6, § 3.16\\
+  
+   \textbf{Inputs:}\\
+``will be complete''\\
+
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+\textbf{Description:} 
+This function module manages the Balise reference document of the ETCS Onboard Unit, 
+is said to know that the information supplied by the track following terms have: \\
+
+- either the balise which provides the information, \\
+
+- or delivered in the radio message Referenzbalise, \\
+
+- or delivered in the infill balise message Referenzbalise (package 136). \\
+
+A balise group contains 1-8 eurobalises. 
+The balise group is referenced by an identification NIDLRBG (NIDC: identification 
++ NIDBG region: identification beacon). Each eurobalise has an internal number from 1 to 8, 
+which describes the position of the beacon relaltive in the group. \\
+
+A consisting of only one beacon balise group called "simple beacon", as 
+any other balise group managed; However, it produces features that described in
+Function module F23 and in the function module F25.\\
+
+\subsection{F24: Manage Cnx and Dncx Euroradio}
+\textbf{SRS} § 3.5, § 3.15.1, § 5.15\\
+
+ \textbf{Inputs:}\\
+``will be complete''\\
+
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+\textbf{Description:} 
+This function module ensures the production ending a Euroradio- 
+Communication. \\
+For the ETCS OBU equipment it is possible to Euro Radio communication session
+initiate: \\
+
+- for a "start of mission": train data \\
+
+- after one obtained from the track command: info CNX / DCNX. 
+The command, an RBC to contact, the identity of the RBC and its telephone number 
+(Packets 42 or 131).\\
+
+
+
+ \subsection{F25: Send Euroradio Messages}
+ \textbf{§ 3.4, § 3.16}\\
+ 
+  \textbf{Inputs:}\\
+``will be complete''\\
+
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+\textbf{Description:} 
+
+This function module ensures the completeness (location and time stamp) and the 
+Transmission of radio messages euro on the basis of information "radio session message", 
+"Outgoing track message", "message acknowledgment" (for a radio message 136) and "CR 
+Radio channel reception "(for a radio message 136 along with a package 4). \\
+
+A radio message is sent only if between the ETCS OBU equipment and the 
+RBC opened a euro radio session. \\
+
+The radio messages, with the exception of the message confirmation (radio message 146) and the 
+Session messages (radio message 154, 155, 156, 159) contain a "position report" package 
+(O or 1 packet). \\
+
+The structure of this "position report" package based on the following information: \\
+
+- Info for locating the data LRBG, position, velocity, position error, moving direction,
+by default state for the data concerning the level and the ERTMS / ETCS mode. \\
+
+The package 1 "special position report" is used for one or two LRBG whose 
+Crossing direction is not known ((LRBG type simple balise group). \\
+
+The package 0 "position report" is used when the direction of the LRBG is known (group 
+not simple beacons, or group simple beacons, whose Balisenrichtung over by the track 
+was positioned a link or package 135) (see function F23)).\\
+ 	
+ \textbf{See the functional breakdown of the function in F2 in the next paragraph (Figure 3)}\\
+ 
+\subsection{F2 breakdown}	
+ \begin{figure}[hbtp]
+\centering
+\includegraphics [angle=90, scale=0.3] {images/F2_Breakdown}
+\caption{Elaboration track messages breakdown}
+\end{figure}
+
+\newpage
+\section{F3 Train loction}
+\textbf{See Figure 2 - Block F 3}\\
+
+\textbf{SRS} § 3.6.4, § 3.6.5, 3.6.6\\
+
+  \textbf{Inputs:}\\
+``will be complete''\\
+
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+\textbf{Description:} 
+This function module provides the location of the train in a kernel-reference document 
+(Locating information), based on the following reference documents: \\
+
+- path measurement calculation reference documents the function "distance measurement": train location, \\
+
+- Balise the "track messages draw": Information computational comparison.\\
+
+
+ \section{F4 Train Supervising in ERTMS Modus}
+ \textbf{See Figure 2 - Block F 4}\\
+ 
+\textbf{Inputs}:\\
+``will be complete''\\
+ 
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+ \textbf{Description:} 
+ This function module ensures the monitoring of the train by working out: \\
+ 
+ - The level and mode of control,\\
+  
+- Monitoring the speed, position and the movement of the train,\\
+ 
+- The driver interfaces,\\
+ 
+The data, which is based on the monitoring.\\
+
+ \subsection {F41: Manage Level ERTMS/ETCS}
+ 
+ \begin{figure}[hbtp]
+\centering
+\includegraphics [angle=90, scale=0.5] {images/Manage Level and Modes.png}
+\caption{Elaboration track messages breakdown}
+\end{figure}
+
+\newpage
+ 
+ 
+ \textbf{SRS}§ 5.1, § 3.6.5 \\
+ 
+ \textbf{Inputs}:\\
+``will be complete''\\
+ 
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+ \textbf{Description:} 
+This function is only applicable for the Eurobalise or Euro radio messages 
+announced transitions. The aspect of "use" of the transitions is in Chapter 5 (5.10]
+described. \\
+
+This function module manages the transitions of the level ERTMS / ETCS and the 
+associated driver acknowledgments and releases associated with these transitions 
+related actions. 
+The function depends on the current level (managed by this function) and the 
+following inputs: \\
+
+- "Get track message": notice the transition, the immediate transition command; \\
+
+- «Info locating": position of the train; \\
+
+- "Request by the driver": acknowledgment of the transition; \\
+
+- «Info train": information exchange of the active driver's cab.\\
+
+
+ \subsection {F42: Manage Modus ERTMS/ETCS}
+ \textbf{SRS}§ 4, § 3.6.5, § 3.15.4, § 5.5, § 5.6, § 5.7, § 5.9, § 5.11, § 5.13 \\
+ 
+ \textbf{Inputs}:\\
+``will be complete''\\
+ 
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+ \textbf{Description:} 
+description 
+This function module manages the transitions of the ERTMS / ETCS mode and the 
+associated acknowledgments by the driver, and triggers associated with these transitions 
+associated actions. \\
+
+The function depends on the following inputs: \\
+
+ - "Get track message": Adopted train data, SH mode approved indication signal 
+(VMAIN = 0), Information «danger for SH" Information "stop if in SR"; \\
+
+- Info locating": train position and indication information; \\
+
+- "Mapper": available allocation to in SR mode, FS, OS or RV 
+drive requirement of "train trip" (triggering the train-emergency); \\
+
+-"Request driver»: acknowledgment of the driver 
+proposed modes SH and NL, acknowledgment at the end of TR mode, 
+Preventing the TR mode; \\
+
+- Info train": TIU Inputs (off, active cab, signal leading / led 
+Cab, field monitoring system, condition of equipment; \\
+
+- "ETCS Mode": current mode and current level; \\
+
+- "CR reception": a reported on a balise error or loss of the radio link 
+and related response; \\
+
+- "Train protection»: in SH mode Balise prohibited, banned in SR mode Balise 
+and the status of theETCS OBU equipment forming equipment (TIU, DMI, 
+BTM, Euro radio, board-parameterization, position measurement): any error in the equipment 
+(not shown "material flow").\\
+
+\subsection {F43: Train Speed supervision}
+ \textbf{SRS}§ 3.7, § 3.8, § 3.10, § 3.11, § 3.12, § 3.13, § 5.7, § 5.8, § 5.9 \\
+ 
+ \textbf{Inputs}:\\
+``will be complete''\\
+ 
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+ \textbf{Description:} 
+description 
+This function module monitors the train speed in comparison to a 
+Track assignment / a Movementauthority. \\
+
+You must track the assignment using the information obtained track work out, ie the 
+Completeness of the assignment using the information obtained from the track information
+concerning MA, check profiles and parameters. \\
+
+\textbf{A complete assignment is based on the following information:} \\
+
+- The radio messages 2 (Approval SR), 3 (​​MA), 33 (MA reference it) and the packages 12 
+(MA Level 1), 15 (MA Level 2), 80 (mode profiles), 138 (Reversing area information), 139 
+(Reversing supervision information) give information on the approval of 
+Movement on the track assignment; \\
+
+- The radio messages 9 (requirement of shortening of MA), 15 (conditional urgent 
+Stopping), 18 (refusal of urgent arrest) and 16 packets (repositioning), 
+70 (Route Suitability) give the "extensions" of the movement permit information 
+concerning the track assignment, that is, that they complement the original track assignment, 
+without replacing them; \\
+
+- The radio message 16 (unconditional urgent stop) changes the target point, so 
+the train to travel (emergency) passes (equivalent to the train which his 
+Has exceeded track assignment); \\
+
+- The packages 21 (Gradientprofil), 27 (velocity profile), 51 (axle load), 65 
+(temporary restriction) and 66 (refusal temporary restriction) 
+enter the profile information on the track assignment; \\
+
+- The package 57 (MA requirements) are the parameters concerning the track assignment; 
+for the technical operation modes, the assignment only to provide information to 
+technical mode are limited; \\
+
+- The assignment can also on the position of the train (stop) at the end of a mission, 
+a missed beacon or a radio or loss in accordance with the current technical 
+Be reduced mode (SRS §4.10). \\
+
+- The package 71 (adhesion factor) called the coefficients of the delay tables 
+      Change train (train data service braking and emergency braking): 70\% or 100\%. 
+      It should be mentioned that the change of these coefficients by the driver on the 
+      ETCS onboard unit is not approved. To ensure interoperability must 
+      the application but the "track adhesion" function on the driver 
+      manage (see the national value of QNVDRIVERADHES). \\
+      
+- For mode FS and OS mapping is complete when the gradient profiles and SSP to 
+End of the MA are known; Otherwise MA is denied.\\
+
+\subsection {F44: Train Movement supervision}
+ \textbf{SRS}§ 3.14 \\
+ 
+ \textbf{Inputs}:\\
+``will be complete''\\
+ 
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+ \textbf{Description:} 
+This function module supervises train movements, ie it ensures protection against 
+the involuntary movements of the train: \\
+
+- Protection against the elopement of the train, \\
+
+- Protection against rolling back of the train, \\
+
+- and monitoring the maintenance of the train. \\
+
+\textbf{This module triggers an unwanted movement of the train from the service brake.} \\
+
+\textbf{Protection against the elopement of the train}\\
+The protection against the elopement of the train to avoid the train in one direction 
+moves that do not match the current position of the field monitoring of the active driver's cab 
+matches. 
+This protection is applicable only in SH mode, FS, SR, OS, UN, PT and RV.
+If the removal of unwanted motion exceeds the national value DNVROLL, 
+The brake is activated. 
+When the train goes back again to stop, the brake is by consent of the 
+Train driver released. \\
+
+\textbf{Protection against rolling back of the train }\\
+The protection against rolling back of the train to avoid the train in the his 
+Direction opposite direction, i.e., his current assignment, moved. 
+This protection is applicable only in FS mode, SR, OS, PT and RV. 
+If the removal of unwanted motion the national value DNVPOTRP for the 
+Mode PT and PT and et DNVROLL exceeds for the other modes, the brake is 
+activated. When the train goes back again to stop, the brake is by consent of the Train driver released. \\
+
+\textbf{Monitoring the stop of the train }\\
+The monitoring of the stop of the train to avoid the train moves, if he in 
+SB mode is stationary. 
+If the removal of unwanted motion exceeds the national value DNVROLL, 
+The brake is activated. 
+When the train goes back again to stop, the brake is by consent of the 
+Train driver released.\\
+
+
+\subsection {F45: Train position supervision}
+\textbf{SRS} § 3.6.5, 4.4.8, § 4.4.11\\
+
+\textbf{Inputs}:\\
+``will be complete''\\
+ 
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+ \textbf{Description:} 
+ This function module monitors the trainposition, namely: 
+
+- protection against overshooting the unapproved mode in SH or SR beacons, \\
+
+- and the report "report" the pull position (on the conditions of the train position) to the 
+RBC. \\
+
+\textbf{Protection of unauthorized beacons}\\
+The protection against overshooting of non-approved mode in SH or SR beacons based 
+on the list of approved packages ETCS balise the 49 and 63rd 
+This means in each affected mode (SH or SR): \\
+ 
+- if a list was supplied, it contains the list of approved beacons: the 
+Driving over a balise not included in this list causes the transition to mode TR 
+the ETCS Onboard equipment; \\
+
+- if an empty list is supplied, this means that no beacon is approved: the 
+Driving over any Balise causes the transition to mode TR ETCS
+On-board equipment; \\
+
+- if no list is supplied, each beacon can be run over. \\
+
+
+\textbf{position report }\\
+At each stop the train in FS mode, OS and SR is systematically a position report on 
+a radio message 136 produced. \\
+
+Depending on the requirements of the package 58 ETCS another position report is generated 
+("Position report parameters"), i.e. .: \\
+ 
+- a temporary cyclical position report, \\
+
+- a moderate distance zykischer position report, \\
+
+- an immediate position report, \\
+
+- a position report at each crossing a balise group, \\
+
+- a position report at specific locations, ie if the max. Head of the train 
+(max safe front end) or the min. End of the train (min safe rear end) a specific 
+Has crossed position. \\
+
+- Otherwise, without a request by the track, the position report is limited to each 
+Driving over a balise group.\\
+
+\subsection {F46: Data storage}
+\textbf{SRS} (§ 4.3), § 3.18\\
+
+\textbf{Inputs}:\\
+``will be complete''\\
+ 
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+ \textbf{Description:} 
+This function module guarantees the storage of various data in the 
+"Train data"; these are then used for the entire function modules of the kernel available (it doesnt show the flow, they are distributed to the total functions).\\
+ 
+\textbf{This train data are broken down as follows:}\\ 
+
+- Parameterization train maintenance; These are the characteristics of the train and the track 
+(Train data, fixed data and otherwise national standard data),\\
+ 
+- Additional data; these are the data of the mission of the train. \\
+
+The additional data from the driver at the end of the process "start of mission» 
+adopted (see function "with the driver dialoguing) and § 6.3 procedure 
+"Start Of Mission). This validates the additional data and allows the validation of the beginning 
+a mission. \\
+
+See § 4.3 DATA for details of the data. \\
+The train data are sent over a track auszusendende message to the RBC 
+(Radio message 129, Parcel 11). 
+The data obtained from the track national values ​​(Package 3) will be stored and 
+considered when the track region (NIDC the Balise of locating information) in one of the 
+received national values ​​specified region.\\
+
+\subsection {F47: Dialog with the driver}
+\textbf{SRS} § 5.4, § 3.12.3\\
+
+\textbf{Inputs}:\\
+``will be complete''\\
+ 
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+ \textbf{Description:} 
+This function module ensures the dialogue with the driver at a start 
+a mission and for all on-board advertisements (messages, symbols, dynamic data) and the track 
+Text messages. \\
+
+The method "start of mission" consists in starting or restarting (end of mission 
+the train) for a new mission. \\
+
+\textbf{See Chapter 5 for the method "start of mission."} \\
+
+- The track text message is a resulting free track text message (packet 72) with display and
+Display end conditions that are dependent: \\
+    • Level of ERTMS / ETCS, \\
+    • mode of ERTMS / ETCS, \\
+    • from a distance, \\
+    • from one time interval, \\ 
+    • of an acknowledgment by the driver. \\
+The condition can be single or multiple (combination of multiple conditions). 
+In the case of the expectation of an acknowledgment by the driver at the end of other 
+Combined display conditions, and if these are met, the managed Eurocab- 
+Board equipment service braking (lack of acknowledgment). \\
+
+A resulting encoded text message (packet 76) generates an error message because the text codes 
+are not defined. \\
+
+The track text messages and the driver displays are in messages 
+summarized, which are intended for the DMI: dynamic message (coming from the KV 
+Information) symbols and train-text messages. \\
+
+The train-text messages are managed by internal text codes that the DMI an ad in 
+chosen by the driver language enable (choice at the beginning of the "start of 
+mission "or during the mission).\\
+
+\subsection {F48: Manage brake controll}
+\textbf{SRS} § 3.14.1\\
+
+\textbf{Inputs}:\\
+``will be complete''\\
+ 
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+ \textbf{Description:} 
+This function module ensures the release of the brake control (output 
+"Brake control"). \\
+
+The allowances are as follows: \\
+ 
+ - The technical TR and SF mode (input "State ETCS") produce a 
+emergency braking, \\
+
+- The lack of acknowledgment of the level, the mode or text message (input 
+"Lack of acknowledgment") causes a braking operation, \\
+
+- The protection of the train by the movement monitoring (input "train protection") causes a 
+Service braking \\
+
+- FS a reaction to a Bali mustard Ehlers or a wireless loss (input "CR 
+Receiving "causes a braking operation, \\
+
+- The direction indicated by the speed monitoring overspeed FS or FU 
+(Input "overspeed") causes an operating or emergency braking. \\
+
+Each service brake application (except for overspeed) is an emergency braking 
+replaced when the service brake: \\
+
+- Does not exist (train data), \\
+
+- Not after the brake reaction time (train data) after reading the service brake (input 
+"Info train") is not working. \\
+
+The solution braking is managed by the requesting functionalities (at a 
+Change the mode or the rectification of the fault).\\
+
+\subsection {F49: Manage Train Control}
+\textbf{SRS} § 3.12.1, FFFIS TIU\\
+
+\textbf{Inputs}:\\
+``will be complete''\\
+ 
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+ \textbf{Description:} 
+This function module ensures the development of the using of the train control: \\
+
+- to Control: service brake or emergency brake\\
+
+- the resulting track message "tracks conditions" (Package 68) \\
+
+- the resulting track message "track condition big metal masses" (Package 67) \\
+
+- the resulting track message "linking", which allows a calibration range to 
+define (Package 5). \\
+
+The drafting of "track conditions" and the "calibration range" is national in § 4.4 
+And functions described in § 4.5. The "track conditions" (Package 68) activate the corresponding train control systems and give them 
+the driver to. The package 68 provides the start and end of the "tracks 
+conditions ". \\
+The "big metal masses track condition" (Package 67) puts the transmission in BTM state 
+OFF. \\
+This causes the disruption of the broadcast antenna of the ETCS onboard equipment. 
+The package 67 provides the beginning and end of the track condition "big metal masses." 
+At the end of this condition in the transmission mode is "not modulated", so the the 
+Default is to read the eurobalises. \\
+
+There is a manual calibration of the measurement system exists, it is, however, directly from the 
+Linear Position Sensing subsystem through the acquisition of the Wegmessungsdaten 
+Bordparametrierungsmoduls managed. 
+However, the bi-standard onboard equipment is capable of automatic calibration ranges of 
+To capture Bordwegmessungssystems: 
+A calibration range is announced between two Eurobalisegruppen 
+Calibration area having the following properties: \\
+     • Distance between the Euro balise 'groups greater than 1000m, \\
+     • Linking error between the Euro balise 'groups smaller than 1 m, \\
+     • Gradientprofil between the eurobalises, the closest to a zero-gradient 
+         are, \\
+     • Travel between the beacons with a least possible number of curves. \\
+Therefore, these properties are the responsibility of implementing this track 
+Areas, but the first two conditions are those of the ETCS onboard equipment 
+allow to detect a calibration area.\\
+
+
+ \subsection{F4 breakdown}	
+ \begin{figure}[hbtp]
+\centering
+\includegraphics [angle=90, scale=0.25] {images/F4_Breakdown}
+\caption{Train Supervising in ERTMS Modus}
+\end{figure}
+
+\newpage
+
+ \subsection{F5 Exchange outpout}
+
+ \textbf{ See Figure 2 - Block F 5}\\
+ 
+ \textbf{Inputs}:\\
+``will be complete''\\
+ 
+ \textbf{Outputs:}\\
+ ``will be complete''\\
+ 
+ \textbf{Description:} 
+ description 
+This function module manages the exchange at the output of the ETCS On board equipment with 
+the following modules: 
+
+- TIU, \\
+- DMI, \\
+- BTM, \\
+- EURORADIO,\\ 
+- SAM, \\
+- Displacement measurement. \\
+
+It complements their functions at the level of exchange protocols and the "safety layer" for 
+the entire module with the exception of Wegmessungsmoduls (that manages its own 
+Exchange protocols). 
+Note: The manner in which these functions are implemented, is free; the 
+details of which are specified in the software specification documents.\\
+ 
+\chapter{Data Flow Description}
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Number & Flow & Source/Sink & Description  \\\hline}
+\begin{supertabular}{| m{3,5cm} | m{3,5cm} | m{3,5cm} | m{3,5cm} |}
+1.0 & Missing Acknowledge & Kernel xx/Kernel xx & This information indicates the absence of the 
+Acknowledgment of the driver to a 
+confirmatory text message on the Level 
+Transition, the transition mode or a track 
+Train-text message\\\hline
+2.0 & Acknowledge & Kernel xx/Kernel xx & Radio message 146 transmission Confirmation - Confirmation message depending on the variable 
+§ 8.6.7  \\\hline
+3.0 & Action Driver & Kernel xx/Kernel xx &  Election / confirmation / detection Driver via DMI \\\hline
+4.0 & Display Driver & Kernel xx/Kernel xx & For the driver specific DMI display \\\hline
+5.0 & Reference Balise & Kernel xx/Kernel xx & information; in the Flow "information Balise"  delivered Balise confirmed as a reference beacon.\\\hline
+6.0 & Allocation available & Kernel xx/Kernel xx & Information message that an allocation for a given technical mode is available.\\\hline
+7.0 & Calibration & Kernel xx/Kernel xx & Specifying a calibration range of the 
+path measurement.\\\hline
+8.0 & Cnx/Dcnx Euroradio & Kernel xx/Kernel xx & Command on the connection and disconnection of a 
+or of a RBC, the identity and 
+Phone RBC contains.\\\hline
+9.0 & Brake Controll & Kernel xx/Kernel xx & Control of the service and the 
+emergency braking. \\\hline
+10.0 & Train Controll (brake) & Kernel xx/Kernel xx & Functional output.\\\hline
+11.0 & CR Reception (Radio Channel) & Kernel xx/Kernel xx & CR (radio channel) on receipt of a balise or 
+Radio message: Checking version ETCS, 
+Grammar ETCS, testing reference balise 
+(Position), monitoring radio link\\\hline
+12.0 & Accepted Data & Kernel xx/Kernel xx & Information valid confirmation of the train data and 
+Consequently, at the very beginning of the mission.\\\hline
+13.0 & Additional Data & Kernel xx/Kernel xx & Data relating to the mission of the train: 
+Identity of the driver, 
+selected level, identity and mandatory. of the RBC, 
+if Level 2, no. Mission\\\hline
+14.0 & JRU Data & Kernel xx/Kernel xx & Recorded legal data.\\\hline
+15.0 & Input Train & Kernel xx/Kernel xx & From the train coming TOR digital inputs and 
+Digital outputs \\\hline
+16.0 & State ERTMS & Kernel xx/Kernel & Current Level and operating mode ERTMS, announced ERTMS Level and Current Level and operating mode ERTMS, announced ERTMS Level\\\hline
+17.0 & Indication Driver & Kernel xx/Kernel xx & each specific for the driver 
+Specification. This includes the dynamic information 
+speed monitoring the 
+different messages and symbols, the 
+Exchange during the "start of mission"\\\hline
+18.0 & Info Train & Kernel xx/Kernel xx & From Train comming functional information TIU \\\hline
+19.0 & Message Eurobalise & Kernel xx/Kernel xx & Information, which the ID 
+Balise group (country ID + ID 
+Balise), their reading direction and their 
+Contains path measurement for review 
+(see Flow "reference balise")\\\hline
+20.0 & Information cnx/dcnx & Kernel xx/Kernel xx & Information identifying the RBC ID 
+(Identification of land + the identification of the RBC), 
+RBC his phone number and the authorization \\\hline
+21.0 & Information Driver & Kernel xx/Kernel xx & Specific for the driver 
+Function DMI information. They contain the 
+different specifications for the 
+Driver, which are generated from the 
+different Function modules.\\\hline
+22.0 & Geographical information & Kernel xx/Kernel xx & Absolute current position of the train, which the 
+add the flow "location information" \\\hline
+23.0 & Information Localisation & Kernel xx/Kernel xx & Locating the train: position and speed of the train in the 
+different reference documents, 
+including the absolute geographical 
+Position.\\\hline
+24.0 & Message Eurobalise & Kernel xx/Kernel xx & Flow, summarizing the message / messages eurobalise. 
+BTM to F1: the entire telegrams 
+F1 to F2: Message 
+(the safety layer and the 
+the safety layer and the transfer of 
+Telegrams in a message by F1 
+F1 guaranteed)\\\hline
+25.0 & Infos Calculation Adjustment & Kernel xx/Kernel xx & Information, which contains the ID 
+Balise group (country ID + ID 
+Balise), their path measurement and her for the 
+computational comparison of the on-board 
+Contains reference document expected position\\\hline
+26.0 & Localisation Train (ODO) & Kernel xx/Kernel xx & path measurement in comparison to a 
+Balise (+ safety margin), Speed ​​(+ 
+Safety distance), direction of travel and capture 
+of stopping\\\hline
+27.0 & Euroradio Message (train to track) & Kernel xx/Kernel xx & Transmitted Euro radio message 
+(the safety layer is guaranteed by F5)\\\hline
+28.0 & Euroradio Message (track to train) & Kernel xx/Kernel xx & Received Euro radio message 
+(the safety layer is guaranteed by F1)\\\hline
+29.0 & Radio Message Session & Kernel xx/Kernel xx & Message / parcel Euro Radio for creating and 
+Termination of the radio connection\\\hline
+30.0 & Outgoing Track Message & Kernel xx/Kernel xx & Before Inform creation and timestamp 
+(except the message flow 
+Radio link, message confirmation and CR 
+Reception) sent to the track to 
+function message\\\hline
+31.0 & Message from Track Received & Kernel xx/Kernel xx & Via radio or beacon message received function 
+(except the Riverside current 
+Information, cnx / dcnx information, Balise 
+information)\\\hline
+32.0 & Parameter Train maintenance & Kernel xx/Kernel xx & Fixed data, train data, domestic values\\\hline
+33.0 & Train Protection & Kernel xx/Kernel xx & Information, protection against rolling 
+Twitching, monitoring of stopping, the 
+Transition to an unauthorized Balise in SH 
+or SR reports\\\hline
+34.0 & Balise Reception & Kernel xx/Kernel xx & Information of receipt of a reference Balise NPIG = 0 from the associated type for the computational comparison of the displacement measurement\\\hline
+35.0 & Requirement Driver & Kernel xx/Kernel xx & By driver outbound (see flow 
+"Action Driver") or from DMI DMI produced 
+function information\\\hline
+36.0 & Euroradio Session & Kernel xx/Kernel xx & State of the Euroradio connection \\\hline
+37.0 & Signal Eurobalise & Kernel xx/Kernel xx & Airgap Eurbalise -> BTM\\\hline
+38.0 & Signal Euroradio & Kernel xx/Kernel xx & Airgab RBC ->Euroradio Board\\\hline
+39.0 & Output Train & Kernel xx/Kernel xx & Train digital outuputs\\\hline
+40.0 & Overspeed & Kernel xx/Kernel xx & Information message overspeed
+of the train relative to the
+speed curves\\\hline
+41.0 & Synchronization & Kernel xx/Kernel xx & Synchronization (xw, V, T) between the kernel, 
+the BTM and the path measurement\\\hline
+42.0 & Transmission BTM & Kernel xx/Kernel xx & Control BTM - antenna\\\hline
+\end{supertabular}
+
+\chapter{Functional and data structure architecture ETCS on-board}
+ Description of Functional and data structure  architecture ETCS on-board from NS (Jan Welvaart and Vincent Nuhaan)
+ will be followed ...!!\\
+ To be considered and merged to the overall architecture view!!\\
+ 
+\section{Management of location based data}
+A lot of information given from ETCS track side to on-board is “Location based”, i.e. the information is valid for a certain location given as a distance from a reference BG. The current function will manage the elaboration of packets containing “Location based data” into the (already available) sorted internal data structures which shall enable efficient further elaboration of the data (e.g. braking curve monitoring, constituting the planning area, etc.).
+
+\textbf{Description:}
+Elaboration of the packets containing “Location based data” into the (already available) sorted internal data structures.
+
+\textbf{Inputs:} 
+\begin{itemize}
+\item Packets containing “Location based data” (see below)
+\end{itemize}
+
+\textbf{Affected data in the “data stored on-board”: 	}
+\begin{itemize}
+\item Internal data structures storing “internal data structures” 
+\item Status of received packets (change to “elaborated”, thus may be forgotten) 
+\end{itemize}
+\textbf{Outputs:}  -
+
+“Location based” data is categorized for the purpose of defining data structures:
+\begin{itemize}
+\item \textbf{movement authority (MA) list of sections}, message 37, packet 12 (level 1), message 3, packet 15 (level 2), 16 (repositioning, i.e. extending the current section), message 33 (??), packet 70 (route suitability), message 9 (request to shorten MA),    minimum number of elements to be stored: 6
+\item \textbf{list of announced BG's linking information:} packet 5  minimum number of elements to be stored: 30
+\item \textbf{adhesion factor:} packet 71;  only one element
+\item the \textbf{“gradient profile”} (in: pkt 21)  minimum number of elements to be stored: 50
+\item \textbf{Speed profiles:}  packet 27 (SSP)  {the worst case can be determined at reception} 
+Packet 13	minimum number of elements to be stored: 50
+\item \textbf{Speed restrictions} and non-continuous speed profiles: packet 51 (axle load profile), packet 52 (permitted braking distance), packets 65/66 (TSR), packet 88 (level crossing, incl. stop condition to be reset at standstill).  
+minimum number of elements to be stored: TSR: 30, axle load: 30, permitted braking distance:  5 , level crossing: 10. 
+Reversing area's: packets 138, 139	minimum number of elements to be stored: 1
+Mode dependent speeds: message 2  and packet 80  minimum number of elements to be stored: 6
+\item \textbf{Level transitions:} packet 41  minimum number of elements to be stored:  (see ss26, 5.10.1.6): 1
+\item \textbf{DMI information:} packets 72,76 (text messages), packet 79 (geographical position information), message 34 (track ahead free request)  minimum number of elements to be stored: fixed text: 5, free text: 5, geographical position: 
+\item \textbf{Track conditions} (to be passed to the TIU and displayed at the DMI): packet 39 (traction system), packet 40 (current limitation),  packet 67, 68 (diverse track conditions), packet 69 (platform conditions). Pkt 139  minimum number of elements to be stored: 20, + 1 for change power supply + 1 for platform conditions, + 1 for current limitation
+\item \textbf{Route suitability:} minimum number of elements to be stored: 3
+\item \textbf{Big Metal Mass:} Technical information (to be used for BG-filtering): packet 67 (ignore BG integrity)  minimum number of elements to be stored: 5
+\item \textbf{Virtual balise covers:}  minimum number of elements to be stored: 10
+\item \textbf{list of position report locations.} In: pkt. 58  minimum number of elements to be stored: 15
+\end{itemize}
+
+All above information contains “Locations”. These “Locations” can all be managed in the same manner. A location is defined using the following data structure:
+
+For each location the “original reference” (ORBG) and the distance from this ORBG are remembered. 
+In the data structure for passed BG's a correction distance is stored such that:
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[angle=0, scale=0.9] {images/ORBG.png}
+\caption{SRS architecture}
+\end{figure}
+
+
+$d_{ between~train~and~location} =
+d_{from~ORBG} - P_{Train~to~ LRBG}  -  d_{correction~stored}$
+
+\FIXME{formula needs to be documented with a picture or refined description of the variables}
+
+where
+\begin{description}
+   \item[$d$] - represents a distance
+   \item[$P$] - represents the train position
+\end{description}
+$the stored correction distance (all including tolerances)$.
+
+A location is thus always stored as a distance from the nominal location of the ORBG (thus not having tolerances). Location based data is given from track-side as a chain of incremental distances. This shall be converted during the elaboration and storage.
+
+Typically location based data has to be available in the order it is passed. This requires ordering and reordering if an element The following situations have to be taken into account:
+\begin{itemize}
+\item some types of location based data are not sent in the order they are passed, i.e. an element can be received which has to be included halfway the list.
+\item some types of location based data can be withdrawn from the list.
+\item Some types of location based data can be updated
+\item Information stored for a location can change, e.g. if the axle load changes, then the speed restrictions stored for this item shall be changed.
+\item Shifting of data shall be avoided.
+\end{itemize}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[angle=0, scale=0.6] {images/indexing_of_ringbuffer.png}
+\caption{Indexing of internal data structure}
+\end{figure}
+
+
+General data structure for location based data of a specific type: “LOCATION BASED DATA STRUCTURE”
+\begin{description}
+\item[closest:] The element related to the location which is the closest to the train front end
+\item[furthest:] The element related to the location which is the closest to the train front end
+\item[first free:] The element where the next received “location based data element of the specific type
+\end{description}
+
+Each element shall contain the index of the element where the preceding location is stored,  the index of the element where the next further location is stored, the location (see type description above) and fields for information depending of the type of location based data.
+
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[angle=0, scale=0.9] {images/location_based_datastructure.png}
+\caption{Location based data structure}
+\end{figure}
+
+Generic structure for an element in a data structure for location based data
+
+
+General functions to be performed on a “LOCATION BASED DATA STRUCTURE” when new information is received are:
+\begin{itemize}
+\item Replace all data from a certain location onwards with the new received information.
+\item Insert one element in the structure at the right location, i.e. between the last preceding and the first next location of the same type.
+\item Delete one element of the structure, i.e. restore the order and free the memory where the information was stored.
+\item Update the information for a specific (already stored) element containing location based data, e.g. update the speed of “axle load dependent speed restrictions” in case the axle load changes.
+\end{itemize}
+
+\textbf{ORDER IN WHICH PACKETS CONTAINING LOCATION BASED DATA SHALL BE ELABORATED}
+
+There are a few requirements determining the order in which different types of data shall be analyzed:
+\begin{itemize}
+\item MA's may only be accepted if a static speed profile and gradient information is available. Therefore the latter ones shall be elaborated before the MA information is elaborated.
+\item xxxx
+\end{itemize}
+
+Scope of the function
+The current function includes all elaboration of packets containing location based data into the internal data structure for location based data, further elaboration is not included.
+MRSP and the list of targets for braking curve monitoring are also location based, but they are a further elaboration of the received data. The building of the MRSP and list of braking curve targets is therefore not handled in the current function but in “Build MRSP + list of targets at the LRBG” (see figure~\ref{fig:lbd}).
+
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[angle=0, scale=0.55] {images/build_structure_for_location_based_data.png}
+\caption{Build Structure of Location Based Data}
+\label{fig:lbd}
+\end{figure}
+
+ 
+ \newpage
+ \chapter{current partly openETCS Architecture - first iteration}
+ Needs to be integrated into the overall architecture .....
+  \begin{figure}[hbtp]
+\centering
+\includegraphics [angle=90, scale=0.2]{images/Current_partly_openETCS_architecture}
+\caption{partly openETCS architecture - first iteration}
+\end{figure}
+ 
+ \newpage
+  \chapter{merge the first iteration architecture with the overall architecture}
+ Needs to be integrated into the overall architecture .....
+  \begin{figure}[hbtp]
+\centering
+\includegraphics [angle=90, scale=0.3]{images/architecture-db}
+\caption{concept to merge}
+\end{figure}
+ 
+ \newpage
+ \chapter{centralized data structure approach}
+ \begin{figure}[hbtp]
+\centering
+\includegraphics [scale=0.6] {images/CentralizedDataStrukture_2}
+\caption{Centralized data structure approach architecture}
+\end{figure}
+
+
+ \begin{figure}[hbtp]
+\centering
+\includegraphics [scale=0.7] {images/CentralizedDataStructure_1}
+\caption{Centralized data structure approach breakdown}
+\end{figure}
+
+\newpage
+
+\chapter{Alstom High Level Approach}
+ \begin{figure}[hbtp]
+\centering
+\includegraphics [scale=0.8] {images/Alstom_High_Level_Approach}
+\caption{Alstom SRS Architecture Approach}
+\end{figure}
+
+\newpage
+
+ 
+\appendix
+
+\bibliographystyle{unsrt}
+\bibliography{architecture}
+
+\newpage
+\addcontentsline{toc}{chapter}{Index}
+\printindex
+
+%===================================================
+%Do NOT change anything below this line
+
+\end{document}
