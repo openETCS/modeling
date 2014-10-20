@@ -46,8 +46,8 @@
 \creatorname{Bernd Hekele}
 \creatoraffil{DB-Netz}
 
-\techassessorname{[assessor name]}
-\techassessoraffil{[affiliation]}
+\techassessorname{Veronique Gontier}
+\techassessoraffil{[All4Tec]}
 
 \qualityassessorname{Izaskun de la Torre}
 \qualityassessoraffil{SQS}
@@ -199,17 +199,15 @@ In addition, the work on this minimum functionality requires to be supported by
 	\item The availability of the ETCS language as specified in Subset UNISIG Subset\_026, chapters 7 and 8;
 	\item The abiltiy to link intermediate and final results with the requirements of the ETCS specification (subset\_026, etc.). 
 \end{itemize}
-These supporting prerequisites are under construction and therefore currently not completely operable. How to deal with these restrictions, will be outlined in Chapter~\ref{}.
+These supporting prerequisites are under construction and therefore currently not completely operable. How to deal with these restrictions, will be outlined in Chapter 2.
 
 \section{Glossary and Abbreviations}
 
 \textbf{API} Application Programming Interface\\
-\textbf{EVC} European Vital Computer\\
 \textbf{BTM} Balise Transmission Module\\
+\textbf{EVC} European Vital Computer\\
+\textbf{LRBG} Last Relevant Balise Group\\
 \textbf{SRS} System Requirements Specification\\
-
-
-
 
 %==================================================================
 
@@ -240,7 +238,7 @@ The openETCS tool-chain for doing the modelling work consists of the following c
 	With the component Scade System Scade also has a component for designing the architecture.
 \end{description}
 
-In principle, the synchronisation mechanism of Scade was planned to be used for synchronising the SysML architecture and the Scade models. The idea is to automatically synchronise the SysML types and blocks with the Scade type definitions and the Scade Operators. Unfortunately, with the current set of tools this idea cannot be realised. We will investigate other tools and models to find a solution. 
+In principle, the synchronisation mechanism of Scade was planned to be used for synchronising the SysML architecture and the Scade models. The idea is to automatically synchronise the SysML types and blocks with the Scade type definitions and the Scade Operators. Unfortunately, with the current set of tools this idea cannot be realised. Instead, we start developing a new Papyrus plug-in which can be used for generating scade models according to the defined SysML blocks
 
 In addition, faults in the Kepler Papyrus version made it difficult for several members of the team to work on different submodels of the openETCS model. The issue will be solved when changing to the Luna version of Papyrus.
 
@@ -251,7 +249,7 @@ The following diagrams are taken from the SysML model \cite{sysml-model}.
 
 \begin{figure}[h]
 \centering
-\includegraphics[scale=0.6]{../images/FunctionalArchitectureBDD.png}
+\includegraphics[scale=0.4]{../images/FunctionalArchitectureHigh.png}
 \caption{Block Definition Diagram of the First Iteration Architecture}
 \end{figure}
 
@@ -265,7 +263,7 @@ The diagram shows the hierarchy of the EVC model. The boundaries of the model ar
 
 Green blocks in this diagram are seen as data collected by the ``train'' without making use of the function in focus.
 
-Input to the model is via the API\marginpar{The interface of the model is defined by the API?}. The border\marginpar{of what?} is inside the EVC Scade model. 
+Input to the model is via the Model API (see section 3.1).  
 
 \section{openETCS Data Dictionary}
 In the first iteration, the openETCS data dictionary gives some basic constructs for the project, the definition of interfaces in a central place and the definition of the ETCS language \cite{dataDictionary}.
@@ -315,14 +313,16 @@ The executable model is called in cycles. In the cycle
 \input{sections/GenericAPI.tex}
 
 
-\section{First Iteration: Used API Functions and Interfaces to the Basic Software}
-Note: The basic functions and the API is not implemented in the first iteration. Instead, the Scade test environment is used for this purpose. However, the interface used in the model is described as if they were available.
+\section{First Iteration: Model API and Model Runtime System}
+Note: The basic functions and the API is not implemented in the first iteration. Instead, the Scade test environment is used for demonstration. However, the interface used in the model is described as if they were available.
 
-\begin{enumerate}
+\subsection{Short Description of Functionality}
+
+\begin{itemize}
 \item Runtime System\\
 The Runtime System calls the openETCS kernel model in a cyclic way. Input parameters are updated with every cycle.
 \item Input
-\begin{enumerate}
+\begin{itemize}
 \item Control Interface\\
 The control interface triggers the reset of the application software. The reset is modelled as reset flag in the Scade model.
 
@@ -331,10 +331,10 @@ The BTM service passes decoded telegrams to the executable model. The telegram i
 
 \item Odometry\\
 The input from the odometry is updated with every cycle\marginpar{cycle=clock?}. The information from the odometry is updated in the parameter actual\_odometry of the executable model.
-\end{enumerate}
+\end{itemize}
 
 \item Output
-\begin{enumerate}
+\begin{itemize}
 \item Runtime System\\
 \item DMI\\
 The application may indicate errors at the balise group interface to the driver. The trigger needs to be passed to a corresponding function inside the application software (not part of the kernel).
@@ -342,37 +342,87 @@ The application may indicate errors at the balise group interface to the driver.
 The application may need the service brake function. The trigger needs to be passed to a corresponding function inside the application software (not part of the kernel).
 \item EuroRadio\\
 The application may trigger the position report via radio interface. The message needs to be passed to a corresponding function inside the application software (not part of the kernel).
-\end{enumerate}
+\end{itemize}
 
-\end{enumerate}
+\end{itemize}
 
 \section{First Iteration: Interfaces to other Functions of the Application Software (not part of First Iteration)}
 This section mainly refers to interfaces replaced by data implemented in the model.
 
-\begin{enumerate}
+\subsection{Short Description of Functionality}
+
+\begin{itemize}
 \item Train-Info\\
 The parameters of the train are seen as a constant to the kernel model. The data re not changed by any function of the kernel model. Only data used in the kernel are listed here.
 Used Information:
-\begin{enumerate}
+\begin{itemize}
 \item Level = 1\\
 \item Mode = \marginpar{?}\\
-\end{enumerate}
-\end{enumerate}
-
-\FIXME{diagram to be added}
+\end{itemize}
+\end{itemize}
 
 \section{F.1 Manage Balise Information}
-This function manages telegrams of the balise channel. 
-Diagram needs to be added.
 
-\begin{enumerate}
-\item Functional Description
-\item Reference to teh Standards
-\item Deviations from the Standards, Open Issues
-\item Input
-\item Output
-\item Data
-\end{enumerate}
+\subsection{Short Description of Functionality}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=.6\textwidth]{../images/ManageBaliseInformation.png}
+\caption{Structure of Manage Balise Information Block}
+\end{figure}
+
+"ManageBaliseInformation" manages information related to balise telegrams received via the API when the train passes a balise. Balise telegrams are collected to build balise group messages. Finally, the message is checked for consistency, the train direction is calculated and the balise group message  is passed to the other functions.
+
+Information of the odometer is used to control for the train leaving the expectation window of the balises.
+
+\subsubsection{Input}
+\begin{itemize}
+\item reset	(bool)	
+Request a reset of the data in the function.
+If reset=true no other input to the model is valid.
+\item API Telegram \\
+The telegram is build from 
+
+\begin{itemize}
+\item a present flag (bool)\\
+Indicates the input decoded telegram parameter is “present”, i.e., the input has been updated by the API.
+Only if the telegram is present the position information (incenterOfBalise) is to be used.\\
+\item the decoded telegram including optional packets received from the balise.
+\item the centerOfBalisePosition parameter. This parameter is used to give the position where the BTM has recognised the center of the balise telegram.
+\end{itemize}
+
+\item inActualOdometry\\
+Actual Information giving the odometry of the train. 
+\item LRBG\\
+The Last Relevant Balise Group. The information has been collected before by the train position function.\\
+\end{itemize}
+
+\subsubsection{Output}
+\begin{itemize}
+\item BG-Message\\
+Information describing the actual balise group just received.
+\item ApplyServiceBreak\\
+The flag indicates the balise group the train just passed could not be processed correctly. The check results in the request for a service break.\\
+\item BadBaliseMessageToDMI\\
+Information to be passed to the DMI to indicate the reception of a "bad balise" to the driver.
+\end{itemize}
+
+\subsubsection{Data}
+\begin{itemize}
+\item The function makes use of internal data for collecting and checking the balise telegrams. 
+\end{itemize}
+
+\subsection{Reference to the SRS (or other requirements)}
+\begin{itemize}
+\item Definition of the Balise Telegram: subset 26 section 7 and 8\\
+\item Interface to the BTM: Subset 36, section  4.2.2, 4.2.4, 4.2.9\\
+\item Handling of Balise Telegrams: Subset 26, sections 3.4.1 - 3.4.3, 3.16.2 \\
+\item Check of the balise group Subset 26, section 3.16.2\\
+\item Determining the Orientation: 3.4.2\\
+\end{itemize}
+
+\subsection{Design Constrains and Choices}
+
 
 \subsection{F.1.1 Receive Eurobalise From API}\label{ss:ReceiveEurobaliseFromAPI}
 
