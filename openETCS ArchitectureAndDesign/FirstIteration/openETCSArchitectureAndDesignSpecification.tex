@@ -47,7 +47,7 @@
 \creatoraffil{DB-Netz}
 
 \techassessorname{Veronique Gontier}
-\techassessoraffil{[All4Tec]}
+\techassessoraffil{All4Tec}
 
 \qualityassessorname{Izaskun de la Torre}
 \qualityassessoraffil{SQS}
@@ -143,7 +143,6 @@ While the first version of this document focuses on the first version of the lim
 
 \section{Objectives}
 \label{sec:Objectives}
-
 
 
 The first objective of WP3 software shall be
@@ -327,7 +326,7 @@ The Runtime System calls the openETCS kernel model in a cyclic way. Input parame
 The control interface triggers the reset of the application software. The reset is modelled as reset flag in the Scade model.
 
 \item BTM Services\\
-The BTM service passes decoded telegrams to the executable model. The telegram is handed over to the API\_balise parameter of the model (see Chapter~\ref{ss:ReceiveEurobaliseFromAPI}). In each cycle only one telegram is expected to be passed. For details in the interfaces\marginpar{??}, The application may need the service brake function. The trigger needs to be passed to a corresponding function inside the application software (not part of the kernel)
+The BTM service passes decoded telegrams to the executable model. The telegram is handed over to the API\_balise parameter of the model (see Chapter~\ref{ss:ReceiveEurobaliseFromAPI}). In each cycle only one telegram is expected to be passed.
 
 \item Odometry\\
 The input from the odometry is updated with every cycle\marginpar{cycle=clock?}. The information from the odometry is updated in the parameter actual\_odometry of the executable model.
@@ -335,7 +334,6 @@ The input from the odometry is updated with every cycle\marginpar{cycle=clock?}.
 
 \item Output
 \begin{itemize}
-\item Runtime System\\
 \item DMI\\
 The application may indicate errors at the balise group interface to the driver. The trigger needs to be passed to a corresponding function inside the application software (not part of the kernel).
 \item Train Interface Unit (TIU)\\
@@ -351,15 +349,11 @@ This section mainly refers to interfaces replaced by data implemented in the mod
 
 \subsection{Short Description of Functionality}
 
-\begin{itemize}
+\begin{description}
 \item Train-Info\\
 The parameters of the train are seen as a constant to the kernel model. The data re not changed by any function of the kernel model. Only data used in the kernel are listed here.
-Used Information:
-\begin{itemize}
-\item Level = 1\\
-\item Mode = \marginpar{?}\\
-\end{itemize}
-\end{itemize}
+Used Information: level and mode.
+\end{description}
 
 \section{F.1 Manage Balise Information}
 
@@ -367,7 +361,7 @@ Used Information:
 
 \begin{figure}[hbtp]
 \centering
-\includegraphics[width=.6\textwidth]{../images/ManageBaliseInformation.png}
+\includegraphics[width=.5\textwidth]{../images/ManageBaliseInformation.png}
 \caption{Structure of Manage Balise Information Block}
 \end{figure}
 
@@ -436,6 +430,10 @@ Information to be passed to the DMI to indicate the reception of a "bad balise" 
 This function defines the interface of the OBU model to the openETCS generic API for Eurobalise Messages. On the interface, either a valid telegram is provided or a telegram is indicated which could not be received correct when passing the balise. The function passes the telegram without major changes of the information to the next entity for collecting the balise group information.
 	
 \subsubsection{Reference to the SRS (or other requirements)}
+\begin{itemize}
+\item Definition of the Balise Telegram: subset 26 section 7 and 8
+\item Interface to the BTM: Subset 36, section  4.2.2, 4.2.4, 4.2.9
+\end{itemize}
 
 \subsubsection{Design Constrains and Choices}
 
@@ -460,6 +458,11 @@ Linking Information is added to the linking array starting from index 0 without 
 This entity collects telegrams received via the interface into Balise Group Information.
 	
 \subsubsection{Reference to the SRS (or other requirements)}
+\begin{itemize}
+\item Interface to the BTM: Subset 36, section  4.2.2, 4.2.4, 4.2.9\\
+\item Handling of Balise Telegrams: Subset 26, sections 3.4.1 - 3.4.3, 3.16.2 \\
+\end{itemize}
+
 \subsubsection{Design Constrains and Choices}
 \begin{enumerate}
 \item Telegrams received as invalid are passed to the ``Check-Function'' to process errors in communication with the track side according to the requirements and in a single place.
@@ -472,7 +475,21 @@ Telegrams are added to the telegram array starting from index 0 without gaps. Us
 \subsection{F.1.3 Check BG Consistency}
 
 \subsubsection{Short Description of Functionality}
+The functionchecks the telegrams received for the balise group. The check consists of:\\
+\begin{itemize}
+\item The number of balises received is equal to the number of balises announced for the balise group
+\item The sequence of balises (pig): no gaps, correct order.
+\end{itemize}
+
+For a correct balise group the balise group message is generated and passed to the system.
+In error situations the triggers for the driver and the breaking system are generated.
+I
 \subsubsection{Reference to the SRS (or other requirements)}
+\begin{itemize}
+\item Check of the balise group Subset 26, section 3.16.2\\
+\item Determining the Orientation: 3.4.2\\
+\end{itemize}
+
 \subsubsection{Design Constrains and Choices}
 
 %\begin{enumerate}
@@ -487,12 +504,12 @@ Telegrams are added to the telegram array starting from index 0 without gaps. Us
 
 \subsection{F.1.4 Determine BG- Orientation and LRBG}
 
-\subsubsection{Short Description of Functionality}
-\subsubsection{Reference to the SRS (or other requirements)}
-\subsubsection{Design Constrains and Choices}
+The orientation of the Balise Group is already determined in the check procedure. Due to the relocation of functions this block is not used any more.
 
 
 \subsection{F.1.5 Select Useable Info}
+Note: This function needs to be seen as a seperate part of the system. The function is not limited to the balise channel.
+This aspect of the architecture will be corrected in the next iteration.
 
 \subsubsection{Short Description of Functionality}
 The function Select Useable Info filters information received from balises that have been passed, radio, and EUROLOOP. Filtering is done depending on the mode of the train, the current ETCS level, the type/content of the information, and the transition media of the information. As neither radio messages nor EUROLOOP are part of the first iteration of work, not all functionality of the filter described in the specification is currently implemented.
