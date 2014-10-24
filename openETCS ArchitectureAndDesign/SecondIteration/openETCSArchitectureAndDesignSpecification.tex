@@ -1458,6 +1458,228 @@ MRSP and the list of targets for braking curve monitoring are also location base
 
 \newpage
 
+\chapter{Scope of Utrecht - Amsterdam}
+This chapter should give an overview about the necessary functions, message, ... for the open proof of concept on the Utrecht - Amsterdam line.\\
+
+Below an overview of the input and output information for the system is given. The information is described in the following sources:
+Trackside: subset 26 chapter 7 and 8. Chapter 6 (baseline 2) has not yet been analysed, however the expectation is that this chapter will not contain more information (only diffferent format)\\
+
+- TIU: annex of the API specification\\
+- DMI: annex of the API specification\\
+- JRU: not used\\
+- odometer: the API specification\\
+
+From the available input data the part which is necessary for the demonstration on Amsterdam-Utrecht has been selected. Data only needed for functions which are not realised in this first implementation are marked in grey. Those functions can be added later-on without affecting the core functionality realised in the demonstrator for Amsterdam-Utrecht.\\
+
+Based on the replacement strategy for the data (a.o. ss26, 3.7.3) data structures will be defined to store the received data and to update the data if new information is received from the same type (sometimes overwrite, sometimes extend, or a combination).\\
+
+For the output data it is defined which functional blocks shall be the source of the data, and which internal data shall be available to enable the determination of the required outputs.\\
+
+Most of the input information shall be stored in a way that it can be remembered, updated and maintained (e.g. when driving). Other inputs are always used in the current cycle, have their effect and can be deleted.\\
+
+\section{Inputs from track-side}
+
+ \begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.4]{images/DataFlowUA1}
+\centering
+\includegraphics[scale=0.4]{images/DataFlowUA2}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{images/DataFlowUA3}
+\centering
+\includegraphics[scale=0.4]{images/DataFlowUA4}
+\centering
+\includegraphics[scale=0.4]{images/DataFlowUA5}
+\end{figure}
+
+\newpage
+\section{Output to track-side}
+\newpage
+\begin{figure}
+\centering
+\includegraphics[scale=0.4]{images/DataFlowUA6}
+\centering
+\includegraphics[scale=0.4]{images/DataFlowUA7}
+\end{figure}
+\newpage
+
+\section{Inputs from TIU derived from the API}
+
+- Status of EB, SB, traction cut off;  (active, not active, unknown, failed)\\
+
+- Flag indicating that the TIU is commanding SB, EB or traction cut off  (interface between TIU and EVC, not TIU and train)\\
+
+- ETCS system “Isolated”\\
+
+- Train controlled from other unit: “Sleeping”\\
+
+- Tilting on/off, relevant in case of selection of a train specific SSP: “train data”\\
+
+- Direction controller ( forward, “0”, “backward”)\\
+
+- Selected cabin: (cab A, none, cab B, failure)\\
+
+- Train integrity (state:  yes/no, in the API a variable for length and/or time is missing!!!!!)\\
+
+- Vigilance control (state?, external device active?)\\
+
+What's meant with filtered values\\
+
+\section{Brake model parameters, API packet 3
+xxx (to be filled)}
+
+
+Further (in the API) defined inputs from the TIU, but not needed for Amsterdam-Utrecht demonstration:\\
+Text messages from the train to the ETCS DMI: API packet 1\\
+Test and failure detection: API packet 6\\
+STM specific behavior: API packet 7\\
+Specific from MVB: Alstom application specific, packet 8\\
+Diagnostic information: packet 12\\
+Inhibition level: packet 13.\\
+
+\section{Outputs to TIU (derived from the API)}
+Brake and traction commands (EB, SB and TCO): packet 0\\
+- EB command\\
+- SB command\\
+- TCO command\\ 
+Vigilance disable order (order to disable train-side (?) vigilance control)\\
+
+
+Further (in the API) defined outputs to the TIU, but not needed for Amsterdam-Utrecht demonstration\\
+Track conditions packets 1, 5,\\
+Odometric data, packet 2,\\
+mode and level information, packet 3\\
+Train type, i.e. the type of brake R, P or G, packet 4\\
+Location reference, packet 6\\
+Test and vigilance commands: packet 7\\
+STM state: packet 8\\
+diverse information (train length, train number,  level inhibition ????????, data change due to change of running direction????)\\
+
+What's specified in general for vigilance??\\
+
+Conclusion: for Amsterdam-Utrecht only the emergency brake, service brake and traction cut of commands are needed as outputs to the TIU.\\
+
+\section{Inputs from DMI (derived from the API)}
+
+Acknowledgement from the driver on information (free text) sent to the DMI earlier: packet 50.
+message identifier corresponds to packet 9, packet 68 “EVCmessage”\\
+
+Acknowledgement from the driver on information (fixed text) sent to the DMI earlier: packet 77.
+message identifier corresponds to packet 76 and 78 “Track message”\\
+
+Operation of a button (for buttons displayed, see packet 5) by the driver: packet 52\\
+
+Data entered by the driver: packet 53 and packet 54 (confirmation). As far as used for level selection at start of mission. A data-entry procedure is not foreseen in the first demonstration.\\
+
+DMI controlled window exit request: packet 67,   needed for the demonstration???\\
+
+Question box reply: packet 73, only used for track ahead free request (in the current specification)\\
+
+
+Question: How is the confirmation on data given with packet 3 returned to the EVC?\\
+
+
+Further (in the API) defined inputs to the DMI, but not needed for (first implementation of the) Amsterdam-Utrecht demonstration\\
+STM error on DMI ????: packet 48.\\
+Text message deleted (due to full stack): packet 56\\
+Connection confirmation: packet 57, not needed in a demonstrator (technical information only)\\
+DMI state: packet 58, used for connection mgt, not needed for the demonstration\\
+data for the JRU: packet 59: not needed for the demonstration\\
+Report on-going acknowledgements: packet 70, shouldn't be necessary (what is done with this information in the EVC?)\\
+Report on deletion due to full stack: packet 79, not needed for the demonstration\\
+iBox state: packet 85: used in case of a remote connection to the DMI, not needed for the demonstration\\
+ATP test result, packet 87: no test used for the demonstration\\
+Results for additional Data-Entry (for STM's): packet 180, not implemented in the demonstration (STM and data-entry)\\
+
+\section{Outputs to DMI (derived from the API)}
+
+Minimum functionality for the demonstration:\\
+- speed dial including braking curve (“hook”)\\
+- planning area: most restrictive speed profile ahead\\
+- text messages (including acknowledgements)\\
+- Level selection at start-up\\
+- acknowledgement of level transitions\\
+
+
+Message to delete elements on the DMI: packet 2\\
+It's not clear if this only applies to text messages and acknowledgement requests or to all data? Further for specific data (a.o. text messages) special packets are sent to delete the data from the screen.\\
+
+Confirmation request: packet 3\\
+Sending text or data fields plus an identifier of the confirmation asked (for data entry?)
+How is responded to the EVC after receiving this packet?\\
+
+Text message with or without confirmation or acknowledgement request: packet 9 + packet 68 in case of required acknowledgement
+{One line of free text}\\
+
+Fixed text message to be displayed (identifier from track to train packet 76): packet 76\\
+Fixed text message to be deleted: packet 78\\
+
+Displaying and hiding buttons: packet 5	\\
+list of buttons is not included in the API (available in the standardised screen layout?, TS50459 )\\
+
+Sound activation: packet 7\\
+list of sounds is not included in the API (available in the standardised screen layout?, TS50459 )\\
+
+Speed, braking curve and target: packet 8, packet 43 and packet 71.\\
+New information shall overwrite the existing information.\\
+
+Display an icon (not, constant, flashing): packet 11\\
+list of icons is not included in the API (available in the standardised screen layout?, TS50459 )\\
+Data for viewing after a driver request: packet 15\\
+list of data is not included in the API\\
+
+Planning area speed restrictions: packet 19, a translation between speed and width of the indication is needed.\\
+
+Planning area gradients: packet 26\\
+
+Planning area displaying on/off: packet 31,  in certain modes the planning area shall not be shown at all (also not an empty planning area).\\
+
+Geographical position information:  packet 33\\
+
+DMI controlled window request: packet 66,   needed for the demonstration???\\
+
+Question box request: packet 72, only used for track ahead free request (in the current specification)\\
+
+
+\section{Further (in the API) defined outputs to the DMI, but not needed for (first implementation of the) Amsterdam-Utrecht demonstration}
+- Screen control packet 4,\\
+- Screen request: packet 6, is used for displaying windows, but the demonstration can work with a standard screen/window
+- EVC connection request: packet 16, for the demonstration PC's with addressable screens can be used.
+- Local time: packet 17, for the demonstration the displays local time can be used
+- Planning area icons: packet 18, for the demonstration elaborating track data is not needed, thus displaying not possible
+- data transmission start/stop: packet 20, not needed in case of communication between PC's
+- Set speed info: packet 23, no cruise control foreseen for the demonstration
+- Data entry related information: packet 27,   data freeze: does this mean that the data is confirmed, final and can not be changed by the - - - driver anymore?, if so what's the use? The EVC could simply ignore changes. nice to have, but not essential for the demonstration
+- Driver language transmission: packet 30, only needed if translations are made in the EVC. However it seems more efficient to translate “fixed texts” in the DMI instead of in the EVC. According to the evaluation of DMI packet76, the translation is done in the DMI.
+- Tunnels stopping area distance: packet 32
+- STM specific test request: packet 37, STM not supported in the demonstration.
+- STM accessibility packet 47, STM not supported in the demonstration.
+- Acknowledgement retention: packet 69, For the demonstration (and further applications) this function shouldn't be necessary
+- Manage ATP test: packet 82: test not implemented for the demonstration.
+- Request, confirmation, view and echo additional Data-Entry (for STM's): packet 179/181/183/185, not implemented in the demonstration (STM and data-entry)
+
+\section{Input from the odometer (according to the API specification):}
+
+Distance\\
+minimum distance driven since start up\\
+nominal distance driven since start-up\\
+maximum distance driven since start-up\\
+
+Speed\\
+Safe nominal speed\\
+Raw nominal speed\\
+Raw minimum speed\\
+Raw maximum speed\\
+
+Motion state: motion/no motion\\
+
+Motion direction:  cabA/cabB\\
+
+
  
 \appendix
 
