@@ -1,0 +1,637 @@
+/*    
+=============================================================================
+ Formalization of Subset-026-8 (Chapter 8: ERTMS/ETCS language)
+
+- Name: Subset-026-8 / subset-026-8.scade
+- Description: UNISIG SUBSET-026-8, ISSUE : 3.3.0, 3.5 ERTMS/ETCS language) 
+- Copyright (c) Siemens AG 2013 All rights reserved
+     
+- Licensed under the EUPL V.1.1 ( http://joinup.ec.europa.eu/software/page/eupl/licence-eupl )
+- Gist URL: none
+- Cryptography: No
+- Author(s): SiemensRailAutomation
+
+Disclaimer:
+
+The use of this software is limited to NON-vital applications. 
+It has NOT been developed for vital operation purposes and MUST NOT be used for applications 
+which may cause harm to people, physical accidents or financial loss. 
+
+THEREFORE, NO LIABILITY WILL BE GIVEN FOR SUCH AND ANY OTHER KIND OF USE.
+=============================================================================
+*/
+
+package Radio_TrainToTrack
+type Validated_Train_Data_OptionalPackets = enum { 
+#pragma kcg enum_val 0 #end Validated_Train_Data_OptionalPackageNumber_0,
+#pragma kcg enum_val 1 #end Validated_Train_Data_OptionalPackageNumber_1,
+#pragma kcg enum_val 11 #end Validated_Train_Data_OptionalPackageNumber_11
+};
+
+type
+Validated_Train_Data = { -- Radio Message Number = 129 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int ,
+	PADDING0 : int ,
+	Validated_Train_Data_OptionalPackets : int
+};
+
+type Request_for_Shunting_OptionalPackets = enum { 
+#pragma kcg enum_val 0 #end Request_for_Shunting_OptionalPackageNumber_0,
+#pragma kcg enum_val 1 #end Request_for_Shunting_OptionalPackageNumber_1
+};
+
+type
+Request_for_Shunting = { -- Radio Message Number = 130 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int ,
+	PADDING1 : int ,
+	Request_for_Shunting_OptionalPackets : int
+};
+
+type MA_Request_OptionalPackets = enum { 
+#pragma kcg enum_val 0 #end MA_Request_OptionalPackageNumber_0,
+#pragma kcg enum_val 1 #end MA_Request_OptionalPackageNumber_1,
+#pragma kcg enum_val 9 #end MA_Request_OptionalPackageNumber_9
+};
+
+type
+MA_Request = { -- Radio Message Number = 132 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int ,
+	Q_MARQSTREASON : int ,
+	PADDING2 : int ,
+	MA_Request_OptionalPackets : int
+};
+
+type Train_Position_Report_OptionalPackets = enum { 
+#pragma kcg enum_val 0 #end Train_Position_Report_OptionalPackageNumber_0,
+#pragma kcg enum_val 1 #end Train_Position_Report_OptionalPackageNumber_1,
+#pragma kcg enum_val 4 #end Train_Position_Report_OptionalPackageNumber_4,
+#pragma kcg enum_val 5 #end Train_Position_Report_OptionalPackageNumber_5,
+#pragma kcg enum_val 44 #end Train_Position_Report_OptionalPackageNumber_44
+};
+
+type
+Train_Position_Report = { -- Radio Message Number = 136 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int ,
+	PADDING3 : int ,
+	Train_Position_Report_OptionalPackets : int
+};
+
+type Request_to_shorten_MA_is_granted_OptionalPackets = enum { 
+#pragma kcg enum_val 0 #end Request_to_shorten_MA_is_granted_OptionalPackageNumber_0,
+#pragma kcg enum_val 1 #end Request_to_shorten_MA_is_granted_OptionalPackageNumber_1
+};
+
+type
+Request_to_shorten_MA_is_granted = { -- Radio Message Number = 137 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int ,
+	PADDING4 : int ,
+	Request_to_shorten_MA_is_granted_OptionalPackets : int
+};
+
+type Request_to_shorten_MA_is_rejected_OptionalPackets = enum { 
+#pragma kcg enum_val 0 #end Request_to_shorten_MA_is_rejected_OptionalPackageNumber_0,
+#pragma kcg enum_val 1 #end Request_to_shorten_MA_is_rejected_OptionalPackageNumber_1
+};
+
+type
+Request_to_shorten_MA_is_rejected = { -- Radio Message Number = 138 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int ,
+	PADDING5 : int ,
+	Request_to_shorten_MA_is_rejected_OptionalPackets : int
+};
+
+type
+Acknowledgement = { -- Radio Message Number = 146 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int 
+};
+
+type Acknowledgement_of_Emergency_Stop_OptionalPackets = enum { 
+#pragma kcg enum_val 0 #end Acknowledgement_of_Emergency_Stop_OptionalPackageNumber_0,
+#pragma kcg enum_val 1 #end Acknowledgement_of_Emergency_Stop_OptionalPackageNumber_1
+};
+
+type
+Acknowledgement_of_Emergency_Stop = { -- Radio Message Number = 147 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int ,
+	NID_EM : int ,
+	Q_EMERGENCYSTOP : int ,
+	Acknowledgement_of_Emergency_Stop_OptionalPackets : int
+};
+
+type Track_Ahead_Free_Granted_OptionalPackets = enum { 
+#pragma kcg enum_val 0 #end Track_Ahead_Free_Granted_OptionalPackageNumber_0,
+#pragma kcg enum_val 1 #end Track_Ahead_Free_Granted_OptionalPackageNumber_1
+};
+
+type
+Track_Ahead_Free_Granted = { -- Radio Message Number = 149 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int ,
+	PADDING6 : int ,
+	Track_Ahead_Free_Granted_OptionalPackets : int
+};
+
+type End_of_Mission_OptionalPackets = enum { 
+#pragma kcg enum_val 0 #end End_of_Mission_OptionalPackageNumber_0,
+#pragma kcg enum_val 1 #end End_of_Mission_OptionalPackageNumber_1
+};
+
+type
+End_of_Mission = { -- Radio Message Number = 150 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int ,
+	PADDING7 : int ,
+	End_of_Mission_OptionalPackets : int
+};
+
+type Radio_infill_request_OptionalPackets = enum { 
+#pragma kcg enum_val 0 #end Radio_infill_request_OptionalPackageNumber_0,
+#pragma kcg enum_val 1 #end Radio_infill_request_OptionalPackageNumber_1
+};
+
+type
+Radio_infill_request = { -- Radio Message Number = 153 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int ,
+	NID_C : int ,
+	NID_BG : int ,
+	Q_INFILL : int ,
+	PADDING8 : int ,
+	Radio_infill_request_OptionalPackets : int
+};
+
+type
+No_compatible_version_supported = { -- Radio Message Number = 154 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int 
+};
+
+type
+Initiation_of_a_communication_session = { -- Radio Message Number = 155 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int 
+};
+
+type
+Termination_of_a_communication_session = { -- Radio Message Number = 156 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int 
+};
+
+type SoM_Position_Report_OptionalPackets = enum { 
+#pragma kcg enum_val 0 #end SoM_Position_Report_OptionalPackageNumber_0,
+#pragma kcg enum_val 1 #end SoM_Position_Report_OptionalPackageNumber_1,
+#pragma kcg enum_val 4 #end SoM_Position_Report_OptionalPackageNumber_4,
+#pragma kcg enum_val 5 #end SoM_Position_Report_OptionalPackageNumber_5,
+#pragma kcg enum_val 44 #end SoM_Position_Report_OptionalPackageNumber_44
+};
+
+type
+SoM_Position_Report = { -- Radio Message Number = 157 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int ,
+	Q_STATUS : int ,
+	PADDING9 : int ,
+	SoM_Position_Report_OptionalPackets : int
+};
+
+type Text_message_acknowledged_by_driver_OptionalPackets = enum { 
+#pragma kcg enum_val 0 #end Text_message_acknowledged_by_driver_OptionalPackageNumber_0,
+#pragma kcg enum_val 1 #end Text_message_acknowledged_by_driver_OptionalPackageNumber_1
+};
+
+type
+Text_message_acknowledged_by_driver = { -- Radio Message Number = 158 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int ,
+	NID_TEXTMESSAGE : int ,
+	PADDING10 : int ,
+	Text_message_acknowledged_by_driver_OptionalPackets : int
+};
+
+type Session_Established_OptionalPackets = enum { 
+#pragma kcg enum_val 3 #end Session_Established_OptionalPackageNumber_3
+};
+
+type
+Session_Established = { -- Radio Message Number = 159 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	NID_ENGINE : int ,
+	PADDING11 : int ,
+	Session_Established_OptionalPackets : int
+};
+
+
+end;
+package Radio_TrackToTrain
+type SR_Authorisation_OptionalPackets = enum { 
+#pragma kcg enum_val 63 #end SR_Authorisation_OptionalPackageNumber_63
+};
+
+type
+SR_Authorisation = { -- Radio Message Number = 2 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	Q_SCALE : int ,
+	D_SR : int ,
+	PADDING12 : int ,
+	SR_Authorisation_OptionalPackets : int
+};
+
+type Movement_Authority_OptionalPackets = enum { 
+#pragma kcg enum_val 15 #end Movement_Authority_OptionalPackageNumber_15,
+#pragma kcg enum_val 21 #end Movement_Authority_OptionalPackageNumber_21,
+#pragma kcg enum_val 27 #end Movement_Authority_OptionalPackageNumber_27,
+#pragma kcg enum_val 49 #end Movement_Authority_OptionalPackageNumber_49,
+#pragma kcg enum_val 80 #end Movement_Authority_OptionalPackageNumber_80,
+#pragma kcg enum_val 3 #end Movement_Authority_OptionalPackageNumber_3,
+#pragma kcg enum_val 5 #end Movement_Authority_OptionalPackageNumber_5,
+#pragma kcg enum_val 39 #end Movement_Authority_OptionalPackageNumber_39,
+#pragma kcg enum_val 40 #end Movement_Authority_OptionalPackageNumber_40,
+#pragma kcg enum_val 51 #end Movement_Authority_OptionalPackageNumber_51,
+#pragma kcg enum_val 41 #end Movement_Authority_OptionalPackageNumber_41,
+#pragma kcg enum_val 42 #end Movement_Authority_OptionalPackageNumber_42,
+#pragma kcg enum_val 44 #end Movement_Authority_OptionalPackageNumber_44,
+#pragma kcg enum_val 45 #end Movement_Authority_OptionalPackageNumber_45,
+#pragma kcg enum_val 52 #end Movement_Authority_OptionalPackageNumber_52,
+#pragma kcg enum_val 57 #end Movement_Authority_OptionalPackageNumber_57,
+#pragma kcg enum_val 58 #end Movement_Authority_OptionalPackageNumber_58,
+#pragma kcg enum_val 64 #end Movement_Authority_OptionalPackageNumber_64,
+#pragma kcg enum_val 65 #end Movement_Authority_OptionalPackageNumber_65,
+#pragma kcg enum_val 66 #end Movement_Authority_OptionalPackageNumber_66,
+#pragma kcg enum_val 68 #end Movement_Authority_OptionalPackageNumber_68,
+#pragma kcg enum_val 69 #end Movement_Authority_OptionalPackageNumber_69,
+#pragma kcg enum_val 70 #end Movement_Authority_OptionalPackageNumber_70,
+#pragma kcg enum_val 71 #end Movement_Authority_OptionalPackageNumber_71,
+#pragma kcg enum_val 72 #end Movement_Authority_OptionalPackageNumber_72,
+#pragma kcg enum_val 76 #end Movement_Authority_OptionalPackageNumber_76,
+#pragma kcg enum_val 79 #end Movement_Authority_OptionalPackageNumber_79,
+#pragma kcg enum_val 88 #end Movement_Authority_OptionalPackageNumber_88,
+#pragma kcg enum_val 131 #end Movement_Authority_OptionalPackageNumber_131,
+#pragma kcg enum_val 138 #end Movement_Authority_OptionalPackageNumber_138,
+#pragma kcg enum_val 139 #end Movement_Authority_OptionalPackageNumber_139,
+#pragma kcg enum_val 140 #end Movement_Authority_OptionalPackageNumber_140
+};
+
+type
+Movement_Authority = { -- Radio Message Number = 3 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	PADDING13 : int ,
+	Movement_Authority_OptionalPackets : int
+};
+
+type
+Recognition_of_exit_from_TRIP_mode = { -- Radio Message Number = 6 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int 
+};
+
+type
+Acknowledgement_of_Train_Data = { -- Radio Message Number = 8 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN0 : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	T_TRAIN1 : real 
+};
+
+type Request_to_Shorten_MA_OptionalPackets = enum { 
+#pragma kcg enum_val 15 #end Request_to_Shorten_MA_OptionalPackageNumber_15,
+#pragma kcg enum_val 80 #end Request_to_Shorten_MA_OptionalPackageNumber_80
+};
+
+type
+Request_to_Shorten_MA = { -- Radio Message Number = 9 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	PADDING14 : int ,
+	Request_to_Shorten_MA_OptionalPackets : int
+};
+
+type
+Conditional_Emergency_Stop = { -- Radio Message Number = 15 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	NID_EM : int ,
+	Q_SCALE : int ,
+	D_REF : int ,
+	Q_DIR : int ,
+	D_EMERGENCYSTOP : int 
+};
+
+type
+Unconditional_Emergency_Stop = { -- Radio Message Number = 16 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	NID_EM : int 
+};
+
+type
+Revocation_of_Emergency_Stop = { -- Radio Message Number = 18 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	NID_EM : int 
+};
+
+type General_message_OptionalPackets = enum { 
+#pragma kcg enum_val 21 #end General_message_OptionalPackageNumber_21,
+#pragma kcg enum_val 27 #end General_message_OptionalPackageNumber_27,
+#pragma kcg enum_val 45 #end General_message_OptionalPackageNumber_45,
+#pragma kcg enum_val 143 #end General_message_OptionalPackageNumber_143,
+#pragma kcg enum_val 254 #end General_message_OptionalPackageNumber_254,
+#pragma kcg enum_val 3 #end General_message_OptionalPackageNumber_3,
+#pragma kcg enum_val 5 #end General_message_OptionalPackageNumber_5,
+#pragma kcg enum_val 39 #end General_message_OptionalPackageNumber_39,
+#pragma kcg enum_val 40 #end General_message_OptionalPackageNumber_40,
+#pragma kcg enum_val 51 #end General_message_OptionalPackageNumber_51,
+#pragma kcg enum_val 41 #end General_message_OptionalPackageNumber_41,
+#pragma kcg enum_val 42 #end General_message_OptionalPackageNumber_42,
+#pragma kcg enum_val 44 #end General_message_OptionalPackageNumber_44,
+#pragma kcg enum_val 52 #end General_message_OptionalPackageNumber_52,
+#pragma kcg enum_val 57 #end General_message_OptionalPackageNumber_57,
+#pragma kcg enum_val 58 #end General_message_OptionalPackageNumber_58,
+#pragma kcg enum_val 64 #end General_message_OptionalPackageNumber_64,
+#pragma kcg enum_val 65 #end General_message_OptionalPackageNumber_65,
+#pragma kcg enum_val 66 #end General_message_OptionalPackageNumber_66,
+#pragma kcg enum_val 68 #end General_message_OptionalPackageNumber_68,
+#pragma kcg enum_val 69 #end General_message_OptionalPackageNumber_69,
+#pragma kcg enum_val 70 #end General_message_OptionalPackageNumber_70,
+#pragma kcg enum_val 71 #end General_message_OptionalPackageNumber_71,
+#pragma kcg enum_val 72 #end General_message_OptionalPackageNumber_72,
+#pragma kcg enum_val 76 #end General_message_OptionalPackageNumber_76,
+#pragma kcg enum_val 79 #end General_message_OptionalPackageNumber_79,
+#pragma kcg enum_val 88 #end General_message_OptionalPackageNumber_88,
+#pragma kcg enum_val 131 #end General_message_OptionalPackageNumber_131,
+#pragma kcg enum_val 138 #end General_message_OptionalPackageNumber_138,
+#pragma kcg enum_val 139 #end General_message_OptionalPackageNumber_139,
+#pragma kcg enum_val 140 #end General_message_OptionalPackageNumber_140
+};
+
+type
+General_message = { -- Radio Message Number = 24 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	PADDING15 : int ,
+	General_message_OptionalPackets : int
+};
+
+type
+SH_Refused = { -- Radio Message Number = 27 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN0 : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	T_TRAIN1 : real 
+};
+
+type SH_Authorised_OptionalPackets = enum { 
+#pragma kcg enum_val 3 #end SH_Authorised_OptionalPackageNumber_3,
+#pragma kcg enum_val 44 #end SH_Authorised_OptionalPackageNumber_44,
+#pragma kcg enum_val 49 #end SH_Authorised_OptionalPackageNumber_49
+};
+
+type
+SH_Authorised = { -- Radio Message Number = 28 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN0 : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	T_TRAIN1 : real ,
+	PADDING16 : int ,
+	SH_Authorised_OptionalPackets : int
+};
+
+type
+RBC_or_RIU_System_Version = { -- Radio Message Number = 32 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	M_VERSION : int 
+};
+
+type MA_with_Shifted_Location_Reference_OptionalPackets = enum { 
+#pragma kcg enum_val 15 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_15,
+#pragma kcg enum_val 21 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_21,
+#pragma kcg enum_val 27 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_27,
+#pragma kcg enum_val 49 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_49,
+#pragma kcg enum_val 80 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_80,
+#pragma kcg enum_val 3 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_3,
+#pragma kcg enum_val 5 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_5,
+#pragma kcg enum_val 39 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_39,
+#pragma kcg enum_val 40 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_40,
+#pragma kcg enum_val 51 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_51,
+#pragma kcg enum_val 41 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_41,
+#pragma kcg enum_val 42 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_42,
+#pragma kcg enum_val 44 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_44,
+#pragma kcg enum_val 45 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_45,
+#pragma kcg enum_val 52 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_52,
+#pragma kcg enum_val 57 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_57,
+#pragma kcg enum_val 58 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_58,
+#pragma kcg enum_val 64 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_64,
+#pragma kcg enum_val 65 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_65,
+#pragma kcg enum_val 66 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_66,
+#pragma kcg enum_val 68 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_68,
+#pragma kcg enum_val 69 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_69,
+#pragma kcg enum_val 70 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_70,
+#pragma kcg enum_val 71 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_71,
+#pragma kcg enum_val 72 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_72,
+#pragma kcg enum_val 76 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_76,
+#pragma kcg enum_val 79 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_79,
+#pragma kcg enum_val 88 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_88,
+#pragma kcg enum_val 131 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_131,
+#pragma kcg enum_val 138 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_138,
+#pragma kcg enum_val 139 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_139,
+#pragma kcg enum_val 140 #end MA_with_Shifted_Location_Reference_OptionalPackageNumber_140
+};
+
+type
+MA_with_Shifted_Location_Reference = { -- Radio Message Number = 33 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	Q_SCALE : int ,
+	D_REF : int ,
+	PADDING17 : int ,
+	MA_with_Shifted_Location_Reference_OptionalPackets : int
+};
+
+type
+Track_Ahead_Free_Request = { -- Radio Message Number = 34 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	Q_SCALE : int ,
+	D_REF : int ,
+	Q_DIR : int ,
+	D_TAFDISPLAY : int ,
+	L_TAFDISPLAY : int 
+};
+
+type Infill_MA_OptionalPackets = enum { 
+#pragma kcg enum_val 136 #end Infill_MA_OptionalPackageNumber_136,
+#pragma kcg enum_val 12 #end Infill_MA_OptionalPackageNumber_12,
+#pragma kcg enum_val 5 #end Infill_MA_OptionalPackageNumber_5,
+#pragma kcg enum_val 21 #end Infill_MA_OptionalPackageNumber_21,
+#pragma kcg enum_val 27 #end Infill_MA_OptionalPackageNumber_27,
+#pragma kcg enum_val 39 #end Infill_MA_OptionalPackageNumber_39,
+#pragma kcg enum_val 40 #end Infill_MA_OptionalPackageNumber_40,
+#pragma kcg enum_val 41 #end Infill_MA_OptionalPackageNumber_41,
+#pragma kcg enum_val 44 #end Infill_MA_OptionalPackageNumber_44,
+#pragma kcg enum_val 49 #end Infill_MA_OptionalPackageNumber_49,
+#pragma kcg enum_val 51 #end Infill_MA_OptionalPackageNumber_51,
+#pragma kcg enum_val 65 #end Infill_MA_OptionalPackageNumber_65,
+#pragma kcg enum_val 66 #end Infill_MA_OptionalPackageNumber_66,
+#pragma kcg enum_val 68 #end Infill_MA_OptionalPackageNumber_68,
+#pragma kcg enum_val 69 #end Infill_MA_OptionalPackageNumber_69,
+#pragma kcg enum_val 70 #end Infill_MA_OptionalPackageNumber_70,
+#pragma kcg enum_val 71 #end Infill_MA_OptionalPackageNumber_71,
+#pragma kcg enum_val 80 #end Infill_MA_OptionalPackageNumber_80,
+#pragma kcg enum_val 88 #end Infill_MA_OptionalPackageNumber_88,
+#pragma kcg enum_val 138 #end Infill_MA_OptionalPackageNumber_138,
+#pragma kcg enum_val 139 #end Infill_MA_OptionalPackageNumber_139
+};
+
+type
+Infill_MA = { -- Radio Message Number = 37 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	PADDING18 : int ,
+	Infill_MA_OptionalPackets : int
+};
+
+type
+Initiation_of_a_communication_session = { -- Radio Message Number = 38 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int 
+};
+
+type
+Acknowledgement_of_termination_of_a_communication_session = { -- Radio Message Number = 39 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int 
+};
+
+type
+Train_Rejected = { -- Radio Message Number = 40 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int 
+};
+
+type
+Train_Accepted = { -- Radio Message Number = 41 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int 
+};
+
+type
+SoM_position_report_confirmed_by_RBC = { -- Radio Message Number = 43 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int 
+};
+
+type
+Assignment_of_coordinate_system = { -- Radio Message Number = 45 
+	NID_MESSAGE : int ,
+	L_MESSAGE : int ,
+	T_TRAIN : real ,
+	M_ACK : int ,
+	NID_LRBG : int ,
+	Q_ORIENTATION : int 
+};
+
+
+end;
