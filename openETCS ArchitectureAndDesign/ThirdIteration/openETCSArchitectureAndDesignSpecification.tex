@@ -130,7 +130,7 @@ Version & Section & Modification / Description & Author \\\hline}
 
 \chapter{Introduction}
 
-\subsection{Motivation}
+\section{Motivation}
 The openETCS work package 3 (WP3) aims to provide – amongst others - the software architecture for the openETCS kernel in order to eventually build the software itself. WP3  partner has put great effort in the openETCS software design, thus far without making definite choices on the software architecture itself respective of functional breakdown and data structures of the openETCS kernel. Since the project planning foresees in the production of a reference software to be used as a demonstrator by June 2014, it is of paramount importance that a design freeze of the openETCS kernel architecture be finalized shortly but no later than November 2014.\\
 
 In compliance with the agreements made during the last WP 3 meeting at the 10.09.2014 in Brussels, DB has taken the initiative to design the aforesaid architecture including of functional breakdown and data structures in order to safeguard a timely delivery of these products. Furthermore, DB has ensured that these developments are focused on including end user requirements so as to develop a design in conformity with the needs and requirements of the operators. Specialists of DB and NS have cooperated together with other partners in WP3 to produce this document.\\
@@ -149,7 +149,7 @@ It is urgent to definitely finalize the architecture on a short notice and there
 Furthermore, this document describes the preconditions on which said descriptions are based on, the status and planning of upcoming activities and the main objectives of DB and NS as the End User. Wherever necessary, reference will be made to documents that underline the agreements that have been made during the openETCS architecture design process and the activities and meetings of WP3. \\
 
 
-\subsection{Objectives}
+\section{Objectives}
 
 The prime objective of WP3 is to produce a rapid prototype for the openETCS reference system that can function as a demonstrator in collaboration with WP 4 and WP 5  for the openETCS approach and will be used as such in the final phase of the project. That phase is the first half of 2015.  This objective is defined as … 
 
@@ -166,7 +166,7 @@ Apart from these general objectives, the document means to provide for the mater
 • Compartmenting the work load according to the functional building blocks as defined by the architecture will enable efficient planning of activities, be it individually or the integrated WP3 planning for the coming period, aiming at a just in time delivery of all results and products;\\
 • Each partner that is responsible for one of the work parcels shall abide by the requirements in terms of quality and timeliness as defined by this document and prior documents and agreements made within the ITEA2 project.\\
 
-\subsection{Roles, responsibilities and tasks}
+\section{Roles, responsibilities and tasks}
 In this section, the roles and responsibilities of the WP3 partners are confirmed, especially where they divert from what has been agreed upon at the start of WP3:\\
 •	First of all, in the last WP 3 meeting in Brussels on  10.09.2014 DB proposed to take over the lead of the architecture design and functional breakdown. At the subsequent weekly scrum meeting on 12.09.2014,  it was agreed upon by all participants that DB will take over the lead (see Appendix … );\\
 •\textbf{Planning:} Alstom as WP 3 leader will remain to be responsible for the planning and the allocation of the defined tasks to the different partners\\
@@ -175,7 +175,7 @@ In this section, the roles and responsibilities of the WP3 partners are confirme
 
 In the interest of a swift production of the critical documentation of which this version is a draft, specific tasks will be defined in terms of concrete results to be delivered, the timeframes in which these results must be produced and the partner who shall be responsible for that specific result and the planning. This is to safeguard the timely delivery. The process will be described in the next sections.\\
 
-\subsection{Process}
+\section{Process}
 \begin{itemize}
 \item Alstom as WP 3 leader will be responsible for planning
 \item Time and quality aspects should be respected
@@ -197,7 +197,7 @@ Most of the operational requirements to WP3 in the last phases of the ITEA2 proj
 •	All output will be such, that it can be integrated in this document. It is the responsibility of DB to integrate the results and to deliver the final and definite version of this document. \\
 •	The document concept will follow the openETCS process and tools (LaTex and Git-hub).\\
 
-\subsection{Assumption and Preconditions}
+\section{Assumption and Preconditions}
 \begin{itemize}
 \item All future contributions shall be fully aligned an compliant the finalized and approved document 
 \item Alls documents produced by the partners are requested to be compliant and merge to this document; other contributions will be discarded
@@ -239,7 +239,7 @@ This is dependent on the distribution of functions between the
 Control monitoring equipment (which the ERTMS / ETCS), and the other 
 CCS Systems.
 
-\section{openETCS Architecture: Iterations and History}
+\section{openETCS Architecture: History and Iterations}
 
 The openETCS Architecture and Design is implemented in iterations \cite{deployment}. The current step (second iteration) is based on a step to implement the kernel functions of the ETCS system \cite{firstIteration}. For a better understanding of the scope the Iteration is described in the following.
 
@@ -297,8 +297,112 @@ See Wiki page on ....
 \chapter{Architecture description (by layers)}
 \section{Overall functional description}
 
-\section{Functional breakdown}
-\subsection{first level functional block}
+
+\section{First-Level Functional breakdown}
+
+\subsection{Reference abstract hardware architecture}
+Authors: David Mentre (MERCE), Bernd Hekele (DB)
+
+\subsubsection{Why a reference abstract hardware architecture?}
+
+For proper understanding of openETCS API and of constraints imposed on
+both sides of the API, we need to define a \define{reference abstract hardware architecture}. This hardware architecture is ``abstract''
+is the sense that the actual vendor specific hardware architecture
+might be totally different of the abstract architecture described in
+this chapter. For example, several units might be grouped together on
+the same processor.
+
+However the actual vendor specific architecture shall fulfil all the
+requirements and constraints of this reference abstract hardware
+architecture and shall not request additional constraints.
+
+\subsubsection{Definition of the reference abstract hardware architecture}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{abstract-hardware-architecture.pdf}
+  \caption{Reference abstract hardware architecture}
+  \label{fig:hardware-arch}
+\end{figure}
+
+The reference abstract hardware architecture is shown in figure
+\ref{fig:hardware-arch}.
+
+The reference abstract hardware architecture is made of a bus on which
+are connected \define{units}:
+\begin{itemize}
+\item EVC (European Vital Computer);
+\item TIU (Train Interface Unit);
+\item ODO (Odometry);
+\item DMI (Driver Machine Interface);
+\item STM (Specific Transmission Module, up to 8 units): Not part of this openETCS implementation;
+\item BTM (Balise Transmission Module);
+\item LTM (Loop Transmission Module): Not part of this openETCS implementation;
+\item EURORADIO;
+\item JRU (Juridical Recording Unit): Not part of this openETCS implementation;
+\end{itemize}
+
+Elements not being part of this implementation are marked. 
+
+Those units shall working concurrently. They shall exchange
+information with other units through asynchronous message passing.
+
+% LocalWords:  Alstom openETCS EVC BIU TIU Odometry DMI STM BTM Balise LTM API
+% LocalWords:  EURORADIO JRU
+
+\subsubsection{Reference abstract software architecture}
+\label{software-arch}
+
+\subsubsection{Overall architecture}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{software-architecture.pdf}
+  \caption{Reference abstract software architecture}
+  \label{fig:software-arch}
+\end{figure}
+
+The \define{reference abstract software architecture} is shown in figure
+\ref{fig:software-arch}. This architecture is made of following
+elements:
+\begin{itemize}
+\item \define{openETCS executable model} produced by the
+  \cite{scade-model}. It shall contain the program implementing core
+  ETCS functions;
+\item\define{openETCS model run-time system} shall help the execution
+  of the openETCS executable model by providing additional functions
+  like encode/decode messages, proper execution of the model through
+  appropriate scheduling, re-order or prioritize messages, etc. 
+\item \define{Vendor specific API adapter} shall make the link between
+  the Vendor specific platform and the openETCS model run-time system.
+  It can buffer message parts, encode/decode messages, route messages
+  to other EVC components, etc.
+\item All above three elements shall be included in the EVC;
+\item \define{Vendor specific platform} shall be all other elements of
+  the system, bus and other units, as shown in figure
+  \ref{fig:hardware-arch}.
+\end{itemize}
+
+We have thus three interfaces:
+\begin{itemize}
+\item \define{model interface}
+ is the interface between openETCS
+  executable model and openETCS model run-time system. 
+\item \define{openETCS API}
+ is the interface between openETCS model
+  run-time system and Vendor specific API adapter.
+\item \define{Vendor specific API}
+ is the interface between Vendor
+  specific API adapter and Vendor specific platform. This interface is
+  not publicly described for all vendors. You can find the Alstom imnplementation as an example.
+\end{itemize}
+
+The two blocks openETCS executable model and openETCS model run-time
+system are making the \define{Application software} part. This Application software might be either openETCS reference software or
+vendor specific software.
+
+The Vendor specific API adapter is making the \define{Basic software} part.
+
 - Receive msg’s/ check consistency\\
 - Build coordinate system and calculate train position\\
 - Store inputs from the TIU\\
@@ -319,8 +423,103 @@ See Wiki page on ....
 - STM management (not taken into account)\\
 - Gathering JRU data (not taken into account)\\
 
-\subsection{second level functional block}
-\subsubsection{Receive msg´s/ check consistency}
+\section{second level functional block}
+
+\subsection{F1.1: openETCS API Runtime System and Input)}
+Authors: Bernd Hekele (DB)
+
+\subsubsection{Principles for Interfaces (openETCS API)}
+
+Information  is exchanged \define{messages} in an asynchronous way. A message is a set
+of information corresponding to an event of a particular unit, e.g. a
+balise received from the BTM. The possible kind of messages are
+described in chapter \ref{information-flows}.
+
+The information is passed to the executable model as parmeters to the snychronous call of a procedure (Interface to the executable model). Since the availability of input messages to the application is not guaranteed the parts of the interfaces are defined with a "present" flag. In addition, fields of input arraysquite often is of variable size. Implementation in the concrete interface in this use-case is the use of a "size" parameter and a "valid"-flag.
+
+
+\subsubsection{openETCS Model Runtime System}
+The openETCS model runtime system also provides:
+
+\begin{itemize}
+\item Input Functions From other Units\\
+In this entity messages from other connected units are received.
+\item Output Functions to other Units\\
+The entity writes messages to other connected units.
+\item Conversation Functions for Messages (Bitwalker)\\
+The conversion function are triggered by Input and Ouput Functions. The main task is to convert input messages from an bit-packed format into logical ETCS messages (the ETCS language) and Output messages from Logical into a bit-packed format. The logical format of the messages is defined for all used types in the openETCS data dictonary. \\
+Variable size elements in the Messages are converted to fixed length arrays with an used elements indicator.\\
+Optional elements are indicated with an valid flag.
+The conversion routines are responsible for checking the data received is valid. If  faults are detected the information is passed to the openETCS executable model for further reaction. 
+\item Model Cycle\\
+The executable model is called in cycles. In the cycle 
+\begin{itemize}
+\item First the received input messages are decoded
+\item The input data is passed to the executable model in a predefined order. \textbf{(Details for the interface to be defined)}.
+\item Output is encoded according to the SRS and passed to the  buffers to the units.
+\end{itemize}
+\end{itemize}
+
+
+\subsubsection{Input Interfaces of the openETCS API}
+
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Unit & Name & Number & Processing Function & Description \\\hline}
+%\begin{supertabular}{| m{1.2cm} | m{1.5cm} | m{1.2cm} | m{3.7cm}  | m{3.7cm} |}
+\begin{supertabular}{| c | c | c | c  | c |}
+BTM & Balise Telegram & 0..1 & Receive Messages & \\\hline
+DMI \\\hline
+EURORADIO & Communication Management  & 0..1 & Communication Management & \\\hline
+EURORADIO & Radio Messages & 0..1 & Receive Messages & \\\hline
+ODO & Odometer & 1 & All Parts & \\\hline
+Startup \\\hline
+TIU & Train Data & 1 & All Parts & \\\hline
+\end{supertabular}
+
+
+Outputs:\\
+\begin{itemize}
+\item The decoded and checked messages from other units are  are output of F1. The information is processed by procedure call provided by the executable model.
+\item Details of the granualarity of those interfaces are to be clarified.
+\end{itemize}
+
+\subsubsection{F1.2: Manage Input}
+\begin{figure}[hbtp]
+\centering
+\includegraphics [scale=0.9] {images/Manage_inputs}
+\caption{Manage input}
+\end{figure}
+
+  Inputs:\\
+``will be complete''\\
+
+ Outputs:\\
+ ``will be complete''\\
+ 
+ \textbf{ Description:} ???
+ 
+ \newpage
+ \subsubsection{F1.4: Data structure}
+\begin{figure}[hbtp]
+\centering
+\includegraphics [scale=0.5] {images/data_structure}\\
+\caption{data structure}
+\end{figure}
+
+  Inputs:\\
+``will be complete''\\
+
+ Outputs:\\
+ ``will be complete''\\
+ 
+ \textbf{ Description:} ???
+ 
+\subsection{F1.2: openETCS API Output Functions)}
+
+
+\subsection{Receive msg´s/ check consistency}
 - version management (should be part of the bitwalker)\\
 - management of duplicated balises (should be part of the bitwalker)\\
 - management of multiple received balises (should be part of the bitwalker)\\
@@ -333,14 +532,14 @@ See Wiki page on ....
 - check Radio-message consistency\\
 - Retrieve individual packets (for delivery to filtering)\\
 
-\subsubsection{Build coordinate system and calculate train position}
+\subsection{Build coordinate system and calculate train position}
 - Update the coordinate system when a new BG is detected (taking into account detected “balise 1” from not completed BG's), i.e. backward -   - Calculation of position of passed BG's.\\
 - Management of multiple detected BG's\\
 - Relate the (location based) information in received messages to the reference system\\
 - Update train position at LRBG\\
 - Update the train position with the distance driven since last update (or reset to LRBG position)\\
 
-\subsubsection{Store inputs from the TIU}
+\subsection{Store inputs from the TIU}
 - Store status inputs (sleeping indicator etc.)\\
 - Store changed train data\\
 - Store brake status (e.g. in the handling of brake testing).\\
@@ -348,10 +547,10 @@ See Wiki page on ....
 - Isolation\\
 - Passive shunting\\
 
-\subsubsection{Store inputs from the DMI}
+\subsection{Store inputs from the DMI}
 - Store received acknowledgement and inputs in the “DMI request buffer” (includes “data-entry”)\\
 
-\subsubsection{Filtering (Mode/Level) - One packet per type}
+\subsection{Filtering (Mode/Level) - One packet per type}
 \textbf{ISSUE: HOW MANY PKT 44, 65 AND 66 PER MESSAGE ARE MAXIMALLY SUPPORTED?}\\
 - Check on announced and immediate level transition orders in the messages to be filtered (needed for further criteria for filtering, to decide if the data shall be stored in the transition buffer).\\
 - Filter data stored in the transition buffer according to the current level (what to do if similar information is available in the new message??). Data can be rejected, accepted or kept in the transition buffer.
@@ -360,18 +559,18 @@ See Wiki page on ....
 - Filter (level) accepted data according to originating RBC (supervising or other). Information from BG's, loops or RIU is not filtered with this filter.\\
 - Filter (level and RBC) accepted data according to the current mode (only reject or accept)\\
 
-\subsubsection{Store data (direct orders, BG lists, NV, track data, procedure parameters, confirmations)}
+\subsection{Store data (direct orders, BG lists, NV, track data, procedure parameters, confirmations)}
 - Store direct and conditional orders\\
 - Store BG lists for SH and SR\\
 - Store National Values, including procedure status information\\
 - Store new received track data (version, etc.)\\
 - Store procedure parameters\\
 
-\subsubsection{Update location based data structures}
+\subsection{Update location based data structures}
 - Overwrite location based data from a given location on-wards (reference location given in the message)\\
 - Insert “Locations” in the data structure, in the order the “Locations” will be passed.\\
 
-\subsubsection{Manage specific location based data:}
+\subsection{Manage specific location based data:}
 - movement authority (MA) list of sections, message 37, packet 12 (level 1), message 3, packet 15 (level 2), 16 (repositioning, i.e. extending the current section), message 33 (??), packet 70 (route suitability), message 9 (request to shorten MA), packet 90 (track ahead free leads to MA request)    minimum number of elements to be stored: 6\\
 - list of announced BG's linking information: packet 5  minimum number of elements to be stored: 30\\
 - adhesion factor: packet 71;  only one element\\
