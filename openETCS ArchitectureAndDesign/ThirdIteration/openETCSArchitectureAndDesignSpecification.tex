@@ -333,6 +333,93 @@ See Wiki page on ....
 - check Radio-message consistency\\
 - Retrieve individual packets (for delivery to filtering)\\
 
+\paragraph{Input}
+The input of the module is originated from the openETCS-API. The API is described in \cite{alstom-api}.
+
+For delivering messages received by the EURORADIO module to the application software, the services \texttt{WRITE\_RTM\_MESSAGE} and \texttt{WRITE\_RTM\_EMERGENCY\_MESSAGE} are defined (see 4.14.6 in \cite{alstom-api}).
+
+The service \texttt{WRITE\_RTM\_MESSAGE} has one parameter:
+\begin{itemize}
+ \item \texttt{THE\_RTM\_MESSAGE}: Input of type \texttt{API\_TYPES.RTM\_IN\_MESSAGE\_T}
+\end{itemize}
+
+The service \texttt{WRITE\_RTM\_EMERGENCY\_MESSAGE} has one parameter:
+\begin{itemize}
+ \item \texttt{THE\_RTM\_MESSAGE}: Input of type \texttt{API\_TYPES.RTM\_IN\_EMERGENCY\_MESSAGE\_T}
+\end{itemize}
+
+\textbf{TODO:} Problem with definition: In API table, the RADIO\_DEVICE-parameter is transmitted. In the Ada-Code it is not transmitted. For processing the messages it is not needed.
+
+\textbf{TODO:} How to handle the Connection status information? Forward to RBC session management? Could also be stored in the database. Suggestion: Since the architecture is defined like in Jakobs slides, the solution should be to also execute the \texttt{WRITE\_RTM\_MESSAGE} service in the Manage Radio communication module in order to get status information.
+
+The type \texttt{RTM\_IN\_MESSAGE\_T}  is used for normal messages, which can contain connection confirmations, information about connection problems or data. The type \texttt{RTM\_IN\_EMERGENCY\_MESSAGE\_T} is used for transmitting data of emergency messages.
+
+\textbf{TODO:} How to signal the filtering module, that a message is an emergency message.
+
+\textbf{TODO:} Structure of RTM\_IN\_MESSAGE\_T
+
+\textbf{TODO:} Balise-channel
+
+A Eurobalise telegram consists of several fields shown in the table below. The table is an excerpt from the SRS, chapter 8.4.2.1. In this chapter the description of the fields can be found.
+ 
+ 
+ \begin{tabular}{| c | l | c  |}
+  \hline
+  \textbf{Field No.} & \textbf{VARIABLE} & \textbf{Length (bits)} \\ \hline
+  1 & Q\_UPDOWN & 1\\
+  2 & M\_VERSION & 7\\
+  3 & Q\_MEDIA & 1\\
+  4 & N\_PIG & 3\\
+  5 & N\_TOTAL & 3\\
+  6 & M\_DUP & 2\\
+  7 & M\_MCOUNT & 8\\
+  8 & NID\_C & 10\\
+  9 & NID\_BG & 14\\
+  10 & Q\_LINK & 1\\
+  \textit{-} & \textit{Packet 0 (Virtual balise cover) (optional)} & \textit{14}\\
+  \textit{-} & Information & variable\\
+  \textit{-} & Packet 255 & 8\\  
+  \hline
+ \end{tabular}
+ 
+ \textbf{Relevant messages for track Utrecht-Amsterdam:} packets from balises: 3, 41, 42, 45, 46, 65, 72, 137, 255
+ 
+ 
+ An Euroradio message from track to train consists of several fields shown in the table below. The table is an excerpt from the SRS, chapter 8.4.4.6.1. In this chapter the description of the fields can be found. The length of the fields is derived from chapter 7.
+ 
+  \begin{tabular}{| c | l | c  |}
+  \hline
+  \textbf{Field No.} & \textbf{VARIABLE} & \textbf{Length (bits)} \\ \hline
+  1 & NID\_MESSAGE & 8 \\
+  2 & L\_MESSAGE & 10 \\
+  3 & T\_TRAIN & 32 \\
+  4 & M\_ACK & 1 \\
+  5 & NID\_LRBG & 24\\
+  - & variables as required by NID\_MESSAGE & - \\
+  - & packets as required by NID\_MESSAGE & - \\
+  - & Optional packets & - \\
+  - & Padding & -\\
+  
+  \hline
+ \end{tabular}
+
+% \begin{itemize}
+%  \item packets from balises: 3, 41, 42, 45, 46, 65, 72, 137, 255
+% \end{itemize}
+% \item unchecked Euroradio message
+ \begin{itemize}
+  \item messages from rbc: 2, 3, 6, 8, 15, 24, 27, 32, 39, 41
+  \item packets from rbc: 3, 5, 15, 21, 27, 41, 42, 57, 58, 65, 68, 72, 80
+ \end{itemize}
+%\end{itemize}
+
+
+\paragraph{Output}
+The module produces the input-data for the Filtering (Mode/Level) module. The Filtering (Mode/Level)-module will need the telegrams received either via Euroradio or Eurobalise. Since the filtering module has to process data related to the RBC, the whole telegram has to transmitted to the module and not only separate packets. The telegram is transmitted unchanged, if all consistency checks were successful.
+
+\paragraph{Functionality}
+% TODO
+
 \subsubsection{Build coordinate system and calculate train position}
 - Update the coordinate system when a new BG is detected (taking into account detected “balise 1” from not completed BG's), i.e. backward -   - Calculation of position of passed BG's.\\
 - Management of multiple detected BG's\\
@@ -520,3 +607,4 @@ override\\
 %Do NOT change anything below this line
 
 \end{document}
+
