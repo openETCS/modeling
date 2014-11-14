@@ -6,17 +6,38 @@
 \usepackage{multirow}
 \usepackage{color, colortbl}
 \usepackage{hyperref}
-%\usepackage{listings}
+\usepackage{listings}
 \usepackage{makeidx}
 \definecolor{gray}{rgb}{0.8,0.8,0.8}
 \usepackage[modulo]{lineno}
+
+ \usepackage[acronym, % list of acronyms
+  %section, % add the glossary to the table of content
+            %description,% acronyms have a user-supplied description,
+ style=longheader, % table style
+ nonumberlist % no page number
+  ]{glossaries}
+
 \graphicspath{{./template/}{.}{./images/}}
 
-\newcommand{\define}[1]{\index{#1}\emph{#1}}
+\renewcommand*{\glspostdescription}{} %Deactivate point at the end of every description
+\renewcommand*{\glossaryname}{Glossary}
+
+%create glossary
+ \makeglossaries
+ %Glossary terms
+ \loadglsentries{glossary}
 
 \begin{document}
 \frontmatter
 \project{openETCS}
+
+\newcommand{\define}[1]{\index{#1}\emph{#1}}
+
+
+
+
+
 
 %Please do not change anything above this line
 %============================
@@ -27,7 +48,7 @@
 % The document metadata is defined below
 
 %assign a report number here
-\reportnum{OETCS/WP3/D3.5.1.2}
+\reportnum{OETCS/WP3/D3.5.1.3}
 
 %define your workpackage here
 \wp{Work-Package 3: ``Modeling''}
@@ -130,7 +151,7 @@ Version & Section & Modification / Description & Author \\\hline}
 
 \chapter{Introduction}
 
-\subsection{Motivation}
+\section{Motivation}
 The openETCS work package 3 (WP3) aims to provide – amongst others - the software architecture for the openETCS kernel in order to eventually build the software itself. WP3  partner has put great effort in the openETCS software design, thus far without making definite choices on the software architecture itself respective of functional breakdown and data structures of the openETCS kernel. Since the project planning foresees in the production of a reference software to be used as a demonstrator by June 2014, it is of paramount importance that a design freeze of the openETCS kernel architecture be finalized shortly but no later than November 2014.\\
 
 In compliance with the agreements made during the last WP 3 meeting at the 10.09.2014 in Brussels, DB has taken the initiative to design the aforesaid architecture including of functional breakdown and data structures in order to safeguard a timely delivery of these products. Furthermore, DB has ensured that these developments are focused on including end user requirements so as to develop a design in conformity with the needs and requirements of the operators. Specialists of DB and NS have cooperated together with other partners in WP3 to produce this document.\\
@@ -149,7 +170,7 @@ It is urgent to definitely finalize the architecture on a short notice and there
 Furthermore, this document describes the preconditions on which said descriptions are based on, the status and planning of upcoming activities and the main objectives of DB and NS as the End User. Wherever necessary, reference will be made to documents that underline the agreements that have been made during the openETCS architecture design process and the activities and meetings of WP3. \\
 
 
-\subsection{Objectives}
+\section{Objectives}
 
 The prime objective of WP3 is to produce a rapid prototype for the openETCS reference system that can function as a demonstrator in collaboration with WP 4 and WP 5  for the openETCS approach and will be used as such in the final phase of the project. That phase is the first half of 2015.  This objective is defined as … 
 
@@ -166,7 +187,7 @@ Apart from these general objectives, the document means to provide for the mater
 • Compartmenting the work load according to the functional building blocks as defined by the architecture will enable efficient planning of activities, be it individually or the integrated WP3 planning for the coming period, aiming at a just in time delivery of all results and products;\\
 • Each partner that is responsible for one of the work parcels shall abide by the requirements in terms of quality and timeliness as defined by this document and prior documents and agreements made within the ITEA2 project.\\
 
-\subsection{Roles, responsibilities and tasks}
+\section{Roles, responsibilities and tasks}
 In this section, the roles and responsibilities of the WP3 partners are confirmed, especially where they divert from what has been agreed upon at the start of WP3:\\
 •	First of all, in the last WP 3 meeting in Brussels on  10.09.2014 DB proposed to take over the lead of the architecture design and functional breakdown. At the subsequent weekly scrum meeting on 12.09.2014,  it was agreed upon by all participants that DB will take over the lead (see Appendix … );\\
 •\textbf{Planning:} Alstom as WP 3 leader will remain to be responsible for the planning and the allocation of the defined tasks to the different partners\\
@@ -175,7 +196,7 @@ In this section, the roles and responsibilities of the WP3 partners are confirme
 
 In the interest of a swift production of the critical documentation of which this version is a draft, specific tasks will be defined in terms of concrete results to be delivered, the timeframes in which these results must be produced and the partner who shall be responsible for that specific result and the planning. This is to safeguard the timely delivery. The process will be described in the next sections.\\
 
-\subsection{Process}
+\section{Process}
 \begin{itemize}
 \item Alstom as WP 3 leader will be responsible for planning
 \item Time and quality aspects should be respected
@@ -197,7 +218,7 @@ Most of the operational requirements to WP3 in the last phases of the ITEA2 proj
 •	All output will be such, that it can be integrated in this document. It is the responsibility of DB to integrate the results and to deliver the final and definite version of this document. \\
 •	The document concept will follow the openETCS process and tools (LaTex and Git-hub).\\
 
-\subsection{Assumption and Preconditions}
+\section{Assumption and Preconditions}
 \begin{itemize}
 \item All future contributions shall be fully aligned an compliant the finalized and approved document 
 \item Alls documents produced by the partners are requested to be compliant and merge to this document; other contributions will be discarded
@@ -217,18 +238,18 @@ different European rail networks. It is divided into "tracks" - and "board" fini
 and shall establish a mutual message operation, by beacons or through a "radio" - 
 The transmission system (in this case a mobile telephone network GSM-R) is performed. 
 It defines several operating levels, and the system must also interfaces with the 
-existing monitoring systems of the trains (using STM) have. 
+existing monitoring systems of the trains (using \gls{STM}) have. 
 The ERTMS / ETCS system provides the transport operator (the track) the choice of conditions 
 concerning the use and operation. 
 The train must therefore may go with different operating conditions on routes. 
 Thus has the onboard equipment but must be implemented, 
 to the interoperability of the train to ensure on the other networks. 
-These functions must therefore correspond to one standard: the SRS (version 3.3.0). 
+These functions must therefore correspond to one standard: the \gls{SRS} (version 3.3.0). 
 
 application functions, which have two different species of origin: 
-defined in the SRS: here one finds in particular the 
+defined in the \gls{SRS}: here one finds in particular the 
 speed monitoring- and transfer functions; these functions 
-must be implemented in full accordance with the SRS; they can in 
+must be implemented in full accordance with the \gls{SRS}; they can in 
 indeed be on any network on which the train is used; these functions 
 are described below in Section \ref{SRSFunction}; 
 
@@ -239,7 +260,7 @@ This is dependent on the distribution of functions between the
 Control monitoring equipment (which the ERTMS / ETCS), and the other 
 CCS Systems.
 
-\section{openETCS Architecture: Iterations and History}
+\section{openETCS Architecture: History and Iterations}
 
 The openETCS Architecture and Design is implemented in iterations \cite{deployment}. The current step (second iteration) is based on a step to implement the kernel functions of the ETCS system \cite{firstIteration}. For a better understanding of the scope the Iteration is described in the following.
 
@@ -266,20 +287,17 @@ This does not contradict the openETCS goal to conform to EN50128.
 \subsection{How to find the functions of the First Iteration in the Architecture}
 The functions will be merged with the new architecture. Wherever a function has already been in the scope it will be marked as "first iteration".
 
-\section{Glossary and Abbreviations}
-\textbf{ERTMS/ETCS Glossary of Terms and Abbreviations} SUBSET-023, ISSUE: 3.1.0, 12.05.2014,
-
-\textbf{API} Application Programming Interface\\
-\textbf{EVC} European Vital Computer\\
-\textbf{BTM} Balise Transmission Module\\
-\textbf{SRS} System Requirements Specification\\
+%\section{Glossary and Abbreviations}
+%\glossarystyle{long}
+%\printglossary[title=]
 
 
-\textbf{SRS-Subset 26}\\
-\textbf{QA-Plan: D1.3.1}\\
-\textbf{Process: D2.3}\\
-\textbf{Methods: D2.4}\\
-\textbf{API: D2.7}\\
+%\section{Abbreviations}
+%\printglossary[type=\acronymtype,title=]
+
+\glsaddall
+\printglossaries
+
 
 \section{Data dictionary}
 \textbf{concept for the data dictionary ...}\\
@@ -295,52 +313,224 @@ See Wiki page on ....
 
 
 \chapter{Architecture description (by layers)}
-\section{Overall functional description}
+
+\section{Introduction to the Architecture}
+
+\subsection{Abstract Hardware Architecture}
+
+For proper understanding of openETCS \gls{API} and of constraints imposed on
+both sides of the \gls{API}, we need to define a \define{reference abstract hardware architecture}. This hardware architecture is ``abstract''
+is the sense that the actual vendor specific hardware architecture
+might be totally different of the abstract architecture described in
+this chapter. For example, several units might be grouped together on
+the same processor.
+
+However the actual vendor specific architecture shall fulfil all the
+requirements and constraints of this reference abstract hardware
+architecture and shall not request additional constraints.
+
+\subsection{Definition of the reference abstract hardware architecture}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{abstract-hardware-architecture.pdf}
+  \caption{Reference abstract hardware architecture}
+  \label{fig:hardware-arch}
+\end{figure}
+
+The reference abstract hardware architecture is shown in figure
+\ref{fig:hardware-arch}.
+
+The reference abstract hardware architecture is made of a bus on which
+are connected \define{units} defining the \gls{OBU}:
+
+\begin{itemize}
+\item \gls{EVC};
+\item \gls{TIU};
+\item \gls{ODO};
+\item \gls{DMI};
+\item \gls{STM};
+\item \gls{BTM};
+\item \gls{LTM}: Not part of this openETCS implementation;
+\item EURORADIO;
+\item \gls{JRU}: Not part of this openETCS implementation;
+\end{itemize}
+
+Elements not being part of this implementation are marked. 
+
+Those units shall working concurrently. They shall exchange
+information with other units through asynchronous message passing.
+
+\subsection{Reference abstract software architecture}
+\label{software-arch}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{software-architecture.pdf}
+  \caption{Reference abstract software architecture}
+  \label{fig:software-arch}
+\end{figure}
+
+The \define{reference abstract software architecture} is shown in figure
+\ref{fig:software-arch}. This architecture is made of following
+elements:
+\begin{itemize}
+\item \define{openETCS executable model} produced by the
+  \cite{scade-model} Scade Model. It shall contain the program implementing core
+  ETCS functions;
+\item\define{openETCS model run-time system} shall help the execution
+  of the openETCS executable model by providing additional functions
+  like encode/decode messages, proper execution of the model through
+  appropriate scheduling, re-order or prioritize messages, etc. 
+\item \define{Vendor specific \gls{API} adapter} shall make the link between
+  the Vendor specific platform and the openETCS model run-time system.
+  It can buffer message parts, encode/decode messages, route messages
+  to other \gls{EVC} components, etc.
+\item All above three elements shall be included in the \gls{EVC};
+\item \define{Vendor specific platform} shall be all other elements of
+  the system, bus and other units, as shown in figure
+  \ref{fig:hardware-arch}.
+\end{itemize}
+
+We have thus three interfaces:
+\begin{itemize}
+\item \define{model interface}
+ is the interface between openETCS
+  executable model and openETCS model run-time system. 
+\item \define{openETCS \gls{API}}
+ is the interface between openETCS model
+  run-time system and Vendor specific \gls{API} adapter.
+\item \define{Vendor specific \gls{API}}
+ is the interface between Vendor
+  specific \gls{API} adapter and Vendor specific platform. This interface is
+  not publicly described for all vendors. You can find the Alstom imnplementation as an example.
+\end{itemize}
+
+The two blocks openETCS executable model and openETCS model run-time
+system are making the \define{Application software} part. This Application software might be either openETCS reference software or
+vendor specific software.
+
+The Vendor specific \gls{API} adapter is making the \define{Basic software} part.
+
 
 \section{Functional breakdown}
-\subsection{first level functional block}
-- Receive msg’s/ check consistency\\
-- Build coordinate system and calculate train position\\
-- Store inputs from the TIU\\
-- Store inputs from the DMI\\
-- Filtering (Mode/Level)\\
-- Store data (direct orders, BG lists, NV, track data, procedure parameters, confirmations)\\
-- Update location based  data structures\\
-- Build and update MRSP and list of targets at LRBG\\
-- Profile supervision (BCM and ceiling speed supervision)\\
-- Movement supervision\\
-- Area supervision\\
-- Procedures\\
-- Mode/Level management\\
-- Manage radio communication\\
-- DMI management\\
-- RBC communication\\
-- TIU Communication\\
-- STM management (not taken into account)\\
-- Gathering JRU data (not taken into account)\\
 
-\subsection{second level functional block}
-\subsubsection{Receive msg´s/ check consistency}
+
+\subsection{F1: openETCS \gls{API} Runtime System and Input to the EVC)}
+%Authors: Bernd Hekele (DB)
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=\linewidth]{openETCSAPI.png}
+\caption{openETCS API Highlevel View}
+\label{fig:apiHighLevel}
+\end{figure}
+
+Figure \ref{fig:apiHighLevel} shows the structure of API with respect of the software architecxture. Input boxes and output boxes not implemented in this stage are marked as red, other interfaces are marked as green. The System covers functions for processing Inputs from other Units, functions for processing Outputs to other functions and a basic runtime system. Inputs are used to feed the input to the executable model before calling it, outputs are used for collecting information provided by the executable model to be passed to the relevant interfaces after the execution cycle has finished.
+
+\subsubsection{Principles for Interfaces (openETCS \gls{API})}
+
+
+Information  is exchanged \define{messages} in an asynchronous way. A message is a set
+of information corresponding to an event of a particular unit, e.g. a
+balise received from the \gls{BTM}. The possible kind of messages are
+described in chapter \ref{information-flows}.
+
+The information is passed to the executable model as parmeters to the snychronous call of a procedure (Interface to the executable model). Since the availability of input messages to the application is not guaranteed the parts of the interfaces are defined with a "present" flag. In addition, fields of input arraysquite often is of variable size. Implementation in the concrete interface in this use-case is the use of a "size" parameter and a "valid"-flag.
+
+
+\subsubsection{openETCS Model Runtime System}
+The openETCS model runtime system also provides:
+
+\begin{itemize}
+\item Input Functions From other Units\\
+In this entity messages from other connected units are received.
+\item Output Functions to other Units\\
+The entity writes messages to other connected units.
+\item Conversation Functions for Messages (Bitwalker)\\
+The conversion function are triggered by Input and Ouput Functions. The main task is to convert input messages from an bit-packed format into logical ETCS messages (the ETCS language) and Output messages from Logical into a bit-packed format. The logical format of the messages is defined for all used types in the openETCS data dictonary. \\
+Variable size elements in the Messages are converted to fixed length arrays with an used elements indicator.\\
+Optional elements are indicated with an valid flag.
+The conversion routines are responsible for checking the data received is valid. If  faults are detected the information is passed to the openETCS executable model for further reaction. 
+\item Model Cycle\\
+The executable model is called in cycles. In the cycle 
+\begin{itemize}
+\item First the received input messages are decoded
+\item The input data is passed to the executable model in a predefined order. \textbf{(Details for the interface to be defined)}.
+\item Output is encoded according to the \gls{SRS} and passed to the  buffers to the units.
+\end{itemize}
+\end{itemize}
+
+
+\subsubsection{Input Interfaces of the openETCS API From other Units of the OBU}
+
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Unit & Name & Number & Processing Function & Description \\\hline}
+%\begin{supertabular}{| m{1.2cm} | m{1.5cm} | m{1.2cm} | m{3.7cm}  | m{3.7cm} |}
+\begin{supertabular}{| c | c | c | c  | c |}
+\gls{BTM} & Balise Telegram & 0..1 & Receive Messages & \\\hline
+\gls{DMI} \\\hline
+EURORADIO & Communication Management  & 0..1 & Communication Management & \\\hline
+EURORADIO & Radio Messages & 0..1 & Receive Messages & \\\hline
+\gls{ODO} & Odometer & 1 & All Parts & \\\hline
+Startup \\\hline
+TIU & Train Data & 1 & All Parts & \\\hline
+\end{supertabular}
+
+The following list gives an more detailed overview of the structure of the interfaces:
+
+List of Packets Received:
+
+
+Radio Messages
+
+Outputs:\\
+\subsubsection{Output Interfaces of the openETCS API TO other Units of the OBU}
+
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+From Function & Name &  To Unit & Description \\\hline}
+%\begin{supertabular}{| m{1.2cm} | m{1.5cm} | m{1.2cm} | m{3.7cm}  | m{3.7cm} |}
+\begin{supertabular}{| c | c | c | c  | c |}
+ & Radio Output Message & \ EURORADIO & \\\hline
+ & Communication Management  &  EURORADIO  & \\\hline
+ & Driver Information & \gls{DMI} \\\hline
+ & Train Data  & TIU &  \\\hline
+\end{supertabular}
+
+Packets:
+to be completed
+
+Radio Messages
+to be completed
+ 
+
+
+
+\subsection{Receive msg´s/ check consistency}
 - version management (should be part of the bitwalker)\\
 - management of duplicated balises (should be part of the bitwalker)\\
 - management of multiple received balises (should be part of the bitwalker)\\
-- build BG-messages\\
+- build \gls{BG}-messages\\
 - Determine passing direction\\
 - Store passing direction if received from RBC\\
 - Store radio messages\\
-- check linking consistency and delete detected and missed BG's from announced BG's\\
-- check BG-message consistency\\
+- check linking consistency and delete detected and missed \gls{BG}'s from announced \gls{BG}'s\\
+- check \gls{BG}-message consistency\\
 - check Radio-message consistency\\
 - Retrieve individual packets (for delivery to filtering)\\
 
-\subsubsection{Build coordinate system and calculate train position}
-- Update the coordinate system when a new BG is detected (taking into account detected “balise 1” from not completed BG's), i.e. backward -   - Calculation of position of passed BG's.\\
-- Management of multiple detected BG's\\
+\subsection{Build coordinate system and calculate train position}
+- Update the coordinate system when a new \gls{BG} is detected (taking into account detected “balise 1” from not completed \gls{BG}'s), i.e. backward -   - Calculation of position of passed \gls{BG}'s.\\
+- Management of multiple detected \gls{BG}'s\\
 - Relate the (location based) information in received messages to the reference system\\
-- Update train position at LRBG\\
-- Update the train position with the distance driven since last update (or reset to LRBG position)\\
+- Update train position at LR\gls{BG}\\
+- Update the train position with the distance driven since last update (or reset to LR\gls{BG} position)\\
 
-\subsubsection{Store inputs from the TIU}
+\subsection{Store inputs from the TIU}
 - Store status inputs (sleeping indicator etc.)\\
 - Store changed train data\\
 - Store brake status (e.g. in the handling of brake testing).\\
@@ -348,32 +538,32 @@ See Wiki page on ....
 - Isolation\\
 - Passive shunting\\
 
-\subsubsection{Store inputs from the DMI}
-- Store received acknowledgement and inputs in the “DMI request buffer” (includes “data-entry”)\\
+\subsection{Store inputs from the \gls{DMI}}
+- Store received acknowledgement and inputs in the “\gls{DMI} request buffer” (includes “data-entry”)\\
 
-\subsubsection{Filtering (Mode/Level) - One packet per type}
+\subsection{Filtering (Mode/Level) - One packet per type}
 \textbf{ISSUE: HOW MANY PKT 44, 65 AND 66 PER MESSAGE ARE MAXIMALLY SUPPORTED?}\\
 - Check on announced and immediate level transition orders in the messages to be filtered (needed for further criteria for filtering, to decide if the data shall be stored in the transition buffer).\\
 - Filter data stored in the transition buffer according to the current level (what to do if similar information is available in the new message??). Data can be rejected, accepted or kept in the transition buffer.
 (Filtering according to new level will be done directly afterwards in the next cycle)\\
-- Filter new received messages according to the current level (new level will be done in the next cycle as according to SRS data first has to be filtered according to old level and afterwards to new level). Data can be rejected, accepted or stored in the transition buffer.\\
-- Filter (level) accepted data according to originating RBC (supervising or other). Information from BG's, loops or RIU is not filtered with this filter.\\
+- Filter new received messages according to the current level (new level will be done in the next cycle as according to \gls{SRS} data first has to be filtered according to old level and afterwards to new level). Data can be rejected, accepted or stored in the transition buffer.\\
+- Filter (level) accepted data according to originating RBC (supervising or other). Information from \gls{BG}'s, loops or RIU is not filtered with this filter.\\
 - Filter (level and RBC) accepted data according to the current mode (only reject or accept)\\
 
-\subsubsection{Store data (direct orders, BG lists, NV, track data, procedure parameters, confirmations)}
+\subsection{Store data (direct orders, \gls{BG} lists, NV, track data, procedure parameters, confirmations)}
 - Store direct and conditional orders\\
-- Store BG lists for SH and SR\\
+- Store \gls{BG} lists for SH and SR\\
 - Store National Values, including procedure status information\\
 - Store new received track data (version, etc.)\\
 - Store procedure parameters\\
 
-\subsubsection{Update location based data structures}
+\subsection{Update location based data structures}
 - Overwrite location based data from a given location on-wards (reference location given in the message)\\
 - Insert “Locations” in the data structure, in the order the “Locations” will be passed.\\
 
-\subsubsection{Manage specific location based data:}
+\subsection{Manage specific location based data:}
 - movement authority (MA) list of sections, message 37, packet 12 (level 1), message 3, packet 15 (level 2), 16 (repositioning, i.e. extending the current section), message 33 (??), packet 70 (route suitability), message 9 (request to shorten MA), packet 90 (track ahead free leads to MA request)    minimum number of elements to be stored: 6\\
-- list of announced BG's linking information: packet 5  minimum number of elements to be stored: 30\\
+- list of announced \gls{BG}'s linking information: packet 5  minimum number of elements to be stored: 30\\
 - adhesion factor: packet 71;  only one element\\
 - the “gradient profile” (in: pkt 21)  minimum number of elements to be stored: 50\\
 - Speed profiles:  packet 27 (SSP)  (the worst case can be determined at reception)\\
@@ -386,21 +576,21 @@ minimum number of elements to be stored: TSR: 30, axle load: 30, permitted braki
 - RBC transitions: packet 131\\
 - Radio infill area entry or exit: packet 133\\
 - Loop announcement: packet 134\\
-- DMI information: packets 72,76 (text messages), packet 79 (geographical position information), message 34 (track ahead free request)  minimum number of elements to be stored: fixed text: 5, free text: 5, geographical position: \\
-- Track conditions (to be passed to the TIU and displayed at the DMI): packet 39 (traction system), packet 40 (current limitation),  packet 68 (diverse track conditions), packet 69 (platform conditions). Pkt 139  minimum number of elements to be stored: 20, + 1 for change power supply + 1 for platform conditions, + 1 for current limitation\\
+- \gls{DMI} information: packets 72,76 (text messages), packet 79 (geographical position information), message 34 (track ahead free request)  minimum number of elements to be stored: fixed text: 5, free text: 5, geographical position: \\
+- Track conditions (to be passed to the TIU and displayed at the \gls{DMI}): packet 39 (traction system), packet 40 (current limitation),  packet 68 (diverse track conditions), packet 69 (platform conditions). Pkt 139  minimum number of elements to be stored: 20, + 1 for change power supply + 1 for platform conditions, + 1 for current limitation\\
 - Route suitability: minimum number of elements to be stored: 3\\
-- Big Metal Mass: Technical information (to be used for BG-filtering): packet 67 (ignore BG integrity)  minimum number of elements to be stored: 5\\
+- Big Metal Mass: Technical information (to be used for \gls{BG}-filtering): packet 67 (ignore \gls{BG} integrity)  minimum number of elements to be stored: 5\\
 - Virtual balise covers:  minimum number of elements to be stored: 10\\
 - list of position report locations. In: pkt. 58  minimum number of elements to be stored: 15\\
 - Announced national values.  In: pkt 3 minimum number of elements to be stored: 1
 - If new national values are announced, then those can lead to more restrictive braking curves. Therefore a speed restriction has to be calculated for the location where the values become valid, based on the targets in advance of this point. \\
 
-\subsection{Build and update MRSP and list of targets at LRBG}
+\subsection{Build and update MRSP and list of targets at LR\gls{BG}}
 - Overlay speed restrictions (one by one) over the resulting SSP as received from “build location based data”.\\
-- Close the resulting profile with the “end of authority” or “limit of authority” as delivered by “MA-management” resulting in the MRSP at the LRBG.
+- Close the resulting profile with the “end of authority” or “limit of authority” as delivered by “MA-management” resulting in the MRSP at the LR\gls{BG}.
 (in on-sight or limited supervision mode, those may not be available)\\
 - Select list of “speed reductions”\\
-- Evaluate (backwards) which targets are relevant, resulting in the list of most restrictive targets at the LRBG.\\
+- Evaluate (backwards) which targets are relevant, resulting in the list of most restrictive targets at the LR\gls{BG}.\\
 - Relocate targets (beyond this location) to the “minimum border crossing location”, i.e. the minimum safe location where National values are changed, and add the minimum resulting speed at this location to the list of targets.\\
 - Reasoning:  new national values might cause more conservative braking curves which otherwise could lead to an intervention at the border.\\
 
@@ -416,8 +606,8 @@ minimum number of elements to be stored: TSR: 30, axle load: 30, permitted braki
 
 \subsubsection{Area Supervision}
 In shunting, post trip, reversing and staff responsible an area (plus in some cases ceiling speed) is protected. In unfitted only a speed. The way the area is protected differs per mode therefore a function shall be available for each mode:\\
-- area supervision in shunting (taking into account a list of BG's to be passed)\\
-- area supervision in staff responsible (taking into account a list of BG's to be passed and/or a distance)\\
+- area supervision in shunting (taking into account a list of \gls{BG}'s to be passed)\\
+- area supervision in staff responsible (taking into account a list of \gls{BG}'s to be passed and/or a distance)\\
 - reversing area supervision\\
 - post trip supervision (only reverse movement).\\
 
@@ -445,8 +635,8 @@ override\\
 - Manage all conditions for level changes except the direct transitions (handled in filtering): F41\\
 - Manage all conditions for mode changes (except msg 16 if that leads to a mode change): F42\\
 
-\subsubsection{DMI management}
-- update the MRSP at the LRBG and construct the DMI image\\
+\subsubsection{\gls{DMI} management}
+- update the MRSP at the LR\gls{BG} and construct the \gls{DMI} image\\
 - collect BCM results\\
 - Check displaying of location dependent txt messages\\
 - Calculate geographical position based on stored track-km references\\
@@ -463,7 +653,7 @@ override\\
 - Communicate track conditions\\
 - Brake test procedure.\\
 
-\subsubsection{JRU and STM management: not applicable for Utrecht-Amsterdam}
+\subsubsection{JRU and \gls{STM} management: not applicable for Utrecht-Amsterdam}
 
 \newpage
 \subsection{Filter Track informationen}
@@ -488,7 +678,7 @@ override\\
 
 
 \section{Detailed functional description}
-\textbf{Reference to SRS: § 4.8.1, § 4.8.2, § 4.8.3, § 4.8.4}\\
+\textbf{Reference to \gls{SRS}: § 4.8.1, § 4.8.2, § 4.8.3, § 4.8.4}\\
 
 \section{Documentation of design}
 § 4.8.1.6 Messages will be buffered, if...\\
@@ -515,7 +705,6 @@ override\\
 \newpage
 \addcontentsline{toc}{chapter}{Index}
 \printindex
-
 %===================================================
 %Do NOT change anything below this line
 
