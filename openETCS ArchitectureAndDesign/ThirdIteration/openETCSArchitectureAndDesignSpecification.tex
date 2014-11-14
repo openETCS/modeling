@@ -310,7 +310,13 @@ See Wiki page on ....
 
 \chapter{Product Backlog}
 \textbf{See on:}\\ 
-\subsubsection{Why a reference abstract hardware architecture?}
+
+
+\chapter{Architecture description (by layers)}
+
+\section{Introduction to the Architecture}
+
+\subsection{Abstract Hardware Architecture}
 
 For proper understanding of openETCS \gls{API} and of constraints imposed on
 both sides of the \gls{API}, we need to define a \define{reference abstract hardware architecture}. This hardware architecture is ``abstract''
@@ -323,7 +329,7 @@ However the actual vendor specific architecture shall fulfil all the
 requirements and constraints of this reference abstract hardware
 architecture and shall not request additional constraints.
 
-\subsubsection{Definition of the reference abstract hardware architecture}
+\subsection{Definition of the reference abstract hardware architecture}
 
 \begin{figure}
   \centering
@@ -336,17 +342,18 @@ The reference abstract hardware architecture is shown in figure
 \ref{fig:hardware-arch}.
 
 The reference abstract hardware architecture is made of a bus on which
-are connected \define{units}:
+are connected \define{units} defining the \gls{OBU}:
+
 \begin{itemize}
-\item \gls{EVC} (European Vital Computer);
-\item \gls{TIU} (Train Interface Unit);
-\item \gls{ODO} (Odometry);
-\item \gls{DMI} (Driver Machine Interface);
-\item \gls{STM} (Specific Transmission Module, up to 8 units): Not part of this openETCS implementation;
-\item \gls{BTM} (Balise Transmission Module);
-\item \gls{LTM} (Loop Transmission Module): Not part of this openETCS implementation;
+\item \gls{EVC};
+\item \gls{TIU};
+\item \gls{ODO};
+\item \gls{DMI};
+\item \gls{STM};
+\item \gls{BTM};
+\item \gls{LTM}: Not part of this openETCS implementation;
 \item EURORADIO;
-\item JRU (Juridical Recording Unit): Not part of this openETCS implementation;
+\item \gls{JRU}: Not part of this openETCS implementation;
 \end{itemize}
 
 Elements not being part of this implementation are marked. 
@@ -354,13 +361,8 @@ Elements not being part of this implementation are marked.
 Those units shall working concurrently. They shall exchange
 information with other units through asynchronous message passing.
 
-% LocalWords:  Alstom openETCS \gls{EVC} BIU TIU Odometry \gls{DMI} \gls{STM} \gls{BTM} Balise \gls{LTM} \gls{API}
-% LocalWords:  EURORADIO JRU
-
-\subsubsection{Reference abstract software architecture}
+\subsection{Reference abstract software architecture}
 \label{software-arch}
-
-\subsubsection{Overall architecture}
 
 \begin{figure}[htbp]
   \centering
@@ -374,7 +376,7 @@ The \define{reference abstract software architecture} is shown in figure
 elements:
 \begin{itemize}
 \item \define{openETCS executable model} produced by the
-  \cite{scade-model}. It shall contain the program implementing core
+  \cite{scade-model} Scade Model. It shall contain the program implementing core
   ETCS functions;
 \item\define{openETCS model run-time system} shall help the execution
   of the openETCS executable model by providing additional functions
@@ -410,32 +412,24 @@ vendor specific software.
 
 The Vendor specific \gls{API} adapter is making the \define{Basic software} part.
 
-- Receive msg’s/ check consistency\\
-- Build coordinate system and calculate train position\\
-- Store inputs from the TIU\\
-- Store inputs from the \gls{DMI}\\
-- Filtering (Mode/Level)\\
-- Store data (direct orders, \gls{BG} lists, NV, track data, procedure parameters, confirmations)\\
-- Update location based  data structures\\
-- Build and update MRSP and list of targets at LR\gls{BG}\\
-- Profile supervision (BCM and ceiling speed supervision)\\
-- Movement supervision\\
-- Area supervision\\
-- Procedures\\
-- Mode/Level management\\
-- Manage radio communication\\
-- \gls{DMI} management\\
-- RBC communication\\
-- TIU Communication\\
-- \gls{STM} management (not taken into account)\\
-- Gathering JRU data (not taken into account)\\
 
-\section{second level functional block}
+\section{Functional breakdown}
 
-\subsection{F1.1: openETCS \gls{API} Runtime System and Input)}
-Authors: Bernd Hekele (DB)
+
+\subsection{F1: openETCS \gls{API} Runtime System and Input to the EVC)}
+%Authors: Bernd Hekele (DB)
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=\linewidth]{openETCSAPI.png}
+\caption{openETCS API Highlevel View}
+\label{fig:apiHighLevel}
+\end{figure}
+
+Figure \ref{fig:apiHighLevel} shows the structure of API with respect of the software architecxture. Input boxes and output boxes not implemented in this stage are marked as red, other interfaces are marked as green. The System covers functions for processing Inputs from other Units, functions for processing Outputs to other functions and a basic runtime system. Inputs are used to feed the input to the executable model before calling it, outputs are used for collecting information provided by the executable model to be passed to the relevant interfaces after the execution cycle has finished.
 
 \subsubsection{Principles for Interfaces (openETCS \gls{API})}
+
 
 Information  is exchanged \define{messages} in an asynchronous way. A message is a set
 of information corresponding to an event of a particular unit, e.g. a
@@ -468,7 +462,7 @@ The executable model is called in cycles. In the cycle
 \end{itemize}
 
 
-\subsubsection{Input Interfaces of the openETCS \gls{API}}
+\subsubsection{Input Interfaces of the openETCS API From other Units of the OBU}
 
 \tablefirsthead{
 \hline 
@@ -485,45 +479,35 @@ Startup \\\hline
 TIU & Train Data & 1 & All Parts & \\\hline
 \end{supertabular}
 
+The following list gives an more detailed overview of the structure of the interfaces:
+
+List of Packets Received:
+
+
+Radio Messages
 
 Outputs:\\
-\begin{itemize}
-\item The decoded and checked messages from other units are  are output of F1. The information is processed by procedure call provided by the executable model.
-\item Details of the granualarity of those interfaces are to be clarified.
-\end{itemize}
+\subsubsection{Output Interfaces of the openETCS API TO other Units of the OBU}
 
-\subsubsection{F1.2: Manage Input}
-\begin{figure}[hbtp]
-\centering
-\includegraphics [scale=0.9] {images/Manage_inputs}
-\caption{Manage input}
-\end{figure}
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+From Function & Name &  To Unit & Description \\\hline}
+%\begin{supertabular}{| m{1.2cm} | m{1.5cm} | m{1.2cm} | m{3.7cm}  | m{3.7cm} |}
+\begin{supertabular}{| c | c | c | c  | c |}
+ & Radio Output Message & \ EURORADIO & \\\hline
+ & Communication Management  &  EURORADIO  & \\\hline
+ & Driver Information & \gls{DMI} \\\hline
+ & Train Data  & TIU &  \\\hline
+\end{supertabular}
 
-  Inputs:\\
-``will be complete''\\
+Packets:
+to be completed
 
- Outputs:\\
- ``will be complete''\\
+Radio Messages
+to be completed
  
- \textbf{ Description:} ???
- 
- \newpage
- \subsubsection{F1.4: Data structure}
-\begin{figure}[hbtp]
-\centering
-\includegraphics [scale=0.5] {images/data_structure}\\
-\caption{data structure}
-\end{figure}
 
-  Inputs:\\
-``will be complete''\\
-
- Outputs:\\
- ``will be complete''\\
- 
- \textbf{ Description:} ???
- 
-\subsection{F1.2: openETCS \gls{API} Output Functions)}
 
 
 \subsection{Receive msg´s/ check consistency}
