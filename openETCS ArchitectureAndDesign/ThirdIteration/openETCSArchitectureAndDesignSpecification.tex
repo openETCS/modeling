@@ -364,11 +364,6 @@ The type \texttt{RTM\_IN\_MESSAGE\_T}  is used for normal messages, which can co
  \hline
 \end{tabular}
 
-
-\textbf{TODO:} How to handle the Connection status information? Forward to RBC session management? Could also be stored in the database. Suggestion: Since the architecture is defined like in Jakobs slides, the solution should be to also execute the \texttt{WRITE\_RTM\_MESSAGE} service in the Manage Radio communication module in order to get status information.
-
-\textbf{TODO:} Structure of RTM\_IN\_MESSAGE\_T
-
 \textbf{TODO:} Balise-channel
 
 % A Eurobalise telegram consists of several fields shown in the table below. The table is an excerpt from the SRS, chapter 8.4.2.1. In this chapter the description of the fields can be found.
@@ -412,9 +407,11 @@ The type \texttt{RTM\_IN\_MESSAGE\_T}  is used for normal messages, which can co
 \paragraph{Output}
 \framebox{Note: Only radio functionality covered}
 
-The module produces the input-data for the Filtering (Mode/Level) module. The Filtering (Mode/Level)-module will need the messages received either via Euroradio or Eurobalise. The message is transmitted unchanged, if all consistency checks were successful.
+The module produces the input-data for the Filtering (Mode/Level) module. The Filtering (Mode/Level)-module expects the messages received either via Euroradio or Eurobalise. The message is transmitted unchanged, if all consistency checks were successful.
 
-An Euroradio message from track to train consists of several fields shown in the table below. The table is an excerpt from the SRS, chapter 8.4.4.6.1. In this chapter the description of the fields can be found. The length of the fields is derived from chapter 7.
+Further outputs are the status information of the radio and a output-channel for acknowledgment- and rejection-messages to the RBC.
+
+An Euroradio message from track to train consists of several fields shown in the table below. The table is an excerpt from the SRS, chapter 8.4.4.6.1. In this chapter the description of the fields can be found.
 
   \begin{tabular}{| c | l |}
   \hline
@@ -459,19 +456,31 @@ The first stage of the module is the reception of Euroradio-messages and Eurobal
 
 \subparagraph{Content checks}
 \begin{itemize}
- \item check length of message (SRS 8.4.4.2.1)
- \item does the message contain all necessary fields and no invalid values in the fields? (invalid value = spare value (SRS 3.16.1.1.1)) (SRS 3.16.1.1)
- \item check value range of fields
- \item was the message received in due time? (SRS 3.16.1.1) / timestamp check (SRS 3.16.3.3.3)
- \item was the message received at the right expected location? (SRS 3.16.1.1)
- \item if a message is not consistent, it will be rejected. (SRS 3.16.3.1.1.1)
- \item RBC must be informed, when a message was rejected (SRS 3.16.3.1.1.2) $\rightarrow$ there must be a direct possibility to send this status message, which is not possible in the current architecture.
- \item check priority of message (SRS 3.16.3.1.2 / 3.16.3.1.3 / 3.16.3.1.3.1)
- \item some checks shall not be performed when a high priority message is received (SRS 3.16.3.1.4)
- \item Safe connection supervision is not in the scope of this module. Will be done by the RBC session management module.
- \item Send ACK for received messages (3.16.3.5)
- \item supervise sequence (SRS 3.16.3.3)
+ \item The computed length of the message must be equal to the value in \texttt{L\_MESSAGE}. (SRS 8.4.4.2.1)
+ \item The whole message must be complete and contains all necessary fields. (SRS 8.16.1.1)
+ \item The message must respect the ETCS language. (SRS 8.16.1.1)
+ \item The variables of the message does not contain invalid values. (SRS 8.16.1.1) \\\textbf{TODO:} Check value range? Or is the bitwalker already checking?
+ \item Check if the specified priority of message is equal to the priority with which the message was received. (SRS 3.16.3.1.3.1)
 \end{itemize}
+
+
+\subparagraph{Timing checks}
+\begin{itemize}
+ \item Check if the timestamp of a message is greater than the timestamp of the former message (SRS 3.16.3.3.3)
+ \item If a message contains the timestamp ``Unknown'', check if this message is part of the initiation of the communication session. (SRS 3.16.3.3.4)
+ \item Perform the check with the current packet $n$:  $T\_TRAIN_{n} <= T\_TRAIN_{n-1} + T\_NVCONTACT$ (SRS 3.16.1.1). This ensures, that the packet was received in due time.
+\end{itemize}
+
+\subparagraph{Actions for inconsistent messages}
+\begin{itemize}
+  \item If a message is not consistent, it shall be rejected. (SRS 3.16.3.1.1.1)
+  \item The RBC shall be informed, when a message was rejected (SRS 3.16.3.1.1.2). Therefore an error report must be sent (packet number 4). 
+  \item If the RBC requested an ACK for a received message, the ACK shall be sent. (SRS 3.16.3.5)
+\end{itemize}
+
+The check by the Euroradio-protocol (3.16.3.1.1) will not be performed by the model, but on a lower level (RTM or openETCS-API).
+
+Safe connection supervision is not in the scope of this module. This functionality will be implemented by the ``Manage Radio communication'' module. The ``Receive message and check consistency''-module will provide the necessary status data about the connection as an output.
 
 % a bit more structured
 
