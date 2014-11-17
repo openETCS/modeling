@@ -39,9 +39,6 @@
           <emfPageIdentifier href="ManageLevelsAndModes.notation#_UultAE-yEeSDqqehp7V01A"/>
         </children>
         <children>
-          <emfPageIdentifier href="ManageLevelsAndModes.notation#_Agd74FLpEeSjSsm9A7qaSw"/>
-        </children>
-        <children>
           <emfPageIdentifier href="ManageLevelsAndModes.notation#_PB2fwGXDEeSL3sINnSirPw"/>
         </children>
         <children>
@@ -58,6 +55,9 @@
         </children>
         <children>
           <emfPageIdentifier href="ManageLevelsAndModes.notation#_2SzWoGXDEeSL3sINnSirPw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="ManageLevelsAndModes.notation#_Agd74FLpEeSjSsm9A7qaSw"/>
         </children>
       </children>
     </windows>
