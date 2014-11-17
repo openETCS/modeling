@@ -509,7 +509,7 @@ to be completed
 \subsection{Receive msg´s/ check consistency}
 \subsubsection{Short Description of Functionality}
 
-The block ``Receive msg's / check consistency'' is responsible for receiving Eurobalise-telegrams and Euroradio-messages from the API and perform several consistency checks on this input.
+The block ``Receive messages / check consistency'' is responsible for receiving Eurobalise-telegrams and Euroradio-messages from the API and perform several consistency checks on the input.
 
 The block collects the telegrams of balises in order to build balise group messages. Euroradio messages are always delivered as a whole message. After receiving, building and checking a message, the message is delivered to the output of the module for further processing by other modules.
 
@@ -528,8 +528,22 @@ The block collects the telegrams of balises in order to build balise group messa
 \subsubsection{Input}
 \framebox{Note: Only radio functionality covered}
 
-The input of the module is originated from the openETCS-API. The API is described in \cite{alstom-api}.
+For providing the output, the module needs different input data flows. An overview is provided in table \ref{tbl:ReceiveMessageAndCheckConsistencyInput}
 
+\begin{table}
+  \begin{tabular}{| c | l | l | l |}
+    \hline
+    \textbf{Index} & \textbf{Input name} & \textbf{Input type}\\ \hline
+    0 & THE\_RTM\_MESSAGE & API\_TYPES.RTM\_IN\_MESSAGE\_T \\
+    1 & time & CLOCK\_T\\
+    2 & t\_nvcontact & T\_NVCONTACT\\
+    \hline
+  \end{tabular} 
+  \caption{Overview over input}
+  \label{tbl:ReceiveMessageAndCheckConsistencyInput}
+\end{table} 
+
+The Euroradio-/Eurobalise-message is originated from the openETCS-API. The API is described in \cite{alstom-api}.
 For delivering messages received by the EURORADIO module to the application software, the services \texttt{WRITE\_RTM\_MESSAGE} and \texttt{WRITE\_RTM\_EMERGENCY\_MESSAGE} are defined (see 4.14.6 in \cite{alstom-api}).
 
 For the current iteration, emergency messages are not relevant.\\The API-service \texttt{WRITE\_RTM\_EMERGENCY\_MESSAGE} will not be implemented.
@@ -550,7 +564,17 @@ The type \texttt{RTM\_IN\_MESSAGE\_T}  is used for normal messages, which can co
  \hline
 \end{tabular}
 
+For the demonstrator scenario (Utrecht-Amsterdam), the following messages and packets are to be expected by the model:
+ \begin{itemize}
+  \item Messages from RBC: 2, 3, 6, 8, 15, 24, 27, 32, 39, 41
+  \item Packets from RBC: 3, 5, 15, 21, 27, 41, 42, 57, 58, 65, 68, 72, 80
+ \end{itemize}
+
 \textbf{TODO:} Balise-channel
+
+The current time of the OBU is needed as an input to perform consistency checks. Therefore, the current time of the OBU is provided to the module as \texttt{CLOCK\_T}-type.
+
+For checking the timing of the messages, also the national value \texttt{T\_NVCONTACT} is needed.
 
 % A Eurobalise telegram consists of several fields shown in the table below. The table is an excerpt from the SRS, chapter 8.4.2.1. In this chapter the description of the fields can be found.
 %  
@@ -595,6 +619,20 @@ The type \texttt{RTM\_IN\_MESSAGE\_T}  is used for normal messages, which can co
 
 The module produces the input-data for the Filtering (Mode/Level) module. The Filtering (Mode/Level)-module expects the messages received either via Euroradio or Eurobalise. The message is transmitted unchanged, if all consistency checks were successful.
 
+An overview over the output dataflows is provided in table \ref{tbl:ReceiveMessageAndCheckConsistencyOutput}.
+
+\begin{table}
+  \begin{tabular}{| c | l | l | l |}
+    \hline
+    \textbf{Index} & \textbf{Output name} & \textbf{Output type}\\ \hline
+    0 & radioMessage & EuroradioMessage \\
+    1 & messageToRBC & < undefined >\\
+    \hline
+  \end{tabular} 
+  \caption{Overview over output}
+  \label{tbl:ReceiveMessageAndCheckConsistencyOutput}
+\end{table}
+
 Further outputs are the status information of the radio and a output-channel for acknowledgment- and rejection-messages to the RBC.
 
 An Euroradio message from track to train consists of several fields shown in the table below. The table is an excerpt from the SRS, chapter 8.4.4.6.1. In this chapter the description of the fields can be found.
@@ -616,6 +654,7 @@ An Euroradio message from track to train consists of several fields shown in the
 \end{tabular}
 
 \subsubsection{Data}
+The timestamp of the last received message via Euroradio has to be stored in an internal data structure.
 
 An internal data structure to temporarily store balise telegrams for building messages is needed.
 
