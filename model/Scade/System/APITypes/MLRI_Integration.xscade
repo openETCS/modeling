@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Type name="API_Telegram_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="present">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/a31a/54B3/F70/546c7c333a77" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Indicates the presence of new and valid information at the start of the routine</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="checkResult">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/a31b/54B3/F70/546c7c33221d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>reports the result of the decoding procedure.</comment>
+									<comment>  true: successfully decoded</comment>
+									<comment>  false: errors during decoding. Typically, this is the result of the check of the parameters of the telegram.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="api_bad_balise_received">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/a31c/54B3/F70/546c7c332f0b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>inicates, whether a bad balise has been received. In this scenario, dta are not valid.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="api_header">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="BG_Types_Pkg::TelegramHeader_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/a31d/54B3/F70/546c7c337b50" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Telegram_Header</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="api_packets">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_addInfo_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/a31e/54B3/F70/546c7c334142" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Packets received with this balise</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="centerOfBalisePosition">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="BG_Types_Pkg::centerOfBalisePosition_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/a31f/54B3/F70/546c7c33235c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>actual odometry of where the telegram has been received</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/a319/54B3/F70/546c7c33f2c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>Telegram as received via the API.</comment>
+					<comment>This type has to be defined in the openETCS API</comment>
+				</ed:Type>
+			</pragmas>
+		</Type>
+		<Type name="API_addInfo_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="listLinking">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="BG_Types_Pkg::LinkedBGs_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/a30a/54B3/F70/546c7c336730" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Linking information received via packet 5. Information is of variable length.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/a309/54B3/F70/546c7c33296" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>packet information received via telegram</comment>
+				</ed:Type>
+			</pragmas>
+		</Type>
+	</declarations>
+</File>
