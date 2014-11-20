@@ -471,6 +471,7 @@ The executable model is called in cycles. In the cycle
 
 
 \subsubsection{Input Interfaces of the openETCS API From other Units of the OBU}
+Interfaces are defined in the Scade project APITypes (package API\_Msg\_Pkg.xscade).
 
 \tablefirsthead{
 \hline 
@@ -483,10 +484,12 @@ Unit & Name & Number & Processing Function & Description \\\hline}
 EURORADIO & Communication Management  & 0..1 & Communication Management & \\\hline
 EURORADIO & Radio Messages & 0..1 & Receive Messages & \\\hline
 \gls{ODO} & Odometer & 1 & All Parts & \\\hline
+TIME & Time system of the OBU & 1 & All Parts & \\\hline
 Startup \\\hline
 TIU & Train Data & 1 & All Parts & \\\hline
 \end{supertabular}
 
+\subsubsection{Message based interface (BTM, RTM)}
 
 The following table gives an more detailed overview of the structure of the interfaces:
 Balise Message (Track to Train)
@@ -625,6 +628,60 @@ Packet Number & Packet Name & Relevant in Scope
 
 \end{supertabular}
 
+\subsubsection{Interfaces to the Time System}
+The interface types are defined in the OBU\_Basic\_Types\_Pkg Package. The system time is defined in the basic software.
+
+The system TIME is provided to the executable model at the begin of the cycle. It is not refreshed during the cycle. The time provided to the application is equal to 0 at power-up of the EVC (it is not a “UTC time” nor a “Local
+Time”), then must increase at each cycle (unit = 1 msec), until it reaches its maximum value (i.e current EVC
+limitation = 24 hours)
+
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Interface & Definition & Remarks \\\hline}
+\begin{supertabular}{| p{2 cm} | p{3 cm} | p{10 cm} |}
+TIME & T\_internal\_Type\newline (32-bit INT) & Standardized system time type used for all internal time calculations: in ms. The time is defined as a cyclic counter: When the maximum is exceeded the time starts from 0 again. 
+\\\hline
+\end{supertabular}
+
+\subsubsection{Interfaces to the Odometry System}
+The interface types are defined in the OBU\_Basic\_Types\_Pkg Package. 
+The odometer gives the current information of the positing system of the train. In this section the structure of the interfaces are only highlighted. Details, including the internal definitions for distances, locations speed and time are implemented in the package. 
+
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Interface & Logical Interface & Remarks \\\hline}
+\begin{supertabular}{| p{2 cm} | p{4 cm} | p{10 cm} |}
+Odometer
+ & odometry\_T\newline 
+(Structure of:) &
+\\\hline
+& - valid (bool) & valid flag, i.e., the information is provided by the ODO system and can be used.
+\\\hline
+& - timestamp & time  (T\_internal\_Type))of the system when the odometer information was collected. Please, see also general remarks on the time system. 
+\\\hline
+& -Coordinate\newline 
+(Structure of:) \newline
+- nominal \newline
+- min  \newline
+- max  \newline
+ &  odometer values. All locations in cm (internal type (L\_internal\_Type)).
+\\\hline
+& - speed   & V\_internal\_Type
+(General Speed, Int, km/h)
+\\\hline
+& - acceleration   & A\_internal\_Type, Standardized acceleration type for all internal calculations: in 0.01 m/s2
+\\\hline
+& - motionState (Enumeration)   & indicates whether the train is in motion or in no motion
+\\\hline
+& - motionDirection (Enumeration)  & indicates the direction of the train, i.e., CAB-A first, CAB-B first or unknown.
+\\\hline
+\end{supertabular}
+
+
+\subsubsection{Interfaces to Odometry}
+
 
 Outputs:\\
 \subsubsection{Output Interfaces of the openETCS API TO other Units of the OBU}
@@ -638,7 +695,8 @@ From Function & Name &  To Unit & Description \\\hline}
  & Radio Output Message & \ EURORADIO & \\\hline
  & Communication Management  &  EURORADIO  & \\\hline
  & Driver Information & \gls{DMI} \\\hline
- & Train Data  & TIU &  \\\hline
+ & Train Data  & TIU &  
+\\\hline
 \end{supertabular}
 
 Packets:
