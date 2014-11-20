@@ -298,6 +298,11 @@ The functions will be merged with the new architecture. Wherever a function has 
 \glsaddall
 \printglossaries
 
+Missing Terms:\\
+SR Staff Responsible Mode\\
+SH Shunting Mode\\
+%\gls{
+RIU: Radio In-fill Unit\\
 
 \section{Data dictionary}
 \textbf{concept for the data dictionary ...}\\
@@ -426,7 +431,7 @@ The Vendor specific \gls{API} adapter is making the \define{Basic software} part
 \label{fig:apiHighLevel}
 \end{figure}
 
-Figure \ref{fig:apiHighLevel} shows the structure of API with respect of the software architecxture. Input boxes and output boxes not implemented in this stage are marked as red, other interfaces are marked as green. The System covers functions for processing Inputs from other Units, functions for processing Outputs to other functions and a basic runtime system. Inputs are used to feed the input to the executable model before calling it, outputs are used for collecting information provided by the executable model to be passed to the relevant interfaces after the execution cycle has finished.
+Figure \ref{fig:apiHighLevel} shows the structure of API with respect of the software architecture. Input boxes and output boxes not implemented in this stage are marked as red, other interfaces are marked as green. The System covers functions for processing Inputs from other Units, functions for processing Outputs to other functions and a basic runtime system. Inputs are used to feed the input to the executable model before calling it, outputs are used for collecting information provided by the executable model to be passed to the relevant interfaces after the execution cycle has finished.
 
 \subsubsection{Principles for Interfaces (openETCS \gls{API})}
 
@@ -453,6 +458,9 @@ Variable size elements in the Messages are converted to fixed length arrays with
 Optional elements are indicated with an valid flag.
 The conversion routines are responsible for checking the data received is valid. If  faults are detected the information is passed to the openETCS executable model for further reaction. 
 \item Model Cycle\\
+
+The version management function is part of the message handling.This implies, conversions from other physical or logical layouts of messages are mapped onto a generic format used in the EVC. Information about the origin version of the message is part of the messages.
+ 
 The executable model is called in cycles. In the cycle 
 \begin{itemize}
 \item First the received input messages are decoded
@@ -463,6 +471,7 @@ The executable model is called in cycles. In the cycle
 
 
 \subsubsection{Input Interfaces of the openETCS API From other Units of the OBU}
+Interfaces are defined in the Scade project APITypes (package API\_Msg\_Pkg.xscade).
 
 \tablefirsthead{
 \hline 
@@ -475,16 +484,204 @@ Unit & Name & Number & Processing Function & Description \\\hline}
 EURORADIO & Communication Management  & 0..1 & Communication Management & \\\hline
 EURORADIO & Radio Messages & 0..1 & Receive Messages & \\\hline
 \gls{ODO} & Odometer & 1 & All Parts & \\\hline
+TIME & Time system of the OBU & 1 & All Parts & \\\hline
 Startup \\\hline
 TIU & Train Data & 1 & All Parts & \\\hline
 \end{supertabular}
 
-The following list gives an more detailed overview of the structure of the interfaces:
+\subsubsection{Message based interface (BTM, RTM)}
 
-List of Packets Received:
+The following table gives an more detailed overview of the structure of the interfaces:
+Balise Message (Track to Train)
+
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Message Name & Optional Packets & Restrictions in the current scope \\\hline}
+\begin{supertabular}{| p{4 cm} | p{6 cm} | p{4,5 cm} |}
+Balise Telegram &
+3: National Values \newline
+41: Level Transition Order \newline
+42: Session Management  \newline
+45: Radio Network registration \newline
+46: Conditional Level Transition Order \newline
+65: Temporary Speed Restriction \newline
+72: Packet for sending plain text messages \newline
+137: Stop if in Staff Responsible \newline
+255: End of Information \newline
+& Used in Scenario
+\\\hline
+Balise Telegram &
+0, 2, 3, 5, 6, 12, 16, 21, 27, 39,
+40, 41, 42, 44, 45, 46, 49, 51, 52, 65,
+66, 67, 68, 69, 70, 71, 72, 76, 79, 80,
+88, 90, 131, 132, 133, 134, 135, 136, 137, 138,
+139, 141, 145, 180, 181, 254
+&  Not Used in Scenario\\\hline
+\end{supertabular}
+
+Radio Messages (Track to Train)
+
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Message Name & Optional Packets & Restrictions in the current scope \\\hline}
+\begin{supertabular}{| p{4 cm} | p{6 cm} | p{4,5 cm} |}
+2: SR Authorisation & 63:\ List\ of\ Balises\ in\ SR Authority & Message Not Supported \\\hline
+3: Movement Authority &
+ 21:\ Gradient\ Profile\newline
+ 27: International Static Speed Profile\newline
+ 49: List of balises for SH Area\newline
+ 80: Mode profile\newline
+ plus common optional packets\newline
+ & a \\\hline
+9: Request To Shorten MA &
+ 49: List of balises for SH Area\newline
+ 80: Mode profile\newline 
+& \\\hline
+24: General Message &
+From RBC:\newline
+ 21:\ Gradient\ Profile\newline
+ 27: International Static Speed Profile\newline
+ plus common optional packets\newline
+From RIU:\newline 44, 45, 143, 180, 254
+& Messages from RIU are not supported \\\hline
+28: SH authorised & 3, 44, 49
+& \\\hline
+33: MA with Shifted Location Reference &
+ 21:\ Gradient\ Profile\newline
+ 27: International Static Speed Profile\newline
+ 49: List of balises for SH Area\newline
+ 80: Mode profile\newline
+ plus common optional packets\newline
+& \\\hline
+37: Infill MA &
+5, 21, 27, 39, 40, 41, 44, 49, 51, 52, 65, 66, 68, 69, 70, 71, 80, 88, 138, 139 
+ & Message Not Supported \\\hline
+List of common optional parameters &
+3, 5, 39, 40, 51, 41, 42, 44, 45, 52, 57, 58, 64, 65, 66, 68, 69, 70, 71, 72, 76, 79, 88, 131, 138, 139, 140, 180
+& \\\hline
+\end{supertabular}
+
+List of rack to Train Packets Received (Section 7.4.1):
+
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Packet Number & Packet Name & Relevant in Scope
+\\\hline}
+\begin{supertabular}{| p{1,5 cm} | p{10 cm} | p{4,5 cm} |}
+0 & Virtual Balise Cover marker & \\\hline
+2 & System Version order & \\\hline
+3 & National Values & \\\hline
+5 & Linking & \\\hline
+6 & Virtual Balise Cover order & \\\hline
+12 & Level 1 Movement Authority & \\\hline
+13 & Staff Responsible distance information from loop & \\\hline
+15 & Level 2/3 Movement Authority & \\\hline
+16 & Repositioning Information & \\\hline
+21 & Gradient Profile & \\\hline
+27 & International Static Speed Profile & \\\hline
+39 & Track Condition Change of traction system & \\\hline
+40 & Track Condition Change of allowed current consumption & \\\hline
+41 & Level Transition Order & \\\hline
+42 & Session Management & \\\hline
+44 & Data used by applications outside the ERTMS/ETCS system. & \\\hline
+45 & Radio Network registration & \\\hline
+46 & Conditional Level Transition Order & \\\hline
+49 & List of balises for SH Area & \\\hline
+51 & Axle load Speed Profile & \\\hline
+52 & Permitted Braking Distance Information & \\\hline
+57 & Movement Authority Request Parameters & \\\hline
+58 & Position Report Parameters & \\\hline
+63 & List of Balises in SR Authority & \\\hline
+64 & Inhibition of revocable TSRs from balises in L2/3 & \\\hline
+65 & Temporary Speed Restriction & \\\hline
+66 & Temporary Speed Restriction Revocation & \\\hline
+67 & Track Condition Big Metal Masses & \\\hline
+68 & Track Condition & \\\hline
+69 & Track Condition Station Platforms & \\\hline
+70 & Route Suitability Data & \\\hline
+71 & Adhesion Factor & \\\hline
+72 & Packet for sending plain text messages & \\\hline
+76 & Packet for sending fixed text messages & \\\hline
+79 & Geographical Position Information & \\\hline
+80 & Mode profile & \\\hline
+88 & Level crossing information & \\\hline
+90 & Track Ahead Free up to level 2/3 transition location & \\\hline
+131 & RBC transition order & \\\hline
+132 & Danger for Shunting information & \\\hline
+133 & Radio infill area information & \\\hline
+134 & EOLM Packet & \\\hline
+135 & Stop Shunting on desk opening & \\\hline
+136 & Infill location reference & \\\hline
+137 & Stop if in Staff Responsible & \\\hline
+138 & Reversing area information & \\\hline
+139 & Reversing supervision information & \\\hline
+140 & Train running number from RBC & \\\hline
+141 & Default Gradient for Temporary Speed Restriction & \\\hline
+143 & Session Management with neighbouring Radio Infill Unit & \\\hline
+145 & Inhibition of balise group message consistency reaction & \\\hline
+180 & LSSMA display toggle order & \\\hline
+181 & Generic LS function marker & \\\hline
+254 & Default balise, loop or RIU information & \\\hline
+
+\end{supertabular}
+
+\subsubsection{Interfaces to the Time System}
+The interface types are defined in the OBU\_Basic\_Types\_Pkg Package. The system time is defined in the basic software.
+
+The system TIME is provided to the executable model at the begin of the cycle. It is not refreshed during the cycle. The time provided to the application is equal to 0 at power-up of the EVC (it is not a “UTC time” nor a “Local
+Time”), then must increase at each cycle (unit = 1 msec), until it reaches its maximum value (i.e current EVC
+limitation = 24 hours)
+
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Interface & Definition & Remarks \\\hline}
+\begin{supertabular}{| p{2 cm} | p{3 cm} | p{10 cm} |}
+TIME & T\_internal\_Type\newline (32-bit INT) & Standardized system time type used for all internal time calculations: in ms. The time is defined as a cyclic counter: When the maximum is exceeded the time starts from 0 again. 
+\\\hline
+\end{supertabular}
+
+\subsubsection{Interfaces to the Odometry System}
+The interface types are defined in the OBU\_Basic\_Types\_Pkg Package. 
+The odometer gives the current information of the positing system of the train. In this section the structure of the interfaces are only highlighted. Details, including the internal definitions for distances, locations speed and time are implemented in the package. 
+
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Interface & Logical Interface & Remarks \\\hline}
+\begin{supertabular}{| p{2 cm} | p{4 cm} | p{10 cm} |}
+Odometer
+ & odometry\_T\newline 
+(Structure of:) &
+\\\hline
+& - valid (bool) & valid flag, i.e., the information is provided by the ODO system and can be used.
+\\\hline
+& - timestamp & time  (T\_internal\_Type))of the system when the odometer information was collected. Please, see also general remarks on the time system. 
+\\\hline
+& -Coordinate\newline 
+(Structure of:) \newline
+- nominal \newline
+- min  \newline
+- max  \newline
+ &  odometer values. All locations in cm (internal type (L\_internal\_Type)).
+\\\hline
+& - speed   & V\_internal\_Type
+(General Speed, Int, km/h)
+\\\hline
+& - acceleration   & A\_internal\_Type, Standardized acceleration type for all internal calculations: in 0.01 m/s2
+\\\hline
+& - motionState (Enumeration)   & indicates whether the train is in motion or in no motion
+\\\hline
+& - motionDirection (Enumeration)  & indicates the direction of the train, i.e., CAB-A first, CAB-B first or unknown.
+\\\hline
+\end{supertabular}
 
 
-Radio Messages
+\subsubsection{Interfaces to Odometry}
+
 
 Outputs:\\
 \subsubsection{Output Interfaces of the openETCS API TO other Units of the OBU}
@@ -498,7 +695,8 @@ From Function & Name &  To Unit & Description \\\hline}
  & Radio Output Message & \ EURORADIO & \\\hline
  & Communication Management  &  EURORADIO  & \\\hline
  & Driver Information & \gls{DMI} \\\hline
- & Train Data  & TIU &  \\\hline
+ & Train Data  & TIU &  
+\\\hline
 \end{supertabular}
 
 Packets:
