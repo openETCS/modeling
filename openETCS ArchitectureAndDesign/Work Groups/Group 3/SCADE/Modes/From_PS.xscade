@@ -1,0 +1,855 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Operator kind="function" name="From_PS">
+			<inputs>
+				<Variable name="SystemFailure_Req">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/5350/627A/8BC/546e03176a4e"/>
+					</pragmas>
+				</Variable>
+				<Variable name="Isolate_Req">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/5352/627A/8BC/546e0317692a"/>
+					</pragmas>
+				</Variable>
+				<Variable name="NoPower_Req">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/5353/627A/8BC/546e03177115"/>
+					</pragmas>
+				</Variable>
+				<Variable name="Shunting_Req">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/5355/627A/8BC/546e0317541e"/>
+					</pragmas>
+				</Variable>
+				<Variable name="Sleeping_Req">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/5359/627A/8BC/546e03175af5"/>
+					</pragmas>
+				</Variable>
+				<Variable name="StandBy_Req">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/53a3/627A/8BC/546e050a6255"/>
+					</pragmas>
+				</Variable>
+				<Variable name="previousMode_Loc">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="T_Mode"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/535a/627A/8BC/546e0317481b"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="FromPS_To_NewMode">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="T_Mode"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/534c/627A/8BC/546e03175778"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<data>
+				<IfBlock name="IfBlock1">
+					<block>
+						<IfNode>
+							<if>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Isolate_Req"/>
+									</path>
+								</IdExpression>
+							</if>
+							<then>
+								<Action>
+									<locals>
+										<Variable name="_L1">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="T_Mode"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Variable oid="!ed/534a/627A/8BC/546e031736dd"/>
+											</pragmas>
+										</Variable>
+									</locals>
+									<data>
+										<!-- FromPS_To_NewMode = _L1; -->
+										<Equation>
+											<lefts>
+												<VariableRef name="FromPS_To_NewMode"/>
+											</lefts>
+											<right>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L1"/>
+													</path>
+												</IdExpression>
+											</right>
+											<pragmas>
+												<ed:Equation oid="!ed/5348/627A/8BC/546e03175e9f"/>
+											</pragmas>
+										</Equation>
+										<!-- _L1 = IS; -->
+										<Equation>
+											<lefts>
+												<VariableRef name="_L1"/>
+											</lefts>
+											<right>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="IS"/>
+													</path>
+												</IdExpression>
+											</right>
+											<pragmas>
+												<ed:Equation oid="!ed/5349/627A/8BC/546e03176240"/>
+											</pragmas>
+										</Equation>
+									</data>
+									<pragmas>
+										<ed:Action oid="!ed/5347/627A/8BC/546e031744c1"/>
+									</pragmas>
+								</Action>
+							</then>
+							<else>
+								<IfNode>
+									<if>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="NoPower_Req"/>
+											</path>
+										</IdExpression>
+									</if>
+									<then>
+										<Action>
+											<locals>
+												<Variable name="_L1">
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="T_Mode"/>
+															</type>
+														</NamedType>
+													</type>
+													<pragmas>
+														<ed:Variable oid="!ed/5346/627A/8BC/546e031714be"/>
+													</pragmas>
+												</Variable>
+											</locals>
+											<data>
+												<!-- FromPS_To_NewMode = _L1; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="FromPS_To_NewMode"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="_L1"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/5344/627A/8BC/546e03172cd1"/>
+													</pragmas>
+												</Equation>
+												<!-- _L1 = NP; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="_L1"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="NP"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/5345/627A/8BC/546e03178c5"/>
+													</pragmas>
+												</Equation>
+											</data>
+											<pragmas>
+												<ed:Action oid="!ed/5343/627A/8BC/546e031715a7"/>
+											</pragmas>
+										</Action>
+									</then>
+									<else>
+										<IfNode>
+											<if>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="SystemFailure_Req"/>
+													</path>
+												</IdExpression>
+											</if>
+											<then>
+												<Action>
+													<locals>
+														<Variable name="_L1">
+															<type>
+																<NamedType>
+																	<type>
+																		<TypeRef name="T_Mode"/>
+																	</type>
+																</NamedType>
+															</type>
+															<pragmas>
+																<ed:Variable oid="!ed/5342/627A/8BC/546e031757c3"/>
+															</pragmas>
+														</Variable>
+													</locals>
+													<data>
+														<!-- FromPS_To_NewMode = _L1; -->
+														<Equation>
+															<lefts>
+																<VariableRef name="FromPS_To_NewMode"/>
+															</lefts>
+															<right>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="_L1"/>
+																	</path>
+																</IdExpression>
+															</right>
+															<pragmas>
+																<ed:Equation oid="!ed/5340/627A/8BC/546e031757eb"/>
+															</pragmas>
+														</Equation>
+														<!-- _L1 = SF; -->
+														<Equation>
+															<lefts>
+																<VariableRef name="_L1"/>
+															</lefts>
+															<right>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="SF"/>
+																	</path>
+																</IdExpression>
+															</right>
+															<pragmas>
+																<ed:Equation oid="!ed/5341/627A/8BC/546e03174913"/>
+															</pragmas>
+														</Equation>
+													</data>
+													<pragmas>
+														<ed:Action oid="!ed/533f/627A/8BC/546e031760db"/>
+													</pragmas>
+												</Action>
+											</then>
+											<else>
+												<IfNode>
+													<if>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="StandBy_Req"/>
+															</path>
+														</IdExpression>
+													</if>
+													<then>
+														<Action>
+															<locals>
+																<Variable name="_L1">
+																	<type>
+																		<NamedType>
+																			<type>
+																				<TypeRef name="T_Mode"/>
+																			</type>
+																		</NamedType>
+																	</type>
+																	<pragmas>
+																		<ed:Variable oid="!ed/533e/627A/8BC/546e031742ec"/>
+																	</pragmas>
+																</Variable>
+															</locals>
+															<data>
+																<!-- FromPS_To_NewMode = _L1; -->
+																<Equation>
+																	<lefts>
+																		<VariableRef name="FromPS_To_NewMode"/>
+																	</lefts>
+																	<right>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="_L1"/>
+																			</path>
+																		</IdExpression>
+																	</right>
+																	<pragmas>
+																		<ed:Equation oid="!ed/533c/627A/8BC/546e03175d29"/>
+																	</pragmas>
+																</Equation>
+																<!-- _L1 = SB; -->
+																<Equation>
+																	<lefts>
+																		<VariableRef name="_L1"/>
+																	</lefts>
+																	<right>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="SB"/>
+																			</path>
+																		</IdExpression>
+																	</right>
+																	<pragmas>
+																		<ed:Equation oid="!ed/533d/627A/8BC/546e03177c24"/>
+																	</pragmas>
+																</Equation>
+															</data>
+															<pragmas>
+																<ed:Action oid="!ed/533b/627A/8BC/546e0317501a"/>
+															</pragmas>
+														</Action>
+													</then>
+													<else>
+														<IfNode>
+															<if>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="Shunting_Req"/>
+																	</path>
+																</IdExpression>
+															</if>
+															<then>
+																<Action>
+																	<locals>
+																		<Variable name="_L1">
+																			<type>
+																				<NamedType>
+																					<type>
+																						<TypeRef name="T_Mode"/>
+																					</type>
+																				</NamedType>
+																			</type>
+																			<pragmas>
+																				<ed:Variable oid="!ed/533a/627A/8BC/546e03177ab4"/>
+																			</pragmas>
+																		</Variable>
+																	</locals>
+																	<data>
+																		<!-- FromPS_To_NewMode = _L1; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="FromPS_To_NewMode"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="_L1"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/5338/627A/8BC/546e03173ff3"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- _L1 = SH; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="_L1"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="SH"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/5339/627A/8BC/546e03176174"/>
+																			</pragmas>
+																		</Equation>
+																	</data>
+																	<pragmas>
+																		<ed:Action oid="!ed/5337/627A/8BC/546e03176f67"/>
+																	</pragmas>
+																</Action>
+															</then>
+															<else>
+																<IfNode>
+																	<if>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="Sleeping_Req"/>
+																			</path>
+																		</IdExpression>
+																	</if>
+																	<then>
+																		<Action>
+																			<locals>
+																				<Variable name="_L1">
+																					<type>
+																						<NamedType>
+																							<type>
+																								<TypeRef name="T_Mode"/>
+																							</type>
+																						</NamedType>
+																					</type>
+																					<pragmas>
+																						<ed:Variable oid="!ed/5336/627A/8BC/546e0317287f"/>
+																					</pragmas>
+																				</Variable>
+																			</locals>
+																			<data>
+																				<!-- FromPS_To_NewMode = _L1; -->
+																				<Equation>
+																					<lefts>
+																						<VariableRef name="FromPS_To_NewMode"/>
+																					</lefts>
+																					<right>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="_L1"/>
+																							</path>
+																						</IdExpression>
+																					</right>
+																					<pragmas>
+																						<ed:Equation oid="!ed/5334/627A/8BC/546e031774e5"/>
+																					</pragmas>
+																				</Equation>
+																				<!-- _L1 = SL; -->
+																				<Equation>
+																					<lefts>
+																						<VariableRef name="_L1"/>
+																					</lefts>
+																					<right>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="SL"/>
+																							</path>
+																						</IdExpression>
+																					</right>
+																					<pragmas>
+																						<ed:Equation oid="!ed/5335/627A/8BC/546e0317ddd"/>
+																					</pragmas>
+																				</Equation>
+																			</data>
+																			<pragmas>
+																				<ed:Action oid="!ed/5333/627A/8BC/546e0317409"/>
+																			</pragmas>
+																		</Action>
+																	</then>
+																	<else>
+																		<Action>
+																			<locals>
+																				<Variable name="_L1">
+																					<type>
+																						<NamedType>
+																							<type>
+																								<TypeRef name="T_Mode"/>
+																							</type>
+																						</NamedType>
+																					</type>
+																					<pragmas>
+																						<ed:Variable oid="!ed/5399/627A/8BC/546e042933b8"/>
+																					</pragmas>
+																				</Variable>
+																			</locals>
+																			<data>
+																				<!-- FromPS_To_NewMode = _L1; -->
+																				<Equation>
+																					<lefts>
+																						<VariableRef name="FromPS_To_NewMode"/>
+																					</lefts>
+																					<right>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="_L1"/>
+																							</path>
+																						</IdExpression>
+																					</right>
+																					<pragmas>
+																						<ed:Equation oid="!ed/5393/627A/8BC/546e04233bd5"/>
+																					</pragmas>
+																				</Equation>
+																				<!-- _L1 = previousMode_Loc; -->
+																				<Equation>
+																					<lefts>
+																						<VariableRef name="_L1"/>
+																					</lefts>
+																					<right>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="previousMode_Loc"/>
+																							</path>
+																						</IdExpression>
+																					</right>
+																					<pragmas>
+																						<ed:Equation oid="!ed/5398/627A/8BC/546e04293f49"/>
+																					</pragmas>
+																				</Equation>
+																			</data>
+																			<pragmas>
+																				<ed:Action oid="!ed/5392/627A/8BC/546e04167263"/>
+																			</pragmas>
+																		</Action>
+																	</else>
+																	<pragmas>
+																		<ed:IfNode oid="!ed/530b/627A/8BC/546e03173db4"/>
+																	</pragmas>
+																</IfNode>
+															</else>
+															<pragmas>
+																<ed:IfNode oid="!ed/530a/627A/8BC/546e03176145"/>
+															</pragmas>
+														</IfNode>
+													</else>
+													<pragmas>
+														<ed:IfNode oid="!ed/5309/627A/8BC/546e031757ad"/>
+													</pragmas>
+												</IfNode>
+											</else>
+											<pragmas>
+												<ed:IfNode oid="!ed/5308/627A/8BC/546e031765d9"/>
+											</pragmas>
+										</IfNode>
+									</else>
+									<pragmas>
+										<ed:IfNode oid="!ed/5307/627A/8BC/546e0317b56"/>
+									</pragmas>
+								</IfNode>
+							</else>
+							<pragmas>
+								<ed:IfNode oid="!ed/5306/627A/8BC/546e031750e3"/>
+							</pragmas>
+						</IfNode>
+					</block>
+					<pragmas>
+						<ed:IfBlock oid="!ed/5305/627A/8BC/546e0317430e"/>
+					</pragmas>
+				</IfBlock>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/5304/627A/8BC/546e0317609c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<diagrams>
+						<NetDiagram name="diagram_From_PS" landscape="true" format="A4 (210 297)" oid="!ed/534b/627A/8BC/546e031760fa">
+							<presentationElements>
+								<IfBlockGE presentable="!ed/5305/627A/8BC/546e0317430e">
+									<position>
+										<Point x="4921" y="3069"/>
+									</position>
+									<size>
+										<Size width="15822" height="8970"/>
+									</size>
+								</IfBlockGE>
+								<ActionGE presentable="!ed/5347/627A/8BC/546e031744c1">
+									<position>
+										<Point x="9208" y="3572"/>
+									</position>
+									<size>
+										<Size width="7540" height="847"/>
+									</size>
+								</ActionGE>
+								<ActionGE presentable="!ed/5343/627A/8BC/546e031715a7">
+									<position>
+										<Point x="9234" y="4789"/>
+									</position>
+									<size>
+										<Size width="7541" height="847"/>
+									</size>
+								</ActionGE>
+								<IfNodeGE labelWidth="1323" presentable="!ed/5306/627A/8BC/546e031750e3">
+									<position>
+										<Point x="5371" y="3651"/>
+									</position>
+								</IfNodeGE>
+								<EquationGE presentable="!ed/5348/627A/8BC/546e03175e9f">
+									<position>
+										<Point x="12991" y="3784"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/5349/627A/8BC/546e03176240">
+									<position>
+										<Point x="10292" y="3889"/>
+									</position>
+									<size>
+										<Size width="211" height="318"/>
+									</size>
+								</EquationGE>
+								<IfNodeGE labelWidth="1561" presentable="!ed/5307/627A/8BC/546e0317b56">
+									<position>
+										<Point x="5371" y="4868"/>
+									</position>
+								</IfNodeGE>
+								<ActionGE presentable="!ed/533f/627A/8BC/546e031760db">
+									<position>
+										<Point x="9234" y="5927"/>
+									</position>
+									<size>
+										<Size width="7567" height="846"/>
+									</size>
+								</ActionGE>
+								<EquationGE presentable="!ed/5344/627A/8BC/546e03172cd1">
+									<position>
+										<Point x="12806" y="5001"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/5345/627A/8BC/546e03178c5">
+									<position>
+										<Point x="10319" y="5106"/>
+									</position>
+									<size>
+										<Size width="212" height="318"/>
+									</size>
+								</EquationGE>
+								<IfNodeGE labelWidth="2196" presentable="!ed/5308/627A/8BC/546e031765d9">
+									<position>
+										<Point x="5371" y="6006"/>
+									</position>
+								</IfNodeGE>
+								<ActionGE presentable="!ed/533b/627A/8BC/546e0317501a">
+									<position>
+										<Point x="9313" y="7064"/>
+									</position>
+									<size>
+										<Size width="7567" height="847"/>
+									</size>
+								</ActionGE>
+								<EquationGE presentable="!ed/5340/627A/8BC/546e031757eb">
+									<position>
+										<Point x="12912" y="6085"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/5341/627A/8BC/546e03174913">
+									<position>
+										<Point x="10478" y="6191"/>
+									</position>
+									<size>
+										<Size width="212" height="317"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5349/627A/8BC/546e03176240" dstEquation="!ed/5348/627A/8BC/546e03175e9f">
+									<positions>
+										<Point x="10504" y="4048"/>
+										<Point x="12965" y="4048"/>
+										<Point x="12965" y="4048"/>
+										<Point x="13044" y="4048"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5345/627A/8BC/546e03178c5" dstEquation="!ed/5344/627A/8BC/546e03172cd1">
+									<positions>
+										<Point x="10530" y="5265"/>
+										<Point x="12435" y="5265"/>
+										<Point x="12435" y="5265"/>
+										<Point x="12859" y="5265"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5341/627A/8BC/546e03174913" dstEquation="!ed/5340/627A/8BC/546e031757eb">
+									<positions>
+										<Point x="10689" y="6350"/>
+										<Point x="12383" y="6350"/>
+										<Point x="12383" y="6350"/>
+										<Point x="12965" y="6350"/>
+									</positions>
+								</Edge>
+								<IfNodeGE labelWidth="1826" presentable="!ed/5309/627A/8BC/546e031757ad">
+									<position>
+										<Point x="5371" y="7144"/>
+									</position>
+								</IfNodeGE>
+								<ActionGE presentable="!ed/5337/627A/8BC/546e03176f67">
+									<position>
+										<Point x="9260" y="8123"/>
+									</position>
+									<size>
+										<Size width="7620" height="741"/>
+									</size>
+								</ActionGE>
+								<EquationGE presentable="!ed/533c/627A/8BC/546e03175d29">
+									<position>
+										<Point x="12832" y="7170"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/533d/627A/8BC/546e03177c24">
+									<position>
+										<Point x="10239" y="7276"/>
+									</position>
+									<size>
+										<Size width="212" height="317"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/533d/627A/8BC/546e03177c24" dstEquation="!ed/533c/627A/8BC/546e03175d29">
+									<positions>
+										<Point x="10451" y="7435"/>
+										<Point x="11695" y="7435"/>
+										<Point x="11695" y="7435"/>
+										<Point x="12885" y="7435"/>
+									</positions>
+								</Edge>
+								<IfNodeGE labelWidth="2302" presentable="!ed/530a/627A/8BC/546e03176145">
+									<position>
+										<Point x="5371" y="8202"/>
+									</position>
+								</IfNodeGE>
+								<EquationGE presentable="!ed/5338/627A/8BC/546e03173ff3">
+									<position>
+										<Point x="12912" y="8202"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/5339/627A/8BC/546e03176174">
+									<position>
+										<Point x="10081" y="8308"/>
+									</position>
+									<size>
+										<Size width="211" height="317"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5339/627A/8BC/546e03176174" dstEquation="!ed/5338/627A/8BC/546e03173ff3">
+									<positions>
+										<Point x="10292" y="8467"/>
+										<Point x="11615" y="8467"/>
+										<Point x="11615" y="8467"/>
+										<Point x="12965" y="8467"/>
+									</positions>
+								</Edge>
+								<IfNodeGE labelWidth="1879" presentable="!ed/530b/627A/8BC/546e03173db4">
+									<position>
+										<Point x="5371" y="9340"/>
+									</position>
+								</IfNodeGE>
+								<EquationGE presentable="!ed/5334/627A/8BC/546e031774e5">
+									<position>
+										<Point x="12912" y="9472"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/5335/627A/8BC/546e0317ddd">
+									<position>
+										<Point x="10081" y="9578"/>
+									</position>
+									<size>
+										<Size width="211" height="318"/>
+									</size>
+								</EquationGE>
+								<ActionGE presentable="!ed/5333/627A/8BC/546e0317409">
+									<position>
+										<Point x="9234" y="9260"/>
+									</position>
+									<size>
+										<Size width="7726" height="846"/>
+									</size>
+								</ActionGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5335/627A/8BC/546e0317ddd" dstEquation="!ed/5334/627A/8BC/546e031774e5">
+									<positions>
+										<Point x="10292" y="9737"/>
+										<Point x="11615" y="9737"/>
+										<Point x="11615" y="9737"/>
+										<Point x="12965" y="9737"/>
+									</positions>
+								</Edge>
+								<ActionGE presentable="!ed/5392/627A/8BC/546e04167263">
+									<position>
+										<Point x="7673" y="10372"/>
+									</position>
+									<size>
+										<Size width="9525" height="926"/>
+									</size>
+								</ActionGE>
+								<EquationGE presentable="!ed/5393/627A/8BC/546e04233bd5">
+									<position>
+										<Point x="12806" y="10610"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/5398/627A/8BC/546e04293f49">
+									<position>
+										<Point x="10398" y="10610"/>
+									</position>
+									<size>
+										<Size width="265" height="502"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5398/627A/8BC/546e04293f49" dstEquation="!ed/5393/627A/8BC/546e04233bd5">
+									<positions>
+										<Point x="10663" y="10874"/>
+										<Point x="11748" y="10874"/>
+										<Point x="11748" y="10874"/>
+										<Point x="12859" y="10874"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>
