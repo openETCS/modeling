@@ -184,30 +184,49 @@
 						</NamedType>
 					</type>
 					<value>
-						<!-- {valid : false, centerOfBalisePosition : {o_nominal : 0, o_min : 0, o_max : 0}, B... -->
+						<!-- {odometerOfBaliseDetection : {valid : false, timestamp : 0, odo : {o_nominal : 0,... -->
 						<DataStructOp>
 							<data>
-								<LabelledExpression label="valid">
+								<LabelledExpression label="odometerOfBaliseDetection">
 									<flow>
-										<ConstValue value="false"/>
-									</flow>
-								</LabelledExpression>
-								<LabelledExpression label="centerOfBalisePosition">
-									<flow>
-										<!-- {o_nominal : 0, o_min : 0, o_max : 0} -->
+										<!-- {valid : false, timestamp : 0, odo : {o_nominal : 0, o_min : 0, o_max : 0}, speed... -->
 										<DataStructOp>
 											<data>
-												<LabelledExpression label="o_nominal">
+												<LabelledExpression label="valid">
+													<flow>
+														<ConstValue value="false"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="timestamp">
 													<flow>
 														<ConstValue value="0"/>
 													</flow>
 												</LabelledExpression>
-												<LabelledExpression label="o_min">
+												<LabelledExpression label="odo">
 													<flow>
-														<ConstValue value="0"/>
+														<!-- {o_nominal : 0, o_min : 0, o_max : 0} -->
+														<DataStructOp>
+															<data>
+																<LabelledExpression label="o_nominal">
+																	<flow>
+																		<ConstValue value="0"/>
+																	</flow>
+																</LabelledExpression>
+																<LabelledExpression label="o_min">
+																	<flow>
+																		<ConstValue value="0"/>
+																	</flow>
+																</LabelledExpression>
+																<LabelledExpression label="o_max">
+																	<flow>
+																		<ConstValue value="0"/>
+																	</flow>
+																</LabelledExpression>
+															</data>
+														</DataStructOp>
 													</flow>
 												</LabelledExpression>
-												<LabelledExpression label="o_max">
+												<LabelledExpression label="speed">
 													<flow>
 														<ConstValue value="0"/>
 													</flow>
@@ -238,11 +257,6 @@
 												</LabelledExpression>
 											</data>
 										</DataStructOp>
-									</flow>
-								</LabelledExpression>
-								<LabelledExpression label="timestamp">
-									<flow>
-										<ConstValue value="0"/>
 									</flow>
 								</LabelledExpression>
 							</data>
@@ -10569,25 +10583,11 @@
 					<definition>
 						<Struct>
 							<fields>
-								<Field name="valid">
+								<Field name="odometerOfBaliseDetection">
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="bool"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/a210/1F63/184C/54102e7ee5b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-											<comment>Indicates the element has valid data.</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-								<Field name="centerOfBalisePosition">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Obu_BasicTypes_Pkg::OdometryLocations_T"/>
+												<TypeRef name="Obu_BasicTypes_Pkg::odometry_T"/>
 											</type>
 										</NamedType>
 									</type>
@@ -10608,20 +10608,6 @@
 									<pragmas>
 										<ed:Field oid="!ed/f96a/3DE2/1740/53d76202374a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 											<comment>Location inaccuries caused by the balise group center detection</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-								<Field name="timestamp">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/f96b/3DE2/1740/53d76202653" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-											<comment>timestamp when measurement was taken</comment>
 										</ed:Field>
 									</pragmas>
 								</Field>
