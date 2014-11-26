@@ -292,7 +292,9 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1c7c3/1CCC/1EE4/53d0e87d5b25"/>
+										<ed:Field oid="!ed/1c7c3/1CCC/1EE4/53d0e87d5b25" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>time of the odometry stamp [ms]</comment>
+										</ed:Field>
 									</pragmas>
 								</Field>
 								<Field name="odo">
@@ -318,7 +320,51 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1c7c5/1CCC/1EE4/53d0e87d1f6a"/>
+										<ed:Field oid="!ed/1c7c5/1CCC/1EE4/53d0e87d1f6a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>speed given by the sensors of the odometer [km/h]</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="acceleration">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="A_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3c44/3EFF/1644/5475eaab2b6d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>acceleration provided by the odometer [0.01m/s2]</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="motionState">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="odoMotionState_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3c4e/3EFF/1644/5475ebda6043" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>&quot;Train is in Motion&quot; State</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="motionDirection">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="odoMotionDirection_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3c58/3EFF/1644/5475ecec484b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>&quot;Direction the train is moving&quot;</comment>
+										</ed:Field>
 									</pragmas>
 								</Field>
 							</fields>
@@ -341,6 +387,57 @@
 					<pragmas>
 						<ed:Type oid="!ed/1c7cc/1CCC/1EE4/53d0e893263a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 							<comment>General speed type: in km/h.</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="odoMotionState_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="noMotion">
+									<pragmas>
+										<ed:Value oid="!ed/3c3e/3EFF/1644/5475e9693159"/>
+									</pragmas>
+								</Value>
+								<Value name="Motion">
+									<pragmas>
+										<ed:Value oid="!ed/3c3f/3EFF/1644/5475e990152a"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3c3d/3EFF/1644/5475e9491965" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Indicates whether from a Train point of View the train is in motion. Based on the sensors of the Odometer.</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="odoMotionDirection_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="unknownDirection">
+									<pragmas>
+										<ed:Value oid="!ed/3c41/3EFF/1644/5475e9e941c7"/>
+									</pragmas>
+								</Value>
+								<Value name="cabAFirst">
+									<pragmas>
+										<ed:Value oid="!ed/3c42/3EFF/1644/5475ea267cb7"/>
+									</pragmas>
+								</Value>
+								<Value name="cabBFirst">
+									<pragmas>
+										<ed:Value oid="!ed/3c43/3EFF/1644/5475ea3875ba"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3c40/3EFF/1644/5475e9d145db" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Indicates the direction the train is moving. Based on the sensors of the Odometer.</comment>
 						</ed:Type>
 					</pragmas>
 				</Type>
