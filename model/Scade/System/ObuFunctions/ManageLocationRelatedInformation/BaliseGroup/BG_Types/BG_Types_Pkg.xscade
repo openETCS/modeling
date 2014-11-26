@@ -8180,15 +8180,6 @@
 										</DataStructOp>
 									</flow>
 								</LabelledExpression>
-								<LabelledExpression label="BGOrientation">
-									<flow>
-										<IdExpression>
-											<path>
-												<ConstVarRef name="Q_DIRTRAIN_Unknown"/>
-											</path>
-										</IdExpression>
-									</flow>
-								</LabelledExpression>
 							</data>
 						</DataStructOp>
 					</value>
@@ -9110,7 +9101,7 @@
 						</NamedType>
 					</type>
 					<value>
-						<!-- {valid : false, timestamp : 0, odometrystamp : {o_nominal : 0, o_min : 0, o_max :... -->
+						<!-- {valid : false, bgPosition : {valid : false, timestamp : 0, odo : {o_nominal : 0,... -->
 						<DataStructOp>
 							<data>
 								<LabelledExpression label="valid">
@@ -9118,27 +9109,46 @@
 										<ConstValue value="false"/>
 									</flow>
 								</LabelledExpression>
-								<LabelledExpression label="timestamp">
+								<LabelledExpression label="bgPosition">
 									<flow>
-										<ConstValue value="0"/>
-									</flow>
-								</LabelledExpression>
-								<LabelledExpression label="odometrystamp">
-									<flow>
-										<!-- {o_nominal : 0, o_min : 0, o_max : 0} -->
+										<!-- {valid : false, timestamp : 0, odo : {o_nominal : 0, o_min : 0, o_max : 0}, speed... -->
 										<DataStructOp>
 											<data>
-												<LabelledExpression label="o_nominal">
+												<LabelledExpression label="valid">
+													<flow>
+														<ConstValue value="false"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="timestamp">
 													<flow>
 														<ConstValue value="0"/>
 													</flow>
 												</LabelledExpression>
-												<LabelledExpression label="o_min">
+												<LabelledExpression label="odo">
 													<flow>
-														<ConstValue value="0"/>
+														<!-- {o_nominal : 0, o_min : 0, o_max : 0} -->
+														<DataStructOp>
+															<data>
+																<LabelledExpression label="o_nominal">
+																	<flow>
+																		<ConstValue value="0"/>
+																	</flow>
+																</LabelledExpression>
+																<LabelledExpression label="o_min">
+																	<flow>
+																		<ConstValue value="0"/>
+																	</flow>
+																</LabelledExpression>
+																<LabelledExpression label="o_max">
+																	<flow>
+																		<ConstValue value="0"/>
+																	</flow>
+																</LabelledExpression>
+															</data>
+														</DataStructOp>
 													</flow>
 												</LabelledExpression>
-												<LabelledExpression label="o_max">
+												<LabelledExpression label="speed">
 													<flow>
 														<ConstValue value="0"/>
 													</flow>
@@ -9632,11 +9642,6 @@
 										</IdExpression>
 									</flow>
 								</LabelledExpression>
-								<LabelledExpression label="passingSpeed">
-									<flow>
-										<ConstValue value="0"/>
-									</flow>
-								</LabelledExpression>
 							</data>
 						</DataStructOp>
 					</value>
@@ -9992,30 +9997,16 @@
 										<ed:Field oid="!ed/172725/1CCC/1EE4/53d11ef94306"/>
 									</pragmas>
 								</Field>
-								<Field name="timestamp">
+								<Field name="bgPosition">
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+												<TypeRef name="Obu_BasicTypes_Pkg::odometry_T"/>
 											</type>
 										</NamedType>
 									</type>
 									<pragmas>
 										<ed:Field oid="!ed/172726/1CCC/1EE4/53d11ef94d8f"/>
-									</pragmas>
-								</Field>
-								<Field name="odometrystamp">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Obu_BasicTypes_Pkg::OdometryLocations_T"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/172727/1CCC/1EE4/53d11ef923e4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-											<comment>Odometry values when the balise group was passed</comment>
-										</ed:Field>
 									</pragmas>
 								</Field>
 								<Field name="BG_centerDetectionInaccuraccuracies">
@@ -10099,20 +10090,6 @@
 									<pragmas>
 										<ed:Field oid="!ed/17272d/1CCC/1EE4/53d11ef91805" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 											<comment>3.6.1.3: Direction of train movement in relation to the BG orientation</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-								<Field name="passingSpeed">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Obu_BasicTypes_Pkg::Speed_T"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/17272e/1CCC/1EE4/53d11ef95d6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-											<comment>Train speed while passing the BG; its sign characterizes the passing direction based on odometry information</comment>
 										</ed:Field>
 									</pragmas>
 								</Field>
@@ -10601,20 +10578,6 @@
 										</ed:Field>
 									</pragmas>
 								</Field>
-								<Field name="BGOrientation">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Q_DIRTRAIN"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/a1ec/2FCB/170C/53e731d530e6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-											<comment>Orientation of the balise group</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
 							</fields>
 						</Struct>
 					</definition>
@@ -10661,220 +10624,6 @@
 						<ed:Type oid="!ed/f968/3DE2/1740/53d762024439" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 							<comment>Gives the information for location and accuracy of measurements</comment>
 						</ed:Type>
-					</pragmas>
-				</Type>
-				<Type name="levelTransitionOrder_T">
-					<definition>
-						<Struct>
-							<fields>
-								<Field name="valid">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="bool"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/6f5f7/4AF8/1D30/542bf64f1b"/>
-									</pragmas>
-								</Field>
-								<Field name="q_dir">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Q_DIR"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/6f600/4AF8/1D30/542bf675458f"/>
-									</pragmas>
-								</Field>
-								<Field name="q_scale">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Q_SCALE"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/6f601/4AF8/1D30/542bf675558e"/>
-									</pragmas>
-								</Field>
-								<Field name="d_leveltr">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="D_LEVELTR"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/6f602/4AF8/1D30/542bf675574c"/>
-									</pragmas>
-								</Field>
-								<Field name="m_leveltr">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="M_LEVELTR"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/6f603/4AF8/1D30/542bf6757890"/>
-									</pragmas>
-								</Field>
-								<Field name="nid_ntc">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="NID_NTC"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/6f604/4AF8/1D30/542bf6752e39"/>
-									</pragmas>
-								</Field>
-								<Field name="l_ackleveltr">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="L_ACKLEVELTR"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/6f605/4AF8/1D30/542bf6755a10"/>
-									</pragmas>
-								</Field>
-							</fields>
-						</Struct>
-					</definition>
-					<pragmas>
-						<ed:Type oid="!ed/6f5f6/4AF8/1D30/542bf6356ab8"/>
-					</pragmas>
-				</Type>
-				<Type name="levelTransitionOrders_T">
-					<definition>
-						<Table>
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="levelTransitionOrder_T"/>
-									</type>
-								</NamedType>
-							</type>
-							<size>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="cMaxNoOfLevelTransitionOrders"/>
-									</path>
-								</IdExpression>
-							</size>
-						</Table>
-					</definition>
-					<pragmas>
-						<ed:Type oid="!ed/7503b/4AF8/1D30/542bf81554a2"/>
-					</pragmas>
-				</Type>
-				<Type name="levelTransitionOrderBGMsg_T">
-					<definition>
-						<Struct>
-							<fields>
-								<Field name="valid">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="bool"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/75068/4AF8/1D30/542bfbc33d2b"/>
-									</pragmas>
-								</Field>
-								<Field name="BG_Header">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="BG_Header_T"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/75071/4AF8/1D30/542bfbe255fd"/>
-									</pragmas>
-								</Field>
-								<Field name="orders">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="levelTransitionOrders_T"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/7507b/4AF8/1D30/542bfbfd6647"/>
-									</pragmas>
-								</Field>
-							</fields>
-						</Struct>
-					</definition>
-					<pragmas>
-						<ed:Type oid="!ed/75067/4AF8/1D30/542bfb841ba8"/>
-					</pragmas>
-				</Type>
-				<Type name="levelTransitionOrderCmd_T">
-					<definition>
-						<Struct>
-							<fields>
-								<Field name="valid">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="bool"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/75086/4AF8/1D30/542c023b33a3"/>
-									</pragmas>
-								</Field>
-								<Field name="distanceSinceLTORef">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/7508f/4AF8/1D30/542c0244fc3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-											<comment>Estimated distance since refBG of LTO passed</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-								<Field name="nextLTO">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="levelTransitionOrder_T"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/75090/4AF8/1D30/542c02d0938"/>
-									</pragmas>
-								</Field>
-							</fields>
-						</Struct>
-					</definition>
-					<pragmas>
-						<ed:Type oid="!ed/75085/4AF8/1D30/542c021c32e6"/>
 					</pragmas>
 				</Type>
 			</declarations>
