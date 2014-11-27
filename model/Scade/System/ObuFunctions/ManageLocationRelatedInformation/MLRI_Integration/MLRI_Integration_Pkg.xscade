@@ -236,7 +236,7 @@
 								</LabelledExpression>
 								<LabelledExpression label="infoFromPassing">
 									<flow>
-										<!-- {valid : false, timestamp : 0, odometrystamp : {o_nominal : 0, o_min : 0, o_max :... -->
+										<!-- {valid : false, bgPosition : {valid : false, timestamp : 0, odo : {o_nominal : 0,... -->
 										<DataStructOp>
 											<data>
 												<LabelledExpression label="valid">
@@ -244,29 +244,71 @@
 														<ConstValue value="false"/>
 													</flow>
 												</LabelledExpression>
-												<LabelledExpression label="timestamp">
+												<LabelledExpression label="bgPosition">
 													<flow>
-														<ConstValue value="0"/>
-													</flow>
-												</LabelledExpression>
-												<LabelledExpression label="odometrystamp">
-													<flow>
-														<!-- {o_nominal : 0, o_min : 0, o_max : 0} -->
+														<!-- {valid : false, timestamp : 0, odo : {o_nominal : 0, o_min : 0, o_max : 0}, speed... -->
 														<DataStructOp>
 															<data>
-																<LabelledExpression label="o_nominal">
+																<LabelledExpression label="valid">
+																	<flow>
+																		<ConstValue value="false"/>
+																	</flow>
+																</LabelledExpression>
+																<LabelledExpression label="timestamp">
 																	<flow>
 																		<ConstValue value="0"/>
 																	</flow>
 																</LabelledExpression>
-																<LabelledExpression label="o_min">
+																<LabelledExpression label="odo">
+																	<flow>
+																		<!-- {o_nominal : 0, o_min : 0, o_max : 0} -->
+																		<DataStructOp>
+																			<data>
+																				<LabelledExpression label="o_nominal">
+																					<flow>
+																						<ConstValue value="0"/>
+																					</flow>
+																				</LabelledExpression>
+																				<LabelledExpression label="o_min">
+																					<flow>
+																						<ConstValue value="0"/>
+																					</flow>
+																				</LabelledExpression>
+																				<LabelledExpression label="o_max">
+																					<flow>
+																						<ConstValue value="0"/>
+																					</flow>
+																				</LabelledExpression>
+																			</data>
+																		</DataStructOp>
+																	</flow>
+																</LabelledExpression>
+																<LabelledExpression label="speed">
 																	<flow>
 																		<ConstValue value="0"/>
 																	</flow>
 																</LabelledExpression>
-																<LabelledExpression label="o_max">
+																<LabelledExpression label="acceleration">
 																	<flow>
 																		<ConstValue value="0"/>
+																	</flow>
+																</LabelledExpression>
+																<LabelledExpression label="motionState">
+																	<flow>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="Obu_BasicTypes_Pkg::noMotion"/>
+																			</path>
+																		</IdExpression>
+																	</flow>
+																</LabelledExpression>
+																<LabelledExpression label="motionDirection">
+																	<flow>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="Obu_BasicTypes_Pkg::unknownDirection"/>
+																			</path>
+																		</IdExpression>
 																	</flow>
 																</LabelledExpression>
 															</data>
@@ -756,11 +798,6 @@
 																<ConstVarRef name="Q_DIRTRAIN_Reverse"/>
 															</path>
 														</IdExpression>
-													</flow>
-												</LabelledExpression>
-												<LabelledExpression label="passingSpeed">
-													<flow>
-														<ConstValue value="0"/>
 													</flow>
 												</LabelledExpression>
 											</data>
