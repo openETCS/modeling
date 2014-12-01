@@ -8,6 +8,8 @@
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{makeidx}
+\usepackage{amsthm}
+\newtheorem{remark}{Remark}
 \definecolor{gray}{rgb}{0.8,0.8,0.8}
 \usepackage[modulo]{lineno}
 \graphicspath{{./template/}{.}{./images/}}
@@ -501,26 +503,27 @@ I
 The orientation of the Balise Group is already determined in the check procedure. Due to the relocation of functions this block is not used any more.
 
 
-\subsection{F.1.5 Select Useable Info}
-Note: This function needs to be seen as a seperate part of the system. The function is not limited to the balise channel.
-This aspect of the architecture will be corrected in the next iteration.
+\subsection{F.1.5 Select Usable Info}
+\begin{remark}
+This function has to be seen as a separate part of the system, since the filter of this function is not limited to balise messages but also filters radio messages. Thus, the architecture design will be corrected accordingly in the next iteration of the modelling activities.
+\end{remark}
 
 \subsubsection{Short Description of Functionality}
-The function Select Useable Info filters information received from balises that have been passed, radio, and EUROLOOP. Filtering is done depending on the mode of the train, the current ETCS level, the type/content of the information, and the transition media of the information. As neither radio messages nor EUROLOOP are part of the first iteration of work, not all functionality of the filter described in the specification is currently implemented.
+The function Select Usable Info filters information received from balises that have been passed, radio messages, and EUROLOOP messages. Filtering is done depending on the mode of the train, the current ETCS level, the type/content of the information, and the transition media of the information. As neither radio messages nor EUROLOOP are part of the first iteration of work, not all functionality of the filter described in the specification is currently implemented.
 
 \subsubsection{Reference to the SRS (or other requirements)}
-The functionality of Select Useable Info is described in Chapter 4.8 of the SRS. The following list gives an overview of the most important sections for each of the blocks in the model.
+The functionality of Select Usable Info is described in Chapter 4.8 of subset-026 \cite{subset-026}. The following list gives an overview of the most important sections for each of the blocks in the model.
 
 \begin{description}
-\item[First filter] The first filter, i.e., the filter on the level, is described in \cite[Chapter~4.8.3]{subset-026}.
-\item[Second filter] The second filter, i.e., the filter on the transition media, is described in\cite[Chapter~4.8.3]{subset-026}.
+\item[First filter] The first filter, i.e.~the filter on the level, is described in \cite[Chapter~4.8.3]{subset-026}.
+\item[Second filter] The second filter, i.e.~the filter on the transition media, is described in\cite[Chapter~4.8.3]{subset-026}.
 \item[Third filter]
- The second filter, i.e., the filter on the modes, is described in \cite[Chapter~4.8.4]{subset-026}.
+ The third filter, i.e.~the filter on the modes, is described in \cite[Chapter~4.8.4]{subset-026}.
 \item[Transition buffers] Details on the handling of the transition buffers used in the first and the second filter are described in \cite[Chapter~4.8.5]{subset-026}.
 \end{description}
 
 \subsubsection{Design Constraints and Choices}
-The first iteration of the model takes only balise group messages into account. This implies that a large part of the specification of this function described in \cite{subset-026} is not relevant for the first iteration. This in particular applies to the filter on the transition medium, because radio messages are not part of the model so far, and to the filter on level, because the first iteration of the model implements only ETCS level 1.
+The first iteration of the model takes only balise group messages into account. This implies that a large part of the specification of this function described in subset-026 \cite{subset-026} is not relevant for the first iteration. This in particular applies to the second filter, i.e.~filter on the transition media, because radio messages are not part of the model so far. Moreover, the functionality of the first filter, i.e.~filter on the level, is currently  limited because the first iteration of the model implements ETCS level 1 only.
 
 \section{F.2 Manage Train Position}
 
