@@ -681,6 +681,7 @@ For providing the output, the module needs different input data flows. An overvi
     \hline
     \textbf{Index} & \textbf{Input name} & \textbf{Input type}\\ \hline
     0 & \texttt{rtmMessage} & \texttt{< will be defined by API >} \\
+    1 & \texttt{radioDevice} & \texttt{int}\\
     1 & \texttt{apiConsistencyError} & \texttt{bool}\\
     2 & \texttt{lastRelevantEventTimestamp} & \texttt{T\_internal\_Type}\\
     3 & \texttt{t\_NVContact} & \texttt{T\_internal\_Type}\\
@@ -723,7 +724,12 @@ For the demonstrator scenario (Utrecht-Amsterdam), the following messages and pa
 
 \textbf{TODO:} Balise-channel
 
-\paragraph{Input 1: \texttt{apiConsistencyError}}
+\paragraph{Input 1: \texttt{radioDevice}}
+The RTM-module can consist of multiple radio devices. When a handover between two RBCs is performed, messages can be received from both radio devices. The API provides information about the device, which received the message.
+
+The values transmitted have to be defined by the API.
+
+\paragraph{Input 2: \texttt{apiConsistencyError}}
 If the API detects a consistency error in the transmitted message, this error is reported to the model by the input \texttt{apiConsistencyError}.
 
 Possible errors detectable by the API are:
@@ -745,7 +751,7 @@ Possible errors detectable by the API are:
   \label{tbl:apiConsistencyError}
 \end{table}
 
-\paragraph{Input 2: \texttt{lastRelevantEventTimestamp}}
+\paragraph{Input 3: \texttt{lastRelevantEventTimestamp}}
 
 For monitoring the safe radio connection, it's necessary, that the time between two packets is less than the value of \texttt{T\_NVCONTACT}.
 
@@ -753,11 +759,11 @@ In situations like level-changes or announced radioholes, not the timestamp of t
 
 For performing this check, the timestamp of the last relevant event is provided to the model as an \texttt{T\_internal\_Type}-type.
 
-\paragraph{Input 3: \texttt{t\_NVContact}}
+\paragraph{Input 4: \texttt{t\_NVContact}}
 
 For monitoring the safe radio connection, the national value \texttt{T\_NVCONTACT} is needed as an input.
 
-\paragraph{Input 4: \texttt{reset}}
+\paragraph{Input 5: \texttt{reset}}
 To delete all data stored in the module (e.g. collected balise-telegrams, which do not yet form a complete message), a reset input can be used. If the input is set to \texttt{true}, all data kept in the module is deleted and no input is accepted.
 
 \begin{table}[H]
@@ -830,40 +836,15 @@ Additionally, status information is provided. The status information consists of
 
 An overview over the output dataflows is provided in table \ref{tbl:ReceiveMessageAndCheckConsistencyOutput}.
 
-Since the situation can occur, that a Euroradio-message and a Eurobalise-message are delivered to the output in the same cycle of the module, the output consists of a structure of both data types. Dependant on the input and the processing of the message, the output can contain
-\begin{itemize}
- \item \textbf{0} Euroradio-message and \textbf{0} Eurobalise-message
- \item \textbf{1} Euroradio-message and \textbf{0} Eurobalise-message
- \item \textbf{0} Euroradio-message and \textbf{1} Eurobalise-message
- \item \textbf{1} Euroradio-message and \textbf{1} Eurobalise-message
-\end{itemize}
-
-To mark, in which elements valid data is available, the elements can be marked with valid-flags (see specification of the datatypes).
-
 \begin{table}[H]
   \begin{tabular}{| c | l | l | l |}
     \hline
     \textbf{Index} & \textbf{Output name} & \textbf{Output type}\\ \hline
-    0 & MessageOutputSlot1 & \texttt{checkedMessage\_T}\\
-    1 & MessageOutputSlot2 & \texttt{checkedMessage\_T}\\
-    \hline
-  \end{tabular} 
-  \caption{Overview over output}
-  \label{tbl:ReceiveMessageAndCheckConsistencyOutput}
-\end{table}
-
-\paragraph{Output 0: \texttt{checkedMessage\_T}}
-The type \texttt{checkedMessage\_T} consists of the fields described in table \ref{tbl:checkedMessage}.
-
-\begin{table}[H]
-  \begin{tabular}{| c | l | l | l |}
-    \hline
-    \textbf{Index} & \textbf{Element name} & \textbf{Element type}\\ \hline
     0 & \texttt{valid} & \texttt{bool}\\
-    1 & \texttt{rejected} & \texttt{bool}\\
-    2 & \texttt{rejectionReason} & Boolean-Array (to be defined)\\
-    3 & \texttt{acknowledgementRequired} & \texttt{bool}\\
-    4 & \texttt{radioConnectionStatus} & \texttt{Enumeration}\\
+    1 & \texttt{rejectionReason} & Boolean-Array (to be defined)\\
+    2 & \texttt{acknowledgementRequired} & \texttt{bool}\\
+    3 & \texttt{radioConnectionStatus} & \texttt{Enumeration}\\
+    4 & \texttt{radioDevice} & \texttt{int}\\
     5 & \texttt{receivedMessage} & \texttt{receivedMessage\_T} \\
     \hline
   \end{tabular} 
@@ -871,14 +852,16 @@ The type \texttt{checkedMessage\_T} consists of the fields described in table \r
   \label{tbl:checkedMessage}
 \end{table}
 
-\subparagraph{Element 0: \texttt{valid}}
-The valid-flag specifies, if the data in this element is valid or if it has to be ignored while processing.
+\subparagraph{Output 0: \texttt{valid}}
+The valid-flag specifies, if the data provided by the output \texttt{receivedMessage} is valid or if it was rejected.
+
+Invalid data can be recognized either by the API (e.g. CRC-check) or by the consistency check in this module.
 
 \begin{table}[H]
   \begin{tabular}{| l | p{13cm} |}
     \hline
     \textbf{Value} & \textbf{Interpretation}\\ \hline
-    false & The data in this element is not valid and has to be ignored. \\
+    false & The data in this element is not valid and has to be rejected. \\
     true & The data in this element is valid and has to be processed by the following models. \\
     \hline
   \end{tabular} 
@@ -886,26 +869,10 @@ The valid-flag specifies, if the data in this element is valid or if it has to b
   \label{tbl:rcvvalid}
 \end{table}
 
-\subparagraph{Element 1: \texttt{rejected}}
-
-The output \texttt{rejected} is giving information if the current message was rejected. The value of the flag is the result of the consistency check.
-
-\begin{table}[H]
-  \begin{tabular}{| l | p{13cm} |}
-    \hline
-    \textbf{Value} & \textbf{Interpretation}\\ \hline
-    false & The message at output \texttt{receivedMessage} is consistent and was not rejected. \\
-    true & During the consistency check, consistency errors were detected and the message was rejected. \\
-    \hline
-  \end{tabular} 
-  \caption{Possible values for the output \texttt{rejected}}
-  \label{tbl:Rejected}
-\end{table}
-
-\subparagraph{Element 2: \texttt{rejectedReason}}
+\subparagraph{Output 1: \texttt{rejectedReason}}
 In case of an inconsistent message, the output \texttt{rejectedReason} is giving information to the system, which problem occured. This information also has to be sent to the RBC as an error report.
 
-\subparagraph{Element 3: \texttt{acknowledgementRequired}}
+\subparagraph{Output 2: \texttt{acknowledgementRequired}}
 
 The \texttt{acknowledgementRequired}-dataflow indicates, whether the reception of the message has to be acknowledged to the RBC.
 
@@ -921,7 +888,7 @@ The \texttt{acknowledgementRequired}-dataflow indicates, whether the reception o
   \label{tbl:AcknowledgementRequiredTable}
 \end{table}
 
-\subparagraph{Element 4: \texttt{radioConnectionStatus}}
+\subparagraph{Output 3: \texttt{radioConnectionStatus}}
 The output ConnectionStatus is used, when the RTM reports problems with the radio connection. The output is derived from the Alstom-API. %\textbf{TODO!} 
 The output can be one of the following values:
 
@@ -940,8 +907,10 @@ The output can be one of the following values:
   \label{tbl:ConnectionStatusOutput}
 \end{table}
 
+\subparagraph{Output 4: \texttt{radioDevice}}
+The output radio device will give information, which device received a radio message. Trains equipped with two or more radio devices may receive messages on two interfaces in situations of a RBC handover.
 
-\subparagraph{Element 5: \texttt{receivedMessage}}
+\subparagraph{Output 5: \texttt{receivedMessage}}
 The element \texttt{receivedMessage} consists of the type \texttt{receivedMessage\_T} combines both balise and radio messages to one common datatype. This datatype contains all variables and packets, which are possible for the given scenario.
 
 \begin{table}[H]
@@ -1036,11 +1005,11 @@ The first stage of the module is the reception of Euroradio-messages and Eurobal
 
 \paragraph{Content checks}
 \begin{itemize}
- \item The computed length of the message must be equal to the value in \texttt{L\_MESSAGE}. (SRS 8.4.4.2.1)
+ %\item The computed length of the message must be equal to the value in \texttt{L\_MESSAGE}. (SRS 8.4.4.2.1)
  \item The whole message must be complete and contains all necessary fields. (SRS 8.16.1.1)
  \item The message must respect the ETCS language. (SRS 8.16.1.1)
- \item The variables of the message does not contain invalid values. (SRS 8.16.1.1)
- \item Check if the specified priority of message is equal to the priority with which the message was received. (SRS 3.16.3.1.3.1)
+ \item The variables of the message does not contain invalid values. (SRS 8.16.1.1) % already done by API?
+ \item Check if the specified priority of message is equal to the priority with which the message was received. (SRS 3.16.3.1.3.1) 
 \end{itemize}
 
 
@@ -1062,11 +1031,17 @@ The first stage of the module is the reception of Euroradio-messages and Eurobal
 
 \paragraph{Actions for inconsistent messages}
 \begin{itemize}
-  \item If a message is not consistent, it shall be rejected. (SRS 3.16.3.1.1.1)
-  \item The RBC shall be informed, when a message was rejected (SRS 3.16.3.1.1.2). Therefore an error report must be sent (packet number 4). 
-  \item If the RBC requested an ACK for a received message, the ACK shall be sent. (SRS 3.16.3.5)
+  \item If a message is not consistent, it shall be rejected (SRS 3.16.3.1.1.1). For this purpose, the message is marked as invalid.
+  \item The RBC shall be informed, when a message was rejected (SRS 3.16.3.1.1.2). Therefore the message is marked with necessary information for creating an error report. 
+  \item If the RBC requested an ACK for a received message, message will be marked for the module to send a report to the RBC. (SRS 3.16.3.5)
   \item This module will not trigger the reaction for an interrupted radio connection to the RBC. The reaction sepcified by \texttt{M\_NVCONTACT} will be triggered by the RBC session management module.
 \end{itemize}
+
+\paragraph{Other functionality}
+\begin{itemize}
+ \item The module will only output a maximum of one message per cycle. The module will take care of buffering other messages until they will be delivered at the output.
+\end{itemize}
+
 
 The check by the Euroradio-protocol (3.16.3.1.1) will not be performed by the model, but on a lower level (RTM or openETCS-API).
 
