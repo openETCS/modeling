@@ -682,10 +682,10 @@ For providing the output, the module needs different input data flows. An overvi
     \textbf{Index} & \textbf{Input name} & \textbf{Input type}\\ \hline
     0 & \texttt{rtmMessage} & \texttt{< will be defined by API >} \\
     1 & \texttt{radioDevice} & \texttt{int}\\
-    1 & \texttt{apiConsistencyError} & \texttt{bool}\\
-    2 & \texttt{lastRelevantEventTimestamp} & \texttt{T\_internal\_Type}\\
-    3 & \texttt{t\_NVContact} & \texttt{T\_internal\_Type}\\
-    4 & \texttt{reset} & \texttt{bool} \\
+    2 & \texttt{apiConsistencyError} & \texttt{bool}\\
+    3 & \texttt{lastRelevantEventTimestamp} & \texttt{T\_internal\_Type}\\
+    4 & \texttt{t\_NVContact} & \texttt{T\_internal\_Type}\\
+    5 & \texttt{reset} & \texttt{bool} \\
     \hline
   \end{tabular} 
   \caption{Overview over input}
@@ -844,7 +844,7 @@ An overview over the output dataflows is provided in table \ref{tbl:ReceiveMessa
     1 & \texttt{rejectionReason} & Boolean-Array (to be defined)\\
     2 & \texttt{acknowledgementRequired} & \texttt{bool}\\
     3 & \texttt{radioConnectionStatus} & \texttt{Enumeration}\\
-    4 & \texttt{radioDevice} & \texttt{int}\\
+    4 & \texttt{radioDeviceOut} & \texttt{int}\\
     5 & \texttt{receivedMessage} & \texttt{receivedMessage\_T} \\
     \hline
   \end{tabular} 
@@ -907,7 +907,7 @@ The output can be one of the following values:
   \label{tbl:ConnectionStatusOutput}
 \end{table}
 
-\subparagraph{Output 4: \texttt{radioDevice}}
+\subparagraph{Output 4: \texttt{radioDeviceOut}}
 The output radio device will give information, which device received a radio message. Trains equipped with two or more radio devices may receive messages on two interfaces in situations of a RBC handover.
 
 \subparagraph{Output 5: \texttt{receivedMessage}}
@@ -951,18 +951,18 @@ The Eurobalise-common-header \texttt{BG\_Header\_T} consists of the fields descr
 The Euroradio-common-header \texttt{Radio\_TrackTrain\_Header\_T} consists of the fields described in table \ref{tbl:Radio_TrackTrain_Header_T_structure}. The structure corresponds to the structure defined in the SRS chapter 8.4.4.6.1. The structure contains all variables required by possible \texttt{NID\_MESSAGE} values for the given scenario.
 
 \begin{table}[H]
-  \begin{tabular}{| c | l | l | l |}
+  \begin{tabular}{| l | l | l |}
   \hline
-  \textbf{Field No.} & \textbf{Name} & \textbf{Datatype} & \textbf{Origin}\\ \hline
-  - & nid\_message & NID\_MESSAGE & Euroradio-Header\\
-  - & l\_message & L\_MESSAGE & Euroradio-Header\\
-  - & t\_train & T\_TRAIN & Euroradio-Header\\
-  - & m\_ack & M\_ACK & Euroradio-Header\\
-  - & nid\_lrbg & NID\_LRBG & Euroradio-Header\\
-  - & q\_scale & Q\_SCALE & Messages 2, 33\\
-  - & d\_sr & D\_SR & Message 2\\
-  - & t\_sh\_rqst & T\_TRAIN & Message 28\\
-  - & d\_ref & D\_REF & Message 33\\
+  \textbf{Name} & \textbf{Datatype} & \textbf{Origin}\\ \hline
+  nid\_message & NID\_MESSAGE & Euroradio-Header\\
+  %- & l\_message & L\_MESSAGE & Euroradio-Header\\
+  t\_train & T\_TRAIN & Euroradio-Header\\
+  m\_ack & M\_ACK & Euroradio-Header\\
+  nid\_lrbg & NID\_LRBG & Euroradio-Header\\
+  q\_scale & Q\_SCALE & Messages 2, 33\\
+  d\_sr & D\_SR & Message 2\\
+  t\_sh\_rqst & T\_TRAIN & Message 28\\
+  d\_ref & D\_REF & Message 33\\
   \hline
   \end{tabular}
    \caption{Structure of \texttt{Radio\_TrackTrain\_Header\_T}}
