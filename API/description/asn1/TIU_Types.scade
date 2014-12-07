@@ -1,0 +1,212 @@
+/*
+        Train_interface DEFINITIONS 
+	Based on ASN.1 model by D. Mentre
+	Author: B. Hekele, DB-Netz
+*/
+type M01_sleeping_signal_status_T = enum {
+ M01_info_not_available, 
+ signal_active, 
+ signal_not_active 
+ };
+type M02_passiveshunting_signal_status_T = enum {
+ M02_info_not_available,
+ passive_shunting_permitted,
+ passive_shunting_not_permitted 
+ };
+type M03_nonleading_signal_status_T = enum {
+ M03_info_not_available, 
+ non_leading_permitted,
+ non_leading_not_permitted 
+ };
+type M04_cab_signal_status_T = enum { 
+ M04_info_not_available, 
+ both_desks_are_closed,
+ desk_A_is_open, 
+ desk_B_is_open,
+ both_desks_are_open 
+ };
+type M05_directioncontroller_signal_status_T = enum { 
+ M05_info_not_available, 
+ direction_controller_in_neutral,
+ direction_controller_in_forward,
+ direction_controller_in_backward 
+ };
+type M06_trainintegrity_signal_status_T = enum {
+ M06_info_not_available, 
+ train_is_not_integer, 
+ train_is_integer 
+ };
+type M07_traction_signal_status_T = enum { 
+ M07_info_not_available,
+ traction_on_traction_off
+ };
+type Mode_control_and_train_status_T = {
+ m_sleeping_st                 : M01_sleeping_signal_status_T,
+ m_passiveshunting_st          : M02_passiveshunting_signal_status_T,
+ m_nonleading_st               : M03_nonleading_signal_status_T,
+ m_cab_st                      : M04_cab_signal_status_T,
+ m_directioncontroller_st      : M05_directioncontroller_signal_status_T,
+ m_trainintegrity_st           : M06_trainintegrity_signal_status_T,
+ m_traction_st                 : M07_traction_signal_status_T
+};
+type M08_Isolation_status_T = enum {
+ M08_info_not_available,
+ on_board_equipment_is_isolated,
+ on_board_equipement_is_not_isolated
+};
+type M09_brake_status_T = enum {
+ M09_info_not_available, 
+ is_active, 
+ is_not_active
+};
+type Brake_status_T =  {
+ m_regenerativebrake_st        : M09_brake_status_T,
+ m_eddycurrentbrake_st         : M09_brake_status_T,
+ m_magneticshoebrake_st        : M09_brake_status_T,
+ m_electropneumaticbrake_st    : M09_brake_status_T,
+ m_additionalbrake_st          : M09_brake_status_T
+};
+type P01_brake_pressure_value_T = {
+ valid : bool,
+ pressure : int               /* 0 to 6000 mbar with 100 increment */
+ };
+type M10_brake_signal_command_T = enum {
+ M10_info_not_available, 
+ apply_brake, 
+ release_brake 
+};
+type Brake_command_T = {
+ m_servicebrake_cm     : M10_brake_signal_command_T,
+ m_emergencybrake_cm   : M10_brake_signal_command_T
+};
+type M11_brake_inhibit_command_T = enum {
+ M11_info_not_available,
+ inhibit_brake,
+ do_not_inhibit_brake 
+};
+type M12_eddy_current_brake_inhibition_T = enum {
+ M12_info_not_available,
+ inhibit_for_service_brake,
+ inhibit_for_emergency_brake,
+ inhibit_for_both_service_emergency_brake,
+ do_not_inhibit_for_service_brake,
+ do_not_inhibit_for_emergency_brake,
+ do_not_inhibit_for_both_service_emergency_brake
+};
+type Brake_inhibition_command_T =  {
+  m_regenerativebrake_cm : M11_brake_inhibit_command_T,
+  m_eddycurrentbrake_cm  : M12_eddy_current_brake_inhibition_T,
+  m_magneticshoebrake_cm : M11_brake_inhibit_command_T
+  };
+type M13_train_data_entry_type_T = enum {
+ M13_info_not_available, 
+ fixed_entry_type,
+ flexible_entry_type, 
+ switchable_entry_type 
+};
+type M_train_data_info_T = int;                                         /* FIXME: to do */
+type M14_pantograph_command_T = enum { 
+ M14_info_not_available, 
+ lower_pantograph,
+ raise_pantograph 
+};
+type M15_airtightness_command_T = enum {
+ M15_info_not_available,
+ tunnel_condition_active,
+ tunnel_condition_not_active 
+};
+type M16_mainpowerswitch_command_T = enum {
+ M16_info_not_available,
+ open_main_power_swicth,
+ close_main_power_switch 
+};
+type M17_traction_cutoff_command_T = enum {
+ info_not_available, 
+ apply_traction_cutoff,
+ release_traction_cutoff 
+};
+type Type_I_train_commands_T =  {
+ m_pantograph_cm        : M14_pantograph_command_T,
+ m_airtightness_cm      : M15_airtightness_command_T,
+ m_mainpowerswitch_cm   : M16_mainpowerswitch_command_T,
+ m_traction_cutoff_cm   : M17_traction_cutoff_command_T
+  };
+type D_test_distance_T =  {
+ now    :  int,                                             /* was NULL? */
+ distance : int                                             /* 0..42949672940 mm with 10 mm increment */
+};
+type D_test_trackcond_T = D_test_distance_T; /* SUBSET_094 8.3.3.4 */
+type L_test_trackcond_T = D_test_distance_T; /* SUBSET_094 8.3.3.8 */
+type M_trackcond_T = enum { 
+ non_stopping_area,
+ tunnel_stopping_area,
+ sound_horn,
+ powerless_section_lower_pantograph,
+ radio_hole,
+ air_tightness,
+ switch_off_regenerative_brake,
+ switch_off_eddy_current_brake_for_service_brake,
+ switch_off_magnetic_shoe_brake,
+ powerless_section_switch_off_main_power_switch,
+ switch_off_eddy_current_brake_for_emergency_brake 
+};
+type D_test_trackinit_T = D_test_distance_T ; /* SUBSET_094 8.3.3.5 */
+type nothing_to_resume_profile_follow_T = {
+   d_test_trackcond     : D_test_trackcond_T,
+   l_test_trackcond     : L_test_trackcond_T,
+   m_trackcond          : M_trackcond_T 
+};
+type A_nothing_to_resume_profile_follow_T = nothing_to_resume_profile_follow_T ^ 32;
+type S_nothing_to_resume_profile_follow_T = {
+	nIter : int,
+	value : A_nothing_to_resume_profile_follow_T 
+};	
+type Type_I_train_and_brake_inhibition_with_distance_commands_T = { /* Q_TRACKINIT */
+   nothing_to_resume_profile_follow          : nothing_to_resume_profile_follow_T,
+   empty_profile_initial_state_to_be_resumed : D_test_trackinit_T
+};
+type D_test_traction_T = D_test_distance_T;
+type NID_ctraction_T = int;                                         /* (0..1023) */
+type M_voltage_types_T = enum {
+   line_not_fitted_with_any_traction_system,
+   ac_25kV_50Hz,
+   ac_15kV_16_7Hz,
+   dc_3kV,
+   dc_1_5kV,
+   dc_600_750kV
+};
+type M_voltage_T = {
+	voltage_type  : M_voltage_types_T,
+  NID_ctraction :  NID_ctraction_T
+};
+type M_change_traction_system_T = {
+  d_test_traction : D_test_traction_T,
+  m_voltage       : M_voltage_T
+};
+type Passenger_door_control_info_T = int;                                                        /* FIXME: to do */
+type D_test_current_T = D_test_distance_T;                                                       /* SUBSET_094 8.3.3.3 */
+type M_current_T = {                                                                             /* SUBSET_026 7.5.1.62.1 */
+  no_restriction : bool,
+  restriction    : int                                                                           /* 0..10000 A with 10 A increment */
+};
+type Change_of_allowed_current_consumption_T =  {
+  d_test_current : D_test_current_T,
+  m_current      : M_current_T
+};
+type Message_Train_Interface_to_EVC_T = {
+  train_status                      : Mode_control_and_train_status_T,                            /* SUBSET_094 8.3.2.6 */
+  brake_status                      : Brake_status_T,                                             /* SUBSET_094 8.3.2.8 */
+  brake_pressure                    : P01_brake_pressure_value_T,                                   /* SUBSET_094 8.3.2.9 */
+  train_data_entry_type             : M13_train_data_entry_type_T,                                 /* SUBSET_094 8.3.2.12 */
+  train_data_info                   : M_train_data_info_T,                                        /* SUBSET_094 8.3.2.13 */
+  type_I_train_and_brake_inhibition : Type_I_train_and_brake_inhibition_with_distance_commands_T  /* SUBSET_094 8.3.2.15 */
+  };
+type Message_EVC_to_Train_Interface_T = {
+  isolation_status                      : M08_Isolation_status_T,                                      /* SUBSET_094 8.3.2.7 */
+  brake_command                         : Brake_command_T,                                         /* SUBSET_094 8.3.2.10 */
+  brake_inhibition                      : Brake_inhibition_command_T,                              /* SUBSET_094 8.3.2.11 */
+  type_I_train_commands                 : Type_I_train_commands_T,                                 /* SUBSET_094 8.3.2.14 */
+  change_traction_system                : M_change_traction_system_T,                              /* SUBSET_094 8.3.2.16 */
+  passenger_door_control_info           : Passenger_door_control_info_T,                           /* SUBSET_094 8.3.2.17 */
+  change_of_allowed_current_consumption : Change_of_allowed_current_consumption_T                  /* SUBSET_094 8.3.2.18 */                  
+};
