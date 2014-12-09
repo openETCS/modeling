@@ -1,0 +1,4346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Operator kind="node" visibility="private" name="radioNetworkMobile">
+			<inputs>
+				<Variable name="mobileHWStatus">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileHWStatus_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/25e9/5D4E/11BC/50c849bb7120" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Communicaton status received from the mobile hardware.</comment>
+							<comment>If valid, designates that this operator is connected to an existing mobile hardware</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="mobileSWCmd">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileSWCmd_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2633/5D4E/11BC/50c8544246db" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Cmd inputs to this operator</comment>
+							<comment></comment>
+							<comment>3.5.6.5: includes the order to use and occupy this mobile for a (established) communication session</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="mobileHWCmd">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileHWCmd_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<default>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="cInvalidmobileHWCmd"/>
+							</path>
+						</IdExpression>
+					</default>
+					<pragmas>
+						<ed:Variable oid="!ed/2628/5D4E/11BC/50c851135a98" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.6, 3.5.6.3.2, 3.5.6.5, 3.5.6.5:Commands to the mobile hardware</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="mobileSWStatus">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileSWStatus_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/25e4/7DD1/1D44/50d1c16279a9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>SW-Status of the mobile:</comment>
+							<comment></comment>
+							<comment>3.5.6.5</comment>
+							<comment>Indicates, that this mobile is in use for an Established Communication Session</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<signals>
+				<Signal name="sHwRegister">
+					<pragmas>
+						<ed:Signal oid="!ed/26a9/3011/1B64/50ebec65479b"/>
+					</pragmas>
+				</Signal>
+				<Signal name="sHWConnect">
+					<pragmas>
+						<ed:Signal oid="!ed/26aa/3011/1B64/50ebec887ad"/>
+					</pragmas>
+				</Signal>
+				<Signal name="sHWDisconnect">
+					<pragmas>
+						<ed:Signal oid="!ed/26ab/3011/1B64/50ebec9d1858"/>
+					</pragmas>
+				</Signal>
+				<Signal name="sHWUnregister">
+					<pragmas>
+						<ed:Signal oid="!ed/26ac/3011/1B64/50ebecb06ea2"/>
+					</pragmas>
+				</Signal>
+			</signals>
+			<locals>
+				<Variable name="hw_available">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2658/7DD1/1D44/50d1cc4a5853"/>
+					</pragmas>
+				</Variable>
+				<Variable name="hw_connectionStatus">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileHWConnectionStatus_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/265e/7DD1/1D44/50d1cc8a66b5"/>
+					</pragmas>
+				</Variable>
+				<Variable name="sw_cmd">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileSWAction_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/26d4/7DD1/1D44/50d1d0504ab0"/>
+					</pragmas>
+				</Variable>
+				<Variable name="radioNetworkID">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="radioNetworkID_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/26e3/7DD1/1D44/50d1d0e4e08"/>
+					</pragmas>
+				</Variable>
+				<Variable name="hw_cmd">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileHWAction_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<default>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="mhwa_nop"/>
+							</path>
+						</IdExpression>
+					</default>
+					<pragmas>
+						<ed:Variable oid="!ed/274c/595B/EE0/50ead8456a91"/>
+					</pragmas>
+				</Variable>
+				<Variable name="sw_connectionStatus">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileSWConnectionStatus_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<default>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="mswc_unregistered"/>
+							</path>
+						</IdExpression>
+					</default>
+					<pragmas>
+						<ed:Variable oid="!ed/27ce/595B/EE0/50eadc2817b7"/>
+					</pragmas>
+				</Variable>
+				<Variable name="registeredRadioNetworkID">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="radioNetworkID_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/279f/20F2/166C/50ec35c21304"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L1">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileHWStatus_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/260c/7DD1/1D44/50d1c8bd1235"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L2">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileHWStatus_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2612/7DD1/1D44/50d1c8f3232f"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L3">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/261a/7DD1/1D44/50d1c91231ca"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L4">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileHWStatus_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2646/7DD1/1D44/50d1ca916f4c"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L9">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileHWConnectionStatus_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2653/7DD1/1D44/50d1cc1035a2"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L8">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2652/7DD1/1D44/50d1cc106b71"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L17">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileSWCmd_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2679/7DD1/1D44/50d1cdfb7f58"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L18">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileSWCmd_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/267f/7DD1/1D44/50d1ce047f9c"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L19">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2687/7DD1/1D44/50d1ce2162"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L20">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileSWCmd_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/26b3/7DD1/1D44/50d1ced546bc"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L27">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="radioNetworkID_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/26c1/7DD1/1D44/50d1cf197e21"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L26">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileSWAction_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/26c0/7DD1/1D44/50d1cf1965ce"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L25">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/26bf/7DD1/1D44/50d1cf191616"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L28">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileSWAction_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/26c9/7DD1/1D44/50d1cfaa3cf5"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L29">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileSWAction_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/26cf/7DD1/1D44/50d1cfe1631a"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L38">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileHWConnectionStatus_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/27a9/595B/EE0/50eadaed2f61"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L39">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileHWConnectionStatus_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/27bd/595B/EE0/50eadb0555b0"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L40">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="radioNetworkID_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2772/20F2/166C/50ec3497438c"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L41">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2779/20F2/166C/50ec34db711"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L42">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="radioNetworkID_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/279a/20F2/166C/50ec35895a1b"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L44">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2ae5/4FF2/164C/50f9872b2ac6"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- _L1 = mobileHWStatus; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L1"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="mobileHWStatus"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/260b/7DD1/1D44/50d1c8bd2126"/>
+					</pragmas>
+				</Equation>
+				<!-- _L2 = linear::MemoryBasic(_L1, _L4, _L3); -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L2"/>
+					</lefts>
+					<right>
+						<!-- linear::MemoryBasic(_L1, _L4, _L3) -->
+						<CallExpression>
+							<operator>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="linear::MemoryBasic"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L4"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L3"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2611/7DD1/1D44/50d1c8f3340a"/>
+					</pragmas>
+				</Equation>
+				<!-- _L3 = _L1.valid; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L3"/>
+					</lefts>
+					<right>
+						<!-- _L1.valid -->
+						<PrjOp name="1">
+							<flow>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+							</flow>
+							<with>
+								<Label name="valid"/>
+							</with>
+						</PrjOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2619/7DD1/1D44/50d1c91223fc"/>
+					</pragmas>
+				</Equation>
+				<!-- _L4 = cInvalidMobileHWStatus; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L4"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="cInvalidMobileHWStatus"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2645/7DD1/1D44/50d1ca911e34"/>
+					</pragmas>
+				</Equation>
+				<!-- _L8, _L9, _L44 = (flatten mobileHWStatus_Type)(_L2); -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L8"/>
+						<VariableRef name="_L9"/>
+						<VariableRef name="_L44"/>
+					</lefts>
+					<right>
+						<!-- (flatten mobileHWStatus_Type)(_L2) -->
+						<CallExpression>
+							<operator>
+								<FlattenOp name="1">
+									<type>
+										<TypeRef name="mobileHWStatus_Type"/>
+									</type>
+								</FlattenOp>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L2"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2651/7DD1/1D44/50d1cc105284"/>
+					</pragmas>
+				</Equation>
+				<!-- hw_available = _L8; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="hw_available"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L8"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2659/7DD1/1D44/50d1cc5d25ca"/>
+					</pragmas>
+				</Equation>
+				<!-- hw_connectionStatus = _L39; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="hw_connectionStatus"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L39"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/265f/7DD1/1D44/50d1cca149d7"/>
+					</pragmas>
+				</Equation>
+				<!-- _L17 = mobileSWCmd; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L17"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="mobileSWCmd"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2678/7DD1/1D44/50d1cdfb324b"/>
+					</pragmas>
+				</Equation>
+				<!-- _L18 = linear::MemoryBasic(_L17, _L20, _L19); -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L18"/>
+					</lefts>
+					<right>
+						<!-- linear::MemoryBasic(_L17, _L20, _L19) -->
+						<CallExpression>
+							<operator>
+								<OpCall name="2">
+									<operator>
+										<OperatorRef name="linear::MemoryBasic"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L17"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L20"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L19"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/267e/7DD1/1D44/50d1ce042e81"/>
+					</pragmas>
+				</Equation>
+				<!-- _L19 = _L17.valid; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L19"/>
+					</lefts>
+					<right>
+						<!-- _L17.valid -->
+						<PrjOp name="2">
+							<flow>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L17"/>
+									</path>
+								</IdExpression>
+							</flow>
+							<with>
+								<Label name="valid"/>
+							</with>
+						</PrjOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2686/7DD1/1D44/50d1ce212855"/>
+					</pragmas>
+				</Equation>
+				<!-- _L20 = cInvalidMobileSWCmd; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L20"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="cInvalidMobileSWCmd"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/26b2/7DD1/1D44/50d1ced52b7"/>
+					</pragmas>
+				</Equation>
+				<!-- _L25, _L26, _L27 = (flatten mobileSWCmd_Type)(_L18); -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L25"/>
+						<VariableRef name="_L26"/>
+						<VariableRef name="_L27"/>
+					</lefts>
+					<right>
+						<!-- (flatten mobileSWCmd_Type)(_L18) -->
+						<CallExpression>
+							<operator>
+								<FlattenOp name="3">
+									<type>
+										<TypeRef name="mobileSWCmd_Type"/>
+									</type>
+								</FlattenOp>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L18"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/26be/7DD1/1D44/50d1cf195094"/>
+					</pragmas>
+				</Equation>
+				<!-- _L28 = if _L25 then (_L26) else (_L29); -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L28"/>
+					</lefts>
+					<right>
+						<!-- if _L25 then (_L26) else (_L29) -->
+						<IfThenElseOp name="1">
+							<if>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L25"/>
+									</path>
+								</IdExpression>
+							</if>
+							<then>
+								<ListExpression>
+									<items>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L26"/>
+											</path>
+										</IdExpression>
+									</items>
+								</ListExpression>
+							</then>
+							<else>
+								<ListExpression>
+									<items>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L29"/>
+											</path>
+										</IdExpression>
+									</items>
+								</ListExpression>
+							</else>
+						</IfThenElseOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/26c8/7DD1/1D44/50d1cfaa77e9"/>
+					</pragmas>
+				</Equation>
+				<!-- _L29 = mswa_nop; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L29"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="mswa_nop"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/26ce/7DD1/1D44/50d1cfe16911"/>
+					</pragmas>
+				</Equation>
+				<!-- sw_cmd = _L28; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="sw_cmd"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L28"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/26de/7DD1/1D44/50d1d0be4949"/>
+					</pragmas>
+				</Equation>
+				<!-- radioNetworkID = _L27; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="radioNetworkID"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L27"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/26ed/7DD1/1D44/50d1d10649ed"/>
+					</pragmas>
+				</Equation>
+				<StateMachine name="MobileHW_available_SM">
+					<states>
+						<State name="MobileHWNotAvailable">
+							<unless>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="MobileHWAvailable"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="hw_available"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<effect>
+										<Action>
+											<pragmas>
+												<ed:Action oid="!ed/2851/7DD1/1D44/50d1db3b1d37"/>
+											</pragmas>
+										</Action>
+									</effect>
+									<pragmas>
+										<ed:Transition oid="!ed/27f1/7DD1/1D44/50d1d99097b"/>
+									</pragmas>
+								</Transition>
+							</unless>
+							<locals>
+								<Variable name="_L4">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="mobileSWStatus_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2667/42AC/C20/50e5655c3a4e"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<!-- mobileSWStatus = _L4; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="mobileSWStatus"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L4"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2729/7DD1/1D44/50d1d47771f0"/>
+									</pragmas>
+								</Equation>
+								<!-- _L4 = cMobileSWStatus_noHW; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L4"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="cMobileSWStatus_noHW"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2666/42AC/C20/50e5655c7ca"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<pragmas>
+								<ed:State oid="!ed/26f7/7DD1/1D44/50d1d3ebe30"/>
+							</pragmas>
+						</State>
+						<State name="MobileHWAvailable">
+							<unless>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="MobileHWNotAvailable"/>
+									</target>
+									<condition>
+										<!--  not hw_available -->
+										<UnaryOp name="2" operator="not">
+											<operand>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="hw_available"/>
+													</path>
+												</IdExpression>
+											</operand>
+										</UnaryOp>
+									</condition>
+									<effect>
+										<Action>
+											<pragmas>
+												<ed:Action oid="!ed/27ff/7DD1/1D44/50d1d9bf496c"/>
+											</pragmas>
+										</Action>
+									</effect>
+									<pragmas>
+										<ed:Transition oid="!ed/27f3/7DD1/1D44/50d1d9a0691c"/>
+									</pragmas>
+								</Transition>
+							</unless>
+							<locals>
+								<Variable name="_L14">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="mobileSWStatus_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/292e/3011/1B64/50ec08222097"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L15">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/293a/3011/1B64/50ec083c4fbb"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L16">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="mobileSWConnectionStatus_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/294b/3011/1B64/50ec08774bc6"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L17">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="mobileHWCmd_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2960/3011/1B64/50ec0a4b39a7"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L18">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="radioNetworkID_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2966/3011/1B64/50ec0a7422a6"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L19">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/296c/3011/1B64/50ec0aac69ee"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L20">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/296e/3011/1B64/50ec0aac1fc0"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L21">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2970/3011/1B64/50ec0aac745b"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L22">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2972/3011/1B64/50ec0aac1631"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L23">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/297a/3011/1B64/50ec0ab43a92"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L24">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="mobileHWAction_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2980/3011/1B64/50ec0b43540f"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L25">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="radioNetworkID_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/27cd/20F2/166C/50ec3a1f127e"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L26">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="mobileHWStatus_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2af9/4FF2/164C/50f988a74ef2"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L27">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2b09/4FF2/164C/50f988b4781f"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<StateMachine name="MobileSWConnection_SM">
+									<states>
+										<State initial="true" name="UnregisteredToTheRadioNetwork">
+											<unless>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="RegisteringToTheRadioNetwork"/>
+													</target>
+													<condition>
+														<!-- sw_cmd = mswa_register -->
+														<BinaryOp name="2" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="sw_cmd"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mswa_register"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<effect>
+														<Action>
+															<data>
+																<!--  emit 'sHwRegister; -->
+																<Emission>
+																	<signals>
+																		<SignalRef name="sHwRegister"/>
+																	</signals>
+																	<pragmas>
+																		<ed:Emission oid="!ed/270b/3011/1B64/50ebee0146e1"/>
+																	</pragmas>
+																</Emission>
+															</data>
+															<pragmas>
+																<ed:Action oid="!ed/26af/3011/1B64/50ebecf33212"/>
+															</pragmas>
+														</Action>
+													</effect>
+													<pragmas>
+														<ed:Transition oid="!ed/2719/595B/EE0/50ead6e612d1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+															<comment>3.5.6.3.2: attempts to register to this Radio Network</comment>
+														</ed:Transition>
+													</pragmas>
+												</Transition>
+											</unless>
+											<pragmas>
+												<ed:State oid="!ed/26f3/595B/EE0/50ead08d5376"/>
+											</pragmas>
+										</State>
+										<State name="RegisteringToTheRadioNetwork">
+											<unless>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="RegisteredToTheRadioNetwork"/>
+													</target>
+													<condition>
+														<!-- hw_connectionStatus = mhwc_registered -->
+														<BinaryOp name="3" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="hw_connectionStatus"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mhwc_registered"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<pragmas>
+														<ed:Transition oid="!ed/2812/595B/EE0/50eadd2e58bb"/>
+													</pragmas>
+												</Transition>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="UnregisteredToTheRadioNetwork"/>
+													</target>
+													<condition>
+														<!-- sw_cmd = mswa_unregister -->
+														<BinaryOp name="4" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="sw_cmd"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mswa_unregister"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<effect>
+														<Action>
+															<data>
+																<!--  emit 'sHWUnregister; -->
+																<Emission>
+																	<signals>
+																		<SignalRef name="sHWUnregister"/>
+																	</signals>
+																	<pragmas>
+																		<ed:Emission oid="!ed/26ff/3011/1B64/50ebedcd4405"/>
+																	</pragmas>
+																</Emission>
+															</data>
+															<pragmas>
+																<ed:Action oid="!ed/26f5/3011/1B64/50ebedcd2a7c"/>
+															</pragmas>
+														</Action>
+													</effect>
+													<pragmas>
+														<ed:Transition oid="!ed/2838/595B/EE0/50eadda26e81"/>
+													</pragmas>
+												</Transition>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="RegisteringToTheRadioNetwork"/>
+													</target>
+													<condition>
+														<!-- sw_cmd = mswa_register -->
+														<BinaryOp name="24" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="sw_cmd"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mswa_register"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<effect>
+														<Action>
+															<data>
+																<!--  emit 'sHwRegister; -->
+																<Emission>
+																	<signals>
+																		<SignalRef name="sHwRegister"/>
+																	</signals>
+																	<pragmas>
+																		<ed:Emission oid="!ed/27b7/4207/12B4/50ed5127452d"/>
+																	</pragmas>
+																</Emission>
+															</data>
+															<pragmas>
+																<ed:Action oid="!ed/27ad/4207/12B4/50ed51276450"/>
+															</pragmas>
+														</Action>
+													</effect>
+													<pragmas>
+														<ed:Transition oid="!ed/27a1/4207/12B4/50ed50f1710f"/>
+													</pragmas>
+												</Transition>
+											</unless>
+											<locals>
+												<Variable name="_L3">
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="mobileSWConnectionStatus_Type"/>
+															</type>
+														</NamedType>
+													</type>
+													<pragmas>
+														<ed:Variable oid="!ed/2733/3011/1B64/50ebef3b5818"/>
+													</pragmas>
+												</Variable>
+											</locals>
+											<data>
+												<!-- _L3 = mswc_registering; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="_L3"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="mswc_registering"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/2732/3011/1B64/50ebef3b4217"/>
+													</pragmas>
+												</Equation>
+												<!-- sw_connectionStatus = _L3; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="sw_connectionStatus"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="_L3"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/2734/3011/1B64/50ebef3b79aa"/>
+													</pragmas>
+												</Equation>
+											</data>
+											<pragmas>
+												<ed:State oid="!ed/2706/595B/EE0/50ead0e46e0f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+													<comment>3.5.6.3.2: attempts to register to this Radio Network</comment>
+												</ed:State>
+											</pragmas>
+										</State>
+										<State name="RegisteredToTheRadioNetwork">
+											<unless>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="UnregisteredToTheRadioNetwork"/>
+													</target>
+													<condition>
+														<!-- sw_cmd = mswa_unregister -->
+														<BinaryOp name="5" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="sw_cmd"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mswa_unregister"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<effect>
+														<Action>
+															<data>
+																<!--  emit 'sHWUnregister; -->
+																<Emission>
+																	<signals>
+																		<SignalRef name="sHWUnregister"/>
+																	</signals>
+																	<pragmas>
+																		<ed:Emission oid="!ed/26f3/3011/1B64/50ebedb74d51"/>
+																	</pragmas>
+																</Emission>
+															</data>
+															<pragmas>
+																<ed:Action oid="!ed/26e9/3011/1B64/50ebedb74fda"/>
+															</pragmas>
+														</Action>
+													</effect>
+													<pragmas>
+														<ed:Transition oid="!ed/2856/595B/EE0/50eade496c02"/>
+													</pragmas>
+												</Transition>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="ConnectingToTheRadioNetwork"/>
+													</target>
+													<condition>
+														<!-- sw_cmd = mswa_connect -->
+														<BinaryOp name="7" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="sw_cmd"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mswa_connect"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<effect>
+														<Action>
+															<data>
+																<!--  emit 'sHWConnect; -->
+																<Emission>
+																	<signals>
+																		<SignalRef name="sHWConnect"/>
+																	</signals>
+																	<pragmas>
+																		<ed:Emission oid="!ed/26cb/3011/1B64/50ebed2b4b6a"/>
+																	</pragmas>
+																</Emission>
+															</data>
+															<pragmas>
+																<ed:Action oid="!ed/26c1/3011/1B64/50ebed2b54db"/>
+															</pragmas>
+														</Action>
+													</effect>
+													<pragmas>
+														<ed:Transition oid="!ed/2875/595B/EE0/50eadfa7f75"/>
+													</pragmas>
+												</Transition>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="UnregisteredToTheRadioNetwork"/>
+													</target>
+													<condition>
+														<!-- hw_connectionStatus = mhwc_notRegistered -->
+														<BinaryOp name="17" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="hw_connectionStatus"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mhwc_notRegistered"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<pragmas>
+														<ed:Transition oid="!ed/298c/595B/EE0/50eae7d72d44"/>
+													</pragmas>
+												</Transition>
+											</unless>
+											<locals>
+												<Variable name="_L2">
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="mobileSWConnectionStatus_Type"/>
+															</type>
+														</NamedType>
+													</type>
+													<pragmas>
+														<ed:Variable oid="!ed/27fc/595B/EE0/50eadcdf8ca"/>
+													</pragmas>
+												</Variable>
+											</locals>
+											<data>
+												<!-- sw_connectionStatus = _L2; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="sw_connectionStatus"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="_L2"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/27d9/595B/EE0/50eadc545f7a"/>
+													</pragmas>
+												</Equation>
+												<!-- _L2 = mswc_registered; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="_L2"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="mswc_registered"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/27fb/595B/EE0/50eadcdf7c64"/>
+													</pragmas>
+												</Equation>
+											</data>
+											<pragmas>
+												<ed:State oid="!ed/27c4/595B/EE0/50eadbcc5123"/>
+											</pragmas>
+										</State>
+										<State name="ConnectingToTheRadioNetwork">
+											<unless>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="RegisteredToTheRadioNetwork"/>
+													</target>
+													<condition>
+														<!-- sw_cmd = mswa_disconnect -->
+														<BinaryOp name="9" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="sw_cmd"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mswa_disconnect"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<effect>
+														<Action>
+															<data>
+																<!--  emit 'sHWDisconnect; -->
+																<Emission>
+																	<signals>
+																		<SignalRef name="sHWDisconnect"/>
+																	</signals>
+																	<pragmas>
+																		<ed:Emission oid="!ed/26d7/3011/1B64/50ebed5c499c"/>
+																	</pragmas>
+																</Emission>
+															</data>
+															<pragmas>
+																<ed:Action oid="!ed/26cd/3011/1B64/50ebed5c2e82"/>
+															</pragmas>
+														</Action>
+													</effect>
+													<pragmas>
+														<ed:Transition oid="!ed/28ec/595B/EE0/50eae1404c89"/>
+													</pragmas>
+												</Transition>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="ConnectedToTheRadioNetwork"/>
+													</target>
+													<condition>
+														<!-- hw_connectionStatus = mhwc_connected -->
+														<BinaryOp name="11" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="hw_connectionStatus"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mhwc_connected"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<pragmas>
+														<ed:Transition oid="!ed/2917/595B/EE0/50eae1b552f5"/>
+													</pragmas>
+												</Transition>
+											</unless>
+											<locals>
+												<Variable name="_L1">
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="mobileSWConnectionStatus_Type"/>
+															</type>
+														</NamedType>
+													</type>
+													<pragmas>
+														<ed:Variable oid="!ed/28ac/595B/EE0/50eae01f1c9f"/>
+													</pragmas>
+												</Variable>
+											</locals>
+											<data>
+												<!-- _L1 = mswc_connecting; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="_L1"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="mswc_connecting"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/28ab/595B/EE0/50eae01f6344"/>
+													</pragmas>
+												</Equation>
+												<!-- sw_connectionStatus = _L1; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="sw_connectionStatus"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="_L1"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/28ad/595B/EE0/50eae01f389"/>
+													</pragmas>
+												</Equation>
+											</data>
+											<pragmas>
+												<ed:State oid="!ed/286a/595B/EE0/50eadf3f1409"/>
+											</pragmas>
+										</State>
+										<State name="ConnectedToTheRadioNetwork">
+											<unless>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="RegisteredToTheRadioNetwork"/>
+													</target>
+													<condition>
+														<!-- sw_cmd = mswa_disconnect -->
+														<BinaryOp name="12" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="sw_cmd"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mswa_disconnect"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<effect>
+														<Action>
+															<data>
+																<!--  emit 'sHWDisconnect; -->
+																<Emission>
+																	<signals>
+																		<SignalRef name="sHWDisconnect"/>
+																	</signals>
+																	<pragmas>
+																		<ed:Emission oid="!ed/26e8/3011/1B64/50ebed846d9f"/>
+																	</pragmas>
+																</Emission>
+															</data>
+															<pragmas>
+																<ed:Action oid="!ed/26de/3011/1B64/50ebed8477af"/>
+															</pragmas>
+														</Action>
+													</effect>
+													<pragmas>
+														<ed:Transition oid="!ed/292c/595B/EE0/50eae23e3fb8"/>
+													</pragmas>
+												</Transition>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="RegisteredToTheRadioNetwork"/>
+													</target>
+													<condition>
+														<!-- hw_connectionStatus = mhwc_registered -->
+														<BinaryOp name="15" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="hw_connectionStatus"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mhwc_registered"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<pragmas>
+														<ed:Transition oid="!ed/2938/595B/EE0/50eae2a33b42"/>
+													</pragmas>
+												</Transition>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="UnregisteredToTheRadioNetwork"/>
+													</target>
+													<condition>
+														<!-- hw_connectionStatus = mhwc_notRegistered -->
+														<BinaryOp name="18" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="hw_connectionStatus"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mhwc_notRegistered"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<pragmas>
+														<ed:Transition oid="!ed/2778/3011/1B64/50ebf74516ff"/>
+													</pragmas>
+												</Transition>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="EstablishingASession"/>
+													</target>
+													<condition>
+														<!-- sw_cmd = mswa_establishRadioConnection -->
+														<BinaryOp name="21" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="sw_cmd"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mswa_establishRadioConnection"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<pragmas>
+														<ed:Transition oid="!ed/2849/3011/1B64/50ebfa8948bf"/>
+													</pragmas>
+												</Transition>
+											</unless>
+											<locals>
+												<Variable name="_L1">
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="mobileSWConnectionStatus_Type"/>
+															</type>
+														</NamedType>
+													</type>
+													<pragmas>
+														<ed:Variable oid="!ed/2984/595B/EE0/50eae69799e"/>
+													</pragmas>
+												</Variable>
+											</locals>
+											<data>
+												<!-- sw_connectionStatus = _L1; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="sw_connectionStatus"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="_L1"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/2972/595B/EE0/50eae66e53d8"/>
+													</pragmas>
+												</Equation>
+												<!-- _L1 = mswc_connected; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="_L1"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="mswc_connected"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/2983/595B/EE0/50eae6971ed1"/>
+													</pragmas>
+												</Equation>
+											</data>
+											<pragmas>
+												<ed:State oid="!ed/2909/595B/EE0/50eae18e6943"/>
+											</pragmas>
+										</State>
+										<State name="EstablishingASession">
+											<unless>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="SessionEstablished"/>
+													</target>
+													<condition>
+														<ConstValue value="true"/>
+													</condition>
+													<pragmas>
+														<ed:Transition oid="!ed/2873/3011/1B64/50ebfb03e15"/>
+													</pragmas>
+												</Transition>
+											</unless>
+											<locals>
+												<Variable name="_L1">
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="mobileSWConnectionStatus_Type"/>
+															</type>
+														</NamedType>
+													</type>
+													<pragmas>
+														<ed:Variable oid="!ed/27ea/3011/1B64/50ebf9866332"/>
+													</pragmas>
+												</Variable>
+											</locals>
+											<data>
+												<!-- sw_connectionStatus = _L1; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="sw_connectionStatus"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="_L1"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/27e8/3011/1B64/50ebf9864b40"/>
+													</pragmas>
+												</Equation>
+												<!-- _L1 = mswc_establishingSession; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="_L1"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="mswc_establishingSession"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/27e9/3011/1B64/50ebf9861689"/>
+													</pragmas>
+												</Equation>
+											</data>
+											<pragmas>
+												<ed:State oid="!ed/27be/3011/1B64/50ebf8e9699f"/>
+											</pragmas>
+										</State>
+										<State name="SessionEstablished">
+											<unless>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="ConnectedToTheRadioNetwork"/>
+													</target>
+													<condition>
+														<!-- sw_cmd = mswa_terminateRadioConnection -->
+														<BinaryOp name="22" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="sw_cmd"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mswa_terminateRadioConnection"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<pragmas>
+														<ed:Transition oid="!ed/288b/3011/1B64/50ebfb813e73"/>
+													</pragmas>
+												</Transition>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="UnregisteredToTheRadioNetwork"/>
+													</target>
+													<condition>
+														<!-- hw_connectionStatus = mhwc_notRegistered -->
+														<BinaryOp name="23" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="hw_connectionStatus"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mhwc_notRegistered"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</condition>
+													<pragmas>
+														<ed:Transition oid="!ed/28aa/3011/1B64/50ebfd8415c7"/>
+													</pragmas>
+												</Transition>
+											</unless>
+											<locals>
+												<Variable name="_L1">
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="mobileSWConnectionStatus_Type"/>
+															</type>
+														</NamedType>
+													</type>
+													<pragmas>
+														<ed:Variable oid="!ed/2830/3011/1B64/50ebfa4562a5"/>
+													</pragmas>
+												</Variable>
+											</locals>
+											<data>
+												<!-- _L1 = mswc_sessionEstablished; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="_L1"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="mswc_sessionEstablished"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/282f/3011/1B64/50ebfa455b40"/>
+													</pragmas>
+												</Equation>
+												<!-- sw_connectionStatus = _L1; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="sw_connectionStatus"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="_L1"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/2831/3011/1B64/50ebfa456d7a"/>
+													</pragmas>
+												</Equation>
+											</data>
+											<pragmas>
+												<ed:State oid="!ed/2806/3011/1B64/50ebfa025495"/>
+											</pragmas>
+										</State>
+									</states>
+									<pragmas>
+										<ed:StateMachine oid="!ed/26ce/595B/EE0/50eacfe54b34"/>
+									</pragmas>
+								</StateMachine>
+								<!-- mobileSWStatus = _L14; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="mobileSWStatus"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L14"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2928/3011/1B64/50ec080f65bb"/>
+									</pragmas>
+								</Equation>
+								<!-- _L14 = (make mobileSWStatus_Type)(_L15, _L15, _L16, _L25, _L27); -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L14"/>
+									</lefts>
+									<right>
+										<!-- (make mobileSWStatus_Type)(_L15, _L15, _L16, _L25, _L27) -->
+										<CallExpression>
+											<operator>
+												<MakeOp name="5">
+													<type>
+														<TypeRef name="mobileSWStatus_Type"/>
+													</type>
+												</MakeOp>
+											</operator>
+											<callParameters>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L15"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L15"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L16"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L25"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L27"/>
+													</path>
+												</IdExpression>
+											</callParameters>
+										</CallExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/292d/3011/1B64/50ec0822544"/>
+									</pragmas>
+								</Equation>
+								<!-- _L15 = true; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L15"/>
+									</lefts>
+									<right>
+										<ConstValue value="true"/>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2939/3011/1B64/50ec083c5422"/>
+									</pragmas>
+								</Equation>
+								<!-- _L16 = sw_connectionStatus; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L16"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="sw_connectionStatus"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/294a/3011/1B64/50ec08778c9"/>
+									</pragmas>
+								</Equation>
+								<!-- mobileHWCmd = _L17; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="mobileHWCmd"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L17"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2954/3011/1B64/50ec09ba4a1f"/>
+									</pragmas>
+								</Equation>
+								<!-- _L17 = (make mobileHWCmd_Type)(_L23, _L24, _L18); -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L17"/>
+									</lefts>
+									<right>
+										<!-- (make mobileHWCmd_Type)(_L23, _L24, _L18) -->
+										<CallExpression>
+											<operator>
+												<MakeOp name="6">
+													<type>
+														<TypeRef name="mobileHWCmd_Type"/>
+													</type>
+												</MakeOp>
+											</operator>
+											<callParameters>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L23"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L24"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L18"/>
+													</path>
+												</IdExpression>
+											</callParameters>
+										</CallExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/295f/3011/1B64/50ec0a4b1e9b"/>
+									</pragmas>
+								</Equation>
+								<!-- _L18 = radioNetworkID; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L18"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="radioNetworkID"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2965/3011/1B64/50ec0a7439ca"/>
+									</pragmas>
+								</Equation>
+								<!-- _L19 =  'sHWConnect; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L19"/>
+									</lefts>
+									<right>
+										<Present>
+											<signal>
+												<SignalRef name="sHWConnect"/>
+											</signal>
+										</Present>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/296b/3011/1B64/50ec0aac2086"/>
+									</pragmas>
+								</Equation>
+								<!-- _L20 =  'sHWDisconnect; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L20"/>
+									</lefts>
+									<right>
+										<Present>
+											<signal>
+												<SignalRef name="sHWDisconnect"/>
+											</signal>
+										</Present>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/296d/3011/1B64/50ec0aac44ec"/>
+									</pragmas>
+								</Equation>
+								<!-- _L21 =  'sHwRegister; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L21"/>
+									</lefts>
+									<right>
+										<Present>
+											<signal>
+												<SignalRef name="sHwRegister"/>
+											</signal>
+										</Present>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/296f/3011/1B64/50ec0aac5787"/>
+									</pragmas>
+								</Equation>
+								<!-- _L22 =  'sHWUnregister; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L22"/>
+									</lefts>
+									<right>
+										<Present>
+											<signal>
+												<SignalRef name="sHWUnregister"/>
+											</signal>
+										</Present>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2971/3011/1B64/50ec0aac3a96"/>
+									</pragmas>
+								</Equation>
+								<!-- _L23 = _L19 or _L20 or _L21 or _L22; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L23"/>
+									</lefts>
+									<right>
+										<!-- _L19 or _L20 or _L21 or _L22 -->
+										<NAryOp name="1" operator="or">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L19"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L20"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L21"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L22"/>
+													</path>
+												</IdExpression>
+											</operands>
+										</NAryOp>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2979/3011/1B64/50ec0ab47740"/>
+									</pragmas>
+								</Equation>
+								<!-- _L24 = hw_cmd; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L24"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="hw_cmd"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/297f/3011/1B64/50ec0b4379ba"/>
+									</pragmas>
+								</Equation>
+								<IfBlock name="IfBlock1">
+									<block>
+										<IfNode>
+											<if>
+												<Present>
+													<signal>
+														<SignalRef name="sHWUnregister"/>
+													</signal>
+												</Present>
+											</if>
+											<then>
+												<Action>
+													<locals>
+														<Variable name="_L1">
+															<type>
+																<NamedType>
+																	<type>
+																		<TypeRef name="mobileHWAction_Type"/>
+																	</type>
+																</NamedType>
+															</type>
+															<pragmas>
+																<ed:Variable oid="!ed/29e9/3011/1B64/50ec0d78367a"/>
+															</pragmas>
+														</Variable>
+													</locals>
+													<data>
+														<!-- _L1 = mhwa_unregister; -->
+														<Equation>
+															<lefts>
+																<VariableRef name="_L1"/>
+															</lefts>
+															<right>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="mhwa_unregister"/>
+																	</path>
+																</IdExpression>
+															</right>
+															<pragmas>
+																<ed:Equation oid="!ed/29e8/3011/1B64/50ec0d7819aa"/>
+															</pragmas>
+														</Equation>
+														<!-- hw_cmd = _L1; -->
+														<Equation>
+															<lefts>
+																<VariableRef name="hw_cmd"/>
+															</lefts>
+															<right>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="_L1"/>
+																	</path>
+																</IdExpression>
+															</right>
+															<pragmas>
+																<ed:Equation oid="!ed/2a0d/3011/1B64/50ec0db158b5"/>
+															</pragmas>
+														</Equation>
+													</data>
+													<pragmas>
+														<ed:Action oid="!ed/298c/3011/1B64/50ec0bb4477f"/>
+													</pragmas>
+												</Action>
+											</then>
+											<else>
+												<IfNode>
+													<if>
+														<Present>
+															<signal>
+																<SignalRef name="sHwRegister"/>
+															</signal>
+														</Present>
+													</if>
+													<then>
+														<Action>
+															<locals>
+																<Variable name="_L1">
+																	<type>
+																		<NamedType>
+																			<type>
+																				<TypeRef name="mobileHWAction_Type"/>
+																			</type>
+																		</NamedType>
+																	</type>
+																	<pragmas>
+																		<ed:Variable oid="!ed/29f0/3011/1B64/50ec0d7fbc5"/>
+																	</pragmas>
+																</Variable>
+															</locals>
+															<data>
+																<!-- _L1 = mhwa_register; -->
+																<Equation>
+																	<lefts>
+																		<VariableRef name="_L1"/>
+																	</lefts>
+																	<right>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="mhwa_register"/>
+																			</path>
+																		</IdExpression>
+																	</right>
+																	<pragmas>
+																		<ed:Equation oid="!ed/29ef/3011/1B64/50ec0d7f587a"/>
+																	</pragmas>
+																</Equation>
+																<!-- hw_cmd = _L1; -->
+																<Equation>
+																	<lefts>
+																		<VariableRef name="hw_cmd"/>
+																	</lefts>
+																	<right>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="_L1"/>
+																			</path>
+																		</IdExpression>
+																	</right>
+																	<pragmas>
+																		<ed:Equation oid="!ed/2a15/3011/1B64/50ec0db66301"/>
+																	</pragmas>
+																</Equation>
+															</data>
+															<pragmas>
+																<ed:Action oid="!ed/29ce/3011/1B64/50ec0d36458e"/>
+															</pragmas>
+														</Action>
+													</then>
+													<else>
+														<IfNode>
+															<if>
+																<Present>
+																	<signal>
+																		<SignalRef name="sHWConnect"/>
+																	</signal>
+																</Present>
+															</if>
+															<then>
+																<Action>
+																	<locals>
+																		<Variable name="_L1">
+																			<type>
+																				<NamedType>
+																					<type>
+																						<TypeRef name="mobileHWAction_Type"/>
+																					</type>
+																				</NamedType>
+																			</type>
+																			<pragmas>
+																				<ed:Variable oid="!ed/29f7/3011/1B64/50ec0d834aac"/>
+																			</pragmas>
+																		</Variable>
+																	</locals>
+																	<data>
+																		<!-- _L1 = mhwa_connect; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="_L1"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="mhwa_connect"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/29f6/3011/1B64/50ec0d83404b"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- hw_cmd = _L1; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="hw_cmd"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="_L1"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/2a1d/3011/1B64/50ec0db92827"/>
+																			</pragmas>
+																		</Equation>
+																	</data>
+																	<pragmas>
+																		<ed:Action oid="!ed/29db/3011/1B64/50ec0d4171bb"/>
+																	</pragmas>
+																</Action>
+															</then>
+															<else>
+																<IfNode>
+																	<if>
+																		<Present>
+																			<signal>
+																				<SignalRef name="sHWDisconnect"/>
+																			</signal>
+																		</Present>
+																	</if>
+																	<then>
+																		<Action>
+																			<locals>
+																				<Variable name="_L1">
+																					<type>
+																						<NamedType>
+																							<type>
+																								<TypeRef name="mobileHWAction_Type"/>
+																							</type>
+																						</NamedType>
+																					</type>
+																					<pragmas>
+																						<ed:Variable oid="!ed/29fe/3011/1B64/50ec0d882916"/>
+																					</pragmas>
+																				</Variable>
+																			</locals>
+																			<data>
+																				<!-- _L1 = mhwa_disconnect; -->
+																				<Equation>
+																					<lefts>
+																						<VariableRef name="_L1"/>
+																					</lefts>
+																					<right>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="mhwa_disconnect"/>
+																							</path>
+																						</IdExpression>
+																					</right>
+																					<pragmas>
+																						<ed:Equation oid="!ed/29fd/3011/1B64/50ec0d883f84"/>
+																					</pragmas>
+																				</Equation>
+																				<!-- hw_cmd = _L1; -->
+																				<Equation>
+																					<lefts>
+																						<VariableRef name="hw_cmd"/>
+																					</lefts>
+																					<right>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="_L1"/>
+																							</path>
+																						</IdExpression>
+																					</right>
+																					<pragmas>
+																						<ed:Equation oid="!ed/2a25/3011/1B64/50ec0dbcf37"/>
+																					</pragmas>
+																				</Equation>
+																			</data>
+																			<pragmas>
+																				<ed:Action oid="!ed/29e2/3011/1B64/50ec0d451542"/>
+																			</pragmas>
+																		</Action>
+																	</then>
+																	<else>
+																		<Action>
+																			<locals>
+																				<Variable name="_L1">
+																					<type>
+																						<NamedType>
+																							<type>
+																								<TypeRef name="mobileHWAction_Type"/>
+																							</type>
+																						</NamedType>
+																					</type>
+																					<pragmas>
+																						<ed:Variable oid="!ed/2a05/3011/1B64/50ec0da24487"/>
+																					</pragmas>
+																				</Variable>
+																			</locals>
+																			<data>
+																				<!-- _L1 = mhwa_nop; -->
+																				<Equation>
+																					<lefts>
+																						<VariableRef name="_L1"/>
+																					</lefts>
+																					<right>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="mhwa_nop"/>
+																							</path>
+																						</IdExpression>
+																					</right>
+																					<pragmas>
+																						<ed:Equation oid="!ed/2a04/3011/1B64/50ec0da2752c"/>
+																					</pragmas>
+																				</Equation>
+																				<!-- hw_cmd = _L1; -->
+																				<Equation>
+																					<lefts>
+																						<VariableRef name="hw_cmd"/>
+																					</lefts>
+																					<right>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="_L1"/>
+																							</path>
+																						</IdExpression>
+																					</right>
+																					<pragmas>
+																						<ed:Equation oid="!ed/2a2d/3011/1B64/50ec0dc04d9f"/>
+																					</pragmas>
+																				</Equation>
+																			</data>
+																			<pragmas>
+																				<ed:Action oid="!ed/298d/3011/1B64/50ec0bb41724"/>
+																			</pragmas>
+																		</Action>
+																	</else>
+																	<pragmas>
+																		<ed:IfNode oid="!ed/29dd/3011/1B64/50ec0d43db1"/>
+																	</pragmas>
+																</IfNode>
+															</else>
+															<pragmas>
+																<ed:IfNode oid="!ed/29d6/3011/1B64/50ec0d3f122b"/>
+															</pragmas>
+														</IfNode>
+													</else>
+													<pragmas>
+														<ed:IfNode oid="!ed/29c9/3011/1B64/50ec0d343897"/>
+													</pragmas>
+												</IfNode>
+											</else>
+											<pragmas>
+												<ed:IfNode oid="!ed/298b/3011/1B64/50ec0bb4660a"/>
+											</pragmas>
+										</IfNode>
+									</block>
+									<pragmas>
+										<ed:IfBlock oid="!ed/2986/3011/1B64/50ec0bb355e6"/>
+									</pragmas>
+								</IfBlock>
+								<!-- _L25 = registeredRadioNetworkID; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L25"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="registeredRadioNetworkID"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/27cc/20F2/166C/50ec3a1f3e28"/>
+									</pragmas>
+								</Equation>
+								<!-- _L26 = mobileHWStatus; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L26"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="mobileHWStatus"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2af8/4FF2/164C/50f988a738b5"/>
+									</pragmas>
+								</Equation>
+								<!-- _L27 = _L26.settingUpConnectionHasFailed; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L27"/>
+									</lefts>
+									<right>
+										<!-- _L26.settingUpConnectionHasFailed -->
+										<PrjOp name="3">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L26"/>
+													</path>
+												</IdExpression>
+											</flow>
+											<with>
+												<Label name="settingUpConnectionHasFailed"/>
+											</with>
+										</PrjOp>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2b08/4FF2/164C/50f988b4776b"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<pragmas>
+								<ed:State oid="!ed/2706/7DD1/1D44/50d1d4226085" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<diagrams>
+										<NetDiagram name="diagram_MobileHWAvailable_1" landscape="true" format="A4 (210 297)" oid="!ed/280a/7DD1/1D44/50d1d9d3606">
+											<presentationElements>
+												<StateMachineGE presentable="!ed/26ce/595B/EE0/50eacfe54b34">
+													<position>
+														<Point x="1905" y="4948"/>
+													</position>
+													<size>
+														<Size width="26776" height="28813"/>
+													</size>
+												</StateMachineGE>
+												<StateGE presentable="!ed/26f3/595B/EE0/50ead08d5376">
+													<position>
+														<Point x="14208" y="5556"/>
+													</position>
+													<size>
+														<Size width="6773" height="2408"/>
+													</size>
+												</StateGE>
+												<StateGE presentable="!ed/2706/595B/EE0/50ead0e46e0f">
+													<position>
+														<Point x="3096" y="10557"/>
+													</position>
+													<size>
+														<Size width="8810" height="2884"/>
+													</size>
+												</StateGE>
+												<TransitionGE presentable="!ed/2719/595B/EE0/50ead6e612d1">
+													<positions>
+														<Point x="14208" y="6641"/>
+														<Point x="10504" y="6668"/>
+														<Point x="9895" y="9313"/>
+														<Point x="9763" y="10557"/>
+													</positions>
+													<labelSize>
+														<Size width="4339" height="635"/>
+													</labelSize>
+													<labelPos>
+														<Point x="9102" y="7117"/>
+													</labelPos>
+													<slashPos>
+														<Point x="11086" y="7117"/>
+													</slashPos>
+												</TransitionGE>
+												<StateGE presentable="!ed/27c4/595B/EE0/50eadbcc5123">
+													<position>
+														<Point x="5398" y="15796"/>
+													</position>
+													<size>
+														<Size width="8758" height="2778"/>
+													</size>
+												</StateGE>
+												<EquationGE presentable="!ed/27d9/595B/EE0/50eadc545f7a">
+													<position>
+														<Point x="10901" y="17013"/>
+													</position>
+													<size>
+														<Size width="343" height="503"/>
+													</size>
+												</EquationGE>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/27fb/595B/EE0/50eadcdf7c64">
+													<position>
+														<Point x="8043" y="17119"/>
+													</position>
+													<size>
+														<Size width="211" height="318"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/27fb/595B/EE0/50eadcdf7c64" dstEquation="!ed/27d9/595B/EE0/50eadc545f7a">
+													<positions>
+														<Point x="8255" y="17277"/>
+														<Point x="9895" y="17277"/>
+														<Point x="9895" y="17277"/>
+														<Point x="10901" y="17277"/>
+													</positions>
+												</Edge>
+												<TransitionGE presentable="!ed/2812/595B/EE0/50eadd2e58bb">
+													<positions>
+														<Point x="6615" y="13441"/>
+														<Point x="6535" y="14393"/>
+														<Point x="7382" y="15293"/>
+														<Point x="7779" y="15796"/>
+													</positions>
+													<labelSize>
+														<Size width="4630" height="635"/>
+													</labelSize>
+													<labelPos>
+														<Point x="3175" y="14420"/>
+													</labelPos>
+													<slashPos>
+														<Point x="7011" y="14420"/>
+													</slashPos>
+												</TransitionGE>
+												<TransitionGE presentable="!ed/2838/595B/EE0/50eadda26e81">
+													<positions>
+														<Point x="11906" y="12012"/>
+														<Point x="13361" y="10425"/>
+														<Point x="15743" y="8864"/>
+														<Point x="15849" y="7964"/>
+													</positions>
+													<labelSize>
+														<Size width="4815" height="635"/>
+													</labelSize>
+													<labelPos>
+														<Point x="11298" y="9949"/>
+													</labelPos>
+													<slashPos>
+														<Point x="13494" y="9948"/>
+													</slashPos>
+												</TransitionGE>
+												<TransitionGE presentable="!ed/2856/595B/EE0/50eade496c02">
+													<positions>
+														<Point x="14155" y="17277"/>
+														<Point x="16510" y="14049"/>
+														<Point x="17806" y="10557"/>
+														<Point x="17992" y="7964"/>
+													</positions>
+													<labelSize>
+														<Size width="4895" height="953"/>
+													</labelSize>
+													<labelPos>
+														<Point x="13282" y="15108"/>
+													</labelPos>
+													<slashPos>
+														<Point x="15663" y="15108"/>
+													</slashPos>
+												</TransitionGE>
+												<StateGE presentable="!ed/286a/595B/EE0/50eadf3f1409">
+													<position>
+														<Point x="2778" y="20717"/>
+													</position>
+													<size>
+														<Size width="8335" height="2408"/>
+													</size>
+												</StateGE>
+												<TransitionGE presentable="!ed/2875/595B/EE0/50eadfa7f75">
+													<positions>
+														<Point x="6641" y="18574"/>
+														<Point x="6324" y="19341"/>
+														<Point x="5318" y="20267"/>
+														<Point x="4815" y="20717"/>
+													</positions>
+													<labelSize>
+														<Size width="4128" height="635"/>
+													</labelSize>
+													<labelPos>
+														<Point x="3519" y="19605"/>
+													</labelPos>
+													<slashPos>
+														<Point x="5345" y="19606"/>
+													</slashPos>
+												</TransitionGE>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/28ab/595B/EE0/50eae01f6344">
+													<position>
+														<Point x="5133" y="22278"/>
+													</position>
+													<size>
+														<Size width="212" height="317"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/28ad/595B/EE0/50eae01f389">
+													<position>
+														<Point x="7990" y="22172"/>
+													</position>
+													<size>
+														<Size width="344" height="503"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/28ab/595B/EE0/50eae01f6344" dstEquation="!ed/28ad/595B/EE0/50eae01f389">
+													<positions>
+														<Point x="5345" y="22437"/>
+														<Point x="6985" y="22437"/>
+														<Point x="6985" y="22437"/>
+														<Point x="7990" y="22437"/>
+													</positions>
+												</Edge>
+												<TransitionGE presentable="!ed/28ec/595B/EE0/50eae1404c89">
+													<positions>
+														<Point x="8255" y="20717"/>
+														<Point x="9234" y="19738"/>
+														<Point x="9684" y="19103"/>
+														<Point x="10028" y="18574"/>
+													</positions>
+													<labelSize>
+														<Size width="4630" height="635"/>
+													</labelSize>
+													<labelPos>
+														<Point x="7223" y="18997"/>
+													</labelPos>
+													<slashPos>
+														<Point x="9234" y="18997"/>
+													</slashPos>
+												</TransitionGE>
+												<StateGE presentable="!ed/2909/595B/EE0/50eae18e6943">
+													<position>
+														<Point x="5345" y="25030"/>
+													</position>
+													<size>
+														<Size width="8678" height="2064"/>
+													</size>
+												</StateGE>
+												<TransitionGE presentable="!ed/2917/595B/EE0/50eae1b552f5">
+													<positions>
+														<Point x="4683" y="23125"/>
+														<Point x="4233" y="23786"/>
+														<Point x="6615" y="24527"/>
+														<Point x="7091" y="25030"/>
+													</positions>
+													<labelSize>
+														<Size width="3387" height="318"/>
+													</labelSize>
+													<labelPos>
+														<Point x="3334" y="23786"/>
+													</labelPos>
+													<slashPos>
+														<Point x="5927" y="23786"/>
+													</slashPos>
+												</TransitionGE>
+												<TransitionGE presentable="!ed/292c/595B/EE0/50eae23e3fb8">
+													<positions>
+														<Point x="11906" y="25030"/>
+														<Point x="13361" y="23178"/>
+														<Point x="15954" y="21405"/>
+														<Point x="14023" y="18521"/>
+													</positions>
+													<labelSize>
+														<Size width="4868" height="635"/>
+													</labelSize>
+													<labelPos>
+														<Point x="12197" y="20690"/>
+													</labelPos>
+													<slashPos>
+														<Point x="14393" y="20690"/>
+													</slashPos>
+												</TransitionGE>
+												<TransitionGE presentable="!ed/2938/595B/EE0/50eae2a33b42">
+													<positions>
+														<Point x="10927" y="25030"/>
+														<Point x="11536" y="24289"/>
+														<Point x="12462" y="19817"/>
+														<Point x="12541" y="18574"/>
+													</positions>
+													<labelSize>
+														<Size width="3731" height="635"/>
+													</labelSize>
+													<labelPos>
+														<Point x="9869" y="23389"/>
+													</labelPos>
+													<slashPos>
+														<Point x="12806" y="23389"/>
+													</slashPos>
+												</TransitionGE>
+												<EquationGE presentable="!ed/2972/595B/EE0/50eae66e53d8">
+													<position>
+														<Point x="10398" y="26167"/>
+													</position>
+													<size>
+														<Size width="344" height="503"/>
+													</size>
+												</EquationGE>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/2983/595B/EE0/50eae6971ed1">
+													<position>
+														<Point x="8229" y="26273"/>
+													</position>
+													<size>
+														<Size width="212" height="317"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2983/595B/EE0/50eae6971ed1" dstEquation="!ed/2972/595B/EE0/50eae66e53d8">
+													<positions>
+														<Point x="8440" y="26432"/>
+														<Point x="9631" y="26432"/>
+														<Point x="9631" y="26432"/>
+														<Point x="10398" y="26432"/>
+													</positions>
+												</Edge>
+												<TransitionGE presentable="!ed/298c/595B/EE0/50eae7d72d44">
+													<positions>
+														<Point x="12277" y="15796"/>
+														<Point x="16457" y="14208"/>
+														<Point x="16907" y="9657"/>
+														<Point x="16907" y="7964"/>
+													</positions>
+													<labelSize>
+														<Size width="3440" height="953"/>
+													</labelSize>
+													<labelPos>
+														<Point x="11299" y="14156"/>
+													</labelPos>
+													<slashPos>
+														<Point x="13944" y="14155"/>
+													</slashPos>
+												</TransitionGE>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/2732/3011/1B64/50ebef3b4217">
+													<position>
+														<Point x="5609" y="11906"/>
+													</position>
+													<size>
+														<Size width="212" height="317"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/2734/3011/1B64/50ebef3b79aa">
+													<position>
+														<Point x="8387" y="11800"/>
+													</position>
+													<size>
+														<Size width="344" height="503"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2732/3011/1B64/50ebef3b4217" dstEquation="!ed/2734/3011/1B64/50ebef3b79aa">
+													<positions>
+														<Point x="5821" y="12065"/>
+														<Point x="7091" y="12065"/>
+														<Point x="7091" y="12065"/>
+														<Point x="8387" y="12065"/>
+													</positions>
+												</Edge>
+												<TransitionGE presentable="!ed/2778/3011/1B64/50ebf74516ff">
+													<positions>
+														<Point x="14023" y="26035"/>
+														<Point x="18283" y="22304"/>
+														<Point x="18759" y="12012"/>
+														<Point x="18865" y="7964"/>
+													</positions>
+													<labelSize>
+														<Size width="3360" height="1270"/>
+													</labelSize>
+													<labelPos>
+														<Point x="14870" y="17595"/>
+													</labelPos>
+													<slashPos>
+														<Point x="17436" y="17595"/>
+													</slashPos>
+												</TransitionGE>
+												<StateGE presentable="!ed/27be/3011/1B64/50ebf8e9699f">
+													<position>
+														<Point x="5239" y="29184"/>
+													</position>
+													<size>
+														<Size width="8599" height="2170"/>
+													</size>
+												</StateGE>
+												<EquationGE presentable="!ed/27e8/3011/1B64/50ebf9864b40">
+													<position>
+														<Point x="10160" y="30374"/>
+													</position>
+													<size>
+														<Size width="344" height="502"/>
+													</size>
+												</EquationGE>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/27e9/3011/1B64/50ebf9861689">
+													<position>
+														<Point x="8837" y="30480"/>
+													</position>
+													<size>
+														<Size width="212" height="317"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/27e9/3011/1B64/50ebf9861689" dstEquation="!ed/27e8/3011/1B64/50ebf9864b40">
+													<positions>
+														<Point x="9049" y="30639"/>
+														<Point x="9260" y="30639"/>
+														<Point x="9260" y="30639"/>
+														<Point x="10160" y="30639"/>
+													</positions>
+												</Edge>
+												<StateGE presentable="!ed/2806/3011/1B64/50ebfa025495">
+													<position>
+														<Point x="17992" y="29289"/>
+													</position>
+													<size>
+														<Size width="8281" height="2170"/>
+													</size>
+												</StateGE>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/282f/3011/1B64/50ebfa455b40">
+													<position>
+														<Point x="21378" y="30639"/>
+													</position>
+													<size>
+														<Size width="212" height="317"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/2831/3011/1B64/50ebfa456d7a">
+													<position>
+														<Point x="22966" y="30533"/>
+													</position>
+													<size>
+														<Size width="344" height="502"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/282f/3011/1B64/50ebfa455b40" dstEquation="!ed/2831/3011/1B64/50ebfa456d7a">
+													<positions>
+														<Point x="21590" y="30798"/>
+														<Point x="22066" y="30798"/>
+														<Point x="22066" y="30798"/>
+														<Point x="22966" y="30798"/>
+													</positions>
+												</Edge>
+												<TransitionGE presentable="!ed/2849/3011/1B64/50ebfa8948bf">
+													<positions>
+														<Point x="7197" y="27093"/>
+														<Point x="6694" y="28205"/>
+														<Point x="6826" y="28681"/>
+														<Point x="6959" y="29184"/>
+													</positions>
+													<labelSize>
+														<Size width="4577" height="953"/>
+													</labelSize>
+													<labelPos>
+														<Point x="2593" y="27675"/>
+													</labelPos>
+													<slashPos>
+														<Point x="6376" y="27675"/>
+													</slashPos>
+												</TransitionGE>
+												<TransitionGE presentable="!ed/2873/3011/1B64/50ebfb03e15">
+													<positions>
+														<Point x="13838" y="30586"/>
+														<Point x="15214" y="30586"/>
+														<Point x="16589" y="30586"/>
+														<Point x="17992" y="30586"/>
+													</positions>
+													<labelSize>
+														<Size width="1535" height="370"/>
+													</labelSize>
+													<labelPos>
+														<Point x="15134" y="30401"/>
+													</labelPos>
+													<slashPos>
+														<Point x="15875" y="30401"/>
+													</slashPos>
+												</TransitionGE>
+												<TransitionGE presentable="!ed/288b/3011/1B64/50ebfb813e73">
+													<positions>
+														<Point x="18944" y="29289"/>
+														<Point x="17648" y="27437"/>
+														<Point x="15849" y="27067"/>
+														<Point x="14023" y="26696"/>
+													</positions>
+													<labelSize>
+														<Size width="4710" height="953"/>
+													</labelSize>
+													<labelPos>
+														<Point x="12991" y="27596"/>
+													</labelPos>
+													<slashPos>
+														<Point x="16907" y="27596"/>
+													</slashPos>
+												</TransitionGE>
+												<TransitionGE presentable="!ed/28aa/3011/1B64/50ebfd8415c7">
+													<positions>
+														<Point x="22357" y="29289"/>
+														<Point x="24236" y="16431"/>
+														<Point x="22516" y="12197"/>
+														<Point x="20796" y="7964"/>
+													</positions>
+													<labelSize>
+														<Size width="3757" height="1270"/>
+													</labelSize>
+													<labelPos>
+														<Point x="20082" y="19923"/>
+													</labelPos>
+													<slashPos>
+														<Point x="23045" y="19923"/>
+													</slashPos>
+												</TransitionGE>
+												<TransitionGE presentable="!ed/27a1/4207/12B4/50ed50f1710f">
+													<positions>
+														<Point x="8625" y="10557"/>
+														<Point x="8731" y="8837"/>
+														<Point x="5556" y="6615"/>
+														<Point x="3201" y="8255"/>
+														<Point x="2540" y="8731"/>
+														<Point x="3307" y="9631"/>
+														<Point x="4101" y="10557"/>
+													</positions>
+													<labelSize>
+														<Size width="4180" height="635"/>
+													</labelSize>
+													<labelPos>
+														<Point x="2778" y="6932"/>
+													</labelPos>
+													<slashPos>
+														<Point x="4868" y="6932"/>
+													</slashPos>
+												</TransitionGE>
+											</presentationElements>
+										</NetDiagram>
+										<NetDiagram name="diagram_MobileHWAvailable_2" landscape="true" format="A4 (210 297)" oid="!ed/2922/3011/1B64/50ec07f27af3">
+											<presentationElements>
+												<EquationGE presentable="!ed/2928/3011/1B64/50ec080f65bb">
+													<position>
+														<Point x="23813" y="4286"/>
+													</position>
+													<size>
+														<Size width="317" height="503"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/292d/3011/1B64/50ec0822544">
+													<position>
+														<Point x="18063" y="1394"/>
+													</position>
+													<size>
+														<Size width="4196" height="6287"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/292d/3011/1B64/50ec0822544" dstEquation="!ed/2928/3011/1B64/50ec080f65bb">
+													<positions>
+														<Point x="22251" y="4551"/>
+														<Point x="23045" y="4551"/>
+														<Point x="23045" y="4551"/>
+														<Point x="23865" y="4551"/>
+													</positions>
+												</Edge>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/2939/3011/1B64/50ec083c5422">
+													<position>
+														<Point x="15240" y="2302"/>
+													</position>
+													<size>
+														<Size width="212" height="318"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2939/3011/1B64/50ec083c5422" dstEquation="!ed/292d/3011/1B64/50ec0822544">
+													<positions>
+														<Point x="15452" y="2461"/>
+														<Point x="16748" y="2461"/>
+														<Point x="16748" y="2461"/>
+														<Point x="18071" y="2461"/>
+													</positions>
+												</Edge>
+												<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/2939/3011/1B64/50ec083c5422" dstEquation="!ed/292d/3011/1B64/50ec0822544">
+													<positions>
+														<Point x="15452" y="2461"/>
+														<Point x="16748" y="2461"/>
+														<Point x="16748" y="3493"/>
+														<Point x="18071" y="3493"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/294a/3011/1B64/50ec08778c9">
+													<position>
+														<Point x="16219" y="4286"/>
+													</position>
+													<size>
+														<Size width="265" height="503"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/294a/3011/1B64/50ec08778c9" dstEquation="!ed/292d/3011/1B64/50ec0822544">
+													<positions>
+														<Point x="16484" y="4551"/>
+														<Point x="17277" y="4551"/>
+														<Point x="17277" y="4551"/>
+														<Point x="18071" y="4551"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/2954/3011/1B64/50ec09ba4a1f">
+													<position>
+														<Point x="23786" y="12541"/>
+													</position>
+													<size>
+														<Size width="317" height="503"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/295f/3011/1B64/50ec0a4b1e9b">
+													<position>
+														<Point x="18195" y="10390"/>
+													</position>
+													<size>
+														<Size width="3747" height="4832"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/295f/3011/1B64/50ec0a4b1e9b" dstEquation="!ed/2954/3011/1B64/50ec09ba4a1f">
+													<positions>
+														<Point x="21934" y="12806"/>
+														<Point x="22886" y="12806"/>
+														<Point x="22886" y="12806"/>
+														<Point x="23839" y="12806"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/2965/3011/1B64/50ec0a7439ca">
+													<position>
+														<Point x="15743" y="13758"/>
+													</position>
+													<size>
+														<Size width="264" height="503"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/2965/3011/1B64/50ec0a7439ca" dstEquation="!ed/295f/3011/1B64/50ec0a4b1e9b">
+													<positions>
+														<Point x="16007" y="14023"/>
+														<Point x="17092" y="14023"/>
+														<Point x="17092" y="14023"/>
+														<Point x="18203" y="14023"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/296b/3011/1B64/50ec0aac2086">
+													<position>
+														<Point x="3334" y="10028"/>
+													</position>
+													<size>
+														<Size width="317" height="502"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/296d/3011/1B64/50ec0aac44ec">
+													<position>
+														<Point x="3334" y="11113"/>
+													</position>
+													<size>
+														<Size width="317" height="502"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/296f/3011/1B64/50ec0aac5787">
+													<position>
+														<Point x="3334" y="12091"/>
+													</position>
+													<size>
+														<Size width="317" height="503"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/2971/3011/1B64/50ec0aac3a96">
+													<position>
+														<Point x="3334" y="13123"/>
+													</position>
+													<size>
+														<Size width="317" height="503"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/2979/3011/1B64/50ec0ab47740">
+													<position>
+														<Point x="6932" y="10451"/>
+													</position>
+													<size>
+														<Size width="1021" height="2344"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2979/3011/1B64/50ec0ab47740" dstEquation="!ed/295f/3011/1B64/50ec0a4b1e9b">
+													<positions>
+														<Point x="7964" y="11642"/>
+														<Point x="13070" y="11642"/>
+														<Point x="13070" y="11642"/>
+														<Point x="18203" y="11642"/>
+													</positions>
+												</Edge>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/296b/3011/1B64/50ec0aac2086" dstEquation="!ed/2979/3011/1B64/50ec0ab47740">
+													<positions>
+														<Point x="3651" y="10292"/>
+														<Point x="5292" y="10292"/>
+														<Point x="5292" y="10927"/>
+														<Point x="6932" y="10927"/>
+													</positions>
+												</Edge>
+												<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/296d/3011/1B64/50ec0aac44ec" dstEquation="!ed/2979/3011/1B64/50ec0ab47740">
+													<positions>
+														<Point x="3651" y="11377"/>
+														<Point x="5292" y="11377"/>
+														<Point x="5292" y="11377"/>
+														<Point x="6932" y="11377"/>
+													</positions>
+												</Edge>
+												<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/296f/3011/1B64/50ec0aac5787" dstEquation="!ed/2979/3011/1B64/50ec0ab47740">
+													<positions>
+														<Point x="3651" y="12356"/>
+														<Point x="5292" y="12356"/>
+														<Point x="5292" y="11853"/>
+														<Point x="6932" y="11853"/>
+													</positions>
+												</Edge>
+												<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/2971/3011/1B64/50ec0aac3a96" dstEquation="!ed/2979/3011/1B64/50ec0ab47740">
+													<positions>
+														<Point x="3651" y="13388"/>
+														<Point x="5874" y="13388"/>
+														<Point x="5874" y="12330"/>
+														<Point x="6932" y="12330"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/297f/3011/1B64/50ec0b4379ba">
+													<position>
+														<Point x="15716" y="12541"/>
+													</position>
+													<size>
+														<Size width="265" height="503"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/297f/3011/1B64/50ec0b4379ba" dstEquation="!ed/295f/3011/1B64/50ec0a4b1e9b">
+													<positions>
+														<Point x="15981" y="12806"/>
+														<Point x="17092" y="12806"/>
+														<Point x="17092" y="12806"/>
+														<Point x="18203" y="12806"/>
+													</positions>
+												</Edge>
+												<IfBlockGE presentable="!ed/2986/3011/1B64/50ec0bb355e6">
+													<position>
+														<Point x="3281" y="16245"/>
+													</position>
+													<size>
+														<Size width="21749" height="13044"/>
+													</size>
+												</IfBlockGE>
+												<ActionGE presentable="!ed/298c/3011/1B64/50ec0bb4477f">
+													<position>
+														<Point x="11827" y="17039"/>
+													</position>
+													<size>
+														<Size width="5027" height="1508"/>
+													</size>
+												</ActionGE>
+												<ActionGE presentable="!ed/298d/3011/1B64/50ec0bb41724">
+													<position>
+														<Point x="11827" y="27040"/>
+													</position>
+													<size>
+														<Size width="5027" height="1509"/>
+													</size>
+												</ActionGE>
+												<IfNodeGE labelWidth="1826" presentable="!ed/298b/3011/1B64/50ec0bb4660a">
+													<position>
+														<Point x="3731" y="17119"/>
+													</position>
+												</IfNodeGE>
+												<IfNodeGE labelWidth="1535" presentable="!ed/29c9/3011/1B64/50ec0d343897">
+													<position>
+														<Point x="3731" y="19711"/>
+													</position>
+												</IfNodeGE>
+												<ActionGE presentable="!ed/29ce/3011/1B64/50ec0d36458e">
+													<position>
+														<Point x="11827" y="19632"/>
+													</position>
+													<size>
+														<Size width="5027" height="1508"/>
+													</size>
+												</ActionGE>
+												<IfNodeGE labelWidth="1614" presentable="!ed/29d6/3011/1B64/50ec0d3f122b">
+													<position>
+														<Point x="3731" y="22251"/>
+													</position>
+												</IfNodeGE>
+												<ActionGE presentable="!ed/29db/3011/1B64/50ec0d4171bb">
+													<position>
+														<Point x="11827" y="22172"/>
+													</position>
+													<size>
+														<Size width="5027" height="1508"/>
+													</size>
+												</ActionGE>
+												<IfNodeGE labelWidth="1931" presentable="!ed/29dd/3011/1B64/50ec0d43db1">
+													<position>
+														<Point x="3731" y="24765"/>
+													</position>
+												</IfNodeGE>
+												<ActionGE presentable="!ed/29e2/3011/1B64/50ec0d451542">
+													<position>
+														<Point x="11827" y="24686"/>
+													</position>
+													<size>
+														<Size width="5027" height="1508"/>
+													</size>
+												</ActionGE>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/29e8/3011/1B64/50ec0d7819aa">
+													<position>
+														<Point x="14023" y="17648"/>
+													</position>
+													<size>
+														<Size width="211" height="318"/>
+													</size>
+												</EquationGE>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/29ef/3011/1B64/50ec0d7f587a">
+													<position>
+														<Point x="14023" y="20214"/>
+													</position>
+													<size>
+														<Size width="212" height="317"/>
+													</size>
+												</EquationGE>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/29f6/3011/1B64/50ec0d83404b">
+													<position>
+														<Point x="14023" y="22754"/>
+													</position>
+													<size>
+														<Size width="212" height="317"/>
+													</size>
+												</EquationGE>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/29fd/3011/1B64/50ec0d883f84">
+													<position>
+														<Point x="14023" y="25135"/>
+													</position>
+													<size>
+														<Size width="212" height="318"/>
+													</size>
+												</EquationGE>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/2a04/3011/1B64/50ec0da2752c">
+													<position>
+														<Point x="14023" y="27623"/>
+													</position>
+													<size>
+														<Size width="212" height="317"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/2a0d/3011/1B64/50ec0db158b5">
+													<position>
+														<Point x="14949" y="17542"/>
+													</position>
+													<size>
+														<Size width="344" height="503"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/2a15/3011/1B64/50ec0db66301">
+													<position>
+														<Point x="14949" y="20108"/>
+													</position>
+													<size>
+														<Size width="344" height="503"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/2a1d/3011/1B64/50ec0db92827">
+													<position>
+														<Point x="14949" y="22648"/>
+													</position>
+													<size>
+														<Size width="344" height="503"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/2a25/3011/1B64/50ec0dbcf37">
+													<position>
+														<Point x="14949" y="25030"/>
+													</position>
+													<size>
+														<Size width="344" height="503"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/2a2d/3011/1B64/50ec0dc04d9f">
+													<position>
+														<Point x="14949" y="27517"/>
+													</position>
+													<size>
+														<Size width="344" height="503"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/29e8/3011/1B64/50ec0d7819aa" dstEquation="!ed/2a0d/3011/1B64/50ec0db158b5">
+													<positions>
+														<Point x="14235" y="17806"/>
+														<Point x="14843" y="17806"/>
+														<Point x="14843" y="17806"/>
+														<Point x="14949" y="17806"/>
+													</positions>
+												</Edge>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/29ef/3011/1B64/50ec0d7f587a" dstEquation="!ed/2a15/3011/1B64/50ec0db66301">
+													<positions>
+														<Point x="14235" y="20373"/>
+														<Point x="14579" y="20373"/>
+														<Point x="14579" y="20373"/>
+														<Point x="14949" y="20373"/>
+													</positions>
+												</Edge>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/29f6/3011/1B64/50ec0d83404b" dstEquation="!ed/2a1d/3011/1B64/50ec0db92827">
+													<positions>
+														<Point x="14235" y="22913"/>
+														<Point x="14579" y="22913"/>
+														<Point x="14579" y="22913"/>
+														<Point x="14949" y="22913"/>
+													</positions>
+												</Edge>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/29fd/3011/1B64/50ec0d883f84" dstEquation="!ed/2a25/3011/1B64/50ec0dbcf37">
+													<positions>
+														<Point x="14235" y="25294"/>
+														<Point x="14579" y="25294"/>
+														<Point x="14579" y="25294"/>
+														<Point x="14949" y="25294"/>
+													</positions>
+												</Edge>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2a04/3011/1B64/50ec0da2752c" dstEquation="!ed/2a2d/3011/1B64/50ec0dc04d9f">
+													<positions>
+														<Point x="14235" y="27781"/>
+														<Point x="14579" y="27781"/>
+														<Point x="14579" y="27781"/>
+														<Point x="14949" y="27781"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/27cc/20F2/166C/50ec3a1f3e28">
+													<position>
+														<Point x="16193" y="5318"/>
+													</position>
+													<size>
+														<Size width="264" height="503"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/27cc/20F2/166C/50ec3a1f3e28" dstEquation="!ed/292d/3011/1B64/50ec0822544">
+													<positions>
+														<Point x="16457" y="5583"/>
+														<Point x="17251" y="5583"/>
+														<Point x="17251" y="5583"/>
+														<Point x="18071" y="5583"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/2af8/4FF2/164C/50f988a738b5">
+													<position>
+														<Point x="3810" y="6376"/>
+													</position>
+													<size>
+														<Size width="265" height="503"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/2b08/4FF2/164C/50f988b4776b">
+													<position>
+														<Point x="5186" y="6138"/>
+													</position>
+													<size>
+														<Size width="3958" height="995"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2af8/4FF2/164C/50f988a738b5" dstEquation="!ed/2b08/4FF2/164C/50f988b4776b">
+													<positions>
+														<Point x="4075" y="6641"/>
+														<Point x="4630" y="6641"/>
+														<Point x="4630" y="6641"/>
+														<Point x="5186" y="6641"/>
+													</positions>
+												</Edge>
+												<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/2b08/4FF2/164C/50f988b4776b" dstEquation="!ed/292d/3011/1B64/50ec0822544">
+													<positions>
+														<Point x="9155" y="6641"/>
+														<Point x="13600" y="6641"/>
+														<Point x="13600" y="6641"/>
+														<Point x="18071" y="6641"/>
+													</positions>
+												</Edge>
+											</presentationElements>
+										</NetDiagram>
+									</diagrams>
+								</ed:State>
+							</pragmas>
+						</State>
+						<State initial="true" name="InitialState">
+							<unless>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="MobileHWNotAvailable"/>
+									</target>
+									<condition>
+										<ConstValue value="true"/>
+									</condition>
+									<effect>
+										<Action>
+											<pragmas>
+												<ed:Action oid="!ed/2835/7DD1/1D44/50d1db052c4e"/>
+											</pragmas>
+										</Action>
+									</effect>
+									<pragmas>
+										<ed:Transition oid="!ed/27d5/7DD1/1D44/50d1d880411e"/>
+									</pragmas>
+								</Transition>
+							</unless>
+							<locals>
+								<Variable name="_L1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="mobileSWStatus_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/27b3/7DD1/1D44/50d1d828784d"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<!-- _L1 = cMobileSWStatus_noHW; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L1"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="cMobileSWStatus_noHW"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/27b2/7DD1/1D44/50d1d8285411"/>
+									</pragmas>
+								</Equation>
+								<!-- mobileSWStatus = _L1; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="mobileSWStatus"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/27c9/7DD1/1D44/50d1d8621c6"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<pragmas>
+								<ed:State oid="!ed/27a6/7DD1/1D44/50d1d7e9663d"/>
+							</pragmas>
+						</State>
+					</states>
+					<pragmas>
+						<ed:StateMachine oid="!ed/26f2/7DD1/1D44/50d1d22129"/>
+					</pragmas>
+				</StateMachine>
+				<!-- _L38 = mhwc_notRegistered; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L38"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="mhwc_notRegistered"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/27a8/595B/EE0/50eadaed1d12"/>
+					</pragmas>
+				</Equation>
+				<!-- _L39 = if _L8 then (_L9) else (_L38); -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L39"/>
+					</lefts>
+					<right>
+						<!-- if _L8 then (_L9) else (_L38) -->
+						<IfThenElseOp name="2">
+							<if>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L8"/>
+									</path>
+								</IdExpression>
+							</if>
+							<then>
+								<ListExpression>
+									<items>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L9"/>
+											</path>
+										</IdExpression>
+									</items>
+								</ListExpression>
+							</then>
+							<else>
+								<ListExpression>
+									<items>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L38"/>
+											</path>
+										</IdExpression>
+									</items>
+								</ListExpression>
+							</else>
+						</IfThenElseOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/27bc/595B/EE0/50eadb0576ed"/>
+					</pragmas>
+				</Equation>
+				<!-- _L40 = linear::MemoryBasic(_L27, _L42, _L41); -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L40"/>
+					</lefts>
+					<right>
+						<!-- linear::MemoryBasic(_L27, _L42, _L41) -->
+						<CallExpression>
+							<operator>
+								<OpCall name="3">
+									<operator>
+										<OperatorRef name="linear::MemoryBasic"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L27"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L42"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L41"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2771/20F2/166C/50ec34972f62"/>
+					</pragmas>
+				</Equation>
+				<!-- _L41 =  'sHwRegister; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L41"/>
+					</lefts>
+					<right>
+						<Present>
+							<signal>
+								<SignalRef name="sHwRegister"/>
+							</signal>
+						</Present>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2778/20F2/166C/50ec34db5ec7"/>
+					</pragmas>
+				</Equation>
+				<!-- _L42 = cInvalidRadioNetworkID_value; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L42"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="cInvalidRadioNetworkID_value"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2799/20F2/166C/50ec3589746e"/>
+					</pragmas>
+				</Equation>
+				<!-- registeredRadioNetworkID = _L40; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="registeredRadioNetworkID"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L40"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/27a1/20F2/166C/50ec35e437f9"/>
+					</pragmas>
+				</Equation>
+				<!-- _ = _L44; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L44"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2b25/4FF2/164C/50f989d92c11"/>
+					</pragmas>
+				</Equation>
+			</data>
+			<pragmas>
+				<ed:Operator commentsToC="true" oid="!ed/25de/5D4E/11BC/50c844c36fd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>Subset 096, REQ 3.5.6.3.2, 3.5.6.5</comment>
+					<comment>Controls the registration to the radio network for a single mobile terminal.</comment>
+					<diagrams>
+						<NetDiagram name="diagram_radioNetworkMobile_1" landscape="true" format="A4 (210 297)" oid="!ed/25df/5D4E/11BC/50c844c355c2">
+							<presentationElements>
+								<EquationGE presentable="!ed/260b/7DD1/1D44/50d1c8bd2126">
+									<position>
+										<Point x="3545" y="6906"/>
+									</position>
+									<size>
+										<Size width="264" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/2611/7DD1/1D44/50d1c8f3340a">
+									<position>
+										<Point x="8916" y="2831"/>
+									</position>
+									<size>
+										<Size width="2451" height="2185"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/260b/7DD1/1D44/50d1c8bd2126" dstEquation="!ed/2611/7DD1/1D44/50d1c8f3340a">
+									<positions>
+										<Point x="3810" y="7170"/>
+										<Point x="4763" y="7170"/>
+										<Point x="4763" y="3916"/>
+										<Point x="8916" y="3916"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/2619/7DD1/1D44/50d1c91223fc">
+									<position>
+										<Point x="5821" y="6694"/>
+									</position>
+									<size>
+										<Size width="1841" height="969"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/260b/7DD1/1D44/50d1c8bd2126" dstEquation="!ed/2619/7DD1/1D44/50d1c91223fc">
+									<positions>
+										<Point x="3810" y="7170"/>
+										<Point x="4815" y="7170"/>
+										<Point x="4815" y="7170"/>
+										<Point x="5821" y="7170"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/2619/7DD1/1D44/50d1c91223fc" dstEquation="!ed/2611/7DD1/1D44/50d1c8f3340a">
+									<positions>
+										<Point x="7673" y="7197"/>
+										<Point x="10769" y="7197"/>
+										<Point x="10769" y="5027"/>
+									</positions>
+								</Edge>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/2645/7DD1/1D44/50d1ca911e34">
+									<position>
+										<Point x="8890" y="5530"/>
+									</position>
+									<size>
+										<Size width="212" height="317"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/2645/7DD1/1D44/50d1ca911e34" dstEquation="!ed/2611/7DD1/1D44/50d1c8f3340a">
+									<positions>
+										<Point x="9102" y="5689"/>
+										<Point x="9551" y="5689"/>
+										<Point x="9551" y="5027"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/2651/7DD1/1D44/50d1cc105284">
+									<position>
+										<Point x="13195" y="1606"/>
+									</position>
+									<size>
+										<Size width="3297" height="4540"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2611/7DD1/1D44/50d1c8f3340a" dstEquation="!ed/2651/7DD1/1D44/50d1cc105284">
+									<positions>
+										<Point x="11377" y="3916"/>
+										<Point x="12621" y="3916"/>
+										<Point x="12621" y="3916"/>
+										<Point x="13203" y="3916"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/2659/7DD1/1D44/50d1cc5d25ca">
+									<position>
+										<Point x="24712" y="2487"/>
+									</position>
+									<size>
+										<Size width="344" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2651/7DD1/1D44/50d1cc105284" dstEquation="!ed/2659/7DD1/1D44/50d1cc5d25ca">
+									<positions>
+										<Point x="16484" y="2752"/>
+										<Point x="20585" y="2752"/>
+										<Point x="20585" y="2752"/>
+										<Point x="24712" y="2752"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/265f/7DD1/1D44/50d1cca149d7">
+									<position>
+										<Point x="24580" y="3784"/>
+									</position>
+									<size>
+										<Size width="344" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/27bc/595B/EE0/50eadb0576ed" dstEquation="!ed/265f/7DD1/1D44/50d1cca149d7">
+									<positions>
+										<Point x="22675" y="4048"/>
+										<Point x="23627" y="4048"/>
+										<Point x="23627" y="4048"/>
+										<Point x="24580" y="4048"/>
+									</positions>
+								</Edge>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/27a8/595B/EE0/50eadaed1d12">
+									<position>
+										<Point x="20664" y="4789"/>
+									</position>
+									<size>
+										<Size width="212" height="317"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/27bc/595B/EE0/50eadb0576ed">
+									<position>
+										<Point x="21669" y="3572"/>
+									</position>
+									<size>
+										<Size width="1006" height="926"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2651/7DD1/1D44/50d1cc105284" dstEquation="!ed/27bc/595B/EE0/50eadb0576ed">
+									<positions>
+										<Point x="16484" y="2752"/>
+										<Point x="22172" y="2752"/>
+										<Point x="22172" y="3572"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/27a8/595B/EE0/50eadaed1d12" dstEquation="!ed/27bc/595B/EE0/50eadb0576ed">
+									<positions>
+										<Point x="20876" y="4948"/>
+										<Point x="21273" y="4948"/>
+										<Point x="21273" y="4180"/>
+										<Point x="21669" y="4180"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="2" rightExprIndex="2" srcEquation="!ed/2651/7DD1/1D44/50d1cc105284" dstEquation="!ed/27bc/595B/EE0/50eadb0576ed">
+									<positions>
+										<Point x="16484" y="3889"/>
+										<Point x="19076" y="3889"/>
+										<Point x="19076" y="3889"/>
+										<Point x="21669" y="3889"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/2b25/4FF2/164C/50f989d92c11">
+									<position>
+										<Point x="17039" y="4736"/>
+									</position>
+									<size>
+										<Size width="503" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="3" rightExprIndex="1" srcEquation="!ed/2651/7DD1/1D44/50d1cc105284" dstEquation="!ed/2b25/4FF2/164C/50f989d92c11">
+									<positions>
+										<Point x="16484" y="5001"/>
+										<Point x="16880" y="5001"/>
+										<Point x="16880" y="5001"/>
+										<Point x="17304" y="5001"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+						<NetDiagram name="diagram_radioNetworkMobile_2" landscape="true" format="A4 (210 297)" oid="!ed/2664/7DD1/1D44/50d1ccfa5b50">
+							<presentationElements>
+								<EquationGE presentable="!ed/2678/7DD1/1D44/50d1cdfb324b">
+									<position>
+										<Point x="3228" y="6879"/>
+									</position>
+									<size>
+										<Size width="264" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/267e/7DD1/1D44/50d1ce042e81">
+									<position>
+										<Point x="7699" y="2064"/>
+									</position>
+									<size>
+										<Size width="3244" height="2265"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2678/7DD1/1D44/50d1cdfb324b" dstEquation="!ed/267e/7DD1/1D44/50d1ce042e81">
+									<positions>
+										<Point x="3493" y="7144"/>
+										<Point x="4339" y="7144"/>
+										<Point x="4339" y="3175"/>
+										<Point x="7699" y="3175"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/2686/7DD1/1D44/50d1ce212855">
+									<position>
+										<Point x="7586" y="6660"/>
+									</position>
+									<size>
+										<Size width="2159" height="968"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2678/7DD1/1D44/50d1cdfb324b" dstEquation="!ed/2686/7DD1/1D44/50d1ce212855">
+									<positions>
+										<Point x="3493" y="7144"/>
+										<Point x="5530" y="7144"/>
+										<Point x="5530" y="7144"/>
+										<Point x="7594" y="7144"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/2686/7DD1/1D44/50d1ce212855" dstEquation="!ed/267e/7DD1/1D44/50d1ce042e81">
+									<positions>
+										<Point x="9737" y="7144"/>
+										<Point x="10160" y="7144"/>
+										<Point x="10160" y="4339"/>
+									</positions>
+								</Edge>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/26b2/7DD1/1D44/50d1ced52b7">
+									<position>
+										<Point x="7673" y="5292"/>
+									</position>
+									<size>
+										<Size width="212" height="318"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/26b2/7DD1/1D44/50d1ced52b7" dstEquation="!ed/267e/7DD1/1D44/50d1ce042e81">
+									<positions>
+										<Point x="7885" y="5450"/>
+										<Point x="8546" y="5450"/>
+										<Point x="8546" y="4339"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/26be/7DD1/1D44/50d1cf195094">
+									<position>
+										<Point x="12242" y="1183"/>
+									</position>
+									<size>
+										<Size width="2662" height="4011"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/267e/7DD1/1D44/50d1ce042e81" dstEquation="!ed/26be/7DD1/1D44/50d1cf195094">
+									<positions>
+										<Point x="10954" y="3175"/>
+										<Point x="12303" y="3175"/>
+										<Point x="12303" y="3175"/>
+										<Point x="12250" y="3175"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/26c8/7DD1/1D44/50d1cfaa77e9">
+									<position>
+										<Point x="21484" y="2858"/>
+									</position>
+									<size>
+										<Size width="1006" height="926"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/26be/7DD1/1D44/50d1cf195094" dstEquation="!ed/26c8/7DD1/1D44/50d1cfaa77e9">
+									<positions>
+										<Point x="14896" y="2196"/>
+										<Point x="21987" y="2196"/>
+										<Point x="21987" y="2858"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="2" rightExprIndex="2" srcEquation="!ed/26be/7DD1/1D44/50d1cf195094" dstEquation="!ed/26c8/7DD1/1D44/50d1cfaa77e9">
+									<positions>
+										<Point x="14896" y="3201"/>
+										<Point x="19420" y="3201"/>
+										<Point x="19420" y="3201"/>
+										<Point x="21484" y="3201"/>
+									</positions>
+								</Edge>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/26ce/7DD1/1D44/50d1cfe16911">
+									<position>
+										<Point x="20479" y="3307"/>
+									</position>
+									<size>
+										<Size width="212" height="317"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/26ce/7DD1/1D44/50d1cfe16911" dstEquation="!ed/26c8/7DD1/1D44/50d1cfaa77e9">
+									<positions>
+										<Point x="20690" y="3466"/>
+										<Point x="21087" y="3466"/>
+										<Point x="21087" y="3466"/>
+										<Point x="21484" y="3466"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/26de/7DD1/1D44/50d1d0be4949">
+									<position>
+										<Point x="23945" y="3069"/>
+									</position>
+									<size>
+										<Size width="344" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/26c8/7DD1/1D44/50d1cfaa77e9" dstEquation="!ed/26de/7DD1/1D44/50d1d0be4949">
+									<positions>
+										<Point x="22490" y="3334"/>
+										<Point x="23204" y="3334"/>
+										<Point x="23204" y="3334"/>
+										<Point x="23945" y="3334"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/26ed/7DD1/1D44/50d1d10649ed">
+									<position>
+										<Point x="23892" y="3916"/>
+									</position>
+									<size>
+										<Size width="344" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="3" rightExprIndex="1" srcEquation="!ed/26be/7DD1/1D44/50d1cf195094" dstEquation="!ed/26ed/7DD1/1D44/50d1d10649ed">
+									<positions>
+										<Point x="14896" y="4180"/>
+										<Point x="20638" y="4180"/>
+										<Point x="20638" y="4180"/>
+										<Point x="23892" y="4180"/>
+									</positions>
+								</Edge>
+								<StateMachineGE presentable="!ed/26f2/7DD1/1D44/50d1d22129">
+									<position>
+										<Point x="2117" y="15452"/>
+									</position>
+									<size>
+										<Size width="23866" height="16086"/>
+									</size>
+								</StateMachineGE>
+								<StateGE presentable="!ed/26f7/7DD1/1D44/50d1d3ebe30">
+									<position>
+										<Point x="7752" y="21378"/>
+									</position>
+									<size>
+										<Size width="13150" height="3968"/>
+									</size>
+								</StateGE>
+								<StateGE display="split" presentable="!ed/2706/7DD1/1D44/50d1d4226085">
+									<position>
+										<Point x="7541" y="26908"/>
+									</position>
+									<size>
+										<Size width="13944" height="2514"/>
+									</size>
+								</StateGE>
+								<EquationGE presentable="!ed/2729/7DD1/1D44/50d1d47771f0">
+									<position>
+										<Point x="16880" y="23733"/>
+									</position>
+									<size>
+										<Size width="318" height="502"/>
+									</size>
+								</EquationGE>
+								<StateGE presentable="!ed/27a6/7DD1/1D44/50d1d7e9663d">
+									<position>
+										<Point x="7699" y="16113"/>
+									</position>
+									<size>
+										<Size width="12965" height="3466"/>
+									</size>
+								</StateGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/27b2/7DD1/1D44/50d1d8285411">
+									<position>
+										<Point x="12118" y="18600"/>
+									</position>
+									<size>
+										<Size width="211" height="318"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/27c9/7DD1/1D44/50d1d8621c6">
+									<position>
+										<Point x="16854" y="18494"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/27b2/7DD1/1D44/50d1d8285411" dstEquation="!ed/27c9/7DD1/1D44/50d1d8621c6">
+									<positions>
+										<Point x="12330" y="18759"/>
+										<Point x="14605" y="18759"/>
+										<Point x="14605" y="18759"/>
+										<Point x="16907" y="18759"/>
+									</positions>
+								</Edge>
+								<TransitionGE presentable="!ed/27d5/7DD1/1D44/50d1d880411e">
+									<positions>
+										<Point x="14367" y="19579"/>
+										<Point x="14367" y="20161"/>
+										<Point x="14367" y="20743"/>
+										<Point x="14340" y="21378"/>
+									</positions>
+									<labelSize>
+										<Size width="3678" height="635"/>
+									</labelSize>
+									<labelPos>
+										<Point x="13228" y="20320"/>
+									</labelPos>
+									<slashPos>
+										<Point x="13970" y="20320"/>
+									</slashPos>
+								</TransitionGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2666/42AC/C20/50e5655c7ca" dstEquation="!ed/2729/7DD1/1D44/50d1d47771f0">
+									<positions>
+										<Point x="12938" y="23998"/>
+										<Point x="14314" y="23998"/>
+										<Point x="14314" y="23998"/>
+										<Point x="16933" y="23998"/>
+									</positions>
+								</Edge>
+								<TransitionGE presentable="!ed/27f1/7DD1/1D44/50d1d99097b">
+									<positions>
+										<Point x="7752" y="23098"/>
+										<Point x="4392" y="24474"/>
+										<Point x="4366" y="26935"/>
+										<Point x="5398" y="28337"/>
+										<Point x="5768" y="28840"/>
+										<Point x="6853" y="28549"/>
+										<Point x="7541" y="28496"/>
+									</positions>
+									<labelSize>
+										<Size width="4022" height="953"/>
+									</labelSize>
+									<labelPos>
+										<Point x="3148" y="25453"/>
+									</labelPos>
+									<slashPos>
+										<Point x="4763" y="25453"/>
+									</slashPos>
+								</TransitionGE>
+								<TransitionGE presentable="!ed/27f3/7DD1/1D44/50d1d9a0691c">
+									<positions>
+										<Point x="21484" y="28601"/>
+										<Point x="23971" y="26988"/>
+										<Point x="24183" y="24051"/>
+										<Point x="20902" y="22569"/>
+									</positions>
+									<labelSize>
+										<Size width="4524" height="5080"/>
+									</labelSize>
+									<labelPos>
+										<Point x="20928" y="25771"/>
+									</labelPos>
+									<slashPos>
+										<Point x="22966" y="25770"/>
+									</slashPos>
+								</TransitionGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/2666/42AC/C20/50e5655c7ca">
+									<position>
+										<Point x="12726" y="23839"/>
+									</position>
+									<size>
+										<Size width="211" height="318"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/2771/20F2/166C/50ec34972f62">
+									<position>
+										<Point x="17119" y="6668"/>
+									</position>
+									<size>
+										<Size width="3271" height="2821"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="3" rightExprIndex="1" srcEquation="!ed/26be/7DD1/1D44/50d1cf195094" dstEquation="!ed/2771/20F2/166C/50ec34972f62">
+									<positions>
+										<Point x="14896" y="4180"/>
+										<Point x="16007" y="4180"/>
+										<Point x="16007" y="8070"/>
+										<Point x="17119" y="8070"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/2778/20F2/166C/50ec34db5ec7">
+									<position>
+										<Point x="17780" y="11377"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/2778/20F2/166C/50ec34db5ec7" dstEquation="!ed/2771/20F2/166C/50ec34972f62">
+									<positions>
+										<Point x="18098" y="11642"/>
+										<Point x="19606" y="11642"/>
+										<Point x="19606" y="9499"/>
+									</positions>
+								</Edge>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/2799/20F2/166C/50ec3589746e">
+									<position>
+										<Point x="16748" y="10028"/>
+									</position>
+									<size>
+										<Size width="212" height="318"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/2799/20F2/166C/50ec3589746e" dstEquation="!ed/2771/20F2/166C/50ec34972f62">
+									<positions>
+										<Point x="16960" y="10186"/>
+										<Point x="17965" y="10186"/>
+										<Point x="17965" y="9499"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/27a1/20F2/166C/50ec35e437f9">
+									<position>
+										<Point x="22251" y="7779"/>
+									</position>
+									<size>
+										<Size width="344" height="502"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2771/20F2/166C/50ec34972f62" dstEquation="!ed/27a1/20F2/166C/50ec35e437f9">
+									<positions>
+										<Point x="20399" y="8070"/>
+										<Point x="21299" y="8070"/>
+										<Point x="21299" y="8070"/>
+										<Point x="22251" y="8070"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+				<kcg:Pragma>
+					doc Subset 096, REQ 3.5.6.3.2, 3.5.6.5
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc Controls the registration to the radio network for a single mobile terminal.
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Remark_1&quot; {Description = &quot;- Name: radioNetworkMobile - Description: Controls the registration to the radio network for a single mobile terminal.  - Copyright Siemens AG, 2013 - Licensed under the EUPL V.1.1 ( http://joinup.ec.europa.eu/software/page/eupl/licence-eupl ) - Gist URL: --- - Cryptography: No - Author(s): Uwe Steinke  The use of this software is limited to non-vital applications.  It has not been developed for vital operation purposes and must not be used for applications which may cause harm to people, physical accidents or financial loss.  THEREFORE, NO LIABILITY WILL BE GIVEN FOR SUCH AND ANY OHER KIND OF USE.&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>

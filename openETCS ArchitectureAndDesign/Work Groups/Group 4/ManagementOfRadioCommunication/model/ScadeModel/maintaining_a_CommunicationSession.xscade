@@ -1,0 +1,1449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Operator kind="node" visibility="private" name="maintaining_a_CommunicationSession">
+			<inputs>
+				<Variable name="communicationSessionEstablished">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/85d4/7691/2620/50928c7e4e36" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.4.1</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="safeRadioConnectionReestablished">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/22c7/4931/1928/50a0f70335ca" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.4.1</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="lossOfTheSafeRadioConnection">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/85d5/7691/2620/50928c936b6c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.4.1</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="disconnectionHasNotBeenOrdered">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/85d6/7691/2620/50928cbe2735" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.4.1</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="trainFrontInsideInAnAnnouncedRadioHole">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2313/4931/1928/50a10ee02c8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.4.4</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="actualTime">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="time_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/23f7/79C7/1248/50a204f4592a"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="tryToSetupANewSafeRadioConnection">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<default>
+						<ConstValue value="false"/>
+					</default>
+					<pragmas>
+						<ed:Variable oid="!ed/235f/4931/1928/50a111553ff"/>
+					</pragmas>
+				</Variable>
+				<Variable name="informTheDriverThatNoConnectionWasSetup">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2456/79C7/1248/50a209a82ad0"/>
+					</pragmas>
+				</Variable>
+				<Variable name="firstRequestToSetupASafeRadioConnection">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/298a/628D/11FC/50f51c5e1879" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.7.3b)</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="finalAttemptToSetupTheSafeRadioConnectionFailed">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2990/628D/11FC/50f51c5e1d90" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.7.5[6]</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="requestsToSetupTheSafeRadioConnectionStopped">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2996/628D/11FC/50f51c5e52ca" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.7.4</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<signals>
+				<Signal name="sInformTheDriverThatNoConnectionWasSetup">
+					<pragmas>
+						<ed:Signal oid="!ed/2443/79C7/1248/50a2097a35d4"/>
+					</pragmas>
+				</Signal>
+				<Signal name="sStartToTryToSetupASafeRadioConnection">
+					<pragmas>
+						<ed:Signal oid="!ed/29aa/628D/11FC/50f51e996814" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.7.3b)</comment>
+						</ed:Signal>
+					</pragmas>
+				</Signal>
+				<Signal name="sFinalAttemptToSetupTheSafeRadioConnectionFailed">
+					<pragmas>
+						<ed:Signal oid="!ed/29c7/628D/11FC/50f520532b23"/>
+					</pragmas>
+				</Signal>
+				<Signal name="sConnecctionLostInAnnouncedRadioHole">
+					<pragmas>
+						<ed:Signal oid="!ed/2a07/628D/11FC/50f523b16f79"/>
+					</pragmas>
+				</Signal>
+			</signals>
+			<locals>
+				<Variable name="_L1">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2451/79C7/1248/50a2099a6a41"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L2">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/29be/628D/11FC/50f51f815a61"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L3">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/29d5/628D/11FC/50f520866bf8"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L4">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/29fb/628D/11FC/50f5227d44f7"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L5">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2a16/628D/11FC/50f523e948e5"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<StateMachine name="Maintaining_SM">
+					<states>
+						<State initial="true" name="CommunicationSessionNotEstablished">
+							<unless>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="CommunicationSessionEstablished"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="communicationSessionEstablished"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<pragmas>
+										<ed:Transition oid="!ed/85f7/7691/2620/50928dd463e5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.5.4.1</comment>
+										</ed:Transition>
+									</pragmas>
+								</Transition>
+							</unless>
+							<pragmas>
+								<ed:State oid="!ed/85d8/7691/2620/50928d3633a6"/>
+							</pragmas>
+						</State>
+						<State name="CommunicationSessionEstablished">
+							<signals>
+								<Signal name="sStart_RadioConnectionLostTimer">
+									<pragmas>
+										<ed:Signal oid="!ed/866d/7691/2620/509291cc43a9"/>
+									</pragmas>
+								</Signal>
+							</signals>
+							<locals>
+								<Variable name="radioConnectionLostTimer_expired">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/867c/7691/2620/509292237550"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2375/4931/1928/50a111ea68c3"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L3">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/23c8/79C7/1248/50a203a771f2"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L4">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/23ea/79C7/1248/50a204c8439c"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L5">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="time_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/23f9/79C7/1248/50a204fc4cad"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L6">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="time_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2409/79C7/1248/50a2065e4ea3"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L7">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2538/2AF/250/50c5b4fe7f55"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<StateMachine name="RadioConnection_SM">
+									<states>
+										<State initial="true" name="SafeRadio_connected">
+											<unless>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="ConnecctionLostInAnnouncedRadioHole"/>
+													</target>
+													<condition>
+														<!-- trainFrontInsideInAnAnnouncedRadioHole and lossOfTheSafeRadioConnection -->
+														<NAryOp name="2" operator="and">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="trainFrontInsideInAnAnnouncedRadioHole"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="lossOfTheSafeRadioConnection"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</NAryOp>
+													</condition>
+													<effect>
+														<Action>
+															<data>
+																<!--  emit 'sConnecctionLostInAnnouncedRadioHole; -->
+																<Emission>
+																	<signals>
+																		<SignalRef name="sConnecctionLostInAnnouncedRadioHole"/>
+																	</signals>
+																	<pragmas>
+																		<ed:Emission oid="!ed/2a13/628D/11FC/50f523cd1dcc"/>
+																	</pragmas>
+																</Emission>
+															</data>
+															<pragmas>
+																<ed:Action oid="!ed/2a09/628D/11FC/50f523cd659b"/>
+															</pragmas>
+														</Action>
+													</effect>
+													<pragmas>
+														<ed:Transition oid="!ed/2309/4931/1928/50a0f9e23d2b"/>
+													</pragmas>
+												</Transition>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="ConnectionLost"/>
+													</target>
+													<condition>
+														<!-- lossOfTheSafeRadioConnection and disconnectionHasNotBeenOrdered -->
+														<NAryOp name="1" operator="and">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="lossOfTheSafeRadioConnection"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="disconnectionHasNotBeenOrdered"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</NAryOp>
+													</condition>
+													<effect>
+														<Action>
+															<data>
+																<!--  emit 'sStart_RadioConnectionLostTimer; -->
+																<Emission>
+																	<signals>
+																		<SignalRef name="sStart_RadioConnectionLostTimer"/>
+																	</signals>
+																	<pragmas>
+																		<ed:Emission oid="!ed/29b8/628D/11FC/50f51f473883"/>
+																	</pragmas>
+																</Emission>
+																<!--  emit 'sStartToTryToSetupASafeRadioConnection; -->
+																<Emission>
+																	<signals>
+																		<SignalRef name="sStartToTryToSetupASafeRadioConnection"/>
+																	</signals>
+																	<pragmas>
+																		<ed:Emission oid="!ed/29b9/628D/11FC/50f51f4732eb"/>
+																	</pragmas>
+																</Emission>
+															</data>
+															<pragmas>
+																<ed:Action oid="!ed/8643/7691/2620/5092902814d9"/>
+															</pragmas>
+														</Action>
+													</effect>
+													<pragmas>
+														<ed:Transition oid="!ed/862a/7691/2620/50928f74381d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+															<comment>3.5.4.1</comment>
+														</ed:Transition>
+													</pragmas>
+												</Transition>
+											</unless>
+											<pragmas>
+												<ed:State oid="!ed/860e/7691/2620/50928f0b5bdc"/>
+											</pragmas>
+										</State>
+										<State name="ConnectionLost">
+											<unless>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="SafeRadio_connected"/>
+													</target>
+													<condition>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="safeRadioConnectionReestablished"/>
+															</path>
+														</IdExpression>
+													</condition>
+													<pragmas>
+														<ed:Transition oid="!ed/22be/4931/1928/50a0f6e0e35" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+															<comment>3.5.4.3</comment>
+														</ed:Transition>
+													</pragmas>
+												</Transition>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="RadioConnectionLostTimerExpired"/>
+													</target>
+													<condition>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="radioConnectionLostTimer_expired"/>
+															</path>
+														</IdExpression>
+													</condition>
+													<pragmas>
+														<ed:Transition oid="!ed/866a/7691/2620/5092918ad66" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+															<comment>3.5.4.2.1, 3.5.4.3</comment>
+														</ed:Transition>
+													</pragmas>
+												</Transition>
+											</unless>
+											<locals>
+												<Variable name="_L1">
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<pragmas>
+														<ed:Variable oid="!ed/228e/4931/1928/50a0f5581e4c"/>
+													</pragmas>
+												</Variable>
+											</locals>
+											<data>
+												<!-- _L1 = true; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="_L1"/>
+													</lefts>
+													<right>
+														<ConstValue value="true"/>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/228d/4931/1928/50a0f5581913"/>
+													</pragmas>
+												</Equation>
+												<!-- tryToSetupANewSafeRadioConnection = _L1; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="tryToSetupANewSafeRadioConnection"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="_L1"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/2360/4931/1928/50a1116371ce"/>
+													</pragmas>
+												</Equation>
+											</data>
+											<pragmas>
+												<ed:State oid="!ed/861b/7691/2620/50928f526ec3"/>
+											</pragmas>
+										</State>
+										<State final="true" name="RadioConnectionLostTimerExpired">
+											<pragmas>
+												<ed:State oid="!ed/8656/7691/2620/5092912a5b01"/>
+											</pragmas>
+										</State>
+										<State name="ConnecctionLostInAnnouncedRadioHole">
+											<unless>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="ConnectionLost"/>
+													</target>
+													<condition>
+														<!--  not trainFrontInsideInAnAnnouncedRadioHole -->
+														<UnaryOp name="1" operator="not">
+															<operand>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="trainFrontInsideInAnAnnouncedRadioHole"/>
+																	</path>
+																</IdExpression>
+															</operand>
+														</UnaryOp>
+													</condition>
+													<effect>
+														<Action>
+															<data>
+																<!--  emit 'sStart_RadioConnectionLostTimer; -->
+																<Emission>
+																	<signals>
+																		<SignalRef name="sStart_RadioConnectionLostTimer"/>
+																	</signals>
+																	<pragmas>
+																		<ed:Emission oid="!ed/29ea/628D/11FC/50f522082b71"/>
+																	</pragmas>
+																</Emission>
+																<!--  emit 'sStartToTryToSetupASafeRadioConnection; -->
+																<Emission>
+																	<signals>
+																		<SignalRef name="sStartToTryToSetupASafeRadioConnection"/>
+																	</signals>
+																	<pragmas>
+																		<ed:Emission oid="!ed/29eb/628D/11FC/50f522081a3d"/>
+																	</pragmas>
+																</Emission>
+															</data>
+															<pragmas>
+																<ed:Action oid="!ed/234b/4931/1928/50a110145feb"/>
+															</pragmas>
+														</Action>
+													</effect>
+													<pragmas>
+														<ed:Transition oid="!ed/2338/4931/1928/50a10fb151e8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+															<comment>3.5.4.4</comment>
+														</ed:Transition>
+													</pragmas>
+												</Transition>
+											</unless>
+											<pragmas>
+												<ed:State oid="!ed/22ff/4931/1928/50a0f9ae3457" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+													<comment>3.5.4.4</comment>
+												</ed:State>
+											</pragmas>
+										</State>
+									</states>
+									<pragmas>
+										<ed:StateMachine oid="!ed/8608/7691/2620/50928ed75d6"/>
+									</pragmas>
+								</StateMachine>
+								<!-- radioConnectionLostTimer_expired = _L3; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="radioConnectionLostTimer_expired"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L3"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/868a/7691/2620/509292727053"/>
+									</pragmas>
+								</Equation>
+								<!-- _L2 =  'sStart_RadioConnectionLostTimer; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L2"/>
+									</lefts>
+									<right>
+										<Present>
+											<signal>
+												<SignalRef name="sStart_RadioConnectionLostTimer"/>
+											</signal>
+										</Present>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2374/4931/1928/50a111ea38c"/>
+									</pragmas>
+								</Equation>
+								<!-- _L3, _L7 = countDownTimer(_L2, _L4, _L5, _L4, _L6); -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L3"/>
+										<VariableRef name="_L7"/>
+									</lefts>
+									<right>
+										<!-- countDownTimer(_L2, _L4, _L5, _L4, _L6) -->
+										<CallExpression>
+											<operator>
+												<OpCall name="1">
+													<operator>
+														<OperatorRef name="countDownTimer"/>
+													</operator>
+												</OpCall>
+											</operator>
+											<callParameters>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L2"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L4"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L5"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L4"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L6"/>
+													</path>
+												</IdExpression>
+											</callParameters>
+										</CallExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/23c7/79C7/1248/50a203a772bd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.5.4.1, 3.5.4.2.1</comment>
+										</ed:Equation>
+									</pragmas>
+								</Equation>
+								<!-- _L4 = false; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L4"/>
+									</lefts>
+									<right>
+										<ConstValue value="false"/>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/23e9/79C7/1248/50a204c82324"/>
+									</pragmas>
+								</Equation>
+								<!-- _L5 = actualTime; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L5"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="actualTime"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/23f8/79C7/1248/50a204fc4fc3"/>
+									</pragmas>
+								</Equation>
+								<!-- _L6 = cRadioConnectionReestablishingTimeout; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L6"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="cRadioConnectionReestablishingTimeout"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2408/79C7/1248/50a2065e2d3f"/>
+									</pragmas>
+								</Equation>
+								<!-- _ = _L7; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L7"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/25ae/7DD1/1D44/50d1b18b2b46"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<until>
+								<Synchro kind="restart">
+									<target>
+										<StateRef name="CommunicationSessionNotEstablished"/>
+									</target>
+									<effect>
+										<Action>
+											<data>
+												<!--  emit 'sInformTheDriverThatNoConnectionWasSetup; -->
+												<Emission>
+													<signals>
+														<SignalRef name="sInformTheDriverThatNoConnectionWasSetup"/>
+													</signals>
+													<pragmas>
+														<ed:Emission oid="!ed/29d1/628D/11FC/50f5207655c2"/>
+													</pragmas>
+												</Emission>
+												<!--  emit 'sFinalAttemptToSetupTheSafeRadioConnectionFailed; -->
+												<Emission>
+													<signals>
+														<SignalRef name="sFinalAttemptToSetupTheSafeRadioConnectionFailed"/>
+													</signals>
+													<pragmas>
+														<ed:Emission oid="!ed/29d2/628D/11FC/50f52076eed"/>
+													</pragmas>
+												</Emission>
+											</data>
+											<pragmas>
+												<ed:Action oid="!ed/22e8/4931/1928/50a0f8d01175"/>
+											</pragmas>
+										</Action>
+									</effect>
+									<pragmas>
+										<ed:Synchro oid="!ed/22e7/4931/1928/50a0f8b94e0a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.5.4.3</comment>
+										</ed:Synchro>
+									</pragmas>
+								</Synchro>
+							</until>
+							<pragmas>
+								<ed:State oid="!ed/85e6/7691/2620/50928da56481" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>3.5.4.1</comment>
+									<diagrams>
+										<NetDiagram name="diagram_CommunicationSessionEstablished_1" landscape="true" format="A4 (210 297)" oid="!ed/8604/7691/2620/50928e9e26d1">
+											<presentationElements>
+												<StateMachineGE presentable="!ed/8608/7691/2620/50928ed75d6">
+													<position>
+														<Point x="3704" y="3334"/>
+													</position>
+													<size>
+														<Size width="29607" height="16351"/>
+													</size>
+												</StateMachineGE>
+												<StateGE presentable="!ed/860e/7691/2620/50928f0b5bdc">
+													<position>
+														<Point x="10927" y="4180"/>
+													</position>
+													<size>
+														<Size width="8890" height="1588"/>
+													</size>
+												</StateGE>
+												<StateGE presentable="!ed/861b/7691/2620/50928f526ec3">
+													<position>
+														<Point x="5530" y="9419"/>
+													</position>
+													<size>
+														<Size width="7805" height="2382"/>
+													</size>
+												</StateGE>
+												<TransitionGE presentable="!ed/862a/7691/2620/50928f74381d">
+													<positions>
+														<Point x="10927" y="5133"/>
+														<Point x="8520" y="6033"/>
+														<Point x="8255" y="8308"/>
+														<Point x="8123" y="9419"/>
+													</positions>
+													<labelSize>
+														<Size width="9948" height="1588"/>
+													</labelSize>
+													<labelPos>
+														<Point x="4207" y="6297"/>
+													</labelPos>
+													<slashPos>
+														<Point x="8149" y="6297"/>
+													</slashPos>
+												</TransitionGE>
+												<StateGE presentable="!ed/8656/7691/2620/5092912a5b01">
+													<position>
+														<Point x="11165" y="16325"/>
+													</position>
+													<size>
+														<Size width="8203" height="1852"/>
+													</size>
+												</StateGE>
+												<TransitionGE presentable="!ed/866a/7691/2620/5092918ad66">
+													<positions>
+														<Point x="8784" y="11800"/>
+														<Point x="8943" y="15240"/>
+														<Point x="9790" y="16616"/>
+														<Point x="11165" y="17357"/>
+													</positions>
+													<labelSize>
+														<Size width="4763" height="635"/>
+													</labelSize>
+													<labelPos>
+														<Point x="5265" y="13335"/>
+													</labelPos>
+													<slashPos>
+														<Point x="9234" y="13335"/>
+													</slashPos>
+												</TransitionGE>
+												<EquationGE presentable="!ed/868a/7691/2620/509292727053">
+													<position>
+														<Point x="23654" y="23813"/>
+													</position>
+													<size>
+														<Size width="344" height="503"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/23c7/79C7/1248/50a203a772bd" dstEquation="!ed/868a/7691/2620/509292727053">
+													<positions>
+														<Point x="18865" y="24077"/>
+														<Point x="21246" y="24077"/>
+														<Point x="21246" y="24077"/>
+														<Point x="23654" y="24077"/>
+													</positions>
+												</Edge>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/228d/4931/1928/50a0f5581913">
+													<position>
+														<Point x="6244" y="10689"/>
+													</position>
+													<size>
+														<Size width="212" height="318"/>
+													</size>
+												</EquationGE>
+												<TransitionGE presentable="!ed/22be/4931/1928/50a0f6e0e35">
+													<positions>
+														<Point x="13335" y="10689"/>
+														<Point x="16087" y="10530"/>
+														<Point x="16801" y="8493"/>
+														<Point x="17013" y="5768"/>
+													</positions>
+													<labelSize>
+														<Size width="4763" height="635"/>
+													</labelSize>
+													<labelPos>
+														<Point x="12382" y="8150"/>
+													</labelPos>
+													<slashPos>
+														<Point x="16351" y="8149"/>
+													</slashPos>
+												</TransitionGE>
+												<StateGE presentable="!ed/22ff/4931/1928/50a0f9ae3457">
+													<position>
+														<Point x="22728" y="9181"/>
+													</position>
+													<size>
+														<Size width="8123" height="2170"/>
+													</size>
+												</StateGE>
+												<TransitionGE presentable="!ed/2309/4931/1928/50a0f9e23d2b">
+													<positions>
+														<Point x="19817" y="4842"/>
+														<Point x="24156" y="5530"/>
+														<Point x="26882" y="7620"/>
+														<Point x="26908" y="9181"/>
+													</positions>
+													<labelSize>
+														<Size width="12541" height="635"/>
+													</labelSize>
+													<labelPos>
+														<Point x="19817" y="7117"/>
+													</labelPos>
+													<slashPos>
+														<Point x="24844" y="7117"/>
+													</slashPos>
+												</TransitionGE>
+												<TransitionGE presentable="!ed/2338/4931/1928/50a10fb151e8">
+													<positions>
+														<Point x="26564" y="11351"/>
+														<Point x="23389" y="14684"/>
+														<Point x="13838" y="14446"/>
+														<Point x="12224" y="11800"/>
+													</positions>
+													<labelSize>
+														<Size width="9604" height="635"/>
+													</labelSize>
+													<labelPos>
+														<Point x="14367" y="12462"/>
+													</labelPos>
+													<slashPos>
+														<Point x="19262" y="12462"/>
+													</slashPos>
+												</TransitionGE>
+												<EquationGE presentable="!ed/2360/4931/1928/50a1116371ce">
+													<position>
+														<Point x="8149" y="10583"/>
+													</position>
+													<size>
+														<Size width="317" height="502"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/228d/4931/1928/50a0f5581913" dstEquation="!ed/2360/4931/1928/50a1116371ce">
+													<positions>
+														<Point x="6456" y="10848"/>
+														<Point x="7329" y="10848"/>
+														<Point x="7329" y="10848"/>
+														<Point x="8202" y="10848"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/2374/4931/1928/50a111ea38c">
+													<position>
+														<Point x="9128" y="23336"/>
+													</position>
+													<size>
+														<Size width="317" height="503"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2374/4931/1928/50a111ea38c" dstEquation="!ed/23c7/79C7/1248/50a203a772bd">
+													<positions>
+														<Point x="9446" y="23601"/>
+														<Point x="12118" y="23601"/>
+														<Point x="12118" y="23601"/>
+														<Point x="14790" y="23601"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/23c7/79C7/1248/50a203a772bd">
+													<position>
+														<Point x="14782" y="22852"/>
+													</position>
+													<size>
+														<Size width="4091" height="3694"/>
+													</size>
+												</EquationGE>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/23e9/79C7/1248/50a204c82324">
+													<position>
+														<Point x="12965" y="24183"/>
+													</position>
+													<size>
+														<Size width="212" height="318"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/23e9/79C7/1248/50a204c82324" dstEquation="!ed/23c7/79C7/1248/50a203a772bd">
+													<positions>
+														<Point x="13176" y="24342"/>
+														<Point x="13970" y="24342"/>
+														<Point x="13970" y="24342"/>
+														<Point x="14790" y="24342"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/23f8/79C7/1248/50a204fc4fc3">
+													<position>
+														<Point x="9102" y="24791"/>
+													</position>
+													<size>
+														<Size width="264" height="503"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/23f8/79C7/1248/50a204fc4fc3" dstEquation="!ed/23c7/79C7/1248/50a203a772bd">
+													<positions>
+														<Point x="9366" y="25056"/>
+														<Point x="12065" y="25056"/>
+														<Point x="12065" y="25056"/>
+														<Point x="14790" y="25056"/>
+													</positions>
+												</Edge>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/2408/79C7/1248/50a2065e2d3f">
+													<position>
+														<Point x="15796" y="27331"/>
+													</position>
+													<size>
+														<Size width="211" height="318"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/2408/79C7/1248/50a2065e2d3f" dstEquation="!ed/23c7/79C7/1248/50a203a772bd">
+													<positions>
+														<Point x="16007" y="27490"/>
+														<Point x="16828" y="27490"/>
+														<Point x="16828" y="26538"/>
+													</positions>
+												</Edge>
+												<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/23e9/79C7/1248/50a204c82324" dstEquation="!ed/23c7/79C7/1248/50a203a772bd">
+													<positions>
+														<Point x="13176" y="24342"/>
+														<Point x="13970" y="24342"/>
+														<Point x="13970" y="25797"/>
+														<Point x="14790" y="25797"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/25ae/7DD1/1D44/50d1b18b2b46">
+													<position>
+														<Point x="20082" y="25056"/>
+													</position>
+													<size>
+														<Size width="503" height="503"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/23c7/79C7/1248/50a203a772bd" dstEquation="!ed/25ae/7DD1/1D44/50d1b18b2b46">
+													<positions>
+														<Point x="18865" y="25321"/>
+														<Point x="19606" y="25321"/>
+														<Point x="19606" y="25321"/>
+														<Point x="20346" y="25321"/>
+													</positions>
+												</Edge>
+											</presentationElements>
+										</NetDiagram>
+									</diagrams>
+								</ed:State>
+							</pragmas>
+						</State>
+					</states>
+					<pragmas>
+						<ed:StateMachine oid="!ed/85cf/7691/2620/50928ba9583a"/>
+					</pragmas>
+				</StateMachine>
+				<!-- _L1 =  'sInformTheDriverThatNoConnectionWasSetup; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L1"/>
+					</lefts>
+					<right>
+						<Present>
+							<signal>
+								<SignalRef name="sInformTheDriverThatNoConnectionWasSetup"/>
+							</signal>
+						</Present>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2450/79C7/1248/50a2099a77e"/>
+					</pragmas>
+				</Equation>
+				<!-- informTheDriverThatNoConnectionWasSetup = _L1; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="informTheDriverThatNoConnectionWasSetup"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2457/79C7/1248/50a209bd46a"/>
+					</pragmas>
+				</Equation>
+				<!-- firstRequestToSetupASafeRadioConnection = _L2; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="firstRequestToSetupASafeRadioConnection"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L2"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/299d/628D/11FC/50f51cda6e4b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.7.3b)</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- finalAttemptToSetupTheSafeRadioConnectionFailed = _L3; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="finalAttemptToSetupTheSafeRadioConnectionFailed"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L3"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/299e/628D/11FC/50f51cda3b51" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.7.5[6]</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- requestsToSetupTheSafeRadioConnectionStopped = _L4; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="requestsToSetupTheSafeRadioConnectionStopped"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/299f/628D/11FC/50f51cda7d8d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.7.4</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- _L2 =  'sStartToTryToSetupASafeRadioConnection; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L2"/>
+					</lefts>
+					<right>
+						<Present>
+							<signal>
+								<SignalRef name="sStartToTryToSetupASafeRadioConnection"/>
+							</signal>
+						</Present>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/29bd/628D/11FC/50f51f814ce8"/>
+					</pragmas>
+				</Equation>
+				<!-- _L3 =  'sFinalAttemptToSetupTheSafeRadioConnectionFailed; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L3"/>
+					</lefts>
+					<right>
+						<Present>
+							<signal>
+								<SignalRef name="sFinalAttemptToSetupTheSafeRadioConnectionFailed"/>
+							</signal>
+						</Present>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/29d4/628D/11FC/50f52086716"/>
+					</pragmas>
+				</Equation>
+				<!-- _L4 = _L3 or _L5; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L4"/>
+					</lefts>
+					<right>
+						<!-- _L3 or _L5 -->
+						<NAryOp name="1" operator="or">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L3"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L5"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</NAryOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/29fa/628D/11FC/50f5227d5fae"/>
+					</pragmas>
+				</Equation>
+				<!-- _L5 =  'sConnecctionLostInAnnouncedRadioHole; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L5"/>
+					</lefts>
+					<right>
+						<Present>
+							<signal>
+								<SignalRef name="sConnecctionLostInAnnouncedRadioHole"/>
+							</signal>
+						</Present>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2a15/628D/11FC/50f523e95af"/>
+					</pragmas>
+				</Equation>
+			</data>
+			<pragmas>
+				<ed:Operator commentsToC="true" oid="!ed/221a/7691/2620/509287dc4085" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>Subset 096, REQ 3.5.4</comment>
+					<comment>Maintains an established communcation session. </comment>
+					<diagrams>
+						<NetDiagram name="diagram_maintaining_a_CommunicationSession_1" landscape="true" format="A4 (210 297)" oid="!ed/221b/7691/2620/509287dc70bf">
+							<presentationElements>
+								<StateMachineGE presentable="!ed/85cf/7691/2620/50928ba9583a">
+									<position>
+										<Point x="1879" y="741"/>
+									</position>
+									<size>
+										<Size width="26749" height="11219"/>
+									</size>
+								</StateMachineGE>
+								<StateGE presentable="!ed/85d8/7691/2620/50928d3633a6">
+									<position>
+										<Point x="10954" y="1852"/>
+									</position>
+									<size>
+										<Size width="8387" height="1746"/>
+									</size>
+								</StateGE>
+								<StateGE display="split" presentable="!ed/85e6/7691/2620/50928da56481">
+									<position>
+										<Point x="3889" y="6509"/>
+									</position>
+									<size>
+										<Size width="8176" height="1878"/>
+									</size>
+								</StateGE>
+								<TransitionGE presentable="!ed/85f7/7691/2620/50928dd463e5">
+									<positions>
+										<Point x="10954" y="2858"/>
+										<Point x="7726" y="3572"/>
+										<Point x="7329" y="5027"/>
+										<Point x="6932" y="6509"/>
+									</positions>
+									<labelSize>
+										<Size width="5001" height="635"/>
+									</labelSize>
+									<labelPos>
+										<Point x="3123" y="4365"/>
+									</labelPos>
+									<slashPos>
+										<Point x="7329" y="4366"/>
+									</slashPos>
+								</TransitionGE>
+								<TransitionGE presentable="!ed/22e7/4931/1928/50a0f8b94e0a">
+									<positions>
+										<Point x="12065" y="7620"/>
+										<Point x="14446" y="7620"/>
+										<Point x="15637" y="5715"/>
+										<Point x="15981" y="3598"/>
+									</positions>
+									<labelSize>
+										<Size width="6800" height="1588"/>
+									</labelSize>
+									<labelPos>
+										<Point x="14711" y="7038"/>
+									</labelPos>
+									<slashPos>
+										<Point x="14711" y="7038"/>
+									</slashPos>
+								</TransitionGE>
+								<EquationGE presentable="!ed/2450/79C7/1248/50a2099a77e">
+									<position>
+										<Point x="8731" y="13282"/>
+									</position>
+									<size>
+										<Size width="318" height="502"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/2457/79C7/1248/50a209bd46a">
+									<position>
+										<Point x="16272" y="13282"/>
+									</position>
+									<size>
+										<Size width="318" height="502"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2450/79C7/1248/50a2099a77e" dstEquation="!ed/2457/79C7/1248/50a209bd46a">
+									<positions>
+										<Point x="9049" y="13547"/>
+										<Point x="12674" y="13547"/>
+										<Point x="12674" y="13547"/>
+										<Point x="16325" y="13547"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/299d/628D/11FC/50f51cda6e4b">
+									<position>
+										<Point x="16325" y="14579"/>
+									</position>
+									<size>
+										<Size width="317" height="502"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/299e/628D/11FC/50f51cda3b51">
+									<position>
+										<Point x="16325" y="15743"/>
+									</position>
+									<size>
+										<Size width="317" height="502"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/299f/628D/11FC/50f51cda7d8d">
+									<position>
+										<Point x="16325" y="16880"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/29bd/628D/11FC/50f51f814ce8">
+									<position>
+										<Point x="8758" y="14579"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/29bd/628D/11FC/50f51f814ce8" dstEquation="!ed/299d/628D/11FC/50f51cda6e4b">
+									<positions>
+										<Point x="9075" y="14843"/>
+										<Point x="12726" y="14843"/>
+										<Point x="12726" y="14843"/>
+										<Point x="16378" y="14843"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/29d4/628D/11FC/50f52086716">
+									<position>
+										<Point x="8784" y="15743"/>
+									</position>
+									<size>
+										<Size width="318" height="502"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/29d4/628D/11FC/50f52086716" dstEquation="!ed/299e/628D/11FC/50f51cda3b51">
+									<positions>
+										<Point x="9102" y="16007"/>
+										<Point x="12726" y="16007"/>
+										<Point x="12726" y="16007"/>
+										<Point x="16378" y="16007"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/29fa/628D/11FC/50f5227d5fae">
+									<position>
+										<Point x="13176" y="16801"/>
+									</position>
+									<size>
+										<Size width="1006" height="661"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/29fa/628D/11FC/50f5227d5fae" dstEquation="!ed/299f/628D/11FC/50f51cda7d8d">
+									<positions>
+										<Point x="14182" y="17145"/>
+										<Point x="15266" y="17145"/>
+										<Point x="15266" y="17145"/>
+										<Point x="16378" y="17145"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/29d4/628D/11FC/50f52086716" dstEquation="!ed/29fa/628D/11FC/50f5227d5fae">
+									<positions>
+										<Point x="9102" y="16007"/>
+										<Point x="11139" y="16007"/>
+										<Point x="11139" y="17013"/>
+										<Point x="13176" y="17013"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/2a15/628D/11FC/50f523e95af">
+									<position>
+										<Point x="8837" y="16986"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/2a15/628D/11FC/50f523e95af" dstEquation="!ed/29fa/628D/11FC/50f5227d5fae">
+									<positions>
+										<Point x="9155" y="17251"/>
+										<Point x="11165" y="17251"/>
+										<Point x="11165" y="17251"/>
+										<Point x="13176" y="17251"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+				<kcg:Pragma>
+					doc Subset 096, REQ 3.5.4
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc Maintains an established communcation session. 
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Remark_1&quot; {Description = &quot;- Name: maintaining_a_CommunicationSession - Description: Maintains an established communcation session.   - Copyright Siemens AG, 2013 - Licensed under the EUPL V.1.1 ( http://joinup.ec.europa.eu/software/page/eupl/licence-eupl ) - Gist URL: --- - Cryptography: No - Author(s): Uwe Steinke  The use of this software is limited to non-vital applications.  It has not been developed for vital operation purposes and must not be used for applications which may cause harm to people, physical accidents or financial loss.  THEREFORE, NO LIABILITY WILL BE GIVEN FOR SUCH AND ANY OHER KIND OF USE.&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>

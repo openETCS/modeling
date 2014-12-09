@@ -1,0 +1,98 @@
+#========================================
+# System Start
+#========================================
+# Start the 3 clocks of power up sequence
+SSM::set MoRC_withSimplified_IF/messageFromRBC 0
+SSM::set MoRC_withSimplified_IF/safeRadioCommunication_setUpEstablished false
+SSM::set MoRC_withSimplified_IF/NID_RBC_ID 0
+SSM::set MoRC_withSimplified_IF/radioHole_status rhs_none
+SSM::set MoRC_withSimplified_IF/orderFromOnBoard obo_noOrder
+SSM::set MoRC_withSimplified_IF/systemVersionIsCompatible false
+SSM::set MoRC_withSimplified_IF/M_Level ETCS_Level_0
+SSM::set MoRC_withSimplified_IF/M_Mode ETCS_Mode_FullSupervision
+SSM::set MoRC_withSimplified_IF/actualTime 0
+SSM::set MoRC_withSimplified_IF/RadioNetworkID_memorized 1111
+SSM::set MoRC_withSimplified_IF/RadioNetworkID_fromDriver 2222
+SSM::set MoRC_withSimplified_IF/RadioNetworkID_fromTrackside 3333
+SSM::set MoRC_withSimplified_IF/powerAvailable false
+SSM::set MoRC_withSimplified_IF/mobileHWConnectionStatus mhwc_notRegistered
+SSM::cycle 1
+
+SSM::set MoRC_withSimplified_IF/powerAvailable true
+SSM::cycle 1
+
+
+SSM::cycle 1
+
+
+# Now the SCADE model sets safeRadioCommunication_requestSetUp = true => waits for the mobile to register
+# The test environment acknowledges the registration with safeRadioCommunication_setUpEstablished true
+# Therefore the SCADE model resets safeRadioCommunication_requestSetUp = false
+
+SSM::set MoRC_withSimplified_IF/messageFromRBC 0
+SSM::set MoRC_withSimplified_IF/safeRadioCommunication_setUpEstablished true
+SSM::set MoRC_withSimplified_IF/NID_RBC_ID 0
+SSM::set MoRC_withSimplified_IF/radioHole_status rhs_none
+SSM::set MoRC_withSimplified_IF/orderFromOnBoard obo_noOrder
+SSM::set MoRC_withSimplified_IF/systemVersionIsCompatible false
+SSM::set MoRC_withSimplified_IF/M_Level ETCS_Level_0
+SSM::set MoRC_withSimplified_IF/M_Mode ETCS_Mode_FullSupervision
+SSM::set MoRC_withSimplified_IF/mobileHWConnectionStatus mhwc_registered
+SSM::set MoRC_withSimplified_IF/actualTime 0
+SSM::cycle 1
+
+#========================================
+# Establishing a communication session
+#========================================
+# Now the OBU orders the establishment of a com session with 
+# orderFromOnBoard = obo_initiateCommunication
+
+SSM::set MoRC_withSimplified_IF/messageFromRBC 0
+SSM::set MoRC_withSimplified_IF/safeRadioCommunication_setUpEstablished true
+SSM::set MoRC_withSimplified_IF/NID_RBC_ID 0
+SSM::set MoRC_withSimplified_IF/radioHole_status rhs_none
+SSM::set MoRC_withSimplified_IF/orderFromOnBoard obo_initiateCommunication
+SSM::set MoRC_withSimplified_IF/systemVersionIsCompatible false
+SSM::set MoRC_withSimplified_IF/M_Level ETCS_Level_0
+SSM::set MoRC_withSimplified_IF/M_Mode ETCS_Mode_FullSupervision
+SSM::set MoRC_withSimplified_IF/actualTime 0
+SSM::cycle 4
+
+# The SCADE model establishes the com session with an internal sequence:
+# Cycle 7: The SCADE model transmits InitiationOfACommunicationSession = messageToRBC = 155 to the RBC.
+#          It waits for the RBC answer. 
+# Cycle 9: The RBC answers with messageFromRBC = 32 and OBU with systemVersionIsCompatible = true
+#          The SCADE model sends a SessionEstablishedReport = 159 to trackside.
+
+SSM::set MoRC_withSimplified_IF/messageFromRBC 32
+SSM::set MoRC_withSimplified_IF/safeRadioCommunication_setUpEstablished true
+SSM::set MoRC_withSimplified_IF/NID_RBC_ID 0
+SSM::set MoRC_withSimplified_IF/radioHole_status rhs_none
+SSM::set MoRC_withSimplified_IF/orderFromOnBoard obo_initiateCommunication
+SSM::set MoRC_withSimplified_IF/systemVersionIsCompatible true
+SSM::set MoRC_withSimplified_IF/M_Level ETCS_Level_0
+SSM::set MoRC_withSimplified_IF/M_Mode ETCS_Mode_FullSupervision
+SSM::set MoRC_withSimplified_IF/actualTime 0
+
+SSM::cycle 1
+
+# Deactivating inputs
+
+SSM::set MoRC_withSimplified_IF/messageFromRBC 0
+SSM::set MoRC_withSimplified_IF/safeRadioCommunication_setUpEstablished true
+SSM::set MoRC_withSimplified_IF/NID_RBC_ID 0
+SSM::set MoRC_withSimplified_IF/radioHole_status rhs_none
+SSM::set MoRC_withSimplified_IF/orderFromOnBoard obo_noOrder
+SSM::set MoRC_withSimplified_IF/systemVersionIsCompatible false
+SSM::set MoRC_withSimplified_IF/M_Level ETCS_Level_0
+SSM::set MoRC_withSimplified_IF/M_Mode ETCS_Mode_FullSupervision
+SSM::set MoRC_withSimplified_IF/actualTime 0
+SSM::cycle 2
+
+# 11 cycles from start
+
+#========================================
+# Maintaining a communication session
+#========================================
+
+#

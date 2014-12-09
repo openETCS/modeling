@@ -1,0 +1,1560 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Operator kind="node" visibility="private" name="terminating_a_CommunicationSession">
+			<inputs>
+				<Variable name="initiateTermination">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/23a4/2AF/250/50c5a75560b5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Intended to be fed by &quot;initiateTerminatingASession&quot;</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="aSessionIsEstablished">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/23a5/2AF/250/50c5a7c219fb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.2</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="acknowledgementOfTerminationOfCommunicationSessionReceived">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2617/2AF/250/50c5c3414fee" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.2c)</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="aSessionIsCurrentlyBeingEstablished">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2749/2AF/250/50c5d0c21f08" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.7</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="actualTime">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="time_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/266b/2AF/250/50c5c57cbb9"/>
+					</pragmas>
+				</Variable>
+				<Variable name="establishingACommunicationSessionAborted">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/24da/2336/DF8/50c75d22dbf" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.7</comment>
+							<comment>Intended to be fed by &quot;Establishing_a_CommunicationSession&quot;.</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="sendATerminationOfCommunicationMessage">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/26f7/2AF/250/50c5cdbb132" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.2a), 3.5.5.3.1</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="requestReleaseOfSafeRadioConnectionWithTrackside">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2709/2AF/250/50c5ce0b18e0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.2c)</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="ignoreMessagesFromRBC_exceptAckOfTerminationOfCommunicationSession">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<default>
+						<ConstValue value="false"/>
+					</default>
+					<pragmas>
+						<ed:Variable oid="!ed/2723/2AF/250/50c5cf619ee" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.3.6</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="abortEstablishingACommunicationSession">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/24ed/2336/DF8/50c75dec4d7c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.7</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="communicationSessionTerminated">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<default>
+						<ConstValue value="false"/>
+					</default>
+					<pragmas>
+						<ed:Variable oid="!ed/2ad8/38C7/FCC/50f7fb6a37ee"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<signals>
+				<Signal name="sSendATerminationOfCommunicationMessage">
+					<pragmas>
+						<ed:Signal oid="!ed/25df/2AF/250/50c5c18b66b2" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.2a), 3.5.5.3.1</comment>
+						</ed:Signal>
+					</pragmas>
+				</Signal>
+				<Signal name="sRequestReleaseOfSafeRadioConnectionWithTrackside">
+					<pragmas>
+						<ed:Signal oid="!ed/2639/2AF/250/50c5c43a2794" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.2c)</comment>
+						</ed:Signal>
+					</pragmas>
+				</Signal>
+				<Signal name="sAbortEstablishingACommunicationSession">
+					<pragmas>
+						<ed:Signal oid="!ed/2493/2336/DF8/50c759ff6aec"/>
+					</pragmas>
+				</Signal>
+			</signals>
+			<locals>
+				<Variable name="initiateTerminationOfEstablishedSession">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/25d9/2AF/250/50c5c1072d5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.2</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="considerTheCommunicationSessionTerminated">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<default>
+						<ConstValue value="false"/>
+					</default>
+					<pragmas>
+						<ed:Variable oid="!ed/26a7/2AF/250/50c5c7dd6e3e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.3.2</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="initiateTerminationOfEstablishingSession">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2452/2336/DF8/50c758912a17" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.7</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+				<Variable name="_L1">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/25cc/2AF/250/50c5c0d7ae7"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L2">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/25ce/2AF/250/50c5c0d749ab"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L3">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/25d4/2AF/250/50c5c0dc4ec5"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L4">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/26fe/2AF/250/50c5cddd7cea"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L5">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2704/2AF/250/50c5cdff2c50"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L6">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2757/2AF/250/50c5d152481a"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L7">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/275d/2AF/250/50c5d15d3857"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L8">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2763/2AF/250/50c5d1674c51"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L9">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/24f5/2336/DF8/50c75e536603"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- _L1 = initiateTermination; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L1"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="initiateTermination"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/25cb/2AF/250/50c5c0d756d6"/>
+					</pragmas>
+				</Equation>
+				<!-- _L2 = aSessionIsEstablished; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L2"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="aSessionIsEstablished"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/25cd/2AF/250/50c5c0d716de"/>
+					</pragmas>
+				</Equation>
+				<!-- _L3 = _L1 and _L2; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L3"/>
+					</lefts>
+					<right>
+						<!-- _L1 and _L2 -->
+						<NAryOp name="1" operator="and">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L2"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</NAryOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/25d3/2AF/250/50c5c0dc12f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.2</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- initiateTerminationOfEstablishedSession = _L3; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="initiateTerminationOfEstablishedSession"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L3"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/25da/2AF/250/50c5c12616c6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.2</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<StateMachine name="TerminateTheCommunicationSession_SM">
+					<states>
+						<State initial="true" name="Idle">
+							<unless>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="WaitForAcknowledgementMessage"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="initiateTerminationOfEstablishedSession"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<effect>
+										<Action>
+											<pragmas>
+												<ed:Action oid="!ed/2604/2AF/250/50c5c256773"/>
+											</pragmas>
+										</Action>
+									</effect>
+									<pragmas>
+										<ed:Transition oid="!ed/25f8/2AF/250/50c5c2161abd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.5.5.2a)</comment>
+										</ed:Transition>
+									</pragmas>
+								</Transition>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="EstablishingACommunicationSessionAborted"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="initiateTerminationOfEstablishingSession"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<effect>
+										<Action>
+											<data>
+												<!--  emit 'sAbortEstablishingACommunicationSession; -->
+												<Emission>
+													<signals>
+														<SignalRef name="sAbortEstablishingACommunicationSession"/>
+													</signals>
+													<pragmas>
+														<ed:Emission oid="!ed/3257/354E/1C40/519215e0790b"/>
+													</pragmas>
+												</Emission>
+											</data>
+											<pragmas>
+												<ed:Action oid="!ed/247d/2336/DF8/50c759cc49e0"/>
+											</pragmas>
+										</Action>
+									</effect>
+									<pragmas>
+										<ed:Transition oid="!ed/2474/2336/DF8/50c759c2573d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.5.5.7</comment>
+										</ed:Transition>
+									</pragmas>
+								</Transition>
+							</unless>
+							<pragmas>
+								<ed:State oid="!ed/25e5/2AF/250/50c5c1e52da5"/>
+							</pragmas>
+						</State>
+						<State name="WaitForAcknowledgementMessage">
+							<locals>
+								<Variable name="_L2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2660/2AF/250/50c5c5553cbc"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/265f/2AF/250/50c5c5552e07"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L3">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="time_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/266d/2AF/250/50c5c5816513"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L4">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2678/2AF/250/50c5c5c61d70"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L5">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2691/2AF/250/50c5c6fc52e1"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L6">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="time_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2697/2AF/250/50c5c7007c6e"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L8">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/273c/2AF/250/50c5cffc3033"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<!-- _L1, _L2 = waitAndRepeatTimer(_L3, _L4, _L4, _L6, _L5); -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L1"/>
+										<VariableRef name="_L2"/>
+									</lefts>
+									<right>
+										<!-- waitAndRepeatTimer(_L3, _L4, _L4, _L6, _L5) -->
+										<CallExpression>
+											<operator>
+												<OpCall name="1">
+													<operator>
+														<OperatorRef name="waitAndRepeatTimer"/>
+													</operator>
+												</OpCall>
+											</operator>
+											<callParameters>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L3"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L4"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L4"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L6"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L5"/>
+													</path>
+												</IdExpression>
+											</callParameters>
+										</CallExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/265e/2AF/250/50c5c555662b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>cTerminationOfCommunicationSessionRepetitionInterval</comment>
+										</ed:Equation>
+									</pragmas>
+								</Equation>
+								<!-- _L3 = actualTime; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L3"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="actualTime"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/266c/2AF/250/50c5c5816151"/>
+									</pragmas>
+								</Equation>
+								<!-- _L4 = false; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L4"/>
+									</lefts>
+									<right>
+										<ConstValue value="false"/>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2677/2AF/250/50c5c5c6700"/>
+									</pragmas>
+								</Equation>
+								<!-- _L5 = cTerminationOfCommunicationSession_MaxNoOfRepetitions; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L5"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="cTerminationOfCommunicationSession_MaxNoOfRepetitions"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2690/2AF/250/50c5c6fc6315" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.5.5.3.1</comment>
+										</ed:Equation>
+									</pragmas>
+								</Equation>
+								<!-- _L6 = cTerminationOfCommunicationSessionRepetitionInterval; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L6"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="cTerminationOfCommunicationSessionRepetitionInterval"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2696/2AF/250/50c5c700516a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>cTerminationOfCommunicationSessionRepetitionInterval</comment>
+										</ed:Equation>
+									</pragmas>
+								</Equation>
+								<!--  emit 'sSendATerminationOfCommunicationMessage if _L1; -->
+								<Emission>
+									<signals>
+										<SignalRef name="sSendATerminationOfCommunicationMessage"/>
+									</signals>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<pragmas>
+										<ed:Emission oid="!ed/26a2/2AF/250/50c5c7851458"/>
+									</pragmas>
+								</Emission>
+								<!-- considerTheCommunicationSessionTerminated = _L2; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="considerTheCommunicationSessionTerminated"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/26a8/2AF/250/50c5c81940d9"/>
+									</pragmas>
+								</Equation>
+								<!-- ignoreMessagesFromRBC_exceptAckOfTerminationOfCommunicationSession = _L8; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="ignoreMessagesFromRBC_exceptAckOfTerminationOfCommunicationSession"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L8"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2734/2AF/250/50c5cff02c88" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.5.5.6</comment>
+										</ed:Equation>
+									</pragmas>
+								</Equation>
+								<!-- _L8 = true; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L8"/>
+									</lefts>
+									<right>
+										<ConstValue value="true"/>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/273b/2AF/250/50c5cffc11f3"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<until>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="CommunicationSession_Terminated"/>
+									</target>
+									<condition>
+										<!-- acknowledgementOfTerminationOfCommunicationSessionReceived or considerTheCommunic... -->
+										<NAryOp name="2" operator="or">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="acknowledgementOfTerminationOfCommunicationSessionReceived"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="considerTheCommunicationSessionTerminated"/>
+													</path>
+												</IdExpression>
+											</operands>
+										</NAryOp>
+									</condition>
+									<effect>
+										<Action>
+											<data>
+												<!--  emit 'sRequestReleaseOfSafeRadioConnectionWithTrackside; -->
+												<Emission>
+													<signals>
+														<SignalRef name="sRequestReleaseOfSafeRadioConnectionWithTrackside"/>
+													</signals>
+													<pragmas>
+														<ed:Emission oid="!ed/26d5/2AF/250/50c5c8f07e90"/>
+													</pragmas>
+												</Emission>
+											</data>
+											<pragmas>
+												<ed:Action oid="!ed/263e/2AF/250/50c5c46db29"/>
+											</pragmas>
+										</Action>
+									</effect>
+									<pragmas>
+										<ed:Transition oid="!ed/2630/2AF/250/50c5c4067fce" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.5.5.2c), 3.5.5.3.2</comment>
+										</ed:Transition>
+									</pragmas>
+								</Transition>
+							</until>
+							<pragmas>
+								<ed:State oid="!ed/25ed/2AF/250/50c5c1ff231f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<diagrams>
+										<NetDiagram name="diagram_WaitForAcknowledgementMessage_1" landscape="true" format="A4 (210 297)" oid="!ed/265a/2AF/250/50c5c548785a">
+											<presentationElements>
+												<EquationGE presentable="!ed/265e/2AF/250/50c5c555662b">
+													<position>
+														<Point x="6448" y="5601"/>
+													</position>
+													<size>
+														<Size width="6763" height="7874"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/266c/2AF/250/50c5c5816151">
+													<position>
+														<Point x="3387" y="7303"/>
+													</position>
+													<size>
+														<Size width="265" height="502"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/266c/2AF/250/50c5c5816151" dstEquation="!ed/265e/2AF/250/50c5c555662b">
+													<positions>
+														<Point x="3651" y="7567"/>
+														<Point x="5054" y="7567"/>
+														<Point x="5054" y="7567"/>
+														<Point x="6456" y="7567"/>
+													</positions>
+												</Edge>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/2677/2AF/250/50c5c5c6700">
+													<position>
+														<Point x="3651" y="9393"/>
+													</position>
+													<size>
+														<Size width="212" height="318"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/2677/2AF/250/50c5c5c6700" dstEquation="!ed/265e/2AF/250/50c5c555662b">
+													<positions>
+														<Point x="3863" y="9551"/>
+														<Point x="5159" y="9551"/>
+														<Point x="5159" y="9551"/>
+														<Point x="6456" y="9551"/>
+													</positions>
+												</Edge>
+												<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/2677/2AF/250/50c5c5c6700" dstEquation="!ed/265e/2AF/250/50c5c555662b">
+													<positions>
+														<Point x="3863" y="9551"/>
+														<Point x="5159" y="9551"/>
+														<Point x="5159" y="11509"/>
+														<Point x="6456" y="11509"/>
+													</positions>
+												</Edge>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/2690/2AF/250/50c5c6fc6315">
+													<position>
+														<Point x="8176" y="15716"/>
+													</position>
+													<size>
+														<Size width="211" height="318"/>
+													</size>
+												</EquationGE>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/2696/2AF/250/50c5c700516a">
+													<position>
+														<Point x="7726" y="14261"/>
+													</position>
+													<size>
+														<Size width="211" height="317"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/2696/2AF/250/50c5c700516a" dstEquation="!ed/265e/2AF/250/50c5c555662b">
+													<positions>
+														<Point x="7938" y="14420"/>
+														<Point x="8705" y="14420"/>
+														<Point x="8705" y="13467"/>
+													</positions>
+												</Edge>
+												<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/2690/2AF/250/50c5c6fc6315" dstEquation="!ed/265e/2AF/250/50c5c555662b">
+													<positions>
+														<Point x="8387" y="15875"/>
+														<Point x="10954" y="15875"/>
+														<Point x="10954" y="13467"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/26a2/2AF/250/50c5c7851458">
+													<position>
+														<Point x="17410" y="8467"/>
+													</position>
+													<size>
+														<Size width="371" height="582"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/265e/2AF/250/50c5c555662b" dstEquation="!ed/26a2/2AF/250/50c5c7851458">
+													<positions>
+														<Point x="13203" y="8229"/>
+														<Point x="17542" y="8229"/>
+														<Point x="17542" y="8546"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/26a8/2AF/250/50c5c81940d9">
+													<position>
+														<Point x="17304" y="10583"/>
+													</position>
+													<size>
+														<Size width="344" height="502"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/265e/2AF/250/50c5c555662b" dstEquation="!ed/26a8/2AF/250/50c5c81940d9">
+													<positions>
+														<Point x="13203" y="10848"/>
+														<Point x="15240" y="10848"/>
+														<Point x="15240" y="10848"/>
+														<Point x="17304" y="10848"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/2734/2AF/250/50c5cff02c88">
+													<position>
+														<Point x="17383" y="18150"/>
+													</position>
+													<size>
+														<Size width="318" height="503"/>
+													</size>
+												</EquationGE>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/273b/2AF/250/50c5cffc11f3">
+													<position>
+														<Point x="13785" y="18256"/>
+													</position>
+													<size>
+														<Size width="212" height="317"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/273b/2AF/250/50c5cffc11f3" dstEquation="!ed/2734/2AF/250/50c5cff02c88">
+													<positions>
+														<Point x="13996" y="18415"/>
+														<Point x="15716" y="18415"/>
+														<Point x="15716" y="18415"/>
+														<Point x="17436" y="18415"/>
+													</positions>
+												</Edge>
+											</presentationElements>
+										</NetDiagram>
+									</diagrams>
+								</ed:State>
+							</pragmas>
+						</State>
+						<State name="CommunicationSession_Terminated">
+							<locals>
+								<Variable name="_L1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2af5/38C7/FCC/50f7fba977be"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<!-- communicationSessionTerminated = _L1; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="communicationSessionTerminated"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2ae2/38C7/FCC/50f7fb97c7e"/>
+									</pragmas>
+								</Equation>
+								<!-- _L1 = true; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L1"/>
+									</lefts>
+									<right>
+										<ConstValue value="true"/>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2af4/38C7/FCC/50f7fba92f8f"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<pragmas>
+								<ed:State oid="!ed/2618/2AF/250/50c5c3a06f85" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>3.5.5.3.2, </comment>
+								</ed:State>
+							</pragmas>
+						</State>
+						<State name="EstablishingACommunicationSessionAborted">
+							<until>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="CommunicationSession_Terminated"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="establishingACommunicationSessionAborted"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<effect>
+										<Action>
+											<data>
+												<!--  emit 'sRequestReleaseOfSafeRadioConnectionWithTrackside; -->
+												<Emission>
+													<signals>
+														<SignalRef name="sRequestReleaseOfSafeRadioConnectionWithTrackside"/>
+													</signals>
+													<pragmas>
+														<ed:Emission oid="!ed/24cd/2336/DF8/50c75aff2f1f"/>
+													</pragmas>
+												</Emission>
+											</data>
+											<pragmas>
+												<ed:Action oid="!ed/24af/2336/DF8/50c75ace2a68"/>
+											</pragmas>
+										</Action>
+									</effect>
+									<pragmas>
+										<ed:Transition oid="!ed/24ae/2336/DF8/50c75aac620e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>3.5.5.7</comment>
+										</ed:Transition>
+									</pragmas>
+								</Transition>
+							</until>
+							<pragmas>
+								<ed:State oid="!ed/2458/2336/DF8/50c759173da6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>3.5.5.7</comment>
+								</ed:State>
+							</pragmas>
+						</State>
+					</states>
+					<pragmas>
+						<ed:StateMachine oid="!ed/25e0/2AF/250/50c5c1ba2f5b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.2</comment>
+						</ed:StateMachine>
+					</pragmas>
+				</StateMachine>
+				<!-- sendATerminationOfCommunicationMessage = _L4; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="sendATerminationOfCommunicationMessage"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/26f8/2AF/250/50c5cdd26e2b"/>
+					</pragmas>
+				</Equation>
+				<!-- _L4 =  'sSendATerminationOfCommunicationMessage; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L4"/>
+					</lefts>
+					<right>
+						<Present>
+							<signal>
+								<SignalRef name="sSendATerminationOfCommunicationMessage"/>
+							</signal>
+						</Present>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/26fd/2AF/250/50c5cddd5b2d"/>
+					</pragmas>
+				</Equation>
+				<!-- _L5 =  'sRequestReleaseOfSafeRadioConnectionWithTrackside; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L5"/>
+					</lefts>
+					<right>
+						<Present>
+							<signal>
+								<SignalRef name="sRequestReleaseOfSafeRadioConnectionWithTrackside"/>
+							</signal>
+						</Present>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2703/2AF/250/50c5cdffceb"/>
+					</pragmas>
+				</Equation>
+				<!-- requestReleaseOfSafeRadioConnectionWithTrackside = _L5; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="requestReleaseOfSafeRadioConnectionWithTrackside"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L5"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/270a/2AF/250/50c5ce1a24c8"/>
+					</pragmas>
+				</Equation>
+				<!-- _L6 = initiateTermination; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L6"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="initiateTermination"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2756/2AF/250/50c5d152223d"/>
+					</pragmas>
+				</Equation>
+				<!-- _L7 = aSessionIsCurrentlyBeingEstablished; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L7"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="aSessionIsCurrentlyBeingEstablished"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/275c/2AF/250/50c5d15d5438"/>
+					</pragmas>
+				</Equation>
+				<!-- _L8 = _L6 and _L7; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L8"/>
+					</lefts>
+					<right>
+						<!-- _L6 and _L7 -->
+						<NAryOp name="2" operator="and">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L6"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L7"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</NAryOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2762/2AF/250/50c5d1671325"/>
+					</pragmas>
+				</Equation>
+				<!-- initiateTerminationOfEstablishingSession = _L8; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="initiateTerminationOfEstablishingSession"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L8"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2466/2336/DF8/50c7595b228a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>3.5.5.7</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- abortEstablishingACommunicationSession = _L9; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="abortEstablishingACommunicationSession"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L9"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/24ef/2336/DF8/50c75e49558c"/>
+					</pragmas>
+				</Equation>
+				<!-- _L9 =  'sAbortEstablishingACommunicationSession; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L9"/>
+					</lefts>
+					<right>
+						<Present>
+							<signal>
+								<SignalRef name="sAbortEstablishingACommunicationSession"/>
+							</signal>
+						</Present>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/24f4/2336/DF8/50c75e53507d"/>
+					</pragmas>
+				</Equation>
+			</data>
+			<pragmas>
+				<ed:Operator commentsToC="true" oid="!ed/23a2/2AF/250/50c5a71fb6d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>Subset 096, REQ 3.5.5.2</comment>
+					<comment>Implements the termination of a communication session.</comment>
+					<diagrams>
+						<NetDiagram name="diagram_terminating_a_CommunicationSession_1" landscape="true" format="A4 (210 297)" oid="!ed/23a3/2AF/250/50c5a71f3d17">
+							<presentationElements>
+								<EquationGE presentable="!ed/25cb/2AF/250/50c5c0d756d6">
+									<position>
+										<Point x="3201" y="1323"/>
+									</position>
+									<size>
+										<Size width="265" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/25cd/2AF/250/50c5c0d716de">
+									<position>
+										<Point x="3201" y="2355"/>
+									</position>
+									<size>
+										<Size width="265" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/25d3/2AF/250/50c5c0dc12f">
+									<position>
+										<Point x="9340" y="1376"/>
+									</position>
+									<size>
+										<Size width="1005" height="662"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/25cb/2AF/250/50c5c0d756d6" dstEquation="!ed/25d3/2AF/250/50c5c0dc12f">
+									<positions>
+										<Point x="3466" y="1588"/>
+										<Point x="6403" y="1588"/>
+										<Point x="6403" y="1588"/>
+										<Point x="9340" y="1588"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/25cd/2AF/250/50c5c0d716de" dstEquation="!ed/25d3/2AF/250/50c5c0dc12f">
+									<positions>
+										<Point x="3466" y="2619"/>
+										<Point x="6403" y="2619"/>
+										<Point x="6403" y="1826"/>
+										<Point x="9340" y="1826"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/25da/2AF/250/50c5c12616c6">
+									<position>
+										<Point x="12568" y="1455"/>
+									</position>
+									<size>
+										<Size width="344" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/25d3/2AF/250/50c5c0dc12f" dstEquation="!ed/25da/2AF/250/50c5c12616c6">
+									<positions>
+										<Point x="10345" y="1720"/>
+										<Point x="11456" y="1720"/>
+										<Point x="11456" y="1720"/>
+										<Point x="12568" y="1720"/>
+									</positions>
+								</Edge>
+								<StateMachineGE presentable="!ed/25e0/2AF/250/50c5c1ba2f5b">
+									<position>
+										<Point x="714" y="7990"/>
+									</position>
+									<size>
+										<Size width="27332" height="12515"/>
+									</size>
+								</StateMachineGE>
+								<StateGE presentable="!ed/25e5/2AF/250/50c5c1e52da5">
+									<position>
+										<Point x="11430" y="8599"/>
+									</position>
+									<size>
+										<Size width="3704" height="1534"/>
+									</size>
+								</StateGE>
+								<StateGE display="split" presentable="!ed/25ed/2AF/250/50c5c1ff231f">
+									<position>
+										<Point x="2037" y="11615"/>
+									</position>
+									<size>
+										<Size width="7408" height="1985"/>
+									</size>
+								</StateGE>
+								<TransitionGE presentable="!ed/25f8/2AF/250/50c5c2161abd">
+									<positions>
+										<Point x="11430" y="9234"/>
+										<Point x="8493" y="9393"/>
+										<Point x="6191" y="10266"/>
+										<Point x="5636" y="11615"/>
+									</positions>
+									<labelSize>
+										<Size width="10954" height="635"/>
+									</labelSize>
+									<labelPos>
+										<Point x="1217" y="10398"/>
+									</labelPos>
+									<slashPos>
+										<Point x="6271" y="10398"/>
+									</slashPos>
+								</TransitionGE>
+								<StateGE presentable="!ed/2618/2AF/250/50c5c3a06f85">
+									<position>
+										<Point x="1640" y="16828"/>
+									</position>
+									<size>
+										<Size width="8652" height="2037"/>
+									</size>
+								</StateGE>
+								<TransitionGE presentable="!ed/2630/2AF/250/50c5c4067fce">
+									<positions>
+										<Point x="4895" y="13600"/>
+										<Point x="4974" y="15134"/>
+										<Point x="4022" y="15981"/>
+										<Point x="4366" y="16828"/>
+									</positions>
+									<labelSize>
+										<Size width="11536" height="1270"/>
+									</labelSize>
+									<labelPos>
+										<Point x="1058" y="14631"/>
+									</labelPos>
+									<slashPos>
+										<Point x="5530" y="14631"/>
+									</slashPos>
+								</TransitionGE>
+								<EquationGE presentable="!ed/26f8/2AF/250/50c5cdd26e2b">
+									<position>
+										<Point x="18653" y="22278"/>
+									</position>
+									<size>
+										<Size width="317" height="502"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/26fd/2AF/250/50c5cddd5b2d">
+									<position>
+										<Point x="13785" y="22278"/>
+									</position>
+									<size>
+										<Size width="318" height="502"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/26fd/2AF/250/50c5cddd5b2d" dstEquation="!ed/26f8/2AF/250/50c5cdd26e2b">
+									<positions>
+										<Point x="14102" y="22543"/>
+										<Point x="16404" y="22543"/>
+										<Point x="16404" y="22543"/>
+										<Point x="18706" y="22543"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/2703/2AF/250/50c5cdffceb">
+									<position>
+										<Point x="13467" y="23733"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/270a/2AF/250/50c5ce1a24c8">
+									<position>
+										<Point x="18785" y="23733"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2703/2AF/250/50c5cdffceb" dstEquation="!ed/270a/2AF/250/50c5ce1a24c8">
+									<positions>
+										<Point x="13785" y="23998"/>
+										<Point x="16298" y="23998"/>
+										<Point x="16298" y="23998"/>
+										<Point x="18838" y="23998"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/2756/2AF/250/50c5d152223d">
+									<position>
+										<Point x="3201" y="3810"/>
+									</position>
+									<size>
+										<Size width="265" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/275c/2AF/250/50c5d15d5438">
+									<position>
+										<Point x="4789" y="4789"/>
+									</position>
+									<size>
+										<Size width="265" height="502"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/2762/2AF/250/50c5d1671325">
+									<position>
+										<Point x="9287" y="3863"/>
+									</position>
+									<size>
+										<Size width="1006" height="661"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2756/2AF/250/50c5d152223d" dstEquation="!ed/2762/2AF/250/50c5d1671325">
+									<positions>
+										<Point x="3466" y="4075"/>
+										<Point x="6429" y="4075"/>
+										<Point x="6429" y="4075"/>
+										<Point x="9287" y="4075"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/275c/2AF/250/50c5d15d5438" dstEquation="!ed/2762/2AF/250/50c5d1671325">
+									<positions>
+										<Point x="5054" y="5054"/>
+										<Point x="7223" y="5054"/>
+										<Point x="7223" y="4313"/>
+										<Point x="9287" y="4313"/>
+									</positions>
+								</Edge>
+								<StateGE presentable="!ed/2458/2336/DF8/50c759173da6">
+									<position>
+										<Point x="17859" y="11800"/>
+									</position>
+									<size>
+										<Size width="6905" height="1773"/>
+									</size>
+								</StateGE>
+								<EquationGE presentable="!ed/2466/2336/DF8/50c7595b228a">
+									<position>
+										<Point x="12779" y="3942"/>
+									</position>
+									<size>
+										<Size width="344" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2762/2AF/250/50c5d1671325" dstEquation="!ed/2466/2336/DF8/50c7595b228a">
+									<positions>
+										<Point x="10292" y="4207"/>
+										<Point x="11536" y="4207"/>
+										<Point x="11536" y="4207"/>
+										<Point x="12779" y="4207"/>
+									</positions>
+								</Edge>
+								<TransitionGE presentable="!ed/2474/2336/DF8/50c759c2573d">
+									<positions>
+										<Point x="15134" y="9366"/>
+										<Point x="20373" y="9790"/>
+										<Point x="20849" y="10874"/>
+										<Point x="21325" y="11800"/>
+									</positions>
+									<labelSize>
+										<Size width="10319" height="318"/>
+									</labelSize>
+									<labelPos>
+										<Point x="15240" y="10028"/>
+									</labelPos>
+									<slashPos>
+										<Point x="19738" y="10028"/>
+									</slashPos>
+								</TransitionGE>
+								<TransitionGE presentable="!ed/24ae/2336/DF8/50c75aac620e">
+									<positions>
+										<Point x="21325" y="13573"/>
+										<Point x="20532" y="16563"/>
+										<Point x="15425" y="17224"/>
+										<Point x="10292" y="17886"/>
+									</positions>
+									<labelSize>
+										<Size width="12991" height="635"/>
+									</labelSize>
+									<labelPos>
+										<Point x="11853" y="16193"/>
+									</labelPos>
+									<slashPos>
+										<Point x="17568" y="16193"/>
+									</slashPos>
+								</TransitionGE>
+								<EquationGE presentable="!ed/24ef/2336/DF8/50c75e49558c">
+									<position>
+										<Point x="18759" y="25241"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/24f4/2336/DF8/50c75e53507d">
+									<position>
+										<Point x="13679" y="25241"/>
+									</position>
+									<size>
+										<Size width="317" height="502"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/24f4/2336/DF8/50c75e53507d" dstEquation="!ed/24ef/2336/DF8/50c75e49558c">
+									<positions>
+										<Point x="13996" y="25506"/>
+										<Point x="16404" y="25506"/>
+										<Point x="16404" y="25506"/>
+										<Point x="18812" y="25506"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/2ae2/38C7/FCC/50f7fb97c7e">
+									<position>
+										<Point x="5530" y="17806"/>
+									</position>
+									<size>
+										<Size width="317" height="502"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/2af4/38C7/FCC/50f7fba92f8f">
+									<position>
+										<Point x="2699" y="17912"/>
+									</position>
+									<size>
+										<Size width="211" height="317"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2af4/38C7/FCC/50f7fba92f8f" dstEquation="!ed/2ae2/38C7/FCC/50f7fb97c7e">
+									<positions>
+										<Point x="2910" y="18071"/>
+										<Point x="4233" y="18071"/>
+										<Point x="4233" y="18071"/>
+										<Point x="5583" y="18071"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+				<kcg:Pragma>
+					doc Subset 096, REQ 3.5.5.2
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc Implements the termination of a communication session.
+				</kcg:Pragma>
+				<kcg:Pragma>
+					doc &quot;Remark_1&quot; {Description = &quot;- Name: terminating_a_CommunicationSession - Description: Terminates the communication session.  - Copyright Siemens AG, 2013 - Licensed under the EUPL V.1.1 ( http://joinup.ec.europa.eu/software/page/eupl/licence-eupl ) - Gist URL: --- - Cryptography: No - Author(s): Uwe Steinke  The use of this software is limited to non-vital applications.  It has not been developed for vital operation purposes and must not be used for applications which may cause harm to people, physical accidents or financial loss.  THEREFORE, NO LIABILITY WILL BE GIVEN FOR SUCH AND ANY OHER KIND OF USE.&quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>
