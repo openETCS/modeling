@@ -8,7 +8,7 @@
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{makeidx}
-\usepackage{amsthm}
+%\usepackage{amsthm}
 \newtheorem{remark}{Remark}
 \definecolor{gray}{rgb}{0.8,0.8,0.8}
 \usepackage[modulo]{lineno}
@@ -28,7 +28,7 @@
 % The document metadata is defined below
 
 %assign a report number here
-\reportnum{OETCS/WP3/D3.5.1.1}
+\reportnum{OETCS/WP3/D3.5.1}
 
 %define your workpackage here
 \wp{Work-Package 3: ``Modeling''}
@@ -109,7 +109,7 @@ Version & Section & Modification / Description & Author \\\hline}
 0.3 & all & collecting feedback and completion on initial sections & Bernd Hekele \\\hline
 0.4 & all & changed document style to openETCS report improved pretty printing & Peter Mahlmann \\\hline
 0.4.1 & all & adding content & Bernd Hekele \\\hline
-0.5  &updated Version prepared for hand-over to WP4 & Bernd Hekele \\\hline
+0.5 & all & updated Version prepared for hand-over to WP4 & Bernd Hekele \\\hline
 
 \end{supertabular}
 
@@ -198,6 +198,62 @@ In addition, the work on this minimum functionality requires to be supported by
 \end{itemize}
 These supporting prerequisites are under construction and therefore currently not completely operable. How to deal with these restrictions, will be outlined in Chapter 2.
 
+\subsection{List of Release Deliverables, Requirements Used}
+The first iteration release covers the following deliverables:
+\begin{itemize}
+\item Architecture and Design Document\\
+This document describing the architectrue in textual form.
+\item The High-Level Architecture Model\\
+SysML models used in this document. You can find them in the modelling repository \cite{sysml-model}. The architecture does not cover the behaviour.
+\item The Design Document \cite{designFI}\\
+This document is generated with the Scade Reporter Function and strictly represents the model.
+\item The Scade model \cite{scade-model}\\
+The release is tagged with the Release-Tag: D3.6.1.1 (Deliverable 3.6, first iteration, first correction version)\\
+\item C-Code generated from the model\\
+The code is part of the model on Github.
+\item Process and Modelling rules\\
+The process in \cite{D2.4} and \cite{D2.3} is in use. In addition, the guidelines described in \cite{SCADE-Modelling-Guide}
+\item The Alstom API documents \cite{alstom-api}, \cite{alstom-api-app-layer} and \cite{alstom-api-data-dict} have taken 
+as a logical description of the interfaces used in the model. The physical layout of the interface is not taken in consideration. This function is seen as a part outside the model (bit-walker in API)
+\end{itemize}
+
+\subsection{Short Description of the functional scenario}
+Note: you find more details on the functionality in the sections of chapter \ref*{sec:the-openetcs-architecture-of-the-initial-kernel-functions}.
+The model is intended to receive balise telegrams, collect them to balise groups, generate balise group messages according to SRS subset 26, section 3.4 (parts for level 1) .
+
+On the balise interface only packages 5 "linking" are processed.
+
+Checks of the input telegrams will generate the appropriate status indications. Those signals are output of the model. Yet, the function to generate the appropriate reaction are not part of the first iteration.
+
+The validity of information according to the direction is checked and appropriate actions are taken on the information elements.
+
+Based on the input (balise telegrams, odometer) the model generates a location database and calculates the position of the train according to section 3.6.3.
+
+A train-position report is generated and generates output of the model. When generating the message, neither the correct levels nor the actual status of the radio communication session are respected due to the limited scope of the model. It is assumed those functions are part of the radio communication manager (not in the scope of this exercise.).
+
+\subsection{Tools and Tools Versions in Use}
+
+The first iteration release covers the follwoing deliverables:
+\begin{itemize}
+\item openETCS Toolschain\\
+The toolschain (kepler based version) is used for documenting references between Sysml model and the SRS.
+In addition, the kepler based Papyrus version is in used for architectural work.
+
+\item Scade System\\
+Version 15.2 of Scade System is as well a Kepler based version of Papyrus and is in use for generating the SysML models. 
+
+Both Papyrus alternatives (Scade System as well as Eclipse Kepler) are compatible for the WP3 work. For generation of references the openETCS tool has to be used.
+
+\item Scade Designer\\
+Version 15.1 (or higher) is recommended to be used in the design. All Versions released after  6.4.2 (inclusive) are compatible regarding the used functionality for Scade Design.  
+
+\item Git\\
+Git is chosen as the platform for management of all deliverables of WP3. All results are visible in the openETCS modeling repository. The issue tracker (repository modeling) is in use for fault management.\\
+
+The issue tracker and the milestone-planner of repository SRS-Analysis is in use for planning purposes.
+
+\end{itemize}
+
 \section{Glossary and Abbreviations}
 
 \textbf{API} Application Programming Interface\\
@@ -208,7 +264,7 @@ These supporting prerequisites are under construction and therefore currently no
 
 %==================================================================
 
-\chapter{The openETCS Architecture of the Initial Kernel Functions}
+\chapter{The openETCS Architecture of the Initial Kernel Functions}\label{sec:the-openetcs-architecture-of-the-initial-kernel-functions}
 
 \section{The openETCS Tool Chain and its Impacts on the Actual Model}
 
@@ -317,7 +373,7 @@ Note: The basic functions and the API is not implemented in the first iteration.
 
 \begin{itemize}
 \item Runtime System\\
-The Runtime System calls the openETCS kernel model in a cyclic way. Input parameters are updated with every cycle.
+The Runtime System calls the openETCS kernel model in a cyclic way. Input parameters are updated with every cycle. We have to differentiate between cycles in the application software and clock cycles imposed by Scade. For the first iteration we assume both are identical.
 \item Input
 \begin{itemize}
 \item Control Interface\\
@@ -327,7 +383,10 @@ The control interface triggers the reset of the application software. The reset 
 The BTM service passes decoded telegrams to the executable model. The telegram is handed over to the API\_balise parameter of the model (see Chapter~\ref{ss:ReceiveEurobaliseFromAPI}). In each cycle only one telegram is expected to be passed.
 
 \item Odometry\\
-The input from the odometry is updated with every cycle\marginpar{cycle=clock?}. The information from the odometry is updated in the parameter actual\_odometry of the executable model.
+The input from the odometry is updated with every cycle. The information from the odometry is updated in the parameter actual\_odometry of the executable model.
+
+\item System Time\\
+The system time is made available to the EVC executable model at the beginning of each cycle. It is not changed in the model while the cycle is not finished.
 \end{itemize}
 
 \item Output
@@ -545,7 +604,7 @@ The first iteration of the model takes only balise group messages into account. 
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\textwidth]{../images/ValidateDataDirection.pdf}
+\includegraphics[width=\textwidth]{../images/ValidateDataDirection.PNG}
 \caption{Structure of component ValidateDataDirection}\label{fig:validDataDirect}
 \end{figure}
 
