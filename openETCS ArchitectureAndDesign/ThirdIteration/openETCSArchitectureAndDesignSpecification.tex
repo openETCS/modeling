@@ -11,7 +11,8 @@
 \definecolor{gray}{rgb}{0.8,0.8,0.8}
 \usepackage[modulo]{lineno}
 \usepackage{float}
- \usepackage[acronym, % list of acronyms
+\usepackage{fixme}
+\usepackage[acronym, % list of acronyms
   %section, % add the glossary to the table of content
             %description,% acronyms have a user-supplied description,
  style=longheader, % table style
@@ -443,6 +444,9 @@ Figure \ref{fig:apiHighLevel} shows the structure of API with respect of the sof
 
 \subsubsection{Principles for Interfaces (openETCS \gls{API})}
 
+\fxnote{Version Management}
+\fxnote{Layering in API + Bitwalker}
+\fxnote{Mapping Input Packages inernal packages}
 
 Information  is exchanged \define{messages} in an asynchronous way. A message is a set
 of information corresponding to an event of a particular unit, e.g. a
@@ -506,12 +510,12 @@ Unit & Name &  Processing Function & Description \\\hline}
 %\begin{itemize}{| m{1.2cm} | m{1.5cm} | m{1.2cm} | m{3.7cm}  | m{3.7cm} |}
 \begin{supertabular}{| c | c | c  | c |}
 \gls{BTM} & Balise Telegram & Receive Messages & \\\hline
-\gls{DMI} & & \\\hline
+\gls{DMI} & & & \\\hline
 EURORADIO & Communication Management & Communication Management & \\\hline
 EURORADIO & Radio Messages & Receive Messages & \\\hline
 \gls{ODO} & Odometer & All Parts & \\\hline
 TIME & Time system of the OBU & All Parts & \\\hline
-Startup \\\hline
+Startup & & & \\\hline
 TIU & Train Data & All Parts & \\\hline
 \end{supertabular}
 
@@ -549,47 +553,72 @@ Balise Telegram &
 &  Not Used in Scenario\\\hline
 \end{supertabular}
 
-Radio Messages (Track to Train)
+Radio Messages (Track to Train)\\
+The following table gives a list of relevant messages and packets in the messages. The information is taken from track descriptions and traces.
 
 \tablefirsthead{
 \hline 
 \rowcolor{gray} 
 Message Name & Optional Packets & Restrictions in the current scope \\\hline}
-\begin{supertabular}{| p{4 cm} | p{6 cm} | p{4,5 cm} |}
-2: SR Authorisation & 63:\ List\ of\ Balises\ in\ SR Authority & Message Not Supported \\\hline
+\begin{supertabular}{| p{4 cm} | p{8 cm} | p{2,5 cm} |}
 3: Movement Authority &
  21:\ Gradient\ Profile\newline
  27: International Static Speed Profile\newline
  49: List of balises for SH Area\newline
  80: Mode profile\newline
- plus common optional packets\newline
- & a \\\hline
+ plus common optional packets,\newline
+ 3: National Values \newline
+ 5: Linking  \newline
+ 15: Level 2/3 Movement Authority \newline
+ 21: Gradient Profile\newline
+ 41: Level Transition Order \newline
+ 65: Temporary Speed Restriction \newline
+ & 
+ The list of packets is adjusted to our use-case.  \\\hline
+8: Acknowledgement of Train Data & &  No Extra Packets \\\hline
 9: Request To Shorten MA &
  49: List of balises for SH Area\newline
  80: Mode profile\newline 
-& \\\hline
+& Not part of the use-case \\\hline
+15: Conditional Emergency Stop &  & No Extra Packets \\\hline
+16: Unconditional Emergency Stop &  & No Extra Packets \\\hline
+18: Revocation of Emergency Stop &  & No Extra Packets \\\hline
 24: General Message &
 From RBC:\newline
  21:\ Gradient\ Profile\newline
  27: International Static Speed Profile\newline
- plus common optional packets\newline
-From RIU:\newline 44, 45, 143, 180, 254
-& Messages from RIU are not supported \\\hline
-28: SH authorised & 3, 44, 49
-& \\\hline
+ plus common optional packets, e.g., for our Use-Case\newline
+ 3: National Values \newline
+ 41: Level Transition Order \newline
+ 42: Session Management \newline
+ 57: Movement Authority Request Parameters \newline
+ 58: Position Report Parameters \newline
+ 72: Packet for sending plain text messages \newline
+ & Restricted to use-case \\\hline
+32: RBC/RIU System Version &  & No packets \\\hline
 33: MA with Shifted Location Reference &
  21:\ Gradient\ Profile\newline
  27: International Static Speed Profile\newline
  49: List of balises for SH Area\newline
  80: Mode profile\newline
  plus common optional packets\newline
-& \\\hline
-37: Infill MA &
-5, 21, 27, 39, 40, 41, 44, 49, 51, 52, 65, 66, 68, 69, 70, 71, 80, 88, 138, 139 
- & Message Not Supported \\\hline
-List of common optional parameters &
-3, 5, 39, 40, 51, 41, 42, 44, 45, 52, 57, 58, 64, 65, 66, 68, 69, 70, 71, 72, 76, 79, 88, 131, 138, 139, 140, 180
-& \\\hline
+&  \\\hline
+39: Acknowledgement of termination of a communication session &   & No Extra Packets \\\hline
+41: Train Accepted &   & No Extra Packets  \\\hline
+Summary & List of Packets used in the scenarios\newline
+ 3: National Values \newline
+ 5: Linking  \newline
+ 15: Level 2/3 Movement Authority \newline
+ 21: Gradient Profile\newline
+ 27: International Static Speed Profile\newline
+ 42: Session Management \newline
+ 57: Movement Authority Request Parameters \newline
+ 58: Position Report Parameters \newline
+ 72: Packet for sending plain text messages \newline
+ 41: Level Transition Order \newline
+ 49: List of balises for SH Area\newline
+ 65: Temporary Speed Restriction \newline
+ 80: Mode profile & \\\hline
 \end{supertabular}
 
 \subsubsection{Interfaces to the Time System}
@@ -649,15 +678,38 @@ From Function & Name &  To Unit & Description \\\hline}
 \begin{supertabular}{| c | c | c | c  | c |}
  & Radio Output Message & \ EURORADIO & \\\hline
  & Communication Management  &  EURORADIO  & \\\hline
- & Driver Information & \gls{DMI} \\\hline
+ & Driver Information & \gls{DMI} & \\\hline
  & Train Data  & TIU &  
 \\\hline
 \end{supertabular}
 
-Packets:
-to be completed
+Radio Messages (Train to Track)\\
+The following table gives a list of relevant messages and packets in the messages. The information is taken from scenarions and traces.
 
-Radio Messages
+\tablefirsthead{
+	\hline 
+	\rowcolor{gray} 
+	Message Name & Optional Packets & Comment \\\hline}
+\begin{supertabular}{| p{6 cm} | p{4 cm} | p{2,5 cm} |}
+129: Validated Train Data & 
+  0: Position Report \newline 
+ 11: Validated train data &   \\\hline
+132: MA Request &
+  0: Position Report &  \\\hline
+136: Train Position Report &
+  0: Position Report &  \\\hline
+146: Acknowledgement  & & \\\hline
+147: Acknowledgement of Emergency Stop &
+  0: Position Report   & \\\hline
+150: End of Mission &
+  0: Position Report   & \\\hline
+155: Initiation of a communication session   & & \\\hline
+156: Termination of a communication session   & & \\\hline
+159: Session established  & & \\\hline
+\end{supertabular}
+
+
+Packets:
 to be completed
 
 \subsection{F2: Receive messages / check consistency}
