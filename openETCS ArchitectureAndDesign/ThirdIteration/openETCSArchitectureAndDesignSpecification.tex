@@ -1441,7 +1441,78 @@ override\\
 - Display required ack-requests, T.A.F. requests etc.\\
 - Display mode and level information\\
 
-\subsubsection{RBC communication}
+\subsubsection{RBC communication and Radio management}
+\textbf{Function A - Manage CNX and DCNX Euroradio}
+
+\paragraph{Short Description of the Functionality}
+This function will describe the estabilishing of a initialisation or ending of a RBC communication session\\
+
+\paragraph{Reference to the SRS (or other requirements)}
+The functionality will be described in the SRS under the §3.5, § 3.15, § 5.15\\
+
+\paragraph{Interfaces}
+\textbf{Input from:} Track information: info CNX/DCNX - Package 42 or 131, Version ERTMS/ETCS - Radio Message 32\\
+
+\textbf{Output to:} Information to the Track: Session initalization: Radio Message 155, Session establishet - Radio Message 159, Not compatible version - Radio Message 154\\
+
+\textbf{picture of interface must implemented in the ADD document}
+
+\textbf{SysML/Scade Model}
+
+\textbf{Documentation of design}
+
+ \paragraph{For the ERTMS Onboard it should be possible to establish a Radio communication if}
+
+- In the context of a start of a start of mission: Traindatas.\\
+- in the context of a command from the track information - info CNX/DCNX. The command to contact a RBC will include the idendity of the RBC and the contact number (package 42 or 131).\\
+
+\textbf{Steps to initializes a radio session will be described as followed (§ 3.5.3.9.1 Figure 3)}\\
+
+\paragraph{Initalization of Radio Session}
+\begin{figure}[hbtp]
+\centering
+\includegraphics [scale=0.5]{images/startingRBCsession}
+\caption{Establishement initiated by on-board (Figure 3 in the SRS 26 § 3.5.3.9.1}
+\end{figure}
+\newpage
+
+
+\paragraph{Steps for Establishment of Radio session (§ 3.5.3.1.0. Figure 4)}
+- The ERTMS On Board Unit will establish a session through the Euroradio Modul. If necessary the session will repeated (§ 4.3.1.1.).\\
+- Function communication will be send to the RBC ``initatio of communication session'' (Radio Message 155).\\
+- The RBC must react/acknowledge with the Version ERTMS/ETCS {Radio Message 32}.\\
+- The ERTMS Onboard Unit consider the session as established if the ERTMS/Versio is compatible und the Radio Message 159 has been sent to the RBC. The position report report § 3.6.1.5.4 h must be considered.\\
+- If the ERTMS/ETCS version is not combatiple with the On Board Unit, the Radio Message 154 ``no compatible version'' must be sent and the session will be declined.\\
+- If the Radio Session is established and the sessio is lost by accident, the Euroradio On Board Unit will repeat the the intialization of establishing of a Radio session. During the repeating process the Radio session should be considered as established (§ 4.3.1.1.).\\
+-  If the session is failed after repeating of the try of a initalization of a Radio session, the session should be considered as terminated.\\
+
+\paragraph{Establishment of a Radio sessoin}
+\begin{figure}[hbtp]
+\centering
+\includegraphics [scale=0.5]{images/EstablishmentofRadioSession}
+\caption{Establishement of Radio session (Figure 4 in the SRS 26 § 3.5.3.10.}
+\end{figure}
+\newpage
+
+\paragraph{Steps to terminate a Radio session (§ 3.5.5.2 Figure 5)}
+For the Euroradio it is possible to decline the Radio session if\\
+- a message to decline is received from the track (Radio message 156).\\
+- After received message ``no compatible version'' (Radio message 154).\\
+The idendity of a the ``to connected'' RBC und the Telephonenumber will be include in the activation command or during a RBC/RBC Handover (Package 131 ``establish session to another RBC).\\
+- The ERTMS/ETCS On Board Unit will sent the Radio Message ``terminisaiton of commuication session'' (Radio Message 156).\\
+- The RBC must an acknowledge to the On Board Unit Euroradio``End of session' (Radio message 39).\\
+- After this procedure the the ERTMS/ETCS On Board Unit Eurodio will consider the session as terminated and switch off the Radio Modul.\\
+This modul will manage the RBC/RBC Handover.\\
+' 
+\paragraph{Terminate a Radio session}
+\begin{figure}[hbtp]
+\centering
+\includegraphics [scale=0.5]{images/TerminationRadiosession}
+\caption{Terminate a Radio session (Figure 5 in the SRS 26 § 3.5.5.2}
+\end{figure}
+\newpage
+
+
 - Manage confirmation requests.\\
 - Report train position\\
 - sent train data for validation\\
