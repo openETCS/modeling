@@ -1,0 +1,53 @@
+Messaging-API DEFINITIONS AUTOMATIC TAGS ::=
+BEGIN
+
+Unit-kind ::= ENUMERATED {
+        evc,
+        tiu,
+        odo,
+        dmi,
+        stm1,
+        stm2,
+        stm3,
+        btm,
+        ltm,
+        euroradio,
+        jru,
+        vendor-specific-1,
+        vendor-specific-2,
+        vendor-specific-3
+}
+
+max-payload-size INTEGER ::= 44032 -- 43 KiB
+
+Payload ::= OCTET STRING (SIZE(0 .. max-payload-size))
+
+Message ::= SEQUENCE {
+        source-unit             Unit-kind,
+        destination-unit        Unit-kind,
+        payload                 Payload
+}
+
+Return-code ::= ENUMERATED {
+        ok,
+        error
+}
+
+
+Messaging-API ::= CHOICE {
+        send-message    SEQUENCE {
+                in      SEQUENCE { -- Input parameters
+                        destination     Unit-kind,
+                        payload         Payload
+                }
+        },
+
+        receive-message SEQUENCE {
+                out     CHOICE { -- Output parameter
+                        no-message      NULL,
+                        a-message       Message
+                }
+        }
+}
+
+END

@@ -35,3 +35,4 @@ clean:
 validate-asn1: $(ASN1)
 	asn1c -E -F asn1/train-interface.asn
 	asn1c -E -F asn1/example.asn
+	asn1c -E -F asn1/messaging-api.asn
