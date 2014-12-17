@@ -5,7 +5,8 @@ IMAGES= \
 
 ASN1= \
   asn1/train-interface.asn \
-  asn1/example.asn
+  asn1/example.asn \
+  asn1/messaging-api.asn
 
 LATEXFILES= \
   api-description.tex \
@@ -32,7 +33,9 @@ clean:
 	-rm api-description.pdf
 	-rm *.aux *.lof *.log *.lot *.toc *.bbl *.blg *.idx *.ilg *.ind *.out
 
-validate-asn1: $(ASN1)
-	asn1c -E -F asn1/train-interface.asn
-	asn1c -E -F asn1/example.asn
-	asn1c -E -F asn1/messaging-api.asn
+ASN1_VALIDATE:=$(ASN1:%.asn=%.asn-validate)
+
+validate-asn1: $(ASN1_VALIDATE)
+
+%.asn-validate: %.asn
+	asn1c -E -F $<
