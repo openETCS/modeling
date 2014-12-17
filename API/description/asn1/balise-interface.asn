@@ -1,0 +1,59 @@
+Balise-interface DEFINITIONS AUTOMATIC TAGS ::=
+BEGIN
+
+Telegram-content ::= CHOICE {
+        short-telegram  BIT STRING (SIZE(210)),
+        long-telegram   BIT STRING (SIZE(830))
+}
+
+Used-antenna ::= ENUMERATED { antenna-1, antenna-2 }
+
+Timestamp ::= INTEGER -- FIXME: to be refined
+
+Odometry-coordinate ::= INTEGER -- FIXME: to be refined
+
+Distance ::= INTEGER -- FIXME: to be refined
+
+Balise-information ::= SEQUENCE {
+        timestamp               Timestamp,
+        used-antenna            Used-antenna,
+        balise-center-location  Odometry-coordinate,
+        balise-center-accuracy  Distance,
+        telegram-content        Telegram-content
+}
+
+Currently-used-antenna ::= CHOICE {
+        none            NULL,
+        used-antenna    Used-antenna
+}
+
+Modulation ::= ENUMERATED { eurobalise, ker }
+
+Balise-configuration ::= SEQUENCE {
+        used-antenna    Used-antenna,
+        modulation      Modulation
+}
+
+Immunity-distance ::= CHOICE {
+        infinity        NULL,
+        distance        Distance
+}
+
+Metal-mass-configuration ::= SEQUENCE {
+        immunity-distance               Immunity-distance,
+        activate-metal-mass-immunity    BOOLEAN,
+        train-is-on-big-metal-mass      BOOLEAN
+}
+
+Message-Balise-Interface-to-EVC ::= CHOICE {
+        balise-information      Balise-information,
+        currently-used-antenna  Currently-used-antenna,
+        bad-balise-received     NULL
+}
+
+Message-EVC-to-Balise-Interface ::= CHOICE {
+        balise-configuration            Balise-configuration,
+        metal-mass-configuration        Metal-mass-configuration
+}
+
+END

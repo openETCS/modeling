@@ -6,7 +6,8 @@ IMAGES= \
 ASN1= \
   asn1/train-interface.asn \
   asn1/example.asn \
-  asn1/messaging-api.asn
+  asn1/messaging-api.asn \
+  asn1/balise-interface.asn
 
 LATEXFILES= \
   api-description.tex \
