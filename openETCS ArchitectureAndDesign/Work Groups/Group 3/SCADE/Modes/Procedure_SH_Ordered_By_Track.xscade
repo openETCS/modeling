@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
 	<declarations>
-		<Operator kind="node" name="Procedure_SH_Orederd_By_Track">
+		<Operator kind="node" name="Procedure_SH_Ordered_By_Track">
 			<inputs>
 				<Variable name="Current_Mode">
 					<type>
@@ -1147,16 +1147,46 @@
 										<StateRef name="SH_Ordered_By_Trackside_procedure_Off"/>
 									</target>
 									<condition>
-										<!--  not Loc_Procedure_Possible -->
-										<UnaryOp name="3" operator="not">
-											<operand>
-												<IdExpression>
-													<path>
-														<ConstVarRef name="Loc_Procedure_Possible"/>
-													</path>
-												</IdExpression>
-											</operand>
-										</UnaryOp>
+										<!--  not Loc_Procedure_Possible or Current_Mode = SH and Loc_Confirmed -->
+										<NAryOp name="19" operator="or">
+											<operands>
+												<!--  not Loc_Procedure_Possible -->
+												<UnaryOp name="4" operator="not">
+													<operand>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="Loc_Procedure_Possible"/>
+															</path>
+														</IdExpression>
+													</operand>
+												</UnaryOp>
+												<!-- Current_Mode = SH and Loc_Confirmed -->
+												<NAryOp name="3" operator="and">
+													<operands>
+														<!-- Current_Mode = SH -->
+														<BinaryOp name="62" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="Current_Mode"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="SH"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="Loc_Confirmed"/>
+															</path>
+														</IdExpression>
+													</operands>
+												</NAryOp>
+											</operands>
+										</NAryOp>
 									</condition>
 									<effect>
 										<Action>
@@ -1585,11 +1615,16 @@
 																<ed:State oid="!ed/c60f/1117/34C/549454c8c50"/>
 															</pragmas>
 														</State>
-														<State final="true" name="SH_Mode">
+														<State name="SH_Mode">
 															<signals>
 																<Signal name="Loc_condition_50">
 																	<pragmas>
 																		<ed:Signal oid="!ed/c640/1117/34C/549454e82ba8"/>
+																	</pragmas>
+																</Signal>
+																<Signal name="Loc_Confirmed">
+																	<pragmas>
+																		<ed:Signal oid="!ed/c982/1117/34C/54945d026fa0"/>
 																	</pragmas>
 																</Signal>
 															</signals>
@@ -1601,6 +1636,15 @@
 																	</signals>
 																	<pragmas>
 																		<ed:Emission oid="!ed/c63f/1117/34C/549454e86c1f"/>
+																	</pragmas>
+																</Emission>
+																<!--  emit 'Loc_Confirmed; -->
+																<Emission>
+																	<signals>
+																		<SignalRef name="Loc_Confirmed"/>
+																	</signals>
+																	<pragmas>
+																		<ed:Emission oid="!ed/c983/1117/34C/54945d021251"/>
 																	</pragmas>
 																</Emission>
 															</data>
@@ -1906,7 +1950,7 @@
 																<ed:State oid="!ed/bf4b/1117/34C/549445905840"/>
 															</pragmas>
 														</State>
-														<State final="true" name="SH_Authorized_SR">
+														<State name="SH_Authorized_SR">
 															<signals>
 																<Signal name="Loc_condition_51">
 																	<pragmas>
@@ -1929,7 +1973,7 @@
 																<ed:State oid="!ed/bfac/1117/34C/549446c27128"/>
 															</pragmas>
 														</State>
-														<State final="true" name="SH_Authorized_UN_SN">
+														<State name="SH_Authorized_UN_SN">
 															<signals>
 																<Signal name="Loc_condition_61">
 																	<pragmas>
@@ -2354,11 +2398,16 @@
 																<ed:State oid="!ed/c119/1117/34C/549448b25573"/>
 															</pragmas>
 														</State>
-														<State final="true" name="SH_Mode">
+														<State name="SH_Mode">
 															<signals>
 																<Signal name="Loc_condition_50">
 																	<pragmas>
 																		<ed:Signal oid="!ed/c127/1117/34C/549448b243bc"/>
+																	</pragmas>
+																</Signal>
+																<Signal name="Loc_Confirmed">
+																	<pragmas>
+																		<ed:Signal oid="!ed/c935/1117/34C/54945ca820f6"/>
 																	</pragmas>
 																</Signal>
 															</signals>
@@ -2370,6 +2419,15 @@
 																	</signals>
 																	<pragmas>
 																		<ed:Emission oid="!ed/c126/1117/34C/549448b25845"/>
+																	</pragmas>
+																</Emission>
+																<!--  emit 'Loc_Confirmed; -->
+																<Emission>
+																	<signals>
+																		<SignalRef name="Loc_Confirmed"/>
+																	</signals>
+																	<pragmas>
+																		<ed:Emission oid="!ed/c936/1117/34C/54945ca8a16"/>
 																	</pragmas>
 																</Emission>
 															</data>
@@ -2880,7 +2938,7 @@
 					<comment> - Driver acknoledgement not possible in mode SR, UN and SN  see table 4.7.2.1.4 and  tables 4.6.2 and  4.6.3 conditon 51 and 61</comment>
 					<comment> - </comment>
 					<diagrams>
-						<NetDiagram name="diagram_Procedure_SH_Orederd_By_Track_1" landscape="true" format="A4 (210 297)" oid="!ed/b92a/7FBD/9A4/549042e826eb">
+						<NetDiagram name="diagram_Procedure_SH_Ordered_By_Track_1" landscape="true" format="A4 (210 297)" oid="!ed/b92a/7FBD/9A4/549042e826eb">
 							<presentationElements>
 								<EquationGE kind="OBJ_LIT" presentable="!ed/c6ec/7FBD/9A4/549047e743bd">
 									<position>
@@ -3589,7 +3647,7 @@
 								</EquationGE>
 								<EquationGE presentable="!ed/c23f/1117/34C/54944d9a1493">
 									<position>
-										<Point x="14870" y="39000"/>
+										<Point x="14817" y="38973"/>
 									</position>
 									<size>
 										<Size width="264" height="503"/>
@@ -3622,8 +3680,8 @@
 									<positions>
 										<Point x="13309" y="39238"/>
 										<Point x="14049" y="39238"/>
-										<Point x="14049" y="39264"/>
-										<Point x="14870" y="39264"/>
+										<Point x="14049" y="39238"/>
+										<Point x="14817" y="39238"/>
 									</positions>
 								</Edge>
 								<EquationGE presentable="!ed/c3a5/1117/34C/54944fd6146a">
@@ -3894,7 +3952,7 @@
 										<Point x="19368" y="36407"/>
 									</position>
 									<size>
-										<Size width="4551" height="1746"/>
+										<Size width="4550" height="2672"/>
 									</size>
 								</StateGE>
 								<EquationGE presentable="!ed/c126/1117/34C/549448b25845">
@@ -3909,8 +3967,8 @@
 									<positions>
 										<Point x="16933" y="40852"/>
 										<Point x="17780" y="41804"/>
-										<Point x="20505" y="39185"/>
-										<Point x="20664" y="38153"/>
+										<Point x="20505" y="40111"/>
+										<Point x="20664" y="39079"/>
 									</positions>
 									<labelSize>
 										<Size width="2725" height="953"/>
@@ -3941,15 +3999,15 @@
 								</TransitionGE>
 								<StateGE presentable="!ed/c63e/1117/34C/549454e8438b">
 									<position>
-										<Point x="24686" y="21034"/>
+										<Point x="24686" y="20320"/>
 									</position>
 									<size>
-										<Size width="4551" height="1746"/>
+										<Size width="4550" height="2461"/>
 									</size>
 								</StateGE>
 								<EquationGE presentable="!ed/c63f/1117/34C/549454e86c1f">
 									<position>
-										<Point x="25665" y="21908"/>
+										<Point x="25638" y="21034"/>
 									</position>
 									<size>
 										<Size width="371" height="582"/>
@@ -3970,8 +4028,8 @@
 										<Point x="22040" y="40111"/>
 										<Point x="21828" y="39529"/>
 										<Point x="21669" y="38973"/>
-										<Point x="21484" y="38418"/>
-										<Point x="21643" y="38153"/>
+										<Point x="21484" y="39344"/>
+										<Point x="21643" y="39079"/>
 									</positions>
 									<labelSize>
 										<Size width="5768" height="318"/>
@@ -4029,8 +4087,8 @@
 									<positions>
 										<Point x="19526" y="22199"/>
 										<Point x="20743" y="23072"/>
-										<Point x="22992" y="22701"/>
-										<Point x="24686" y="21987"/>
+										<Point x="22992" y="22384"/>
+										<Point x="24686" y="21669"/>
 									</positions>
 									<labelSize>
 										<Size width="5450" height="8890"/>
@@ -4063,8 +4121,8 @@
 									<positions>
 										<Point x="24844" y="19156"/>
 										<Point x="25691" y="19764"/>
-										<Point x="26538" y="20373"/>
-										<Point x="27411" y="21034"/>
+										<Point x="26538" y="19659"/>
+										<Point x="27411" y="20320"/>
 									</positions>
 									<labelSize>
 										<Size width="3043" height="953"/>
@@ -4245,6 +4303,22 @@
 										<Point x="47625" y="24315"/>
 									</positions>
 								</Edge>
+								<EquationGE presentable="!ed/c936/1117/34C/54945ca8a16">
+									<position>
+										<Point x="20294" y="37994"/>
+									</position>
+									<size>
+										<Size width="370" height="582"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_SIG_OUT" presentable="!ed/c983/1117/34C/54945d021251">
+									<position>
+										<Point x="25585" y="21881"/>
+									</position>
+									<size>
+										<Size width="371" height="582"/>
+									</size>
+								</EquationGE>
 							</presentationElements>
 						</NetDiagram>
 					</diagrams>
