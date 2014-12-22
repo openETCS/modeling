@@ -1,0 +1,43 @@
+
+[Types]
+Names=ERTMS_ETCS_DMI
+
+[ERTMS_ETCS_DMI]
+;Open the PDF Demo example to see what is the default standard consider by this PDF type.
+;Read also the Coupling PDF note.
+Tool=PdfCvTxt
+ToolEdit=pdf
+Image=pdf
+Section1Name=Heading 1
+Section1=^[ \t]*([6-9]\.|1[0-5]\.)[ \t](.+)$
+Section2Name=Heading 2
+Section2Parents=Heading 1
+Section2=^[ \t]*([6-9]\.\d+\.*|1[0-5]\.\d+\.*)[ \t](.+)$
+Section3Name=Heading 3
+Section3Parents=Heading 2
+Section3=^[ \t]*([6-9]\.\d+\.\d+\.*|1[0-5]\.\d+\.\d+\.*)[ \t](.+)$
+Section4Name=Heading 4
+Section4Parents=Heading 3
+Section4=^[ \t]*(8\.2\.\d+\.\d+\.*|10\.3\.4\.\d+\.*|11\.3\.9\.[7-9]\.*|11\.3\.9\.1\d\.*)[ \t](.+)$
+MacroRequirement1Name=Macro-requirement
+MacroRequirement1=\[MacroReq_([^\]]+)
+MacroRequirement1End=\[End_of_MacroReq\]
+Requirement1Name=Requirement
+Requirement1=^[ \t]*([6-9]\.\d+\.\d+\.\d+\.*|[6-9]\.\d+\.\d+\.\d+\.\d+\.*|1[0-5]\.\d+\.\d+\.\d+\.*|1[0-5]\.\d+\.\d+\.\d+\.\d+\.*)[ \t](.+)$
+Requirement2Name=Requirement Annot
+Requirement2=^Annot[^/]+/\s+([^/]+)/\s+([^/]+)
+Reference1Name=Covers Reference
+Reference1Print=[Covers: $i]
+Reference1=\[Covers[ \t]*:[ \t]*([^\]]*)
+Reference1Sub=[ \t]*([^\,\;]+)[ \t]*
+Attribute1Name=Allocation
+Attribute1Print=Owner : $i
+Attribute1=^[ \t]*\-*[ \t]*Allocated to[ \t]*\:[ \t]*(.+)$
+Attribute2Name=Priority
+Attribute2Print=Priority = $i
+Attribute2EnumValues=High,Medium,Low
+Attribute2=^[ \t]*\-*[ \t]*Priority[ \t]*\:[ \t]*(\S+)
+Text1RegularExpression=\<\<([\s\S]+?)\>\>
+FileExtension=pdf
+IntermediateFileEncoding=UTF8
+

@@ -7,6 +7,7 @@ Repository Structure:
 =====================
 
 * [model](): the actual result od modelling in SysML and Scade
+* Final versions of [deliverables](https://github.com/openETCS/modeling/tree/master/deliverables)
 * [Description of Work](https://github.com/openETCS/modeling/tree/master/DescriptionOfWork): How to get started in the modelling team
 * [ModelingRules](https://github.com/openETCS/modeling/tree/master/ModelingRules)
 * [Meetings](https://github.com/openETCS/modeling/tree/master/meetings): Modelling Events - please, also refer to the overview on events below
