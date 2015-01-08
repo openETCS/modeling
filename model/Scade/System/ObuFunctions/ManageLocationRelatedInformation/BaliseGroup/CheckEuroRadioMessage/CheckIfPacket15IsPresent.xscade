@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="function" name="CheckIfPacket15IsPresent">
+	<inputs>
+		<Variable name="apiRtmMessage">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Common_Types_Pkg::apiRtmMessage_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/66793/268C/1468/54aab40f2db6"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="result">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/6679a/268C/1468/54aab4177d81"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Common_Types_Pkg::apiRtmMessage_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/66795/268C/1468/54aab4107cd4"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1e061/1522/948/54ad01ff1fce"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Common_Types_Pkg::Metadata_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1e075/1522/948/54ad02153133"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L5">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1e0be/1522/948/54ad02b728d7"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = apiRtmMessage; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="apiRtmMessage"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/66794/268C/1468/54aab4104e1d"/>
+			</pragmas>
+		</Equation>
+		<!-- result = _L5; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="result"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L5"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/6679b/268C/1468/54aab41e543c"/>
+			</pragmas>
+		</Equation>
+		<!-- _L5 = ( mapfold CheckIfPacketRadioMetadataElementIsPacket15<<13>>)(_L3, _L4); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L5"/>
+			</lefts>
+			<right>
+				<!-- ( mapfold CheckIfPacketRadioMetadataElementIsPacket15<<13>>)(_L3, _L4) -->
+				<CallExpression>
+					<operator>
+						<IteratorOp iterator="mapfold">
+							<operator>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="CheckIfPacketRadioMetadataElementIsPacket15"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<size>
+								<ConstValue value="13"/>
+							</size>
+						</IteratorOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L3"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1e054/1522/948/54ad01dc6b00"/>
+			</pragmas>
+		</Equation>
+		<!-- _L3 = false; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<ConstValue value="false"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1e060/1522/948/54ad01ff3a55"/>
+			</pragmas>
+		</Equation>
+		<!-- _L4 = _L1.packetMetadata; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L4"/>
+			</lefts>
+			<right>
+				<!-- _L1.packetMetadata -->
+				<PrjOp name="1">
+					<flow>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</flow>
+					<with>
+						<Label name="packetMetadata"/>
+					</with>
+				</PrjOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1e074/1522/948/54ad02157472"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/6678b/268C/1468/54aab3f77702" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+			<diagrams>
+				<NetDiagram name="diagram_CheckIfPacket15IsPresent_1" landscape="true" format="A4 (210 297)" oid="!ed/6678c/268C/1468/54aab3f75649">
+					<presentationElements>
+						<EquationGE presentable="!ed/66794/268C/1468/54aab4104e1d">
+							<position>
+								<Point x="4524" y="6694"/>
+							</position>
+							<size>
+								<Size width="265" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/6679b/268C/1468/54aab41e543c">
+							<position>
+								<Point x="19420" y="7091"/>
+							</position>
+							<size>
+								<Size width="318" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/1e054/1522/948/54ad01dc6b00">
+							<position>
+								<Point x="9128" y="4366"/>
+							</position>
+							<size>
+								<Size width="7318" height="4117"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/1e060/1522/948/54ad01ff3a55">
+							<position>
+								<Point x="5874" y="5398"/>
+							</position>
+							<size>
+								<Size width="211" height="317"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/1e074/1522/948/54ad02157472">
+							<position>
+								<Point x="5874" y="6932"/>
+							</position>
+							<size>
+								<Size width="952" height="952"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/66794/268C/1468/54aab4104e1d" dstEquation="!ed/1e074/1522/948/54ad02157472">
+							<positions>
+								<Point x="4789" y="6959"/>
+								<Point x="5318" y="6959"/>
+								<Point x="5318" y="7408"/>
+								<Point x="5874" y="7408"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1e074/1522/948/54ad02157472" dstEquation="!ed/1e054/1522/948/54ad01dc6b00">
+							<positions>
+								<Point x="6826" y="7408"/>
+								<Point x="7964" y="7408"/>
+								<Point x="7964" y="7117"/>
+								<Point x="9128" y="7117"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1e060/1522/948/54ad01ff3a55" dstEquation="!ed/1e054/1522/948/54ad01dc6b00">
+							<positions>
+								<Point x="6085" y="5556"/>
+								<Point x="7594" y="5556"/>
+								<Point x="7594" y="5741"/>
+								<Point x="9128" y="5741"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1e054/1522/948/54ad01dc6b00" dstEquation="!ed/6679b/268C/1468/54aab41e543c">
+							<positions>
+								<Point x="16457" y="6429"/>
+								<Point x="17965" y="6429"/>
+								<Point x="17965" y="7355"/>
+								<Point x="19473" y="7355"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

@@ -428,7 +428,6 @@ The Vendor specific \gls{API} adapter is making the \define{Basic software} part
 
 \section{Functional breakdown}
 
-
 \subsection{F1: openETCS \gls{API} Runtime System and Input to the EVC)}
 \label{chp_openETCS_API}
 %Authors: Bernd Hekele (DB)
@@ -577,7 +576,7 @@ Message Name & Optional Packets & Restrictions in the current scope \\\hline}
  The list of packets is adjusted to our use-case.  \\\hline
 8: Acknowledgement of Train Data & &  No Extra Packets \\\hline
 9: Request To Shorten MA &
- 49: List of balises for SH Area\newline
+ % 49: List of balises for SH Area\newline  %% Packet not allowed in message 9 (according to SRS 8.7.5)
  80: Mode profile\newline 
 & Not part of the use-case \\\hline
 15: Conditional Emergency Stop &  & No Extra Packets \\\hline
@@ -753,15 +752,15 @@ For providing the output, the module needs different input data flows. An overvi
   \begin{tabular}{| c | l | l | l | l |}
     \hline
     \textbf{Index} & \textbf{Input name} & \textbf{Input type} & \textbf{Source}\\ \hline
-    0 & \texttt{apiRtmMessage} & \texttt{< will be defined by API >} & API \\
+    0 & \texttt{apiRtmMessage} & \texttt{apiRtmMessage\_T} & API \\
     1 & \texttt{apiBaliseTelegram} & \texttt{API\_Telegram\_T} & API\\
     2 & \texttt{apiRadioDevice} & \texttt{int} & API\\
     3 & \texttt{connectionStatus} & \texttt{sessionStatus\_Type} & MoRC\\
-    5 & \texttt{lastRelevantEventTimestamp} & \texttt{T\_internal\_Type} & MoRC or Database (?)\\
-    6 & \texttt{tNvContact} & \texttt{T\_internal\_Type} & Database\\
-    7 & \texttt{currentOdometry} & \texttt{odometry\_T} & Odometry\\
-    8 & \texttt{lrbg} & \texttt{positionedBG\_T} & Database\\
-    9 & \texttt{reset} & \texttt{bool} & internal\\
+    4 & \texttt{lastRelevantEventTimestamp} & \texttt{T\_internal\_Type} & MoRC or Database (?)\\
+    5 & \texttt{tNvContact} & \texttt{T\_internal\_Type} & Database\\
+    6 & \texttt{currentOdometry} & \texttt{odometry\_T} & Odometry\\
+    7 & \texttt{lrbg} & \texttt{positionedBG\_T} & Database\\
+    8 & \texttt{reset} & \texttt{bool} & internal\\
     \hline
   \end{tabular} 
   \caption{Overview over input}
@@ -802,12 +801,12 @@ Only if the telegram is present the position information (incenterOfBalise) is t
 \end{itemize}
 
 \paragraph{Input 2: \texttt{apiRadioDevice}}
-The RTM-module can consist of multiple radio devices. When a handover between two RBCs is performed, messages can be received from both radio devices. The API provides information about the device, which received the message.
+The RTM-module may include multiple radio devices. When a handover between two RBCs is performed, messages can be received from both radio devices. The API provides information about the device, which received the message.
 
 The values transmitted have to be defined by the API.
 
 \paragraph{Input 3: \texttt{connectionStatus}}
-The input \texttt{connectionStatus} will give information about the radio connection. This input is delivered by the session management module, not from the API. The information is needed to perform a timestamp check, which is depending on the connection state.
+The input \texttt{connectionStatus} will give information about the radio connection. This input is delivered by the session management module, not from the API. The information is needed to perform the timing check, which is depending on the connection state.
 
 \begin{table}[H]
   \begin{tabular}{| l | p{9cm} |}
@@ -844,7 +843,7 @@ The input \texttt{connectionStatus} will give information about the radio connec
 %   \label{tbl:apiConsistencyError}
 % \end{table}
 
-\paragraph{Input 5: \texttt{lastRelevantEventTimestamp}}
+\paragraph{Input 4: \texttt{lastRelevantEventTimestamp}}
 
 For monitoring the safe radio connection, it's necessary, that the time between two packets is less than the value of \texttt{T\_NVCONTACT}.
 
@@ -852,17 +851,17 @@ In situations like level-changes or announced radioholes, not the timestamp of t
 
 For performing this check, the timestamp of the last relevant event is provided to the model as an \texttt{T\_internal\_Type}-type.
 
-\paragraph{Input 6: \texttt{tNvContact}}
+\paragraph{Input 5: \texttt{tNvContact}}
 
 For monitoring the safe radio connection, the national value \texttt{T\_NVCONTACT} is needed as an input.
 
-\paragraph{Input 7: \texttt{currentOdometry}}
+\paragraph{Input 6: \texttt{currentOdometry}}
 Current information giving the odometry of the train. 
 
-\paragraph{Input 8: \texttt{lrbg}}
+\paragraph{Input 7: \texttt{lrbg}}
 The Last Relevant Balise Group. The information has been collected before by the train position function.
 
-\paragraph{Input 9: \texttt{reset}}
+\paragraph{Input 8: \texttt{reset}}
 To delete all data stored in the module (e.g. collected balise-telegrams, which do not yet form a complete message), a reset input can be used. If the input is set to \texttt{true}, all data kept in the module is deleted and no input is accepted.
 
 \begin{table}[H]
@@ -967,7 +966,7 @@ The present-flag specifies, if the data provided by the output \texttt{receivedM
 \end{table}
 
 \subparagraph{Output 1: \texttt{rejectedReason}}
-In case of an inconsistent message, the output \texttt{rejectedReason} is giving information to the system, which problem occured. This information also has to be sent to the RBC as an error report.
+In case of an inconsistent message, the output \texttt{rejectedReason} is giving information to the system, which problem occured. This information also has to be sent to the RBC as an error report by the responsible module.
 
 \subparagraph{Output 2: \texttt{acknowledgementRequired}}
 
@@ -1020,12 +1019,12 @@ The element \texttt{receivedMessage} consists of the type \texttt{ReceivedMessag
   \begin{tabular}{| l | l | p{5.5cm} |}
   \hline
   \textbf{Name} & \textbf{Datatype} & \textbf{Description}\\ \hline
-  source & Enumeration & Defines, if this is a Euroradio or Eurobalise message.\\
-  valid & bool & true, if no consistency errors were detected.\\
-  BG\_Common\_Header & \texttt{BG\_Header\_T} & Header of Eurobalise message\\
-  Radio\_Common\_Header & \texttt{Radio\_TrackTrain\_Header\_T} & Header of Euroradio message\\
-  Packets & structure of possible packets & -\\
-  
+  \texttt{source} & Enumeration & Defines, if this is a Euroradio or Eurobalise message.\\
+  \texttt{valid} & \texttt{bool} & true, if no consistency errors were detected.\\
+  \texttt{metadata} & \texttt{Metadata\_T} & contains the metadata of the packets\\
+  \texttt{BG\_Common\_Header} & \texttt{BG\_Header\_T} & Header of Eurobalise message\\
+  \texttt{Radio\_Common\_Header} & \texttt{Radio\_TrackTrain\_Header\_T} & Header of Euroradio message\\
+  \texttt{Packets} & structure of possible packets & -\\
   \hline
 \end{tabular}
   \caption{Structure of \texttt{ReceivedMessage\_T}}
@@ -1045,7 +1044,7 @@ The Euroradio-common-header \texttt{Radio\_TrackTrain\_Header\_T} consists of th
 %\textbf{TODO:} Define packets 136, 12 in SCADE.
 
 \subsubsection{Data}
-The function makes use of internal data for collecting and checking the balise telegrams.
+The module makes use of internal data for collecting and checking the balise telegrams.
 
 \subsubsection{Reference to the SRS (or other requirements)}
 \paragraph{Eurobalise}
@@ -1073,13 +1072,7 @@ The function makes use of internal data for collecting and checking the balise t
 
 \paragraph{Reception of messages}
 
-The first stage of the module is the reception of Euroradio-messages and Eurobalise-Telegrams from the openETCS-API. At each cycle the following conditions can occur:
-\begin{enumerate}
- \item No new Euroradio-message or Eurobalise-telegram is available.
- \item A new Euroradio-message is available
- \item A new Eurobalise-telegram is available
- \item A new Euroradio-message and a new Eurobalise-telegram is available.
-\end{enumerate}
+The first stage of the module is the reception of Euroradio-messages and Eurobalise-Telegrams from the openETCS-API.
 
 \paragraph{Part 1: ReceiveBaliseAndBuildBG}\label{ss:ReceiveEurobaliseFromAPI}
 
@@ -1096,7 +1089,7 @@ Telegrams are added to the telegram array starting from index 0 without gaps. Us
 \item This function does not process information from the packets. The information is passed to the check without further processing of the values. 
 \end{enumerate}
 
-\paragraph{Part 3: Check BG Consistency}
+\paragraph{Part 2: Check BG Consistency}
 
 \subparagraph{Short Description of Functionality}
 This function has the task  to verify the completeness and correctness of the received messages from balis-groups.\\
@@ -1166,16 +1159,29 @@ The checks on the validity of the data in the packets and the validity with resp
 % - Filter (level) accepted data according to originating RBC (supervising or other). Information from \gls{BG}'s, loops or RIU is not filtered with this filter.\\
 % - Filter (level and RBC) accepted data according to the current mode (only reject or accept)\\
 
-\paragraph{Part 5: CheckEuroradioMessage}
-``CheckEuroradioMessage'' has to perform several checks on the received radio message.
+\paragraph{Part 3: ReceiveEuroRadioFromAPI}
+\subparagraph{Short Description of Functionality}
+The function ``ReceiveEuroRadioFromAPI'' receives the radio message or status information from the API. The radio message is forwarded to the checking-processes. The status information is directly provided as an output of the ``Receive message and check consistency'' module. 
 
+\subparagraph{Design Constraints and Choices}
+
+None.
+
+
+\paragraph{Part 4: CheckEuroradioMessage}
+\subparagraph{Short Description of Functionality}
+The function ``CheckEuroradioMessage'' has to perform several checks on the received radio message. These checks include checking of the message sequence, completeness of messages. Invalid messages are marked as invalid in the header.
+
+The bitwalker is responsible for checking the validity of the values in fields. If a consistency error is detected by the bitwalker, it is signalled to the model. If the bitwalker marks a packet as valid, all variables are expected to contain a valid value.
+
+\subparagraph{Design Constraints and Choices}
 \begin{itemize}
  \item Content checks
  \begin{itemize}
     %\item The computed length of the message must be equal to the value in \texttt{L\_MESSAGE}. (SRS 8.4.4.2.1)
-    \item The whole message must be complete and contains all necessary fields. (SRS 8.16.1.1)
-    \item The message must respect the ETCS language. (SRS 8.16.1.1)
-    \item The variables of the message does not contain invalid values. (SRS 8.16.1.1) % already done by API?
+    \item The whole message must be complete and contains all necessary fields. (SRS 3.16.1.1)
+    \item The message must respect the ETCS language. (SRS 3.16.1.1)
+    \item The variables of the message does not contain invalid values. (SRS 3.16.1.1) % already done by API?
     \item Check if the specified priority of message is equal to the priority with which the message was received. (SRS 3.16.3.1.3.1) 
   \end{itemize}
   \item Timing checks
@@ -1190,25 +1196,37 @@ For inconsistent messages, the following actions need to be performed by the mod
 
 \begin{itemize}
   \item If a message is not consistent, it shall be rejected (SRS 3.16.3.1.1.1). For this purpose, the message is marked as invalid.
-  \item The RBC shall be informed, when a message was rejected (SRS 3.16.3.1.1.2). Therefore the message is marked with necessary information for creating an error report. 
+  \item The RBC shall be informed, when a message was rejected (SRS 3.16.3.1.1.2). Therefore the necessary information for creating an error report is provided as an output. 
   \item If the RBC requested an ACK for a received message, message will be marked for the module to send a report to the RBC. (SRS 3.16.3.5)
   \item This module will not trigger the reaction for an interrupted radio connection to the RBC. The reaction sepcified by \texttt{M\_NVCONTACT} will be triggered by the RBC session management module.
 \end{itemize}
 
-The check by the Euroradio-protocol (3.16.3.1.1) will not be performed by the model, but on a lower level (RTM or openETCS-API).
+The check by the Euroradio-protocol (SRS 3.16.3.1.1) will not be performed by the model, but on a lower level (RTM or openETCS-API).
 
 Safe connection supervision is not in the scope of this module. This functionality will be implemented by the ``Manage Radio communication'' module. The ``Receive message and check consistency''-module will provide the necessary status data about the connection as an output.
 
-\subsubsection{Part 7: ValidateDataDirection}
+\paragraph{Part 5: MergeInputChannel}
 
-\paragraph{Short Description of Functionality}
+\subparagraph{Short Description of Functionality}
+The function ``MergeInputChannel'' is responsible for coordinating the output-dataflow of the module. Since the situation can occur that in one cycle of the model both a Euroradio-message and a Eurobalise-message are received, the output has to be synchronized.
+
+\subparagraph{Design Constraints and Choices}
+At each cycle the following conditions can occur at the input:
+\begin{enumerate}
+ \item No new Euroradio-message or Eurobalise-telegram is available.
+ \item A new Euroradio-message is available
+ \item A new Eurobalise-telegram is available
+ \item A new Euroradio-message and a new Eurobalise-telegram is available.
+\end{enumerate}
+
+
+\paragraph{Part 6: ValidateDataDirection}
+
+\subparagraph{Short Description of Functionality}
 This function determines for direction information of the LRBG or an (ordinary) balise group whether this information is valid or not. The function takes as an input the LRBG and the balise groups passed and outputs the input extended with validity information.
 
-\paragraph{Reference to the SRS (or other requirements}
-
-
-\paragraph{Design Constraints and Choices}
-none
+\subparagraph{Design Constraints and Choices}
+None.
 
 \subsection{F.1.5 Select Usable Info - Mode and Level Filter}
 
