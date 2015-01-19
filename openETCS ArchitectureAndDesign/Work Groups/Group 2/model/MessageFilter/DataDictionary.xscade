@@ -38460,6 +38460,154 @@
 						<ed:Constant oid="!ed/5f6a/6D2D/D58/546b68713eaa"/>
 					</pragmas>
 				</Constant>
+				<Constant name="MAX_PACKAGES">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="10"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/bbc3/286A/205C/54bd2d0d65d1"/>
+					</pragmas>
+				</Constant>
+				<Constant name="INVALID_PACKET">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Packet"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- {ID : (-1), Variables : [{ID : 0}, {ID : 0}, {ID : 0}, {ID : 0}, {ID : 0}, {ID : ... -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="ID">
+									<flow>
+										<ConstValue value="-1"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Variables">
+									<flow>
+										<!-- [{ID : 0}, {ID : 0}, {ID : 0}, {ID : 0}, {ID : 0}, {ID : 0}, {ID : 0}, {ID : 0}, ... -->
+										<DataArrayOp>
+											<data>
+												<!-- {ID : 0} -->
+												<DataStructOp>
+													<data>
+														<LabelledExpression label="ID">
+															<flow>
+																<ConstValue value="0"/>
+															</flow>
+														</LabelledExpression>
+													</data>
+												</DataStructOp>
+												<!-- {ID : 0} -->
+												<DataStructOp>
+													<data>
+														<LabelledExpression label="ID">
+															<flow>
+																<ConstValue value="0"/>
+															</flow>
+														</LabelledExpression>
+													</data>
+												</DataStructOp>
+												<!-- {ID : 0} -->
+												<DataStructOp>
+													<data>
+														<LabelledExpression label="ID">
+															<flow>
+																<ConstValue value="0"/>
+															</flow>
+														</LabelledExpression>
+													</data>
+												</DataStructOp>
+												<!-- {ID : 0} -->
+												<DataStructOp>
+													<data>
+														<LabelledExpression label="ID">
+															<flow>
+																<ConstValue value="0"/>
+															</flow>
+														</LabelledExpression>
+													</data>
+												</DataStructOp>
+												<!-- {ID : 0} -->
+												<DataStructOp>
+													<data>
+														<LabelledExpression label="ID">
+															<flow>
+																<ConstValue value="0"/>
+															</flow>
+														</LabelledExpression>
+													</data>
+												</DataStructOp>
+												<!-- {ID : 0} -->
+												<DataStructOp>
+													<data>
+														<LabelledExpression label="ID">
+															<flow>
+																<ConstValue value="0"/>
+															</flow>
+														</LabelledExpression>
+													</data>
+												</DataStructOp>
+												<!-- {ID : 0} -->
+												<DataStructOp>
+													<data>
+														<LabelledExpression label="ID">
+															<flow>
+																<ConstValue value="0"/>
+															</flow>
+														</LabelledExpression>
+													</data>
+												</DataStructOp>
+												<!-- {ID : 0} -->
+												<DataStructOp>
+													<data>
+														<LabelledExpression label="ID">
+															<flow>
+																<ConstValue value="0"/>
+															</flow>
+														</LabelledExpression>
+													</data>
+												</DataStructOp>
+												<!-- {ID : 0} -->
+												<DataStructOp>
+													<data>
+														<LabelledExpression label="ID">
+															<flow>
+																<ConstValue value="0"/>
+															</flow>
+														</LabelledExpression>
+													</data>
+												</DataStructOp>
+												<!-- {ID : 0} -->
+												<DataStructOp>
+													<data>
+														<LabelledExpression label="ID">
+															<flow>
+																<ConstValue value="0"/>
+															</flow>
+														</LabelledExpression>
+													</data>
+												</DataStructOp>
+											</data>
+										</DataArrayOp>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/bc94/286A/205C/54bd327f2e94"/>
+					</pragmas>
+				</Constant>
 				<Type name="OperationMode">
 					<definition>
 						<Enum>
@@ -38841,11 +38989,22 @@
 								</Field>
 								<Field name="Packets">
 									<type>
-										<NamedType>
+										<Table>
 											<type>
-												<TypeRef name="PacketList"/>
+												<NamedType>
+													<type>
+														<TypeRef name="Packet"/>
+													</type>
+												</NamedType>
 											</type>
-										</NamedType>
+											<size>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="MAX_PACKAGES"/>
+													</path>
+												</IdExpression>
+											</size>
+										</Table>
 									</type>
 									<pragmas>
 										<ed:Field oid="!ed/3f03/19C0/37B4/5485cbfa415a"/>
@@ -38977,7 +39136,11 @@
 								</NamedType>
 							</type>
 							<size>
-								<ConstValue value="10"/>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="MAX_PACKAGES"/>
+									</path>
+								</IdExpression>
 							</size>
 						</Table>
 					</definition>
