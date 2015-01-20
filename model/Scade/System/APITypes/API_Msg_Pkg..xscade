@@ -3,7 +3,7 @@
 	<declarations>
 		<Package name="API_Msg_Pkg">
 			<declarations>
-				<Type name="API_Telegram_T">
+				<Type name="API_TelegramHeader_T">
 					<definition>
 						<Struct>
 							<fields>
@@ -65,20 +65,6 @@
 										</ed:Field>
 									</pragmas>
 								</Field>
-								<Field name="api_packets">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="API_addInfo_T"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/a31e/54B3/F70/546c7c334142" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-											<comment>Packets received with this balise</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
 								<Field name="centerOfBalisePosition">
 									<type>
 										<NamedType>
@@ -130,12 +116,194 @@
 						</ed:Type>
 					</pragmas>
 				</Type>
+				<Type name="API_TrackSideInput_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2ca68/6AA/111C/54be6d6545a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Information is valid and contains new information.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="systemTimeMsgReceived">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2cac8/6AA/111C/54be71805faf" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Timestamp when the system has received this message</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="msg_type">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Common_Types_Pkg::MsgSource_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2ca71/6AA/111C/54be6e552546" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>What is the source of the message</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="btm_msg">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="API_TelegramHeader_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2ca87/6AA/111C/54be6f551046" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Information for the balise telegram (if a balis has been received)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="rtm_msg">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Common_Types_Pkg::apiRtmMessage_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2ca91/6AA/111C/54be700238ab" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Information for the radio message (if this type has been received)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="packets">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Common_Types_Pkg::Packets_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2cad2/6AA/111C/54be71e36453" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Packets received as a part of the message</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2ca67/6AA/111C/54be6ccd47d2" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>This inteface is used for incoming trackside messages (RTM or BTM).</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="API_RTM_Header_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="present">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2cab8/6AA/111C/54be70564012"/>
+									</pragmas>
+								</Field>
+								<Field name="apiConsistencyError">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2cab9/6AA/111C/54be70561354" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>true, if inconsistencies were detected by the API</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="packetMetadata">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Metadata_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2caba/6AA/111C/54be7056631b"/>
+									</pragmas>
+								</Field>
+								<Field name="radioMetadata">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="RadioMetadata_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2cabb/6AA/111C/54be70565e94"/>
+									</pragmas>
+								</Field>
+								<Field name="Radio_Common_Header">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Radio_Types_Pkg::Radio_TrackTrain_Header_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2cabc/6AA/111C/54be7056156d"/>
+									</pragmas>
+								</Field>
+								<Field name="packets">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Packets_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2cabd/6AA/111C/54be70567807"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2cab6/6AA/111C/54be70563ff7"/>
+					</pragmas>
+				</Type>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/b88d/1CD8/1D0C/546ca1bf57d3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 					<diagrams>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/b88e/1CD8/1D0C/546ca1bf55fc" blockKind="constants"/>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/b88f/1CD8/1D0C/546ca1bf6e86" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/b88f/1CD8/1D0C/546ca1bf6e86" blockKind="types" columnsSize="0, 150, 281, 300"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/b890/1CD8/1D0C/546ca1bf6ecb" blockKind="sensors"/>
 					</diagrams>
 				</ed:Package>
