@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?dom version="R16" ?>
+<?dom version="R15" ?>
 
-<?scade_release version="R16 beta" ?>
+<?scade_release version="R15.1" ?>
 
 <specification>
     <IDE>
-        <project path="DMI.etp"/>
-        <traceability path="Requirements/DMI.rqtf"/>
+        <environment_id value="-1926713137"/>
+        <traceability path="../Requirements/DMI.rqtf"/>
+        <codeIntegration keyboardId="0" periodicity="33" pointerId="0"/>
+        <scade path="../Test/Test.etp"/>
         <ratio horizontal="1" vertical="1"/>
+        <colorMap crc="3382471243" name="DMI.sct" path="."/>
+        <lineWidthMap crc="1678555679" path="default"/>
+        <lineStippleMap crc="704931268" path="default"/>
+        <textureMap crc="1498126147" path="default"/>
+        <requirements path="DMI.sgfx.trace"/>
     </IDE>
     <symbology>
         <colorMode value="RGBA"/>
@@ -85,6 +92,12 @@
                     <input name="InterpolatedDistanceToTarget" oid="6300f7cd-67b7-497b-af79-99ec1f0f6dc0" type="real">
                         <init>0.0</init>
                     </input>
+                    <input name="showlala" oid="abe9954a-d7c7-42ff-99b7-8acd09419091" type="bool">
+                        <init>false</init>
+                    </input>
+                    <input name="display_digit" oid="478ff4c5-e2fa-48bc-aeba-e0d7f91aabe3" representation="as_string" type="int^5">
+                        <init>[0]</init>
+                    </input>
                 </inputs>
                 <outputs>
                     <output memory="true" name="OverA" oid="2b7e845e-cb23-444e-a6cc-6b70ecd286a7" type="bool">
@@ -103,6 +116,15 @@
                         <init>false</init>
                     </output>
                     <output memory="true" name="VisibleGradients" oid="c3fdb4fe-2b2b-4335-8b3a-549979787bf6" type="bool^12">
+                        <init>[false]</init>
+                    </output>
+                    <output memory="true" name="lala" oid="88cf3135-75c9-4d22-9e32-d3fedd454527" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="insideButton" oid="7ed73cca-c896-4dd7-ad2a-fc545749c8b9" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="keyarray" oid="767ffc57-254a-4d67-ab3e-b590f9a2a5af" type="bool^12">
                         <init>[false]</init>
                     </output>
                 </outputs>
@@ -347,7 +369,7 @@
                         </rotate>
                         <orientation clockwise="false"/>
                         <file name="D.ogfx" path="Widgets/D"/>
-                        <crc value="2664846240"/>
+                        <crc value="3448117655"/>
                         <inputParameters>
                             <parameter control="false" name="TrainPosition" oid="c520f487-b78d-4ce5-8740-f78cb79c2b50" type="real">
                                 <expr>TrainPosition</expr>
@@ -365,7 +387,16 @@
                                 <expr>GradientsValue</expr>
                                 <init>[0.0]</init>
                             </parameter>
+                            <parameter control="false" name="showlala" oid="649ed236-0a5f-4232-925c-e87903a45b04" type="bool">
+                                <expr>showlala</expr>
+                                <init>false</init>
+                            </parameter>
                         </inputParameters>
+                        <outputParameters>
+                            <parameter name="lala" oid="e77ff828-5c4a-462c-9ecf-c9a70876b6f0" type="bool">
+                                <expr>lala</expr>
+                            </parameter>
+                        </outputParameters>
                     </properties>
                     <children/>
                 </referenceContainer>
@@ -534,8 +565,107 @@
                     </properties>
                     <children/>
                 </referenceContainer>
-                <pointerEventListener oid="d70337e7-31b9-404b-8c25-3496e168ef55">
+                <referenceContainer oid="6d497f2f-0f26-4ea3-9640-1afcd5c22ce1">
                     <pathFromRoot value="9"/>
+                    <properties modular="false" name="keyboard">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>167.0</init>
+                            </x>
+                            <y>
+                                <init>-75.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="keyboard.ogfx" path="Widgets/Keyboard"/>
+                        <crc value="1436515384"/>
+                        <outputParameters>
+                            <parameter name="keyarray" oid="f4bc8424-21a5-4fe0-b26d-5abc00c69576" type="bool^12">
+                                <expr>keyarray</expr>
+                            </parameter>
+                        </outputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
+                <biFont oid="523dc833-a3f7-4f43-b4a8-889b2b0d0790">
+                    <pathFromRoot value="10"/>
+                    <properties name="bi-font">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <position>
+                            <x>
+                                <init>85.0</init>
+                            </x>
+                            <y>
+                                <init>-145.0</init>
+                            </y>
+                        </position>
+                        <value>
+                            <init>-12345.12</init>
+                            <expr>SpeedDigitOne</expr>
+                        </value>
+                        <format separator="46">
+                            <integralPart>
+                                <init>5</init>
+                            </integralPart>
+                            <fractionalPart>
+                                <init>2</init>
+                            </fractionalPart>
+                            <secondFontPos>
+                                <init>0</init>
+                            </secondFontPos>
+                            <leadingZeros>
+                                <init>false</init>
+                            </leadingZeros>
+                            <displaySign>
+                                <init>whenNegative</init>
+                            </displaySign>
+                        </format>
+                        <haloing>
+                            <init>false</init>
+                        </haloing>
+                        <outlineColor>
+                            <init>1</init>
+                        </outlineColor>
+                        <firstLineWidth>
+                            <init>2</init>
+                        </firstLineWidth>
+                        <firstFont>
+                            <init>0</init>
+                        </firstFont>
+                        <secondLineWidth>
+                            <init>2</init>
+                        </secondLineWidth>
+                        <secondFont>
+                            <init>0</init>
+                        </secondFont>
+                        <horizAlign>
+                            <init>left</init>
+                        </horizAlign>
+                        <vertAlign>
+                            <init>bottom</init>
+                        </vertAlign>
+                    </properties>
+                </biFont>
+                <pointerEventListener oid="d70337e7-31b9-404b-8c25-3496e168ef55">
+                    <pathFromRoot value="11"/>
                     <properties name="pointer event listener">
                         <enable>
                             <init>true</init>
@@ -543,9 +673,6 @@
                         <eventId>
                             <init>0</init>
                         </eventId>
-                        <relative>
-                            <init>false</init>
-                        </relative>
                         <output>
                             <pressed>
                                 <expr>MousePressed</expr>
@@ -554,10 +681,175 @@
                         </output>
                     </properties>
                 </pointerEventListener>
+                <container oid="d80df325-d326-4962-b115-709eff73f84b">
+                    <pathFromRoot value="12"/>
+                    <properties name="Button">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>-388.0</init>
+                            </x>
+                            <y>
+                                <init>-334.0</init>
+                            </y>
+                        </origin>
+                        <priority>
+                            <init>-1</init>
+                        </priority>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                    </properties>
+                    <children>
+                        <rectangle oid="225ab244-115b-4081-bdfa-4d066c0b06e8">
+                            <pathFromRoot value="0,12"/>
+                            <properties name="rectangle">
+                                <visible>
+                                    <init>true</init>
+                                </visible>
+                                <firstPoint>
+                                    <x>
+                                        <init>180.0</init>
+                                    </x>
+                                    <y>
+                                        <init>180.0</init>
+                                    </y>
+                                </firstPoint>
+                                <thirdPoint>
+                                    <x>
+                                        <init>300.0</init>
+                                    </x>
+                                    <y>
+                                        <init>140.0</init>
+                                    </y>
+                                </thirdPoint>
+                                <lineWidth>
+                                    <init>0</init>
+                                </lineWidth>
+                                <lineStipple>
+                                    <init>0</init>
+                                </lineStipple>
+                                <lineCap>
+                                    <init>round</init>
+                                </lineCap>
+                                <haloing>
+                                    <init>false</init>
+                                </haloing>
+                                <outlineColor>
+                                    <init>-1</init>
+                                </outlineColor>
+                                <outlineOpacity>
+                                    <init>255</init>
+                                </outlineOpacity>
+                                <fillColor>
+                                    <init>6</init>
+                                </fillColor>
+                                <fillOpacity>
+                                    <init>255</init>
+                                </fillOpacity>
+                                <polygonSmooth>
+                                    <init>false</init>
+                                </polygonSmooth>
+                                <textureControl>
+                                    <init>false</init>
+                                </textureControl>
+                                <texture horizAlign="center" horizPattern="1.0" vertAlign="middle" vertPattern="1.0">
+                                    <textureId>
+                                        <init>-1</init>
+                                    </textureId>
+                                </texture>
+                            </properties>
+                        </rectangle>
+                        <rectangleArea oid="55846c56-886c-4dc4-8818-901b61b5bd2f">
+                            <pathFromRoot value="1,12"/>
+                            <properties name="rectangle area">
+                                <enable>
+                                    <init>true</init>
+                                </enable>
+                                <pointerId>
+                                    <init>-1</init>
+                                </pointerId>
+                                <firstPoint>
+                                    <x>
+                                        <init>180.0</init>
+                                    </x>
+                                    <y>
+                                        <init>180.0</init>
+                                    </y>
+                                </firstPoint>
+                                <thirdPoint>
+                                    <x>
+                                        <init>300.0</init>
+                                    </x>
+                                    <y>
+                                        <init>140.0</init>
+                                    </y>
+                                </thirdPoint>
+                                <output>
+                                    <inside>
+                                        <expr>insideButton</expr>
+                                    </inside>
+                                </output>
+                            </properties>
+                        </rectangleArea>
+                    </children>
+                </container>
+                <referenceContainer oid="41ae8c5e-1652-4ec1-b5a4-dcc6c3f648eb">
+                    <pathFromRoot value="13"/>
+                    <properties modular="false" name="driverid_display">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>169.0</init>
+                            </x>
+                            <y>
+                                <init>126.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="driverid_win.ogfx" path="Widgets/DriverField"/>
+                        <crc value="2892260625"/>
+                        <inputParameters>
+                            <parameter control="false" name="display_digit" oid="dfff46e7-ce0d-43af-93e7-a16b4efc99c6" representation="as_string" type="int^5">
+                                <expr>display_digit</expr>
+                                <init>[0]</init>
+                            </parameter>
+                        </inputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
             </children>
         </layer>
     </children>
 </specification>
 
-<!-- crc32 : 1357045550 -->
+<!-- crc32 : 3094371150 -->
 
