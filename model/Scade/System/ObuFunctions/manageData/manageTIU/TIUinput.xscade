@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
 	<declarations>
-		<Package name="TIUinput_from_API">
+		<Package name="input_from_TIU_API_Pkg">
 			<declarations>
-				<Operator kind="node" name="manageTIU_Info">
+				<Operator kind="node" name="manageTIU_input">
 					<inputs>
 						<Variable name="inTIUfromAPI">
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="API_TIU_Pkg::TIU_input_msg"/>
+										<TypeRef name="API_TIU_Pkg::TIU_Input_msg"/>
 									</type>
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/5c11/2ABF/1248/54b6404f2beb"/>
+								<ed:Variable oid="!ed/5c11/2ABF/1248/54b6404f2beb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Information from TIU to the EVC.</comment>
+									<comment>Only relavant when indicated with the valid flag. </comment>
+									<comment>Each packet in the </comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="inReset">
@@ -74,18 +78,6 @@
 							</last>
 							<pragmas>
 								<ed:Variable oid="!ed/5c5c/2ABF/1248/54b6424c65d6"/>
-							</pragmas>
-						</Variable>
-						<Variable name="_L1">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="API_TIU_Pkg::TIU_input_msg"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/5c26/2ABF/1248/54b6415463ea"/>
 							</pragmas>
 						</Variable>
 						<Variable name="_L8">
@@ -208,24 +200,20 @@
 								<ed:Variable oid="!ed/5db8/1E9F/189C/54b8eb4038ba"/>
 							</pragmas>
 						</Variable>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_TIU_Pkg::TIU_Input_msg"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5c26/2ABF/1248/54b6415463ea"/>
+							</pragmas>
+						</Variable>
 					</locals>
 					<data>
-						<!-- _L1 = inTIUfromAPI; -->
-						<Equation>
-							<lefts>
-								<VariableRef name="_L1"/>
-							</lefts>
-							<right>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="inTIUfromAPI"/>
-									</path>
-								</IdExpression>
-							</right>
-							<pragmas>
-								<ed:Equation oid="!ed/5c25/2ABF/1248/54b641544106"/>
-							</pragmas>
-						</Equation>
 						<!-- _L8 =  last 'storeTIU; -->
 						<Equation>
 							<lefts>
@@ -536,21 +524,29 @@
 								<ed:Equation oid="!ed/5de7/1E9F/189C/54b8ece116d"/>
 							</pragmas>
 						</Equation>
+						<!-- _L1 = inTIUfromAPI; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="inTIUfromAPI"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5c25/2ABF/1248/54b641544106"/>
+							</pragmas>
+						</Equation>
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/5c0f/2ABF/1248/54b63df66c54" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 							<comment>This function receives TIU related messages via the API and stores this information as a status of the TIU for the System.</comment>
 							<diagrams>
-								<NetDiagram name="diagram_manageTIU_Info_1" landscape="true" format="A4 (210 297)" oid="!ed/5c10/2ABF/1248/54b63df659c5">
+								<NetDiagram name="diagram_manageTIU_input_1" landscape="true" format="A4 (210 297)" oid="!ed/5c10/2ABF/1248/54b63df659c5">
 									<presentationElements>
-										<EquationGE presentable="!ed/5c25/2ABF/1248/54b641544106">
-											<position>
-												<Point x="1879" y="2990"/>
-											</position>
-											<size>
-												<Size width="265" height="503"/>
-											</size>
-										</EquationGE>
 										<EquationGE presentable="!ed/5c66/2ABF/1248/54b642c85032">
 											<position>
 												<Point x="1693" y="7885"/>
@@ -583,14 +579,6 @@
 												<Size width="953" height="952"/>
 											</size>
 										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5c25/2ABF/1248/54b641544106" dstEquation="!ed/5c32/2ABF/1248/54b641ce736e">
-											<positions>
-												<Point x="2143" y="3254"/>
-												<Point x="3281" y="3254"/>
-												<Point x="3281" y="3254"/>
-												<Point x="6350" y="3254"/>
-											</positions>
-										</Edge>
 										<EquationGE presentable="!ed/b938/5F0/BD0/54b66cfee13">
 											<position>
 												<Point x="19156" y="7514"/>
@@ -603,16 +591,16 @@
 											<positions>
 												<Point x="16193" y="7805"/>
 												<Point x="17357" y="7805"/>
-												<Point x="17357" y="7779"/>
-												<Point x="19209" y="7779"/>
+												<Point x="17357" y="7805"/>
+												<Point x="19209" y="7805"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/b92d/5F0/BD0/54b66b8c39a7" dstEquation="!ed/b930/5F0/BD0/54b66c694495">
 											<positions>
 												<Point x="13256" y="7567"/>
 												<Point x="12859" y="7567"/>
-												<Point x="12859" y="7594"/>
-												<Point x="14605" y="7594"/>
+												<Point x="12859" y="7567"/>
+												<Point x="14605" y="7567"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/5c66/2ABF/1248/54b642c85032" dstEquation="!ed/b92d/5F0/BD0/54b66b8c39a7">
@@ -647,14 +635,6 @@
 												<Size width="953" height="953"/>
 											</size>
 										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5c25/2ABF/1248/54b641544106" dstEquation="!ed/ba6d/C50/4C4/54b6842e2212">
-											<positions>
-												<Point x="2143" y="3254"/>
-												<Point x="2963" y="3254"/>
-												<Point x="2963" y="6985"/>
-												<Point x="6324" y="6985"/>
-											</positions>
-										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/ba6d/C50/4C4/54b6842e2212" dstEquation="!ed/b92d/5F0/BD0/54b66b8c39a7">
 											<positions>
 												<Point x="7276" y="6985"/>
@@ -781,6 +761,30 @@
 												<Point x="13388" y="3254"/>
 												<Point x="13388" y="3254"/>
 												<Point x="18203" y="3254"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/5c25/2ABF/1248/54b641544106">
+											<position>
+												<Point x="1879" y="2990"/>
+											</position>
+											<size>
+												<Size width="265" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5c25/2ABF/1248/54b641544106" dstEquation="!ed/ba6d/C50/4C4/54b6842e2212">
+											<positions>
+												<Point x="2143" y="3254"/>
+												<Point x="2963" y="3254"/>
+												<Point x="2963" y="6985"/>
+												<Point x="6324" y="6985"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5c25/2ABF/1248/54b641544106" dstEquation="!ed/5c32/2ABF/1248/54b641ce736e">
+											<positions>
+												<Point x="2143" y="3254"/>
+												<Point x="3281" y="3254"/>
+												<Point x="3281" y="3254"/>
+												<Point x="6350" y="3254"/>
 											</positions>
 										</Edge>
 									</presentationElements>
