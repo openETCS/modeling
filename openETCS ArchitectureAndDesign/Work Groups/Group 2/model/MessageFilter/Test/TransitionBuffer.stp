@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Procedure name="TransitionBuffer" description="Tests for the TransitionBuffer Operator" operator="MessageFilter::Common::TransitionBuffer">
 	<testElements>
-		<Record name="SequentialReadWrite" description="Record1"/>
-		<Record name="BufferOverflow" description="Record1">
+		<Record name="BufferOverflowAndFIFORead" description="Fills the buffer till it overflows (should then overwrite the oldest data) and then read multiple times. The read messages should be in FIFO order and after three reads, the buffer should notify it is empty.">
 			<inits>
 				<Scenario persistAs="Init.sss"/>
 			</inits>
+			<scenarios>
+				<Scenario persistAs="FillBufferAndRead.sss"/>
+			</scenarios>
 		</Record>
-		<Record name="FIFOPrinciple" description="Record1"/>
-		<Record name="ParallelReadWrite" description="Record1"/>
+		<Record name="ParallelWriteRead" description="In parallel write and read from the buffer. Writing and reading has one cycle delay.">
+			<inits>
+				<Scenario persistAs="Init.sss"/>
+			</inits>
+			<scenarios>
+				<Scenario persistAs="ParallelReadWrite.sss"/>
+			</scenarios>
+		</Record>
 	</testElements>
 </Procedure>
