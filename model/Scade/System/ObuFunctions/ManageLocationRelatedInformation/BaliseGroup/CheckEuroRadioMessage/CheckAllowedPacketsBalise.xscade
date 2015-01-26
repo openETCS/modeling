@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Operator kind="function" name="CheckAllowedPacketsBalise">
+			<inputs>
+				<Variable name="btmMessage">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Common_Types_Pkg::ReceivedMessage_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1cf51/51F6/30BC/54be883879d7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Eurobalise-message to check</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="valid">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1cf50/51F6/30BC/54be88381a8a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>True, if message only contains permitted packets.</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<locals>
+				<Variable name="_L6">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Common_Types_Pkg::ReceivedMessage_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1cf48/51F6/30BC/54be88387666"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L7">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Common_Types_Pkg::Metadata_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1cf49/51F6/30BC/54be88387f6"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L9">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="256"/>
+							</size>
+						</Table>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1cf4b/51F6/30BC/54be88381a81"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L11">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1cf4c/51F6/30BC/54be8838788c"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L13">
+					<type>
+						<Table>
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<ConstValue value="256"/>
+									</size>
+								</Table>
+							</type>
+							<size>
+								<ConstValue value="13"/>
+							</size>
+						</Table>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1cf4e/51F6/30BC/54be8838230"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L14">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1cf4f/51F6/30BC/54be8838369d"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- _L6 = btmMessage; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L6"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="btmMessage"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/1cf3e/51F6/30BC/54be88386806"/>
+					</pragmas>
+				</Equation>
+				<!-- _L7 = _L6.packetMetadata; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L7"/>
+					</lefts>
+					<right>
+						<!-- _L6.packetMetadata -->
+						<PrjOp name="1">
+							<flow>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L6"/>
+									</path>
+								</IdExpression>
+							</flow>
+							<with>
+								<Label name="packetMetadata"/>
+							</with>
+						</PrjOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/1cf3f/51F6/30BC/54be88382376" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Select packet metadata.</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- _L9 = cPermittedBalisePackets; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L9"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="cPermittedBalisePackets"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/1cf41/51F6/30BC/54be883858e8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>List of permitted packets.</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- _L14 = ( mapfold SubFunctions::CheckIfSinglePacketIsAllowedForBaliseMessage<<13>>... -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L14"/>
+					</lefts>
+					<right>
+						<!-- ( mapfold SubFunctions::CheckIfSinglePacketIsAllowedForBaliseMessage<<13>>)(_L11,... -->
+						<CallExpression>
+							<operator>
+								<IteratorOp iterator="mapfold">
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="SubFunctions::CheckIfSinglePacketIsAllowedForBaliseMessage"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<size>
+										<ConstValue value="13"/>
+									</size>
+								</IteratorOp>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L11"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L7"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L13"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/1cf42/51F6/30BC/54be883842c3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Check for every packet in message, if it is permitted.</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- _L11 = true; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L11"/>
+					</lefts>
+					<right>
+						<ConstValue value="true"/>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/1cf43/51F6/30BC/54be883826ff" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Initial value of accumulator (packet is valid = true)</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- _L13 = _L9 ^ 13; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L13"/>
+					</lefts>
+					<right>
+						<!-- _L9 ^ 13 -->
+						<ScalarToVectorOp name="2">
+							<flow>
+								<ListExpression>
+									<items>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L9"/>
+											</path>
+										</IdExpression>
+									</items>
+								</ListExpression>
+							</flow>
+							<size>
+								<ConstValue value="13"/>
+							</size>
+						</ScalarToVectorOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/1cf45/51F6/30BC/54be88387fcd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Possible packets = 13</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- valid = _L14; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="valid"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L14"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/1cf46/51F6/30BC/54be88384dd6"/>
+					</pragmas>
+				</Equation>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/1cf3d/51F6/30BC/54be88381fa7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>Checks, if all packets included in the Eurobalise-message are allowed for this message.</comment>
+					<diagrams>
+						<NetDiagram name="diagram_CheckAllowedPacketsBalise_1" landscape="true" format="A4 (210 297)" oid="!ed/1cf47/51F6/30BC/54be883871c0">
+							<presentationElements>
+								<EquationGE presentable="!ed/1cf3e/51F6/30BC/54be88386806">
+									<position>
+										<Point x="3254" y="10001"/>
+									</position>
+									<size>
+										<Size width="265" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/1cf3f/51F6/30BC/54be88382376">
+									<position>
+										<Point x="7117" y="8652"/>
+									</position>
+									<size>
+										<Size width="952" height="953"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1cf3e/51F6/30BC/54be88386806" dstEquation="!ed/1cf3f/51F6/30BC/54be88382376">
+									<positions>
+										<Point x="3514" y="10245"/>
+										<Point x="5313" y="10245"/>
+										<Point x="5313" y="9144"/>
+										<Point x="7112" y="9144"/>
+									</positions>
+								</Edge>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/1cf41/51F6/30BC/54be883858e8">
+									<position>
+										<Point x="13018" y="11218"/>
+									</position>
+									<size>
+										<Size width="169" height="296"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/1cf42/51F6/30BC/54be883842c3">
+									<position>
+										<Point x="16536" y="7885"/>
+									</position>
+									<size>
+										<Size width="6287" height="3217"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/1cf43/51F6/30BC/54be883826ff">
+									<position>
+										<Point x="13907" y="8065"/>
+									</position>
+									<size>
+										<Size width="169" height="296"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/1cf45/51F6/30BC/54be88387fcd">
+									<position>
+										<Point x="14161" y="9970"/>
+									</position>
+									<size>
+										<Size width="952" height="953"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1cf41/51F6/30BC/54be883858e8" dstEquation="!ed/1cf45/51F6/30BC/54be88387fcd">
+									<positions>
+										<Point x="13187" y="11367"/>
+										<Point x="13653" y="11367"/>
+										<Point x="13653" y="10456"/>
+										<Point x="14161" y="10456"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/1cf46/51F6/30BC/54be88384dd6">
+									<position>
+										<Point x="27490" y="9631"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1cf42/51F6/30BC/54be883842c3" dstEquation="!ed/1cf46/51F6/30BC/54be88384dd6">
+									<positions>
+										<Point x="22818" y="9504"/>
+										<Point x="25188" y="9504"/>
+										<Point x="25188" y="9885"/>
+										<Point x="27538" y="9885"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1cf3f/51F6/30BC/54be88382376" dstEquation="!ed/1cf42/51F6/30BC/54be883842c3">
+									<positions>
+										<Point x="8065" y="9144"/>
+										<Point x="12298" y="9144"/>
+										<Point x="12298" y="9504"/>
+										<Point x="16531" y="9504"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1cf43/51F6/30BC/54be883826ff" dstEquation="!ed/1cf42/51F6/30BC/54be883842c3">
+									<positions>
+										<Point x="14076" y="8213"/>
+										<Point x="15304" y="8213"/>
+										<Point x="15304" y="8700"/>
+										<Point x="16531" y="8700"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/1cf45/51F6/30BC/54be88387fcd" dstEquation="!ed/1cf42/51F6/30BC/54be883842c3">
+									<positions>
+										<Point x="15113" y="10456"/>
+										<Point x="15812" y="10456"/>
+										<Point x="15812" y="10308"/>
+										<Point x="16531" y="10308"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>

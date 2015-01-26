@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Operator kind="function" name="CheckAllowedPacketsRadio">
+			<inputs>
+				<Variable name="rtmMessage">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Common_Types_Pkg::ReceivedMessage_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/6dc7/7298/DC8/548eb0f422d2" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Euroradio-message to check.</comment>
+						</ed:Variable>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="valid">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/6dcd/7298/DC8/548eb11a314b"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<locals>
+				<Variable name="_L6">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Common_Types_Pkg::ReceivedMessage_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1df63/2445/B78/5492e1652f11"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L7">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Common_Types_Pkg::Metadata_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/418b2/2445/B78/5492e2fb39d9"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L8">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="NID_MESSAGE"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/418ce/2445/B78/5492e31f4235"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L9">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Common_Types_Pkg::MetadataArray_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/418ec/2445/B78/5492e360784d"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L11">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/41904/2445/B78/5492e5dd1fe5"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L12">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_MESSAGE"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="26"/>
+							</size>
+						</Table>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/41914/2445/B78/5492e63e675"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L13">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Common_Types_Pkg::MetadataArray_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="26"/>
+							</size>
+						</Table>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/4192f/2445/B78/5492e6a26b83"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L14">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/41955/2445/B78/5492eaf924f2"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- _L6 = rtmMessage; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L6"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="rtmMessage"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/1df62/2445/B78/5492e16574ad"/>
+					</pragmas>
+				</Equation>
+				<!-- _L7 = _L6.packetMetadata; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L7"/>
+					</lefts>
+					<right>
+						<!-- _L6.packetMetadata -->
+						<PrjOp name="2">
+							<flow>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L6"/>
+									</path>
+								</IdExpression>
+							</flow>
+							<with>
+								<Label name="packetMetadata"/>
+							</with>
+						</PrjOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/418b1/2445/B78/5492e2fb4fa1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Select packet metadata</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- _L8 = _L6.Radio_Common_Header.nid_message; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L8"/>
+					</lefts>
+					<right>
+						<!-- _L6.Radio_Common_Header.nid_message -->
+						<PrjOp name="3">
+							<flow>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L6"/>
+									</path>
+								</IdExpression>
+							</flow>
+							<with>
+								<Label name="Radio_Common_Header"/>
+								<Label name="nid_message"/>
+							</with>
+						</PrjOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/418cd/2445/B78/5492e31f37a6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Select message-id (nid_message)</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- _L9 = cPermittedRadioPackets; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L9"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="cPermittedRadioPackets"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/418eb/2445/B78/5492e3603e1f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>List of permitted packets.</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- _L14 = ( mapfold SubFunctions::CheckIfSinglePacketIsAllowedForRadioMessage<<26>>)... -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L14"/>
+					</lefts>
+					<right>
+						<!-- ( mapfold SubFunctions::CheckIfSinglePacketIsAllowedForRadioMessage<<26>>)(_L11, ... -->
+						<CallExpression>
+							<operator>
+								<IteratorOp iterator="mapfold">
+									<operator>
+										<OpCall name="3">
+											<operator>
+												<OperatorRef name="SubFunctions::CheckIfSinglePacketIsAllowedForRadioMessage"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<size>
+										<ConstValue value="26"/>
+									</size>
+								</IteratorOp>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L11"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L7"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L12"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L13"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/418f4/2445/B78/5492e4cb5bdb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Check for every packet if it is allowed in the message.</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- _L11 = true; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L11"/>
+					</lefts>
+					<right>
+						<ConstValue value="true"/>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/41903/2445/B78/5492e5dd1d6e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Initial value of accumulator (packet is valid = true)</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- _L12 = _L8 ^ 26; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L12"/>
+					</lefts>
+					<right>
+						<!-- _L8 ^ 26 -->
+						<ScalarToVectorOp name="1">
+							<flow>
+								<ListExpression>
+									<items>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L8"/>
+											</path>
+										</IdExpression>
+									</items>
+								</ListExpression>
+							</flow>
+							<size>
+								<ConstValue value="26"/>
+							</size>
+						</ScalarToVectorOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/41913/2445/B78/5492e63e955" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Possible packets = 13</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- _L13 = _L9 ^ 26; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L13"/>
+					</lefts>
+					<right>
+						<!-- _L9 ^ 26 -->
+						<ScalarToVectorOp name="2">
+							<flow>
+								<ListExpression>
+									<items>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L9"/>
+											</path>
+										</IdExpression>
+									</items>
+								</ListExpression>
+							</flow>
+							<size>
+								<ConstValue value="26"/>
+							</size>
+						</ScalarToVectorOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/4192e/2445/B78/5492e6a26cdb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Possible packets = 13</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- valid = _L14; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="valid"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L14"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/1dfad/1D56/ABC/54941d04672e"/>
+					</pragmas>
+				</Equation>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/6dbf/7298/DC8/548eb0d12258" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>Checks, if all packets included in the Euroradio-message are allowed.</comment>
+					<diagrams>
+						<NetDiagram name="diagram_CheckAllowedPacketsRadio_1" landscape="true" format="A4 (210 297)" oid="!ed/6dc0/7298/DC8/548eb0d165b">
+							<presentationElements>
+								<EquationGE presentable="!ed/1df62/2445/B78/5492e16574ad">
+									<position>
+										<Point x="3254" y="10001"/>
+									</position>
+									<size>
+										<Size width="265" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/418b1/2445/B78/5492e2fb4fa1">
+									<position>
+										<Point x="7117" y="8652"/>
+									</position>
+									<size>
+										<Size width="952" height="953"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1df62/2445/B78/5492e16574ad" dstEquation="!ed/418b1/2445/B78/5492e2fb4fa1">
+									<positions>
+										<Point x="3514" y="10245"/>
+										<Point x="5313" y="10245"/>
+										<Point x="5313" y="9144"/>
+										<Point x="7112" y="9144"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/418cd/2445/B78/5492e31f37a6">
+									<position>
+										<Point x="6157" y="10152"/>
+									</position>
+									<size>
+										<Size width="5995" height="969"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1df62/2445/B78/5492e16574ad" dstEquation="!ed/418cd/2445/B78/5492e31f37a6">
+									<positions>
+										<Point x="3514" y="10245"/>
+										<Point x="5355" y="10245"/>
+										<Point x="5355" y="10647"/>
+										<Point x="6160" y="10647"/>
+									</positions>
+								</Edge>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/418eb/2445/B78/5492e3603e1f">
+									<position>
+										<Point x="13568" y="13208"/>
+									</position>
+									<size>
+										<Size width="169" height="296"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/418f4/2445/B78/5492e4cb5bdb">
+									<position>
+										<Point x="16536" y="7885"/>
+									</position>
+									<size>
+										<Size width="6287" height="3217"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/41903/2445/B78/5492e5dd1d6e">
+									<position>
+										<Point x="13907" y="8065"/>
+									</position>
+									<size>
+										<Size width="169" height="296"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/41903/2445/B78/5492e5dd1d6e" dstEquation="!ed/418f4/2445/B78/5492e4cb5bdb">
+									<positions>
+										<Point x="14076" y="8213"/>
+										<Point x="15304" y="8213"/>
+										<Point x="15304" y="8530"/>
+										<Point x="16531" y="8530"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/418b1/2445/B78/5492e2fb4fa1" dstEquation="!ed/418f4/2445/B78/5492e4cb5bdb">
+									<positions>
+										<Point x="8065" y="9144"/>
+										<Point x="12298" y="9144"/>
+										<Point x="12298" y="9186"/>
+										<Point x="16531" y="9186"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/41913/2445/B78/5492e63e955">
+									<position>
+										<Point x="13070" y="10107"/>
+									</position>
+									<size>
+										<Size width="953" height="953"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/418cd/2445/B78/5492e31f37a6" dstEquation="!ed/41913/2445/B78/5492e63e955">
+									<positions>
+										<Point x="12150" y="10647"/>
+										<Point x="12594" y="10647"/>
+										<Point x="12594" y="10583"/>
+										<Point x="13060" y="10583"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/41913/2445/B78/5492e63e955" dstEquation="!ed/418f4/2445/B78/5492e4cb5bdb">
+									<positions>
+										<Point x="14034" y="10583"/>
+										<Point x="15261" y="10583"/>
+										<Point x="15261" y="9821"/>
+										<Point x="16531" y="9821"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/4192e/2445/B78/5492e6a26cdb">
+									<position>
+										<Point x="14711" y="11959"/>
+									</position>
+									<size>
+										<Size width="952" height="953"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/418eb/2445/B78/5492e3603e1f" dstEquation="!ed/4192e/2445/B78/5492e6a26cdb">
+									<positions>
+										<Point x="13737" y="13356"/>
+										<Point x="14203" y="13356"/>
+										<Point x="14203" y="12446"/>
+										<Point x="14711" y="12446"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/4192e/2445/B78/5492e6a26cdb" dstEquation="!ed/418f4/2445/B78/5492e4cb5bdb">
+									<positions>
+										<Point x="15663" y="12446"/>
+										<Point x="16087" y="12446"/>
+										<Point x="16087" y="10478"/>
+										<Point x="16531" y="10478"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/1dfad/1D56/ABC/54941d04672e">
+									<position>
+										<Point x="27490" y="9631"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/418f4/2445/B78/5492e4cb5bdb" dstEquation="!ed/1dfad/1D56/ABC/54941d04672e">
+									<positions>
+										<Point x="22818" y="9504"/>
+										<Point x="25188" y="9504"/>
+										<Point x="25188" y="9885"/>
+										<Point x="27538" y="9885"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>
