@@ -123,6 +123,18 @@
 						<ed:Variable oid="!ed/4ca0/61D7/884/546f6a8617bc"/>
 					</pragmas>
 				</Variable>
+				<Variable name="On_Going_Mission">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/39c65/3351/9B8/54be6eb13852"/>
+					</pragmas>
+				</Variable>
 			</inputs>
 			<outputs>
 				<Variable name="Condition2">
@@ -231,6 +243,21 @@
 					</type>
 					<pragmas>
 						<ed:Variable oid="!ed/5b53/71D6/708/547496d36029"/>
+					</pragmas>
+				</Variable>
+				<Variable name="End_Of_Mission_Procedure_Req">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<default>
+						<ConstValue value="false"/>
+					</default>
+					<pragmas>
+						<ed:Variable oid="!ed/39c66/3351/9B8/54be6eb122e0"/>
 					</pragmas>
 				</Variable>
 			</outputs>
@@ -533,6 +560,18 @@
 					</type>
 					<pragmas>
 						<ed:Variable oid="!ed/5b65/71D6/708/547496ef5ec0"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L149">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/39c69/3351/9B8/54be6eb139fe"/>
 					</pragmas>
 				</Variable>
 			</locals>
@@ -1161,9 +1200,52 @@
 						<ed:Equation oid="!ed/5b64/71D6/708/547496ef205"/>
 					</pragmas>
 				</Equation>
+				<!-- _L149 = On_Going_Mission; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L149"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="On_Going_Mission"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/39c68/3351/9B8/54be6eb1666b"/>
+					</pragmas>
+				</Equation>
+				<!-- End_Of_Mission_Procedure_Req = _L149; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="End_Of_Mission_Procedure_Req"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L149"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/39c6a/3351/9B8/54be6eb16a22" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>SRS § 5.5.2.1 : Entry in SB mode as End Of Mission</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
 			</data>
 			<pragmas>
 				<ed:Operator oid="!ed/4c11/61D7/884/546f69c520a0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>SRS-026 § 4.6.2 : C2 &quot;(a desk is open)&quot;</comment>
+					<comment>SRS-026 § 4.6.2 : C3 &quot;(no “go sleeping” input signal is received any more) AND (train is at standstill)&quot;</comment>
+					<comment>SRS-026 § 4.6.2 : C4 &quot;The ERTMS/ETCS on-board equipment is powered.&quot;</comment>
+					<comment>SRS-026 § 4.6.2 : C19 &quot;(driver selects “exit Shunting”) AND (train is at standstill).&quot;</comment>
+					<comment>SRS-026 § 4.6.2 : C22 &quot;(a desk is open) AND (”Stop Shunting on desk opening” information is stored onboard)&quot;</comment>
+					<comment>SRS-026 § 4.6.2 : C27 &quot;(desks are closed) AND (”Continue Shunting on desk closure” function is not active)&quot;</comment>
+					<comment>SRS-026 § 4.6.2 : C28 &quot;(desks are closed) &quot;</comment>
+					<comment>SRS-026 § 4.6.2 : C30 &quot;(desks are closed) AND (no “passive shunting” input signal is received)&quot;</comment>
+					<comment>SRS-026 § 4.6.2 : C47 &quot;(no “non leading” input signal is received any more) AND (train is at standstill)&quot;</comment>
 					<diagrams>
 						<NetDiagram name="diagram_ToStandBy_1" landscape="true" format="A4 (210 297)" oid="!ed/4c12/61D7/884/546f69c55f85">
 							<presentationElements>
@@ -1637,6 +1719,30 @@
 										<Point x="25109" y="11271"/>
 										<Point x="25109" y="10583"/>
 										<Point x="27173" y="10583"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/39c68/3351/9B8/54be6eb1666b">
+									<position>
+										<Point x="3916" y="13917"/>
+									</position>
+									<size>
+										<Size width="264" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/39c6a/3351/9B8/54be6eb16a22">
+									<position>
+										<Point x="10583" y="13917"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/39c68/3351/9B8/54be6eb1666b" dstEquation="!ed/39c6a/3351/9B8/54be6eb16a22">
+									<positions>
+										<Point x="4180" y="14182"/>
+										<Point x="6165" y="14182"/>
+										<Point x="6165" y="14182"/>
+										<Point x="10636" y="14182"/>
 									</positions>
 								</Edge>
 							</presentationElements>

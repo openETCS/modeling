@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="Level_And_Mode_Types_Pkg">
+			<declarations>
+				<Constant name="C_Driver_Ack_Delay">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="5000"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/5e88b/6C3E/858/54c123696bfb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>5 second</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="C_Cycle_Duration">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="300"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/5e87d/6C3E/858/54c123694f48" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>300 millisecond</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Type name="T_Mode_Profile">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="Distance">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::Location_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3a535/471B/12D0/54be4f532102"/>
+									</pragmas>
+								</Field>
+								<Field name="Mode">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="T_MA"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3a536/471B/12D0/54be4f531ff1"/>
+									</pragmas>
+								</Field>
+								<Field name="Speed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::Speed_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3a537/471B/12D0/54be4f532812"/>
+									</pragmas>
+								</Field>
+								<Field name="Length">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::Location_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3a538/471B/12D0/54be4f532413"/>
+									</pragmas>
+								</Field>
+								<Field name="Length_Ack">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::Location_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3a539/471B/12D0/54be4f534957"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3a534/471B/12D0/54be4f5386e"/>
+					</pragmas>
+				</Type>
+				<Type name="T_Mode">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="NP">
+									<pragmas>
+										<ed:Value oid="!ed/3a514/471B/12D0/54be4f5352a4"/>
+									</pragmas>
+								</Value>
+								<Value name="SB">
+									<pragmas>
+										<ed:Value oid="!ed/3a515/471B/12D0/54be4f53d40"/>
+									</pragmas>
+								</Value>
+								<Value name="PS">
+									<pragmas>
+										<ed:Value oid="!ed/3a516/471B/12D0/54be4f536091"/>
+									</pragmas>
+								</Value>
+								<Value name="SH">
+									<pragmas>
+										<ed:Value oid="!ed/3a517/471B/12D0/54be4f532420"/>
+									</pragmas>
+								</Value>
+								<Value name="FS">
+									<pragmas>
+										<ed:Value oid="!ed/3a518/471B/12D0/54be4f53c1e"/>
+									</pragmas>
+								</Value>
+								<Value name="LS">
+									<pragmas>
+										<ed:Value oid="!ed/3a519/471B/12D0/54be4f533a8e"/>
+									</pragmas>
+								</Value>
+								<Value name="SR">
+									<pragmas>
+										<ed:Value oid="!ed/3a51a/471B/12D0/54be4f5340b2"/>
+									</pragmas>
+								</Value>
+								<Value name="OS">
+									<pragmas>
+										<ed:Value oid="!ed/3a51b/471B/12D0/54be4f536bdb"/>
+									</pragmas>
+								</Value>
+								<Value name="SL">
+									<pragmas>
+										<ed:Value oid="!ed/3a51c/471B/12D0/54be4f531bd2"/>
+									</pragmas>
+								</Value>
+								<Value name="NL">
+									<pragmas>
+										<ed:Value oid="!ed/3a51d/471B/12D0/54be4f53790a"/>
+									</pragmas>
+								</Value>
+								<Value name="UN">
+									<pragmas>
+										<ed:Value oid="!ed/3a51e/471B/12D0/54be4f5355c0"/>
+									</pragmas>
+								</Value>
+								<Value name="TR">
+									<pragmas>
+										<ed:Value oid="!ed/3a51f/471B/12D0/54be4f536f72"/>
+									</pragmas>
+								</Value>
+								<Value name="PT">
+									<pragmas>
+										<ed:Value oid="!ed/3a520/471B/12D0/54be4f532c0d"/>
+									</pragmas>
+								</Value>
+								<Value name="SF">
+									<pragmas>
+										<ed:Value oid="!ed/3a521/471B/12D0/54be4f534d97"/>
+									</pragmas>
+								</Value>
+								<Value name="IS">
+									<pragmas>
+										<ed:Value oid="!ed/3a522/471B/12D0/54be4f53459e"/>
+									</pragmas>
+								</Value>
+								<Value name="SN">
+									<pragmas>
+										<ed:Value oid="!ed/3a523/471B/12D0/54be4f535f89"/>
+									</pragmas>
+								</Value>
+								<Value name="RV">
+									<pragmas>
+										<ed:Value oid="!ed/3a524/471B/12D0/54be4f533f7"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3a513/471B/12D0/54be4f531fac"/>
+					</pragmas>
+				</Type>
+				<Type name="T_MA">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="Profile_OS">
+									<pragmas>
+										<ed:Value oid="!ed/3a4f9/471B/12D0/54be4f53766f"/>
+									</pragmas>
+								</Value>
+								<Value name="Profile_LS">
+									<pragmas>
+										<ed:Value oid="!ed/3a4fa/471B/12D0/54be4f53442"/>
+									</pragmas>
+								</Value>
+								<Value name="Profile_SH">
+									<pragmas>
+										<ed:Value oid="!ed/3a4fb/471B/12D0/54be4f536991"/>
+									</pragmas>
+								</Value>
+								<Value name="No_Profile">
+									<pragmas>
+										<ed:Value oid="!ed/3a4fc/471B/12D0/54be4f533f7f"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3a4f8/471B/12D0/54be4f534806"/>
+					</pragmas>
+				</Type>
+				<Type name="T_Level">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="L0">
+									<pragmas>
+										<ed:Value oid="!ed/3a4ea/471B/12D0/54be4f53231a"/>
+									</pragmas>
+								</Value>
+								<Value name="L1">
+									<pragmas>
+										<ed:Value oid="!ed/3a4eb/471B/12D0/54be4f535c54"/>
+									</pragmas>
+								</Value>
+								<Value name="L2">
+									<pragmas>
+										<ed:Value oid="!ed/3a4ec/471B/12D0/54be4f531455"/>
+									</pragmas>
+								</Value>
+								<Value name="L3">
+									<pragmas>
+										<ed:Value oid="!ed/3a4ed/471B/12D0/54be4f537eb1"/>
+									</pragmas>
+								</Value>
+								<Value name="LNTC">
+									<pragmas>
+										<ed:Value oid="!ed/3a4ee/471B/12D0/54be4f531033"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3a4e9/471B/12D0/54be4f5337ad"/>
+					</pragmas>
+				</Type>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/3a4db/471B/12D0/54be4f2b6afc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a4dc/471B/12D0/54be4f2b4f4e" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a4dd/471B/12D0/54be4f2b7f6" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a4de/471B/12D0/54be4f2b78d3" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

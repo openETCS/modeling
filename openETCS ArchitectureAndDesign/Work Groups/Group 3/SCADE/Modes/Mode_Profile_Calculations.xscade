@@ -99,6 +99,18 @@
 				<ed:Variable oid="!ed/2bba6/6A28/AA4/54bd2f16fe9"/>
 			</pragmas>
 		</Variable>
+		<Variable name="Estimated_front_End_In_Ack_Area">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5deb3/6C3E/858/54c1116b4b75"/>
+			</pragmas>
+		</Variable>
 	</outputs>
 	<locals>
 		<Variable name="Valid_Train_Position">
@@ -663,6 +675,42 @@
 			</type>
 			<pragmas>
 				<ed:Variable oid="!ed/2c021/6A28/AA4/54bd3dee5fa2"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L65">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5dec5/6C3E/858/54c111997b3f"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L64">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5dec3/6C3E/858/54c111996d3a"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L66">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5ded4/6C3E/858/54c111b61d54"/>
 			</pragmas>
 		</Variable>
 	</locals>
@@ -1910,6 +1958,93 @@
 				<ed:Equation oid="!ed/2c020/6A28/AA4/54bd3dee2598"/>
 			</pragmas>
 		</Equation>
+		<!-- Estimated_front_End_In_Ack_Area = _L65; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="Estimated_front_End_In_Ack_Area"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L65"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/5deb4/6C3E/858/54c1116b185f"/>
+			</pragmas>
+		</Equation>
+		<!-- _L64 = Condition_Ok; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L64"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="Condition_Ok"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/5dec2/6C3E/858/54c111991a23"/>
+			</pragmas>
+		</Equation>
+		<!-- _L65 = if _L64 then (_L35) else (_L66); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L65"/>
+			</lefts>
+			<right>
+				<!-- if _L64 then (_L35) else (_L66) -->
+				<IfThenElseOp name="5">
+					<if>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L64"/>
+							</path>
+						</IdExpression>
+					</if>
+					<then>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L35"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</then>
+					<else>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L66"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</else>
+				</IfThenElseOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/5dec4/6C3E/858/54c111992eb2"/>
+			</pragmas>
+		</Equation>
+		<!-- _L66 = false; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L66"/>
+			</lefts>
+			<right>
+				<ConstValue value="false"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/5ded3/6C3E/858/54c111b67fba"/>
+			</pragmas>
+		</Equation>
 	</data>
 	<pragmas>
 		<ed:Operator oid="!ed/2bb8f/6A28/AA4/54bd2ee77ff0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
@@ -2094,10 +2229,10 @@
 						</Edge>
 						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2bc30/6A28/AA4/54bd2f9fb06" dstEquation="!ed/2bc3c/6A28/AA4/54bd307f28f3">
 							<positions>
-								<Point x="14340" y="7250"/>
+								<Point x="14367" y="7250"/>
 								<Point x="16695" y="7250"/>
 								<Point x="16695" y="7250"/>
-								<Point x="19076" y="7250"/>
+								<Point x="19103" y="7250"/>
 							</positions>
 						</Edge>
 						<EquationGE presentable="!ed/2bd95/6A28/AA4/54bd3658550f">
@@ -2136,8 +2271,8 @@
 							<positions>
 								<Point x="4895" y="11774"/>
 								<Point x="9790" y="11774"/>
-								<Point x="9790" y="11800"/>
-								<Point x="10319" y="11800"/>
+								<Point x="9790" y="11774"/>
+								<Point x="10319" y="11774"/>
 							</positions>
 						</Edge>
 						<EquationGE presentable="!ed/2bdd5/6A28/AA4/54bd380d5076">
@@ -2182,7 +2317,7 @@
 						</EquationGE>
 						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2bdb5/6A28/AA4/54bd375a1a48" dstEquation="!ed/2bdd5/6A28/AA4/54bd380d5076">
 							<positions>
-								<Point x="14288" y="10054"/>
+								<Point x="14314" y="10054"/>
 								<Point x="16404" y="10054"/>
 								<Point x="16404" y="10054"/>
 								<Point x="18521" y="10054"/>
@@ -2190,7 +2325,7 @@
 						</Edge>
 						<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/2bdb5/6A28/AA4/54bd375a1a48" dstEquation="!ed/2bdeb/6A28/AA4/54bd381c3d51">
 							<positions>
-								<Point x="14288" y="10927"/>
+								<Point x="14314" y="10927"/>
 								<Point x="16378" y="10927"/>
 								<Point x="16378" y="10927"/>
 								<Point x="18468" y="10927"/>
@@ -2198,7 +2333,7 @@
 						</Edge>
 						<Edge leftVarIndex="3" rightExprIndex="1" srcEquation="!ed/2bdb5/6A28/AA4/54bd375a1a48" dstEquation="!ed/2be01/6A28/AA4/54bd38275a47">
 							<positions>
-								<Point x="14288" y="11800"/>
+								<Point x="14314" y="11800"/>
 								<Point x="16404" y="11800"/>
 								<Point x="16404" y="11800"/>
 								<Point x="18521" y="11800"/>
@@ -2206,18 +2341,18 @@
 						</Edge>
 						<Edge leftVarIndex="4" rightExprIndex="1" srcEquation="!ed/2bdb5/6A28/AA4/54bd375a1a48" dstEquation="!ed/2be17/6A28/AA4/54bd38352a01">
 							<positions>
-								<Point x="14288" y="12647"/>
-								<Point x="16404" y="12647"/>
-								<Point x="16404" y="12647"/>
-								<Point x="18547" y="12647"/>
+								<Point x="14314" y="12674"/>
+								<Point x="16404" y="12674"/>
+								<Point x="16404" y="12674"/>
+								<Point x="18547" y="12674"/>
 							</positions>
 						</Edge>
 						<Edge leftVarIndex="5" rightExprIndex="1" srcEquation="!ed/2bdb5/6A28/AA4/54bd375a1a48" dstEquation="!ed/2be2d/6A28/AA4/54bd38473327">
 							<positions>
-								<Point x="14288" y="13520"/>
-								<Point x="16404" y="13520"/>
-								<Point x="16404" y="13520"/>
-								<Point x="18547" y="13520"/>
+								<Point x="14314" y="13547"/>
+								<Point x="16404" y="13547"/>
+								<Point x="16404" y="13547"/>
+								<Point x="18547" y="13547"/>
 							</positions>
 						</Edge>
 						<EquationGE presentable="!ed/2be69/6A28/AA4/54bd38dd2896">
@@ -2262,7 +2397,7 @@
 						</EquationGE>
 						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/2bd9b/6A28/AA4/54bd36ff2f6b" dstEquation="!ed/2beba/6A28/AA4/54bd39977438">
 							<positions>
-								<Point x="40481" y="24315"/>
+								<Point x="40508" y="24315"/>
 								<Point x="41857" y="24315"/>
 								<Point x="41857" y="24791"/>
 								<Point x="43233" y="24791"/>
@@ -2462,8 +2597,8 @@
 							<positions>
 								<Point x="32491" y="16722"/>
 								<Point x="36354" y="16722"/>
-								<Point x="36354" y="16748"/>
-								<Point x="37862" y="16748"/>
+								<Point x="36354" y="16722"/>
+								<Point x="37862" y="16722"/>
 							</positions>
 						</Edge>
 						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/2bf4e/6A28/AA4/54bd3ac15779" dstEquation="!ed/2bd95/6A28/AA4/54bd3658550f">
@@ -2482,7 +2617,7 @@
 								<Size width="16616" height="10107"/>
 							</size>
 						</IfBlockGE>
-						<IfNodeGE labelWidth="5001" presentable="!ed/2bfb5/6A28/AA4/54bd3c2d2b3a">
+						<IfNodeGE labelWidth="3625" presentable="!ed/2bfb5/6A28/AA4/54bd3c2d2b3a">
 							<position>
 								<Point x="3916" y="17330"/>
 							</position>
@@ -2511,7 +2646,7 @@
 								<Size width="212" height="239"/>
 							</size>
 						</EquationGE>
-						<IfNodeGE labelWidth="5054" presentable="!ed/2bfb6/6A28/AA4/54bd3c2d70a2">
+						<IfNodeGE labelWidth="3572" presentable="!ed/2bfb6/6A28/AA4/54bd3c2d70a2">
 							<position>
 								<Point x="3916" y="19764"/>
 							</position>
@@ -2540,7 +2675,7 @@
 								<Size width="344" height="503"/>
 							</size>
 						</EquationGE>
-						<IfNodeGE labelWidth="4842" presentable="!ed/2bfb7/6A28/AA4/54bd3c2d28dc">
+						<IfNodeGE labelWidth="3625" presentable="!ed/2bfb7/6A28/AA4/54bd3c2d28dc">
 							<position>
 								<Point x="3916" y="22199"/>
 							</position>
@@ -2727,6 +2862,69 @@
 								<Point x="46064" y="14208"/>
 								<Point x="46064" y="14208"/>
 								<Point x="46805" y="14208"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/5deb4/6C3E/858/54c1116b185f">
+							<position>
+								<Point x="49874" y="18415"/>
+							</position>
+							<size>
+								<Size width="317" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/5dec2/6C3E/858/54c111991a23">
+							<position>
+								<Point x="46911" y="16404"/>
+							</position>
+							<size>
+								<Size width="264" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/5dec4/6C3E/858/54c111992eb2">
+							<position>
+								<Point x="47572" y="18203"/>
+							</position>
+							<size>
+								<Size width="1005" height="927"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5dec2/6C3E/858/54c111991a23" dstEquation="!ed/5dec4/6C3E/858/54c111992eb2">
+							<positions>
+								<Point x="47175" y="16669"/>
+								<Point x="48075" y="16669"/>
+								<Point x="48075" y="18203"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/2bd95/6A28/AA4/54bd3658550f" dstEquation="!ed/5dec4/6C3E/858/54c111992eb2">
+							<positions>
+								<Point x="41222" y="16748"/>
+								<Point x="44397" y="16748"/>
+								<Point x="44397" y="18521"/>
+								<Point x="47572" y="18521"/>
+							</positions>
+						</Edge>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/5ded3/6C3E/858/54c111b67fba">
+							<position>
+								<Point x="44053" y="19341"/>
+							</position>
+							<size>
+								<Size width="212" height="238"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/5ded3/6C3E/858/54c111b67fba" dstEquation="!ed/5dec4/6C3E/858/54c111992eb2">
+							<positions>
+								<Point x="44265" y="19473"/>
+								<Point x="45905" y="19473"/>
+								<Point x="45905" y="18812"/>
+								<Point x="47572" y="18812"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5dec4/6C3E/858/54c111992eb2" dstEquation="!ed/5deb4/6C3E/858/54c1116b185f">
+							<positions>
+								<Point x="48578" y="18680"/>
+								<Point x="49239" y="18680"/>
+								<Point x="49239" y="18680"/>
+								<Point x="49927" y="18680"/>
 							</positions>
 						</Edge>
 					</presentationElements>

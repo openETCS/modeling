@@ -31,6 +31,18 @@
     <availablePage>
       <emfPageIdentifier href="ManageLevelsAndModes.notation#_oRFQQG_zEeSTmoor1a3hag"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="ManageLevelsAndModes.notation#_w1IgEHonEeSbRc_3uiVyiA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="ManageLevelsAndModes.notation#_D1T6gHoqEeSbRc_3uiVyiA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="ManageLevelsAndModes.notation#_ekNwoHorEeSbRc_3uiVyiA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="ManageLevelsAndModes.notation#_4LiwIHorEeSbRc_3uiVyiA"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -64,6 +76,18 @@
         </children>
         <children>
           <emfPageIdentifier href="ManageLevelsAndModes.notation#_oRFQQG_zEeSTmoor1a3hag"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="ManageLevelsAndModes.notation#_w1IgEHonEeSbRc_3uiVyiA"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="ManageLevelsAndModes.notation#_D1T6gHoqEeSbRc_3uiVyiA"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="ManageLevelsAndModes.notation#_ekNwoHorEeSbRc_3uiVyiA"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="ManageLevelsAndModes.notation#_4LiwIHorEeSbRc_3uiVyiA"/>
         </children>
       </children>
     </windows>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
 	<declarations>
-		<Operator kind="function" name="ToUnfitted">
+		<Operator kind="node" name="ToUnfitted">
 			<inputs>
 				<Variable name="Current_Level">
 					<type>
@@ -11,20 +11,15 @@
 							</type>
 						</NamedType>
 					</type>
+					<last>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="L0"/>
+							</path>
+						</IdExpression>
+					</last>
 					<pragmas>
 						<ed:Variable oid="!ed/6035/71D6/708/5474b0197b2c"/>
-					</pragmas>
-				</Variable>
-				<Variable name="Previous_Level">
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="T_Level"/>
-							</type>
-						</NamedType>
-					</type>
-					<pragmas>
-						<ed:Variable oid="!ed/6036/71D6/708/5474b019145f"/>
 					</pragmas>
 				</Variable>
 			</inputs>
@@ -65,18 +60,6 @@
 					</type>
 					<pragmas>
 						<ed:Variable oid="!ed/6027/71D6/708/5474b0193682"/>
-					</pragmas>
-				</Variable>
-				<Variable name="_L446">
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="T_Level"/>
-							</type>
-						</NamedType>
-					</type>
-					<pragmas>
-						<ed:Variable oid="!ed/6028/71D6/708/5474b019c3b"/>
 					</pragmas>
 				</Variable>
 				<Variable name="_L441">
@@ -127,6 +110,18 @@
 						<ed:Variable oid="!ed/602c/71D6/708/5474b0197016"/>
 					</pragmas>
 				</Variable>
+				<Variable name="_L456">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="T_Level"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/32b1f/3100/9D8/54c25f9635ce"/>
+					</pragmas>
+				</Variable>
 			</locals>
 			<data>
 				<!-- _L439 = Current_Level; -->
@@ -161,29 +156,13 @@
 						<ed:Equation oid="!ed/6008/71D6/708/5474b0196248"/>
 					</pragmas>
 				</Equation>
-				<!-- _L446 = Previous_Level; -->
-				<Equation>
-					<lefts>
-						<VariableRef name="_L446"/>
-					</lefts>
-					<right>
-						<IdExpression>
-							<path>
-								<ConstVarRef name="Previous_Level"/>
-							</path>
-						</IdExpression>
-					</right>
-					<pragmas>
-						<ed:Equation oid="!ed/6009/71D6/708/5474b019b50"/>
-					</pragmas>
-				</Equation>
-				<!-- _L450 = _L441 <> _L446; -->
+				<!-- _L450 = _L441 <> _L456; -->
 				<Equation>
 					<lefts>
 						<VariableRef name="_L450"/>
 					</lefts>
 					<right>
-						<!-- _L441 <> _L446 -->
+						<!-- _L441 <> _L456 -->
 						<BinaryOp name="2" operator="&lt;&gt;">
 							<operands>
 								<IdExpression>
@@ -193,7 +172,7 @@
 								</IdExpression>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="_L446"/>
+										<ConstVarRef name="_L456"/>
 									</path>
 								</IdExpression>
 							</operands>
@@ -287,9 +266,26 @@
 						<ed:Equation oid="!ed/6012/71D6/708/5474b01933d"/>
 					</pragmas>
 				</Equation>
+				<!-- _L456 =  last 'Current_Level; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L456"/>
+					</lefts>
+					<right>
+						<Last>
+							<variable>
+								<ConstVarRef name="Current_Level"/>
+							</variable>
+						</Last>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/32b1e/3100/9D8/54c25f9644f0"/>
+					</pragmas>
+				</Equation>
 			</data>
 			<pragmas>
 				<ed:Operator oid="!ed/5ff7/71D6/708/5474b0192001" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>SRS-026 § 4.6.2 : C21  &quot;(the ERTMS/ETCS level switches to 0&quot;</comment>
 					<diagrams>
 						<NetDiagram name="diagram_ToUnfitted_1" landscape="true" format="A4 (210 297)" oid="!ed/6016/71D6/708/5474b01926e1">
 							<presentationElements>
@@ -307,14 +303,6 @@
 									</position>
 									<size>
 										<Size width="265" height="503"/>
-									</size>
-								</EquationGE>
-								<EquationGE presentable="!ed/6009/71D6/708/5474b019b50">
-									<position>
-										<Point x="4022" y="3784"/>
-									</position>
-									<size>
-										<Size width="264" height="503"/>
 									</size>
 								</EquationGE>
 								<EquationGE presentable="!ed/600a/71D6/708/5474b019e03">
@@ -347,14 +335,6 @@
 										<Point x="9578" y="3731"/>
 										<Point x="9578" y="3307"/>
 										<Point x="11853" y="3307"/>
-									</positions>
-								</Edge>
-								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/6009/71D6/708/5474b019b50" dstEquation="!ed/600a/71D6/708/5474b019e03">
-									<positions>
-										<Point x="4286" y="4048"/>
-										<Point x="5927" y="4048"/>
-										<Point x="5927" y="3836"/>
-										<Point x="7223" y="3836"/>
 									</positions>
 								</Edge>
 								<EquationGE presentable="!ed/600c/71D6/708/5474b019579e">
@@ -391,8 +371,8 @@
 								</EquationGE>
 								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/600d/71D6/708/5474b0196e8a" dstEquation="!ed/600c/71D6/708/5474b019579e">
 									<positions>
-										<Point x="2725" y="2355"/>
-										<Point x="7276" y="2355"/>
+										<Point x="2725" y="2381"/>
+										<Point x="7276" y="2381"/>
 										<Point x="7276" y="1905"/>
 										<Point x="7620" y="1905"/>
 									</positions>
@@ -411,6 +391,22 @@
 										<Point x="13653" y="3201"/>
 										<Point x="13653" y="3201"/>
 										<Point x="16298" y="3201"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/32b1e/3100/9D8/54c25f9644f0">
+									<position>
+										<Point x="3810" y="3995"/>
+									</position>
+									<size>
+										<Size width="265" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/32b1e/3100/9D8/54c25f9644f0" dstEquation="!ed/600a/71D6/708/5474b019e03">
+									<positions>
+										<Point x="4075" y="4233"/>
+										<Point x="5636" y="4233"/>
+										<Point x="5636" y="3836"/>
+										<Point x="7223" y="3836"/>
 									</positions>
 								</Edge>
 							</presentationElements>

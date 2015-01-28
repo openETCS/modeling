@@ -611,7 +611,9 @@
 								</Transition>
 							</unless>
 							<pragmas>
-								<ed:State oid="!ed/22f2f/6615/BC4/54ae8eab2299"/>
+								<ed:State oid="!ed/22f2f/6615/BC4/54ae8eab2299" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>SRS § 5.4 state S0</comment>
+								</ed:State>
 							</pragmas>
 						</State>
 						<State name="Procedure_On">
@@ -736,7 +738,9 @@
 														</NAryOp>
 													</condition>
 													<pragmas>
-														<ed:Transition oid="!ed/22fe8/6615/BC4/54ae9b47c10"/>
+														<ed:Transition oid="!ed/22fe8/6615/BC4/54ae9b47c10" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+															<comment>SRS § 5.4 state E10</comment>
+														</ed:Transition>
 													</pragmas>
 												</Transition>
 												<Transition kind="restart">
@@ -751,7 +755,9 @@
 														</IdExpression>
 													</condition>
 													<pragmas>
-														<ed:Transition oid="!ed/2307e/6615/BC4/54ae9d3125d1"/>
+														<ed:Transition oid="!ed/2307e/6615/BC4/54ae9d3125d1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+															<comment>SRS § 5.4 state E12</comment>
+														</ed:Transition>
 													</pragmas>
 												</Transition>
 												<Transition kind="restart">
@@ -766,12 +772,16 @@
 														</IdExpression>
 													</condition>
 													<pragmas>
-														<ed:Transition oid="!ed/23185/6615/BC4/54aec2a53f39"/>
+														<ed:Transition oid="!ed/23185/6615/BC4/54aec2a53f39" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+															<comment>SRS § 5.4 state E14</comment>
+														</ed:Transition>
 													</pragmas>
 												</Transition>
 											</unless>
 											<pragmas>
-												<ed:State oid="!ed/22fa8/6615/BC4/54ae9ae2487f"/>
+												<ed:State oid="!ed/22fa8/6615/BC4/54ae9ae2487f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+													<comment>SRS § 5.4 state S11</comment>
+												</ed:State>
 											</pragmas>
 										</State>
 										<State name="NL_Mode">
@@ -820,7 +830,9 @@
 												</Equation>
 											</data>
 											<pragmas>
-												<ed:State oid="!ed/22fbb/6615/BC4/54ae9b0748bc"/>
+												<ed:State oid="!ed/22fbb/6615/BC4/54ae9b0748bc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+													<comment>SRS § 4.6.3 C46 : &quot;(Driver selects NON LEADING) AND (train is at standstill) AND (The “non leading” input signal is received)&quot;</comment>
+												</ed:State>
 											</pragmas>
 										</State>
 										<State name="Procedure_SH_Initiated_By_Driver">
@@ -1158,6 +1170,66 @@
 										</State>
 										<State name="Waiting_Driver_Strating_Command">
 											<unless>
+												<Transition kind="restart">
+													<target>
+														<StateRef name="Waiting_Driver_Selection"/>
+													</target>
+													<condition>
+														<!-- Current_Level = L1 or Current_Level = L2 or Current_Level = L3 -->
+														<NAryOp name="6" operator="or">
+															<operands>
+																<!-- Current_Level = L1 -->
+																<BinaryOp name="25" operator="=">
+																	<operands>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="Current_Level"/>
+																			</path>
+																		</IdExpression>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="L1"/>
+																			</path>
+																		</IdExpression>
+																	</operands>
+																</BinaryOp>
+																<!-- Current_Level = L2 -->
+																<BinaryOp name="26" operator="=">
+																	<operands>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="Current_Level"/>
+																			</path>
+																		</IdExpression>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="L2"/>
+																			</path>
+																		</IdExpression>
+																	</operands>
+																</BinaryOp>
+																<!-- Current_Level = L3 -->
+																<BinaryOp name="27" operator="=">
+																	<operands>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="Current_Level"/>
+																			</path>
+																		</IdExpression>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="L3"/>
+																			</path>
+																		</IdExpression>
+																	</operands>
+																</BinaryOp>
+															</operands>
+														</NAryOp>
+													</condition>
+													<pragmas>
+														<ed:Transition oid="!ed/33561/3351/9B8/54be5f9134e5"/>
+													</pragmas>
+												</Transition>
 												<Transition>
 													<condition>
 														<IdExpression>
@@ -1167,73 +1239,6 @@
 														</IdExpression>
 													</condition>
 													<forks>
-														<ForkBranch kind="restart">
-															<target>
-																<StateRef name="Waiting_Driver_Selection"/>
-															</target>
-															<condition>
-																<!-- Current_Level = L1 or Current_Level = L2 or Current_Level = L3 -->
-																<NAryOp name="5" operator="or">
-																	<operands>
-																		<!-- Current_Level = L1 -->
-																		<BinaryOp name="21" operator="=">
-																			<operands>
-																				<IdExpression>
-																					<path>
-																						<ConstVarRef name="Current_Level"/>
-																					</path>
-																				</IdExpression>
-																				<IdExpression>
-																					<path>
-																						<ConstVarRef name="L1"/>
-																					</path>
-																				</IdExpression>
-																			</operands>
-																		</BinaryOp>
-																		<!-- Current_Level = L2 -->
-																		<BinaryOp name="22" operator="=">
-																			<operands>
-																				<IdExpression>
-																					<path>
-																						<ConstVarRef name="Current_Level"/>
-																					</path>
-																				</IdExpression>
-																				<IdExpression>
-																					<path>
-																						<ConstVarRef name="L2"/>
-																					</path>
-																				</IdExpression>
-																			</operands>
-																		</BinaryOp>
-																		<!-- Current_Level = L3 -->
-																		<BinaryOp name="23" operator="=">
-																			<operands>
-																				<IdExpression>
-																					<path>
-																						<ConstVarRef name="Current_Level"/>
-																					</path>
-																				</IdExpression>
-																				<IdExpression>
-																					<path>
-																						<ConstVarRef name="L3"/>
-																					</path>
-																				</IdExpression>
-																			</operands>
-																		</BinaryOp>
-																	</operands>
-																</NAryOp>
-															</condition>
-															<effect>
-																<Action>
-																	<pragmas>
-																		<ed:Action oid="!ed/232b8/6615/BC4/54aec6a892a"/>
-																	</pragmas>
-																</Action>
-															</effect>
-															<pragmas>
-																<ed:ForkBranch oid="!ed/2326f/6615/BC4/54aec4c66c78"/>
-															</pragmas>
-														</ForkBranch>
 														<ForkBranch kind="restart">
 															<target>
 																<StateRef name="Level_0"/>
@@ -1263,7 +1268,9 @@
 																</Action>
 															</effect>
 															<pragmas>
-																<ed:ForkBranch oid="!ed/23294/6615/BC4/54aec52c2b9"/>
+																<ed:ForkBranch oid="!ed/23294/6615/BC4/54aec52c2b9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+																	<comment>SRS § 5.4 state E21</comment>
+																</ed:ForkBranch>
 															</pragmas>
 														</ForkBranch>
 														<ForkBranch kind="restart">
@@ -1295,7 +1302,9 @@
 																</Action>
 															</effect>
 															<pragmas>
-																<ed:ForkBranch oid="!ed/2329d/6615/BC4/54aec54b3a17"/>
+																<ed:ForkBranch oid="!ed/2329d/6615/BC4/54aec54b3a17" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+																	<comment>SRS § 5.4 state E20</comment>
+																</ed:ForkBranch>
 															</pragmas>
 														</ForkBranch>
 													</forks>
@@ -1305,7 +1314,9 @@
 												</Transition>
 											</unless>
 											<pragmas>
-												<ed:State oid="!ed/2315e/6615/BC4/54aec2426db1"/>
+												<ed:State oid="!ed/2315e/6615/BC4/54aec2426db1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+													<comment>SRS § 5.4 state S20</comment>
+												</ed:State>
 											</pragmas>
 										</State>
 										<State name="Level_0">
@@ -1322,7 +1333,9 @@
 														</IdExpression>
 													</condition>
 													<pragmas>
-														<ed:Transition oid="!ed/b86c/549/AB8/54af9bcf27c5"/>
+														<ed:Transition oid="!ed/b86c/549/AB8/54af9bcf27c5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+															<comment>SRS § 5.4 state E31</comment>
+														</ed:Transition>
 													</pragmas>
 												</Transition>
 											</unless>
@@ -1371,7 +1384,9 @@
 												</Equation>
 											</data>
 											<pragmas>
-												<ed:State oid="!ed/231e1/6615/BC4/54aec35f793e"/>
+												<ed:State oid="!ed/231e1/6615/BC4/54aec35f793e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+													<comment>SRS § 5.4 state S23</comment>
+												</ed:State>
 											</pragmas>
 										</State>
 										<State name="Level_NTC">
@@ -1388,7 +1403,9 @@
 														</IdExpression>
 													</condition>
 													<pragmas>
-														<ed:Transition oid="!ed/b86d/549/AB8/54af9bd37c53"/>
+														<ed:Transition oid="!ed/b86d/549/AB8/54af9bd37c53" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+															<comment>SRS § 5.4 state E30</comment>
+														</ed:Transition>
 													</pragmas>
 												</Transition>
 											</unless>
@@ -1437,7 +1454,9 @@
 												</Equation>
 											</data>
 											<pragmas>
-												<ed:State oid="!ed/231f8/6615/BC4/54aec3c2f03"/>
+												<ed:State oid="!ed/231f8/6615/BC4/54aec3c2f03" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+													<comment>SRS § 5.4 state S22</comment>
+												</ed:State>
 											</pragmas>
 										</State>
 										<State name="SN_Mode">
@@ -1486,7 +1505,9 @@
 												</Equation>
 											</data>
 											<pragmas>
-												<ed:State oid="!ed/b84f/549/AB8/54af9b8a1ed"/>
+												<ed:State oid="!ed/b84f/549/AB8/54af9b8a1ed" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+													<comment>SRS § 4.6.3 C58 : &quot;(the ERTMS/ETCS level is “NTC”) AND (an acknowledgement request for SN mode is displayed to the driver) AND (the driver acknowledges) &quot;</comment>
+												</ed:State>
 											</pragmas>
 										</State>
 										<State name="UN_Mode">
@@ -1535,7 +1556,9 @@
 												</Equation>
 											</data>
 											<pragmas>
-												<ed:State oid="!ed/b865/549/AB8/54af9bc719e1"/>
+												<ed:State oid="!ed/b865/549/AB8/54af9bc719e1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+													<comment>SRS § 4.6.3 C60 : &quot; (an acknowledgement request for UN mode is displayed to the driver) AND (the driver acknowledges)&quot;</comment>
+												</ed:State>
 											</pragmas>
 										</State>
 										<State name="Waiting_Driver_Selection">
@@ -2153,7 +2176,9 @@
 												</Equation>
 											</data>
 											<pragmas>
-												<ed:State oid="!ed/c95e/1881/DF0/54b3f4f32a05"/>
+												<ed:State oid="!ed/c95e/1881/DF0/54b3f4f32a05" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+													<comment>SRS § 5.4 state S20</comment>
+												</ed:State>
 											</pragmas>
 										</State>
 									</states>
@@ -2437,17 +2462,17 @@
 									<positions>
 										<Point x="12435" y="14340"/>
 										<Point x="12171" y="14711"/>
-										<Point x="11906" y="15452"/>
-										<Point x="11668" y="16245"/>
+										<Point x="13732" y="14896"/>
+										<Point x="14367" y="15796"/>
 									</positions>
 									<labelSize>
 										<Size width="3784" height="635"/>
 									</labelSize>
 									<labelPos>
-										<Point x="9022" y="14684"/>
+										<Point x="10689" y="14922"/>
 									</labelPos>
 									<slashPos>
-										<Point x="11430" y="14684"/>
+										<Point x="13097" y="14922"/>
 									</slashPos>
 								</TransitionGE>
 								<TransitionGE presentable="!ed/23223/6615/BC4/54aec42d622a">
@@ -2467,27 +2492,10 @@
 										<Point x="20955" y="1614"/>
 									</slashPos>
 								</TransitionGE>
-								<TransitionGE presentable="!ed/2326f/6615/BC4/54aec4c66c78">
-									<positions>
-										<Point x="11668" y="16245"/>
-										<Point x="11245" y="17463"/>
-										<Point x="11377" y="27728"/>
-										<Point x="11509" y="28522"/>
-									</positions>
-									<labelSize>
-										<Size width="4683" height="714"/>
-									</labelSize>
-									<labelPos>
-										<Point x="8123" y="20267"/>
-									</labelPos>
-									<slashPos>
-										<Point x="11933" y="20267"/>
-									</slashPos>
-								</TransitionGE>
 								<TransitionGE presentable="!ed/23294/6615/BC4/54aec52c2b9">
 									<positions>
-										<Point x="11668" y="16245"/>
-										<Point x="14261" y="15796"/>
+										<Point x="14367" y="15796"/>
+										<Point x="16960" y="15346"/>
 										<Point x="21378" y="16325"/>
 										<Point x="22516" y="17939"/>
 									</positions>
@@ -2503,8 +2511,8 @@
 								</TransitionGE>
 								<TransitionGE presentable="!ed/2329d/6615/BC4/54aec54b3a17">
 									<positions>
-										<Point x="11668" y="16245"/>
-										<Point x="15505" y="16960"/>
+										<Point x="14367" y="15796"/>
+										<Point x="17410" y="17277"/>
 										<Point x="14764" y="17066"/>
 										<Point x="16722" y="20823"/>
 									</positions>
@@ -3199,6 +3207,23 @@
 										<Point x="27146" y="3043"/>
 									</positions>
 								</Edge>
+								<TransitionGE presentable="!ed/33561/3351/9B8/54be5f9134e5">
+									<positions>
+										<Point x="8916" y="14340"/>
+										<Point x="9763" y="19050"/>
+										<Point x="10610" y="23760"/>
+										<Point x="11509" y="28522"/>
+									</positions>
+									<labelSize>
+										<Size width="4260" height="714"/>
+									</labelSize>
+									<labelPos>
+										<Point x="7382" y="19182"/>
+									</labelPos>
+									<slashPos>
+										<Point x="10848" y="19182"/>
+									</slashPos>
+								</TransitionGE>
 							</presentationElements>
 						</NetDiagram>
 					</diagrams>
