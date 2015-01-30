@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="node" name="Train_Supervision">
+	<inputs>
+		<Variable name="ML">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Placeholder_Generic"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4ada0c/1AE7/E88/54cace551a36"/>
+			</pragmas>
+		</Variable>
+		<Variable name="MRSP_data">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="MRSP_and_Targets_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/44dec2/1AE7/E88/54cabd315282"/>
+			</pragmas>
+		</Variable>
+		<Variable name="From_Proc">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Placeholder_Generic"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4ad973/1AE7/E88/54cacb32dcf"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="TSV_to_Train">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TSV_to_Train_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4ad79b/1AE7/E88/54cabeb32003"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4add11/1AE7/E88/54cb349e6c7"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4add13/1AE7/E88/54cb349e1fc0"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L6">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Obu_BasicTypes_Pkg::Speed_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4add18/1AE7/E88/54cb349e65d3"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L5">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4add17/1AE7/E88/54cb349e30a2"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4add16/1AE7/E88/54cb349e5865"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Monitoring_Status_Type"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4add15/1AE7/E88/54cb349e2cbf"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L9">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4add1c/1AE7/E88/54cb349e7d7"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L8">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4add1b/1AE7/E88/54cb349e6e"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L7">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Monitoring_Status_Type"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4add1a/1AE7/E88/54cb349e781c"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L11">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Monitoring_Status_Type"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4add1f/1AE7/E88/54cb349e4382"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L10">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Obu_BasicTypes_Pkg::Speed_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/4add1e/1AE7/E88/54cb349e1455"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = Calc_Pre_Indication_Location_Condition(_null, _null, _null, _null, _null); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<!-- Calc_Pre_Indication_Location_Condition(_null, _null, _null, _null, _null) -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="Calc_Pre_Indication_Location_Condition"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/4add10/1AE7/E88/54cb349e1913"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 = Calc_RSM_Location_Condition(_null, _null, _null, _null, _null); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<!-- Calc_RSM_Location_Condition(_null, _null, _null, _null, _null) -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="Calc_RSM_Location_Condition"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/4add12/1AE7/E88/54cb349e52f3"/>
+			</pragmas>
+		</Equation>
+		<!-- _L3, _L4, _L5, _L6 = CSM_internal(_null, _null, _null, _null, _null, _null, _null... -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+				<VariableRef name="_L4"/>
+				<VariableRef name="_L5"/>
+				<VariableRef name="_L6"/>
+			</lefts>
+			<right>
+				<!-- CSM_internal(_null, _null, _null, _null, _null, _null, _null, _null, _null, _null... -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="CSM_internal"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/4add14/1AE7/E88/54cb349e11da"/>
+			</pragmas>
+		</Equation>
+		<!-- _L7, _L8, _L9 = Memory(_null, _null, _null); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L7"/>
+				<VariableRef name="_L8"/>
+				<VariableRef name="_L9"/>
+			</lefts>
+			<right>
+				<!-- Memory(_null, _null, _null) -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="Memory"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/4add19/1AE7/E88/54cb349e5e35"/>
+			</pragmas>
+		</Equation>
+		<!-- _L10, _L11 = SaDM_Commands(_null, _null, _null, _null, _null, _null, _null, _null... -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L10"/>
+				<VariableRef name="_L11"/>
+			</lefts>
+			<right>
+				<!-- SaDM_Commands(_null, _null, _null, _null, _null, _null, _null, _null, _null, _nul... -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="SaDM_Commands"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<NullRef/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/4add1d/1AE7/E88/54cb349e6931"/>
+			</pragmas>
+		</Equation>
+		<!-- () = CalcBrakingCurves_Pkg::CalcBrakingCurves(); -->
+		<Equation>
+			<right>
+				<!-- CalcBrakingCurves_Pkg::CalcBrakingCurves() -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="CalcBrakingCurves_Pkg::CalcBrakingCurves"/>
+							</operator>
+						</OpCall>
+					</operator>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/4add24/1AE7/E88/54cb34b2711b"/>
+			</pragmas>
+		</Equation>
+		<!-- () = SDM_Commands_Pkg::SDM_Commands(); -->
+		<Equation>
+			<right>
+				<!-- SDM_Commands_Pkg::SDM_Commands() -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="SDM_Commands_Pkg::SDM_Commands"/>
+							</operator>
+						</OpCall>
+					</operator>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/4add29/1AE7/E88/54cb34da3a79"/>
+			</pragmas>
+		</Equation>
+		<!-- () = SpeedSupervision_Integration_Pkg::SpeedSupervision_Integration(); -->
+		<Equation>
+			<right>
+				<!-- SpeedSupervision_Integration_Pkg::SpeedSupervision_Integration() -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="SpeedSupervision_Integration_Pkg::SpeedSupervision_Integration"/>
+							</operator>
+						</OpCall>
+					</operator>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/4add2e/1AE7/E88/54cb34ea6b54"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/32e6a1/1AE7/E88/54c96a0e3fdb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+			<diagrams>
+				<NetDiagram name="diagram_Train_Supervision_1" landscape="true" format="A4 (210 297)" oid="!ed/32e6a2/1AE7/E88/54c96a0e1e65">
+					<presentationElements>
+						<EquationGE presentable="!ed/4add10/1AE7/E88/54cb349e1913">
+							<position>
+								<Point x="6465" y="1985"/>
+							</position>
+							<size>
+								<Size width="1798" height="2503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/4add12/1AE7/E88/54cb349e52f3">
+							<position>
+								<Point x="12375" y="2020"/>
+							</position>
+							<size>
+								<Size width="2608" height="2221"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/4add14/1AE7/E88/54cb349e11da">
+							<position>
+								<Point x="6430" y="5301"/>
+							</position>
+							<size>
+								<Size width="1904" height="2592"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/4add19/1AE7/E88/54cb349e5e35">
+							<position>
+								<Point x="12445" y="5425"/>
+							</position>
+							<size>
+								<Size width="2468" height="2291"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/4add1d/1AE7/E88/54cb349e6931">
+							<position>
+								<Point x="6465" y="10064"/>
+							</position>
+							<size>
+								<Size width="2504" height="4990"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/4add24/1AE7/E88/54cb34b2711b">
+							<position>
+								<Point x="1782" y="6279"/>
+							</position>
+							<size>
+								<Size width="1781" height="1394"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/4add29/1AE7/E88/54cb34da3a79">
+							<position>
+								<Point x="12841" y="10442"/>
+							</position>
+							<size>
+								<Size width="1782" height="1394"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/4add2e/1AE7/E88/54cb34ea6b54">
+							<position>
+								<Point x="1421" y="9835"/>
+							</position>
+							<size>
+								<Size width="3985" height="7036"/>
+							</size>
+						</EquationGE>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

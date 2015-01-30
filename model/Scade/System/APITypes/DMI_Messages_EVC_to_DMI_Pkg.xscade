@@ -1,0 +1,1427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="DMI_Messages_EVC_to_DMI_Pkg">
+			<declarations>
+				<Type name="DMI_Dynamic_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13aec/35F0/7C4/54c644f9119a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c01/35F0/7C4/54c6607370af" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="v_train">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c14/35F0/7C4/54c661086d72" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Estimated train speed at the actual time,</comment>
+											<comment>without tolerance added.</comment>
+											<comment>Used to set the needle speed position.</comment>
+											<comment>Estimated train speed at the actual time,</comment>
+											<comment>without tolerance added.</comment>
+											<comment>Used to set the needle speed position.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="location_front_train">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c1e/35F0/7C4/54c6621f6866" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Front  train  location  in  odometer  co-</comment>
+											<comment>ordinates, estimated without tolerance added. The odometer co-ordinates are always counted upwards (positive) and start at 0 when powering on the EVC</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="location_brake_target">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c28/35F0/7C4/54c662a6191d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Distance to brake target (A2).</comment>
+											<comment></comment>
+											<comment>Distance from the train front to the position, without corrected tolerance, of the next brake target point, which has influence on the braking curve.</comment>
+											<comment></comment>
+											<comment>Used to display the target distance bar information.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="v_target">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c32/35F0/7C4/54c66391526f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Speed   to   be   applied   at   the   next</comment>
+											<comment>restrictive static speed profile discontinuity which has influence on the braking curve.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="v_permitted">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c4c/35F0/7C4/54c664812d5b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Permitted  speed  according  to  current</comment>
+											<comment>ATP rules</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="v_release">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c53/35F0/7C4/54c664d94da8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Release speed at the EOA, shown when</comment>
+											<comment>release  speed  is  lower  than  permitted speed</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="location_brake_curve_starting_point">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c54/35F0/7C4/54c665902cb4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Position,   in   odometer   co-ordinates,</comment>
+											<comment>without tolerance correction, of the next brake starting point for the next brake target.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="v_intervention">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c5e/35F0/7C4/54c665ed1042" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Intervention speed</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="mode">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_MODE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c71/35F0/7C4/54c6665953f5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Onboard operating mode.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="level">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::DMI_level_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c7b/35F0/7C4/54c666a64967" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Onboard level of operation</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_c">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_C"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c9e/35F0/7C4/54c668457164" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Country Id</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_c_valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c9f/35F0/7C4/54c668475f60" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Tells whether the value of the country</comment>
+											<comment>Id (DMI_NID_C) is known or not. Unknown value of DMI_NID_C shall be ignored</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="m_warning">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::M_WARNING"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cb1/35F0/7C4/54c669233dde" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Warning</comment>
+											<comment>indicator</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="sup_status">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::M_SUPERVISION_STATUS"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cc9/35F0/7C4/54c66b683369" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Current supervision status</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="location_LOA">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cdf/35F0/7C4/54c66fa93f14" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Position,   in   absolute   odometer   co-</comment>
+											<comment>ordinates, without tolerance correction, of the limit of authority.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="v_LOA">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13ce9/35F0/7C4/54c66ff625dd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Speed at the Limit Of Authority</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="location_KP_Balise_Track">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cf3/35F0/7C4/54c6703c569" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Kilometer point of the reference balise</comment>
+											<comment>on the track.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="distance_KP_Balise">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cfd/35F0/7C4/54c670d3dcf" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Distance to the reference balise.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="distance_to_TSA">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d07/35F0/7C4/54c6716645ce" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Distance</comment>
+											<comment>between the front of the train to the tunnel area</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13aeb/35F0/7C4/54c644f928be" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Dynamic Data like current train speed, target data</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_Entry_Request_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13af0/35F0/7C4/54c644f95a1c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c15/656B/15A8/54c771ea70c3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="entry_request">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::DMI_List_Entry_Request_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bb4/656B/15A8/54c767bf2fbc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Tells which data have to be input</comment>
+											<comment>by the driver.</comment>
+											<comment>The request has to</comment>
+											<comment>be carried out immediately by the</comment>
+											<comment>DMI / driver</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13aef/35F0/7C4/54c644f91e1b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Request to input cetain data (driver id, train data, etc.)</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_Menu_Request_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13af2/35F0/7C4/54c644f93294" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c54/656B/15A8/54c77221ace" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="available_menu">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::DMI_Available_Menu_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2b863/6ED3/218/54c75fdb755f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Mask giving the list of enabled</comment>
+											<comment>or disabled menus/buttons</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13af1/35F0/7C4/54c644f915fe" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Request to enable/disable driver menus and buttons</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_Text_Message_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13afa/35F0/7C4/54c646333e6d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c77/656B/15A8/54c7726b609a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_message">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_MESSAGE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c62/62ED/1258/54c79cf83acd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Counter used to identify</comment>
+											<comment>text messages sent for further acknowledgment or removal.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="q_text">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_TEXT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c6c/62ED/1258/54c79d4913bc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Predefined  messages  to</comment>
+											<comment>be displayed by the DMI.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="l_text">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="L_TEXT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c76/62ED/1258/54c79d9536e9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Length of the text to be displayed</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="x_text">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="X_TEXT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c80/62ED/1258/54c79dfd18da" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Text String</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="q_textClass">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_TEXTCLASS"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c8a/62ED/1258/54c79e3d3a1f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>EuroCab operational text message&#x9;(important</comment>
+											<comment>information)</comment>
+											<comment>Auxiliary&#x9;information from trackside</comment>
+											<comment>Important&#x9;information from trackside</comment>
+											<comment>spare</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="q_textConfirm">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_TEXTCONFIRM"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c94/62ED/1258/54c79f085d2e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Informative</comment>
+											<comment>Ack. required</comment>
+											<comment>Spare Remove text spare</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13af9/35F0/7C4/54c64633f17" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Predefined or Plain Text Message</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_EVC_Coded_Train_Data_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13b02/35F0/7C4/54c646346ec4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c2a/656B/15A8/54c771ff7aa5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="trainID">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::DMI_train_id_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c03/62ED/1258/54c7912715af" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Id of the train as displayed at the DMI</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="trainLength">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::DMI_train_length_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c0d/62ED/1258/54c791874fce" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Length of the train</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="brakeModel">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::DMI_brakeModel_id_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c17/62ED/1258/54c791fe5192" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Brake-Model Id</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="vmax">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::DMI_vMax_id_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c21/62ED/1258/54c7924064de" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Maximal permitted speed of the train</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="mAxleLoad">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_AXLELOADCAT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c2b/62ED/1258/54c792d03df0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Maximum Axle Load for the train (Category)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="airTightSystem">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::DMI_airtightSystem_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c4e/62ED/1258/54c79b8f6971" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>AirtightSystem</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="mLoadingGauge">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::DMI_loadingGauge_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c58/62ED/1258/54c79c047542" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Loading Gauge of the train</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13b01/35F0/7C4/54c646347632" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: EVC Coded Train Data to be validated by EVC</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_Track_Description_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13b0a/35F0/7C4/54c646355698" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c7e/656B/15A8/54c7726e7643" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="speedProfiles">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::DMI_speedProfile_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13dbf/62ED/1258/54c7c31e5a33"/>
+									</pragmas>
+								</Field>
+								<Field name="gradientProfiles">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::DMI_gradientProfile_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13dcf/62ED/1258/54c7c3652fcf"/>
+									</pragmas>
+								</Field>
+								<Field name="trackConditions">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::DMI_trackCondition_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13dd6/62ED/1258/54c7c369ab7"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13b09/35F0/7C4/54c646356c7b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Description of track (speed and gradient profile…)</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_Identifier_Request_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13b12/35F0/7C4/54c646365337" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c4d/656B/15A8/54c7721a2bc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="ERTMS_Version">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_VERSION"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c3b/2A80/E60/54c89ec7beb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>MSB 4 bits gives SRS major version number</comment>
+											<comment>LSB 4 bits gives SRS minor version number</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="EVC_Version">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_VERSION"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c45/2A80/E60/54c89f237c5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>MSB 4 bits give implementation major version number.</comment>
+											<comment>LSB 4 bits give implementation minor version number.</comment>
+											<comment>It should correspond to the version of the communication protocol.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="l_name">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="L_TEXT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c4f/2A80/E60/54c89ffe1ea1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Length of the EVC Name</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="x_name">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="X_TEXT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c59/2A80/E60/54c8a05c61f9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>EVC Name</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="l_extra">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="L_TEXT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c63/2A80/E60/54c8a0a17daf" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Length of extra information string</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13b11/35F0/7C4/54c646365500" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Request for the DMI version information</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_Icons_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13b1a/35F0/7C4/54c6471334c9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c46/656B/15A8/54c7721528d4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13b19/35F0/7C4/54c647134736" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Request to display one or more icon(s) in any area.</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_System_Version_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13b22/35F0/7C4/54c6471436c6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c70/656B/15A8/54c772601b8e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_version">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_VERSION"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c7f/2A80/E60/54c8a3f11cac" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Code for EVC operated system version represented by a minor and a major code.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13b21/35F0/7C4/54c647141175" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Display the EVC operated system version</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_Display_Control_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13b2a/35F0/7C4/54c64714487b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="cab_is_active">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bff/656B/15A8/54c768ef70e3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Status of cab activation.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c0e/656B/15A8/54c771dd61c1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13b29/35F0/7C4/54c647144b78" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Enables to control state of DMI display (cabin activation).</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_EVC_Level_Data_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13b32/35F0/7C4/54c647152589" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c31/656B/15A8/54c772036da7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="levelList">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_Types_Pkg::DMI_LevelList_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13e47/62ED/1258/54c7caf87d99"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13b31/35F0/7C4/54c6471578de" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Gives the list of available levels.</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_EVC_Radio_Net_Data_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13b3a/35F0/7C4/54c647153e66" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c38/656B/15A8/54c772095a03" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_mn">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_MN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13e51/62ED/1258/54c7cd11715f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>radio network id</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13b39/35F0/7C4/54c647153bab" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Gives the list of available radio network</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_EVC_VBC_Datat_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13b42/35F0/7C4/54c647ff70db" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c3f/656B/15A8/54c7721225dc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13b41/35F0/7C4/54c647ff16c7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Gives the list of VBCs stored on-board</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_User_Function_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13b4a/35F0/7C4/54c648061084" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c85/656B/15A8/54c7727432ef" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13b49/35F0/7C4/54c64806407e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Provide user specific function</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_EVC_Coded_SetVBC_Data_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13b52/35F0/7C4/54c648063f52" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c23/656B/15A8/54c771fa1332" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13b51/35F0/7C4/54c648064fe" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Coded VBC data (set) to be validated by driver</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_EVC_Coded_RmVBC_Data_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13b5a/35F0/7C4/54c64807160c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c1c/656B/15A8/54c771f33c8d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13b59/35F0/7C4/54c6480738dd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Coded VBC data (remove) to be validated by driver</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_NTC_Input_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13b62/35F0/7C4/54c648b81cca" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c69/656B/15A8/54c77259333f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13b61/35F0/7C4/54c648b83b90" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Input information related to NTC</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_NTC_Data_Entry_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13b6a/35F0/7C4/54c648b81379" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="system_clock">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13c5b/656B/15A8/54c772386efa" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>System Clock of the OBU</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13b69/35F0/7C4/54c648b89f5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>EVC -&gt; DMI: Request to input cetain data (driver id, train data, etc.)</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/13ae7/35F0/7C4/54c644f9cf1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/13ae8/35F0/7C4/54c644f94795" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/13ae9/35F0/7C4/54c644f9491f" blockKind="types" columnsSize="0, 196, 239, 556"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/13aea/35F0/7C4/54c644f92a11" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

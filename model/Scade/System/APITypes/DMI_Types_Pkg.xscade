@@ -1,0 +1,1996 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="DMI_Types_Pkg">
+			<declarations>
+				<Constant name="cDMI_maxTrackCondProfile">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="4"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/13cd8/5512/1860/54c8e3fa71ca" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Reduced (4)</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cDMI_maxSpeedProfile">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="4"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/13cca/5512/1860/54c8e3fa1bdf" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Reduced (4)</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cDMI_maxLevels">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="4"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/13cbc/5512/1860/54c8e3fa509e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>maximum number of elements in the level list</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cDMI_maxGradientProfile">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="4"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/13cae/5512/1860/54c8e3fa7db3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Reduced (4)</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Type name="NID_STM">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13df1/77E9/1E10/54c8d61f4970" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>See §6.2.2 of DMI document</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="M_WARNING">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="no_warning">
+									<pragmas>
+										<ed:Value oid="!ed/13de9/77E9/1E10/54c8d61f4e9"/>
+									</pragmas>
+								</Value>
+								<Value name="intervention">
+									<pragmas>
+										<ed:Value oid="!ed/13dea/77E9/1E10/54c8d61f701d"/>
+									</pragmas>
+								</Value>
+								<Value name="over_speed_warning_indication">
+									<pragmas>
+										<ed:Value oid="!ed/13deb/77E9/1E10/54c8d61f5e1c"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13de8/77E9/1E10/54c8d61f2b5b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Status&#x9;of&#x9;indication,&#x9;warning&#x9;and</comment>
+							<comment>intervention</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="M_SUPERVISION_STATUS">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="CSM">
+									<pragmas>
+										<ed:Value oid="!ed/13ddb/77E9/1E10/54c8d61f7312" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Ceiling Speed Monitoring</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="PIM">
+									<pragmas>
+										<ed:Value oid="!ed/13ddc/77E9/1E10/54c8d61f448d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>??Taken from Spec??</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="TSM">
+									<pragmas>
+										<ed:Value oid="!ed/13ddd/77E9/1E10/54c8d61f1224" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Target Speed Monitoring</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="RSM">
+									<pragmas>
+										<ed:Value oid="!ed/13dde/77E9/1E10/54c8d61f2539" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Release Speed Monitoring</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="supervision_status_unknown">
+									<pragmas>
+										<ed:Value oid="!ed/13ddf/77E9/1E10/54c8d61f72a0"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13dda/77E9/1E10/54c8d61f1a61" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Supervision Status</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_vMax_id_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="number">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13dcc/77E9/1E10/54c8d61f2e17" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Number ofvalid  digits in the id</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13dcd/77E9/1E10/54c8d61f48b9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13dce/77E9/1E10/54c8d61f1ee5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig3">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13dcf/77E9/1E10/54c8d61f485b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13dcb/77E9/1E10/54c8d61f26fb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Max permitted speed for the train as shown on the DMI</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_train_length_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="number">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13db2/77E9/1E10/54c8d61f3e56" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Number ofvalid  digits in the id</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13db3/77E9/1E10/54c8d61f5eeb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13db4/77E9/1E10/54c8d61f4f5c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig3">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13db5/77E9/1E10/54c8d61f62a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig4">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13db6/77E9/1E10/54c8d61fd4f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13db1/77E9/1E10/54c8d61f2081" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>The length of the train as shown at the DMI</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_train_id_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="number">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d9d/77E9/1E10/54c8d61f757f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Number ofvalid  digits in the id</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d9e/77E9/1E10/54c8d61f3d33" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d9f/77E9/1E10/54c8d61f5091" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig3">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13da0/77E9/1E10/54c8d61f7879" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig4">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13da1/77E9/1E10/54c8d61f3668" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig5">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13da2/77E9/1E10/54c8d61f898" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d9c/77E9/1E10/54c8d61f2651" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>The train id as entered at the DMI</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_trackConditionElement_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="d_trackcond">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_TRACKCOND"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d82/77E9/1E10/54c8d61f3608" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Position,  in  absolute  odometer</comment>
+											<comment>co-ordinates, of the start location of  a  point  where  an announcement  of  a  track condition must be shown on the DMI.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="m_trackcond">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_TRACKCOND"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d83/77E9/1E10/54c8d61fd98" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Type of track condition</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d81/77E9/1E10/54c8d61f6ba1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>An element of the track-condition profile </comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_trackConditionArray_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="DMI_trackConditionElement_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cDMI_maxSpeedProfile"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d77/77E9/1E10/54c8d61f3d19" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Track-Condition Profile for use in DMI Interface</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_trackCondition_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="nIter">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d6f/77E9/1E10/54c8d61f3775" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>number of </comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="speedProfiles">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_SpeedProfileArray_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d70/77E9/1E10/54c8d61f4a81" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Position,  in  absolute  odometer</comment>
+											<comment>co-ordinates, without tolerance correction, of the start location of a speed discontinuity in the most restrictive static speed profile</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d6e/77E9/1E10/54c8d61f4d61" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Speed Profile for Display at DMI</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_SR_Data_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d65/77E9/1E10/54c8d61f1bb9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid indicator for the packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d64/77E9/1E10/54c8d61f7bd7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>DMI &lt;-&gt; EVC: Default or Entered Staff Responsible Data</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_speedProfileElement_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="d_static">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_STATIC"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d5c/77E9/1E10/54c8d61f203e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Distance</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="v_static">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="V_STATIC"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d5d/77E9/1E10/54c8d61f455e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Speed</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d5b/77E9/1E10/54c8d61f6bce" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>An element of the speed profile </comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_SpeedProfileArray_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="DMI_speedProfileElement_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cDMI_maxSpeedProfile"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d51/77E9/1E10/54c8d61f44f2" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Speed Profile for use in DMI Interface</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_speedProfile_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="nIter">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d49/77E9/1E10/54c8d61f2ab2" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>number of </comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="speedProfiles">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_SpeedProfileArray_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d4a/77E9/1E10/54c8d61f7404" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Position,  in  absolute  odometer</comment>
+											<comment>co-ordinates, without tolerance correction, of the start location of a speed discontinuity in the most restrictive static speed profile</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d48/77E9/1E10/54c8d61f1266" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Speed Profile for Display at DMI</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_mAxleLoad_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="number">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d3c/77E9/1E10/54c8d61f2971" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Number ofvalid  digits in the id</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d3d/77E9/1E10/54c8d61f3c7b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Axle Load in 0,5 tons (tens, before</comment>
+											<comment>decimal pt.)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d3e/77E9/1E10/54c8d61f12e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Axle Load in 0,5 tons (ones, before</comment>
+											<comment>decimal pt.)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig3">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d3f/77E9/1E10/54c8d61f1bcf" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Axle  Load in  0,5  tons (hundredth,</comment>
+											<comment>after decimal pt.)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d3b/77E9/1E10/54c8d61f6e71" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Maximum axle load for the train</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_loadingGauge_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="number">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d2b/77E9/1E10/54c8d61f32c6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Number o fvalid  digits in the id</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d2c/77E9/1E10/54c8d61f6555" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d2d/77E9/1E10/54c8d61f7120" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig3">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d2e/77E9/1E10/54c8d61f214b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d2a/77E9/1E10/54c8d61f1cd3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Loading Gauge</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_LevelList_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="levelList">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_level_array_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d1d/77E9/1E10/54c8d61f5e82"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d1c/77E9/1E10/54c8d61f3e15" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>List of active levels. In case of level = STM also the NID_STM is to be used</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_level_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="level">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_LEVEL"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d13/77E9/1E10/54c8d61f4ebb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>active level</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_stm">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_STM"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d14/77E9/1E10/54c8d61f38fb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>only relevant when level is stm</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d12/77E9/1E10/54c8d61f119d"/>
+					</pragmas>
+				</Type>
+				<Type name="DMI_level_array_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="DMI_level_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cDMI_maxLevels"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d08/77E9/1E10/54c8d61f69cc"/>
+					</pragmas>
+				</Type>
+				<Type name="DMI_gradientProfileElement_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="d_gradient">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_GRADIENT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cff/77E9/1E10/54c8d61f1588" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Position,  in  absolute  odometer</comment>
+											<comment>co-ordinates, without tolerance correction, of the start location of a gradient change</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="g_a">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="G_A"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d00/77E9/1E10/54c8d61f6eed" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Gradient value  of  a  part of  the</comment>
+											<comment>track</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="q_gdir">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_GDIR"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13d01/77E9/1E10/54c8d61f4105" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Indicates   the   direction   of   the</comment>
+											<comment>gradient: downhill</comment>
+											<comment>uphill</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13cfe/77E9/1E10/54c8d61f6810" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>An element of the gradient profile </comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_gradientProfileArray_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="DMI_gradientProfileElement_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cDMI_maxGradientProfile"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13cf2/77E9/1E10/54c8d61f7999" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Speed Profile for use in DMI Interface</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_gradientProfile_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="nIter">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cea/77E9/1E10/54c8d61f7c39" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>number of </comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="gradientProfiles">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_SpeedProfileArray_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13ceb/77E9/1E10/54c8d61f7784" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Position,  in  absolute  odometer</comment>
+											<comment>co-ordinates, without tolerance correction, of the start location of a speed discontinuity in the most restrictive static speed profile</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13ce9/77E9/1E10/54c8d61f7f59" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Speed Profile for Display at DMI</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_brakeModel_id_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="number">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cd5/77E9/1E10/54c8d61f123b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Number o fvalid  digits in the id</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cd6/77E9/1E10/54c8d61fdd3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cd7/77E9/1E10/54c8d61f73b2" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig3">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cd8/77E9/1E10/54c8d61f338d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13cd4/77E9/1E10/54c8d61f55b4"/>
+					</pragmas>
+				</Type>
+				<Type name="DMI_airtightSystem_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="number">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cc4/77E9/1E10/54c8d61f10bc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Number ofvalid  digits in the id</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cc5/77E9/1E10/54c8d61f557d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cc6/77E9/1E10/54c8d61f7dff" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="dig3">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="BCD"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cc7/77E9/1E10/54c8d61f3057" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Digit</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13cc3/77E9/1E10/54c8d61f4f86" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Train fitted with airtight system</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="BCD">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13cae/77E9/1E10/54c8d61f3668" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Binary Coded Digit (Range 0..9)</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_StatusSet_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="Running_state">
+									<pragmas>
+										<ed:Value oid="!ed/13d73/7DB/31C/54c8e2782f0f"/>
+									</pragmas>
+								</Value>
+								<Value name="Starting_state">
+									<pragmas>
+										<ed:Value oid="!ed/13d74/7DB/31C/54c8e2785fa5"/>
+									</pragmas>
+								</Value>
+								<Value name="Failure_state">
+									<pragmas>
+										<ed:Value oid="!ed/13d75/7DB/31C/54c8e27832d5"/>
+									</pragmas>
+								</Value>
+								<Value name="Running_not_active_state">
+									<pragmas>
+										<ed:Value oid="!ed/13d76/7DB/31C/54c8e2784fdc"/>
+									</pragmas>
+								</Value>
+								<Value name="Train_Speed_Overflow">
+									<pragmas>
+										<ed:Value oid="!ed/13d77/7DB/31C/54c8e27824b0"/>
+									</pragmas>
+								</Value>
+								<Value name="Invalid_track_condition">
+									<pragmas>
+										<ed:Value oid="!ed/13d78/7DB/31C/54c8e278136d"/>
+									</pragmas>
+								</Value>
+								<Value name="Invalid_predefined_text_message">
+									<pragmas>
+										<ed:Value oid="!ed/13d79/7DB/31C/54c8e2786cb8"/>
+									</pragmas>
+								</Value>
+								<Value name="Invalid_text_message">
+									<pragmas>
+										<ed:Value oid="!ed/13d7a/7DB/31C/54c8e27868bd"/>
+									</pragmas>
+								</Value>
+								<Value name="HW_warning_temp_reached">
+									<pragmas>
+										<ed:Value oid="!ed/13d7b/7DB/31C/54c8e27833ad"/>
+									</pragmas>
+								</Value>
+								<Value name="TFT_OFF_temp_reached">
+									<pragmas>
+										<ed:Value oid="!ed/13d7c/7DB/31C/54c8e27851d3"/>
+									</pragmas>
+								</Value>
+								<Value name="Device_OFF_temp_reached">
+									<pragmas>
+										<ed:Value oid="!ed/13d7d/7DB/31C/54c8e2786b1"/>
+									</pragmas>
+								</Value>
+								<Value name="Over_temperature">
+									<pragmas>
+										<ed:Value oid="!ed/13d7e/7DB/31C/54c8e2785596"/>
+									</pragmas>
+								</Value>
+								<Value name="Backlight_on_off">
+									<pragmas>
+										<ed:Value oid="!ed/13d7f/7DB/31C/54c8e278e18"/>
+									</pragmas>
+								</Value>
+								<Value name="FAN_blocked">
+									<pragmas>
+										<ed:Value oid="!ed/13d80/7DB/31C/54c8e2786bf1"/>
+									</pragmas>
+								</Value>
+								<Value name="Power_supply_key_switch_off">
+									<pragmas>
+										<ed:Value oid="!ed/13d81/7DB/31C/54c8e278177e"/>
+									</pragmas>
+								</Value>
+								<Value name="Watchdog_not_running">
+									<pragmas>
+										<ed:Value oid="!ed/13d82/7DB/31C/54c8e27873fd"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d72/7DB/31C/54c8e27811c8"/>
+					</pragmas>
+				</Type>
+				<Type name="DMI_Request_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="Start_of_mission">
+									<pragmas>
+										<ed:Value oid="!ed/13d37/7DB/31C/54c8e2784e2f"/>
+									</pragmas>
+								</Value>
+								<Value name="Shunting_entry">
+									<pragmas>
+										<ed:Value oid="!ed/13d38/7DB/31C/54c8e27856ac"/>
+									</pragmas>
+								</Value>
+								<Value name="Shunting_exit">
+									<pragmas>
+										<ed:Value oid="!ed/13d39/7DB/31C/54c8e278fcb"/>
+									</pragmas>
+								</Value>
+								<Value name="Non_leading">
+									<pragmas>
+										<ed:Value oid="!ed/13d3a/7DB/31C/54c8e2783519"/>
+									</pragmas>
+								</Value>
+								<Value name="Non_leading_exit">
+									<pragmas>
+										<ed:Value oid="!ed/13d3b/7DB/31C/54c8e27839e0"/>
+									</pragmas>
+								</Value>
+								<Value name="Maintain_shunting">
+									<pragmas>
+										<ed:Value oid="!ed/13d3c/7DB/31C/54c8e2785966"/>
+									</pragmas>
+								</Value>
+								<Value name="Level_entry_request">
+									<pragmas>
+										<ed:Value oid="!ed/13d3d/7DB/31C/54c8e278d76"/>
+									</pragmas>
+								</Value>
+								<Value name="Override_EOA">
+									<pragmas>
+										<ed:Value oid="!ed/13d3e/7DB/31C/54c8e27824ca"/>
+									</pragmas>
+								</Value>
+								<Value name="Override_route_unsuitability">
+									<pragmas>
+										<ed:Value oid="!ed/13d3f/7DB/31C/54c8e27841f3"/>
+									</pragmas>
+								</Value>
+								<Value name="Request_for_radio_network_entry">
+									<pragmas>
+										<ed:Value oid="!ed/13d40/7DB/31C/54c8e2787fa"/>
+									</pragmas>
+								</Value>
+								<Value name="Request_for_train_data">
+									<pragmas>
+										<ed:Value oid="!ed/13d41/7DB/31C/54c8e2784890"/>
+									</pragmas>
+								</Value>
+								<Value name="Request_for_Adhesion_factor_data">
+									<pragmas>
+										<ed:Value oid="!ed/13d42/7DB/31C/54c8e2784d38"/>
+									</pragmas>
+								</Value>
+								<Value name="Request_for_SR_data">
+									<pragmas>
+										<ed:Value oid="!ed/13d43/7DB/31C/54c8e27830b4"/>
+									</pragmas>
+								</Value>
+								<Value name="Request_for_system_version">
+									<pragmas>
+										<ed:Value oid="!ed/13d44/7DB/31C/54c8e27823d5"/>
+									</pragmas>
+								</Value>
+								<Value name="Request_for_switching_train_data_entry">
+									<pragmas>
+										<ed:Value oid="!ed/13d45/7DB/31C/54c8e2785be4"/>
+									</pragmas>
+								</Value>
+								<Value name="Request_for_train_data_view">
+									<pragmas>
+										<ed:Value oid="!ed/13d46/7DB/31C/54c8e278d4"/>
+									</pragmas>
+								</Value>
+								<Value name="Request_to_show_geographical_position">
+									<pragmas>
+										<ed:Value oid="!ed/13d47/7DB/31C/54c8e2786662"/>
+									</pragmas>
+								</Value>
+								<Value name="Language_changed">
+									<pragmas>
+										<ed:Value oid="!ed/13d48/7DB/31C/54c8e278458c"/>
+									</pragmas>
+								</Value>
+								<Value name="Train_data_entry_aborted">
+									<pragmas>
+										<ed:Value oid="!ed/13d49/7DB/31C/54c8e27811bf"/>
+									</pragmas>
+								</Value>
+								<Value name="Train_running_number_entry_aborted">
+									<pragmas>
+										<ed:Value oid="!ed/13d4a/7DB/31C/54c8e2786481"/>
+									</pragmas>
+								</Value>
+								<Value name="SR_data_entry_aborted">
+									<pragmas>
+										<ed:Value oid="!ed/13d4b/7DB/31C/54c8e27828e0"/>
+									</pragmas>
+								</Value>
+								<Value name="Radio_network_entry_aborted">
+									<pragmas>
+										<ed:Value oid="!ed/13d4c/7DB/31C/54c8e2783dc3"/>
+									</pragmas>
+								</Value>
+								<Value name="Request_to_hide_geographical_information">
+									<pragmas>
+										<ed:Value oid="!ed/13d4d/7DB/31C/54c8e2785149"/>
+									</pragmas>
+								</Value>
+								<Value name="Request_to_show_supervision_data">
+									<pragmas>
+										<ed:Value oid="!ed/13d4e/7DB/31C/54c8e278779a"/>
+									</pragmas>
+								</Value>
+								<Value name="Request_to_hide_supervision_data">
+									<pragmas>
+										<ed:Value oid="!ed/13d4f/7DB/31C/54c8e2781bad"/>
+									</pragmas>
+								</Value>
+								<Value name="Scroll_text_up">
+									<pragmas>
+										<ed:Value oid="!ed/13d50/7DB/31C/54c8e2787d4d"/>
+									</pragmas>
+								</Value>
+								<Value name="Scroll_text_down">
+									<pragmas>
+										<ed:Value oid="!ed/13d51/7DB/31C/54c8e2787614"/>
+									</pragmas>
+								</Value>
+								<Value name="Request_to_contact_last_known_RBC">
+									<pragmas>
+										<ed:Value oid="!ed/13d52/7DB/31C/54c8e2785d37"/>
+									</pragmas>
+								</Value>
+								<Value name="Request_to_use_short_number">
+									<pragmas>
+										<ed:Value oid="!ed/13d53/7DB/31C/54c8e2787416"/>
+									</pragmas>
+								</Value>
+								<Value name="Request_isolation">
+									<pragmas>
+										<ed:Value oid="!ed/13d54/7DB/31C/54c8e2784895"/>
+									</pragmas>
+								</Value>
+								<Value name="Track_Ahead_Free_is_validated">
+									<pragmas>
+										<ed:Value oid="!ed/13d55/7DB/31C/54c8e27845f6"/>
+									</pragmas>
+								</Value>
+								<Value name="The_Train_Integrity_request">
+									<pragmas>
+										<ed:Value oid="!ed/13d56/7DB/31C/54c8e2784aac"/>
+									</pragmas>
+								</Value>
+								<Value name="Set_VBC_request">
+									<pragmas>
+										<ed:Value oid="!ed/13d57/7DB/31C/54c8e2783daa"/>
+									</pragmas>
+								</Value>
+								<Value name="Remove_VBC_request">
+									<pragmas>
+										<ed:Value oid="!ed/13d58/7DB/31C/54c8e2783a3c"/>
+									</pragmas>
+								</Value>
+								<Value name="Show_tunnel_stopping_information">
+									<pragmas>
+										<ed:Value oid="!ed/13d59/7DB/31C/54c8e2787914"/>
+									</pragmas>
+								</Value>
+								<Value name="Hide_tunnel_stopping_information">
+									<pragmas>
+										<ed:Value oid="!ed/13d5a/7DB/31C/54c8e2783f53"/>
+									</pragmas>
+								</Value>
+								<Value name="NTC_data_entry_request">
+									<pragmas>
+										<ed:Value oid="!ed/13d5b/7DB/31C/54c8e27842ef"/>
+									</pragmas>
+								</Value>
+								<Value name="End_of_NTC_data_entry">
+									<pragmas>
+										<ed:Value oid="!ed/13d5c/7DB/31C/54c8e2785903"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13d36/7DB/31C/54c8e2781364"/>
+					</pragmas>
+				</Type>
+				<Type name="DMI_List_Entry_Request_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="Enter_revalidate_driver_identifier">
+									<pragmas>
+										<ed:Value oid="!ed/13cfc/7DB/31C/54c8e2782aa5"/>
+									</pragmas>
+								</Value>
+								<Value name="Enter_revalidate_train_running_number">
+									<pragmas>
+										<ed:Value oid="!ed/13cfd/7DB/31C/54c8e2787439"/>
+									</pragmas>
+								</Value>
+								<Value name="Enter_revalidate_ETCS_level">
+									<pragmas>
+										<ed:Value oid="!ed/13cfe/7DB/31C/54c8e2781d03"/>
+									</pragmas>
+								</Value>
+								<Value name="Enter_RBC_contact_menu">
+									<pragmas>
+										<ed:Value oid="!ed/13cff/7DB/31C/54c8e2781fbe"/>
+									</pragmas>
+								</Value>
+								<Value name="Validate_train_data">
+									<pragmas>
+										<ed:Value oid="!ed/13d00/7DB/31C/54c8e2783733"/>
+									</pragmas>
+								</Value>
+								<Value name="Enter_NTC_data">
+									<pragmas>
+										<ed:Value oid="!ed/13d01/7DB/31C/54c8e278d15"/>
+									</pragmas>
+								</Value>
+								<Value name="Spare">
+									<pragmas>
+										<ed:Value oid="!ed/13d02/7DB/31C/54c8e27851d"/>
+									</pragmas>
+								</Value>
+								<Value name="Enable_the_track_ahead_free_by_the_driver">
+									<pragmas>
+										<ed:Value oid="!ed/13d03/7DB/31C/54c8e2784ad"/>
+									</pragmas>
+								</Value>
+								<Value name="Disable_the_Track_Ahead_free_page">
+									<pragmas>
+										<ed:Value oid="!ed/13d04/7DB/31C/54c8e27810f6"/>
+									</pragmas>
+								</Value>
+								<Value name="Show_main_window">
+									<pragmas>
+										<ed:Value oid="!ed/13d05/7DB/31C/54c8e2784560"/>
+									</pragmas>
+								</Value>
+								<Value name="Hide_main_window">
+									<pragmas>
+										<ed:Value oid="!ed/13d06/7DB/31C/54c8e2786dc0"/>
+									</pragmas>
+								</Value>
+								<Value name="Hide_adhesion_factor_entry_window">
+									<pragmas>
+										<ed:Value oid="!ed/13d07/7DB/31C/54c8e2786f75"/>
+									</pragmas>
+								</Value>
+								<Value name="Hide_staff_responsible_entry_window">
+									<pragmas>
+										<ed:Value oid="!ed/13d08/7DB/31C/54c8e27856cf"/>
+									</pragmas>
+								</Value>
+								<Value name="Show_Set_VBC_validation_window">
+									<pragmas>
+										<ed:Value oid="!ed/13d09/7DB/31C/54c8e278487"/>
+									</pragmas>
+								</Value>
+								<Value name="Show_Remove_VBC_validation_window">
+									<pragmas>
+										<ed:Value oid="!ed/13d0a/7DB/31C/54c8e278147c"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13cfb/7DB/31C/54c8e2783d2e"/>
+					</pragmas>
+				</Type>
+				<Type name="DMI_Available_Menu_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="Menu_button_start_of_mission">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cc9/7DB/31C/54c8e2786129"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_shunting">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cca/7DB/31C/54c8e2783fe8"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_shunting_exit">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13ccb/7DB/31C/54c8e27851b7"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_non_leading">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13ccc/7DB/31C/54c8e2784a12"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_exit_non_leading">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13ccd/7DB/31C/54c8e2786fda"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_maintain_shunting">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cce/7DB/31C/54c8e278496b"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_driver_ID">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13ccf/7DB/31C/54c8e27835a8"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_train_running_number">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cd0/7DB/31C/54c8e2783912"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_ETCS_level">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cd1/7DB/31C/54c8e2787da3"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_train_data_modification">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cd2/7DB/31C/54c8e278df1"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_train_data_view">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cd3/7DB/31C/54c8e27823b6"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_staff_responsible_data">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cd4/7DB/31C/54c8e2782c4b"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_language_selection">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cd5/7DB/31C/54c8e2781b0f"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_override_EOA">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cd6/7DB/31C/54c8e27842a7"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_override_route_suitability">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cd7/7DB/31C/54c8e2787e8"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_adhesion_factor">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cd8/7DB/31C/54c8e2787cf8"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_system_version">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cd9/7DB/31C/54c8e278247d"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_volume">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cda/7DB/31C/54c8e2785a3e"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_luminance">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cdb/7DB/31C/54c8e27832bc"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_train_integrity">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cdc/7DB/31C/54c8e2787ff0"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_isolation">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cdd/7DB/31C/54c8e278876"/>
+									</pragmas>
+								</Field>
+								<Field name="Show_hourglass">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cde/7DB/31C/54c8e2781ee"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_use_short_number">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13cdf/7DB/31C/54c8e278721a"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_enter_RBC_data">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13ce0/7DB/31C/54c8e278acd"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_radio_network_ID">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13ce1/7DB/31C/54c8e278483e"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_contact_last_RBC">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13ce2/7DB/31C/54c8e2786fbb"/>
+									</pragmas>
+								</Field>
+								<Field name="Button_switch_for_train_data">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13ce3/7DB/31C/54c8e2783687"/>
+									</pragmas>
+								</Field>
+								<Field name="Fix_train_data_entry">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13ce4/7DB/31C/54c8e278544d"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_Set_VBC">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13ce5/7DB/31C/54c8e27866a9"/>
+									</pragmas>
+								</Field>
+								<Field name="Menu_button_Remove_VBC">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13ce6/7DB/31C/54c8e27865f7"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13cc8/7DB/31C/54c8e27813c8"/>
+					</pragmas>
+				</Type>
+				<Type name="M_BRAKEPERCT">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3b653/2D0B/E1C/54c8ee531e3e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Braking Percentage. </comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="NID_DRIVER">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/4f364/2D0B/E1C/54c8f5f87419" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Driver Identifier Number. (BCD)</comment>
+							<comment>It consists of up to 8 digits which</comment>
+							<comment>are entered left adjusted into the data field, the leftmost digit is the digit to be entered first. In case the</comment>
+							<comment>number is shorter than 8 digits, the remaining space is to be filled with special character</comment>
+							<comment>“F”.</comment>
+							<comment>Length of variable Minimum Value</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="DMI_DMI_Identifier_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="DMI_1">
+									<pragmas>
+										<ed:Value oid="!ed/3bc62/273B/1120/54ca0ab3467b"/>
+									</pragmas>
+								</Value>
+								<Value name="DMI_2">
+									<pragmas>
+										<ed:Value oid="!ed/3bc69/273B/1120/54ca0acd5fa8"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3bc61/273B/1120/54ca0a0d422d"/>
+					</pragmas>
+				</Type>
+				<Type name="DMI_Cabin_Identifier_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="cabin_A">
+									<pragmas>
+										<ed:Value oid="!ed/3bc72/273B/1120/54ca0ad81d4"/>
+									</pragmas>
+								</Value>
+								<Value name="cabin_B">
+									<pragmas>
+										<ed:Value oid="!ed/3bc73/273B/1120/54ca0ad87549"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3bc71/273B/1120/54ca0ad8352a"/>
+					</pragmas>
+				</Type>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/13ca5/77E9/1E10/54c8d5633867" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/13ca6/77E9/1E10/54c8d5631556" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/13ca7/77E9/1E10/54c8d5636010" blockKind="types" columnsSize="0, 316, 150, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/13ca8/77E9/1E10/54c8d56312be" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>
