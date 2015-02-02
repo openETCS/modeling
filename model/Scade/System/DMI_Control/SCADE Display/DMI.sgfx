@@ -92,7 +92,7 @@
                     <input name="InterpolatedDistanceToTarget" oid="6300f7cd-67b7-497b-af79-99ec1f0f6dc0" type="real">
                         <init>0.0</init>
                     </input>
-                    <input name="display_digit" oid="478ff4c5-e2fa-48bc-aeba-e0d7f91aabe3" representation="as_string" type="int^10">
+                    <input name="DriverID_Display" oid="478ff4c5-e2fa-48bc-aeba-e0d7f91aabe3" representation="as_string" type="int^10">
                         <init>[0]</init>
                     </input>
                     <input name="buttonEnabler" oid="52c1d351-f078-43fd-92c6-a955bbd6ab6d" representation="as_int_array" type="int^10">
@@ -100,6 +100,9 @@
                     </input>
                     <input name="window_mask" oid="376f3ce6-1379-41e9-966f-d36b216079b9" type="bool^15">
                         <init>[false]</init>
+                    </input>
+                    <input name="TrainRN_Display" oid="d59d99ec-863b-4249-b082-552ff2abbd57" representation="as_string" type="int^10">
+                        <init>[0]</init>
                     </input>
                 </inputs>
                 <outputs>
@@ -124,7 +127,10 @@
                     <output memory="true" name="keyarray" oid="767ffc57-254a-4d67-ab3e-b590f9a2a5af" type="bool^12">
                         <init>[false]</init>
                     </output>
-                    <output memory="true" name="driverID_confirm" oid="c562f6fc-6f35-46bd-94ea-32a8f0783909" type="bool">
+                    <output memory="true" name="TrainRN_Ack" oid="9a575055-155e-4764-a97b-ce88cd1aab14" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="DriverID_Ack" oid="71e8c165-4ba8-4c1b-b976-7b07385e931a" type="bool">
                         <init>false</init>
                     </output>
                 </outputs>
@@ -686,19 +692,29 @@
                                 </rotate>
                                 <orientation clockwise="false"/>
                                 <file name="driverid_display.ogfx" path="Widgets/DriverID_Display"/>
-                                <crc value="2318221540"/>
+                                <crc value="488497655"/>
                                 <inputParameters>
-                                    <parameter control="false" name="display_digit" oid="dfff46e7-ce0d-43af-93e7-a16b4efc99c6" representation="as_string" type="int^10">
-                                        <expr>display_digit</expr>
-                                        <init>[0]</init>
-                                    </parameter>
                                     <parameter control="false" name="titlewindow" oid="57b8157e-dde4-421a-abec-4f90bbcbb7f6" representation="index" type="int">
                                         <init>1</init>
                                     </parameter>
+                                    <parameter control="false" name="text_digit" oid="c04895a4-9703-4ad9-9f29-427cf92e8147" representation="index" type="int">
+                                        <init>1</init>
+                                    </parameter>
+                                    <parameter control="false" name="Ack_area" oid="41b71f03-aeea-4609-afcb-444faa70e6a5" representation="index" type="int">
+                                        <init>1</init>
+                                    </parameter>
+                                    <parameter control="false" name="TrainRN_Display" oid="c9a5ec19-f02b-4118-a424-f6dab8290163" representation="as_string" type="int^10">
+                                        <init>[0]</init>
+                                    </parameter>
+                                    <parameter control="false" name="DriverID_Display" oid="ffe4f3eb-a169-4e41-94c6-91f63f80d4d9" representation="as_string" type="int^10">
+                                        <expr>DriverID_Display</expr>
+                                        <init>[0]</init>
+                                    </parameter>
                                 </inputParameters>
                                 <outputParameters>
-                                    <parameter name="driverID_confirm" oid="e6b3f16c-0e3e-416e-8260-58abe2777e94" type="bool">
-                                        <expr>driverID_confirm</expr>
+                                    <parameter name="TrainRN_Ack" oid="e345eef5-f9ce-4a59-8baf-266d33f26416" type="bool"/>
+                                    <parameter name="DriverID_Ack" oid="37583e01-2199-4a2c-af52-f42f283b1cc3" type="bool">
+                                        <expr>DriverID_Ack</expr>
                                     </parameter>
                                 </outputParameters>
                             </properties>
@@ -850,20 +866,30 @@
                                 </rotate>
                                 <orientation clockwise="false"/>
                                 <file name="driverid_display.ogfx" path="Widgets/DriverID_Display"/>
-                                <crc value="2318221540"/>
+                                <crc value="488497655"/>
                                 <inputParameters>
-                                    <parameter control="false" name="display_digit" oid="dfff46e7-ce0d-43af-93e7-a16b4efc99c6" representation="as_string" type="int^10">
-                                        <expr>display_digit</expr>
-                                        <init>[0]</init>
-                                    </parameter>
                                     <parameter control="false" name="titlewindow" oid="57b8157e-dde4-421a-abec-4f90bbcbb7f6" representation="index" type="int">
                                         <init>2</init>
                                     </parameter>
+                                    <parameter control="false" name="text_digit" oid="c04895a4-9703-4ad9-9f29-427cf92e8147" representation="index" type="int">
+                                        <init>2</init>
+                                    </parameter>
+                                    <parameter control="false" name="Ack_area" oid="41b71f03-aeea-4609-afcb-444faa70e6a5" representation="index" type="int">
+                                        <init>2</init>
+                                    </parameter>
+                                    <parameter control="false" name="TrainRN_Display" oid="c9a5ec19-f02b-4118-a424-f6dab8290163" representation="as_string" type="int^10">
+                                        <expr>TrainRN_Display</expr>
+                                        <init>[0]</init>
+                                    </parameter>
+                                    <parameter control="false" name="DriverID_Display" oid="ffe4f3eb-a169-4e41-94c6-91f63f80d4d9" representation="as_string" type="int^10">
+                                        <init>[0]</init>
+                                    </parameter>
                                 </inputParameters>
                                 <outputParameters>
-                                    <parameter name="driverID_confirm" oid="e6b3f16c-0e3e-416e-8260-58abe2777e94" type="bool">
-                                        <expr>driverID_confirm</expr>
+                                    <parameter name="TrainRN_Ack" oid="e345eef5-f9ce-4a59-8baf-266d33f26416" type="bool">
+                                        <expr>TrainRN_Ack</expr>
                                     </parameter>
+                                    <parameter name="DriverID_Ack" oid="37583e01-2199-4a2c-af52-f42f283b1cc3" type="bool"/>
                                 </outputParameters>
                             </properties>
                             <children/>
@@ -1013,5 +1039,5 @@
     </children>
 </specification>
 
-<!-- crc32 : 1729219224 -->
+<!-- crc32 : 906987680 -->
 
