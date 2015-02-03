@@ -363,6 +363,83 @@
 						<ed:Constant oid="!ed/1525e/7922/4BC/54cf8c176370"/>
 					</pragmas>
 				</Constant>
+				<Constant name="Mainmenu_window_mask">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="15"/>
+							</size>
+						</Table>
+					</type>
+					<value>
+						<!-- [false, false, false, false, false, false, false, false, false, true, false, fals... -->
+						<DataArrayOp>
+							<data>
+								<ConstValue value="false"/>
+								<ConstValue value="false"/>
+								<ConstValue value="false"/>
+								<ConstValue value="false"/>
+								<ConstValue value="false"/>
+								<ConstValue value="false"/>
+								<ConstValue value="false"/>
+								<ConstValue value="false"/>
+								<ConstValue value="false"/>
+								<ConstValue value="true"/>
+								<ConstValue value="false"/>
+								<ConstValue value="false"/>
+								<ConstValue value="false"/>
+								<ConstValue value="false"/>
+								<ConstValue value="false"/>
+							</data>
+						</DataArrayOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/15063/3D44/928/54d09ccb6e28"/>
+					</pragmas>
+				</Constant>
+				<Constant name="AllButtonsDisabled">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="10"/>
+							</size>
+						</Table>
+					</type>
+					<value>
+						<!-- [2, 2, 2, 2, 2, 2, 2, 2, 2, 2] -->
+						<DataArrayOp>
+							<data>
+								<ConstValue value="2"/>
+								<ConstValue value="2"/>
+								<ConstValue value="2"/>
+								<ConstValue value="2"/>
+								<ConstValue value="2"/>
+								<ConstValue value="2"/>
+								<ConstValue value="2"/>
+								<ConstValue value="2"/>
+								<ConstValue value="2"/>
+								<ConstValue value="2"/>
+							</data>
+						</DataArrayOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1507a/3D44/928/54d09d461e6a"/>
+					</pragmas>
+				</Constant>
 				<Operator kind="node" name="Train">
 					<inputs>
 						<Variable name="TargetSpeed">
@@ -6154,7 +6231,7 @@
 								<ed:Variable oid="!ed/14d29/7922/4BC/54cf63286581"/>
 							</pragmas>
 						</Variable>
-						<Variable name="currentMode">
+						<Variable name="isStandByMode">
 							<type>
 								<NamedType>
 									<type>
@@ -6485,7 +6562,7 @@
 								<ed:Variable oid="!ed/4767/1772/E4C/54c7b7cc44bf"/>
 							</pragmas>
 						</Variable>
-						<Variable name="buttonEnabler">
+						<Variable name="ArrayButtonsEnabler">
 							<type>
 								<Table>
 									<type>
@@ -6501,19 +6578,19 @@
 								</Table>
 							</type>
 							<last>
-								<!-- [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] -->
-								<DataArrayOp name="6">
+								<!-- [2, 2, 2, 2, 2, 2, 2, 2, 2, 2] -->
+								<DataArrayOp name="13">
 									<data>
-										<ConstValue value="1"/>
-										<ConstValue value="1"/>
-										<ConstValue value="1"/>
-										<ConstValue value="1"/>
-										<ConstValue value="1"/>
-										<ConstValue value="1"/>
-										<ConstValue value="1"/>
-										<ConstValue value="1"/>
-										<ConstValue value="1"/>
-										<ConstValue value="1"/>
+										<ConstValue value="2"/>
+										<ConstValue value="2"/>
+										<ConstValue value="2"/>
+										<ConstValue value="2"/>
+										<ConstValue value="2"/>
+										<ConstValue value="2"/>
+										<ConstValue value="2"/>
+										<ConstValue value="2"/>
+										<ConstValue value="2"/>
+										<ConstValue value="2"/>
 									</data>
 								</DataArrayOp>
 							</last>
@@ -7889,25 +7966,6 @@
 												<ed:Variable oid="!ed/14eb0/3FD2/1720/54ce8a6b1b30"/>
 											</pragmas>
 										</Variable>
-										<Variable name="_L93">
-											<type>
-												<Table>
-													<type>
-														<NamedType>
-															<type>
-																<TypeRef name="int"/>
-															</type>
-														</NamedType>
-													</type>
-													<size>
-														<ConstValue value="10"/>
-													</size>
-												</Table>
-											</type>
-											<pragmas>
-												<ed:Variable oid="!ed/14c47/2DD/198/54ce8c6a7ce4"/>
-											</pragmas>
-										</Variable>
 										<Variable name="_L94">
 											<type>
 												<Table>
@@ -8065,48 +8123,6 @@
 											</right>
 											<pragmas>
 												<ed:Equation oid="!ed/14eb5/3FD2/1720/54ce8aac5d4f"/>
-											</pragmas>
-										</Equation>
-										<!-- buttonEnabler = _L93; -->
-										<Equation>
-											<lefts>
-												<VariableRef name="buttonEnabler"/>
-											</lefts>
-											<right>
-												<IdExpression>
-													<path>
-														<ConstVarRef name="_L93"/>
-													</path>
-												</IdExpression>
-											</right>
-											<pragmas>
-												<ed:Equation oid="!ed/14c3d/2DD/198/54ce8c6251e7"/>
-											</pragmas>
-										</Equation>
-										<!-- _L93 = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; -->
-										<Equation>
-											<lefts>
-												<VariableRef name="_L93"/>
-											</lefts>
-											<right>
-												<!-- [1, 1, 1, 1, 1, 1, 1, 1, 1, 1] -->
-												<DataArrayOp name="7">
-													<data>
-														<ConstValue value="1"/>
-														<ConstValue value="1"/>
-														<ConstValue value="1"/>
-														<ConstValue value="1"/>
-														<ConstValue value="1"/>
-														<ConstValue value="1"/>
-														<ConstValue value="1"/>
-														<ConstValue value="1"/>
-														<ConstValue value="1"/>
-														<ConstValue value="1"/>
-													</data>
-												</DataArrayOp>
-											</right>
-											<pragmas>
-												<ed:Equation oid="!ed/14c46/2DD/198/54ce8c6a3c2e"/>
 											</pragmas>
 										</Equation>
 										<!-- _L94 = DMI_ENTRY_REQUEST_adapter(_L92); -->
@@ -11707,30 +11723,6 @@
 																<Point x="15981" y="10186"/>
 															</positions>
 														</Edge>
-														<EquationGE presentable="!ed/14c3d/2DD/198/54ce8c6251e7">
-															<position>
-																<Point x="11774" y="6694"/>
-															</position>
-															<size>
-																<Size width="318" height="502"/>
-															</size>
-														</EquationGE>
-														<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/14c46/2DD/198/54ce8c6a3c2e" dstEquation="!ed/14c3d/2DD/198/54ce8c6251e7">
-															<positions>
-																<Point x="4736" y="6959"/>
-																<Point x="8281" y="6959"/>
-																<Point x="8281" y="6959"/>
-																<Point x="11827" y="6959"/>
-															</positions>
-														</Edge>
-														<EquationGE kind="OBJ_LIT" presentable="!ed/14c46/2DD/198/54ce8c6a3c2e">
-															<position>
-																<Point x="4524" y="6800"/>
-															</position>
-															<size>
-																<Size width="211" height="318"/>
-															</size>
-														</EquationGE>
 														<EquationGE presentable="!ed/14c61/2DD/198/54ce8d8a4fdb">
 															<position>
 																<Point x="6165" y="8758"/>
@@ -11818,7 +11810,7 @@
 																<Point x="6005" y="29289"/>
 															</labelPos>
 															<slashPos>
-																<Point x="7752" y="29290"/>
+																<Point x="7752" y="29289"/>
 															</slashPos>
 														</TransitionGE>
 														<StateGE display="split" presentable="!ed/14e43/7922/4BC/54cf7de75f40">
@@ -11843,7 +11835,7 @@
 																<Point x="19075" y="17620"/>
 															</labelPos>
 															<slashPos>
-																<Point x="21457" y="17622"/>
+																<Point x="21458" y="17621"/>
 															</slashPos>
 														</TransitionGE>
 														<StateGE presentable="!ed/14fb1/7922/4BC/54cf82993261">
@@ -11868,7 +11860,7 @@
 																<Point x="3650" y="18149"/>
 															</labelPos>
 															<slashPos>
-																<Point x="6403" y="18151"/>
+																<Point x="6403" y="18150"/>
 															</slashPos>
 														</TransitionGE>
 														<StateGE presentable="!ed/15171/7922/4BC/54cf8a22566d">
@@ -12007,7 +11999,7 @@
 											<condition>
 												<IdExpression>
 													<path>
-														<ConstVarRef name="currentMode"/>
+														<ConstVarRef name="isStandByMode"/>
 													</path>
 												</IdExpression>
 											</condition>
@@ -12073,10 +12065,10 @@
 												<ed:Equation oid="!ed/15218/689D/1884/54cfa6133d6c"/>
 											</pragmas>
 										</Equation>
-										<!-- buttonEnabler = _L7; -->
+										<!-- ArrayButtonsEnabler = _L7; -->
 										<Equation>
 											<lefts>
-												<VariableRef name="buttonEnabler"/>
+												<VariableRef name="ArrayButtonsEnabler"/>
 											</lefts>
 											<right>
 												<IdExpression>
@@ -12089,58 +12081,33 @@
 												<ed:Equation oid="!ed/15221/689D/1884/54cfa6661429"/>
 											</pragmas>
 										</Equation>
-										<!-- _L7 = [2, 2, 2, 2, 2, 2, 2, 2, 2, 2]; -->
+										<!-- _L7 = AllButtonsDisabled; -->
 										<Equation>
 											<lefts>
 												<VariableRef name="_L7"/>
 											</lefts>
 											<right>
-												<!-- [2, 2, 2, 2, 2, 2, 2, 2, 2, 2] -->
-												<DataArrayOp name="12">
-													<data>
-														<ConstValue value="2"/>
-														<ConstValue value="2"/>
-														<ConstValue value="2"/>
-														<ConstValue value="2"/>
-														<ConstValue value="2"/>
-														<ConstValue value="2"/>
-														<ConstValue value="2"/>
-														<ConstValue value="2"/>
-														<ConstValue value="2"/>
-														<ConstValue value="2"/>
-													</data>
-												</DataArrayOp>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="AllButtonsDisabled"/>
+													</path>
+												</IdExpression>
 											</right>
 											<pragmas>
 												<ed:Equation oid="!ed/15228/689D/1884/54cfa6883c50"/>
 											</pragmas>
 										</Equation>
-										<!-- _L8 = [false, false, false, false, false, false, false, false, false, true, false... -->
+										<!-- _L8 = Mainmenu_window_mask; -->
 										<Equation>
 											<lefts>
 												<VariableRef name="_L8"/>
 											</lefts>
 											<right>
-												<!-- [false, false, false, false, false, false, false, false, false, true, false, fals... -->
-												<DataArrayOp name="11">
-													<data>
-														<ConstValue value="false"/>
-														<ConstValue value="false"/>
-														<ConstValue value="false"/>
-														<ConstValue value="false"/>
-														<ConstValue value="false"/>
-														<ConstValue value="false"/>
-														<ConstValue value="false"/>
-														<ConstValue value="false"/>
-														<ConstValue value="false"/>
-														<ConstValue value="true"/>
-														<ConstValue value="false"/>
-														<ConstValue value="false"/>
-														<ConstValue value="false"/>
-														<ConstValue value="false"/>
-														<ConstValue value="false"/>
-													</data>
-												</DataArrayOp>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="Mainmenu_window_mask"/>
+													</path>
+												</IdExpression>
 											</right>
 											<pragmas>
 												<ed:Equation oid="!ed/15238/689D/1884/54cfa69e4883"/>
@@ -12148,62 +12115,7 @@
 										</Equation>
 									</data>
 									<pragmas>
-										<ed:State oid="!ed/14ebf/689D/1884/54cfa5c75c71" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-											<diagrams>
-												<NetDiagram name="diagram_OpenDesk_1" landscape="true" format="A4 (210 297)" oid="!ed/1507b/689D/1884/54cfa60e1be4">
-													<presentationElements>
-														<EquationGE presentable="!ed/15218/689D/1884/54cfa6133d6c">
-															<position>
-																<Point x="17515" y="2937"/>
-															</position>
-															<size>
-																<Size width="318" height="503"/>
-															</size>
-														</EquationGE>
-														<EquationGE presentable="!ed/15221/689D/1884/54cfa6661429">
-															<position>
-																<Point x="17515" y="1879"/>
-															</position>
-															<size>
-																<Size width="318" height="503"/>
-															</size>
-														</EquationGE>
-														<EquationGE kind="OBJ_LIT" presentable="!ed/15228/689D/1884/54cfa6883c50">
-															<position>
-																<Point x="13626" y="1984"/>
-															</position>
-															<size>
-																<Size width="212" height="317"/>
-															</size>
-														</EquationGE>
-														<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/15228/689D/1884/54cfa6883c50" dstEquation="!ed/15221/689D/1884/54cfa6661429">
-															<positions>
-																<Point x="13838" y="2143"/>
-																<Point x="15690" y="2143"/>
-																<Point x="15690" y="2143"/>
-																<Point x="17568" y="2143"/>
-															</positions>
-														</Edge>
-														<EquationGE kind="OBJ_LIT" presentable="!ed/15238/689D/1884/54cfa69e4883">
-															<position>
-																<Point x="13626" y="3069"/>
-															</position>
-															<size>
-																<Size width="212" height="317"/>
-															</size>
-														</EquationGE>
-														<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/15238/689D/1884/54cfa69e4883" dstEquation="!ed/15218/689D/1884/54cfa6133d6c">
-															<positions>
-																<Point x="13838" y="3228"/>
-																<Point x="15690" y="3228"/>
-																<Point x="15690" y="3228"/>
-																<Point x="17568" y="3228"/>
-															</positions>
-														</Edge>
-													</presentationElements>
-												</NetDiagram>
-											</diagrams>
-										</ed:State>
+										<ed:State oid="!ed/14ebf/689D/1884/54cfa5c75c71"/>
 									</pragmas>
 								</State>
 							</states>
@@ -12911,37 +12823,85 @@
 										</StateMachineGE>
 										<StateGE display="split" presentable="!ed/14ea9/689D/1884/54cfa5632c1e">
 											<position>
-												<Point x="11509" y="32755"/>
+												<Point x="12330" y="32517"/>
 											</position>
 											<size>
 												<Size width="4287" height="2725"/>
 											</size>
 										</StateGE>
-										<StateGE display="split" presentable="!ed/14ebf/689D/1884/54cfa5c75c71">
+										<StateGE presentable="!ed/14ebf/689D/1884/54cfa5c75c71">
 											<position>
-												<Point x="1984" y="32755"/>
+												<Point x="820" y="32385"/>
 											</position>
 											<size>
-												<Size width="4286" height="2725"/>
+												<Size width="8282" height="3387"/>
 											</size>
 										</StateGE>
 										<TransitionGE presentable="!ed/15250/689D/1884/54cfa71b1aec">
 											<positions>
-												<Point x="6270" y="33073"/>
-												<Point x="8520" y="32306"/>
-												<Point x="10186" y="32914"/>
-												<Point x="11509" y="33338"/>
+												<Point x="9102" y="32808"/>
+												<Point x="11430" y="31935"/>
+												<Point x="11192" y="32729"/>
+												<Point x="12330" y="33099"/>
 											</positions>
 											<labelSize>
-												<Size width="2408" height="953"/>
+												<Size width="2910" height="635"/>
 											</labelSize>
 											<labelPos>
-												<Point x="7276" y="31935"/>
+												<Point x="8757" y="31909"/>
 											</labelPos>
 											<slashPos>
-												<Point x="8890" y="31935"/>
+												<Point x="10874" y="31909"/>
 											</slashPos>
 										</TransitionGE>
+										<EquationGE presentable="!ed/15218/689D/1884/54cfa6133d6c">
+											<position>
+												<Point x="6271" y="34555"/>
+											</position>
+											<size>
+												<Size width="318" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/15221/689D/1884/54cfa6661429">
+											<position>
+												<Point x="6271" y="33496"/>
+											</position>
+											<size>
+												<Size width="318" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/15228/689D/1884/54cfa6883c50">
+											<position>
+												<Point x="3784" y="33602"/>
+											</position>
+											<size>
+												<Size width="212" height="317"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/15228/689D/1884/54cfa6883c50" dstEquation="!ed/15221/689D/1884/54cfa6661429">
+											<positions>
+												<Point x="3995" y="33761"/>
+												<Point x="5159" y="33761"/>
+												<Point x="5159" y="33761"/>
+												<Point x="6324" y="33761"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/15238/689D/1884/54cfa69e4883">
+											<position>
+												<Point x="3784" y="34687"/>
+											</position>
+											<size>
+												<Size width="212" height="317"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/15238/689D/1884/54cfa69e4883" dstEquation="!ed/15218/689D/1884/54cfa6133d6c">
+											<positions>
+												<Point x="3995" y="34846"/>
+												<Point x="5159" y="34846"/>
+												<Point x="5159" y="34846"/>
+												<Point x="6324" y="34846"/>
+											</positions>
+										</Edge>
 									</presentationElements>
 								</NetDiagram>
 							</diagrams>
