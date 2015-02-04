@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Type name="MRSP_update_t">
+			<definition>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/5702d6/1AE7/E88/54cf9efa32f1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>Flag: True for 1 cycle when MRSP is updated</comment>
+				</ed:Type>
+			</pragmas>
+		</Type>
+		<Type name="GradientProfile_update_t">
+			<definition>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/5702df/1AE7/E88/54cf9f4514aa" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>Flag: True for 1 cycle when Gradient Profile is recalculated</comment>
+				</ed:Type>
+			</pragmas>
+		</Type>
+		<Type name="GradientProfile_t">
+			<definition>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Gradient_section_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="GradientMaxSections"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/5702e8/1AE7/E88/54cf9f8e4bda" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>Compensated (train lenght and rotating mass) Gradient Profile - 3.13.4.1.1</comment>
+				</ed:Type>
+			</pragmas>
+		</Type>
+		<Type name="Gradient_section_t">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="Loc_Absolute">
+							<type>
+								<NamedType>
+									<type>
+										<NullRef/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/5702f4/1AE7/E88/54cfa91d699d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Safe Distance from Origin</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="Loc_LRBG">
+							<type>
+								<NamedType>
+									<type>
+										<NullRef/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/5845f2/1AE7/E88/54cfb013178e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Safe Distance from LRBG</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="Gradient">
+							<type>
+								<NamedType>
+									<type>
+										<NullRef/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/5845f3/1AE7/E88/54cfb018723d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Compensated Gradient</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="L_Gradient">
+							<type>
+								<NamedType>
+									<type>
+										<NullRef/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/584605/1AE7/E88/54cfb2b23188" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Length of Gradient Section</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/5702ea/1AE7/E88/54cfa8f57564"/>
+			</pragmas>
+		</Type>
+		<Constant name="GradientMaxSections">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="10"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/5702f5/1AE7/E88/54cfa94547b8"/>
+			</pragmas>
+		</Constant>
+		<Constant name="MRSPMaxSections">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="10"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/570323/1AE7/E88/54cfa99873c7"/>
+			</pragmas>
+		</Constant>
+		<Type name="MRSP_section_t">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="Loc_Abs">
+							<type>
+								<NamedType>
+									<type>
+										<NullRef/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/57032b/1AE7/E88/54cfac05702a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Safe Distance from Origin</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="Loc_LRBG">
+							<type>
+								<NamedType>
+									<type>
+										<NullRef/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/5845e5/1AE7/E88/54cfaf4d7480" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Safe Distance from LRBG</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="MRS">
+							<type>
+								<NamedType>
+									<type>
+										<NullRef/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/5845e6/1AE7/E88/54cfaf6c381f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Most Restrictive Speed, for head of train (compensated for train length)</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="L_MRS">
+							<type>
+								<NamedType>
+									<type>
+										<NullRef/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/584604/1AE7/E88/54cfb27f292" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Length of MRS section</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/57032a/1AE7/E88/54cfac053eb8"/>
+			</pragmas>
+		</Type>
+		<Type name="MRSP_Profile_t">
+			<definition>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="MRSP_section_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="MRSPMaxSections"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/570332/1AE7/E88/54cfac1d2f4b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>MRSP profile, taking into account train length considerations</comment>
+				</ed:Type>
+			</pragmas>
+		</Type>
+	</declarations>
+</File>

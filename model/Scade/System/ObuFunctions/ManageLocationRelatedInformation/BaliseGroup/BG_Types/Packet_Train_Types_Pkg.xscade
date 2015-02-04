@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="Packet_TrainTypes_Pkg">
+			<declarations>
+				<Constant name="cIterPacket58">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="2"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/51d1a/176B/DC0/54d0b5b562ca" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>value is bound to 32</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cDigitsInTelephoneNumber">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="15"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/13e54/1963/1E14/54d0c73331c"/>
+					</pragmas>
+				</Constant>
+				<Constant name="cmaxNumberTelephoneNumbers">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="1"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/853b3/1963/1E14/54d0e7d97bf2" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Size needs verification</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cMaxTractionIdentity">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="3"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/85478/1963/1E14/54d0f3183f54" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Size reduced for testing</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cMaxNationalSystem">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="3"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/854c9/1963/1E14/54d0f5121b3d"/>
+					</pragmas>
+				</Constant>
+				<Type name="PT5_TrainRunningNumber">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3daf7/176B/DC0/54d0b47f66a"/>
+									</pragmas>
+								</Field>
+								<Field name="TrainRunningNumber">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_OPERATIONAL"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3daf8/176B/DC0/54d0b47f6ca2"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3daf6/176B/DC0/54d0b47f5a4f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Adding a valid flag to packet 5.</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="PT4_ErrorReporting_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3dacb/176B/DC0/54d0b47f6ccf"/>
+									</pragmas>
+								</Field>
+								<Field name="M_ERROR">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_ERROR"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3dacc/176B/DC0/54d0b47f6d33"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3daca/176B/DC0/54d0b47f1a59" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Adding a valid flag to packet 4.</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="PT1_PositionReport_2BG_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3dac0/176B/DC0/54d0b47f7aa1"/>
+									</pragmas>
+								</Field>
+								<Field name="packet1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="TrainToTrack::Position_Report_based_on_two_balise_groups"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3dac1/176B/DC0/54d0b47f6ee9"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3dabf/176B/DC0/54d0b47f6f61" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Adding a valid flag to packet 1.</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="PT0_PositionReport_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3dab5/176B/DC0/54d0b47fa20"/>
+									</pragmas>
+								</Field>
+								<Field name="packet0">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="TrainToTrack::Position_Report"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3dab6/176B/DC0/54d0b47f55bb"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3dab4/176B/DC0/54d0b47f4788" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Adding a valid flag to Packet 0</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="PT3_OnboardTelephoneNumbers_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13e42/1963/1E14/54d0c36b7cef" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>packet is present</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="number">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/853aa/1963/1E14/54d0e7725a1d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>givs the number of telephone numbers in the onboard telefone number list</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="aNID_RADIO">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="aNID_RADIO_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/853d6/1963/1E14/54d0e8936582" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>List of telephone numbers</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13e41/1963/1E14/54d0c29346e"/>
+					</pragmas>
+				</Type>
+				<Type name="telephoneNumber_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::BCD_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cDigitsInTelephoneNumber"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13e4b/1963/1E14/54d0c68554c0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>7.5.1.95: Radio subscriber number.</comment>
+							<comment>The number is to be entered “left adjusted” starting with the first digit to be dialled. Padding by the</comment>
+							<comment>special value F shall be added after the least significant digit of the number.</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="aNID_RADIO_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="sNID_RADIO_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cmaxNumberTelephoneNumbers"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/853c4/1963/1E14/54d0e8414cd5"/>
+					</pragmas>
+				</Type>
+				<Type name="PT11_ValidatedTrainData_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/85400/1963/1E14/54d0ed6141a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>packet is present</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="NC_CDTRAIN">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NC_CDTRAIN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/853fa/1963/1E14/54d0ed286a4b"/>
+									</pragmas>
+								</Field>
+								<Field name="NC_TRAIN">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NC_TRAIN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/8540a/1963/1E14/54d0ee2753d1"/>
+									</pragmas>
+								</Field>
+								<Field name="l_train">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/85414/1963/1E14/54d0ee461045"/>
+									</pragmas>
+								</Field>
+								<Field name="v_maxtrain">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/8541e/1963/1E14/54d0ee734867"/>
+									</pragmas>
+								</Field>
+								<Field name="m_loadinggoage">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_LOADINGGAUGE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/85428/1963/1E14/54d0eed659e1"/>
+									</pragmas>
+								</Field>
+								<Field name="m_axleloadcat">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_AXLELOADCAT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/85432/1963/1E14/54d0ef043e1"/>
+									</pragmas>
+								</Field>
+								<Field name="m_airtight">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_AIRTIGHT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/8543c/1963/1E14/54d0ef336cf4"/>
+									</pragmas>
+								</Field>
+								<Field name="n_axle">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="N_AXLE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/85446/1963/1E14/54d0ef5177c6"/>
+									</pragmas>
+								</Field>
+								<Field name="nIter_tractionIdentity">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/854a3/1963/1E14/54d0f4216310"/>
+									</pragmas>
+								</Field>
+								<Field name="tractionIdentity">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="aTractionIdentity_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/85491/1963/1E14/54d0f3892a08"/>
+									</pragmas>
+								</Field>
+								<Field name="nIter_ntc">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/854ac/1963/1E14/54d0f455149"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_ntc">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="aNID_NTC_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/854b5/1963/1E14/54d0f4918b"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/853f9/1963/1E14/54d0ec9017e0"/>
+					</pragmas>
+				</Type>
+				<Type name="sTractionIdentity_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="m_voltage">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_VOLTAGE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/8545a/1963/1E14/54d0f2635ac4"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_ctraction">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_CTRACTION"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/8545b/1963/1E14/54d0f27f71ec"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/85450/1963/1E14/54d0f2024305"/>
+					</pragmas>
+				</Type>
+				<Type name="aTractionIdentity_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="sTractionIdentity_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cMaxTractionIdentity"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/8546e/1963/1E14/54d0f2c8493a"/>
+					</pragmas>
+				</Type>
+				<Type name="aNID_NTC_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_NTC"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cMaxNationalSystem"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/854bf/1963/1E14/54d0f4ba872"/>
+					</pragmas>
+				</Type>
+				<Type name="PT9_Level23_TransitionInformation_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13e95/4F99/1A90/54d1d4ac1f5a"/>
+									</pragmas>
+								</Field>
+								<Field name="transitionInformation">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_LTRBG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13e96/4F99/1A90/54d1d4ac4c06" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>7.4.3.4.2 Packet Number 9: Level 2/3 transition information</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13e94/4F99/1A90/54d1d4ac4f3b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Adding a valid flag to Packet 0</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="sNID_RADIO_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13e7f/2A9/1E54/54d2464b10fb"/>
+									</pragmas>
+								</Field>
+								<Field name="telephoneNumber">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="telephoneNumber_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13e88/2A9/1E54/54d2466a55ee"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13e7e/2A9/1E54/54d246292202"/>
+					</pragmas>
+				</Type>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/3da93/176B/DC0/54d0b1572c63" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3da94/176B/DC0/54d0b1575591" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3da95/176B/DC0/54d0b1571a72" blockKind="types" columnsSize="0, 300, 277, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3da96/176B/DC0/54d0b157384" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

@@ -30,15 +30,27 @@
     </symbology>
     <declaration>
         <inputs>
-            <input name="display_digit" oid="dfff46e7-ce0d-43af-93e7-a16b4efc99c6" representation="as_string" type="int^10">
-                <init>[0]</init>
-            </input>
             <input name="titlewindow" oid="57b8157e-dde4-421a-abec-4f90bbcbb7f6" representation="index" type="int">
                 <init>0</init>
             </input>
+            <input name="text_digit" oid="c04895a4-9703-4ad9-9f29-427cf92e8147" representation="index" type="int">
+                <init>0</init>
+            </input>
+            <input name="Ack_area" oid="41b71f03-aeea-4609-afcb-444faa70e6a5" representation="index" type="int">
+                <init>0</init>
+            </input>
+            <input name="TrainRN_Display" oid="c9a5ec19-f02b-4118-a424-f6dab8290163" representation="as_string" type="int^10">
+                <init>[0]</init>
+            </input>
+            <input name="DriverID_Display" oid="ffe4f3eb-a169-4e41-94c6-91f63f80d4d9" representation="as_string" type="int^10">
+                <init>[0]</init>
+            </input>
         </inputs>
         <outputs>
-            <output memory="true" name="driverID_confirm" oid="e6b3f16c-0e3e-416e-8260-58abe2777e94" type="bool">
+            <output memory="true" name="TrainRN_Ack" oid="e345eef5-f9ce-4a59-8baf-266d33f26416" type="bool">
+                <init>false</init>
+            </output>
+            <output memory="true" name="DriverID_Ack" oid="37583e01-2199-4a2c-af52-f42f283b1cc3" type="bool">
                 <init>false</init>
             </output>
         </outputs>
@@ -451,82 +463,244 @@
                                 </texture>
                             </properties>
                         </rectangle>
-                        <text oid="f8ad4891-abd8-4135-a105-d107d1667e95">
+                        <condContainer oid="5d4b612c-a808-4910-a4a6-5bdff29f8d6d">
                             <pathFromRoot value="1,2,0"/>
-                            <properties name="digit_display">
+                            <properties name="Ack_area">
                                 <visible>
                                     <init>true</init>
                                 </visible>
-                                <multiline>
-                                    <init>false</init>
-                                </multiline>
-                                <position>
+                                <origin>
                                     <x>
-                                        <init>-92.0</init>
+                                        <init>0.0</init>
                                     </x>
                                     <y>
                                         <init>0.0</init>
                                     </y>
-                                </position>
-                                <maxLength>
-                                    <init>10</init>
-                                </maxLength>
-                                <textValue type="int">
-                                    <expr>display_digit</expr>
-                                    <init>[49,50,51,52,53,54,55,56,57,0]</init>
-                                </textValue>
-                                <haloing>
-                                    <init>false</init>
-                                </haloing>
-                                <outlineColor>
-                                    <init>2</init>
-                                </outlineColor>
-                                <lineWidth>
-                                    <init>2</init>
-                                </lineWidth>
-                                <font>
-                                    <init>0</init>
-                                </font>
-                                <horizAlign>
-                                    <init>center</init>
-                                </horizAlign>
-                                <vertAlign>
-                                    <init>middle</init>
-                                </vertAlign>
-                            </properties>
-                        </text>
-                        <rectangleArea oid="65e2d3e8-0933-469f-8074-a26d3029a41f">
-                            <pathFromRoot value="2,2,0"/>
-                            <properties name="rectangle area">
-                                <enable>
-                                    <init>true</init>
-                                </enable>
-                                <pointerId>
+                                </origin>
+                                <priority>
                                     <init>-1</init>
-                                </pointerId>
-                                <firstPoint>
+                                </priority>
+                                <scale>
                                     <x>
-                                        <init>-153.0</init>
+                                        <init>1.0</init>
                                     </x>
                                     <y>
-                                        <init>26.0</init>
+                                        <init>1.0</init>
                                     </y>
-                                </firstPoint>
-                                <thirdPoint>
-                                    <x>
-                                        <init>153.0</init>
-                                    </x>
-                                    <y>
-                                        <init>-26.0</init>
-                                    </y>
-                                </thirdPoint>
-                                <output>
-                                    <inside>
-                                        <expr>driverID_confirm</expr>
-                                    </inside>
-                                </output>
+                                </scale>
+                                <rotate>
+                                    <angle>
+                                        <init>0.0</init>
+                                    </angle>
+                                </rotate>
+                                <orientation clockwise="false"/>
+                                <index allVisible="false">
+                                    <init>default</init>
+                                    <expr>Ack_area</expr>
+                                </index>
+                                <indexes default="1">
+                                    <index value="1"/>
+                                    <index value="2"/>
+                                </indexes>
                             </properties>
-                        </rectangleArea>
+                            <children>
+                                <rectangleArea oid="d9958942-0bf5-45ac-a541-7f58e1a2bb2f">
+                                    <pathFromRoot value="0,1,2,0"/>
+                                    <properties name="DriverID_AckArea">
+                                        <enable>
+                                            <init>true</init>
+                                        </enable>
+                                        <pointerId>
+                                            <init>-1</init>
+                                        </pointerId>
+                                        <firstPoint>
+                                            <x>
+                                                <init>-153.0</init>
+                                            </x>
+                                            <y>
+                                                <init>26.0</init>
+                                            </y>
+                                        </firstPoint>
+                                        <thirdPoint>
+                                            <x>
+                                                <init>153.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-26.0</init>
+                                            </y>
+                                        </thirdPoint>
+                                        <output>
+                                            <inside>
+                                                <expr>DriverID_Ack</expr>
+                                            </inside>
+                                        </output>
+                                    </properties>
+                                </rectangleArea>
+                                <rectangleArea oid="309ed445-904f-4ba3-8e4d-8f6552a96088">
+                                    <pathFromRoot value="1,1,2,0"/>
+                                    <properties name="TrainRN_AckArea">
+                                        <enable>
+                                            <init>true</init>
+                                        </enable>
+                                        <pointerId>
+                                            <init>-1</init>
+                                        </pointerId>
+                                        <firstPoint>
+                                            <x>
+                                                <init>-153.0</init>
+                                            </x>
+                                            <y>
+                                                <init>26.0</init>
+                                            </y>
+                                        </firstPoint>
+                                        <thirdPoint>
+                                            <x>
+                                                <init>153.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-26.0</init>
+                                            </y>
+                                        </thirdPoint>
+                                        <output>
+                                            <inside>
+                                                <expr>TrainRN_Ack</expr>
+                                            </inside>
+                                        </output>
+                                    </properties>
+                                </rectangleArea>
+                            </children>
+                        </condContainer>
+                        <condContainer oid="a89239c6-b577-4fc1-b11f-56bfa10b6fea">
+                            <pathFromRoot value="2,2,0"/>
+                            <properties name="Text_digit">
+                                <visible>
+                                    <init>true</init>
+                                </visible>
+                                <origin>
+                                    <x>
+                                        <init>0.0</init>
+                                    </x>
+                                    <y>
+                                        <init>0.0</init>
+                                    </y>
+                                </origin>
+                                <priority>
+                                    <init>-1</init>
+                                </priority>
+                                <scale>
+                                    <x>
+                                        <init>1.0</init>
+                                    </x>
+                                    <y>
+                                        <init>1.0</init>
+                                    </y>
+                                </scale>
+                                <rotate>
+                                    <angle>
+                                        <init>0.0</init>
+                                    </angle>
+                                </rotate>
+                                <orientation clockwise="false"/>
+                                <index allVisible="false">
+                                    <init>default</init>
+                                    <expr>text_digit</expr>
+                                </index>
+                                <indexes default="1">
+                                    <index value="1"/>
+                                    <index value="2"/>
+                                </indexes>
+                            </properties>
+                            <children>
+                                <text oid="f8ad4891-abd8-4135-a105-d107d1667e95">
+                                    <pathFromRoot value="0,2,2,0"/>
+                                    <properties name="DriverID_digit">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <multiline>
+                                            <init>false</init>
+                                        </multiline>
+                                        <position>
+                                            <x>
+                                                <init>-92.0</init>
+                                            </x>
+                                            <y>
+                                                <init>0.0</init>
+                                            </y>
+                                        </position>
+                                        <maxLength>
+                                            <init>10</init>
+                                        </maxLength>
+                                        <textValue type="int">
+                                            <expr>DriverID_Display</expr>
+                                            <init>[49,50,51,52,53,54,55,56,57,0]</init>
+                                        </textValue>
+                                        <haloing>
+                                            <init>false</init>
+                                        </haloing>
+                                        <outlineColor>
+                                            <init>2</init>
+                                        </outlineColor>
+                                        <lineWidth>
+                                            <init>2</init>
+                                        </lineWidth>
+                                        <font>
+                                            <init>0</init>
+                                        </font>
+                                        <horizAlign>
+                                            <init>center</init>
+                                        </horizAlign>
+                                        <vertAlign>
+                                            <init>middle</init>
+                                        </vertAlign>
+                                    </properties>
+                                </text>
+                                <text oid="f63cb6a5-99fb-4a70-bf10-bcf39e5c70a3">
+                                    <pathFromRoot value="1,2,2,0"/>
+                                    <properties name="TrainRN_digit">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <multiline>
+                                            <init>false</init>
+                                        </multiline>
+                                        <position>
+                                            <x>
+                                                <init>-92.0</init>
+                                            </x>
+                                            <y>
+                                                <init>0.0</init>
+                                            </y>
+                                        </position>
+                                        <maxLength>
+                                            <init>10</init>
+                                        </maxLength>
+                                        <textValue type="int">
+                                            <expr>TrainRN_Display</expr>
+                                            <init>[49,50,51,52,53,54,55,56,57,0]</init>
+                                        </textValue>
+                                        <haloing>
+                                            <init>false</init>
+                                        </haloing>
+                                        <outlineColor>
+                                            <init>2</init>
+                                        </outlineColor>
+                                        <lineWidth>
+                                            <init>2</init>
+                                        </lineWidth>
+                                        <font>
+                                            <init>0</init>
+                                        </font>
+                                        <horizAlign>
+                                            <init>center</init>
+                                        </horizAlign>
+                                        <vertAlign>
+                                            <init>middle</init>
+                                        </vertAlign>
+                                    </properties>
+                                </text>
+                            </children>
+                        </condContainer>
                     </children>
                 </container>
             </children>
@@ -534,5 +708,5 @@
     </children>
 </object>
 
-<!-- crc32 : 2266789480 -->
+<!-- crc32 : 937188636 -->
 
