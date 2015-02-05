@@ -69,7 +69,7 @@
 			<type>
 				<NamedType>
 					<type>
-						<TypeRef name="bool"/>
+						<TypeRef name="LevelTransitionTypes::T_LevelTransition"/>
 					</type>
 				</NamedType>
 			</type>
@@ -87,6 +87,25 @@
 			</type>
 			<pragmas>
 				<ed:Variable oid="!ed/14156/1F4C/BDC/54cf9ac27c8c"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L68">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="LevelTransitionTypes::T_ERTMS_capabilities"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="30"/>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/280d6/7B69/5EC/54d38f28459b"/>
 			</pragmas>
 		</Variable>
 	</locals>
@@ -123,13 +142,13 @@
 				<ed:Equation oid="!ed/13dca/1A19/F38/54c7acb0302c"/>
 			</pragmas>
 		</Equation>
-		<!-- _L66 = ( fold compareTransitions<<1>>)(_L67, _L1, _L2); -->
+		<!-- _L66 = ( fold compareTransitions<<LevelTransitionTypes::M_Max_TransitionInPriorit... -->
 		<Equation>
 			<lefts>
 				<VariableRef name="_L66"/>
 			</lefts>
 			<right>
-				<!-- ( fold compareTransitions<<1>>)(_L67, _L1, _L2) -->
+				<!-- ( fold compareTransitions<<LevelTransitionTypes::M_Max_TransitionInPriorityTable>... -->
 				<CallExpression>
 					<operator>
 						<IteratorOp iterator="fold">
@@ -141,7 +160,11 @@
 								</OpCall>
 							</operator>
 							<size>
-								<ConstValue value="1"/>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="LevelTransitionTypes::M_Max_TransitionInPriorityTable"/>
+									</path>
+								</IdExpression>
 							</size>
 						</IteratorOp>
 					</operator>
@@ -158,7 +181,7 @@
 						</IdExpression>
 						<IdExpression>
 							<path>
-								<ConstVarRef name="_L2"/>
+								<ConstVarRef name="_L68"/>
 							</path>
 						</IdExpression>
 					</callParameters>
@@ -200,6 +223,34 @@
 				<ed:Equation oid="!ed/1415b/1F4C/BDC/54cf9ae03a74"/>
 			</pragmas>
 		</Equation>
+		<!-- _L68 = _L2 ^ 30; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L68"/>
+			</lefts>
+			<right>
+				<!-- _L2 ^ 30 -->
+				<ScalarToVectorOp name="2">
+					<flow>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L2"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</flow>
+					<size>
+						<ConstValue value="30"/>
+					</size>
+				</ScalarToVectorOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/280d5/7B69/5EC/54d38f282870"/>
+			</pragmas>
+		</Equation>
 	</data>
 	<pragmas>
 		<ed:Operator oid="!ed/13dce/49B6/F6C/54c798fd27a0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
@@ -216,7 +267,7 @@
 						</EquationGE>
 						<EquationGE presentable="!ed/13dca/1A19/F38/54c7acb0302c">
 							<position>
-								<Point x="9551" y="8493"/>
+								<Point x="5741" y="8520"/>
 							</position>
 							<size>
 								<Size width="265" height="502"/>
@@ -232,7 +283,7 @@
 						</EquationGE>
 						<EquationGE kind="OBJ_LIT" presentable="!ed/14155/1F4C/BDC/54cf9ac27802">
 							<position>
-								<Point x="9499" y="4657"/>
+								<Point x="9499" y="4683"/>
 							</position>
 							<size>
 								<Size width="212" height="317"/>
@@ -264,18 +315,34 @@
 						</Edge>
 						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/14155/1F4C/BDC/54cf9ac27802" dstEquation="!ed/14117/1F4C/BDC/54cf99b56ce2">
 							<positions>
-								<Point x="9710" y="4815"/>
-								<Point x="11377" y="4815"/>
-								<Point x="11377" y="4815"/>
-								<Point x="12197" y="4815"/>
+								<Point x="9710" y="4842"/>
+								<Point x="11377" y="4842"/>
+								<Point x="11377" y="4842"/>
+								<Point x="12197" y="4842"/>
 							</positions>
 						</Edge>
-						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/13dca/1A19/F38/54c7acb0302c" dstEquation="!ed/14117/1F4C/BDC/54cf99b56ce2">
+						<EquationGE presentable="!ed/280d5/7B69/5EC/54d38f282870">
+							<position>
+								<Point x="7832" y="8308"/>
+							</position>
+							<size>
+								<Size width="953" height="953"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/280d5/7B69/5EC/54d38f282870" dstEquation="!ed/14117/1F4C/BDC/54cf99b56ce2">
 							<positions>
-								<Point x="9816" y="8758"/>
-								<Point x="11007" y="8758"/>
-								<Point x="11007" y="8758"/>
-								<Point x="12197" y="8758"/>
+								<Point x="8784" y="8784"/>
+								<Point x="9578" y="8784"/>
+								<Point x="9578" y="8784"/>
+								<Point x="12197" y="8784"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/13dca/1A19/F38/54c7acb0302c" dstEquation="!ed/280d5/7B69/5EC/54d38f282870">
+							<positions>
+								<Point x="6006" y="8784"/>
+								<Point x="6906" y="8784"/>
+								<Point x="6906" y="8784"/>
+								<Point x="7832" y="8784"/>
 							</positions>
 						</Edge>
 					</presentationElements>
