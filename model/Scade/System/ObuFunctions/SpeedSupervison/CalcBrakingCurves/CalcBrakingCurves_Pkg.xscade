@@ -5,6 +5,7 @@
 			<declarations>
 				<Package name="Step_Function_operators" href="Step_Function_operators.xscade"/>
 				<Package name="TestBench" href="TestBench1.xscade"/>
+				<Package name="internalOperators" href="internalOperators.xscade"/>
 				<Constant name="TestcaseA_safe_speed">
 					<type>
 						<NamedType>
@@ -337,32 +338,10 @@
 					<type>
 						<NamedType>
 							<type>
-								<TypeRef name="tArc"/>
+								<NullRef/>
 							</type>
 						</NamedType>
 					</type>
-					<value>
-						<!-- {Distance : 0.0, Speed : 0.0, Acceleration : 0.0} -->
-						<DataStructOp>
-							<data>
-								<LabelledExpression label="Distance">
-									<flow>
-										<ConstValue value="0.0"/>
-									</flow>
-								</LabelledExpression>
-								<LabelledExpression label="Speed">
-									<flow>
-										<ConstValue value="0.0"/>
-									</flow>
-								</LabelledExpression>
-								<LabelledExpression label="Acceleration">
-									<flow>
-										<ConstValue value="0.0"/>
-									</flow>
-								</LabelledExpression>
-							</data>
-						</DataStructOp>
-					</value>
 					<pragmas>
 						<ed:Constant oid="!ed/170fb/548F/DF0/54d8bb00de4"/>
 					</pragmas>
@@ -465,22 +444,46 @@
 				</Type>
 				<Type name="tParabolaCurve">
 					<definition>
-						<Table>
-							<type>
-								<NamedType>
+						<Struct>
+							<fields>
+								<Field name="distances">
 									<type>
-										<TypeRef name="tArc"/>
+										<NamedType>
+											<type>
+												<TypeRef name="tParabolaCurveDistances"/>
+											</type>
+										</NamedType>
 									</type>
-								</NamedType>
-							</type>
-							<size>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="cMAX_BC_ARCS"/>
-									</path>
-								</IdExpression>
-							</size>
-						</Table>
+									<pragmas>
+										<ed:Field oid="!ed/190ec/719/570/54d8cd8e3565"/>
+									</pragmas>
+								</Field>
+								<Field name="speeds">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="tParabolaCurveSpeeds"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/19105/719/570/54d8cdd4fc2"/>
+									</pragmas>
+								</Field>
+								<Field name="accelerations">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="tParabolaCurveAccelerations"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/19106/719/570/54d8cddd311a"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
 					</definition>
 					<pragmas>
 						<ed:Type oid="!ed/176db/548F/DF0/54d8bb0979bd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
@@ -700,11 +703,80 @@
 						<ed:Type oid="!ed/176a7/548F/DF0/54d8bb09645f"/>
 					</pragmas>
 				</Type>
-				<Type name="tArc">
+				<Type name="tParabolaCurveDistances">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cMAX_BC_ARCS"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/19107/719/570/54d8ce033b2b"/>
+					</pragmas>
+				</Type>
+				<Type name="tParabolaCurveAccelerations">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cMAX_BC_ARCS"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1911d/719/570/54d8ce30407d"/>
+					</pragmas>
+				</Type>
+				<Type name="tParabolaCurveSpeeds">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cMAX_BC_ARCS"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/19123/719/570/54d8ce323a34"/>
+					</pragmas>
+				</Type>
+				<Type name="tParabolaArc">
 					<definition>
 						<Struct>
 							<fields>
-								<Field name="Distance">
+								<Field name="distance">
 									<type>
 										<NamedType>
 											<type>
@@ -713,10 +785,10 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/17699/548F/DF0/54d8bb09783e"/>
+										<ed:Field oid="!ed/191d6/719/570/54d8cfc1540a"/>
 									</pragmas>
 								</Field>
-								<Field name="Speed">
+								<Field name="speed">
 									<type>
 										<NamedType>
 											<type>
@@ -725,10 +797,10 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1769a/548F/DF0/54d8bb093bb5"/>
+										<ed:Field oid="!ed/191d7/719/570/54d8cfc17e2c"/>
 									</pragmas>
 								</Field>
-								<Field name="Acceleration">
+								<Field name="acceleration">
 									<type>
 										<NamedType>
 											<type>
@@ -737,38 +809,26 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1769b/548F/DF0/54d8bb091ebe"/>
+										<ed:Field oid="!ed/191d8/719/570/54d8cfc12666"/>
 									</pragmas>
 								</Field>
 							</fields>
 						</Struct>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/17698/548F/DF0/54d8bb09bd7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-							<comment>Values for result</comment>
+						<ed:Type oid="!ed/191d5/719/570/54d8cfc1199b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>result</comment>
 						</ed:Type>
 					</pragmas>
 				</Type>
-				<Operator kind="node" name="CalcBrakingCurves">
-					<pragmas>
-						<ed:Operator oid="!ed/442b/1124/13A4/54bd1967739c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-							<diagrams>
-								<NetDiagram name="diagram_CalcBrakingCurves_1" landscape="true" format="A4 (210 297)" oid="!ed/442c/1124/13A4/54bd19676dc2"/>
-							</diagrams>
-						</ed:Operator>
-					</pragmas>
-				</Operator>
-				<Operator name="OneCycle" href="OneCycle.xscade"/>
-				<Operator name="BCFoldOperator" href="BCFoldOperator.xscade"/>
-				<Operator name="FormularNewSpeed" href="FormularNewSpeed.xscade"/>
-				<Operator name="FormularNewPosition" href="FormularNewPosition.xscade"/>
 				<Operator name="CalculateBrakingCurve" href="CalculateBrakingCurve.xscade"/>
+				<Operator name="getSpeedFromBrakingCurve" href="getSpeedFromBrakingCurve2.xscade"/>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/4427/1124/13A4/54bd195b770c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 					<diagrams>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4428/1124/13A4/54bd195bdac" blockKind="constants" columnsSize="0, 258, 150, 150, 300"/>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4429/1124/13A4/54bd195b67a4" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/4429/1124/13A4/54bd195b67a4" blockKind="types" columnsSize="0, 479, 150, 300"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/442a/1124/13A4/54bd195b223" blockKind="sensors"/>
 					</diagrams>
 				</ed:Package>
