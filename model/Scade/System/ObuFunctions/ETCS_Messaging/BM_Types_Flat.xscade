@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="BM_Types_Flat">
+			<declarations>
+				<Constant name="PacketsCount">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="5"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/78be1/499B/B10/54d5f7677380"/>
+					</pragmas>
+				</Constant>
+				<Constant name="PacketLength">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="20"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/78b61/499B/B10/54d5f54084c"/>
+					</pragmas>
+				</Constant>
+				<Type name="Packets_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Packet_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="PacketsCount"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/78b56/499B/B10/54d5f49d9dc"/>
+					</pragmas>
+				</Type>
+				<Type name="Packet_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="Header">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Header_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/78b82/499B/B10/54d5f5a03f9d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>A</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="Information">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Information_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/78b8d/499B/B10/54d5f5cf53f7"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/78b57/499B/B10/54d5f4fa652a"/>
+					</pragmas>
+				</Type>
+				<Type name="Information_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="InfoElement_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="PacketLength"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/78bd3/499B/B10/54d5f75278fa" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Array of integers that holds the flattened information as defined in Subset 26-7 (one element per data field in the SRS)</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="InfoElement_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="TYPE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="packet_type_ID_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d11d6/499B/B10/54d64ee4714e"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/78c03/499B/B10/54d5f7d82772" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Universal element of information. Booleans expressed as (0,1)</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="Header_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="Packet_Number">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_PACKET"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/78b8e/499B/B10/54d5f6026bea" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>as defined in SRS, integer representation</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="Direction">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_DIR"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/78ba8/499B/B10/54d5f6825bca" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>as defined in SRS, integer representation</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="Length">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="L_PacketFields_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/8cbbc/499B/B10/54d5fc895e6b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Length of the packet, expressed in the number of data fields (int) used</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/78b8c/499B/B10/54d5f5bd70b6"/>
+					</pragmas>
+				</Type>
+				<Type name="L_PacketFields_T">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/8cbc6/499B/B10/54d5fc9d5224"/>
+					</pragmas>
+				</Type>
+				<Type name="packet_type_ID_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="label1">
+									<type>
+										<NamedType>
+											<type>
+												<NullRef/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d1202/499B/B10/54d64f461988"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2d11e8/499B/B10/54d64f05b9e"/>
+					</pragmas>
+				</Type>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/78c0c/499B/B10/54d5f87f2c9a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/78c0d/499B/B10/54d5f87f64e4" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/78c0e/499B/B10/54d5f87f5356" blockKind="types" columnsSize="0, 206, 150, 570"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/78c0f/499B/B10/54d5f87f6004" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>
