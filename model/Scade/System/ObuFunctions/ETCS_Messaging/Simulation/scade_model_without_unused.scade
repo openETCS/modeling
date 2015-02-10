@@ -1,0 +1,123 @@
+
+package Decode_Packets
+
+-- SRS 7.4.2.0
+-- Virtual Balise Cover Marker
+function #pragma ed <Operator oid="!ed/8cd2e/499B/B10/54d600d96fd6">
+	<diagrams>
+		<NetDiagram name="diagram_Decode_Packet_000_1" landscape="true" format="A4 (210 297)" oid="!ed/8cd2f/499B/B10/54d600d925b0">
+			<presentationElements>
+				<EquationGE presentable="!ed/2d1032/499B/B10/54d6415831fe">
+					<position>
+						<Point x="2999" y="3246"/>
+					</position>
+					<size>
+						<Size width="247" height="511"/>
+					</size>
+				</EquationGE>
+				<EquationGE presentable="!ed/2d103e/499B/B10/54d641bfd51">
+					<position>
+						<Point x="7726" y="3016"/>
+					</position>
+					<size>
+						<Size width="970" height="970"/>
+					</size>
+				</EquationGE>
+				<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2d1032/499B/B10/54d6415831fe" dstEquation="!ed/2d103e/499B/B10/54d641bfd51">
+					<positions>
+						<Point x="3246" y="3510"/>
+						<Point x="5486" y="3510"/>
+						<Point x="5486" y="3510"/>
+						<Point x="7726" y="3510"/>
+					</positions>
+				</Edge>
+				<EquationGE presentable="!ed/2d1063/499B/B10/54d642a72dee">
+					<position>
+						<Point x="14217" y="3246"/>
+					</position>
+					<size>
+						<Size width="335" height="511"/>
+					</size>
+				</EquationGE>
+				<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2d103e/499B/B10/54d641bfd51" dstEquation="!ed/2d1063/499B/B10/54d642a72dee">
+					<positions>
+						<Point x="8696" y="3510"/>
+						<Point x="11483" y="3510"/>
+						<Point x="11483" y="3510"/>
+						<Point x="14270" y="3510"/>
+					</positions>
+				</Edge>
+			</presentationElements>
+		</NetDiagram>
+	</diagrams>
+</Operator>
+#end
+
+Decode_Packet_000(
+      #pragma ed    <Variable oid="!ed/8cd36/499B/B10/54d600e92b2a"/>
+#end
+
+PacketInfoIn : BM_Types_Flat::Information_T)
+returns (
+      #pragma ed    <Variable oid="!ed/2d1059/499B/B10/54d64271741c"/>
+#end
+
+VBCMK : Types_Notfound::NID_VBCMK_T)
+var
+      #pragma ed    <Variable oid="!ed/2d1033/499B/B10/54d641583e7c"/>
+#end
+
+_L41 : BM_Types_Flat::Information_T;
+      #pragma ed    <Variable oid="!ed/2d103f/499B/B10/54d641bf1199"/>
+#end
+
+_L43 : BM_Types_Flat::InfoElement_T;
+let
+   #pragma ed    <Equation oid="!ed/2d1032/499B/B10/54d6415831fe"/>
+#end
+
+   _L41 = PacketInfoIn;
+   #pragma ed    <Equation oid="!ed/2d103e/499B/B10/54d641bfd51"/>
+#end
+
+   _L43 = _L41 #1 [0];
+   #pragma ed    <Equation oid="!ed/2d1063/499B/B10/54d642a72dee"/>
+#end
+
+   VBCMK = _L43;
+tel
+
+   end;
+
+package BM_Types_Flat
+
+   const
+      #pragma ed <Constant oid="!ed/78b61/499B/B10/54d5f54084c"/>
+#end
+
+PacketLength : int = 20;
+
+   type
+      -- Array of integers that holds the flattened information as defined in Subset 26-7 (one element per data field in the SRS)
+#pragma ed <Type oid="!ed/78bd3/499B/B10/54d5f75278fa"/>
+#end
+
+Information_T = InfoElement_T ^PacketLength;
+      -- Universal element of information. Booleans expressed as (0,1)
+#pragma ed <Type oid="!ed/78c03/499B/B10/54d5f7d82772"/>
+#end
+
+InfoElement_T = int;
+
+   end;
+
+package Types_Notfound
+
+   type
+      #pragma ed <Type oid="!ed/2d1050/499B/B10/54d64241e93"/>
+#end
+
+NID_VBCMK_T = int;
+
+   end;
+

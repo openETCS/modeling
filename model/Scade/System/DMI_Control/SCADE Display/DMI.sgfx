@@ -95,7 +95,7 @@
                     <input name="DriverID_Display" oid="478ff4c5-e2fa-48bc-aeba-e0d7f91aabe3" representation="as_string" type="int^10">
                         <init>[0]</init>
                     </input>
-                    <input name="buttonEnabler" oid="52c1d351-f078-43fd-92c6-a955bbd6ab6d" representation="as_int_array" type="int^10">
+                    <input name="buttonEnabler" oid="52c1d351-f078-43fd-92c6-a955bbd6ab6d" representation="as_int_array" type="int^30">
                         <init>[0]</init>
                     </input>
                     <input name="window_mask" oid="376f3ce6-1379-41e9-966f-d36b216079b9" type="bool^15">
@@ -103,6 +103,24 @@
                     </input>
                     <input name="TrainRN_Display" oid="d59d99ec-863b-4249-b082-552ff2abbd57" representation="as_string" type="int^10">
                         <init>[0]</init>
+                    </input>
+                    <input name="closeButtonEnabler" oid="83d889ce-1d42-4bcd-a6c1-6679a7272011" representation="index" type="int">
+                        <init>26</init>
+                    </input>
+                    <input name="LevelSymbolVisibility" oid="814d238b-c0ca-4fce-984e-f7ccf0f31e9e" type="bool">
+                        <init>false</init>
+                    </input>
+                    <input name="StatusSymbolVisibility" oid="db5a3f58-8b99-471c-b826-6f44447d010d" type="bool">
+                        <init>false</init>
+                    </input>
+                    <input name="DistToTargetBarVisibility" oid="67b75059-3789-40c3-add6-f93fc5243b6a" type="bool">
+                        <init>false</init>
+                    </input>
+                    <input name="LevelSymbolAnnVisibility" oid="4881c5bc-220a-4819-8ff7-f28b01df3c4e" type="bool">
+                        <init>false</init>
+                    </input>
+                    <input name="RBC_status_symbol" oid="df3b7920-4196-492d-9d56-76e9798a77f9" representation="index" type="int">
+                        <init>3</init>
                     </input>
                 </inputs>
                 <outputs>
@@ -131,6 +149,15 @@
                         <init>false</init>
                     </output>
                     <output memory="true" name="DriverID_Ack" oid="71e8c165-4ba8-4c1b-b976-7b07385e931a" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="confirmTrainData" oid="d38f2782-0071-4e10-a593-29adbab957c0" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="closeTrainDataWindow" oid="38a77828-c1a3-4c8b-a187-0bffcdb0c368" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="openTrainData" oid="4bbc5ea4-174a-48d3-9432-0883862db33a" type="bool">
                         <init>false</init>
                     </output>
                 </outputs>
@@ -243,7 +270,7 @@
                         </rotate>
                         <orientation clockwise="false"/>
                         <file name="A.ogfx" path="Widgets/A"/>
-                        <crc value="72248151"/>
+                        <crc value="906349790"/>
                         <inputParameters>
                             <parameter control="false" name="DistanceToTarget" oid="e0bbb64f-7fab-416a-bf1f-34bd43b2da28" type="real">
                                 <expr>DistanceToTarget</expr>
@@ -256,6 +283,10 @@
                             <parameter control="false" name="InterpolatedDistanceToTarget" oid="cb67ccbc-8454-45c4-9db5-e2250bf61a22" type="real">
                                 <expr>InterpolatedDistanceToTarget</expr>
                                 <init>0.0</init>
+                            </parameter>
+                            <parameter control="false" name="DistToTargetBarVisibility" oid="1b1e50d3-b678-4915-999a-3c1c643b4b18" type="bool">
+                                <expr>DistToTargetBarVisibility</expr>
+                                <init>false</init>
                             </parameter>
                         </inputParameters>
                         <outputParameters>
@@ -378,7 +409,7 @@
                         </rotate>
                         <orientation clockwise="false"/>
                         <file name="C.ogfx" path="Widgets/C"/>
-                        <crc value="4245218065"/>
+                        <crc value="2556818648"/>
                         <inputParameters>
                             <parameter control="false" name="LevelSymbol" oid="18d20016-98ac-4b5b-a370-1d959577bcec" representation="index" type="int">
                                 <expr>LevelSymbol</expr>
@@ -391,6 +422,14 @@
                             <parameter control="false" name="LevelSymbolAnncouncement" oid="3d0427b5-af19-4b5e-b9f2-d3fab5dd779a" representation="index" type="int">
                                 <expr>LevelSymbolAnncouncement</expr>
                                 <init>7</init>
+                            </parameter>
+                            <parameter control="false" name="LevelSymbolVisibility" oid="c19f9a52-21a9-4277-ae04-021c67bcf6c3" type="bool">
+                                <expr>LevelSymbolVisibility</expr>
+                                <init>false</init>
+                            </parameter>
+                            <parameter control="false" name="LeverSymbolAnnVisibility" oid="e5020d0c-12dc-47f3-9f73-f5804cbe7ab7" type="bool">
+                                <expr>LevelSymbolAnnVisibility</expr>
+                                <init>false</init>
                             </parameter>
                         </inputParameters>
                         <outputParameters>
@@ -411,7 +450,8 @@
                     <pathFromRoot value="4"/>
                     <properties modular="false" name="D">
                         <visible>
-                            <init>true</init>
+                            <init>false</init>
+                            <expr>false</expr>
                         </visible>
                         <origin>
                             <x>
@@ -493,7 +533,17 @@
                         </rotate>
                         <orientation clockwise="false"/>
                         <file name="E.ogfx" path="Widgets/E"/>
-                        <crc value="0"/>
+                        <crc value="824848381"/>
+                        <inputParameters>
+                            <parameter control="false" name="StatusSymbolVisibility" oid="3a13c3a1-c5ae-4d16-b925-e3804b58efe3" type="bool">
+                                <expr>StatusSymbolVisibility</expr>
+                                <init>false</init>
+                            </parameter>
+                            <parameter control="false" name="StatusSymnolIndex" oid="c646e1c2-57f4-4554-bb8d-aed50d04b130" representation="index" type="int">
+                                <expr>RBC_status_symbol</expr>
+                                <init>3</init>
+                            </parameter>
+                        </inputParameters>
                     </properties>
                     <children/>
                 </referenceContainer>
@@ -792,12 +842,15 @@
                                 </rotate>
                                 <orientation clockwise="false"/>
                                 <file name="closebutton.ogfx" path="Widgets/MainMenu/Button"/>
-                                <crc value="1614670979"/>
+                                <crc value="511174246"/>
                                 <inputParameters>
                                     <parameter control="false" name="ModeSymbol" oid="54bfe5ef-67f5-44fb-9be6-7e6765953521" representation="index" type="int">
                                         <init>26</init>
                                     </parameter>
                                 </inputParameters>
+                                <outputParameters>
+                                    <parameter name="closeWindow" oid="1339fe05-bb9f-46f7-8d81-61d53f2c6351" type="bool"/>
+                                </outputParameters>
                             </properties>
                             <children/>
                         </referenceContainer>
@@ -966,32 +1019,37 @@
                                 </rotate>
                                 <orientation clockwise="false"/>
                                 <file name="closebutton.ogfx" path="Widgets/MainMenu/Button"/>
-                                <crc value="1614670979"/>
+                                <crc value="511174246"/>
                                 <inputParameters>
                                     <parameter control="false" name="ModeSymbol" oid="54bfe5ef-67f5-44fb-9be6-7e6765953521" representation="index" type="int">
                                         <init>26</init>
                                     </parameter>
                                 </inputParameters>
+                                <outputParameters>
+                                    <parameter name="closeWindow" oid="1339fe05-bb9f-46f7-8d81-61d53f2c6351" type="bool"/>
+                                </outputParameters>
                             </properties>
                             <children/>
                         </referenceContainer>
                     </children>
                 </container>
-                <referenceContainer oid="f264f277-a568-4787-80ba-ff2b246ce435">
+                <container oid="b5e7001d-820b-4917-82d6-929613e63d50">
                     <pathFromRoot value="12"/>
-                    <properties modular="false" name="mainmenu">
+                    <properties name="mainmenu">
                         <visible>
                             <init>true</init>
-                            <expr>window_mask[9]</expr>
                         </visible>
                         <origin>
                             <x>
-                                <init>167.0</init>
+                                <init>0.0</init>
                             </x>
                             <y>
                                 <init>0.0</init>
                             </y>
                         </origin>
+                        <priority>
+                            <init>-1</init>
+                        </priority>
                         <scale>
                             <x>
                                 <init>1.0</init>
@@ -1006,19 +1064,137 @@
                             </angle>
                         </rotate>
                         <orientation clockwise="false"/>
-                        <file name="mainmenu.ogfx" path="Widgets/MainMenu"/>
-                        <crc value="1605648540"/>
-                        <inputParameters>
-                            <parameter control="false" name="buttonEnabler" oid="c10759cd-f1d4-474a-ac5f-776daead0944" representation="as_int_array" type="int^10">
-                                <expr>buttonEnabler</expr>
-                                <init>[0]</init>
-                            </parameter>
-                        </inputParameters>
                     </properties>
-                    <children/>
-                </referenceContainer>
-                <pointerEventListener oid="d70337e7-31b9-404b-8c25-3496e168ef55">
+                    <children>
+                        <referenceContainer oid="f264f277-a568-4787-80ba-ff2b246ce435">
+                            <pathFromRoot value="0,12"/>
+                            <properties modular="false" name="mainmenu">
+                                <visible>
+                                    <init>true</init>
+                                    <expr>window_mask[9]</expr>
+                                </visible>
+                                <origin>
+                                    <x>
+                                        <init>167.0</init>
+                                    </x>
+                                    <y>
+                                        <init>0.0</init>
+                                    </y>
+                                </origin>
+                                <scale>
+                                    <x>
+                                        <init>1.0</init>
+                                    </x>
+                                    <y>
+                                        <init>1.0</init>
+                                    </y>
+                                </scale>
+                                <rotate>
+                                    <angle>
+                                        <init>0.0</init>
+                                    </angle>
+                                </rotate>
+                                <orientation clockwise="false"/>
+                                <file name="mainmenu.ogfx" path="Widgets/MainMenu"/>
+                                <crc value="225490251"/>
+                                <inputParameters>
+                                    <parameter control="false" name="buttonEnabler" oid="c10759cd-f1d4-474a-ac5f-776daead0944" representation="as_int_array" type="int^30">
+                                        <expr>buttonEnabler</expr>
+                                        <init>[0]</init>
+                                    </parameter>
+                                    <parameter control="false" name="closeButtonEnabler" oid="80996313-72df-47a0-8e4a-1af6f72c82fd" representation="index" type="int">
+                                        <expr>closeButtonEnabler</expr>
+                                        <init>26</init>
+                                    </parameter>
+                                </inputParameters>
+                                <outputParameters>
+                                    <parameter name="openTrainData" oid="05fc3130-1339-4f2c-b10f-2149aeaec3ef" type="bool">
+                                        <expr>openTrainData</expr>
+                                    </parameter>
+                                </outputParameters>
+                            </properties>
+                            <children/>
+                        </referenceContainer>
+                    </children>
+                </container>
+                <container oid="c207b452-a418-4564-8654-8d4a36e2946c">
                     <pathFromRoot value="13"/>
+                    <properties name="TrainData">
+                        <visible>
+                            <init>false</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>0.0</init>
+                            </x>
+                            <y>
+                                <init>-1.0</init>
+                            </y>
+                        </origin>
+                        <priority>
+                            <init>-1</init>
+                        </priority>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                    </properties>
+                    <children>
+                        <referenceContainer oid="eee4ac32-1c8f-4a52-a3a0-86e28f1d1d10">
+                            <pathFromRoot value="0,13"/>
+                            <properties modular="false" name="TrainData">
+                                <visible>
+                                    <init>true</init>
+                                </visible>
+                                <origin>
+                                    <x>
+                                        <init>0.0</init>
+                                    </x>
+                                    <y>
+                                        <init>0.0</init>
+                                    </y>
+                                </origin>
+                                <scale>
+                                    <x>
+                                        <init>1.0</init>
+                                    </x>
+                                    <y>
+                                        <init>1.0</init>
+                                    </y>
+                                </scale>
+                                <rotate>
+                                    <angle>
+                                        <init>0.0</init>
+                                    </angle>
+                                </rotate>
+                                <orientation clockwise="false"/>
+                                <file name="TrainData.ogfx" path="Widgets/TrainData"/>
+                                <crc value="635236962"/>
+                                <outputParameters>
+                                    <parameter name="confirmTrainData" oid="bfeb8212-1bd3-46bf-8f54-f92f7b3edd9e" type="bool">
+                                        <expr>confirmTrainData</expr>
+                                    </parameter>
+                                    <parameter name="closeTrainDataWindow" oid="6d360d43-3aac-4920-b210-f0857329161f" type="bool">
+                                        <expr>closeTrainDataWindow</expr>
+                                    </parameter>
+                                </outputParameters>
+                            </properties>
+                            <children/>
+                        </referenceContainer>
+                    </children>
+                </container>
+                <pointerEventListener oid="d70337e7-31b9-404b-8c25-3496e168ef55">
+                    <pathFromRoot value="14"/>
                     <properties name="pointer event listener">
                         <enable>
                             <init>true</init>
@@ -1039,5 +1215,5 @@
     </children>
 </specification>
 
-<!-- crc32 : 906987680 -->
+<!-- crc32 : 1232885645 -->
 
