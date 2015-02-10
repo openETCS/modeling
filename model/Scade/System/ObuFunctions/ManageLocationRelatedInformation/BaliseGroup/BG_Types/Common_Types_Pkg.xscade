@@ -13602,6 +13602,62 @@
 										</DataStructOp>
 									</flow>
 								</LabelledExpression>
+								<LabelledExpression label="p45_Nominal">
+									<flow>
+										<!-- {valid : false, q_dir : Q_DIR_Reverse, nid_mn : 0} -->
+										<DataStructOp>
+											<data>
+												<LabelledExpression label="valid">
+													<flow>
+														<ConstValue value="false"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="q_dir">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="Q_DIR_Reverse"/>
+															</path>
+														</IdExpression>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="nid_mn">
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</LabelledExpression>
+											</data>
+										</DataStructOp>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="p45_Reverse">
+									<flow>
+										<!-- {valid : false, q_dir : Q_DIR_Reverse, nid_mn : 0} -->
+										<DataStructOp>
+											<data>
+												<LabelledExpression label="valid">
+													<flow>
+														<ConstValue value="false"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="q_dir">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="Q_DIR_Reverse"/>
+															</path>
+														</IdExpression>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="nid_mn">
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</LabelledExpression>
+											</data>
+										</DataStructOp>
+									</flow>
+								</LabelledExpression>
 								<LabelledExpression label="p49_Nominal">
 									<flow>
 										<!-- [{valid : false, q_dir : Q_DIR_Reverse, q_newcountry : Q_NEWCOUNTRY_Same_country_... -->
@@ -24455,6 +24511,30 @@
 										<ed:Field oid="!ed/5b66/6191/117C/54919504bd"/>
 									</pragmas>
 								</Field>
+								<Field name="p45_Nominal">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Packet_Types_Pkg::P45_RadioNetworkRegistration_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/91387/39FE/1ED0/54da419a130e"/>
+									</pragmas>
+								</Field>
+								<Field name="p45_Reverse">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Packet_Types_Pkg::P45_RadioNetworkRegistration_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/91397/39FE/1ED0/54da41ca4b7d"/>
+									</pragmas>
+								</Field>
 								<Field name="p49_Nominal">
 									<type>
 										<NamedType>
@@ -24887,6 +24967,166 @@
 					</definition>
 					<pragmas>
 						<ed:Type oid="!ed/854f6/1963/1E14/54d0f8165fa8"/>
+					</pragmas>
+				</Type>
+				<Type name="radioManagementMessage_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/9133d/39FE/1ED0/54da3e544779" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Valid Indicator</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="messageSource">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="MsgSource_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/9137d/39FE/1ED0/54da41271158" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Source of this message</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="receivedSystemTime">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/91346/39FE/1ED0/54da3ef71071" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>system time when the message has been received in the train</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="radioMessageHeader">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Radio_Types_Pkg::Radio_TrackTrain_Header_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/91359/39FE/1ED0/54da3f6e594" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>The radio message if relevant for session radio management</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="p42">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Packet_Types_Pkg::P42_SessionManagement_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/91363/39FE/1ED0/54da40287537" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Radio Session Mangement Packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="p45">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Packet_Types_Pkg::P45_RadioNetworkRegistration_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/91373/39FE/1ED0/54da409e7453" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Radio Network Registration Packet</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/9133c/39FE/1ED0/54da3e3045c3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>This type collects packets and messages dedicated for sesto Radio Management Inputs.</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="PositionReportParameter_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="present">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a6cc7/39FE/1ED0/54da459f2b7f"/>
+									</pragmas>
+								</Field>
+								<Field name="nidBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_BG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a6cc8/39FE/1ED0/54da459f3b8d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>BG that has been sent Packet58 or, in case Packet58 has been sent by the RBC,  the reference BG</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="bgLocation">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::Location_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a6cc9/39FE/1ED0/54da459f7bd2" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>location of the BG</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="packet58">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Packet_Types_Pkg::P58_PositionReportParameters_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a6cca/39FE/1ED0/54da459f6da3"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a6cc6/39FE/1ED0/54da459f19ee"/>
 					</pragmas>
 				</Type>
 			</declarations>
