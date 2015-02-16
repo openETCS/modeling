@@ -12,7 +12,7 @@
 						</NamedType>
 					</type>
 					<value>
-						<!-- {present : false, consistencyError : false, header : {radioDevice : 0, nid_messag... -->
+						<!-- {present : false, consistencyError : false, header : {radioDevice : 0, receivedSy... -->
 						<DataStructOp>
 							<data>
 								<LabelledExpression label="present">
@@ -27,10 +27,15 @@
 								</LabelledExpression>
 								<LabelledExpression label="header">
 									<flow>
-										<!-- {radioDevice : 0, nid_message : 0, t_train : 0.0, m_ack : M_ACK_No_acknowledgemen... -->
+										<!-- {radioDevice : 0, receivedSystemTime : 0, nid_message : 0, t_train : 0.0, m_ack :... -->
 										<DataStructOp>
 											<data>
 												<LabelledExpression label="radioDevice">
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="receivedSystemTime">
 													<flow>
 														<ConstValue value="0"/>
 													</flow>
@@ -12809,6 +12814,62 @@
 														</DataStructOp>
 													</flow>
 												</LabelledExpression>
+												<LabelledExpression label="p45_Nominal">
+													<flow>
+														<!-- {valid : false, q_dir : Q_DIR_Reverse, nid_mn : 0} -->
+														<DataStructOp>
+															<data>
+																<LabelledExpression label="valid">
+																	<flow>
+																		<ConstValue value="false"/>
+																	</flow>
+																</LabelledExpression>
+																<LabelledExpression label="q_dir">
+																	<flow>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="Q_DIR_Reverse"/>
+																			</path>
+																		</IdExpression>
+																	</flow>
+																</LabelledExpression>
+																<LabelledExpression label="nid_mn">
+																	<flow>
+																		<ConstValue value="0"/>
+																	</flow>
+																</LabelledExpression>
+															</data>
+														</DataStructOp>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="p45_Reverse">
+													<flow>
+														<!-- {valid : false, q_dir : Q_DIR_Reverse, nid_mn : 0} -->
+														<DataStructOp>
+															<data>
+																<LabelledExpression label="valid">
+																	<flow>
+																		<ConstValue value="false"/>
+																	</flow>
+																</LabelledExpression>
+																<LabelledExpression label="q_dir">
+																	<flow>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="Q_DIR_Reverse"/>
+																			</path>
+																		</IdExpression>
+																	</flow>
+																</LabelledExpression>
+																<LabelledExpression label="nid_mn">
+																	<flow>
+																		<ConstValue value="0"/>
+																	</flow>
+																</LabelledExpression>
+															</data>
+														</DataStructOp>
+													</flow>
+												</LabelledExpression>
 												<LabelledExpression label="p49_Nominal">
 													<flow>
 														<!-- [{valid : false, q_dir : Q_DIR_Reverse, q_newcountry : Q_NEWCOUNTRY_Same_country_... -->
@@ -24304,6 +24365,20 @@
 									<pragmas>
 										<ed:Field oid="!ed/3fa4f/7215/4C8/54cb742d4c48" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 											<comment>Identifier of the radio device (assuming 2 devices are installed for RBC-RBC-Handover)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="receivedSystemTime">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13ddb/7136/1EEC/54e0ab9d15ef" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Timestamp when the message has been received in the system</comment>
 										</ed:Field>
 									</pragmas>
 								</Field>
