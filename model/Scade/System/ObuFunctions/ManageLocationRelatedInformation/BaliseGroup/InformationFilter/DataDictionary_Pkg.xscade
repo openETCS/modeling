@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
 	<declarations>
-		<Package name="DataDictionary">
+		<Package name="DataDictionary_Pkg">
 			<declarations>
 				<Constant name="ModeDecisionTable">
 					<type>
@@ -30770,25 +30770,25 @@
 						</NamedType>
 					</type>
 					<value>
-						<!-- [[LD_L23SwitchReceived, LD_L23SwitchReceived, LD_L23SwitchReceived, LD_Invalid, L... -->
+						<!-- [[LD_StoreIfPendingL2L3Transition, LD_StoreIfPendingL2L3Transition, LD_StoreIfPen... -->
 						<DataArrayOp>
 							<data>
-								<!-- [LD_L23SwitchReceived, LD_L23SwitchReceived, LD_L23SwitchReceived, LD_Invalid, LD... -->
+								<!-- [LD_StoreIfPendingL2L3Transition, LD_StoreIfPendingL2L3Transition, LD_StoreIfPend... -->
 								<DataArrayOp>
 									<data>
 										<IdExpression>
 											<path>
-												<ConstVarRef name="LD_L23SwitchReceived"/>
+												<ConstVarRef name="LD_StoreIfPendingL2L3Transition"/>
 											</path>
 										</IdExpression>
 										<IdExpression>
 											<path>
-												<ConstVarRef name="LD_L23SwitchReceived"/>
+												<ConstVarRef name="LD_StoreIfPendingL2L3Transition"/>
 											</path>
 										</IdExpression>
 										<IdExpression>
 											<path>
-												<ConstVarRef name="LD_L23SwitchReceived"/>
+												<ConstVarRef name="LD_StoreIfPendingL2L3Transition"/>
 											</path>
 										</IdExpression>
 										<IdExpression>
@@ -63137,9 +63137,96 @@
 										<ed:Value oid="!ed/5f8c/6D2D/D58/546b69b12c2e"/>
 									</pragmas>
 								</Value>
-								<Value name="LD_L23SwitchReceived">
+								<Value name="LD_StoreIfPendingL1Transition">
 									<pragmas>
-										<ed:Value oid="!ed/5f8d/6D2D/D58/546b69c02ac7"/>
+										<ed:Value oid="!ed/28afe/3A46/3A4/54e1eaec4494" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>[1] exception: stored onboard if an order to switch to L1 at a further location has been received</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="LD_StoreIfPendingL2L3Transition">
+									<pragmas>
+										<ed:Value oid="!ed/5f8d/6D2D/D58/546b69c02ac7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>[2] exception: stored onboard if an order to switch to L2/3 at a further location has been received</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="LD_RejectIfPendingAckOfTrainData">
+									<pragmas>
+										<ed:Value oid="!ed/28aff/3A46/3A4/54e1eb19933" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>[3] exception: rejected if train data has been sent to the RBC and the “Acknowledgement of train data” has not been received yet</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="LD_DUMMY1">
+									<pragmas>
+										<ed:Value oid="!ed/28b04/3A46/3A4/54e1f04c37c5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>[4] exception: rejected if the SSP and gradient already available on-board or given together with the MA do not cover the full length of the MA.</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="LD_RejectIfEmergencyBrakeActive">
+									<pragmas>
+										<ed:Value oid="!ed/28b00/3A46/3A4/54e1ed1a67e3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>[5] exception: rejected if emergency stop(s) have been accepted and are not yet revoked or deleted onboard (see mode transitions)</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="LD_StoreIfPendingNTCTransition">
+									<pragmas>
+										<ed:Value oid="!ed/28b01/3A46/3A4/54e1ed6cb55" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>[6] exception: stored onboard if an order to switch to level NTC X at a further location has been received</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="LD_RejectIfNoPendingNTCTransition">
+									<pragmas>
+										<ed:Value oid="!ed/28b02/3A46/3A4/54e1edac52ec" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>[7] exception: rejected if no order to switch to level NTC X at a further location has been received</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="LD_DUMMY2">
+									<pragmas>
+										<ed:Value oid="!ed/28b05/3A46/3A4/54e1f1233861" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>[8] exception: revocable TSRs shall be rejected if information “inhibition of revocable TSRs from balises in L2/3” is stored on-board</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="LD_RejectIfNoL2L3TransitionStored">
+									<pragmas>
+										<ed:Value oid="!ed/28b03/3A46/3A4/54e1ef9c5514" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>[9] exception: rejected if no level 2/3 transition order is stored onboard</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="LD_DUMMY3">
+									<pragmas>
+										<ed:Value oid="!ed/28b06/3A46/3A4/54e1f1444ff3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>[10] exception: rejected if the referred LRBG is memorised to have been reported with different “previous LRBG”</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="LD_DUMMY4">
+									<pragmas>
+										<ed:Value oid="!ed/28b07/3A46/3A4/54e1f16142bc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>[11] exception: rejected if a level transition order is received in the same message, or if a previous level transition order has announced a level transition still to be executed</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="LD_DUMMY5">
+									<pragmas>
+										<ed:Value oid="!ed/28b08/3A46/3A4/54e1f1796cd4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>[12] exception: rejected if the text message is sent with a request for report of driver acknowledgement with the same text message</comment>
+											<comment>identifier as a previously received text message, which the driver has not yet acknowledged</comment>
+										</ed:Value>
+									</pragmas>
+								</Value>
+								<Value name="LD_DUMMY6">
+									<pragmas>
+										<ed:Value oid="!ed/28b09/3A46/3A4/54e1f1ae1a63" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>[13] exception: rejected if not received together with an immediate level transition order to L1/2/3</comment>
+										</ed:Value>
 									</pragmas>
 								</Value>
 							</values>
@@ -63162,7 +63249,7 @@
 							<size>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="Config::MAX_TRANSITION_BUFFFER_SIZE"/>
+										<ConstVarRef name="Config_Pkg::MAX_TRANSITION_BUFFFER_SIZE"/>
 									</path>
 								</IdExpression>
 							</size>
@@ -63177,7 +63264,7 @@
 				<ed:Package oid="!ed/3c49/4E8B/1174/54636bda3e38" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 					<diagrams>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3c4a/4E8B/1174/54636bda580b" blockKind="constants" columnsSize="0, 234, 285, 465, 300"/>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3c4b/4E8B/1174/54636bda23eb" blockKind="types" columnsSize="0, 360, 295, 375"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3c4b/4E8B/1174/54636bda23eb" blockKind="types" columnsSize="0, 360, 273, 670"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3c4c/4E8B/1174/54636bda49ef" blockKind="sensors"/>
 					</diagrams>
 				</ed:Package>
