@@ -347,7 +347,7 @@
 						</NamedType>
 					</type>
 					<value>
-						<!-- {valid : false, systemTime : 0, trainRunningNumber : 0} -->
+						<!-- {valid : false, systemTime : 0, driverIdentifier : [' ', ' ', ' ', ' ', ' ', ' ',... -->
 						<DataStructOp>
 							<data>
 								<LabelledExpression label="valid">
@@ -360,9 +360,22 @@
 										<ConstValue value="0"/>
 									</flow>
 								</LabelledExpression>
-								<LabelledExpression label="trainRunningNumber">
+								<LabelledExpression label="driverIdentifier">
 									<flow>
-										<ConstValue value="0"/>
+										<!-- [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '] -->
+										<DataArrayOp>
+											<data>
+												<ConstValue value="' '"/>
+												<ConstValue value="' '"/>
+												<ConstValue value="' '"/>
+												<ConstValue value="' '"/>
+												<ConstValue value="' '"/>
+												<ConstValue value="' '"/>
+												<ConstValue value="' '"/>
+												<ConstValue value="' '"/>
+												<ConstValue value="' '"/>
+											</data>
+										</DataArrayOp>
 									</flow>
 								</LabelledExpression>
 							</data>
@@ -442,10 +455,103 @@
 					<type>
 						<NamedType>
 							<type>
-								<NullRef/>
+								<TypeRef name="DMI_Types_Pkg::DMI_EVC_status_T"/>
 							</type>
 						</NamedType>
 					</type>
+					<value>
+						<!-- {DMI_Active : false, DMI_Error : false, DMI_DriverIdentifierReceived : false, DMI... -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="DMI_Active">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="DMI_Error">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="DMI_DriverIdentifierReceived">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="DMI_DriverIdentifierValidated">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="DMI_TrainIdentifierReceived">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="DMI_TrainIdentifierValidated">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="DMI_Identifier">
+									<flow>
+										<!-- {valid : false, systemTime : 0, DMI_Identifier : DMI_Types_Pkg::DMI_1, Cabin_Iden... -->
+										<DataStructOp>
+											<data>
+												<LabelledExpression label="valid">
+													<flow>
+														<ConstValue value="false"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="systemTime">
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="DMI_Identifier">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="DMI_Types_Pkg::DMI_1"/>
+															</path>
+														</IdExpression>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="Cabin_Identifier">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="DMI_Types_Pkg::cabin_A"/>
+															</path>
+														</IdExpression>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="l_name">
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="DMI_name">
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="M_VERSION">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="M_VERSION_Previous_versions_according_to_e_g_EEIG_SRS_and_UIC_A200_SRS"/>
+															</path>
+														</IdExpression>
+													</flow>
+												</LabelledExpression>
+											</data>
+										</DataStructOp>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
 					<pragmas>
 						<ed:Constant oid="!ed/27d9c/56E3/D80/54ca1f9a3a2e"/>
 					</pragmas>
@@ -466,6 +572,18 @@
 						</Variable>
 					</inputs>
 					<outputs>
+						<Variable name="DMI_Status_ForEVC">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/29306/1902/16DC/54e600dc62a5"/>
+							</pragmas>
+						</Variable>
 						<Variable name="DMI_MessageReceived">
 							<type>
 								<NamedType>
@@ -686,7 +804,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<NullRef/>
+										<TypeRef name="DMI_Types_Pkg::DMI_EVC_status_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -963,7 +1081,7 @@
 													<type>
 														<NamedType>
 															<type>
-																<NullRef/>
+																<TypeRef name="DMI_Types_Pkg::DMI_EVC_status_T"/>
 															</type>
 														</NamedType>
 													</type>
@@ -1268,6 +1386,22 @@
 														<ed:Equation oid="!ed/27d81/56E3/D80/54ca1df1d2f"/>
 													</pragmas>
 												</Equation>
+												<!-- DMI_Status_ForEVC = _L12; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="DMI_Status_ForEVC"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="_L12"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/29307/1902/16DC/54e6010721f7"/>
+													</pragmas>
+												</Equation>
 											</data>
 											<pragmas>
 												<ed:Action oid="!ed/27b2b/273B/1120/54c9f6013a92"/>
@@ -1293,7 +1427,7 @@
 													<type>
 														<NamedType>
 															<type>
-																<NullRef/>
+																<TypeRef name="DMI_Types_Pkg::DMI_EVC_status_T"/>
 															</type>
 														</NamedType>
 													</type>
@@ -1749,6 +1883,22 @@
 												<Point x="11959" y="22410"/>
 											</positions>
 										</Edge>
+										<EquationGE presentable="!ed/29307/1902/16DC/54e6010721f7">
+											<position>
+												<Point x="17859" y="8334"/>
+											</position>
+											<size>
+												<Size width="318" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/27c79/56E3/D80/54ca1419762e" dstEquation="!ed/29307/1902/16DC/54e6010721f7">
+											<positions>
+												<Point x="14764" y="7567"/>
+												<Point x="16325" y="7567"/>
+												<Point x="16325" y="8599"/>
+												<Point x="17912" y="8599"/>
+											</positions>
+										</Edge>
 									</presentationElements>
 								</NetDiagram>
 							</diagrams>
@@ -1761,7 +1911,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<NullRef/>
+										<TypeRef name="DMI_Types_Pkg::DMI_EVC_status_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -1813,7 +1963,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<NullRef/>
+										<TypeRef name="DMI_Types_Pkg::DMI_EVC_status_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -1861,7 +2011,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<NullRef/>
+										<TypeRef name="DMI_Types_Pkg::DMI_EVC_status_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -2077,21 +2227,58 @@
 								<ed:Equation oid="!ed/27ed5/273B/1120/54ca05f079c7"/>
 							</pragmas>
 						</Equation>
-						<!-- _L15 = (make _null)(); -->
+						<!-- _L15 = (make DMI_Types_Pkg::DMI_EVC_status_T)(_L5, _L16, _null, _null, _null, _nu... -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L15"/>
 							</lefts>
 							<right>
-								<!-- (make _null)() -->
+								<!-- (make DMI_Types_Pkg::DMI_EVC_status_T)(_L5, _L16, _null, _null, _null, _null, _nu... -->
 								<CallExpression>
 									<operator>
 										<MakeOp name="2">
 											<type>
-												<NullRef/>
+												<TypeRef name="DMI_Types_Pkg::DMI_EVC_status_T"/>
 											</type>
 										</MakeOp>
 									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L5"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L16"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+									</callParameters>
 								</CallExpression>
 							</right>
 							<pragmas>
@@ -2300,7 +2487,7 @@
 										</EquationGE>
 										<EquationGE presentable="!ed/27ea6/273B/1120/54ca029e3bee">
 											<position>
-												<Point x="19473" y="3836"/>
+												<Point x="23151" y="5874"/>
 											</position>
 											<size>
 												<Size width="317" height="503"/>
@@ -2356,15 +2543,15 @@
 										</Edge>
 										<EquationGE presentable="!ed/27edd/273B/1120/54ca060f2ecd">
 											<position>
-												<Point x="16166" y="1984"/>
+												<Point x="19235" y="1746"/>
 											</position>
 											<size>
-												<Size width="2027" height="4196"/>
+												<Size width="2741" height="8641"/>
 											</size>
 										</EquationGE>
 										<EquationGE kind="OBJ_LIT" presentable="!ed/27efc/273B/1120/54ca06946b8b">
 											<position>
-												<Point x="14129" y="3519"/>
+												<Point x="17833" y="3810"/>
 											</position>
 											<size>
 												<Size width="211" height="318"/>
@@ -2406,8 +2593,8 @@
 											<positions>
 												<Point x="3122" y="3360"/>
 												<Point x="3545" y="3360"/>
-												<Point x="3545" y="5292"/>
-												<Point x="4445" y="5292"/>
+												<Point x="3545" y="5318"/>
+												<Point x="4445" y="5318"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/27f52/273B/1120/54ca07561fff">
@@ -2428,10 +2615,10 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/27f4e/273B/1120/54ca074523eb" dstEquation="!ed/27f52/273B/1120/54ca07561fff">
 											<positions>
-												<Point x="6085" y="5292"/>
-												<Point x="7276" y="5292"/>
-												<Point x="7276" y="5292"/>
-												<Point x="9737" y="5292"/>
+												<Point x="6112" y="5318"/>
+												<Point x="7276" y="5318"/>
+												<Point x="7276" y="5318"/>
+												<Point x="9737" y="5318"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/27f17/273B/1120/54ca06d37d44" dstEquation="!ed/27f52/273B/1120/54ca07561fff">
@@ -2493,16 +2680,32 @@
 											<positions>
 												<Point x="6218" y="10610"/>
 												<Point x="7144" y="10610"/>
-												<Point x="7144" y="10239"/>
-												<Point x="8096" y="10239"/>
+												<Point x="7144" y="10266"/>
+												<Point x="8096" y="10266"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/27edd/273B/1120/54ca060f2ecd" dstEquation="!ed/27ea6/273B/1120/54ca029e3bee">
 											<positions>
-												<Point x="18203" y="4101"/>
-												<Point x="19368" y="4101"/>
-												<Point x="19368" y="4101"/>
-												<Point x="19526" y="4101"/>
+												<Point x="21960" y="6059"/>
+												<Point x="23125" y="6059"/>
+												<Point x="23125" y="6138"/>
+												<Point x="23204" y="6138"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/27efc/273B/1120/54ca06946b8b" dstEquation="!ed/27edd/273B/1120/54ca060f2ecd">
+											<positions>
+												<Point x="18045" y="3969"/>
+												<Point x="18124" y="3969"/>
+												<Point x="18124" y="3916"/>
+												<Point x="19235" y="3916"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/27ed5/273B/1120/54ca05f079c7" dstEquation="!ed/27edd/273B/1120/54ca060f2ecd">
+											<positions>
+												<Point x="9340" y="2831"/>
+												<Point x="14288" y="2831"/>
+												<Point x="14288" y="2831"/>
+												<Point x="19235" y="2831"/>
 											</positions>
 										</Edge>
 									</presentationElements>
