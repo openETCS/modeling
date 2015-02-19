@@ -1468,7 +1468,843 @@
 						</ed:Operator>
 					</pragmas>
 				</Operator>
-				<Operator name="mapToRTM" href="Operator2.xscade"/>
+				<Operator kind="function" name="mapToRTM">
+					<inputs>
+						<Variable name="cmdsToMobile">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MoRC_Pck::mobileHWCmd_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/15c27/7ECB/1454/54e3597373ad" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>3.5.6, 3.5.6.3.2, 3.5.6.5, 3.5.6.5:Commands to the mobile hardware</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="toRTM">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_RadioCommunication_Pkg::RadioManagement_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/15c28/7ECB/1454/54e359da52ed"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MoRC_Pck::mobileHWCmd_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/15c2a/7ECB/1454/54e35a03eb5"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L2">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/15c37/7ECB/1454/54e35a0f339a"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L9">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MoRC_Pck::mobileHWAction_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/15c71/7ECB/1454/54e35a8f4d7d"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L10">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_MN"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2a3d7/7F89/538/54e35cc7b60"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L18">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_RadioCommunication_Pkg::RadioManagement_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2a84e/2E4B/1420/54e5a8ea1594"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L19">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_RadioCommunication_Pkg::cmdRadioUnit_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2a88d/434/1854/54e5f23c5977"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L1 = cmdsToMobile; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cmdsToMobile"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/15c29/7ECB/1454/54e35a037364"/>
+							</pragmas>
+						</Equation>
+						<!-- toRTM = _L18; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="toRTM"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L18"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/15c2f/7ECB/1454/54e35a064a69"/>
+							</pragmas>
+						</Equation>
+						<!-- _L2 = _L1.valid; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L2"/>
+							</lefts>
+							<right>
+								<!-- _L1.valid -->
+								<PrjOp name="1">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="valid"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/15c36/7ECB/1454/54e35a0f54d"/>
+							</pragmas>
+						</Equation>
+						<!-- _L9 = _L1.action; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L9"/>
+							</lefts>
+							<right>
+								<!-- _L1.action -->
+								<PrjOp name="2">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="action"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/15c70/7ECB/1454/54e35a8f5f0d"/>
+							</pragmas>
+						</Equation>
+						<!-- _L10 = _L1.radioNetworkID; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L10"/>
+							</lefts>
+							<right>
+								<!-- _L1.radioNetworkID -->
+								<PrjOp name="3">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="radioNetworkID"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2a3d6/7F89/538/54e35cc715d7"/>
+							</pragmas>
+						</Equation>
+						<!-- _L18 = (make API_RadioCommunication_Pkg::RadioManagement_T)(_L2, _L19, _L10); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L18"/>
+							</lefts>
+							<right>
+								<!-- (make API_RadioCommunication_Pkg::RadioManagement_T)(_L2, _L19, _L10) -->
+								<CallExpression>
+									<operator>
+										<MakeOp name="3">
+											<type>
+												<TypeRef name="API_RadioCommunication_Pkg::RadioManagement_T"/>
+											</type>
+										</MakeOp>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L19"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L10"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2a84d/2E4B/1420/54e5a8ea6ab9"/>
+							</pragmas>
+						</Equation>
+						<!-- _L19 = mapActionToCmd(_L9); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L19"/>
+							</lefts>
+							<right>
+								<!-- mapActionToCmd(_L9) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="mapActionToCmd"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L9"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2a88c/434/1854/54e5f23cae8"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/15c1f/7ECB/1454/54e3595b20e4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<diagrams>
+								<NetDiagram name="diagram_mapToRTM_1" landscape="true" format="A4 (210 297)" oid="!ed/15c20/7ECB/1454/54e3595b6805">
+									<presentationElements>
+										<EquationGE presentable="!ed/15c29/7ECB/1454/54e35a037364">
+											<position>
+												<Point x="2540" y="7514"/>
+											</position>
+											<size>
+												<Size width="265" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/15c2f/7ECB/1454/54e35a064a69">
+											<position>
+												<Point x="19420" y="8943"/>
+											</position>
+											<size>
+												<Size width="318" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/15c36/7ECB/1454/54e35a0f54d">
+											<position>
+												<Point x="3942" y="7435"/>
+											</position>
+											<size>
+												<Size width="810" height="677"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/15c29/7ECB/1454/54e35a037364" dstEquation="!ed/15c36/7ECB/1454/54e35a0f54d">
+											<positions>
+												<Point x="2805" y="7779"/>
+												<Point x="3360" y="7779"/>
+												<Point x="3360" y="7779"/>
+												<Point x="3942" y="7779"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/15c70/7ECB/1454/54e35a8f5f0d">
+											<position>
+												<Point x="3942" y="8890"/>
+											</position>
+											<size>
+												<Size width="820" height="688"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/15c29/7ECB/1454/54e35a037364" dstEquation="!ed/15c70/7ECB/1454/54e35a8f5f0d">
+											<positions>
+												<Point x="2805" y="7779"/>
+												<Point x="3360" y="7779"/>
+												<Point x="3360" y="9234"/>
+												<Point x="3942" y="9234"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/2a3d6/7F89/538/54e35cc715d7">
+											<position>
+												<Point x="3942" y="10372"/>
+											</position>
+											<size>
+												<Size width="2186" height="704"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/15c29/7ECB/1454/54e35a037364" dstEquation="!ed/2a3d6/7F89/538/54e35cc715d7">
+											<positions>
+												<Point x="2805" y="7779"/>
+												<Point x="3360" y="7779"/>
+												<Point x="3360" y="10742"/>
+												<Point x="3942" y="10742"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/2a84d/2E4B/1420/54e5a8ea6ab9">
+											<position>
+												<Point x="15134" y="6244"/>
+											</position>
+											<size>
+												<Size width="2265" height="5996"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/15c36/7ECB/1454/54e35a0f54d" dstEquation="!ed/2a84d/2E4B/1420/54e5a8ea6ab9">
+											<positions>
+												<Point x="4763" y="7779"/>
+												<Point x="11483" y="7779"/>
+												<Point x="11483" y="7779"/>
+												<Point x="15134" y="7779"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/2a3d6/7F89/538/54e35cc715d7" dstEquation="!ed/2a84d/2E4B/1420/54e5a8ea6ab9">
+											<positions>
+												<Point x="6138" y="10742"/>
+												<Point x="12171" y="10742"/>
+												<Point x="12171" y="10742"/>
+												<Point x="15134" y="10742"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/2a88c/434/1854/54e5f23cae8">
+											<position>
+												<Point x="9260" y="8520"/>
+											</position>
+											<size>
+												<Size width="3535" height="1418"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/15c70/7ECB/1454/54e35a8f5f0d" dstEquation="!ed/2a88c/434/1854/54e5f23cae8">
+											<positions>
+												<Point x="4763" y="9234"/>
+												<Point x="7011" y="9234"/>
+												<Point x="7011" y="9234"/>
+												<Point x="9260" y="9234"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2a84d/2E4B/1420/54e5a8ea6ab9" dstEquation="!ed/15c2f/7ECB/1454/54e35a064a69">
+											<positions>
+												<Point x="17383" y="9234"/>
+												<Point x="18415" y="9234"/>
+												<Point x="18415" y="9234"/>
+												<Point x="19473" y="9234"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/2a88c/434/1854/54e5f23cae8" dstEquation="!ed/2a84d/2E4B/1420/54e5a8ea6ab9">
+											<positions>
+												<Point x="12779" y="9234"/>
+												<Point x="13944" y="9234"/>
+												<Point x="13944" y="9234"/>
+												<Point x="15134" y="9234"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="function" name="mapActionToCmd">
+					<inputs>
+						<Variable name="fromAction">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MoRC_Pck::mobileHWAction_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2a8a1/2E4B/1420/54e5a93726d1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>3.5.6, 3.5.6.3.2, 3.5.6.5, 3.5.6.5:Commands to the mobile hardware</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="toRTMCMD">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_RadioCommunication_Pkg::cmdRadioUnit_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2a8a0/2E4B/1420/54e5a937369f"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MoRC_Pck::mobileHWAction_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2a89a/2E4B/1420/54e5a9374076"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L25">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_RadioCommunication_Pkg::cmdRadioUnit_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2a89d/434/1854/54e5f5a1c61"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L27">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_RadioCommunication_Pkg::cmdRadioUnit_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2a8a9/434/1854/54e5f5f249b6"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L28">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_RadioCommunication_Pkg::cmdRadioUnit_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2a8af/434/1854/54e5f5f64250"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L31">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_RadioCommunication_Pkg::cmdRadioUnit_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2a8c1/434/1854/54e5f605290b"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L32">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_RadioCommunication_Pkg::cmdRadioUnit_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2a8c7/434/1854/54e5f6ae6030"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L33">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_RadioCommunication_Pkg::cmdRadioUnit_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2a905/434/1854/54e5f7524093"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L1 = fromAction; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="fromAction"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2a891/2E4B/1420/54e5a93768f"/>
+							</pragmas>
+						</Equation>
+						<!-- toRTMCMD = _L25; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="toRTMCMD"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L25"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2a892/2E4B/1420/54e5a9377b71"/>
+							</pragmas>
+						</Equation>
+						<!-- _L25 = ( case _L1 of  | MoRC_Pck::mhwa_register :   _L31 | MoRC_Pck::mhwa_connect... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L25"/>
+							</lefts>
+							<right>
+								<!-- ( case _L1 of  | MoRC_Pck::mhwa_register :   _L31 | MoRC_Pck::mhwa_connect :   _L... -->
+								<CaseOp name="2">
+									<switch>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</switch>
+									<cases>
+										<Case pattern="MoRC_Pck::mhwa_register">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L31"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</Case>
+										<Case pattern="MoRC_Pck::mhwa_connect">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L27"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</Case>
+										<Case pattern="MoRC_Pck::mhwa_disconnect">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L28"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</Case>
+										<Case pattern="MoRC_Pck::mhwa_unregister">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L33"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</Case>
+										<Case>
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L32"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</Case>
+									</cases>
+								</CaseOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2a89c/434/1854/54e5f5a115"/>
+							</pragmas>
+						</Equation>
+						<!-- _L27 = API_RadioCommunication_Pkg::cmdr_connection_request; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L27"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="API_RadioCommunication_Pkg::cmdr_connection_request"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2a8a8/434/1854/54e5f5f26fac"/>
+							</pragmas>
+						</Equation>
+						<!-- _L28 = API_RadioCommunication_Pkg::cmdr_disconnection_request; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L28"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="API_RadioCommunication_Pkg::cmdr_disconnection_request"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2a8ae/434/1854/54e5f5f62dab"/>
+							</pragmas>
+						</Equation>
+						<!-- _L31 = API_RadioCommunication_Pkg::cmdr_networkRegister; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L31"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="API_RadioCommunication_Pkg::cmdr_networkRegister"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2a8c0/434/1854/54e5f6056643"/>
+							</pragmas>
+						</Equation>
+						<!-- _L32 = API_RadioCommunication_Pkg::cmdr_not_relevant; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L32"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="API_RadioCommunication_Pkg::cmdr_not_relevant"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2a8c6/434/1854/54e5f6ae7de5"/>
+							</pragmas>
+						</Equation>
+						<!-- _L33 = API_RadioCommunication_Pkg::cmdr_infinite_connection_attempts; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L33"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="API_RadioCommunication_Pkg::cmdr_infinite_connection_attempts"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2a904/434/1854/54e5f7525b21"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/2a890/2E4B/1420/54e5a9374405" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<diagrams>
+								<NetDiagram name="diagram_mapActionToCmd_1" landscape="true" format="A4 (210 297)" oid="!ed/2a899/2E4B/1420/54e5a9376fe7">
+									<presentationElements>
+										<EquationGE presentable="!ed/2a891/2E4B/1420/54e5a93768f">
+											<position>
+												<Point x="5106" y="3360"/>
+											</position>
+											<size>
+												<Size width="265" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/2a892/2E4B/1420/54e5a9377b71">
+											<position>
+												<Point x="18018" y="10663"/>
+											</position>
+											<size>
+												<Size width="318" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/2a89c/434/1854/54e5f5a115">
+											<position>
+												<Point x="8062" y="6210"/>
+											</position>
+											<size>
+												<Size width="5837" height="9408"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2a891/2E4B/1420/54e5a93768f" dstEquation="!ed/2a89c/434/1854/54e5f5a115">
+											<positions>
+												<Point x="5371" y="3625"/>
+												<Point x="10980" y="3625"/>
+												<Point x="10980" y="6218"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2a89c/434/1854/54e5f5a115" dstEquation="!ed/2a892/2E4B/1420/54e5a9377b71">
+											<positions>
+												<Point x="13891" y="10927"/>
+												<Point x="14949" y="10927"/>
+												<Point x="14949" y="10927"/>
+												<Point x="18071" y="10927"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/2a8a8/434/1854/54e5f5f26fac">
+											<position>
+												<Point x="6747" y="9208"/>
+											</position>
+											<size>
+												<Size width="212" height="317"/>
+											</size>
+										</EquationGE>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/2a8ae/434/1854/54e5f5f62dab">
+											<position>
+												<Point x="6906" y="10742"/>
+											</position>
+											<size>
+												<Size width="212" height="318"/>
+											</size>
+										</EquationGE>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/2a8c0/434/1854/54e5f6056643">
+											<position>
+												<Point x="6853" y="7594"/>
+											</position>
+											<size>
+												<Size width="212" height="317"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/2a8a8/434/1854/54e5f5f26fac" dstEquation="!ed/2a89c/434/1854/54e5f5a115">
+											<positions>
+												<Point x="6959" y="9366"/>
+												<Point x="7038" y="9366"/>
+												<Point x="7038" y="9366"/>
+												<Point x="8070" y="9366"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/2a8ae/434/1854/54e5f5f62dab" dstEquation="!ed/2a89c/434/1854/54e5f5a115">
+											<positions>
+												<Point x="7117" y="10901"/>
+												<Point x="7144" y="10901"/>
+												<Point x="7144" y="10901"/>
+												<Point x="8070" y="10901"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/2a8c6/434/1854/54e5f6ae7de5">
+											<position>
+												<Point x="6641" y="13891"/>
+											</position>
+											<size>
+												<Size width="211" height="318"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="6" srcEquation="!ed/2a8c6/434/1854/54e5f6ae7de5" dstEquation="!ed/2a89c/434/1854/54e5f5a115">
+											<positions>
+												<Point x="6853" y="14049"/>
+												<Point x="7382" y="14049"/>
+												<Point x="7382" y="14049"/>
+												<Point x="8070" y="14049"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/2a904/434/1854/54e5f7525b21">
+											<position>
+												<Point x="7382" y="12277"/>
+											</position>
+											<size>
+												<Size width="212" height="317"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/2a8c0/434/1854/54e5f6056643" dstEquation="!ed/2a89c/434/1854/54e5f5a115">
+											<positions>
+												<Point x="7064" y="7752"/>
+												<Point x="7567" y="7752"/>
+												<Point x="7567" y="7752"/>
+												<Point x="8070" y="7752"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/2a904/434/1854/54e5f7525b21" dstEquation="!ed/2a89c/434/1854/54e5f5a115">
+											<positions>
+												<Point x="7594" y="12435"/>
+												<Point x="7832" y="12435"/>
+												<Point x="7832" y="12488"/>
+												<Point x="8070" y="12488"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/13f3a/5982/10B4/54d47939343a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
