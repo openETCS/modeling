@@ -634,7 +634,7 @@
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="mobile_Info_T"/>
+												<TypeRef name="radioUnitToEVC_T"/>
 											</type>
 										</NamedType>
 									</type>
@@ -651,7 +651,7 @@
 						</ed:Type>
 					</pragmas>
 				</Type>
-				<Type name="mobile_Info_T">
+				<Type name="radioUnitToEVC_T">
 					<definition>
 						<Struct>
 							<fields>
@@ -687,7 +687,7 @@
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="int"/>
+												<TypeRef name="connectionStatusRadioUnit_T"/>
 											</type>
 										</NamedType>
 									</type>
@@ -697,28 +697,16 @@
 										</ed:Field>
 									</pragmas>
 								</Field>
-								<Field name="networkRegistrationStatus">
+								<Field name="responseRadioUnit">
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="int"/>
+												<TypeRef name="responseRadioUnit_T"/>
 											</type>
 										</NamedType>
 									</type>
 									<pragmas>
 										<ed:Field oid="!ed/2cb0a/6AA/111C/54be77fc5203"/>
-									</pragmas>
-								</Field>
-								<Field name="communicationStatus">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="int"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/2cb0b/6AA/111C/54be781439ef"/>
 									</pragmas>
 								</Field>
 							</fields>
@@ -770,7 +758,7 @@
 										<ed:Field oid="!ed/27eb9/3DFF/1974/54d4c32d3c44"/>
 									</pragmas>
 								</Field>
-								<Field name="radioManagement">
+								<Field name="radioEVCtoUnit">
 									<type>
 										<NamedType>
 											<type>
@@ -805,11 +793,11 @@
 										<ed:Field oid="!ed/27e0d/5982/10B4/54d48240f18"/>
 									</pragmas>
 								</Field>
-								<Field name="task">
+								<Field name="cmd">
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="RadioManagementTask_T"/>
+												<TypeRef name="cmdRadioUnit_T"/>
 											</type>
 										</NamedType>
 									</type>
@@ -838,16 +826,118 @@
 						</ed:Type>
 					</pragmas>
 				</Type>
-				<Type name="RadioManagementTask_T">
+				<Type name="cmdRadioUnit_T">
 					<definition>
-						<NamedType>
-							<type>
-								<TypeRef name="int"/>
-							</type>
-						</NamedType>
+						<Enum>
+							<values>
+								<Value name="cmdr_not_relevant">
+									<pragmas>
+										<ed:Value oid="!ed/1478b/5770/1564/54e59d8e31ce"/>
+									</pragmas>
+								</Value>
+								<Value name="cmdr_connection_request">
+									<pragmas>
+										<ed:Value oid="!ed/14792/5770/1564/54e59f946db9"/>
+									</pragmas>
+								</Value>
+								<Value name="cmdr_disconnection_request">
+									<pragmas>
+										<ed:Value oid="!ed/14799/5770/1564/54e59f987417"/>
+									</pragmas>
+								</Value>
+								<Value name="cmdr_reset_connection">
+									<pragmas>
+										<ed:Value oid="!ed/147a0/5770/1564/54e59f9f3fe9"/>
+									</pragmas>
+								</Value>
+								<Value name="cmdr_networkUnregister">
+									<pragmas>
+										<ed:Value oid="!ed/147a7/5770/1564/54e5a078505e"/>
+									</pragmas>
+								</Value>
+								<Value name="cmdr_networkRegister">
+									<pragmas>
+										<ed:Value oid="!ed/2a8f2/2DA3/1ACC/54e5f13a51ed"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/27e20/5982/10B4/54d4829233d5"/>
+						<ed:Type oid="!ed/27e20/5982/10B4/54d4829233d5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>This type is used to command action in the radio hardware of the train</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="responseRadioUnit_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="rspr_not_relevant">
+									<pragmas>
+										<ed:Value oid="!ed/147b3/5770/1564/54e5a0be98b"/>
+									</pragmas>
+								</Value>
+								<Value name="rspr_connection_confirmation">
+									<pragmas>
+										<ed:Value oid="!ed/147b4/5770/1564/54e5a0beaef"/>
+									</pragmas>
+								</Value>
+								<Value name="rspr_connection_lost">
+									<pragmas>
+										<ed:Value oid="!ed/147b5/5770/1564/54e5a0be253a"/>
+									</pragmas>
+								</Value>
+								<Value name="rspr_connection_failure">
+									<pragmas>
+										<ed:Value oid="!ed/147b6/5770/1564/54e5a0be2e66"/>
+									</pragmas>
+								</Value>
+								<Value name="rspr_connection_not_established">
+									<pragmas>
+										<ed:Value oid="!ed/147b7/5770/1564/54e5a0be306a"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/147b2/5770/1564/54e5a0be45d1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>This type is used to command action in the radio hardware of the train</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="connectionStatusRadioUnit_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="conn_unknown">
+									<pragmas>
+										<ed:Value oid="!ed/147d3/5770/1564/54e5a38050bf"/>
+									</pragmas>
+								</Value>
+								<Value name="conn_no_connection">
+									<pragmas>
+										<ed:Value oid="!ed/53b38/532/10C4/54e5fb4976e3"/>
+									</pragmas>
+								</Value>
+								<Value name="conn_ConnectionUp">
+									<pragmas>
+										<ed:Value oid="!ed/147d4/5770/1564/54e5a3801ede"/>
+									</pragmas>
+								</Value>
+								<Value name="conn_SetupFailed">
+									<pragmas>
+										<ed:Value oid="!ed/147d5/5770/1564/54e5a38076ce"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/147d2/5770/1564/54e5a3807e9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>This type is used to command action in the radio hardware of the train</comment>
+						</ed:Type>
 					</pragmas>
 				</Type>
 			</declarations>
@@ -855,7 +945,7 @@
 				<ed:Package oid="!ed/2cadc/6AA/111C/54be756c6f33" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 					<diagrams>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/2cadd/6AA/111C/54be756c2567" blockKind="constants"/>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/2cade/6AA/111C/54be756c23c3" blockKind="types" columnsSize="0, 217, 294, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/2cade/6AA/111C/54be756c23c3" blockKind="types" columnsSize="0, 333, 294, 300"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/2cadf/6AA/111C/54be756c3833" blockKind="sensors"/>
 					</diagrams>
 				</ed:Package>
