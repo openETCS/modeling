@@ -128,6 +128,39 @@
                     <input name="ModeSymbolVisibility" oid="bf7f8fdf-87eb-4e23-bd2e-f3598e537679" type="bool">
                         <init>false</init>
                     </input>
+                    <input name="textMsgLine1" oid="3b3a233a-4df6-4882-b99a-27791cd0a4ef" representation="as_string" type="char^45">
+                        <init>[0]</init>
+                    </input>
+                    <input name="traindataValidWinVisibility" oid="09f74b98-c5ba-4d62-b346-ac5f20179fd5" type="bool">
+                        <init>false</init>
+                    </input>
+                    <input name="trainLenght" oid="bb13c2ec-835f-43f2-8735-f88b8239eeb9" type="real">
+                        <init>0.0</init>
+                    </input>
+                    <input name="trainBrakePerc" oid="ec1e8879-16da-4ef0-ba28-46dc38641db7" type="real">
+                        <init>0.0</init>
+                    </input>
+                    <input name="trainMaxSpeed" oid="e5c06866-53fc-4254-a467-79c91df6c80b" type="real">
+                        <init>0.0</init>
+                    </input>
+                    <input name="trainAxleLoad" oid="d78b7406-1bf6-416b-b860-459ad36af79b" representation="index" type="int">
+                        <init>0</init>
+                    </input>
+                    <input name="indexTrainCategory" oid="bc29089b-619c-4d4f-858b-9c9bf5b2946c" representation="index" type="int">
+                        <init>0</init>
+                    </input>
+                    <input name="trainAirtightIndex" oid="1c3ad97f-ef05-4829-8d42-382eb9193380" representation="index" type="int">
+                        <init>0</init>
+                    </input>
+                    <input name="trainLoadingGaugeIndex" oid="8fd7b7e9-9465-4081-a271-f810918d49ef" representation="index" type="int">
+                        <init>0</init>
+                    </input>
+                    <input name="traindataYesNoIndex" oid="bf7f3b16-8786-44d9-a5a0-23ca78ac6eb5" representation="index" type="int">
+                        <init>0</init>
+                    </input>
+                    <input name="ArrayOfMsgIndex" oid="1b966f6a-c638-49c0-bc49-3679d11af8b0" representation="as_int_array" type="int^5">
+                        <init>[0]</init>
+                    </input>
                 </inputs>
                 <outputs>
                     <output memory="true" name="OverA" oid="2b7e845e-cb23-444e-a6cc-6b70ecd286a7" type="bool">
@@ -164,6 +197,21 @@
                         <init>false</init>
                     </output>
                     <output memory="true" name="openTrainData" oid="4bbc5ea4-174a-48d3-9432-0883862db33a" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="startRequest" oid="d2b9af79-8f06-4aeb-bc39-325e6cf89a38" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="closeTrainDataValidWin" oid="4838e93d-a3a8-40a8-80bc-232280a7f641" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="traindataAck" oid="39131a42-1cdf-4de5-9acd-dda0ece7d1f2" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="traindataYesAck" oid="db9cb65d-14d8-4edc-89f6-7e8c14a68e01" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="traindataNoAck" oid="89b4103c-02ee-44ca-9f09-8388d9449d96" type="bool">
                         <init>false</init>
                     </output>
                 </outputs>
@@ -543,7 +591,7 @@
                         </rotate>
                         <orientation clockwise="false"/>
                         <file name="E.ogfx" path="Widgets/E"/>
-                        <crc value="824848381"/>
+                        <crc value="1861315429"/>
                         <inputParameters>
                             <parameter control="false" name="StatusSymbolVisibility" oid="3a13c3a1-c5ae-4d16-b925-e3804b58efe3" type="bool">
                                 <expr>StatusSymbolVisibility</expr>
@@ -552,6 +600,10 @@
                             <parameter control="false" name="StatusSymnolIndex" oid="c646e1c2-57f4-4554-bb8d-aed50d04b130" representation="index" type="int">
                                 <expr>RBC_status_symbol</expr>
                                 <init>3</init>
+                            </parameter>
+                            <parameter control="false" name="ArrayOfMsgIndex" oid="444d88e5-e173-42d9-a182-5d6a348ccab8" representation="as_int_array" type="int^5">
+                                <expr>ArrayOfMsgIndex</expr>
+                                <init>[0]</init>
                             </parameter>
                         </inputParameters>
                     </properties>
@@ -1075,7 +1127,7 @@
                             <properties modular="false" name="mainmenu">
                                 <visible>
                                     <init>true</init>
-                                    <expr>window_mask[9]</expr>
+                                    <expr>window_mask[9] and (not window_mask[10])</expr>
                                 </visible>
                                 <origin>
                                     <x>
@@ -1100,7 +1152,7 @@
                                 </rotate>
                                 <orientation clockwise="false"/>
                                 <file name="mainmenu.ogfx" path="Widgets/MainMenu"/>
-                                <crc value="596219984"/>
+                                <crc value="3096997988"/>
                                 <inputParameters>
                                     <parameter control="false" name="buttonEnabler" oid="c10759cd-f1d4-474a-ac5f-776daead0944" representation="as_int_array" type="int^30">
                                         <expr>buttonEnabler</expr>
@@ -1116,6 +1168,9 @@
                                         <expr>openTrainData</expr>
                                     </parameter>
                                     <parameter name="closeMainmenu" oid="576d5cc0-0b88-4171-b727-efa07ef19c6d" type="bool"/>
+                                    <parameter name="StartRequest" oid="6d4c32c6-4a1a-4fe6-85a5-7af29669923f" type="bool">
+                                        <expr>startRequest</expr>
+                                    </parameter>
                                 </outputParameters>
                             </properties>
                             <children/>
@@ -1200,8 +1255,126 @@
                         </referenceContainer>
                     </children>
                 </container>
-                <pointerEventListener oid="d70337e7-31b9-404b-8c25-3496e168ef55">
+                <container oid="c8bd1545-0042-440a-82b3-fe7672366151">
                     <pathFromRoot value="14"/>
+                    <properties name="traindataValidation">
+                        <visible>
+                            <init>false</init>
+                            <expr>traindataValidWinVisibility</expr>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>0.0</init>
+                            </x>
+                            <y>
+                                <init>-1.0</init>
+                            </y>
+                        </origin>
+                        <priority>
+                            <init>-1</init>
+                        </priority>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                    </properties>
+                    <children>
+                        <referenceContainer oid="5d371136-5e63-4cae-a719-72b505badd8e">
+                            <pathFromRoot value="0,14"/>
+                            <properties modular="false" name="ValidationWindow">
+                                <visible>
+                                    <init>true</init>
+                                    <expr>traindataValidWinVisibility</expr>
+                                </visible>
+                                <origin>
+                                    <x>
+                                        <init>0.0</init>
+                                    </x>
+                                    <y>
+                                        <init>0.0</init>
+                                    </y>
+                                </origin>
+                                <scale>
+                                    <x>
+                                        <init>1.0</init>
+                                    </x>
+                                    <y>
+                                        <init>1.0</init>
+                                    </y>
+                                </scale>
+                                <rotate>
+                                    <angle>
+                                        <init>0.0</init>
+                                    </angle>
+                                </rotate>
+                                <orientation clockwise="false"/>
+                                <file name="ValidationWindow.ogfx" path="Widgets/ValidationWindow"/>
+                                <crc value="3743397307"/>
+                                <inputParameters>
+                                    <parameter control="false" name="trainLenght" oid="d0753482-e478-4f4b-b7db-855f0e0eb3d3" type="real">
+                                        <expr>trainLenght</expr>
+                                        <init>0.0</init>
+                                    </parameter>
+                                    <parameter control="false" name="trainBrakePerc" oid="38bf9128-9268-45a9-8d9f-7d6262c2f9e7" type="real">
+                                        <expr>trainBrakePerc</expr>
+                                        <init>0.0</init>
+                                    </parameter>
+                                    <parameter control="false" name="trainMaxSpeed" oid="33578cd9-9dd7-4230-855f-b0c7a362eb65" type="real">
+                                        <expr>trainMaxSpeed</expr>
+                                        <init>0.0</init>
+                                    </parameter>
+                                    <parameter control="false" name="indexTrainCategory" oid="3802ac7a-b0bb-4681-aad4-fb0ec0f24c27" representation="index" type="int">
+                                        <expr>indexTrainCategory</expr>
+                                        <init>0</init>
+                                    </parameter>
+                                    <parameter control="false" name="trainAirtightIndex" oid="e1ed3845-207c-4795-8826-a84a152e1277" representation="index" type="int">
+                                        <expr>trainAirtightIndex</expr>
+                                        <init>0</init>
+                                    </parameter>
+                                    <parameter control="false" name="trainLoadingGaugeIndex" oid="2e82eb91-35b2-4251-8c9a-8acd643dc331" representation="index" type="int">
+                                        <expr>trainLoadingGaugeIndex</expr>
+                                        <init>0</init>
+                                    </parameter>
+                                    <parameter control="false" name="traindataYesNoIndex" oid="93feeced-f116-4f94-ac20-d34afb08a625" representation="index" type="int">
+                                        <expr>traindataYesNoIndex</expr>
+                                        <init>0</init>
+                                    </parameter>
+                                    <parameter control="false" name="trainAxleLoad" oid="78b0dd32-f125-4103-bc82-bab22a2246a4" representation="index" type="int">
+                                        <expr>trainAxleLoad</expr>
+                                        <init>0</init>
+                                    </parameter>
+                                </inputParameters>
+                                <outputParameters>
+                                    <parameter name="closeTrainDataValidationWindow" oid="6d360d43-3aac-4920-b210-f0857329161f" type="bool">
+                                        <expr>closeTrainDataValidWin</expr>
+                                    </parameter>
+                                    <parameter name="traindataAck" oid="02b4b8f7-01c8-4aea-8117-7dd0146999ba" type="bool">
+                                        <expr>traindataAck</expr>
+                                    </parameter>
+                                    <parameter name="traindataYesAck" oid="d0180b0a-e2d9-4cca-8279-105efa8ac1bf" type="bool">
+                                        <expr>traindataYesAck</expr>
+                                    </parameter>
+                                    <parameter name="traindataNoAck" oid="a7d37a7c-d12d-4752-abff-cbe768eddb33" type="bool">
+                                        <expr>traindataNoAck</expr>
+                                    </parameter>
+                                </outputParameters>
+                            </properties>
+                            <children/>
+                        </referenceContainer>
+                    </children>
+                </container>
+                <pointerEventListener oid="d70337e7-31b9-404b-8c25-3496e168ef55">
+                    <pathFromRoot value="15"/>
                     <properties name="pointer event listener">
                         <enable>
                             <init>true</init>
@@ -1222,5 +1395,5 @@
     </children>
 </specification>
 
-<!-- crc32 : 2961960931 -->
+<!-- crc32 : 46105973 -->
 
