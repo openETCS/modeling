@@ -4,10 +4,226 @@
 		<Package name="SpeedSupervision_Integration_Pkg">
 			<declarations>
 				<Operator kind="node" name="SpeedSupervision_Integration">
+					<inputs>
+						<Variable name="MRSP">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MRSP_Profile_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/215df/2115/1C84/54ecb71b5b7f"/>
+							</pragmas>
+						</Variable>
+						<Variable name="MA">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MAs_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1b2a88/2115/1C84/54eccf4c295"/>
+							</pragmas>
+						</Variable>
+						<Variable name="NationalValues">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Packet_Types_Pkg::P3_NationalValues_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/181d1a/2115/1C84/54eccb6435dd"/>
+							</pragmas>
+						</Variable>
+						<Variable name="TrainPosition">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrainPosition_Types_Pck::trainPosition_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1b2a45/2115/1C84/54eccc9d13cb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>only need d_est_front,d_max/min_safe_front</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+						<Variable name="V_est">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1b2a4f/2115/1C84/54eccced90d"/>
+							</pragmas>
+						</Variable>
+						<Variable name="V_ura">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1b2a62/2115/1C84/54eccea042ea"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MRSP_Profile_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/215e1/2115/1C84/54ecb71edae"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L2">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TargetManagement_types::MRSP_internal_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/be651/2115/1C84/54ecbead5f5f"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- () = TargetManagement_pkg::TargetManagement(_L2); -->
+						<Equation>
+							<right>
+								<!-- TargetManagement_pkg::TargetManagement(_L2) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="TargetManagement_pkg::TargetManagement"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/215d4/2115/1C84/54ecb70c6e8"/>
+							</pragmas>
+						</Equation>
+						<!-- _L1 = MRSP; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="MRSP"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/215e0/2115/1C84/54ecb71e2fd5"/>
+							</pragmas>
+						</Equation>
+						<!-- _L2 = SDM_Input_Wrappers::ConvertMRSPToInternal(_L1); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L2"/>
+							</lefts>
+							<right>
+								<!-- SDM_Input_Wrappers::ConvertMRSPToInternal(_L1) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="SDM_Input_Wrappers::ConvertMRSPToInternal"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/be650/2115/1C84/54ecbead3562"/>
+							</pragmas>
+						</Equation>
+					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/463a1/355F/F90/54bd05d956c3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 							<diagrams>
-								<NetDiagram name="diagram_SpeedSupervision_Integration_1" landscape="true" format="A4 (210 297)" oid="!ed/463a2/355F/F90/54bd05d93967"/>
+								<NetDiagram name="diagram_SpeedSupervision_Integration_1" landscape="true" format="A4 (210 297)" oid="!ed/463a2/355F/F90/54bd05d93967">
+									<presentationElements>
+										<EquationGE presentable="!ed/215d4/2115/1C84/54ecb70c6e8">
+											<position>
+												<Point x="14155" y="1164"/>
+											</position>
+											<size>
+												<Size width="4328" height="3985"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/215e0/2115/1C84/54ecb71e2fd5">
+											<position>
+												<Point x="2302" y="2910"/>
+											</position>
+											<size>
+												<Size width="264" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/be650/2115/1C84/54ecbead3562">
+											<position>
+												<Point x="6165" y="2037"/>
+											</position>
+											<size>
+												<Size width="3139" height="2318"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/215e0/2115/1C84/54ecb71e2fd5" dstEquation="!ed/be650/2115/1C84/54ecbead3562">
+											<positions>
+												<Point x="2566" y="3175"/>
+												<Point x="3598" y="3175"/>
+												<Point x="3598" y="3201"/>
+												<Point x="6165" y="3201"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/be650/2115/1C84/54ecbead3562" dstEquation="!ed/215d4/2115/1C84/54ecb70c6e8">
+											<positions>
+												<Point x="9313" y="3201"/>
+												<Point x="10134" y="3201"/>
+												<Point x="10134" y="3175"/>
+												<Point x="14155" y="3175"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
 							</diagrams>
 						</ed:Operator>
 					</pragmas>
