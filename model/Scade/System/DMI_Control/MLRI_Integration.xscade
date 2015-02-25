@@ -54,7 +54,26 @@
 				<ed:Type oid="!ed/1500f/5F6F/14AC/54d8752b612a"/>
 			</pragmas>
 		</Type>
-		<Type name="RBC_connection">
+		<Type name="Array_DMI_Q_Text">
+			<definition>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="DMI_Types_Pkg::DMI_Q_TEXT"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="27"/>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/15b82/5DBE/1754/54dfc7a93228"/>
+			</pragmas>
+		</Type>
+		<Type name="DMI_icon_T">
 			<definition>
 				<Struct>
 					<fields>
@@ -67,7 +86,7 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Field oid="!ed/1608d/3495/ED4/54d8aa7d7616" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+								<ed:Field oid="!ed/1b002/35D4/AE4/54eb179fc7f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 									<comment>Valid indicator for the packet</comment>
 								</ed:Field>
 							</pragmas>
@@ -81,22 +100,173 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Field oid="!ed/16094/3495/ED4/54d8aa8277ab" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+								<ed:Field oid="!ed/1b00b/35D4/AE4/54eb17b7635c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 									<comment>Clock value of the last received dynamic data.</comment>
 								</ed:Field>
 							</pragmas>
 						</Field>
-						<Field name="RBC_session_estabilished">
+						<Field name="DMI_m_icon_control_flag">
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="bool"/>
+										<TypeRef name="icon_control_flag"/>
 									</type>
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Field oid="!ed/16087/3495/ED4/54d8aa794064" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-									<comment>Connection indicator</comment>
+								<ed:Field oid="!ed/1b015/35D4/AE4/54eb17e24fd1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Control flag for the icon(s) display</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="DMI_m_icon_flashing_freq">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/18a61/B5B/8F0/54ec82ad780a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Flashing frequencies. Resolution of 0.1 Hz, 0 means no flashing</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="DMI_nid_icon_group">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="icon_group"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1b024/35D4/AE4/54eb197a74d7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Id of the icon group as defined in ERA</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="DMI_nid_icon_rank">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/189e9/B5B/8F0/54ec77b65d5c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Rank of the icon within the icon group the icon is defined in ERA.</comment>
+									<comment>Examples</comment>
+									<comment>if DMI_nid_icon_group=0 then</comment>
+									<comment>1 is LE01 symbol</comment>
+									<comment>2 is LE02 symbol</comment>
+									<comment>etc.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="DMI_L_icon_ref">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="L_TEXT"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/189a9/B5B/8F0/54ec6c7f4ed6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Length of the ERA Reference of the icon to display</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="DMI_X_icon_ref">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="X_TEXT"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/189c3/B5B/8F0/54ec6e73366a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Plain text representing the ERA reference of the icon to dispaly</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="DMI_nid_area_group">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="area_group"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/189cd/B5B/8F0/54ec6eb97603" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Number identifyin one of the main areas as defined in ERA</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="DMI_nid_area_rank">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/189e0/B5B/8F0/54ec701124ae" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Rank of the area within the area group the area is part of as defined by ERA.</comment>
+									<comment></comment>
+									<comment>Examples </comment>
+									<comment>if DMI_nid_area_group=0, then </comment>
+									<comment>1 is A1 area</comment>
+									<comment>2 is A2 area</comment>
+									<comment>etc.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="DMI_L_area_name">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="L_TEXT"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/189fa/B5B/8F0/54ec7a7f2b70" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Length of the ERA Area Name where to display the icon</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="DMI_X_area_name">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="X_TEXT"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/18a04/B5B/8F0/54ec7ab72ddc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Plain text representing the ERA Area Name where to display the icon</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="DMI_nid_icon_identifier">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/18a0e/B5B/8F0/54ec7b451911" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Identifier of icon to be acknowledged</comment>
 								</ed:Field>
 							</pragmas>
 						</Field>
@@ -104,10 +274,144 @@
 				</Struct>
 			</definition>
 			<pragmas>
-				<ed:Type oid="!ed/16086/3495/ED4/54d8aa417215"/>
+				<ed:Type oid="!ed/1b001/35D4/AE4/54eb17707ff5"/>
 			</pragmas>
 		</Type>
-		<Type name="DMI_Text_Message_T">
+		<Type name="icon_control_flag">
+			<definition>
+				<Enum>
+					<values>
+						<Value name="show_icon_in_area">
+							<pragmas>
+								<ed:Value oid="!ed/1b017/35D4/AE4/54eb188b7576"/>
+							</pragmas>
+						</Value>
+						<Value name="clear_area">
+							<pragmas>
+								<ed:Value oid="!ed/1b018/35D4/AE4/54eb18b1289d"/>
+							</pragmas>
+						</Value>
+						<Value name="show_icon_flashing_in_area">
+							<pragmas>
+								<ed:Value oid="!ed/1b019/35D4/AE4/54eb18ba23d5"/>
+							</pragmas>
+						</Value>
+						<Value name="show_icon_with_yellow_flashing_frame_in_area">
+							<pragmas>
+								<ed:Value oid="!ed/1b01a/35D4/AE4/54eb18dd77d5"/>
+							</pragmas>
+						</Value>
+					</values>
+				</Enum>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1b016/35D4/AE4/54eb1866198a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>Control flag for the icon(s) display</comment>
+				</ed:Type>
+			</pragmas>
+		</Type>
+		<Type name="icon_group">
+			<definition>
+				<Enum>
+					<values>
+						<Value name="level_symbol">
+							<pragmas>
+								<ed:Value oid="!ed/18999/B5B/8F0/54ec6b417520"/>
+							</pragmas>
+						</Value>
+						<Value name="mode_symbols">
+							<pragmas>
+								<ed:Value oid="!ed/1899a/B5B/8F0/54ec6b807e8"/>
+							</pragmas>
+						</Value>
+						<Value name="status_symbols">
+							<pragmas>
+								<ed:Value oid="!ed/1899b/B5B/8F0/54ec6b8d5c36"/>
+							</pragmas>
+						</Value>
+						<Value name="order_an_announcements_symbols">
+							<pragmas>
+								<ed:Value oid="!ed/1899c/B5B/8F0/54ec6b94788a"/>
+							</pragmas>
+						</Value>
+						<Value name="planning_information_symbols">
+							<pragmas>
+								<ed:Value oid="!ed/1899d/B5B/8F0/54ec6bac5a46"/>
+							</pragmas>
+						</Value>
+						<Value name="navigation_symbols">
+							<pragmas>
+								<ed:Value oid="!ed/1899e/B5B/8F0/54ec6bb8499f"/>
+							</pragmas>
+						</Value>
+						<Value name="settings_symbols">
+							<pragmas>
+								<ed:Value oid="!ed/1899f/B5B/8F0/54ec6bc053dd"/>
+							</pragmas>
+						</Value>
+					</values>
+				</Enum>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/18998/B5B/8F0/54ec6ab25b93" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>Id of the icon group as defined in ERA</comment>
+				</ed:Type>
+			</pragmas>
+		</Type>
+		<Type name="area_group">
+			<definition>
+				<Enum>
+					<values>
+						<Value name="A">
+							<pragmas>
+								<ed:Value oid="!ed/189cf/B5B/8F0/54ec6f416168"/>
+							</pragmas>
+						</Value>
+						<Value name="B">
+							<pragmas>
+								<ed:Value oid="!ed/189d0/B5B/8F0/54ec6f704a84"/>
+							</pragmas>
+						</Value>
+						<Value name="C">
+							<pragmas>
+								<ed:Value oid="!ed/189d1/B5B/8F0/54ec6f7a4e6"/>
+							</pragmas>
+						</Value>
+						<Value name="D">
+							<pragmas>
+								<ed:Value oid="!ed/189d2/B5B/8F0/54ec6f7f1850"/>
+							</pragmas>
+						</Value>
+						<Value name="E">
+							<pragmas>
+								<ed:Value oid="!ed/189d3/B5B/8F0/54ec6f826b50"/>
+							</pragmas>
+						</Value>
+						<Value name="F">
+							<pragmas>
+								<ed:Value oid="!ed/189d4/B5B/8F0/54ec6f85bc5"/>
+							</pragmas>
+						</Value>
+						<Value name="G">
+							<pragmas>
+								<ed:Value oid="!ed/189d5/B5B/8F0/54ec6f885a79"/>
+							</pragmas>
+						</Value>
+						<Value name="H">
+							<pragmas>
+								<ed:Value oid="!ed/189d6/B5B/8F0/54ec6f9628d6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>softkeys only</comment>
+								</ed:Value>
+							</pragmas>
+						</Value>
+					</values>
+				</Enum>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/189ce/B5B/8F0/54ec6f2d240"/>
+			</pragmas>
+		</Type>
+		<Type name="DMI_icon_ack_T">
 			<definition>
 				<Struct>
 					<fields>
@@ -120,12 +424,12 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Field oid="!ed/15637/5DBE/1754/54df85026a05" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+								<ed:Field oid="!ed/18a24/B5B/8F0/54ec7c7b1e59" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 									<comment>Valid indicator for the packet</comment>
 								</ed:Field>
 							</pragmas>
 						</Field>
-						<Field name="system_clock">
+						<Field name="systemTime">
 							<type>
 								<NamedType>
 									<type>
@@ -134,42 +438,12 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Field oid="!ed/15638/5DBE/1754/54df850263c4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-									<comment>System Clock of the OBU</comment>
+								<ed:Field oid="!ed/18a25/B5B/8F0/54ec7c7b6112" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Clock value of the last received dynamic data.</comment>
 								</ed:Field>
 							</pragmas>
 						</Field>
-						<Field name="nid_message">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="NID_MESSAGE"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Field oid="!ed/15639/5DBE/1754/54df85021c90" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-									<comment>Counter used to identify</comment>
-									<comment>text messages sent for further acknowledgment or removal.</comment>
-								</ed:Field>
-							</pragmas>
-						</Field>
-						<Field name="q_text">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="DMI_Q_TEXT"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Field oid="!ed/1563a/5DBE/1754/54df85027106" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-									<comment>Predefined  messages  to</comment>
-									<comment>be displayed by the DMI.</comment>
-								</ed:Field>
-							</pragmas>
-						</Field>
-						<Field name="l_text">
+						<Field name="DMI_L_icon_ref">
 							<type>
 								<NamedType>
 									<type>
@@ -178,12 +452,12 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Field oid="!ed/1563b/5DBE/1754/54df85026448" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-									<comment>Length of the text to be displayed</comment>
+								<ed:Field oid="!ed/18a27/B5B/8F0/54ec7cb460b7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Length of the ERA Reference of the acknowledged icon</comment>
 								</ed:Field>
 							</pragmas>
 						</Field>
-						<Field name="x_text">
+						<Field name="DMI_X_icon_ref">
 							<type>
 								<NamedType>
 									<type>
@@ -192,42 +466,50 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Field oid="!ed/1563c/5DBE/1754/54df85023107" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-									<comment>Text String</comment>
+								<ed:Field oid="!ed/18a31/B5B/8F0/54ec7d814114" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>ERA Reference of the acknowledged icon</comment>
 								</ed:Field>
 							</pragmas>
 						</Field>
-						<Field name="q_textClass">
+						<Field name="DMI_L_area_name">
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="Q_TEXTCLASS"/>
+										<TypeRef name="L_TEXT"/>
 									</type>
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Field oid="!ed/1563d/5DBE/1754/54df85022de7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-									<comment>EuroCab operational text message&#x9;(important</comment>
-									<comment>information)</comment>
-									<comment>Auxiliary&#x9;information from trackside</comment>
-									<comment>Important&#x9;information from trackside</comment>
-									<comment>spare</comment>
+								<ed:Field oid="!ed/18a3b/B5B/8F0/54ec7e2a58ff" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Length of the ERA Area Name where to icon is displayed</comment>
 								</ed:Field>
 							</pragmas>
 						</Field>
-						<Field name="q_textConfirm">
+						<Field name="DMI_X_area_name">
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="DMI_Q_TEXTCONFIRM"/>
+										<TypeRef name="X_TEXT"/>
 									</type>
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Field oid="!ed/1563e/5DBE/1754/54df850249dc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-									<comment>Informative</comment>
-									<comment>Ack. required</comment>
-									<comment>Spare Remove text spare</comment>
+								<ed:Field oid="!ed/18a3c/B5B/8F0/54ec7e3e102e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>ERA Area Name where to display the icon</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="DMI_nid_icon_identifier">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/18a58/B5B/8F0/54ec7ed0685a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Acknowledged icon identifier</comment>
 								</ed:Field>
 							</pragmas>
 						</Field>
@@ -235,238 +517,7 @@
 				</Struct>
 			</definition>
 			<pragmas>
-				<ed:Type oid="!ed/15636/5DBE/1754/54df85027c32" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-					<comment>EVC -&gt; DMI: Predefined or Plain Text Message</comment>
-				</ed:Type>
-			</pragmas>
-		</Type>
-		<Type name="DMI_Q_TEXT">
-			<definition>
-				<Enum>
-					<values>
-						<Value name="balise_read_error">
-							<pragmas>
-								<ed:Value oid="!ed/15649/5DBE/1754/54df854255e4"/>
-							</pragmas>
-						</Value>
-						<Value name="communication_error">
-							<pragmas>
-								<ed:Value oid="!ed/1564a/5DBE/1754/54df884016c1"/>
-							</pragmas>
-						</Value>
-						<Value name="entering_FS">
-							<pragmas>
-								<ed:Value oid="!ed/1564b/5DBE/1754/54df884172ea"/>
-							</pragmas>
-						</Value>
-						<Value name="entering_OS">
-							<pragmas>
-								<ed:Value oid="!ed/1564c/5DBE/1754/54df884126a4"/>
-							</pragmas>
-						</Value>
-						<Value name="no_track_condition_will_be_received">
-							<pragmas>
-								<ed:Value oid="!ed/1564d/5DBE/1754/54df885e586"/>
-							</pragmas>
-						</Value>
-						<Value name="runaway_movement">
-							<pragmas>
-								<ed:Value oid="!ed/1564e/5DBE/1754/54df8882429d"/>
-							</pragmas>
-						</Value>
-						<Value name="SH_refused">
-							<pragmas>
-								<ed:Value oid="!ed/1564f/5DBE/1754/54df88826653"/>
-							</pragmas>
-						</Value>
-						<Value name="trackside_not_compatible">
-							<pragmas>
-								<ed:Value oid="!ed/15650/5DBE/1754/54df888271af"/>
-							</pragmas>
-						</Value>
-						<Value name="train_data_changed">
-							<pragmas>
-								<ed:Value oid="!ed/15651/5DBE/1754/54df888215d0"/>
-							</pragmas>
-						</Value>
-						<Value name="train_is_rejected">
-							<pragmas>
-								<ed:Value oid="!ed/15652/5DBE/1754/54df888319c1"/>
-							</pragmas>
-						</Value>
-						<Value name="unauthorized_passing_of_EOA_LOA">
-							<pragmas>
-								<ed:Value oid="!ed/15653/5DBE/1754/54df88833422"/>
-							</pragmas>
-						</Value>
-						<Value name="no_MA_received_at_level_transition">
-							<pragmas>
-								<ed:Value oid="!ed/15654/5DBE/1754/54df88844cd3"/>
-							</pragmas>
-						</Value>
-						<Value name="SR_distance_exceeded">
-							<pragmas>
-								<ed:Value oid="!ed/15655/5DBE/1754/54df88847bf3"/>
-							</pragmas>
-						</Value>
-						<Value name="SH_stop_order">
-							<pragmas>
-								<ed:Value oid="!ed/15656/5DBE/1754/54df888530ea"/>
-							</pragmas>
-						</Value>
-						<Value name="SR_stop_order">
-							<pragmas>
-								<ed:Value oid="!ed/15657/5DBE/1754/54df888512e"/>
-							</pragmas>
-						</Value>
-						<Value name="emergency_stop">
-							<pragmas>
-								<ed:Value oid="!ed/15658/5DBE/1754/54df8885605a"/>
-							</pragmas>
-						</Value>
-						<Value name="trackside_malfunction">
-							<pragmas>
-								<ed:Value oid="!ed/15659/5DBE/1754/54df88853aa3"/>
-							</pragmas>
-						</Value>
-						<Value name="SH_request_failed">
-							<pragmas>
-								<ed:Value oid="!ed/1565a/5DBE/1754/54df88864d50"/>
-							</pragmas>
-						</Value>
-						<Value name="RV_distance_esceeded">
-							<pragmas>
-								<ed:Value oid="!ed/1565b/5DBE/1754/54df888655e1"/>
-							</pragmas>
-						</Value>
-						<Value name="no_track_description">
-							<pragmas>
-								<ed:Value oid="!ed/1565c/5DBE/1754/54df88864ad0"/>
-							</pragmas>
-						</Value>
-						<Value name="STM_brake_Deman">
-							<pragmas>
-								<ed:Value oid="!ed/1565d/5DBE/1754/54df8886ec8"/>
-							</pragmas>
-						</Value>
-						<Value name="route_unsuitable_axle_load_category">
-							<pragmas>
-								<ed:Value oid="!ed/1565e/5DBE/1754/54df88862e86"/>
-							</pragmas>
-						</Value>
-						<Value name="route_unsuitable_loading_gauge">
-							<pragmas>
-								<ed:Value oid="!ed/1565f/5DBE/1754/54df88875092"/>
-							</pragmas>
-						</Value>
-						<Value name="route_unsuitable_traction_system">
-							<pragmas>
-								<ed:Value oid="!ed/15660/5DBE/1754/54df8bf95a0b"/>
-							</pragmas>
-						</Value>
-						<Value name="radio_network_registration_failed">
-							<pragmas>
-								<ed:Value oid="!ed/15661/5DBE/1754/54df8bfa5476"/>
-							</pragmas>
-						</Value>
-						<Value name="level_crossing_not_protected">
-							<pragmas>
-								<ed:Value oid="!ed/15662/5DBE/1754/54df8bfc2fa1"/>
-							</pragmas>
-						</Value>
-						<Value name="acknowledgment">
-							<pragmas>
-								<ed:Value oid="!ed/15663/5DBE/1754/54df9137520e"/>
-							</pragmas>
-						</Value>
-					</values>
-				</Enum>
-			</definition>
-			<pragmas>
-				<ed:Type oid="!ed/15648/5DBE/1754/54df85326de8"/>
-			</pragmas>
-		</Type>
-		<Type name="DMI_Q_TEXTCONFIRM">
-			<definition>
-				<Enum>
-					<values>
-						<Value name="informative">
-							<pragmas>
-								<ed:Value oid="!ed/1566e/5DBE/1754/54df929030af"/>
-							</pragmas>
-						</Value>
-						<Value name="ack_required">
-							<pragmas>
-								<ed:Value oid="!ed/1566f/5DBE/1754/54df92b743de"/>
-							</pragmas>
-						</Value>
-						<Value name="remove_text">
-							<pragmas>
-								<ed:Value oid="!ed/15671/5DBE/1754/54df92b87939"/>
-							</pragmas>
-						</Value>
-					</values>
-				</Enum>
-			</definition>
-			<pragmas>
-				<ed:Type oid="!ed/1566d/5DBE/1754/54df927039f9"/>
-			</pragmas>
-		</Type>
-		<Type name="Q_text_array">
-			<definition>
-				<Table>
-					<type>
-						<Table>
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="char"/>
-									</type>
-								</NamedType>
-							</type>
-							<size>
-								<ConstValue value="45"/>
-							</size>
-						</Table>
-					</type>
-					<size>
-						<ConstValue value="27"/>
-					</size>
-				</Table>
-			</definition>
-			<pragmas>
-				<ed:Type oid="!ed/156a6/5DBE/1754/54df99051246"/>
-			</pragmas>
-		</Type>
-		<Type name="Array_DMI_Q_Text">
-			<definition>
-				<Table>
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="DMI_Q_TEXT"/>
-							</type>
-						</NamedType>
-					</type>
-					<size>
-						<ConstValue value="27"/>
-					</size>
-				</Table>
-			</definition>
-			<pragmas>
-				<ed:Type oid="!ed/15b82/5DBE/1754/54dfc7a93228"/>
-			</pragmas>
-		</Type>
-		<Type name="RBC_status_connection">
-			<definition>
-				<NamedType>
-					<type>
-						<TypeRef name="MoRC_Pck::safeRadioConnectionStatus_Type"/>
-					</type>
-				</NamedType>
-			</definition>
-			<pragmas>
-				<ed:Type oid="!ed/1a5b5/5E18/1B50/54e4cb6b6cd0"/>
+				<ed:Type oid="!ed/18a23/B5B/8F0/54ec7c7b3ffe"/>
 			</pragmas>
 		</Type>
 	</declarations>
