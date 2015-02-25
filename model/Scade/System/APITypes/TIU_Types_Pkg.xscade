@@ -181,10 +181,15 @@
 								</LabelledExpression>
 								<LabelledExpression label="train_data_info">
 									<flow>
-										<!-- {valid : false, trainCategory : NC_TRAIN_Train_does_not_belong_to_any_of_the_Othe... -->
+										<!-- {valid : false, acknowledgedByDriver : false, trainCategory : NC_TRAIN_Train_does... -->
 										<DataStructOp>
 											<data>
 												<LabelledExpression label="valid">
+													<flow>
+														<ConstValue value="false"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="acknowledgedByDriver">
 													<flow>
 														<ConstValue value="false"/>
 													</flow>
@@ -201,15 +206,6 @@
 												<LabelledExpression label="trainLength">
 													<flow>
 														<ConstValue value="0"/>
-													</flow>
-												</LabelledExpression>
-												<LabelledExpression label="traction">
-													<flow>
-														<IdExpression>
-															<path>
-																<ConstVarRef name="line_not_fitted_with_any_traction_system"/>
-															</path>
-														</IdExpression>
 													</flow>
 												</LabelledExpression>
 												<LabelledExpression label="brakePerctage">
@@ -1041,6 +1037,20 @@
 										<ed:Field oid="!ed/ba70/5F0/BD0/54b6769dcc9"/>
 									</pragmas>
 								</Field>
+								<Field name="acknowledgedByDriver">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/41cf7/2946/564/54ed8ef3270b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>This information comes from the DMI and is added when a train-data-ach is received</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
 								<Field name="trainCategory">
 									<type>
 										<NamedType>
@@ -1063,18 +1073,6 @@
 									</type>
 									<pragmas>
 										<ed:Field oid="!ed/291e2/2566/1808/54ec8ec32233"/>
-									</pragmas>
-								</Field>
-								<Field name="traction">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="M_voltage_types_T"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/291ec/2566/1808/54ec8eea3dc5"/>
 									</pragmas>
 								</Field>
 								<Field name="brakePerctage">
