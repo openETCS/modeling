@@ -22,11 +22,23 @@
 					<definition>
 						<Struct>
 							<fields>
-								<Field name="Distance">
+								<Field name="targetType">
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="real"/>
+												<TypeRef name="TargetType_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/98335/3A91/DF8/54eceb8c737b"/>
+									</pragmas>
+								</Field>
+								<Field name="distance">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="SDM_Types_Pkg::L_internal_real_Type"/>
 											</type>
 										</NamedType>
 									</type>
@@ -34,11 +46,11 @@
 										<ed:Field oid="!ed/2cb94/6534/166C/54db4dca5ee9"/>
 									</pragmas>
 								</Field>
-								<Field name="Speed">
+								<Field name="speed">
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="real"/>
+												<TypeRef name="SDM_Types_Pkg::V_internal_real_Type"/>
 											</type>
 										</NamedType>
 									</type>
@@ -55,20 +67,160 @@
 						</ed:Type>
 					</pragmas>
 				</Type>
-				<Type name="TargetTypes_ENUM">
+				<Type name="TargetType_T">
 					<definition>
 						<Enum>
 							<values>
-								<Value name="value1">
+								<Value name="EoA">
 									<pragmas>
 										<ed:Value oid="!ed/2cb97/6534/166C/54db4dca7b04"/>
+									</pragmas>
+								</Value>
+								<Value name="LoA">
+									<pragmas>
+										<ed:Value oid="!ed/98332/3A91/DF8/54eceb556be0"/>
+									</pragmas>
+								</Value>
+								<Value name="SvL">
+									<pragmas>
+										<ed:Value oid="!ed/98333/3A91/DF8/54eceb5f2755"/>
+									</pragmas>
+								</Value>
+								<Value name="MRSP">
+									<pragmas>
+										<ed:Value oid="!ed/98334/3A91/DF8/54eceb6944eb"/>
 									</pragmas>
 								</Value>
 							</values>
 						</Enum>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/2cb96/6534/166C/54db4dca491b"/>
+						<ed:Type oid="!ed/2cb96/6534/166C/54db4dca491b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>the possibles types of a target</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="MRSP_internal_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MRSP_internal_section_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="MRSPMaxSections"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3babc/2115/1C84/54ecb96845c5"/>
+					</pragmas>
+				</Type>
+				<Type name="MRSP_internal_section_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="Loc_Abs">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="SDM_Types_Pkg::L_internal_real_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a7b46/2115/1C84/54ecbb8d639e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Safe Distance from Origin</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="MRS">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="SDM_Types_Pkg::V_internal_real_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a7b4d/2115/1C84/54ecbbc32cbe" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Most Restrictive Speed, for head of train (compensated for train length)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a7b71/2115/1C84/54ecbc2e7020"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a7b3e/2115/1C84/54ecbb565ed6"/>
+					</pragmas>
+				</Type>
+				<Type name="Target_real_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="targetType">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="TargetType_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/11be1a/3A91/DF8/54ecf79b77cc"/>
+									</pragmas>
+								</Field>
+								<Field name="distance">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/11be24/3A91/DF8/54ecf7c33f46"/>
+									</pragmas>
+								</Field>
+								<Field name="speed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/11be2e/3A91/DF8/54ecf7ee4741"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/11be19/3A91/DF8/54ecf7633eb4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Target_T with reals</comment>
+						</ed:Type>
 					</pragmas>
 				</Type>
 			</declarations>
@@ -76,7 +228,7 @@
 				<ed:Package oid="!ed/2cb8f/6534/166C/54db4dca7dc7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 					<diagrams>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/2cb90/6534/166C/54db4dca36c1" blockKind="constants"/>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/2cb91/6534/166C/54db4dca257d" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/2cb91/6534/166C/54db4dca257d" blockKind="types" columnsSize="0, 150, 377, 300"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/2cb92/6534/166C/54db4dcaa7c" blockKind="sensors"/>
 					</diagrams>
 				</ed:Package>
