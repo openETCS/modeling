@@ -100,35 +100,6 @@
 						</ed:Type>
 					</pragmas>
 				</Type>
-				<Type name="M_WARNING">
-					<definition>
-						<Enum>
-							<values>
-								<Value name="no_warning">
-									<pragmas>
-										<ed:Value oid="!ed/13de9/77E9/1E10/54c8d61f4e9"/>
-									</pragmas>
-								</Value>
-								<Value name="intervention">
-									<pragmas>
-										<ed:Value oid="!ed/13dea/77E9/1E10/54c8d61f701d"/>
-									</pragmas>
-								</Value>
-								<Value name="over_speed_warning_indication">
-									<pragmas>
-										<ed:Value oid="!ed/13deb/77E9/1E10/54c8d61f5e1c"/>
-									</pragmas>
-								</Value>
-							</values>
-						</Enum>
-					</definition>
-					<pragmas>
-						<ed:Type oid="!ed/13de8/77E9/1E10/54c8d61f2b5b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-							<comment>Status&#x9;of&#x9;indication,&#x9;warning&#x9;and</comment>
-							<comment>intervention</comment>
-						</ed:Type>
-					</pragmas>
-				</Type>
 				<Type name="M_SUPERVISION_STATUS">
 					<definition>
 						<Enum>
@@ -2422,6 +2393,353 @@
 					</definition>
 					<pragmas>
 						<ed:Type oid="!ed/2d41d/4329/12CC/54edd7be23d5"/>
+					</pragmas>
+				</Type>
+				<Type name="M_SupervisionDisplay_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="supDis_normal">
+									<pragmas>
+										<ed:Value oid="!ed/2d5d9/5A05/534/54eecabe6f61"/>
+									</pragmas>
+								</Value>
+								<Value name="supDis_indication">
+									<pragmas>
+										<ed:Value oid="!ed/2d5e0/5A05/534/54eecb7a3157"/>
+									</pragmas>
+								</Value>
+								<Value name="supDis_overspeed">
+									<pragmas>
+										<ed:Value oid="!ed/2d5e7/5A05/534/54eecb7a36db"/>
+									</pragmas>
+								</Value>
+								<Value name="supDis_warning">
+									<pragmas>
+										<ed:Value oid="!ed/2d5ee/5A05/534/54eecb7b1b1b"/>
+									</pragmas>
+								</Value>
+								<Value name="supDis_intervention">
+									<pragmas>
+										<ed:Value oid="!ed/2d5f5/5A05/534/54eecb7c7c02"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2d5d8/5A05/534/54eeca4c5f69" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>According to SRS Section 3.13.10.4.15</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="speedSupervisionForDMI_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d64a/5A05/534/54eecc8a5818"/>
+									</pragmas>
+								</Field>
+								<Field name="targetSpeed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d64b/5A05/534/54eecc8ab48"/>
+									</pragmas>
+								</Field>
+								<Field name="permittedSpeed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d64c/5A05/534/54eecc8a5afc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Permitted  speed  according  to  current</comment>
+											<comment>ATP rules</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="releaseSpeed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d64d/5A05/534/54eecc8a3843" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Release speed at the EOA, shown when</comment>
+											<comment>release  speed  is  lower  than  permitted speed</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="locationBrakeTarget">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d64e/5A05/534/54eecc8a62b6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Position,   in   odometer   co-ordinates,</comment>
+											<comment>without tolerance correction, of the next brakeing target</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="location_brake_curve_starting_point">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d64f/5A05/534/54eecc8a663a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Position,   in   odometer   co-ordinates,</comment>
+											<comment>without tolerance correction, of the next brake starting point for the next brake target.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="interventionSpeed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d650/5A05/534/54eecc8a360a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Intervention speed</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="sup_status">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_SUPERVISION_STATUS"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d651/5A05/534/54eecc8a4eb5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Current supervision status</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="supervisionDisplay">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_SupervisionDisplay_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d652/5A05/534/54eecc8a66d0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Warning</comment>
+											<comment>indicator</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2d649/5A05/534/54eecc8a5c0"/>
+					</pragmas>
+				</Type>
+				<Type name="nationValuesForDMI_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d630/5A05/534/54eecc8aed6"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_c">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_C"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d631/5A05/534/54eecc8a10a8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Country Id</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_c_valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d632/5A05/534/54eecc8a79f1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Tells whether the value of the country</comment>
+											<comment>Id (DMI_NID_C) is known or not. Unknown value of DMI_NID_C shall be ignored</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2d62f/5A05/534/54eecc8a50cf"/>
+					</pragmas>
+				</Type>
+				<Type name="movementAuthorityForDMI_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d623/5A05/534/54eecc8a3d79"/>
+									</pragmas>
+								</Field>
+								<Field name="location_LOA">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d624/5A05/534/54eecc8a2ffe" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Position,   in   absolute   odometer   co-</comment>
+											<comment>ordinates, without tolerance correction, of the limit of authority.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="v_LOA">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d625/5A05/534/54eecc8a2200" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Speed at the Limit Of Authority</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2d622/5A05/534/54eecc8af22"/>
+					</pragmas>
+				</Type>
+				<Type name="morePositions_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d614/5A05/534/54eecc8a3187"/>
+									</pragmas>
+								</Field>
+								<Field name="location_KP_Balise_Track">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d615/5A05/534/54eecc8a67c3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Kilometer point of the reference balise</comment>
+											<comment>on the track.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="distance_KP_Balise">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d616/5A05/534/54eecc8a6753" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Distance to the reference balise.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="distance_to_TSA">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2d617/5A05/534/54eecc8a198d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Distance</comment>
+											<comment>between the front of the train to the tunnel area</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2d613/5A05/534/54eecc8a297a"/>
 					</pragmas>
 				</Type>
 			</declarations>
