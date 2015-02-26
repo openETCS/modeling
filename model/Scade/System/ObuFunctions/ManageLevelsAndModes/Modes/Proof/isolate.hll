@@ -1,0 +1,22 @@
+
+/* Condition 1 :
+The driver isolates the ERTMS/ETCS on-board equipment.
+*/
+
+Declarations: 
+bool Condition1;
+bool Equipment_isolation;
+bool Mode_Isolation;
+
+Definitions:
+
+Equipment_isolation :=  ETCS_Isolated.'valid' & ETCS_Isolated.'isolation_status' =='TIU_Types_Pkg::on_board_equipment_is_isolated' ;
+
+Mode_Isolation := currentMode == 'Level_And_Mode_Types_Pkg::IS' ;
+
+
+Condition1 := 'ManageModes_#1/ComputeModesConditions_##1/>Condition1';
+
+
+Proof Obligations:
+Equipment_isolation -> ( Condition1 & Mode_Isolation );
