@@ -4,10 +4,559 @@
 		<Package name="SpeedSupervision_Integration_Pkg">
 			<declarations>
 				<Operator kind="node" name="SpeedSupervision_Integration">
+					<inputs>
+						<Variable name="MRSP">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MRSP_Profile_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/215df/2115/1C84/54ecb71b5b7f"/>
+							</pragmas>
+						</Variable>
+						<Variable name="MA">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MAs_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1b2a88/2115/1C84/54eccf4c295"/>
+							</pragmas>
+						</Variable>
+						<Variable name="NationalValues">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Packet_Types_Pkg::P3_NationalValues_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/181d1a/2115/1C84/54eccb6435dd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>not the whole Package is needed, but some of the defined Variabes in it</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+						<Variable name="TrainPosition">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrainPosition_Types_Pck::trainPosition_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1b2a45/2115/1C84/54eccc9d13cb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>only need d_est_front,d_max/min_safe_front</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+						<Variable name="V_ura">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1b2a62/2115/1C84/54eccea042ea" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>see §3.13.9.3.2.1 and Subset 41</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+						<Variable name="ODO_to_SDM">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::odometry_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/30129/3685/1724/54edd1f34c1b"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="SDM_to_DMI">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="manage_DMI_Output_Pkg::speedSupervisionForDMI_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1afee/5BD7/10F8/54ed96ce7592"/>
+							</pragmas>
+						</Variable>
+						<Variable name="SDM_to_TIU">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="SDM_Types_Pkg::SDM_Commands_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1b012/5BD7/10F8/54ed97993c06"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MRSP_Profile_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/215e1/2115/1C84/54ecb71edae"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L2">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TargetManagement_types::MRSP_internal_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/be651/2115/1C84/54ecbead5f5f"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L12">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/69898/3A91/DF8/54ece9177c85"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L11">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/69897/3A91/DF8/54ece917dec"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L10">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="SDM_Commands_Pkg::SDM_Types_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/69896/3A91/DF8/54ece917f34"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L9">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="SDM_Commands_Pkg::SupervisionStatus_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/69895/3A91/DF8/54ece9174309"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L8">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="SDM_Commands_Pkg::SupervisionStatus_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/69894/3A91/DF8/54ece9176119"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L7">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/69893/3A91/DF8/54ece9177b31"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L6">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/69892/3A91/DF8/54ece9176a7d"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L5">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/69891/3A91/DF8/54ece91727e6"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L4">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/69890/3A91/DF8/54ece9177faf"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L3">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::Speed_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/6988f/3A91/DF8/54ece91711ad"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L15">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="SDM_Types_Pkg::SDM_Commands_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/101c77/3A91/DF8/54ecf6c96c92"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L14">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TargetManagement_types::Target_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/101c76/3A91/DF8/54ecf6c958bd"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L13">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="manage_DMI_Output_Pkg::speedSupervisionForDMI_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/101c75/3A91/DF8/54ecf6c91254"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L17">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="SDM_Commands_Pkg::SupervisionStatus_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3638b/648E/1A84/54ee5250522e"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L16">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="SDM_Commands_Pkg::EB_command_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3638a/648E/1A84/54ee52504e1c"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- () = TargetManagement_pkg::TargetManagement(_L2); -->
+						<Equation>
+							<right>
+								<!-- TargetManagement_pkg::TargetManagement(_L2) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="TargetManagement_pkg::TargetManagement"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/215d4/2115/1C84/54ecb70c6e8"/>
+							</pragmas>
+						</Equation>
+						<!-- _L1 = MRSP; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="MRSP"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/215e0/2115/1C84/54ecb71e2fd5"/>
+							</pragmas>
+						</Equation>
+						<!-- _L2 = SDM_Input_Wrappers::ConvertMRSPToInternal(_L1); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L2"/>
+							</lefts>
+							<right>
+								<!-- SDM_Input_Wrappers::ConvertMRSPToInternal(_L1) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="SDM_Input_Wrappers::ConvertMRSPToInternal"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/be650/2115/1C84/54ecbead3562"/>
+							</pragmas>
+						</Equation>
+						<!-- _L3, _L4, _L5, _L6, _L7, _L8, _L9, _L10, _L11, _L12, _L16, _L17 = SDM_Commands_Pk... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L3"/>
+								<VariableRef name="_L4"/>
+								<VariableRef name="_L5"/>
+								<VariableRef name="_L6"/>
+								<VariableRef name="_L7"/>
+								<VariableRef name="_L8"/>
+								<VariableRef name="_L9"/>
+								<VariableRef name="_L10"/>
+								<VariableRef name="_L11"/>
+								<VariableRef name="_L12"/>
+								<VariableRef name="_L16"/>
+								<VariableRef name="_L17"/>
+							</lefts>
+							<right>
+								<!-- SDM_Commands_Pkg::SDM_Commands(_null, _null, _null, _null, _null, _null, _null, _... -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="SDM_Commands_Pkg::SDM_Commands"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6988e/3A91/DF8/54ece9171b68"/>
+							</pragmas>
+						</Equation>
+						<!-- _L13, _L14, _L15 = SDM_OutputWrapper::SDM_OutputWrapper(); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L13"/>
+								<VariableRef name="_L14"/>
+								<VariableRef name="_L15"/>
+							</lefts>
+							<right>
+								<!-- SDM_OutputWrapper::SDM_OutputWrapper() -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="SDM_OutputWrapper::SDM_OutputWrapper"/>
+											</operator>
+										</OpCall>
+									</operator>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/101c74/3A91/DF8/54ecf6c9123b"/>
+							</pragmas>
+						</Equation>
+					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/463a1/355F/F90/54bd05d956c3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 							<diagrams>
-								<NetDiagram name="diagram_SpeedSupervision_Integration_1" landscape="true" format="A4 (210 297)" oid="!ed/463a2/355F/F90/54bd05d93967"/>
+								<NetDiagram name="diagram_SpeedSupervision_Integration_1" landscape="true" format="A4 (210 297)" oid="!ed/463a2/355F/F90/54bd05d93967">
+									<presentationElements>
+										<EquationGE presentable="!ed/215d4/2115/1C84/54ecb70c6e8">
+											<position>
+												<Point x="10874" y="1164"/>
+											</position>
+											<size>
+												<Size width="4328" height="3985"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/215e0/2115/1C84/54ecb71e2fd5">
+											<position>
+												<Point x="2302" y="2910"/>
+											</position>
+											<size>
+												<Size width="264" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/be650/2115/1C84/54ecbead3562">
+											<position>
+												<Point x="5556" y="2037"/>
+											</position>
+											<size>
+												<Size width="3139" height="2318"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/215e0/2115/1C84/54ecb71e2fd5" dstEquation="!ed/be650/2115/1C84/54ecbead3562">
+											<positions>
+												<Point x="2561" y="3154"/>
+												<Point x="3598" y="3154"/>
+												<Point x="3598" y="3196"/>
+												<Point x="5546" y="3196"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/be650/2115/1C84/54ecbead3562" dstEquation="!ed/215d4/2115/1C84/54ecb70c6e8">
+											<positions>
+												<Point x="8700" y="3196"/>
+												<Point x="10139" y="3196"/>
+												<Point x="10139" y="3154"/>
+												<Point x="10880" y="3154"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/6988e/3A91/DF8/54ece9171b68">
+											<position>
+												<Point x="14367" y="8546"/>
+											</position>
+											<size>
+												<Size width="3233" height="4144"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/101c74/3A91/DF8/54ecf6c9123b">
+											<position>
+												<Point x="21220" y="3493"/>
+											</position>
+											<size>
+												<Size width="5646" height="10092"/>
+											</size>
+										</EquationGE>
+									</presentationElements>
+								</NetDiagram>
 							</diagrams>
 						</ed:Operator>
 					</pragmas>

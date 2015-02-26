@@ -9,7 +9,7 @@
         <environment_id value="-1926713137"/>
         <traceability path="../Requirements/DMI.rqtf"/>
         <codeIntegration keyboardId="0" periodicity="33" pointerId="0"/>
-        <scade path="../Test/Test.etp;../DMI_Control.etp"/>
+        <scade path="../Test/Test.etp;../DMI_Control.etp;../../OBU_for_ITEA-Review/PositionSimulation/Testbench_Suite/Testbench_Suite.etp"/>
         <ratio horizontal="1" vertical="1"/>
         <colorMap crc="3382471243" name="DMI.sct" path="."/>
         <lineWidthMap crc="1678555679" path="default"/>
@@ -92,7 +92,7 @@
                     <input name="InterpolatedDistanceToTarget" oid="6300f7cd-67b7-497b-af79-99ec1f0f6dc0" type="real">
                         <init>0.0</init>
                     </input>
-                    <input name="DriverID_Display" oid="478ff4c5-e2fa-48bc-aeba-e0d7f91aabe3" representation="as_string" type="int^10">
+                    <input name="DriverID_Display" oid="478ff4c5-e2fa-48bc-aeba-e0d7f91aabe3" representation="as_string" type="int^9">
                         <init>[0]</init>
                     </input>
                     <input name="buttonEnabler" oid="52c1d351-f078-43fd-92c6-a955bbd6ab6d" representation="as_int_array" type="int^30">
@@ -101,7 +101,7 @@
                     <input name="window_mask" oid="376f3ce6-1379-41e9-966f-d36b216079b9" type="bool^15">
                         <init>[false]</init>
                     </input>
-                    <input name="TrainRN_Display" oid="d59d99ec-863b-4249-b082-552ff2abbd57" representation="as_string" type="int^10">
+                    <input name="TrainRN_Display" oid="d59d99ec-863b-4249-b082-552ff2abbd57" representation="as_string" type="int^9">
                         <init>[0]</init>
                     </input>
                     <input name="closeButtonEnabler" oid="83d889ce-1d42-4bcd-a6c1-6679a7272011" representation="index" type="int">
@@ -161,6 +161,21 @@
                     <input name="ArrayOfMsgIndex" oid="1b966f6a-c638-49c0-bc49-3679d11af8b0" representation="as_int_array" type="int^5">
                         <init>[0]</init>
                     </input>
+                    <input name="EnableMsgAckArea" oid="f40c620e-9f59-40d0-b0e5-ca1884e6f801" type="bool">
+                        <init>false</init>
+                    </input>
+                    <input name="textMsgEnable" oid="22e240a9-6896-4a87-9aa2-8f35baf80761" type="bool">
+                        <init>false</init>
+                    </input>
+                    <input name="yellowBorderMsg" oid="e0fe9015-e418-49d2-ae7c-5d5230cdba83" type="bool">
+                        <init>false</init>
+                    </input>
+                    <input name="closeButtonIndex" oid="4941be7e-0628-4698-8ca4-d918cf72afae" representation="index" type="int">
+                        <init>26</init>
+                    </input>
+                    <input name="openDesk" oid="c2bf0c1b-26c2-4cc6-a7c0-c2bb1d44a6d9" type="bool">
+                        <init>false</init>
+                    </input>
                 </inputs>
                 <outputs>
                     <output memory="true" name="OverA" oid="2b7e845e-cb23-444e-a6cc-6b70ecd286a7" type="bool">
@@ -212,6 +227,18 @@
                         <init>false</init>
                     </output>
                     <output memory="true" name="traindataNoAck" oid="89b4103c-02ee-44ca-9f09-8388d9449d96" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="false" name="textMsgAck" oid="be129518-cc08-4512-b038-62f11a2efef2" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="openTrainRN" oid="3363f0a0-32da-4ca2-b773-ec2acc0ba27a" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="openDriverID" oid="3da42862-583d-4f58-a95f-6dfa197f3982" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="closeButton" oid="d27a8f35-e945-42bb-9d22-a946d99858fc" type="bool">
                         <init>false</init>
                     </output>
                 </outputs>
@@ -591,7 +618,7 @@
                         </rotate>
                         <orientation clockwise="false"/>
                         <file name="E.ogfx" path="Widgets/E"/>
-                        <crc value="1861315429"/>
+                        <crc value="1655692759"/>
                         <inputParameters>
                             <parameter control="false" name="StatusSymbolVisibility" oid="3a13c3a1-c5ae-4d16-b925-e3804b58efe3" type="bool">
                                 <expr>StatusSymbolVisibility</expr>
@@ -605,7 +632,20 @@
                                 <expr>ArrayOfMsgIndex</expr>
                                 <init>[0]</init>
                             </parameter>
+                            <parameter control="false" name="EnableMsgAckArea" oid="02e0c7b7-1008-4838-9e9f-fa7f3efba648" type="bool">
+                                <expr>textMsgEnable</expr>
+                                <init>false</init>
+                            </parameter>
+                            <parameter control="false" name="yellowBorderMsg" oid="98e37f50-1da5-404b-8786-b9b36a55a25f" type="bool">
+                                <expr>yellowBorderMsg</expr>
+                                <init>true</init>
+                            </parameter>
                         </inputParameters>
+                        <outputParameters>
+                            <parameter name="textMsgAck" oid="00be948e-3b95-4147-be38-b97b799cde83" type="bool">
+                                <expr>textMsgAck</expr>
+                            </parameter>
+                        </outputParameters>
                     </properties>
                     <children/>
                 </referenceContainer>
@@ -804,7 +844,7 @@
                                 </rotate>
                                 <orientation clockwise="false"/>
                                 <file name="driverid_display.ogfx" path="Widgets/DriverID_Display"/>
-                                <crc value="488497655"/>
+                                <crc value="599912118"/>
                                 <inputParameters>
                                     <parameter control="false" name="titlewindow" oid="57b8157e-dde4-421a-abec-4f90bbcbb7f6" representation="index" type="int">
                                         <init>1</init>
@@ -815,10 +855,10 @@
                                     <parameter control="false" name="Ack_area" oid="41b71f03-aeea-4609-afcb-444faa70e6a5" representation="index" type="int">
                                         <init>1</init>
                                     </parameter>
-                                    <parameter control="false" name="TrainRN_Display" oid="c9a5ec19-f02b-4118-a424-f6dab8290163" representation="as_string" type="int^10">
+                                    <parameter control="false" name="TrainRN_Display" oid="c9a5ec19-f02b-4118-a424-f6dab8290163" representation="as_string" type="int^9">
                                         <init>[0]</init>
                                     </parameter>
-                                    <parameter control="false" name="DriverID_Display" oid="ffe4f3eb-a169-4e41-94c6-91f63f80d4d9" representation="as_string" type="int^10">
+                                    <parameter control="false" name="DriverID_Display" oid="ffe4f3eb-a169-4e41-94c6-91f63f80d4d9" representation="as_string" type="int^9">
                                         <expr>DriverID_Display</expr>
                                         <init>[0]</init>
                                     </parameter>
@@ -875,20 +915,23 @@
                             </properties>
                             <children/>
                         </referenceContainer>
-                        <referenceContainer oid="143c80d0-d2d5-4b65-98fd-f82a3d702c72">
+                        <container oid="45c17661-451b-440a-b054-b575d25c15c2">
                             <pathFromRoot value="2,10"/>
-                            <properties modular="false" name="closebutton">
+                            <properties name="closeButton">
                                 <visible>
                                     <init>true</init>
                                 </visible>
                                 <origin>
                                     <x>
-                                        <init>14.0</init>
+                                        <init>0.0</init>
                                     </x>
                                     <y>
-                                        <init>-226.0</init>
+                                        <init>0.0</init>
                                     </y>
                                 </origin>
+                                <priority>
+                                    <init>-1</init>
+                                </priority>
                                 <scale>
                                     <x>
                                         <init>1.0</init>
@@ -903,16 +946,82 @@
                                     </angle>
                                 </rotate>
                                 <orientation clockwise="false"/>
-                                <file name="closebutton.ogfx" path="Widgets/MainMenu/Button"/>
-                                <crc value="1614670979"/>
-                                <inputParameters>
-                                    <parameter control="false" name="ModeSymbol" oid="54bfe5ef-67f5-44fb-9be6-7e6765953521" representation="index" type="int">
-                                        <init>26</init>
-                                    </parameter>
-                                </inputParameters>
                             </properties>
-                            <children/>
-                        </referenceContainer>
+                            <children>
+                                <referenceContainer oid="143c80d0-d2d5-4b65-98fd-f82a3d702c72">
+                                    <pathFromRoot value="0,2,10"/>
+                                    <properties modular="false" name="closebutton">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <origin>
+                                            <x>
+                                                <init>14.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-226.0</init>
+                                            </y>
+                                        </origin>
+                                        <scale>
+                                            <x>
+                                                <init>1.0</init>
+                                            </x>
+                                            <y>
+                                                <init>1.0</init>
+                                            </y>
+                                        </scale>
+                                        <rotate>
+                                            <angle>
+                                                <init>0.0</init>
+                                            </angle>
+                                        </rotate>
+                                        <orientation clockwise="false"/>
+                                        <file name="closebutton.ogfx" path="Widgets/MainMenu/Button"/>
+                                        <crc value="1614670979"/>
+                                        <inputParameters>
+                                            <parameter control="false" name="ModeSymbol" oid="54bfe5ef-67f5-44fb-9be6-7e6765953521" representation="index" type="int">
+                                                <expr>closeButtonIndex</expr>
+                                                <init>26</init>
+                                            </parameter>
+                                        </inputParameters>
+                                    </properties>
+                                    <children/>
+                                </referenceContainer>
+                                <rectangleArea oid="89364cbf-cb3e-4b74-a2e3-23ccede564a9">
+                                    <pathFromRoot value="1,2,10"/>
+                                    <properties name="rectangle area">
+                                        <enable>
+                                            <init>true</init>
+                                            <expr>closeButtonIndex = 25</expr>
+                                        </enable>
+                                        <pointerId>
+                                            <init>-1</init>
+                                        </pointerId>
+                                        <firstPoint>
+                                            <x>
+                                                <init>15.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-175.0</init>
+                                            </y>
+                                        </firstPoint>
+                                        <thirdPoint>
+                                            <x>
+                                                <init>97.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-225.0</init>
+                                            </y>
+                                        </thirdPoint>
+                                        <output>
+                                            <inside>
+                                                <expr>closeButton</expr>
+                                            </inside>
+                                        </output>
+                                    </properties>
+                                </rectangleArea>
+                            </children>
+                        </container>
                     </children>
                 </container>
                 <container oid="7cf3a8b5-39c3-4c5f-8cfa-e63b3bec7650">
@@ -978,7 +1087,7 @@
                                 </rotate>
                                 <orientation clockwise="false"/>
                                 <file name="driverid_display.ogfx" path="Widgets/DriverID_Display"/>
-                                <crc value="488497655"/>
+                                <crc value="599912118"/>
                                 <inputParameters>
                                     <parameter control="false" name="titlewindow" oid="57b8157e-dde4-421a-abec-4f90bbcbb7f6" representation="index" type="int">
                                         <init>2</init>
@@ -989,11 +1098,11 @@
                                     <parameter control="false" name="Ack_area" oid="41b71f03-aeea-4609-afcb-444faa70e6a5" representation="index" type="int">
                                         <init>2</init>
                                     </parameter>
-                                    <parameter control="false" name="TrainRN_Display" oid="c9a5ec19-f02b-4118-a424-f6dab8290163" representation="as_string" type="int^10">
+                                    <parameter control="false" name="TrainRN_Display" oid="c9a5ec19-f02b-4118-a424-f6dab8290163" representation="as_string" type="int^9">
                                         <expr>TrainRN_Display</expr>
                                         <init>[0]</init>
                                     </parameter>
-                                    <parameter control="false" name="DriverID_Display" oid="ffe4f3eb-a169-4e41-94c6-91f63f80d4d9" representation="as_string" type="int^10">
+                                    <parameter control="false" name="DriverID_Display" oid="ffe4f3eb-a169-4e41-94c6-91f63f80d4d9" representation="as_string" type="int^9">
                                         <init>[0]</init>
                                     </parameter>
                                 </inputParameters>
@@ -1049,20 +1158,23 @@
                             </properties>
                             <children/>
                         </referenceContainer>
-                        <referenceContainer oid="5c4f6488-305b-4afb-83a5-bd1fa515e60e">
+                        <container oid="bccd1a56-864a-41df-824f-9193562e6a3c">
                             <pathFromRoot value="2,11"/>
-                            <properties modular="false" name="closebutton">
+                            <properties name="closeButton">
                                 <visible>
                                     <init>true</init>
                                 </visible>
                                 <origin>
                                     <x>
-                                        <init>14.0</init>
+                                        <init>0.0</init>
                                     </x>
                                     <y>
-                                        <init>-226.0</init>
+                                        <init>0.0</init>
                                     </y>
                                 </origin>
+                                <priority>
+                                    <init>-1</init>
+                                </priority>
                                 <scale>
                                     <x>
                                         <init>1.0</init>
@@ -1077,16 +1189,82 @@
                                     </angle>
                                 </rotate>
                                 <orientation clockwise="false"/>
-                                <file name="closebutton.ogfx" path="Widgets/MainMenu/Button"/>
-                                <crc value="1614670979"/>
-                                <inputParameters>
-                                    <parameter control="false" name="ModeSymbol" oid="54bfe5ef-67f5-44fb-9be6-7e6765953521" representation="index" type="int">
-                                        <init>26</init>
-                                    </parameter>
-                                </inputParameters>
                             </properties>
-                            <children/>
-                        </referenceContainer>
+                            <children>
+                                <referenceContainer oid="5c4f6488-305b-4afb-83a5-bd1fa515e60e">
+                                    <pathFromRoot value="0,2,11"/>
+                                    <properties modular="false" name="closebutton">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <origin>
+                                            <x>
+                                                <init>14.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-226.0</init>
+                                            </y>
+                                        </origin>
+                                        <scale>
+                                            <x>
+                                                <init>1.0</init>
+                                            </x>
+                                            <y>
+                                                <init>1.0</init>
+                                            </y>
+                                        </scale>
+                                        <rotate>
+                                            <angle>
+                                                <init>0.0</init>
+                                            </angle>
+                                        </rotate>
+                                        <orientation clockwise="false"/>
+                                        <file name="closebutton.ogfx" path="Widgets/MainMenu/Button"/>
+                                        <crc value="1614670979"/>
+                                        <inputParameters>
+                                            <parameter control="false" name="ModeSymbol" oid="54bfe5ef-67f5-44fb-9be6-7e6765953521" representation="index" type="int">
+                                                <expr>closeButtonIndex</expr>
+                                                <init>26</init>
+                                            </parameter>
+                                        </inputParameters>
+                                    </properties>
+                                    <children/>
+                                </referenceContainer>
+                                <rectangleArea oid="9d3abce7-d385-4a30-8da0-bf16e97093f4">
+                                    <pathFromRoot value="1,2,11"/>
+                                    <properties name="rectangle area">
+                                        <enable>
+                                            <init>true</init>
+                                            <expr>closeButtonIndex = 25</expr>
+                                        </enable>
+                                        <pointerId>
+                                            <init>-1</init>
+                                        </pointerId>
+                                        <firstPoint>
+                                            <x>
+                                                <init>15.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-175.0</init>
+                                            </y>
+                                        </firstPoint>
+                                        <thirdPoint>
+                                            <x>
+                                                <init>97.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-225.0</init>
+                                            </y>
+                                        </thirdPoint>
+                                        <output>
+                                            <inside>
+                                                <expr>closeButton</expr>
+                                            </inside>
+                                        </output>
+                                    </properties>
+                                </rectangleArea>
+                            </children>
+                        </container>
                     </children>
                 </container>
                 <container oid="b5e7001d-820b-4917-82d6-929613e63d50">
@@ -1152,7 +1330,7 @@
                                 </rotate>
                                 <orientation clockwise="false"/>
                                 <file name="mainmenu.ogfx" path="Widgets/MainMenu"/>
-                                <crc value="3096997988"/>
+                                <crc value="273820354"/>
                                 <inputParameters>
                                     <parameter control="false" name="buttonEnabler" oid="c10759cd-f1d4-474a-ac5f-776daead0944" representation="as_int_array" type="int^30">
                                         <expr>buttonEnabler</expr>
@@ -1170,6 +1348,12 @@
                                     <parameter name="closeMainmenu" oid="576d5cc0-0b88-4171-b727-efa07ef19c6d" type="bool"/>
                                     <parameter name="StartRequest" oid="6d4c32c6-4a1a-4fe6-85a5-7af29669923f" type="bool">
                                         <expr>startRequest</expr>
+                                    </parameter>
+                                    <parameter name="openTrainRN" oid="49558c4b-040d-4217-831d-5306208d5a32" type="bool">
+                                        <expr>openTrainRN</expr>
+                                    </parameter>
+                                    <parameter name="openDriverID" oid="53f11a0f-c82f-486a-8f8c-4de722e9cf84" type="bool">
+                                        <expr>openDriverID</expr>
                                     </parameter>
                                 </outputParameters>
                             </properties>
@@ -1247,7 +1431,7 @@
                                         <expr>confirmTrainData</expr>
                                     </parameter>
                                     <parameter name="closeTrainDataWindow" oid="6d360d43-3aac-4920-b210-f0857329161f" type="bool">
-                                        <expr>closeTrainDataWindow</expr>
+                                        <expr>closeButton</expr>
                                     </parameter>
                                 </outputParameters>
                             </properties>
@@ -1356,7 +1540,7 @@
                                 </inputParameters>
                                 <outputParameters>
                                     <parameter name="closeTrainDataValidationWindow" oid="6d360d43-3aac-4920-b210-f0857329161f" type="bool">
-                                        <expr>closeTrainDataValidWin</expr>
+                                        <expr>closeButton</expr>
                                     </parameter>
                                     <parameter name="traindataAck" oid="02b4b8f7-01c8-4aea-8117-7dd0146999ba" type="bool">
                                         <expr>traindataAck</expr>
@@ -1390,10 +1574,70 @@
                         </output>
                     </properties>
                 </pointerEventListener>
+                <rectangle oid="0dffff0b-e08e-478e-8c06-f5cafb76f8da">
+                    <pathFromRoot value="16"/>
+                    <properties name="closeDeskBackground">
+                        <visible>
+                            <init>false</init>
+                            <expr>openDesk</expr>
+                        </visible>
+                        <firstPoint>
+                            <x>
+                                <init>-320.0</init>
+                            </x>
+                            <y>
+                                <init>240.0</init>
+                            </y>
+                        </firstPoint>
+                        <thirdPoint>
+                            <x>
+                                <init>320.0</init>
+                            </x>
+                            <y>
+                                <init>-240.0</init>
+                            </y>
+                        </thirdPoint>
+                        <lineWidth>
+                            <init>0</init>
+                        </lineWidth>
+                        <lineStipple>
+                            <init>0</init>
+                        </lineStipple>
+                        <lineCap>
+                            <init>round</init>
+                        </lineCap>
+                        <haloing>
+                            <init>false</init>
+                        </haloing>
+                        <outlineColor>
+                            <init>-1</init>
+                        </outlineColor>
+                        <outlineOpacity>
+                            <init>255</init>
+                        </outlineOpacity>
+                        <fillColor>
+                            <init>2</init>
+                        </fillColor>
+                        <fillOpacity>
+                            <init>255</init>
+                        </fillOpacity>
+                        <polygonSmooth>
+                            <init>false</init>
+                        </polygonSmooth>
+                        <textureControl>
+                            <init>false</init>
+                        </textureControl>
+                        <texture horizAlign="center" horizPattern="1.0" vertAlign="middle" vertPattern="1.0">
+                            <textureId>
+                                <init>-1</init>
+                            </textureId>
+                        </texture>
+                    </properties>
+                </rectangle>
             </children>
         </layer>
     </children>
 </specification>
 
-<!-- crc32 : 46105973 -->
+<!-- crc32 : 3397831354 -->
 

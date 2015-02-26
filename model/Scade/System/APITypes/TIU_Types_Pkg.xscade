@@ -181,7 +181,7 @@
 								</LabelledExpression>
 								<LabelledExpression label="train_data_info">
 									<flow>
-										<!-- {valid : false, train_data : 0} -->
+										<!-- {valid : false, acknowledgedByDriver : false, trainCategory : NC_TRAIN_Train_does... -->
 										<DataStructOp>
 											<data>
 												<LabelledExpression label="valid">
@@ -189,7 +189,63 @@
 														<ConstValue value="false"/>
 													</flow>
 												</LabelledExpression>
-												<LabelledExpression label="train_data">
+												<LabelledExpression label="acknowledgedByDriver">
+													<flow>
+														<ConstValue value="false"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="trainCategory">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="NC_TRAIN_Train_does_not_belong_to_any_of_the_Other_International_Train_Category"/>
+															</path>
+														</IdExpression>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="trainLength">
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="brakePerctage">
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="maxTrainSpeed">
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="loadingGauge">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="M_LOADINGGAUGE_The_train_does_not_fit_to_any_of_the_interoperable_loading_gauge_profiles"/>
+															</path>
+														</IdExpression>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="axleLoadCategory">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="M_AXLELOADCAT_A"/>
+															</path>
+														</IdExpression>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="airtightSystem">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="M_AIRTIGHT_Not_fitted"/>
+															</path>
+														</IdExpression>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="axleNumber">
 													<flow>
 														<ConstValue value="0"/>
 													</flow>
@@ -763,7 +819,7 @@
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="train_data_info_T"/>
+												<TypeRef name="trainData_T"/>
 											</type>
 										</NamedType>
 									</type>
@@ -965,7 +1021,7 @@
 						<ed:Type oid="!ed/b6d6/4B8D/12C4/54845f88513e"/>
 					</pragmas>
 				</Type>
-				<Type name="train_data_info_T">
+				<Type name="trainData_T">
 					<definition>
 						<Struct>
 							<fields>
@@ -981,7 +1037,45 @@
 										<ed:Field oid="!ed/ba70/5F0/BD0/54b6769dcc9"/>
 									</pragmas>
 								</Field>
-								<Field name="train_data">
+								<Field name="acknowledgedByDriver">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/41cf7/2946/564/54ed8ef3270b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>This information comes from the DMI and is added when a train-data-ach is received</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="trainCategory">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NC_TRAIN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/ba79/5F0/BD0/54b676af7a1a"/>
+									</pragmas>
+								</Field>
+								<Field name="trainLength">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/291e2/2566/1808/54ec8ec32233"/>
+									</pragmas>
+								</Field>
+								<Field name="brakePerctage">
 									<type>
 										<NamedType>
 											<type>
@@ -990,9 +1084,67 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/ba79/5F0/BD0/54b676af7a1a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-											<comment>not yet defined&quot;&quot;</comment>
-										</ed:Field>
+										<ed:Field oid="!ed/291f6/2566/1808/54ec90dd6646"/>
+									</pragmas>
+								</Field>
+								<Field name="maxTrainSpeed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/291ff/2566/1808/54ec93e5715d"/>
+									</pragmas>
+								</Field>
+								<Field name="loadingGauge">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_LOADINGGAUGE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/29209/2566/1808/54ec940e780f"/>
+									</pragmas>
+								</Field>
+								<Field name="axleLoadCategory">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_AXLELOADCAT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/29213/2566/1808/54ec9457797e"/>
+									</pragmas>
+								</Field>
+								<Field name="airtightSystem">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_AIRTIGHT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2921d/2566/1808/54ec94952305"/>
+									</pragmas>
+								</Field>
+								<Field name="axleNumber">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/29227/2566/1808/54ec952c49a2"/>
 									</pragmas>
 								</Field>
 							</fields>
@@ -1000,7 +1152,7 @@
 					</definition>
 					<pragmas>
 						<ed:Type oid="!ed/b6cc/4B8D/12C4/54845f881511" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-							<comment>Definition Missing</comment>
+							<comment>3.18.3 Train Data definition</comment>
 						</ed:Type>
 					</pragmas>
 				</Type>
