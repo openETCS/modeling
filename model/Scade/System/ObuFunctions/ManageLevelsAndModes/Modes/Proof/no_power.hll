@@ -1,0 +1,24 @@
+
+/* Condition 29 :
+The ERTMS/ETCS on-board equipment is not powered.
+*/
+
+Declarations: 
+bool Condition29;
+bool Equipment_not_isolated;
+bool Mode_NoPower;
+
+Definitions:
+
+Equipment_not_isolated :=  ETCS_Isolated.'valid'
+		 & ETCS_Isolated.'isolation_status' =='TIU_Types_Pkg::on_board_equipement_is_not_isolated' 
+		 & pre(currentMode, 'Level_And_Mode_Types_Pkg::IS'  ) != 'Level_And_Mode_Types_Pkg::IS' ;
+
+Mode_NoPower:= currentMode == 'Level_And_Mode_Types_Pkg::NP' ;
+
+
+Condition29 := 'ManageModes_#1/ComputeModesConditions_##1/>Condition29';
+
+
+Proof Obligations:
+( Equipment_not_isolated & ~OnBoard_Powered ) -> ( Condition29 & Mode_NoPower );
