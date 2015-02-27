@@ -37,6 +37,137 @@
 						</ed:Constant>
 					</pragmas>
 				</Constant>
+				<Constant name="M_Transition_Normal">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="false"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/17710d/4664/660/54f05018a3b"/>
+					</pragmas>
+				</Constant>
+				<Constant name="M_Transition_Immediate">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="false"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1770ff/4664/660/54f050183a21"/>
+					</pragmas>
+				</Constant>
+				<Constant name="M_Transition_DriverInitiated">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="false"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1770f1/4664/660/54f050185d73"/>
+					</pragmas>
+				</Constant>
+				<Constant name="M_Transition_Conditional">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="false"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1770e3/4664/660/54f0501864a3"/>
+					</pragmas>
+				</Constant>
+				<Constant name="M_Max_TransitionInPriorityTable">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="30"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1770d5/4664/660/54f050185c9e"/>
+					</pragmas>
+				</Constant>
+				<Constant name="M_Default_Transition">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="T_LevelTransition"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- {is_set : false, transition : {level : M_LEVEL_Level_0, position : 0, transitionT... -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="is_set">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="transition">
+									<flow>
+										<!-- {level : M_LEVEL_Level_0, position : 0, transitionType : M_TransitionType_Normal} -->
+										<DataStructOp>
+											<data>
+												<LabelledExpression label="level">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="M_LEVEL_Level_0"/>
+															</path>
+														</IdExpression>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="position">
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="transitionType">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="M_TransitionType_Normal"/>
+															</path>
+														</IdExpression>
+													</flow>
+												</LabelledExpression>
+											</data>
+										</DataStructOp>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1770c7/4664/660/54f050183858"/>
+					</pragmas>
+				</Constant>
 				<Type name="T_Mode_Profile">
 					<definition>
 						<Struct>
@@ -554,7 +685,7 @@
 					<definition>
 						<Struct>
 							<fields>
-								<Field name="MA_Available">
+								<Field name="MA_SSP_Gradient_Available">
 									<type>
 										<NamedType>
 											<type>
@@ -759,7 +890,7 @@
 										<ed:Field oid="!ed/7779c/3EAE/758/54cba79fbff"/>
 									</pragmas>
 								</Field>
-								<Field name="MA_SSP_Gradiant_Available">
+								<Field name="Override_Function_Active">
 									<type>
 										<NamedType>
 											<type>
@@ -1080,6 +1211,238 @@
 						<ed:Type oid="!ed/128260/12E6/10C4/54e5fe5e1b1c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 							<comment>Input Data From Speed and Supervision functions</comment>
 						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="T_TransitionType">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="M_TransitionType_Immediate">
+									<pragmas>
+										<ed:Value oid="!ed/1770ad/4664/660/54f05009652b"/>
+									</pragmas>
+								</Value>
+								<Value name="M_TransitionType_Conditional">
+									<pragmas>
+										<ed:Value oid="!ed/1770ae/4664/660/54f0500944d4"/>
+									</pragmas>
+								</Value>
+								<Value name="M_TransitionType_DriverInit">
+									<pragmas>
+										<ed:Value oid="!ed/1770af/4664/660/54f05009363a"/>
+									</pragmas>
+								</Value>
+								<Value name="M_TransitionType_Normal">
+									<pragmas>
+										<ed:Value oid="!ed/1770b0/4664/660/54f050095055"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1770ac/4664/660/54f0500926db"/>
+					</pragmas>
+				</Type>
+				<Type name="T_TransitionConditions">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="20"/>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1770a2/4664/660/54f05009ee9"/>
+					</pragmas>
+				</Type>
+				<Type name="T_LevelTransition_PriorityTable">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_LevelTransition"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="M_Max_TransitionInPriorityTable"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/177094/4664/660/54f050093b47"/>
+					</pragmas>
+				</Type>
+				<Type name="T_LevelTransition">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="is_set">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/17708c/4664/660/54f0500956c3"/>
+									</pragmas>
+								</Field>
+								<Field name="transition">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="T_LevelTansitionInfo"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/17708d/4664/660/54f050094a97"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/17708b/4664/660/54f05009107e"/>
+					</pragmas>
+				</Type>
+				<Type name="T_LevelTansitionInfo">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="level">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_LEVEL"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/177080/4664/660/54f050096b74" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>the level to swtich to</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="position">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_POSITION"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/177081/4664/660/54f050095f42" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>the position at which to switch</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="transitionType">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="T_TransitionType"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/177082/4664/660/54f050095026" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>signals type of transition</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/17707f/4664/660/54f05009146e"/>
+					</pragmas>
+				</Type>
+				<Type name="T_ERTMS_capabilities">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="NTC">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/17706f/4664/660/54f050096a2d"/>
+									</pragmas>
+								</Field>
+								<Field name="L0">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/177070/4664/660/54f05009553e"/>
+									</pragmas>
+								</Field>
+								<Field name="L1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/177071/4664/660/54f0500973ca"/>
+									</pragmas>
+								</Field>
+								<Field name="L2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/177072/4664/660/54f0500963db"/>
+									</pragmas>
+								</Field>
+								<Field name="L3">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/177073/4664/660/54f050092fb7"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/17706e/4664/660/54f050091a18"/>
 					</pragmas>
 				</Type>
 			</declarations>
