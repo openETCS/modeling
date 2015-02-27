@@ -34,30 +34,30 @@ The interface consists of the following inputs:
 
 \begin{itemize}
 \item \emph{conditional transitions:} a priority table containing the
-  conditional level transition orders
+  conditional level transition orders (from paquet 46)
 \item \emph{level transition priority table:} a priority table containing the
-  (non-conditional) level transition orders
+  (non-conditional) level transition orders (from paquet 41)
 \item \emph{train standstill:} a Boolean value indicating whether the train is
-  at standstill
+  at standstill (from odometry)
 \item \emph{driver level transition:} a level transition order selected by the
-  driver
+  driver (from DMI)
 \item \emph{ERTMS capabilities:} the ERTMS capabilities of the track
 \item \emph{getAck:} Boolean input that signals the acknowledgment of the
-  driver
+  driver (from DMI)
 \item \emph{resetIdle:} Boolean input to reset without acknowledge
 \item \emph{currentDistance:} the current position of the train given with the
-  same reference as the position of the level transition order
+  same reference as the position of the level transition order (train position , from localisation)
 \item \emph{ackDistance:} the maximal distance for driver acknowledge after
-  the level transition
+  the level transition (from paquet 41)
 \item \emph{immediateAck:} a Boolean that signals that an immediate acknowledge
   is required
 \item \emph{received L2 L3 MA:} a Boolean that indicates that a level 2 or level
   3 movement authority for the track behind the level transition has been
-  received
+  received (from paquet 15)
 \item \emph{received L1 MA:} a Boolean that indicates that a level 1 movement
-  authority for the track behind the level transition has been received
+  authority for the track behind the level transition has been received (from paquet 12)
 \item \emph{received target speed:} a Boolean indicating that a target speed for
-  the track behind the level transition has been received
+  the track behind the level transition has been received (from paquet 27) ?
 \end{itemize}
 
 and the following outputs:
@@ -130,7 +130,7 @@ The inputs are the following:
 \begin{itemize}
 \item \emph{Estim\_front\_End\_overpass\_SR\_Dist : bool}: the train overpass the SR distance with its estimated front end (from SR to trip mode condition 42) 
 \item \emph{Estim\_Front\_End\_Rear\_SSP : bool}: estimated front end is rear of the start location of either SSP or gradient profile stored on-board (from FS, LS, OS to trip mode condition 69)
-\item \emph{MA\_SSP\_Gradiant\_Available : bool} supervision provides M, SSP and gradient which allow nominal behavior (to FS mode for example)
+\item \emph{Override\_Function\_Active}: boolean to indicate the state of the activation function 	  	
 \item \emph{EOA\_Antenna\_Overpass : bool}: the train overpasses the  EOA  with min safe antenna position Level 1 (from FS, LS, OS to trip mode condition 12)
 \item \emph{EOA\_Front\_End : bool} the train overpasses the  EOA  with min safe front end, Level 2 or 3 (from FS, LS, OS to trip mode condition 16)
 \item \emph{Train\_Speed\_Under\_Overide\_Limit : bool} supervision when override function is active (to SR mode condition 37)
@@ -138,7 +138,7 @@ The inputs are the following:
 \item \emph{Data\_From\_TIU : TIU\_Types\_Pkg::Message\_Train\_Interface\_to\_EVC\_T}:message provided by TIU interface
 \item \emph{Data\_From\_Track}: set of data received from track side (via RBC or Balises telegram), indeed:
 \begin{itemize}
-\item \emph{MA\_Available : bool} no MA has been accepted (condition 39 to trip mode) from paquet 12 and 15 or message 3
+\item \emph{MA\_SSP\_Gradiant\_Available : bool} MA, SSP and gradient have been received, checked and stored on-board from paquet 12, 15, 21 and 27 or message 3 or 33
 \item \emph{Mode\_Profile\_On\_Board : Level\_And\_Mode\_Types\_Pkg::T\_Mode\_Profile} from packet 80
 \item \emph{Shunting\_granted\_By\_RBC : bool} from message 27 and 28
 \item \emph{Trip\_Order\_Given\_By\_Balise : bool}
@@ -150,14 +150,13 @@ The inputs are the following:
 \item \emph{RBC\_Ack\_TR\_EB\_Revocked : bool} from message 6
 \item \emph{RBC\_Authorized\_SR : bool} from message 2
 \item \emph{Reversing\_Data : Level\_And\_Mode\_Types\_Pkg::T\_Reversing\_Data} from packet 138/ 139
+\item \emph{T\_NVCONTACT\_Overpass : bool} Maximal time without new safe message overpass
 \item \emph{Emergency\_Stop\_Message\_Received}: boolean to describe the reception of Emergency Stop message  from message 15 or 16
 \end{itemize}
 \item \emph{Failure\_Occured}: boolean to indicate safety failure occurence	
 \item \emph{Interface\_To\_National\_System}: boolean to indicate existance of an interface to a national system 	  	
 \item \emph{National\_Trip\_Order}: boolean to indicate reception of a trip order from a national system 	  	
 \item \emph{OnBoard\_Powered}: boolean to indicate the poxering state of the system 	  	
-\item \emph{Override\_Function\_Active}: boolean to indicate the state of the activation function \emph{(to modelize ?)} 	  	
-\item \emph{Override\_Function\_Former\_Active}:  boolean to indicate the previous state of the activation function \emph{(useful in scade ?)} 	  	
 \item \emph{Stop\_Shunting\_Stored}: boolean to store the information in regards of shunting function	  	
 \item \emph{Valid\_Train\_Data\_Stored}: boolean to indication train data are available and valid.
 \end{itemize}
