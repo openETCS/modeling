@@ -38654,11 +38654,11 @@
 								<ed:Variable oid="!ed/20a3b/1F54/19FC/54ef8aba3140"/>
 							</pragmas>
 						</Variable>
-						<Variable name="TrainAtStandstill">
+						<Variable name="odometry">
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="Obu_BasicTypes_Pkg::odoMotionState_T"/>
+										<TypeRef name="SDM_Types_Pkg::Odometry_real_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -38938,7 +38938,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="Obu_BasicTypes_Pkg::odoMotionState_T"/>
+										<TypeRef name="SDM_Types_Pkg::Odometry_real_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -39162,6 +39162,18 @@
 								<ed:Variable oid="!ed/9e1f7/13A8/2380/54f067d26cec"/>
 							</pragmas>
 						</Variable>
+						<Variable name="_L66">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::odoMotionState_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/20cd3/3FA6/14D8/54f1c2073dc3"/>
+							</pragmas>
+						</Variable>
 					</locals>
 					<data>
 						<!-- _L11, _L7, _L6, _L5, _L1, _L4, _L2, _L3, _L9, _L8, _L10 = CmdTrainSupervisionStat... -->
@@ -39180,7 +39192,7 @@
 								<VariableRef name="_L10"/>
 							</lefts>
 							<right>
-								<!-- CmdTrainSupervisionStatus(_L12, _L13, _L14, _L15, _L16, _L17, _L18, _L19, _L20, _... -->
+								<!-- CmdTrainSupervisionStatus(_L12, _L66, _L14, _L15, _L16, _L17, _L18, _L19, _L20, _... -->
 								<CallExpression>
 									<operator>
 										<OpCall name="1">
@@ -39197,7 +39209,7 @@
 										</IdExpression>
 										<IdExpression>
 											<path>
-												<ConstVarRef name="_L13"/>
+												<ConstVarRef name="_L66"/>
 											</path>
 										</IdExpression>
 										<IdExpression>
@@ -39263,7 +39275,7 @@
 								<ed:Equation oid="!ed/20a78/1F54/19FC/54ef8abc4596"/>
 							</pragmas>
 						</Equation>
-						<!-- _L13 = TrainAtStandstill; -->
+						<!-- _L13 = odometry; -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L13"/>
@@ -39271,7 +39283,7 @@
 							<right>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="TrainAtStandstill"/>
+										<ConstVarRef name="odometry"/>
 									</path>
 								</IdExpression>
 							</right>
@@ -39653,6 +39665,30 @@
 								<ed:Equation oid="!ed/9e1f6/13A8/2380/54f067d26527"/>
 							</pragmas>
 						</Equation>
+						<!-- _L66 = _L13.motionState; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L66"/>
+							</lefts>
+							<right>
+								<!-- _L13.motionState -->
+								<PrjOp name="1">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L13"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="motionState"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/20cd2/3FA6/14D8/54f1c2073538"/>
+							</pragmas>
+						</Equation>
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/20a10/1F54/19FC/54ef8a404412" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
@@ -39755,14 +39791,6 @@
 												<Point x="5969" y="13907"/>
 												<Point x="5969" y="13907"/>
 												<Point x="7684" y="13907"/>
-											</positions>
-										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/20a7a/1F54/19FC/54ef8abc1e70" dstEquation="!ed/20a12/1F54/19FC/54ef8a9140f8">
-											<positions>
-												<Point x="4593" y="14563"/>
-												<Point x="5969" y="14563"/>
-												<Point x="5969" y="14563"/>
-												<Point x="7684" y="14563"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/20a7c/1F54/19FC/54ef8abc45ae" dstEquation="!ed/20a12/1F54/19FC/54ef8a9140f8">
@@ -40099,6 +40127,30 @@
 												<Point x="19368" y="8022"/>
 												<Point x="19368" y="13187"/>
 												<Point x="20595" y="13187"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/20cd2/3FA6/14D8/54f1c2073538">
+											<position>
+												<Point x="4995" y="14076"/>
+											</position>
+											<size>
+												<Size width="1456" height="989"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/20a7a/1F54/19FC/54ef8abc1e70" dstEquation="!ed/20cd2/3FA6/14D8/54f1c2073538">
+											<positions>
+												<Point x="4593" y="14563"/>
+												<Point x="5017" y="14563"/>
+												<Point x="5017" y="14563"/>
+												<Point x="4995" y="14563"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/20cd2/3FA6/14D8/54f1c2073538" dstEquation="!ed/20a12/1F54/19FC/54ef8a9140f8">
+											<positions>
+												<Point x="6435" y="14563"/>
+												<Point x="7049" y="14563"/>
+												<Point x="7049" y="14563"/>
+												<Point x="7684" y="14563"/>
 											</positions>
 										</Edge>
 									</presentationElements>
