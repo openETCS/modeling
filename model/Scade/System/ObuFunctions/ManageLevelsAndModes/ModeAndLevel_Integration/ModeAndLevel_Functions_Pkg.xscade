@@ -92,6 +92,62 @@
 						<ed:Constant oid="!ed/1c776/4602/28C4/54f1de8f4413"/>
 					</pragmas>
 				</Constant>
+				<Constant name="cDriverTransition">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Level_And_Mode_Types_Pkg::T_LevelTransition"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- {is_set : false, transition : {level : M_LEVEL_Level_0, position : 0, transitionT... -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="is_set">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="transition">
+									<flow>
+										<!-- {level : M_LEVEL_Level_0, position : 0, transitionType : Level_And_Mode_Types_Pkg... -->
+										<DataStructOp>
+											<data>
+												<LabelledExpression label="level">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="M_LEVEL_Level_0"/>
+															</path>
+														</IdExpression>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="position">
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="transitionType">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="Level_And_Mode_Types_Pkg::M_TransitionType_DriverInit"/>
+															</path>
+														</IdExpression>
+													</flow>
+												</LabelledExpression>
+											</data>
+										</DataStructOp>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1d872/36E1/D18/54f4275e5984"/>
+					</pragmas>
+				</Constant>
 				<Operator kind="function" name="convertToModes">
 					<inputs>
 						<Variable name="modesMode">
@@ -3107,6 +3163,18 @@
 								<ed:Variable oid="!ed/385c1/7F9E/2B4C/54f093f25fd6"/>
 							</pragmas>
 						</Variable>
+						<Variable name="driverLevelTransitions">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Level_And_Mode_Types_Pkg::T_LevelTransition"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1d834/36E1/D18/54f4214674a3"/>
+							</pragmas>
+						</Variable>
 					</outputs>
 					<locals>
 						<Variable name="ackReceived">
@@ -3227,6 +3295,18 @@
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/1c3d8/2DB5/2890/54f0bfff7fa"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L11">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Level_And_Mode_Types_Pkg::T_LevelTransition"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1d886/36E1/D18/54f427d83679"/>
 							</pragmas>
 						</Variable>
 					</locals>
@@ -4152,6 +4232,38 @@
 								<ed:Equation oid="!ed/1c3eb/2DB5/2890/54f0c0bf1258"/>
 							</pragmas>
 						</Equation>
+						<!-- driverLevelTransitions = _L11; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="driverLevelTransitions"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L11"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1d865/36E1/D18/54f4241b610"/>
+							</pragmas>
+						</Equation>
+						<!-- _L11 = cDriverTransition; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L11"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cDriverTransition"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1d885/36E1/D18/54f427d84e81"/>
+							</pragmas>
+						</Equation>
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/385b2/7F9E/2B4C/54f093be708d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
@@ -4712,6 +4824,30 @@
 												<Point x="7011" y="8149"/>
 												<Point x="7752" y="8149"/>
 												<Point x="7752" y="9155"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/1d865/36E1/D18/54f4241b610">
+											<position>
+												<Point x="25268" y="2434"/>
+											</position>
+											<size>
+												<Size width="317" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/1d885/36E1/D18/54f427d84e81">
+											<position>
+												<Point x="22225" y="2540"/>
+											</position>
+											<size>
+												<Size width="212" height="317"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1d885/36E1/D18/54f427d84e81" dstEquation="!ed/1d865/36E1/D18/54f4241b610">
+											<positions>
+												<Point x="22437" y="2699"/>
+												<Point x="23865" y="2699"/>
+												<Point x="23865" y="2699"/>
+												<Point x="25321" y="2699"/>
 											</positions>
 										</Edge>
 									</presentationElements>
@@ -10809,7 +10945,7 @@
 			<pragmas>
 				<ed:Package oid="!ed/1c6fe/492F/2DF0/54f1dceb1591" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 					<diagrams>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1c6ff/492F/2DF0/54f1dceb4581" blockKind="constants" columnsSize="0, 198, 340, 150, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1c6ff/492F/2DF0/54f1dceb4581" blockKind="constants" columnsSize="0, 198, 340, 314, 300"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1c700/492F/2DF0/54f1dceb2ffd" blockKind="types"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1c701/492F/2DF0/54f1dceb5b8e" blockKind="sensors"/>
 					</diagrams>
