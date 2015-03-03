@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--$*************** KCG Version 6.1.3 (build i6) ****************
+** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt
+** Generation date: 2015-03-03T05:55:49
+*************************************************************$-->
+<Model date="2015-03-03T05:55:49" commandLine="s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt">
+  <NamedType scadeName="BaliseGroupData" targetName="BaliseGroupData" refType="struct__371"/>
+  <EnumType scadeName="OrBG" targetName="OrBG">
+    <EnumVal scadeName="Amsterdam" targetName="Amsterdam"/>
+    <EnumVal scadeName="Utrecht" targetName="Utrecht"/>
+  </EnumType>
+  <EnumType scadeName="OrLine" targetName="OrLine">
+    <EnumVal scadeName="N" targetName="N"/>
+    <EnumVal scadeName="Z" targetName="Z"/>
+  </EnumType>
+  <RootNode scadeName="BG_passed" headerFile="BG_passed.h" targetCycleFct="BG_passed" targetInitFct="BG_passed_reset">
+    <Input scadeName="BG" scadeType="BaliseGroupData" targetName="BG" targetType="BaliseGroupData" inCtx="true"/>
+    <Input scadeName="B1passed" scadeType="bool" targetName="B1passed" targetType="kcg_bool" inCtx="true"/>
+    <Input scadeName="B2passed" scadeType="bool" targetName="B2passed" targetType="kcg_bool" inCtx="true"/>
+    <Output scadeName="BG_passed" scadeType="bool" targetName="BG_passed" targetType="kcg_bool" inCtx="true"/>
+    <Output scadeName="LRBG" scadeType="int" targetName="LRBG" targetType="kcg_int" inCtx="true"/>
+    <Signal scadeName="passed" targetName="passed" inCtx="true"/>
+    <Local scadeName="_L1" scadeType="BaliseGroupData" targetName="_L1" targetType="BaliseGroupData" inCtx="true"/>
+    <Local scadeName="_L4" scadeType="int" targetName="_L4" targetType="kcg_int" inCtx="true"/>
+    <Local scadeName="_L19" scadeType="bool" targetName="_L19" targetType="kcg_bool" inCtx="true"/>
+    <Automaton scadeName="SM1" targetStatesType="SSM_ST_SM1" targetTransitionsType="SSM_TR_SM1">
+      <State scadeName="State1" targetName="SSM_st_State1_SM1">
+        <Automaton scadeName="SM2" targetStatesType="SSM_ST_SM2_SM1_State1"
+            targetTransitionsType="SSM_TR_SM2_SM1_State1">
+          <State scadeName="B1" targetName="SSM_st_B1_SM1_State1_SM2">
+            <Fork priority="1">
+              <Transition targetName="SSM_TR_B1_1_SM2_SM1_State1" kind="strong" scadeDest="B1_passed"/>
+            </Fork>
+          </State>
+          <State scadeName="B1_passed" targetName="SSM_st_B1_passed_SM1_State1_SM2">
+          </State>
+          <ActiveState targetName="SM2_state_act_SM1_State1" inCtx="true"/>
+          <NextState targetName="SM2_state_nxt_SM1_State1" inCtx="true"/>
+          <SelectedState targetName="SM2_state_sel_SM1_State1" inCtx="true"/>
+          <ResetActiveState targetName="SM2_reset_act_SM1_State1" inCtx="true"/>
+          <ResetNextState targetName="SM2_reset_nxt_SM1_State1" inCtx="true"/>
+          <ResetSelectedState targetName="SM2_reset_sel_SM1_State1"/>
+          <StrongTransition targetName="SM2_fired_strong_SM1_State1" inCtx="true"/>
+          <WeakTransition targetName="SM2_fired_SM1_State1" inCtx="true"/>
+          <Clock targetName="_3_SM2_clock_SM1_State1" targetType="SSM_ST_SM2_SM1_State1" clockVar="SM1_state_act"
+              clockVal="SSM_st_State1_SM1" inCtx="true"/>
+          <Clock targetName="SM2_clock_SM1_State1" targetType="SSM_ST_SM2_SM1_State1" clockVar="SM1_state_act"
+              clockVal="SSM_st_State1_SM1" inCtx="true"/>
+        </Automaton>
+        <Automaton scadeName="SM3" targetStatesType="SSM_ST_SM3_SM1_State1"
+            targetTransitionsType="SSM_TR_SM3_SM1_State1">
+          <State scadeName="B2" targetName="SSM_st_B2_SM1_State1_SM3">
+            <Fork priority="1">
+              <Transition targetName="SSM_TR_B2_1_SM3_SM1_State1" kind="strong" scadeDest="B2_passed"/>
+            </Fork>
+          </State>
+          <State scadeName="B2_passed" targetName="SSM_st_B2_passed_SM1_State1_SM3">
+          </State>
+          <ActiveState targetName="SM3_state_act_SM1_State1" inCtx="true"/>
+          <NextState targetName="SM3_state_nxt_SM1_State1" inCtx="true"/>
+          <SelectedState targetName="SM3_state_sel_SM1_State1" inCtx="true"/>
+          <ResetActiveState targetName="SM3_reset_act_SM1_State1" inCtx="true"/>
+          <ResetNextState targetName="SM3_reset_nxt_SM1_State1" inCtx="true"/>
+          <ResetSelectedState targetName="SM3_reset_sel_SM1_State1"/>
+          <StrongTransition targetName="SM3_fired_strong_SM1_State1" inCtx="true"/>
+          <WeakTransition targetName="SM3_fired_SM1_State1" inCtx="true"/>
+          <Clock targetName="_2_SM3_clock_SM1_State1" targetType="SSM_ST_SM3_SM1_State1" clockVar="SM1_state_act"
+              clockVal="SSM_st_State1_SM1" inCtx="true"/>
+          <Clock targetName="SM3_clock_SM1_State1" targetType="SSM_ST_SM3_SM1_State1" clockVar="SM1_state_act"
+              clockVal="SSM_st_State1_SM1" inCtx="true"/>
+        </Automaton>
+        <Fork priority="1">
+          <Action>
+          </Action>
+          <Transition targetName="SSM_TR_State1_1_SM1" kind="synchro" scadeDest="BG_passed"/>
+        </Fork>
+        <Clock targetName="State1_weakb_clock_SM1" targetType="kcg_bool" clockVar="SM1_state_act"
+            clockVal="SSM_st_State1_SM1" inCtx="true"/>
+      </State>
+      <State scadeName="BG_passed" targetName="SSM_st_BG_passed_SM1">
+        <Fork priority="1">
+          <Transition targetName="SSM_TR_BG_passed_1_SM1" kind="strong" scadeDest="State1"/>
+        </Fork>
+      </State>
+      <ActiveState targetName="SM1_state_act" inCtx="true"/>
+      <NextState targetName="SM1_state_nxt" inCtx="true"/>
+      <SelectedState targetName="SM1_state_sel" inCtx="true"/>
+      <ResetActiveState targetName="SM1_reset_act" inCtx="true"/>
+      <ResetNextState targetName="SM1_reset_nxt" inCtx="true"/>
+      <ResetSelectedState targetName="SM1_reset_sel"/>
+      <StrongTransition targetName="SM1_fired_strong" inCtx="true"/>
+      <WeakTransition targetName="SM1_fired" inCtx="true"/>
+    </Automaton>
+    <Init targetName="init1" targetType="kcg_bool" inCtx="true"/>
+    <Init targetName="init" targetType="kcg_bool" clockVar="SM1_state_act" clockVal="SSM_st_State1_SM1" inCtx="true"/>
+    <OutCtxType targetName="outC_BG_passed"/>
+    <InCtxType targetName="inC_BG_passed"/>
+  </RootNode>
+  <Option name="root_node_name" value="BG_passed"/>
+  <Option name="target" value="C"/>
+  <Option name="target_dir"
+      value="C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation"/>
+  <Option name="exp" value="#off#"/>
+  <Option name="noexp" value="#off#"/>
+  <Option name="expall" value="#off#"/>
+  <Option name="global_root_context" value="#off#"/>
+  <Option name="optimization_level" value="0"/>
+  <Option name="macro_on_assert" value="#off#"/>
+  <Option name="global_prefix" value="#off#"/>
+  <Option name="name_length" value="200"/>
+  <Option name="significance_length" value="31"/>
+  <Option name="header" value="#off#"/>
+  <Option name="input_threshold" value="#off#"/>
+  <Option name="user_config" value="./user_macros.h"/>
+  <Option name="debug" value="#on#"/>
+  <Option name="observe" value="#off#"/>
+  <Option name="no_observe" value="#off#"/>
+  <Option name="probes" value="#on#"/>
+  <Option name="input_file"
+      value="C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation/scade_model_without_unused.scade"/>
+  <Option name="wrap_c_ops" value="#off#"/>
+  <Option name="no_bitwise" value="#off#"/>
+  <Option name="warn_error" value="#off#"/>
+  <Option name="static" value="#off#"/>
+  <Option name="state_vector" value="#off#"/>
+  <PredefType scadeName="real" targetName="kcg_real"/>
+  <PredefType scadeName="bool" targetName="kcg_bool"/>
+  <PredefType scadeName="char" targetName="kcg_char"/>
+  <PredefType scadeName="int" targetName="kcg_int"/>
+  <StructType targetName="struct__371" targetCopyFct="kcg_copy_struct__371" targetCompFct="kcg_comp_struct__371">
+    <Field scadeName="NID_C" scadeType="int" targetName="NID_C" targetType="kcg_int"/>
+    <Field scadeName="NID_BG" scadeType="int" targetName="NID_BG" targetType="kcg_int"/>
+    <Field scadeName="Pos" scadeType="int" targetName="Pos" targetType="kcg_int"/>
+    <Field scadeName="Or_BG" scadeType="OrBG" targetName="Or_BG" targetType="OrBG"/>
+    <Field scadeName="Or_Line" scadeType="OrLine" targetName="Or_Line" targetType="OrLine"/>
+  </StructType>
+</Model>
+<!--$*************** KCG Version 6.1.3 (build i6) ****************
+** kcg_trace.xml
+** Generation date: 2015-03-03T05:55:49
+*************************************************************$-->
