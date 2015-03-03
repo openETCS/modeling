@@ -3,33 +3,73 @@
 \paragraph{Short Description of Functionality}
 The main purpose of the function is to calculate the locations of linked and unlinked balise groups (BGs) and the current train position while the train is running along the track. 
 
+In detail, the calculateTrainPosition function provides a couple of essential subfunctions for the onboard unit. These are mainly
+\begin{itemize}
+\item creating and maintaining an obu internal coordinate system for all types of location based data
+\item storing all linked and unlinked balise groups resulting from over passing or from announcements (linking information) from the track
+\item calculating and maintaining the locations of all stored balise groups during the train trip, based on odometry and linking information
+\item permanently calculating the current train position based on odometry and passed balise group information
+\item providing the last recently passed linked balise group as the LRBG
+\item providing additional position attribute information
+\item deleting stored balise groups, when appropriate
+\item detecting linking consistency errors
+\item determining, if linking is used on board
+\end{itemize}
+
+The calculation algorithms for locations and positions are implemented as specified in 
+\url{https://github.com/openETCS/SRS-Analysis/blob/master/System%20Analysis/WorkingRepository/Group4/SUBSET_26_3-6/DetermineTrainLocationProcedures.pdf} .
+
+
 \begin{figure}[hbtp]
 \centering
-\includegraphics[scale=1]{../images/CalculateTrainPosition.png}
-\caption{Structure of calculateTrainPosition}
+\includegraphics[scale=0.5]{../images/calculateTrainPosition_calcBGs.png}
+\caption{Calculating the balise group locations}
 \end{figure}
 
+\begin{figure}[hbtp]
+\centering
+\includegraphics[scale=0.5]{../images/calculateTrainPosition_decorations.png}
+\caption{Calculating the current train position and attributes}
+\end{figure}
 
 \paragraph{Functional Structure in Stages}
-The function calculateTrainPosition is divided into the following four functions, which are being performed sequentially: 
+calculateTrainPositions receives its input information via its passedBG entry as an event. The first decicion to be made is, if an input event is available and if it origins from a balise group just over passed or from the RBC via radio. 
+
+If the passedBG input events is caused by over passing a balise group, the balise group gets an OBU coordinate system location assigned ("calculateBGLocations") and is stored internally. If the just passed balise group announces more balise groups ahead via linking, they are stored with their locations calculated. 
+
+If the passedBG input event origins from RBC data received ("addAnnouncedBGs"), it only announces balise groups ahead. These announced balise groups get their locations calculated with reference to the LRBG and are stored as well.
+
+"calculateBGLocations" and "addAnnouncedBGs" produce a list of known balise groups ("BGs"). 
+
+The following stages "calculateTrainPositionInfo" and "calculateTrainpositionAttributes" all the time calculate the current train position by using the list of known balise groups (including the LRBG) and the current odometry information and determine additional position attributes.
+
+In parallel "linkedBG\_missed" is part of linking consistency supervision. It detects, when an announced balise group is not found within its expectation window. 
+
+In more detail, "calculateTrainPosition" is divided into a data flow of different stages, which are being performed sequentially: 
 \begin{enumerate}
 \item \textbf{\textit{calculateBGLocations}}: Calculate the balise group locations\\
-The first stage is triggered each time the train passes a balise group (input \textit{passedBG}). It takes the balise group header with the BG identification, the linking information (Subset 26, packet 5) and the current odometry values as inputs and calculates the location of the the passed balise group. If the passed BG has been announced via linking information previously, it takes into account the linking as well as the odometry information. If the passed BG does not meet the tolerance window announced by linking, an error flag is set. If the passed BG is an unlinked BG, its location is determined by odometry only, but related to the next previously passed linked BG, if there is one.\\
+The  stage is triggered each time the train passes a balise group (input \textit{passedBG}). It takes the balise group header with the BG identification, the linking information (Subset 26, packet 5) and the current odometry values as inputs and calculates the location of the passed balise group. If the passed BG has been announced via linking information previously, it takes into account the linking as well as the odometry information. If the passed BG does not meet the expectation window announced by linking, an error flag is set. If the passed BG is an unlinked BG, its location is determined by odometry only, but related to the next previously passed linked BG (LRBG), if there is one.\\
 Then, if the passed BG is a linked BG comprising linking information for BGs ahead, the linking information is evaluated by creating the announced BGs and computing their locations from the linking distances.\\
-The passed and the announced BGs are stored in a list \textit{BGs}, ordered by their nominal location on the track.\\
+The passed and the announced BGs are stored in a list \textit{BGs} in the order they are passed and by their announced nominal location on the track.\\
 Afterwards the locations of all BGs are further improved by re-adjusting their locations with reference to the just passed BG. This optimizes the BG location inaccuries around the current train position (= location of the passed BG). 
 
 \item \textbf{\textit{delDispensableBGs}}: Delete dispensable balise groups\\
-The second stage removes balise groups supposed not to be needed any longer from the list of \textit{BGs}.\\
-If the number of stored passed linked BGs exceeds the maximum number of eight as specified in \cite[Chapter~3.6.2.2.2 c]{subset-026}, all BGs astern are deleted.
+The function removes balise groups supposed not to be needed any longer from the list of \textit{BGs}.\\
+If the number of stored passed linked BGs exceeds the maximum number as specified in \cite[Chapter~3.6.2.2.2 c]{subset-026}, all BGs astern are deleted.
 If only (passed) unlinked BGs are in the list and exceed the number of \textit{cNoOfAtLeast\_x\_unlinkedBGs}, all passed BGs astern to those are removed from the list. 
 
+\item \textbf{\textit{addAnnouncedBGs}}: This function is executed once each time balise groups ahead are announced by the RBC. The locations of the announced \textit{BGs} are calculated with reference to the LRBG reported by the RBC. 
+
 \item \textbf{\textit{calculateTrainPositionInfo}}: Calculate train position information.\\
-This stage take the list of stored BGs and the current odometry values as inputs and steadily provides the current train position. 
+This stage takes the list of stored BGs and the current odometry values as inputs and steadily provides the current train position. Additionally, it watches the list of announced \textit{BGs} and provides the "Linking information is used" information as specified in chapt. 3.4.4.2.1.1 of the SRS. 
 
 \item \textbf{\textit{calculateTrainpositionAttributes}}: Calculate train position attribute information.\\
-This stage provides several additional position related attributes that might conveniently be used by subsequent consumers in the architecture. It requires the actual LRBG and the previous LRBG to be assigned external from the list \textit{BGs}. 
+This stage provides several additional position related attributes that might conveniently be used by subsequent consumers in the architecture. It in addition provides the current LRBG and the previous LRBG from the list \textit{BGs}. 
+
+\item \textbf{\textit{linkedBG\_missed}}: This function observes the list of \textit{BGs} and the current train position. If an announced balise group is not found within its expectation window, an error flag will be raised. 
+
 \end{enumerate}
+
 
 \paragraph{Reference to the SRS (or other requirements)}
 The component calculateTrainPosition determines the location of linked and unlinked balise groups and the current train position during the train trip as specified mainly in \cite[Chapter~3.6]{subset-026}.
@@ -37,9 +77,9 @@ The component calculateTrainPosition determines the location of linked and unlin
 \paragraph{Design Constraints and Choices}
 The following constraints and prerequisites apply:
 \begin{enumerate}
-\item The input data received from the balises groups must have been checked and filtered for validity, consistency and the appropriate train orientation before delivering them to calculateTrainPosition. 
+\item The input data received from the balises groups or via radio must have been checked and filtered for validity, consistency and the appropriate train orientation before delivering them to calculateTrainPosition. 
 \item The storage capacity for balise groups is finite. calculateTrainPosition will raise an error flag when a balise group cannot be stored due to capacity limitations.
-\item calculateTrainPosition will raise an error flag if a just passed balise group is not found where announced by linking information. It will not (yet) detect when an announced balise group is missing. 
+\item calculateTrainPosition will raise an error flag if a just passed balise group is not found where announced by linking information or if an announced balise group is missed when the end of its expectation window is reached. It does not yet implement all conditions of linking consistency.
 \item calculateTrainPosition is not yet prepared for train movement direction changes. 
 \item calculateTrainPosition does not yet consider repositioning information.
 \end{enumerate}
