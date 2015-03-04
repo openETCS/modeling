@@ -9,12 +9,13 @@
         <environment_id value="-1926713137"/>
         <traceability path="../Requirements/DMI.rqtf"/>
         <codeIntegration keyboardId="0" periodicity="33" pointerId="0"/>
-        <scade path="../Test/Test.etp;../DMI_Control.etp;../../OBU_for_ITEA-Review/PositionSimulation/Testbench_Suite/Testbench_Suite.etp;../../../../../../../masterarbeit/scade/TestBench/Testbench_Suite/Testbench_Suite.etp"/>
+        <scade path="../Test/Test.etp;../DMI_Control.etp"/>
         <ratio horizontal="1" vertical="1"/>
         <colorMap crc="3382471243" name="DMI.sct" path="."/>
         <lineWidthMap crc="1678555679" path="default"/>
         <lineStippleMap crc="704931268" path="default"/>
         <textureMap crc="1498126147" path="default"/>
+        <animation path="DMI.asfx"/>
         <requirements path="DMI.sgfx.trace"/>
     </IDE>
     <symbology>
@@ -116,9 +117,6 @@
                     <input name="DistToTargetBarVisibility" oid="67b75059-3789-40c3-add6-f93fc5243b6a" type="bool">
                         <init>false</init>
                     </input>
-                    <input name="LevelSymbolAnnVisibility" oid="4881c5bc-220a-4819-8ff7-f28b01df3c4e" type="bool">
-                        <init>false</init>
-                    </input>
                     <input name="RBC_status_symbol" oid="df3b7920-4196-492d-9d56-76e9798a77f9" representation="index" type="int">
                         <init>3</init>
                     </input>
@@ -176,6 +174,24 @@
                     <input name="openDesk" oid="c2bf0c1b-26c2-4cc6-a7c0-c2bb1d44a6d9" type="bool">
                         <init>false</init>
                     </input>
+                    <input name="ModeSymbolAnnouncement" oid="c18f89ef-a627-4790-a072-a08e1599611c" representation="index" type="int">
+                        <init>16</init>
+                    </input>
+                    <input name="iconGroupIndex" oid="7bde0440-de84-4817-aab3-46824ee12b8c" representation="index" type="int">
+                        <init>0</init>
+                    </input>
+                    <input name="yellowBorderBrakeSymbol" oid="63d33535-fe2d-43e7-97f1-55eee1ca39ce" type="bool">
+                        <init>false</init>
+                    </input>
+                    <input name="yellowBorderC1Area" oid="ab0ac985-e15d-4049-b347-016984c838fb" type="bool">
+                        <init>false</init>
+                    </input>
+                    <input name="translateHourGlass" oid="17511044-edff-4b50-8c64-d9b2422ac33e" type="real">
+                        <init>0.0</init>
+                    </input>
+                    <input name="hourGlassVisibility" oid="eb51e5f9-8219-4926-b911-dc0b11ba1139" type="bool">
+                        <init>false</init>
+                    </input>
                 </inputs>
                 <outputs>
                     <output memory="true" name="OverA" oid="2b7e845e-cb23-444e-a6cc-6b70ecd286a7" type="bool">
@@ -208,19 +224,13 @@
                     <output memory="true" name="confirmTrainData" oid="d38f2782-0071-4e10-a593-29adbab957c0" type="bool">
                         <init>false</init>
                     </output>
-                    <output memory="true" name="closeTrainDataWindow" oid="38a77828-c1a3-4c8b-a187-0bffcdb0c368" type="bool">
-                        <init>false</init>
-                    </output>
                     <output memory="true" name="openTrainData" oid="4bbc5ea4-174a-48d3-9432-0883862db33a" type="bool">
                         <init>false</init>
                     </output>
                     <output memory="true" name="startRequest" oid="d2b9af79-8f06-4aeb-bc39-325e6cf89a38" type="bool">
                         <init>false</init>
                     </output>
-                    <output memory="true" name="closeTrainDataValidWin" oid="4838e93d-a3a8-40a8-80bc-232280a7f641" type="bool">
-                        <init>false</init>
-                    </output>
-                    <output memory="true" name="traindataAck" oid="39131a42-1cdf-4de5-9acd-dda0ece7d1f2" type="bool">
+                    <output memory="false" name="traindataAck" oid="39131a42-1cdf-4de5-9acd-dda0ece7d1f2" type="bool">
                         <init>false</init>
                     </output>
                     <output memory="true" name="traindataYesAck" oid="db9cb65d-14d8-4edc-89f6-7e8c14a68e01" type="bool">
@@ -239,6 +249,12 @@
                         <init>false</init>
                     </output>
                     <output memory="true" name="closeButton" oid="d27a8f35-e945-42bb-9d22-a946d99858fc" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="false" name="BrakeStatusSymbolAck" oid="b6e6cb1e-511f-48a8-978f-f90905b9b30f" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="C1AreaAck" oid="a8629573-8edb-4b51-928e-7e3d368fe218" type="bool">
                         <init>false</init>
                     </output>
                 </outputs>
@@ -455,7 +471,7 @@
                             </parameter>
                             <parameter control="false" name="ModeSymbol" oid="f284afda-4ad0-4622-837a-bf78f786feb1" representation="index" type="int">
                                 <expr>ModeSymbol</expr>
-                                <init>11</init>
+                                <init>7</init>
                             </parameter>
                             <parameter control="false" name="ModeSymbolVisibility" oid="52d1e1db-ef98-4510-a216-b4ac7b88fbbd" type="bool">
                                 <expr>ModeSymbolVisibility</expr>
@@ -494,11 +510,11 @@
                         </rotate>
                         <orientation clockwise="false"/>
                         <file name="C.ogfx" path="Widgets/C"/>
-                        <crc value="2556818648"/>
+                        <crc value="1753507217"/>
                         <inputParameters>
                             <parameter control="false" name="LevelSymbol" oid="18d20016-98ac-4b5b-a370-1d959577bcec" representation="index" type="int">
                                 <expr>LevelSymbol</expr>
-                                <init>4</init>
+                                <init>5</init>
                             </parameter>
                             <parameter control="false" name="StatusSymbolBrake" oid="19e304f7-5e5f-413f-8c79-6238cdcb6697" type="bool">
                                 <expr>StatusSymbolBrake</expr>
@@ -506,15 +522,30 @@
                             </parameter>
                             <parameter control="false" name="LevelSymbolAnncouncement" oid="3d0427b5-af19-4b5e-b9f2-d3fab5dd779a" representation="index" type="int">
                                 <expr>LevelSymbolAnncouncement</expr>
-                                <init>7</init>
+                                <init>15</init>
                             </parameter>
                             <parameter control="false" name="LevelSymbolVisibility" oid="c19f9a52-21a9-4277-ae04-021c67bcf6c3" type="bool">
                                 <expr>LevelSymbolVisibility</expr>
-                                <init>false</init>
+                                <init>true</init>
                             </parameter>
                             <parameter control="false" name="LeverSymbolAnnVisibility" oid="e5020d0c-12dc-47f3-9f73-f5804cbe7ab7" type="bool">
-                                <expr>LevelSymbolAnnVisibility</expr>
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="ModeSymbolAnncouncement" oid="5304be6e-b601-466f-96e1-66c0ec0660f3" representation="index" type="int">
+                                <expr>ModeSymbolAnnouncement</expr>
+                                <init>20</init>
+                            </parameter>
+                            <parameter control="false" name="iconGroupIndex" oid="1f99f0d9-06ad-41a7-b024-dd1d5a9c30fd" representation="index" type="int">
+                                <expr>iconGroupIndex</expr>
+                                <init>1</init>
+                            </parameter>
+                            <parameter control="false" name="yellowBorderBrakeSymbol" oid="ee94494f-ce9b-46f8-afbc-adace7c3282a" type="bool">
+                                <expr>yellowBorderBrakeSymbol</expr>
                                 <init>false</init>
+                            </parameter>
+                            <parameter control="false" name="yellowBorderC1Area" oid="70444a1b-0d0a-4c33-b2e7-9e273d77d2b5" type="bool">
+                                <expr>yellowBorderC1Area</expr>
+                                <init>true</init>
                             </parameter>
                         </inputParameters>
                         <outputParameters>
@@ -526,6 +557,12 @@
                             </parameter>
                             <parameter name="OverC4" oid="cf6f82db-bc27-45ec-aa42-680d3d4a8779" type="bool">
                                 <expr>OverC4</expr>
+                            </parameter>
+                            <parameter name="BrakeStatusSymbolAck" oid="9ab5fd79-97ec-4cf9-ab64-47fc7354f421" type="bool">
+                                <expr>BrakeStatusSymbolAck</expr>
+                            </parameter>
+                            <parameter name="C1AreaAck" oid="484e2d85-2eeb-4338-b6cd-ce2ef3913840" type="bool">
+                                <expr>C1AreaAck</expr>
                             </parameter>
                         </outputParameters>
                     </properties>
@@ -1305,7 +1342,7 @@
                             <properties modular="false" name="mainmenu">
                                 <visible>
                                     <init>true</init>
-                                    <expr>window_mask[9] and (not window_mask[10])</expr>
+                                    <expr>(window_mask[9] and (not window_mask[10])) or hourGlassVisibility</expr>
                                 </visible>
                                 <origin>
                                     <x>
@@ -1330,15 +1367,19 @@
                                 </rotate>
                                 <orientation clockwise="false"/>
                                 <file name="mainmenu.ogfx" path="Widgets/MainMenu"/>
-                                <crc value="273820354"/>
+                                <crc value="2159542206"/>
                                 <inputParameters>
                                     <parameter control="false" name="buttonEnabler" oid="c10759cd-f1d4-474a-ac5f-776daead0944" representation="as_int_array" type="int^30">
-                                        <expr>buttonEnabler</expr>
+                                        <expr>hourGlassVisibility ? [2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] : buttonEnabler</expr>
                                         <init>[0]</init>
                                     </parameter>
                                     <parameter control="false" name="closeButtonEnabler" oid="80996313-72df-47a0-8e4a-1af6f72c82fd" representation="index" type="int">
                                         <expr>closeButtonEnabler</expr>
                                         <init>26</init>
+                                    </parameter>
+                                    <parameter control="false" name="TitleVisibility" oid="0753377a-7117-429e-a498-5dfef9978cf6" type="bool">
+                                        <expr>hourGlassVisibility ? false : true</expr>
+                                        <init>true</init>
                                     </parameter>
                                 </inputParameters>
                                 <outputParameters>
@@ -1359,6 +1400,106 @@
                             </properties>
                             <children/>
                         </referenceContainer>
+                        <translationContainer oid="a18fdf98-f706-47c6-8a20-feb52aff538d">
+                            <pathFromRoot value="1,12"/>
+                            <properties name="translate group">
+                                <visible>
+                                    <init>true</init>
+                                    <expr>hourGlassVisibility</expr>
+                                </visible>
+                                <origin>
+                                    <x>
+                                        <init>67.0</init>
+                                    </x>
+                                    <y>
+                                        <init>0.0</init>
+                                    </y>
+                                </origin>
+                                <priority>
+                                    <init>-1</init>
+                                </priority>
+                                <refPoint>
+                                    <x>
+                                        <init>16.995</init>
+                                    </x>
+                                    <y>
+                                        <init>215.0</init>
+                                    </y>
+                                </refPoint>
+                                <startTranslationPoint>
+                                    <x>
+                                        <init>67.0</init>
+                                    </x>
+                                    <y>
+                                        <init>215.0</init>
+                                    </y>
+                                </startTranslationPoint>
+                                <endTranslationPoint>
+                                    <x>
+                                        <init>-78.0</init>
+                                    </x>
+                                    <y>
+                                        <init>215.0</init>
+                                    </y>
+                                </endTranslationPoint>
+                                <startTranslationValue>
+                                    <init>0.0</init>
+                                </startTranslationValue>
+                                <endTranslationValue>
+                                    <init>50.0</init>
+                                </endTranslationValue>
+                                <startTranslationLocked>
+                                    <init>false</init>
+                                </startTranslationLocked>
+                                <endTranslationLocked>
+                                    <init>false</init>
+                                </endTranslationLocked>
+                                <functionalTranslationValue>
+                                    <init>17.243</init>
+                                    <expr>translateHourGlass</expr>
+                                </functionalTranslationValue>
+                            </properties>
+                            <children>
+                                <referenceContainer oid="08c4b31b-428a-4fd3-ba26-957aa84b49f3">
+                                    <pathFromRoot value="0,1,12"/>
+                                    <properties modular="false" name="StatusSymbols">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <origin>
+                                            <x>
+                                                <init>-4.0</init>
+                                            </x>
+                                            <y>
+                                                <init>213.0</init>
+                                            </y>
+                                        </origin>
+                                        <scale>
+                                            <x>
+                                                <init>1.0</init>
+                                            </x>
+                                            <y>
+                                                <init>1.0</init>
+                                            </y>
+                                        </scale>
+                                        <rotate>
+                                            <angle>
+                                                <init>0.0</init>
+                                            </angle>
+                                        </rotate>
+                                        <orientation clockwise="false"/>
+                                        <file name="StatusSymbols.ogfx" path="Widgets/Symbols"/>
+                                        <crc value="1268713367"/>
+                                        <inputParameters>
+                                            <parameter control="false" name="StatusSymbol" oid="570848ad-7c4e-486c-9d47-42989b8f3a87" representation="index" type="int">
+                                                <init>5</init>
+                                            </parameter>
+                                        </inputParameters>
+                                    </properties>
+                                    <children/>
+                                </referenceContainer>
+                            </children>
+                        </translationContainer>
                     </children>
                 </container>
                 <container oid="c207b452-a418-4564-8654-8d4a36e2946c">
@@ -1557,25 +1698,8 @@
                         </referenceContainer>
                     </children>
                 </container>
-                <pointerEventListener oid="d70337e7-31b9-404b-8c25-3496e168ef55">
-                    <pathFromRoot value="15"/>
-                    <properties name="pointer event listener">
-                        <enable>
-                            <init>true</init>
-                        </enable>
-                        <eventId>
-                            <init>0</init>
-                        </eventId>
-                        <output>
-                            <pressed>
-                                <expr>MousePressed</expr>
-                            </pressed>
-                            <pointerPosition/>
-                        </output>
-                    </properties>
-                </pointerEventListener>
                 <rectangle oid="0dffff0b-e08e-478e-8c06-f5cafb76f8da">
-                    <pathFromRoot value="16"/>
+                    <pathFromRoot value="15"/>
                     <properties name="closeDeskBackground">
                         <visible>
                             <init>false</init>
@@ -1634,10 +1758,27 @@
                         </texture>
                     </properties>
                 </rectangle>
+                <pointerEventListener oid="d70337e7-31b9-404b-8c25-3496e168ef55">
+                    <pathFromRoot value="16"/>
+                    <properties name="pointer event listener">
+                        <enable>
+                            <init>true</init>
+                        </enable>
+                        <eventId>
+                            <init>0</init>
+                        </eventId>
+                        <output>
+                            <pressed>
+                                <expr>MousePressed</expr>
+                            </pressed>
+                            <pointerPosition/>
+                        </output>
+                    </properties>
+                </pointerEventListener>
             </children>
         </layer>
     </children>
 </specification>
 
-<!-- crc32 : 3254859374 -->
+<!-- crc32 : 3795574716 -->
 
