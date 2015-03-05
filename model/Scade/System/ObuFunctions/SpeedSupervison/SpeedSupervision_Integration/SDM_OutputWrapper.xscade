@@ -17,16 +17,28 @@
 								<ed:Variable oid="!ed/11d47a/13A8/2380/54f06aee6e94"/>
 							</pragmas>
 						</Variable>
-						<Variable name="in_target">
+						<Variable name="targetSpeedReachedIn">
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TargetManagement_types::Target_real_T"/>
+										<TypeRef name="bool"/>
 									</type>
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/11d483/13A8/2380/54f06b2f5bad"/>
+								<ed:Variable oid="!ed/14e8b1/49B4/1FFC/54f80dd53599"/>
+							</pragmas>
+						</Variable>
+						<Variable name="eoaOverpassedIn">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/14e8b8/49B4/1FFC/54f80dd5593f"/>
 							</pragmas>
 						</Variable>
 						<Variable name="preindicationTarget">
@@ -39,6 +51,18 @@
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/1750a5/13A8/2380/54f0a95a7ec4"/>
+							</pragmas>
+						</Variable>
+						<Variable name="in_target">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TargetManagement_types::Target_real_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/11d483/13A8/2380/54f06b2f5bad"/>
 							</pragmas>
 						</Variable>
 					</inputs>
@@ -633,7 +657,7 @@
 								<ed:Variable oid="!ed/72cc3/138A/304/54f44b0517b1"/>
 							</pragmas>
 						</Variable>
-						<Variable name="_L168">
+						<Variable name="_L169">
 							<type>
 								<NamedType>
 									<type>
@@ -642,7 +666,19 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/4182e/28EC/994/54f641ec20c9"/>
+								<ed:Variable oid="!ed/14e8bd/49B4/1FFC/54f80e3b6084"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L170">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/14e8bf/49B4/1FFC/54f80e3b4fc2"/>
 							</pragmas>
 						</Variable>
 					</locals>
@@ -1312,7 +1348,7 @@
 								<ed:Equation oid="!ed/1ee633/13A8/2380/54f0ae133251"/>
 							</pragmas>
 						</Equation>
-						<!-- EOA_overpassed = _L168; -->
+						<!-- EOA_overpassed = _L170; -->
 						<Equation>
 							<lefts>
 								<VariableRef name="EOA_overpassed"/>
@@ -1320,7 +1356,7 @@
 							<right>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="_L168"/>
+										<ConstVarRef name="_L170"/>
 									</path>
 								</IdExpression>
 							</right>
@@ -1328,7 +1364,7 @@
 								<ed:Equation oid="!ed/41825/28EC/994/54f641e31c35"/>
 							</pragmas>
 						</Equation>
-						<!-- Target_Speed_Reached = _L168; -->
+						<!-- Target_Speed_Reached = _L169; -->
 						<Equation>
 							<lefts>
 								<VariableRef name="Target_Speed_Reached"/>
@@ -1336,7 +1372,7 @@
 							<right>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="_L168"/>
+										<ConstVarRef name="_L169"/>
 									</path>
 								</IdExpression>
 							</right>
@@ -1344,16 +1380,36 @@
 								<ed:Equation oid="!ed/41826/28EC/994/54f641e34b16"/>
 							</pragmas>
 						</Equation>
-						<!-- _L168 = false; -->
+						<!-- _L169 = targetSpeedReachedIn; -->
 						<Equation>
 							<lefts>
-								<VariableRef name="_L168"/>
+								<VariableRef name="_L169"/>
 							</lefts>
 							<right>
-								<ConstValue value="false"/>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="targetSpeedReachedIn"/>
+									</path>
+								</IdExpression>
 							</right>
 							<pragmas>
-								<ed:Equation oid="!ed/4182d/28EC/994/54f641ec4add"/>
+								<ed:Equation oid="!ed/14e8bc/49B4/1FFC/54f80e3b4f55"/>
+							</pragmas>
+						</Equation>
+						<!-- _L170 = eoaOverpassedIn; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L170"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="eoaOverpassedIn"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/14e8be/49B4/1FFC/54f80e3b5da1"/>
 							</pragmas>
 						</Equation>
 					</data>
@@ -1908,27 +1964,35 @@
 												<Size width="339" height="508"/>
 											</size>
 										</EquationGE>
-										<EquationGE kind="OBJ_LIT" presentable="!ed/4182d/28EC/994/54f641ec4add">
+										<EquationGE presentable="!ed/14e8bc/49B4/1FFC/54f80e3b4f55">
 											<position>
-												<Point x="17251" y="20384"/>
+												<Point x="2773" y="20743"/>
 											</position>
 											<size>
-												<Size width="169" height="296"/>
+												<Size width="254" height="508"/>
 											</size>
 										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/4182d/28EC/994/54f641ec4add" dstEquation="!ed/41825/28EC/994/54f641e31c35">
+										<EquationGE presentable="!ed/14e8be/49B4/1FFC/54f80e3b5da1">
+											<position>
+												<Point x="2752" y="19812"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/14e8be/49B4/1FFC/54f80e3b5da1" dstEquation="!ed/41825/28EC/994/54f641e31c35">
 											<positions>
-												<Point x="17420" y="20532"/>
-												<Point x="18076" y="20532"/>
-												<Point x="18076" y="20066"/>
+												<Point x="3006" y="20066"/>
+												<Point x="10859" y="20066"/>
+												<Point x="10859" y="20066"/>
 												<Point x="18733" y="20066"/>
 											</positions>
 										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/4182d/28EC/994/54f641ec4add" dstEquation="!ed/41826/28EC/994/54f641e34b16">
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/14e8bc/49B4/1FFC/54f80e3b4f55" dstEquation="!ed/41826/28EC/994/54f641e34b16">
 											<positions>
-												<Point x="17420" y="20532"/>
-												<Point x="18076" y="20532"/>
-												<Point x="18076" y="20997"/>
+												<Point x="3027" y="20997"/>
+												<Point x="10880" y="20997"/>
+												<Point x="10880" y="20997"/>
 												<Point x="18733" y="20997"/>
 											</positions>
 										</Edge>
