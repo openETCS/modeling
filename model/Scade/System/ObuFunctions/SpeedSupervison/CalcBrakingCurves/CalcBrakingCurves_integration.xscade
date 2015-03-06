@@ -13,11 +13,11 @@
 				<ed:Variable oid="!ed/195a97/1121/1AB8/54f4534a3221"/>
 			</pragmas>
 		</Variable>
-		<Variable name="trainPosition">
+		<Variable name="TrainPosition">
 			<type>
 				<NamedType>
 					<type>
-						<TypeRef name="TrainPosition_Types_Pck::trainPosition_T"/>
+						<TypeRef name="SDM_Types_Pkg::TrainLocations_real_T"/>
 					</type>
 				</NamedType>
 			</type>
@@ -53,6 +53,18 @@
 		</Variable>
 	</outputs>
 	<locals>
+		<Variable name="targetsUpdated">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/51f6d/1676/1D50/54f9b2496c3a"/>
+			</pragmas>
+		</Variable>
 		<Variable name="_L4">
 			<type>
 				<NamedType>
@@ -63,29 +75,6 @@
 			</type>
 			<pragmas>
 				<ed:Variable oid="!ed/195aa2/1121/1AB8/54f453667b82"/>
-			</pragmas>
-		</Variable>
-		<Variable name="_L5">
-			<type>
-				<Table>
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="CalcBrakingCurves_types::ParabolaCurve_T"/>
-							</type>
-						</NamedType>
-					</type>
-					<size>
-						<IdExpression>
-							<path>
-								<ConstVarRef name="MRSPMaxSections"/>
-							</path>
-						</IdExpression>
-					</size>
-				</Table>
-			</type>
-			<pragmas>
-				<ed:Variable oid="!ed/195aa8/1121/1AB8/54f4537c274a"/>
 			</pragmas>
 		</Variable>
 		<Variable name="_L6">
@@ -111,25 +100,13 @@
 				<ed:Variable oid="!ed/195ad6/1121/1AB8/54f454427d1e"/>
 			</pragmas>
 		</Variable>
-		<Variable name="_L7">
-			<type>
-				<NamedType>
-					<type>
-						<TypeRef name="TrainPosition_Types_Pck::trainPosition_T"/>
-					</type>
-				</NamedType>
-			</type>
-			<pragmas>
-				<ed:Variable oid="!ed/195ae6/1121/1AB8/54f454551be0"/>
-			</pragmas>
-		</Variable>
 		<Variable name="_L22">
 			<type>
 				<Table>
 					<type>
 						<NamedType>
 							<type>
-								<TypeRef name="TrainPosition_Types_Pck::trainPosition_T"/>
+								<TypeRef name="real"/>
 							</type>
 						</NamedType>
 					</type>
@@ -146,18 +123,6 @@
 				<ed:Variable oid="!ed/195b27/1121/1AB8/54f4566718ce"/>
 			</pragmas>
 		</Variable>
-		<Variable name="_L28">
-			<type>
-				<NamedType>
-					<type>
-						<TypeRef name="TrainPosition_Types_Pck::trainPosition_T"/>
-					</type>
-				</NamedType>
-			</type>
-			<pragmas>
-				<ed:Variable oid="!ed/195b7c/1121/1AB8/54f45720423"/>
-			</pragmas>
-		</Variable>
 		<Variable name="_L27">
 			<type>
 				<NamedType>
@@ -170,43 +135,20 @@
 				<ed:Variable oid="!ed/195b7a/1121/1AB8/54f45720146d"/>
 			</pragmas>
 		</Variable>
-		<Variable name="_L25">
-			<type>
-				<Table>
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="CalcBrakingCurves_types::ParabolaCurve_T"/>
-							</type>
-						</NamedType>
-					</type>
-					<size>
-						<IdExpression>
-							<path>
-								<ConstVarRef name="MRSPMaxSections"/>
-							</path>
-						</IdExpression>
-					</size>
-				</Table>
-			</type>
-			<pragmas>
-				<ed:Variable oid="!ed/195b75/1121/1AB8/54f457203ff3"/>
-			</pragmas>
-		</Variable>
 		<Variable name="_L24">
 			<type>
 				<Table>
 					<type>
 						<NamedType>
 							<type>
-								<TypeRef name="TrainPosition_Types_Pck::trainPosition_T"/>
+								<TypeRef name="real"/>
 							</type>
 						</NamedType>
 					</type>
 					<size>
 						<IdExpression>
 							<path>
-								<ConstVarRef name="MRSPMaxSections"/>
+								<ConstVarRef name="MAsMaxSections"/>
 							</path>
 						</IdExpression>
 					</size>
@@ -249,18 +191,6 @@
 			</type>
 			<pragmas>
 				<ed:Variable oid="!ed/195bac/1121/1AB8/54f457756986"/>
-			</pragmas>
-		</Variable>
-		<Variable name="_L32">
-			<type>
-				<NamedType>
-					<type>
-						<TypeRef name="TrainPosition_Types_Pck::trainPosition_T"/>
-					</type>
-				</NamedType>
-			</type>
-			<pragmas>
-				<ed:Variable oid="!ed/195bc3/1121/1AB8/54f4577c7f85"/>
 			</pragmas>
 		</Variable>
 		<Variable name="_L33">
@@ -371,6 +301,208 @@
 				<ed:Variable oid="!ed/d426b/578F/938/54f61d4224eb"/>
 			</pragmas>
 		</Variable>
+		<Variable name="_L61">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TargetManagement_types::Target_real_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/51bf4/1676/1D50/54f9b08b663d"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L65">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="SDM_Types_Pkg::TrainLocations_real_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/51f3d/1676/1D50/54f9b1b13187"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L71">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="SDM_Types_Pkg::L_internal_real_Type"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/51f4e/1676/1D50/54f9b1e162ed"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L72">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/51f62/1676/1D50/54f9b22a4f2b"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L73">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/51f6c/1676/1D50/54f9b236258d"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L74">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/51f85/1676/1D50/54f9b264679a"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L75">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/51f8d/1676/1D50/54f9b2671c7a"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L78">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/51faa/1676/1D50/54f9b2752885"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L79">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/51fac/1676/1D50/54f9b2ad644c"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L82">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="CalcBrakingCurves_types::ParabolaCurve_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="MAsMaxSections"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/51fb8/1676/1D50/54f9b2b524f6"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L83">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="CalcBrakingCurves_types::ParabolaCurve_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="MRSPMaxSections"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/51fb9/1676/1D50/54f9b2b55505"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L86">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/523f3/1676/1D50/54f9b8687602"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L87">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="CalcBrakingCurves_types::ParabolaCurve_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/52738/1676/1D50/54f9b873602b"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L90">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="CalcBrakingCurves_types::ParabolaCurve_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/549c7/1676/1D50/54f9b9cd3069"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L91">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="CalcBrakingCurves_types::ParabolaCurve_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/54cf0/1676/1D50/54f9b9d16159"/>
+			</pragmas>
+		</Variable>
 	</locals>
 	<data>
 		<!-- _L4 = A_Safe; -->
@@ -389,16 +521,17 @@
 				<ed:Equation oid="!ed/195aa1/1121/1AB8/54f4536650b"/>
 			</pragmas>
 		</Equation>
-		<!-- _L5 = ( map CalculateBrakingCurve<<MRSPMaxSections>>)(_L6, _L42, _L22); -->
+		<!-- _L72, _L83 = ( mapw CalculateBrakingCurve<<MRSPMaxSections>> if _L75 default (_L9... -->
 		<Equation>
 			<lefts>
-				<VariableRef name="_L5"/>
+				<VariableRef name="_L72"/>
+				<VariableRef name="_L83"/>
 			</lefts>
 			<right>
-				<!-- ( map CalculateBrakingCurve<<MRSPMaxSections>>)(_L6, _L42, _L22) -->
+				<!-- ( mapw CalculateBrakingCurve<<MRSPMaxSections>> if _L75 default (_L91))(_L6, _L42... -->
 				<CallExpression>
 					<operator>
-						<IteratorOp iterator="map">
+						<PartialIteratorOp iterator="mapw">
 							<operator>
 								<OpCall name="1">
 									<operator>
@@ -413,7 +546,25 @@
 									</path>
 								</IdExpression>
 							</size>
-						</IteratorOp>
+							<if>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L75"/>
+									</path>
+								</IdExpression>
+							</if>
+							<default>
+								<ListExpression>
+									<items>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L91"/>
+											</path>
+										</IdExpression>
+									</items>
+								</ListExpression>
+							</default>
+						</PartialIteratorOp>
 					</operator>
 					<callParameters>
 						<IdExpression>
@@ -470,36 +621,20 @@
 				<ed:Equation oid="!ed/195ad5/1121/1AB8/54f4544254ae"/>
 			</pragmas>
 		</Equation>
-		<!-- _L7 = trainPosition; -->
-		<Equation>
-			<lefts>
-				<VariableRef name="_L7"/>
-			</lefts>
-			<right>
-				<IdExpression>
-					<path>
-						<ConstVarRef name="trainPosition"/>
-					</path>
-				</IdExpression>
-			</right>
-			<pragmas>
-				<ed:Equation oid="!ed/195ae5/1121/1AB8/54f4545549db"/>
-			</pragmas>
-		</Equation>
-		<!-- _L22 = _L7 ^ MRSPMaxSections; -->
+		<!-- _L22 = _L71 ^ MRSPMaxSections; -->
 		<Equation>
 			<lefts>
 				<VariableRef name="_L22"/>
 			</lefts>
 			<right>
-				<!-- _L7 ^ MRSPMaxSections -->
+				<!-- _L71 ^ MRSPMaxSections -->
 				<ScalarToVectorOp name="2">
 					<flow>
 						<ListExpression>
 							<items>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="_L7"/>
+										<ConstVarRef name="_L71"/>
 									</path>
 								</IdExpression>
 							</items>
@@ -550,20 +685,20 @@
 				<ed:Equation oid="!ed/195b70/1121/1AB8/54f45720130d"/>
 			</pragmas>
 		</Equation>
-		<!-- _L24 = _L28 ^ MAsMaxSections; -->
+		<!-- _L24 = _L71 ^ MAsMaxSections; -->
 		<Equation>
 			<lefts>
 				<VariableRef name="_L24"/>
 			</lefts>
 			<right>
-				<!-- _L28 ^ MAsMaxSections -->
+				<!-- _L71 ^ MAsMaxSections -->
 				<ScalarToVectorOp name="3">
 					<flow>
 						<ListExpression>
 							<items>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="_L28"/>
+										<ConstVarRef name="_L71"/>
 									</path>
 								</IdExpression>
 							</items>
@@ -582,16 +717,17 @@
 				<ed:Equation oid="!ed/195b72/1121/1AB8/54f457203028"/>
 			</pragmas>
 		</Equation>
-		<!-- _L25 = ( map CalculateBrakingCurve<<MAsMaxSections>>)(_L23, _L41, _L24); -->
+		<!-- _L73, _L82 = ( mapw CalculateBrakingCurve<<MAsMaxSections>> if _L74 default (_L90... -->
 		<Equation>
 			<lefts>
-				<VariableRef name="_L25"/>
+				<VariableRef name="_L73"/>
+				<VariableRef name="_L82"/>
 			</lefts>
 			<right>
-				<!-- ( map CalculateBrakingCurve<<MAsMaxSections>>)(_L23, _L41, _L24) -->
+				<!-- ( mapw CalculateBrakingCurve<<MAsMaxSections>> if _L74 default (_L90))(_L23, _L41... -->
 				<CallExpression>
 					<operator>
-						<IteratorOp iterator="map">
+						<PartialIteratorOp iterator="mapw">
 							<operator>
 								<OpCall name="2">
 									<operator>
@@ -606,7 +742,25 @@
 									</path>
 								</IdExpression>
 							</size>
-						</IteratorOp>
+							<if>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L74"/>
+									</path>
+								</IdExpression>
+							</if>
+							<default>
+								<ListExpression>
+									<items>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L90"/>
+											</path>
+										</IdExpression>
+									</items>
+								</ListExpression>
+							</default>
+						</PartialIteratorOp>
 					</operator>
 					<callParameters>
 						<IdExpression>
@@ -647,22 +801,6 @@
 				<ed:Equation oid="!ed/195b79/1121/1AB8/54f457204577"/>
 			</pragmas>
 		</Equation>
-		<!-- _L28 = trainPosition; -->
-		<Equation>
-			<lefts>
-				<VariableRef name="_L28"/>
-			</lefts>
-			<right>
-				<IdExpression>
-					<path>
-						<ConstVarRef name="trainPosition"/>
-					</path>
-				</IdExpression>
-			</right>
-			<pragmas>
-				<ed:Equation oid="!ed/195b7b/1121/1AB8/54f4572060cb"/>
-			</pragmas>
-		</Equation>
 		<!-- _L29 = A_Safe; -->
 		<Equation>
 			<lefts>
@@ -679,36 +817,48 @@
 				<ed:Equation oid="!ed/195bab/1121/1AB8/54f457752d47"/>
 			</pragmas>
 		</Equation>
-		<!-- _L32 = trainPosition; -->
+		<!-- _L79, _L33 = (activate CalculateBrakingCurve every _L78 initial default (_L86, _L... -->
 		<Equation>
 			<lefts>
-				<VariableRef name="_L32"/>
-			</lefts>
-			<right>
-				<IdExpression>
-					<path>
-						<ConstVarRef name="trainPosition"/>
-					</path>
-				</IdExpression>
-			</right>
-			<pragmas>
-				<ed:Equation oid="!ed/195bc2/1121/1AB8/54f4577c1e3e"/>
-			</pragmas>
-		</Equation>
-		<!-- _L33 = CalculateBrakingCurve(_L29, _L43, _L32); -->
-		<Equation>
-			<lefts>
+				<VariableRef name="_L79"/>
 				<VariableRef name="_L33"/>
 			</lefts>
 			<right>
-				<!-- CalculateBrakingCurve(_L29, _L43, _L32) -->
+				<!-- (activate CalculateBrakingCurve every _L78 initial default (_L86, _L87))(_L29, _L... -->
 				<CallExpression>
 					<operator>
-						<OpCall name="3">
+						<ActivateOp>
 							<operator>
-								<OperatorRef name="CalculateBrakingCurve"/>
+								<OpCall name="3">
+									<operator>
+										<OperatorRef name="CalculateBrakingCurve"/>
+									</operator>
+								</OpCall>
 							</operator>
-						</OpCall>
+							<every>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L78"/>
+									</path>
+								</IdExpression>
+							</every>
+							<default>
+								<ListExpression>
+									<items>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L86"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L87"/>
+											</path>
+										</IdExpression>
+									</items>
+								</ListExpression>
+							</default>
+						</ActivateOp>
 					</operator>
 					<callParameters>
 						<IdExpression>
@@ -723,7 +873,7 @@
 						</IdExpression>
 						<IdExpression>
 							<path>
-								<ConstVarRef name="_L32"/>
+								<ConstVarRef name="_L71"/>
 							</path>
 						</IdExpression>
 					</callParameters>
@@ -749,13 +899,14 @@
 				<ed:Equation oid="!ed/d422c/578F/938/54f61c356f7e"/>
 			</pragmas>
 		</Equation>
-		<!-- _L40, _L41, _L42, _L43 = (flatten TargetManagement_types::TargetCollection_T)(_L3... -->
+		<!-- _L40, _L41, _L42, _L43, _L61 = (flatten TargetManagement_types::TargetCollection_... -->
 		<Equation>
 			<lefts>
 				<VariableRef name="_L40"/>
 				<VariableRef name="_L41"/>
 				<VariableRef name="_L42"/>
 				<VariableRef name="_L43"/>
+				<VariableRef name="_L61"/>
 			</lefts>
 			<right>
 				<!-- (flatten TargetManagement_types::TargetCollection_T)(_L35) -->
@@ -796,13 +947,13 @@
 				<ed:Equation oid="!ed/d424d/578F/938/54f61cca6edc"/>
 			</pragmas>
 		</Equation>
-		<!-- _L58 = (make CalcBrakingCurves_types::CurveCollection_T)(_L5, _L25, _L33, _L59, _... -->
+		<!-- _L58 = (make CalcBrakingCurves_types::CurveCollection_T)(_L83, _L82, _L33, _L59, ... -->
 		<Equation>
 			<lefts>
 				<VariableRef name="_L58"/>
 			</lefts>
 			<right>
-				<!-- (make CalcBrakingCurves_types::CurveCollection_T)(_L5, _L25, _L33, _L59, _L59, _L... -->
+				<!-- (make CalcBrakingCurves_types::CurveCollection_T)(_L83, _L82, _L33, _L59, _L59, _... -->
 				<CallExpression>
 					<operator>
 						<MakeOp name="1">
@@ -814,12 +965,12 @@
 					<callParameters>
 						<IdExpression>
 							<path>
-								<ConstVarRef name="_L5"/>
+								<ConstVarRef name="_L83"/>
 							</path>
 						</IdExpression>
 						<IdExpression>
 							<path>
-								<ConstVarRef name="_L25"/>
+								<ConstVarRef name="_L82"/>
 							</path>
 						</IdExpression>
 						<IdExpression>
@@ -882,6 +1033,234 @@
 				<ed:Equation oid="!ed/d426a/578F/938/54f61d426733"/>
 			</pragmas>
 		</Equation>
+		<!-- _L65 = TrainPosition; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L65"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="TrainPosition"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/51f3c/1676/1D50/54f9b1b12f6a"/>
+			</pragmas>
+		</Equation>
+		<!-- _L71 = _L65.d_est_frontendPos; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L71"/>
+			</lefts>
+			<right>
+				<!-- _L65.d_est_frontendPos -->
+				<PrjOp name="1">
+					<flow>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L65"/>
+							</path>
+						</IdExpression>
+					</flow>
+					<with>
+						<Label name="d_est_frontendPos"/>
+					</with>
+				</PrjOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/51f4d/1676/1D50/54f9b1e17f3"/>
+			</pragmas>
+		</Equation>
+		<!-- targetsUpdated = _L40; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="targetsUpdated"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L40"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/51f6e/1676/1D50/54f9b2493a6c"/>
+			</pragmas>
+		</Equation>
+		<!-- _L74 = targetsUpdated; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L74"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="targetsUpdated"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/51f83/1676/1D50/54f9b260c20"/>
+			</pragmas>
+		</Equation>
+		<!-- _L75 = targetsUpdated; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L75"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="targetsUpdated"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/51f8c/1676/1D50/54f9b2673cb3"/>
+			</pragmas>
+		</Equation>
+		<!-- _L78 = targetsUpdated; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L78"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="targetsUpdated"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/51fa9/1676/1D50/54f9b27542f7"/>
+			</pragmas>
+		</Equation>
+		<!-- _ = _L79; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L79"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/523cb/1676/1D50/54f9b80e4187"/>
+			</pragmas>
+		</Equation>
+		<!-- _ = _L73; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L73"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/523d8/1676/1D50/54f9b8195df5"/>
+			</pragmas>
+		</Equation>
+		<!-- _ = _L72; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L72"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/523e5/1676/1D50/54f9b82557af"/>
+			</pragmas>
+		</Equation>
+		<!-- _L86 = false; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L86"/>
+			</lefts>
+			<right>
+				<ConstValue value="false"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/523f2/1676/1D50/54f9b8681e97"/>
+			</pragmas>
+		</Equation>
+		<!-- _L87 = emptyParabolaCurve; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L87"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="emptyParabolaCurve"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/52737/1676/1D50/54f9b87327ae"/>
+			</pragmas>
+		</Equation>
+		<!-- _L90 = emptyParabolaCurve; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L90"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="emptyParabolaCurve"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/549c6/1676/1D50/54f9b9cd6720"/>
+			</pragmas>
+		</Equation>
+		<!-- _L91 = emptyParabolaCurve; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L91"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="emptyParabolaCurve"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/54cef/1676/1D50/54f9b9d134cf"/>
+			</pragmas>
+		</Equation>
+		<!-- _ = _L61; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L61"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/54cfd/1676/1D50/54f9ba071731"/>
+			</pragmas>
+		</Equation>
 	</data>
 	<pragmas>
 		<ed:Operator oid="!ed/195a53/1121/1AB8/54f452e23ea4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
@@ -890,7 +1269,7 @@
 					<presentationElements>
 						<EquationGE presentable="!ed/195aa1/1121/1AB8/54f4536650b">
 							<position>
-								<Point x="11589" y="3704"/>
+								<Point x="11589" y="3016"/>
 							</position>
 							<size>
 								<Size width="264" height="503"/>
@@ -898,7 +1277,7 @@
 						</EquationGE>
 						<EquationGE presentable="!ed/195aa7/1121/1AB8/54f4537c3936">
 							<position>
-								<Point x="14385" y="3035"/>
+								<Point x="14393" y="2355"/>
 							</position>
 							<size>
 								<Size width="4673" height="3693"/>
@@ -906,7 +1285,7 @@
 						</EquationGE>
 						<EquationGE presentable="!ed/195ad5/1121/1AB8/54f4544254ae">
 							<position>
-								<Point x="12594" y="3493"/>
+								<Point x="12594" y="2805"/>
 							</position>
 							<size>
 								<Size width="952" height="953"/>
@@ -914,52 +1293,20 @@
 						</EquationGE>
 						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/195aa1/1121/1AB8/54f4536650b" dstEquation="!ed/195ad5/1121/1AB8/54f4544254ae">
 							<positions>
-								<Point x="11853" y="3958"/>
-								<Point x="11832" y="3958"/>
-								<Point x="11832" y="3958"/>
-								<Point x="12594" y="3958"/>
+								<Point x="11853" y="3281"/>
+								<Point x="11827" y="3281"/>
+								<Point x="11827" y="3281"/>
+								<Point x="12594" y="3281"/>
 							</positions>
 						</Edge>
-						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/195ad5/1121/1AB8/54f4544254ae" dstEquation="!ed/195aa7/1121/1AB8/54f4537c3936">
-							<positions>
-								<Point x="13547" y="3979"/>
-								<Point x="13758" y="3979"/>
-								<Point x="13758" y="3958"/>
-								<Point x="14393" y="3958"/>
-							</positions>
-						</Edge>
-						<EquationGE presentable="!ed/195ae5/1121/1AB8/54f4545549db">
-							<position>
-								<Point x="11642" y="5530"/>
-							</position>
-							<size>
-								<Size width="264" height="503"/>
-							</size>
-						</EquationGE>
 						<EquationGE presentable="!ed/195b26/1121/1AB8/54f4566732c2">
 							<position>
-								<Point x="12568" y="5318"/>
+								<Point x="12515" y="4657"/>
 							</position>
 							<size>
 								<Size width="953" height="953"/>
 							</size>
 						</EquationGE>
-						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/195ae5/1121/1AB8/54f4545549db" dstEquation="!ed/195b26/1121/1AB8/54f4566732c2">
-							<positions>
-								<Point x="11896" y="5779"/>
-								<Point x="12129" y="5779"/>
-								<Point x="12129" y="5779"/>
-								<Point x="12573" y="5779"/>
-							</positions>
-						</Edge>
-						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/195b26/1121/1AB8/54f4566732c2" dstEquation="!ed/195aa7/1121/1AB8/54f4537c3936">
-							<positions>
-								<Point x="13526" y="5800"/>
-								<Point x="13843" y="5800"/>
-								<Point x="13843" y="5800"/>
-								<Point x="14393" y="5800"/>
-							</positions>
-						</Edge>
 						<EquationGE presentable="!ed/195b70/1121/1AB8/54f45720130d">
 							<position>
 								<Point x="12568" y="8916"/>
@@ -992,44 +1339,12 @@
 								<Size width="264" height="503"/>
 							</size>
 						</EquationGE>
-						<EquationGE presentable="!ed/195b7b/1121/1AB8/54f4572060cb">
-							<position>
-								<Point x="11615" y="10954"/>
-							</position>
-							<size>
-								<Size width="264" height="502"/>
-							</size>
-						</EquationGE>
-						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/195b72/1121/1AB8/54f457203028" dstEquation="!ed/195b74/1121/1AB8/54f45720748f">
-							<positions>
-								<Point x="13483" y="11218"/>
-								<Point x="13801" y="11218"/>
-								<Point x="13801" y="11240"/>
-								<Point x="14372" y="11240"/>
-							</positions>
-						</Edge>
 						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/195b79/1121/1AB8/54f457204577" dstEquation="!ed/195b70/1121/1AB8/54f45720130d">
 							<positions>
-								<Point x="11769" y="9462"/>
-								<Point x="11790" y="9462"/>
-								<Point x="11790" y="9398"/>
-								<Point x="12573" y="9398"/>
-							</positions>
-						</Edge>
-						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/195b7b/1121/1AB8/54f4572060cb" dstEquation="!ed/195b72/1121/1AB8/54f457203028">
-							<positions>
-								<Point x="11875" y="11218"/>
-								<Point x="12086" y="11218"/>
-								<Point x="12086" y="11218"/>
-								<Point x="12531" y="11218"/>
-							</positions>
-						</Edge>
-						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/195b70/1121/1AB8/54f45720130d" dstEquation="!ed/195b74/1121/1AB8/54f45720748f">
-							<positions>
-								<Point x="13526" y="9398"/>
-								<Point x="13737" y="9398"/>
-								<Point x="13737" y="9377"/>
-								<Point x="14372" y="9377"/>
+								<Point x="11774" y="9472"/>
+								<Point x="11800" y="9472"/>
+								<Point x="11800" y="9393"/>
+								<Point x="12568" y="9393"/>
 							</positions>
 						</Edge>
 						<EquationGE presentable="!ed/195bab/1121/1AB8/54f457752d47">
@@ -1040,14 +1355,6 @@
 								<Size width="265" height="503"/>
 							</size>
 						</EquationGE>
-						<EquationGE presentable="!ed/195bc2/1121/1AB8/54f4577c1e3e">
-							<position>
-								<Point x="12277" y="15849"/>
-							</position>
-							<size>
-								<Size width="264" height="502"/>
-							</size>
-						</EquationGE>
 						<EquationGE presentable="!ed/195bc4/1121/1AB8/54f457814598">
 							<position>
 								<Point x="16060" y="14208"/>
@@ -1056,25 +1363,9 @@
 								<Size width="1773" height="1403"/>
 							</size>
 						</EquationGE>
-						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/195bab/1121/1AB8/54f457752d47" dstEquation="!ed/195bc4/1121/1AB8/54f457814598">
-							<positions>
-								<Point x="12361" y="13949"/>
-								<Point x="14203" y="13949"/>
-								<Point x="14203" y="14563"/>
-								<Point x="16066" y="14563"/>
-							</positions>
-						</Edge>
-						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/195bc2/1121/1AB8/54f4577c1e3e" dstEquation="!ed/195bc4/1121/1AB8/54f457814598">
-							<positions>
-								<Point x="12531" y="16108"/>
-								<Point x="15113" y="16108"/>
-								<Point x="15113" y="15261"/>
-								<Point x="16066" y="15261"/>
-							</positions>
-						</Edge>
 						<EquationGE presentable="!ed/d422c/578F/938/54f61c356f7e">
 							<position>
-								<Point x="3471" y="7514"/>
+								<Point x="2646" y="8334"/>
 							</position>
 							<size>
 								<Size width="254" height="508"/>
@@ -1082,44 +1373,12 @@
 						</EquationGE>
 						<EquationGE presentable="!ed/d4232/578F/938/54f61c482a20">
 							<position>
-								<Point x="4649" y="3231"/>
+								<Point x="3836" y="4048"/>
 							</position>
 							<size>
 								<Size width="1286" height="9223"/>
 							</size>
 						</EquationGE>
-						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d422c/578F/938/54f61c356f7e" dstEquation="!ed/d4232/578F/938/54f61c482a20">
-							<positions>
-								<Point x="3725" y="7768"/>
-								<Point x="4191" y="7768"/>
-								<Point x="4191" y="7853"/>
-								<Point x="4657" y="7853"/>
-							</positions>
-						</Edge>
-						<Edge leftVarIndex="3" rightExprIndex="2" srcEquation="!ed/d4232/578F/938/54f61c482a20" dstEquation="!ed/195aa7/1121/1AB8/54f4537c3936">
-							<positions>
-								<Point x="5927" y="8763"/>
-								<Point x="10160" y="8763"/>
-								<Point x="10160" y="4890"/>
-								<Point x="14393" y="4890"/>
-							</positions>
-						</Edge>
-						<Edge leftVarIndex="2" rightExprIndex="2" srcEquation="!ed/d4232/578F/938/54f61c482a20" dstEquation="!ed/195b74/1121/1AB8/54f45720748f">
-							<positions>
-								<Point x="5927" y="6922"/>
-								<Point x="9758" y="6922"/>
-								<Point x="9758" y="10308"/>
-								<Point x="14372" y="10308"/>
-							</positions>
-						</Edge>
-						<Edge leftVarIndex="4" rightExprIndex="2" srcEquation="!ed/d4232/578F/938/54f61c482a20" dstEquation="!ed/195bc4/1121/1AB8/54f457814598">
-							<positions>
-								<Point x="5927" y="10605"/>
-								<Point x="9377" y="10605"/>
-								<Point x="9377" y="14923"/>
-								<Point x="16066" y="14923"/>
-							</positions>
-						</Edge>
 						<EquationGE presentable="!ed/d424d/578F/938/54f61cca6edc">
 							<position>
 								<Point x="34100" y="9589"/>
@@ -1138,34 +1397,10 @@
 						</EquationGE>
 						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d425e/578F/938/54f61ce54c93" dstEquation="!ed/d424d/578F/938/54f61cca6edc">
 							<positions>
-								<Point x="32724" y="9843"/>
-								<Point x="33401" y="9843"/>
-								<Point x="33401" y="9843"/>
-								<Point x="34142" y="9843"/>
-							</positions>
-						</Edge>
-						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/195aa7/1121/1AB8/54f4537c3936" dstEquation="!ed/d425e/578F/938/54f61ce54c93">
-							<positions>
-								<Point x="19050" y="4890"/>
-								<Point x="22881" y="4890"/>
-								<Point x="22881" y="5165"/>
-								<Point x="31454" y="5165"/>
-							</positions>
-						</Edge>
-						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/195b74/1121/1AB8/54f45720748f" dstEquation="!ed/d425e/578F/938/54f61ce54c93">
-							<positions>
-								<Point x="19029" y="10308"/>
-								<Point x="22881" y="10308"/>
-								<Point x="22881" y="6731"/>
-								<Point x="31454" y="6731"/>
-							</positions>
-						</Edge>
-						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/195bc4/1121/1AB8/54f457814598" dstEquation="!ed/d425e/578F/938/54f61ce54c93">
-							<positions>
-								<Point x="17844" y="14923"/>
-								<Point x="23262" y="14923"/>
-								<Point x="23262" y="8276"/>
-								<Point x="31454" y="8276"/>
+								<Point x="32729" y="9869"/>
+								<Point x="33390" y="9869"/>
+								<Point x="33390" y="9869"/>
+								<Point x="34158" y="9869"/>
 							</positions>
 						</Edge>
 						<EquationGE kind="OBJ_LIT" presentable="!ed/d4264/578F/938/54f61d2f6bd0">
@@ -1178,31 +1413,31 @@
 						</EquationGE>
 						<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/d4264/578F/938/54f61d2f6bd0" dstEquation="!ed/d425e/578F/938/54f61ce54c93">
 							<positions>
-								<Point x="29379" y="10351"/>
-								<Point x="30417" y="10351"/>
-								<Point x="30417" y="9843"/>
-								<Point x="31454" y="9843"/>
+								<Point x="29369" y="10345"/>
+								<Point x="30427" y="10345"/>
+								<Point x="30427" y="9869"/>
+								<Point x="31459" y="9869"/>
 							</positions>
 						</Edge>
 						<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/d4264/578F/938/54f61d2f6bd0" dstEquation="!ed/d425e/578F/938/54f61ce54c93">
 							<positions>
-								<Point x="29379" y="10351"/>
-								<Point x="30417" y="10351"/>
-								<Point x="30417" y="11409"/>
-								<Point x="31454" y="11409"/>
+								<Point x="29369" y="10345"/>
+								<Point x="30427" y="10345"/>
+								<Point x="30427" y="11430"/>
+								<Point x="31459" y="11430"/>
 							</positions>
 						</Edge>
 						<Edge leftVarIndex="1" rightExprIndex="6" srcEquation="!ed/d4264/578F/938/54f61d2f6bd0" dstEquation="!ed/d425e/578F/938/54f61ce54c93">
 							<positions>
-								<Point x="29379" y="10351"/>
-								<Point x="30417" y="10351"/>
-								<Point x="30417" y="12975"/>
-								<Point x="31454" y="12975"/>
+								<Point x="29369" y="10345"/>
+								<Point x="30427" y="10345"/>
+								<Point x="30427" y="12991"/>
+								<Point x="31459" y="12991"/>
 							</positions>
 						</Edge>
 						<EquationGE kind="OBJ_LIT" presentable="!ed/d426a/578F/938/54f61d426733">
 							<position>
-								<Point x="26818" y="14118"/>
+								<Point x="28152" y="17092"/>
 							</position>
 							<size>
 								<Size width="170" height="297"/>
@@ -1210,10 +1445,339 @@
 						</EquationGE>
 						<Edge leftVarIndex="1" rightExprIndex="7" srcEquation="!ed/d426a/578F/938/54f61d426733" dstEquation="!ed/d425e/578F/938/54f61ce54c93">
 							<positions>
-								<Point x="26988" y="14266"/>
-								<Point x="29210" y="14266"/>
-								<Point x="29210" y="14520"/>
-								<Point x="31454" y="14520"/>
+								<Point x="28310" y="17224"/>
+								<Point x="30639" y="17224"/>
+								<Point x="30639" y="14552"/>
+								<Point x="31459" y="14552"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/51f3c/1676/1D50/54f9b1b12f6a">
+							<position>
+								<Point x="3413" y="15452"/>
+							</position>
+							<size>
+								<Size width="265" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/51f4d/1676/1D50/54f9b1e17f3">
+							<position>
+								<Point x="4551" y="15293"/>
+							</position>
+							<size>
+								<Size width="953" height="952"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/51f3c/1676/1D50/54f9b1b12f6a" dstEquation="!ed/51f4d/1676/1D50/54f9b1e17f3">
+							<positions>
+								<Point x="3678" y="15716"/>
+								<Point x="4101" y="15716"/>
+								<Point x="4101" y="15769"/>
+								<Point x="4551" y="15769"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/51f4d/1676/1D50/54f9b1e17f3" dstEquation="!ed/195b72/1121/1AB8/54f457203028">
+							<positions>
+								<Point x="5503" y="15769"/>
+								<Point x="8969" y="15769"/>
+								<Point x="8969" y="11218"/>
+								<Point x="12541" y="11218"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/51f4d/1676/1D50/54f9b1e17f3" dstEquation="!ed/195b26/1121/1AB8/54f4566732c2">
+							<positions>
+								<Point x="5503" y="15769"/>
+								<Point x="8969" y="15769"/>
+								<Point x="8969" y="5133"/>
+								<Point x="12515" y="5133"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/195b26/1121/1AB8/54f4566732c2" dstEquation="!ed/195aa7/1121/1AB8/54f4537c3936">
+							<positions>
+								<Point x="13467" y="5133"/>
+								<Point x="13838" y="5133"/>
+								<Point x="13838" y="5133"/>
+								<Point x="14393" y="5133"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/195ad5/1121/1AB8/54f4544254ae" dstEquation="!ed/195aa7/1121/1AB8/54f4537c3936">
+							<positions>
+								<Point x="13547" y="3281"/>
+								<Point x="13758" y="3281"/>
+								<Point x="13758" y="3281"/>
+								<Point x="14393" y="3281"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/195b72/1121/1AB8/54f457203028" dstEquation="!ed/195b74/1121/1AB8/54f45720748f">
+							<positions>
+								<Point x="13494" y="11218"/>
+								<Point x="13811" y="11218"/>
+								<Point x="13811" y="11218"/>
+								<Point x="14367" y="11218"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/195b70/1121/1AB8/54f45720130d" dstEquation="!ed/195b74/1121/1AB8/54f45720748f">
+							<positions>
+								<Point x="13520" y="9393"/>
+								<Point x="13732" y="9393"/>
+								<Point x="13732" y="9393"/>
+								<Point x="14367" y="9393"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/51f6e/1676/1D50/54f9b2493a6c">
+							<position>
+								<Point x="5530" y="5159"/>
+							</position>
+							<size>
+								<Size width="344" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/51f83/1676/1D50/54f9b260c20">
+							<position>
+								<Point x="14102" y="7514"/>
+							</position>
+							<size>
+								<Size width="344" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/51f83/1676/1D50/54f9b260c20" dstEquation="!ed/195b74/1121/1AB8/54f45720748f">
+							<positions>
+								<Point x="14446" y="7779"/>
+								<Point x="16695" y="7779"/>
+								<Point x="16695" y="8467"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/51f8c/1676/1D50/54f9b2673cb3">
+							<position>
+								<Point x="13758" y="1217"/>
+							</position>
+							<size>
+								<Size width="344" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/51f8c/1676/1D50/54f9b2673cb3" dstEquation="!ed/195aa7/1121/1AB8/54f4537c3936">
+							<positions>
+								<Point x="14102" y="1482"/>
+								<Point x="16748" y="1482"/>
+								<Point x="16748" y="2355"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="2" rightExprIndex="3" srcEquation="!ed/195bc4/1121/1AB8/54f457814598" dstEquation="!ed/d425e/578F/938/54f61ce54c93">
+							<positions>
+								<Point x="17833" y="15134"/>
+								<Point x="23257" y="15134"/>
+								<Point x="23257" y="8281"/>
+								<Point x="31459" y="8281"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/51f4d/1676/1D50/54f9b1e17f3" dstEquation="!ed/195bc4/1121/1AB8/54f457814598">
+							<positions>
+								<Point x="5503" y="15769"/>
+								<Point x="10742" y="15769"/>
+								<Point x="10742" y="15266"/>
+								<Point x="16060" y="15266"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/195bab/1121/1AB8/54f457752d47" dstEquation="!ed/195bc4/1121/1AB8/54f457814598">
+							<positions>
+								<Point x="12356" y="13970"/>
+								<Point x="14208" y="13970"/>
+								<Point x="14208" y="14552"/>
+								<Point x="16060" y="14552"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/51fa9/1676/1D50/54f9b27542f7">
+							<position>
+								<Point x="15055" y="12832"/>
+							</position>
+							<size>
+								<Size width="344" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/51fa9/1676/1D50/54f9b27542f7" dstEquation="!ed/195bc4/1121/1AB8/54f457814598">
+							<positions>
+								<Point x="15399" y="13097"/>
+								<Point x="16960" y="13097"/>
+								<Point x="16960" y="14208"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/523cb/1676/1D50/54f9b80e4187">
+							<position>
+								<Point x="18733" y="13705"/>
+							</position>
+							<size>
+								<Size width="502" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/195bc4/1121/1AB8/54f457814598" dstEquation="!ed/523cb/1676/1D50/54f9b80e4187">
+							<positions>
+								<Point x="17833" y="14684"/>
+								<Point x="18415" y="14684"/>
+								<Point x="18415" y="13970"/>
+								<Point x="18997" y="13970"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/523d8/1676/1D50/54f9b8195df5">
+							<position>
+								<Point x="20161" y="9684"/>
+							</position>
+							<size>
+								<Size width="503" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/195b74/1121/1AB8/54f45720748f" dstEquation="!ed/523d8/1676/1D50/54f9b8195df5">
+							<positions>
+								<Point x="19024" y="9684"/>
+								<Point x="19711" y="9684"/>
+								<Point x="19711" y="9948"/>
+								<Point x="20426" y="9948"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/523e5/1676/1D50/54f9b82557af">
+							<position>
+								<Point x="20346" y="3307"/>
+							</position>
+							<size>
+								<Size width="503" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/195aa7/1121/1AB8/54f4537c3936" dstEquation="!ed/523e5/1676/1D50/54f9b82557af">
+							<positions>
+								<Point x="19076" y="3598"/>
+								<Point x="19844" y="3598"/>
+								<Point x="19844" y="3598"/>
+								<Point x="20611" y="3598"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/195aa7/1121/1AB8/54f4537c3936" dstEquation="!ed/d425e/578F/938/54f61ce54c93">
+							<positions>
+								<Point x="19076" y="4815"/>
+								<Point x="25268" y="4815"/>
+								<Point x="25268" y="5159"/>
+								<Point x="31459" y="5159"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="2" rightExprIndex="2" srcEquation="!ed/195b74/1121/1AB8/54f45720748f" dstEquation="!ed/d425e/578F/938/54f61ce54c93">
+							<positions>
+								<Point x="19024" y="10927"/>
+								<Point x="22199" y="10927"/>
+								<Point x="22199" y="6720"/>
+								<Point x="31459" y="6720"/>
+							</positions>
+						</Edge>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/523f2/1676/1D50/54f9b8681e97">
+							<position>
+								<Point x="15743" y="16007"/>
+							</position>
+							<size>
+								<Size width="211" height="318"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/523f2/1676/1D50/54f9b8681e97" dstEquation="!ed/195bc4/1121/1AB8/54f457814598">
+							<positions>
+								<Point x="15954" y="16166"/>
+								<Point x="16642" y="16166"/>
+								<Point x="16642" y="15610"/>
+							</positions>
+						</Edge>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/52737/1676/1D50/54f9b87327ae">
+							<position>
+								<Point x="15954" y="16880"/>
+							</position>
+							<size>
+								<Size width="212" height="318"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="6" srcEquation="!ed/52737/1676/1D50/54f9b87327ae" dstEquation="!ed/195bc4/1121/1AB8/54f457814598">
+							<positions>
+								<Point x="16166" y="17039"/>
+								<Point x="17251" y="17039"/>
+								<Point x="17251" y="15610"/>
+							</positions>
+						</Edge>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/549c6/1676/1D50/54f9b9cd6720">
+							<position>
+								<Point x="16193" y="12330"/>
+							</position>
+							<size>
+								<Size width="211" height="317"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/549c6/1676/1D50/54f9b9cd6720" dstEquation="!ed/195b74/1121/1AB8/54f45720748f">
+							<positions>
+								<Point x="16404" y="12488"/>
+								<Point x="16695" y="12488"/>
+								<Point x="16695" y="12144"/>
+							</positions>
+						</Edge>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/54cef/1676/1D50/54f9b9d134cf">
+							<position>
+								<Point x="16484" y="6615"/>
+							</position>
+							<size>
+								<Size width="211" height="317"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/54cef/1676/1D50/54f9b9d134cf" dstEquation="!ed/195aa7/1121/1AB8/54f4537c3936">
+							<positions>
+								<Point x="16695" y="6773"/>
+								<Point x="16748" y="6773"/>
+								<Point x="16748" y="6059"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/54cfd/1676/1D50/54f9ba071731">
+							<position>
+								<Point x="6535" y="10901"/>
+							</position>
+							<size>
+								<Size width="503" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="5" rightExprIndex="1" srcEquation="!ed/d4232/578F/938/54f61c482a20" dstEquation="!ed/54cfd/1676/1D50/54f9ba071731">
+							<positions>
+								<Point x="5133" y="11748"/>
+								<Point x="5953" y="11748"/>
+								<Point x="5953" y="11165"/>
+								<Point x="6800" y="11165"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="4" rightExprIndex="3" srcEquation="!ed/d4232/578F/938/54f61c482a20" dstEquation="!ed/195bc4/1121/1AB8/54f457814598">
+							<positions>
+								<Point x="5133" y="10213"/>
+								<Point x="8546" y="10213"/>
+								<Point x="8546" y="14923"/>
+								<Point x="16060" y="14923"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="3" rightExprIndex="3" srcEquation="!ed/d4232/578F/938/54f61c482a20" dstEquation="!ed/195aa7/1121/1AB8/54f4537c3936">
+							<positions>
+								<Point x="5133" y="8678"/>
+								<Point x="9737" y="8678"/>
+								<Point x="9737" y="4207"/>
+								<Point x="14393" y="4207"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="2" rightExprIndex="3" srcEquation="!ed/d4232/578F/938/54f61c482a20" dstEquation="!ed/195b74/1121/1AB8/54f45720748f">
+							<positions>
+								<Point x="5133" y="7117"/>
+								<Point x="9737" y="7117"/>
+								<Point x="9737" y="10319"/>
+								<Point x="14367" y="10319"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d4232/578F/938/54f61c482a20" dstEquation="!ed/51f6e/1676/1D50/54f9b2493a6c">
+							<positions>
+								<Point x="5133" y="5583"/>
+								<Point x="5318" y="5583"/>
+								<Point x="5318" y="5424"/>
+								<Point x="5530" y="5424"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d422c/578F/938/54f61c356f7e" dstEquation="!ed/d4232/578F/938/54f61c482a20">
+							<positions>
+								<Point x="2910" y="8599"/>
+								<Point x="3360" y="8599"/>
+								<Point x="3360" y="8678"/>
+								<Point x="3836" y="8678"/>
 							</positions>
 						</Edge>
 					</presentationElements>
