@@ -5,7 +5,7 @@
 			<type>
 				<NamedType>
 					<type>
-						<TypeRef name="MRSP_Profile_t"/>
+						<TypeRef name="TargetManagement_types::MRSP_internal_T"/>
 					</type>
 				</NamedType>
 			</type>
@@ -57,24 +57,12 @@
 			<type>
 				<NamedType>
 					<type>
-						<TypeRef name="MRSP_Profile_t"/>
+						<TypeRef name="TargetManagement_types::MRSP_internal_T"/>
 					</type>
 				</NamedType>
 			</type>
 			<pragmas>
 				<ed:Variable oid="!ed/52d8c/3D2D/63B0/54da4b56372f"/>
-			</pragmas>
-		</Variable>
-		<Variable name="_L9">
-			<type>
-				<NamedType>
-					<type>
-						<TypeRef name="bool"/>
-					</type>
-				</NamedType>
-			</type>
-			<pragmas>
-				<ed:Variable oid="!ed/52da0/3D2D/63B0/54da4b6b3a7a"/>
 			</pragmas>
 		</Variable>
 		<Variable name="_L12">
@@ -107,7 +95,7 @@
 					<type>
 						<NamedType>
 							<type>
-								<TypeRef name="MRSP_Profile_t"/>
+								<TypeRef name="TargetManagement_types::MRSP_internal_T"/>
 							</type>
 						</NamedType>
 					</type>
@@ -136,16 +124,52 @@
 				<ed:Variable oid="!ed/1446dc/1121/1AB8/54f451a35c4d"/>
 			</pragmas>
 		</Variable>
+		<Variable name="_L21">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TargetManagement_types::MRSP_internal_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/52a78/4046/1D5C/54f9a4f94c21"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L22">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TargetManagement_types::MRSP_internal_section_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/52a88/4046/1D5C/54f9a5004c92"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L23">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/52aa4/4046/1D5C/54f9a50e5dac"/>
+			</pragmas>
+		</Variable>
 	</locals>
 	<data>
-		<!-- _L3, _L1 = ( foldwi extractTargetsFromMRSPInt<<MRSPMaxSections>> if _L9)(_L12, _L... -->
+		<!-- _L3, _L1 = ( foldwi extractTargetsFromMRSPInt<<MRSPMaxSections>> if _L23)(_L12, _... -->
 		<Equation>
 			<lefts>
 				<VariableRef name="_L3"/>
 				<VariableRef name="_L1"/>
 			</lefts>
 			<right>
-				<!-- ( foldwi extractTargetsFromMRSPInt<<MRSPMaxSections>> if _L9)(_L12, _L14) -->
+				<!-- ( foldwi extractTargetsFromMRSPInt<<MRSPMaxSections>> if _L23)(_L12, _L14) -->
 				<CallExpression>
 					<operator>
 						<PartialIteratorOp iterator="foldwi">
@@ -166,7 +190,7 @@
 							<if>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="_L9"/>
+										<ConstVarRef name="_L23"/>
 									</path>
 								</IdExpression>
 							</if>
@@ -204,18 +228,6 @@
 			</right>
 			<pragmas>
 				<ed:Equation oid="!ed/52d8b/3D2D/63B0/54da4b565b6a"/>
-			</pragmas>
-		</Equation>
-		<!-- _L9 = true; -->
-		<Equation>
-			<lefts>
-				<VariableRef name="_L9"/>
-			</lefts>
-			<right>
-				<ConstValue value="true"/>
-			</right>
-			<pragmas>
-				<ed:Equation oid="!ed/52d9f/3D2D/63B0/54da4b6b3f85"/>
 			</pragmas>
 		</Equation>
 		<!-- _ = _L3; -->
@@ -343,6 +355,70 @@
 				<ed:Equation oid="!ed/1446db/1121/1AB8/54f451a35670"/>
 			</pragmas>
 		</Equation>
+		<!-- _L21 = MRSP; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L21"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="MRSP"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/52a77/4046/1D5C/54f9a4f96d75"/>
+			</pragmas>
+		</Equation>
+		<!-- _L22 = _L21[0]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L22"/>
+			</lefts>
+			<right>
+				<!-- _L21[0] -->
+				<PrjOp name="1">
+					<flow>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L21"/>
+							</path>
+						</IdExpression>
+					</flow>
+					<with>
+						<ConstValue value="0"/>
+					</with>
+				</PrjOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/52a87/4046/1D5C/54f9a5004723"/>
+			</pragmas>
+		</Equation>
+		<!-- _L23 = _L22.valid; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L23"/>
+			</lefts>
+			<right>
+				<!-- _L22.valid -->
+				<PrjOp name="2">
+					<flow>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L22"/>
+							</path>
+						</IdExpression>
+					</flow>
+					<with>
+						<Label name="valid"/>
+					</with>
+				</PrjOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/52aa3/4046/1D5C/54f9a50e4038"/>
+			</pragmas>
+		</Equation>
 	</data>
 	<pragmas>
 		<ed:Operator oid="!ed/52d1d/3D2D/63B0/54da4a952700" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
@@ -365,21 +441,6 @@
 								<Size width="264" height="503"/>
 							</size>
 						</EquationGE>
-						<EquationGE kind="OBJ_LIT" presentable="!ed/52d9f/3D2D/63B0/54da4b6b3f85">
-							<position>
-								<Point x="14684" y="2990"/>
-							</position>
-							<size>
-								<Size width="212" height="317"/>
-							</size>
-						</EquationGE>
-						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/52d9f/3D2D/63B0/54da4b6b3f85" dstEquation="!ed/52d1f/3D2D/63B0/54da4aa25d39">
-							<positions>
-								<Point x="14896" y="3149"/>
-								<Point x="16351" y="3149"/>
-								<Point x="16351" y="5371"/>
-							</positions>
-						</Edge>
 						<EquationGE presentable="!ed/52daf/3D2D/63B0/54da4b7826de">
 							<position>
 								<Point x="22119" y="5345"/>
@@ -482,6 +543,53 @@
 								<Point x="9128" y="4260"/>
 								<Point x="9128" y="6033"/>
 								<Point x="11509" y="6033"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/52a77/4046/1D5C/54f9a4f96d75">
+							<position>
+								<Point x="8996" y="2593"/>
+							</position>
+							<size>
+								<Size width="265" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/52a87/4046/1D5C/54f9a5004723">
+							<position>
+								<Point x="11218" y="2408"/>
+							</position>
+							<size>
+								<Size width="952" height="953"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/52a77/4046/1D5C/54f9a4f96d75" dstEquation="!ed/52a87/4046/1D5C/54f9a5004723">
+							<positions>
+								<Point x="9260" y="2858"/>
+								<Point x="10769" y="2858"/>
+								<Point x="10769" y="2884"/>
+								<Point x="11218" y="2884"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/52aa3/4046/1D5C/54f9a50e4038">
+							<position>
+								<Point x="13864" y="2408"/>
+							</position>
+							<size>
+								<Size width="952" height="953"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/52a87/4046/1D5C/54f9a5004723" dstEquation="!ed/52aa3/4046/1D5C/54f9a50e4038">
+							<positions>
+								<Point x="12171" y="2884"/>
+								<Point x="13018" y="2884"/>
+								<Point x="13018" y="2884"/>
+								<Point x="13864" y="2884"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/52aa3/4046/1D5C/54f9a50e4038" dstEquation="!ed/52d1f/3D2D/63B0/54da4aa25d39">
+							<positions>
+								<Point x="14817" y="2884"/>
+								<Point x="16351" y="2884"/>
+								<Point x="16351" y="5371"/>
 							</positions>
 						</Edge>
 					</presentationElements>
