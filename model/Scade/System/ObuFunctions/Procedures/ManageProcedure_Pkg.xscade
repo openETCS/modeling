@@ -794,6 +794,24 @@
 								<ed:Variable oid="!ed/559b1/7482/1450/54f068ce71ca"/>
 							</pragmas>
 						</Variable>
+						<Variable name="start_ack_to_TIU">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<default>
+								<ConstValue value="false"/>
+							</default>
+							<last>
+								<ConstValue value="false"/>
+							</last>
+							<pragmas>
+								<ed:Variable oid="!ed/1bd84/6C60/9C4/54f9d9ab600c"/>
+							</pragmas>
+						</Variable>
 					</outputs>
 					<signals>
 						<Signal name="requestDriverID_to_DMI">
@@ -3138,13 +3156,26 @@
 												<ed:Variable oid="!ed/164d6/B85/1CAC/54f1a6f17e27"/>
 											</pragmas>
 										</Variable>
+										<Variable name="_L13">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="bool"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Variable oid="!ed/1bd6b/6C60/9C4/54f9d97112ee"/>
+											</pragmas>
+										</Variable>
 									</locals>
 									<data>
-										<!-- _L4, _L5 = SoMProcedure_Pkg::SoM_SR_FS_OS_LS_SH_SN_UN(_L9, _L10); -->
+										<!-- _L4, _L5, _L13 = SoMProcedure_Pkg::SoM_SR_FS_OS_LS_SH_SN_UN(_L9, _L10); -->
 										<Equation>
 											<lefts>
 												<VariableRef name="_L4"/>
 												<VariableRef name="_L5"/>
+												<VariableRef name="_L13"/>
 											</lefts>
 											<right>
 												<!-- SoMProcedure_Pkg::SoM_SR_FS_OS_LS_SH_SN_UN(_L9, _L10) -->
@@ -3266,6 +3297,22 @@
 												<ed:Equation oid="!ed/164d5/B85/1CAC/54f1a6f165bd"/>
 											</pragmas>
 										</Equation>
+										<!-- start_ack_to_TIU = _L13; -->
+										<Equation>
+											<lefts>
+												<VariableRef name="start_ack_to_TIU"/>
+											</lefts>
+											<right>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L13"/>
+													</path>
+												</IdExpression>
+											</right>
+											<pragmas>
+												<ed:Equation oid="!ed/1bdbd/6C60/9C4/54f9db6540b"/>
+											</pragmas>
+										</Equation>
 									</data>
 									<pragmas>
 										<ed:State oid="!ed/f78f0/7835/2150/54e46e3a32c8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
@@ -3322,8 +3369,8 @@
 														</EquationGE>
 														<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5597c/7482/1450/54f067327e29" dstEquation="!ed/80676/7482/1450/54f0d7c754c5">
 															<positions>
-																<Point x="25797" y="6218"/>
-																<Point x="27623" y="6218"/>
+																<Point x="25797" y="5398"/>
+																<Point x="27623" y="5398"/>
 																<Point x="27623" y="6033"/>
 																<Point x="29475" y="6033"/>
 															</positions>
@@ -3338,10 +3385,10 @@
 														</EquationGE>
 														<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/5597c/7482/1450/54f067327e29" dstEquation="!ed/8067b/7482/1450/54f0d7cd3b0b">
 															<positions>
-																<Point x="25797" y="9525"/>
-																<Point x="27834" y="9525"/>
-																<Point x="27834" y="9525"/>
-																<Point x="29898" y="9525"/>
+																<Point x="25797" y="7885"/>
+																<Point x="27834" y="7885"/>
+																<Point x="27834" y="9551"/>
+																<Point x="29898" y="9551"/>
 															</positions>
 														</Edge>
 														<EquationGE presentable="!ed/164d4/B85/1CAC/54f1a6f15bad">
@@ -3366,6 +3413,22 @@
 																<Point x="15266" y="14552"/>
 																<Point x="15266" y="14499"/>
 																<Point x="16986" y="14499"/>
+															</positions>
+														</Edge>
+														<EquationGE presentable="!ed/1bdbd/6C60/9C4/54f9db6540b">
+															<position>
+																<Point x="29078" y="10292"/>
+															</position>
+															<size>
+																<Size width="317" height="503"/>
+															</size>
+														</EquationGE>
+														<Edge leftVarIndex="3" rightExprIndex="1" srcEquation="!ed/5597c/7482/1450/54f067327e29" dstEquation="!ed/1bdbd/6C60/9C4/54f9db6540b">
+															<positions>
+																<Point x="25797" y="10345"/>
+																<Point x="27464" y="10345"/>
+																<Point x="27464" y="10557"/>
+																<Point x="29131" y="10557"/>
 															</positions>
 														</Edge>
 													</presentationElements>
@@ -4349,7 +4412,7 @@
 								<ed:Equation oid="!ed/41e41/159F/1EB0/54ec2715441a"/>
 							</pragmas>
 						</Equation>
-						<!-- _L108 = DMI_Types_Pkg::Show_main_window; -->
+						<!-- _L108 = DMI_Types_Pkg::Validate_train_data; -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L108"/>
@@ -4357,7 +4420,7 @@
 							<right>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="DMI_Types_Pkg::Show_main_window"/>
+										<ConstVarRef name="DMI_Types_Pkg::Validate_train_data"/>
 									</path>
 								</IdExpression>
 							</right>
@@ -5217,7 +5280,7 @@
 												<Point x="34555" y="19156"/>
 											</labelPos>
 											<slashPos>
-												<Point x="41010" y="19156"/>
+												<Point x="34555" y="19156"/>
 											</slashPos>
 										</TransitionGE>
 										<StateGE display="split" presentable="!ed/f78f0/7835/2150/54e46e3a32c8">
