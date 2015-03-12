@@ -90,17 +90,18 @@ The following constraints and prerequisites apply:
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=\textwidth]{../images/ProvidePositionReport.pdf}
+\includegraphics[width=\textwidth]{../images/ProvidePositionReport.PNG}
 \caption{Structure of component ProvidePositionReport}\label{fig:provideposrep}
 \end{figure}
 
 \paragraph{Short Description of Functionality}
-This function takes the current train position and generates a position report which is sent to the RBC. The point in time when such a report is sent is determined by events, on the one hand, and position report parameters---which are basically triggers---provided by the RBC or a balise group passed, on the other hand. The functionality is modeled using three operations, as shown in Figure~\ref{fig:provideposrep}, which are explained below.
+This function takes the current train position and generates a position report which is sent to the RBC. The point in time when such a report is sent is determined by events, on the one hand, and position report parameters---which are basically triggers---provided by the RBC or a balise group passed, on the other hand. The functionality is modeled using four operators, as shown in Figure~\ref{fig:provideposrep}, which are explained below.
 \begin{description}
 	\item[CalculateSafeTrainLength] Calculates the the safeTrainLength and the MinSafeRearEnd according to \cite[Chapter~3.6.5.2.4/5]{subset-026}. \\
 \verb+safeTrainLength =  absolute(EstimatedFrontEndPosition - MinSafeRearEnd)+, where
 \verb+MinSafeRearEnd = minSafeFrontEndPosition - L_TRAIN+.
 	\item[EvaluateTriggerAndEvents] Returns a Boolean modelling whether the sending of the next position report is triggered or not. This value is the conjunction of the evaluation of all triggers (PositionReportParameters, i.e., Packet 58) and events (see \cite[Chapter~3.6.5.1.4]{subset-026}).
+	\item[ErrorManager] Takes a boolean flag for each possible error that has been occurred and outputs the respective error using type \verb+M_ERROR+
 	\item[CollectData] This operation aggregates data of Packet 0, \dots, Packet 5 and the header to a position report.
 \end{description}
 
@@ -115,6 +116,7 @@ Most of the functionality is described in \cite[Chapter~3.6.5]{subset-026}.
 	\item \textit{Packet 4}: When aggregating data for this packet, an error message might be overwritten by a succeeding error message. Because the specification allows only to sent one error in one position report, errors are not being stored in a queue, for instance.
 	\item \textit{Packet 44}: This packet is currently not contained in a position report as it is not part of the kernel functions.
 	\item The usage of attributes \verb+D_CYCLOC+ and \verb+T_CYCLOC+ as part of the triggers specified by the position report parameters (i.e., Packet 58 sent by the RBC) may lead to unexpected results if a big clock cycle together with small values for the attributes is used. The cause is that at every clock cycle the current model increments the reference value for the distance and time by at most \verb+D_CYCLOC+ and \verb+T_CYCLOC+, respectively and not a factor of it.
+	\item The \textit{ErrorHandler} is currently restricted to deal with a single error. As a consequence, as for each error reported a report has to be sent to the RBC, the number of reports is limited to one.
 \end{enumerate}
 
 \paragraph{Open Issues}
