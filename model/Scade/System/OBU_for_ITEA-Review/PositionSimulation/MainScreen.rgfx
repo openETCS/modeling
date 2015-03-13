@@ -10,7 +10,7 @@
         <codeIntegration keyboardId="0" periodicity="33" pointerId="0"/>
         <scade path="Testbench_Suite/Testbench_Suite.etp"/>
         <ratio horizontal="1" vertical="1"/>
-        <colorMap crc="446797393" name="colorTable.sct" path="."/>
+        <colorMap crc="427884849" name="colorTable.sct" path="."/>
         <lineWidthMap crc="1678555679" path="default"/>
         <lineStippleMap crc="704931268" path="default"/>
         <textureMap crc="61409685" name="texture_table.stt" path="."/>
@@ -45,6 +45,12 @@
                     <input name="trainPositionMin" oid="bb481f16-df61-4322-8cc7-c8cb4f8f8637" type="real">
                         <init>0.0</init>
                     </input>
+                    <input name="serviceBrake" oid="fe0bde71-0427-4993-98d6-426d1c659e99" type="bool">
+                        <init>false</init>
+                    </input>
+                    <input name="emergencyBrake" oid="5bf1cc24-dcaa-46cc-bfb2-f9d234adb7f4" type="bool">
+                        <init>false</init>
+                    </input>
                 </inputs>
                 <outputs>
                     <output memory="true" name="startDrive" oid="3a77adc2-2c19-4d42-bc3d-cb25e636f148" type="bool">
@@ -64,6 +70,9 @@
                     </output>
                     <output memory="true" name="initialPosition" oid="704088e2-1591-4d0d-aa59-3ba7eff7182b" type="real">
                         <init>0.0</init>
+                    </output>
+                    <output memory="true" name="openDesk" oid="78cf441a-6d05-4662-81d6-a7ed60b9c02d" type="bool">
+                        <init>false</init>
                     </output>
                 </outputs>
             </declaration>
@@ -85,63 +94,185 @@
                 <ratio horizontal="1" vertical="1"/>
             </properties>
             <children>
-                <referenceContainer oid="646ed112-eb4a-4b3e-b13d-42c91f6b0f5b">
+                <rectangle oid="602db01a-4694-4ece-8aab-b9f9e947b2ed">
                     <pathFromRoot value="0"/>
-                    <properties modular="false" name="RoundPushButton">
+                    <properties name="rectangle">
                         <visible>
                             <init>true</init>
                         </visible>
-                        <origin>
+                        <firstPoint>
                             <x>
-                                <init>-444.0</init>
+                                <init>489.0</init>
                             </x>
                             <y>
-                                <init>307.5</init>
+                                <init>2.0</init>
                             </y>
-                        </origin>
-                        <scale>
+                        </firstPoint>
+                        <thirdPoint>
                             <x>
-                                <init>1.0</init>
+                                <init>23.0</init>
                             </x>
                             <y>
-                                <init>1.0</init>
+                                <init>315.0</init>
                             </y>
-                        </scale>
-                        <rotate>
-                            <angle>
-                                <init>0.0</init>
-                            </angle>
-                        </rotate>
-                        <orientation clockwise="false"/>
-                        <file name="RoundPushButton.wgfx" path="$(RAPID_PROTOTYPER)\Widgets\Black\Controls - Buttons"/>
-                        <crc value="2316573805"/>
-                        <inputParameters>
-                            <parameter control="false" name="Enabled" oid="d648b177-e463-4d5f-b83a-c74a6a8ca24a" type="bool">
-                                <init>true</init>
-                            </parameter>
-                            <parameter control="false" name="Text" oid="5a7e0405-170e-4aa1-b772-febdd4888e43" representation="as_string" type="char^255">
-                                <init>[82, 101, 115, 101, 116, 0]</init>
-                            </parameter>
-                            <parameter control="false" name="TextSize" oid="d440831e-77da-467e-a13d-3595529e7501" representation="index" type="int">
-                                <init>1</init>
-                            </parameter>
-                            <parameter control="false" name="Radius" oid="fba36062-0d70-4aaf-b17a-7bf7e7da78ca" type="real">
-                                <init>30.0</init>
-                            </parameter>
-                            <parameter control="false" name="TextVisible" oid="ef35724f-dc25-40c3-8faa-557c645111ae" type="bool">
-                                <init>true</init>
-                            </parameter>
-                        </inputParameters>
-                        <outputParameters>
-                            <parameter name="evtClick" oid="cc11df8f-7949-42f7-a90b-a48bcc3a1afe" type="bool">
-                                <expr>reset</expr>
-                            </parameter>
-                        </outputParameters>
+                        </thirdPoint>
+                        <lineWidth>
+                            <init>5</init>
+                        </lineWidth>
+                        <lineStipple>
+                            <init>0</init>
+                        </lineStipple>
+                        <lineCap>
+                            <init>round</init>
+                        </lineCap>
+                        <haloing>
+                            <init>false</init>
+                        </haloing>
+                        <outlineColor>
+                            <init>83</init>
+                        </outlineColor>
+                        <outlineOpacity>
+                            <init>255</init>
+                        </outlineOpacity>
+                        <fillColor>
+                            <init>82</init>
+                        </fillColor>
+                        <fillOpacity>
+                            <init>255</init>
+                        </fillOpacity>
+                        <polygonSmooth>
+                            <init>false</init>
+                        </polygonSmooth>
+                        <textureControl>
+                            <init>false</init>
+                        </textureControl>
+                        <texture horizAlign="center" horizPattern="1.0" vertAlign="middle" vertPattern="1.0">
+                            <textureId>
+                                <init>-1</init>
+                            </textureId>
+                        </texture>
                     </properties>
-                    <children/>
-                </referenceContainer>
-                <text oid="0746d86a-7252-43f2-a6ef-911a030ae07f">
+                </rectangle>
+                <rectangle oid="59c9cd35-9b2b-461a-b240-274afe167fb5">
                     <pathFromRoot value="1"/>
+                    <properties name="rectangle">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <firstPoint>
+                            <x>
+                                <init>-20.0</init>
+                            </x>
+                            <y>
+                                <init>313.0</init>
+                            </y>
+                        </firstPoint>
+                        <thirdPoint>
+                            <x>
+                                <init>-484.25</init>
+                            </x>
+                            <y>
+                                <init>363.25</init>
+                            </y>
+                        </thirdPoint>
+                        <lineWidth>
+                            <init>5</init>
+                        </lineWidth>
+                        <lineStipple>
+                            <init>0</init>
+                        </lineStipple>
+                        <lineCap>
+                            <init>round</init>
+                        </lineCap>
+                        <haloing>
+                            <init>false</init>
+                        </haloing>
+                        <outlineColor>
+                            <init>81</init>
+                        </outlineColor>
+                        <outlineOpacity>
+                            <init>255</init>
+                        </outlineOpacity>
+                        <fillColor>
+                            <init>81</init>
+                        </fillColor>
+                        <fillOpacity>
+                            <init>255</init>
+                        </fillOpacity>
+                        <polygonSmooth>
+                            <init>false</init>
+                        </polygonSmooth>
+                        <textureControl>
+                            <init>false</init>
+                        </textureControl>
+                        <texture horizAlign="center" horizPattern="1.0" vertAlign="middle" vertPattern="1.0">
+                            <textureId>
+                                <init>-1</init>
+                            </textureId>
+                        </texture>
+                    </properties>
+                </rectangle>
+                <rectangle oid="c5faba25-a6bc-4928-ae6a-09ef6ba478e6">
+                    <pathFromRoot value="2"/>
+                    <properties name="rectangle">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <firstPoint>
+                            <x>
+                                <init>-20.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </firstPoint>
+                        <thirdPoint>
+                            <x>
+                                <init>-484.0</init>
+                            </x>
+                            <y>
+                                <init>312.0</init>
+                            </y>
+                        </thirdPoint>
+                        <lineWidth>
+                            <init>5</init>
+                        </lineWidth>
+                        <lineStipple>
+                            <init>0</init>
+                        </lineStipple>
+                        <lineCap>
+                            <init>round</init>
+                        </lineCap>
+                        <haloing>
+                            <init>false</init>
+                        </haloing>
+                        <outlineColor>
+                            <init>81</init>
+                        </outlineColor>
+                        <outlineOpacity>
+                            <init>255</init>
+                        </outlineOpacity>
+                        <fillColor>
+                            <init>78</init>
+                        </fillColor>
+                        <fillOpacity>
+                            <init>255</init>
+                        </fillOpacity>
+                        <polygonSmooth>
+                            <init>false</init>
+                        </polygonSmooth>
+                        <textureControl>
+                            <init>false</init>
+                        </textureControl>
+                        <texture horizAlign="center" horizPattern="1.0" vertAlign="middle" vertPattern="1.0">
+                            <textureId>
+                                <init>-1</init>
+                            </textureId>
+                        </texture>
+                    </properties>
+                </rectangle>
+                <text oid="0746d86a-7252-43f2-a6ef-911a030ae07f">
+                    <pathFromRoot value="3"/>
                     <properties name="text">
                         <visible>
                             <init>true</init>
@@ -154,14 +285,14 @@
                                 <init>55.0</init>
                             </x>
                             <y>
-                                <init>58.0</init>
+                                <init>45.0</init>
                             </y>
                         </position>
                         <maxLength>
                             <init>255</init>
                         </maxLength>
                         <textValue type="char">
-                            <init>[80,111,115,105,116,105,111,110,58,0]</init>
+                            <init>[80,111,115,105,116,105,111,110,32,40,109,41,58,0]</init>
                         </textValue>
                         <haloing>
                             <init>false</init>
@@ -184,17 +315,17 @@
                     </properties>
                 </text>
                 <referenceContainer oid="8d1307a8-ef61-4677-bd3c-1fe5072297af">
-                    <pathFromRoot value="2"/>
+                    <pathFromRoot value="4"/>
                     <properties modular="false" name="HorizontalGauge">
                         <visible>
                             <init>true</init>
                         </visible>
                         <origin>
                             <x>
-                                <init>128.0</init>
+                                <init>155.0</init>
                             </x>
                             <y>
-                                <init>53.0</init>
+                                <init>40.0</init>
                             </y>
                         </origin>
                         <scale>
@@ -228,7 +359,7 @@
                                 <init>40000.0</init>
                             </parameter>
                             <parameter control="false" name="FillColor" oid="f97bc5da-1c01-48b2-b236-9e67dcbe8752" representation="color" type="int">
-                                <init>41</init>
+                                <init>78</init>
                             </parameter>
                             <parameter control="false" name="ValueVisible" oid="ecc05e42-d891-4b32-a33a-f9384446b62b" type="bool">
                                 <init>true</init>
@@ -247,17 +378,17 @@
                     <children/>
                 </referenceContainer>
                 <referenceContainer oid="51e91992-4a8d-4dee-8be5-9cda520d5f86">
-                    <pathFromRoot value="3"/>
+                    <pathFromRoot value="5"/>
                     <properties modular="false" name="DiscreteVerticalSlider">
                         <visible>
                             <init>true</init>
                         </visible>
                         <origin>
                             <x>
-                                <init>-450.0</init>
+                                <init>-155.0</init>
                             </x>
                             <y>
-                                <init>58.0</init>
+                                <init>67.0</init>
                             </y>
                         </origin>
                         <scale>
@@ -315,17 +446,17 @@
                     <children/>
                 </referenceContainer>
                 <referenceContainer oid="7b4081ad-fa13-4600-ab36-9e6b7d04a4c4">
-                    <pathFromRoot value="4"/>
+                    <pathFromRoot value="6"/>
                     <properties modular="false" name="AnalogCounter">
                         <visible>
                             <init>true</init>
                         </visible>
                         <origin>
                             <x>
-                                <init>126.0</init>
+                                <init>356.0</init>
                             </x>
                             <y>
-                                <init>246.0</init>
+                                <init>162.0</init>
                             </y>
                         </origin>
                         <scale>
@@ -356,7 +487,7 @@
                                 <init>300.0</init>
                             </parameter>
                             <parameter control="false" name="Size" oid="eabb144c-15eb-4e25-9f48-44693ddb29a4" type="real">
-                                <init>96.02083</init>
+                                <init>83.00603</init>
                             </parameter>
                             <parameter control="false" name="NeedleColor" oid="f6a25f3d-f1c9-4d0c-905a-e656b00834ea" representation="color" type="int">
                                 <init>2</init>
@@ -369,7 +500,7 @@
                     <children/>
                 </referenceContainer>
                 <text oid="823f38ab-4612-45ce-a231-71503fc0bdfc">
-                    <pathFromRoot value="5"/>
+                    <pathFromRoot value="7"/>
                     <properties name="text">
                         <visible>
                             <init>true</init>
@@ -379,10 +510,10 @@
                         </multiline>
                         <position>
                             <x>
-                                <init>65.0</init>
+                                <init>308.0</init>
                             </x>
                             <y>
-                                <init>112.0</init>
+                                <init>284.0</init>
                             </y>
                         </position>
                         <maxLength>
@@ -401,7 +532,7 @@
                             <init>2</init>
                         </lineWidth>
                         <font>
-                            <init>2</init>
+                            <init>1</init>
                         </font>
                         <horizAlign>
                             <init>left</init>
@@ -412,17 +543,17 @@
                     </properties>
                 </text>
                 <referenceContainer oid="60de74b2-f1fb-40db-b14f-94a32cc50100">
-                    <pathFromRoot value="6"/>
+                    <pathFromRoot value="8"/>
                     <properties modular="false" name="NumericDisplay">
                         <visible>
                             <init>true</init>
                         </visible>
                         <origin>
                             <x>
-                                <init>-264.0</init>
+                                <init>-293.0</init>
                             </x>
                             <y>
-                                <init>31.0</init>
+                                <init>111.5</init>
                             </y>
                         </origin>
                         <scale>
@@ -475,17 +606,17 @@
                     <children/>
                 </referenceContainer>
                 <referenceContainer oid="ed332cfa-baf3-4fe2-b360-5e67fb674c49">
-                    <pathFromRoot value="7"/>
+                    <pathFromRoot value="9"/>
                     <properties modular="false" name="NumericDisplay">
                         <visible>
                             <init>true</init>
                         </visible>
                         <origin>
                             <x>
-                                <init>357.0</init>
+                                <init>175.0</init>
                             </x>
                             <y>
-                                <init>113.0</init>
+                                <init>267.0</init>
                             </y>
                         </origin>
                         <scale>
@@ -519,7 +650,7 @@
                                 <init>true</init>
                             </parameter>
                             <parameter control="false" name="Label" oid="3d8e3172-2c79-48a9-a235-d6bba2894b8d" representation="as_string" type="char^255">
-                                <init>[73, 110, 116, 101, 114, 110, 97, 108, 32, 116, 105, 109, 101, 115, 116, 97, 109, 112, 58, 0]</init>
+                                <init>[73, 110, 116, 101, 114, 110, 97, 108, 32, 116, 105, 109, 101, 115, 116, 97, 109, 112, 32, 40, 109, 115, 41, 58, 0]</init>
                             </parameter>
                             <parameter control="false" name="LabelColor" oid="e83a7fd8-ed56-419c-8274-f0026bf8b7bf" representation="color" type="int">
                                 <init>2</init>
@@ -531,24 +662,24 @@
                                 <init>[85, 110, 105, 116, 0]</init>
                             </parameter>
                             <parameter control="false" name="Width" oid="081b8163-a890-4fc0-b2ea-edd5a62a2d99" type="real">
-                                <init>60.0</init>
+                                <init>83.0</init>
                             </parameter>
                         </inputParameters>
                     </properties>
                     <children/>
                 </referenceContainer>
                 <referenceContainer oid="f6cba029-1969-4221-a341-66f30fd17d07">
-                    <pathFromRoot value="8"/>
+                    <pathFromRoot value="10"/>
                     <properties modular="false" name="Graph_4x1000">
                         <visible>
                             <init>true</init>
                         </visible>
                         <origin>
                             <x>
-                                <init>-423.0</init>
+                                <init>-466.0</init>
                             </x>
                             <y>
-                                <init>-238.0</init>
+                                <init>-277.0</init>
                             </y>
                         </origin>
                         <scale>
@@ -582,22 +713,22 @@
                                 <init>0.0</init>
                             </parameter>
                             <parameter control="false" name="SizeX" oid="357e94ac-dc05-4a5d-80f0-0cc55c1804e1" type="real">
-                                <init>300.0</init>
+                                <init>400.0</init>
                             </parameter>
                             <parameter control="false" name="SizeY" oid="24803017-818d-41f0-95d8-f7ef8f27046f" type="real">
-                                <init>200.0</init>
+                                <init>250.0</init>
                             </parameter>
                             <parameter control="false" name="NbCurves" oid="693e07f5-4b7e-4b4f-9683-3de34c8f174e" type="int">
                                 <init>1</init>
                             </parameter>
                             <parameter control="false" name="CycleUnit" oid="9201fecc-7da0-4847-944a-f687bc16e010" representation="as_string" type="char^20">
-                                <init>[67, 121, 99, 108, 101, 115, 0]</init>
+                                <init>[115, 0]</init>
                             </parameter>
                             <parameter control="false" name="CyclePeriod" oid="62c7666d-dcea-42f6-9857-8cb3a57dc622" type="real">
-                                <init>1.0</init>
+                                <init>0.2</init>
                             </parameter>
                             <parameter control="false" name="YUnitLabel" oid="85587a30-70ab-4807-b3ef-fe99488eb97d" representation="as_string" type="char^20">
-                                <init>[85, 110, 105, 116, 0]</init>
+                                <init>[107, 109, 47, 104, 0]</init>
                             </parameter>
                             <parameter control="false" name="NbVisiblePoints" oid="014bde67-28d3-46f2-8d64-79a63143efa8" type="int">
                                 <init>1000</init>
@@ -627,7 +758,7 @@
                                 <init>[76, 101, 103, 101, 110, 100, 52, 0]</init>
                             </parameter>
                             <parameter control="false" name="CurveColor1" oid="8425a577-dd61-4279-a99e-bc9fea4cff8c" representation="color" type="int">
-                                <init>2</init>
+                                <init>78</init>
                             </parameter>
                             <parameter control="false" name="CurveColor2" oid="66dd7e1e-0350-4b71-bc1c-19cc15220874" representation="color" type="int">
                                 <init>11</init>
@@ -676,17 +807,17 @@
                     <children/>
                 </referenceContainer>
                 <referenceContainer oid="20f49dec-9139-409e-9bcb-ee23841f507f">
-                    <pathFromRoot value="9"/>
+                    <pathFromRoot value="11"/>
                     <properties modular="false" name="Graph_4x1000">
                         <visible>
                             <init>true</init>
                         </visible>
                         <origin>
                             <x>
-                                <init>83.0</init>
+                                <init>65.0</init>
                             </x>
                             <y>
-                                <init>-238.0</init>
+                                <init>-278.0</init>
                             </y>
                         </origin>
                         <scale>
@@ -722,31 +853,31 @@
                                 <init>0.0</init>
                             </parameter>
                             <parameter control="false" name="SizeX" oid="357e94ac-dc05-4a5d-80f0-0cc55c1804e1" type="real">
-                                <init>300.0</init>
+                                <init>400.0</init>
                             </parameter>
                             <parameter control="false" name="SizeY" oid="24803017-818d-41f0-95d8-f7ef8f27046f" type="real">
-                                <init>200.0</init>
+                                <init>250.0</init>
                             </parameter>
                             <parameter control="false" name="NbCurves" oid="693e07f5-4b7e-4b4f-9683-3de34c8f174e" type="int">
                                 <init>3</init>
                             </parameter>
                             <parameter control="false" name="CycleUnit" oid="9201fecc-7da0-4847-944a-f687bc16e010" representation="as_string" type="char^20">
-                                <init>[67, 121, 99, 108, 101, 115, 0]</init>
+                                <init>[115, 0]</init>
                             </parameter>
                             <parameter control="false" name="CyclePeriod" oid="62c7666d-dcea-42f6-9857-8cb3a57dc622" type="real">
-                                <init>1.0</init>
+                                <init>0.2</init>
                             </parameter>
                             <parameter control="false" name="YUnitLabel" oid="85587a30-70ab-4807-b3ef-fe99488eb97d" representation="as_string" type="char^20">
-                                <init>[73, 110, 97, 99, 99, 117, 114, 97, 99, 121, 0]</init>
+                                <init>[99, 109, 0]</init>
                             </parameter>
                             <parameter control="false" name="NbVisiblePoints" oid="014bde67-28d3-46f2-8d64-79a63143efa8" type="int">
                                 <init>1000</init>
                             </parameter>
                             <parameter control="false" name="MinY" oid="0702253e-21de-4a26-9333-3fdfe35725b2" type="real">
-                                <init>-1000.0</init>
+                                <init>-4000.0</init>
                             </parameter>
                             <parameter control="false" name="MaxY" oid="9a64efc4-632f-441a-864f-094628885358" type="real">
-                                <init>1000.0</init>
+                                <init>4000.0</init>
                             </parameter>
                             <parameter control="false" name="BackgroundColor" oid="c3522a1e-e52a-4fbe-8843-f1b7a65d7ba3" representation="color" type="int">
                                 <init>6</init>
@@ -767,16 +898,16 @@
                                 <init>[76, 101, 103, 101, 110, 100, 52, 0]</init>
                             </parameter>
                             <parameter control="false" name="CurveColor1" oid="8425a577-dd61-4279-a99e-bc9fea4cff8c" representation="color" type="int">
-                                <init>61</init>
+                                <init>78</init>
                             </parameter>
                             <parameter control="false" name="CurveColor2" oid="66dd7e1e-0350-4b71-bc1c-19cc15220874" representation="color" type="int">
                                 <init>11</init>
                             </parameter>
                             <parameter control="false" name="CurveColor3" oid="82d7777e-3471-42c6-93b6-965213331f9d" representation="color" type="int">
-                                <init>47</init>
+                                <init>31</init>
                             </parameter>
                             <parameter control="false" name="CurveColor4" oid="fb89e6b8-7075-4391-b7ee-0a3e0eb4ddf3" representation="color" type="int">
-                                <init>31</init>
+                                <init>35</init>
                             </parameter>
                             <parameter control="false" name="CurvePointKind1" oid="8ef047a3-5a93-40f9-b7f2-4243f40cc26f" representation="index" type="int">
                                 <init>5</init>
@@ -816,17 +947,17 @@
                     <children/>
                 </referenceContainer>
                 <referenceContainer oid="e0a387b6-7ff1-41f3-a0fd-4bd3a8122552">
-                    <pathFromRoot value="10"/>
+                    <pathFromRoot value="12"/>
                     <properties modular="false" name="NumericEntry">
                         <visible>
                             <init>true</init>
                         </visible>
                         <origin>
                             <x>
-                                <init>307.0</init>
+                                <init>182.0</init>
                             </x>
                             <y>
-                                <init>5.0</init>
+                                <init>222.0</init>
                             </y>
                         </origin>
                         <scale>
@@ -853,10 +984,10 @@
                                 <init>true</init>
                             </parameter>
                             <parameter control="false" name="Label" oid="95189878-91be-4778-868c-b2c0fa625ca6" representation="as_string" type="char^255">
-                                <init>[73, 110, 105, 116, 105, 97, 108, 32, 80, 111, 115, 105, 116, 105, 111, 110, 0]</init>
+                                <init>[73, 110, 105, 116, 105, 97, 108, 32, 80, 111, 115, 105, 116, 105, 111, 110, 32, 40, 99, 109, 41, 0]</init>
                             </parameter>
                             <parameter control="false" name="Width" oid="32427a5f-09ad-4803-a859-747bc119db52" type="real">
-                                <init>110.0</init>
+                                <init>77.0</init>
                             </parameter>
                         </inputParameters>
                         <outputParameters>
@@ -867,6 +998,299 @@
                     </properties>
                     <children/>
                 </referenceContainer>
+                <richText oid="c83f5f6f-ae7a-44a1-8c6d-d0fa7050d057">
+                    <pathFromRoot value="13"/>
+                    <properties name="rich text">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <position>
+                            <x>
+                                <init>-470.0</init>
+                            </x>
+                            <y>
+                                <init>327.0</init>
+                            </y>
+                        </position>
+                        <maxLength>
+                            <init>255</init>
+                        </maxLength>
+                        <textValue type="char">
+                            <init>[84,73,85,0]</init>
+                        </textValue>
+                        <outlineColor>
+                            <init>2</init>
+                        </outlineColor>
+                        <lineWidth>
+                            <init>2</init>
+                        </lineWidth>
+                        <font>
+                            <init>3</init>
+                        </font>
+                        <horizAlign>
+                            <init>left</init>
+                        </horizAlign>
+                        <vertAlign>
+                            <init>bottom</init>
+                        </vertAlign>
+                    </properties>
+                </richText>
+                <referenceContainer oid="ab701978-d458-4819-a6d5-b1aedef4559a">
+                    <pathFromRoot value="14"/>
+                    <properties modular="false" name="RoundToggleButton">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>-152.0</init>
+                            </x>
+                            <y>
+                                <init>252.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="RoundToggleButton.wgfx" path="$(RAPID_PROTOTYPER)\Widgets\White\Controls - Buttons"/>
+                        <crc value="3860185116"/>
+                        <inputParameters>
+                            <parameter control="false" name="Enabled" oid="f6ade46c-dd0d-41ca-be35-1793747b02f3" type="bool">
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="SelectedColor" oid="0c4c679c-3bd9-4ab2-b1ea-1b89463e8471" representation="color" type="int">
+                                <init>41</init>
+                            </parameter>
+                            <parameter control="false" name="TextVisible" oid="e0046017-60ea-4cb1-92b6-e3ebfbb47bd1" type="bool">
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="Text" oid="a43768d0-0222-4c91-8033-35f0e2113417" representation="as_string" type="char^255">
+                                <init>[79, 112, 101, 110, 68, 101, 115, 107, 0]</init>
+                            </parameter>
+                            <parameter control="false" name="TextSize" oid="c57b681d-8b20-4f79-bd96-bb54f4207975" representation="index" type="int">
+                                <init>1</init>
+                            </parameter>
+                            <parameter control="false" name="Radius" oid="0b0c8aca-940b-4364-bd8f-a49de26a7c87" type="real">
+                                <init>35.0</init>
+                            </parameter>
+                        </inputParameters>
+                        <outputParameters>
+                            <parameter name="Selected" oid="9b26be54-deb7-49b8-b825-ac61d6a14cd7" type="bool">
+                                <expr>openDesk</expr>
+                            </parameter>
+                        </outputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
+                <referenceContainer oid="5481df16-3b4f-4f8b-8055-9e445d811389">
+                    <pathFromRoot value="15"/>
+                    <properties modular="false" name="LED">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>-421.0</init>
+                            </x>
+                            <y>
+                                <init>250.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="LED.wgfx" path="$(RAPID_PROTOTYPER)\Widgets\Common\Indicators - LED"/>
+                        <crc value="981117169"/>
+                        <inputParameters>
+                            <parameter control="false" name="LEDOn" oid="e01c6bbf-dcc2-4976-9fa8-36c21a18dabd" type="bool">
+                                <expr>serviceBrake</expr>
+                                <init>false</init>
+                            </parameter>
+                            <parameter control="false" name="LEDColor" oid="07d7b1a4-6e20-4683-b82f-1234b88d91db" representation="color" type="int">
+                                <init>82</init>
+                            </parameter>
+                            <parameter control="false" name="Radius" oid="e6424eb6-00ee-48f8-87ae-f9e5919d47cb" type="real">
+                                <init>10.0</init>
+                            </parameter>
+                            <parameter control="false" name="LabelVisible" oid="d3a175b2-c462-41dc-86c0-f40c946b4f9e" type="bool">
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="Label" oid="e43f4a50-f0e2-48d3-9bba-79c9889e8c92" representation="as_string" type="char^255">
+                                <init>[83, 101, 114, 118, 105, 99, 101, 66, 114, 97, 107, 101, 0]</init>
+                            </parameter>
+                        </inputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
+                <referenceContainer oid="0fe315e4-4ef3-4daf-baf8-a12828d4c0e2">
+                    <pathFromRoot value="16"/>
+                    <properties modular="false" name="LED">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>-305.0</init>
+                            </x>
+                            <y>
+                                <init>250.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="LED.wgfx" path="$(RAPID_PROTOTYPER)\Widgets\Common\Indicators - LED"/>
+                        <crc value="981117169"/>
+                        <inputParameters>
+                            <parameter control="false" name="LEDOn" oid="e01c6bbf-dcc2-4976-9fa8-36c21a18dabd" type="bool">
+                                <expr>emergencyBrake</expr>
+                                <init>false</init>
+                            </parameter>
+                            <parameter control="false" name="LEDColor" oid="07d7b1a4-6e20-4683-b82f-1234b88d91db" representation="color" type="int">
+                                <init>82</init>
+                            </parameter>
+                            <parameter control="false" name="Radius" oid="e6424eb6-00ee-48f8-87ae-f9e5919d47cb" type="real">
+                                <init>10.0</init>
+                            </parameter>
+                            <parameter control="false" name="LabelVisible" oid="d3a175b2-c462-41dc-86c0-f40c946b4f9e" type="bool">
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="Label" oid="e43f4a50-f0e2-48d3-9bba-79c9889e8c92" representation="as_string" type="char^255">
+                                <init>[69, 109, 101, 114, 103, 101, 110, 99, 121, 66, 114, 97, 107, 101, 0]</init>
+                            </parameter>
+                        </inputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
+                <rectangle oid="4d1468a1-a390-48ea-8875-f09548d41f66">
+                    <pathFromRoot value="17"/>
+                    <properties name="rectangle">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <firstPoint>
+                            <x>
+                                <init>489.0</init>
+                            </x>
+                            <y>
+                                <init>314.0</init>
+                            </y>
+                        </firstPoint>
+                        <thirdPoint>
+                            <x>
+                                <init>22.75</init>
+                            </x>
+                            <y>
+                                <init>364.0</init>
+                            </y>
+                        </thirdPoint>
+                        <lineWidth>
+                            <init>5</init>
+                        </lineWidth>
+                        <lineStipple>
+                            <init>0</init>
+                        </lineStipple>
+                        <lineCap>
+                            <init>round</init>
+                        </lineCap>
+                        <haloing>
+                            <init>false</init>
+                        </haloing>
+                        <outlineColor>
+                            <init>83</init>
+                        </outlineColor>
+                        <outlineOpacity>
+                            <init>255</init>
+                        </outlineOpacity>
+                        <fillColor>
+                            <init>83</init>
+                        </fillColor>
+                        <fillOpacity>
+                            <init>255</init>
+                        </fillOpacity>
+                        <polygonSmooth>
+                            <init>false</init>
+                        </polygonSmooth>
+                        <textureControl>
+                            <init>false</init>
+                        </textureControl>
+                        <texture horizAlign="center" horizPattern="1.0" vertAlign="middle" vertPattern="1.0">
+                            <textureId>
+                                <init>-1</init>
+                            </textureId>
+                        </texture>
+                    </properties>
+                </rectangle>
+                <richText oid="3ade9c27-847e-40aa-8ed4-860f5aa5575f">
+                    <pathFromRoot value="18"/>
+                    <properties name="rich text">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <position>
+                            <x>
+                                <init>37.0</init>
+                            </x>
+                            <y>
+                                <init>331.0</init>
+                            </y>
+                        </position>
+                        <maxLength>
+                            <init>255</init>
+                        </maxLength>
+                        <textValue type="char">
+                            <init>[83,112,101,101,100,32,97,110,100,32,68,105,115,116,97,110,99,101,0]</init>
+                        </textValue>
+                        <outlineColor>
+                            <init>2</init>
+                        </outlineColor>
+                        <lineWidth>
+                            <init>2</init>
+                        </lineWidth>
+                        <font>
+                            <init>3</init>
+                        </font>
+                        <horizAlign>
+                            <init>left</init>
+                        </horizAlign>
+                        <vertAlign>
+                            <init>bottom</init>
+                        </vertAlign>
+                    </properties>
+                </richText>
             </children>
         </layer>
         <layer oid="173c56ec-d1f8-461c-8978-afd73b0308cb">
@@ -894,5 +1318,5 @@
     </children>
 </specification>
 
-<!-- crc32 : 2892138336 -->
+<!-- crc32 : 335031002 -->
 
