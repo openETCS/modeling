@@ -107,7 +107,7 @@ This output is true if the current speed is greater than or equal the target spe
 \end{itemize}
 
 \paragraph{Short description of the functionality}
-The motivation for this operator is to convert all inputs of block ``Speed Supervision'' that contain information about length, speed, distance, and acceleration defined as integer into real to allow for highest precision in the calculations. In addition, to ease the modeling, inside block ``Speed Supervision'' only units meters, seconds, and meters per square second are used.
+The motivation for this operator is to convert all inputs of block ``Speed Supervision'' that contain information about length, speed, distance, and acceleration defined as integer into \texttt{real} to allow automatically the highest precision in the calculations by the meaning of floating point operations. In addition, to ease the modeling, inside block ``Speed Supervision'' only units meters ($[m]$), seconds($[s]$), meters per second($[\frac{m}{s}]$), and meters per square second($[\frac{m}{s^{2}}]$) are used.
 
 \paragraph{Interface}
 
@@ -125,15 +125,30 @@ This operator forwards input messages, takes data from complex data types or tra
 
 \paragraph{Short description of the functionality}
 This operator calculates/updates the list of targets to be supervised by the block ``Train Supervision''. Taking the current movement authority and the most restrictive speed profile as an input, the operator outputs a list of locations corresponding to the most restrictive speed profile, a list of locations corresponding to a limit of authority, the location of an end of authority, or the location of supervised location.
+
+The operator takes as Inputs the Movement Authority, Most Restrictive Speed Profile and the current maximum safe front end position. 
+
+The Output is a single End of Authority Target, a list of all MRSP-Targets and a list of all LoA-Targets.
   
 \paragraph{Interface}
 
 \paragraph{Functional Design Description}
-\subparagraph{Targets from Movement Authority Sections}
-The sections of the Movement Authority could cause 2 types of Targets:
+\subparagraph{Derivation of Targets from Movement Authority Sections}
+The sections of the \emph{Movement Authority} could cause 2 types of Targets:
 \begin{itemize}
-\item End Of Authority - only one could exist and this is only 
+\item End Of Authority(EoA) - only one could exist and this is only in the \emph{end section} of the \emph{MA}
+\item Limit of Authority (LoA) - is possibly in every section of the \emph{MA} except the end section
 \end{itemize}
+In every Cycle the MA is updated, the operator iterates over the whole MA and put all speed limitations by \emph{LoA}s into a list of targets. The end section is used to derived the \emph{EoA}-Target. All LoA targets are sorted by location.
+
+\subparagraph{Derivation of Targets from MRSP}
+As the \cite[Chapt.~3.13.8.2]{subset-026} says, every speed decrease of the MRSP is used to derive a target. Therefore in every cycle the MRSP is updated, the whole MRSP is iterated to search for all MRSP Targets. For this purpose, every element of the MRSP is compared with its successor. When the calculation arrives the last valid element, the calculation is exited.
+
+\subparagraph{Updating of Targets}
+In every cycle the operator monitors all targets, whether they are already passed by iterating over the list of targets comparing the current max safe front end position with the target position.
+
+ 
+
 
 \paragraph{Reference to the Scade Model}
 \textbf{only in special case or link to the Scade model}
@@ -148,10 +163,28 @@ The sections of the Movement Authority could cause 2 types of Targets:
 	\item \cite[Chapt.~3.13.8.5]{subset-026}: Guidance curves (GUI)
 \end{itemize}
 \paragraph{Short description of the functionality}
-For each type of target a certain braking curve has to be calculated. This curve enables us, given a target speed, to calculate the destination when this speed will be reached. In addition, given a target location, also the speed of the train at this location can be calculated. 
+For each type of target a certain braking curve has to be calculated. This curve enables us, to proactively monitor the speed of the train. From this braking curve could be derived, where the train has to start braking for a given actual speed. The braking curve is not depended on actual train status, as a consequence the braking curve stay constant over a certain time. Only to stop the calculation of the braking curve the estimated front end position is used, but this is only to have an always valid exit condition.
 \paragraph{Interface}
 \paragraph{Functional Design Description}
-Some details about how the curves are calculated \dots
+The braking curve calculation takes the complex input function $A_{safe}$, which describes the overall braking performance of the train in a speed and position depended meaning. This two dimensional function needs to be simplified for every target to get an function of position to speed. The individual target has a position and a speed (a point in the distance speed plain) and is the starting point of the braking curve. The initial step is to getting the deceleration of the train at the target point from the $A_{safe}$-function. Afterwards the calculation iterates through the $A_{safe}$-function until the current estimated front end position is reached. While this two cases could appear:
+
+\begin{itemize}
+\item a new distance step of $A_{safe}$ is reached
+\item a new speed step of $A_{safe}$ is reached
+\end{itemize}
+
+Both cases are checked and the applicable one is used to calculate a new Arc. Every Arc of the braking curve consists of:
+\begin{itemize}
+\item distance where the arc begins
+\item speed at the point, where the arc begins
+\item deceleration for the whole arc
+\end{itemize}
+An abstract overview of the calculation could be seen in picture \ref{fig:bc_calc}.
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.95\textwidth]{../images/EBD_CalcAlgorithm.png}
+\caption{Calculation of Braking Curves}\label{fig:bc_calc}
+\end{figure}
 
 Currently, the model supports the calculation of the following braking curves:
 \begin{itemize}
@@ -161,7 +194,7 @@ Currently, the model supports the calculation of the following braking curves:
 	%
 	\item the Emergency Brake Deceleration curve for the end of authority, and
 	%
-	\item the Service Brake Deceleration curve for the end of authority
+	%\item the Service Brake Deceleration curve for the end of authority
 \end{itemize}
 \paragraph{Reference to the Scade Model}
 \textbf{only in special case or link to the Scade model}
