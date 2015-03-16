@@ -163,17 +163,19 @@ In every cycle the operator monitors all targets, whether they are already passe
 	\item \cite[Chapt.~3.13.8.5]{subset-026}: Guidance curves (GUI)
 \end{itemize}
 \paragraph{Short description of the functionality}
-For each type of target a certain braking curve has to be calculated. This curve enables us, to proactively monitor the speed of the train. From this braking curve could be derived, where the train has to start braking for a given actual speed. The braking curve is not depended on actual train status, as a consequence the braking curve stay constant over a certain time. Only to stop the calculation of the braking curve the estimated front end position is used, but this is only to have an always valid exit condition.
+For each type of target a certain braking curve has to be calculated. This curve enables proactive monitoring of the train's speed. A reverse lookup on this braking curve indicates, where the train has to start braking for a given current speed. The braking curve does not depend on the actual train status. As a consequence the braking curve stays constant over time. As a legimit simplification the calculation of the braking curve is not extended past the estimated front end position of the train.
+
 \paragraph{Interface}
+
 \paragraph{Functional Design Description}
-The braking curve calculation takes the complex input function $A_{safe}$, which describes the overall braking performance of the train in a speed and position depended meaning. This two dimensional function needs to be simplified for every target to get an function of position to speed. The individual target has a position and a speed (a point in the distance speed plain) and is the starting point of the braking curve. The initial step is to getting the deceleration of the train at the target point from the $A_{safe}$-function. Afterwards the calculation iterates through the $A_{safe}$-function until the current estimated front end position is reached. While this two cases could appear:
+The braking curve calculation takes the complex input function $A_{safe}$, which describes the overall braking performance of the train in a speed and position dependent meaning. This two dimensional function needs to be simplified for every target to get a function of position to speed. Each individual target has a position and a speed (a point in the distance speed plane) and is the starting point of the braking curve. The first step is to get the deceleration of the train at the target point from the $A_{safe}$-function. Afterwards the calculation iterates through the $A_{safe}$-function until the current estimated front end position is reached. Two cases can be differentiated:
 
 \begin{itemize}
 \item a new distance step of $A_{safe}$ is reached
 \item a new speed step of $A_{safe}$ is reached
 \end{itemize}
 
-Both cases are checked and the applicable one is used to calculate a new Arc. Every Arc of the braking curve consists of:
+Both cases are checked and the applicable one is used to calculate a new arc. Every arc of the braking curve consists of:
 \begin{itemize}
 \item distance where the arc begins
 \item speed at the point, where the arc begins
