@@ -212,7 +212,7 @@ This operator calculates the various locations needed to determine the speed and
 
 \paragraph{Interface}
 \subparagraph{Input}
-\begin{numerize}
+\begin{enumerate}
   \item \texttt{MRSPProfile} Speed profile related to current track under train.
   \item \texttt{odometry}, \texttt{trainLocations} External state of train provided by odometry.
   \item \texttt{targetCollection} The different target (list) types wrapped in a structure.
@@ -221,15 +221,15 @@ This operator calculates the various locations needed to determine the speed and
   \item \texttt{$v_{ura}$} Speed under reading amount.
   \item \texttt{inhibitUnderReadingCompensation} A flag defined by National Value, relating to above item.
   \item \texttt{$T_{bs}$, $T_{be}$, $T_{tractionCutOff}$} Time constants defined externally or in other modules.
-\end{numerize}
+\end{enumerate}
 \subparagraph{Output}
-\begin{numerize}
+\begin{enumerate}
   \item \texttt{locations} Internal type to wrap the locations calculated herein and pass it on directly to SDM-Commands-Operator.
   \item \texttt{MostRestrictiveTarget} An internal structure to contain the information the target based locations are linked to.
   \item \texttt{FLOIisSBI1} Flag is true if First Line of Intervention uses the service brake curve (SBI1) or false if it uses deceleration values based on the emergency brake curve (SBI2).
   \item \texttt{$v_{target}$} The designated speed of the Most Restrictive Target. This is a convienience reference into the above data structure. 
   \item \texttt{$v_{MRSP}$} The current Most Restrictive Speed at the Max Save Frontend of the train.
-\end{numerize}
+\end{enumerate}
 
 \paragraph{Functional Design Description}
 This operator gathers all necessary input values and computes some frequently used intermediate values in the suboperators \texttt{surplusTractionDeltas} and \texttt{$v_{bec}$}. The other input prepartion operator is the \texttt{TargetSelector} whose main task is to dissect the list of targets to find the Most Restrictive Target. The accompanying braking curves are extracted and promoted to trailing location calculations. Also the special values of the EOA are exposed.
