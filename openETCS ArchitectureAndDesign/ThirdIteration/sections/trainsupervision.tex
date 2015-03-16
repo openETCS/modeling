@@ -14,7 +14,7 @@ The task of block ``Train Supervision'' is to monitor the speed of the train and
 
 The block ``Train Supervision'' takes as input (1) movement related information such as train speed, train position and acceleration, (2) train related information such as brake information and train length, and (3) track related information such as speed and distance limits and national values.
 
-Based on this information a list of targets is calculated and, for each such target, the speed the train should have. Braking curves calculate at which location at the track the train has to accelerate and to perform the brake, respectively. These calculations lead to commands being sent to the driver and the brake system.
+Based on this information a speed profile is calculated. Speed restrictions create target speeds (targets) that have to be followed. For each such target braking curves are generated to supervise at which location of the track the train must perform the brake. In case of no target restrictions the train may accelerate to the supervised maximum speed of the speed profile. These calculations lead to commands being sent to the driver and the brake system.
 
 The functionality is modeled using four operators, as shown in Figure~\ref{fig:ssv}, which are explained below.
 
@@ -37,7 +37,7 @@ For providing the output, the module needs different input data flows. Table \re
     5 & \texttt{m\_level} & \texttt{M\_LEVEL} & Mode and Level\\
     6 & \texttt{trainProps} & \texttt{trainProperties\_T} & Database\\
     7 & \texttt{MA\_updated} & \texttt{bool} & internal\\
-	8 & \texttt{MRSP\_updated} & \texttt{bool} & internal\\
+    8 & \texttt{MRSP\_updated} & \texttt{bool} & internal\\
     \hline
   \end{tabular} 
   \caption{Overview of input}
@@ -203,7 +203,7 @@ Currently, the model supports the calculation of the following braking curves:
 \paragraph{Reference to the SRS or other Requirements (or other requirements)}
 \begin{itemize}
 	\item \cite[Chapt.~3.13.9]{subset-026}: Supervision Limits 
-	\item \cite[Chapt.~5..3.1.2]{subset-041}: $f_{41}$ -- accuracy of speed known on-board
+	\item \cite[Chapt.~5.3.1.2]{subset-041}: $f_{41}$ -- accuracy of speed known on-board
 	\item \cite[Chapt.~3.13.10]{subset-026}: Monitoring Commands as reference for required outputs of this module
 \end{itemize}
 
@@ -211,10 +211,33 @@ Currently, the model supports the calculation of the following braking curves:
 This operator calculates the various locations needed to determine the speed and distance monitoring commands. The current implementation of functionality is stateless and requires a complete recalculation each cycle.
 
 \paragraph{Interface}
-\paragraph{Functional Design Description}
+\subparagraph{Input}
+\begin{numerize}
+  \item \texttt{MRSPProfile} Speed profile related to current track under train.
+  \item \texttt{odometry}, \texttt{trainLocations} External state of train provided by odometry.
+  \item \texttt{targetCollection} The different target (list) types wrapped in a structure.
+  \item \texttt{curveCollection} The related braking curves correlated to above targets.
+  \item \texttt{$v_{release}$} Release speed as defined by external sources.
+  \item \texttt{$v_{ura}$} Speed under reading amount.
+  \item \texttt{inhibitUnderReadingCompensation} A flag defined by National Value, relating to above item.
+  \item \texttt{$T_{bs}$, $T_{be}$, $T_{tractionCutOff}$} Time constants defined externally or in other modules.
+\end{numerize}
+\subparagraph{Output}
+\begin{numerize}
+  \item \texttt{locations} Internal type to wrap the locations calculated herein and pass it on directly to SDM-Commands-Operator.
+  \item \texttt{MostRestrictiveTarget} An internal structure to contain the information the target based locations are linked to.
+  \item \texttt{FLOIisSBI1} Flag is true if First Line of Intervention uses the service brake curve (SBI1) or false if it uses deceleration values based on the emergency brake curve (SBI2).
+  \item \texttt{$v_{target}$} The designated speed of the Most Restrictive Target. This is a convienience reference into the above data structure. 
+  \item \texttt{$v_{MRSP}$} The current Most Restrictive Speed at the Max Save Frontend of the train.
+\end{numerize}
 
-\paragraph{Reference to the Scade Model}
-\textbf{only in special case or link to the Scade model}
+\paragraph{Functional Design Description}
+This operator gathers all necessary input values and computes some frequently used intermediate values in the suboperators \texttt{surplusTractionDeltas} and \texttt{$v_{bec}$}. The other input prepartion operator is the \texttt{TargetSelector} whose main task is to dissect the list of targets to find the Most Restrictive Target. The accompanying braking curves are extracted and promoted to trailing location calculations. Also the special values of the EOA are exposed.
+
+The other half of the operator creates the requested values for the commands package. These ar in particular the preindication locations for EBD and SBD based targets, the release speed monitoring start locations, the locations for target speed monitoring of the I-, W-, P- and FLOI-curve, the related FLOI speed and the location of the permitted speed supervision limit. Included in the output are also certain flags for the validity of linked values.
+
+%%\paragraph{Reference to the Scade Model}
+%%\textbf{only in special case or link to the Scade model}
 
 \subsubsection{CalcSpeeds in Train Supervision}
 \paragraph{Reference to the SRS or other Requirements (or other requirements)}
