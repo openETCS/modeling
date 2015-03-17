@@ -18,7 +18,7 @@ After applying consistency checks, the data direction is validated.
  \centering
  \includegraphics[width=\textwidth]{./images/Input-Messages4.PNG}
  % Input-Messages4.PNG: 0x0 pixel, 0dpi, nanxnan cm, bb=
- \caption{Structure of the Receive message and check consistency module}
+ \caption{Structure of the Manage\_TrackSideInformation\_Integration module with submodules}
  \label{fig:receiveAndCheckConsistencyArch}
 \end{figure}
 
@@ -257,19 +257,21 @@ The output \texttt{outRadioManagement} provides the messages for radio session m
   \end{tabular} 
   \caption{Possible values for the input \texttt{radioMessageConsistencyError}}
   \label{tbl:radioMessageConsistencyError}
-\end{table}
+\end{table} 
 
+~\\
 
 \subsubsection{Receive\_TrackSide\_Msg in Manage\_TrackSideInformation\_Integration}
+
 \paragraph{Reference to the SRS (or other requirements)}
 \begin{itemize}
-  \item Definition of the Balise Telegram: subset 26 section 7 and 8
-  \item Interface to the BTM: Subset 36, section  4.2.2, 4.2.4, 4.2.9
-  \item Handling of Balise Telegrams: Subset 26, sections 3.4.1 - 3.4.3, 3.16.2
-  \item Check of the balise group Subset 26, section 3.16.2
-  \item Determining the Orientation: 3.4.2
-  \item Active Functions Table: 4.5.2
-  \item Rules for Euroradio messages: Subset 26, chapter 8.4.4
+  \item \cite[Chapt.~7 and 8]{subset-026}: Definition of the Balise Telegram
+  \item \cite[Chapt.~4.2.2, 4.2.4, 4.2.9]{subset-036}: Interface to the BTM
+  \item \cite[Chapt.~3.4.1 - 3.4.3, 3.16.2]{subset-026}: Handling of Balise Telegrams
+  \item \cite[Chapt.~3.16.2]{subset-026}: Check of the balise group
+  \item \cite[Chapt.~3.4.2]{subset-026}: Determining the orientation
+  \item \cite[Chapt.~4.5.2]{subset-026}: Active Functions Table
+  \item \cite[Chapt.~8.4.4]{subset-026}: Rules for Euroradio messages
 
 \end{itemize}
 \paragraph{Short description of the functionality}
@@ -295,10 +297,10 @@ The SCADE model can be found on github under the following path:
 \subsubsection{CheckBGConsistency in Manage\_TrackSideInformation\_Integration}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function. 
 \paragraph{Reference to the SRS or other Requirements (or other requirements)}
 \begin{itemize}
-  \item Definition of the Balise Telegram: subset 26 section 7 and 8
-  \item Handling of Balise Telegrams: Subset 26, sections 3.4.1 - 3.4.3, 3.16.2
-  \item Check of the balise group Subset 26, section 3.16.2
-  \item Active Functions Table: 4.5.2
+  \item \cite[Chapt.~7 and 8]{subset-026}: Definition of the Balise Telegram
+  \item \cite[Chapt.~3.4.1 - 3.4.3, 3.16.2]{subset-026}: Handling of Balise Telegrams
+  \item \cite[Chapt.~3.16.2]{subset-026}: Check of the balise group
+  \item \cite[Chapt.~4.5.2]{subset-026}: Active Functions Table
 \end{itemize}
 \paragraph{Short description of the functionality}
 This function has the task  to verify the completeness and correctness of the received messages from balise groups.\\
@@ -327,8 +329,8 @@ The SCADE model can be found on github under the following path:
 \subsubsection{CheckEuroradioMessage in Manage\_TrackSideInformation\_Integration}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function. 
 \paragraph{Reference to the SRS or other Requirements (or other requirements)}
 \begin{itemize}
- \item SRS subset 26, chapter 8.4.4: Rules for Euroradio messages
- \item SRS subset 26, chapter 3.16: Data consistency
+ \item \cite[Chapt.~8.4.4]{subset-026}: Rules for Euroradio messages
+ \item \cite[Chapt.~3.16]{subset-026}: Data consistency
 \end{itemize}
 \paragraph{Short description of the functionality}
 
@@ -337,35 +339,36 @@ The function ``CheckEuroradioMessage'' has to perform several checks on the rece
 The bitwalker is responsible for checking the validity of the values in fields. If a consistency error is detected by the bitwalker, it is signalled to the model. If the bitwalker marks a packet as valid, all variables are expected to contain a valid value.
 
 \paragraph{Interface}
+The macrofunction expects a radio message, information about the timestamp of the last relevant event, the national value for timeout (\texttt{T\_NVCONTACT}) and the status of the radio connection as input. The macrofunction provides as output the radio message marked as valid or invalid and boolean flags if any errors were detected.
 
 \paragraph{Functional Design Description}
 \begin{itemize}
  \item Content checks
  \begin{itemize}
     %\item The computed length of the message must be equal to the value in \texttt{L\_MESSAGE}. (SRS 8.4.4.2.1)
-    \item The whole message must be complete and contains all necessary fields. (SRS 3.16.1.1)
-    \item The message must respect the ETCS language. (SRS 3.16.1.1)
-    \item The variables of the message does not contain invalid values. (SRS 3.16.1.1) % already done by API?
-    \item Check if the specified priority of message is equal to the priority with which the message was received. (SRS 3.16.3.1.3.1) 
+    \item The whole message must be complete and contains all necessary fields. \cite[3.16.1.1]{subset-026}
+    \item The message must respect the ETCS language. \cite[3.16.1.1]{subset-026}
+    \item The variables of the message does not contain invalid values. \cite[3.16.1.1]{subset-026} % already done by API?
+    \item Check if the specified priority of message is equal to the priority with which the message was received. \cite[3.16.3.1.3.1]{subset-026}
   \end{itemize}
   \item Timing checks
   \begin{itemize}
-    \item Check if the timestamp of a message is greater than the timestamp of the former message (SRS 3.16.3.3.3)
-    \item If a message contains the timestamp ``Unknown'', check if this message is part of the initiation of the communication session. (SRS 3.16.3.3.4)
-    \item Perform the check with the current packet $n$:  $T\_TRAIN_{n} <= T\_TRAIN_{n-1} + T\_NVCONTACT$ (SRS 3.16.1.1). This ensures, that the packet was received in due time.
+    \item Check if the timestamp of a message is greater than the timestamp of the former message \cite[3.16.3.3.3]{subset-026}
+    \item If a message contains the timestamp ``Unknown'', check if this message is part of the initiation of the communication session. \cite[3.16.3.3.4]{subset-026}
+    \item Perform the check with the current packet $n$:  $T\_TRAIN_{n} <= T\_TRAIN_{n-1} + T\_NVCONTACT$ \cite[3.16.1.1]{subset-026}. This ensures, that the packet was received in due time.
   \end{itemize}
 \end{itemize}
 
 For inconsistent messages, the following actions need to be performed by the module:
 
 \begin{itemize}
-  \item If a message is not consistent, it shall be rejected (SRS 3.16.3.1.1.1). For this purpose, the message is marked as invalid.
-  \item The RBC shall be informed, when a message was rejected (SRS 3.16.3.1.1.2). Therefore the necessary information for creating an error report is provided as an output. 
+  \item If a message is not consistent, it shall be rejected. \cite[3.16.3.1.1.1]{subset-026} For this purpose, the message is marked as invalid.
+  \item The RBC shall be informed, when a message was rejected. \cite[3.16.3.1.1.2]{subset-026} Therefore the necessary information for creating an error report is provided as an output. 
   %\item If the RBC requested an ACK for a received message, message will be marked for the module to send a report to the RBC. (SRS 3.16.3.5)
   \item This module will not trigger the reaction for an interrupted radio connection to the RBC. The reaction sepcified by \texttt{M\_NVCONTACT} will be triggered by the RBC session management module.
 \end{itemize}
 
-The check by the Euroradio-protocol (SRS 3.16.3.1.1) will not be performed by the model, but on a lower level (RTM or openETCS-API).
+The check by the Euroradio-protocol \cite[3.16.3.1.1]{subset-026} will not be performed by the model, but on a lower level (RTM or openETCS-API).
 
 Safe connection supervision is not in the scope of this module. This functionality will be implemented by the ``Manage Radio communication'' module.
 
@@ -385,6 +388,7 @@ The SCADE model can be found on github under the following path:
 This function determines for direction information of the LRBG, an (ordinary) balise group or a radio message, whether this information is valid or not. The function takes as an input the LRBG, the balise groups passed and the train position and outputs the input extended with validity information.
 
 \paragraph{Interface}
+The macrofunction expects a message and information about the LRBG, passed balises and the current train position. As output, the message with packets valid for the current direction of driving is provided.
 \paragraph{Functional Design Description}
 \begin{itemize}
  \item The module contains two processing paths for either a radio message or for a balise message.
