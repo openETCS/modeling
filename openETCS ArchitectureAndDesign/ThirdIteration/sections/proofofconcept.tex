@@ -1,8 +1,8 @@
 %-----------------------------------------------------------------------
-%\subsection{Mode and Level}
+%\subsection{Proof of concept}
 %-----------------------------------------------------------------------
 %\tbc
-%Baseliyos Jacob
+%Baseliyos Jacob and Jakob G.
 
 \section{Proof of concept on the Track Utrecht Amsterdam User Stories 1 - 4}
 
@@ -79,12 +79,15 @@ The following Subsystems needs to be realised for Scenario 4:\\
 \item Building of coordinate system
 \end{itemize}
 
+%\tbc
+%Jakob G.
 \section{Environment model for the use case demonstrations}
 
 %
-% nice screenshots needed!
+% 
 %
 %
+
 
 In order to dynamically explore and demonstrate the openETCS OBU kernel software, a dynamic simulation and demonstration environmental model is being created.
 During Iteration 3, this comprises the following features and functionalities:\\
@@ -99,7 +102,8 @@ During Iteration 3, this comprises the following features and functionalities:\\
 \\
 \\
 
-
+%\tbc
+%Jakob G.
 (see Figure \ref{fig:WP3-demo}.)
 	
 \begin{figure}
@@ -119,21 +123,101 @@ This environment model will be fourthly enhanced during the last project period,
 •   Allow full dynamic simulation of the Utrecht- Amsterdam line\\
 •   Form a basis for a (future) dynamic track simulator, which models the balise locations, balise messages and RBC messages for any given line, and which can automatically be generated from engineering datasets.\\
 •   Provide a full track model for the purposes of openETCS\\
-\\
 
-(see Figure \ref{fig:track-dynamic}.)
+The principle of this model is shown in Figure \ref{fig:track-dynamic}. 
+The idea is to split the model in two parts:\\
+•  	Generic functions, that represent the behaviour of the trackside installations (for example balise groups, RBC reception, RBC sending)\\
+•  	Data that instantiate these generic functions (for example balise locations, balise message/ packet data, radio message/ packet data)\\
+
+This simulation approach is designed to be adaptable to very different kinds of scenarios:\\
+
+•  	Proof of concept in openETCS: Amsterdam- Utrecht line\\
+In that case we have a partially known line (balise locations and track topology are known, messages and packets are known "as-is" from JRU data owned by the partners.
+We have been using SCADE graphical notation for the development of the concept in order to disseminate it more easily.
+The models will however be instantiated by automatic conversion of engineering and JRU data to simulation scenarios for "nominal" operations validation.
+Specific test cases will either be transformed by script from test data bases (in WP4) or can also be graphically modelled (for user validation scenarios or demonstration purposes).\\
+•  	OBU validation for existing tracks\\
+Once the concept and simulation environment have been validated in openETCS context, the tooling can be used to import track data from other tracks, such as the Corridor A, in order to develop interoperable ETCS specifications. \\
+•  	Track validation for existing OBUs (or against the TSI)
+With a validated OBU software model, the system can also be used to validate new track layouts.\\
+Dynamic track simulation opens new dimensions of attacking the interoperability issues that Europe is facing.\\
+%
+%
+%\tbc
+%Jakob G.
+\subsection{Model concept}
+
+Traditionally, most ETCS simulators use predefined simulation scenarios, which define the inputs to the model at predefined steps.
+They can either be time triggered (update every n time units), distance- oriented (update every n distance units) or cycle- oriented (update every simulation cycle)
+
+The disadvantage of such an approach is clear: all parameters have to be predefined and pre-validated, for example to simply make sure that the time/ distance ratio is consistent.
+In such a setting it is very difficult to simulate events in just one dimension (independently of the other parameters).
+
+By creating functional models of the track elements and combining them with data we are now able to explore much more complex scenarios with for example interactive driver interaction, thus not only exploring the implementation of the OBU or the engineering / layout of the track, but also the impact on operational procedures, human factors.
+
+As all events can be recorded and replayed and are based on a formal model (also for the track model and engineering data), the entire environment can be validated and potentially even be certified.
+The same EN50128 certifiable toolchain is used that serves the consortium for modelling of the OBU itself.
+
+The basic concept is very simple, but can be developed into a full dynamic track and RBC model.
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{POC-story00.png}
+  \caption{High- level view of dynamic model with Balises and Radio Block Center}
+  \label{fig:track-story00}
+ \end{figure}
+One functional block represents the balises, one functional block represents the RBC (see Figure \ref{fig:track-story00}.) When train movement is simulated, the functional blocks representing the balises and the RBC, respectively, receive the steadily updated train position (via the input "Loc") and react accordingly.
+When a balise group detects a passing train, it reacts accordingly by emitting the defined messages and packets.
+
+In an analog way, the RBC block reacts as defined when it receives a train to track message from the simulated OBU by emitting the appropriate set of messages and packets.
+While the functionality of the balise groups is modelled in order to reflect their behaviour, they are instantiated using parameter sets that are defined as SCADE constants.
+One dataset each defines:\\
+
+•  	Balise positions (from engineering data)\\
+(see Figure \ref{fig:Balise-Position-Data}.)\\
+
+In this example, the balise's engineering data have a local coordinate system (km on track, nominal orientation in direction of Amsterdam or Utrecht, respectively, and orientation of the line (Z= zuid, Dutch for southbound, N= northbound)
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{Balise-Position-Data.png}
+  \caption{Example of balise position data}
+  \label{fig:Balise-Position-Data}
+\end{figure}
+
+•  	Balise messages and packets (from JRU data)\\
+(see Figure \ref{fig:BalsieMessageHeaders}.)\\
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{BalsieMessageHeaders.png}
+  \caption{Example of Balise Message Header Data}
+  \label{fig:BalsieMessageHeaders}
+\end{figure}
+
+Actual data from the Utrecht- Amsterdam line can be seen in this example. Typical for a Level 2 line is that most balise groups are only used as positional reference for the train.
+The balise groups are then put together to a "track" which emits telegrams as the train "passes" over it.
+This concept is scaleable and the balises can equally instantiated using textual Scade models which can automatically from (for example) JRU data.
+(see Figure \ref{fig:Balises5}.)\\
 	
 \begin{figure}
   \centering
-  \includegraphics[width=\linewidth]{POC-track-dynamic.png}
-  \caption{Schematic view of dynamic track model}
-  \label{fig:track-dynamic}
+  \includegraphics[width=\linewidth]{Balises5.png}
+  \caption{Graphical representation of five balise groups}
+  \label{fig:Balises5}
 \end{figure}
 
-%
-%
-%
-%
+•  	RBC messages and packets (from JRU data). The modelling of the RBC follows a heavily simplified concept at the moment: The simulated RBC emits telegrams/messages/packets in predefined situations. For example, the reception of a specific train-to-track message such as a specific position report triggers emission of a set of messages and packets, such as a complete Movement Authority message with packets for international static speed profile, national values, gradient profile, MA, etc.
+The functional block may seamlessly be replaced with a full RBC simulation. \ref{fig:RBC-example-data}. shows a dataset representing RBC packets in SCADE constant format.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{RBC-example-data.png}
+  \caption{Example of Radio Message and Packet data}
+  \label{fig:RBC-example-data}
+\end{figure}
+•  	Potentially, any required data set can be defined on both the input side (static data or scenarios) and on the output side (expected outcome for validation)
 
-
+%
+%
+%
+%
