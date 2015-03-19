@@ -408,20 +408,42 @@ The SCADE model can be found on github under the following path:
 \tiny\url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/ManageLocationRelatedInformation/BaliseGroup/ValidateDataDirection}
 \normalsize
 
-\subsubsection{InformationFilter in Manage\_TrackSideInformation\_Integration}%Mainfunction Train Supervision. Name should be be defined and substituded by the designer of the function. 
-\paragraph{Reference to the SRS or other Requirements (or other requirements)}
+\subsubsection{InformationFilter in Manage\_TrackSideInformation\_Integration}
+
+\paragraph{Reference to the SRS and other requirements}
 \begin{itemize}
- \item The functionality of Select Usable Info is described in Chapter 4.8 of subset-026 \cite{subset-026}. The following list gives an overview of the most important sections for each of the blocks in the model.
- \item § 4.8.2, § 4.8.2, § 4.8.3, § 4.8.4
+ \item The functionality of the Informationfilteris described in \cite[Chapter~4.8]{subset-026}.
 \end{itemize}
 
 \paragraph{Short description of the functionality}
-The function Select Usable Info filters information received from balises that have been passed, radio messages, and EUROLOOP messages. Filtering is done depending on the mode of the train, the current ETCS level, the type/content of the information, and the transition media of the information. As neither radio messages nor EUROLOOP are part of the first iteration of work, not all functionality of the filter described in the specification is currently implemented.
-\paragraph{Interface}
-\textbf{Input from:} Receive MSG Check Consistency/Coordinate System - track messages and package\\
-Level and Mode Management - Mode and Level State\\
+The function InformationFilter filters incoming information received
+from Eurobalise, Euroradio, and Euroloop. The information is received
+via messages and filtering is done depending on the criteria described
+in \cite[Chapter~4.8]{subset-026}. Messages are only allowed to pass
+the filter if specified critera are met like for example the correct
+mode of the train (e.g. Full Supervision, Shunting, etc.) or the ETCS
+level. Some messages have to be stored in a TransitionBuffer to be
+later reevaluated by the filter again.
 
-\textbf{Output to:} Build Data structure and Location Based/ Build Data Structures Drivers- forwarded packages, messages and variables\\
+\paragraph{Interface}
+The functionality expects messages in the valid direction of train as
+input. Furthermore, the following input are required for the functionality:
+
+\begin{itemize}
+\item The current ETCS Level
+\item The current train mode
+\item The device id which communicates with the current supervising
+  RBC
+\item Information if a ETCS Level 1 or ETCS Level 2/3 or ETCS NTC
+  transition is pending
+\item Information if the acknowledgement of train data is pending
+\item Information if the emergency brake is active
+\item The id of the last acknowledged message ID
+\item Information if the cab is active
+\item Information if the train data is valid
+\end{itemize}
+
+The output is the filtered input message.
 
 \begin{figure}[hbtp]
 \centering
