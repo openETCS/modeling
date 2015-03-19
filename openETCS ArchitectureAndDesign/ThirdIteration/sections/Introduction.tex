@@ -4,15 +4,19 @@
 %-----------------------------------------------------------------------
 %\tbc
 %
-
 \section{Motivation}
 %\tbc
 	%BaseliyosJacob
-The openETCS work package 3 (WP3) aims to provide – amongst others - the software architecture for the openETCS kernel in order to eventually build the software itself. WP3  partner has put great effort in the openETCS software design, thus far without making definite choices on the software architecture itself respective of functional breakdown and data structures of the openETCS kernel. Since the project planning foresees in the production of a reference software to be used as a demonstrator by June 2015, it is of paramount importance that a first design delivarable of the openETCS kernel architecture be finalized shortly but no later than November 2014.\\
+	%additions / changes by JakobGärtner
+The openETCS work package 3 (WP3) aims to provide – amongst others - the software architecture for the openETCS kernel in order to eventually build the software itself. 
 
-In compliance with the agreements made during the last WP 3 meeting at the 10.09.2014 in Brussels, DB has taken the initiative to design the aforesaid architecture including of functional breakdown and data structures in order to safeguard a timely delivery of these products. Furthermore, DB has ensured that these developments are focused on including end user requirements so as to develop a design in conformity with the needs and requirements of the operators. Specialists of DB and NS have cooperated together with other partners in WP3 to produce this document.\\
+The WP3  partners had by the end of 2014 put great effort in the openETCS software design, thus far without making definite choices on the software architecture itself respective of functional breakdown and data structures of the openETCS kernel. Since the project planning foresees in the production of a reference software to be used as a demonstrator by June 2015, it was of paramount importance that a first design delivarable of the openETCS kernel architecture be finalized shortly but no later than November 2014.\\
 
-As referred to above, the architecture description has to be finalized in the month of November 2014. This version of the document is a draft version, demonstrating the general directions and philosophy of the architectural design, the functional breakdown of the software and the data structures. The design is focused on maximum efficiency in order to maximize on RAMS performance of the end product.\\
+In compliance with the agreements made during the last WP 3 meeting at the 10.09.2014 in Brussels, DB has taken the initiative to design the aforesaid architecture including of functional breakdown and data structures in order to safeguard a timely delivery of these products. Furthermore, DB has ensured that these developments are focused on including end user requirements so as to develop a design in conformity with the needs and requirements of the operators. Specialists of DB and NS have cooperated together with other partners in WP3 to produce the main concepts of the system .\\
+
+In Novermber 2014, DB has invested by adding an external embedded software specialist in order to fully profit from the decisions that lead to the consolidation of the openETCS toolchain and to set up a design process that would lead to a first demonstration in March 2015\\
+
+This document shows a snapshot of the software and will also give an outlook to the scope of the next iteration and the final objectives.\\
 
 
 \section{Objectives}
@@ -42,7 +46,7 @@ The prime objective of WP3 is to produce a fully formal prototype for the openET
 %JakobGärtner
 
 
-\section{Objectives and scope of deliverables}
+\section{Scope of deliverables}
 
 The prime original objective of WP3 was to produce a rapid prototype for the openETCS reference system that can function as a demonstrator in collaboration with WP 4 and WP 5  for the openETCS approach and will be used as such in the final phase of the project. That phase is the first half of 2015. \\
 
@@ -74,7 +78,7 @@ If we take this approach, we can use the iterative development method, while app
 Each main WP3 collateral has it's distinct role in the overall project structure. For a schematic view of the dependencies, see figure \ref{fig:doc-rels}. \\
 
 
-\textbf{Objectives and scope related to the ADD document (this document)}\\
+\textbf{Scope of the ADD document (this document)}\\
 
  
 
@@ -105,7 +109,7 @@ The nature of the development process implies that this document will be a "livi
 
 Intermediate work iteration shall be managed using the normal day-to-day pull/ review process, while main releases require a formal document sign-off.\\
 
-\textbf{Objectives and scope related to User Validation Scenario Document}\\
+\textbf{Scope of the User Validation Scenarios}\\
 
 The work of WP3 has now been aligned to the milestones that are relevant for the overall project:
 
@@ -158,7 +162,7 @@ In cooperation with WP4 and WP5 this will provide additional input for demonstra
 
 
 
-\textbf{Objectives and scope related to the RFC process}\\
+\textbf{Scope of the RFC process}\\
 
 
 The RFC document is a deliverable that was added to the WP3 set of documents during the Nov 3-7, 2014 Munich workshop.\\
@@ -198,7 +202,8 @@ During the previous iterations of this document, it was proposed to use a tradit
 We have now shifted the design paradigm to a more agile process, where we will use iterations (functional analysis, implementation of prototype formal executable model, refinement) in order to design the software modules. (bottom- up design of modules)\\
 These will then be merged into a top- down architecture by the chief architect, using best practises that are well established for data- flow oriented software designs.\\
 
-The result will be a functional, formal model, from which code can be generated that implements the functionality fo the various stages of the demonstrator, the final implementation on the Alstom EVC, the GE platform, and also additional platforms that may be contributed by the partners beyond the original scope of the project.\\
+The result will be a functional, formal model, from which code can be generated that implements the functionality fin an hardware- independent way.\\
+This code is hardware- and platform agnostic and can be integrated with the openETCS runtime environment, which is adaptable to different system architectures and APIs.\\
 
 
 
@@ -216,51 +221,145 @@ The result will be a functional, formal model, from which code can be generated 
 In the interest of a swift production of the critical documentation of which this version is a draft, specific tasks will be defined in terms of concrete results to be delivered, the timeframes in which these results must be produced and the partner who shall be responsible for that specific result and the planning. This is to safeguard the timely delivery. The process will be described in the next sections.\\
 \end{itemize}
 
-\section{Concept and Process}
 
 
 %\tbc
-%JakobGärtner
-%\begin{itemize}
+%JakobGärtner for the chapter on openETCS design process
 
 
 
-\section{Assumptions and preconditions}
+\section{openETCS Design Process}
+
+
+\subsection{SRS- Driven Approach vs. Functional Approach}
+
+Most attempts to formalise the ETCS onboard software have been focusing on creating models that were directly mirroring the SRS specification.
+While this gives a full picture of the status quo of the SRS, it is not sufficient in order to fully understand the main issues that stem from the approach by which the SRS was conceived. \\
+%
+The SRS is aiming in what could be called the quadrature of the circle:
+\begin{itemize}
+\item Define a common specification of all aspects of the requirements of the ETCS system (Basic System Description, Principles, Functionality, Procedures and Application Level Communication Protocols, amongst others)
+\item Create a framework that is compatible with all the local ways of driving trains
+\item Ensure a framework for simple interoperability 
+\item Give a full understanding of the wayside and onboard views of the system
+\end {itemize}
+
+Instead of building yet another copy-paste direct formalisation of the ETCS SRS, we are proposing a different approach:
+%
+\begin{itemize}
+\item Functional analysis of the SRS
+- onboard point-of view
+- SRS driven
+- Focused on the reference track (ETCS L2 Utrecht- Amsterdam)
+\item Formalisation
+- Executable formal model (using SCADE tool suite)
+- Dynamic simulation 
+\item Validation
+- interface to WP4
+\end{itemize}
+
+Together with the document structure described above, this will for the first time lead to a OBU- centric formalisation of the SRS, with systematic Change Request process (through our RFC approach) and a functional reference that can be used to validate ETCS OBU software as well as wayside implementations once it is completed.\\
+
+\subsection{Top- down vs. Bottom- Up}
+%
+%
+The functional approach, together with other considerations mandated a combined top-down/ bottom up design approach.
+While the basic architecture was derived from existing architectures, with basic concepts and functional breakdown derived from the existing implementations of the WP3 leader, the actual functional analysis and the related software design was built bottom- up.\
+Thanks to the model- based formal design approach, the components could then be seamlessly merged with the top- down architecture.\
+Using this approach, the system and software architecture was at a relatively immature approach when we split the work in order to separately analyse and design the different functional blocks of the system. \
+The openETCS agile approach allows to iteratively integrate and align the top- down architectural view with the separately developed main functional blocks.\
+
+
+\subsection{Working groups}
+%
+%
+While the basic architectural concept has been driven jointly by Alstom, DB and NS, the analysis and design of the functional blocks was distributed into working groups.
+Each working group consists of a combination of application/ analysis specialists and software/ SCADE specialists.\\
+
+\subsection{Use- case driven setting of priorities}
+%
+%
+In order to focalise the work and to ensure our functional approach, DB has taken the role of product owner. 
+As a reminder: in an agile/ SCRUM project management approach, the product owner has the responsibility to represent the interests of the customer.
+The goal being to prove the openETCS concept and model on the ETCS L2 Utrecht- Amsterdam line, DB is formulating a set of at first very basic, then advanced and towards project completion comprehensive and complete scenarios and requirements for demonstration. \\
+In- line with agile project management methodology, these requirements are presented to the WP3 team in the form of "user stories" which help to drive the project priorities. \\
+
+\subsection{integration}
+%
+%
+Integration on openETCS context is focusing on several aspects:
+\begin{itemize}
+%
+\item Integration of SCADE functional blocks with overall SCADE architectural model
+%
+In a SCADE context, model-to-model integration is straightforward. As each functional block has a clear interface and all blocks have identical semantics we could follow an iterative, constructive and agile approach.
+Integration was mainly driven by alignment of interfaces and validated by interactive simulation. 
+%
+%
+\item Integration of openETCS model with WP3 simulation environment 
+%
+For the March 2015 ITEA review, a simple dynamic simulation environment was set up using SCADE tools (SCADE Display to build a first version of an openETCS DMI software, SCADE Rapid Prototyper to interact with the simulator).
+Integration of the openETCS OBU software model followed the same principles as model-to-model integration.
+The same concept will be extended for a full dynamic simulation of the Utrecht-Amsterdam line in interaction with the openETCS reference model.
+%
+%
+\item Integration of openETCS model with openETCS runtime
+%
+Currently, the demonstration is purely on model/ simulation level. However, since the openETCS toolchain allows for automatic code generation, we will integrate the generated code with the openETCS runtime. 
+As the generated code is strictly target agnostic, integration can be adapted very flexibly to different hosts and execution models.
+Details of this integration phase will be discussed in the final version of this document, a first overview is given in the section discussing the APIs.
+%
+%
+%\item Integration on EVC/ openETCS OBU
+%
+%The actual hardware integration 
+%  ---------(this item is deferred for now// Jakob)
+%
+\end{itemize}
+
+\subsection{Towards EN50128 SIL4 objectives, interface to WP4}
+
+One of the objectives of openETCS is to demonstrate feasibility of the approach and concept in a CENELEC context.
+While we are focusing on analysis and design for now, we will also formulate a certification strategy.
+
+An actual EN50128 certification of the openETCS software is beyond the scope of this project.
+
+
+%
+% The following section commented out.
+%
+%REASON: this is/was an internal directive 
+
+
+%\section{Assumptions and preconditions}
 %\tbc
 %Baseliyos Jacob
-\begin{itemize}
-\item All future contributions shall be fully aligned an compliant the finalized and approved document 
-\item Alls documents produced by the partners are requested to be compliant and merge to this document; other contributions will be discarded
-\textbf{The workshops are all about working as swift, as efficient and as productive as possible and make full use of the potential made available for these workshops by the partners. It is expected that the partners in the workshops will have the express intention to:}
-\item Contribute to the workshops with the intention to finalize the openETCS architecture;\\
-\item Provide resources according to the agreements made prior to the Workshops;\\
-\item Focus primarily on  getting concrete results regardless of methodological issues that might arise. Where necessary or opportune, classical project management methodology will be applied;\\
-\item Provide full transparency with respect to experience, knowledge base and information touching the subjects to be treated in the workshops;\\
-\item Document on paper or electronically all output of the workshops and integrate these with the underlying document;\\
-\item Restrict discussions only to topics that have an immediate impact on the content or the quality of the end product: the improved version of this document.\\
-\end{itemize}
+%\begin{itemize}
+%\item All future contributions shall be fully aligned an compliant the finalised and approved document 
+%\item Alls documents produced by the partners are requested to be compliant and merge to this document; other contributions will be discarded
+%\textbf{The workshops are all about working as swift, as efficient and as productive as possible and make full use of the potential made available for these workshops by the partners. It is expected that the partners in the workshops will have the express intention to:}
+%\item Contribute to the workshops with the intention to finalise the openETCS architecture;\\
+%\item Provide resources according to the agreements made prior to the Workshops;\\
+%\item Focus primarily on  getting concrete results regardless of methodological issues that might arise. Where necessary or opportune, classical project management methodology will be applied;\\
+%\item Provide full transparency with respect to experience, knowledge base and information touching the subjects to be treated in the workshops;\\
+%\item Document on paper or electronically all output of the workshops and integrate these with the underlying document;\\
+%\item Restrict discussions only to topics that have an immediate impact on the content or the quality of the end product: the improved version of this document.\\
+%\end{itemize}
 
 \section{openETCS history and iterations}
 %\tbc
 %BaseliyosJacob
-The openETCS Architecture and Design wil implemented in iterations. The current step (third iteration) is based on a step to implement the kernel functions of the ETCS system. For a better understanding of the scope the Iteration is described in the following.
+The openETCS Architecture and Design is beingimplemented in iterations. The current step (third iteration) is implementing essential kernel functions of the ETCS system. 
+For a better understanding of the scope the Iteration is described in the following.
 
 \textbf{Third Iteration Functional Scope: The OBU functions for Szenarios defined in chapter 3}
 
-The openETCS third iteration architecture and the design of the openETCS OBU software as mainly specified in \cite{subset-026} UNISIG Subset\_026 version\_3.3.0. 
+The openETCS third iteration model is defining the architecture and design of the openETCS OBU software. 
+It is referencing  \cite{subset-026} UNISIG Subset\_026 version\_3.3.0. 
 
-The appropriate functionality has been divided into a list of functions of different complexity to make it more managable by the different designer.
+The appropriate functionality has been divided into a number of functional blocks that are being analysed and designed by work groups (as described in the previous section of this document).
 
-All these functions are object of the openETCS project and have to be analysed from their requirements and subsequently modelled and implemented. With the given manpower in WP 3, a reasonable selection and order of these functions is required for the practical work that allows the distribution of the workload, more openETCS participants to join and leads to an executable---limited---kernel function as soon as possible. 
-
-
-\textbf{The first objective of this third iteration are:}
-\begin{itemize}
-\item ``Make the train run as soon as possible, on the scenarios defined in third iteration \textbf(see chapter 3), and in the form of a rapid prototype".
-This does not contradict the openETCS goal to conform to EN50128.
-\item After a phase of prototyping, the openETCS software shall be implemented in compliance to EN50128 for SIL4 systems.
-\end{itemize}
-
+The third iteration of the openETCS modelling effort is focusing on demonstrating some simple scenarios on the actual (for now simulated) Utrecht- Amsterdam infrastructure.
 
 =======
 %-----------------------------------------------------------------------
