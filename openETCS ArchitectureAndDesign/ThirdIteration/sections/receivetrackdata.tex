@@ -412,7 +412,7 @@ The SCADE model can be found on github under the following path:
 
 \paragraph{Reference to the SRS and other requirements}
 \begin{itemize}
- \item The functionality of the Informationfilteris described in \cite[Chapter~4.8]{subset-026}.
+ \item The functionality of the InformationFilter is described in \cite[Chapter~4.8]{subset-026}.
 \end{itemize}
 
 \paragraph{Short description of the functionality}
@@ -426,61 +426,83 @@ level. Some messages have to be stored in a TransitionBuffer to be
 later reevaluated by the filter again.
 
 \paragraph{Interface}
-In table \ref{tbl:InformationFilterInterface} the interface is provided.
+The interface of the information filter contains mainly the incoming
+message and inputs to check for the conditions described in the
+SRS. The complete interface is shown in table \ref{tbl:InformationFilterInterface}.
 
 \begin{minipage}{\linewidth}
   \scriptsize
   \begin{tabular}{| l | l | l |}
     \hline
-    \textbf{Name}                & \textbf{Direction} & \textbf{Description}                                   \\ 
+    \textbf{Name}                    & \textbf{Direction} & \textbf{Description}                                        \\ 
     \hline
-    \texttt{inMessage}           & \texttt{IN}        & Received message that is valid for the train direction \\
-    \texttt{inLevel}             & \texttt{IN}        & The current ETCS Level                                 \\
-    \texttt{inMode}              & \texttt{IN}        & The current train mode                                 \\
-    \texttt{inSupervisingDevice} & \texttt{IN}        & The device id which communicates with the current supervising
-  RBC                                                                                                          \\
-    \texttt{inPendingL1Transition} & \texttt{IN} & Information if an ETCS Level 1 transition is pending \\
-    \texttt{inPendingL1L2Transition} & \texttt{IN} & Information if an ETCS Level 2/3 transition is pending \\
-    \texttt{inPendingNTCTransition} & \texttt{IN} & Information if a NTC transition is pending \\
-    \texttt{inPendingAckOfTrainData} & \texttt{IN} & Information if the acknowledgement of train data is pending \\
-    \texttt{inEmergencyBrakeActive} & \texttt{IN} & Information if the emergency brake is active \\
-    \texttt{inLastAckTextMessageId} & \texttt{IN} & The id of the last acknowledged message ID \\
-    \texttt{inActiveCab} & \texttt{IN} & Information if the cab is active \\
-    \texttt{inTrainDataValid} & \texttt{IN} & Information if the train data is valid \\
-    \texttt{outMessage} & \texttt{OUT} & The filtered input message \\
+    \texttt{inMessage}               & \texttt{IN}        & Received message that is valid for the train direction      \\
+    \texttt{inLevel}                 & \texttt{IN}        & The current ETCS Level                                      \\
+    \texttt{inMode}                  & \texttt{IN}        & The current train mode                                      \\
+    \texttt{inSupervisingDevice}     & \texttt{IN}        & The device id which communicates with the current supervising
+  RBC                                                                                                                   \\
+    \texttt{inPendingL1Transition}   & \texttt{IN}        & Information if an ETCS Level 1 transition is pending        \\
+    \texttt{inPendingL1L2Transition} & \texttt{IN}        & Information if an ETCS Level 2/3 transition is pending      \\
+    \texttt{inPendingNTCTransition}  & \texttt{IN}        & Information if a NTC transition is pending                  \\
+    \texttt{inPendingAckOfTrainData} & \texttt{IN}        & Information if the acknowledgement of train data is pending \\
+    \texttt{inEmergencyBrakeActive}  & \texttt{IN}        & Information if the emergency brake is active                \\
+    \texttt{inLastAckTextMessageId}  & \texttt{IN}        & The id of the last acknowledged message ID                  \\
+    \texttt{inActiveCab}             & \texttt{IN}        & Information if the cab is active                            \\
+    \texttt{inTrainDataValid}        & \texttt{IN}        & Information if the train data is valid                      \\
+    \texttt{outMessage}              & \texttt{OUT}       & The filtered input message                                  \\
     \hline
   \end{tabular}
   \captionof{table}{Overview of the InformationFilter interface}
   \label{tbl:InformationFilterInterface}
 \end{minipage}
 
-\begin{figure}[hbtp]
-\centering
-\includegraphics[scale=0.7]{images/FilterInandOUt}
-\caption{Filter In and out}
-\end{figure}
-
-\subsubsection{SysML Model}
-\begin{figure}[hbtp]
-\centering
-\includegraphics [scale=0.5]{images/SysMLFilter}
-\caption{SysML Filter}
-\end{figure}
-
 \paragraph{Functional Design Description}
-The fillter receives track information (balise an radio) and will filter them in dependency of the mode and level.
-Therefore the filter needs the input from level and mode management. The filtered information will be forwarded to the data strcuture.
 
-\begin{description}
-\item[First filter] The first filter, i.e.~the filter on the level, is described in \cite[Chapter~4.8.3]{subset-026}.
-\item[Second filter] The second filter, i.e.~the filter on the transition media, is described in\cite[Chapter~4.8.3]{subset-026}.
-\item[Third filter]
- The third filter, i.e.~the filter on the modes, is described in \cite[Chapter~4.8.4]{subset-026}.
-\item[Transition buffers] Details on the handling of the transition buffers used in the first and the second filter are described in \cite[Chapter~4.8.5]{subset-026}.
-\end{description}
+\begin{figure}[hbtp]
+\centering
+\includegraphics [scale=0.8]{images/informationfilter-high-level-rot.png}
+\caption{High level overview of the InformationFilter components.}
+\label{fig:InformationFilterHighLevel}
+\end{figure}
+
+The filter receives track information (balise and radio) and filter
+them depending of the mode, level and further information. Only
+messages that pass the filter are valid and should be considered by
+other ETCS subsystems. The figure \ref{fig:InformationFilterHighLevel}
+show the high\-level decomposition of the functionality. The filter
+functionality can be decomposed into a FirstFilter, SecondFilter,
+ThirdFilter an TransitionBuffer.
+
+\paragraph{FirstFilter} This filter performs filtering of messages
+based on the current ETCS level. The decisions taken process is
+described via a big decision table which contains rows for every
+packet and columns for every ETCS level. This table encodes also if
+certain additional information is necessary to filter a message like
+pending ETCS Level transitions. Based on this filter packets of an
+incoming message is either rejected, accepted or the whole message is
+put in the TransitionBuffer. Messages are put in the TransitionBuffer
+if there is an announced level transition and the received message is
+only valid for the upcoming level.
+
+\paragraph{SecondFilter} The SecondFilter mainly considers messages
+that are received via Euroradio. Certain messages are directly
+rejected while other may be stored in the TransitionBuffer. The buffer
+is used to store messages that are received from non supervising RBCs,
+but will be reevaluated after a RBC transition.
+
+\paragraph{ThirdFilter} The last filter is functionally very similiar
+the the FirstFilter, however it filters depending on the mode. It also
+contains a decision table with rows for every packet but the columns
+are modes.
+
+\paragraph{TransitionBuffer} The InformationFilter uses two
+TransitionBuffers. One is used to store up to three messages for the
+ETCS level transition and the other buffer is used for RBC
+transitions. The buffer is designed as a ring buffer and message are
+read in FIFO order.
 
 %%%% 
-\subparagraph{Documentation of design}
+\subparagraph{Design notes}
 From § 4.8.1.2 The following sections have to be interpreted by applying the filters and the assigned packets/messages as shown in Figure a and 2. The first filter is detailed in section § 4.8.3 (figure 1) “Accepted information depending on the level and transmission media”, the third filter in section § 4.8.4 (figure 2) “Accepted information depending on the modes”.\\
 
 From § 4.8.1.3 If a message contains level transition information, any other information in that message shall be evaluated considering the level transition information. Explanation: If a message contains level transition information, all other information in that message shall be buffered and level transition shall be read first. Then the remained balise information shall be read from the buffer in the level that was announced to the balise.\\
