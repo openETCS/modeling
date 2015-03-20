@@ -6,7 +6,7 @@
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.95\textheight, angle=90]{../images/speedsupervision.PNG}
+\includegraphics[width=0.95\textheight, angle=90]{../images/speedsupervision.png}
 \caption{Structure of component ProvidePositionReport}\label{fig:ssv}
 \end{figure}
 
@@ -16,7 +16,7 @@ The block ``Train Supervision'' takes as input (1) movement related information 
 
 Based on this information a speed profile is calculated. Speed restrictions create target speeds (targets) that have to be followed. For each such target braking curves are generated to supervise at which location of the track the train must perform the brake. In case of no target restrictions the train may accelerate to the supervised maximum speed of the speed profile. These calculations lead to commands being sent to the driver and the brake system.
 
-The functionality is modeled using four operators, as shown in Figure~\ref{fig:ssv}, which are explained below.
+The functionality is modeled using eight operators, as shown in Figure~\ref{fig:ssv}, which are explained below.
 
 The current status of the analysis of ``Train Supervision'' and a functional breakdown can be found in a separate document, \verb+SpeedSupervision_analysis.pdf+.
 
@@ -29,13 +29,13 @@ For providing the output, the module needs different input data flows. Table \re
   \begin{tabular}{| c | l | l | l | l |}
     \hline
     \textbf{Index} & \textbf{Input name} & \textbf{Input type} & \textbf{Source}\\ \hline
-    0 & \texttt{MRSP} & \texttt{MRSP\_Profile\_t} & ?? \\
-    1 & \texttt{MA} & \texttt{MAs\_t} & ??\\
-    2 & \texttt{NationalValues} & \texttt{P3\_NationalValues\_T} & ???\\
-    3 & \texttt{TrainPosition} & \texttt{trainPosition\_T} & Manage Track Data\\
-    4 & \texttt{odometry} & \texttt{odometry\_T} & Odometry\\
-    5 & \texttt{m\_level} & \texttt{M\_LEVEL} & Mode and Level\\
-    6 & \texttt{trainProps} & \texttt{trainProperties\_T} & Database\\
+    0 & \texttt{NationalValues} & \texttt{P3\_NationalValues\_T} & ???\\
+    1 & \texttt{TrainPosition} & \texttt{trainPosition\_T} & Manage Track Data\\
+    2 & \texttt{odometry} & \texttt{odometry\_T} & Odometry\\
+    3 & \texttt{m\_level} & \texttt{M\_LEVEL} & Mode and Level\\
+    4 & \texttt{trainProps} & \texttt{trainProperties\_T} & Database\\
+    5 & \texttt{MRSP} & \texttt{MRSP\_Profile\_t} & ?? \\
+    6 & \texttt{MA} & \texttt{MAs\_t} & ??\\
     7 & \texttt{MA\_updated} & \texttt{bool} & internal\\
     8 & \texttt{MRSP\_updated} & \texttt{bool} & internal\\
     \hline
@@ -44,20 +44,20 @@ For providing the output, the module needs different input data flows. Table \re
   \label{tbl:speedsupervisionInput}
 \end{table}
 
-\paragraph{Input 0: \texttt{MRSP}}
-This input is the most restrictive speed profile.
-\paragraph{Input 1: \texttt{MA}}
-This input is a movement authority.
-\paragraph{Input 2: \texttt{NationalValues}}
+\paragraph{Input 0: \texttt{NationalValues}}
 This input is packet 3 of \cite[Chapt.~8]{subset-026}, describing the national values. 
-\paragraph{Input 3: \texttt{TrainPosition}}
+\paragraph{Input 1: \texttt{TrainPosition}}
 This input is the current train position.
-\paragraph{Input 4: \texttt{odometry}}
+\paragraph{Input 2: \texttt{odometry}}
 This input is the odometry data.
-\paragraph{Input 5: \texttt{m\_level}}
+\paragraph{Input 3: \texttt{m\_level}}
 This input is the current level of the train.
-\paragraph{Input 6: \texttt{trainProps}}
+\paragraph{Input 4: \texttt{trainProps}}
 This input is a set of train related properties.
+\paragraph{Input 5: \texttt{MRSP}}
+This input is the most restrictive speed profile.
+\paragraph{Input 6: \texttt{MA}}
+This input is a movement authority.
 \paragraph{Input 7: \texttt{MA\_updated}}
 This flag is true if the movement authority has been updated in this clock cycle and false otherwise.
 \paragraph{Input 8: \texttt{MRSP\_updated}}
@@ -117,35 +117,31 @@ This operator forwards input messages, takes data from complex data types or tra
 \paragraph{Reference to the Scade Model}
 \textbf{only in special case or link to the Scade model}
 
-\subsubsection{TargetManagement in Train Supervision} \marginpar{Ben}
+\subsubsection{TargetManagement in Train Supervision}
 \paragraph{Reference to the SRS or other Requirements (or other requirements)}
 \begin{itemize}
 	\item \cite[Chapt.~3.13.8.2]{subset-026}: Determination of the supervised targets 
 \end{itemize}
 
 \paragraph{Short description of the functionality}
-This operator calculates/updates the list of targets to be supervised by the block ``Train Supervision''. Taking the current movement authority and the most restrictive speed profile as an input, the operator outputs a list of locations corresponding to the most restrictive speed profile, a list of locations corresponding to a limit of authority, the location of an end of authority, or the location of supervised location.
-
-The operator takes as Inputs the Movement Authority, Most Restrictive Speed Profile and the current maximum safe front end position. 
-
-The Output is a single End of Authority Target, a list of all MRSP-Targets and a list of all LoA-Targets.
+This operator calculates/updates the list of targets to be supervised by the block ``Train Supervision''. Taking the current movement authority, the most restrictive speed profile and the current maximum safe front end position as an input, the operator outputs a single End of Authority target, a list of all MRSP-Targets and a list of all LoA-Targets.
   
 \paragraph{Interface}
 
 \paragraph{Functional Design Description}
 \subparagraph{Derivation of Targets from Movement Authority Sections}
-The sections of the \emph{Movement Authority} could cause 2 types of Targets:
-\begin{itemize}
-\item End Of Authority(EoA) - only one could exist and this is only in the \emph{end section} of the \emph{MA}
-\item Limit of Authority (LoA) - is possibly in every section of the \emph{MA} except the end section
-\end{itemize}
-In every Cycle the MA is updated, the operator iterates over the whole MA and put all speed limitations by \emph{LoA}s into a list of targets. The end section is used to derived the \emph{EoA}-Target. All LoA targets are sorted by location.
+The sections of the \emph{Movement Authority} could cause two types of targets:
+\begin{description}
+\item[End Of Authority(EoA)] only one could exist and this is only in the \emph{end section} of the \emph{MA}
+\item[Limit of Authority (LoA)] is possibly in every section of the \emph{MA} except the end section
+\end{description}
+In every cycle in which the MA is updated, the operator iterates through the entire MA and puts all speed limitations by \emph{LoA}s into a list of targets. The end section is used to derived the \emph{EoA} target. All LoA targets are sorted by location.
 
 \subparagraph{Derivation of Targets from MRSP}
-As the \cite[Chapt.~3.13.8.2]{subset-026} says, every speed decrease of the MRSP is used to derive a target. Therefore in every cycle the MRSP is updated, the whole MRSP is iterated to search for all MRSP Targets. For this purpose, every element of the MRSP is compared with its successor. When the calculation arrives the last valid element, the calculation is exited.
+According to \cite[Chapt.~3.13.8.2]{subset-026}, every speed decrease of the MRSP is used to derive a target. Therefore in every cycle in which the MRSP is updated, the operator iterates through the entire MRSP searching for all MRSP targets. For this purpose, every element of the MRSP is compared with its successor.
 
-\subparagraph{Updating of Targets}
-In every cycle the operator monitors all targets, whether they are already passed by iterating over the list of targets comparing the current max safe front end position with the target position.
+\subparagraph{Update of Targets}
+In every cycle the operator monitors whether all targets are already passed. To this end, it iterates over the list of targets comparing the current max safe front end position with the target position.
 
  
 
@@ -153,7 +149,7 @@ In every cycle the operator monitors all targets, whether they are already passe
 \paragraph{Reference to the Scade Model}
 \textbf{only in special case or link to the Scade model}
 
-\subsubsection{CalcBrakingCurves\_Integration in Train Supervision} \marginpar{Ben}
+\subsubsection{CalcBrakingCurves\_Integration in Train Supervision}
 \paragraph{Reference to the SRS or other Requirements (or other requirements)}
 \begin{itemize}
 	\item \cite[Chapt.~3.13.8.3]{subset-026}: Emergency Brake Deceleration curves (EBD)
@@ -163,25 +159,25 @@ In every cycle the operator monitors all targets, whether they are already passe
 	\item \cite[Chapt.~3.13.8.5]{subset-026}: Guidance curves (GUI)
 \end{itemize}
 \paragraph{Short description of the functionality}
-For each type of target a certain braking curve has to be calculated. This curve enables proactive monitoring of the train's speed. A reverse lookup on this braking curve indicates, where the train has to start braking for a given current speed. The braking curve does not depend on the actual train status. As a consequence the braking curve stays constant over time. As a legimit simplification the calculation of the braking curve is not extended past the estimated front end position of the train.
+For each type of target a certain braking curve has to be calculated. This curve enables proactive monitoring of the train's speed. A reverse lookup on this braking curve indicates, where the train has to start braking given the current speed. The braking curve does not depend on the actual train status. As a consequence the braking curve stays constant over time. As a legitimate simplification the calculation of the braking curve is not extended after the estimated front end position of the train has been passed.
 
 \paragraph{Interface}
 
 \paragraph{Functional Design Description}
-The braking curve calculation takes the complex input function $A_{safe}$, which describes the overall braking performance of the train in a speed and position dependent meaning. This two dimensional function needs to be simplified for every target to get a function of position to speed. Each individual target has a position and a speed (a point in the distance speed plane) and is the starting point of the braking curve. The first step is to get the deceleration of the train at the target point from the $A_{safe}$-function. Afterwards the calculation iterates through the $A_{safe}$-function until the current estimated front end position is reached. Two cases can be differentiated:
+The calculation of the braking curve takes the complex function $A_{\mathit{safe}}$ as an input, which describes the overall braking performance of the train in a speed and position dependent meaning. This two-dimensional function needs to be simplified for every target to get a function of position to speed. Each individual target has a position and a speed (a point in the distance speed plane) and is the starting point of the braking curve. The first step is to get the deceleration of the train at the target point from the $A_{\mathit{safe}}$-function. Afterward the calculation iterates through the $A_{\mathit{safe}}$-function until the current estimated front end position is reached. Two cases can be distinguished:
 
 \begin{itemize}
-\item a new distance step of $A_{safe}$ is reached
-\item a new speed step of $A_{safe}$ is reached
+\item a new distance step of $A_{\mathit{safe}}$ is reached
+\item a new speed step of $A_{\mathit{safe}}$ is reached
 \end{itemize}
 
 Both cases are checked and the applicable one is used to calculate a new arc. Every arc of the braking curve consists of:
 \begin{itemize}
-\item distance where the arc begins
-\item speed at the point, where the arc begins
-\item deceleration for the whole arc
+\item the distance where the arc begins,
+\item the speed at the point where the arc begins,
+\item the deceleration for the whole arc.
 \end{itemize}
-An abstract overview of the calculation could be seen in picture \ref{fig:bc_calc}.
+An abstract overview of the calculation could be seen in Fig.~\ref{fig:bc_calc}.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.95\textwidth]{../images/EBD_CalcAlgorithm.png}
@@ -201,7 +197,7 @@ Currently, the model supports the calculation of the following braking curves:
 \paragraph{Reference to the Scade Model}
 \textbf{only in special case or link to the Scade model}
 
-\subsubsection{SDMLimitLocations in Train Supervision} \marginpar{Tho}
+\subsubsection{SDMLimitLocations in Train Supervision}
 \paragraph{Reference to the SRS or other Requirements (or other requirements)}
 \begin{itemize}
 	\item \cite[Chapt.~3.13.9]{subset-026}: Supervision Limits 
@@ -219,24 +215,24 @@ This operator calculates the various locations needed to determine the speed and
   \item \texttt{odometry}, \texttt{trainLocations} External state of train provided by odometry.
   \item \texttt{targetCollection} The different target (list) types wrapped in a structure.
   \item \texttt{curveCollection} The related braking curves correlated to above targets.
-  \item \texttt{$v_{release}$} Release speed as defined by external sources.
-  \item \texttt{$v_{ura}$} Speed under reading amount.
+  \item \texttt{$v_{\mathit{release}}$} Release speed as defined by external sources.
+  \item \texttt{$v_{mathit{ura}}$} Speed under reading amount.
   \item \texttt{inhibitUnderReadingCompensation} A flag defined by National Value, relating to above item.
-  \item \texttt{$T_{bs}$, $T_{be}$, $T_{tractionCutOff}$} Time constants defined externally or in other modules.
+  \item \texttt{$T_{bs}$, $T_{be}$, $T_{\mathit{tractionCutOff}}$} Time constants defined externally or in other modules.
 \end{enumerate}
 \subparagraph{Output}
 \begin{enumerate}
   \item \texttt{locations} Internal type to wrap the locations calculated herein and pass it on directly to SDM-Commands-Operator.
   \item \texttt{MostRestrictiveTarget} An internal structure to contain the information the target based locations are linked to.
   \item \texttt{FLOIisSBI1} Flag is true if First Line of Intervention uses the service brake curve (SBI1) or false if it uses deceleration values based on the emergency brake curve (SBI2).
-  \item \texttt{$v_{target}$} The designated speed of the Most Restrictive Target. This is a convienience reference into the above data structure. 
-  \item \texttt{$v_{MRSP}$} The current Most Restrictive Speed at the Max Save Frontend of the train.
+  \item \texttt{$v_{\mathit{target}}$} The designated speed of the Most Restrictive Target. This is a convenience reference into the above data structure. 
+  \item \texttt{$v_{mathit{MRSP}}$} The current Most Restrictive Speed at the Max Safe Frontend of the train.
 \end{enumerate}
 
 \paragraph{Functional Design Description}
-This operator gathers all necessary input values and computes some frequently used intermediate values in the suboperators \texttt{surplusTractionDeltas} and \texttt{$v_{bec}$}. The other input prepartion operator is the \texttt{TargetSelector} whose main task is to dissect the list of targets to find the Most Restrictive Target. The accompanying braking curves are extracted and promoted to trailing location calculations. Also the special values of the EOA are exposed.
+This operator gathers all necessary input values and computes some frequently used intermediate values in the operators \texttt{surplusTractionDeltas} and \texttt{$v_{\mathit{bec}}$}. The other input preparation operator is the \texttt{TargetSelector} whose main task is to dissect the list of targets to find the Most Restrictive Target. The accompanying braking curves are extracted and promoted to trailing location calculations. Also the special values of the EOA are exposed.
 
-The other half of the operator creates the requested values for the commands package. These ar in particular the preindication locations for EBD and SBD based targets, the release speed monitoring start locations, the locations for target speed monitoring of the I-, W-, P- and FLOI-curve, the related FLOI speed and the location of the permitted speed supervision limit. Included in the output are also certain flags for the validity of linked values.
+The operator creates the requested values for the commands package. These are in particular the preindication locations for EBD and SBD based targets, the release speed monitoring start locations, the locations for target speed monitoring of the I-, W-, P- and FLOI-curve, the related FLOI speed and the location of the permitted speed supervision limit. Included in the output are also certain flags for the validity of linked values.
 
 %%\paragraph{Reference to the Scade Model}
 %%\textbf{only in special case or link to the Scade model}
@@ -248,6 +244,19 @@ The other half of the operator creates the requested values for the commands pac
 \end{itemize}
 \paragraph{Short description of the functionality}
 This operator calculates the various speeds needed to determine the speed and distance monitoring commands.
+\paragraph{Interface}
+\paragraph{Functional Design Description}
+This operator will be integrated into other operators in the next iteration.
+\paragraph{Reference to the Scade Model}
+\textbf{only in special case or link to the Scade model}
+
+\subsubsection{ReleaseSpeed\_Selection in Train Supervision}
+\paragraph{Reference to the SRS or other Requirements (or other requirements)}
+\begin{itemize}
+	\item \cite[Chapt.~3.8]{subset-026}: Movement authority 
+\end{itemize}
+\paragraph{Short description of the functionality}
+This operator outputs the release speed which can be given either by the national values or the movement authority.
 \paragraph{Interface}
 \paragraph{Functional Design Description}
 This operator will be integrated into other operators in the next iteration.
