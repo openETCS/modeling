@@ -501,16 +501,10 @@ ETCS level transition and the other buffer is used for RBC
 transitions. The buffer is designed as a ring buffer and message are
 read in FIFO order.
 
-\subparagraph{table for the filter rules}
-\textbf{Assumptions from § 4.8.2 need to be considered}\\
-\textbf{Explanation}: See figure 1 and 2 – announced packets/messages/variables to the filter. Exception and explanation of the meaning of R and A please read § 4.8.3.\\. 
+A detailed list of packages and their handling depending of ETCS level
+or mode can be seen in table \ref{fig:PackagesListLevel} and
+\ref{fig:PackagesListMode}.
 
-\textbf {Filter rules}: Filter will filter messages, packages and variables. Therefole a rule must be defined to cover all these inputs.\\
-
-\textbf {Explanation figure 1}: will filtering the different inputs in dependency of the level\\
-\textbf {Explanation figure 2}: will filtering the different inputs in dependency of thel mode\\
-
-\subparagraph{Filter on Level}
 \begin{figure}[hbtp]
 \centering
 \includegraphics [scale=0.6]{images/LevelFilter1}
@@ -526,11 +520,11 @@ read in FIFO order.
 \begin{figure}[hbtp]
 \centering
 \includegraphics [scale=0.6]{images/LevelFilter4}
-\caption{Level Filter}
+\caption{Lists of packages and their handling depending on train modes}
+\label{fig:PackagesListLevel}
 \end{figure}
 \newpage
 
-\subparagraph{Filter on Modes}
 \begin{figure}[hbtp]
 \centering
 \includegraphics [angle=90, scale=0.8]{images/FilterMode1}
@@ -541,19 +535,22 @@ read in FIFO order.
 \end{figure}
 \begin{figure}[hbtp]
 \centering
-\caption{Mode Filter}
+\caption{Lists of packages and their handling depending on train modes}
+\label{fig:PackagesListMode}
 \end{figure}
 \newpage
 
-\subparagraph{Filtering (Mode/Level) - One packet per type}
-\textbf{ISSUE: HOW MANY PKT 44, 65 AND 66 PER MESSAGE ARE MAXIMALLY SUPPORTED? (BH: who made this comment??)}\\
+%%\subparagraph{Filtering (Mode/Level) - One packet per type}
+%%\textbf{ISSUE: HOW MANY PKT 44, 65 AND 66 PER MESSAGE ARE MAXIMALLY SUPPORTED? (BH: who made this comment??)}\\
 
-- Check on announced and immediate level transition orders in the messages to be filtered (needed for further criteria for filtering, to decide if the data shall be stored in the transition buffer).\\
-- Filter data stored in the transition buffer according to the current level (what to do if similar information is available in the new message??). Data can be rejected, accepted or kept in the transition buffer.
-(Filtering according to new level will be done directly afterwards in the next cycle)\\
-- Filter new received messages according to the current level (new level will be done in the next cycle as according to \gls{SRS} data first has to be filtered according to old level and afterwards to new level). Data can be rejected, accepted or stored in the transition buffer.\\
-- Filter (level) accepted data according to originating RBC (supervising or other). Information from \gls{BG}'s, loops or RIU is not filtered with this filter.\\
-- Filter (level and RBC) accepted data according to the current mode (only reject or accept)\\
+%% - Check on announced and immediate level transition orders in the messages to be filtered (needed for further criteria for filtering, to decide if the data shall be stored in the transition buffer).\\
+%% - Filter data stored in the transition buffer according to the current level (what to do if similar information is available in the new message??). Data can be rejected, accepted or kept in the transition buffer.
+%% (Filtering according to new level will be done directly afterwards in the next cycle)\\
+%% - Filter new received messages according to the current level (new level will be done in the next cycle as according to \gls{SRS} data first has to be filtered according to old level and afterwards to new level). Data can be rejected, accepted or stored in the transition buffer.\\
+%% - Filter (level) accepted data according to originating RBC (supervising or other). Information from \gls{BG}'s, loops or RIU is not filtered with this filter.\\
+%% - Filter (level and RBC) accepted data according to the current mode (only reject or accept)\\
+
+
 \paragraph{Reference to the Scade Model}
 The SCADE model can be found on github under the following path:
 
