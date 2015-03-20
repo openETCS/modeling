@@ -426,24 +426,33 @@ level. Some messages have to be stored in a TransitionBuffer to be
 later reevaluated by the filter again.
 
 \paragraph{Interface}
-The functionality expects messages in the valid direction of train as
-input. Furthermore, the following input are required for the functionality:
+In table \ref{tbl:InformationFilterInterface} the interface is provided.
 
-\begin{itemize}
-\item The current ETCS Level
-\item The current train mode
-\item The device id which communicates with the current supervising
-  RBC
-\item Information if a ETCS Level 1 or ETCS Level 2/3 or ETCS NTC
-  transition is pending
-\item Information if the acknowledgement of train data is pending
-\item Information if the emergency brake is active
-\item The id of the last acknowledged message ID
-\item Information if the cab is active
-\item Information if the train data is valid
-\end{itemize}
-
-The output is the filtered input message.
+\begin{minipage}{\linewidth}
+  \scriptsize
+  \begin{tabular}{| l | l | l |}
+    \hline
+    \textbf{Name}                & \textbf{Direction} & \textbf{Description}                                   \\ 
+    \hline
+    \texttt{inMessage}           & \texttt{IN}        & Received message that is valid for the train direction \\
+    \texttt{inLevel}             & \texttt{IN}        & The current ETCS Level                                 \\
+    \texttt{inMode}              & \texttt{IN}        & The current train mode                                 \\
+    \texttt{inSupervisingDevice} & \texttt{IN}        & The device id which communicates with the current supervising
+  RBC                                                                                                          \\
+    \texttt{inPendingL1Transition} & \texttt{IN} & Information if an ETCS Level 1 transition is pending \\
+    \texttt{inPendingL1L2Transition} & \texttt{IN} & Information if an ETCS Level 2/3 transition is pending \\
+    \texttt{inPendingNTCTransition} & \texttt{IN} & Information if a NTC transition is pending \\
+    \texttt{inPendingAckOfTrainData} & \texttt{IN} & Information if the acknowledgement of train data is pending \\
+    \texttt{inEmergencyBrakeActive} & \texttt{IN} & Information if the emergency brake is active \\
+    \texttt{inLastAckTextMessageId} & \texttt{IN} & The id of the last acknowledged message ID \\
+    \texttt{inActiveCab} & \texttt{IN} & Information if the cab is active \\
+    \texttt{inTrainDataValid} & \texttt{IN} & Information if the train data is valid \\
+    \texttt{outMessage} & \texttt{OUT} & The filtered input message \\
+    \hline
+  \end{tabular}
+  \captionof{table}{Overview of the InformationFilter interface}
+  \label{tbl:InformationFilterInterface}
+\end{minipage}
 
 \begin{figure}[hbtp]
 \centering
