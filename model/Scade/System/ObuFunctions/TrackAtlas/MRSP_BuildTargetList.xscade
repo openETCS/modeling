@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Operator kind="function" visibility="private" name="MRSP_BuildTargetList">
+			<inputs>
+				<Variable name="SSP_Matrix_In">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="SSP_t_matrix_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/23dbf/2D55/A38/551eb34110c2"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="SSP_list_out">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="SSP_t_list_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/23dda/2D55/A38/551eb3ce3ac4"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<locals>
+				<Variable name="_L1">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="SSP_t_indexed_matrix_element"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="DIM_SSP"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/23d94/2D55/A38/551eb29515d7"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L2">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="SSP_t_list_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/23db4/2D55/A38/551eb32866a6"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L3">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="SSP_t_matrix_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/23dc1/2D55/A38/551eb343308a"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L4">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="SSP_t_matrix_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/23dce/2D55/A38/551eb37df3f"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- _L4, _L1 = ( mapfold MRSP_BuildTargetList_LOOP<<DIM_SSP>>)(_L3, _L2); -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L4"/>
+						<VariableRef name="_L1"/>
+					</lefts>
+					<right>
+						<!-- ( mapfold MRSP_BuildTargetList_LOOP<<DIM_SSP>>)(_L3, _L2) -->
+						<CallExpression>
+							<operator>
+								<IteratorOp iterator="mapfold">
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="MRSP_BuildTargetList_LOOP"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="DIM_SSP"/>
+											</path>
+										</IdExpression>
+									</size>
+								</IteratorOp>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L3"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L2"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/23d6a/2D55/A38/551eb1583be4"/>
+					</pragmas>
+				</Equation>
+				<!-- _L2 = DEFAULT_SSP_targets; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L2"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="DEFAULT_SSP_targets"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/23db3/2D55/A38/551eb3287125"/>
+					</pragmas>
+				</Equation>
+				<!-- _L3 = SSP_Matrix_In; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L3"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="SSP_Matrix_In"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/23dc0/2D55/A38/551eb3431320"/>
+					</pragmas>
+				</Equation>
+				<!-- _ = _L4; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/23dcf/2D55/A38/551eb3a21a29"/>
+					</pragmas>
+				</Equation>
+				<!-- SSP_list_out = _L1; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="SSP_list_out"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/23ddb/2D55/A38/551eb3d0a1a"/>
+					</pragmas>
+				</Equation>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/23d66/2D55/A38/551eb13a797" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<diagrams>
+						<NetDiagram name="diagram_MRSP_BuildTargetList_1" landscape="true" format="A4 (210 297)" oid="!ed/23d67/2D55/A38/551eb13a40a4">
+							<presentationElements>
+								<EquationGE presentable="!ed/23d6a/2D55/A38/551eb1583be4">
+									<position>
+										<Point x="9075" y="3175"/>
+									</position>
+									<size>
+										<Size width="6419" height="4488"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/23db3/2D55/A38/551eb3287125">
+									<position>
+										<Point x="7250" y="6006"/>
+									</position>
+									<size>
+										<Size width="212" height="318"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/23dc0/2D55/A38/551eb3431320">
+									<position>
+										<Point x="2593" y="4419"/>
+									</position>
+									<size>
+										<Size width="265" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/23db3/2D55/A38/551eb3287125" dstEquation="!ed/23d6a/2D55/A38/551eb1583be4">
+									<positions>
+										<Point x="7461" y="6165"/>
+										<Point x="8255" y="6165"/>
+										<Point x="8255" y="6165"/>
+										<Point x="9075" y="6165"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/23dcf/2D55/A38/551eb3a21a29">
+									<position>
+										<Point x="16642" y="4419"/>
+									</position>
+									<size>
+										<Size width="503" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/23d6a/2D55/A38/551eb1583be4" dstEquation="!ed/23dcf/2D55/A38/551eb3a21a29">
+									<positions>
+										<Point x="15505" y="4683"/>
+										<Point x="16193" y="4683"/>
+										<Point x="16193" y="4683"/>
+										<Point x="16907" y="4683"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/23ddb/2D55/A38/551eb3d0a1a">
+									<position>
+										<Point x="19976" y="5900"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/23d6a/2D55/A38/551eb1583be4" dstEquation="!ed/23ddb/2D55/A38/551eb3d0a1a">
+									<positions>
+										<Point x="15505" y="6165"/>
+										<Point x="17754" y="6165"/>
+										<Point x="17754" y="6165"/>
+										<Point x="20029" y="6165"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/23dc0/2D55/A38/551eb3431320" dstEquation="!ed/23d6a/2D55/A38/551eb1583be4">
+									<positions>
+										<Point x="2858" y="4683"/>
+										<Point x="5953" y="4683"/>
+										<Point x="5953" y="4683"/>
+										<Point x="9075" y="4683"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>

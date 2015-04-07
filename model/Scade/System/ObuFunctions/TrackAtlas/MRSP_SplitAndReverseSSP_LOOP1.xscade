@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Operator kind="function" visibility="private" name="MRSP_SplitAndReverseSSP_LOOP1">
+			<inputs>
+				<Variable name="SSP_cat_in">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="SSP_cat_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/24136/415D/BA8/5522d0ab4d95"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="SSP_reverse_t_cat_out">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="SSP_t_cat_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/24139/415D/BA8/5522d0b75e97"/>
+					</pragmas>
+				</Variable>
+				<Variable name="SSP_reverse_cat_out">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="SSP_cat_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/241af/415D/BA8/5522d2d212d5"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<locals>
+				<Variable name="_L1">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="SSP_cat_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2414d/415D/BA8/5522d0f65b77"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L18">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="SSP_cat_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/24199/415D/BA8/5522d27522dc"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L35">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="SSP_t_section_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="DIM_maxSSP_individual_sections"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/241c9/415D/BA8/5522d45726db"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- _L1 = SSP_cat_in; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L1"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="SSP_cat_in"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2414c/415D/BA8/5522d0f63317"/>
+					</pragmas>
+				</Equation>
+				<!-- _L18 = reverse _L1; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L18"/>
+					</lefts>
+					<right>
+						<!-- reverse _L1 -->
+						<UnaryOp name="1" operator="reverse">
+							<operand>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+							</operand>
+						</UnaryOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/24198/415D/BA8/5522d27583d"/>
+					</pragmas>
+				</Equation>
+				<!-- SSP_reverse_t_cat_out = _L35; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="SSP_reverse_t_cat_out"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L35"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/241b1/415D/BA8/5522d2fa67b2"/>
+					</pragmas>
+				</Equation>
+				<!-- SSP_reverse_cat_out = _L18; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="SSP_reverse_cat_out"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L18"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/241b2/415D/BA8/5522d2fa68d4"/>
+					</pragmas>
+				</Equation>
+				<!-- _L35 = ( map MRSP_SplitAndReverseSSP_LOOP2<<DIM_maxSSP_individual_sections>>)(_L1... -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L35"/>
+					</lefts>
+					<right>
+						<!-- ( map MRSP_SplitAndReverseSSP_LOOP2<<DIM_maxSSP_individual_sections>>)(_L18) -->
+						<CallExpression>
+							<operator>
+								<IteratorOp iterator="map">
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="MRSP_SplitAndReverseSSP_LOOP2"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="DIM_maxSSP_individual_sections"/>
+											</path>
+										</IdExpression>
+									</size>
+								</IteratorOp>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L18"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/241b9/415D/BA8/5522d3ce1a82"/>
+					</pragmas>
+				</Equation>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/2412c/415D/BA8/5522d0719a8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<diagrams>
+						<NetDiagram name="diagram_MRSP_SplitAndReverseSSP_LOOP1_1" landscape="true" format="A4 (210 297)" oid="!ed/2412d/415D/BA8/5522d0712b0b">
+							<presentationElements>
+								<EquationGE presentable="!ed/2414c/415D/BA8/5522d0f63317">
+									<position>
+										<Point x="3201" y="3625"/>
+									</position>
+									<size>
+										<Size width="265" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/24198/415D/BA8/5522d27583d">
+									<position>
+										<Point x="5953" y="3413"/>
+									</position>
+									<size>
+										<Size width="953" height="953"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2414c/415D/BA8/5522d0f63317" dstEquation="!ed/24198/415D/BA8/5522d27583d">
+									<positions>
+										<Point x="3466" y="3889"/>
+										<Point x="4710" y="3889"/>
+										<Point x="4710" y="3889"/>
+										<Point x="5953" y="3889"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/241b1/415D/BA8/5522d2fa67b2">
+									<position>
+										<Point x="23151" y="3625"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/241b2/415D/BA8/5522d2fa68d4">
+									<position>
+										<Point x="23151" y="7911"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/24198/415D/BA8/5522d27583d" dstEquation="!ed/241b2/415D/BA8/5522d2fa68d4">
+									<positions>
+										<Point x="6906" y="3889"/>
+										<Point x="8678" y="3889"/>
+										<Point x="8678" y="8176"/>
+										<Point x="23204" y="8176"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/241b9/415D/BA8/5522d3ce1a82">
+									<position>
+										<Point x="12462" y="1640"/>
+									</position>
+									<size>
+										<Size width="7080" height="4461"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/241b9/415D/BA8/5522d3ce1a82" dstEquation="!ed/241b1/415D/BA8/5522d2fa67b2">
+									<positions>
+										<Point x="19553" y="3889"/>
+										<Point x="21325" y="3889"/>
+										<Point x="21325" y="3889"/>
+										<Point x="23204" y="3889"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/24198/415D/BA8/5522d27583d" dstEquation="!ed/241b9/415D/BA8/5522d3ce1a82">
+									<positions>
+										<Point x="6906" y="3889"/>
+										<Point x="9684" y="3889"/>
+										<Point x="9684" y="3889"/>
+										<Point x="12462" y="3889"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>
