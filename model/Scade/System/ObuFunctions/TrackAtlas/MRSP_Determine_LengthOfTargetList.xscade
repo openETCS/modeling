@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Operator kind="function" visibility="private" name="MRSP_Determine_LengthOfTargetList">
+			<inputs>
+				<Variable name="SSP_t_list_in">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="SSP_t_list_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2424f/415D/BA8/5522e110615c"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="length">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/24256/415D/BA8/5522e112596d"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<locals>
+				<Variable name="_L2">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="SSP_t_list_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2426d/415D/BA8/5522e16d1ace"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L179">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="SSP_t_list_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/24328/415D/BA8/5522e19b4ed7"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L180">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/24335/415D/BA8/5522e24c154f"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L181">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2433f/415D/BA8/5522e26c3656"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L182">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2435f/415D/BA8/5522e3255a56"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L183">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/2437c/415D/BA8/5522e3574043"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- _L2 = SSP_t_list_in; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L2"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="SSP_t_list_in"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2425f/415D/BA8/5522e1506883"/>
+					</pragmas>
+				</Equation>
+				<!-- length = _L182; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="length"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L182"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/24264/415D/BA8/5522e154a1"/>
+					</pragmas>
+				</Equation>
+				<!-- _L179 = reverse _L2; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L179"/>
+					</lefts>
+					<right>
+						<!-- reverse _L2 -->
+						<UnaryOp name="1" operator="reverse">
+							<operand>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L2"/>
+									</path>
+								</IdExpression>
+							</operand>
+						</UnaryOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/24327/415D/BA8/5522e19b44ad"/>
+					</pragmas>
+				</Equation>
+				<!-- _L180, _L182 = ( foldwi MRSP_Determine_LengthOfTargetList_LOOP<<DIM_SSP>> if _L18... -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L180"/>
+						<VariableRef name="_L182"/>
+					</lefts>
+					<right>
+						<!-- ( foldwi MRSP_Determine_LengthOfTargetList_LOOP<<DIM_SSP>> if _L181)(_L183, _L179... -->
+						<CallExpression>
+							<operator>
+								<PartialIteratorOp iterator="foldwi">
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="MRSP_Determine_LengthOfTargetList_LOOP"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="DIM_SSP"/>
+											</path>
+										</IdExpression>
+									</size>
+									<if>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L181"/>
+											</path>
+										</IdExpression>
+									</if>
+								</PartialIteratorOp>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L183"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L179"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2432f/415D/BA8/5522e1cb549c"/>
+					</pragmas>
+				</Equation>
+				<!-- _L181 = true; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L181"/>
+					</lefts>
+					<right>
+						<ConstValue value="true"/>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2433e/415D/BA8/5522e26c7368"/>
+					</pragmas>
+				</Equation>
+				<!-- _ = _L180; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L180"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2436c/415D/BA8/5522e34e72af"/>
+					</pragmas>
+				</Equation>
+				<!-- _L183 = 0; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L183"/>
+					</lefts>
+					<right>
+						<ConstValue value="0"/>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/2437b/415D/BA8/5522e357c36"/>
+					</pragmas>
+				</Equation>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/24247/415D/BA8/5522e0f166a3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<diagrams>
+						<NetDiagram name="diagram_MRSP_Determine_LengthOfTargetList_1" landscape="true" format="A4 (210 297)" oid="!ed/24248/415D/BA8/5522e0f1560">
+							<presentationElements>
+								<EquationGE presentable="!ed/2425f/415D/BA8/5522e1506883">
+									<position>
+										<Point x="2593" y="6350"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/24264/415D/BA8/5522e154a1">
+									<position>
+										<Point x="19235" y="6059"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/24327/415D/BA8/5522e19b44ad">
+									<position>
+										<Point x="6059" y="6138"/>
+									</position>
+									<size>
+										<Size width="952" height="952"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2425f/415D/BA8/5522e1506883" dstEquation="!ed/24327/415D/BA8/5522e19b44ad">
+									<positions>
+										<Point x="2910" y="6615"/>
+										<Point x="4471" y="6615"/>
+										<Point x="4471" y="6615"/>
+										<Point x="6059" y="6615"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/2432f/415D/BA8/5522e1cb549c">
+									<position>
+										<Point x="10636" y="3810"/>
+									</position>
+									<size>
+										<Size width="6418" height="3747"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/2433e/415D/BA8/5522e26c7368">
+									<position>
+										<Point x="12594" y="2937"/>
+									</position>
+									<size>
+										<Size width="212" height="317"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/24327/415D/BA8/5522e19b44ad" dstEquation="!ed/2432f/415D/BA8/5522e1cb549c">
+									<positions>
+										<Point x="7011" y="6615"/>
+										<Point x="8811" y="6615"/>
+										<Point x="8811" y="6615"/>
+										<Point x="10636" y="6615"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2433e/415D/BA8/5522e26c7368" dstEquation="!ed/2432f/415D/BA8/5522e1cb549c">
+									<positions>
+										<Point x="12806" y="3096"/>
+										<Point x="13864" y="3096"/>
+										<Point x="13864" y="3810"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/2432f/415D/BA8/5522e1cb549c" dstEquation="!ed/24264/415D/BA8/5522e154a1">
+									<positions>
+										<Point x="17066" y="6324"/>
+										<Point x="18177" y="6324"/>
+										<Point x="18177" y="6324"/>
+										<Point x="19288" y="6324"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/2436c/415D/BA8/5522e34e72af">
+									<position>
+										<Point x="17727" y="4789"/>
+									</position>
+									<size>
+										<Size width="503" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2432f/415D/BA8/5522e1cb549c" dstEquation="!ed/2436c/415D/BA8/5522e34e72af">
+									<positions>
+										<Point x="17066" y="5054"/>
+										<Point x="17515" y="5054"/>
+										<Point x="17515" y="5054"/>
+										<Point x="17992" y="5054"/>
+									</positions>
+								</Edge>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/2437b/415D/BA8/5522e357c36">
+									<position>
+										<Point x="8731" y="5530"/>
+									</position>
+									<size>
+										<Size width="212" height="317"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/2437b/415D/BA8/5522e357c36" dstEquation="!ed/2432f/415D/BA8/5522e1cb549c">
+									<positions>
+										<Point x="8943" y="5689"/>
+										<Point x="9790" y="5689"/>
+										<Point x="9790" y="5689"/>
+										<Point x="10636" y="5689"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>

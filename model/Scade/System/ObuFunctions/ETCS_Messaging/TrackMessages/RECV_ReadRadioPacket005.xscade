@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Operator kind="function" name="RECV_ReadRadioPacket005">
+			<inputs>
+				<Variable name="RadioMessage_IN">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="CompressedRadioMessage"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1f2f1/3688/E84/54f88e62528f"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="RadioPacket005_old_out">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="BG_Types_Pkg::LinkedBGs_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1f2e6/3688/E84/54f88e126669"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<locals>
+				<Variable name="_L5">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="MaxDataElementsInRMessage"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1f2db/3688/E84/54f88da041f"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L6">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="CompressedRadioMessage"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1f2f3/3688/E84/54f88e6c5936"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L11">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<!-- ((MaxElementsRPacket05 - 1) - 0) + 1 -->
+								<NAryOp operator="+">
+									<operands>
+										<!-- ((MaxElementsRPacket05 - 1) - 0) -->
+										<BinaryOp operator="-">
+											<operands>
+												<!-- (MaxElementsRPacket05 - 1) -->
+												<BinaryOp operator="-">
+													<operands>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="MaxElementsRPacket05"/>
+															</path>
+														</IdExpression>
+														<ConstValue value="1"/>
+													</operands>
+												</BinaryOp>
+												<ConstValue value="0"/>
+											</operands>
+										</BinaryOp>
+										<ConstValue value="1"/>
+									</operands>
+								</NAryOp>
+							</size>
+						</Table>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1f307/3688/E84/54f88eff3d4b"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L12">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="BG_Types_Pkg::LinkedBGs_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/1f3ee/3688/E84/54f933623410"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L26">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="CompressedRadioHeaders"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/79627/3688/E84/54f9878b6666"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L27">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/7963c/3688/E84/54f9880c7750"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L28">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="CompressedRadioPackets"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c122/4309/8F4/54ff29b1cf3"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- _L5 = RECV_ReadRadioPackets(_L28, 5); -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L5"/>
+					</lefts>
+					<right>
+						<!-- RECV_ReadRadioPackets(_L28, 5) -->
+						<CallExpression>
+							<operator>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="RECV_ReadRadioPackets"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L28"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="5"/>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/1f2da/3688/E84/54f88da065bf"/>
+					</pragmas>
+				</Equation>
+				<!-- _L12 = RECV_ConverttRP005afterRead_OldType(_L11, _L26, _L27); -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L12"/>
+					</lefts>
+					<right>
+						<!-- RECV_ConverttRP005afterRead_OldType(_L11, _L26, _L27) -->
+						<CallExpression>
+							<operator>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="RECV_ConverttRP005afterRead_OldType"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L11"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L26"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L27"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/1f2e1/3688/E84/54f88de1361"/>
+					</pragmas>
+				</Equation>
+				<!-- RadioPacket005_old_out = _L12; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="RadioPacket005_old_out"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L12"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/1f2ec/3688/E84/54f88e4a141"/>
+					</pragmas>
+				</Equation>
+				<!-- _L6 = RadioMessage_IN; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L6"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="RadioMessage_IN"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/1f2f2/3688/E84/54f88e6c53e4"/>
+					</pragmas>
+				</Equation>
+				<!-- _L11 = _L5[0 .. (MaxElementsRPacket05 - 1)]; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L11"/>
+					</lefts>
+					<right>
+						<!-- _L5[0 .. (MaxElementsRPacket05 - 1)] -->
+						<SliceOp name="1">
+							<array>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L5"/>
+									</path>
+								</IdExpression>
+							</array>
+							<fromIndex>
+								<ConstValue value="0"/>
+							</fromIndex>
+							<toIndex>
+								<!-- (MaxElementsRPacket05 - 1) -->
+								<BinaryOp operator="-">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="MaxElementsRPacket05"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="1"/>
+									</operands>
+								</BinaryOp>
+							</toIndex>
+						</SliceOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/1f306/3688/E84/54f88eff33f1"/>
+					</pragmas>
+				</Equation>
+				<!-- _L26 = _L28.PacketHeaders; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L26"/>
+					</lefts>
+					<right>
+						<!-- _L28.PacketHeaders -->
+						<PrjOp name="2">
+							<flow>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L28"/>
+									</path>
+								</IdExpression>
+							</flow>
+							<with>
+								<Label name="PacketHeaders"/>
+							</with>
+						</PrjOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/79626/3688/E84/54f9878b3754"/>
+					</pragmas>
+				</Equation>
+				<!-- _L27 = 139; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L27"/>
+					</lefts>
+					<right>
+						<ConstValue value="139"/>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/7963b/3688/E84/54f9880c6229"/>
+					</pragmas>
+				</Equation>
+				<!-- _L28 = _L6.Messages; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L28"/>
+					</lefts>
+					<right>
+						<!-- _L6.Messages -->
+						<PrjOp name="3">
+							<flow>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L6"/>
+									</path>
+								</IdExpression>
+							</flow>
+							<with>
+								<Label name="Messages"/>
+							</with>
+						</PrjOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3c121/4309/8F4/54ff29b166b0"/>
+					</pragmas>
+				</Equation>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/1f317/4830/CC8/54f86ec57371" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<diagrams>
+						<NetDiagram name="diagram_RECV_ReadRadioPacket005_1" landscape="true" format="A4 (210 297)" oid="!ed/1f318/4830/CC8/54f86ec553ad">
+							<presentationElements>
+								<EquationGE presentable="!ed/1f2da/3688/E84/54f88da065bf">
+									<position>
+										<Point x="8070" y="4789"/>
+									</position>
+									<size>
+										<Size width="9779" height="5043"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/1f2e1/3688/E84/54f88de1361">
+									<position>
+										<Point x="24368" y="10001"/>
+									</position>
+									<size>
+										<Size width="6498" height="4964"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/1f2ec/3688/E84/54f88e4a141">
+									<position>
+										<Point x="32147" y="12224"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/1f2f2/3688/E84/54f88e6c53e4">
+									<position>
+										<Point x="1958" y="7064"/>
+									</position>
+									<size>
+										<Size width="265" height="502"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/1f306/3688/E84/54f88eff33f1">
+									<position>
+										<Point x="19738" y="6826"/>
+									</position>
+									<size>
+										<Size width="953" height="952"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1f2da/3688/E84/54f88da065bf" dstEquation="!ed/1f306/3688/E84/54f88eff33f1">
+									<positions>
+										<Point x="17859" y="7329"/>
+										<Point x="18785" y="7329"/>
+										<Point x="18785" y="7329"/>
+										<Point x="19738" y="7329"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1f306/3688/E84/54f88eff33f1" dstEquation="!ed/1f2e1/3688/E84/54f88de1361">
+									<positions>
+										<Point x="20690" y="7303"/>
+										<Point x="22516" y="7303"/>
+										<Point x="22516" y="11245"/>
+										<Point x="24368" y="11245"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3c121/4309/8F4/54ff29b166b0" dstEquation="!ed/1f2da/3688/E84/54f88da065bf">
+									<positions>
+										<Point x="4551" y="7329"/>
+										<Point x="6297" y="7329"/>
+										<Point x="6297" y="7329"/>
+										<Point x="8070" y="7329"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/79626/3688/E84/54f9878b3754">
+									<position>
+										<Point x="8414" y="12012"/>
+									</position>
+									<size>
+										<Size width="952" height="952"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3c121/4309/8F4/54ff29b166b0" dstEquation="!ed/79626/3688/E84/54f9878b3754">
+									<positions>
+										<Point x="4551" y="7329"/>
+										<Point x="6482" y="7329"/>
+										<Point x="6482" y="12488"/>
+										<Point x="8414" y="12488"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/79626/3688/E84/54f9878b3754" dstEquation="!ed/1f2e1/3688/E84/54f88de1361">
+									<positions>
+										<Point x="9366" y="12488"/>
+										<Point x="16854" y="12488"/>
+										<Point x="16854" y="12488"/>
+										<Point x="24368" y="12488"/>
+									</positions>
+								</Edge>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/7963b/3688/E84/54f9880c6229">
+									<position>
+										<Point x="22966" y="13573"/>
+									</position>
+									<size>
+										<Size width="212" height="318"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/7963b/3688/E84/54f9880c6229" dstEquation="!ed/1f2e1/3688/E84/54f88de1361">
+									<positions>
+										<Point x="23178" y="13732"/>
+										<Point x="23760" y="13732"/>
+										<Point x="23760" y="13732"/>
+										<Point x="24368" y="13732"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1f2e1/3688/E84/54f88de1361" dstEquation="!ed/1f2ec/3688/E84/54f88e4a141">
+									<positions>
+										<Point x="30877" y="12488"/>
+										<Point x="31538" y="12488"/>
+										<Point x="31538" y="12488"/>
+										<Point x="32200" y="12488"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/3c121/4309/8F4/54ff29b166b0">
+									<position>
+										<Point x="3598" y="6853"/>
+									</position>
+									<size>
+										<Size width="953" height="952"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1f2f2/3688/E84/54f88e6c53e4" dstEquation="!ed/3c121/4309/8F4/54ff29b166b0">
+									<positions>
+										<Point x="2223" y="7329"/>
+										<Point x="2910" y="7329"/>
+										<Point x="2910" y="7329"/>
+										<Point x="3598" y="7329"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>
