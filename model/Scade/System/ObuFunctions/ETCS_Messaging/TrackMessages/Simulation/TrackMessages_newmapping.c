@@ -13,35 +13,32 @@
 
 /* forward declarations */
 #define MAP_DECL(ident, nb) static const MappingEntry ident##_entries[nb]; static const MappingScope ident
-MAP_DECL(scope_1, 15);
+MAP_DECL(scope_1, 12);
 MAP_DECL(scope_0, 1);
 
-/* INFRA_Balise_Localisation/ INFRA_Balise_Localisation */
-static const MappingEntry scope_1_entries[15] = {
-  /* 0 */ { MAP_LOCAL, "@kcg0", NULL, sizeof(kcg_bool), (int)&outputs_ctx.init, &_Type_kcg_bool_Utils, NULL, NULL, NULL, 0, 1},
-  /* 1 */ { MAP_INPUT, "Loc", NULL, sizeof(kcg_int), (int)&inputs_ctx.Loc, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 12},
-  /* 2 */ { MAP_OUTPUT, "TrainPass", NULL, sizeof(kcg_bool), (int)&outputs_ctx.TrainPass, &_Type_kcg_bool_Utils, NULL, NULL, NULL, 1, 11},
-  /* 3 */ { MAP_INPUT, "TrainPos", NULL, sizeof(kcg_real), (int)&inputs_ctx.TrainPos, &_Type_kcg_real_Utils, NULL, NULL, NULL, 1, 13},
-  /* 4 */ { MAP_LOCAL, "_L1", NULL, sizeof(kcg_int), (int)&outputs_ctx._L1, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 2},
-  /* 5 */ { MAP_LOCAL, "_L10", NULL, sizeof(kcg_real), (int)&outputs_ctx._L10, &_Type_kcg_real_Utils, NULL, NULL, NULL, 1, 7},
-  /* 6 */ { MAP_LOCAL, "_L12", NULL, sizeof(kcg_bool), (int)&outputs_ctx._L12, &_Type_kcg_bool_Utils, NULL, NULL, NULL, 1, 8},
-  /* 7 */ { MAP_LOCAL, "_L13", NULL, sizeof(kcg_bool), (int)&outputs_ctx._L13, &_Type_kcg_bool_Utils, NULL, NULL, NULL, 1, 9},
-  /* 8 */ { MAP_LOCAL, "_L14", NULL, sizeof(kcg_bool), (int)&outputs_ctx._L14, &_Type_kcg_bool_Utils, NULL, NULL, NULL, 1, 10},
-  /* 9 */ { MAP_LOCAL, "_L2@mem", NULL, sizeof(kcg_real), (int)&outputs_ctx._L2, &_Type_kcg_real_Utils, NULL, NULL, NULL, 0, 0},
-  /* 10 */ { MAP_LOCAL, "_L3", NULL, sizeof(kcg_int), (int)&outputs_ctx._L3, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 3},
-  /* 11 */ { MAP_LOCAL, "_L7", NULL, sizeof(kcg_real), (int)&outputs_ctx._L7, &_Type_kcg_real_Utils, NULL, NULL, NULL, 1, 4},
-  /* 12 */ { MAP_LOCAL, "_L8", NULL, sizeof(kcg_real), (int)&outputs_ctx._L8, &_Type_kcg_real_Utils, NULL, NULL, NULL, 1, 5},
-  /* 13 */ { MAP_LOCAL, "_L9", NULL, sizeof(kcg_real), (int)&outputs_ctx._L9, &_Type_kcg_real_Utils, NULL, NULL, NULL, 1, 6},
-  /* 14 */ { MAP_INPUT, "accuracy", NULL, sizeof(kcg_int), (int)&inputs_ctx.accuracy, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 14}
+/* TOOLS_calculate_L_PACKET/ TOOLS_calculate_L_PACKET */
+static const MappingEntry scope_1_entries[12] = {
+  /* 0 */ { MAP_OUTPUT, "L_PACKET", NULL, sizeof(kcg_int), (int)&outputs_ctx.L_PACKET, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 7},
+  /* 1 */ { MAP_INPUT, "N_ITER", NULL, sizeof(kcg_int), (int)&inputs_ctx.N_ITER, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 9},
+  /* 2 */ { MAP_OUTPUT, "N_ITER_out", NULL, sizeof(kcg_int), (int)&outputs_ctx.N_ITER_out, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 8},
+  /* 3 */ { MAP_LOCAL, "_L1", NULL, sizeof(kcg_int), (int)&outputs_ctx._L1, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 0},
+  /* 4 */ { MAP_LOCAL, "_L2", NULL, sizeof(kcg_int), (int)&outputs_ctx._L2, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 1},
+  /* 5 */ { MAP_LOCAL, "_L3", NULL, sizeof(kcg_int), (int)&outputs_ctx._L3, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 2},
+  /* 6 */ { MAP_LOCAL, "_L4", NULL, sizeof(kcg_int), (int)&outputs_ctx._L4, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 3},
+  /* 7 */ { MAP_LOCAL, "_L5", NULL, sizeof(kcg_int), (int)&outputs_ctx._L5, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 4},
+  /* 8 */ { MAP_LOCAL, "_L6", NULL, sizeof(kcg_int), (int)&outputs_ctx._L6, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 5},
+  /* 9 */ { MAP_LOCAL, "_L7", NULL, sizeof(kcg_int), (int)&outputs_ctx._L7, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 6},
+  /* 10 */ { MAP_INPUT, "l_common_data", NULL, sizeof(kcg_int), (int)&inputs_ctx.l_common_data, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 10},
+  /* 11 */ { MAP_INPUT, "l_section", NULL, sizeof(kcg_int), (int)&inputs_ctx.l_section, &_Type_kcg_int_Utils, NULL, NULL, NULL, 1, 11}
 };
 static const MappingScope scope_1 = {
-  "INFRA_Balise_Localisation/ INFRA_Balise_Localisation",
-  scope_1_entries, 15,
+  "TOOLS_calculate_L_PACKET/ TOOLS_calculate_L_PACKET",
+  scope_1_entries, 12,
 };
 
 /*  */
 static const MappingEntry scope_0_entries[1] = {
-  /* 0 */ { MAP_ROOT, "INFRA_Balise_Localisation", NULL, 0, 0, NULL, NULL, NULL, &scope_1, 1, 0}
+  /* 0 */ { MAP_ROOT, "TOOLS_calculate_L_PACKET", NULL, 0, 0, NULL, NULL, NULL, &scope_1, 1, 0}
 };
 static const MappingScope scope_0 = {
   "",

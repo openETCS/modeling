@@ -1,18 +1,18 @@
-#ifndef INFRA_BALISE_LOCALISATION_INTERFACE
-#define INFRA_BALISE_LOCALISATION_INTERFACE
+#ifndef TOOLS_CALCULATE_L_PACKET_INTERFACE
+#define TOOLS_CALCULATE_L_PACKET_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "INFRA_Balise_Localisation.h"
+#include "TOOLS_calculate_L_PACKET.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_INFRA_Balise_Localisation inputs_ctx;
-extern outC_INFRA_Balise_Localisation outputs_ctx;
+extern inC_TOOLS_calculate_L_PACKET inputs_ctx;
+extern outC_TOOLS_calculate_L_PACKET outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*INFRA_BALISE_LOCALISATION_INTERFACE */
+#endif /*TOOLS_CALCULATE_L_PACKET_INTERFACE */

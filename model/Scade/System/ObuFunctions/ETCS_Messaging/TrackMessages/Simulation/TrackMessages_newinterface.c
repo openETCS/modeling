@@ -1,7 +1,7 @@
 #include "TrackMessages_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "8012ca146cd01df2562df731a9fc2fe2";
+const char* _SCSIM_CheckSum = "540c4c7346d03df481213a8d4cb1dde6";
 const char* _SCSIM_SmuTypesCheckSum = "d5b51fa9eff9683da46173266ac496c5";
 
 /*******************************
@@ -17,20 +17,20 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-inC_INFRA_Balise_Localisation inputs_ctx;
-static inC_INFRA_Balise_Localisation inputs_ctx_restore;
-static inC_INFRA_Balise_Localisation inputs_ctx_execute;
-outC_INFRA_Balise_Localisation outputs_ctx;
-static outC_INFRA_Balise_Localisation outputs_ctx_restore;
+inC_TOOLS_calculate_L_PACKET inputs_ctx;
+static inC_TOOLS_calculate_L_PACKET inputs_ctx_restore;
+static inC_TOOLS_calculate_L_PACKET inputs_ctx_execute;
+outC_TOOLS_calculate_L_PACKET outputs_ctx;
+static outC_TOOLS_calculate_L_PACKET outputs_ctx_restore;
 
 /* separate_io: inputs instanciation */
 
 /* separate_io: outputs instanciation */
 
 static void _SCSIM_RestoreInterface(void) {
-	inputs_ctx.Loc = inputs_ctx_restore.Loc;
-	inputs_ctx.TrainPos = inputs_ctx_restore.TrainPos;
-	inputs_ctx.accuracy = inputs_ctx_restore.accuracy;
+	inputs_ctx.N_ITER = inputs_ctx_restore.N_ITER;
+	inputs_ctx.l_common_data = inputs_ctx_restore.l_common_data;
+	inputs_ctx.l_section = inputs_ctx_restore.l_section;
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -38,9 +38,9 @@ static void _SCSIM_RestoreInterface(void) {
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	inputs_ctx_execute.Loc = inputs_ctx.Loc;
-	inputs_ctx_execute.TrainPos = inputs_ctx.TrainPos;
-	inputs_ctx_execute.accuracy = inputs_ctx.accuracy;
+	inputs_ctx_execute.N_ITER = inputs_ctx.N_ITER;
+	inputs_ctx_execute.l_common_data = inputs_ctx.l_common_data;
+	inputs_ctx_execute.l_section = inputs_ctx.l_section;
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
@@ -53,7 +53,7 @@ void SimInit(void) {
 #ifdef EXTENDED_SIM
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
-	INFRA_Balise_Localisation_reset(&outputs_ctx);
+	TOOLS_calculate_L_PACKET_reset(&outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimInit();
 #endif /* EXTENDED_SIM */
@@ -68,7 +68,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	INFRA_Balise_Localisation(&inputs_ctx_execute, &outputs_ctx);
+	TOOLS_calculate_L_PACKET(&inputs_ctx_execute, &outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -83,12 +83,12 @@ void SimStop(void) {
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(inC_INFRA_Balise_Localisation);
+	nSize += sizeof(inC_TOOLS_calculate_L_PACKET);
 
 /* separate_io: add (not in ctx) inputs size */
 
 /* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_INFRA_Balise_Localisation);
+	nSize += sizeof(outC_TOOLS_calculate_L_PACKET);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -97,14 +97,14 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &inputs_ctx, sizeof(inC_INFRA_Balise_Localisation));
-	pCurrent += sizeof(inC_INFRA_Balise_Localisation);
+	memcpy(pCurrent, &inputs_ctx, sizeof(inC_TOOLS_calculate_L_PACKET));
+	pCurrent += sizeof(inC_TOOLS_calculate_L_PACKET);
 
 	/* separate_io: dump (not in ctx) inputs */
 
 	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_INFRA_Balise_Localisation));
-	pCurrent += sizeof(outC_INFRA_Balise_Localisation);
+	memcpy(pCurrent, &outputs_ctx, sizeof(outC_TOOLS_calculate_L_PACKET));
+	pCurrent += sizeof(outC_TOOLS_calculate_L_PACKET);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -112,14 +112,14 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&inputs_ctx, pCurrent, sizeof(inC_INFRA_Balise_Localisation));
-	pCurrent += sizeof(inC_INFRA_Balise_Localisation);
+	memcpy(&inputs_ctx, pCurrent, sizeof(inC_TOOLS_calculate_L_PACKET));
+	pCurrent += sizeof(inC_TOOLS_calculate_L_PACKET);
 
 	/* separate_io: restore (not in ctx) inputs */
 
 	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_INFRA_Balise_Localisation));
-	pCurrent += sizeof(outC_INFRA_Balise_Localisation);
+	memcpy(&outputs_ctx, pCurrent, sizeof(outC_TOOLS_calculate_L_PACKET));
+	pCurrent += sizeof(outC_TOOLS_calculate_L_PACKET);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
