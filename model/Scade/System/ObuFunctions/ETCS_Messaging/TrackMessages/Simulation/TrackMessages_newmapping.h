@@ -1,10 +1,10 @@
 /* TrackMessages_newmapping.h */
 
-#include "TOOLS_calculate_L_PACKET.h"
+#include "DRAFT_test_numeric.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_TOOLS_calculate_L_PACKET inputs_ctx;
-extern outC_TOOLS_calculate_L_PACKET outputs_ctx;
+extern inC_DRAFT_test_numeric inputs_ctx;
+extern outC_DRAFT_test_numeric outputs_ctx;
 
