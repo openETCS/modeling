@@ -9,9 +9,9 @@
         <environment_id value="-1926713137"/>
         <traceability path="../Requirements/DMI.rqtf"/>
         <codeIntegration keyboardId="0" periodicity="33" pointerId="0"/>
-        <scade path="../Test/Test.etp;../DMI_Control.etp"/>
+        <scade path="../Test/Test.etp;../DMI_Control.etp;../../OBU_for_ITEA-Review/PositionSimulation/Testbench_Suite/Testbench_Suite.etp"/>
         <ratio horizontal="1" vertical="1"/>
-        <colorMap crc="3382471243" name="DMI.sct" path="."/>
+        <colorMap crc="708031199" name="DMI.sct" path="."/>
         <lineWidthMap crc="1678555679" path="default"/>
         <lineStippleMap crc="704931268" path="default"/>
         <textureMap crc="0" path="default"/>
@@ -42,7 +42,7 @@
                     <input name="DistanceToTarget" oid="546b14ea-4939-4a76-9f31-a9c2d8708049" type="real">
                         <init>0.0</init>
                     </input>
-                    <input name="DistanceToTargetVisible" oid="2842c38a-684d-41a5-9e8a-f136265495be" type="bool">
+                    <input name="DistanceToTargetVisibilityDigital" oid="2842c38a-684d-41a5-9e8a-f136265495be" type="bool">
                         <init>true</init>
                     </input>
                     <input name="TrainSpeed" oid="da2bfd60-d4af-4a08-bc36-fad7222de403" type="real">
@@ -114,7 +114,7 @@
                     <input name="StatusSymbolVisibility" oid="db5a3f58-8b99-471c-b826-6f44447d010d" type="bool">
                         <init>false</init>
                     </input>
-                    <input name="DistToTargetBarVisibility" oid="67b75059-3789-40c3-add6-f93fc5243b6a" type="bool">
+                    <input name="DistanceToTargetBarVisibility" oid="67b75059-3789-40c3-add6-f93fc5243b6a" type="bool">
                         <init>false</init>
                     </input>
                     <input name="RBC_status_symbol" oid="df3b7920-4196-492d-9d56-76e9798a77f9" representation="index" type="int">
@@ -197,6 +197,15 @@
                     </input>
                     <input name="Vtarget_permColor" oid="1b8c6d30-9a25-4b75-a1d8-a83bfe1b7966" representation="color" type="int">
                         <init>1</init>
+                    </input>
+                    <input name="Vinterv" oid="b7e16333-d4c0-4df3-8689-77819b93222a" type="real">
+                        <init>0.0</init>
+                    </input>
+                    <input name="VintervColor" oid="27e155b7-efff-47f8-bfb9-d6794b46dd11" representation="color" type="int">
+                        <init>9</init>
+                    </input>
+                    <input name="VintervVisible" oid="00e92414-4561-4a0f-b581-8259d580f421" type="bool">
+                        <init>false</init>
                     </input>
                 </inputs>
                 <outputs>
@@ -373,14 +382,14 @@
                         </rotate>
                         <orientation clockwise="false"/>
                         <file name="A.ogfx" path="Widgets/A"/>
-                        <crc value="906349790"/>
+                        <crc value="2935284064"/>
                         <inputParameters>
                             <parameter control="false" name="DistanceToTarget" oid="e0bbb64f-7fab-416a-bf1f-34bd43b2da28" type="real">
                                 <expr>DistanceToTarget</expr>
                                 <init>0.0</init>
                             </parameter>
-                            <parameter control="false" name="DistanceToTargetVisible" oid="f8e120ec-be19-4f3f-a82a-c936585b5b90" type="bool">
-                                <expr>DistanceToTargetVisible</expr>
+                            <parameter control="false" name="DistanceToTargetVisiblityDigital" oid="f8e120ec-be19-4f3f-a82a-c936585b5b90" type="bool">
+                                <expr>DistanceToTargetVisibilityDigital</expr>
                                 <init>true</init>
                             </parameter>
                             <parameter control="false" name="InterpolatedDistanceToTarget" oid="cb67ccbc-8454-45c4-9db5-e2250bf61a22" type="real">
@@ -388,7 +397,7 @@
                                 <init>0.0</init>
                             </parameter>
                             <parameter control="false" name="DistToTargetBarVisibility" oid="1b1e50d3-b678-4915-999a-3c1c643b4b18" type="bool">
-                                <expr>DistToTargetBarVisibility</expr>
+                                <expr>DistanceToTargetBarVisibility</expr>
                                 <init>false</init>
                             </parameter>
                         </inputParameters>
@@ -429,7 +438,7 @@
                         </rotate>
                         <orientation clockwise="false"/>
                         <file name="B.ogfx" path="Widgets/B"/>
-                        <crc value="387019664"/>
+                        <crc value="277029317"/>
                         <inputParameters>
                             <parameter control="false" name="TrainSpeed" oid="4d5baf17-663b-4eef-a5b4-7ee99ac05aeb" type="real">
                                 <expr>TrainSpeed</expr>
@@ -491,7 +500,22 @@
                                 <expr>Vtarget_permColor</expr>
                                 <init>1</init>
                             </parameter>
+                            <parameter control="false" name="Vinterv" oid="5f54e119-0ad5-4c40-887c-b050f71f4759" type="real">
+                                <expr>Vinterv</expr>
+                                <init>0.0</init>
+                            </parameter>
+                            <parameter control="false" name="VintervColor" oid="e3f49d09-f42f-45db-a2b3-28e1277e93c3" representation="color" type="int">
+                                <expr>VintervColor</expr>
+                                <init>9</init>
+                            </parameter>
+                            <parameter control="false" name="VintervVisible" oid="4445be13-b0e8-4555-bf2e-fd7fa77fd865" type="bool">
+                                <expr>VintervVisible</expr>
+                                <init>false</init>
+                            </parameter>
                         </inputParameters>
+                        <outputParameters>
+                            <parameter name="OverB" oid="ba79231a-583e-45d1-87d2-f11530c2adf0" type="bool"/>
+                        </outputParameters>
                     </properties>
                     <children/>
                 </referenceContainer>
@@ -559,7 +583,7 @@
                             </parameter>
                             <parameter control="false" name="yellowBorderC1Area" oid="70444a1b-0d0a-4c33-b2e7-9e273d77d2b5" type="bool">
                                 <expr>yellowBorderC1Area</expr>
-                                <init>true</init>
+                                <init>false</init>
                             </parameter>
                         </inputParameters>
                         <outputParameters>
@@ -841,7 +865,7 @@
                         </visible>
                         <origin>
                             <x>
-                                <init>0.0</init>
+                                <init>-1.0</init>
                             </x>
                             <y>
                                 <init>0.0</init>
@@ -931,7 +955,7 @@
                                 </visible>
                                 <origin>
                                     <x>
-                                        <init>167.0</init>
+                                        <init>169.0</init>
                                     </x>
                                     <y>
                                         <init>-75.0</init>
@@ -955,7 +979,7 @@
                                 <crc value="2364909381"/>
                                 <inputParameters>
                                     <parameter control="false" name="keytype" oid="72c8b2ea-5eb2-4ceb-b037-4204cea750f8" representation="index" type="int">
-                                        <init>0</init>
+                                        <init>1</init>
                                     </parameter>
                                 </inputParameters>
                                 <outputParameters>
@@ -1079,7 +1103,7 @@
                     <pathFromRoot value="11"/>
                     <properties name="trainRN">
                         <visible>
-                            <init>true</init>
+                            <init>false</init>
                             <expr>window_mask[1]</expr>
                         </visible>
                         <origin>
@@ -1326,7 +1350,7 @@
                         </visible>
                         <origin>
                             <x>
-                                <init>0.0</init>
+                                <init>-1.0</init>
                             </x>
                             <y>
                                 <init>0.0</init>
@@ -1385,7 +1409,7 @@
                                 <inputParameters>
                                     <parameter control="false" name="buttonEnabler" oid="c10759cd-f1d4-474a-ac5f-776daead0944" representation="as_int_array" type="int^30">
                                         <expr>hourGlassVisibility ? [2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] : buttonEnabler</expr>
-                                        <init>[0]</init>
+                                        <init>[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0]</init>
                                     </parameter>
                                     <parameter control="false" name="closeButtonEnabler" oid="80996313-72df-47a0-8e4a-1af6f72c82fd" representation="index" type="int">
                                         <expr>closeButtonEnabler</expr>
@@ -1794,5 +1818,5 @@
     </children>
 </specification>
 
-<!-- crc32 : 3202981201 -->
+<!-- crc32 : 142845134 -->
 

@@ -1,18 +1,18 @@
-#ifndef TOOLS_CALCULATE_L_PACKET_INTERFACE
-#define TOOLS_CALCULATE_L_PACKET_INTERFACE
+#ifndef DRAFT_TEST_NUMERIC_INTERFACE
+#define DRAFT_TEST_NUMERIC_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "TOOLS_calculate_L_PACKET.h"
+#include "DRAFT_test_numeric.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_TOOLS_calculate_L_PACKET inputs_ctx;
-extern outC_TOOLS_calculate_L_PACKET outputs_ctx;
+extern inC_DRAFT_test_numeric inputs_ctx;
+extern outC_DRAFT_test_numeric outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*TOOLS_CALCULATE_L_PACKET_INTERFACE */
+#endif /*DRAFT_TEST_NUMERIC_INTERFACE */
