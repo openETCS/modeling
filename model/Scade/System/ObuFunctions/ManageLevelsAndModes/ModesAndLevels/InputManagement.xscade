@@ -9,7 +9,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track"/>
+										<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track_Packet"/>
 									</type>
 								</NamedType>
 							</type>
@@ -21,7 +21,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track"/>
+										<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track_Mess"/>
 									</type>
 								</NamedType>
 							</type>
@@ -865,7 +865,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track"/>
+										<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track_Packet"/>
 									</type>
 								</NamedType>
 							</type>
@@ -877,7 +877,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track"/>
+										<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track_Mess"/>
 									</type>
 								</NamedType>
 							</type>
@@ -1389,6 +1389,18 @@
 								<ed:Variable oid="!ed/aa2cb/412F/9CC/552bec7c4770"/>
 							</pragmas>
 						</Variable>
+						<Variable name="_L111">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Level_And_Mode_Types_Pkg::T_Mode_Profile"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/d0da4/1470/FA0/553527291a54"/>
+							</pragmas>
+						</Variable>
 					</locals>
 					<data>
 						<!-- Loc_MA_SSP_Gradient_Available = _L68; -->
@@ -1407,7 +1419,7 @@
 								<ed:Equation oid="!ed/b6056/14CD/990/5527cb857f7a"/>
 							</pragmas>
 						</Equation>
-						<!-- Loc_Mode_Profile_On_Board = _L101; -->
+						<!-- Loc_Mode_Profile_On_Board = _L111; -->
 						<Equation>
 							<lefts>
 								<VariableRef name="Loc_Mode_Profile_On_Board"/>
@@ -1415,7 +1427,7 @@
 							<right>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="_L101"/>
+										<ConstVarRef name="_L111"/>
 									</path>
 								</IdExpression>
 							</right>
@@ -2963,6 +2975,30 @@
 								<ed:Equation oid="!ed/aa2ca/412F/9CC/552bec7c77c2"/>
 							</pragmas>
 						</Equation>
+						<!-- _L111 = _L101[1]; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L111"/>
+							</lefts>
+							<right>
+								<!-- _L101[1] -->
+								<PrjOp name="1">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L101"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="1"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/d0da3/1470/FA0/553527296371"/>
+							</pragmas>
+						</Equation>
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/18dd17/7155/9A8/552782354781" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
@@ -2979,7 +3015,7 @@
 										</EquationGE>
 										<EquationGE presentable="!ed/b6070/14CD/990/5527cb956d55">
 											<position>
-												<Point x="40243" y="29660"/>
+												<Point x="49001" y="29580"/>
 											</position>
 											<size>
 												<Size width="344" height="502"/>
@@ -3941,8 +3977,8 @@
 											<positions>
 												<Point x="30401" y="21669"/>
 												<Point x="32068" y="21669"/>
-												<Point x="32068" y="21669"/>
-												<Point x="33734" y="21669"/>
+												<Point x="32068" y="21696"/>
+												<Point x="33734" y="21696"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/aa0df/760F/878/552b7d341204">
@@ -4055,14 +4091,6 @@
 												<Point x="38232" y="28919"/>
 												<Point x="38232" y="28919"/>
 												<Point x="40243" y="28919"/>
-											</positions>
-										</Edge>
-										<Edge leftVarIndex="4" rightExprIndex="1" srcEquation="!ed/aa0fd/760F/878/552b81aac31" dstEquation="!ed/b6070/14CD/990/5527cb956d55">
-											<positions>
-												<Point x="36221" y="29924"/>
-												<Point x="38100" y="29924"/>
-												<Point x="38100" y="29924"/>
-												<Point x="40243" y="29924"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="5" rightExprIndex="1" srcEquation="!ed/aa0fd/760F/878/552b81aac31" dstEquation="!ed/b60be/14CD/990/5527cc0918bd">
@@ -4207,6 +4235,30 @@
 												<Point x="64664" y="28363"/>
 												<Point x="64664" y="28363"/>
 												<Point x="67495" y="28363"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/d0da3/1470/FA0/553527296371">
+											<position>
+												<Point x="46170" y="29210"/>
+											</position>
+											<size>
+												<Size width="952" height="953"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="4" rightExprIndex="1" srcEquation="!ed/aa0fd/760F/878/552b81aac31" dstEquation="!ed/d0da3/1470/FA0/553527296371">
+											<positions>
+												<Point x="36221" y="29924"/>
+												<Point x="41196" y="29924"/>
+												<Point x="41196" y="29686"/>
+												<Point x="46170" y="29686"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d0da3/1470/FA0/553527296371" dstEquation="!ed/b6070/14CD/990/5527cb956d55">
+											<positions>
+												<Point x="47122" y="29686"/>
+												<Point x="48048" y="29686"/>
+												<Point x="48048" y="29845"/>
+												<Point x="49001" y="29845"/>
 											</positions>
 										</Edge>
 									</presentationElements>
@@ -11058,7 +11110,7 @@
 						</ed:Operator>
 					</pragmas>
 				</Operator>
-				<Operator kind="node" name="Input_Level_Transition">
+				<Operator kind="function" name="Input_Level_Transition">
 					<inputs>
 						<Variable name="P_41">
 							<type>
@@ -12569,7 +12621,7 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/aa2f1/5217/B18/552bcb01413d" dstEquation="!ed/b5c8f/34C7/6B4/5527e6f21ad1">
 											<positions>
-												<Point x="13758" y="23178"/>
+												<Point x="13785" y="23178"/>
 												<Point x="18785" y="23178"/>
 												<Point x="18785" y="23151"/>
 												<Point x="21458" y="23151"/>
@@ -12737,7 +12789,7 @@
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/aa4f6/5217/B18/552bd72957ea" dstEquation="!ed/aa51c/5217/B18/552bd7684956">
 											<positions>
-												<Point x="31353" y="15028"/>
+												<Point x="31380" y="15028"/>
 												<Point x="33126" y="15028"/>
 												<Point x="33126" y="15028"/>
 												<Point x="34899" y="15028"/>
@@ -15105,7 +15157,7 @@
 						</ed:Operator>
 					</pragmas>
 				</Operator>
-				<Operator kind="node" name="LevelTR2Level">
+				<Operator kind="function" name="LevelTR2Level">
 					<inputs>
 						<Variable name="InLevelTR">
 							<type>
@@ -15404,11 +15456,6 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/aa358/5217/B18/552bcfd21443" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-							<comment>type M_LEVEL = enum { &#xA;&#x9;#pragma kcg enum_val 0 #end M_LEVEL_Level_0 ,&#xA;&#x9;</comment>
-							<comment>#pragma kcg enum_val 1 #end M_LEVEL_Level_NTC_specified_by_NID_NTC ,&#xA;&#x9;</comment>
-							<comment>#pragma kcg enum_val 2 #end M_LEVEL_Level_1 ,&#xA;&#x9;</comment>
-							<comment>#pragma kcg enum_val 3 #end M_LEVEL_Level_2 ,&#xA;&#x9;</comment>
-							<comment>#pragma kcg enum_val 4 #end M_LEVEL_Level_3 &#xA;}; </comment>
 							<diagrams>
 								<NetDiagram name="diagram_LevelTR2Level_1" landscape="true" format="A4 (210 297)" oid="!ed/aa359/5217/B18/552bcfd271ff">
 									<presentationElements>
