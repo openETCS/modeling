@@ -1,18 +1,18 @@
-#ifndef TOOLS_INT_TO_Q_DIR_INTERFACE
-#define TOOLS_INT_TO_Q_DIR_INTERFACE
+#ifndef STORY00A_FIRSTTEST_INTERFACE
+#define STORY00A_FIRSTTEST_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "TOOLS_Int_To_Q_DIR.h"
+#include "Story00A_FirstTest.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_TOOLS_Int_To_Q_DIR inputs_ctx;
-extern outC_TOOLS_Int_To_Q_DIR outputs_ctx;
+extern inC_Story00A_FirstTest inputs_ctx;
+extern outC_Story00A_FirstTest outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*TOOLS_INT_TO_Q_DIR_INTERFACE */
+#endif /*STORY00A_FIRSTTEST_INTERFACE */
