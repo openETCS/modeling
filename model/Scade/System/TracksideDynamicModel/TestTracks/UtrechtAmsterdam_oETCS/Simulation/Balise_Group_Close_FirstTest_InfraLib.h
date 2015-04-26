@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-04-24T10:59:33
+** Generation date: 2015-04-25T17:50:03
 *************************************************************$ */
 #ifndef _Balise_Group_Close_FirstTest_InfraLib_H_
 #define _Balise_Group_Close_FirstTest_InfraLib_H_
@@ -44,6 +44,6 @@ extern void Balise_Group_Close_reset_FirstTest_InfraLib(
 #endif /* _Balise_Group_Close_FirstTest_InfraLib_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_Group_Close_FirstTest_InfraLib.h
-** Generation date: 2015-04-24T10:59:33
+** Generation date: 2015-04-25T17:50:03
 *************************************************************$ */
 
