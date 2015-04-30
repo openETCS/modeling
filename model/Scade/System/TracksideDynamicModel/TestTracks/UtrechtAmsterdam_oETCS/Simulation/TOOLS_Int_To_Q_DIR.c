@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-04-24T10:59:33
+** Generation date: 2015-04-25T17:50:04
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -41,6 +41,6 @@ void TOOLS_Int_to_Q_DIR(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** TOOLS_Int_to_Q_DIR.c
-** Generation date: 2015-04-24T10:59:33
+** Generation date: 2015-04-25T17:50:04
 *************************************************************$ */
 

@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-04-24T10:59:33
+** Generation date: 2015-04-25T17:50:04
 *************************************************************$ */
 #ifndef _TOOLS_Int_to_M_VERSION_H_
 #define _TOOLS_Int_to_M_VERSION_H_
@@ -47,6 +47,6 @@ extern void TOOLS_Int_to_M_VERSION_reset(outC_TOOLS_Int_to_M_VERSION *outC);
 #endif /* _TOOLS_Int_to_M_VERSION_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** TOOLS_Int_to_M_VERSION.h
-** Generation date: 2015-04-24T10:59:33
+** Generation date: 2015-04-25T17:50:04
 *************************************************************$ */
 
