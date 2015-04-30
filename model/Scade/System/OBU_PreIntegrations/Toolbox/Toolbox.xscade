@@ -146,6 +146,7 @@
 							</data>
 							<pragmas>
 								<ed:Operator oid="!ed/46e47/21E5/82D0/54d9035f233" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Converts a given velocity value in m/s to km/h</comment>
 									<diagrams>
 										<NetDiagram name="diagram_m_s_To_km_h_1" landscape="true" format="A4 (210 297)" oid="!ed/46e48/21E5/82D0/54d9035f4596">
 											<presentationElements>
@@ -1590,6 +1591,10 @@
 							</data>
 							<pragmas>
 								<ed:Operator oid="!ed/13c5b/24FB/6D88/54d8eb2134ab" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Physical simulation of the train. Calculates the current position and velocity based on initial values for position (in m) and velocity (in m/s) and an acceleration value (in percent).</comment>
+									<comment></comment>
+									<comment>Note on the acceleration value:</comment>
+									<comment>100% = 0.5 m/s^2</comment>
 									<diagrams>
 										<NetDiagram name="diagram_calculatePosition_1" landscape="true" format="A4 (210 297)" oid="!ed/13c5c/24FB/6D88/54d8eb2124a9">
 											<presentationElements>
@@ -2826,6 +2831,7 @@
 							</data>
 							<pragmas>
 								<ed:Operator oid="!ed/1654f3/486E/1278/54ef0982782b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Generates an inaccuracy vector for the speed provided by the odometer.</comment>
 									<diagrams>
 										<NetDiagram name="diagram_genSpeedInaccuracies_1" landscape="true" format="A4 (210 297)" oid="!ed/1654f4/486E/1278/54ef0982659c">
 											<presentationElements>
@@ -3073,8 +3079,8 @@
 													<positions>
 														<Point x="2879" y="5122"/>
 														<Point x="3408" y="5122"/>
-														<Point x="3408" y="5101"/>
-														<Point x="3937" y="5101"/>
+														<Point x="3408" y="5122"/>
+														<Point x="3937" y="5122"/>
 													</positions>
 												</Edge>
 												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1af8e/75A6/1330/553e942377ad" dstEquation="!ed/16552e/486E/1278/54ef09f74e69">
@@ -3089,8 +3095,8 @@
 													<positions>
 														<Point x="5207" y="5101"/>
 														<Point x="7133" y="5101"/>
-														<Point x="7133" y="5122"/>
-														<Point x="9081" y="5122"/>
+														<Point x="7133" y="5101"/>
+														<Point x="9081" y="5101"/>
 													</positions>
 												</Edge>
 												<Edge leftVarIndex="3" rightExprIndex="1" srcEquation="!ed/1af8e/75A6/1330/553e942377ad" dstEquation="!ed/16553a/486E/1278/54ef09f766a0">
@@ -4923,6 +4929,12 @@
 							</data>
 							<pragmas>
 								<ed:Operator oid="!ed/3c4a/24FB/6D88/54d8d9c06f39" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Generates position, velocity, system time and odometry values. from acceleration values.</comment>
+									<comment>Via the servicebrake and emergency brake inputs, it is possible to trigger service or emergency brake via the EVC (using the TIU).</comment>
+									<comment>The traction cutoff input will set the acceleration value to 0%.</comment>
+									<comment></comment>
+									<comment>Currently the emergency brake equals to a deceleration value of -1.5 m/s^2.</comment>
+									<comment>The service brake equals to a deceleration of -0.5 m/s^2</comment>
 									<diagrams>
 										<NetDiagram name="diagram_positionGenerator_1" landscape="true" format="A4 (210 297)" oid="!ed/3c4b/24FB/6D88/54d8d9c0cb2">
 											<presentationElements>
@@ -6299,6 +6311,7 @@
 							</data>
 							<pragmas>
 								<ed:Operator oid="!ed/207b3/1E59/4908/54e473f047f3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Generates a location vector with nominal, min and max location. The inaccuracies are given by the odometry properties.</comment>
 									<diagrams>
 										<NetDiagram name="diagram_genOdometryInaccuracies_1" landscape="true" format="A4 (210 297)" oid="!ed/207cd/1E59/4908/54e473f0d4a">
 											<presentationElements>
@@ -6684,6 +6697,8 @@
 							</data>
 							<pragmas>
 								<ed:Operator oid="!ed/26ce10/3C03/1434/5540f0924280" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Generates the system time (starting at 0 at start up). </comment>
+									<comment>The time of one SCADE cycle is equal to the time provided at the input &quot;deltaTime&quot; in ms.</comment>
 									<diagrams>
 										<NetDiagram name="diagram_systemTimeGenerator_1" landscape="true" format="A4 (210 297)" oid="!ed/26ce11/3C03/1434/5540f092367">
 											<presentationElements>
@@ -7189,6 +7204,10 @@
 							</data>
 							<pragmas>
 								<ed:Operator oid="!ed/136708/3C03/1434/5540ea053d79" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Provides an easy to use odometry generator. The user has to just provide an acceleration percentage value (-300% up to 100%),</comment>
+									<comment>an initial position, where the calculations will start (in m) and an initial velocity (in m/s).</comment>
+									<comment></comment>
+									<comment>The module uses the cDeltaSimulationTime for calculating the system time. This means, one SCADE cycle corresponds to the value stored in the constant.</comment>
 									<diagrams>
 										<NetDiagram name="diagram_Odometry_1" landscape="true" format="A4 (210 297)" oid="!ed/136709/3C03/1434/5540ea057913">
 											<presentationElements>
@@ -13785,6 +13804,7 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/12bc64/397B/1E7C/54eb3ff41a41" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Simulates the Train Interface Unit.  Currently the TIU simulation is able to process braking and traction cutoff commands.</comment>
 							<diagrams>
 								<NetDiagram name="diagram_TIU_evcToTrain" landscape="true" format="A4 (210 297)" oid="!ed/12bc65/397B/1E7C/54eb3ff42648">
 									<presentationElements>
@@ -15015,6 +15035,10 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/a45c0/17EC/4984/54f49bf020d8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Minimal RBC-simulation for the Start-of-Mission-process.</comment>
+							<comment>Needs the current system time and a message as input. </comment>
+							<comment>If the NID_MESSAGE of the provided message equals to 155, a message with NID_MESSAGE 32 provided at the output.</comment>
+							<comment>If other messages are received, a default message with valid = false </comment>
 							<diagrams>
 								<NetDiagram name="diagram_RBC_1" landscape="true" format="A4 (210 297)" oid="!ed/a45c1/17EC/4984/54f49bf0224e">
 									<presentationElements>
@@ -16867,6 +16891,7 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/a72bc/2EE8/4498/54e4a4a065f9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Translates setting values from the GUI panels (integer values) to the datatypes used internally.</comment>
 							<diagrams>
 								<NetDiagram name="diagram_GUI_Settings_1" landscape="true" format="A4 (210 297)" oid="!ed/a72bd/2EE8/4498/54e4a4a02604">
 									<presentationElements>
@@ -20053,8 +20078,11 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/ed0d/2E8F/25A8/553f9b6a7e21" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>The testenvironment simulation combines the separate building blocks of the toolbox </comment>
+							<comment>to the environment which can be connected to the EVC model.</comment>
 							<diagrams>
 								<NetDiagram name="diagram_TestEnvironmentSimulation_TestTrackAndRBC" landscape="true" format="A4 (210 297)" oid="!ed/ed50/2E8F/25A8/553f9b6ab78">
+									<comment>Simulates the track equipped with balises and radio messages sent from the RBC.</comment>
 									<presentationElements>
 										<EquationGE presentable="!ed/ed0e/2E8F/25A8/553f9b6a569b">
 											<position>
@@ -20234,6 +20262,7 @@
 									</presentationElements>
 								</NetDiagram>
 								<NetDiagram name="diagram_TestEnvironmentSimulation_MoRC_obuPhasesAndEvents" landscape="true" format="A4 (210 297)" oid="!ed/ed51/2E8F/25A8/553f9b6a21df">
+									<comment>Provides a status array for the MoRC model. Will be replaced when EVC is further evolved.</comment>
 									<presentationElements>
 										<EquationGE kind="OBJ_INPUT" presentable="!ed/ed12/2E8F/25A8/553f9b6a53ce">
 											<position>
@@ -20462,6 +20491,7 @@
 									</presentationElements>
 								</NetDiagram>
 								<NetDiagram name="diagram_TestEnvironmentSimulation_PositionGenerator" landscape="true" format="A4 (210 297)" oid="!ed/ed52/2E8F/25A8/553f9b6a1c0">
+									<comment>Provides the system time, velocity, position and odometry for the EVC model.</comment>
 									<presentationElements>
 										<EquationGE presentable="!ed/ed18/2E8F/25A8/553f9b6a6f71">
 											<position>
@@ -20778,6 +20808,7 @@
 									</presentationElements>
 								</NetDiagram>
 								<NetDiagram name="diagram_TestEnvironmentSimulation_Settings" landscape="true" format="A4 (210 297)" oid="!ed/ed53/2E8F/25A8/553f9b6a4e4a">
+									<comment>Converts the settings from the GUI integer values to the internally used enumerations.</comment>
 									<presentationElements>
 										<EquationGE presentable="!ed/ed2b/2E8F/25A8/553f9b6a325">
 											<position>
@@ -20998,6 +21029,7 @@
 									</presentationElements>
 								</NetDiagram>
 								<NetDiagram name="diagram_TestEnvironmentSimulation_TIU" landscape="true" format="A4 (210 297)" oid="!ed/ed54/2E8F/25A8/553f9b6a63d9">
+									<comment>Simulates the TIU. Reacts e.g. to breaking commands and feeds them to </comment>
 									<presentationElements>
 										<EquationGE presentable="!ed/ed37/2E8F/25A8/553f9b6a1618">
 											<position>
@@ -21917,6 +21949,9 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/3e11/1E59/4908/54e47214b0d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Generates odometry data for a given position, velocity, timestamp, acceleration and motion direction.</comment>
+							<comment>Currently the odometry inaccuracies are given by a constant value. </comment>
+							<comment>It's planned to make it more flexible to handle the inaccuracies.</comment>
 							<diagrams>
 								<NetDiagram name="diagram_ODO_1" landscape="true" format="A4 (210 297)" oid="!ed/3e12/1E59/4908/54e472143ebd">
 									<presentationElements>
