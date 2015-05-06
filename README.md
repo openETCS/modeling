@@ -20,7 +20,7 @@ Upcoming Events:
  You can find the agenda and other important information [here](https://github.com/openETCS/modeling/blob/master/meetings/ADD-Phase/WS031114-Munich/SlidesDay1/1315_WS-MUC-AgendaV03-20141031.pdf)
 
 
-Recent Events:
+Past Events:
 ================
 
 * WP3 Team Meeting Brussels, 26th - 28th of May.
