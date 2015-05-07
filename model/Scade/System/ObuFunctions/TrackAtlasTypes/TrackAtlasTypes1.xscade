@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="TrackAtlasTypes">
+			<declarations>
+				<Constant name="MRSPMaxSections">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="200"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/a561/5442/16D8/554b19a92d2"/>
+					</pragmas>
+				</Constant>
+				<Constant name="MAsMaxSections">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="10"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/a553/5442/16D8/554b19a91e7a"/>
+					</pragmas>
+				</Constant>
+				<Constant name="GradientMaxSections">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="10"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/a545/5442/16D8/554b19a945e3"/>
+					</pragmas>
+				</Constant>
+				<Type name="SectionTimer_t">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="Location">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a536/5442/16D8/554b199e62c6"/>
+									</pragmas>
+								</Field>
+								<Field name="Timer">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a537/5442/16D8/554b199e5571"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a535/5442/16D8/554b199e5aab"/>
+					</pragmas>
+				</Type>
+				<Type name="ProfileIndex_t">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a52b/5442/16D8/554b199e1e7e"/>
+					</pragmas>
+				</Type>
+				<Type name="Overlap_t">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="Location">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a524/5442/16D8/554b199e7b56"/>
+									</pragmas>
+								</Field>
+								<Field name="Timer">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a525/5442/16D8/554b199ef4c"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a523/5442/16D8/554b199e7212"/>
+					</pragmas>
+				</Type>
+				<Type name="MRSP_update_t">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a519/5442/16D8/554b199e7faf" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Flag: True for 1 cycle when MRSP is updated</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="MRSP_section_t">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a510/5442/16D8/554b199e41d0"/>
+									</pragmas>
+								</Field>
+								<Field name="Loc_Abs">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a511/5442/16D8/554b199e6d7e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Safe Distance from Origin</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="Loc_LRBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a512/5442/16D8/554b199e43dd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Safe Distance from LRBG</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="MRS">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a513/5442/16D8/554b199e637" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Most Restrictive Speed, for head of train (compensated for train length)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a50f/5442/16D8/554b199e26d1"/>
+					</pragmas>
+				</Type>
+				<Type name="MRSP_Profile_t">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MRSP_section_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="MRSPMaxSections"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a502/5442/16D8/554b199e538e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>MRSP profile, taking into account train length considerations</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="MAs_t">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MA_section_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<NullRef/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a4fb/5442/16D8/554b199e5293"/>
+					</pragmas>
+				</Type>
+				<Type name="MA_section_t">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="MA_section_valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4e8/5442/16D8/554b199e7261" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>True if this is a defined section</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="EndSection">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4e9/5442/16D8/554b199e6f9d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>True if this section is an end section</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="EOA">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="EOA_t"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4ea/5442/16D8/554b199e3f8e"/>
+									</pragmas>
+								</Field>
+								<Field name="DP_valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4eb/5442/16D8/554b199e5481"/>
+									</pragmas>
+								</Field>
+								<Field name="DangerPoint">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4ec/5442/16D8/554b199e3444"/>
+									</pragmas>
+								</Field>
+								<Field name="OL_valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4ed/5442/16D8/554b199e7254"/>
+									</pragmas>
+								</Field>
+								<Field name="Overlap">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Overlap_t"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4ee/5442/16D8/554b199e3486"/>
+									</pragmas>
+								</Field>
+								<Field name="ReleaseSpeedvald">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4ef/5442/16D8/554b199e7b7f"/>
+									</pragmas>
+								</Field>
+								<Field name="ReleaseSpeed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4f0/5442/16D8/554b199e35da"/>
+									</pragmas>
+								</Field>
+								<Field name="ST_valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4f1/5442/16D8/554b199e7120"/>
+									</pragmas>
+								</Field>
+								<Field name="SectionTimer">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="SectionTimer_t"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4f2/5442/16D8/554b199e77b9"/>
+									</pragmas>
+								</Field>
+								<Field name="EST_valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4f3/5442/16D8/554b199e145e"/>
+									</pragmas>
+								</Field>
+								<Field name="EndOfSectionTimer">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="SectionTimer_t"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4f4/5442/16D8/554b199e600f"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a4e7/5442/16D8/554b199e3ed"/>
+					</pragmas>
+				</Type>
+				<Type name="GradientProfile_update_t">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a4ce/5442/16D8/554b199e174e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Flag: True for 1 cycle when Gradient Profile is recalculated</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="GradientProfile_t">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Gradient_section_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<NullRef/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a4c8/5442/16D8/554b199e50b7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>Compensated (train lenght and rotating mass) Gradient Profile - 3.13.4.1.1</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="Gradient_section_t">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="Loc_Absolute">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4be/5442/16D8/554b199e62bd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Safe Distance from Origin</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="Loc_LRBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4bf/5442/16D8/554b199e48a7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Safe Distance from LRBG</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="Gradient">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::G_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4c0/5442/16D8/554b199ebfa" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Compensated Gradient</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="L_Gradient">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4c1/5442/16D8/554b199e66f7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Length of Gradient Section</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a4bd/5442/16D8/554b199e730f"/>
+					</pragmas>
+				</Type>
+				<Type name="EOA_t">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="Location">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4ad/5442/16D8/554b199e2429"/>
+									</pragmas>
+								</Field>
+								<Field name="TargetSpeed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::Speed_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4ae/5442/16D8/554b199e795b"/>
+									</pragmas>
+								</Field>
+								<Field name="Timer">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/a4af/5442/16D8/554b199e2a05"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/a4ac/5442/16D8/554b199e192d"/>
+					</pragmas>
+				</Type>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/a49d/5442/16D8/554b19858e9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/a49e/5442/16D8/554b19856099" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/a49f/5442/16D8/554b198516d6" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/a4a0/5442/16D8/554b19853822" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>
