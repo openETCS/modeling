@@ -1,9 +1,280 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="node" name="SIM_05_Amstel_Standalone">
+	<inputs>
+		<Variable name="TrainPosIn">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/d9e97/1F32/CBC/554b9cd3655"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="BaliseMessageOut">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TM::CompressedBaliseMessage"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/d9e98/1F32/CBC/554b9cdbfe0"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="InfraLib::TrackSectionData_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/d9dd0/1F32/CBC/554b9ada5957"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="InfraLib::TrackSectionData_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/d9dd6/1F32/CBC/554b9ae639f9"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/d9e9a/1F32/CBC/554b9ce87ecf"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TM::CompressedBaliseMessage"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/d9ec1/1F32/CBC/554b9e3bf46"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = Sheet05_Amstel(_L2); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<!-- Sheet05_Amstel(_L2) -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="Sheet05_Amstel"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L2"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/d9dcf/1F32/CBC/554b9ada65ed"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 = InfraLib::TrackInit(_L3, 103907); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<!-- InfraLib::TrackInit(_L3, 103907) -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="InfraLib::TrackInit"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L3"/>
+							</path>
+						</IdExpression>
+						<ConstValue value="103907"/>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/d9dd5/1F32/CBC/554b9ae61afd"/>
+				<kcg:Pragma>
+					doc &quot;Graphical_1&quot; {Text = &quot;Train Position 0 at  Signal 908 Train0 = 103907m  &quot;}
+				</kcg:Pragma>
+			</pragmas>
+		</Equation>
+		<!-- _L3 = TrainPosIn; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="TrainPosIn"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/d9e99/1F32/CBC/554b9ce83aa6"/>
+			</pragmas>
+		</Equation>
+		<!-- BaliseMessageOut = _L4; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="BaliseMessageOut"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L4"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/d9eb9/1F32/CBC/554b9e30674"/>
+			</pragmas>
+		</Equation>
+		<!-- _L4 = _L1.BG_Message; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L4"/>
+			</lefts>
+			<right>
+				<!-- _L1.BG_Message -->
+				<PrjOp name="1">
+					<flow>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</flow>
+					<with>
+						<Label name="BG_Message"/>
+					</with>
+				</PrjOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/d9ec0/1F32/CBC/554b9e3b38b7"/>
+			</pragmas>
+		</Equation>
+	</data>
 	<pragmas>
 		<ed:Operator oid="!ed/34af8/2753/D78/553e95a51986" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 			<diagrams>
-				<NetDiagram name="diagram_SIM_05_Amstel_Standalone_1" landscape="true" format="A4 (210 297)" oid="!ed/34af9/2753/D78/553e95a5560f"/>
+				<NetDiagram name="diagram_SIM_05_Amstel_Standalone_1" landscape="true" format="A4 (210 297)" oid="!ed/34af9/2753/D78/553e95a5560f">
+					<presentationElements>
+						<EquationGE presentable="!ed/d9dcf/1F32/CBC/554b9ada65ed">
+							<position>
+								<Point x="10583" y="4551"/>
+							</position>
+							<size>
+								<Size width="10123" height="4408"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/d9dd5/1F32/CBC/554b9ae61afd">
+							<position>
+								<Point x="3281" y="5371"/>
+							</position>
+							<size>
+								<Size width="5016" height="2768"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d9dd5/1F32/CBC/554b9ae61afd" dstEquation="!ed/d9dcf/1F32/CBC/554b9ada65ed">
+							<positions>
+								<Point x="8308" y="6773"/>
+								<Point x="9419" y="6773"/>
+								<Point x="9419" y="6747"/>
+								<Point x="10583" y="6747"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/d9e99/1F32/CBC/554b9ce83aa6">
+							<position>
+								<Point x="1482" y="6482"/>
+							</position>
+							<size>
+								<Size width="264" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d9e99/1F32/CBC/554b9ce83aa6" dstEquation="!ed/d9dd5/1F32/CBC/554b9ae61afd">
+							<positions>
+								<Point x="1746" y="6747"/>
+								<Point x="2514" y="6747"/>
+								<Point x="2514" y="6773"/>
+								<Point x="3281" y="6773"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/d9eb9/1F32/CBC/554b9e30674">
+							<position>
+								<Point x="29289" y="6509"/>
+							</position>
+							<size>
+								<Size width="318" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/d9ec0/1F32/CBC/554b9e3b38b7">
+							<position>
+								<Point x="22992" y="6271"/>
+							</position>
+							<size>
+								<Size width="2662" height="969"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d9dcf/1F32/CBC/554b9ada65ed" dstEquation="!ed/d9ec0/1F32/CBC/554b9e3b38b7">
+							<positions>
+								<Point x="20690" y="6747"/>
+								<Point x="21828" y="6747"/>
+								<Point x="21828" y="6773"/>
+								<Point x="22992" y="6773"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d9ec0/1F32/CBC/554b9e3b38b7" dstEquation="!ed/d9eb9/1F32/CBC/554b9e30674">
+							<positions>
+								<Point x="25665" y="6773"/>
+								<Point x="27490" y="6773"/>
+								<Point x="27490" y="6773"/>
+								<Point x="29342" y="6773"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
 			</diagrams>
 		</ed:Operator>
 	</pragmas>
