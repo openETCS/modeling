@@ -1,11 +1,11 @@
 modeling
 =========
 
+WP3 location for modelling results and activities.
+
 Sprint Backlog
 ==============
 * [https://waffle.io/openetcs/modeling?label=Sprint-Backlog](waffle.io sprint backlog board)
-
-WP3 location for modelling results and activities.
 
 Repository Structure:
 =====================
