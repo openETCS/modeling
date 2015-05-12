@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/openetcs/modeling.png?label=ready&title=Ready)](https://waffle.io/openetcs/modeling)
 modeling
 =========
 
