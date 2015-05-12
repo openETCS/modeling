@@ -24,13 +24,6 @@ Repository Structure:
 Upcoming Events:
 ================
 
-* WP3 Team Meeting Munich, November 3rd - 7th.
- You can find the agenda and other important information [here](https://github.com/openETCS/modeling/blob/master/meetings/ADD-Phase/WS031114-Munich/SlidesDay1/1315_WS-MUC-AgendaV03-20141031.pdf)
+* WP3 Team Meeting Munich, see [wiki](https://github.com/openETCS/modeling/wiki/Workshop-Munich-19th---21st:-Meeting-Agenda)
 
-
-Past Events:
-================
-
-* WP3 Team Meeting Brussels, 26th - 28th of May.
- You can find the agenda and other important information [here](https://github.com/openETCS/modeling/blob/master/meetings/Team-Meeting_Brussels-2014-05-26/OpenETCS_WP3_meeting_agenda.pdf)
 
