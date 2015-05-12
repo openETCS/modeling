@@ -9,6 +9,7 @@ WP3 location for modelling results and activities.
 Sprint Backlog:
 ===============
 * [waffle.io sprint backlog board](https://waffle.io/openetcs/modeling?label=Sprint-Backlog)
+* [Sprint backlog Process](https://github.com/openETCS/modeling/wiki/WP3-Scrum-Process)
 
 Repository Structure:
 =====================
