@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/BaliseLib/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-04-23T17:13:00
+** Generation date: 2015-04-27T21:06:24
 *************************************************************$ */
 
 #include "kcg_types.h"
@@ -17,21 +17,33 @@ kcg_bool kcg_comp_array_int_500(array_int_500 *kcg_c1, array_int_500 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_array__316(array__316 *kcg_c1, array__316 *kcg_c2)
+kcg_bool kcg_comp_array__314(array__314 *kcg_c1, array__314 *kcg_c2)
 {
   kcg_bool kcg_equ;
   kcg_int kcg_ci;
   
   kcg_equ = kcg_true;
   for (kcg_ci = 0; kcg_ci < 30; kcg_ci++) {
-    kcg_equ = kcg_equ & kcg_comp_struct__308(
+    kcg_equ = kcg_equ & kcg_comp_struct__306(
         &(*kcg_c1)[kcg_ci],
         &(*kcg_c2)[kcg_ci]);
   }
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__308(struct__308 *kcg_c1, struct__308 *kcg_c2)
+kcg_bool kcg_comp_struct__297(struct__297 *kcg_c1, struct__297 *kcg_c2)
+{
+  kcg_bool kcg_equ;
+  
+  kcg_equ = kcg_true;
+  kcg_equ = kcg_equ & (kcg_c1->TrainPosCalibrated ==
+      kcg_c2->TrainPosCalibrated);
+  kcg_equ = kcg_equ & (kcg_c1->OffsetTotal == kcg_c2->OffsetTotal);
+  kcg_equ = kcg_equ & (kcg_c1->TrainPos_in == kcg_c2->TrainPos_in);
+  return kcg_equ;
+}
+
+kcg_bool kcg_comp_struct__306(struct__306 *kcg_c1, struct__306 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
@@ -44,7 +56,7 @@ kcg_bool kcg_comp_struct__308(struct__308 *kcg_c1, struct__308 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__319(struct__319 *kcg_c1, struct__319 *kcg_c2)
+kcg_bool kcg_comp_struct__317(struct__317 *kcg_c1, struct__317 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
@@ -52,13 +64,13 @@ kcg_bool kcg_comp_struct__319(struct__319 *kcg_c1, struct__319 *kcg_c2)
   kcg_equ = kcg_equ & kcg_comp_array_int_500(
       &kcg_c1->PacketData,
       &kcg_c2->PacketData);
-  kcg_equ = kcg_equ & kcg_comp_array__316(
+  kcg_equ = kcg_equ & kcg_comp_array__314(
       &kcg_c1->PacketHeaders,
       &kcg_c2->PacketHeaders);
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__324(struct__324 *kcg_c1, struct__324 *kcg_c2)
+kcg_bool kcg_comp_struct__322(struct__322 *kcg_c1, struct__322 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
@@ -76,22 +88,34 @@ kcg_bool kcg_comp_struct__324(struct__324 *kcg_c1, struct__324 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__337(struct__337 *kcg_c1, struct__337 *kcg_c2)
+kcg_bool kcg_comp_struct__335(struct__335 *kcg_c1, struct__335 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
   kcg_equ = kcg_true;
-  kcg_equ = kcg_equ & (kcg_c1->pig_nom_0 == kcg_c2->pig_nom_0);
-  kcg_equ = kcg_equ & (kcg_c1->TrainPos == kcg_c2->TrainPos);
-  kcg_equ = kcg_equ & (kcg_c1->engineering_BG_location ==
-      kcg_c2->engineering_BG_location);
-  kcg_equ = kcg_equ & kcg_comp_struct__319(&kcg_c1->packets, &kcg_c2->packets);
-  kcg_equ = kcg_equ & kcg_comp_struct__324(&kcg_c1->header, &kcg_c2->header);
+  kcg_equ = kcg_equ & kcg_comp_struct__317(
+      &kcg_c1->Messages,
+      &kcg_c2->Messages);
+  kcg_equ = kcg_equ & kcg_comp_struct__322(&kcg_c1->Header, &kcg_c2->Header);
+  return kcg_equ;
+}
+
+kcg_bool kcg_comp_struct__340(struct__340 *kcg_c1, struct__340 *kcg_c2)
+{
+  kcg_bool kcg_equ;
+  
+  kcg_equ = kcg_true;
+  kcg_equ = kcg_equ & kcg_comp_struct__335(
+      &kcg_c1->BG_Message,
+      &kcg_c2->BG_Message);
+  kcg_equ = kcg_equ & kcg_comp_struct__297(
+      &kcg_c1->TrainPosRaw,
+      &kcg_c2->TrainPosRaw);
   return kcg_equ;
 }
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_types.c
-** Generation date: 2015-04-23T17:13:00
+** Generation date: 2015-04-27T21:06:24
 *************************************************************$ */
 

@@ -7,7 +7,7 @@
 					<type>
 						<NamedType>
 							<type>
-								<TypeRef name="TM_BaliseTelegramHeader_int_T"/>
+								<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
 							</type>
 						</NamedType>
 					</type>
@@ -95,7 +95,7 @@
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="TM_BaliseTelegramHeader_int_T"/>
+												<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
 											</type>
 										</NamedType>
 									</type>
@@ -172,14 +172,84 @@
 				</Type>
 				<Type name="TrackSectionData_T">
 					<definition>
-						<NamedType>
-							<type>
-								<NullRef/>
-							</type>
-						</NamedType>
+						<Struct>
+							<fields>
+								<Field name="TrainPosRaw">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="TrainPosRaw_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/7f0cd/7688/10C/553a94631cfc"/>
+									</pragmas>
+								</Field>
+								<Field name="BG_Message">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="TM::CompressedBaliseMessage"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/7f0d6/7688/10C/553a946d78e3"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
 					</definition>
 					<pragmas>
 						<ed:Type oid="!ed/55030/7688/10C/553a2b71efd"/>
+					</pragmas>
+				</Type>
+				<Type name="TrainPosRaw_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="TrainPos_in">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="real"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/7f0f2/7688/10C/553a97ea6bbe"/>
+									</pragmas>
+								</Field>
+								<Field name="OffsetTotal">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/7f0fb/7688/10C/553a980d6f37"/>
+									</pragmas>
+								</Field>
+								<Field name="TrainPosCalibrated">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="real"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/7f37d/7688/10C/553d3ef4782"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/7f0f1/7688/10C/553a97e1240b"/>
 					</pragmas>
 				</Type>
 				<Operator kind="function" name="TEMPLATE_Balise_Packets">
@@ -188,7 +258,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseTelegramHeader_int_T"/>
+										<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -552,7 +622,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseTelegramHeader_int_T"/>
+										<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -1912,7 +1982,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P003_T"/>
+										<TypeRef name="TM::P003_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -1976,7 +2046,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P003_T"/>
+										<TypeRef name="TM::P003_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -2010,21 +2080,21 @@
 						</Variable>
 					</locals>
 					<data>
-						<!-- _L1, _L2 = (activate SEND_WritePacket003_IT every _L5 default (_L6, _L3))(_L4, _L... -->
+						<!-- _L1, _L2 = (activate TM::SEND_WritePacket003_IT every _L5 default (_L6, _L3))(_L4... -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L1"/>
 								<VariableRef name="_L2"/>
 							</lefts>
 							<right>
-								<!-- (activate SEND_WritePacket003_IT every _L5 default (_L6, _L3))(_L4, _L3) -->
+								<!-- (activate TM::SEND_WritePacket003_IT every _L5 default (_L6, _L3))(_L4, _L3) -->
 								<CallExpression>
 									<operator>
 										<ActivateNoInitOp>
 											<operator>
 												<OpCall name="1">
 													<operator>
-														<OperatorRef name="SEND_WritePacket003_IT"/>
+														<OperatorRef name="TM::SEND_WritePacket003_IT"/>
 													</operator>
 												</OpCall>
 											</operator>
@@ -2193,14 +2263,6 @@
 												<Size width="503" height="503"/>
 											</size>
 										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/14d61/495D/1484/55377c673296" dstEquation="!ed/3e3a1/495D/1484/55377e807275">
-											<positions>
-												<Point x="15822" y="5530"/>
-												<Point x="16748" y="5530"/>
-												<Point x="16748" y="5530"/>
-												<Point x="17701" y="5530"/>
-											</positions>
-										</Edge>
 										<EquationGE presentable="!ed/3e3a6/495D/1484/55377e925639">
 											<position>
 												<Point x="1958" y="6932"/>
@@ -2217,14 +2279,6 @@
 												<Size width="318" height="503"/>
 											</size>
 										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/3e3ba/495D/1484/55377ef744fc" dstEquation="!ed/14d61/495D/1484/55377c673296">
-											<positions>
-												<Point x="1826" y="2302"/>
-												<Point x="4471" y="2302"/>
-												<Point x="4471" y="5530"/>
-												<Point x="7250" y="5530"/>
-											</positions>
-										</Edge>
 										<EquationGE presentable="!ed/3e3ba/495D/1484/55377ef744fc">
 											<position>
 												<Point x="1561" y="2037"/>
@@ -2249,13 +2303,6 @@
 												<Point x="6138" y="2302"/>
 											</positions>
 										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3e3c2/495D/1484/55377f1a73ad" dstEquation="!ed/14d61/495D/1484/55377c673296">
-											<positions>
-												<Point x="7091" y="2302"/>
-												<Point x="11536" y="2302"/>
-												<Point x="11536" y="3863"/>
-											</positions>
-										</Edge>
 										<EquationGE kind="OBJ_LIT" presentable="!ed/3e3ce/495D/1484/55377f3260a0">
 											<position>
 												<Point x="8096" y="9578"/>
@@ -2264,6 +2311,31 @@
 												<Size width="212" height="317"/>
 											</size>
 										</EquationGE>
+										<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/14d61/495D/1484/55377c673296" dstEquation="!ed/3e3ac/495D/1484/55377e973311">
+											<positions>
+												<Point x="15822" y="7197"/>
+												<Point x="20770" y="7197"/>
+												<Point x="20770" y="7197"/>
+												<Point x="25744" y="7197"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/14d61/495D/1484/55377c673296" dstEquation="!ed/3e3a1/495D/1484/55377e807275">
+											<positions>
+												<Point x="15822" y="5530"/>
+												<Point x="16748" y="5530"/>
+												<Point x="16748" y="5530"/>
+												<Point x="17701" y="5530"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/3e3a6/495D/1484/55377e925639" dstEquation="!ed/14d61/495D/1484/55377c673296">
+											<positions>
+												<Point x="2223" y="7197"/>
+												<Point x="5530" y="7197"/>
+												<Point x="5530" y="10186"/>
+												<Point x="12965" y="10186"/>
+												<Point x="12965" y="8864"/>
+											</positions>
+										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/3e3ce/495D/1484/55377f3260a0" dstEquation="!ed/14d61/495D/1484/55377c673296">
 											<positions>
 												<Point x="8308" y="9737"/>
@@ -2279,21 +2351,19 @@
 												<Point x="7250" y="7197"/>
 											</positions>
 										</Edge>
-										<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/14d61/495D/1484/55377c673296" dstEquation="!ed/3e3ac/495D/1484/55377e973311">
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/3e3ba/495D/1484/55377ef744fc" dstEquation="!ed/14d61/495D/1484/55377c673296">
 											<positions>
-												<Point x="15822" y="7197"/>
-												<Point x="20770" y="7197"/>
-												<Point x="20770" y="7197"/>
-												<Point x="25744" y="7197"/>
+												<Point x="1826" y="2302"/>
+												<Point x="4471" y="2302"/>
+												<Point x="4471" y="5530"/>
+												<Point x="7250" y="5530"/>
 											</positions>
 										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/3e3a6/495D/1484/55377e925639" dstEquation="!ed/14d61/495D/1484/55377c673296">
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3e3c2/495D/1484/55377f1a73ad" dstEquation="!ed/14d61/495D/1484/55377c673296">
 											<positions>
-												<Point x="2223" y="7197"/>
-												<Point x="5530" y="7197"/>
-												<Point x="5530" y="10186"/>
-												<Point x="12965" y="10186"/>
-												<Point x="12965" y="8864"/>
+												<Point x="7091" y="2302"/>
+												<Point x="11536" y="2302"/>
+												<Point x="11536" y="3863"/>
 											</positions>
 										</Edge>
 									</presentationElements>
@@ -2320,7 +2390,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P005"/>
+										<TypeRef name="TM::P005"/>
 									</type>
 								</NamedType>
 							</type>
@@ -2360,7 +2430,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P005"/>
+										<TypeRef name="TM::P005"/>
 									</type>
 								</NamedType>
 							</type>
@@ -2490,21 +2560,21 @@
 								<ed:Equation oid="!ed/3e422/495D/1484/553782727431"/>
 							</pragmas>
 						</Equation>
-						<!-- _L6, _L7 = (activate SEND_WritePacket005_IT every _L5 default (_L8, _L3))(_L4, _L... -->
+						<!-- _L6, _L7 = (activate TM::SEND_WritePacket005_IT every _L5 default (_L8, _L3))(_L4... -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L6"/>
 								<VariableRef name="_L7"/>
 							</lefts>
 							<right>
-								<!-- (activate SEND_WritePacket005_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
+								<!-- (activate TM::SEND_WritePacket005_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
 								<CallExpression>
 									<operator>
 										<ActivateNoInitOp>
 											<operator>
-												<OpCall name="2">
+												<OpCall name="1">
 													<operator>
-														<OperatorRef name="SEND_WritePacket005_IT"/>
+														<OperatorRef name="TM::SEND_WritePacket005_IT"/>
 													</operator>
 												</OpCall>
 											</operator>
@@ -2665,6 +2735,15 @@
 												<Point x="18600" y="6826"/>
 											</positions>
 										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/3e3ee/495D/1484/5537824a610f" dstEquation="!ed/3e424/495D/1484/553782724d79">
+											<positions>
+												<Point x="3307" y="8493"/>
+												<Point x="6165" y="8493"/>
+												<Point x="6165" y="11483"/>
+												<Point x="13864" y="11483"/>
+												<Point x="13864" y="10160"/>
+											</positions>
+										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/3e428/495D/1484/55378272245f" dstEquation="!ed/3e424/495D/1484/553782724d79">
 											<positions>
 												<Point x="9208" y="11033"/>
@@ -2695,15 +2774,6 @@
 												<Point x="12435" y="5159"/>
 											</positions>
 										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/3e3ee/495D/1484/5537824a610f" dstEquation="!ed/3e424/495D/1484/553782724d79">
-											<positions>
-												<Point x="3307" y="8493"/>
-												<Point x="6165" y="8493"/>
-												<Point x="6165" y="11483"/>
-												<Point x="13864" y="11483"/>
-												<Point x="13864" y="10160"/>
-											</positions>
-										</Edge>
 									</presentationElements>
 								</NetDiagram>
 							</diagrams>
@@ -2728,7 +2798,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_CompressedBaliseMessage"/>
+										<TypeRef name="TM::CompressedBaliseMessage"/>
 									</type>
 								</NamedType>
 							</type>
@@ -2740,7 +2810,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseGroupData"/>
+										<TypeRef name="TM::BaliseGroupData"/>
 									</type>
 								</NamedType>
 							</type>
@@ -2754,7 +2824,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_CompressedBaliseMessage"/>
+										<TypeRef name="TM::CompressedBaliseMessage"/>
 									</type>
 								</NamedType>
 							</type>
@@ -2900,7 +2970,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_CompressedBaliseMessage"/>
+										<TypeRef name="TM::CompressedBaliseMessage"/>
 									</type>
 								</NamedType>
 							</type>
@@ -2936,7 +3006,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseGroupData"/>
+										<TypeRef name="TM::BaliseGroupData"/>
 									</type>
 								</NamedType>
 							</type>
@@ -3068,7 +3138,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_CompressedBaliseMessage"/>
+										<TypeRef name="TM::CompressedBaliseMessage"/>
 									</type>
 								</NamedType>
 							</type>
@@ -4140,7 +4210,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseTelegramHeader_int_T"/>
+										<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -4204,7 +4274,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseTelegramHeader_int_T"/>
+										<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -4415,7 +4485,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseGroupData"/>
+										<TypeRef name="TM::BaliseGroupData"/>
 									</type>
 								</NamedType>
 							</type>
@@ -4443,7 +4513,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseGroupData"/>
+										<TypeRef name="TM::BaliseGroupData"/>
 									</type>
 								</NamedType>
 							</type>
@@ -4479,7 +4549,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseTelegramHeader_int_T"/>
+										<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -4634,7 +4704,7 @@
 								<ed:Equation oid="!ed/68a04/495D/1484/553929d2168b"/>
 							</pragmas>
 						</Equation>
-						<!-- _L27 = DEFAULT_TM_BaliseHeaderInt; -->
+						<!-- _L27 = TM::DEFAULT_TM_BaliseHeaderInt; -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L27"/>
@@ -4642,7 +4712,7 @@
 							<right>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="DEFAULT_TM_BaliseHeaderInt"/>
+										<ConstVarRef name="TM::DEFAULT_TM_BaliseHeaderInt"/>
 									</path>
 								</IdExpression>
 							</right>
@@ -4650,7 +4720,7 @@
 								<ed:Equation oid="!ed/7d8c9/495D/1484/55392e0b3345"/>
 							</pragmas>
 						</Equation>
-						<!-- _L28 = DEFAULT_Packets; -->
+						<!-- _L28 = TM::DEFAULT_Packets; -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L28"/>
@@ -4658,7 +4728,7 @@
 							<right>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="DEFAULT_Packets"/>
+										<ConstVarRef name="TM::DEFAULT_Packets"/>
 									</path>
 								</IdExpression>
 							</right>
@@ -4884,7 +4954,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_CompressedBaliseMessage"/>
+										<TypeRef name="TM::CompressedBaliseMessage"/>
 									</type>
 								</NamedType>
 							</type>
@@ -4910,7 +4980,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_CompressedBaliseMessage"/>
+										<TypeRef name="TM::CompressedBaliseMessage"/>
 									</type>
 								</NamedType>
 							</type>
@@ -4924,7 +4994,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_CompressedBaliseMessage"/>
+										<TypeRef name="TM::CompressedBaliseMessage"/>
 									</type>
 								</NamedType>
 							</type>
@@ -4936,7 +5006,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_CompressedBaliseMessage"/>
+										<TypeRef name="TM::CompressedBaliseMessage"/>
 									</type>
 								</NamedType>
 							</type>
@@ -4960,7 +5030,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseTelegramHeader_int_T"/>
+										<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -4984,7 +5054,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_CompressedBaliseMessage"/>
+										<TypeRef name="TM::CompressedBaliseMessage"/>
 									</type>
 								</NamedType>
 							</type>
@@ -5050,18 +5120,18 @@
 								<ed:Equation oid="!ed/927f4/495D/1484/5539341a781c"/>
 							</pragmas>
 						</Equation>
-						<!-- _L20 = (make TM_CompressedBaliseMessage)(_L22, _L23); -->
+						<!-- _L20 = (make TM::CompressedBaliseMessage)(_L22, _L23); -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L20"/>
 							</lefts>
 							<right>
-								<!-- (make TM_CompressedBaliseMessage)(_L22, _L23) -->
+								<!-- (make TM::CompressedBaliseMessage)(_L22, _L23) -->
 								<CallExpression>
 									<operator>
 										<MakeOp>
 											<type>
-												<TypeRef name="TM_CompressedBaliseMessage"/>
+												<TypeRef name="TM::CompressedBaliseMessage"/>
 											</type>
 										</MakeOp>
 									</operator>
@@ -5300,8 +5370,8 @@
 											<positions>
 												<Point x="3704" y="3069"/>
 												<Point x="4498" y="3069"/>
-												<Point x="4498" y="5159"/>
-												<Point x="5318" y="5159"/>
+												<Point x="4498" y="5186"/>
+												<Point x="5318" y="5186"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/9285b/495D/1484/55393542195b">
@@ -5314,10 +5384,10 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/9283f/495D/1484/5539350f619d" dstEquation="!ed/9282f/495D/1484/553934e169ba">
 											<positions>
-												<Point x="8784" y="5159"/>
-												<Point x="9737" y="5159"/>
-												<Point x="9737" y="5159"/>
-												<Point x="10689" y="5159"/>
+												<Point x="8811" y="5186"/>
+												<Point x="9737" y="5186"/>
+												<Point x="9737" y="5186"/>
+												<Point x="10689" y="5186"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/9285b/495D/1484/55393542195b" dstEquation="!ed/9282f/495D/1484/553934e169ba">
@@ -5346,7 +5416,7 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/9282f/495D/1484/553934e169ba" dstEquation="!ed/9286b/495D/1484/553935b06d68">
 											<positions>
-												<Point x="12171" y="5953"/>
+												<Point x="12197" y="5953"/>
 												<Point x="14473" y="5953"/>
 												<Point x="14473" y="5953"/>
 												<Point x="16775" y="5953"/>
@@ -5379,8 +5449,8 @@
 											<positions>
 												<Point x="3704" y="3069"/>
 												<Point x="4498" y="3069"/>
-												<Point x="4498" y="3096"/>
-												<Point x="5318" y="3096"/>
+												<Point x="4498" y="3069"/>
+												<Point x="5318" y="3069"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/92892/495D/1484/553936997452">
@@ -5546,7 +5616,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P15"/>
+										<TypeRef name="TM::P015"/>
 									</type>
 								</NamedType>
 							</type>
@@ -5586,7 +5656,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P15"/>
+										<TypeRef name="TM::P015"/>
 									</type>
 								</NamedType>
 							</type>
@@ -5954,7 +6024,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P21"/>
+										<TypeRef name="TM::P021"/>
 									</type>
 								</NamedType>
 							</type>
@@ -5994,7 +6064,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P21"/>
+										<TypeRef name="TM::P021"/>
 									</type>
 								</NamedType>
 							</type>
@@ -6124,21 +6194,21 @@
 								<ed:Equation oid="!ed/3e4c1/495D/1484/5537839c3db1"/>
 							</pragmas>
 						</Equation>
-						<!-- _L6, _L7 = (activate SEND_WritePacket021_IT every _L5 default (_L8, _L3))(_L4, _L... -->
+						<!-- _L6, _L7 = (activate TM::SEND_WritePacket021_IT every _L5 default (_L8, _L3))(_L4... -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L6"/>
 								<VariableRef name="_L7"/>
 							</lefts>
 							<right>
-								<!-- (activate SEND_WritePacket021_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
+								<!-- (activate TM::SEND_WritePacket021_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
 								<CallExpression>
 									<operator>
 										<ActivateNoInitOp>
 											<operator>
 												<OpCall name="1">
 													<operator>
-														<OperatorRef name="SEND_WritePacket021_IT"/>
+														<OperatorRef name="TM::SEND_WritePacket021_IT"/>
 													</operator>
 												</OpCall>
 											</operator>
@@ -6362,7 +6432,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P27"/>
+										<TypeRef name="TM::P027"/>
 									</type>
 								</NamedType>
 							</type>
@@ -6402,7 +6472,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P27"/>
+										<TypeRef name="TM::P027"/>
 									</type>
 								</NamedType>
 							</type>
@@ -6532,21 +6602,21 @@
 								<ed:Equation oid="!ed/3e511/495D/1484/553783eb6946"/>
 							</pragmas>
 						</Equation>
-						<!-- _L6, _L7 = (activate SEND_WritePacket027_IT every _L5 default (_L8, _L3))(_L4, _L... -->
+						<!-- _L6, _L7 = (activate TM::SEND_WritePacket027_IT every _L5 default (_L8, _L3))(_L4... -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L6"/>
 								<VariableRef name="_L7"/>
 							</lefts>
 							<right>
-								<!-- (activate SEND_WritePacket027_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
+								<!-- (activate TM::SEND_WritePacket027_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
 								<CallExpression>
 									<operator>
 										<ActivateNoInitOp>
 											<operator>
 												<OpCall name="1">
 													<operator>
-														<OperatorRef name="SEND_WritePacket027_IT"/>
+														<OperatorRef name="TM::SEND_WritePacket027_IT"/>
 													</operator>
 												</OpCall>
 											</operator>
@@ -6770,7 +6840,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P041_T"/>
+										<TypeRef name="TM::P041_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -6810,7 +6880,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P041_T"/>
+										<TypeRef name="TM::P041_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -6940,21 +7010,21 @@
 								<ed:Equation oid="!ed/3e561/495D/1484/5537845879f1"/>
 							</pragmas>
 						</Equation>
-						<!-- _L6, _L7 = (activate SEND_WritePacket041_IT every _L5 default (_L8, _L3))(_L4, _L... -->
+						<!-- _L6, _L7 = (activate TM::SEND_WritePacket041_IT every _L5 default (_L8, _L3))(_L4... -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L6"/>
 								<VariableRef name="_L7"/>
 							</lefts>
 							<right>
-								<!-- (activate SEND_WritePacket041_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
+								<!-- (activate TM::SEND_WritePacket041_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
 								<CallExpression>
 									<operator>
 										<ActivateNoInitOp>
 											<operator>
 												<OpCall name="1">
 													<operator>
-														<OperatorRef name="SEND_WritePacket041_IT"/>
+														<OperatorRef name="TM::SEND_WritePacket041_IT"/>
 													</operator>
 												</OpCall>
 											</operator>
@@ -7178,7 +7248,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P042_T"/>
+										<TypeRef name="TM::P042_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -7218,7 +7288,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P042_T"/>
+										<TypeRef name="TM::P042_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -7348,21 +7418,21 @@
 								<ed:Equation oid="!ed/3e5b1/495D/1484/553784b25c78"/>
 							</pragmas>
 						</Equation>
-						<!-- _L6, _L7 = (activate SEND_WritePacket042_IT every _L5 default (_L8, _L3))(_L4, _L... -->
+						<!-- _L6, _L7 = (activate TM::SEND_WritePacket042_IT every _L5 default (_L8, _L3))(_L4... -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L6"/>
 								<VariableRef name="_L7"/>
 							</lefts>
 							<right>
-								<!-- (activate SEND_WritePacket042_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
+								<!-- (activate TM::SEND_WritePacket042_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
 								<CallExpression>
 									<operator>
 										<ActivateNoInitOp>
 											<operator>
 												<OpCall name="1">
 													<operator>
-														<OperatorRef name="SEND_WritePacket042_IT"/>
+														<OperatorRef name="TM::SEND_WritePacket042_IT"/>
 													</operator>
 												</OpCall>
 											</operator>
@@ -7586,7 +7656,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P046_T"/>
+										<TypeRef name="TM::P046_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -7626,7 +7696,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P046_T"/>
+										<TypeRef name="TM::P046_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -7756,21 +7826,21 @@
 								<ed:Equation oid="!ed/3e601/495D/1484/553784e733d"/>
 							</pragmas>
 						</Equation>
-						<!-- _L6, _L7 = (activate SEND_WritePacket046_IT every _L5 default (_L8, _L3))(_L4, _L... -->
+						<!-- _L6, _L7 = (activate TM::SEND_WritePacket046_IT every _L5 default (_L8, _L3))(_L4... -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L6"/>
 								<VariableRef name="_L7"/>
 							</lefts>
 							<right>
-								<!-- (activate SEND_WritePacket046_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
+								<!-- (activate TM::SEND_WritePacket046_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
 								<CallExpression>
 									<operator>
 										<ActivateNoInitOp>
 											<operator>
 												<OpCall name="1">
 													<operator>
-														<OperatorRef name="SEND_WritePacket046_IT"/>
+														<OperatorRef name="TM::SEND_WritePacket046_IT"/>
 													</operator>
 												</OpCall>
 											</operator>
@@ -7994,7 +8064,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P057"/>
+										<TypeRef name="TM::P057"/>
 									</type>
 								</NamedType>
 							</type>
@@ -8034,7 +8104,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P057"/>
+										<TypeRef name="TM::P057"/>
 									</type>
 								</NamedType>
 							</type>
@@ -8058,7 +8128,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="bool"/>
+										<TypeRef name="Common_Types_Pkg::MetadataElement_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -8070,7 +8140,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="Common_Types_Pkg::CompressedPackets_T"/>
+										<TypeRef name="Common_Types_Pkg::CompressedPacketData_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -8164,21 +8234,21 @@
 								<ed:Equation oid="!ed/3e651/495D/1484/553787d16b7e"/>
 							</pragmas>
 						</Equation>
-						<!-- _L6, _L7 = (activate SEND_WritePacket057_IT every _L5 default (_L8, _L3))(_L4, _L... -->
+						<!-- _L6, _L7 = (activate TM::SEND_ConvertP057forWrite_IT every _L5 default (_L8, _L3)... -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L6"/>
 								<VariableRef name="_L7"/>
 							</lefts>
 							<right>
-								<!-- (activate SEND_WritePacket057_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
+								<!-- (activate TM::SEND_ConvertP057forWrite_IT every _L5 default (_L8, _L3))(_L4) -->
 								<CallExpression>
 									<operator>
 										<ActivateNoInitOp>
 											<operator>
 												<OpCall name="1">
 													<operator>
-														<OperatorRef name="SEND_WritePacket057_IT"/>
+														<OperatorRef name="TM::SEND_ConvertP057forWrite_IT"/>
 													</operator>
 												</OpCall>
 											</operator>
@@ -8211,11 +8281,6 @@
 										<IdExpression>
 											<path>
 												<ConstVarRef name="_L4"/>
-											</path>
-										</IdExpression>
-										<IdExpression>
-											<path>
-												<ConstVarRef name="_L3"/>
 											</path>
 										</IdExpression>
 									</callParameters>
@@ -8339,7 +8404,7 @@
 												<Point x="18600" y="6826"/>
 											</positions>
 										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/3e64e/495D/1484/553787d11bd5" dstEquation="!ed/3e652/495D/1484/553787d1337c">
+										<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/3e64e/495D/1484/553787d11bd5" dstEquation="!ed/3e652/495D/1484/553787d1337c">
 											<positions>
 												<Point x="3307" y="8493"/>
 												<Point x="5900" y="8493"/>
@@ -8348,27 +8413,19 @@
 												<Point x="13864" y="10160"/>
 											</positions>
 										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/3e654/495D/1484/553787d14ce1" dstEquation="!ed/3e652/495D/1484/553787d1337c">
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/3e654/495D/1484/553787d14ce1" dstEquation="!ed/3e652/495D/1484/553787d1337c">
 											<positions>
 												<Point x="9208" y="11033"/>
 												<Point x="11007" y="11033"/>
 												<Point x="11007" y="10160"/>
 											</positions>
 										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/3e64e/495D/1484/553787d11bd5" dstEquation="!ed/3e652/495D/1484/553787d1337c">
-											<positions>
-												<Point x="3307" y="8493"/>
-												<Point x="5715" y="8493"/>
-												<Point x="5715" y="8493"/>
-												<Point x="8149" y="8493"/>
-											</positions>
-										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/3e64f/495D/1484/553787d13b16" dstEquation="!ed/3e652/495D/1484/553787d1337c">
 											<positions>
 												<Point x="3122" y="3598"/>
 												<Point x="5636" y="3598"/>
-												<Point x="5636" y="6826"/>
-												<Point x="8149" y="6826"/>
+												<Point x="5636" y="7673"/>
+												<Point x="8149" y="7673"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3e651/495D/1484/553787d16b7e" dstEquation="!ed/3e652/495D/1484/553787d1337c">
@@ -8402,7 +8459,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P058"/>
+										<TypeRef name="TM::P058"/>
 									</type>
 								</NamedType>
 							</type>
@@ -8442,7 +8499,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P058"/>
+										<TypeRef name="TM::P058"/>
 									</type>
 								</NamedType>
 							</type>
@@ -8572,21 +8629,21 @@
 								<ed:Equation oid="!ed/3e6a1/495D/1484/5538da42fd4"/>
 							</pragmas>
 						</Equation>
-						<!-- _L6, _L7 = (activate SEND_WritePacket058_IT every _L5 default (_L8, _L3))(_L4, _L... -->
+						<!-- _L6, _L7 = (activate TM::SEND_WritePacket058_IT every _L5 default (_L8, _L3))(_L4... -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L6"/>
 								<VariableRef name="_L7"/>
 							</lefts>
 							<right>
-								<!-- (activate SEND_WritePacket058_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
+								<!-- (activate TM::SEND_WritePacket058_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
 								<CallExpression>
 									<operator>
 										<ActivateNoInitOp>
 											<operator>
 												<OpCall name="1">
 													<operator>
-														<OperatorRef name="SEND_WritePacket058_IT"/>
+														<OperatorRef name="TM::SEND_WritePacket058_IT"/>
 													</operator>
 												</OpCall>
 											</operator>
@@ -8810,7 +8867,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P255_T"/>
+										<TypeRef name="TM::P255_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -8850,7 +8907,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_P255_T"/>
+										<TypeRef name="TM::P255_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -8980,21 +9037,21 @@
 								<ed:Equation oid="!ed/3e6f1/495D/1484/5538db662a34"/>
 							</pragmas>
 						</Equation>
-						<!-- _L6, _L7 = (activate SEND_WritePacket255_IT every _L5 default (_L8, _L3))(_L4, _L... -->
+						<!-- _L6, _L7 = (activate TM::SEND_WritePacket255_IT every _L5 default (_L8, _L3))(_L4... -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L6"/>
 								<VariableRef name="_L7"/>
 							</lefts>
 							<right>
-								<!-- (activate SEND_WritePacket255_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
+								<!-- (activate TM::SEND_WritePacket255_IT every _L5 default (_L8, _L3))(_L4, _L3) -->
 								<CallExpression>
 									<operator>
 										<ActivateNoInitOp>
 											<operator>
 												<OpCall name="1">
 													<operator>
-														<OperatorRef name="SEND_WritePacket255_IT"/>
+														<OperatorRef name="TM::SEND_WritePacket255_IT"/>
 													</operator>
 												</OpCall>
 											</operator>
@@ -9218,7 +9275,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseTelegramHeader_int_T"/>
+										<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -9282,7 +9339,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseTelegramHeader_int_T"/>
+										<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -10009,18 +10066,18 @@
 								<ed:Equation oid="!ed/3eb91/495D/1484/5538f6254786"/>
 							</pragmas>
 						</Equation>
-						<!-- _L77 = TOOLS_convert_engineering_location(_L68); -->
+						<!-- _L77 = TM::TOOLS_convert_engineering_location(_L68); -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L77"/>
 							</lefts>
 							<right>
-								<!-- TOOLS_convert_engineering_location(_L68) -->
+								<!-- TM::TOOLS_convert_engineering_location(_L68) -->
 								<CallExpression>
 									<operator>
 										<OpCall name="1">
 											<operator>
-												<OperatorRef name="TOOLS_convert_engineering_location"/>
+												<OperatorRef name="TM::TOOLS_convert_engineering_location"/>
 											</operator>
 										</OpCall>
 									</operator>
@@ -10490,22 +10547,6 @@
 												<Size width="6313" height="624"/>
 											</size>
 										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3eb47/495D/1484/5538f4ae629e" dstEquation="!ed/5398f/495D/1484/5538f85f3873">
-											<positions>
-												<Point x="11483" y="11827"/>
-												<Point x="12674" y="11827"/>
-												<Point x="12674" y="11827"/>
-												<Point x="13891" y="11827"/>
-											</positions>
-										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/5398f/495D/1484/5538f85f3873" dstEquation="!ed/3eb91/495D/1484/5538f6254786">
-											<positions>
-												<Point x="20214" y="11827"/>
-												<Point x="21749" y="11827"/>
-												<Point x="21749" y="11827"/>
-												<Point x="23336" y="11827"/>
-											</positions>
-										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/3e8a7/495D/1484/5538e8897d5" dstEquation="!ed/3eb62/495D/1484/5538f5696371">
 											<positions>
 												<Point x="11483" y="4180"/>
@@ -10610,6 +10651,22 @@
 												<Point x="33655" y="13917"/>
 											</positions>
 										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/5398f/495D/1484/5538f85f3873" dstEquation="!ed/3eb91/495D/1484/5538f6254786">
+											<positions>
+												<Point x="20214" y="11827"/>
+												<Point x="21749" y="11827"/>
+												<Point x="21749" y="11827"/>
+												<Point x="23336" y="11827"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3eb47/495D/1484/5538f4ae629e" dstEquation="!ed/5398f/495D/1484/5538f85f3873">
+											<positions>
+												<Point x="11483" y="11827"/>
+												<Point x="12674" y="11827"/>
+												<Point x="12674" y="11827"/>
+												<Point x="13891" y="11827"/>
+											</positions>
+										</Edge>
 									</presentationElements>
 								</NetDiagram>
 							</diagrams>
@@ -10634,7 +10691,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseTelegramHeader_int_T"/>
+										<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -10734,7 +10791,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseTelegramHeader_int_T"/>
+										<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -10770,7 +10827,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM_BaliseTelegramHeader_int_T"/>
+										<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -11964,6 +12021,8 @@
 					</pragmas>
 				</Operator>
 				<Operator name="TrackDiscontinuity" href="TrackDiscontinuity.xscade"/>
+				<Operator name="TrackInit" href="TrackInit.xscade"/>
+				<Operator name="TrackDiscontinuity_CalcTrainPos" href="TrackDiscontinuity_CalcTrainPos.xscade"/>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/a443/495D/1484/553734fb7bc3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">

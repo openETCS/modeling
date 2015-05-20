@@ -16425,6 +16425,18 @@
 										<ed:Variable oid="!ed/2652/7DD1/1D44/50d1cc106b71"/>
 									</pragmas>
 								</Variable>
+								<Variable name="_L45">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/40fcd/A5B/1F14/5540d98c1f79"/>
+									</pragmas>
+								</Variable>
 							</locals>
 							<data>
 								<!-- _L1 = mobileHWStatus; -->
@@ -16521,12 +16533,13 @@
 										<ed:Equation oid="!ed/2645/7DD1/1D44/50d1ca911e34"/>
 									</pragmas>
 								</Equation>
-								<!-- _L8, _L9, _L44 = (flatten mobileHWStatus_Type)(_L2); -->
+								<!-- _L8, _L9, _L44, _L45 = (flatten mobileHWStatus_Type)(_L2); -->
 								<Equation>
 									<lefts>
 										<VariableRef name="_L8"/>
 										<VariableRef name="_L9"/>
 										<VariableRef name="_L44"/>
+										<VariableRef name="_L45"/>
 									</lefts>
 									<right>
 										<!-- (flatten mobileHWStatus_Type)(_L2) -->
@@ -18046,13 +18059,13 @@
 														<ed:Equation oid="!ed/2954/3011/1B64/50ec09ba4a1f"/>
 													</pragmas>
 												</Equation>
-												<!-- _L17 = (make mobileHWCmd_Type)(_L23, _L24, _L18); -->
+												<!-- _L17 = (make mobileHWCmd_Type)(_L23, _L24, _L18, _null); -->
 												<Equation>
 													<lefts>
 														<VariableRef name="_L17"/>
 													</lefts>
 													<right>
-														<!-- (make mobileHWCmd_Type)(_L23, _L24, _L18) -->
+														<!-- (make mobileHWCmd_Type)(_L23, _L24, _L18, _null) -->
 														<CallExpression>
 															<operator>
 																<MakeOp name="6">
@@ -18075,6 +18088,11 @@
 																<IdExpression>
 																	<path>
 																		<ConstVarRef name="_L18"/>
+																	</path>
+																</IdExpression>
+																<IdExpression>
+																	<path>
+																		<NullRef/>
 																	</path>
 																</IdExpression>
 															</callParameters>
@@ -33392,7 +33410,7 @@
 						</NamedType>
 					</type>
 					<value>
-						<!-- {valid : false, action : mhwa_nop, radioNetworkID : 0} -->
+						<!-- {valid : false, action : mhwa_nop, radioNetworkID : 0, nid_radio : 0} -->
 						<DataStructOp>
 							<data>
 								<LabelledExpression label="valid">
@@ -33410,6 +33428,11 @@
 									</flow>
 								</LabelledExpression>
 								<LabelledExpression label="radioNetworkID">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="nid_radio">
 									<flow>
 										<ConstValue value="0"/>
 									</flow>
@@ -33448,6 +33471,11 @@
 									</flow>
 								</LabelledExpression>
 								<LabelledExpression label="settingUpConnectionHasFailed">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="connectionLost">
 									<flow>
 										<ConstValue value="false"/>
 									</flow>
@@ -33790,6 +33818,11 @@
 										<ConstValue value="false"/>
 									</flow>
 								</LabelledExpression>
+								<LabelledExpression label="connectionLost">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
 							</data>
 						</DataStructOp>
 					</value>
@@ -33824,6 +33857,11 @@
 									</flow>
 								</LabelledExpression>
 								<LabelledExpression label="settingUpConnectionHasFailed">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="connectionLost">
 									<flow>
 										<ConstValue value="false"/>
 									</flow>
@@ -33866,6 +33904,11 @@
 										<ConstValue value="false"/>
 									</flow>
 								</LabelledExpression>
+								<LabelledExpression label="connectionLost">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
 							</data>
 						</DataStructOp>
 					</value>
@@ -33900,6 +33943,11 @@
 									</flow>
 								</LabelledExpression>
 								<LabelledExpression label="settingUpConnectionHasFailed">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="connectionLost">
 									<flow>
 										<ConstValue value="false"/>
 									</flow>
@@ -36373,7 +36421,23 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/158c6/7E9C/D38/54d9e25062d4"/>
+										<ed:Field oid="!ed/158c6/7E9C/D38/54d9e25062d4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Radio network ID for registration</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_radio">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_RADIO"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/40fd7/A5B/1F14/5540dcda561a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Radio subscriber number for connection</comment>
+										</ed:Field>
 									</pragmas>
 								</Field>
 							</fields>
@@ -36399,7 +36463,7 @@
 										<ed:Value oid="!ed/15908/7E9C/D38/54d9e3912389"/>
 									</pragmas>
 								</Value>
-								<Value name="mhwc_connectionSetupInProgress">
+								<Value name="mhwc_connecting">
 									<pragmas>
 										<ed:Value oid="!ed/15909/7E9C/D38/54d9e391259c"/>
 									</pragmas>
@@ -36407,6 +36471,11 @@
 								<Value name="mhwc_connected">
 									<pragmas>
 										<ed:Value oid="!ed/1590a/7E9C/D38/54d9e391720b"/>
+									</pragmas>
+								</Value>
+								<Value name="mhwc_registering">
+									<pragmas>
+										<ed:Value oid="!ed/40fd6/A5B/1F14/5540da3b3577"/>
 									</pragmas>
 								</Value>
 							</values>
@@ -36456,6 +36525,18 @@
 									</type>
 									<pragmas>
 										<ed:Field oid="!ed/15996/7E9C/D38/54d9e5be1878"/>
+									</pragmas>
+								</Field>
+								<Field name="connectionLost">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/40fcc/A5B/1F14/5540d98c7367"/>
 									</pragmas>
 								</Field>
 							</fields>
