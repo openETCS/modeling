@@ -1,7 +1,5 @@
 # Directory structure
 
-This directory contains the whole SCADE model of the EVC kernel.
-
 Directory | Description
 ----------|-------------
 [APITypes](https://github.com/openETCS/modeling/tree/master/model/Scade/System/APITypes) | Datatypes used at the API interface. Data delivered to the openETCS-API is provided using the datatypes in this SCADE model.

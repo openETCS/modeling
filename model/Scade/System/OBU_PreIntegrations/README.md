@@ -1,7 +1,5 @@
 # Directory structure
 
-This directory contains the whole SCADE model of the EVC kernel.
-
 Directory | Description
 ----------|-------------
 [BaliseRadioLocation](https://github.com/stefan-karg/modeling/tree/master/model/Scade/System/OBU_PreIntegrations/BaliseRadioLocation) (*deprecated*)| Integration project for the submodules Manage_TrackSideInformation_Integration, MoRC, ProvidePositionReport and CalculateTrainPosition. This pre-integration was used in the OBU integration for the ITEA Review in March 2015 and is not used anymore in the current integration model.

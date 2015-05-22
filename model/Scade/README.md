@@ -1,7 +1,5 @@
 # Directory structure
 
-This directory contains the whole SCADE model of the EVC kernel and development directories.
-
 Directory | Description
 ----------|-------------
 [ReqManGateway](https://github.com/openETCS/modeling/tree/master/model/Scade/ReqManGateway) | Project files for SCADE Requirements Management Gateway
