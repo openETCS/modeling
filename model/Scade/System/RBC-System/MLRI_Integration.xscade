@@ -2190,11 +2190,11 @@
 			</definition>
 			<pragmas>
 				<ed:Type oid="!ed/1da24/7D31/EB8/551d0cf552c4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-					<comment>Stores configuration data for the RBC.</comment>
+					<comment>Stores configuration data.</comment>
 				</ed:Type>
 			</pragmas>
 		</Type>
-		<Type name="RadioMsgQueue_T">
+		<Type name="RadioTrackTrainMessageQueue_T">
 			<definition>
 				<Struct>
 					<fields>
@@ -2202,7 +2202,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="RadioMsgQueueEntries_T"/>
+										<TypeRef name="RadioTrackTrainMessageQueueEntries_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -2234,7 +2234,7 @@
 				<ed:Constant oid="!ed/5480e/62FA/1718/5522d17f4c08"/>
 			</pragmas>
 		</Constant>
-		<Type name="RadioMsgQueueEntry_T">
+		<Type name="RadioTrackTrainMessageQueueEntry_T">
 			<definition>
 				<Struct>
 					<fields>
@@ -2247,7 +2247,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Field oid="!ed/54839/62FA/1718/5522d23512eb"/>
+								<ed:Field oid="!ed/54839/62FA/1718/5522d23512eb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Valid flag. If valid is true, then the queue entry is marked as present, otherwise not.</comment>
+								</ed:Field>
 							</pragmas>
 						</Field>
 						<Field name="m_Entry">
@@ -2259,7 +2261,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Field oid="!ed/54842/62FA/1718/5522d24d2e35"/>
+								<ed:Field oid="!ed/54842/62FA/1718/5522d24d2e35" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>The radio message.</comment>
+								</ed:Field>
 							</pragmas>
 						</Field>
 					</fields>
@@ -2271,13 +2275,13 @@
 				</ed:Type>
 			</pragmas>
 		</Type>
-		<Type name="RadioMsgQueueEntries_T">
+		<Type name="RadioTrackTrainMessageQueueEntries_T">
 			<definition>
 				<Table>
 					<type>
 						<NamedType>
 							<type>
-								<TypeRef name="RadioMsgQueueEntry_T"/>
+								<TypeRef name="RadioTrackTrainMessageQueueEntry_T"/>
 							</type>
 						</NamedType>
 					</type>
@@ -2298,7 +2302,7 @@
 			<type>
 				<NamedType>
 					<type>
-						<TypeRef name="RadioMsgQueueEntry_T"/>
+						<TypeRef name="RadioTrackTrainMessageQueueEntry_T"/>
 					</type>
 				</NamedType>
 			</type>
@@ -4051,7 +4055,7 @@
 			</definition>
 			<pragmas>
 				<ed:Type oid="!ed/29de1/14A5/A8C/552384647f6e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-					<comment>Parameters for the national operating rules  (see Track-to-Train packet 3, §7.4.2.1.1).</comment>
+					<comment>Parameters for the national operating rules (see Track-to-Train packet 3, §7.4.2.1.1).</comment>
 				</ed:Type>
 			</pragmas>
 		</Type>
@@ -4059,7 +4063,7 @@
 			<type>
 				<NamedType>
 					<type>
-						<TypeRef name="RadioMsgQueue_T"/>
+						<TypeRef name="RadioTrackTrainMessageQueue_T"/>
 					</type>
 				</NamedType>
 			</type>
@@ -17971,7 +17975,7 @@
 			</definition>
 			<pragmas>
 				<ed:Type oid="!ed/62337/769C/1188/5526cba216b6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-					<comment>Manages the train position according to packet 0 (Position report).</comment>
+					<comment>Manages the train position according to packet 0 (Position report). Remark: packet 1 is currently excluded due to the restrictions of the user stories.</comment>
 				</ed:Type>
 			</pragmas>
 		</Type>
@@ -19658,7 +19662,7 @@
 							</type>
 							<pragmas>
 								<ed:Field oid="!ed/22c6b/29AE/CF8/5530b5db7d56" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-									<comment>Value of the internal RBC clock in seconds.</comment>
+									<comment>Value of the internal clock in seconds.</comment>
 								</ed:Field>
 							</pragmas>
 						</Field>
@@ -20298,7 +20302,7 @@
 				<ed:Constant oid="!ed/238fc/6CD2/10F0/5540c354943"/>
 			</pragmas>
 		</Constant>
-		<Type name="RadioMsgList_T">
+		<Type name="RadioTrackTrainMessageList_T">
 			<definition>
 				<Struct>
 					<fields>
@@ -20306,7 +20310,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="RadioMsgListEntries_T"/>
+										<TypeRef name="RadioTrackTrainMessageListEntries_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -20319,17 +20323,17 @@
 			</definition>
 			<pragmas>
 				<ed:Type oid="!ed/2391c/6CD2/10F0/5540c5c723ae" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-					<comment>A list which contains track events.</comment>
+					<comment>A list with radio messages.</comment>
 				</ed:Type>
 			</pragmas>
 		</Type>
-		<Type name="RadioMsgListEntries_T">
+		<Type name="RadioTrackTrainMessageListEntries_T">
 			<definition>
 				<Table>
 					<type>
 						<NamedType>
 							<type>
-								<TypeRef name="RadioMsgListEntry_T"/>
+								<TypeRef name="RadioTrackTrainMessageListEntry_T"/>
 							</type>
 						</NamedType>
 					</type>
@@ -20350,7 +20354,7 @@
 			<type>
 				<NamedType>
 					<type>
-						<TypeRef name="RadioMsgList_T"/>
+						<TypeRef name="RadioTrackTrainMessageList_T"/>
 					</type>
 				</NamedType>
 			</type>
@@ -46774,42 +46778,6 @@
 				<ed:Constant oid="!ed/23a9f/6CD2/10F0/5540ccf076d0"/>
 			</pragmas>
 		</Constant>
-		<Type name="Action_T">
-			<definition>
-				<Enum>
-					<values>
-						<Value name="ACTION_DO_NOTHING">
-							<pragmas>
-								<ed:Value oid="!ed/23919/6CD2/10F0/5540c4c9ee8"/>
-							</pragmas>
-						</Value>
-						<Value name="ACTION_SEND_MSG24">
-							<pragmas>
-								<ed:Value oid="!ed/2391a/6CD2/10F0/5540c4e67667"/>
-							</pragmas>
-						</Value>
-						<Value name="ACTION_SEND_MSG3">
-							<pragmas>
-								<ed:Value oid="!ed/2391b/6CD2/10F0/5540c4f61b0a"/>
-							</pragmas>
-						</Value>
-						<Value name="ACTION_CONDITIONAL_EMERGENCY_STOP">
-							<pragmas>
-								<ed:Value oid="!ed/4f7ad/A6D/13A4/554a93701fb2"/>
-							</pragmas>
-						</Value>
-						<Value name="ACTION_UNCONDITIONAL_EMERGENCY_STOP">
-							<pragmas>
-								<ed:Value oid="!ed/4f7af/A6D/13A4/554a9389781a"/>
-							</pragmas>
-						</Value>
-					</values>
-				</Enum>
-			</definition>
-			<pragmas>
-				<ed:Type oid="!ed/23917/6CD2/10F0/5540c4aa7c3e"/>
-			</pragmas>
-		</Type>
 		<Constant name="NID_MESSAGE_132">
 			<type>
 				<NamedType>
@@ -47453,7 +47421,7 @@
 				<ed:Constant oid="!ed/3a9ca/191C/40C/554e736e7a2a"/>
 			</pragmas>
 		</Constant>
-		<Type name="RadioMsgListEntry_T">
+		<Type name="RadioTrackTrainMessageListEntry_T">
 			<definition>
 				<Struct>
 					<fields>
@@ -47466,7 +47434,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Field oid="!ed/3aa9e/6EA9/10F0/5552fb664fee"/>
+								<ed:Field oid="!ed/3aa9e/6EA9/10F0/5552fb664fee" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>Valid flag. If valid is true, then the lost entry is marked as present, otherwise not.</comment>
+								</ed:Field>
 							</pragmas>
 						</Field>
 						<Field name="m_Entry">
@@ -47478,21 +47448,25 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Field oid="!ed/3aaa7/6EA9/10F0/5552fb77b4e"/>
+								<ed:Field oid="!ed/3aaa7/6EA9/10F0/5552fb77b4e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>The radio message.</comment>
+								</ed:Field>
 							</pragmas>
 						</Field>
 					</fields>
 				</Struct>
 			</definition>
 			<pragmas>
-				<ed:Type oid="!ed/3aa9d/6EA9/10F0/5552fb55416"/>
+				<ed:Type oid="!ed/3aa9d/6EA9/10F0/5552fb55416" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<comment>A radio message list entry.</comment>
+				</ed:Type>
 			</pragmas>
 		</Type>
 		<Constant name="RADIO_MSG_LIST_ENTRY_DEFAULT">
 			<type>
 				<NamedType>
 					<type>
-						<TypeRef name="RadioMsgListEntry_T"/>
+						<TypeRef name="RadioTrackTrainMessageListEntry_T"/>
 					</type>
 				</NamedType>
 			</type>
@@ -49165,6 +49139,36 @@
 			</value>
 			<pragmas>
 				<ed:Constant oid="!ed/76706/6EA9/10F0/555313ac74f5"/>
+			</pragmas>
+		</Constant>
+		<Constant name="NID_MESSAGE_015">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="NID_MESSAGE"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="15"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3a23a/24E/13F8/555c4d887208"/>
+			</pragmas>
+		</Constant>
+		<Constant name="NID_MESSAGE_147">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="NID_MESSAGE"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="147"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3a290/24E/13F8/555c50076ff1"/>
 			</pragmas>
 		</Constant>
 	</declarations>
