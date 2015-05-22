@@ -1,6 +1,6 @@
 # Directory structure
 
-This directory contains the whole SCADE model of the EVC kernel.
+This directory contains the whole SCADE model of the EVC kernel and development directories.
 
 Directory | Description
 ----------|-------------
