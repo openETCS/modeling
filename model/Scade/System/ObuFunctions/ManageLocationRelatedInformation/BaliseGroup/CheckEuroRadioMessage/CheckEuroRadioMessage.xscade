@@ -36,7 +36,22 @@
 						</NamedType>
 					</type>
 					<pragmas>
-						<ed:Variable oid="!ed/6d99/15EC/1430/548ee0002b4a"/>
+						<ed:Variable oid="!ed/6d99/15EC/1430/548ee0002b4a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<comment>e input &quot;lastRelevantTimestamp&quot; is needed in order to check timeouts.</comment>
+							<comment></comment>
+							<comment>In most of the cases, the timestamp of the last relevant event is the timestamp of the last message received. But the SRS defines special cases like driving through a defined radio hole. In this case, the timestamp of the last relevant event is the point of time, when the EVC has a radio connection again.</comment>
+							<comment></comment>
+							<comment>Three conditions are defined by the SRS (paragraphs: 3.16.3.4.1.1 - 3.16.3.4.1.3):</comment>
+							<comment></comment>
+							<comment>Level transition to L2 or L3 without established radio communication: use timestamp of level transition</comment>
+							<comment>Announcement of RBC-handover: Until the accepting RBC is not the supervising RBC, the timestamp of the last message received from the handing over RBC shall be used.</comment>
+							<comment>Announced radio hole: timestamp of passing the end of the radio hole with the front end of the train</comment>
+							<comment>The calculation is a more complex operation which needs data from several sources. According to the description I can identify the following modules involved:</comment>
+							<comment></comment>
+							<comment>Mode/Level-management</comment>
+							<comment>Radio management module</comment>
+							<comment>Database in case information about announced radio holes is stored there (?)</comment>
+						</ed:Variable>
 					</pragmas>
 				</Variable>
 				<Variable name="connectionStatus">
