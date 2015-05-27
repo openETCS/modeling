@@ -9,7 +9,7 @@
         <environment_id value="-1926713137"/>
         <ratio horizontal="1" vertical="1"/>
         <export name="%SpecificationName%_exp" path=".\export"/>
-        <colorMap crc="3382471243" name="DMI.sct" path="../../"/>
+        <colorMap crc="708031199" name="DMI.sct" path="../../"/>
         <lineWidthMap crc="1678555679" path="default"/>
         <lineStippleMap crc="704931268" path="default"/>
         <textureMap crc="0" path="default"/>
@@ -48,6 +48,9 @@
             <input name="TitleVisibility" oid="0753377a-7117-429e-a498-5dfef9978cf6" type="bool">
                 <init>false</init>
             </input>
+            <input name="MousePressed" oid="98abf164-cc08-4520-b6da-ab901d239545" type="bool">
+                <init>false</init>
+            </input>
         </inputs>
         <outputs>
             <output memory="true" name="openTrainData" oid="05fc3130-1339-4f2c-b10f-2149aeaec3ef" type="bool">
@@ -63,6 +66,9 @@
                 <init>false</init>
             </output>
             <output memory="true" name="openDriverID" oid="53f11a0f-c82f-486a-8f8c-4de722e9cf84" type="bool">
+                <init>false</init>
+            </output>
+            <output memory="true" name="levelMenu" oid="ec580667-a88c-44b5-a785-ffeb453b8b74" type="bool">
                 <init>false</init>
             </output>
         </outputs>
@@ -331,23 +337,20 @@
                         <orientation clockwise="false"/>
                     </properties>
                     <children>
-                        <container oid="53e192d0-a613-4f69-b779-981645ca29c8">
+                        <referenceContainer oid="efdc7a2d-066b-421f-9b37-75e83dfa9909">
                             <pathFromRoot value="0,2,0"/>
-                            <properties name="Start">
+                            <properties modular="false" name="start">
                                 <visible>
                                     <init>true</init>
                                 </visible>
                                 <origin>
                                     <x>
-                                        <init>0.0</init>
+                                        <init>-153.0</init>
                                     </x>
                                     <y>
-                                        <init>0.0</init>
+                                        <init>125.0</init>
                                     </y>
                                 </origin>
-                                <priority>
-                                    <init>-1</init>
-                                </priority>
                                 <scale>
                                     <x>
                                         <init>1.0</init>
@@ -362,88 +365,32 @@
                                     </angle>
                                 </rotate>
                                 <orientation clockwise="false"/>
+                                <file name="button.ogfx" path="Button"/>
+                                <crc value="3366224376"/>
+                                <inputParameters>
+                                    <parameter control="false" name="ButtonIndex" oid="3eadaa2c-98df-4a5c-bd89-f5a23ec67d81" representation="index" type="int">
+                                        <init>1</init>
+                                    </parameter>
+                                    <parameter control="false" name="enableIndex" oid="58bdafea-776f-47a9-a1bb-a1248812f920" representation="index" type="int">
+                                        <expr>buttonEnabler[0]</expr>
+                                        <init>1</init>
+                                    </parameter>
+                                    <parameter control="false" name="MousePressed" oid="3247169e-8462-4301-b003-f7ebacf9cbba" type="bool">
+                                        <expr>MousePressed and StartRequest</expr>
+                                        <init>false</init>
+                                    </parameter>
+                                </inputParameters>
+                                <outputParameters>
+                                    <parameter name="onButton" oid="47eb52e6-1b7e-4b52-9181-dea20b6c0784" type="bool">
+                                        <expr>StartRequest</expr>
+                                    </parameter>
+                                </outputParameters>
                             </properties>
-                            <children>
-                                <referenceContainer oid="efdc7a2d-066b-421f-9b37-75e83dfa9909">
-                                    <pathFromRoot value="0,0,2,0"/>
-                                    <properties modular="false" name="button">
-                                        <visible>
-                                            <init>true</init>
-                                        </visible>
-                                        <origin>
-                                            <x>
-                                                <init>-153.0</init>
-                                            </x>
-                                            <y>
-                                                <init>125.0</init>
-                                            </y>
-                                        </origin>
-                                        <scale>
-                                            <x>
-                                                <init>1.0</init>
-                                            </x>
-                                            <y>
-                                                <init>1.0</init>
-                                            </y>
-                                        </scale>
-                                        <rotate>
-                                            <angle>
-                                                <init>0.0</init>
-                                            </angle>
-                                        </rotate>
-                                        <orientation clockwise="false"/>
-                                        <file name="button.ogfx" path="Button"/>
-                                        <crc value="379133398"/>
-                                        <inputParameters>
-                                            <parameter control="false" name="ButtonIndex" oid="3eadaa2c-98df-4a5c-bd89-f5a23ec67d81" representation="index" type="int">
-                                                <init>1</init>
-                                            </parameter>
-                                            <parameter control="false" name="enableIndex" oid="58bdafea-776f-47a9-a1bb-a1248812f920" representation="index" type="int">
-                                                <expr>buttonEnabler[0]</expr>
-                                                <init>1</init>
-                                            </parameter>
-                                        </inputParameters>
-                                    </properties>
-                                    <children/>
-                                </referenceContainer>
-                                <rectangleArea oid="234a0706-bceb-4cb1-af99-151a006b5ae4">
-                                    <pathFromRoot value="1,0,2,0"/>
-                                    <properties name="rectangle area">
-                                        <enable>
-                                            <init>true</init>
-                                            <expr>buttonEnabler[0] = 1</expr>
-                                        </enable>
-                                        <pointerId>
-                                            <init>-1</init>
-                                        </pointerId>
-                                        <firstPoint>
-                                            <x>
-                                                <init>-153.0</init>
-                                            </x>
-                                            <y>
-                                                <init>175.0</init>
-                                            </y>
-                                        </firstPoint>
-                                        <thirdPoint>
-                                            <x>
-                                                <init>0.0</init>
-                                            </x>
-                                            <y>
-                                                <init>125.0</init>
-                                            </y>
-                                        </thirdPoint>
-                                        <output>
-                                            <inside>
-                                                <expr>StartRequest</expr>
-                                            </inside>
-                                        </output>
-                                    </properties>
-                                </rectangleArea>
-                            </children>
-                        </container>
-                        <container oid="0cce0b25-9769-412b-b179-b2cafb066bb6">
+                            <children/>
+                        </referenceContainer>
+                        <referenceContainer oid="892b3399-bf3b-4af9-852a-f8407c578d16">
                             <pathFromRoot value="1,2,0"/>
-                            <properties name="DriverID">
+                            <properties modular="false" name="DriverID">
                                 <visible>
                                     <init>true</init>
                                 </visible>
@@ -452,12 +399,9 @@
                                         <init>0.0</init>
                                     </x>
                                     <y>
-                                        <init>0.0</init>
+                                        <init>125.0</init>
                                     </y>
                                 </origin>
-                                <priority>
-                                    <init>-1</init>
-                                </priority>
                                 <scale>
                                     <x>
                                         <init>1.0</init>
@@ -472,102 +416,43 @@
                                     </angle>
                                 </rotate>
                                 <orientation clockwise="false"/>
+                                <file name="button.ogfx" path="Button"/>
+                                <crc value="3366224376"/>
+                                <inputParameters>
+                                    <parameter control="false" name="ButtonIndex" oid="3eadaa2c-98df-4a5c-bd89-f5a23ec67d81" representation="index" type="int">
+                                        <init>2</init>
+                                    </parameter>
+                                    <parameter control="false" name="enableIndex" oid="58bdafea-776f-47a9-a1bb-a1248812f920" representation="index" type="int">
+                                        <expr>buttonEnabler[6]</expr>
+                                        <init>1</init>
+                                    </parameter>
+                                    <parameter control="false" name="MousePressed" oid="3247169e-8462-4301-b003-f7ebacf9cbba" type="bool">
+                                        <expr>MousePressed and openDriverID</expr>
+                                        <init>false</init>
+                                    </parameter>
+                                </inputParameters>
+                                <outputParameters>
+                                    <parameter name="onButton" oid="47eb52e6-1b7e-4b52-9181-dea20b6c0784" type="bool">
+                                        <expr>openDriverID</expr>
+                                    </parameter>
+                                </outputParameters>
                             </properties>
-                            <children>
-                                <referenceContainer oid="892b3399-bf3b-4af9-852a-f8407c578d16">
-                                    <pathFromRoot value="0,1,2,0"/>
-                                    <properties modular="false" name="button">
-                                        <visible>
-                                            <init>true</init>
-                                        </visible>
-                                        <origin>
-                                            <x>
-                                                <init>0.0</init>
-                                            </x>
-                                            <y>
-                                                <init>125.0</init>
-                                            </y>
-                                        </origin>
-                                        <scale>
-                                            <x>
-                                                <init>1.0</init>
-                                            </x>
-                                            <y>
-                                                <init>1.0</init>
-                                            </y>
-                                        </scale>
-                                        <rotate>
-                                            <angle>
-                                                <init>0.0</init>
-                                            </angle>
-                                        </rotate>
-                                        <orientation clockwise="false"/>
-                                        <file name="button.ogfx" path="Button"/>
-                                        <crc value="379133398"/>
-                                        <inputParameters>
-                                            <parameter control="false" name="ButtonIndex" oid="3eadaa2c-98df-4a5c-bd89-f5a23ec67d81" representation="index" type="int">
-                                                <init>2</init>
-                                            </parameter>
-                                            <parameter control="false" name="enableIndex" oid="58bdafea-776f-47a9-a1bb-a1248812f920" representation="index" type="int">
-                                                <expr>buttonEnabler[6]</expr>
-                                                <init>1</init>
-                                            </parameter>
-                                        </inputParameters>
-                                    </properties>
-                                    <children/>
-                                </referenceContainer>
-                                <rectangleArea oid="2f5b34a8-8a3c-4b41-a255-38acbc0ffd10">
-                                    <pathFromRoot value="1,1,2,0"/>
-                                    <properties name="rectangle area">
-                                        <enable>
-                                            <init>true</init>
-                                            <expr>buttonEnabler[6] = 1</expr>
-                                        </enable>
-                                        <pointerId>
-                                            <init>-1</init>
-                                        </pointerId>
-                                        <firstPoint>
-                                            <x>
-                                                <init>0.0</init>
-                                            </x>
-                                            <y>
-                                                <init>175.0</init>
-                                            </y>
-                                        </firstPoint>
-                                        <thirdPoint>
-                                            <x>
-                                                <init>153.0</init>
-                                            </x>
-                                            <y>
-                                                <init>125.0</init>
-                                            </y>
-                                        </thirdPoint>
-                                        <output>
-                                            <inside>
-                                                <expr>openDriverID</expr>
-                                            </inside>
-                                        </output>
-                                    </properties>
-                                </rectangleArea>
-                            </children>
-                        </container>
-                        <container oid="e50f3602-a21a-4ba7-9954-98d44add7391">
+                            <children/>
+                        </referenceContainer>
+                        <referenceContainer oid="1a8e2252-9c6b-4f24-8f5e-fdabddeaac7d">
                             <pathFromRoot value="2,2,0"/>
-                            <properties name="TrainData">
+                            <properties modular="false" name="traindata">
                                 <visible>
                                     <init>true</init>
                                 </visible>
                                 <origin>
                                     <x>
-                                        <init>0.0</init>
+                                        <init>-153.0</init>
                                     </x>
                                     <y>
-                                        <init>0.0</init>
+                                        <init>75.0</init>
                                     </y>
                                 </origin>
-                                <priority>
-                                    <init>-1</init>
-                                </priority>
                                 <scale>
                                     <x>
                                         <init>1.0</init>
@@ -582,88 +467,32 @@
                                     </angle>
                                 </rotate>
                                 <orientation clockwise="false"/>
+                                <file name="button.ogfx" path="Button"/>
+                                <crc value="3366224376"/>
+                                <inputParameters>
+                                    <parameter control="false" name="ButtonIndex" oid="3eadaa2c-98df-4a5c-bd89-f5a23ec67d81" representation="index" type="int">
+                                        <init>3</init>
+                                    </parameter>
+                                    <parameter control="false" name="enableIndex" oid="58bdafea-776f-47a9-a1bb-a1248812f920" representation="index" type="int">
+                                        <expr>buttonEnabler[10]</expr>
+                                        <init>2</init>
+                                    </parameter>
+                                    <parameter control="false" name="MousePressed" oid="3247169e-8462-4301-b003-f7ebacf9cbba" type="bool">
+                                        <expr>MousePressed and openTrainData</expr>
+                                        <init>false</init>
+                                    </parameter>
+                                </inputParameters>
+                                <outputParameters>
+                                    <parameter name="onButton" oid="47eb52e6-1b7e-4b52-9181-dea20b6c0784" type="bool">
+                                        <expr>openTrainData</expr>
+                                    </parameter>
+                                </outputParameters>
                             </properties>
-                            <children>
-                                <referenceContainer oid="1a8e2252-9c6b-4f24-8f5e-fdabddeaac7d">
-                                    <pathFromRoot value="0,2,2,0"/>
-                                    <properties modular="false" name="button">
-                                        <visible>
-                                            <init>true</init>
-                                        </visible>
-                                        <origin>
-                                            <x>
-                                                <init>-153.0</init>
-                                            </x>
-                                            <y>
-                                                <init>75.0</init>
-                                            </y>
-                                        </origin>
-                                        <scale>
-                                            <x>
-                                                <init>1.0</init>
-                                            </x>
-                                            <y>
-                                                <init>1.0</init>
-                                            </y>
-                                        </scale>
-                                        <rotate>
-                                            <angle>
-                                                <init>0.0</init>
-                                            </angle>
-                                        </rotate>
-                                        <orientation clockwise="false"/>
-                                        <file name="button.ogfx" path="Button"/>
-                                        <crc value="379133398"/>
-                                        <inputParameters>
-                                            <parameter control="false" name="ButtonIndex" oid="3eadaa2c-98df-4a5c-bd89-f5a23ec67d81" representation="index" type="int">
-                                                <init>3</init>
-                                            </parameter>
-                                            <parameter control="false" name="enableIndex" oid="58bdafea-776f-47a9-a1bb-a1248812f920" representation="index" type="int">
-                                                <expr>buttonEnabler[10]</expr>
-                                                <init>2</init>
-                                            </parameter>
-                                        </inputParameters>
-                                    </properties>
-                                    <children/>
-                                </referenceContainer>
-                                <rectangleArea oid="43b2a002-5b1c-4e16-a004-9996d771e6a5">
-                                    <pathFromRoot value="1,2,2,0"/>
-                                    <properties name="rectangle area">
-                                        <enable>
-                                            <init>true</init>
-                                            <expr>buttonEnabler[10] = 1</expr>
-                                        </enable>
-                                        <pointerId>
-                                            <init>-1</init>
-                                        </pointerId>
-                                        <firstPoint>
-                                            <x>
-                                                <init>-153.0</init>
-                                            </x>
-                                            <y>
-                                                <init>125.0</init>
-                                            </y>
-                                        </firstPoint>
-                                        <thirdPoint>
-                                            <x>
-                                                <init>0.0</init>
-                                            </x>
-                                            <y>
-                                                <init>75.0</init>
-                                            </y>
-                                        </thirdPoint>
-                                        <output>
-                                            <inside>
-                                                <expr>openTrainData</expr>
-                                            </inside>
-                                        </output>
-                                    </properties>
-                                </rectangleArea>
-                            </children>
-                        </container>
+                            <children/>
+                        </referenceContainer>
                         <referenceContainer oid="4e6335c3-c1f3-470a-8117-0053ce8949f7">
                             <pathFromRoot value="3,2,0"/>
-                            <properties modular="false" name="button">
+                            <properties modular="false" name="level">
                                 <visible>
                                     <init>true</init>
                                 </visible>
@@ -690,22 +519,31 @@
                                 </rotate>
                                 <orientation clockwise="false"/>
                                 <file name="button.ogfx" path="Button"/>
-                                <crc value="379133398"/>
+                                <crc value="3366224376"/>
                                 <inputParameters>
                                     <parameter control="false" name="ButtonIndex" oid="3eadaa2c-98df-4a5c-bd89-f5a23ec67d81" representation="index" type="int">
                                         <init>4</init>
                                     </parameter>
                                     <parameter control="false" name="enableIndex" oid="58bdafea-776f-47a9-a1bb-a1248812f920" representation="index" type="int">
-                                        <expr>buttonEnabler[3]</expr>
+                                        <expr>buttonEnabler[8]</expr>
                                         <init>1</init>
                                     </parameter>
+                                    <parameter control="false" name="MousePressed" oid="3247169e-8462-4301-b003-f7ebacf9cbba" type="bool">
+                                        <expr>MousePressed and levelMenu</expr>
+                                        <init>false</init>
+                                    </parameter>
                                 </inputParameters>
+                                <outputParameters>
+                                    <parameter name="onButton" oid="47eb52e6-1b7e-4b52-9181-dea20b6c0784" type="bool">
+                                        <expr>levelMenu</expr>
+                                    </parameter>
+                                </outputParameters>
                             </properties>
                             <children/>
                         </referenceContainer>
-                        <container oid="4792f449-36c2-4ddb-ba20-eea7569b462c">
+                        <referenceContainer oid="9ea683f1-cb82-4b4a-8c65-ee1d48093158">
                             <pathFromRoot value="4,2,0"/>
-                            <properties name="TrainRN">
+                            <properties modular="false" name="trainRN">
                                 <visible>
                                     <init>true</init>
                                 </visible>
@@ -714,12 +552,9 @@
                                         <init>0.0</init>
                                     </x>
                                     <y>
-                                        <init>0.0</init>
+                                        <init>25.0</init>
                                     </y>
                                 </origin>
-                                <priority>
-                                    <init>-1</init>
-                                </priority>
                                 <scale>
                                     <x>
                                         <init>1.0</init>
@@ -734,85 +569,29 @@
                                     </angle>
                                 </rotate>
                                 <orientation clockwise="false"/>
+                                <file name="button.ogfx" path="Button"/>
+                                <crc value="3366224376"/>
+                                <inputParameters>
+                                    <parameter control="false" name="ButtonIndex" oid="3eadaa2c-98df-4a5c-bd89-f5a23ec67d81" representation="index" type="int">
+                                        <init>9</init>
+                                    </parameter>
+                                    <parameter control="false" name="enableIndex" oid="58bdafea-776f-47a9-a1bb-a1248812f920" representation="index" type="int">
+                                        <expr>buttonEnabler[7]</expr>
+                                        <init>1</init>
+                                    </parameter>
+                                    <parameter control="false" name="MousePressed" oid="3247169e-8462-4301-b003-f7ebacf9cbba" type="bool">
+                                        <expr>MousePressed and openTrainRN</expr>
+                                        <init>false</init>
+                                    </parameter>
+                                </inputParameters>
+                                <outputParameters>
+                                    <parameter name="onButton" oid="47eb52e6-1b7e-4b52-9181-dea20b6c0784" type="bool">
+                                        <expr>openTrainRN</expr>
+                                    </parameter>
+                                </outputParameters>
                             </properties>
-                            <children>
-                                <referenceContainer oid="9ea683f1-cb82-4b4a-8c65-ee1d48093158">
-                                    <pathFromRoot value="0,4,2,0"/>
-                                    <properties modular="false" name="button">
-                                        <visible>
-                                            <init>true</init>
-                                        </visible>
-                                        <origin>
-                                            <x>
-                                                <init>0.0</init>
-                                            </x>
-                                            <y>
-                                                <init>25.0</init>
-                                            </y>
-                                        </origin>
-                                        <scale>
-                                            <x>
-                                                <init>1.0</init>
-                                            </x>
-                                            <y>
-                                                <init>1.0</init>
-                                            </y>
-                                        </scale>
-                                        <rotate>
-                                            <angle>
-                                                <init>0.0</init>
-                                            </angle>
-                                        </rotate>
-                                        <orientation clockwise="false"/>
-                                        <file name="button.ogfx" path="Button"/>
-                                        <crc value="379133398"/>
-                                        <inputParameters>
-                                            <parameter control="false" name="ButtonIndex" oid="3eadaa2c-98df-4a5c-bd89-f5a23ec67d81" representation="index" type="int">
-                                                <init>9</init>
-                                            </parameter>
-                                            <parameter control="false" name="enableIndex" oid="58bdafea-776f-47a9-a1bb-a1248812f920" representation="index" type="int">
-                                                <expr>buttonEnabler[7]</expr>
-                                                <init>1</init>
-                                            </parameter>
-                                        </inputParameters>
-                                    </properties>
-                                    <children/>
-                                </referenceContainer>
-                                <rectangleArea oid="43b7022b-165e-4aed-afdf-58f7126be5a8">
-                                    <pathFromRoot value="1,4,2,0"/>
-                                    <properties name="rectangle area">
-                                        <enable>
-                                            <init>true</init>
-                                            <expr>buttonEnabler[7] = 1</expr>
-                                        </enable>
-                                        <pointerId>
-                                            <init>-1</init>
-                                        </pointerId>
-                                        <firstPoint>
-                                            <x>
-                                                <init>0.0</init>
-                                            </x>
-                                            <y>
-                                                <init>75.0</init>
-                                            </y>
-                                        </firstPoint>
-                                        <thirdPoint>
-                                            <x>
-                                                <init>153.0</init>
-                                            </x>
-                                            <y>
-                                                <init>25.0</init>
-                                            </y>
-                                        </thirdPoint>
-                                        <output>
-                                            <inside>
-                                                <expr>openTrainRN</expr>
-                                            </inside>
-                                        </output>
-                                    </properties>
-                                </rectangleArea>
-                            </children>
-                        </container>
+                            <children/>
+                        </referenceContainer>
                         <referenceContainer oid="25eaaa83-a5d0-4fae-bd19-a4dd265325cb">
                             <pathFromRoot value="5,2,0"/>
                             <properties modular="false" name="button">
@@ -842,7 +621,7 @@
                                 </rotate>
                                 <orientation clockwise="false"/>
                                 <file name="button.ogfx" path="Button"/>
-                                <crc value="379133398"/>
+                                <crc value="3366224376"/>
                                 <inputParameters>
                                     <parameter control="false" name="ButtonIndex" oid="3eadaa2c-98df-4a5c-bd89-f5a23ec67d81" representation="index" type="int">
                                         <init>6</init>
@@ -851,7 +630,13 @@
                                         <expr>buttonEnabler[5]</expr>
                                         <init>2</init>
                                     </parameter>
+                                    <parameter control="false" name="MousePressed" oid="3247169e-8462-4301-b003-f7ebacf9cbba" type="bool">
+                                        <init>false</init>
+                                    </parameter>
                                 </inputParameters>
+                                <outputParameters>
+                                    <parameter name="onButton" oid="47eb52e6-1b7e-4b52-9181-dea20b6c0784" type="bool"/>
+                                </outputParameters>
                             </properties>
                             <children/>
                         </referenceContainer>
@@ -884,7 +669,7 @@
                                 </rotate>
                                 <orientation clockwise="false"/>
                                 <file name="button.ogfx" path="Button"/>
-                                <crc value="379133398"/>
+                                <crc value="3366224376"/>
                                 <inputParameters>
                                     <parameter control="false" name="ButtonIndex" oid="3eadaa2c-98df-4a5c-bd89-f5a23ec67d81" representation="index" type="int">
                                         <init>7</init>
@@ -892,7 +677,13 @@
                                     <parameter control="false" name="enableIndex" oid="58bdafea-776f-47a9-a1bb-a1248812f920" representation="index" type="int">
                                         <init>2</init>
                                     </parameter>
+                                    <parameter control="false" name="MousePressed" oid="3247169e-8462-4301-b003-f7ebacf9cbba" type="bool">
+                                        <init>false</init>
+                                    </parameter>
                                 </inputParameters>
+                                <outputParameters>
+                                    <parameter name="onButton" oid="47eb52e6-1b7e-4b52-9181-dea20b6c0784" type="bool"/>
+                                </outputParameters>
                             </properties>
                             <children/>
                         </referenceContainer>
@@ -925,7 +716,7 @@
                                 </rotate>
                                 <orientation clockwise="false"/>
                                 <file name="button.ogfx" path="Button"/>
-                                <crc value="379133398"/>
+                                <crc value="3366224376"/>
                                 <inputParameters>
                                     <parameter control="false" name="ButtonIndex" oid="3eadaa2c-98df-4a5c-bd89-f5a23ec67d81" representation="index" type="int">
                                         <init>8</init>
@@ -933,27 +724,30 @@
                                     <parameter control="false" name="enableIndex" oid="58bdafea-776f-47a9-a1bb-a1248812f920" representation="index" type="int">
                                         <init>2</init>
                                     </parameter>
+                                    <parameter control="false" name="MousePressed" oid="3247169e-8462-4301-b003-f7ebacf9cbba" type="bool">
+                                        <init>false</init>
+                                    </parameter>
                                 </inputParameters>
+                                <outputParameters>
+                                    <parameter name="onButton" oid="47eb52e6-1b7e-4b52-9181-dea20b6c0784" type="bool"/>
+                                </outputParameters>
                             </properties>
                             <children/>
                         </referenceContainer>
-                        <container oid="76744a47-4059-4e53-9086-7fc39d538746">
+                        <referenceContainer oid="a32e0c5f-6611-4145-a9dc-216a73c27b1e">
                             <pathFromRoot value="8,2,0"/>
-                            <properties name="closebutton">
+                            <properties modular="false" name="closebutton">
                                 <visible>
                                     <init>true</init>
                                 </visible>
                                 <origin>
                                     <x>
-                                        <init>0.0</init>
+                                        <init>-153.0</init>
                                     </x>
                                     <y>
-                                        <init>0.0</init>
+                                        <init>-226.0</init>
                                     </y>
                                 </origin>
-                                <priority>
-                                    <init>-1</init>
-                                </priority>
                                 <scale>
                                     <x>
                                         <init>1.0</init>
@@ -968,81 +762,22 @@
                                     </angle>
                                 </rotate>
                                 <orientation clockwise="false"/>
+                                <file name="closebutton.ogfx" path="Button"/>
+                                <crc value="39517911"/>
+                                <inputParameters>
+                                    <parameter control="false" name="ModeSymbol" oid="54bfe5ef-67f5-44fb-9be6-7e6765953521" representation="index" type="int">
+                                        <expr>closeButtonEnabler</expr>
+                                        <init>26</init>
+                                    </parameter>
+                                </inputParameters>
+                                <outputParameters>
+                                    <parameter name="onButton" oid="d3477fcd-5f6c-400f-ac1b-802f87dbef8f" type="bool">
+                                        <expr>closeMainmenu</expr>
+                                    </parameter>
+                                </outputParameters>
                             </properties>
-                            <children>
-                                <referenceContainer oid="a32e0c5f-6611-4145-a9dc-216a73c27b1e">
-                                    <pathFromRoot value="0,8,2,0"/>
-                                    <properties modular="false" name="closebutton">
-                                        <visible>
-                                            <init>true</init>
-                                        </visible>
-                                        <origin>
-                                            <x>
-                                                <init>-153.0</init>
-                                            </x>
-                                            <y>
-                                                <init>-226.0</init>
-                                            </y>
-                                        </origin>
-                                        <scale>
-                                            <x>
-                                                <init>1.0</init>
-                                            </x>
-                                            <y>
-                                                <init>1.0</init>
-                                            </y>
-                                        </scale>
-                                        <rotate>
-                                            <angle>
-                                                <init>0.0</init>
-                                            </angle>
-                                        </rotate>
-                                        <orientation clockwise="false"/>
-                                        <file name="closebutton.ogfx" path="Button"/>
-                                        <crc value="1614670979"/>
-                                        <inputParameters>
-                                            <parameter control="false" name="ModeSymbol" oid="54bfe5ef-67f5-44fb-9be6-7e6765953521" representation="index" type="int">
-                                                <expr>closeButtonEnabler</expr>
-                                                <init>26</init>
-                                            </parameter>
-                                        </inputParameters>
-                                    </properties>
-                                    <children/>
-                                </referenceContainer>
-                                <rectangleArea oid="92a079e3-eb00-48c6-beca-4fd26d044c94">
-                                    <pathFromRoot value="1,8,2,0"/>
-                                    <properties name="rectangle area">
-                                        <enable>
-                                            <init>true</init>
-                                        </enable>
-                                        <pointerId>
-                                            <init>-1</init>
-                                        </pointerId>
-                                        <firstPoint>
-                                            <x>
-                                                <init>-153.0</init>
-                                            </x>
-                                            <y>
-                                                <init>-175.0</init>
-                                            </y>
-                                        </firstPoint>
-                                        <thirdPoint>
-                                            <x>
-                                                <init>-71.0</init>
-                                            </x>
-                                            <y>
-                                                <init>-225.0</init>
-                                            </y>
-                                        </thirdPoint>
-                                        <output>
-                                            <inside>
-                                                <expr>closeMainmenu</expr>
-                                            </inside>
-                                        </output>
-                                    </properties>
-                                </rectangleArea>
-                            </children>
-                        </container>
+                            <children/>
+                        </referenceContainer>
                     </children>
                 </container>
             </children>
@@ -1050,5 +785,5 @@
     </children>
 </object>
 
-<!-- crc32 : 2172761923 -->
+<!-- crc32 : 285127516 -->
 

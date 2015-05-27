@@ -9,7 +9,7 @@
         <environment_id value="-1926713137"/>
         <traceability path="../Requirements/DMI.rqtf"/>
         <codeIntegration keyboardId="0" periodicity="33" pointerId="0"/>
-        <scade path="../Test/Test.etp;../DMI_Control.etp;../../OBU_for_ITEA-Review/PositionSimulation/Testbench_Suite/Testbench_Suite.etp"/>
+        <scade path="../Test/Test.etp;../DMI_Control.etp;../../OBU_for_ITEA-Review/PositionSimulation/Testbench_Suite/Testbench_Suite.etp;../DMI_TestEnvironment/DMI_TestEnvironment/DMI_TestEnvironment.etp"/>
         <ratio horizontal="1" vertical="1"/>
         <colorMap crc="708031199" name="DMI.sct" path="."/>
         <lineWidthMap crc="1678555679" path="default"/>
@@ -207,6 +207,24 @@
                     <input name="VintervVisible" oid="00e92414-4561-4a0f-b581-8259d580f421" type="bool">
                         <init>false</init>
                     </input>
+                    <input name="levelMenuVisibility" oid="39fb112a-95aa-4d56-b4a1-407de5bb0f60" type="bool">
+                        <init>false</init>
+                    </input>
+                    <input name="ArrayLevelIndex" oid="289083a1-27ea-4b83-af95-c866c867a775" representation="as_int_array" type="int^12">
+                        <init>[1, 2, 3, 5, 5, 5, 0]</init>
+                    </input>
+                    <input name="LevelIndex" oid="8c42030f-6fa6-46a9-a4d4-a65e4554e2b8" representation="index" type="int">
+                        <init>1</init>
+                    </input>
+                    <input name="ListMsg" oid="0641dc00-15f4-4be3-8357-b4f18d0c424b" representation="as_string" type="char^50^5">
+                        <init>[[0]]</init>
+                    </input>
+                    <input name="SingleMsgAckRequiredVisibility" oid="26be665c-5a8c-4d40-bc6c-6a3c8016dab8" type="bool">
+                        <init>false</init>
+                    </input>
+                    <input name="IndexFixedMsg" oid="bcd8ba80-6fda-4214-82b5-ae1cf4e1c557" representation="index" type="int">
+                        <init>0</init>
+                    </input>
                 </inputs>
                 <outputs>
                     <output memory="true" name="OverA" oid="2b7e845e-cb23-444e-a6cc-6b70ecd286a7" type="bool">
@@ -229,12 +247,6 @@
                     </output>
                     <output memory="true" name="keyarray" oid="767ffc57-254a-4d67-ab3e-b590f9a2a5af" type="bool^12">
                         <init>[false]</init>
-                    </output>
-                    <output memory="true" name="TrainRN_Ack" oid="9a575055-155e-4764-a97b-ce88cd1aab14" type="bool">
-                        <init>false</init>
-                    </output>
-                    <output memory="true" name="DriverID_Ack" oid="71e8c165-4ba8-4c1b-b976-7b07385e931a" type="bool">
-                        <init>false</init>
                     </output>
                     <output memory="true" name="confirmTrainData" oid="d38f2782-0071-4e10-a593-29adbab957c0" type="bool">
                         <init>false</init>
@@ -272,7 +284,21 @@
                     <output memory="true" name="C1AreaAck" oid="a8629573-8edb-4b51-928e-7e3d368fe218" type="bool">
                         <init>false</init>
                     </output>
+                    <output memory="true" name="openLevelMenu" oid="fed3810c-b23e-4f0f-94f1-3aaf20ee77df" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="InputFieldAck" oid="16f55b4f-3ca1-427c-9c8a-01616226d7ad" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="ButtonPressed" oid="1b8bbc13-7f25-4c34-b17c-8c89cf6f572f" type="bool">
+                        <init>false</init>
+                    </output>
                 </outputs>
+                <locals>
+                    <local memory="true" name="isPressed" oid="afd1bc18-8c14-4a84-abf3-59bda5c7587d" type="bool">
+                        <init>false</init>
+                    </local>
+                </locals>
             </declaration>
             <properties name="DMI">
                 <visible>
@@ -548,11 +574,11 @@
                         </rotate>
                         <orientation clockwise="false"/>
                         <file name="C.ogfx" path="Widgets/C"/>
-                        <crc value="1753507217"/>
+                        <crc value="1639269453"/>
                         <inputParameters>
                             <parameter control="false" name="LevelSymbol" oid="18d20016-98ac-4b5b-a370-1d959577bcec" representation="index" type="int">
                                 <expr>LevelSymbol</expr>
-                                <init>5</init>
+                                <init>4</init>
                             </parameter>
                             <parameter control="false" name="StatusSymbolBrake" oid="19e304f7-5e5f-413f-8c79-6238cdcb6697" type="bool">
                                 <expr>StatusSymbolBrake</expr>
@@ -566,12 +592,9 @@
                                 <expr>LevelSymbolVisibility</expr>
                                 <init>true</init>
                             </parameter>
-                            <parameter control="false" name="LeverSymbolAnnVisibility" oid="e5020d0c-12dc-47f3-9f73-f5804cbe7ab7" type="bool">
-                                <init>true</init>
-                            </parameter>
                             <parameter control="false" name="ModeSymbolAnncouncement" oid="5304be6e-b601-466f-96e1-66c0ec0660f3" representation="index" type="int">
                                 <expr>ModeSymbolAnnouncement</expr>
-                                <init>20</init>
+                                <init>21</init>
                             </parameter>
                             <parameter control="false" name="iconGroupIndex" oid="1f99f0d9-06ad-41a7-b024-dd1d5a9c30fd" representation="index" type="int">
                                 <expr>iconGroupIndex</expr>
@@ -583,7 +606,10 @@
                             </parameter>
                             <parameter control="false" name="yellowBorderC1Area" oid="70444a1b-0d0a-4c33-b2e7-9e273d77d2b5" type="bool">
                                 <expr>yellowBorderC1Area</expr>
-                                <init>false</init>
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="C1_area_visibility" oid="91ca3c6f-ef0c-4e76-b6c3-5cce091cdaaa" type="bool">
+                                <init>true</init>
                             </parameter>
                         </inputParameters>
                         <outputParameters>
@@ -693,7 +719,7 @@
                         </rotate>
                         <orientation clockwise="false"/>
                         <file name="E.ogfx" path="Widgets/E"/>
-                        <crc value="1655692759"/>
+                        <crc value="1769650304"/>
                         <inputParameters>
                             <parameter control="false" name="StatusSymbolVisibility" oid="3a13c3a1-c5ae-4d16-b925-e3804b58efe3" type="bool">
                                 <expr>StatusSymbolVisibility</expr>
@@ -705,7 +731,7 @@
                             </parameter>
                             <parameter control="false" name="ArrayOfMsgIndex" oid="444d88e5-e173-42d9-a182-5d6a348ccab8" representation="as_int_array" type="int^5">
                                 <expr>ArrayOfMsgIndex</expr>
-                                <init>[0]</init>
+                                <init>[25, 0]</init>
                             </parameter>
                             <parameter control="false" name="EnableMsgAckArea" oid="02e0c7b7-1008-4838-9e9f-fa7f3efba648" type="bool">
                                 <expr>textMsgEnable</expr>
@@ -714,6 +740,20 @@
                             <parameter control="false" name="yellowBorderMsg" oid="98e37f50-1da5-404b-8786-b9b36a55a25f" type="bool">
                                 <expr>yellowBorderMsg</expr>
                                 <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="SingleMsgAckRequiredVisibility" oid="da64d722-3e2d-4dd3-8c85-5b6fd958ee02" type="bool">
+                                <expr>SingleMsgAckRequiredVisibility</expr>
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="IndexFixedMsg" oid="5f0248eb-c372-40e9-b9e2-aba37b782622" representation="index" type="int">
+                                <expr>IndexFixedMsg</expr>
+                                <init>3</init>
+                            </parameter>
+                            <parameter control="false" name="Time_hh" oid="85dfeee1-ac08-4345-8b53-6428123d9d90" type="real">
+                                <init>0.0</init>
+                            </parameter>
+                            <parameter control="false" name="Time_mm" oid="2d8b3876-a332-4a9a-8d57-b94185958fe7" type="real">
+                                <init>0.0</init>
                             </parameter>
                         </inputParameters>
                         <outputParameters>
@@ -831,10 +871,10 @@
                         </visible>
                         <origin>
                             <x>
-                                <init>0.0</init>
+                                <init>-10.0</init>
                             </x>
                             <y>
-                                <init>-232.5</init>
+                                <init>-237.5</init>
                             </y>
                         </origin>
                         <scale>
@@ -856,16 +896,15 @@
                     </properties>
                     <children/>
                 </referenceContainer>
-                <container oid="67e10159-d85b-4eb1-9dbe-269acd6830c2">
+                <container oid="97aca467-3293-4cf3-9af1-27fdbb74a1a1">
                     <pathFromRoot value="10"/>
-                    <properties name="driverid">
+                    <properties name="menu">
                         <visible>
                             <init>true</init>
-                            <expr>window_mask[0]</expr>
                         </visible>
                         <origin>
                             <x>
-                                <init>-1.0</init>
+                                <init>0.0</init>
                             </x>
                             <y>
                                 <init>0.0</init>
@@ -890,115 +929,16 @@
                         <orientation clockwise="false"/>
                     </properties>
                     <children>
-                        <referenceContainer oid="41ae8c5e-1652-4ec1-b5a4-dcc6c3f648eb">
+                        <container oid="67e10159-d85b-4eb1-9dbe-269acd6830c2">
                             <pathFromRoot value="0,10"/>
-                            <properties modular="false" name="driverid_display">
+                            <properties name="driverid">
                                 <visible>
                                     <init>true</init>
+                                    <expr>window_mask[0]</expr>
                                 </visible>
                                 <origin>
                                     <x>
-                                        <init>169.0</init>
-                                    </x>
-                                    <y>
-                                        <init>126.0</init>
-                                    </y>
-                                </origin>
-                                <scale>
-                                    <x>
-                                        <init>1.0</init>
-                                    </x>
-                                    <y>
-                                        <init>1.0</init>
-                                    </y>
-                                </scale>
-                                <rotate>
-                                    <angle>
-                                        <init>0.0</init>
-                                    </angle>
-                                </rotate>
-                                <orientation clockwise="false"/>
-                                <file name="driverid_display.ogfx" path="Widgets/DriverID_Display"/>
-                                <crc value="599912118"/>
-                                <inputParameters>
-                                    <parameter control="false" name="titlewindow" oid="57b8157e-dde4-421a-abec-4f90bbcbb7f6" representation="index" type="int">
-                                        <init>1</init>
-                                    </parameter>
-                                    <parameter control="false" name="text_digit" oid="c04895a4-9703-4ad9-9f29-427cf92e8147" representation="index" type="int">
-                                        <init>1</init>
-                                    </parameter>
-                                    <parameter control="false" name="Ack_area" oid="41b71f03-aeea-4609-afcb-444faa70e6a5" representation="index" type="int">
-                                        <init>1</init>
-                                    </parameter>
-                                    <parameter control="false" name="TrainRN_Display" oid="c9a5ec19-f02b-4118-a424-f6dab8290163" representation="as_string" type="int^9">
-                                        <init>[0]</init>
-                                    </parameter>
-                                    <parameter control="false" name="DriverID_Display" oid="ffe4f3eb-a169-4e41-94c6-91f63f80d4d9" representation="as_string" type="int^9">
-                                        <expr>DriverID_Display</expr>
-                                        <init>[0]</init>
-                                    </parameter>
-                                </inputParameters>
-                                <outputParameters>
-                                    <parameter name="TrainRN_Ack" oid="e345eef5-f9ce-4a59-8baf-266d33f26416" type="bool"/>
-                                    <parameter name="DriverID_Ack" oid="37583e01-2199-4a2c-af52-f42f283b1cc3" type="bool">
-                                        <expr>DriverID_Ack</expr>
-                                    </parameter>
-                                </outputParameters>
-                            </properties>
-                            <children/>
-                        </referenceContainer>
-                        <referenceContainer oid="6d497f2f-0f26-4ea3-9640-1afcd5c22ce1">
-                            <pathFromRoot value="1,10"/>
-                            <properties modular="false" name="keypad">
-                                <visible>
-                                    <init>true</init>
-                                </visible>
-                                <origin>
-                                    <x>
-                                        <init>169.0</init>
-                                    </x>
-                                    <y>
-                                        <init>-75.0</init>
-                                    </y>
-                                </origin>
-                                <scale>
-                                    <x>
-                                        <init>1.0</init>
-                                    </x>
-                                    <y>
-                                        <init>1.0</init>
-                                    </y>
-                                </scale>
-                                <rotate>
-                                    <angle>
-                                        <init>0.0</init>
-                                    </angle>
-                                </rotate>
-                                <orientation clockwise="false"/>
-                                <file name="keypad.ogfx" path="Widgets/Keypad"/>
-                                <crc value="2364909381"/>
-                                <inputParameters>
-                                    <parameter control="false" name="keytype" oid="72c8b2ea-5eb2-4ceb-b037-4204cea750f8" representation="index" type="int">
-                                        <init>1</init>
-                                    </parameter>
-                                </inputParameters>
-                                <outputParameters>
-                                    <parameter name="keyarray" oid="f4bc8424-21a5-4fe0-b26d-5abc00c69576" type="bool^12">
-                                        <expr>keyarray</expr>
-                                    </parameter>
-                                </outputParameters>
-                            </properties>
-                            <children/>
-                        </referenceContainer>
-                        <container oid="45c17661-451b-440a-b054-b575d25c15c2">
-                            <pathFromRoot value="2,10"/>
-                            <properties name="closeButton">
-                                <visible>
-                                    <init>true</init>
-                                </visible>
-                                <origin>
-                                    <x>
-                                        <init>0.0</init>
+                                        <init>-1.0</init>
                                     </x>
                                     <y>
                                         <init>0.0</init>
@@ -1023,15 +963,187 @@
                                 <orientation clockwise="false"/>
                             </properties>
                             <children>
+                                <rectangle oid="413da1b9-fe4f-4b07-a9d1-f63d133ca562">
+                                    <pathFromRoot value="0,0,10"/>
+                                    <properties name="backgroundMenu">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <firstPoint>
+                                            <x>
+                                                <init>14.0</init>
+                                            </x>
+                                            <y>
+                                                <init>240.0</init>
+                                            </y>
+                                        </firstPoint>
+                                        <thirdPoint>
+                                            <x>
+                                                <init>320.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-240.0</init>
+                                            </y>
+                                        </thirdPoint>
+                                        <lineWidth>
+                                            <init>0</init>
+                                        </lineWidth>
+                                        <lineStipple>
+                                            <init>0</init>
+                                        </lineStipple>
+                                        <lineCap>
+                                            <init>round</init>
+                                        </lineCap>
+                                        <haloing>
+                                            <init>false</init>
+                                        </haloing>
+                                        <outlineColor>
+                                            <init>-1</init>
+                                        </outlineColor>
+                                        <outlineOpacity>
+                                            <init>255</init>
+                                        </outlineOpacity>
+                                        <fillColor>
+                                            <init>6</init>
+                                        </fillColor>
+                                        <fillOpacity>
+                                            <init>255</init>
+                                        </fillOpacity>
+                                        <polygonSmooth>
+                                            <init>true</init>
+                                        </polygonSmooth>
+                                        <textureControl>
+                                            <init>false</init>
+                                        </textureControl>
+                                        <texture horizAlign="center" horizPattern="1.0" vertAlign="middle" vertPattern="1.0">
+                                            <textureId>
+                                                <init>-1</init>
+                                            </textureId>
+                                        </texture>
+                                    </properties>
+                                </rectangle>
+                                <referenceContainer oid="41ae8c5e-1652-4ec1-b5a4-dcc6c3f648eb">
+                                    <pathFromRoot value="1,0,10"/>
+                                    <properties modular="false" name="driverid_display">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <origin>
+                                            <x>
+                                                <init>169.0</init>
+                                            </x>
+                                            <y>
+                                                <init>126.0</init>
+                                            </y>
+                                        </origin>
+                                        <scale>
+                                            <x>
+                                                <init>1.0</init>
+                                            </x>
+                                            <y>
+                                                <init>1.0</init>
+                                            </y>
+                                        </scale>
+                                        <rotate>
+                                            <angle>
+                                                <init>0.0</init>
+                                            </angle>
+                                        </rotate>
+                                        <orientation clockwise="false"/>
+                                        <file name="driverid_display.ogfx" path="Widgets/DriverID_Display"/>
+                                        <crc value="430233219"/>
+                                        <inputParameters>
+                                            <parameter control="false" name="titlewindow" oid="57b8157e-dde4-421a-abec-4f90bbcbb7f6" representation="index" type="int">
+                                                <init>1</init>
+                                            </parameter>
+                                            <parameter control="false" name="text_digit" oid="c04895a4-9703-4ad9-9f29-427cf92e8147" representation="index" type="int">
+                                                <init>1</init>
+                                            </parameter>
+                                            <parameter control="false" name="Ack_area" oid="41b71f03-aeea-4609-afcb-444faa70e6a5" representation="index" type="int">
+                                                <init>1</init>
+                                            </parameter>
+                                            <parameter control="false" name="TrainRN_Display" oid="c9a5ec19-f02b-4118-a424-f6dab8290163" representation="as_string" type="int^9">
+                                                <init>[0]</init>
+                                            </parameter>
+                                            <parameter control="false" name="DriverID_Display" oid="ffe4f3eb-a169-4e41-94c6-91f63f80d4d9" representation="as_string" type="int^9">
+                                                <expr>DriverID_Display</expr>
+                                                <init>[0]</init>
+                                            </parameter>
+                                            <parameter control="false" name="LevelIndex" oid="b0027b28-3d8c-4dd9-9d39-16ec4158354e" representation="index" type="int">
+                                                <init>0</init>
+                                            </parameter>
+                                            <parameter control="false" name="ButtonPressed" oid="f59e3df5-681e-479f-a65d-caef7b92fa20" type="bool">
+                                                <expr>isPressed</expr>
+                                                <init>false</init>
+                                            </parameter>
+                                        </inputParameters>
+                                        <outputParameters>
+                                            <parameter name="InputFieldAck" oid="37583e01-2199-4a2c-af52-f42f283b1cc3" type="bool">
+                                                <expr>InputFieldAck</expr>
+                                            </parameter>
+                                        </outputParameters>
+                                    </properties>
+                                    <children/>
+                                </referenceContainer>
+                                <referenceContainer oid="6d497f2f-0f26-4ea3-9640-1afcd5c22ce1">
+                                    <pathFromRoot value="2,0,10"/>
+                                    <properties modular="false" name="keypad">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <origin>
+                                            <x>
+                                                <init>169.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-75.0</init>
+                                            </y>
+                                        </origin>
+                                        <scale>
+                                            <x>
+                                                <init>1.0</init>
+                                            </x>
+                                            <y>
+                                                <init>1.0</init>
+                                            </y>
+                                        </scale>
+                                        <rotate>
+                                            <angle>
+                                                <init>0.0</init>
+                                            </angle>
+                                        </rotate>
+                                        <orientation clockwise="false"/>
+                                        <file name="keypad.ogfx" path="Widgets/Keypad"/>
+                                        <crc value="184337820"/>
+                                        <inputParameters>
+                                            <parameter control="false" name="keytype" oid="72c8b2ea-5eb2-4ceb-b037-4204cea750f8" representation="index" type="int">
+                                                <init>1</init>
+                                            </parameter>
+                                            <parameter control="false" name="ArrayLevelIndex" oid="5a9d9679-2d94-4da6-96c3-ceb07c8688ec" representation="as_int_array" type="int^12">
+                                                <init>[0]</init>
+                                            </parameter>
+                                            <parameter control="false" name="ButtonPressed" oid="c07acbe5-5720-485d-9ec1-897906221dae" type="bool">
+                                                <expr>isPressed</expr>
+                                                <init>false</init>
+                                            </parameter>
+                                        </inputParameters>
+                                        <outputParameters>
+                                            <parameter name="keyarray" oid="f4bc8424-21a5-4fe0-b26d-5abc00c69576" type="bool^12">
+                                                <expr>keyarray</expr>
+                                            </parameter>
+                                        </outputParameters>
+                                    </properties>
+                                    <children/>
+                                </referenceContainer>
                                 <referenceContainer oid="143c80d0-d2d5-4b65-98fd-f82a3d702c72">
-                                    <pathFromRoot value="0,2,10"/>
+                                    <pathFromRoot value="3,0,10"/>
                                     <properties modular="false" name="closebutton">
                                         <visible>
                                             <init>true</init>
                                         </visible>
                                         <origin>
                                             <x>
-                                                <init>14.0</init>
+                                                <init>16.0</init>
                                             </x>
                                             <y>
                                                 <init>-226.0</init>
@@ -1052,192 +1164,29 @@
                                         </rotate>
                                         <orientation clockwise="false"/>
                                         <file name="closebutton.ogfx" path="Widgets/MainMenu/Button"/>
-                                        <crc value="1614670979"/>
+                                        <crc value="39517911"/>
                                         <inputParameters>
                                             <parameter control="false" name="ModeSymbol" oid="54bfe5ef-67f5-44fb-9be6-7e6765953521" representation="index" type="int">
                                                 <expr>closeButtonIndex</expr>
                                                 <init>26</init>
                                             </parameter>
                                         </inputParameters>
+                                        <outputParameters>
+                                            <parameter name="onButton" oid="d3477fcd-5f6c-400f-ac1b-802f87dbef8f" type="bool">
+                                                <expr>closeButton</expr>
+                                            </parameter>
+                                        </outputParameters>
                                     </properties>
                                     <children/>
                                 </referenceContainer>
-                                <rectangleArea oid="89364cbf-cb3e-4b74-a2e3-23ccede564a9">
-                                    <pathFromRoot value="1,2,10"/>
-                                    <properties name="rectangle area">
-                                        <enable>
-                                            <init>true</init>
-                                            <expr>closeButtonIndex = 25</expr>
-                                        </enable>
-                                        <pointerId>
-                                            <init>-1</init>
-                                        </pointerId>
-                                        <firstPoint>
-                                            <x>
-                                                <init>15.0</init>
-                                            </x>
-                                            <y>
-                                                <init>-175.0</init>
-                                            </y>
-                                        </firstPoint>
-                                        <thirdPoint>
-                                            <x>
-                                                <init>97.0</init>
-                                            </x>
-                                            <y>
-                                                <init>-225.0</init>
-                                            </y>
-                                        </thirdPoint>
-                                        <output>
-                                            <inside>
-                                                <expr>closeButton</expr>
-                                            </inside>
-                                        </output>
-                                    </properties>
-                                </rectangleArea>
                             </children>
                         </container>
-                    </children>
-                </container>
-                <container oid="7cf3a8b5-39c3-4c5f-8cfa-e63b3bec7650">
-                    <pathFromRoot value="11"/>
-                    <properties name="trainRN">
-                        <visible>
-                            <init>false</init>
-                            <expr>window_mask[1]</expr>
-                        </visible>
-                        <origin>
-                            <x>
-                                <init>0.0</init>
-                            </x>
-                            <y>
-                                <init>0.0</init>
-                            </y>
-                        </origin>
-                        <priority>
-                            <init>-1</init>
-                        </priority>
-                        <scale>
-                            <x>
-                                <init>1.0</init>
-                            </x>
-                            <y>
-                                <init>1.0</init>
-                            </y>
-                        </scale>
-                        <rotate>
-                            <angle>
-                                <init>0.0</init>
-                            </angle>
-                        </rotate>
-                        <orientation clockwise="false"/>
-                    </properties>
-                    <children>
-                        <referenceContainer oid="37686c57-462a-42a5-ab84-215ab6abf725">
-                            <pathFromRoot value="0,11"/>
-                            <properties modular="false" name="trainRN_display">
+                        <container oid="7cf3a8b5-39c3-4c5f-8cfa-e63b3bec7650">
+                            <pathFromRoot value="1,10"/>
+                            <properties name="trainRN">
                                 <visible>
                                     <init>true</init>
-                                </visible>
-                                <origin>
-                                    <x>
-                                        <init>169.0</init>
-                                    </x>
-                                    <y>
-                                        <init>126.0</init>
-                                    </y>
-                                </origin>
-                                <scale>
-                                    <x>
-                                        <init>1.0</init>
-                                    </x>
-                                    <y>
-                                        <init>1.0</init>
-                                    </y>
-                                </scale>
-                                <rotate>
-                                    <angle>
-                                        <init>0.0</init>
-                                    </angle>
-                                </rotate>
-                                <orientation clockwise="false"/>
-                                <file name="driverid_display.ogfx" path="Widgets/DriverID_Display"/>
-                                <crc value="599912118"/>
-                                <inputParameters>
-                                    <parameter control="false" name="titlewindow" oid="57b8157e-dde4-421a-abec-4f90bbcbb7f6" representation="index" type="int">
-                                        <init>2</init>
-                                    </parameter>
-                                    <parameter control="false" name="text_digit" oid="c04895a4-9703-4ad9-9f29-427cf92e8147" representation="index" type="int">
-                                        <init>2</init>
-                                    </parameter>
-                                    <parameter control="false" name="Ack_area" oid="41b71f03-aeea-4609-afcb-444faa70e6a5" representation="index" type="int">
-                                        <init>2</init>
-                                    </parameter>
-                                    <parameter control="false" name="TrainRN_Display" oid="c9a5ec19-f02b-4118-a424-f6dab8290163" representation="as_string" type="int^9">
-                                        <expr>TrainRN_Display</expr>
-                                        <init>[0]</init>
-                                    </parameter>
-                                    <parameter control="false" name="DriverID_Display" oid="ffe4f3eb-a169-4e41-94c6-91f63f80d4d9" representation="as_string" type="int^9">
-                                        <init>[0]</init>
-                                    </parameter>
-                                </inputParameters>
-                                <outputParameters>
-                                    <parameter name="TrainRN_Ack" oid="e345eef5-f9ce-4a59-8baf-266d33f26416" type="bool">
-                                        <expr>TrainRN_Ack</expr>
-                                    </parameter>
-                                    <parameter name="DriverID_Ack" oid="37583e01-2199-4a2c-af52-f42f283b1cc3" type="bool"/>
-                                </outputParameters>
-                            </properties>
-                            <children/>
-                        </referenceContainer>
-                        <referenceContainer oid="6e18a90d-b734-455a-ad5a-ecb98bed2052">
-                            <pathFromRoot value="1,11"/>
-                            <properties modular="false" name="keypad">
-                                <visible>
-                                    <init>true</init>
-                                </visible>
-                                <origin>
-                                    <x>
-                                        <init>167.0</init>
-                                    </x>
-                                    <y>
-                                        <init>-75.0</init>
-                                    </y>
-                                </origin>
-                                <scale>
-                                    <x>
-                                        <init>1.0</init>
-                                    </x>
-                                    <y>
-                                        <init>1.0</init>
-                                    </y>
-                                </scale>
-                                <rotate>
-                                    <angle>
-                                        <init>0.0</init>
-                                    </angle>
-                                </rotate>
-                                <orientation clockwise="false"/>
-                                <file name="keypad.ogfx" path="Widgets/Keypad"/>
-                                <crc value="2364909381"/>
-                                <inputParameters>
-                                    <parameter control="false" name="keytype" oid="72c8b2ea-5eb2-4ceb-b037-4204cea750f8" representation="index" type="int">
-                                        <init>2</init>
-                                    </parameter>
-                                </inputParameters>
-                                <outputParameters>
-                                    <parameter name="keyarray" oid="f4bc8424-21a5-4fe0-b26d-5abc00c69576" type="bool^12">
-                                        <expr>keyarray</expr>
-                                    </parameter>
-                                </outputParameters>
-                            </properties>
-                            <children/>
-                        </referenceContainer>
-                        <container oid="bccd1a56-864a-41df-824f-9193562e6a3c">
-                            <pathFromRoot value="2,11"/>
-                            <properties name="closeButton">
-                                <visible>
-                                    <init>true</init>
+                                    <expr>window_mask[1]</expr>
                                 </visible>
                                 <origin>
                                     <x>
@@ -1266,8 +1215,180 @@
                                 <orientation clockwise="false"/>
                             </properties>
                             <children>
+                                <rectangle oid="4d724b64-91b6-46fc-96b7-69c665e6cc0d">
+                                    <pathFromRoot value="0,1,10"/>
+                                    <properties name="backgroundMenu">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <firstPoint>
+                                            <x>
+                                                <init>14.0</init>
+                                            </x>
+                                            <y>
+                                                <init>240.0</init>
+                                            </y>
+                                        </firstPoint>
+                                        <thirdPoint>
+                                            <x>
+                                                <init>320.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-240.0</init>
+                                            </y>
+                                        </thirdPoint>
+                                        <lineWidth>
+                                            <init>0</init>
+                                        </lineWidth>
+                                        <lineStipple>
+                                            <init>0</init>
+                                        </lineStipple>
+                                        <lineCap>
+                                            <init>round</init>
+                                        </lineCap>
+                                        <haloing>
+                                            <init>false</init>
+                                        </haloing>
+                                        <outlineColor>
+                                            <init>-1</init>
+                                        </outlineColor>
+                                        <outlineOpacity>
+                                            <init>255</init>
+                                        </outlineOpacity>
+                                        <fillColor>
+                                            <init>6</init>
+                                        </fillColor>
+                                        <fillOpacity>
+                                            <init>255</init>
+                                        </fillOpacity>
+                                        <polygonSmooth>
+                                            <init>true</init>
+                                        </polygonSmooth>
+                                        <textureControl>
+                                            <init>false</init>
+                                        </textureControl>
+                                        <texture horizAlign="center" horizPattern="1.0" vertAlign="middle" vertPattern="1.0">
+                                            <textureId>
+                                                <init>-1</init>
+                                            </textureId>
+                                        </texture>
+                                    </properties>
+                                </rectangle>
+                                <referenceContainer oid="37686c57-462a-42a5-ab84-215ab6abf725">
+                                    <pathFromRoot value="1,1,10"/>
+                                    <properties modular="false" name="trainRN_display">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <origin>
+                                            <x>
+                                                <init>169.0</init>
+                                            </x>
+                                            <y>
+                                                <init>126.0</init>
+                                            </y>
+                                        </origin>
+                                        <scale>
+                                            <x>
+                                                <init>1.0</init>
+                                            </x>
+                                            <y>
+                                                <init>1.0</init>
+                                            </y>
+                                        </scale>
+                                        <rotate>
+                                            <angle>
+                                                <init>0.0</init>
+                                            </angle>
+                                        </rotate>
+                                        <orientation clockwise="false"/>
+                                        <file name="driverid_display.ogfx" path="Widgets/DriverID_Display"/>
+                                        <crc value="430233219"/>
+                                        <inputParameters>
+                                            <parameter control="false" name="titlewindow" oid="57b8157e-dde4-421a-abec-4f90bbcbb7f6" representation="index" type="int">
+                                                <init>2</init>
+                                            </parameter>
+                                            <parameter control="false" name="text_digit" oid="c04895a4-9703-4ad9-9f29-427cf92e8147" representation="index" type="int">
+                                                <init>2</init>
+                                            </parameter>
+                                            <parameter control="false" name="Ack_area" oid="41b71f03-aeea-4609-afcb-444faa70e6a5" representation="index" type="int">
+                                                <init>2</init>
+                                            </parameter>
+                                            <parameter control="false" name="TrainRN_Display" oid="c9a5ec19-f02b-4118-a424-f6dab8290163" representation="as_string" type="int^9">
+                                                <expr>TrainRN_Display</expr>
+                                                <init>[0]</init>
+                                            </parameter>
+                                            <parameter control="false" name="DriverID_Display" oid="ffe4f3eb-a169-4e41-94c6-91f63f80d4d9" representation="as_string" type="int^9">
+                                                <init>[0]</init>
+                                            </parameter>
+                                            <parameter control="false" name="LevelIndex" oid="b0027b28-3d8c-4dd9-9d39-16ec4158354e" representation="index" type="int">
+                                                <init>0</init>
+                                            </parameter>
+                                            <parameter control="false" name="ButtonPressed" oid="f59e3df5-681e-479f-a65d-caef7b92fa20" type="bool">
+                                                <expr>isPressed</expr>
+                                                <init>false</init>
+                                            </parameter>
+                                        </inputParameters>
+                                        <outputParameters>
+                                            <parameter name="InputFieldAck" oid="37583e01-2199-4a2c-af52-f42f283b1cc3" type="bool">
+                                                <expr>InputFieldAck</expr>
+                                            </parameter>
+                                        </outputParameters>
+                                    </properties>
+                                    <children/>
+                                </referenceContainer>
+                                <referenceContainer oid="6e18a90d-b734-455a-ad5a-ecb98bed2052">
+                                    <pathFromRoot value="2,1,10"/>
+                                    <properties modular="false" name="keypad">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <origin>
+                                            <x>
+                                                <init>167.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-75.0</init>
+                                            </y>
+                                        </origin>
+                                        <scale>
+                                            <x>
+                                                <init>1.0</init>
+                                            </x>
+                                            <y>
+                                                <init>1.0</init>
+                                            </y>
+                                        </scale>
+                                        <rotate>
+                                            <angle>
+                                                <init>0.0</init>
+                                            </angle>
+                                        </rotate>
+                                        <orientation clockwise="false"/>
+                                        <file name="keypad.ogfx" path="Widgets/Keypad"/>
+                                        <crc value="184337820"/>
+                                        <inputParameters>
+                                            <parameter control="false" name="keytype" oid="72c8b2ea-5eb2-4ceb-b037-4204cea750f8" representation="index" type="int">
+                                                <init>2</init>
+                                            </parameter>
+                                            <parameter control="false" name="ArrayLevelIndex" oid="5a9d9679-2d94-4da6-96c3-ceb07c8688ec" representation="as_int_array" type="int^12">
+                                                <init>[0]</init>
+                                            </parameter>
+                                            <parameter control="false" name="ButtonPressed" oid="c07acbe5-5720-485d-9ec1-897906221dae" type="bool">
+                                                <expr>isPressed</expr>
+                                                <init>false</init>
+                                            </parameter>
+                                        </inputParameters>
+                                        <outputParameters>
+                                            <parameter name="keyarray" oid="f4bc8424-21a5-4fe0-b26d-5abc00c69576" type="bool^12">
+                                                <expr>keyarray</expr>
+                                            </parameter>
+                                        </outputParameters>
+                                    </properties>
+                                    <children/>
+                                </referenceContainer>
                                 <referenceContainer oid="5c4f6488-305b-4afb-83a5-bd1fa515e60e">
-                                    <pathFromRoot value="0,2,11"/>
+                                    <pathFromRoot value="3,1,10"/>
                                     <properties modular="false" name="closebutton">
                                         <visible>
                                             <init>true</init>
@@ -1295,101 +1416,40 @@
                                         </rotate>
                                         <orientation clockwise="false"/>
                                         <file name="closebutton.ogfx" path="Widgets/MainMenu/Button"/>
-                                        <crc value="1614670979"/>
+                                        <crc value="39517911"/>
                                         <inputParameters>
                                             <parameter control="false" name="ModeSymbol" oid="54bfe5ef-67f5-44fb-9be6-7e6765953521" representation="index" type="int">
                                                 <expr>closeButtonIndex</expr>
                                                 <init>26</init>
                                             </parameter>
                                         </inputParameters>
+                                        <outputParameters>
+                                            <parameter name="onButton" oid="d3477fcd-5f6c-400f-ac1b-802f87dbef8f" type="bool">
+                                                <expr>closeButton</expr>
+                                            </parameter>
+                                        </outputParameters>
                                     </properties>
                                     <children/>
                                 </referenceContainer>
-                                <rectangleArea oid="9d3abce7-d385-4a30-8da0-bf16e97093f4">
-                                    <pathFromRoot value="1,2,11"/>
-                                    <properties name="rectangle area">
-                                        <enable>
-                                            <init>true</init>
-                                            <expr>closeButtonIndex = 25</expr>
-                                        </enable>
-                                        <pointerId>
-                                            <init>-1</init>
-                                        </pointerId>
-                                        <firstPoint>
-                                            <x>
-                                                <init>15.0</init>
-                                            </x>
-                                            <y>
-                                                <init>-175.0</init>
-                                            </y>
-                                        </firstPoint>
-                                        <thirdPoint>
-                                            <x>
-                                                <init>97.0</init>
-                                            </x>
-                                            <y>
-                                                <init>-225.0</init>
-                                            </y>
-                                        </thirdPoint>
-                                        <output>
-                                            <inside>
-                                                <expr>closeButton</expr>
-                                            </inside>
-                                        </output>
-                                    </properties>
-                                </rectangleArea>
                             </children>
                         </container>
-                    </children>
-                </container>
-                <container oid="b5e7001d-820b-4917-82d6-929613e63d50">
-                    <pathFromRoot value="12"/>
-                    <properties name="mainmenu">
-                        <visible>
-                            <init>true</init>
-                        </visible>
-                        <origin>
-                            <x>
-                                <init>-1.0</init>
-                            </x>
-                            <y>
-                                <init>0.0</init>
-                            </y>
-                        </origin>
-                        <priority>
-                            <init>-1</init>
-                        </priority>
-                        <scale>
-                            <x>
-                                <init>1.0</init>
-                            </x>
-                            <y>
-                                <init>1.0</init>
-                            </y>
-                        </scale>
-                        <rotate>
-                            <angle>
-                                <init>0.0</init>
-                            </angle>
-                        </rotate>
-                        <orientation clockwise="false"/>
-                    </properties>
-                    <children>
-                        <referenceContainer oid="f264f277-a568-4787-80ba-ff2b246ce435">
-                            <pathFromRoot value="0,12"/>
-                            <properties modular="false" name="mainmenu">
+                        <container oid="b5e7001d-820b-4917-82d6-929613e63d50">
+                            <pathFromRoot value="2,10"/>
+                            <properties name="mainmenu">
                                 <visible>
                                     <init>true</init>
-                                    <expr>(window_mask[9] and (not window_mask[10])) or hourGlassVisibility</expr>
                                 </visible>
                                 <origin>
                                     <x>
-                                        <init>167.0</init>
+                                        <init>-1.0</init>
                                     </x>
                                     <y>
                                         <init>0.0</init>
                                     </y>
                                 </origin>
+                                <priority>
+                                    <init>-1</init>
+                                </priority>
                                 <scale>
                                     <x>
                                         <init>1.0</init>
@@ -1404,112 +1464,21 @@
                                     </angle>
                                 </rotate>
                                 <orientation clockwise="false"/>
-                                <file name="mainmenu.ogfx" path="Widgets/MainMenu"/>
-                                <crc value="2159542206"/>
-                                <inputParameters>
-                                    <parameter control="false" name="buttonEnabler" oid="c10759cd-f1d4-474a-ac5f-776daead0944" representation="as_int_array" type="int^30">
-                                        <expr>hourGlassVisibility ? [2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] : buttonEnabler</expr>
-                                        <init>[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0]</init>
-                                    </parameter>
-                                    <parameter control="false" name="closeButtonEnabler" oid="80996313-72df-47a0-8e4a-1af6f72c82fd" representation="index" type="int">
-                                        <expr>closeButtonEnabler</expr>
-                                        <init>26</init>
-                                    </parameter>
-                                    <parameter control="false" name="TitleVisibility" oid="0753377a-7117-429e-a498-5dfef9978cf6" type="bool">
-                                        <expr>hourGlassVisibility ? false : true</expr>
-                                        <init>true</init>
-                                    </parameter>
-                                </inputParameters>
-                                <outputParameters>
-                                    <parameter name="openTrainData" oid="05fc3130-1339-4f2c-b10f-2149aeaec3ef" type="bool">
-                                        <expr>openTrainData</expr>
-                                    </parameter>
-                                    <parameter name="closeMainmenu" oid="576d5cc0-0b88-4171-b727-efa07ef19c6d" type="bool"/>
-                                    <parameter name="StartRequest" oid="6d4c32c6-4a1a-4fe6-85a5-7af29669923f" type="bool">
-                                        <expr>startRequest</expr>
-                                    </parameter>
-                                    <parameter name="openTrainRN" oid="49558c4b-040d-4217-831d-5306208d5a32" type="bool">
-                                        <expr>openTrainRN</expr>
-                                    </parameter>
-                                    <parameter name="openDriverID" oid="53f11a0f-c82f-486a-8f8c-4de722e9cf84" type="bool">
-                                        <expr>openDriverID</expr>
-                                    </parameter>
-                                </outputParameters>
-                            </properties>
-                            <children/>
-                        </referenceContainer>
-                        <translationContainer oid="a18fdf98-f706-47c6-8a20-feb52aff538d">
-                            <pathFromRoot value="1,12"/>
-                            <properties name="translate group">
-                                <visible>
-                                    <init>true</init>
-                                    <expr>hourGlassVisibility</expr>
-                                </visible>
-                                <origin>
-                                    <x>
-                                        <init>67.0</init>
-                                    </x>
-                                    <y>
-                                        <init>0.0</init>
-                                    </y>
-                                </origin>
-                                <priority>
-                                    <init>-1</init>
-                                </priority>
-                                <refPoint>
-                                    <x>
-                                        <init>16.995</init>
-                                    </x>
-                                    <y>
-                                        <init>215.0</init>
-                                    </y>
-                                </refPoint>
-                                <startTranslationPoint>
-                                    <x>
-                                        <init>67.0</init>
-                                    </x>
-                                    <y>
-                                        <init>215.0</init>
-                                    </y>
-                                </startTranslationPoint>
-                                <endTranslationPoint>
-                                    <x>
-                                        <init>-78.0</init>
-                                    </x>
-                                    <y>
-                                        <init>215.0</init>
-                                    </y>
-                                </endTranslationPoint>
-                                <startTranslationValue>
-                                    <init>0.0</init>
-                                </startTranslationValue>
-                                <endTranslationValue>
-                                    <init>50.0</init>
-                                </endTranslationValue>
-                                <startTranslationLocked>
-                                    <init>false</init>
-                                </startTranslationLocked>
-                                <endTranslationLocked>
-                                    <init>false</init>
-                                </endTranslationLocked>
-                                <functionalTranslationValue>
-                                    <init>17.243</init>
-                                    <expr>translateHourGlass</expr>
-                                </functionalTranslationValue>
                             </properties>
                             <children>
-                                <referenceContainer oid="08c4b31b-428a-4fd3-ba26-957aa84b49f3">
-                                    <pathFromRoot value="0,1,12"/>
-                                    <properties modular="false" name="StatusSymbols">
+                                <referenceContainer oid="f264f277-a568-4787-80ba-ff2b246ce435">
+                                    <pathFromRoot value="0,2,10"/>
+                                    <properties modular="false" name="mainmenu">
                                         <visible>
                                             <init>true</init>
+                                            <expr>(window_mask[9] and (not window_mask[10])) or hourGlassVisibility</expr>
                                         </visible>
                                         <origin>
                                             <x>
-                                                <init>-4.0</init>
+                                                <init>167.0</init>
                                             </x>
                                             <y>
-                                                <init>213.0</init>
+                                                <init>0.0</init>
                                             </y>
                                         </origin>
                                         <scale>
@@ -1526,59 +1495,154 @@
                                             </angle>
                                         </rotate>
                                         <orientation clockwise="false"/>
-                                        <file name="StatusSymbols.ogfx" path="Widgets/Symbols"/>
-                                        <crc value="1268713367"/>
+                                        <file name="mainmenu.ogfx" path="Widgets/MainMenu"/>
+                                        <crc value="1164579418"/>
                                         <inputParameters>
-                                            <parameter control="false" name="StatusSymbol" oid="570848ad-7c4e-486c-9d47-42989b8f3a87" representation="index" type="int">
-                                                <init>5</init>
+                                            <parameter control="false" name="buttonEnabler" oid="c10759cd-f1d4-474a-ac5f-776daead0944" representation="as_int_array" type="int^30">
+                                                <expr>hourGlassVisibility ? [2,2,2,2,2,2,2,2,2,2,2,2,2,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] : buttonEnabler</expr>
+                                                <init>[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0]</init>
+                                            </parameter>
+                                            <parameter control="false" name="closeButtonEnabler" oid="80996313-72df-47a0-8e4a-1af6f72c82fd" representation="index" type="int">
+                                                <expr>closeButtonEnabler</expr>
+                                                <init>26</init>
+                                            </parameter>
+                                            <parameter control="false" name="TitleVisibility" oid="0753377a-7117-429e-a498-5dfef9978cf6" type="bool">
+                                                <expr>hourGlassVisibility ? false : true</expr>
+                                                <init>true</init>
+                                            </parameter>
+                                            <parameter control="false" name="MousePressed" oid="98abf164-cc08-4520-b6da-ab901d239545" type="bool">
+                                                <expr>isPressed</expr>
+                                                <init>false</init>
                                             </parameter>
                                         </inputParameters>
+                                        <outputParameters>
+                                            <parameter name="openTrainData" oid="05fc3130-1339-4f2c-b10f-2149aeaec3ef" type="bool">
+                                                <expr>openTrainData</expr>
+                                            </parameter>
+                                            <parameter name="closeMainmenu" oid="576d5cc0-0b88-4171-b727-efa07ef19c6d" type="bool"/>
+                                            <parameter name="StartRequest" oid="6d4c32c6-4a1a-4fe6-85a5-7af29669923f" type="bool">
+                                                <expr>startRequest</expr>
+                                            </parameter>
+                                            <parameter name="openTrainRN" oid="49558c4b-040d-4217-831d-5306208d5a32" type="bool">
+                                                <expr>openTrainRN</expr>
+                                            </parameter>
+                                            <parameter name="openDriverID" oid="53f11a0f-c82f-486a-8f8c-4de722e9cf84" type="bool">
+                                                <expr>openDriverID</expr>
+                                            </parameter>
+                                            <parameter name="levelMenu" oid="ec580667-a88c-44b5-a785-ffeb453b8b74" type="bool">
+                                                <expr>openLevelMenu</expr>
+                                            </parameter>
+                                        </outputParameters>
                                     </properties>
                                     <children/>
                                 </referenceContainer>
+                                <translationContainer oid="a18fdf98-f706-47c6-8a20-feb52aff538d">
+                                    <pathFromRoot value="1,2,10"/>
+                                    <properties name="translate group">
+                                        <visible>
+                                            <init>true</init>
+                                            <expr>hourGlassVisibility</expr>
+                                        </visible>
+                                        <origin>
+                                            <x>
+                                                <init>67.0</init>
+                                            </x>
+                                            <y>
+                                                <init>0.0</init>
+                                            </y>
+                                        </origin>
+                                        <priority>
+                                            <init>-1</init>
+                                        </priority>
+                                        <refPoint>
+                                            <x>
+                                                <init>16.995</init>
+                                            </x>
+                                            <y>
+                                                <init>215.0</init>
+                                            </y>
+                                        </refPoint>
+                                        <startTranslationPoint>
+                                            <x>
+                                                <init>67.0</init>
+                                            </x>
+                                            <y>
+                                                <init>215.0</init>
+                                            </y>
+                                        </startTranslationPoint>
+                                        <endTranslationPoint>
+                                            <x>
+                                                <init>-78.0</init>
+                                            </x>
+                                            <y>
+                                                <init>215.0</init>
+                                            </y>
+                                        </endTranslationPoint>
+                                        <startTranslationValue>
+                                            <init>0.0</init>
+                                        </startTranslationValue>
+                                        <endTranslationValue>
+                                            <init>50.0</init>
+                                        </endTranslationValue>
+                                        <startTranslationLocked>
+                                            <init>false</init>
+                                        </startTranslationLocked>
+                                        <endTranslationLocked>
+                                            <init>false</init>
+                                        </endTranslationLocked>
+                                        <functionalTranslationValue>
+                                            <init>17.243</init>
+                                            <expr>translateHourGlass</expr>
+                                        </functionalTranslationValue>
+                                    </properties>
+                                    <children>
+                                        <referenceContainer oid="08c4b31b-428a-4fd3-ba26-957aa84b49f3">
+                                            <pathFromRoot value="0,1,2,10"/>
+                                            <properties modular="false" name="StatusSymbols">
+                                                <visible>
+                                                    <init>true</init>
+                                                </visible>
+                                                <origin>
+                                                    <x>
+                                                        <init>-4.0</init>
+                                                    </x>
+                                                    <y>
+                                                        <init>213.0</init>
+                                                    </y>
+                                                </origin>
+                                                <scale>
+                                                    <x>
+                                                        <init>1.0</init>
+                                                    </x>
+                                                    <y>
+                                                        <init>1.0</init>
+                                                    </y>
+                                                </scale>
+                                                <rotate>
+                                                    <angle>
+                                                        <init>0.0</init>
+                                                    </angle>
+                                                </rotate>
+                                                <orientation clockwise="false"/>
+                                                <file name="StatusSymbols.ogfx" path="Widgets/Symbols"/>
+                                                <crc value="1268713367"/>
+                                                <inputParameters>
+                                                    <parameter control="false" name="StatusSymbol" oid="570848ad-7c4e-486c-9d47-42989b8f3a87" representation="index" type="int">
+                                                        <init>5</init>
+                                                    </parameter>
+                                                </inputParameters>
+                                            </properties>
+                                            <children/>
+                                        </referenceContainer>
+                                    </children>
+                                </translationContainer>
                             </children>
-                        </translationContainer>
-                    </children>
-                </container>
-                <container oid="c207b452-a418-4564-8654-8d4a36e2946c">
-                    <pathFromRoot value="13"/>
-                    <properties name="TrainData">
-                        <visible>
-                            <init>false</init>
-                            <expr>TrainDataWindowVisibility</expr>
-                        </visible>
-                        <origin>
-                            <x>
-                                <init>0.0</init>
-                            </x>
-                            <y>
-                                <init>-1.0</init>
-                            </y>
-                        </origin>
-                        <priority>
-                            <init>-1</init>
-                        </priority>
-                        <scale>
-                            <x>
-                                <init>1.0</init>
-                            </x>
-                            <y>
-                                <init>1.0</init>
-                            </y>
-                        </scale>
-                        <rotate>
-                            <angle>
-                                <init>0.0</init>
-                            </angle>
-                        </rotate>
-                        <orientation clockwise="false"/>
-                    </properties>
-                    <children>
-                        <referenceContainer oid="eee4ac32-1c8f-4a52-a3a0-86e28f1d1d10">
-                            <pathFromRoot value="0,13"/>
-                            <properties modular="false" name="TrainData">
+                        </container>
+                        <container oid="c207b452-a418-4564-8654-8d4a36e2946c">
+                            <pathFromRoot value="3,10"/>
+                            <properties name="TrainData">
                                 <visible>
-                                    <init>true</init>
+                                    <init>false</init>
                                     <expr>TrainDataWindowVisibility</expr>
                                 </visible>
                                 <origin>
@@ -1586,9 +1650,12 @@
                                         <init>0.0</init>
                                     </x>
                                     <y>
-                                        <init>0.0</init>
+                                        <init>-1.0</init>
                                     </y>
                                 </origin>
+                                <priority>
+                                    <init>-1</init>
+                                </priority>
                                 <scale>
                                     <x>
                                         <init>1.0</init>
@@ -1603,60 +1670,57 @@
                                     </angle>
                                 </rotate>
                                 <orientation clockwise="false"/>
-                                <file name="TrainData.ogfx" path="Widgets/TrainData"/>
-                                <crc value="635236962"/>
-                                <outputParameters>
-                                    <parameter name="confirmTrainData" oid="bfeb8212-1bd3-46bf-8f54-f92f7b3edd9e" type="bool">
-                                        <expr>confirmTrainData</expr>
-                                    </parameter>
-                                    <parameter name="closeTrainDataWindow" oid="6d360d43-3aac-4920-b210-f0857329161f" type="bool">
-                                        <expr>closeButton</expr>
-                                    </parameter>
-                                </outputParameters>
                             </properties>
-                            <children/>
-                        </referenceContainer>
-                    </children>
-                </container>
-                <container oid="c8bd1545-0042-440a-82b3-fe7672366151">
-                    <pathFromRoot value="14"/>
-                    <properties name="traindataValidation">
-                        <visible>
-                            <init>false</init>
-                            <expr>traindataValidWinVisibility</expr>
-                        </visible>
-                        <origin>
-                            <x>
-                                <init>0.0</init>
-                            </x>
-                            <y>
-                                <init>-1.0</init>
-                            </y>
-                        </origin>
-                        <priority>
-                            <init>-1</init>
-                        </priority>
-                        <scale>
-                            <x>
-                                <init>1.0</init>
-                            </x>
-                            <y>
-                                <init>1.0</init>
-                            </y>
-                        </scale>
-                        <rotate>
-                            <angle>
-                                <init>0.0</init>
-                            </angle>
-                        </rotate>
-                        <orientation clockwise="false"/>
-                    </properties>
-                    <children>
-                        <referenceContainer oid="5d371136-5e63-4cae-a719-72b505badd8e">
-                            <pathFromRoot value="0,14"/>
-                            <properties modular="false" name="ValidationWindow">
+                            <children>
+                                <referenceContainer oid="eee4ac32-1c8f-4a52-a3a0-86e28f1d1d10">
+                                    <pathFromRoot value="0,3,10"/>
+                                    <properties modular="false" name="TrainData">
+                                        <visible>
+                                            <init>true</init>
+                                            <expr>TrainDataWindowVisibility</expr>
+                                        </visible>
+                                        <origin>
+                                            <x>
+                                                <init>0.0</init>
+                                            </x>
+                                            <y>
+                                                <init>0.0</init>
+                                            </y>
+                                        </origin>
+                                        <scale>
+                                            <x>
+                                                <init>1.0</init>
+                                            </x>
+                                            <y>
+                                                <init>1.0</init>
+                                            </y>
+                                        </scale>
+                                        <rotate>
+                                            <angle>
+                                                <init>0.0</init>
+                                            </angle>
+                                        </rotate>
+                                        <orientation clockwise="false"/>
+                                        <file name="TrainData.ogfx" path="Widgets/TrainData"/>
+                                        <crc value="635236962"/>
+                                        <outputParameters>
+                                            <parameter name="confirmTrainData" oid="bfeb8212-1bd3-46bf-8f54-f92f7b3edd9e" type="bool">
+                                                <expr>confirmTrainData</expr>
+                                            </parameter>
+                                            <parameter name="closeTrainDataWindow" oid="6d360d43-3aac-4920-b210-f0857329161f" type="bool">
+                                                <expr>closeButton</expr>
+                                            </parameter>
+                                        </outputParameters>
+                                    </properties>
+                                    <children/>
+                                </referenceContainer>
+                            </children>
+                        </container>
+                        <container oid="c8bd1545-0042-440a-82b3-fe7672366151">
+                            <pathFromRoot value="4,10"/>
+                            <properties name="traindataValidation">
                                 <visible>
-                                    <init>true</init>
+                                    <init>false</init>
                                     <expr>traindataValidWinVisibility</expr>
                                 </visible>
                                 <origin>
@@ -1664,9 +1728,12 @@
                                         <init>0.0</init>
                                     </x>
                                     <y>
-                                        <init>0.0</init>
+                                        <init>-1.0</init>
                                     </y>
                                 </origin>
+                                <priority>
+                                    <init>-1</init>
+                                </priority>
                                 <scale>
                                     <x>
                                         <init>1.0</init>
@@ -1681,67 +1748,353 @@
                                     </angle>
                                 </rotate>
                                 <orientation clockwise="false"/>
-                                <file name="ValidationWindow.ogfx" path="Widgets/ValidationWindow"/>
-                                <crc value="3743397307"/>
-                                <inputParameters>
-                                    <parameter control="false" name="trainLenght" oid="d0753482-e478-4f4b-b7db-855f0e0eb3d3" type="real">
-                                        <expr>trainLenght</expr>
-                                        <init>0.0</init>
-                                    </parameter>
-                                    <parameter control="false" name="trainBrakePerc" oid="38bf9128-9268-45a9-8d9f-7d6262c2f9e7" type="real">
-                                        <expr>trainBrakePerc</expr>
-                                        <init>0.0</init>
-                                    </parameter>
-                                    <parameter control="false" name="trainMaxSpeed" oid="33578cd9-9dd7-4230-855f-b0c7a362eb65" type="real">
-                                        <expr>trainMaxSpeed</expr>
-                                        <init>0.0</init>
-                                    </parameter>
-                                    <parameter control="false" name="indexTrainCategory" oid="3802ac7a-b0bb-4681-aad4-fb0ec0f24c27" representation="index" type="int">
-                                        <expr>indexTrainCategory</expr>
-                                        <init>0</init>
-                                    </parameter>
-                                    <parameter control="false" name="trainAirtightIndex" oid="e1ed3845-207c-4795-8826-a84a152e1277" representation="index" type="int">
-                                        <expr>trainAirtightIndex</expr>
-                                        <init>0</init>
-                                    </parameter>
-                                    <parameter control="false" name="trainLoadingGaugeIndex" oid="2e82eb91-35b2-4251-8c9a-8acd643dc331" representation="index" type="int">
-                                        <expr>trainLoadingGaugeIndex</expr>
-                                        <init>0</init>
-                                    </parameter>
-                                    <parameter control="false" name="traindataYesNoIndex" oid="93feeced-f116-4f94-ac20-d34afb08a625" representation="index" type="int">
-                                        <expr>traindataYesNoIndex</expr>
-                                        <init>0</init>
-                                    </parameter>
-                                    <parameter control="false" name="trainAxleLoad" oid="78b0dd32-f125-4103-bc82-bab22a2246a4" representation="index" type="int">
-                                        <expr>trainAxleLoad</expr>
-                                        <init>0</init>
-                                    </parameter>
-                                </inputParameters>
-                                <outputParameters>
-                                    <parameter name="closeTrainDataValidationWindow" oid="6d360d43-3aac-4920-b210-f0857329161f" type="bool">
-                                        <expr>closeButton</expr>
-                                    </parameter>
-                                    <parameter name="traindataAck" oid="02b4b8f7-01c8-4aea-8117-7dd0146999ba" type="bool">
-                                        <expr>traindataAck</expr>
-                                    </parameter>
-                                    <parameter name="traindataYesAck" oid="d0180b0a-e2d9-4cca-8279-105efa8ac1bf" type="bool">
-                                        <expr>traindataYesAck</expr>
-                                    </parameter>
-                                    <parameter name="traindataNoAck" oid="a7d37a7c-d12d-4752-abff-cbe768eddb33" type="bool">
-                                        <expr>traindataNoAck</expr>
-                                    </parameter>
-                                </outputParameters>
                             </properties>
-                            <children/>
-                        </referenceContainer>
+                            <children>
+                                <referenceContainer oid="5d371136-5e63-4cae-a719-72b505badd8e">
+                                    <pathFromRoot value="0,4,10"/>
+                                    <properties modular="false" name="ValidationWindow">
+                                        <visible>
+                                            <init>true</init>
+                                            <expr>traindataValidWinVisibility</expr>
+                                        </visible>
+                                        <origin>
+                                            <x>
+                                                <init>0.0</init>
+                                            </x>
+                                            <y>
+                                                <init>0.0</init>
+                                            </y>
+                                        </origin>
+                                        <scale>
+                                            <x>
+                                                <init>1.0</init>
+                                            </x>
+                                            <y>
+                                                <init>1.0</init>
+                                            </y>
+                                        </scale>
+                                        <rotate>
+                                            <angle>
+                                                <init>0.0</init>
+                                            </angle>
+                                        </rotate>
+                                        <orientation clockwise="false"/>
+                                        <file name="ValidationWindow.ogfx" path="Widgets/ValidationWindow"/>
+                                        <crc value="3743397307"/>
+                                        <inputParameters>
+                                            <parameter control="false" name="trainLenght" oid="d0753482-e478-4f4b-b7db-855f0e0eb3d3" type="real">
+                                                <expr>trainLenght</expr>
+                                                <init>0.0</init>
+                                            </parameter>
+                                            <parameter control="false" name="trainBrakePerc" oid="38bf9128-9268-45a9-8d9f-7d6262c2f9e7" type="real">
+                                                <expr>trainBrakePerc</expr>
+                                                <init>0.0</init>
+                                            </parameter>
+                                            <parameter control="false" name="trainMaxSpeed" oid="33578cd9-9dd7-4230-855f-b0c7a362eb65" type="real">
+                                                <expr>trainMaxSpeed</expr>
+                                                <init>0.0</init>
+                                            </parameter>
+                                            <parameter control="false" name="indexTrainCategory" oid="3802ac7a-b0bb-4681-aad4-fb0ec0f24c27" representation="index" type="int">
+                                                <expr>indexTrainCategory</expr>
+                                                <init>0</init>
+                                            </parameter>
+                                            <parameter control="false" name="trainAirtightIndex" oid="e1ed3845-207c-4795-8826-a84a152e1277" representation="index" type="int">
+                                                <expr>trainAirtightIndex</expr>
+                                                <init>0</init>
+                                            </parameter>
+                                            <parameter control="false" name="trainLoadingGaugeIndex" oid="2e82eb91-35b2-4251-8c9a-8acd643dc331" representation="index" type="int">
+                                                <expr>trainLoadingGaugeIndex</expr>
+                                                <init>0</init>
+                                            </parameter>
+                                            <parameter control="false" name="traindataYesNoIndex" oid="93feeced-f116-4f94-ac20-d34afb08a625" representation="index" type="int">
+                                                <expr>traindataYesNoIndex</expr>
+                                                <init>0</init>
+                                            </parameter>
+                                            <parameter control="false" name="trainAxleLoad" oid="78b0dd32-f125-4103-bc82-bab22a2246a4" representation="index" type="int">
+                                                <expr>trainAxleLoad</expr>
+                                                <init>0</init>
+                                            </parameter>
+                                        </inputParameters>
+                                        <outputParameters>
+                                            <parameter name="closeTrainDataValidationWindow" oid="6d360d43-3aac-4920-b210-f0857329161f" type="bool">
+                                                <expr>closeButton</expr>
+                                            </parameter>
+                                            <parameter name="traindataAck" oid="02b4b8f7-01c8-4aea-8117-7dd0146999ba" type="bool">
+                                                <expr>traindataAck</expr>
+                                            </parameter>
+                                            <parameter name="traindataYesAck" oid="d0180b0a-e2d9-4cca-8279-105efa8ac1bf" type="bool">
+                                                <expr>traindataYesAck</expr>
+                                            </parameter>
+                                            <parameter name="traindataNoAck" oid="a7d37a7c-d12d-4752-abff-cbe768eddb33" type="bool">
+                                                <expr>traindataNoAck</expr>
+                                            </parameter>
+                                        </outputParameters>
+                                    </properties>
+                                    <children/>
+                                </referenceContainer>
+                            </children>
+                        </container>
+                        <container oid="ea621905-4f91-437d-be5f-383939a0d89e">
+                            <pathFromRoot value="5,10"/>
+                            <properties name="Level">
+                                <visible>
+                                    <init>true</init>
+                                    <expr>levelMenuVisibility</expr>
+                                </visible>
+                                <origin>
+                                    <x>
+                                        <init>-1.0</init>
+                                    </x>
+                                    <y>
+                                        <init>0.0</init>
+                                    </y>
+                                </origin>
+                                <priority>
+                                    <init>-1</init>
+                                </priority>
+                                <scale>
+                                    <x>
+                                        <init>1.0</init>
+                                    </x>
+                                    <y>
+                                        <init>1.0</init>
+                                    </y>
+                                </scale>
+                                <rotate>
+                                    <angle>
+                                        <init>0.0</init>
+                                    </angle>
+                                </rotate>
+                                <orientation clockwise="false"/>
+                            </properties>
+                            <children>
+                                <rectangle oid="76a88b09-5af0-4fb8-aef7-5f76d210eb09">
+                                    <pathFromRoot value="0,5,10"/>
+                                    <properties name="backgroundMenu">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <firstPoint>
+                                            <x>
+                                                <init>14.0</init>
+                                            </x>
+                                            <y>
+                                                <init>240.0</init>
+                                            </y>
+                                        </firstPoint>
+                                        <thirdPoint>
+                                            <x>
+                                                <init>320.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-240.0</init>
+                                            </y>
+                                        </thirdPoint>
+                                        <lineWidth>
+                                            <init>0</init>
+                                        </lineWidth>
+                                        <lineStipple>
+                                            <init>0</init>
+                                        </lineStipple>
+                                        <lineCap>
+                                            <init>round</init>
+                                        </lineCap>
+                                        <haloing>
+                                            <init>false</init>
+                                        </haloing>
+                                        <outlineColor>
+                                            <init>-1</init>
+                                        </outlineColor>
+                                        <outlineOpacity>
+                                            <init>255</init>
+                                        </outlineOpacity>
+                                        <fillColor>
+                                            <init>6</init>
+                                        </fillColor>
+                                        <fillOpacity>
+                                            <init>255</init>
+                                        </fillOpacity>
+                                        <polygonSmooth>
+                                            <init>true</init>
+                                        </polygonSmooth>
+                                        <textureControl>
+                                            <init>false</init>
+                                        </textureControl>
+                                        <texture horizAlign="center" horizPattern="1.0" vertAlign="middle" vertPattern="1.0">
+                                            <textureId>
+                                                <init>-1</init>
+                                            </textureId>
+                                        </texture>
+                                    </properties>
+                                </rectangle>
+                                <referenceContainer oid="f7fea089-8c32-4189-9f1f-179f6824fe45">
+                                    <pathFromRoot value="1,5,10"/>
+                                    <properties modular="false" name="level_display">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <origin>
+                                            <x>
+                                                <init>169.0</init>
+                                            </x>
+                                            <y>
+                                                <init>126.0</init>
+                                            </y>
+                                        </origin>
+                                        <scale>
+                                            <x>
+                                                <init>1.0</init>
+                                            </x>
+                                            <y>
+                                                <init>1.0</init>
+                                            </y>
+                                        </scale>
+                                        <rotate>
+                                            <angle>
+                                                <init>0.0</init>
+                                            </angle>
+                                        </rotate>
+                                        <orientation clockwise="false"/>
+                                        <file name="driverid_display.ogfx" path="Widgets/DriverID_Display"/>
+                                        <crc value="430233219"/>
+                                        <inputParameters>
+                                            <parameter control="false" name="titlewindow" oid="57b8157e-dde4-421a-abec-4f90bbcbb7f6" representation="index" type="int">
+                                                <init>3</init>
+                                            </parameter>
+                                            <parameter control="false" name="text_digit" oid="c04895a4-9703-4ad9-9f29-427cf92e8147" representation="index" type="int">
+                                                <init>3</init>
+                                            </parameter>
+                                            <parameter control="false" name="Ack_area" oid="41b71f03-aeea-4609-afcb-444faa70e6a5" representation="index" type="int">
+                                                <init>1</init>
+                                            </parameter>
+                                            <parameter control="false" name="TrainRN_Display" oid="c9a5ec19-f02b-4118-a424-f6dab8290163" representation="as_string" type="int^9">
+                                                <init>[0]</init>
+                                            </parameter>
+                                            <parameter control="false" name="DriverID_Display" oid="ffe4f3eb-a169-4e41-94c6-91f63f80d4d9" representation="as_string" type="int^9">
+                                                <init>[0]</init>
+                                            </parameter>
+                                            <parameter control="false" name="LevelIndex" oid="b0027b28-3d8c-4dd9-9d39-16ec4158354e" representation="index" type="int">
+                                                <expr>LevelIndex</expr>
+                                                <init>1</init>
+                                            </parameter>
+                                            <parameter control="false" name="ButtonPressed" oid="f59e3df5-681e-479f-a65d-caef7b92fa20" type="bool">
+                                                <expr>isPressed</expr>
+                                                <init>false</init>
+                                            </parameter>
+                                        </inputParameters>
+                                        <outputParameters>
+                                            <parameter name="InputFieldAck" oid="37583e01-2199-4a2c-af52-f42f283b1cc3" type="bool">
+                                                <expr>InputFieldAck</expr>
+                                            </parameter>
+                                        </outputParameters>
+                                    </properties>
+                                    <children/>
+                                </referenceContainer>
+                                <referenceContainer oid="a8ad62e5-3ea6-46b6-b2b4-936cae87d71e">
+                                    <pathFromRoot value="2,5,10"/>
+                                    <properties modular="false" name="keypad">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <origin>
+                                            <x>
+                                                <init>169.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-75.0</init>
+                                            </y>
+                                        </origin>
+                                        <scale>
+                                            <x>
+                                                <init>1.0</init>
+                                            </x>
+                                            <y>
+                                                <init>1.0</init>
+                                            </y>
+                                        </scale>
+                                        <rotate>
+                                            <angle>
+                                                <init>0.0</init>
+                                            </angle>
+                                        </rotate>
+                                        <orientation clockwise="false"/>
+                                        <file name="keypad.ogfx" path="Widgets/Keypad"/>
+                                        <crc value="184337820"/>
+                                        <inputParameters>
+                                            <parameter control="false" name="keytype" oid="72c8b2ea-5eb2-4ceb-b037-4204cea750f8" representation="index" type="int">
+                                                <init>3</init>
+                                            </parameter>
+                                            <parameter control="false" name="ArrayLevelIndex" oid="5a9d9679-2d94-4da6-96c3-ceb07c8688ec" representation="as_int_array" type="int^12">
+                                                <expr>ArrayLevelIndex</expr>
+                                                <init>[1, 2, 3, 5, 5, 5, 0]</init>
+                                            </parameter>
+                                            <parameter control="false" name="ButtonPressed" oid="c07acbe5-5720-485d-9ec1-897906221dae" type="bool">
+                                                <expr>isPressed</expr>
+                                                <init>false</init>
+                                            </parameter>
+                                        </inputParameters>
+                                        <outputParameters>
+                                            <parameter name="keyarray" oid="f4bc8424-21a5-4fe0-b26d-5abc00c69576" type="bool^12">
+                                                <expr>keyarray</expr>
+                                            </parameter>
+                                        </outputParameters>
+                                    </properties>
+                                    <children/>
+                                </referenceContainer>
+                                <referenceContainer oid="a90653f3-5511-4364-9613-3844afd7f196">
+                                    <pathFromRoot value="3,5,10"/>
+                                    <properties modular="false" name="closebutton">
+                                        <visible>
+                                            <init>true</init>
+                                        </visible>
+                                        <origin>
+                                            <x>
+                                                <init>14.0</init>
+                                            </x>
+                                            <y>
+                                                <init>-226.0</init>
+                                            </y>
+                                        </origin>
+                                        <scale>
+                                            <x>
+                                                <init>1.0</init>
+                                            </x>
+                                            <y>
+                                                <init>1.0</init>
+                                            </y>
+                                        </scale>
+                                        <rotate>
+                                            <angle>
+                                                <init>0.0</init>
+                                            </angle>
+                                        </rotate>
+                                        <orientation clockwise="false"/>
+                                        <file name="closebutton.ogfx" path="Widgets/MainMenu/Button"/>
+                                        <crc value="39517911"/>
+                                        <inputParameters>
+                                            <parameter control="false" name="ModeSymbol" oid="54bfe5ef-67f5-44fb-9be6-7e6765953521" representation="index" type="int">
+                                                <expr>closeButtonIndex</expr>
+                                                <init>26</init>
+                                            </parameter>
+                                        </inputParameters>
+                                        <outputParameters>
+                                            <parameter name="onButton" oid="d3477fcd-5f6c-400f-ac1b-802f87dbef8f" type="bool">
+                                                <expr>closeButton</expr>
+                                            </parameter>
+                                        </outputParameters>
+                                    </properties>
+                                    <children/>
+                                </referenceContainer>
+                            </children>
+                        </container>
                     </children>
                 </container>
                 <rectangle oid="0dffff0b-e08e-478e-8c06-f5cafb76f8da">
-                    <pathFromRoot value="15"/>
+                    <pathFromRoot value="11"/>
                     <properties name="closeDeskBackground">
                         <visible>
                             <init>false</init>
-                            <expr>openDesk</expr>
+                            <expr>not openDesk</expr>
                         </visible>
                         <firstPoint>
                             <x>
@@ -1797,8 +2150,8 @@
                     </properties>
                 </rectangle>
                 <pointerEventListener oid="d70337e7-31b9-404b-8c25-3496e168ef55">
-                    <pathFromRoot value="16"/>
-                    <properties name="pointer event listener">
+                    <pathFromRoot value="12"/>
+                    <properties name="MouseReleased">
                         <enable>
                             <init>true</init>
                         </enable>
@@ -1813,10 +2166,307 @@
                         </output>
                     </properties>
                 </pointerEventListener>
+                <pointerEventListener oid="b266a919-a2d9-4298-9af4-cba6fd57f664">
+                    <pathFromRoot value="13"/>
+                    <properties name="MousePressed">
+                        <enable>
+                            <init>true</init>
+                        </enable>
+                        <eventId>
+                            <init>0</init>
+                        </eventId>
+                        <output>
+                            <pressed>
+                                <expr>ButtonPressed</expr>
+                            </pressed>
+                            <pointerPosition/>
+                        </output>
+                    </properties>
+                </pointerEventListener>
+                <behavior oid="4cf8a627-6401-4c49-8c19-3f375b37ad7f">
+                    <pathFromRoot value="14"/>
+                    <properties name="ButtonBehaviour">
+                        <file name="GenericButtonBehaviour.etp" path="Widgets/GenericButtonBehaviour/GenericButtonBehaviour"/>
+                        <function isNode="true" name="ButtonBehaviour"/>
+                        <enable>
+                            <init>true</init>
+                        </enable>
+                        <inputParameters>
+                            <parameter name="pressed" oid="" type="bool">
+                                <expr>ButtonPressed</expr>
+                                <init>false</init>
+                            </parameter>
+                            <parameter name="released" oid="" type="bool">
+                                <expr>MousePressed</expr>
+                                <init>false</init>
+                            </parameter>
+                        </inputParameters>
+                        <outputParameters>
+                            <parameter name="isPressed" oid="" type="bool">
+                                <expr>isPressed</expr>
+                            </parameter>
+                        </outputParameters>
+                    </properties>
+                </behavior>
+                <container oid="efbbed62-4734-4a6f-94f3-efd4a5202999">
+                    <pathFromRoot value="15"/>
+                    <properties name="TextProva">
+                        <visible>
+                            <init>false</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>0.0</init>
+                            </x>
+                            <y>
+                                <init>0.0</init>
+                            </y>
+                        </origin>
+                        <priority>
+                            <init>-1</init>
+                        </priority>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                    </properties>
+                    <children>
+                        <text oid="20d51cba-2bf9-4a88-896f-a0f230d5c0a5">
+                            <pathFromRoot value="0,15"/>
+                            <properties name="text">
+                                <visible>
+                                    <init>true</init>
+                                </visible>
+                                <multiline>
+                                    <init>false</init>
+                                </multiline>
+                                <position>
+                                    <x>
+                                        <init>-259.0</init>
+                                    </x>
+                                    <y>
+                                        <init>-130.0</init>
+                                    </y>
+                                </position>
+                                <maxLength>
+                                    <init>50</init>
+                                </maxLength>
+                                <textValue type="char">
+                                    <expr>ListMsg[0]</expr>
+                                    <init>[98,108,97,32,98,108,97,32,98,108,97,32,0]</init>
+                                </textValue>
+                                <haloing>
+                                    <init>false</init>
+                                </haloing>
+                                <outlineColor>
+                                    <init>1</init>
+                                </outlineColor>
+                                <lineWidth>
+                                    <init>2</init>
+                                </lineWidth>
+                                <font>
+                                    <init>0</init>
+                                </font>
+                                <horizAlign>
+                                    <init>left</init>
+                                </horizAlign>
+                                <vertAlign>
+                                    <init>top</init>
+                                </vertAlign>
+                            </properties>
+                        </text>
+                        <text oid="3d7307d4-72b3-443d-90dc-00ca6797a530">
+                            <pathFromRoot value="1,15"/>
+                            <properties name="text">
+                                <visible>
+                                    <init>true</init>
+                                </visible>
+                                <multiline>
+                                    <init>false</init>
+                                </multiline>
+                                <position>
+                                    <x>
+                                        <init>-259.0</init>
+                                    </x>
+                                    <y>
+                                        <init>-150.0</init>
+                                    </y>
+                                </position>
+                                <maxLength>
+                                    <init>50</init>
+                                </maxLength>
+                                <textValue type="char">
+                                    <expr>ListMsg[1]</expr>
+                                    <init>[98,108,97,32,98,108,97,32,98,108,97,32,0]</init>
+                                </textValue>
+                                <haloing>
+                                    <init>false</init>
+                                </haloing>
+                                <outlineColor>
+                                    <init>1</init>
+                                </outlineColor>
+                                <lineWidth>
+                                    <init>2</init>
+                                </lineWidth>
+                                <font>
+                                    <init>0</init>
+                                </font>
+                                <horizAlign>
+                                    <init>left</init>
+                                </horizAlign>
+                                <vertAlign>
+                                    <init>top</init>
+                                </vertAlign>
+                            </properties>
+                        </text>
+                        <text oid="046c0c47-b093-463b-a61f-a3c76bf261aa">
+                            <pathFromRoot value="2,15"/>
+                            <properties name="text">
+                                <visible>
+                                    <init>true</init>
+                                </visible>
+                                <multiline>
+                                    <init>false</init>
+                                </multiline>
+                                <position>
+                                    <x>
+                                        <init>-259.0</init>
+                                    </x>
+                                    <y>
+                                        <init>-170.0</init>
+                                    </y>
+                                </position>
+                                <maxLength>
+                                    <init>50</init>
+                                </maxLength>
+                                <textValue type="char">
+                                    <expr>ListMsg[2]</expr>
+                                    <init>[98,108,97,32,98,108,97,32,98,108,97,32,0]</init>
+                                </textValue>
+                                <haloing>
+                                    <init>false</init>
+                                </haloing>
+                                <outlineColor>
+                                    <init>1</init>
+                                </outlineColor>
+                                <lineWidth>
+                                    <init>2</init>
+                                </lineWidth>
+                                <font>
+                                    <init>0</init>
+                                </font>
+                                <horizAlign>
+                                    <init>left</init>
+                                </horizAlign>
+                                <vertAlign>
+                                    <init>top</init>
+                                </vertAlign>
+                            </properties>
+                        </text>
+                        <text oid="68f64ab8-4edc-427b-8949-f683f5e499b8">
+                            <pathFromRoot value="3,15"/>
+                            <properties name="text">
+                                <visible>
+                                    <init>true</init>
+                                </visible>
+                                <multiline>
+                                    <init>false</init>
+                                </multiline>
+                                <position>
+                                    <x>
+                                        <init>-259.0</init>
+                                    </x>
+                                    <y>
+                                        <init>-190.0</init>
+                                    </y>
+                                </position>
+                                <maxLength>
+                                    <init>50</init>
+                                </maxLength>
+                                <textValue type="char">
+                                    <expr>ListMsg[3]</expr>
+                                    <init>[98,108,97,32,98,108,97,32,98,108,97,32,0]</init>
+                                </textValue>
+                                <haloing>
+                                    <init>false</init>
+                                </haloing>
+                                <outlineColor>
+                                    <init>1</init>
+                                </outlineColor>
+                                <lineWidth>
+                                    <init>2</init>
+                                </lineWidth>
+                                <font>
+                                    <init>0</init>
+                                </font>
+                                <horizAlign>
+                                    <init>left</init>
+                                </horizAlign>
+                                <vertAlign>
+                                    <init>top</init>
+                                </vertAlign>
+                            </properties>
+                        </text>
+                        <text oid="f7cc31dc-a58f-445e-a99e-1149cbdcc899">
+                            <pathFromRoot value="4,15"/>
+                            <properties name="text">
+                                <visible>
+                                    <init>true</init>
+                                </visible>
+                                <multiline>
+                                    <init>false</init>
+                                </multiline>
+                                <position>
+                                    <x>
+                                        <init>-259.0</init>
+                                    </x>
+                                    <y>
+                                        <init>-210.0</init>
+                                    </y>
+                                </position>
+                                <maxLength>
+                                    <init>50</init>
+                                </maxLength>
+                                <textValue type="char">
+                                    <expr>ListMsg[4]</expr>
+                                    <init>[98,108,97,32,98,108,97,32,98,108,97,32,0]</init>
+                                </textValue>
+                                <haloing>
+                                    <init>false</init>
+                                </haloing>
+                                <outlineColor>
+                                    <init>1</init>
+                                </outlineColor>
+                                <lineWidth>
+                                    <init>2</init>
+                                </lineWidth>
+                                <font>
+                                    <init>0</init>
+                                </font>
+                                <horizAlign>
+                                    <init>left</init>
+                                </horizAlign>
+                                <vertAlign>
+                                    <init>top</init>
+                                </vertAlign>
+                            </properties>
+                        </text>
+                    </children>
+                </container>
             </children>
         </layer>
     </children>
 </specification>
 
-<!-- crc32 : 142845134 -->
+<!-- crc32 : 1254430976 -->
 
