@@ -1,0 +1,146 @@
+\documentclass{template/openetcs_report}
+% Use the option "nocc" if the document is not licensed under Creative Commons
+%\documentclass[nocc]{template/openetcs_article}
+\usepackage{lipsum,url}
+\usepackage{supertabular}
+\usepackage{multirow}
+\usepackage{color, colortbl}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{makeidx}
+\definecolor{gray}{rgb}{0.8,0.8,0.8}
+\usepackage[modulo]{lineno}
+\usepackage{float}
+\usepackage{fixme}
+\usepackage{pdflscape}
+\usepackage[acronym, % list of acronyms
+  %section, % add the glossary to the table of content
+            %description,% acronyms have a user-supplied description,
+ style=longheader, % table style
+ nonumberlist % no page number
+  ]{glossaries}
+
+\graphicspath{{./template/}{.}{./images/}}
+
+\renewcommand*{\glspostdescription}{} %Deactivate point at the end of every description
+\renewcommand*{\glossaryname}{Glossary}
+
+%create glossary
+% \makeglossaries
+ %Glossary terms
+% \loadglsentries{glossary}
+
+\begin{document}
+\frontmatter
+\project{openETCS}
+
+\newcommand{\define}[1]{\index{#1}\emph{#1}}
+
+
+
+%Please do not change anything above this line
+%============================
+
+% The document metadata is defined below
+
+%assign a report number here
+\reportnum{OETCS/WP3/D3.5.2}
+
+%define your workpackage here
+\wp{Work Package 3: ``Modeling''}
+
+%set a title here
+\title{openETCS Design Specification}
+
+%set the date of the report here
+\date{May 2015}
+
+
+%document approval
+%define the name and affiliation of the people involved in the documents approbation here
+\creatorname{Baseliyos Jacob}
+\creatoraffil{DB Netz AG}
+
+\techassessorname{Jan Welte}
+\techassessoraffil{Technische Universität Braunschweig}
+
+\qualityassessorname{Izaskun de la Torre}
+\qualityassessoraffil{SQS}
+
+\approvalname{Klaus-R\"udiger Hase}
+\approvalaffil{DB Netz}
+
+
+%define a list of authors and their affiliation here
+
+\author{Baseliyos Jacob, Peter Mahlmann}
+\affiliation{DB Netz AG}
+
+
+
+
+% define the coverart
+\coverart[width=350pt]{openETCS_EUPL}
+
+\newpage
+%define the type of report
+\reporttype{Architecture and Design Specification}
+
+
+\begin{abstract}
+%define an abstract here
+This document gives an introduction to the software and component design of the openETCS OBU model. The functional scope is tailored to cover the functionality required for the openETCS demonstration as an objective of the ITEA2 project. The goal is to develop a formal model and to demonstrate the functionality during a proof of concept on the ETCS Level 2 Utrecht Amsterdam track with real scenarios. It has to be read as a complement to the models in SysML and Scade languages. 
+\end{abstract}
+
+%=============================
+\maketitle
+
+%Modification history
+%if you do not need a modification history table for your document simply comment out the eight lines below
+%=============================
+
+
+\chapter*{Modification History}
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Version & Section & Modification / Description & Author & Date \\\hline}
+\begin{supertabular}{| m{1.2cm} | m{1.5cm} | m{4.0cm} | m{3.5cm} | m{3.5cm} |}
+0.1 & Document & Initial document providing structure & Peter Mahlmann& 27.05.2015 \\\hline
+\end{supertabular}
+
+% list subsubsections in table of contents
+\setcounter{tocdepth}{3}
+
+
+\tableofcontents
+\listoffiguresandtables
+\newpage
+%=============================
+
+%Uncomment the next line if you need line numbers for tracebility when the document is in review
+%\linenumbers
+%=============================
+
+
+% The actual document starts below this line
+%=============================
+
+\mainmatter
+
+
+\chapter{Runtime API}
+\input{sections/runtimeapi}
+
+
+
+\bibliographystyle{unsrt}
+\bibliography{architecture}
+
+
+\addcontentsline{toc}{chapter}{Index}
+\printindex
+%===================================================
+%Do NOT change anything below this line
+
+\end{document}
