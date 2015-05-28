@@ -9,11 +9,11 @@
    ERA\_ERTMS\_015560
 
   \paragraph{Short description of the functionality}
-  The DMI controller interact with the DMI display and is responsible for alls procedures between the DMI display and Driver. Furthermore, the DMI controller will interact with the DMI Management to compute the received information (e.g. driver number request, ...) and send, if necessary, data or reports to the DMI Management (acknowledge, text messages...). The DMI Controller is a passive module, this means that all the processing are performed EVC-side, therefore the DMI Controller simply responds to the requests of the EVC or Driver and performs some checks according with the information received from EVC.\\
+  The DMI controller interact with the DMI display and is responsible for alls procedures between the DMI display and Driver. Furthermore, the DMI controller will interact with the DMI Management to compute the received information (e.g. driver number request, ...) and send, if necessary, data or reports to the DMI Management (acknowledge, text messages...). The DMI Controller is a passive module, this means that all the processing are performed EVC-side, therefore the DMI Controller simply responds to the requests of the EVC or Driver and performs some checks according with the information received from EVC.
 
-  \begin{figure}[hbtp]
+  \begin{figure}
   \centering
-  \includegraphics[scale=0.5]{images/DMI_Interfaces}
+  \includegraphics[width=.8\textwidth]{images/DMI_Interfaces}
   \caption{DMI Interfaces}
   \end{figure}
 
@@ -31,9 +31,9 @@
   
 
 
-  \subparagraph{From DMI Management to DMI Controller}
+\subparagraph{From DMI Management to DMI Controller}
 
-  In the following table are listed the inputs coming from DMI Management with a brief description:\\
+In the following table are listed the inputs coming from DMI Management with a brief description:\\
   %\begin{table}[H]
     \begin{tabular}{| c | l | l | l | l |}
       \hline
@@ -72,8 +72,8 @@
     \label{tbl:DMICtrToDMIMng}
   %\end{table}
     
-  \subparagraph{Both ways direction }
-  In the following table are listed the outputs/inputs  to/from DMI Management with a brief description:\\
+\subparagraph{Both ways direction }
+In the following table are listed the outputs/inputs  to/from DMI Management with a brief description:\\
   
   %\begin{table}[H]
     \begin{tabular}{| c | l | l | l | l |}
@@ -88,33 +88,32 @@
     \label{tbl:DMICtrToDMIMng}
   %\end{table}
   
-  
 
-    
-  \paragraph{Functional Design Description}
+\paragraph{Functional Design Description}
   \textbf{Please note}: \textit{DMI Controller is a project under construction, a lot of features and functionalities are missing, therefore the structure described below is a draft version and will be changing in the future.}\\
-  The informations (received and sent) could be divided in two groups: Sporadic and Periodic. The first one are received/sent aperiodically in any time instead the second one are received/sent periodically, with a fixed deadline. Are part of Periodic group the output DM\_status\_report and the input DMI\_dynamic all other are Sporadic. Therefore, the structure of DMI Controller module consists of a first main state machine \textit{CabinSM} (Fig. \ref{fig:CabinSM}) triggered by  a \textit{OpenDesk} signal (from TIU). Inside the \textit{DeskIsOpen} state there are other two state machines :\textit{HandshakeSM} and \textit{DynamicInfoSM} (Fig. \ref{fig:DynSporSM}).\\
-  HandshakeSM performs an initial handshake between DMI Controller and DMI Management. Before that, no data has to be sent or received to/from DMI Management. When the transition is fired a DMI\_identifier packet is sent to DMI Management with informations about the DMI (e.g. DMI identifier, DMI name etc.). At this point the DMI Controler is ready to manage the sporadic information (e.g. Enter or revalidate DriverID, Enter or revalidate Train running number etc.). \\
-  The DynamicInfoSM state machine is triggered after the handshake, exactly when  HandshakeSM reaches the  DynInfo\_Activated state. At the time when the transition is fired a signal is emitted (startDMI\_status) and begins a periodic sending of DMI status information (keep alive) to DMI Management. Once reached DynamicInfo\_Active, the DMI Controller is ready to receive and manage the dynamic informations.\\
+  The informations (received and sent) could be divided in two groups: Sporadic and Periodic. The first one are received/sent aperiodically in any time instead the second one are received/sent periodically, with a fixed deadline. Are part of Periodic group the output DM\_status\_report and the input DMI\_dynamic all other are Sporadic. Therefore, the structure of DMI Controller module consists of a first main state machine \textit{CabinSM} (Fig. \ref{fig:CabinSM}) triggered by  a \textit{OpenDesk} signal (from TIU). Inside the \textit{DeskIsOpen} state there are other two state machines :\textit{HandshakeSM} and \textit{DynamicInfoSM} (Fig. \ref{fig:DynSporSM}).
   
-  \clearpage
-   \begin{figure}[hbtp]
+  HandshakeSM performs an initial handshake between DMI Controller and DMI Management. Before that, no data has to be sent or received to/from DMI Management. When the transition is fired a DMI\_identifier packet is sent to DMI Management with informations about the DMI (e.g. DMI identifier, DMI name etc.). At this point the DMI Controler is ready to manage the sporadic information (e.g. Enter or revalidate DriverID, Enter or revalidate Train running number etc.). 
+  
+  The DynamicInfoSM state machine is triggered after the handshake, exactly when  HandshakeSM reaches the  DynInfo\_Activated state. At the time when the transition is fired a signal is emitted (startDMI\_status) and begins a periodic sending of DMI status information (keep alive) to DMI Management. Once reached DynamicInfo\_Active, the DMI Controller is ready to receive and manage the dynamic informations.
+  
+   \begin{figure} 
       	\centering
       	\includegraphics[scale=0.7]{images/CabinSM}
-      	\caption{Cabin State Machine}
+      	\caption{Cabin State Machine.}
       	\label{fig:CabinSM}
    \end{figure}
       
-  \begin{figure}[hbtp]
+  \begin{figure} 
   \centering
   \includegraphics[scale=0.8]{images/DynSporInfoSM}
-  \caption{HandshakeSM and DynamicInfoSM State Machines}
+  \caption{HandshakeSM and DynamicInfoSM State Machines.}
   \label{fig:DynSporSM}
   \end{figure}
   
 
 
-  With the aim to improve the readability and for a better management of complexity, all the functions (modules, state machines etc.) implemented in each state are divided several diagrams.\\
+  With the aim to improve the readability and for a better management of complexity, all the functions (modules, state machines etc.) implemented in each state are divided several diagrams.
   
   The \textit{SporadicInfo} consist of:
   \begin{itemize}
@@ -136,45 +135,40 @@
   	\item \textbf{diagram\_SpeedSupervision}: Contains the module where are implemented the behaviour of the speed pointer and the circular speed gauge ( informations about speed target, speed permitted and speed release).
   \end{itemize}
   
-  \begin{figure}[hbtp]
+  \begin{figure}
   	\centering
-  	\includegraphics[scale=0.45]{images/WindowSM}
-  	\caption{Windows state machine}\label{fig:win_sm}
+  	\includegraphics[width=\textwidth]{images/WindowSM}
+  	\caption{Windows state machine.}\label{fig:win_sm}
   \end{figure}
   
-  \paragraph{ Communication Protocol}
+\paragraph{Communication Protocol}
 This section explains which messages are exchanged among DMI Controller, DMI Management and Start of mission procedure. As mentioned previously the DMI Controller is a passive component, It simply responds to requests, therefore is able to cover different scenarios. Below are some examples.
   
-\clearpage
   \subparagraph{ Start Of Mission scenario} Are detailed, through a sequence diagram, all the activities (exchanged messages) that should be done to start. In this scenario we have three actors: DMI Controller, DMI Management and SoM procedure (the module where is implemented the start of mission procedure). It's assumed that a OpenDesk signal is received and the system starts in Stand By mode (Fig. \ref{fig:SeqDiaSoM}).
  
-  \begin{figure}[hbtp]
+  \begin{figure}
   \centering
   \includegraphics[scale=0.45]{images/SeqDia_DMIctr_DMImng_SoMproc}
   \caption{Sequence Diagram of start of mission scenario}\label{fig:SeqDiaSoM}
   \end{figure}
   
-  \clearpage
-  \subparagraph{ Cyclic Exchange of messages}
+
+\subparagraph{ Cyclic Exchange of messages}
 The time between two messages has not yet been definitively established, It might change in the future. The DMI status packet implements a keep alive mechanism, this means, if the EVC does not receive any DMI status signal during the lapse time, It shall consider a failure in DMI. This check is not yet implemented.
 
-    \begin{figure}[hbtp]
+    \begin{figure}
       \centering
       \includegraphics[scale=0.5]{images/DynamicPacket_SeqDia}
-      \caption{ Sequence diagram of Dynamic data}\label{fig:SeqDiaDyn}
+      \caption{ Sequence diagram of Dynamic data.}\label{fig:SeqDiaDyn}
     \end{figure}
   
-    \begin{figure}[hbtp]
+    \begin{figure}
       \centering
       \includegraphics[scale=0.5]{images/DMIStatus_SeqDia}
-      \caption{Sequence Diagram of DMI status}\label{fig:SeqDiaStatus}
+      \caption{Sequence Diagram of DMI status.}\label{fig:SeqDiaStatus}
      \end{figure}
      
-     
-  
 
-  \paragraph{Reference to the Scade Model}
+\paragraph{Reference to the Scade Model}
 
-    The SCADE model can be found on github under the following path:
-
-    \tiny\url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/DMI_Control}
+The SCADE model can be found on github under the following path: \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/DMI_Control}

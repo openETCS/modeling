@@ -4,7 +4,7 @@
 %\tbc
 %Group 1 (Christian Stahl)
 
-\begin{figure}[!h]
+\begin{figure}
 \centering
 \includegraphics[width=0.95\textheight, angle=90]{../images/speedsupervision.png}
 \caption{Structure of component ProvidePositionReport}\label{fig:ssv}
@@ -40,7 +40,7 @@ For providing the output, the module needs different input data flows. Table \re
     8 & \texttt{MRSP\_updated} & \texttt{bool} & internal\\
     \hline
   \end{tabular} 
-  \caption{Overview of input}
+  \caption{Overview of inputs}
   \label{tbl:speedsupervisionInput}
 \end{table}
 
@@ -80,7 +80,7 @@ Based on the input the block produces the following output. Table~\ref{tbl:speed
     5 & \texttt{Target\_Speed\_Reached} & \texttt{bool}\\
     \hline
   \end{tabular} 
-  \caption{Overview of output}
+  \caption{Overview of outputs}
   \label{tbl:speedsupervisionOutput}
 \end{table}
 
@@ -115,9 +115,9 @@ The motivation for this operator is to convert all inputs of block ``Speed Super
 This operator forwards input messages, takes data from complex data types or transforms inputs messages into an internal type thereby converting int to real.
   
 \paragraph{Reference to the Scade Model}
-\textbf{only in special case or link to the Scade model}
 
 \subsubsection{TargetManagement in Train Supervision}
+
 \paragraph{Reference to the SRS or other Requirements (or other requirements)}
 \begin{itemize}
 	\item \cite[Chapt.~3.13.8.2]{subset-026}: Determination of the supervised targets 
@@ -147,7 +147,7 @@ In every cycle the operator monitors whether all targets are already passed. To 
 
 
 \paragraph{Reference to the Scade Model}
-\textbf{only in special case or link to the Scade model}
+
 
 \subsubsection{CalcBrakingCurves\_Integration in Train Supervision}
 \paragraph{Reference to the SRS or other Requirements (or other requirements)}
@@ -158,6 +158,7 @@ In every cycle the operator monitors whether all targets are already passed. To 
 	%
 	\item \cite[Chapt.~3.13.8.5]{subset-026}: Guidance curves (GUI)
 \end{itemize}
+
 \paragraph{Short description of the functionality}
 For each type of target a certain braking curve has to be calculated. This curve enables proactive monitoring of the train's speed. A reverse lookup on this braking curve indicates, where the train has to start braking given the current speed. The braking curve does not depend on the actual train status. As a consequence the braking curve stays constant over time. As a legitimate simplification the calculation of the braking curve is not extended after the estimated front end position of the train has been passed.
 
@@ -165,7 +166,6 @@ For each type of target a certain braking curve has to be calculated. This curve
 
 \paragraph{Functional Design Description}
 The calculation of the braking curve takes the complex function $A_{\mathit{safe}}$ as an input, which describes the overall braking performance of the train in a speed and position dependent meaning. This two-dimensional function needs to be simplified for every target to get a function of position to speed. Each individual target has a position and a speed (a point in the distance speed plane) and is the starting point of the braking curve. The first step is to get the deceleration of the train at the target point from the $A_{\mathit{safe}}$-function. Afterward the calculation iterates through the $A_{\mathit{safe}}$-function until the current estimated front end position is reached. Two cases can be distinguished:
-
 \begin{itemize}
 \item a new distance step of $A_{\mathit{safe}}$ is reached
 \item a new speed step of $A_{\mathit{safe}}$ is reached
@@ -178,7 +178,8 @@ Both cases are checked and the applicable one is used to calculate a new arc. Ev
 \item the deceleration for the whole arc.
 \end{itemize}
 An abstract overview of the calculation could be seen in Fig.~\ref{fig:bc_calc}.
-\begin{figure}[!h]
+
+\begin{figure}
 \centering
 \includegraphics[width=0.95\textwidth]{../images/EBD_CalcAlgorithm.png}
 \caption{Calculation of Braking Curves}\label{fig:bc_calc}
@@ -194,8 +195,8 @@ Currently, the model supports the calculation of the following braking curves:
 	%
 	%\item the Service Brake Deceleration curve for the end of authority
 \end{itemize}
+
 \paragraph{Reference to the Scade Model}
-\textbf{only in special case or link to the Scade model}
 
 \subsubsection{SDMLimitLocations in Train Supervision}
 \paragraph{Reference to the SRS or other Requirements (or other requirements)}
@@ -238,45 +239,62 @@ The operator creates the requested values for the commands package. These are in
 %%\textbf{only in special case or link to the Scade model}
 
 \subsubsection{CalcSpeeds in Train Supervision}
+
 \paragraph{Reference to the SRS or other Requirements (or other requirements)}
 \begin{itemize}
 	\item \cite[Chapt.~3.13.9]{subset-026}: Supervision Limits 
 \end{itemize}
+
 \paragraph{Short description of the functionality}
 This operator calculates the various speeds needed to determine the speed and distance monitoring commands.
+
 \paragraph{Interface}
+
 \paragraph{Functional Design Description}
 This operator will be integrated into other operators in the next iteration.
-\paragraph{Reference to the Scade Model}
+
+%\paragraph{Reference to the Scade Model}
 \textbf{only in special case or link to the Scade model}
 
 \subsubsection{ReleaseSpeed\_Selection in Train Supervision}
+
 \paragraph{Reference to the SRS or other Requirements (or other requirements)}
 \begin{itemize}
 	\item \cite[Chapt.~3.8]{subset-026}: Movement authority 
 \end{itemize}
+
 \paragraph{Short description of the functionality}
 This operator outputs the release speed which can be given either by the national values or the movement authority.
+
 \paragraph{Interface}
+
 \paragraph{Functional Design Description}
 This operator will be integrated into other operators in the next iteration.
+
 \paragraph{Reference to the Scade Model}
-\textbf{only in special case or link to the Scade model}
+%\textbf{only in special case or link to the Scade model}
+
 
 \subsubsection{SDM\_Commands in Train Supervision}
+
 \paragraph{Reference to the SRS or other Requirements (or other requirements)}
 \begin{itemize}
 	\item \cite[Chapt.~3.13.10]{subset-026}: Speed and distance monitoring commands 
 \end{itemize}
+
 \paragraph{Short description of the functionality}
 This operator models the speed and distance monitoring commands. More precisely, it triggers the service or emergency brake and outputs the current supervision status of the OBU together with information on speeds and locations to the driver.
+
 \paragraph{Interface}
+
 \paragraph{Functional Design Description}
 The OBU can be in any of three types of speed and distance monitoring modes: ceiling speed monitoring, release speed monitoring and target speed monitoring. We use a state machine to model the switching between the three modes: each state models a mode and a transition between to states is enabled if the condition two switch between the two corresponding modes is evaluated to true. In each mode, the OBU can be in up to five different supervision stati. The behavior of changing from one status to another is also modeled as a state machine. As a result, the model is a hierarchical state machine.
+
 \paragraph{Reference to the Scade Model}
-\textbf{only in special case or link to the Scade model}
+%\textbf{only in special case or link to the Scade model}
 
 \subsubsection{SDM\_OutputWrapper in Train Supervision}
+
 \paragraph{Reference to the SRS or other Requirements (or other requirements)}
 \begin{itemize}
 	\item \cite[Chapt.~3.13]{subset-026}: Speed and distance monitoring 
@@ -291,4 +309,4 @@ This operator is the counterpart to operator SDM\_OutputWrapper---that is, it co
 This operator forwards input messages and transforms inputs messages into an internal type thereby converting real to int.
   
 \paragraph{Reference to the Scade Model}
-\textbf{only in special case or link to the Scade model}
+%\textbf{only in special case or link to the Scade model}
