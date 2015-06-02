@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-04-25T17:50:03
+** Generation date: 2015-06-02T15:02:41
 *************************************************************$ */
 #ifndef _KCG_TYPES_H_
 #define _KCG_TYPES_H_
@@ -49,16 +49,10 @@ typedef unsigned char kcg_char;
 #define kcg_assign_array kcg_assign
 #endif /* kcg_assign_array */
 
-/* TM_OrBG */
-typedef enum { Amsterdam, Utrecht } TM_OrBG;
-/* TM_OrLine */
-typedef enum { N, Z } TM_OrLine;
-/* Q_DIR */
-typedef enum {
-  Q_DIR_Reverse = 0,
-  Q_DIR_Nominal = 1,
-  Q_DIR_Both_directions = 2
-} Q_DIR;
+/* TM::OrBG */
+typedef enum { Amsterdam_TM, Utrecht_TM } OrBG_TM;
+/* TM::OrLine */
+typedef enum { N_TM, Z_TM } OrLine_TM;
 /* Q_UPDOWN */
 typedef enum {
   Q_UPDOWN_Down_link_telegram = 0,
@@ -98,11 +92,39 @@ typedef enum {
 /* M_DUP */
 typedef enum {
   M_DUP_No_duplicates = 0,
-  _1_M_DUP_This_balise_is_a_duplicate_of_the_next_balise = 1,
+  _2_M_DUP_This_balise_is_a_duplicate_of_the_next_balise = 1,
   M_DUP_This_balise_is_a_duplicate_of_the_previous_balise = 2
 } M_DUP;
 /* Q_LINK */
 typedef enum { Q_LINK_Unlinked = 0, Q_LINK_Linked = 1 } Q_LINK;
+/* Q_DIR */
+typedef enum {
+  Q_DIR_Reverse = 0,
+  Q_DIR_Nominal = 1,
+  Q_DIR_Both_directions = 2
+} Q_DIR;
+/* Q_LINKREACTION */
+typedef enum {
+  Q_LINKREACTION_Train_trip = 0,
+  Q_LINKREACTION_Apply_service_brake = 1,
+  Q_LINKREACTION_No_Reaction = 2
+} Q_LINKREACTION;
+/* Q_LINKORIENTATION */
+typedef enum {
+  _1_Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction = 0,
+  Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_nominal_direction = 1
+} Q_LINKORIENTATION;
+/* Q_NEWCOUNTRY */
+typedef enum {
+  Q_NEWCOUNTRY_Same_country__or__railway_administration_no_NID_C_follows = 0,
+  Q_NEWCOUNTRY_Not_the_same_country__or__railway_administration_NID_C_follows = 1
+} Q_NEWCOUNTRY;
+/* Q_SCALE */
+typedef enum {
+  Q_SCALE_10_cm_scale = 0,
+  Q_SCALE_1_m_scale = 1,
+  Q_SCALE_10_m_scale = 2
+} Q_SCALE;
 /* NID_PACKET */
 typedef kcg_int NID_PACKET;
 
@@ -115,6 +137,37 @@ typedef kcg_int NID_C;
 /* NID_BG */
 typedef kcg_int NID_BG;
 
+/* NID_LRBG */
+typedef kcg_int NID_LRBG;
+
+/* D_LINK */
+typedef kcg_int D_LINK;
+
+/* Q_LOCACC */
+typedef kcg_int Q_LOCACC;
+
+typedef struct {
+  kcg_bool valid;
+  NID_LRBG nid_LRBG;
+  Q_DIR q_dir;
+  Q_SCALE q_scale;
+  D_LINK d_link;
+  Q_NEWCOUNTRY q_newcountry;
+  NID_C nid_c;
+  NID_BG nid_bg;
+  Q_LINKORIENTATION q_linkorientation;
+  Q_LINKREACTION q_linkreaction;
+  Q_LOCACC q_locacc;
+} struct__4835;
+
+/* BG_Types_Pkg::LinkedBG_T */
+typedef struct__4835 LinkedBG_T_BG_Types_Pkg;
+
+typedef LinkedBG_T_BG_Types_Pkg array__4849[4];
+
+/* BG_Types_Pkg::LinkedBGs_T */
+typedef array__4849 LinkedBGs_T_BG_Types_Pkg;
+
 typedef struct {
   Q_UPDOWN q_updown;
   M_VERSION m_version;
@@ -126,10 +179,10 @@ typedef struct {
   NID_C nid_c;
   NID_BG nid_bg;
   Q_LINK q_link;
-} struct__3653;
+} struct__4852;
 
 /* BG_Types_Pkg::TelegramHeader_T */
-typedef struct__3653 TelegramHeader_T_BG_Types_Pkg;
+typedef struct__4852 TelegramHeader_T_BG_Types_Pkg;
 
 typedef kcg_int array_int_500[500];
 
@@ -142,37 +195,38 @@ typedef struct {
   kcg_bool valid;
   kcg_int startAddress;
   kcg_int endAddress;
-} struct__3669;
+} struct__4868;
 
 /* Common_Types_Pkg::MetadataElement_T */
-typedef struct__3669 MetadataElement_T_Common_Types_Pkg;
+typedef struct__4868 MetadataElement_T_Common_Types_Pkg;
 
-typedef MetadataElement_T_Common_Types_Pkg array__3677[30];
+typedef MetadataElement_T_Common_Types_Pkg array__4876[30];
 
 /* Common_Types_Pkg::Metadata_T */
-typedef array__3677 Metadata_T_Common_Types_Pkg;
+typedef array__4876 Metadata_T_Common_Types_Pkg;
 
 typedef struct {
   Metadata_T_Common_Types_Pkg PacketHeaders;
   CompressedPacketData_T_Common_Types_Pkg PacketData;
-} struct__3680;
+} struct__4879;
 
 /* Common_Types_Pkg::CompressedPackets_T */
-typedef struct__3680 CompressedPackets_T_Common_Types_Pkg;
+typedef struct__4879 CompressedPackets_T_Common_Types_Pkg;
 
-typedef struct {
-  kcg_int NID_C;
-  kcg_int NID_BG;
-  kcg_int Pos;
-  TM_OrBG Or_BG;
-  TM_OrLine Or_Line;
-} struct__3685;
+typedef kcg_int array_int_4[4];
 
-/* TM_BaliseGroupData */
-typedef struct__3685 TM_BaliseGroupData;
+/* TM::Array4 */
+typedef array_int_4 Array4_TM;
 
-/* Basics::BaliseGroupData */
-typedef struct__3685 BaliseGroupData_Basics;
+typedef kcg_int array_int_7[7];
+
+/* TM::P005E_array_T */
+typedef array_int_7 P005E_array_T_TM;
+
+typedef kcg_int array_int_39[39];
+
+/* TM::P005_array_T */
+typedef array_int_39 P005_array_T_TM;
 
 typedef struct {
   kcg_int q_updown;
@@ -185,30 +239,44 @@ typedef struct {
   kcg_int nid_c;
   kcg_int nid_bg;
   kcg_int q_link;
-} struct__3693;
+} struct__4893;
 
-/* TM_BaliseTelegramHeader_int_T */
-typedef struct__3693 TM_BaliseTelegramHeader_int_T;
+/* TM::BaliseTelegramHeader_int_T */
+typedef struct__4893 BaliseTelegramHeader_int_T_TM;
 
 typedef struct {
-  TM_BaliseTelegramHeader_int_T header;
+  BaliseTelegramHeader_int_T_TM Header;
+  CompressedPackets_T_Common_Types_Pkg Messages;
+} struct__4906;
+
+/* TM::CompressedBaliseMessage */
+typedef struct__4906 CompressedBaliseMessage_TM;
+
+typedef struct {
+  kcg_int NID_C;
+  kcg_int NID_BG;
+  kcg_int Pos;
+  OrBG_TM Or_BG;
+  OrLine_TM Or_Line;
+} struct__4911;
+
+/* TM::BaliseGroupData */
+typedef struct__4911 BaliseGroupData_TM;
+
+/* Basics::BaliseGroupData */
+typedef struct__4911 BaliseGroupData_Basics;
+
+typedef struct {
+  BaliseTelegramHeader_int_T_TM header;
   CompressedPackets_T_Common_Types_Pkg packets;
   kcg_int engineering_BG_location;
   kcg_real TrainPos;
   kcg_int pig_nom_0;
   kcg_bool balise_passed;
-} struct__3706;
+} struct__4919;
 
-/* FirstTest::InfraLib::B_data_internal */
-typedef struct__3706 B_data_internal_FirstTest_InfraLib;
-
-typedef struct {
-  TM_BaliseTelegramHeader_int_T Header;
-  CompressedPackets_T_Common_Types_Pkg Messages;
-} struct__3715;
-
-/* TM_CompressedBaliseMessage */
-typedef struct__3715 TM_CompressedBaliseMessage;
+/* FirstTest::InfraLibInt::B_data_internal */
+typedef struct__4919 B_data_internal_FirstTest_InfraLibInt;
 
 typedef struct {
   kcg_bool valid;
@@ -219,15 +287,15 @@ typedef struct {
   kcg_int Q_LINKORIENTATION;
   kcg_int Q_LINKREACTION;
   kcg_int Q_LOCACC;
-} struct__3720;
+} struct__4928;
 
-/* TM_P005E_T */
-typedef struct__3720 TM_P005E_T;
+/* TM::P005E_T */
+typedef struct__4928 P005E_T_TM;
 
-typedef TM_P005E_T array__3731[5];
+typedef P005E_T_TM array__4939[5];
 
-/* TM_P05Es_T */
-typedef array__3731 TM_P05Es_T;
+/* TM::P005Es_T */
+typedef array__4939 P005Es_T_TM;
 
 typedef struct {
   kcg_bool valid;
@@ -235,16 +303,13 @@ typedef struct {
   kcg_int L_PACKET;
   kcg_int Q_SCALE;
   kcg_int N_ITER;
-  TM_P05Es_T SECTIONS;
-} struct__3734;
+  P005Es_T_TM SECTIONS;
+} struct__4942;
 
-/* TM_P005 */
-typedef struct__3734 TM_P005;
+/* TM::P005 */
+typedef struct__4942 P005_TM;
 
-typedef kcg_int array_int_7[7];
-
-/* TM_P005E_array_T */
-typedef array_int_7 TM_P005E_array_T;
+typedef CompressedPacketData_T_Common_Types_Pkg array_int_500_500[500];
 
 typedef kcg_int array_int_461[461];
 
@@ -256,63 +321,79 @@ typedef kcg_int array_int_25[25];
 
 typedef kcg_int array_int_32[32];
 
-typedef kcg_int array_int_39[39];
+typedef kcg_int array_int_30[30];
 
-typedef kcg_int array_int_4[4];
+#ifndef kcg_copy_struct__4835
+#define kcg_copy_struct__4835(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__4835)))
+#endif /* kcg_copy_struct__4835 */
 
-typedef CompressedPacketData_T_Common_Types_Pkg array_int_500_500[500];
+#ifndef kcg_copy_struct__4852
+#define kcg_copy_struct__4852(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__4852)))
+#endif /* kcg_copy_struct__4852 */
 
-#ifndef kcg_copy_struct__3653
-#define kcg_copy_struct__3653(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__3653)))
-#endif /* kcg_copy_struct__3653 */
+#ifndef kcg_copy_struct__4868
+#define kcg_copy_struct__4868(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__4868)))
+#endif /* kcg_copy_struct__4868 */
 
-#ifndef kcg_copy_struct__3669
-#define kcg_copy_struct__3669(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__3669)))
-#endif /* kcg_copy_struct__3669 */
+#ifndef kcg_copy_struct__4879
+#define kcg_copy_struct__4879(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__4879)))
+#endif /* kcg_copy_struct__4879 */
 
-#ifndef kcg_copy_struct__3680
-#define kcg_copy_struct__3680(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__3680)))
-#endif /* kcg_copy_struct__3680 */
+#ifndef kcg_copy_struct__4893
+#define kcg_copy_struct__4893(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__4893)))
+#endif /* kcg_copy_struct__4893 */
 
-#ifndef kcg_copy_struct__3685
-#define kcg_copy_struct__3685(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__3685)))
-#endif /* kcg_copy_struct__3685 */
+#ifndef kcg_copy_struct__4906
+#define kcg_copy_struct__4906(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__4906)))
+#endif /* kcg_copy_struct__4906 */
 
-#ifndef kcg_copy_struct__3693
-#define kcg_copy_struct__3693(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__3693)))
-#endif /* kcg_copy_struct__3693 */
+#ifndef kcg_copy_struct__4911
+#define kcg_copy_struct__4911(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__4911)))
+#endif /* kcg_copy_struct__4911 */
 
-#ifndef kcg_copy_struct__3706
-#define kcg_copy_struct__3706(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__3706)))
-#endif /* kcg_copy_struct__3706 */
+#ifndef kcg_copy_struct__4919
+#define kcg_copy_struct__4919(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__4919)))
+#endif /* kcg_copy_struct__4919 */
 
-#ifndef kcg_copy_struct__3715
-#define kcg_copy_struct__3715(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__3715)))
-#endif /* kcg_copy_struct__3715 */
+#ifndef kcg_copy_struct__4928
+#define kcg_copy_struct__4928(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__4928)))
+#endif /* kcg_copy_struct__4928 */
 
-#ifndef kcg_copy_struct__3720
-#define kcg_copy_struct__3720(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__3720)))
-#endif /* kcg_copy_struct__3720 */
+#ifndef kcg_copy_struct__4942
+#define kcg_copy_struct__4942(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__4942)))
+#endif /* kcg_copy_struct__4942 */
 
-#ifndef kcg_copy_struct__3734
-#define kcg_copy_struct__3734(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__3734)))
-#endif /* kcg_copy_struct__3734 */
+#ifndef kcg_copy_array__4849
+#define kcg_copy_array__4849(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array__4849)))
+#endif /* kcg_copy_array__4849 */
 
 #ifndef kcg_copy_array_int_500
 #define kcg_copy_array_int_500(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array_int_500)))
 #endif /* kcg_copy_array_int_500 */
 
-#ifndef kcg_copy_array__3677
-#define kcg_copy_array__3677(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array__3677)))
-#endif /* kcg_copy_array__3677 */
+#ifndef kcg_copy_array__4876
+#define kcg_copy_array__4876(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array__4876)))
+#endif /* kcg_copy_array__4876 */
 
-#ifndef kcg_copy_array__3731
-#define kcg_copy_array__3731(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array__3731)))
-#endif /* kcg_copy_array__3731 */
+#ifndef kcg_copy_array_int_4
+#define kcg_copy_array_int_4(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array_int_4)))
+#endif /* kcg_copy_array_int_4 */
 
 #ifndef kcg_copy_array_int_7
 #define kcg_copy_array_int_7(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array_int_7)))
 #endif /* kcg_copy_array_int_7 */
+
+#ifndef kcg_copy_array_int_39
+#define kcg_copy_array_int_39(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array_int_39)))
+#endif /* kcg_copy_array_int_39 */
+
+#ifndef kcg_copy_array__4939
+#define kcg_copy_array__4939(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array__4939)))
+#endif /* kcg_copy_array__4939 */
+
+#ifndef kcg_copy_array_int_500_500
+#define kcg_copy_array_int_500_500(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array_int_500_500)))
+#endif /* kcg_copy_array_int_500_500 */
 
 #ifndef kcg_copy_array_int_461
 #define kcg_copy_array_int_461(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array_int_461)))
@@ -334,71 +415,73 @@ typedef CompressedPacketData_T_Common_Types_Pkg array_int_500_500[500];
 #define kcg_copy_array_int_32(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array_int_32)))
 #endif /* kcg_copy_array_int_32 */
 
-#ifndef kcg_copy_array_int_39
-#define kcg_copy_array_int_39(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array_int_39)))
-#endif /* kcg_copy_array_int_39 */
+#ifndef kcg_copy_array_int_30
+#define kcg_copy_array_int_30(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array_int_30)))
+#endif /* kcg_copy_array_int_30 */
 
-#ifndef kcg_copy_array_int_4
-#define kcg_copy_array_int_4(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array_int_4)))
-#endif /* kcg_copy_array_int_4 */
+#ifndef kcg_comp_struct__4835
+extern kcg_bool kcg_comp_struct__4835(
+  struct__4835 *kcg_c1,
+  struct__4835 *kcg_c2);
+#endif /* kcg_comp_struct__4835 */
 
-#ifndef kcg_copy_array_int_500_500
-#define kcg_copy_array_int_500_500(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array_int_500_500)))
-#endif /* kcg_copy_array_int_500_500 */
+#ifndef kcg_comp_struct__4852
+extern kcg_bool kcg_comp_struct__4852(
+  struct__4852 *kcg_c1,
+  struct__4852 *kcg_c2);
+#endif /* kcg_comp_struct__4852 */
 
-#ifndef kcg_comp_struct__3653
-extern kcg_bool kcg_comp_struct__3653(
-  struct__3653 *kcg_c1,
-  struct__3653 *kcg_c2);
-#endif /* kcg_comp_struct__3653 */
+#ifndef kcg_comp_struct__4868
+extern kcg_bool kcg_comp_struct__4868(
+  struct__4868 *kcg_c1,
+  struct__4868 *kcg_c2);
+#endif /* kcg_comp_struct__4868 */
 
-#ifndef kcg_comp_struct__3669
-extern kcg_bool kcg_comp_struct__3669(
-  struct__3669 *kcg_c1,
-  struct__3669 *kcg_c2);
-#endif /* kcg_comp_struct__3669 */
+#ifndef kcg_comp_struct__4879
+extern kcg_bool kcg_comp_struct__4879(
+  struct__4879 *kcg_c1,
+  struct__4879 *kcg_c2);
+#endif /* kcg_comp_struct__4879 */
 
-#ifndef kcg_comp_struct__3680
-extern kcg_bool kcg_comp_struct__3680(
-  struct__3680 *kcg_c1,
-  struct__3680 *kcg_c2);
-#endif /* kcg_comp_struct__3680 */
+#ifndef kcg_comp_struct__4893
+extern kcg_bool kcg_comp_struct__4893(
+  struct__4893 *kcg_c1,
+  struct__4893 *kcg_c2);
+#endif /* kcg_comp_struct__4893 */
 
-#ifndef kcg_comp_struct__3685
-extern kcg_bool kcg_comp_struct__3685(
-  struct__3685 *kcg_c1,
-  struct__3685 *kcg_c2);
-#endif /* kcg_comp_struct__3685 */
+#ifndef kcg_comp_struct__4906
+extern kcg_bool kcg_comp_struct__4906(
+  struct__4906 *kcg_c1,
+  struct__4906 *kcg_c2);
+#endif /* kcg_comp_struct__4906 */
 
-#ifndef kcg_comp_struct__3693
-extern kcg_bool kcg_comp_struct__3693(
-  struct__3693 *kcg_c1,
-  struct__3693 *kcg_c2);
-#endif /* kcg_comp_struct__3693 */
+#ifndef kcg_comp_struct__4911
+extern kcg_bool kcg_comp_struct__4911(
+  struct__4911 *kcg_c1,
+  struct__4911 *kcg_c2);
+#endif /* kcg_comp_struct__4911 */
 
-#ifndef kcg_comp_struct__3706
-extern kcg_bool kcg_comp_struct__3706(
-  struct__3706 *kcg_c1,
-  struct__3706 *kcg_c2);
-#endif /* kcg_comp_struct__3706 */
+#ifndef kcg_comp_struct__4919
+extern kcg_bool kcg_comp_struct__4919(
+  struct__4919 *kcg_c1,
+  struct__4919 *kcg_c2);
+#endif /* kcg_comp_struct__4919 */
 
-#ifndef kcg_comp_struct__3715
-extern kcg_bool kcg_comp_struct__3715(
-  struct__3715 *kcg_c1,
-  struct__3715 *kcg_c2);
-#endif /* kcg_comp_struct__3715 */
+#ifndef kcg_comp_struct__4928
+extern kcg_bool kcg_comp_struct__4928(
+  struct__4928 *kcg_c1,
+  struct__4928 *kcg_c2);
+#endif /* kcg_comp_struct__4928 */
 
-#ifndef kcg_comp_struct__3720
-extern kcg_bool kcg_comp_struct__3720(
-  struct__3720 *kcg_c1,
-  struct__3720 *kcg_c2);
-#endif /* kcg_comp_struct__3720 */
+#ifndef kcg_comp_struct__4942
+extern kcg_bool kcg_comp_struct__4942(
+  struct__4942 *kcg_c1,
+  struct__4942 *kcg_c2);
+#endif /* kcg_comp_struct__4942 */
 
-#ifndef kcg_comp_struct__3734
-extern kcg_bool kcg_comp_struct__3734(
-  struct__3734 *kcg_c1,
-  struct__3734 *kcg_c2);
-#endif /* kcg_comp_struct__3734 */
+#ifndef kcg_comp_array__4849
+extern kcg_bool kcg_comp_array__4849(array__4849 *kcg_c1, array__4849 *kcg_c2);
+#endif /* kcg_comp_array__4849 */
 
 #ifndef kcg_comp_array_int_500
 extern kcg_bool kcg_comp_array_int_500(
@@ -406,17 +489,33 @@ extern kcg_bool kcg_comp_array_int_500(
   array_int_500 *kcg_c2);
 #endif /* kcg_comp_array_int_500 */
 
-#ifndef kcg_comp_array__3677
-extern kcg_bool kcg_comp_array__3677(array__3677 *kcg_c1, array__3677 *kcg_c2);
-#endif /* kcg_comp_array__3677 */
+#ifndef kcg_comp_array__4876
+extern kcg_bool kcg_comp_array__4876(array__4876 *kcg_c1, array__4876 *kcg_c2);
+#endif /* kcg_comp_array__4876 */
 
-#ifndef kcg_comp_array__3731
-extern kcg_bool kcg_comp_array__3731(array__3731 *kcg_c1, array__3731 *kcg_c2);
-#endif /* kcg_comp_array__3731 */
+#ifndef kcg_comp_array_int_4
+extern kcg_bool kcg_comp_array_int_4(array_int_4 *kcg_c1, array_int_4 *kcg_c2);
+#endif /* kcg_comp_array_int_4 */
 
 #ifndef kcg_comp_array_int_7
 extern kcg_bool kcg_comp_array_int_7(array_int_7 *kcg_c1, array_int_7 *kcg_c2);
 #endif /* kcg_comp_array_int_7 */
+
+#ifndef kcg_comp_array_int_39
+extern kcg_bool kcg_comp_array_int_39(
+  array_int_39 *kcg_c1,
+  array_int_39 *kcg_c2);
+#endif /* kcg_comp_array_int_39 */
+
+#ifndef kcg_comp_array__4939
+extern kcg_bool kcg_comp_array__4939(array__4939 *kcg_c1, array__4939 *kcg_c2);
+#endif /* kcg_comp_array__4939 */
+
+#ifndef kcg_comp_array_int_500_500
+extern kcg_bool kcg_comp_array_int_500_500(
+  array_int_500_500 *kcg_c1,
+  array_int_500_500 *kcg_c2);
+#endif /* kcg_comp_array_int_500_500 */
 
 #ifndef kcg_comp_array_int_461
 extern kcg_bool kcg_comp_array_int_461(
@@ -448,81 +547,87 @@ extern kcg_bool kcg_comp_array_int_32(
   array_int_32 *kcg_c2);
 #endif /* kcg_comp_array_int_32 */
 
-#ifndef kcg_comp_array_int_39
-extern kcg_bool kcg_comp_array_int_39(
-  array_int_39 *kcg_c1,
-  array_int_39 *kcg_c2);
-#endif /* kcg_comp_array_int_39 */
+#ifndef kcg_comp_array_int_30
+extern kcg_bool kcg_comp_array_int_30(
+  array_int_30 *kcg_c1,
+  array_int_30 *kcg_c2);
+#endif /* kcg_comp_array_int_30 */
 
-#ifndef kcg_comp_array_int_4
-extern kcg_bool kcg_comp_array_int_4(array_int_4 *kcg_c1, array_int_4 *kcg_c2);
-#endif /* kcg_comp_array_int_4 */
+#define kcg_comp_LinkedBG_T_BG_Types_Pkg kcg_comp_struct__4835
 
-#ifndef kcg_comp_array_int_500_500
-extern kcg_bool kcg_comp_array_int_500_500(
-  array_int_500_500 *kcg_c1,
-  array_int_500_500 *kcg_c2);
-#endif /* kcg_comp_array_int_500_500 */
+#define kcg_copy_LinkedBG_T_BG_Types_Pkg kcg_copy_struct__4835
 
-#define kcg_comp_BaliseGroupData_Basics kcg_comp_struct__3685
+#define kcg_comp_TelegramHeader_T_BG_Types_Pkg kcg_comp_struct__4852
 
-#define kcg_copy_BaliseGroupData_Basics kcg_copy_struct__3685
+#define kcg_copy_TelegramHeader_T_BG_Types_Pkg kcg_copy_struct__4852
+
+#define kcg_comp_B_data_internal_FirstTest_InfraLibInt kcg_comp_struct__4919
+
+#define kcg_copy_B_data_internal_FirstTest_InfraLibInt kcg_copy_struct__4919
+
+#define kcg_comp_BaliseGroupData_Basics kcg_comp_struct__4911
+
+#define kcg_copy_BaliseGroupData_Basics kcg_copy_struct__4911
 
 #define kcg_comp_CompressedPacketData_T_Common_Types_Pkg kcg_comp_array_int_500
 
 #define kcg_copy_CompressedPacketData_T_Common_Types_Pkg kcg_copy_array_int_500
 
-#define kcg_comp_MetadataElement_T_Common_Types_Pkg kcg_comp_struct__3669
+#define kcg_comp_MetadataElement_T_Common_Types_Pkg kcg_comp_struct__4868
 
-#define kcg_copy_MetadataElement_T_Common_Types_Pkg kcg_copy_struct__3669
+#define kcg_copy_MetadataElement_T_Common_Types_Pkg kcg_copy_struct__4868
 
-#define kcg_comp_Metadata_T_Common_Types_Pkg kcg_comp_array__3677
+#define kcg_comp_Metadata_T_Common_Types_Pkg kcg_comp_array__4876
 
-#define kcg_copy_Metadata_T_Common_Types_Pkg kcg_copy_array__3677
+#define kcg_copy_Metadata_T_Common_Types_Pkg kcg_copy_array__4876
 
-#define kcg_comp_CompressedPackets_T_Common_Types_Pkg kcg_comp_struct__3680
+#define kcg_comp_CompressedPackets_T_Common_Types_Pkg kcg_comp_struct__4879
 
-#define kcg_copy_CompressedPackets_T_Common_Types_Pkg kcg_copy_struct__3680
+#define kcg_copy_CompressedPackets_T_Common_Types_Pkg kcg_copy_struct__4879
 
-#define kcg_comp_TM_BaliseGroupData kcg_comp_struct__3685
+#define kcg_comp_Array4_TM kcg_comp_array_int_4
 
-#define kcg_copy_TM_BaliseGroupData kcg_copy_struct__3685
+#define kcg_copy_Array4_TM kcg_copy_array_int_4
 
-#define kcg_comp_TM_P005E_array_T kcg_comp_array_int_7
+#define kcg_comp_P005_array_T_TM kcg_comp_array_int_39
 
-#define kcg_copy_TM_P005E_array_T kcg_copy_array_int_7
+#define kcg_copy_P005_array_T_TM kcg_copy_array_int_39
 
-#define kcg_comp_TM_P005E_T kcg_comp_struct__3720
+#define kcg_comp_BaliseGroupData_TM kcg_comp_struct__4911
 
-#define kcg_copy_TM_P005E_T kcg_copy_struct__3720
+#define kcg_copy_BaliseGroupData_TM kcg_copy_struct__4911
 
-#define kcg_comp_TM_P05Es_T kcg_comp_array__3731
+#define kcg_comp_P005E_array_T_TM kcg_comp_array_int_7
 
-#define kcg_copy_TM_P05Es_T kcg_copy_array__3731
+#define kcg_copy_P005E_array_T_TM kcg_copy_array_int_7
 
-#define kcg_comp_TM_P005 kcg_comp_struct__3734
+#define kcg_comp_P005E_T_TM kcg_comp_struct__4928
 
-#define kcg_copy_TM_P005 kcg_copy_struct__3734
+#define kcg_copy_P005E_T_TM kcg_copy_struct__4928
 
-#define kcg_comp_TM_BaliseTelegramHeader_int_T kcg_comp_struct__3693
+#define kcg_comp_P005Es_T_TM kcg_comp_array__4939
 
-#define kcg_copy_TM_BaliseTelegramHeader_int_T kcg_copy_struct__3693
+#define kcg_copy_P005Es_T_TM kcg_copy_array__4939
 
-#define kcg_comp_TM_CompressedBaliseMessage kcg_comp_struct__3715
+#define kcg_comp_P005_TM kcg_comp_struct__4942
 
-#define kcg_copy_TM_CompressedBaliseMessage kcg_copy_struct__3715
+#define kcg_copy_P005_TM kcg_copy_struct__4942
 
-#define kcg_comp_B_data_internal_FirstTest_InfraLib kcg_comp_struct__3706
+#define kcg_comp_BaliseTelegramHeader_int_T_TM kcg_comp_struct__4893
 
-#define kcg_copy_B_data_internal_FirstTest_InfraLib kcg_copy_struct__3706
+#define kcg_copy_BaliseTelegramHeader_int_T_TM kcg_copy_struct__4893
 
-#define kcg_comp_TelegramHeader_T_BG_Types_Pkg kcg_comp_struct__3653
+#define kcg_comp_CompressedBaliseMessage_TM kcg_comp_struct__4906
 
-#define kcg_copy_TelegramHeader_T_BG_Types_Pkg kcg_copy_struct__3653
+#define kcg_copy_CompressedBaliseMessage_TM kcg_copy_struct__4906
+
+#define kcg_comp_LinkedBGs_T_BG_Types_Pkg kcg_comp_array__4849
+
+#define kcg_copy_LinkedBGs_T_BG_Types_Pkg kcg_copy_array__4849
 
 #endif /* _KCG_TYPES_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_types.h
-** Generation date: 2015-04-25T17:50:03
+** Generation date: 2015-06-02T15:02:41
 *************************************************************$ */
 

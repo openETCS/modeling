@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--$*************** KCG Version 6.1.3 (build i6) ****************
+** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt
+** Generation date: 2015-06-02T14:47:37
+*************************************************************$-->
+<Model date="2015-06-02T14:47:37" commandLine="s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt">
+  <NamedType scadeName="NID_PACKET" targetName="NID_PACKET" refType="kcg_int"/>
+  <EnumType scadeName="Q_DIR" targetName="Q_DIR">
+    <EnumVal scadeName="Q_DIR_Reverse" targetName="Q_DIR_Reverse"/>
+    <EnumVal scadeName="Q_DIR_Nominal" targetName="Q_DIR_Nominal"/>
+    <EnumVal scadeName="Q_DIR_Both_directions" targetName="Q_DIR_Both_directions"/>
+  </EnumType>
+  <EnumType scadeName="Q_LINKREACTION" targetName="Q_LINKREACTION">
+    <EnumVal scadeName="Q_LINKREACTION_Train_trip" targetName="Q_LINKREACTION_Train_trip"/>
+    <EnumVal scadeName="Q_LINKREACTION_Apply_service_brake" targetName="Q_LINKREACTION_Apply_service_brake"/>
+    <EnumVal scadeName="Q_LINKREACTION_No_Reaction" targetName="Q_LINKREACTION_No_Reaction"/>
+  </EnumType>
+  <EnumType scadeName="Q_LINKORIENTATION" targetName="Q_LINKORIENTATION">
+    <EnumVal scadeName="Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction"
+        targetName="_1_Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction"/>
+    <EnumVal scadeName="Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_nominal_direction"
+        targetName="Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_nominal_direction"/>
+  </EnumType>
+  <EnumType scadeName="Q_NEWCOUNTRY" targetName="Q_NEWCOUNTRY">
+    <EnumVal scadeName="Q_NEWCOUNTRY_Same_country__or__railway_administration_no_NID_C_follows"
+        targetName="Q_NEWCOUNTRY_Same_country__or__railway_administration_no_NID_C_follows"/>
+    <EnumVal scadeName="Q_NEWCOUNTRY_Not_the_same_country__or__railway_administration_NID_C_follows"
+        targetName="Q_NEWCOUNTRY_Not_the_same_country__or__railway_administration_NID_C_follows"/>
+  </EnumType>
+  <NamedType scadeName="NID_LRBG" targetName="NID_LRBG" refType="kcg_int"/>
+  <EnumType scadeName="Q_SCALE" targetName="Q_SCALE">
+    <EnumVal scadeName="Q_SCALE_10_cm_scale" targetName="Q_SCALE_10_cm_scale"/>
+    <EnumVal scadeName="Q_SCALE_1_m_scale" targetName="Q_SCALE_1_m_scale"/>
+    <EnumVal scadeName="Q_SCALE_10_m_scale" targetName="Q_SCALE_10_m_scale"/>
+  </EnumType>
+  <NamedType scadeName="D_LINK" targetName="D_LINK" refType="kcg_int"/>
+  <NamedType scadeName="NID_C" targetName="NID_C" refType="kcg_int"/>
+  <NamedType scadeName="NID_BG" targetName="NID_BG" refType="kcg_int"/>
+  <NamedType scadeName="Q_LOCACC" targetName="Q_LOCACC" refType="kcg_int"/>
+  <Package scadeName="TM">
+    <Constant scadeName="DIM_MaxRMessages" scadeType="int" targetName="DIM_MaxRMessages_TM" targetType="kcg_int"
+        macroDef="true"/>
+    <Constant scadeName="DEFAULT_PHeader" scadeType="Common_Types_Pkg::MetadataElement_T"
+        targetName="DEFAULT_PHeader_TM" targetType="MetadataElement_T_Common_Types_Pkg"/>
+    <Constant scadeName="DEFAULT_CompressedPackets" scadeType="Common_Types_Pkg::CompressedPacketData_T"
+        targetName="DEFAULT_CompressedPackets_TM" targetType="CompressedPacketData_T_Common_Types_Pkg"/>
+    <Constant scadeName="DIM_MaxElementsPacket005" scadeType="int" targetName="DIM_MaxElementsPacket005_TM"
+        targetType="kcg_int" macroDef="true"/>
+    <NamedType scadeName="P005_array_T" targetName="P005_array_T_TM" refType="array_int_39"/>
+    <NamedType scadeName="Array4" targetName="Array4_TM" refType="array_int_4"/>
+    <NamedType scadeName="P005E_array_T" targetName="P005E_array_T_TM" refType="array_int_7"/>
+    <RootNode scadeName="RECV_ReadPacket005_ForCalcTrainPos" headerFile="RECV_ReadPacket005_ForCal_TM.h"
+        targetCycleFct="RECV_ReadPacket005_ForCal_TM" targetInitFct="RECV_ReadPacket005_ForCal_reset_TM">
+      <Input scadeName="RadioMessage_IN" scadeType="Common_Types_Pkg::CompressedPackets_T" targetName="RadioMessage_IN"
+          targetType="CompressedPackets_T_Common_Types_Pkg" inCtx="true"/>
+      <Input scadeName="LRBG" scadeType="NID_LRBG" targetName="LRBG" targetType="NID_LRBG" inCtx="true"/>
+      <Output scadeName="LinkedBGsOUT" scadeType="BG_Types_Pkg::LinkedBGs_T" targetName="LinkedBGsOUT"
+          targetType="LinkedBGs_T_BG_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L5" scadeType="int^(Common_Types_Pkg::cDIM_MaxDataElementsInRMessage)" targetName="_L5"
+          targetType="array_int_500" inCtx="true"/>
+      <Local scadeName="_L6" scadeType="Common_Types_Pkg::CompressedPackets_T" targetName="_L6"
+          targetType="CompressedPackets_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L11" scadeType="int^((((TM::DIM_MaxElementsPacket005)
+   -
+   (1))
+  -
+  (0))
+ +
+ (1))"
+          targetName="_L11" targetType="array_int_39" inCtx="true"/>
+      <Local scadeName="_L30" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="_L30"
+          targetType="MetadataElement_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L165" scadeType="NID_LRBG" targetName="_L165" targetType="NID_LRBG" inCtx="true"/>
+      <Local scadeName="_L166" scadeType="BG_Types_Pkg::LinkedBGs_T" targetName="_L166"
+          targetType="LinkedBGs_T_BG_Types_Pkg" inCtx="true"/>
+      <NodeInstance scadeName="TM_lib_internal::RECV_ReadPackets" instName="1"
+          refName="RECV_ReadPackets_TM_lib_internal">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+      <NodeInstance scadeName="TM_conversions::RECV_ConvertP005afterRead_CT" instName="1"
+          refName="_2_RECV_ConvertP005afterRead_TM_conversions">
+        <OutCtxVar targetName="_1_Context_1"/>
+      </NodeInstance>
+      <OutCtxType targetName="outC_RECV_ReadPacket005_ForCal_TM"/>
+      <InCtxType targetName="inC_RECV_ReadPacket005_ForCal_TM"/>
+    </RootNode>
+  </Package>
+  <Package scadeName="TM_lib_internal">
+    <NoExpNode scadeName="RECV_ReadPackets" headerFile="RECV_ReadPackets_TM_lib_internal.h"
+        targetCycleFct="RECV_ReadPackets_TM_lib_internal" targetInitFct="RECV_ReadPackets_reset_TM_lib_internal">
+      <Input scadeName="Packets" scadeType="Common_Types_Pkg::CompressedPackets_T" targetName="Packets"
+          targetType="CompressedPackets_T_Common_Types_Pkg"/>
+      <Input scadeName="PacketID" scadeType="int" targetName="PacketID" targetType="kcg_int"/>
+      <Output scadeName="Data" scadeType="int^(Common_Types_Pkg::cDIM_MaxDataElementsInRMessage)" targetName="Data"
+          targetType="array_int_500" inCtx="true"/>
+      <Output scadeName="Metadata" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="Metadata"
+          targetType="MetadataElement_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L3" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="_L3"
+          targetType="MetadataElement_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="int" targetName="_L2" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="bool" targetName="_L1" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="int^(Common_Types_Pkg::cDIM_MaxDataElementsInRMessage)" targetName="_L4"
+          targetType="array_int_500" inCtx="true"/>
+      <Local scadeName="_L44" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="_L44"
+          targetType="CompressedPacketData_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L45" scadeType="int" targetName="_L45" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L46" scadeType="Common_Types_Pkg::CompressedPackets_T" targetName="_L46"
+          targetType="CompressedPackets_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L48" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="_L48"
+          targetType="CompressedPacketData_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L47" scadeType="Common_Types_Pkg::Metadata_T" targetName="_L47"
+          targetType="Metadata_T_Common_Types_Pkg" inCtx="true"/>
+      <NodeInstance scadeName="TM_lib_internal::RECV_LookupPacket" instName="1"
+          refName="RECV_LookupPacket_TM_lib_internal">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+      <NodeInstance scadeName="TM_lib_internal::RECV_ReadPacketKernel" instName="1"
+          refName="RECV_ReadPacketKernel_TM_lib_internal" clockVar="tmp" clockVal="kcg_true">
+        <OutCtxVar targetName="_1_Context_1" clockVar="tmp" clockVal="kcg_true"/>
+      </NodeInstance>
+      <Clock targetName="tmp" targetType="kcg_bool" inCtx="true"/>
+      <OutCtxType targetName="outC_RECV_ReadPackets_TM_lib_internal"/>
+    </NoExpNode>
+    <NoExpNode scadeName="RECV_LookupPacket" headerFile="RECV_LookupPacket_TM_lib_internal.h"
+        targetCycleFct="RECV_LookupPacket_TM_lib_internal" targetInitFct="RECV_LookupPacket_reset_TM_lib_internal">
+      <Input scadeName="Message_ID" scadeType="int" targetName="Message_ID" targetType="kcg_int"/>
+      <Input scadeName="HeadersIN" scadeType="Common_Types_Pkg::Metadata_T" targetName="HeadersIN"
+          targetType="Metadata_T_Common_Types_Pkg"/>
+      <Output scadeName="Found" scadeType="bool" targetName="Found" targetType="kcg_bool" inCtx="true"/>
+      <Output scadeName="Index" scadeType="int" targetName="Index" targetType="kcg_int" inCtx="true"/>
+      <Output scadeName="HeaderFound" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="HeaderFound"
+          targetType="MetadataElement_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="Common_Types_Pkg::Metadata_T" targetName="_L1"
+          targetType="Metadata_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="int" targetName="_L2" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L3" scadeType="int^(TM::DIM_MaxRMessages)" targetName="_L3" targetType="array_int_30"
+          inCtx="true"/>
+      <Local scadeName="_L4" scadeType="int" targetName="_L4" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L5" scadeType="bool" targetName="_L5" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L23" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="_L23"
+          targetType="MetadataElement_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L24" scadeType="NID_PACKET" targetName="_L24" targetType="NID_PACKET" inCtx="true"/>
+      <Local scadeName="_L25" scadeType="bool" targetName="_L25" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L26" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="_L26"
+          targetType="MetadataElement_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L22" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="_L22"
+          targetType="MetadataElement_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L27" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="_L27"
+          targetType="MetadataElement_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L28" scadeType="int" targetName="_L28" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L29" scadeType="int" targetName="_L29" targetType="kcg_int" inCtx="true"/>
+      <Iterator iteratorKind="foldwi" scadeSize="30" targetSize="30">
+        <NodeInstance scadeName="TM_lib_internal::RECV_LookupPacketLoop" instName="1"
+            refName="RECV_LookupPacketLoop_TM_lib_internal">
+          <OutCtxVar targetName="Context_1"/>
+        </NodeInstance>
+      </Iterator>
+      <NodeInstance scadeName="=" instName="1"/>
+      <NodeInstance scadeName="-" instName="1"/>
+      <OutCtxType targetName="outC_RECV_LookupPacket_TM_lib_internal"/>
+    </NoExpNode>
+    <NoExpNode scadeName="RECV_LookupPacketLoop" headerFile="RECV_LookupPacketLoop_TM_lib_internal.h"
+        targetCycleFct="RECV_LookupPacketLoop_TM_lib_internal"
+        targetInitFct="RECV_LookupPacketLoop_reset_TM_lib_internal">
+      <Input scadeName="Index" scadeType="int" targetName="Index" targetType="kcg_int"/>
+      <Input scadeName="HeaderInit" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="HeaderInit"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Input scadeName="Message_in" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="Message_in"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Input scadeName="ID_in" scadeType="int" targetName="ID_in" targetType="kcg_int"/>
+      <Output scadeName="Cont" scadeType="bool" targetName="Cont" targetType="kcg_bool" inCtx="true"/>
+      <Output scadeName="HeaderFound" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="HeaderFound"
+          targetType="MetadataElement_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L3" scadeType="int" targetName="_L3" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="_L4"
+          targetType="MetadataElement_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L27" scadeType="NID_PACKET" targetName="_L27" targetType="NID_PACKET" inCtx="true"/>
+      <Local scadeName="_L28" scadeType="bool" targetName="_L28" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L29" scadeType="bool" targetName="_L29" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L30" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="_L30"
+          targetType="MetadataElement_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L31" scadeType="int" targetName="_L31" targetType="kcg_int" inCtx="true"/>
+      <NodeInstance scadeName="=" instName="1"/>
+      <NodeInstance scadeName="not" instName="1"/>
+      <OutCtxType targetName="outC_RECV_LookupPacketLoop_TM_lib_internal"/>
+    </NoExpNode>
+    <NoExpNode scadeName="RECV_ReadPacketKernel" headerFile="RECV_ReadPacketKernel_TM_lib_internal.h"
+        targetCycleFct="RECV_ReadPacketKernel_TM_lib_internal"
+        targetInitFct="RECV_ReadPacketKernel_reset_TM_lib_internal">
+      <Input scadeName="Header" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="Header"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Input scadeName="PacketData" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="PacketData"
+          targetType="CompressedPacketData_T_Common_Types_Pkg"/>
+      <Output scadeName="PacketOut" scadeType="int^(Common_Types_Pkg::cDIM_MaxDataElementsInRMessage)"
+          targetName="PacketOut" targetType="array_int_500" inCtx="true"/>
+      <Local scadeName="_L3" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="_L3"
+          targetType="CompressedPacketData_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="_L4"
+          targetType="MetadataElement_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L6" scadeType="int^(Common_Types_Pkg::cDIM_MaxDataElementsInRMessage)" targetName="_L6"
+          targetType="array_int_500" inCtx="true"/>
+      <Local scadeName="_L7" scadeType="int^(Common_Types_Pkg::cDIM_MaxDataElementsInRMessage)" targetName="_L7"
+          targetType="array_int_500" inCtx="true"/>
+      <Local scadeName="_L8" scadeType="bool" targetName="_L8" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L10" scadeType="int^(Common_Types_Pkg::cDIM_MaxDataElementsInRMessage)" targetName="_L10"
+          targetType="array_int_500" inCtx="true"/>
+      <Local scadeName="_L18"
+          scadeType="Common_Types_Pkg::CompressedPacketData_T^(Common_Types_Pkg::cDIM_MaxDataElementsInRMessage)"
+          targetName="_L18" targetType="array_int_500_500" inCtx="true"/>
+      <Local scadeName="_L22" scadeType="int" targetName="_L22" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L24" scadeType="int" targetName="_L24" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L23" scadeType="int" targetName="_L23" targetType="kcg_int" inCtx="true"/>
+      <Iterator iteratorKind="mapwi" scadeSize="500" targetSize="500">
+        <NodeInstance scadeName="TM_lib_internal::RECV_ReadPacketKernelLoop" instName="1"
+            refName="RECV_ReadPacketKernelLoop_TM_lib_internal">
+          <OutCtxVar targetName="Context_1"/>
+        </NodeInstance>
+      </Iterator>
+      <OutCtxType targetName="outC_RECV_ReadPacketKernel_TM_lib_internal"/>
+    </NoExpNode>
+    <NoExpNode scadeName="RECV_ReadPacketKernelLoop" headerFile="RECV_ReadPacketKernelLoop_TM_lib_internal.h"
+        targetCycleFct="RECV_ReadPacketKernelLoop_TM_lib_internal"
+        targetInitFct="RECV_ReadPacketKernelLoop_reset_TM_lib_internal">
+      <Input scadeName="Index" scadeType="int" targetName="Index" targetType="kcg_int"/>
+      <Input scadeName="PacketData" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="PacketData"
+          targetType="CompressedPacketData_T_Common_Types_Pkg"/>
+      <Input scadeName="AddressStart" scadeType="int" targetName="AddressStart" targetType="kcg_int"/>
+      <Input scadeName="AddressEnd" scadeType="int" targetName="AddressEnd" targetType="kcg_int"/>
+      <Output scadeName="Cont" scadeType="bool" targetName="Cont" targetType="kcg_bool" inCtx="true"/>
+      <Output scadeName="PacketOut" scadeType="int" targetName="PacketOut" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="int" targetName="_L1" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L3" scadeType="int" targetName="_L3" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="int" targetName="_L4" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L9" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="_L9"
+          targetType="CompressedPacketData_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L18" scadeType="bool" targetName="_L18" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L20" scadeType="int" targetName="_L20" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L29" scadeType="int" targetName="_L29" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L30" scadeType="int" targetName="_L30" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L31" scadeType="int" targetName="_L31" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L32" scadeType="int" targetName="_L32" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L33" scadeType="int" targetName="_L33" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L34" scadeType="int" targetName="_L34" targetType="kcg_int" inCtx="true"/>
+      <NodeInstance scadeName="&lt;=" instName="1"/>
+      <NodeInstance scadeName="+" instName="1"/>
+      <NodeInstance scadeName="-" instName="1"/>
+      <NodeInstance scadeName="+" instName="2"/>
+      <OutCtxType targetName="outC_RECV_ReadPacketKernelLoop_TM_lib_internal"/>
+    </NoExpNode>
+  </Package>
+  <Package scadeName="Common_Types_Pkg">
+    <Constant scadeName="cMetadataArraySize" scadeType="int" targetName="cMetadataArraySize_Common_Types_Pkg"
+        targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="cDIM_MaxRMessages" scadeType="int" targetName="cDIM_MaxRMessages_Common_Types_Pkg"
+        targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="cDIM_MaxDataElementsInRMessage" scadeType="int"
+        targetName="cDIM_MaxDataElementsInRMessage_Common_Types_Pkg" targetType="kcg_int" macroDef="true"/>
+    <NamedType scadeName="MetadataElement_T" targetName="MetadataElement_T_Common_Types_Pkg" refType="struct__976"/>
+    <NamedType scadeName="Metadata_T" targetName="Metadata_T_Common_Types_Pkg" refType="array__990"/>
+    <NamedType scadeName="CompressedPacketData_T" targetName="CompressedPacketData_T_Common_Types_Pkg"
+        refType="array_int_500"/>
+    <NamedType scadeName="CompressedPackets_T" targetName="CompressedPackets_T_Common_Types_Pkg" refType="struct__993"/>
+  </Package>
+  <Package scadeName="TM_conversions">
+    <Constant scadeName="INT_Q_LINKREACTION_Train_trip" scadeType="int"
+        targetName="INT_Q_LINKREACTION_Train_trip_TM_conversions" targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="INT_Q_LINKREACTION_Apply_servicebrake" scadeType="int"
+        targetName="INT_Q_LINKREACTION_Apply_servicebrake_TM_conversions" targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="INT_Q_LINKREACTION_No_Reaction" scadeType="int"
+        targetName="INT_Q_LINKREACTION_No_Reaction_TM_conversions" targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_LINKREACTION_Train_trip" scadeType="Q_LINKREACTION"
+        targetName="ENUM_Q_LINKREACTION_Train_trip_TM_conversions" targetType="Q_LINKREACTION" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_LINKREACTION_No_Reaction" scadeType="Q_LINKREACTION"
+        targetName="ENUM_Q_LINKREACTION_No_Reaction_TM_conversions" targetType="Q_LINKREACTION" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_LINKREACTION_Apply_servicebrake" scadeType="Q_LINKREACTION"
+        targetName="ENUM_Q_LINKREACTION_Apply_servicebrake_TM_conversions" targetType="Q_LINKREACTION" macroDef="true"/>
+    <Constant scadeName="INT_Q_LINKORIENTATION_nominal" scadeType="int"
+        targetName="INT_Q_LINKORIENTATION_nominal_TM_conversions" targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="INT_Q_LINKORIENTATION_reverse" scadeType="int"
+        targetName="INT_Q_LINKORIENTATION_reverse_TM_conversions" targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_LINKORIENTATION_reverse" scadeType="Q_LINKORIENTATION"
+        targetName="ENUM_Q_LINKORIENTATION_reverse_TM_conversions" targetType="Q_LINKORIENTATION" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_LINKORIENTATION_nominal" scadeType="Q_LINKORIENTATION"
+        targetName="ENUM_Q_LINKORIENTATION_nominal_TM_conversions" targetType="Q_LINKORIENTATION" macroDef="true"/>
+    <Constant scadeName="INT_Q_NEWCOUNTRY_same" scadeType="int" targetName="INT_Q_NEWCOUNTRY_same_TM_conversions"
+        targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="INT_Q_NEWCOUNTRY_not_same" scadeType="int"
+        targetName="INT_Q_NEWCOUNTRY_not_same_TM_conversions" targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_NEWCOUNTRY_not_same" scadeType="Q_NEWCOUNTRY"
+        targetName="ENUM_Q_NEWCOUNTRY_not_same_TM_conversions" targetType="Q_NEWCOUNTRY" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_NEWCOUNTRY_same" scadeType="Q_NEWCOUNTRY"
+        targetName="ENUM_Q_NEWCOUNTRY_same_TM_conversions" targetType="Q_NEWCOUNTRY" macroDef="true"/>
+    <Constant scadeName="INT_Q_DIR_nomiinal" scadeType="int" targetName="INT_Q_DIR_nomiinal_TM_conversions"
+        targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="INT_Q_DIR_reverse" scadeType="int" targetName="INT_Q_DIR_reverse_TM_conversions"
+        targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="INT_Q_DIR_both" scadeType="int" targetName="INT_Q_DIR_both_TM_conversions" targetType="kcg_int"
+        macroDef="true"/>
+    <Constant scadeName="ENUM_Q_DIR_both" scadeType="Q_DIR" targetName="ENUM_Q_DIR_both_TM_conversions"
+        targetType="Q_DIR" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_DIR_reverse" scadeType="Q_DIR" targetName="ENUM_Q_DIR_reverse_TM_conversions"
+        targetType="Q_DIR" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_DIR_nominal" scadeType="Q_DIR" targetName="ENUM_Q_DIR_nominal_TM_conversions"
+        targetType="Q_DIR" macroDef="true"/>
+    <Constant scadeName="INT_Q_SCALE_10cm" scadeType="int" targetName="INT_Q_SCALE_10cm_TM_conversions"
+        targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="INT_Q_SCALE_1m" scadeType="int" targetName="INT_Q_SCALE_1m_TM_conversions" targetType="kcg_int"
+        macroDef="true"/>
+    <Constant scadeName="INT_Q_SCALE_10m" scadeType="int" targetName="INT_Q_SCALE_10m_TM_conversions"
+        targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_SCALE_10cm" scadeType="Q_SCALE" targetName="ENUM_Q_SCALE_10cm_TM_conversions"
+        targetType="Q_SCALE" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_SCALE_10m" scadeType="Q_SCALE" targetName="ENUM_Q_SCALE_10m_TM_conversions"
+        targetType="Q_SCALE" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_SCALE_1m" scadeType="Q_SCALE" targetName="ENUM_Q_SCALE_1m_TM_conversions"
+        targetType="Q_SCALE" macroDef="true"/>
+    <NoExpNode scadeName="RECV_ConvertP005afterRead_CT" headerFile="_2_RECV_ConvertP005afterRead_TM_conversions.h"
+        targetCycleFct="_2_RECV_ConvertP005afterRead_TM_conversions"
+        targetInitFct="_2_RECV_ConvertP005afterRead_reset_TM_conversions">
+      <Input scadeName="LRBG" scadeType="NID_LRBG" targetName="LRBG" targetType="NID_LRBG"/>
+      <Input scadeName="RP005" scadeType="TM::P005_array_T" targetName="RP005" targetType="P005_array_T_TM"/>
+      <Input scadeName="Metadata_Element" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="Metadata_Element"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Output scadeName="Packet005_OLD" scadeType="BG_Types_Pkg::LinkedBGs_T" targetName="Packet005_OLD"
+          targetType="LinkedBGs_T_BG_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="TM::P005_array_T" targetName="_L1" targetType="P005_array_T_TM" inCtx="true"/>
+      <Local scadeName="_L71" scadeType="int" targetName="_L71" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L70" scadeType="int" targetName="_L70" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L69" scadeType="int" targetName="_L69" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L68" scadeType="int" targetName="_L68" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L67" scadeType="int" targetName="_L67" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L66" scadeType="int" targetName="_L66" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L65" scadeType="int" targetName="_L65" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L64" scadeType="int" targetName="_L64" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L63" scadeType="int" targetName="_L63" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L62" scadeType="int" targetName="_L62" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L61" scadeType="int" targetName="_L61" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L60" scadeType="int" targetName="_L60" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L59" scadeType="int" targetName="_L59" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L58" scadeType="int" targetName="_L58" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L57" scadeType="int" targetName="_L57" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L56" scadeType="int" targetName="_L56" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L55" scadeType="int" targetName="_L55" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L54" scadeType="int" targetName="_L54" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L53" scadeType="int" targetName="_L53" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L52" scadeType="int" targetName="_L52" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L51" scadeType="int" targetName="_L51" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L50" scadeType="int" targetName="_L50" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L49" scadeType="int" targetName="_L49" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L48" scadeType="int" targetName="_L48" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L47" scadeType="int" targetName="_L47" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L46" scadeType="int" targetName="_L46" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L45" scadeType="int" targetName="_L45" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L44" scadeType="int" targetName="_L44" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L43" scadeType="int" targetName="_L43" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L42" scadeType="int" targetName="_L42" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L41" scadeType="int" targetName="_L41" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L40" scadeType="int" targetName="_L40" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L39" scadeType="int" targetName="_L39" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L38" scadeType="int" targetName="_L38" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L107" scadeType="BG_Types_Pkg::LinkedBG_T^(4)" targetName="_L107" targetType="array__967"
+          inCtx="true"/>
+      <Local scadeName="_L115" scadeType="BG_Types_Pkg::LinkedBG_T" targetName="_L115"
+          targetType="LinkedBG_T_BG_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L118" scadeType="BG_Types_Pkg::LinkedBG_T" targetName="_L118"
+          targetType="LinkedBG_T_BG_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L119" scadeType="BG_Types_Pkg::LinkedBG_T" targetName="_L119"
+          targetType="LinkedBG_T_BG_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L120" scadeType="BG_Types_Pkg::LinkedBG_T" targetName="_L120"
+          targetType="LinkedBG_T_BG_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L122" scadeType="int^(4)" targetName="_L122" targetType="array_int_4" inCtx="true"/>
+      <Local scadeName="_L123" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="_L123"
+          targetType="MetadataElement_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L124" scadeType="bool" targetName="_L124" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L126" scadeType="NID_LRBG" targetName="_L126" targetType="NID_LRBG" inCtx="true"/>
+      <Local scadeName="_L133" scadeType="int" targetName="_L133" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L132" scadeType="int" targetName="_L132" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L131" scadeType="int" targetName="_L131" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L130" scadeType="int" targetName="_L130" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L129" scadeType="int" targetName="_L129" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L134" scadeType="int^(7)" targetName="_L134" targetType="array_int_7" inCtx="true"/>
+      <Local scadeName="_L135" scadeType="int^(7)" targetName="_L135" targetType="array_int_7" inCtx="true"/>
+      <Local scadeName="_L136" scadeType="int^(7)" targetName="_L136" targetType="array_int_7" inCtx="true"/>
+      <Local scadeName="_L137" scadeType="int^(7)" targetName="_L137" targetType="array_int_7" inCtx="true"/>
+      <Local scadeName="_L138" scadeType="BG_Types_Pkg::LinkedBG_T" targetName="_L138"
+          targetType="LinkedBG_T_BG_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L139" scadeType="int^(7)" targetName="_L139" targetType="array_int_7" inCtx="true"/>
+      <NodeInstance scadeName="TM_conversions::RECV_ConvertP005afterRead_Element_CT" instName="1"
+          refName="RECV_ConvertP005afterRead_TM_conversions">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+      <NodeInstance scadeName="TM_conversions::RECV_ConvertP005afterRead_Element_CT" instName="2"
+          refName="RECV_ConvertP005afterRead_TM_conversions">
+        <OutCtxVar targetName="Context_2"/>
+      </NodeInstance>
+      <NodeInstance scadeName="TM_conversions::RECV_ConvertP005afterRead_Element_CT" instName="3"
+          refName="RECV_ConvertP005afterRead_TM_conversions">
+        <OutCtxVar targetName="Context_3"/>
+      </NodeInstance>
+      <NodeInstance scadeName="TM_conversions::RECV_ConvertP005afterRead_Element_CT" instName="4"
+          refName="RECV_ConvertP005afterRead_TM_conversions">
+        <OutCtxVar targetName="Context_4"/>
+      </NodeInstance>
+      <NodeInstance scadeName="TM_conversions::RECV_ConvertP005afterRead_Element_CT" instName="5"
+          refName="RECV_ConvertP005afterRead_TM_conversions">
+        <OutCtxVar targetName="Context_5"/>
+      </NodeInstance>
+      <OutCtxType targetName="outC__2_RECV_ConvertP005afterRead_TM_conversions"/>
+    </NoExpNode>
+    <NoExpNode scadeName="RECV_ConvertP005afterRead_Element_CT" headerFile="RECV_ConvertP005afterRead_TM_conversions.h"
+        targetCycleFct="RECV_ConvertP005afterRead_TM_conversions"
+        targetInitFct="RECV_ConvertP005afterRead_reset_TM_conversions">
+      <Input scadeName="LRBG" scadeType="NID_LRBG" targetName="LRBG" targetType="NID_LRBG"/>
+      <Input scadeName="Common" scadeType="TM::Array4" targetName="Common" targetType="Array4_TM"/>
+      <Input scadeName="Element" scadeType="TM::P005E_array_T" targetName="Element" targetType="P005E_array_T_TM"/>
+      <Input scadeName="valid_metadata" scadeType="bool" targetName="valid_metadata" targetType="kcg_bool"/>
+      <Input scadeName="n_section" scadeType="int" targetName="n_section" targetType="kcg_int"/>
+      <Output scadeName="Linked_BG" scadeType="BG_Types_Pkg::LinkedBG_T" targetName="Linked_BG"
+          targetType="LinkedBG_T_BG_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="TM::Array4" targetName="_L1" targetType="Array4_TM" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="TM::P005E_array_T" targetName="_L2" targetType="P005E_array_T_TM" inCtx="true"/>
+      <Local scadeName="_L6" scadeType="int" targetName="_L6" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L5" scadeType="int" targetName="_L5" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="int" targetName="_L4" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L3" scadeType="int" targetName="_L3" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L28" scadeType="int" targetName="_L28" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L27" scadeType="int" targetName="_L27" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L26" scadeType="int" targetName="_L26" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L25" scadeType="int" targetName="_L25" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L24" scadeType="int" targetName="_L24" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L23" scadeType="int" targetName="_L23" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L36" scadeType="Q_LINKREACTION" targetName="_L36" targetType="Q_LINKREACTION" inCtx="true"/>
+      <Local scadeName="_L37" scadeType="Q_LINKORIENTATION" targetName="_L37" targetType="Q_LINKORIENTATION"
+          inCtx="true"/>
+      <Local scadeName="_L39" scadeType="Q_NEWCOUNTRY" targetName="_L39" targetType="Q_NEWCOUNTRY" inCtx="true"/>
+      <Local scadeName="_L40" scadeType="Q_DIR" targetName="_L40" targetType="Q_DIR" inCtx="true"/>
+      <Local scadeName="_L41" scadeType="bool" targetName="_L41" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L42" scadeType="NID_LRBG" targetName="_L42" targetType="NID_LRBG" inCtx="true"/>
+      <Local scadeName="_L44" scadeType="BG_Types_Pkg::LinkedBG_T" targetName="_L44"
+          targetType="LinkedBG_T_BG_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L45" scadeType="Q_SCALE" targetName="_L45" targetType="Q_SCALE" inCtx="true"/>
+      <Local scadeName="_L46" scadeType="int" targetName="_L46" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L47" scadeType="bool" targetName="_L47" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L48" scadeType="int" targetName="_L48" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L49" scadeType="bool" targetName="_L49" targetType="kcg_bool" inCtx="true"/>
+      <NodeInstance scadeName="TM_conversions::CAST_Int_to_Q_LINKREACTION" instName="1"
+          refName="CAST_Int_to_Q_LINKREACTION_TM_conversions">
+        <OutCtxVar targetName="_4_Context_1"/>
+      </NodeInstance>
+      <NodeInstance scadeName="TM_conversions::CAST_Int_to_Q_LINKORIENTATION" instName="1"
+          refName="CAST_Int_to_Q_LINKORIENTATION_TM_conversions">
+        <OutCtxVar targetName="_3_Context_1"/>
+      </NodeInstance>
+      <NodeInstance scadeName="TM_conversions::CAST_Int_to_Q_NEWCOUNTRY" instName="2"
+          refName="CAST_Int_to_Q_NEWCOUNTRY_TM_conversions">
+        <OutCtxVar targetName="Context_2"/>
+      </NodeInstance>
+      <NodeInstance scadeName="TM_conversions::CAST_Int_to_Q_DIR" instName="1"
+          refName="CAST_Int_to_Q_DIR_TM_conversions">
+        <OutCtxVar targetName="_2_Context_1"/>
+      </NodeInstance>
+      <NodeInstance scadeName="TM_conversions::CAST_Int_to_Q_SCALE" instName="1"
+          refName="CAST_Int_to_Q_SCALE_TM_conversions">
+        <OutCtxVar targetName="_1_Context_1"/>
+      </NodeInstance>
+      <NodeInstance scadeName="TM_conversions::TOOLS_evaluate_N_ITER" instName="1"
+          refName="TOOLS_evaluate_N_ITER_TM_conversions">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+      <OutCtxType targetName="outC_RECV_ConvertP005afterRead_TM_conversions"/>
+    </NoExpNode>
+    <NoExpNode scadeName="CAST_Int_to_Q_LINKREACTION" headerFile="CAST_Int_to_Q_LINKREACTION_TM_conversions.h"
+        targetCycleFct="CAST_Int_to_Q_LINKREACTION_TM_conversions"
+        targetInitFct="CAST_Int_to_Q_LINKREACTION_reset_TM_conversions">
+      <Input scadeName="q_linkreaction_int" scadeType="int" targetName="q_linkreaction_int" targetType="kcg_int"/>
+      <Output scadeName="q_linkreaction" scadeType="Q_LINKREACTION" targetName="q_linkreaction"
+          targetType="Q_LINKREACTION" inCtx="true"/>
+      <Local scadeName="q_linkreaction_in" scadeType="int" targetName="q_linkreaction_in" targetType="kcg_int"
+          inCtx="true"/>
+      <Local scadeName="error" scadeType="bool" targetName="error" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="int" targetName="_L2" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="bool" targetName="_L4" targetType="kcg_bool" inCtx="true"/>
+      <ActivateIf scadeName="IfBlock1">
+        <Condition targetName="IfBlock1_clock" inCtx="true">
+          <NodeInstance scadeName="=" instName="1"/>
+        </Condition>
+        <Then>
+          <Local scadeName="_L2" scadeType="Q_LINKREACTION" targetName="_L2_IfBlock1" targetType="Q_LINKREACTION"
+              clockVar="IfBlock1_clock" clockVal="kcg_true" inCtx="true"/>
+          <Local scadeName="_L3" scadeType="bool" targetName="_L3_IfBlock1" targetType="kcg_bool"
+              clockVar="IfBlock1_clock" clockVal="kcg_true" inCtx="true"/>
+        </Then>
+        <Else>
+          <Condition targetName="_1_else_clock_IfBlock1" inCtx="true">
+            <NodeInstance scadeName="=" instName="2"/>
+          </Condition>
+          <Then>
+            <Local scadeName="_L1" scadeType="Q_LINKREACTION" targetName="_L1_IfBlock1" targetType="Q_LINKREACTION"
+                clockVar="_1_else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+            <Local scadeName="_L3" scadeType="bool" targetName="_L32_IfBlock1" targetType="kcg_bool"
+                clockVar="_1_else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+          </Then>
+          <Else>
+            <Condition targetName="else_clock_IfBlock1" inCtx="true">
+              <NodeInstance scadeName="=" instName="3"/>
+            </Condition>
+            <Then>
+              <Local scadeName="_L1" scadeType="Q_LINKREACTION" targetName="_L13_IfBlock1" targetType="Q_LINKREACTION"
+                  clockVar="else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+              <Local scadeName="_L4" scadeType="bool" targetName="_L4_IfBlock1" targetType="kcg_bool"
+                  clockVar="else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+            </Then>
+            <Else>
+              <Local scadeName="_L2" scadeType="bool" targetName="_L25_IfBlock1" targetType="kcg_bool"
+                  clockVar="else_clock_IfBlock1" clockVal="kcg_false" inCtx="true"/>
+              <Local scadeName="_L1" scadeType="Q_LINKREACTION" targetName="_L14_IfBlock1" targetType="Q_LINKREACTION"
+                  clockVar="else_clock_IfBlock1" clockVal="kcg_false" inCtx="true"/>
+            </Else>
+          </Else>
+        </Else>
+      </ActivateIf>
+      <OutCtxType targetName="outC_CAST_Int_to_Q_LINKREACTION_TM_conversions"/>
+    </NoExpNode>
+    <NoExpNode scadeName="CAST_Int_to_Q_LINKORIENTATION" headerFile="CAST_Int_to_Q_LINKORIENTATION_TM_conversions.h"
+        targetCycleFct="CAST_Int_to_Q_LINKORIENTATION_TM_conversions"
+        targetInitFct="CAST_Int_to_Q_LINKORIENTATION_reset_TM_conversions">
+      <Input scadeName="q_linkorientation_int" scadeType="int" targetName="q_linkorientation_int" targetType="kcg_int"/>
+      <Output scadeName="q_linkorientation" scadeType="Q_LINKORIENTATION" targetName="q_linkorientation"
+          targetType="Q_LINKORIENTATION" inCtx="true"/>
+      <Local scadeName="error" scadeType="bool" targetName="error" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="q_linkorientation_in" scadeType="int" targetName="q_linkorientation_in" targetType="kcg_int"
+          inCtx="true"/>
+      <Local scadeName="_L13" scadeType="bool" targetName="_L13" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L12" scadeType="int" targetName="_L12" targetType="kcg_int" inCtx="true"/>
+      <ActivateIf scadeName="IfBlock1">
+        <Condition targetName="IfBlock1_clock" inCtx="true">
+          <NodeInstance scadeName="=" instName="1"/>
+        </Condition>
+        <Then>
+          <Local scadeName="_L4" scadeType="Q_LINKORIENTATION" targetName="_L4_IfBlock1" targetType="Q_LINKORIENTATION"
+              clockVar="IfBlock1_clock" clockVal="kcg_true" inCtx="true"/>
+          <Local scadeName="_L5" scadeType="bool" targetName="_L5_IfBlock1" targetType="kcg_bool"
+              clockVar="IfBlock1_clock" clockVal="kcg_true" inCtx="true"/>
+        </Then>
+        <Else>
+          <Condition targetName="else_clock_IfBlock1" inCtx="true">
+            <NodeInstance scadeName="=" instName="2"/>
+          </Condition>
+          <Then>
+            <Local scadeName="_L3" scadeType="Q_LINKORIENTATION" targetName="_L3_IfBlock1"
+                targetType="Q_LINKORIENTATION" clockVar="else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+            <Local scadeName="_L5" scadeType="bool" targetName="_L51_IfBlock1" targetType="kcg_bool"
+                clockVar="else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+          </Then>
+          <Else>
+            <Local scadeName="_L2" scadeType="bool" targetName="_L2_IfBlock1" targetType="kcg_bool"
+                clockVar="else_clock_IfBlock1" clockVal="kcg_false" inCtx="true"/>
+            <Local scadeName="_L1" scadeType="Q_LINKORIENTATION" targetName="_L1_IfBlock1"
+                targetType="Q_LINKORIENTATION" clockVar="else_clock_IfBlock1" clockVal="kcg_false" inCtx="true"/>
+          </Else>
+        </Else>
+      </ActivateIf>
+      <OutCtxType targetName="outC_CAST_Int_to_Q_LINKORIENTATION_TM_conversions"/>
+    </NoExpNode>
+    <NoExpNode scadeName="CAST_Int_to_Q_NEWCOUNTRY" headerFile="CAST_Int_to_Q_NEWCOUNTRY_TM_conversions.h"
+        targetCycleFct="CAST_Int_to_Q_NEWCOUNTRY_TM_conversions"
+        targetInitFct="CAST_Int_to_Q_NEWCOUNTRY_reset_TM_conversions">
+      <Input scadeName="q_newcountry_int" scadeType="int" targetName="q_newcountry_int" targetType="kcg_int"/>
+      <Output scadeName="q_newcountry" scadeType="Q_NEWCOUNTRY" targetName="q_newcountry" targetType="Q_NEWCOUNTRY"
+          inCtx="true"/>
+      <Local scadeName="error" scadeType="bool" targetName="error" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="q_newcountry_in" scadeType="int" targetName="q_newcountry_in" targetType="kcg_int"
+          inCtx="true"/>
+      <Local scadeName="_L13" scadeType="bool" targetName="_L13" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L12" scadeType="int" targetName="_L12" targetType="kcg_int" inCtx="true"/>
+      <ActivateIf scadeName="IfBlock1">
+        <Condition targetName="IfBlock1_clock" inCtx="true">
+          <NodeInstance scadeName="=" instName="1"/>
+        </Condition>
+        <Then>
+          <Local scadeName="_L4" scadeType="Q_NEWCOUNTRY" targetName="_L4_IfBlock1" targetType="Q_NEWCOUNTRY"
+              clockVar="IfBlock1_clock" clockVal="kcg_true" inCtx="true"/>
+          <Local scadeName="_L5" scadeType="bool" targetName="_L5_IfBlock1" targetType="kcg_bool"
+              clockVar="IfBlock1_clock" clockVal="kcg_true" inCtx="true"/>
+        </Then>
+        <Else>
+          <Condition targetName="else_clock_IfBlock1" inCtx="true">
+            <NodeInstance scadeName="=" instName="2"/>
+          </Condition>
+          <Then>
+            <Local scadeName="_L3" scadeType="Q_NEWCOUNTRY" targetName="_L3_IfBlock1" targetType="Q_NEWCOUNTRY"
+                clockVar="else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+            <Local scadeName="_L5" scadeType="bool" targetName="_L51_IfBlock1" targetType="kcg_bool"
+                clockVar="else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+          </Then>
+          <Else>
+            <Local scadeName="_L2" scadeType="bool" targetName="_L2_IfBlock1" targetType="kcg_bool"
+                clockVar="else_clock_IfBlock1" clockVal="kcg_false" inCtx="true"/>
+            <Local scadeName="_L1" scadeType="Q_NEWCOUNTRY" targetName="_L1_IfBlock1" targetType="Q_NEWCOUNTRY"
+                clockVar="else_clock_IfBlock1" clockVal="kcg_false" inCtx="true"/>
+          </Else>
+        </Else>
+      </ActivateIf>
+      <OutCtxType targetName="outC_CAST_Int_to_Q_NEWCOUNTRY_TM_conversions"/>
+    </NoExpNode>
+    <NoExpNode scadeName="CAST_Int_to_Q_DIR" headerFile="CAST_Int_to_Q_DIR_TM_conversions.h"
+        targetCycleFct="CAST_Int_to_Q_DIR_TM_conversions" targetInitFct="CAST_Int_to_Q_DIR_reset_TM_conversions">
+      <Input scadeName="q_dir_int" scadeType="int" targetName="q_dir_int" targetType="kcg_int"/>
+      <Output scadeName="q_dir" scadeType="Q_DIR" targetName="q_dir" targetType="Q_DIR" inCtx="true"/>
+      <Local scadeName="error" scadeType="bool" targetName="error" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="q_dir_in" scadeType="int" targetName="q_dir_in" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L13" scadeType="bool" targetName="_L13" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L12" scadeType="int" targetName="_L12" targetType="kcg_int" inCtx="true"/>
+      <ActivateIf scadeName="IfBlock1">
+        <Condition targetName="IfBlock1_clock" inCtx="true">
+          <NodeInstance scadeName="=" instName="14"/>
+        </Condition>
+        <Then>
+          <Local scadeName="_L4" scadeType="Q_DIR" targetName="_L4_IfBlock1" targetType="Q_DIR"
+              clockVar="IfBlock1_clock" clockVal="kcg_true" inCtx="true"/>
+          <Local scadeName="_L5" scadeType="bool" targetName="_L5_IfBlock1" targetType="kcg_bool"
+              clockVar="IfBlock1_clock" clockVal="kcg_true" inCtx="true"/>
+        </Then>
+        <Else>
+          <Condition targetName="_1_else_clock_IfBlock1" inCtx="true">
+            <NodeInstance scadeName="=" instName="15"/>
+          </Condition>
+          <Then>
+            <Local scadeName="_L3" scadeType="Q_DIR" targetName="_L3_IfBlock1" targetType="Q_DIR"
+                clockVar="_1_else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+            <Local scadeName="_L5" scadeType="bool" targetName="_L52_IfBlock1" targetType="kcg_bool"
+                clockVar="_1_else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+          </Then>
+          <Else>
+            <Condition targetName="else_clock_IfBlock1" inCtx="true">
+              <NodeInstance scadeName="=" instName="16"/>
+            </Condition>
+            <Then>
+              <Local scadeName="_L2" scadeType="Q_DIR" targetName="_L2_IfBlock1" targetType="Q_DIR"
+                  clockVar="else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+              <Local scadeName="_L4" scadeType="bool" targetName="_L43_IfBlock1" targetType="kcg_bool"
+                  clockVar="else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+            </Then>
+            <Else>
+              <Local scadeName="_L2" scadeType="Q_DIR" targetName="_L24_IfBlock1" targetType="Q_DIR"
+                  clockVar="else_clock_IfBlock1" clockVal="kcg_false" inCtx="true"/>
+              <Local scadeName="_L1" scadeType="bool" targetName="_L1_IfBlock1" targetType="kcg_bool"
+                  clockVar="else_clock_IfBlock1" clockVal="kcg_false" inCtx="true"/>
+            </Else>
+          </Else>
+        </Else>
+      </ActivateIf>
+      <OutCtxType targetName="outC_CAST_Int_to_Q_DIR_TM_conversions"/>
+    </NoExpNode>
+    <NoExpNode scadeName="CAST_Int_to_Q_SCALE" headerFile="CAST_Int_to_Q_SCALE_TM_conversions.h"
+        targetCycleFct="CAST_Int_to_Q_SCALE_TM_conversions" targetInitFct="CAST_Int_to_Q_SCALE_reset_TM_conversions">
+      <Input scadeName="q_scale_int" scadeType="int" targetName="q_scale_int" targetType="kcg_int"/>
+      <Output scadeName="q_scale" scadeType="Q_SCALE" targetName="q_scale" targetType="Q_SCALE" inCtx="true"/>
+      <Local scadeName="q_scale_in" scadeType="int" targetName="q_scale_in" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="error" scadeType="bool" targetName="error" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="int" targetName="_L2" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="bool" targetName="_L4" targetType="kcg_bool" inCtx="true"/>
+      <ActivateIf scadeName="IfBlock1">
+        <Condition targetName="IfBlock1_clock" inCtx="true">
+          <NodeInstance scadeName="=" instName="1"/>
+        </Condition>
+        <Then>
+          <Local scadeName="_L2" scadeType="Q_SCALE" targetName="_L2_IfBlock1" targetType="Q_SCALE"
+              clockVar="IfBlock1_clock" clockVal="kcg_true" inCtx="true"/>
+          <Local scadeName="_L3" scadeType="bool" targetName="_L3_IfBlock1" targetType="kcg_bool"
+              clockVar="IfBlock1_clock" clockVal="kcg_true" inCtx="true"/>
+        </Then>
+        <Else>
+          <Condition targetName="_1_else_clock_IfBlock1" inCtx="true">
+            <NodeInstance scadeName="=" instName="4"/>
+          </Condition>
+          <Then>
+            <Local scadeName="_L1" scadeType="Q_SCALE" targetName="_L1_IfBlock1" targetType="Q_SCALE"
+                clockVar="_1_else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+            <Local scadeName="_L3" scadeType="bool" targetName="_L32_IfBlock1" targetType="kcg_bool"
+                clockVar="_1_else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+          </Then>
+          <Else>
+            <Condition targetName="else_clock_IfBlock1" inCtx="true">
+              <NodeInstance scadeName="=" instName="3"/>
+            </Condition>
+            <Then>
+              <Local scadeName="_L1" scadeType="Q_SCALE" targetName="_L13_IfBlock1" targetType="Q_SCALE"
+                  clockVar="else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+              <Local scadeName="_L4" scadeType="bool" targetName="_L4_IfBlock1" targetType="kcg_bool"
+                  clockVar="else_clock_IfBlock1" clockVal="kcg_true" inCtx="true"/>
+            </Then>
+            <Else>
+              <Local scadeName="_L2" scadeType="bool" targetName="_L25_IfBlock1" targetType="kcg_bool"
+                  clockVar="else_clock_IfBlock1" clockVal="kcg_false" inCtx="true"/>
+              <Local scadeName="_L1" scadeType="Q_SCALE" targetName="_L14_IfBlock1" targetType="Q_SCALE"
+                  clockVar="else_clock_IfBlock1" clockVal="kcg_false" inCtx="true"/>
+            </Else>
+          </Else>
+        </Else>
+      </ActivateIf>
+      <OutCtxType targetName="outC_CAST_Int_to_Q_SCALE_TM_conversions"/>
+    </NoExpNode>
+    <NoExpNode scadeName="TOOLS_evaluate_N_ITER" headerFile="TOOLS_evaluate_N_ITER_TM_conversions.h"
+        targetCycleFct="TOOLS_evaluate_N_ITER_TM_conversions"
+        targetInitFct="TOOLS_evaluate_N_ITER_reset_TM_conversions">
+      <Input scadeName="valid_metadata" scadeType="bool" targetName="valid_metadata" targetType="kcg_bool"/>
+      <Input scadeName="n_section" scadeType="int" targetName="n_section" targetType="kcg_int"/>
+      <Input scadeName="N_ITER" scadeType="int" targetName="N_ITER" targetType="kcg_int"/>
+      <Output scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="int" targetName="_L1" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="int" targetName="_L2" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L3" scadeType="bool" targetName="_L3" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="bool" targetName="_L4" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L5" scadeType="bool" targetName="_L5" targetType="kcg_bool" inCtx="true"/>
+      <NodeInstance scadeName="&lt;=" instName="1"/>
+      <NodeInstance scadeName="and" instName="1"/>
+      <OutCtxType targetName="outC_TOOLS_evaluate_N_ITER_TM_conversions"/>
+    </NoExpNode>
+  </Package>
+  <Package scadeName="BG_Types_Pkg">
+    <Constant scadeName="cMaxNoOfLinkedBGs" scadeType="int" targetName="cMaxNoOfLinkedBGs_BG_Types_Pkg"
+        targetType="kcg_int" macroDef="true"/>
+    <NamedType scadeName="LinkedBG_T" targetName="LinkedBG_T_BG_Types_Pkg" refType="struct__953"/>
+    <NamedType scadeName="LinkedBGs_T" targetName="LinkedBGs_T_BG_Types_Pkg" refType="array__967"/>
+  </Package>
+  <Option name="root_node_name" value="TM::RECV_ReadPacket005_ForCalcTrainPos"/>
+  <Option name="target" value="C"/>
+  <Option name="target_dir"
+      value="C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation"/>
+  <Option name="exp" value="#off#"/>
+  <Option name="noexp" value="#off#"/>
+  <Option name="expall" value="#off#"/>
+  <Option name="global_root_context" value="#off#"/>
+  <Option name="optimization_level" value="0"/>
+  <Option name="macro_on_assert" value="#off#"/>
+  <Option name="global_prefix" value="#off#"/>
+  <Option name="name_length" value="200"/>
+  <Option name="significance_length" value="31"/>
+  <Option name="header" value="#off#"/>
+  <Option name="input_threshold" value="#off#"/>
+  <Option name="user_config" value="./user_macros.h"/>
+  <Option name="debug" value="#on#"/>
+  <Option name="observe" value="#off#"/>
+  <Option name="no_observe" value="#off#"/>
+  <Option name="probes" value="#on#"/>
+  <Option name="input_file"
+      value="C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation/scade_model_without_unused.scade"/>
+  <Option name="wrap_c_ops" value="#off#"/>
+  <Option name="no_bitwise" value="#off#"/>
+  <Option name="warn_error" value="#off#"/>
+  <Option name="static" value="#off#"/>
+  <Option name="state_vector" value="#off#"/>
+  <PredefType scadeName="real" targetName="kcg_real"/>
+  <PredefType scadeName="bool" targetName="kcg_bool"/>
+  <PredefType scadeName="char" targetName="kcg_char"/>
+  <PredefType scadeName="int" targetName="kcg_int"/>
+  <StructType targetName="struct__953" targetCopyFct="kcg_copy_struct__953" targetCompFct="kcg_comp_struct__953">
+    <Field scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool"/>
+    <Field scadeName="nid_LRBG" scadeType="NID_LRBG" targetName="nid_LRBG" targetType="kcg_int"/>
+    <Field scadeName="q_dir" scadeType="Q_DIR" targetName="q_dir" targetType="Q_DIR"/>
+    <Field scadeName="q_scale" scadeType="Q_SCALE" targetName="q_scale" targetType="Q_SCALE"/>
+    <Field scadeName="d_link" scadeType="D_LINK" targetName="d_link" targetType="kcg_int"/>
+    <Field scadeName="q_newcountry" scadeType="Q_NEWCOUNTRY" targetName="q_newcountry" targetType="Q_NEWCOUNTRY"/>
+    <Field scadeName="nid_c" scadeType="NID_C" targetName="nid_c" targetType="kcg_int"/>
+    <Field scadeName="nid_bg" scadeType="NID_BG" targetName="nid_bg" targetType="kcg_int"/>
+    <Field scadeName="q_linkorientation" scadeType="Q_LINKORIENTATION" targetName="q_linkorientation"
+        targetType="Q_LINKORIENTATION"/>
+    <Field scadeName="q_linkreaction" scadeType="Q_LINKREACTION" targetName="q_linkreaction"
+        targetType="Q_LINKREACTION"/>
+    <Field scadeName="q_locacc" scadeType="Q_LOCACC" targetName="q_locacc" targetType="kcg_int"/>
+  </StructType>
+  <ArrayType targetName="array__967" cellType="struct__953" size="4" targetCopyFct="kcg_copy_array__967"
+      targetCompFct="kcg_comp_array__967"/>
+  <ArrayType targetName="array_int_7" cellType="kcg_int" size="7" targetCopyFct="kcg_copy_array_int_7"
+      targetCompFct="kcg_comp_array_int_7"/>
+  <ArrayType targetName="array_int_4" cellType="kcg_int" size="4" targetCopyFct="kcg_copy_array_int_4"
+      targetCompFct="kcg_comp_array_int_4"/>
+  <StructType targetName="struct__976" targetCopyFct="kcg_copy_struct__976" targetCompFct="kcg_comp_struct__976">
+    <Field scadeName="nid_packet" scadeType="NID_PACKET" targetName="nid_packet" targetType="kcg_int"/>
+    <Field scadeName="q_dir" scadeType="Q_DIR" targetName="q_dir" targetType="Q_DIR"/>
+    <Field scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool"/>
+    <Field scadeName="startAddress" scadeType="int" targetName="startAddress" targetType="kcg_int"/>
+    <Field scadeName="endAddress" scadeType="int" targetName="endAddress" targetType="kcg_int"/>
+  </StructType>
+  <ArrayType targetName="array_int_39" cellType="kcg_int" size="39" targetCopyFct="kcg_copy_array_int_39"
+      targetCompFct="kcg_comp_array_int_39"/>
+  <ArrayType targetName="array_int_500" cellType="kcg_int" size="500" targetCopyFct="kcg_copy_array_int_500"
+      targetCompFct="kcg_comp_array_int_500"/>
+  <ArrayType targetName="array__990" cellType="struct__976" size="30" targetCopyFct="kcg_copy_array__990"
+      targetCompFct="kcg_comp_array__990"/>
+  <StructType targetName="struct__993" targetCopyFct="kcg_copy_struct__993" targetCompFct="kcg_comp_struct__993">
+    <Field scadeName="PacketHeaders" scadeType="Common_Types_Pkg::Metadata_T" targetName="PacketHeaders"
+        targetType="array__990"/>
+    <Field scadeName="PacketData" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="PacketData"
+        targetType="array_int_500"/>
+  </StructType>
+  <ArrayType targetName="array_int_30" cellType="kcg_int" size="30" targetCopyFct="kcg_copy_array_int_30"
+      targetCompFct="kcg_comp_array_int_30"/>
+  <ArrayType targetName="array_int_500_500" cellType="array_int_500" size="500"
+      targetCopyFct="kcg_copy_array_int_500_500" targetCompFct="kcg_comp_array_int_500_500"/>
+</Model>
+<!--$*************** KCG Version 6.1.3 (build i6) ****************
+** kcg_trace.xml
+** Generation date: 2015-06-02T14:47:37
+*************************************************************$-->

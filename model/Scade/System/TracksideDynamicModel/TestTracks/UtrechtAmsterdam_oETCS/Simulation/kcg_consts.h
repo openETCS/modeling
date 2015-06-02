@@ -1,215 +1,80 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-04-25T17:50:03
+** Generation date: 2015-06-02T15:02:41
 *************************************************************$ */
 #ifndef _KCG_CONSTS_H_
 #define _KCG_CONSTS_H_
 
 #include "kcg_types.h"
 
-/* INT_Q_UPDOWN_uplink */
-#define INT_Q_UPDOWN_uplink 1
+/* TM::DEFAULT_Headers */
+extern const Metadata_T_Common_Types_Pkg DEFAULT_Headers_TM;
 
-/* ENUM_Q_UPDOWN_uplink_Q_UPDOWN */
-#define ENUM_Q_UPDOWN_uplink_Q_UPDOWN Q_UPDOWN_Up_link_telegram
-
-/* ENUM_Q_UPDOWN_downlink_Q_UPDOWN */
-#define ENUM_Q_UPDOWN_downlink_Q_UPDOWN Q_UPDOWN_Down_link_telegram
-
-/* INT_M_VERSION_previous_M */
-#define INT_M_VERSION_previous_M 15
-
-/* ENUM_M_VERSION_previous_M_VERSION */
-#define ENUM_M_VERSION_previous_M_VERSION M_VERSION_Previous_versions_according_to_e_g_EEIG_SRS_and_UIC_A200_SRS
-
-/* INT_M_VERSION_1_0 */
-#define INT_M_VERSION_1_0 16
-
-/* ENUM_M_VERSION_1_0_M_VERSION */
-#define ENUM_M_VERSION_1_0_M_VERSION M_VERSION_Version_1_0_introduced_in_SRS_1_2_0_and_reused_in_SRSs_2_0_0_and_2_2_2_and_2_3_0
-
-/* INT_M_VERSION_2_0 */
-#define INT_M_VERSION_2_0 32
-
-/* ENUM_M_VERSION_2_0_M_VERSION */
-#define ENUM_M_VERSION_2_0_M_VERSION M_VERSION_Version_2_0_introduced_in_SRS_3_3_0
-
-/* ENUM_M_VERSION_1_1_M_VERSION */
-#define ENUM_M_VERSION_1_1_M_VERSION M_VERSION_Version_1_1_introduced_in_SRS_3_3_0
-
-/* INT_Q_MEDIA_Balise */
-#define INT_Q_MEDIA_Balise 0
-
-/* ENUM_Q_MEDIA_Balise_Q_MEDIA */
-#define ENUM_Q_MEDIA_Balise_Q_MEDIA Q_MEDIA_Balise
-
-/* ENUM_Q_MEDIA_Loop_Q_MEDIA */
-#define ENUM_Q_MEDIA_Loop_Q_MEDIA Q_MEDIA_Loop
-
-/* ENUM_N_PIG_8th_N_PIG */
-#define ENUM_N_PIG_8th_N_PIG N_PIG_I_am_the_8th
-
-/* ENUM_N_PIG_7th_N_PIG */
-#define ENUM_N_PIG_7th_N_PIG N_PIG_I_am_the_7th
-
-/* ENUM_N_PIG_6th_N_PIG */
-#define ENUM_N_PIG_6th_N_PIG N_PIG_I_am_the_6th
-
-/* ENUM_N_PIG_5th_N_PIG */
-#define ENUM_N_PIG_5th_N_PIG N_PIG_I_am_the_5th
-
-/* ENUM_N_PIG_4th_N_PIG */
-#define ENUM_N_PIG_4th_N_PIG N_PIG_I_am_the_4th
-
-/* ENUM_N_PIG_3rd_N_PIG */
-#define ENUM_N_PIG_3rd_N_PIG N_PIG_I_am_the_3rd
-
-/* ENUM_N_PIG_2nd_N_PIG */
-#define ENUM_N_PIG_2nd_N_PIG N_PIG_I_am_the_2nd
-
-/* ENUM_N_PIG_1st_N_PIG */
-#define ENUM_N_PIG_1st_N_PIG N_PIG_I_am_the_1st
-
-/* ENUM_N_TOTAL_6_N_TOTAL */
-#define ENUM_N_TOTAL_6_N_TOTAL N_TOTAL_6_balises_in_the_group
-
-/* ENUM_N_TOTAL_7_N_TOTAL */
-#define ENUM_N_TOTAL_7_N_TOTAL N_TOTAL_7_balises_in_the_group
-
-/* ENUM_N_TOTAL_5_N_TOTAL */
-#define ENUM_N_TOTAL_5_N_TOTAL N_TOTAL_5_balises_in_the_group
-
-/* ENUM_N_TOTAL_4_N_TOTAL */
-#define ENUM_N_TOTAL_4_N_TOTAL N_TOTAL_4_balises_in_the_group
-
-/* ENUM_N_TOTAL_3_N_TOTAL */
-#define ENUM_N_TOTAL_3_N_TOTAL N_TOTAL_3_balises_in_the_group
-
-/* ENUM_N_TOTAL_2_N_TOTAL */
-#define ENUM_N_TOTAL_2_N_TOTAL N_TOTAL_2_balises_in_the_group
-
-/* ENUM_N_TOTAL_1_N_TOTAL */
-#define ENUM_N_TOTAL_1_N_TOTAL N_TOTAL_1_balise_in_the_group
-
-/* INT_M_DUP_duplicate_of_next */
-#define INT_M_DUP_duplicate_of_next 1
-
-/* INT_M_DUP_duplicate_of_previous */
-#define INT_M_DUP_duplicate_of_previous 2
-
-/* INT_M_DUP_no_duplicates */
-#define INT_M_DUP_no_duplicates 0
-
-/* ENUM_M_DUP_duplicate_of_next */
-#define ENUM_M_DUP_duplicate_of_next _1_M_DUP_This_balise_is_a_duplicate_of_the_next_balise
-
-/* ENUM_M_DUP_no_duplicates */
-#define ENUM_M_DUP_no_duplicates M_DUP_No_duplicates
-
-/* ENUM_M_DUP_duplicate_of_previous */
-#define ENUM_M_DUP_duplicate_of_previous M_DUP_This_balise_is_a_duplicate_of_the_previous_balise
-
-/* INT_Q_LINK_linked */
-#define INT_Q_LINK_linked 1
-
-/* ENUM_Q_LINK_linked_Q_LINK */
-#define ENUM_Q_LINK_linked_Q_LINK Q_LINK_Linked
-
-/* ENUM_Q_LINK_unlinked_Q_LINK */
-#define ENUM_Q_LINK_unlinked_Q_LINK Q_LINK_Unlinked
-
-/* DEFAULT_BTMMessage */
-extern const TM_CompressedBaliseMessage DEFAULT_BTMMessage;
-
-/* DIM_MaxElementsPacket005 */
-#define DIM_MaxElementsPacket005 39
-
-/* INT_Q_DIR_nomiinal */
-#define INT_Q_DIR_nomiinal 1
-
-/* ENUM_Q_DIR_nomiinal_QDIR */
-#define ENUM_Q_DIR_nomiinal_QDIR Q_DIR_Nominal
-
-/* INT_Q_DIR_both */
-#define INT_Q_DIR_both 2
-
-/* ENUM_Q_DIR_both_QDIR */
-#define ENUM_Q_DIR_both_QDIR Q_DIR_Reverse
-
-/* ENUM_Q_DIR_reverse_QDIR */
-#define ENUM_Q_DIR_reverse_QDIR Q_DIR_Reverse
-
-/* DIM_MaxRMessages */
-#define DIM_MaxRMessages 30
-
-/* DEFAULT_Headers */
-extern const Metadata_T_Common_Types_Pkg DEFAULT_Headers;
-
-/* Balises426::BG364_P005 */
-extern const TM_P005 BG364_P005_Balises426;
+/* Packets426::BG364_P005 */
+extern const P005_TM BG364_P005_Packets426;
 
 /* Balises426::BG364_header_B1 */
-extern const TM_BaliseTelegramHeader_int_T BG364_header_B1_Balises426;
+extern const BaliseTelegramHeader_int_T_TM BG364_header_B1_Balises426;
 
 /* Balises426::BG364_header_B0 */
-extern const TM_BaliseTelegramHeader_int_T BG364_header_B0_Balises426;
-
-/* Balises426::BG365_header_B0 */
-extern const TM_BaliseTelegramHeader_int_T BG365_header_B0_Balises426;
-
-/* Balises426::BG365_header_B1 */
-extern const TM_BaliseTelegramHeader_int_T BG365_header_B1_Balises426;
-
-/* Balises426::BG366_header_B0 */
-extern const TM_BaliseTelegramHeader_int_T BG366_header_B0_Balises426;
-
-/* Balises426::BG366_header_B1 */
-extern const TM_BaliseTelegramHeader_int_T BG366_header_B1_Balises426;
+extern const BaliseTelegramHeader_int_T_TM BG364_header_B0_Balises426;
 
 /* Balises426::BG367_header_B0 */
-extern const TM_BaliseTelegramHeader_int_T BG367_header_B0_Balises426;
+extern const BaliseTelegramHeader_int_T_TM BG367_header_B0_Balises426;
 
 /* Balises426::BG367_header_B1 */
-extern const TM_BaliseTelegramHeader_int_T BG367_header_B1_Balises426;
+extern const BaliseTelegramHeader_int_T_TM BG367_header_B1_Balises426;
 
 /* Balises426::BG368_header_B1 */
-extern const TM_BaliseTelegramHeader_int_T BG368_header_B1_Balises426;
+extern const BaliseTelegramHeader_int_T_TM BG368_header_B1_Balises426;
 
 /* Balises426::BG368_header_B0 */
-extern const TM_BaliseTelegramHeader_int_T BG368_header_B0_Balises426;
+extern const BaliseTelegramHeader_int_T_TM BG368_header_B0_Balises426;
+
+/* Balises426::BG366_header_B0 */
+extern const BaliseTelegramHeader_int_T_TM BG366_header_B0_Balises426;
+
+/* Balises426::BG366_header_B1 */
+extern const BaliseTelegramHeader_int_T_TM BG366_header_B1_Balises426;
 
 /* Balises426::BG369_header_B1 */
-extern const TM_BaliseTelegramHeader_int_T BG369_header_B1_Balises426;
+extern const BaliseTelegramHeader_int_T_TM BG369_header_B1_Balises426;
 
 /* Balises426::BG369_header_B0 */
-extern const TM_BaliseTelegramHeader_int_T BG369_header_B0_Balises426;
+extern const BaliseTelegramHeader_int_T_TM BG369_header_B0_Balises426;
 
-/* FirstTest::InfraLib::DEFAULT_BaliseTelegramHd */
-extern const TM_BaliseTelegramHeader_int_T DEFAULT_BaliseTelegramHd_FirstTest_InfraLib;
+/* Balises426::BG365_header_B0 */
+extern const BaliseTelegramHeader_int_T_TM BG365_header_B0_Balises426;
 
-/* DEFAULT_TM_BaliseHeaderInt */
-extern const TM_BaliseTelegramHeader_int_T DEFAULT_TM_BaliseHeaderInt;
+/* Balises426::BG365_header_B1 */
+extern const BaliseTelegramHeader_int_T_TM BG365_header_B1_Balises426;
 
-/* DEFAULT_Packets */
-extern const CompressedPackets_T_Common_Types_Pkg DEFAULT_Packets;
+/* FirstTest::InfraLibInt::DEFAULT_BaliseTelegramHd */
+extern const BaliseTelegramHeader_int_T_TM DEFAULT_BaliseTelegramHd_FirstTest_InfraLibInt;
 
-/* DIM_scale_eng_location */
-#define DIM_scale_eng_location 1.0
+/* TM::DEFAULT_TM_BaliseHeaderInt */
+extern const BaliseTelegramHeader_int_T_TM DEFAULT_TM_BaliseHeaderInt_TM;
 
-/* FirstTest::InfraLib::Distance_Balises_in_BG */
-#define Distance_Balises_in_BG_FirstTest_InfraLib 2.0
+/* TM::DEFAULT_Packets */
+extern const CompressedPackets_T_Common_Types_Pkg DEFAULT_Packets_TM;
+
+/* FirstTest::InfraLibInt::Distance_Balises_in_BG */
+#define Distance_Balises_in_BG_FirstTest_InfraLibInt 2.0
+
+/* TM::DIM_scale_eng_location */
+#define DIM_scale_eng_location_TM 1.0
+
+/* Balises426::BG341_header_B0 */
+extern const BaliseTelegramHeader_int_T_TM BG341_header_B0_Balises426;
 
 /* Balises426::BG341_header_B1 */
-extern const TM_BaliseTelegramHeader_int_T BG341_header_B1_Balises426;
+extern const BaliseTelegramHeader_int_T_TM BG341_header_B1_Balises426;
+
+/* TM::DEFAULT_BTMMessage */
+extern const CompressedBaliseMessage_TM DEFAULT_BTMMessage_TM;
 
 /* Balises426::BG364 */
 extern const BaliseGroupData_Basics BG364_Balises426;
-
-/* Balises426::BG365 */
-extern const BaliseGroupData_Basics BG365_Balises426;
-
-/* Balises426::BG366 */
-extern const BaliseGroupData_Basics BG366_Balises426;
 
 /* Balises426::BG367 */
 extern const BaliseGroupData_Basics BG367_Balises426;
@@ -217,11 +82,281 @@ extern const BaliseGroupData_Basics BG367_Balises426;
 /* Balises426::BG368 */
 extern const BaliseGroupData_Basics BG368_Balises426;
 
+/* Balises426::BG366 */
+extern const BaliseGroupData_Basics BG366_Balises426;
+
 /* Balises426::BG369 */
 extern const BaliseGroupData_Basics BG369_Balises426;
 
+/* Balises426::BG365 */
+extern const BaliseGroupData_Basics BG365_Balises426;
+
 /* Balises426::BG341 */
 extern const BaliseGroupData_Basics BG341_Balises426;
+
+/* TM_conversions::INT_Q_UPDOWN_downlink */
+#define INT_Q_UPDOWN_downlink_TM_conversions 0
+
+/* TM_conversions::INT_Q_UPDOWN_uplink */
+#define INT_Q_UPDOWN_uplink_TM_conversions 1
+
+/* TM_conversions::ENUM_Q_UPDOWN_downlink */
+#define ENUM_Q_UPDOWN_downlink_TM_conversions Q_UPDOWN_Down_link_telegram
+
+/* TM_conversions::ENUM_Q_UPDOWN_uplink */
+#define ENUM_Q_UPDOWN_uplink_TM_conversions Q_UPDOWN_Up_link_telegram
+
+/* TM_conversions::INT_M_VERSION_previous_M */
+#define INT_M_VERSION_previous_M_TM_conversions 15
+
+/* TM_conversions::INT_M_VERSION_1_0 */
+#define INT_M_VERSION_1_0_TM_conversions 16
+
+/* TM_conversions::INT_M_VERSION_1_1 */
+#define INT_M_VERSION_1_1_TM_conversions 17
+
+/* TM_conversions::INT_M_VERSION_2_0 */
+#define INT_M_VERSION_2_0_TM_conversions 32
+
+/* TM_conversions::ENUM_M_VERSION_Previous_versions */
+#define ENUM_M_VERSION_Previous_versions_TM_conversions M_VERSION_Previous_versions_according_to_e_g_EEIG_SRS_and_UIC_A200_SRS
+
+/* TM_conversions::ENUM_M_VERSION_Version_2_0 */
+#define ENUM_M_VERSION_Version_2_0_TM_conversions M_VERSION_Version_2_0_introduced_in_SRS_3_3_0
+
+/* TM_conversions::ENUM_M_VERSION_Version_1_1 */
+#define ENUM_M_VERSION_Version_1_1_TM_conversions M_VERSION_Version_1_1_introduced_in_SRS_3_3_0
+
+/* TM_conversions::ENUM_M_VERSION_Version_1_0 */
+#define ENUM_M_VERSION_Version_1_0_TM_conversions M_VERSION_Version_1_0_introduced_in_SRS_1_2_0_and_reused_in_SRSs_2_0_0_and_2_2_2_and_2_3_0
+
+/* TM_conversions::INT_Q_MEDIA_Balise */
+#define INT_Q_MEDIA_Balise_TM_conversions 0
+
+/* TM_conversions::INT_Q_MEDIA_Loop */
+#define INT_Q_MEDIA_Loop_TM_conversions 1
+
+/* TM_conversions::ENUM_Q_MEDIA_Balise */
+#define ENUM_Q_MEDIA_Balise_TM_conversions Q_MEDIA_Balise
+
+/* TM_conversions::ENUM_Q_MEDIA_Loop */
+#define ENUM_Q_MEDIA_Loop_TM_conversions Q_MEDIA_Loop
+
+/* TM_conversions::INT_N_PIG_1st */
+#define INT_N_PIG_1st_TM_conversions 0
+
+/* TM_conversions::INT_N_PIG_2nd */
+#define INT_N_PIG_2nd_TM_conversions 1
+
+/* TM_conversions::INT_N_PIG_3rd */
+#define INT_N_PIG_3rd_TM_conversions 2
+
+/* TM_conversions::INT_N_PIG_4th */
+#define INT_N_PIG_4th_TM_conversions 3
+
+/* TM_conversions::INT_N_PIG_5th */
+#define INT_N_PIG_5th_TM_conversions 4
+
+/* TM_conversions::INT_N_PIG_6th */
+#define INT_N_PIG_6th_TM_conversions 5
+
+/* TM_conversions::INT_N_PIG_7th */
+#define INT_N_PIG_7th_TM_conversions 6
+
+/* TM_conversions::INT_N_PIG_8th */
+#define INT_N_PIG_8th_TM_conversions 7
+
+/* TM_conversions::ENUM_N_PIG_8th */
+#define ENUM_N_PIG_8th_TM_conversions N_PIG_I_am_the_8th
+
+/* TM_conversions::ENUM_N_PIG_7th */
+#define ENUM_N_PIG_7th_TM_conversions N_PIG_I_am_the_7th
+
+/* TM_conversions::ENUM_N_PIG_6th */
+#define ENUM_N_PIG_6th_TM_conversions N_PIG_I_am_the_6th
+
+/* TM_conversions::ENUM_N_PIG_5th */
+#define ENUM_N_PIG_5th_TM_conversions N_PIG_I_am_the_5th
+
+/* TM_conversions::ENUM_N_PIG_4th */
+#define ENUM_N_PIG_4th_TM_conversions N_PIG_I_am_the_4th
+
+/* TM_conversions::ENUM_N_PIG_3rd */
+#define ENUM_N_PIG_3rd_TM_conversions N_PIG_I_am_the_3rd
+
+/* TM_conversions::ENUM_N_PIG_2nd */
+#define ENUM_N_PIG_2nd_TM_conversions N_PIG_I_am_the_2nd
+
+/* TM_conversions::ENUM_N_PIG_1st */
+#define ENUM_N_PIG_1st_TM_conversions N_PIG_I_am_the_1st
+
+/* TM_conversions::INT_N_TOTAL_1 */
+#define INT_N_TOTAL_1_TM_conversions 0
+
+/* TM_conversions::INT_N_TOTAL_2 */
+#define INT_N_TOTAL_2_TM_conversions 1
+
+/* TM_conversions::INT_N_TOTAL_3 */
+#define INT_N_TOTAL_3_TM_conversions 2
+
+/* TM_conversions::INT_N_TOTAL_4 */
+#define INT_N_TOTAL_4_TM_conversions 3
+
+/* TM_conversions::INT_N_TOTAL_5 */
+#define INT_N_TOTAL_5_TM_conversions 4
+
+/* TM_conversions::INT_N_TOTAL_6 */
+#define INT_N_TOTAL_6_TM_conversions 5
+
+/* TM_conversions::INT_N_TOTAL_7 */
+#define INT_N_TOTAL_7_TM_conversions 6
+
+/* TM_conversions::INT_N_TOTAL_8 */
+#define INT_N_TOTAL_8_TM_conversions 7
+
+/* TM_conversions::ENUM_N_TOTAL_8 */
+#define ENUM_N_TOTAL_8_TM_conversions N_TOTAL_8_balises_in_the_group
+
+/* TM_conversions::ENUM_N_TOTAL_7 */
+#define ENUM_N_TOTAL_7_TM_conversions N_TOTAL_7_balises_in_the_group
+
+/* TM_conversions::ENUM_N_TOTAL_6 */
+#define ENUM_N_TOTAL_6_TM_conversions N_TOTAL_6_balises_in_the_group
+
+/* TM_conversions::ENUM_N_TOTAL_5 */
+#define ENUM_N_TOTAL_5_TM_conversions N_TOTAL_5_balises_in_the_group
+
+/* TM_conversions::ENUM_N_TOTAL_4 */
+#define ENUM_N_TOTAL_4_TM_conversions N_TOTAL_4_balises_in_the_group
+
+/* TM_conversions::ENUM_N_TOTAL_3 */
+#define ENUM_N_TOTAL_3_TM_conversions N_TOTAL_3_balises_in_the_group
+
+/* TM_conversions::ENUM_N_TOTAL_2 */
+#define ENUM_N_TOTAL_2_TM_conversions N_TOTAL_2_balises_in_the_group
+
+/* TM_conversions::ENUM_N_TOTAL_1 */
+#define ENUM_N_TOTAL_1_TM_conversions N_TOTAL_1_balise_in_the_group
+
+/* TM_conversions::INT_M_DUP_duplicate_of_next */
+#define INT_M_DUP_duplicate_of_next_TM_conversions 1
+
+/* TM_conversions::INT_M_DUP_duplicate_of_previous */
+#define INT_M_DUP_duplicate_of_previous_TM_conversions 2
+
+/* TM_conversions::INT_M_DUP_no_duplicates */
+#define INT_M_DUP_no_duplicates_TM_conversions 0
+
+/* TM_conversions::ENUM_M_DUP_duplicate_of_next */
+#define ENUM_M_DUP_duplicate_of_next_TM_conversions _2_M_DUP_This_balise_is_a_duplicate_of_the_next_balise
+
+/* TM_conversions::ENUM_M_DUP_no_duplicates */
+#define ENUM_M_DUP_no_duplicates_TM_conversions M_DUP_No_duplicates
+
+/* TM_conversions::ENUM_M_DUP_duplicate_of_previous */
+#define ENUM_M_DUP_duplicate_of_previous_TM_conversions M_DUP_This_balise_is_a_duplicate_of_the_previous_balise
+
+/* TM_conversions::INT_Q_LINK_linked */
+#define INT_Q_LINK_linked_TM_conversions 1
+
+/* TM_conversions::INT_Q_LINK_unlinked */
+#define INT_Q_LINK_unlinked_TM_conversions 0
+
+/* TM_conversions::ENUM_Q_LINK_linked */
+#define ENUM_Q_LINK_linked_TM_conversions Q_LINK_Linked
+
+/* TM_conversions::ENUM_Q_LINK_unlinked */
+#define ENUM_Q_LINK_unlinked_TM_conversions Q_LINK_Unlinked
+
+/* TM::DIM_MaxElementsPacket005 */
+#define DIM_MaxElementsPacket005_TM 39
+
+/* TM_conversions::INT_Q_DIR_nomiinal */
+#define INT_Q_DIR_nomiinal_TM_conversions 1
+
+/* TM_conversions::INT_Q_DIR_reverse */
+#define INT_Q_DIR_reverse_TM_conversions 0
+
+/* TM_conversions::INT_Q_DIR_both */
+#define INT_Q_DIR_both_TM_conversions 2
+
+/* TM_conversions::ENUM_Q_DIR_both */
+#define ENUM_Q_DIR_both_TM_conversions Q_DIR_Reverse
+
+/* TM_conversions::ENUM_Q_DIR_reverse */
+#define ENUM_Q_DIR_reverse_TM_conversions Q_DIR_Reverse
+
+/* TM_conversions::ENUM_Q_DIR_nominal */
+#define ENUM_Q_DIR_nominal_TM_conversions Q_DIR_Nominal
+
+/* TM_conversions::INT_Q_LINKREACTION_Train_trip */
+#define INT_Q_LINKREACTION_Train_trip_TM_conversions 0
+
+/* TM_conversions::INT_Q_LINKREACTION_Apply_servicebrake */
+#define INT_Q_LINKREACTION_Apply_servicebrake_TM_conversions 1
+
+/* TM_conversions::INT_Q_LINKREACTION_No_Reaction */
+#define INT_Q_LINKREACTION_No_Reaction_TM_conversions 2
+
+/* TM_conversions::ENUM_Q_LINKREACTION_Train_trip */
+#define ENUM_Q_LINKREACTION_Train_trip_TM_conversions Q_LINKREACTION_Train_trip
+
+/* TM_conversions::ENUM_Q_LINKREACTION_No_Reaction */
+#define ENUM_Q_LINKREACTION_No_Reaction_TM_conversions Q_LINKREACTION_No_Reaction
+
+/* TM_conversions::ENUM_Q_LINKREACTION_Apply_servicebrake */
+#define ENUM_Q_LINKREACTION_Apply_servicebrake_TM_conversions Q_LINKREACTION_Apply_service_brake
+
+/* TM_conversions::INT_Q_LINKORIENTATION_nominal */
+#define INT_Q_LINKORIENTATION_nominal_TM_conversions 1
+
+/* TM_conversions::INT_Q_LINKORIENTATION_reverse */
+#define INT_Q_LINKORIENTATION_reverse_TM_conversions 0
+
+/* TM_conversions::ENUM_Q_LINKORIENTATION_reverse */
+#define ENUM_Q_LINKORIENTATION_reverse_TM_conversions _1_Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction
+
+/* TM_conversions::ENUM_Q_LINKORIENTATION_nominal */
+#define ENUM_Q_LINKORIENTATION_nominal_TM_conversions Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_nominal_direction
+
+/* TM_conversions::INT_Q_NEWCOUNTRY_same */
+#define INT_Q_NEWCOUNTRY_same_TM_conversions 0
+
+/* TM_conversions::INT_Q_NEWCOUNTRY_not_same */
+#define INT_Q_NEWCOUNTRY_not_same_TM_conversions 1
+
+/* TM_conversions::ENUM_Q_NEWCOUNTRY_not_same */
+#define ENUM_Q_NEWCOUNTRY_not_same_TM_conversions Q_NEWCOUNTRY_Same_country__or__railway_administration_no_NID_C_follows
+
+/* TM_conversions::ENUM_Q_NEWCOUNTRY_same */
+#define ENUM_Q_NEWCOUNTRY_same_TM_conversions Q_NEWCOUNTRY_Same_country__or__railway_administration_no_NID_C_follows
+
+/* TM_conversions::INT_Q_SCALE_10cm */
+#define INT_Q_SCALE_10cm_TM_conversions 0
+
+/* TM_conversions::INT_Q_SCALE_1m */
+#define INT_Q_SCALE_1m_TM_conversions 1
+
+/* TM_conversions::INT_Q_SCALE_10m */
+#define INT_Q_SCALE_10m_TM_conversions 2
+
+/* TM_conversions::ENUM_Q_SCALE_10cm */
+#define ENUM_Q_SCALE_10cm_TM_conversions Q_SCALE_10_cm_scale
+
+/* TM_conversions::ENUM_Q_SCALE_10m */
+#define ENUM_Q_SCALE_10m_TM_conversions Q_SCALE_10_m_scale
+
+/* TM_conversions::ENUM_Q_SCALE_1m */
+#define ENUM_Q_SCALE_1m_TM_conversions Q_SCALE_1_m_scale
+
+/* TM::DEFAULT_CompressedPackets */
+extern const CompressedPacketData_T_Common_Types_Pkg DEFAULT_CompressedPackets_TM;
+
+/* TM::DIM_MaxRMessages */
+#define DIM_MaxRMessages_TM 30
+
+/* TM::DEFAULT_PHeader */
+extern const MetadataElement_T_Common_Types_Pkg DEFAULT_PHeader_TM;
 
 /* Common_Types_Pkg::cMetadataArraySize */
 #define cMetadataArraySize_Common_Types_Pkg cDIM_MaxRMessages_Common_Types_Pkg
@@ -232,9 +367,12 @@ extern const BaliseGroupData_Basics BG341_Balises426;
 /* Common_Types_Pkg::cDIM_MaxDataElementsInRMessage */
 #define cDIM_MaxDataElementsInRMessage_Common_Types_Pkg 500
 
+/* BG_Types_Pkg::cMaxNoOfLinkedBGs */
+#define cMaxNoOfLinkedBGs_BG_Types_Pkg 4
+
 #endif /* _KCG_CONSTS_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_consts.h
-** Generation date: 2015-04-25T17:50:03
+** Generation date: 2015-06-02T15:02:41
 *************************************************************$ */
 

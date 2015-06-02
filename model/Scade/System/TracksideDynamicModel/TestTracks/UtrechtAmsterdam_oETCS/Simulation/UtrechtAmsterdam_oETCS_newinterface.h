@@ -1,18 +1,18 @@
-#ifndef STORY00A_FIRSTTEST_INTERFACE
-#define STORY00A_FIRSTTEST_INTERFACE
+#ifndef TESTSTORYY00A_P005_INTERNAL_INTERFACE
+#define TESTSTORYY00A_P005_INTERNAL_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "Story00A_FirstTest.h"
+#include "TestStoryy00A_P005_Internal.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_Story00A_FirstTest inputs_ctx;
-extern outC_Story00A_FirstTest outputs_ctx;
+extern inC_TestStoryy00A_P005_Internal inputs_ctx;
+extern outC_TestStoryy00A_P005_Internal outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*STORY00A_FIRSTTEST_INTERFACE */
+#endif /*TESTSTORYY00A_P005_INTERNAL_INTERFACE */
