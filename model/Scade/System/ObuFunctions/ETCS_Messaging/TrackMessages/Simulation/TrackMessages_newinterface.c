@@ -1,7 +1,7 @@
 #include "TrackMessages_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "45615ce392d29852ccdba060a268a26d";
+const char* _SCSIM_CheckSum = "be7aa6facf0669aa247946bb6cfbabb9";
 const char* _SCSIM_SmuTypesCheckSum = "d5b51fa9eff9683da46173266ac496c5";
 
 /*******************************
@@ -17,19 +17,19 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-inC_RECV_ReadPacket005_ForCal_TM inputs_ctx;
-static inC_RECV_ReadPacket005_ForCal_TM inputs_ctx_restore;
-static inC_RECV_ReadPacket005_ForCal_TM inputs_ctx_execute;
-outC_RECV_ReadPacket005_ForCal_TM outputs_ctx;
-static outC_RECV_ReadPacket005_ForCal_TM outputs_ctx_restore;
+inC_C_P005_unflatten_sections_TM_lib_internal inputs_ctx;
+static inC_C_P005_unflatten_sections_TM_lib_internal inputs_ctx_restore;
+static inC_C_P005_unflatten_sections_TM_lib_internal inputs_ctx_execute;
+outC_C_P005_unflatten_sections_TM_lib_internal outputs_ctx;
+static outC_C_P005_unflatten_sections_TM_lib_internal outputs_ctx_restore;
 
 /* separate_io: inputs instanciation */
 
 /* separate_io: outputs instanciation */
 
 static void _SCSIM_RestoreInterface(void) {
-	kcg_copy_struct__993(&(inputs_ctx.RadioMessage_IN), &(inputs_ctx_restore.RadioMessage_IN));
-	inputs_ctx.LRBG = inputs_ctx_restore.LRBG;
+	inputs_ctx.n_iter = inputs_ctx_restore.n_iter;
+	kcg_copy_array_int_224(&(inputs_ctx.flat), &(inputs_ctx_restore.flat));
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -37,8 +37,8 @@ static void _SCSIM_RestoreInterface(void) {
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	kcg_copy_struct__993(&(inputs_ctx_execute.RadioMessage_IN), &(inputs_ctx.RadioMessage_IN));
-	inputs_ctx_execute.LRBG = inputs_ctx.LRBG;
+	inputs_ctx_execute.n_iter = inputs_ctx.n_iter;
+	kcg_copy_array_int_224(&(inputs_ctx_execute.flat), &(inputs_ctx.flat));
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
@@ -51,7 +51,7 @@ void SimInit(void) {
 #ifdef EXTENDED_SIM
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
-	RECV_ReadPacket005_ForCal_reset_TM(&outputs_ctx);
+	C_P005_unflatten_sections_reset_TM_lib_internal(&outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimInit();
 #endif /* EXTENDED_SIM */
@@ -66,7 +66,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	RECV_ReadPacket005_ForCal_TM(&inputs_ctx_execute, &outputs_ctx);
+	C_P005_unflatten_sections_TM_lib_internal(&inputs_ctx_execute, &outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -81,12 +81,12 @@ void SimStop(void) {
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(inC_RECV_ReadPacket005_ForCal_TM);
+	nSize += sizeof(inC_C_P005_unflatten_sections_TM_lib_internal);
 
 /* separate_io: add (not in ctx) inputs size */
 
 /* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_RECV_ReadPacket005_ForCal_TM);
+	nSize += sizeof(outC_C_P005_unflatten_sections_TM_lib_internal);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -95,14 +95,14 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &inputs_ctx, sizeof(inC_RECV_ReadPacket005_ForCal_TM));
-	pCurrent += sizeof(inC_RECV_ReadPacket005_ForCal_TM);
+	memcpy(pCurrent, &inputs_ctx, sizeof(inC_C_P005_unflatten_sections_TM_lib_internal));
+	pCurrent += sizeof(inC_C_P005_unflatten_sections_TM_lib_internal);
 
 	/* separate_io: dump (not in ctx) inputs */
 
 	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_RECV_ReadPacket005_ForCal_TM));
-	pCurrent += sizeof(outC_RECV_ReadPacket005_ForCal_TM);
+	memcpy(pCurrent, &outputs_ctx, sizeof(outC_C_P005_unflatten_sections_TM_lib_internal));
+	pCurrent += sizeof(outC_C_P005_unflatten_sections_TM_lib_internal);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -110,14 +110,14 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&inputs_ctx, pCurrent, sizeof(inC_RECV_ReadPacket005_ForCal_TM));
-	pCurrent += sizeof(inC_RECV_ReadPacket005_ForCal_TM);
+	memcpy(&inputs_ctx, pCurrent, sizeof(inC_C_P005_unflatten_sections_TM_lib_internal));
+	pCurrent += sizeof(inC_C_P005_unflatten_sections_TM_lib_internal);
 
 	/* separate_io: restore (not in ctx) inputs */
 
 	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_RECV_ReadPacket005_ForCal_TM));
-	pCurrent += sizeof(outC_RECV_ReadPacket005_ForCal_TM);
+	memcpy(&outputs_ctx, pCurrent, sizeof(outC_C_P005_unflatten_sections_TM_lib_internal));
+	pCurrent += sizeof(outC_C_P005_unflatten_sections_TM_lib_internal);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */

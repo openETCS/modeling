@@ -574,305 +574,299 @@ SimTypeUtils _Type_kcg_int_Utils = {
 };
 
 /****************************************************************
- ** struct__953 
+ ** struct__532 
  ****************************************************************/
 
-struct SimTypeVTable *pSimstruct__953VTable;
+struct SimTypeVTable *pSimstruct__532VTable;
 
-static SimFieldUtils struct__953_fields[] = {
-    {"valid", offsetof(struct__953,valid), &_Type_kcg_bool_Utils},
-    {"nid_LRBG", offsetof(struct__953,nid_LRBG), &_Type_kcg_int_Utils},
-    {"q_dir", offsetof(struct__953,q_dir), &_Type_Q_DIR_Utils},
-    {"q_scale", offsetof(struct__953,q_scale), &_Type_Q_SCALE_Utils},
-    {"d_link", offsetof(struct__953,d_link), &_Type_kcg_int_Utils},
-    {"q_newcountry", offsetof(struct__953,q_newcountry), &_Type_Q_NEWCOUNTRY_Utils},
-    {"nid_c", offsetof(struct__953,nid_c), &_Type_kcg_int_Utils},
-    {"nid_bg", offsetof(struct__953,nid_bg), &_Type_kcg_int_Utils},
-    {"q_linkorientation", offsetof(struct__953,q_linkorientation), &_Type_Q_LINKORIENTATION_Utils},
-    {"q_linkreaction", offsetof(struct__953,q_linkreaction), &_Type_Q_LINKREACTION_Utils},
-    {"q_locacc", offsetof(struct__953,q_locacc), &_Type_kcg_int_Utils},
+static SimFieldUtils struct__532_fields[] = {
+    {"valid", offsetof(struct__532,valid), &_Type_kcg_bool_Utils},
+    {"d_link", offsetof(struct__532,d_link), &_Type_kcg_int_Utils},
+    {"q_newcountry", offsetof(struct__532,q_newcountry), &_Type_Q_NEWCOUNTRY_Utils},
+    {"nid_c", offsetof(struct__532,nid_c), &_Type_kcg_int_Utils},
+    {"nid_bg", offsetof(struct__532,nid_bg), &_Type_kcg_int_Utils},
+    {"q_linkorientation", offsetof(struct__532,q_linkorientation), &_Type_Q_LINKORIENTATION_Utils},
+    {"q_linkreaction", offsetof(struct__532,q_linkreaction), &_Type_Q_LINKREACTION_Utils},
+    {"q_locacc", offsetof(struct__532,q_locacc), &_Type_kcg_int_Utils},
 };
 
-int struct__953_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+int struct__532_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
 {
-    if (pSimstruct__953VTable != NULL
-        && pSimstruct__953VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimstruct__953VTable->m_pfnToType(SptString, pValue), pData);
+    if (pSimstruct__532VTable != NULL
+        && pSimstruct__532VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimstruct__532VTable->m_pfnToType(SptString, pValue), pData);
     }
-    return pConverter->m_pfnStructureToString(pValue, struct__953_fields, 11, pfnStrAppend, pData);
+    return pConverter->m_pfnStructureToString(pValue, struct__532_fields, 8, pfnStrAppend, pData);
 }
 
-int string_to_struct__953(const char *str, void *pValue, char **endptr)
+int string_to_struct__532(const char *str, void *pValue, char **endptr)
 {
     int nRet=0;
     skip_whitespace(str);
-    if (pSimstruct__953VTable != NULL) {
-        nRet=string_to_VTable(str, pSimstruct__953VTable, pValue, endptr);
+    if (pSimstruct__532VTable != NULL) {
+        nRet=string_to_VTable(str, pSimstruct__532VTable, pValue, endptr);
     }
     if (nRet==0) {
-        nRet=pConverter->m_pfnStringToStructure(str, pValue, struct__953_fields, 11, endptr);
+        nRet=pConverter->m_pfnStringToStructure(str, pValue, struct__532_fields, 8, endptr);
     }
     return nRet;
 }
 
-int is_struct__953_double_convertion_allowed()
+int is_struct__532_double_convertion_allowed()
 {
-    if (pSimstruct__953VTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimstruct__953VTable);
+    if (pSimstruct__532VTable != NULL) {
+        return is_VTable_double_convertion_allowed(pSimstruct__532VTable);
     }
     return 0;
 }
 
-void compare_struct__953(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+void compare_struct__532(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
 {
     int unitResult=0;
     /* Customized comparison */
-    if (pSimstruct__953VTable != NULL
-        && pSimstruct__953VTable->m_version >= Scv612
-        && pSimstruct__953VTable->m_pfnCompare != NULL) {
-        if (pSimstruct__953VTable->m_version >= Scv65) {
+    if (pSimstruct__532VTable != NULL
+        && pSimstruct__532VTable->m_version >= Scv612
+        && pSimstruct__532VTable->m_pfnCompare != NULL) {
+        if (pSimstruct__532VTable->m_version >= Scv65) {
             /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimstruct__953VTable->m_pfnCompare(pResult, pValue1, pValue2);
+            unitResult=pSimstruct__532VTable->m_pfnCompare(pResult, pValue1, pValue2);
         } else {
             /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimstruct__953VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            pSimstruct__532VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
             updateCompareResult(unitResult, pResult);
         }
     } else {
         /* Predefined comparison */
-        pConverter->m_pfnStructureComparison(pResult, pValue1, pValue2, struct__953_fields, 11, pData, pszPath, pfnStrListAppend, pListErrPaths);
+        pConverter->m_pfnStructureComparison(pResult, pValue1, pValue2, struct__532_fields, 8, pData, pszPath, pfnStrListAppend, pListErrPaths);
     }
     if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
         pfnStrListAppend(pszPath, pListErrPaths);
 }
 
-int struct__953_to_double(const void *pValue, double *nRetValue)
+int struct__532_to_double(const void *pValue, double *nRetValue)
 {
-    if (pSimstruct__953VTable != NULL) {
-        return VTable_to_double(pValue, pSimstruct__953VTable, nRetValue);
+    if (pSimstruct__532VTable != NULL) {
+        return VTable_to_double(pValue, pSimstruct__532VTable, nRetValue);
     }
     return 0;
 }
 
-int get_struct__953_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+int get_struct__532_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
 {
-    return get_structure_signature(struct__953_fields, 11, pfnStrAppend, pData);
+    return get_structure_signature(struct__532_fields, 8, pfnStrAppend, pData);
 }
 
-int set_struct__953_default_value(void *pValue)
+int set_struct__532_default_value(void *pValue)
 {
-    set_kcg_bool_default_value(&(((struct__953*)pValue)->valid));
-    set_kcg_int_default_value(&(((struct__953*)pValue)->nid_LRBG));
-    set_Q_DIR_default_value(&(((struct__953*)pValue)->q_dir));
-    set_Q_SCALE_default_value(&(((struct__953*)pValue)->q_scale));
-    set_kcg_int_default_value(&(((struct__953*)pValue)->d_link));
-    set_Q_NEWCOUNTRY_default_value(&(((struct__953*)pValue)->q_newcountry));
-    set_kcg_int_default_value(&(((struct__953*)pValue)->nid_c));
-    set_kcg_int_default_value(&(((struct__953*)pValue)->nid_bg));
-    set_Q_LINKORIENTATION_default_value(&(((struct__953*)pValue)->q_linkorientation));
-    set_Q_LINKREACTION_default_value(&(((struct__953*)pValue)->q_linkreaction));
-    set_kcg_int_default_value(&(((struct__953*)pValue)->q_locacc));
+    set_kcg_bool_default_value(&(((struct__532*)pValue)->valid));
+    set_kcg_int_default_value(&(((struct__532*)pValue)->d_link));
+    set_Q_NEWCOUNTRY_default_value(&(((struct__532*)pValue)->q_newcountry));
+    set_kcg_int_default_value(&(((struct__532*)pValue)->nid_c));
+    set_kcg_int_default_value(&(((struct__532*)pValue)->nid_bg));
+    set_Q_LINKORIENTATION_default_value(&(((struct__532*)pValue)->q_linkorientation));
+    set_Q_LINKREACTION_default_value(&(((struct__532*)pValue)->q_linkreaction));
+    set_kcg_int_default_value(&(((struct__532*)pValue)->q_locacc));
     return 1;
 }
 
-int check_struct__953_string(const char *str, char **endptr)
+int check_struct__532_string(const char *str, char **endptr)
 {
-    static struct__953 rTemp;
-    return string_to_struct__953(str, &rTemp, endptr);
+    static struct__532 rTemp;
+    return string_to_struct__532(str, &rTemp, endptr);
 }
 
-SimTypeUtils _Type_struct__953_Utils = {
-    struct__953_to_string,
-    check_struct__953_string,
-    string_to_struct__953,
-    is_struct__953_double_convertion_allowed,
-    struct__953_to_double,
-    compare_struct__953,
-    get_struct__953_signature,
-    set_struct__953_default_value,
-    sizeof(struct__953)
+SimTypeUtils _Type_struct__532_Utils = {
+    struct__532_to_string,
+    check_struct__532_string,
+    string_to_struct__532,
+    is_struct__532_double_convertion_allowed,
+    struct__532_to_double,
+    compare_struct__532,
+    get_struct__532_signature,
+    set_struct__532_default_value,
+    sizeof(struct__532)
 };
 
 /****************************************************************
- ** array__967 
+ ** array__543 
  ****************************************************************/
 
-struct SimTypeVTable *pSimarray__967VTable;
+struct SimTypeVTable *pSimarray__543VTable;
 
-int array__967_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+int array__543_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
 {
-    if (pSimarray__967VTable != NULL
-        && pSimarray__967VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimarray__967VTable->m_pfnToType(SptString, pValue), pData);
+    if (pSimarray__543VTable != NULL
+        && pSimarray__543VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimarray__543VTable->m_pfnToType(SptString, pValue), pData);
     }
-    return pConverter->m_pfnArrayToString(pValue, struct__953_to_string, 4, sizeof(struct__953), pfnStrAppend, pData);
+    return pConverter->m_pfnArrayToString(pValue, struct__532_to_string, 32, sizeof(struct__532), pfnStrAppend, pData);
 }
 
-int string_to_array__967(const char *str, void *pValue, char **endptr)
+int string_to_array__543(const char *str, void *pValue, char **endptr)
 {
     int nRet=0;
     skip_whitespace(str);
-    if (pSimarray__967VTable != NULL) {
-        nRet=string_to_VTable(str, pSimarray__967VTable, pValue, endptr);
+    if (pSimarray__543VTable != NULL) {
+        nRet=string_to_VTable(str, pSimarray__543VTable, pValue, endptr);
     }
     if (nRet==0) {
-        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_struct__953_Utils, 4, sizeof(struct__953), endptr);
+        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_struct__532_Utils, 32, sizeof(struct__532), endptr);
     }
     return nRet;
 }
 
-int is_array__967_double_convertion_allowed()
+int is_array__543_double_convertion_allowed()
 {
-    if (pSimarray__967VTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimarray__967VTable);
+    if (pSimarray__543VTable != NULL) {
+        return is_VTable_double_convertion_allowed(pSimarray__543VTable);
     }
     return 0;
 }
 
-void compare_array__967(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+void compare_array__543(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
 {
     int unitResult=0;
     /* Customized comparison */
-    if (pSimarray__967VTable != NULL
-        && pSimarray__967VTable->m_version >= Scv612
-        && pSimarray__967VTable->m_pfnCompare != NULL) {
-        if (pSimarray__967VTable->m_version >= Scv65) {
+    if (pSimarray__543VTable != NULL
+        && pSimarray__543VTable->m_version >= Scv612
+        && pSimarray__543VTable->m_pfnCompare != NULL) {
+        if (pSimarray__543VTable->m_version >= Scv65) {
             /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimarray__967VTable->m_pfnCompare(pResult, pValue1, pValue2);
+            unitResult=pSimarray__543VTable->m_pfnCompare(pResult, pValue1, pValue2);
         } else {
             /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimarray__967VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            pSimarray__543VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
             updateCompareResult(unitResult, pResult);
         }
     } else {
         /* Predefined comparison */
         pConverter->m_pfnArrayComparison(pResult, pValue1, pValue2, 
-                compare_struct__953, 4, sizeof(struct__953), pData, pszPath, pfnStrListAppend, pListErrPaths);
+                compare_struct__532, 32, sizeof(struct__532), pData, pszPath, pfnStrListAppend, pListErrPaths);
     }
     if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
         pfnStrListAppend(pszPath, pListErrPaths);
 }
 
-int array__967_to_double(const void *pValue, double *nRetValue)
+int array__543_to_double(const void *pValue, double *nRetValue)
 {
-    if (pSimarray__967VTable != NULL) {
-        return VTable_to_double(pValue, pSimarray__967VTable, nRetValue);
+    if (pSimarray__543VTable != NULL) {
+        return VTable_to_double(pValue, pSimarray__543VTable, nRetValue);
     }
     return 0;
 }
 
-int get_array__967_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+int get_array__543_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
 {
     int i;
     pfnStrAppend("(", pData);
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < 32; i++) {
         if(i > 0)
             pfnStrAppend(",", pData);
-        get_struct__953_signature(pfnStrAppend, pData);
+        get_struct__532_signature(pfnStrAppend, pData);
     }
     pfnStrAppend(")", pData);
     return 1;
 }
 
-int set_array__967_default_value(void *pValue)
+int set_array__543_default_value(void *pValue)
 {
     int i;
-    for (i = 0; i < 4; i++)
-        set_struct__953_default_value(&((struct__953*)pValue)[i]);
+    for (i = 0; i < 32; i++)
+        set_struct__532_default_value(&((struct__532*)pValue)[i]);
     return 1;
 }
 
-int check_array__967_string(const char *str, char **endptr)
+int check_array__543_string(const char *str, char **endptr)
 {
-    static array__967 rTemp;
-    return string_to_array__967(str, &rTemp, endptr);
+    static array__543 rTemp;
+    return string_to_array__543(str, &rTemp, endptr);
 }
 
-SimTypeUtils _Type_array__967_Utils = {
-    array__967_to_string,
-    check_array__967_string,
-    string_to_array__967,
-    is_array__967_double_convertion_allowed,
-    array__967_to_double,
-    compare_array__967,
-    get_array__967_signature,
-    set_array__967_default_value,
-    sizeof(array__967)
+SimTypeUtils _Type_array__543_Utils = {
+    array__543_to_string,
+    check_array__543_string,
+    string_to_array__543,
+    is_array__543_double_convertion_allowed,
+    array__543_to_double,
+    compare_array__543,
+    get_array__543_signature,
+    set_array__543_default_value,
+    sizeof(array__543)
 };
 
 /****************************************************************
- ** array_int_7 
+ ** array_int_224 
  ****************************************************************/
 
-struct SimTypeVTable *pSimarray_int_7VTable;
+struct SimTypeVTable *pSimarray_int_224VTable;
 
-int array_int_7_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+int array_int_224_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
 {
-    if (pSimarray_int_7VTable != NULL
-        && pSimarray_int_7VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimarray_int_7VTable->m_pfnToType(SptString, pValue), pData);
+    if (pSimarray_int_224VTable != NULL
+        && pSimarray_int_224VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimarray_int_224VTable->m_pfnToType(SptString, pValue), pData);
     }
-    return pConverter->m_pfnArrayToString(pValue, kcg_int_to_string, 7, sizeof(kcg_int), pfnStrAppend, pData);
+    return pConverter->m_pfnArrayToString(pValue, kcg_int_to_string, 224, sizeof(kcg_int), pfnStrAppend, pData);
 }
 
-int string_to_array_int_7(const char *str, void *pValue, char **endptr)
+int string_to_array_int_224(const char *str, void *pValue, char **endptr)
 {
     int nRet=0;
     skip_whitespace(str);
-    if (pSimarray_int_7VTable != NULL) {
-        nRet=string_to_VTable(str, pSimarray_int_7VTable, pValue, endptr);
+    if (pSimarray_int_224VTable != NULL) {
+        nRet=string_to_VTable(str, pSimarray_int_224VTable, pValue, endptr);
     }
     if (nRet==0) {
-        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_kcg_int_Utils, 7, sizeof(kcg_int), endptr);
+        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_kcg_int_Utils, 224, sizeof(kcg_int), endptr);
     }
     return nRet;
 }
 
-int is_array_int_7_double_convertion_allowed()
+int is_array_int_224_double_convertion_allowed()
 {
-    if (pSimarray_int_7VTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimarray_int_7VTable);
+    if (pSimarray_int_224VTable != NULL) {
+        return is_VTable_double_convertion_allowed(pSimarray_int_224VTable);
     }
     return 0;
 }
 
-void compare_array_int_7(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+void compare_array_int_224(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
 {
     int unitResult=0;
     /* Customized comparison */
-    if (pSimarray_int_7VTable != NULL
-        && pSimarray_int_7VTable->m_version >= Scv612
-        && pSimarray_int_7VTable->m_pfnCompare != NULL) {
-        if (pSimarray_int_7VTable->m_version >= Scv65) {
+    if (pSimarray_int_224VTable != NULL
+        && pSimarray_int_224VTable->m_version >= Scv612
+        && pSimarray_int_224VTable->m_pfnCompare != NULL) {
+        if (pSimarray_int_224VTable->m_version >= Scv65) {
             /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimarray_int_7VTable->m_pfnCompare(pResult, pValue1, pValue2);
+            unitResult=pSimarray_int_224VTable->m_pfnCompare(pResult, pValue1, pValue2);
         } else {
             /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimarray_int_7VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            pSimarray_int_224VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
             updateCompareResult(unitResult, pResult);
         }
     } else {
         /* Predefined comparison */
         pConverter->m_pfnArrayComparison(pResult, pValue1, pValue2, 
-                compare_kcg_int, 7, sizeof(kcg_int), pData, pszPath, pfnStrListAppend, pListErrPaths);
+                compare_kcg_int, 224, sizeof(kcg_int), pData, pszPath, pfnStrListAppend, pListErrPaths);
     }
     if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
         pfnStrListAppend(pszPath, pListErrPaths);
 }
 
-int array_int_7_to_double(const void *pValue, double *nRetValue)
+int array_int_224_to_double(const void *pValue, double *nRetValue)
 {
-    if (pSimarray_int_7VTable != NULL) {
-        return VTable_to_double(pValue, pSimarray_int_7VTable, nRetValue);
+    if (pSimarray_int_224VTable != NULL) {
+        return VTable_to_double(pValue, pSimarray_int_224VTable, nRetValue);
     }
     return 0;
 }
 
-int get_array_int_7_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+int get_array_int_224_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
 {
     int i;
     pfnStrAppend("(", pData);
-    for (i = 0; i < 7; i++) {
+    for (i = 0; i < 224; i++) {
         if(i > 0)
             pfnStrAppend(",", pData);
         get_kcg_int_signature(pfnStrAppend, pData);
@@ -881,105 +875,105 @@ int get_array_int_7_signature(int (*pfnStrAppend)(const char *str, void *pData),
     return 1;
 }
 
-int set_array_int_7_default_value(void *pValue)
+int set_array_int_224_default_value(void *pValue)
 {
     int i;
-    for (i = 0; i < 7; i++)
+    for (i = 0; i < 224; i++)
         set_kcg_int_default_value(&((kcg_int*)pValue)[i]);
     return 1;
 }
 
-int check_array_int_7_string(const char *str, char **endptr)
+int check_array_int_224_string(const char *str, char **endptr)
 {
-    static array_int_7 rTemp;
-    return string_to_array_int_7(str, &rTemp, endptr);
+    static array_int_224 rTemp;
+    return string_to_array_int_224(str, &rTemp, endptr);
 }
 
-SimTypeUtils _Type_array_int_7_Utils = {
-    array_int_7_to_string,
-    check_array_int_7_string,
-    string_to_array_int_7,
-    is_array_int_7_double_convertion_allowed,
-    array_int_7_to_double,
-    compare_array_int_7,
-    get_array_int_7_signature,
-    set_array_int_7_default_value,
-    sizeof(array_int_7)
+SimTypeUtils _Type_array_int_224_Utils = {
+    array_int_224_to_string,
+    check_array_int_224_string,
+    string_to_array_int_224,
+    is_array_int_224_double_convertion_allowed,
+    array_int_224_to_double,
+    compare_array_int_224,
+    get_array_int_224_signature,
+    set_array_int_224_default_value,
+    sizeof(array_int_224)
 };
 
 /****************************************************************
- ** array_int_4 
+ ** array_int_32 
  ****************************************************************/
 
-struct SimTypeVTable *pSimarray_int_4VTable;
+struct SimTypeVTable *pSimarray_int_32VTable;
 
-int array_int_4_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+int array_int_32_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
 {
-    if (pSimarray_int_4VTable != NULL
-        && pSimarray_int_4VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimarray_int_4VTable->m_pfnToType(SptString, pValue), pData);
+    if (pSimarray_int_32VTable != NULL
+        && pSimarray_int_32VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimarray_int_32VTable->m_pfnToType(SptString, pValue), pData);
     }
-    return pConverter->m_pfnArrayToString(pValue, kcg_int_to_string, 4, sizeof(kcg_int), pfnStrAppend, pData);
+    return pConverter->m_pfnArrayToString(pValue, kcg_int_to_string, 32, sizeof(kcg_int), pfnStrAppend, pData);
 }
 
-int string_to_array_int_4(const char *str, void *pValue, char **endptr)
+int string_to_array_int_32(const char *str, void *pValue, char **endptr)
 {
     int nRet=0;
     skip_whitespace(str);
-    if (pSimarray_int_4VTable != NULL) {
-        nRet=string_to_VTable(str, pSimarray_int_4VTable, pValue, endptr);
+    if (pSimarray_int_32VTable != NULL) {
+        nRet=string_to_VTable(str, pSimarray_int_32VTable, pValue, endptr);
     }
     if (nRet==0) {
-        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_kcg_int_Utils, 4, sizeof(kcg_int), endptr);
+        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_kcg_int_Utils, 32, sizeof(kcg_int), endptr);
     }
     return nRet;
 }
 
-int is_array_int_4_double_convertion_allowed()
+int is_array_int_32_double_convertion_allowed()
 {
-    if (pSimarray_int_4VTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimarray_int_4VTable);
+    if (pSimarray_int_32VTable != NULL) {
+        return is_VTable_double_convertion_allowed(pSimarray_int_32VTable);
     }
     return 0;
 }
 
-void compare_array_int_4(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+void compare_array_int_32(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
 {
     int unitResult=0;
     /* Customized comparison */
-    if (pSimarray_int_4VTable != NULL
-        && pSimarray_int_4VTable->m_version >= Scv612
-        && pSimarray_int_4VTable->m_pfnCompare != NULL) {
-        if (pSimarray_int_4VTable->m_version >= Scv65) {
+    if (pSimarray_int_32VTable != NULL
+        && pSimarray_int_32VTable->m_version >= Scv612
+        && pSimarray_int_32VTable->m_pfnCompare != NULL) {
+        if (pSimarray_int_32VTable->m_version >= Scv65) {
             /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimarray_int_4VTable->m_pfnCompare(pResult, pValue1, pValue2);
+            unitResult=pSimarray_int_32VTable->m_pfnCompare(pResult, pValue1, pValue2);
         } else {
             /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimarray_int_4VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            pSimarray_int_32VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
             updateCompareResult(unitResult, pResult);
         }
     } else {
         /* Predefined comparison */
         pConverter->m_pfnArrayComparison(pResult, pValue1, pValue2, 
-                compare_kcg_int, 4, sizeof(kcg_int), pData, pszPath, pfnStrListAppend, pListErrPaths);
+                compare_kcg_int, 32, sizeof(kcg_int), pData, pszPath, pfnStrListAppend, pListErrPaths);
     }
     if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
         pfnStrListAppend(pszPath, pListErrPaths);
 }
 
-int array_int_4_to_double(const void *pValue, double *nRetValue)
+int array_int_32_to_double(const void *pValue, double *nRetValue)
 {
-    if (pSimarray_int_4VTable != NULL) {
-        return VTable_to_double(pValue, pSimarray_int_4VTable, nRetValue);
+    if (pSimarray_int_32VTable != NULL) {
+        return VTable_to_double(pValue, pSimarray_int_32VTable, nRetValue);
     }
     return 0;
 }
 
-int get_array_int_4_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+int get_array_int_32_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
 {
     int i;
     pfnStrAppend("(", pData);
-    for (i = 0; i < 4; i++) {
+    for (i = 0; i < 32; i++) {
         if(i > 0)
             pfnStrAppend(",", pData);
         get_kcg_int_signature(pfnStrAppend, pData);
@@ -988,798 +982,160 @@ int get_array_int_4_signature(int (*pfnStrAppend)(const char *str, void *pData),
     return 1;
 }
 
-int set_array_int_4_default_value(void *pValue)
+int set_array_int_32_default_value(void *pValue)
 {
     int i;
-    for (i = 0; i < 4; i++)
+    for (i = 0; i < 32; i++)
         set_kcg_int_default_value(&((kcg_int*)pValue)[i]);
     return 1;
 }
 
-int check_array_int_4_string(const char *str, char **endptr)
+int check_array_int_32_string(const char *str, char **endptr)
 {
-    static array_int_4 rTemp;
-    return string_to_array_int_4(str, &rTemp, endptr);
+    static array_int_32 rTemp;
+    return string_to_array_int_32(str, &rTemp, endptr);
 }
 
-SimTypeUtils _Type_array_int_4_Utils = {
-    array_int_4_to_string,
-    check_array_int_4_string,
-    string_to_array_int_4,
-    is_array_int_4_double_convertion_allowed,
-    array_int_4_to_double,
-    compare_array_int_4,
-    get_array_int_4_signature,
-    set_array_int_4_default_value,
-    sizeof(array_int_4)
+SimTypeUtils _Type_array_int_32_Utils = {
+    array_int_32_to_string,
+    check_array_int_32_string,
+    string_to_array_int_32,
+    is_array_int_32_double_convertion_allowed,
+    array_int_32_to_double,
+    compare_array_int_32,
+    get_array_int_32_signature,
+    set_array_int_32_default_value,
+    sizeof(array_int_32)
 };
 
 /****************************************************************
- ** struct__976 
+ ** array_int_224_32 
  ****************************************************************/
 
-struct SimTypeVTable *pSimstruct__976VTable;
+struct SimTypeVTable *pSimarray_int_224_32VTable;
 
-static SimFieldUtils struct__976_fields[] = {
-    {"nid_packet", offsetof(struct__976,nid_packet), &_Type_kcg_int_Utils},
-    {"q_dir", offsetof(struct__976,q_dir), &_Type_Q_DIR_Utils},
-    {"valid", offsetof(struct__976,valid), &_Type_kcg_bool_Utils},
-    {"startAddress", offsetof(struct__976,startAddress), &_Type_kcg_int_Utils},
-    {"endAddress", offsetof(struct__976,endAddress), &_Type_kcg_int_Utils},
-};
-
-int struct__976_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+int array_int_224_32_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
 {
-    if (pSimstruct__976VTable != NULL
-        && pSimstruct__976VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimstruct__976VTable->m_pfnToType(SptString, pValue), pData);
+    if (pSimarray_int_224_32VTable != NULL
+        && pSimarray_int_224_32VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimarray_int_224_32VTable->m_pfnToType(SptString, pValue), pData);
     }
-    return pConverter->m_pfnStructureToString(pValue, struct__976_fields, 5, pfnStrAppend, pData);
+    return pConverter->m_pfnArrayToString(pValue, array_int_224_to_string, 32, sizeof(array_int_224), pfnStrAppend, pData);
 }
 
-int string_to_struct__976(const char *str, void *pValue, char **endptr)
+int string_to_array_int_224_32(const char *str, void *pValue, char **endptr)
 {
     int nRet=0;
     skip_whitespace(str);
-    if (pSimstruct__976VTable != NULL) {
-        nRet=string_to_VTable(str, pSimstruct__976VTable, pValue, endptr);
+    if (pSimarray_int_224_32VTable != NULL) {
+        nRet=string_to_VTable(str, pSimarray_int_224_32VTable, pValue, endptr);
     }
     if (nRet==0) {
-        nRet=pConverter->m_pfnStringToStructure(str, pValue, struct__976_fields, 5, endptr);
+        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_array_int_224_Utils, 32, sizeof(array_int_224), endptr);
     }
     return nRet;
 }
 
-int is_struct__976_double_convertion_allowed()
+int is_array_int_224_32_double_convertion_allowed()
 {
-    if (pSimstruct__976VTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimstruct__976VTable);
+    if (pSimarray_int_224_32VTable != NULL) {
+        return is_VTable_double_convertion_allowed(pSimarray_int_224_32VTable);
     }
     return 0;
 }
 
-void compare_struct__976(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+void compare_array_int_224_32(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
 {
     int unitResult=0;
     /* Customized comparison */
-    if (pSimstruct__976VTable != NULL
-        && pSimstruct__976VTable->m_version >= Scv612
-        && pSimstruct__976VTable->m_pfnCompare != NULL) {
-        if (pSimstruct__976VTable->m_version >= Scv65) {
+    if (pSimarray_int_224_32VTable != NULL
+        && pSimarray_int_224_32VTable->m_version >= Scv612
+        && pSimarray_int_224_32VTable->m_pfnCompare != NULL) {
+        if (pSimarray_int_224_32VTable->m_version >= Scv65) {
             /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimstruct__976VTable->m_pfnCompare(pResult, pValue1, pValue2);
+            unitResult=pSimarray_int_224_32VTable->m_pfnCompare(pResult, pValue1, pValue2);
         } else {
             /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimstruct__976VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        pConverter->m_pfnStructureComparison(pResult, pValue1, pValue2, struct__976_fields, 5, pData, pszPath, pfnStrListAppend, pListErrPaths);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int struct__976_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimstruct__976VTable != NULL) {
-        return VTable_to_double(pValue, pSimstruct__976VTable, nRetValue);
-    }
-    return 0;
-}
-
-int get_struct__976_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    return get_structure_signature(struct__976_fields, 5, pfnStrAppend, pData);
-}
-
-int set_struct__976_default_value(void *pValue)
-{
-    set_kcg_int_default_value(&(((struct__976*)pValue)->nid_packet));
-    set_Q_DIR_default_value(&(((struct__976*)pValue)->q_dir));
-    set_kcg_bool_default_value(&(((struct__976*)pValue)->valid));
-    set_kcg_int_default_value(&(((struct__976*)pValue)->startAddress));
-    set_kcg_int_default_value(&(((struct__976*)pValue)->endAddress));
-    return 1;
-}
-
-int check_struct__976_string(const char *str, char **endptr)
-{
-    static struct__976 rTemp;
-    return string_to_struct__976(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_struct__976_Utils = {
-    struct__976_to_string,
-    check_struct__976_string,
-    string_to_struct__976,
-    is_struct__976_double_convertion_allowed,
-    struct__976_to_double,
-    compare_struct__976,
-    get_struct__976_signature,
-    set_struct__976_default_value,
-    sizeof(struct__976)
-};
-
-/****************************************************************
- ** array_int_39 
- ****************************************************************/
-
-struct SimTypeVTable *pSimarray_int_39VTable;
-
-int array_int_39_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimarray_int_39VTable != NULL
-        && pSimarray_int_39VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimarray_int_39VTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return pConverter->m_pfnArrayToString(pValue, kcg_int_to_string, 39, sizeof(kcg_int), pfnStrAppend, pData);
-}
-
-int string_to_array_int_39(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimarray_int_39VTable != NULL) {
-        nRet=string_to_VTable(str, pSimarray_int_39VTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_kcg_int_Utils, 39, sizeof(kcg_int), endptr);
-    }
-    return nRet;
-}
-
-int is_array_int_39_double_convertion_allowed()
-{
-    if (pSimarray_int_39VTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimarray_int_39VTable);
-    }
-    return 0;
-}
-
-void compare_array_int_39(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimarray_int_39VTable != NULL
-        && pSimarray_int_39VTable->m_version >= Scv612
-        && pSimarray_int_39VTable->m_pfnCompare != NULL) {
-        if (pSimarray_int_39VTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimarray_int_39VTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimarray_int_39VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            pSimarray_int_224_32VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
             updateCompareResult(unitResult, pResult);
         }
     } else {
         /* Predefined comparison */
         pConverter->m_pfnArrayComparison(pResult, pValue1, pValue2, 
-                compare_kcg_int, 39, sizeof(kcg_int), pData, pszPath, pfnStrListAppend, pListErrPaths);
+                compare_array_int_224, 32, sizeof(array_int_224), pData, pszPath, pfnStrListAppend, pListErrPaths);
     }
     if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
         pfnStrListAppend(pszPath, pListErrPaths);
 }
 
-int array_int_39_to_double(const void *pValue, double *nRetValue)
+int array_int_224_32_to_double(const void *pValue, double *nRetValue)
 {
-    if (pSimarray_int_39VTable != NULL) {
-        return VTable_to_double(pValue, pSimarray_int_39VTable, nRetValue);
+    if (pSimarray_int_224_32VTable != NULL) {
+        return VTable_to_double(pValue, pSimarray_int_224_32VTable, nRetValue);
     }
     return 0;
 }
 
-int get_array_int_39_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+int get_array_int_224_32_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
 {
     int i;
     pfnStrAppend("(", pData);
-    for (i = 0; i < 39; i++) {
+    for (i = 0; i < 32; i++) {
         if(i > 0)
             pfnStrAppend(",", pData);
-        get_kcg_int_signature(pfnStrAppend, pData);
+        get_array_int_224_signature(pfnStrAppend, pData);
     }
     pfnStrAppend(")", pData);
     return 1;
 }
 
-int set_array_int_39_default_value(void *pValue)
+int set_array_int_224_32_default_value(void *pValue)
 {
     int i;
-    for (i = 0; i < 39; i++)
-        set_kcg_int_default_value(&((kcg_int*)pValue)[i]);
+    for (i = 0; i < 32; i++)
+        set_array_int_224_default_value(&((array_int_224*)pValue)[i]);
     return 1;
 }
 
-int check_array_int_39_string(const char *str, char **endptr)
+int check_array_int_224_32_string(const char *str, char **endptr)
 {
-    static array_int_39 rTemp;
-    return string_to_array_int_39(str, &rTemp, endptr);
+    static array_int_224_32 rTemp;
+    return string_to_array_int_224_32(str, &rTemp, endptr);
 }
 
-SimTypeUtils _Type_array_int_39_Utils = {
-    array_int_39_to_string,
-    check_array_int_39_string,
-    string_to_array_int_39,
-    is_array_int_39_double_convertion_allowed,
-    array_int_39_to_double,
-    compare_array_int_39,
-    get_array_int_39_signature,
-    set_array_int_39_default_value,
-    sizeof(array_int_39)
+SimTypeUtils _Type_array_int_224_32_Utils = {
+    array_int_224_32_to_string,
+    check_array_int_224_32_string,
+    string_to_array_int_224_32,
+    is_array_int_224_32_double_convertion_allowed,
+    array_int_224_32_to_double,
+    compare_array_int_224_32,
+    get_array_int_224_32_signature,
+    set_array_int_224_32_default_value,
+    sizeof(array_int_224_32)
 };
 
 /****************************************************************
- ** array_int_500 
+ ** D_LINK 
  ****************************************************************/
 
-struct SimTypeVTable *pSimarray_int_500VTable;
+struct SimTypeVTable *pSimD_LINKVTable;
 
-int array_int_500_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+int D_LINK_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
 {
-    if (pSimarray_int_500VTable != NULL
-        && pSimarray_int_500VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimarray_int_500VTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return pConverter->m_pfnArrayToString(pValue, kcg_int_to_string, 500, sizeof(kcg_int), pfnStrAppend, pData);
-}
-
-int string_to_array_int_500(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimarray_int_500VTable != NULL) {
-        nRet=string_to_VTable(str, pSimarray_int_500VTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_kcg_int_Utils, 500, sizeof(kcg_int), endptr);
-    }
-    return nRet;
-}
-
-int is_array_int_500_double_convertion_allowed()
-{
-    if (pSimarray_int_500VTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimarray_int_500VTable);
-    }
-    return 0;
-}
-
-void compare_array_int_500(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimarray_int_500VTable != NULL
-        && pSimarray_int_500VTable->m_version >= Scv612
-        && pSimarray_int_500VTable->m_pfnCompare != NULL) {
-        if (pSimarray_int_500VTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimarray_int_500VTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimarray_int_500VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        pConverter->m_pfnArrayComparison(pResult, pValue1, pValue2, 
-                compare_kcg_int, 500, sizeof(kcg_int), pData, pszPath, pfnStrListAppend, pListErrPaths);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int array_int_500_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimarray_int_500VTable != NULL) {
-        return VTable_to_double(pValue, pSimarray_int_500VTable, nRetValue);
-    }
-    return 0;
-}
-
-int get_array_int_500_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    int i;
-    pfnStrAppend("(", pData);
-    for (i = 0; i < 500; i++) {
-        if(i > 0)
-            pfnStrAppend(",", pData);
-        get_kcg_int_signature(pfnStrAppend, pData);
-    }
-    pfnStrAppend(")", pData);
-    return 1;
-}
-
-int set_array_int_500_default_value(void *pValue)
-{
-    int i;
-    for (i = 0; i < 500; i++)
-        set_kcg_int_default_value(&((kcg_int*)pValue)[i]);
-    return 1;
-}
-
-int check_array_int_500_string(const char *str, char **endptr)
-{
-    static array_int_500 rTemp;
-    return string_to_array_int_500(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_array_int_500_Utils = {
-    array_int_500_to_string,
-    check_array_int_500_string,
-    string_to_array_int_500,
-    is_array_int_500_double_convertion_allowed,
-    array_int_500_to_double,
-    compare_array_int_500,
-    get_array_int_500_signature,
-    set_array_int_500_default_value,
-    sizeof(array_int_500)
-};
-
-/****************************************************************
- ** array__990 
- ****************************************************************/
-
-struct SimTypeVTable *pSimarray__990VTable;
-
-int array__990_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimarray__990VTable != NULL
-        && pSimarray__990VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimarray__990VTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return pConverter->m_pfnArrayToString(pValue, struct__976_to_string, 30, sizeof(struct__976), pfnStrAppend, pData);
-}
-
-int string_to_array__990(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimarray__990VTable != NULL) {
-        nRet=string_to_VTable(str, pSimarray__990VTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_struct__976_Utils, 30, sizeof(struct__976), endptr);
-    }
-    return nRet;
-}
-
-int is_array__990_double_convertion_allowed()
-{
-    if (pSimarray__990VTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimarray__990VTable);
-    }
-    return 0;
-}
-
-void compare_array__990(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimarray__990VTable != NULL
-        && pSimarray__990VTable->m_version >= Scv612
-        && pSimarray__990VTable->m_pfnCompare != NULL) {
-        if (pSimarray__990VTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimarray__990VTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimarray__990VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        pConverter->m_pfnArrayComparison(pResult, pValue1, pValue2, 
-                compare_struct__976, 30, sizeof(struct__976), pData, pszPath, pfnStrListAppend, pListErrPaths);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int array__990_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimarray__990VTable != NULL) {
-        return VTable_to_double(pValue, pSimarray__990VTable, nRetValue);
-    }
-    return 0;
-}
-
-int get_array__990_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    int i;
-    pfnStrAppend("(", pData);
-    for (i = 0; i < 30; i++) {
-        if(i > 0)
-            pfnStrAppend(",", pData);
-        get_struct__976_signature(pfnStrAppend, pData);
-    }
-    pfnStrAppend(")", pData);
-    return 1;
-}
-
-int set_array__990_default_value(void *pValue)
-{
-    int i;
-    for (i = 0; i < 30; i++)
-        set_struct__976_default_value(&((struct__976*)pValue)[i]);
-    return 1;
-}
-
-int check_array__990_string(const char *str, char **endptr)
-{
-    static array__990 rTemp;
-    return string_to_array__990(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_array__990_Utils = {
-    array__990_to_string,
-    check_array__990_string,
-    string_to_array__990,
-    is_array__990_double_convertion_allowed,
-    array__990_to_double,
-    compare_array__990,
-    get_array__990_signature,
-    set_array__990_default_value,
-    sizeof(array__990)
-};
-
-/****************************************************************
- ** struct__993 
- ****************************************************************/
-
-struct SimTypeVTable *pSimstruct__993VTable;
-
-static SimFieldUtils struct__993_fields[] = {
-    {"PacketHeaders", offsetof(struct__993,PacketHeaders), &_Type_array__990_Utils},
-    {"PacketData", offsetof(struct__993,PacketData), &_Type_array_int_500_Utils},
-};
-
-int struct__993_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimstruct__993VTable != NULL
-        && pSimstruct__993VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimstruct__993VTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return pConverter->m_pfnStructureToString(pValue, struct__993_fields, 2, pfnStrAppend, pData);
-}
-
-int string_to_struct__993(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimstruct__993VTable != NULL) {
-        nRet=string_to_VTable(str, pSimstruct__993VTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        nRet=pConverter->m_pfnStringToStructure(str, pValue, struct__993_fields, 2, endptr);
-    }
-    return nRet;
-}
-
-int is_struct__993_double_convertion_allowed()
-{
-    if (pSimstruct__993VTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimstruct__993VTable);
-    }
-    return 0;
-}
-
-void compare_struct__993(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimstruct__993VTable != NULL
-        && pSimstruct__993VTable->m_version >= Scv612
-        && pSimstruct__993VTable->m_pfnCompare != NULL) {
-        if (pSimstruct__993VTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimstruct__993VTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimstruct__993VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        pConverter->m_pfnStructureComparison(pResult, pValue1, pValue2, struct__993_fields, 2, pData, pszPath, pfnStrListAppend, pListErrPaths);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int struct__993_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimstruct__993VTable != NULL) {
-        return VTable_to_double(pValue, pSimstruct__993VTable, nRetValue);
-    }
-    return 0;
-}
-
-int get_struct__993_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    return get_structure_signature(struct__993_fields, 2, pfnStrAppend, pData);
-}
-
-int set_struct__993_default_value(void *pValue)
-{
-    set_array__990_default_value(&(((struct__993*)pValue)->PacketHeaders));
-    set_array_int_500_default_value(&(((struct__993*)pValue)->PacketData));
-    return 1;
-}
-
-int check_struct__993_string(const char *str, char **endptr)
-{
-    static struct__993 rTemp;
-    return string_to_struct__993(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_struct__993_Utils = {
-    struct__993_to_string,
-    check_struct__993_string,
-    string_to_struct__993,
-    is_struct__993_double_convertion_allowed,
-    struct__993_to_double,
-    compare_struct__993,
-    get_struct__993_signature,
-    set_struct__993_default_value,
-    sizeof(struct__993)
-};
-
-/****************************************************************
- ** array_int_30 
- ****************************************************************/
-
-struct SimTypeVTable *pSimarray_int_30VTable;
-
-int array_int_30_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimarray_int_30VTable != NULL
-        && pSimarray_int_30VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimarray_int_30VTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return pConverter->m_pfnArrayToString(pValue, kcg_int_to_string, 30, sizeof(kcg_int), pfnStrAppend, pData);
-}
-
-int string_to_array_int_30(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimarray_int_30VTable != NULL) {
-        nRet=string_to_VTable(str, pSimarray_int_30VTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_kcg_int_Utils, 30, sizeof(kcg_int), endptr);
-    }
-    return nRet;
-}
-
-int is_array_int_30_double_convertion_allowed()
-{
-    if (pSimarray_int_30VTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimarray_int_30VTable);
-    }
-    return 0;
-}
-
-void compare_array_int_30(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimarray_int_30VTable != NULL
-        && pSimarray_int_30VTable->m_version >= Scv612
-        && pSimarray_int_30VTable->m_pfnCompare != NULL) {
-        if (pSimarray_int_30VTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimarray_int_30VTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimarray_int_30VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        pConverter->m_pfnArrayComparison(pResult, pValue1, pValue2, 
-                compare_kcg_int, 30, sizeof(kcg_int), pData, pszPath, pfnStrListAppend, pListErrPaths);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int array_int_30_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimarray_int_30VTable != NULL) {
-        return VTable_to_double(pValue, pSimarray_int_30VTable, nRetValue);
-    }
-    return 0;
-}
-
-int get_array_int_30_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    int i;
-    pfnStrAppend("(", pData);
-    for (i = 0; i < 30; i++) {
-        if(i > 0)
-            pfnStrAppend(",", pData);
-        get_kcg_int_signature(pfnStrAppend, pData);
-    }
-    pfnStrAppend(")", pData);
-    return 1;
-}
-
-int set_array_int_30_default_value(void *pValue)
-{
-    int i;
-    for (i = 0; i < 30; i++)
-        set_kcg_int_default_value(&((kcg_int*)pValue)[i]);
-    return 1;
-}
-
-int check_array_int_30_string(const char *str, char **endptr)
-{
-    static array_int_30 rTemp;
-    return string_to_array_int_30(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_array_int_30_Utils = {
-    array_int_30_to_string,
-    check_array_int_30_string,
-    string_to_array_int_30,
-    is_array_int_30_double_convertion_allowed,
-    array_int_30_to_double,
-    compare_array_int_30,
-    get_array_int_30_signature,
-    set_array_int_30_default_value,
-    sizeof(array_int_30)
-};
-
-/****************************************************************
- ** array_int_500_500 
- ****************************************************************/
-
-struct SimTypeVTable *pSimarray_int_500_500VTable;
-
-int array_int_500_500_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimarray_int_500_500VTable != NULL
-        && pSimarray_int_500_500VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimarray_int_500_500VTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return pConverter->m_pfnArrayToString(pValue, array_int_500_to_string, 500, sizeof(array_int_500), pfnStrAppend, pData);
-}
-
-int string_to_array_int_500_500(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimarray_int_500_500VTable != NULL) {
-        nRet=string_to_VTable(str, pSimarray_int_500_500VTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_array_int_500_Utils, 500, sizeof(array_int_500), endptr);
-    }
-    return nRet;
-}
-
-int is_array_int_500_500_double_convertion_allowed()
-{
-    if (pSimarray_int_500_500VTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimarray_int_500_500VTable);
-    }
-    return 0;
-}
-
-void compare_array_int_500_500(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimarray_int_500_500VTable != NULL
-        && pSimarray_int_500_500VTable->m_version >= Scv612
-        && pSimarray_int_500_500VTable->m_pfnCompare != NULL) {
-        if (pSimarray_int_500_500VTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimarray_int_500_500VTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimarray_int_500_500VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        pConverter->m_pfnArrayComparison(pResult, pValue1, pValue2, 
-                compare_array_int_500, 500, sizeof(array_int_500), pData, pszPath, pfnStrListAppend, pListErrPaths);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int array_int_500_500_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimarray_int_500_500VTable != NULL) {
-        return VTable_to_double(pValue, pSimarray_int_500_500VTable, nRetValue);
-    }
-    return 0;
-}
-
-int get_array_int_500_500_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    int i;
-    pfnStrAppend("(", pData);
-    for (i = 0; i < 500; i++) {
-        if(i > 0)
-            pfnStrAppend(",", pData);
-        get_array_int_500_signature(pfnStrAppend, pData);
-    }
-    pfnStrAppend(")", pData);
-    return 1;
-}
-
-int set_array_int_500_500_default_value(void *pValue)
-{
-    int i;
-    for (i = 0; i < 500; i++)
-        set_array_int_500_default_value(&((array_int_500*)pValue)[i]);
-    return 1;
-}
-
-int check_array_int_500_500_string(const char *str, char **endptr)
-{
-    static array_int_500_500 rTemp;
-    return string_to_array_int_500_500(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_array_int_500_500_Utils = {
-    array_int_500_500_to_string,
-    check_array_int_500_500_string,
-    string_to_array_int_500_500,
-    is_array_int_500_500_double_convertion_allowed,
-    array_int_500_500_to_double,
-    compare_array_int_500_500,
-    get_array_int_500_500_signature,
-    set_array_int_500_500_default_value,
-    sizeof(array_int_500_500)
-};
-
-/****************************************************************
- ** NID_PACKET 
- ****************************************************************/
-
-struct SimTypeVTable *pSimNID_PACKETVTable;
-
-int NID_PACKET_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimNID_PACKETVTable != NULL
-        && pSimNID_PACKETVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimNID_PACKETVTable->m_pfnToType(SptString, pValue), pData);
+    if (pSimD_LINKVTable != NULL
+        && pSimD_LINKVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimD_LINKVTable->m_pfnToType(SptString, pValue), pData);
     }
     return kcg_int_to_string(pValue, pfnStrAppend, pData);
 }
 
-int string_to_NID_PACKET(const char *str, void *pValue, char **endptr)
+int string_to_D_LINK(const char *str, void *pValue, char **endptr)
 {
     int nRet=0;
     skip_whitespace(str);
-    if (pSimNID_PACKETVTable != NULL) {
-        nRet=string_to_VTable(str, pSimNID_PACKETVTable, pValue, endptr);
+    if (pSimD_LINKVTable != NULL) {
+        nRet=string_to_VTable(str, pSimD_LINKVTable, pValue, endptr);
     }
     if (nRet==0) {
         nRet = string_to_kcg_int(str, pValue, endptr);
@@ -1787,27 +1143,27 @@ int string_to_NID_PACKET(const char *str, void *pValue, char **endptr)
     return nRet;
 }
 
-int is_NID_PACKET_double_convertion_allowed()
+int is_D_LINK_double_convertion_allowed()
 {
-    if (pSimNID_PACKETVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimNID_PACKETVTable);
+    if (pSimD_LINKVTable != NULL) {
+        return is_VTable_double_convertion_allowed(pSimD_LINKVTable);
     }
     return is_kcg_int_double_convertion_allowed();
 }
 
-void compare_NID_PACKET(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+void compare_D_LINK(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
 {
     int unitResult=0;
     /* Customized comparison */
-    if (pSimNID_PACKETVTable != NULL
-        && pSimNID_PACKETVTable->m_version >= Scv612
-        && pSimNID_PACKETVTable->m_pfnCompare != NULL) {
-        if (pSimNID_PACKETVTable->m_version >= Scv65) {
+    if (pSimD_LINKVTable != NULL
+        && pSimD_LINKVTable->m_version >= Scv612
+        && pSimD_LINKVTable->m_pfnCompare != NULL) {
+        if (pSimD_LINKVTable->m_version >= Scv65) {
             /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimNID_PACKETVTable->m_pfnCompare(pResult, pValue1, pValue2);
+            unitResult=pSimD_LINKVTable->m_pfnCompare(pResult, pValue1, pValue2);
         } else {
             /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimNID_PACKETVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            pSimD_LINKVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
             updateCompareResult(unitResult, pResult);
         }
     } else {
@@ -1818,365 +1174,40 @@ void compare_NID_PACKET(int *pResult, const void *pValue1, const void *pValue2, 
         pfnStrListAppend(pszPath, pListErrPaths);
 }
 
-int NID_PACKET_to_double(const void *pValue, double *nRetValue)
+int D_LINK_to_double(const void *pValue, double *nRetValue)
 {
-    if (pSimNID_PACKETVTable != NULL) {
-        return VTable_to_double(pValue, pSimNID_PACKETVTable, nRetValue);
+    if (pSimD_LINKVTable != NULL) {
+        return VTable_to_double(pValue, pSimD_LINKVTable, nRetValue);
     }
     return kcg_int_to_double(pValue, nRetValue);
 }
 
-int get_NID_PACKET_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+int get_D_LINK_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
 {
     return get_kcg_int_signature(pfnStrAppend, pData);
 }
 
-int set_NID_PACKET_default_value(void *pValue)
+int set_D_LINK_default_value(void *pValue)
 {
     return set_kcg_int_default_value(pValue);
 }
 
-int check_NID_PACKET_string(const char *str, char **endptr)
+int check_D_LINK_string(const char *str, char **endptr)
 {
-    static NID_PACKET rTemp;
-    return string_to_NID_PACKET(str, &rTemp, endptr);
+    static D_LINK rTemp;
+    return string_to_D_LINK(str, &rTemp, endptr);
 }
 
-SimTypeUtils _Type_NID_PACKET_Utils = {
-    NID_PACKET_to_string,
-    check_NID_PACKET_string,
-    string_to_NID_PACKET,
-    is_NID_PACKET_double_convertion_allowed,
-    NID_PACKET_to_double,
-    compare_NID_PACKET,
-    get_NID_PACKET_signature,
-    set_NID_PACKET_default_value,
-    sizeof(NID_PACKET)
-};
-
-/****************************************************************
- ** Q_DIR 
- ****************************************************************/
-
-struct SimTypeVTable *pSimQ_DIRVTable;
-
-static SimEnumValUtils Q_DIR_values[] = {
-    { "Q_DIR_Reverse", Q_DIR_Reverse},
-    { "Q_DIR_Reverse", Q_DIR_Reverse},
-    { "Q_DIR_Nominal", Q_DIR_Nominal},
-    { "Q_DIR_Nominal", Q_DIR_Nominal},
-    { "Q_DIR_Both_directions", Q_DIR_Both_directions},
-    { "Q_DIR_Both_directions", Q_DIR_Both_directions},
-};
-
-int Q_DIR_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimQ_DIRVTable != NULL
-        && pSimQ_DIRVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimQ_DIRVTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return pConverter->m_pfnEnumToString(*(Q_DIR*)pValue, Q_DIR_values, 6, pfnStrAppend, pData);
-}
-
-int string_to_Q_DIR(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimQ_DIRVTable != NULL) {
-        nRet=string_to_VTable(str, pSimQ_DIRVTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        int nTemp = 0;
-        nRet = pConverter->m_pfnStringToEnum(str, &nTemp, Q_DIR_values, 6, endptr);
-        if (pValue != NULL && nRet != 0)
-            *(Q_DIR*)pValue = nTemp;
-    }
-    return nRet;
-}
-
-int is_Q_DIR_double_convertion_allowed()
-{
-    if (pSimQ_DIRVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimQ_DIRVTable);
-    }
-    return 1;
-}
-
-void compare_Q_DIR(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimQ_DIRVTable != NULL
-        && pSimQ_DIRVTable->m_version >= Scv612
-        && pSimQ_DIRVTable->m_pfnCompare != NULL) {
-        if (pSimQ_DIRVTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimQ_DIRVTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimQ_DIRVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        unitResult = predef_compare_enum(pResult, (int)(*(Q_DIR*)pValue1), (int)(*(Q_DIR*)pValue2), pData);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int Q_DIR_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimQ_DIRVTable != NULL) {
-        return VTable_to_double(pValue, pSimQ_DIRVTable, nRetValue);
-    }
-    *nRetValue = (double)*((Q_DIR*)pValue);
-    return 1;
-}
-
-int get_Q_DIR_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    return get_enum_signature(Q_DIR_values, 6, pfnStrAppend, pData);
-}
-
-int set_Q_DIR_default_value(void *pValue)
-{
-    *(Q_DIR*)pValue = Q_DIR_Reverse;
-    return 1;
-}
-
-int check_Q_DIR_string(const char *str, char **endptr)
-{
-    static Q_DIR rTemp;
-    return string_to_Q_DIR(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_Q_DIR_Utils = {
-    Q_DIR_to_string,
-    check_Q_DIR_string,
-    string_to_Q_DIR,
-    is_Q_DIR_double_convertion_allowed,
-    Q_DIR_to_double,
-    compare_Q_DIR,
-    get_Q_DIR_signature,
-    set_Q_DIR_default_value,
-    sizeof(Q_DIR)
-};
-
-/****************************************************************
- ** Q_LINKREACTION 
- ****************************************************************/
-
-struct SimTypeVTable *pSimQ_LINKREACTIONVTable;
-
-static SimEnumValUtils Q_LINKREACTION_values[] = {
-    { "Q_LINKREACTION_Train_trip", Q_LINKREACTION_Train_trip},
-    { "Q_LINKREACTION_Train_trip", Q_LINKREACTION_Train_trip},
-    { "Q_LINKREACTION_Apply_service_brake", Q_LINKREACTION_Apply_service_brake},
-    { "Q_LINKREACTION_Apply_service_brake", Q_LINKREACTION_Apply_service_brake},
-    { "Q_LINKREACTION_No_Reaction", Q_LINKREACTION_No_Reaction},
-    { "Q_LINKREACTION_No_Reaction", Q_LINKREACTION_No_Reaction},
-};
-
-int Q_LINKREACTION_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimQ_LINKREACTIONVTable != NULL
-        && pSimQ_LINKREACTIONVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimQ_LINKREACTIONVTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return pConverter->m_pfnEnumToString(*(Q_LINKREACTION*)pValue, Q_LINKREACTION_values, 6, pfnStrAppend, pData);
-}
-
-int string_to_Q_LINKREACTION(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimQ_LINKREACTIONVTable != NULL) {
-        nRet=string_to_VTable(str, pSimQ_LINKREACTIONVTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        int nTemp = 0;
-        nRet = pConverter->m_pfnStringToEnum(str, &nTemp, Q_LINKREACTION_values, 6, endptr);
-        if (pValue != NULL && nRet != 0)
-            *(Q_LINKREACTION*)pValue = nTemp;
-    }
-    return nRet;
-}
-
-int is_Q_LINKREACTION_double_convertion_allowed()
-{
-    if (pSimQ_LINKREACTIONVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimQ_LINKREACTIONVTable);
-    }
-    return 1;
-}
-
-void compare_Q_LINKREACTION(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimQ_LINKREACTIONVTable != NULL
-        && pSimQ_LINKREACTIONVTable->m_version >= Scv612
-        && pSimQ_LINKREACTIONVTable->m_pfnCompare != NULL) {
-        if (pSimQ_LINKREACTIONVTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimQ_LINKREACTIONVTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimQ_LINKREACTIONVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        unitResult = predef_compare_enum(pResult, (int)(*(Q_LINKREACTION*)pValue1), (int)(*(Q_LINKREACTION*)pValue2), pData);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int Q_LINKREACTION_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimQ_LINKREACTIONVTable != NULL) {
-        return VTable_to_double(pValue, pSimQ_LINKREACTIONVTable, nRetValue);
-    }
-    *nRetValue = (double)*((Q_LINKREACTION*)pValue);
-    return 1;
-}
-
-int get_Q_LINKREACTION_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    return get_enum_signature(Q_LINKREACTION_values, 6, pfnStrAppend, pData);
-}
-
-int set_Q_LINKREACTION_default_value(void *pValue)
-{
-    *(Q_LINKREACTION*)pValue = Q_LINKREACTION_Train_trip;
-    return 1;
-}
-
-int check_Q_LINKREACTION_string(const char *str, char **endptr)
-{
-    static Q_LINKREACTION rTemp;
-    return string_to_Q_LINKREACTION(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_Q_LINKREACTION_Utils = {
-    Q_LINKREACTION_to_string,
-    check_Q_LINKREACTION_string,
-    string_to_Q_LINKREACTION,
-    is_Q_LINKREACTION_double_convertion_allowed,
-    Q_LINKREACTION_to_double,
-    compare_Q_LINKREACTION,
-    get_Q_LINKREACTION_signature,
-    set_Q_LINKREACTION_default_value,
-    sizeof(Q_LINKREACTION)
-};
-
-/****************************************************************
- ** Q_LINKORIENTATION 
- ****************************************************************/
-
-struct SimTypeVTable *pSimQ_LINKORIENTATIONVTable;
-
-static SimEnumValUtils Q_LINKORIENTATION_values[] = {
-    { "Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction", _1_Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction},
-    { "Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction", _1_Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction},
-    { "Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_nominal_direction", Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_nominal_direction},
-    { "Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_nominal_direction", Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_nominal_direction},
-};
-
-int Q_LINKORIENTATION_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimQ_LINKORIENTATIONVTable != NULL
-        && pSimQ_LINKORIENTATIONVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimQ_LINKORIENTATIONVTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return pConverter->m_pfnEnumToString(*(Q_LINKORIENTATION*)pValue, Q_LINKORIENTATION_values, 4, pfnStrAppend, pData);
-}
-
-int string_to_Q_LINKORIENTATION(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimQ_LINKORIENTATIONVTable != NULL) {
-        nRet=string_to_VTable(str, pSimQ_LINKORIENTATIONVTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        int nTemp = 0;
-        nRet = pConverter->m_pfnStringToEnum(str, &nTemp, Q_LINKORIENTATION_values, 4, endptr);
-        if (pValue != NULL && nRet != 0)
-            *(Q_LINKORIENTATION*)pValue = nTemp;
-    }
-    return nRet;
-}
-
-int is_Q_LINKORIENTATION_double_convertion_allowed()
-{
-    if (pSimQ_LINKORIENTATIONVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimQ_LINKORIENTATIONVTable);
-    }
-    return 1;
-}
-
-void compare_Q_LINKORIENTATION(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimQ_LINKORIENTATIONVTable != NULL
-        && pSimQ_LINKORIENTATIONVTable->m_version >= Scv612
-        && pSimQ_LINKORIENTATIONVTable->m_pfnCompare != NULL) {
-        if (pSimQ_LINKORIENTATIONVTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimQ_LINKORIENTATIONVTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimQ_LINKORIENTATIONVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        unitResult = predef_compare_enum(pResult, (int)(*(Q_LINKORIENTATION*)pValue1), (int)(*(Q_LINKORIENTATION*)pValue2), pData);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int Q_LINKORIENTATION_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimQ_LINKORIENTATIONVTable != NULL) {
-        return VTable_to_double(pValue, pSimQ_LINKORIENTATIONVTable, nRetValue);
-    }
-    *nRetValue = (double)*((Q_LINKORIENTATION*)pValue);
-    return 1;
-}
-
-int get_Q_LINKORIENTATION_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    return get_enum_signature(Q_LINKORIENTATION_values, 4, pfnStrAppend, pData);
-}
-
-int set_Q_LINKORIENTATION_default_value(void *pValue)
-{
-    *(Q_LINKORIENTATION*)pValue = _1_Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction;
-    return 1;
-}
-
-int check_Q_LINKORIENTATION_string(const char *str, char **endptr)
-{
-    static Q_LINKORIENTATION rTemp;
-    return string_to_Q_LINKORIENTATION(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_Q_LINKORIENTATION_Utils = {
-    Q_LINKORIENTATION_to_string,
-    check_Q_LINKORIENTATION_string,
-    string_to_Q_LINKORIENTATION,
-    is_Q_LINKORIENTATION_double_convertion_allowed,
-    Q_LINKORIENTATION_to_double,
-    compare_Q_LINKORIENTATION,
-    get_Q_LINKORIENTATION_signature,
-    set_Q_LINKORIENTATION_default_value,
-    sizeof(Q_LINKORIENTATION)
+SimTypeUtils _Type_D_LINK_Utils = {
+    D_LINK_to_string,
+    check_D_LINK_string,
+    string_to_D_LINK,
+    is_D_LINK_double_convertion_allowed,
+    D_LINK_to_double,
+    compare_D_LINK,
+    get_D_LINK_signature,
+    set_D_LINK_default_value,
+    sizeof(D_LINK)
 };
 
 /****************************************************************
@@ -2284,305 +1315,6 @@ SimTypeUtils _Type_Q_NEWCOUNTRY_Utils = {
     get_Q_NEWCOUNTRY_signature,
     set_Q_NEWCOUNTRY_default_value,
     sizeof(Q_NEWCOUNTRY)
-};
-
-/****************************************************************
- ** NID_LRBG 
- ****************************************************************/
-
-struct SimTypeVTable *pSimNID_LRBGVTable;
-
-int NID_LRBG_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimNID_LRBGVTable != NULL
-        && pSimNID_LRBGVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimNID_LRBGVTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return kcg_int_to_string(pValue, pfnStrAppend, pData);
-}
-
-int string_to_NID_LRBG(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimNID_LRBGVTable != NULL) {
-        nRet=string_to_VTable(str, pSimNID_LRBGVTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        nRet = string_to_kcg_int(str, pValue, endptr);
-    }
-    return nRet;
-}
-
-int is_NID_LRBG_double_convertion_allowed()
-{
-    if (pSimNID_LRBGVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimNID_LRBGVTable);
-    }
-    return is_kcg_int_double_convertion_allowed();
-}
-
-void compare_NID_LRBG(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimNID_LRBGVTable != NULL
-        && pSimNID_LRBGVTable->m_version >= Scv612
-        && pSimNID_LRBGVTable->m_pfnCompare != NULL) {
-        if (pSimNID_LRBGVTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimNID_LRBGVTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimNID_LRBGVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        compare_kcg_int(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int NID_LRBG_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimNID_LRBGVTable != NULL) {
-        return VTable_to_double(pValue, pSimNID_LRBGVTable, nRetValue);
-    }
-    return kcg_int_to_double(pValue, nRetValue);
-}
-
-int get_NID_LRBG_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    return get_kcg_int_signature(pfnStrAppend, pData);
-}
-
-int set_NID_LRBG_default_value(void *pValue)
-{
-    return set_kcg_int_default_value(pValue);
-}
-
-int check_NID_LRBG_string(const char *str, char **endptr)
-{
-    static NID_LRBG rTemp;
-    return string_to_NID_LRBG(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_NID_LRBG_Utils = {
-    NID_LRBG_to_string,
-    check_NID_LRBG_string,
-    string_to_NID_LRBG,
-    is_NID_LRBG_double_convertion_allowed,
-    NID_LRBG_to_double,
-    compare_NID_LRBG,
-    get_NID_LRBG_signature,
-    set_NID_LRBG_default_value,
-    sizeof(NID_LRBG)
-};
-
-/****************************************************************
- ** Q_SCALE 
- ****************************************************************/
-
-struct SimTypeVTable *pSimQ_SCALEVTable;
-
-static SimEnumValUtils Q_SCALE_values[] = {
-    { "Q_SCALE_10_cm_scale", Q_SCALE_10_cm_scale},
-    { "Q_SCALE_10_cm_scale", Q_SCALE_10_cm_scale},
-    { "Q_SCALE_1_m_scale", Q_SCALE_1_m_scale},
-    { "Q_SCALE_1_m_scale", Q_SCALE_1_m_scale},
-    { "Q_SCALE_10_m_scale", Q_SCALE_10_m_scale},
-    { "Q_SCALE_10_m_scale", Q_SCALE_10_m_scale},
-};
-
-int Q_SCALE_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimQ_SCALEVTable != NULL
-        && pSimQ_SCALEVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimQ_SCALEVTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return pConverter->m_pfnEnumToString(*(Q_SCALE*)pValue, Q_SCALE_values, 6, pfnStrAppend, pData);
-}
-
-int string_to_Q_SCALE(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimQ_SCALEVTable != NULL) {
-        nRet=string_to_VTable(str, pSimQ_SCALEVTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        int nTemp = 0;
-        nRet = pConverter->m_pfnStringToEnum(str, &nTemp, Q_SCALE_values, 6, endptr);
-        if (pValue != NULL && nRet != 0)
-            *(Q_SCALE*)pValue = nTemp;
-    }
-    return nRet;
-}
-
-int is_Q_SCALE_double_convertion_allowed()
-{
-    if (pSimQ_SCALEVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimQ_SCALEVTable);
-    }
-    return 1;
-}
-
-void compare_Q_SCALE(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimQ_SCALEVTable != NULL
-        && pSimQ_SCALEVTable->m_version >= Scv612
-        && pSimQ_SCALEVTable->m_pfnCompare != NULL) {
-        if (pSimQ_SCALEVTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimQ_SCALEVTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimQ_SCALEVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        unitResult = predef_compare_enum(pResult, (int)(*(Q_SCALE*)pValue1), (int)(*(Q_SCALE*)pValue2), pData);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int Q_SCALE_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimQ_SCALEVTable != NULL) {
-        return VTable_to_double(pValue, pSimQ_SCALEVTable, nRetValue);
-    }
-    *nRetValue = (double)*((Q_SCALE*)pValue);
-    return 1;
-}
-
-int get_Q_SCALE_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    return get_enum_signature(Q_SCALE_values, 6, pfnStrAppend, pData);
-}
-
-int set_Q_SCALE_default_value(void *pValue)
-{
-    *(Q_SCALE*)pValue = Q_SCALE_10_cm_scale;
-    return 1;
-}
-
-int check_Q_SCALE_string(const char *str, char **endptr)
-{
-    static Q_SCALE rTemp;
-    return string_to_Q_SCALE(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_Q_SCALE_Utils = {
-    Q_SCALE_to_string,
-    check_Q_SCALE_string,
-    string_to_Q_SCALE,
-    is_Q_SCALE_double_convertion_allowed,
-    Q_SCALE_to_double,
-    compare_Q_SCALE,
-    get_Q_SCALE_signature,
-    set_Q_SCALE_default_value,
-    sizeof(Q_SCALE)
-};
-
-/****************************************************************
- ** D_LINK 
- ****************************************************************/
-
-struct SimTypeVTable *pSimD_LINKVTable;
-
-int D_LINK_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimD_LINKVTable != NULL
-        && pSimD_LINKVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimD_LINKVTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return kcg_int_to_string(pValue, pfnStrAppend, pData);
-}
-
-int string_to_D_LINK(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimD_LINKVTable != NULL) {
-        nRet=string_to_VTable(str, pSimD_LINKVTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        nRet = string_to_kcg_int(str, pValue, endptr);
-    }
-    return nRet;
-}
-
-int is_D_LINK_double_convertion_allowed()
-{
-    if (pSimD_LINKVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimD_LINKVTable);
-    }
-    return is_kcg_int_double_convertion_allowed();
-}
-
-void compare_D_LINK(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimD_LINKVTable != NULL
-        && pSimD_LINKVTable->m_version >= Scv612
-        && pSimD_LINKVTable->m_pfnCompare != NULL) {
-        if (pSimD_LINKVTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimD_LINKVTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimD_LINKVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        compare_kcg_int(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int D_LINK_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimD_LINKVTable != NULL) {
-        return VTable_to_double(pValue, pSimD_LINKVTable, nRetValue);
-    }
-    return kcg_int_to_double(pValue, nRetValue);
-}
-
-int get_D_LINK_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    return get_kcg_int_signature(pfnStrAppend, pData);
-}
-
-int set_D_LINK_default_value(void *pValue)
-{
-    return set_kcg_int_default_value(pValue);
-}
-
-int check_D_LINK_string(const char *str, char **endptr)
-{
-    static D_LINK rTemp;
-    return string_to_D_LINK(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_D_LINK_Utils = {
-    D_LINK_to_string,
-    check_D_LINK_string,
-    string_to_D_LINK,
-    is_D_LINK_double_convertion_allowed,
-    D_LINK_to_double,
-    compare_D_LINK,
-    get_D_LINK_signature,
-    set_D_LINK_default_value,
-    sizeof(D_LINK)
 };
 
 /****************************************************************
@@ -2776,6 +1508,222 @@ SimTypeUtils _Type_NID_BG_Utils = {
 };
 
 /****************************************************************
+ ** Q_LINKORIENTATION 
+ ****************************************************************/
+
+struct SimTypeVTable *pSimQ_LINKORIENTATIONVTable;
+
+static SimEnumValUtils Q_LINKORIENTATION_values[] = {
+    { "Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction", _1_Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction},
+    { "Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction", _1_Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction},
+    { "Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_nominal_direction", Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_nominal_direction},
+    { "Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_nominal_direction", Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_nominal_direction},
+};
+
+int Q_LINKORIENTATION_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+{
+    if (pSimQ_LINKORIENTATIONVTable != NULL
+        && pSimQ_LINKORIENTATIONVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimQ_LINKORIENTATIONVTable->m_pfnToType(SptString, pValue), pData);
+    }
+    return pConverter->m_pfnEnumToString(*(Q_LINKORIENTATION*)pValue, Q_LINKORIENTATION_values, 4, pfnStrAppend, pData);
+}
+
+int string_to_Q_LINKORIENTATION(const char *str, void *pValue, char **endptr)
+{
+    int nRet=0;
+    skip_whitespace(str);
+    if (pSimQ_LINKORIENTATIONVTable != NULL) {
+        nRet=string_to_VTable(str, pSimQ_LINKORIENTATIONVTable, pValue, endptr);
+    }
+    if (nRet==0) {
+        int nTemp = 0;
+        nRet = pConverter->m_pfnStringToEnum(str, &nTemp, Q_LINKORIENTATION_values, 4, endptr);
+        if (pValue != NULL && nRet != 0)
+            *(Q_LINKORIENTATION*)pValue = nTemp;
+    }
+    return nRet;
+}
+
+int is_Q_LINKORIENTATION_double_convertion_allowed()
+{
+    if (pSimQ_LINKORIENTATIONVTable != NULL) {
+        return is_VTable_double_convertion_allowed(pSimQ_LINKORIENTATIONVTable);
+    }
+    return 1;
+}
+
+void compare_Q_LINKORIENTATION(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+{
+    int unitResult=0;
+    /* Customized comparison */
+    if (pSimQ_LINKORIENTATIONVTable != NULL
+        && pSimQ_LINKORIENTATIONVTable->m_version >= Scv612
+        && pSimQ_LINKORIENTATIONVTable->m_pfnCompare != NULL) {
+        if (pSimQ_LINKORIENTATIONVTable->m_version >= Scv65) {
+            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
+            unitResult=pSimQ_LINKORIENTATIONVTable->m_pfnCompare(pResult, pValue1, pValue2);
+        } else {
+            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
+            pSimQ_LINKORIENTATIONVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            updateCompareResult(unitResult, pResult);
+        }
+    } else {
+        /* Predefined comparison */
+        unitResult = predef_compare_enum(pResult, (int)(*(Q_LINKORIENTATION*)pValue1), (int)(*(Q_LINKORIENTATION*)pValue2), pData);
+    }
+    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
+        pfnStrListAppend(pszPath, pListErrPaths);
+}
+
+int Q_LINKORIENTATION_to_double(const void *pValue, double *nRetValue)
+{
+    if (pSimQ_LINKORIENTATIONVTable != NULL) {
+        return VTable_to_double(pValue, pSimQ_LINKORIENTATIONVTable, nRetValue);
+    }
+    *nRetValue = (double)*((Q_LINKORIENTATION*)pValue);
+    return 1;
+}
+
+int get_Q_LINKORIENTATION_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+{
+    return get_enum_signature(Q_LINKORIENTATION_values, 4, pfnStrAppend, pData);
+}
+
+int set_Q_LINKORIENTATION_default_value(void *pValue)
+{
+    *(Q_LINKORIENTATION*)pValue = _1_Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction;
+    return 1;
+}
+
+int check_Q_LINKORIENTATION_string(const char *str, char **endptr)
+{
+    static Q_LINKORIENTATION rTemp;
+    return string_to_Q_LINKORIENTATION(str, &rTemp, endptr);
+}
+
+SimTypeUtils _Type_Q_LINKORIENTATION_Utils = {
+    Q_LINKORIENTATION_to_string,
+    check_Q_LINKORIENTATION_string,
+    string_to_Q_LINKORIENTATION,
+    is_Q_LINKORIENTATION_double_convertion_allowed,
+    Q_LINKORIENTATION_to_double,
+    compare_Q_LINKORIENTATION,
+    get_Q_LINKORIENTATION_signature,
+    set_Q_LINKORIENTATION_default_value,
+    sizeof(Q_LINKORIENTATION)
+};
+
+/****************************************************************
+ ** Q_LINKREACTION 
+ ****************************************************************/
+
+struct SimTypeVTable *pSimQ_LINKREACTIONVTable;
+
+static SimEnumValUtils Q_LINKREACTION_values[] = {
+    { "Q_LINKREACTION_Train_trip", Q_LINKREACTION_Train_trip},
+    { "Q_LINKREACTION_Train_trip", Q_LINKREACTION_Train_trip},
+    { "Q_LINKREACTION_Apply_service_brake", Q_LINKREACTION_Apply_service_brake},
+    { "Q_LINKREACTION_Apply_service_brake", Q_LINKREACTION_Apply_service_brake},
+    { "Q_LINKREACTION_No_Reaction", Q_LINKREACTION_No_Reaction},
+    { "Q_LINKREACTION_No_Reaction", Q_LINKREACTION_No_Reaction},
+};
+
+int Q_LINKREACTION_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+{
+    if (pSimQ_LINKREACTIONVTable != NULL
+        && pSimQ_LINKREACTIONVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimQ_LINKREACTIONVTable->m_pfnToType(SptString, pValue), pData);
+    }
+    return pConverter->m_pfnEnumToString(*(Q_LINKREACTION*)pValue, Q_LINKREACTION_values, 6, pfnStrAppend, pData);
+}
+
+int string_to_Q_LINKREACTION(const char *str, void *pValue, char **endptr)
+{
+    int nRet=0;
+    skip_whitespace(str);
+    if (pSimQ_LINKREACTIONVTable != NULL) {
+        nRet=string_to_VTable(str, pSimQ_LINKREACTIONVTable, pValue, endptr);
+    }
+    if (nRet==0) {
+        int nTemp = 0;
+        nRet = pConverter->m_pfnStringToEnum(str, &nTemp, Q_LINKREACTION_values, 6, endptr);
+        if (pValue != NULL && nRet != 0)
+            *(Q_LINKREACTION*)pValue = nTemp;
+    }
+    return nRet;
+}
+
+int is_Q_LINKREACTION_double_convertion_allowed()
+{
+    if (pSimQ_LINKREACTIONVTable != NULL) {
+        return is_VTable_double_convertion_allowed(pSimQ_LINKREACTIONVTable);
+    }
+    return 1;
+}
+
+void compare_Q_LINKREACTION(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+{
+    int unitResult=0;
+    /* Customized comparison */
+    if (pSimQ_LINKREACTIONVTable != NULL
+        && pSimQ_LINKREACTIONVTable->m_version >= Scv612
+        && pSimQ_LINKREACTIONVTable->m_pfnCompare != NULL) {
+        if (pSimQ_LINKREACTIONVTable->m_version >= Scv65) {
+            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
+            unitResult=pSimQ_LINKREACTIONVTable->m_pfnCompare(pResult, pValue1, pValue2);
+        } else {
+            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
+            pSimQ_LINKREACTIONVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            updateCompareResult(unitResult, pResult);
+        }
+    } else {
+        /* Predefined comparison */
+        unitResult = predef_compare_enum(pResult, (int)(*(Q_LINKREACTION*)pValue1), (int)(*(Q_LINKREACTION*)pValue2), pData);
+    }
+    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
+        pfnStrListAppend(pszPath, pListErrPaths);
+}
+
+int Q_LINKREACTION_to_double(const void *pValue, double *nRetValue)
+{
+    if (pSimQ_LINKREACTIONVTable != NULL) {
+        return VTable_to_double(pValue, pSimQ_LINKREACTIONVTable, nRetValue);
+    }
+    *nRetValue = (double)*((Q_LINKREACTION*)pValue);
+    return 1;
+}
+
+int get_Q_LINKREACTION_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+{
+    return get_enum_signature(Q_LINKREACTION_values, 6, pfnStrAppend, pData);
+}
+
+int set_Q_LINKREACTION_default_value(void *pValue)
+{
+    *(Q_LINKREACTION*)pValue = Q_LINKREACTION_Train_trip;
+    return 1;
+}
+
+int check_Q_LINKREACTION_string(const char *str, char **endptr)
+{
+    static Q_LINKREACTION rTemp;
+    return string_to_Q_LINKREACTION(str, &rTemp, endptr);
+}
+
+SimTypeUtils _Type_Q_LINKREACTION_Utils = {
+    Q_LINKREACTION_to_string,
+    check_Q_LINKREACTION_string,
+    string_to_Q_LINKREACTION,
+    is_Q_LINKREACTION_double_convertion_allowed,
+    Q_LINKREACTION_to_double,
+    compare_Q_LINKREACTION,
+    get_Q_LINKREACTION_signature,
+    set_Q_LINKREACTION_default_value,
+    sizeof(Q_LINKREACTION)
+};
+
+/****************************************************************
  ** Q_LOCACC 
  ****************************************************************/
 
@@ -2871,858 +1819,288 @@ SimTypeUtils _Type_Q_LOCACC_Utils = {
 };
 
 /****************************************************************
- ** P005_array_T_TM 
+ ** P005_OBU_section_TM 
  ****************************************************************/
 
-struct SimTypeVTable *pSimP005_array_T_TMVTable;
+struct SimTypeVTable *pSimP005_OBU_section_TMVTable;
 
-int P005_array_T_TM_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+int P005_OBU_section_TM_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
 {
-    if (pSimP005_array_T_TMVTable != NULL
-        && pSimP005_array_T_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimP005_array_T_TMVTable->m_pfnToType(SptString, pValue), pData);
+    if (pSimP005_OBU_section_TMVTable != NULL
+        && pSimP005_OBU_section_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimP005_OBU_section_TMVTable->m_pfnToType(SptString, pValue), pData);
     }
-    return array_int_39_to_string(pValue, pfnStrAppend, pData);
+    return struct__532_to_string(pValue, pfnStrAppend, pData);
 }
 
-int string_to_P005_array_T_TM(const char *str, void *pValue, char **endptr)
+int string_to_P005_OBU_section_TM(const char *str, void *pValue, char **endptr)
 {
     int nRet=0;
     skip_whitespace(str);
-    if (pSimP005_array_T_TMVTable != NULL) {
-        nRet=string_to_VTable(str, pSimP005_array_T_TMVTable, pValue, endptr);
+    if (pSimP005_OBU_section_TMVTable != NULL) {
+        nRet=string_to_VTable(str, pSimP005_OBU_section_TMVTable, pValue, endptr);
     }
     if (nRet==0) {
-        nRet = string_to_array_int_39(str, pValue, endptr);
+        nRet = string_to_struct__532(str, pValue, endptr);
     }
     return nRet;
 }
 
-int is_P005_array_T_TM_double_convertion_allowed()
+int is_P005_OBU_section_TM_double_convertion_allowed()
 {
-    if (pSimP005_array_T_TMVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimP005_array_T_TMVTable);
+    if (pSimP005_OBU_section_TMVTable != NULL) {
+        return is_VTable_double_convertion_allowed(pSimP005_OBU_section_TMVTable);
     }
-    return is_array_int_39_double_convertion_allowed();
+    return is_struct__532_double_convertion_allowed();
 }
 
-void compare_P005_array_T_TM(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+void compare_P005_OBU_section_TM(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
 {
     int unitResult=0;
     /* Customized comparison */
-    if (pSimP005_array_T_TMVTable != NULL
-        && pSimP005_array_T_TMVTable->m_version >= Scv612
-        && pSimP005_array_T_TMVTable->m_pfnCompare != NULL) {
-        if (pSimP005_array_T_TMVTable->m_version >= Scv65) {
+    if (pSimP005_OBU_section_TMVTable != NULL
+        && pSimP005_OBU_section_TMVTable->m_version >= Scv612
+        && pSimP005_OBU_section_TMVTable->m_pfnCompare != NULL) {
+        if (pSimP005_OBU_section_TMVTable->m_version >= Scv65) {
             /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimP005_array_T_TMVTable->m_pfnCompare(pResult, pValue1, pValue2);
+            unitResult=pSimP005_OBU_section_TMVTable->m_pfnCompare(pResult, pValue1, pValue2);
         } else {
             /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimP005_array_T_TMVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            pSimP005_OBU_section_TMVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
             updateCompareResult(unitResult, pResult);
         }
     } else {
         /* Predefined comparison */
-        compare_array_int_39(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
+        compare_struct__532(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
     }
     if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
         pfnStrListAppend(pszPath, pListErrPaths);
 }
 
-int P005_array_T_TM_to_double(const void *pValue, double *nRetValue)
+int P005_OBU_section_TM_to_double(const void *pValue, double *nRetValue)
 {
-    if (pSimP005_array_T_TMVTable != NULL) {
-        return VTable_to_double(pValue, pSimP005_array_T_TMVTable, nRetValue);
+    if (pSimP005_OBU_section_TMVTable != NULL) {
+        return VTable_to_double(pValue, pSimP005_OBU_section_TMVTable, nRetValue);
     }
-    return array_int_39_to_double(pValue, nRetValue);
+    return struct__532_to_double(pValue, nRetValue);
 }
 
-int get_P005_array_T_TM_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+int get_P005_OBU_section_TM_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
 {
-    return get_array_int_39_signature(pfnStrAppend, pData);
+    return get_struct__532_signature(pfnStrAppend, pData);
 }
 
-int set_P005_array_T_TM_default_value(void *pValue)
+int set_P005_OBU_section_TM_default_value(void *pValue)
 {
-    return set_array_int_39_default_value(pValue);
+    return set_struct__532_default_value(pValue);
 }
 
-int check_P005_array_T_TM_string(const char *str, char **endptr)
+int check_P005_OBU_section_TM_string(const char *str, char **endptr)
 {
-    static P005_array_T_TM rTemp;
-    return string_to_P005_array_T_TM(str, &rTemp, endptr);
+    static P005_OBU_section_TM rTemp;
+    return string_to_P005_OBU_section_TM(str, &rTemp, endptr);
 }
 
-SimTypeUtils _Type_P005_array_T_TM_Utils = {
-    P005_array_T_TM_to_string,
-    check_P005_array_T_TM_string,
-    string_to_P005_array_T_TM,
-    is_P005_array_T_TM_double_convertion_allowed,
-    P005_array_T_TM_to_double,
-    compare_P005_array_T_TM,
-    get_P005_array_T_TM_signature,
-    set_P005_array_T_TM_default_value,
-    sizeof(P005_array_T_TM)
+SimTypeUtils _Type_P005_OBU_section_TM_Utils = {
+    P005_OBU_section_TM_to_string,
+    check_P005_OBU_section_TM_string,
+    string_to_P005_OBU_section_TM,
+    is_P005_OBU_section_TM_double_convertion_allowed,
+    P005_OBU_section_TM_to_double,
+    compare_P005_OBU_section_TM,
+    get_P005_OBU_section_TM_signature,
+    set_P005_OBU_section_TM_default_value,
+    sizeof(P005_OBU_section_TM)
 };
 
 /****************************************************************
- ** Array4_TM 
+ ** P005_sections_array_flat_TM 
  ****************************************************************/
 
-struct SimTypeVTable *pSimArray4_TMVTable;
+struct SimTypeVTable *pSimP005_sections_array_flat_TMVTable;
 
-int Array4_TM_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+int P005_sections_array_flat_TM_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
 {
-    if (pSimArray4_TMVTable != NULL
-        && pSimArray4_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimArray4_TMVTable->m_pfnToType(SptString, pValue), pData);
+    if (pSimP005_sections_array_flat_TMVTable != NULL
+        && pSimP005_sections_array_flat_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimP005_sections_array_flat_TMVTable->m_pfnToType(SptString, pValue), pData);
     }
-    return array_int_4_to_string(pValue, pfnStrAppend, pData);
+    return array_int_224_to_string(pValue, pfnStrAppend, pData);
 }
 
-int string_to_Array4_TM(const char *str, void *pValue, char **endptr)
+int string_to_P005_sections_array_flat_TM(const char *str, void *pValue, char **endptr)
 {
     int nRet=0;
     skip_whitespace(str);
-    if (pSimArray4_TMVTable != NULL) {
-        nRet=string_to_VTable(str, pSimArray4_TMVTable, pValue, endptr);
+    if (pSimP005_sections_array_flat_TMVTable != NULL) {
+        nRet=string_to_VTable(str, pSimP005_sections_array_flat_TMVTable, pValue, endptr);
     }
     if (nRet==0) {
-        nRet = string_to_array_int_4(str, pValue, endptr);
+        nRet = string_to_array_int_224(str, pValue, endptr);
     }
     return nRet;
 }
 
-int is_Array4_TM_double_convertion_allowed()
+int is_P005_sections_array_flat_TM_double_convertion_allowed()
 {
-    if (pSimArray4_TMVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimArray4_TMVTable);
+    if (pSimP005_sections_array_flat_TMVTable != NULL) {
+        return is_VTable_double_convertion_allowed(pSimP005_sections_array_flat_TMVTable);
     }
-    return is_array_int_4_double_convertion_allowed();
+    return is_array_int_224_double_convertion_allowed();
 }
 
-void compare_Array4_TM(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+void compare_P005_sections_array_flat_TM(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
 {
     int unitResult=0;
     /* Customized comparison */
-    if (pSimArray4_TMVTable != NULL
-        && pSimArray4_TMVTable->m_version >= Scv612
-        && pSimArray4_TMVTable->m_pfnCompare != NULL) {
-        if (pSimArray4_TMVTable->m_version >= Scv65) {
+    if (pSimP005_sections_array_flat_TMVTable != NULL
+        && pSimP005_sections_array_flat_TMVTable->m_version >= Scv612
+        && pSimP005_sections_array_flat_TMVTable->m_pfnCompare != NULL) {
+        if (pSimP005_sections_array_flat_TMVTable->m_version >= Scv65) {
             /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimArray4_TMVTable->m_pfnCompare(pResult, pValue1, pValue2);
+            unitResult=pSimP005_sections_array_flat_TMVTable->m_pfnCompare(pResult, pValue1, pValue2);
         } else {
             /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimArray4_TMVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            pSimP005_sections_array_flat_TMVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
             updateCompareResult(unitResult, pResult);
         }
     } else {
         /* Predefined comparison */
-        compare_array_int_4(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
+        compare_array_int_224(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
     }
     if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
         pfnStrListAppend(pszPath, pListErrPaths);
 }
 
-int Array4_TM_to_double(const void *pValue, double *nRetValue)
+int P005_sections_array_flat_TM_to_double(const void *pValue, double *nRetValue)
 {
-    if (pSimArray4_TMVTable != NULL) {
-        return VTable_to_double(pValue, pSimArray4_TMVTable, nRetValue);
+    if (pSimP005_sections_array_flat_TMVTable != NULL) {
+        return VTable_to_double(pValue, pSimP005_sections_array_flat_TMVTable, nRetValue);
     }
-    return array_int_4_to_double(pValue, nRetValue);
+    return array_int_224_to_double(pValue, nRetValue);
 }
 
-int get_Array4_TM_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+int get_P005_sections_array_flat_TM_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
 {
-    return get_array_int_4_signature(pfnStrAppend, pData);
+    return get_array_int_224_signature(pfnStrAppend, pData);
 }
 
-int set_Array4_TM_default_value(void *pValue)
+int set_P005_sections_array_flat_TM_default_value(void *pValue)
 {
-    return set_array_int_4_default_value(pValue);
+    return set_array_int_224_default_value(pValue);
 }
 
-int check_Array4_TM_string(const char *str, char **endptr)
+int check_P005_sections_array_flat_TM_string(const char *str, char **endptr)
 {
-    static Array4_TM rTemp;
-    return string_to_Array4_TM(str, &rTemp, endptr);
+    static P005_sections_array_flat_TM rTemp;
+    return string_to_P005_sections_array_flat_TM(str, &rTemp, endptr);
 }
 
-SimTypeUtils _Type_Array4_TM_Utils = {
-    Array4_TM_to_string,
-    check_Array4_TM_string,
-    string_to_Array4_TM,
-    is_Array4_TM_double_convertion_allowed,
-    Array4_TM_to_double,
-    compare_Array4_TM,
-    get_Array4_TM_signature,
-    set_Array4_TM_default_value,
-    sizeof(Array4_TM)
+SimTypeUtils _Type_P005_sections_array_flat_TM_Utils = {
+    P005_sections_array_flat_TM_to_string,
+    check_P005_sections_array_flat_TM_string,
+    string_to_P005_sections_array_flat_TM,
+    is_P005_sections_array_flat_TM_double_convertion_allowed,
+    P005_sections_array_flat_TM_to_double,
+    compare_P005_sections_array_flat_TM,
+    get_P005_sections_array_flat_TM_signature,
+    set_P005_sections_array_flat_TM_default_value,
+    sizeof(P005_sections_array_flat_TM)
 };
 
 /****************************************************************
- ** P005E_array_T_TM 
+ ** P005_OBU_sectionlist_TM 
  ****************************************************************/
 
-struct SimTypeVTable *pSimP005E_array_T_TMVTable;
+struct SimTypeVTable *pSimP005_OBU_sectionlist_TMVTable;
 
-int P005E_array_T_TM_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+int P005_OBU_sectionlist_TM_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
 {
-    if (pSimP005E_array_T_TMVTable != NULL
-        && pSimP005E_array_T_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimP005E_array_T_TMVTable->m_pfnToType(SptString, pValue), pData);
+    if (pSimP005_OBU_sectionlist_TMVTable != NULL
+        && pSimP005_OBU_sectionlist_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimP005_OBU_sectionlist_TMVTable->m_pfnToType(SptString, pValue), pData);
     }
-    return array_int_7_to_string(pValue, pfnStrAppend, pData);
+    return array__543_to_string(pValue, pfnStrAppend, pData);
 }
 
-int string_to_P005E_array_T_TM(const char *str, void *pValue, char **endptr)
+int string_to_P005_OBU_sectionlist_TM(const char *str, void *pValue, char **endptr)
 {
     int nRet=0;
     skip_whitespace(str);
-    if (pSimP005E_array_T_TMVTable != NULL) {
-        nRet=string_to_VTable(str, pSimP005E_array_T_TMVTable, pValue, endptr);
+    if (pSimP005_OBU_sectionlist_TMVTable != NULL) {
+        nRet=string_to_VTable(str, pSimP005_OBU_sectionlist_TMVTable, pValue, endptr);
     }
     if (nRet==0) {
-        nRet = string_to_array_int_7(str, pValue, endptr);
+        nRet = string_to_array__543(str, pValue, endptr);
     }
     return nRet;
 }
 
-int is_P005E_array_T_TM_double_convertion_allowed()
+int is_P005_OBU_sectionlist_TM_double_convertion_allowed()
 {
-    if (pSimP005E_array_T_TMVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimP005E_array_T_TMVTable);
+    if (pSimP005_OBU_sectionlist_TMVTable != NULL) {
+        return is_VTable_double_convertion_allowed(pSimP005_OBU_sectionlist_TMVTable);
     }
-    return is_array_int_7_double_convertion_allowed();
+    return is_array__543_double_convertion_allowed();
 }
 
-void compare_P005E_array_T_TM(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+void compare_P005_OBU_sectionlist_TM(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
 {
     int unitResult=0;
     /* Customized comparison */
-    if (pSimP005E_array_T_TMVTable != NULL
-        && pSimP005E_array_T_TMVTable->m_version >= Scv612
-        && pSimP005E_array_T_TMVTable->m_pfnCompare != NULL) {
-        if (pSimP005E_array_T_TMVTable->m_version >= Scv65) {
+    if (pSimP005_OBU_sectionlist_TMVTable != NULL
+        && pSimP005_OBU_sectionlist_TMVTable->m_version >= Scv612
+        && pSimP005_OBU_sectionlist_TMVTable->m_pfnCompare != NULL) {
+        if (pSimP005_OBU_sectionlist_TMVTable->m_version >= Scv65) {
             /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimP005E_array_T_TMVTable->m_pfnCompare(pResult, pValue1, pValue2);
+            unitResult=pSimP005_OBU_sectionlist_TMVTable->m_pfnCompare(pResult, pValue1, pValue2);
         } else {
             /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimP005E_array_T_TMVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            pSimP005_OBU_sectionlist_TMVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
             updateCompareResult(unitResult, pResult);
         }
     } else {
         /* Predefined comparison */
-        compare_array_int_7(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
+        compare_array__543(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
     }
     if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
         pfnStrListAppend(pszPath, pListErrPaths);
 }
 
-int P005E_array_T_TM_to_double(const void *pValue, double *nRetValue)
+int P005_OBU_sectionlist_TM_to_double(const void *pValue, double *nRetValue)
 {
-    if (pSimP005E_array_T_TMVTable != NULL) {
-        return VTable_to_double(pValue, pSimP005E_array_T_TMVTable, nRetValue);
+    if (pSimP005_OBU_sectionlist_TMVTable != NULL) {
+        return VTable_to_double(pValue, pSimP005_OBU_sectionlist_TMVTable, nRetValue);
     }
-    return array_int_7_to_double(pValue, nRetValue);
+    return array__543_to_double(pValue, nRetValue);
 }
 
-int get_P005E_array_T_TM_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+int get_P005_OBU_sectionlist_TM_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
 {
-    return get_array_int_7_signature(pfnStrAppend, pData);
+    return get_array__543_signature(pfnStrAppend, pData);
 }
 
-int set_P005E_array_T_TM_default_value(void *pValue)
+int set_P005_OBU_sectionlist_TM_default_value(void *pValue)
 {
-    return set_array_int_7_default_value(pValue);
+    return set_array__543_default_value(pValue);
 }
 
-int check_P005E_array_T_TM_string(const char *str, char **endptr)
+int check_P005_OBU_sectionlist_TM_string(const char *str, char **endptr)
 {
-    static P005E_array_T_TM rTemp;
-    return string_to_P005E_array_T_TM(str, &rTemp, endptr);
+    static P005_OBU_sectionlist_TM rTemp;
+    return string_to_P005_OBU_sectionlist_TM(str, &rTemp, endptr);
 }
 
-SimTypeUtils _Type_P005E_array_T_TM_Utils = {
-    P005E_array_T_TM_to_string,
-    check_P005E_array_T_TM_string,
-    string_to_P005E_array_T_TM,
-    is_P005E_array_T_TM_double_convertion_allowed,
-    P005E_array_T_TM_to_double,
-    compare_P005E_array_T_TM,
-    get_P005E_array_T_TM_signature,
-    set_P005E_array_T_TM_default_value,
-    sizeof(P005E_array_T_TM)
-};
-
-/****************************************************************
- ** MetadataElement_T_Common_Types_Pkg 
- ****************************************************************/
-
-struct SimTypeVTable *pSimMetadataElement_T_Common_Types_PkgVTable;
-
-int MetadataElement_T_Common_Types_Pkg_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimMetadataElement_T_Common_Types_PkgVTable != NULL
-        && pSimMetadataElement_T_Common_Types_PkgVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimMetadataElement_T_Common_Types_PkgVTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return struct__976_to_string(pValue, pfnStrAppend, pData);
-}
-
-int string_to_MetadataElement_T_Common_Types_Pkg(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimMetadataElement_T_Common_Types_PkgVTable != NULL) {
-        nRet=string_to_VTable(str, pSimMetadataElement_T_Common_Types_PkgVTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        nRet = string_to_struct__976(str, pValue, endptr);
-    }
-    return nRet;
-}
-
-int is_MetadataElement_T_Common_Types_Pkg_double_convertion_allowed()
-{
-    if (pSimMetadataElement_T_Common_Types_PkgVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimMetadataElement_T_Common_Types_PkgVTable);
-    }
-    return is_struct__976_double_convertion_allowed();
-}
-
-void compare_MetadataElement_T_Common_Types_Pkg(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimMetadataElement_T_Common_Types_PkgVTable != NULL
-        && pSimMetadataElement_T_Common_Types_PkgVTable->m_version >= Scv612
-        && pSimMetadataElement_T_Common_Types_PkgVTable->m_pfnCompare != NULL) {
-        if (pSimMetadataElement_T_Common_Types_PkgVTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimMetadataElement_T_Common_Types_PkgVTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimMetadataElement_T_Common_Types_PkgVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        compare_struct__976(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int MetadataElement_T_Common_Types_Pkg_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimMetadataElement_T_Common_Types_PkgVTable != NULL) {
-        return VTable_to_double(pValue, pSimMetadataElement_T_Common_Types_PkgVTable, nRetValue);
-    }
-    return struct__976_to_double(pValue, nRetValue);
-}
-
-int get_MetadataElement_T_Common_Types_Pkg_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    return get_struct__976_signature(pfnStrAppend, pData);
-}
-
-int set_MetadataElement_T_Common_Types_Pkg_default_value(void *pValue)
-{
-    return set_struct__976_default_value(pValue);
-}
-
-int check_MetadataElement_T_Common_Types_Pkg_string(const char *str, char **endptr)
-{
-    static MetadataElement_T_Common_Types_Pkg rTemp;
-    return string_to_MetadataElement_T_Common_Types_Pkg(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_MetadataElement_T_Common_Types_Pkg_Utils = {
-    MetadataElement_T_Common_Types_Pkg_to_string,
-    check_MetadataElement_T_Common_Types_Pkg_string,
-    string_to_MetadataElement_T_Common_Types_Pkg,
-    is_MetadataElement_T_Common_Types_Pkg_double_convertion_allowed,
-    MetadataElement_T_Common_Types_Pkg_to_double,
-    compare_MetadataElement_T_Common_Types_Pkg,
-    get_MetadataElement_T_Common_Types_Pkg_signature,
-    set_MetadataElement_T_Common_Types_Pkg_default_value,
-    sizeof(MetadataElement_T_Common_Types_Pkg)
-};
-
-/****************************************************************
- ** Metadata_T_Common_Types_Pkg 
- ****************************************************************/
-
-struct SimTypeVTable *pSimMetadata_T_Common_Types_PkgVTable;
-
-int Metadata_T_Common_Types_Pkg_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimMetadata_T_Common_Types_PkgVTable != NULL
-        && pSimMetadata_T_Common_Types_PkgVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimMetadata_T_Common_Types_PkgVTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return array__990_to_string(pValue, pfnStrAppend, pData);
-}
-
-int string_to_Metadata_T_Common_Types_Pkg(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimMetadata_T_Common_Types_PkgVTable != NULL) {
-        nRet=string_to_VTable(str, pSimMetadata_T_Common_Types_PkgVTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        nRet = string_to_array__990(str, pValue, endptr);
-    }
-    return nRet;
-}
-
-int is_Metadata_T_Common_Types_Pkg_double_convertion_allowed()
-{
-    if (pSimMetadata_T_Common_Types_PkgVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimMetadata_T_Common_Types_PkgVTable);
-    }
-    return is_array__990_double_convertion_allowed();
-}
-
-void compare_Metadata_T_Common_Types_Pkg(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimMetadata_T_Common_Types_PkgVTable != NULL
-        && pSimMetadata_T_Common_Types_PkgVTable->m_version >= Scv612
-        && pSimMetadata_T_Common_Types_PkgVTable->m_pfnCompare != NULL) {
-        if (pSimMetadata_T_Common_Types_PkgVTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimMetadata_T_Common_Types_PkgVTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimMetadata_T_Common_Types_PkgVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        compare_array__990(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int Metadata_T_Common_Types_Pkg_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimMetadata_T_Common_Types_PkgVTable != NULL) {
-        return VTable_to_double(pValue, pSimMetadata_T_Common_Types_PkgVTable, nRetValue);
-    }
-    return array__990_to_double(pValue, nRetValue);
-}
-
-int get_Metadata_T_Common_Types_Pkg_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    return get_array__990_signature(pfnStrAppend, pData);
-}
-
-int set_Metadata_T_Common_Types_Pkg_default_value(void *pValue)
-{
-    return set_array__990_default_value(pValue);
-}
-
-int check_Metadata_T_Common_Types_Pkg_string(const char *str, char **endptr)
-{
-    static Metadata_T_Common_Types_Pkg rTemp;
-    return string_to_Metadata_T_Common_Types_Pkg(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_Metadata_T_Common_Types_Pkg_Utils = {
-    Metadata_T_Common_Types_Pkg_to_string,
-    check_Metadata_T_Common_Types_Pkg_string,
-    string_to_Metadata_T_Common_Types_Pkg,
-    is_Metadata_T_Common_Types_Pkg_double_convertion_allowed,
-    Metadata_T_Common_Types_Pkg_to_double,
-    compare_Metadata_T_Common_Types_Pkg,
-    get_Metadata_T_Common_Types_Pkg_signature,
-    set_Metadata_T_Common_Types_Pkg_default_value,
-    sizeof(Metadata_T_Common_Types_Pkg)
-};
-
-/****************************************************************
- ** CompressedPacketData_T_Common_Types_Pkg 
- ****************************************************************/
-
-struct SimTypeVTable *pSimCompressedPacketData_T_Common_Types_PkgVTable;
-
-int CompressedPacketData_T_Common_Types_Pkg_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimCompressedPacketData_T_Common_Types_PkgVTable != NULL
-        && pSimCompressedPacketData_T_Common_Types_PkgVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimCompressedPacketData_T_Common_Types_PkgVTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return array_int_500_to_string(pValue, pfnStrAppend, pData);
-}
-
-int string_to_CompressedPacketData_T_Common_Types_Pkg(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimCompressedPacketData_T_Common_Types_PkgVTable != NULL) {
-        nRet=string_to_VTable(str, pSimCompressedPacketData_T_Common_Types_PkgVTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        nRet = string_to_array_int_500(str, pValue, endptr);
-    }
-    return nRet;
-}
-
-int is_CompressedPacketData_T_Common_Types_Pkg_double_convertion_allowed()
-{
-    if (pSimCompressedPacketData_T_Common_Types_PkgVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimCompressedPacketData_T_Common_Types_PkgVTable);
-    }
-    return is_array_int_500_double_convertion_allowed();
-}
-
-void compare_CompressedPacketData_T_Common_Types_Pkg(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimCompressedPacketData_T_Common_Types_PkgVTable != NULL
-        && pSimCompressedPacketData_T_Common_Types_PkgVTable->m_version >= Scv612
-        && pSimCompressedPacketData_T_Common_Types_PkgVTable->m_pfnCompare != NULL) {
-        if (pSimCompressedPacketData_T_Common_Types_PkgVTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimCompressedPacketData_T_Common_Types_PkgVTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimCompressedPacketData_T_Common_Types_PkgVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        compare_array_int_500(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int CompressedPacketData_T_Common_Types_Pkg_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimCompressedPacketData_T_Common_Types_PkgVTable != NULL) {
-        return VTable_to_double(pValue, pSimCompressedPacketData_T_Common_Types_PkgVTable, nRetValue);
-    }
-    return array_int_500_to_double(pValue, nRetValue);
-}
-
-int get_CompressedPacketData_T_Common_Types_Pkg_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    return get_array_int_500_signature(pfnStrAppend, pData);
-}
-
-int set_CompressedPacketData_T_Common_Types_Pkg_default_value(void *pValue)
-{
-    return set_array_int_500_default_value(pValue);
-}
-
-int check_CompressedPacketData_T_Common_Types_Pkg_string(const char *str, char **endptr)
-{
-    static CompressedPacketData_T_Common_Types_Pkg rTemp;
-    return string_to_CompressedPacketData_T_Common_Types_Pkg(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_CompressedPacketData_T_Common_Types_Pkg_Utils = {
-    CompressedPacketData_T_Common_Types_Pkg_to_string,
-    check_CompressedPacketData_T_Common_Types_Pkg_string,
-    string_to_CompressedPacketData_T_Common_Types_Pkg,
-    is_CompressedPacketData_T_Common_Types_Pkg_double_convertion_allowed,
-    CompressedPacketData_T_Common_Types_Pkg_to_double,
-    compare_CompressedPacketData_T_Common_Types_Pkg,
-    get_CompressedPacketData_T_Common_Types_Pkg_signature,
-    set_CompressedPacketData_T_Common_Types_Pkg_default_value,
-    sizeof(CompressedPacketData_T_Common_Types_Pkg)
-};
-
-/****************************************************************
- ** CompressedPackets_T_Common_Types_Pkg 
- ****************************************************************/
-
-struct SimTypeVTable *pSimCompressedPackets_T_Common_Types_PkgVTable;
-
-int CompressedPackets_T_Common_Types_Pkg_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimCompressedPackets_T_Common_Types_PkgVTable != NULL
-        && pSimCompressedPackets_T_Common_Types_PkgVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimCompressedPackets_T_Common_Types_PkgVTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return struct__993_to_string(pValue, pfnStrAppend, pData);
-}
-
-int string_to_CompressedPackets_T_Common_Types_Pkg(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimCompressedPackets_T_Common_Types_PkgVTable != NULL) {
-        nRet=string_to_VTable(str, pSimCompressedPackets_T_Common_Types_PkgVTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        nRet = string_to_struct__993(str, pValue, endptr);
-    }
-    return nRet;
-}
-
-int is_CompressedPackets_T_Common_Types_Pkg_double_convertion_allowed()
-{
-    if (pSimCompressedPackets_T_Common_Types_PkgVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimCompressedPackets_T_Common_Types_PkgVTable);
-    }
-    return is_struct__993_double_convertion_allowed();
-}
-
-void compare_CompressedPackets_T_Common_Types_Pkg(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimCompressedPackets_T_Common_Types_PkgVTable != NULL
-        && pSimCompressedPackets_T_Common_Types_PkgVTable->m_version >= Scv612
-        && pSimCompressedPackets_T_Common_Types_PkgVTable->m_pfnCompare != NULL) {
-        if (pSimCompressedPackets_T_Common_Types_PkgVTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimCompressedPackets_T_Common_Types_PkgVTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimCompressedPackets_T_Common_Types_PkgVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        compare_struct__993(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int CompressedPackets_T_Common_Types_Pkg_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimCompressedPackets_T_Common_Types_PkgVTable != NULL) {
-        return VTable_to_double(pValue, pSimCompressedPackets_T_Common_Types_PkgVTable, nRetValue);
-    }
-    return struct__993_to_double(pValue, nRetValue);
-}
-
-int get_CompressedPackets_T_Common_Types_Pkg_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    return get_struct__993_signature(pfnStrAppend, pData);
-}
-
-int set_CompressedPackets_T_Common_Types_Pkg_default_value(void *pValue)
-{
-    return set_struct__993_default_value(pValue);
-}
-
-int check_CompressedPackets_T_Common_Types_Pkg_string(const char *str, char **endptr)
-{
-    static CompressedPackets_T_Common_Types_Pkg rTemp;
-    return string_to_CompressedPackets_T_Common_Types_Pkg(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_CompressedPackets_T_Common_Types_Pkg_Utils = {
-    CompressedPackets_T_Common_Types_Pkg_to_string,
-    check_CompressedPackets_T_Common_Types_Pkg_string,
-    string_to_CompressedPackets_T_Common_Types_Pkg,
-    is_CompressedPackets_T_Common_Types_Pkg_double_convertion_allowed,
-    CompressedPackets_T_Common_Types_Pkg_to_double,
-    compare_CompressedPackets_T_Common_Types_Pkg,
-    get_CompressedPackets_T_Common_Types_Pkg_signature,
-    set_CompressedPackets_T_Common_Types_Pkg_default_value,
-    sizeof(CompressedPackets_T_Common_Types_Pkg)
-};
-
-/****************************************************************
- ** LinkedBG_T_BG_Types_Pkg 
- ****************************************************************/
-
-struct SimTypeVTable *pSimLinkedBG_T_BG_Types_PkgVTable;
-
-int LinkedBG_T_BG_Types_Pkg_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimLinkedBG_T_BG_Types_PkgVTable != NULL
-        && pSimLinkedBG_T_BG_Types_PkgVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimLinkedBG_T_BG_Types_PkgVTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return struct__953_to_string(pValue, pfnStrAppend, pData);
-}
-
-int string_to_LinkedBG_T_BG_Types_Pkg(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimLinkedBG_T_BG_Types_PkgVTable != NULL) {
-        nRet=string_to_VTable(str, pSimLinkedBG_T_BG_Types_PkgVTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        nRet = string_to_struct__953(str, pValue, endptr);
-    }
-    return nRet;
-}
-
-int is_LinkedBG_T_BG_Types_Pkg_double_convertion_allowed()
-{
-    if (pSimLinkedBG_T_BG_Types_PkgVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimLinkedBG_T_BG_Types_PkgVTable);
-    }
-    return is_struct__953_double_convertion_allowed();
-}
-
-void compare_LinkedBG_T_BG_Types_Pkg(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimLinkedBG_T_BG_Types_PkgVTable != NULL
-        && pSimLinkedBG_T_BG_Types_PkgVTable->m_version >= Scv612
-        && pSimLinkedBG_T_BG_Types_PkgVTable->m_pfnCompare != NULL) {
-        if (pSimLinkedBG_T_BG_Types_PkgVTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimLinkedBG_T_BG_Types_PkgVTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimLinkedBG_T_BG_Types_PkgVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        compare_struct__953(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int LinkedBG_T_BG_Types_Pkg_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimLinkedBG_T_BG_Types_PkgVTable != NULL) {
-        return VTable_to_double(pValue, pSimLinkedBG_T_BG_Types_PkgVTable, nRetValue);
-    }
-    return struct__953_to_double(pValue, nRetValue);
-}
-
-int get_LinkedBG_T_BG_Types_Pkg_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    return get_struct__953_signature(pfnStrAppend, pData);
-}
-
-int set_LinkedBG_T_BG_Types_Pkg_default_value(void *pValue)
-{
-    return set_struct__953_default_value(pValue);
-}
-
-int check_LinkedBG_T_BG_Types_Pkg_string(const char *str, char **endptr)
-{
-    static LinkedBG_T_BG_Types_Pkg rTemp;
-    return string_to_LinkedBG_T_BG_Types_Pkg(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_LinkedBG_T_BG_Types_Pkg_Utils = {
-    LinkedBG_T_BG_Types_Pkg_to_string,
-    check_LinkedBG_T_BG_Types_Pkg_string,
-    string_to_LinkedBG_T_BG_Types_Pkg,
-    is_LinkedBG_T_BG_Types_Pkg_double_convertion_allowed,
-    LinkedBG_T_BG_Types_Pkg_to_double,
-    compare_LinkedBG_T_BG_Types_Pkg,
-    get_LinkedBG_T_BG_Types_Pkg_signature,
-    set_LinkedBG_T_BG_Types_Pkg_default_value,
-    sizeof(LinkedBG_T_BG_Types_Pkg)
-};
-
-/****************************************************************
- ** LinkedBGs_T_BG_Types_Pkg 
- ****************************************************************/
-
-struct SimTypeVTable *pSimLinkedBGs_T_BG_Types_PkgVTable;
-
-int LinkedBGs_T_BG_Types_Pkg_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
-{
-    if (pSimLinkedBGs_T_BG_Types_PkgVTable != NULL
-        && pSimLinkedBGs_T_BG_Types_PkgVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimLinkedBGs_T_BG_Types_PkgVTable->m_pfnToType(SptString, pValue), pData);
-    }
-    return array__967_to_string(pValue, pfnStrAppend, pData);
-}
-
-int string_to_LinkedBGs_T_BG_Types_Pkg(const char *str, void *pValue, char **endptr)
-{
-    int nRet=0;
-    skip_whitespace(str);
-    if (pSimLinkedBGs_T_BG_Types_PkgVTable != NULL) {
-        nRet=string_to_VTable(str, pSimLinkedBGs_T_BG_Types_PkgVTable, pValue, endptr);
-    }
-    if (nRet==0) {
-        nRet = string_to_array__967(str, pValue, endptr);
-    }
-    return nRet;
-}
-
-int is_LinkedBGs_T_BG_Types_Pkg_double_convertion_allowed()
-{
-    if (pSimLinkedBGs_T_BG_Types_PkgVTable != NULL) {
-        return is_VTable_double_convertion_allowed(pSimLinkedBGs_T_BG_Types_PkgVTable);
-    }
-    return is_array__967_double_convertion_allowed();
-}
-
-void compare_LinkedBGs_T_BG_Types_Pkg(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
-{
-    int unitResult=0;
-    /* Customized comparison */
-    if (pSimLinkedBGs_T_BG_Types_PkgVTable != NULL
-        && pSimLinkedBGs_T_BG_Types_PkgVTable->m_version >= Scv612
-        && pSimLinkedBGs_T_BG_Types_PkgVTable->m_pfnCompare != NULL) {
-        if (pSimLinkedBGs_T_BG_Types_PkgVTable->m_version >= Scv65) {
-            /*R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimLinkedBGs_T_BG_Types_PkgVTable->m_pfnCompare(pResult, pValue1, pValue2);
-        } else {
-            /*Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimLinkedBGs_T_BG_Types_PkgVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
-            updateCompareResult(unitResult, pResult);
-        }
-    } else {
-        /* Predefined comparison */
-        compare_array__967(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
-    }
-    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
-        pfnStrListAppend(pszPath, pListErrPaths);
-}
-
-int LinkedBGs_T_BG_Types_Pkg_to_double(const void *pValue, double *nRetValue)
-{
-    if (pSimLinkedBGs_T_BG_Types_PkgVTable != NULL) {
-        return VTable_to_double(pValue, pSimLinkedBGs_T_BG_Types_PkgVTable, nRetValue);
-    }
-    return array__967_to_double(pValue, nRetValue);
-}
-
-int get_LinkedBGs_T_BG_Types_Pkg_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
-{
-    return get_array__967_signature(pfnStrAppend, pData);
-}
-
-int set_LinkedBGs_T_BG_Types_Pkg_default_value(void *pValue)
-{
-    return set_array__967_default_value(pValue);
-}
-
-int check_LinkedBGs_T_BG_Types_Pkg_string(const char *str, char **endptr)
-{
-    static LinkedBGs_T_BG_Types_Pkg rTemp;
-    return string_to_LinkedBGs_T_BG_Types_Pkg(str, &rTemp, endptr);
-}
-
-SimTypeUtils _Type_LinkedBGs_T_BG_Types_Pkg_Utils = {
-    LinkedBGs_T_BG_Types_Pkg_to_string,
-    check_LinkedBGs_T_BG_Types_Pkg_string,
-    string_to_LinkedBGs_T_BG_Types_Pkg,
-    is_LinkedBGs_T_BG_Types_Pkg_double_convertion_allowed,
-    LinkedBGs_T_BG_Types_Pkg_to_double,
-    compare_LinkedBGs_T_BG_Types_Pkg,
-    get_LinkedBGs_T_BG_Types_Pkg_signature,
-    set_LinkedBGs_T_BG_Types_Pkg_default_value,
-    sizeof(LinkedBGs_T_BG_Types_Pkg)
+SimTypeUtils _Type_P005_OBU_sectionlist_TM_Utils = {
+    P005_OBU_sectionlist_TM_to_string,
+    check_P005_OBU_sectionlist_TM_string,
+    string_to_P005_OBU_sectionlist_TM,
+    is_P005_OBU_sectionlist_TM_double_convertion_allowed,
+    P005_OBU_sectionlist_TM_to_double,
+    compare_P005_OBU_sectionlist_TM,
+    get_P005_OBU_sectionlist_TM_signature,
+    set_P005_OBU_sectionlist_TM_default_value,
+    sizeof(P005_OBU_sectionlist_TM)
 };
 
 #include "C:/Program Files/Esterel Technologies/SCADE R15.2/SCADE/lib/kcg_conv.c"
