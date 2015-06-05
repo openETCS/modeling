@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-02T15:02:42
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -24,10 +24,9 @@ void Balise_367_1_FirstTest_InfraLibInt(
 {
   B_data_internal_FirstTest_InfraLibInt tmp;
   
-  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L23, Header);
-  outC->_L20 = PIG_nom;
-  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L19, Header);
   kcg_copy_B_data_internal_FirstTest_InfraLibInt(&outC->_L15, B_data_in);
+  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L19, Header);
+  outC->_L20 = PIG_nom;
   /* 1 */
   Balise_Localisation_FirstTest_InfraLibInt(
     &outC->_L15,
@@ -36,6 +35,7 @@ void Balise_367_1_FirstTest_InfraLibInt(
     &outC->Context_1);
   outC->_L21 = outC->Context_1.PIG_0_out;
   outC->_L2 = outC->Context_1.TrainPass;
+  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L23, Header);
   outC->tmp = outC->_L2;
   kcg_copy_B_data_internal_FirstTest_InfraLibInt(&outC->_L5, B_data_in);
   if (outC->tmp) {
@@ -63,6 +63,6 @@ void Balise_367_1_FirstTest_InfraLibInt(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_367_1_FirstTest_InfraLibInt.c
-** Generation date: 2015-06-02T15:02:42
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 

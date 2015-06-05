@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-02T15:02:42
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -10,7 +10,7 @@
 void Balise_Packets_364_reset_FirstTest_InfraLibInt(
   outC_Balise_Packets_364_FirstTest_InfraLibInt *outC)
 {
-  /* 2 */ Send_364_P005_reset_FirstTest_InfraLibInt(&outC->Context_2);
+  /* 1 */ Send_BG364_P005_reset_FirstTest_InfraLibInt(&outC->Context_1);
 }
 
 /* FirstTest::InfraLibInt::Balise_Packets_364 */
@@ -20,24 +20,24 @@ void Balise_Packets_364_FirstTest_InfraLibInt(
   outC_Balise_Packets_364_FirstTest_InfraLibInt *outC)
 {
   kcg_copy_B_data_internal_FirstTest_InfraLibInt(&outC->_L26, Balise_data_in);
-  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L28, Header);
-  kcg_copy_B_data_internal_FirstTest_InfraLibInt(&outC->_L29, &outC->_L26);
-  if (kcg_true) {
-    kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L29.header, &outC->_L28);
-  }
   kcg_copy_CompressedPackets_T_Common_Types_Pkg(
     &outC->_L25,
     &outC->_L26.packets);
   kcg_copy_CompressedPackets_T_Common_Types_Pkg(&outC->B_data_in, &outC->_L25);
   kcg_copy_CompressedPackets_T_Common_Types_Pkg(&outC->_L22, &outC->B_data_in);
-  /* 2 */
-  Send_364_P005_FirstTest_InfraLibInt(
+  /* 1 */
+  Send_BG364_P005_FirstTest_InfraLibInt(
     &outC->_L22,
-    (P005_TM *) &BG364_P005_Packets426,
-    &outC->Context_2);
+    (P005_trackside_int_T_TM *) &BG364_P005_00A_Packets426,
+    &outC->Context_1);
   kcg_copy_CompressedPackets_T_Common_Types_Pkg(
     &outC->_L11,
-    &outC->Context_2.B_data_out);
+    &outC->Context_1.B_data_out);
+  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L28, Header);
+  kcg_copy_B_data_internal_FirstTest_InfraLibInt(&outC->_L29, &outC->_L26);
+  if (kcg_true) {
+    kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L29.header, &outC->_L28);
+  }
   kcg_copy_CompressedPackets_T_Common_Types_Pkg(
     &outC->B_data_in_21,
     &outC->_L11);
@@ -280,6 +280,6 @@ void Balise_Packets_364_FirstTest_InfraLibInt(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_Packets_364_FirstTest_InfraLibInt.c
-** Generation date: 2015-06-02T15:02:42
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 

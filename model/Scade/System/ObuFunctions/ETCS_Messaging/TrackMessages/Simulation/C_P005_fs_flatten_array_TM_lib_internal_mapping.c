@@ -19,18 +19,18 @@ void _SCSIM_Mapping_Create() {
  ****************************************************************/
 void _SCSIM_Mapping_C_P005_fs_flatten_array_TM_lib_internal() {
 	pSimulator->m_pfnSetRoot(pSimulator, "TM_lib_internal::C_P005_fs_flatten_array/", &outputs_ctx, _SCSIM_Get_C_P005_fs_flatten_array_TM_lib_internal_Handle);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_P005_sections_array_flat_TM_Utils, 1, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_P005_sections_array_flat_T_TM_Utils, 1, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L3", &_SCSIM_kcg_int_Utils, 2, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L5", &_SCSIM_kcg_int_Utils, 3, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L6", &_SCSIM_kcg_int_Utils, 4, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L7", &_SCSIM_P005_sections_array_flat_TM_Utils, 5, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L7", &_SCSIM_P005_sections_array_flat_T_TM_Utils, 5, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L8", &_SCSIM_kcg_int_Utils, 6, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L2", &_SCSIM_P005_OBU_sectionlist_array_T_TM_Utils, 7, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L10", &_SCSIM_kcg_int_Utils, 8, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L154", &_SCSIM_kcg_int_Utils, 9, valid, 0, 0);
-	pSimulator->m_pfnAddOutput(pSimulator, "flat", &_SCSIM_P005_sections_array_flat_TM_Utils, 10, valid, 0, 0);
+	pSimulator->m_pfnAddOutput(pSimulator, "flat", &_SCSIM_P005_sections_array_flat_T_TM_Utils, 10, valid, 0, 0);
 	pSimulator->m_pfnAddInput(pSimulator, "i", &_SCSIM_kcg_int_Utils, 11, valid, 0, 0);
-	pSimulator->m_pfnAddInput(pSimulator, "Acc", &_SCSIM_P005_sections_array_flat_TM_Utils, 12, valid, 0, 0);
+	pSimulator->m_pfnAddInput(pSimulator, "Acc", &_SCSIM_P005_sections_array_flat_T_TM_Utils, 12, valid, 0, 0);
 	pSimulator->m_pfnAddInput(pSimulator, "section_arrays", &_SCSIM_P005_OBU_sectionlist_array_T_TM_Utils, 13, valid, 0, 0);
 }
 

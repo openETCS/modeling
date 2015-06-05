@@ -1,7 +1,7 @@
 #include "C_P005_fs_flatten_array_TM_lib_internal_interface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "c7a9bb35abe897e3d6ef391288f86fe3";
+const char* _SCSIM_CheckSum = "60bf8504cbc80e467fb6a8e346cd4429";
 const char* _SCSIM_SmuTypesCheckSum = "28e18c1b393c1cd143584174bcc1ba87";
 
 /*******************************
@@ -30,7 +30,7 @@ static outC_C_P005_fs_flatten_array_TM_lib_internal outputs_ctx_restore;
 static void _SCSIM_RestoreInterface(void) {
 	inputs_ctx.i = inputs_ctx_restore.i;
 	kcg_copy_array_int_224(&(inputs_ctx.Acc), &(inputs_ctx_restore.Acc));
-	kcg_copy_array_int_7_32(&(inputs_ctx.section_arrays), &(inputs_ctx_restore.section_arrays));
+	kcg_copy_array_int_7_33(&(inputs_ctx.section_arrays), &(inputs_ctx_restore.section_arrays));
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -40,7 +40,7 @@ static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
 	inputs_ctx_execute.i = inputs_ctx.i;
 	kcg_copy_array_int_224(&(inputs_ctx_execute.Acc), &(inputs_ctx.Acc));
-	kcg_copy_array_int_7_32(&(inputs_ctx_execute.section_arrays), &(inputs_ctx.section_arrays));
+	kcg_copy_array_int_7_33(&(inputs_ctx_execute.section_arrays), &(inputs_ctx.section_arrays));
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 

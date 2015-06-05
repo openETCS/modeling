@@ -19,19 +19,19 @@ void _SCSIM_Mapping_Create() {
  ****************************************************************/
 void _SCSIM_Mapping_C_P005_flatten_sections_TM_lib_internal() {
 	pSimulator->m_pfnSetRoot(pSimulator, "TM_lib_internal::C_P005_flatten_sections/", &outputs_ctx, _SCSIM_Get_C_P005_flatten_sections_TM_lib_internal_Handle);
-	pSimulator->m_pfnPushIterator(pSimulator, "foldi", 224, 224);
+	pSimulator->m_pfnPushIterator(pSimulator, "foldi", 231, 231);
 	_SCSIM_Mapping_C_P005_fs_flatten_array_TM_lib_internal("TM_lib_internal::C_P005_fs_flatten_array", "2", 1, 0, 0);
 	pSimulator->m_pfnPopIterator(pSimulator);
-	pSimulator->m_pfnPushIterator(pSimulator, "map", 32, 32);
+	pSimulator->m_pfnPushIterator(pSimulator, "map", 33, 33);
 	_SCSIM_Mapping_C_P005_fs_struct_to_array_TM_lib_internal("TM_lib_internal::C_P005_fs_struct_to_array", "2", 2, 0, 0);
 	pSimulator->m_pfnPopIterator(pSimulator);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L76", &_SCSIM_P005_sections_array_flat_TM_Utils, 3, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L75", &_SCSIM_P005_OBU_sectionlist_T_TM_Utils, 4, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L74", &_SCSIM_array_int_7_32_Utils, 5, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L78", &_SCSIM_P005_sections_array_flat_TM_Utils, 6, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L80", &_SCSIM_array_int_7_32_224_Utils, 7, valid, 0, 0);
-	pSimulator->m_pfnAddOutput(pSimulator, "Flattened", &_SCSIM_P005_sections_array_flat_TM_Utils, 8, valid, 0, 0);
-	pSimulator->m_pfnAddInput(pSimulator, "MergedSections", &_SCSIM_P005_OBU_sectionlist_T_TM_Utils, 9, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L76", &_SCSIM_P005_sections_array_flat_T_TM_Utils, 3, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L75", &_SCSIM_P005_OBU_sectionlist_int_T_TM_Utils, 4, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L74", &_SCSIM_array_int_7_33_Utils, 5, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L78", &_SCSIM_P005_sections_array_flat_T_TM_Utils, 6, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L80", &_SCSIM_array_int_7_33_231_Utils, 7, valid, 0, 0);
+	pSimulator->m_pfnAddOutput(pSimulator, "Flattened", &_SCSIM_P005_sections_array_flat_T_TM_Utils, 8, valid, 0, 0);
+	pSimulator->m_pfnAddInput(pSimulator, "MergedSections", &_SCSIM_P005_OBU_sectionlist_int_T_TM_Utils, 9, valid, 0, 0);
 }
 
 void* _SCSIM_Get_C_P005_flatten_sections_TM_lib_internal_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
@@ -69,16 +69,16 @@ void* _SCSIM_Get_C_P005_flatten_sections_TM_lib_internal_Handle(void* pInstance,
  ****************************************************************/
 void _SCSIM_Mapping_C_P005_fs_flatten_array_TM_lib_internal(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
 	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_C_P005_fs_flatten_array_TM_lib_internal_Handle, nClockHandleIdent, pfnClockActive);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_P005_sections_array_flat_TM_Utils, 10, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_P005_sections_array_flat_T_TM_Utils, 10, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L3", &_SCSIM_kcg_int_Utils, 11, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L5", &_SCSIM_kcg_int_Utils, 12, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L6", &_SCSIM_kcg_int_Utils, 13, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L7", &_SCSIM_P005_sections_array_flat_TM_Utils, 14, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L7", &_SCSIM_P005_sections_array_flat_T_TM_Utils, 14, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L8", &_SCSIM_kcg_int_Utils, 15, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L2", &_SCSIM_P005_OBU_sectionlist_array_T_TM_Utils, 16, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L10", &_SCSIM_kcg_int_Utils, 17, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L154", &_SCSIM_kcg_int_Utils, 18, valid, 0, 0);
-	pSimulator->m_pfnAddOutput(pSimulator, "flat", &_SCSIM_P005_sections_array_flat_TM_Utils, 19, valid, 0, 0);
+	pSimulator->m_pfnAddOutput(pSimulator, "flat", &_SCSIM_P005_sections_array_flat_T_TM_Utils, 19, valid, 0, 0);
 	pSimulator->m_pfnPopInstance(pSimulator);
 }
 
@@ -116,7 +116,7 @@ void* _SCSIM_Get_C_P005_fs_flatten_array_TM_lib_internal_Handle(void* pInstance,
  ****************************************************************/
 void _SCSIM_Mapping_C_P005_fs_struct_to_array_TM_lib_internal(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
 	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_C_P005_fs_struct_to_array_TM_lib_internal_Handle, nClockHandleIdent, pfnClockActive);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_P005_trackside_section_TM_Utils, 20, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_P005_section_int_T_TM_Utils, 20, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L2", &_SCSIM_array_int_7_Utils, 21, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L9", &_SCSIM_kcg_int_Utils, 22, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L8", &_SCSIM_kcg_int_Utils, 23, valid, 0, 0);
@@ -125,7 +125,7 @@ void _SCSIM_Mapping_C_P005_fs_struct_to_array_TM_lib_internal(const char* pszPat
 	pSimulator->m_pfnAddLocal(pSimulator, "_L5", &_SCSIM_kcg_int_Utils, 26, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L4", &_SCSIM_kcg_int_Utils, 27, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L3", &_SCSIM_kcg_int_Utils, 28, valid, 0, 0);
-	pSimulator->m_pfnAddOutput(pSimulator, "section_arrays", &_SCSIM__1_P005_trackside_section_array_TM_Utils, 29, valid, 0, 0);
+	pSimulator->m_pfnAddOutput(pSimulator, "section_arrays", &_SCSIM_P005_section_array_T_TM_Utils, 29, valid, 0, 0);
 	pSimulator->m_pfnPopInstance(pSimulator);
 }
 

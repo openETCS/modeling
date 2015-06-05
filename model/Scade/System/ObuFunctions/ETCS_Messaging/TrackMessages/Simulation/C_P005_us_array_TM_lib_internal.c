@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-04T14:43:42
+** Generation date: 2015-06-05T10:39:17
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -31,7 +31,7 @@ void C_P005_us_array_reset_TM_lib_internal(
 void C_P005_us_array_TM_lib_internal(
   /* TM_lib_internal::C_P005_us_array::i */kcg_int i,
   /* TM_lib_internal::C_P005_us_array::n_iter_int */kcg_int n_iter_int,
-  /* TM_lib_internal::C_P005_us_array::flat */P005_sections_array_flat_TM *flat,
+  /* TM_lib_internal::C_P005_us_array::flat */P005_sections_array_flat_T_TM *flat,
   outC_C_P005_us_array_TM_lib_internal *outC)
 {
   outC->_L3 = n_iter_int;
@@ -40,7 +40,7 @@ void C_P005_us_array_TM_lib_internal(
   outC->_L32 = kcg_true;
   outC->_L18 = DIM_P005_n_sections_TM_lib_internal;
   outC->_L16 = outC->_L5 / outC->_L18;
-  kcg_copy_P005_sections_array_flat_TM(&outC->_L1, flat);
+  kcg_copy_P005_sections_array_flat_T_TM(&outC->_L1, flat);
   /* 7 */
   C_P005_extract_el_section_TM_lib_internal(
     outC->_L16,
@@ -116,11 +116,11 @@ void C_P005_us_array_TM_lib_internal(
   outC->_L4.q_linkorientation = outC->_L29;
   outC->_L4.q_linkreaction = outC->_L30;
   outC->_L4.q_locacc = outC->_L31;
-  kcg_copy_P005_OBU_section_TM(&outC->sections, &outC->_L4);
+  kcg_copy_P005_section_enum_T_TM(&outC->sections, &outC->_L4);
 }
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_us_array_TM_lib_internal.c
-** Generation date: 2015-06-04T14:43:42
+** Generation date: 2015-06-05T10:39:17
 *************************************************************$ */
 

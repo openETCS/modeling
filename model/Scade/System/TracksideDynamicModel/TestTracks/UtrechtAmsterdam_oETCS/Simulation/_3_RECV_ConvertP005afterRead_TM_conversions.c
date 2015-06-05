@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-02T15:02:42
+** Generation date: 2015-06-04T16:57:14
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -20,13 +20,13 @@ void _3_RECV_ConvertP005afterRead_reset_TM_conversions(
 /* TM_conversions::RECV_ConvertP005afterRead_CT */
 void _3_RECV_ConvertP005afterRead_TM_conversions(
   /* TM_conversions::RECV_ConvertP005afterRead_CT::LRBG */NID_LRBG LRBG,
-  /* TM_conversions::RECV_ConvertP005afterRead_CT::RP005 */P005_array_T_TM *RP005,
+  /* TM_conversions::RECV_ConvertP005afterRead_CT::RP005 */P005_array_Told_TM *RP005,
   /* TM_conversions::RECV_ConvertP005afterRead_CT::Metadata_Element */MetadataElement_T_Common_Types_Pkg *Metadata_Element,
   outC__3_RECV_ConvertP005afterRead_TM_conversions *outC)
 {
   LinkedBG_T_BG_Types_Pkg noname;
   
-  kcg_copy_P005_array_T_TM(&outC->_L1, RP005);
+  kcg_copy_P005_array_Told_TM(&outC->_L1, RP005);
   outC->_L129 = outC->_L1[38];
   outC->_L130 = outC->_L1[37];
   outC->_L131 = outC->_L1[36];
@@ -163,6 +163,6 @@ void _3_RECV_ConvertP005afterRead_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** _3_RECV_ConvertP005afterRead_TM_conversions.c
-** Generation date: 2015-06-02T15:02:42
+** Generation date: 2015-06-04T16:57:14
 *************************************************************$ */
 

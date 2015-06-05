@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-02T15:02:41
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -24,11 +24,32 @@ const Metadata_T_Common_Types_Pkg DEFAULT_Headers_TM = { { 0, Q_DIR_Reverse,
   { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0,
     0 } };
 
-/* Packets426::BG364_P005 */
-const P005_TM BG364_P005_Packets426 = { kcg_true, 1, 1200, 1, 5, { { kcg_true,
-      172, 0, 426, 365, 0, 0, 2 }, { kcg_true, 55, 0, 426, 366, 0, 0, 2 }, {
-      kcg_true, 152, 0, 426, 367, 0, 0, 2 }, { kcg_true, 141, 0, 426, 368, 0, 0,
-      2 }, { kcg_true, 53, 0, 426, 369, 0, 0, 2 } } };
+/* TM::DEFAULT_P005_sections_array_flat */
+const P005_sections_array_flat_T_TM DEFAULT_P005_sections_array_flat_TM = { 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+/* Packets426::BG364_P005_00A */
+const P005_trackside_int_T_TM BG364_P005_00A_Packets426 = { kcg_true, 5, 2,
+  1200, 1, 172, 0, 0, 365, 0, 0, 2, 0, { { 55, 0, 0, 366, 0, 0, 2 }, { 152, 0,
+      0, 366, 0, 0, 2 }, { 141, 0, 0, 368, 0, 0, 2 }, { 53, 0, 0, 369, 0, 0,
+      2 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0,
+      0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0,
+      0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0,
+      0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0,
+      0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0,
+      0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0,
+      0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0,
+      0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0,
+      0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0, 0,
+      0 }, { 0, 0, 0, 0, 0, 0, 0 } } };
 
 /* Balises426::BG364_header_B1 */
 const BaliseTelegramHeader_int_T_TM BG364_header_B1_Balises426 = { 1, 16, 0, 1,
@@ -230,8 +251,15 @@ const CompressedPacketData_T_Common_Types_Pkg DEFAULT_CompressedPackets_TM = {
 const MetadataElement_T_Common_Types_Pkg DEFAULT_PHeader_TM = { 0,
   Q_DIR_Reverse, kcg_false, 0, 0 };
 
+/* TM_lib_internal::DEFAULT_OBU_section */
+const P005_section_enum_T_TM DEFAULT_OBU_section_TM_lib_internal = { kcg_false,
+  0, Q_NEWCOUNTRY_Same_country__or__railway_administration_no_NID_C_follows, 0,
+  0,
+  _1_Q_LINKORIENTATION_The_balise_group_is_seen_by_the_train_in_reverse_direction,
+  Q_LINKREACTION_Train_trip, 0 };
+
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_consts.c
-** Generation date: 2015-06-02T15:02:41
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 

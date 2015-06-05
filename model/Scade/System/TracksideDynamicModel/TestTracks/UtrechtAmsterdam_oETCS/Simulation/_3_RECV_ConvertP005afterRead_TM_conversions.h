@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-02T15:02:42
+** Generation date: 2015-06-04T16:57:14
 *************************************************************$ */
 #ifndef __3_RECV_ConvertP005afterRead_TM_conversions_H_
 #define __3_RECV_ConvertP005afterRead_TM_conversions_H_
@@ -26,7 +26,7 @@ typedef struct {
   /* ----------------- no clocks of observable data ------------------ */
   /* -------------------- (-debug) no assertions  -------------------- */
   /* ------------------- (-debug) local variables -------------------- */
-  P005_array_T_TM /* TM_conversions::RECV_ConvertP005afterRead_CT::_L1 */ _L1;
+  P005_array_Told_TM /* TM_conversions::RECV_ConvertP005afterRead_CT::_L1 */ _L1;
   kcg_int /* TM_conversions::RECV_ConvertP005afterRead_CT::_L71 */ _L71;
   kcg_int /* TM_conversions::RECV_ConvertP005afterRead_CT::_L70 */ _L70;
   kcg_int /* TM_conversions::RECV_ConvertP005afterRead_CT::_L69 */ _L69;
@@ -61,7 +61,7 @@ typedef struct {
   kcg_int /* TM_conversions::RECV_ConvertP005afterRead_CT::_L40 */ _L40;
   kcg_int /* TM_conversions::RECV_ConvertP005afterRead_CT::_L39 */ _L39;
   kcg_int /* TM_conversions::RECV_ConvertP005afterRead_CT::_L38 */ _L38;
-  array__4849 /* TM_conversions::RECV_ConvertP005afterRead_CT::_L107 */ _L107;
+  array__5038 /* TM_conversions::RECV_ConvertP005afterRead_CT::_L107 */ _L107;
   LinkedBG_T_BG_Types_Pkg /* TM_conversions::RECV_ConvertP005afterRead_CT::_L115 */ _L115;
   LinkedBG_T_BG_Types_Pkg /* TM_conversions::RECV_ConvertP005afterRead_CT::_L118 */ _L118;
   LinkedBG_T_BG_Types_Pkg /* TM_conversions::RECV_ConvertP005afterRead_CT::_L119 */ _L119;
@@ -87,7 +87,7 @@ typedef struct {
 /* TM_conversions::RECV_ConvertP005afterRead_CT */
 extern void _3_RECV_ConvertP005afterRead_TM_conversions(
   /* TM_conversions::RECV_ConvertP005afterRead_CT::LRBG */NID_LRBG LRBG,
-  /* TM_conversions::RECV_ConvertP005afterRead_CT::RP005 */P005_array_T_TM *RP005,
+  /* TM_conversions::RECV_ConvertP005afterRead_CT::RP005 */P005_array_Told_TM *RP005,
   /* TM_conversions::RECV_ConvertP005afterRead_CT::Metadata_Element */MetadataElement_T_Common_Types_Pkg *Metadata_Element,
   outC__3_RECV_ConvertP005afterRead_TM_conversions *outC);
 
@@ -97,6 +97,6 @@ extern void _3_RECV_ConvertP005afterRead_reset_TM_conversions(
 #endif /* __3_RECV_ConvertP005afterRead_TM_conversions_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** _3_RECV_ConvertP005afterRead_TM_conversions.h
-** Generation date: 2015-06-02T15:02:42
+** Generation date: 2015-06-04T16:57:14
 *************************************************************$ */
 

@@ -1,7 +1,7 @@
 #include "Story00A_FirstTest_interface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "d7191ce4e511867a07ef079107fbdf7c";
+const char* _SCSIM_CheckSum = "36f0e49d12caeeea1bbab0f29eca449e";
 const char* _SCSIM_SmuTypesCheckSum = "28e18c1b393c1cd143584174bcc1ba87";
 
 /*******************************

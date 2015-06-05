@@ -221,9 +221,9 @@ void* _SCSIM_Get_TOOLS_convert_engineering_TM_conversions_Handle(void* pInstance
 void _SCSIM_Mapping_Send_364_P005_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_Send_364_P005_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "SEND_WritePacket005_IT_TM.h"
-void _SCSIM_Mapping_SEND_WritePacket005_IT_TM(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_SEND_WritePacket005_IT_TM_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "SEND_WritePacket005_IT_legacy_TM_trackside.h"
+void _SCSIM_Mapping_SEND_WritePacket005_IT_legacy_TM_trackside(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_SEND_WritePacket005_IT_legacy_TM_trackside_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
 #include "SIM_SEND_WriteBaliseMessa_DRAFTS.h"
 void _SCSIM_Mapping_SIM_SEND_WriteBaliseMessa_DRAFTS(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
@@ -237,6 +237,12 @@ void* _SCSIM_Get_SEND_MessageData_TM_lib_internal_Handle(void* pInstance, int nH
 void _SCSIM_Mapping_SEND_ConvertP005forWrite_IT_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_SEND_ConvertP005forWrite_IT_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
+extern ControlUtils _SCSIM_1235_Utils;
+extern ControlUtils _SCSIM_1238_Utils;
+extern ControlUtils _SCSIM_1234_Utils;
+extern ControlUtils _SCSIM_1241_Utils;
+extern ControlUtils _SCSIM_1233_Utils;
+extern ControlUtils _SCSIM_1244_Utils;
 #include "SEND_FindSlot_DRAFTS.h"
 void _SCSIM_Mapping_SEND_FindSlot_DRAFTS(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_SEND_FindSlot_DRAFTS_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
@@ -245,16 +251,6 @@ void* _SCSIM_Get_SEND_FindSlot_DRAFTS_Handle(void* pInstance, int nHandleIdent, 
 void _SCSIM_Mapping_SEND_WriteBaliseDataElement_TM_lib_internal(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_SEND_WriteBaliseDataElement_TM_lib_internal_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "CAST_Int_to_Q_DIR_TM_conversions.h"
-void _SCSIM_Mapping_CAST_Int_to_Q_DIR_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_CAST_Int_to_Q_DIR_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
-
-extern ControlUtils _SCSIM_1301_Utils;
-extern ControlUtils _SCSIM_1304_Utils;
-extern ControlUtils _SCSIM_1300_Utils;
-extern ControlUtils _SCSIM_1307_Utils;
-extern ControlUtils _SCSIM_1299_Utils;
-extern ControlUtils _SCSIM_1310_Utils;
 #include "SEND_ConvertP005forWriteS_TM_conversions.h"
 void _SCSIM_Mapping_SEND_ConvertP005forWriteS_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_SEND_ConvertP005forWriteS_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);

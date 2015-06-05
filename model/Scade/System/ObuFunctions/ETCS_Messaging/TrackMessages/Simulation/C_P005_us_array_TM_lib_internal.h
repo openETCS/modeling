@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-04T14:43:42
+** Generation date: 2015-06-05T10:39:17
 *************************************************************$ */
 #ifndef _C_P005_us_array_TM_lib_internal_H_
 #define _C_P005_us_array_TM_lib_internal_H_
@@ -21,7 +21,7 @@
 typedef struct {
   /* ---------------------------  outputs  --------------------------- */
   kcg_bool /* TM_lib_internal::C_P005_us_array::cont */ cont;
-  P005_OBU_section_TM /* TM_lib_internal::C_P005_us_array::sections */ sections;
+  P005_section_enum_T_TM /* TM_lib_internal::C_P005_us_array::sections */ sections;
   /* -----------------------  no local probes  ----------------------- */
   /* -----------------  no initialization variables  ----------------- */
   /* -----------------------  no local memory  ----------------------- */
@@ -43,9 +43,9 @@ typedef struct {
   /* ----------------- no clocks of observable data ------------------ */
   /* -------------------- (-debug) no assertions  -------------------- */
   /* ------------------- (-debug) local variables -------------------- */
-  P005_sections_array_flat_TM /* TM_lib_internal::C_P005_us_array::_L1 */ _L1;
+  P005_sections_array_flat_T_TM /* TM_lib_internal::C_P005_us_array::_L1 */ _L1;
   kcg_int /* TM_lib_internal::C_P005_us_array::_L3 */ _L3;
-  P005_OBU_section_TM /* TM_lib_internal::C_P005_us_array::_L4 */ _L4;
+  P005_section_enum_T_TM /* TM_lib_internal::C_P005_us_array::_L4 */ _L4;
   kcg_int /* TM_lib_internal::C_P005_us_array::_L5 */ _L5;
   kcg_int /* TM_lib_internal::C_P005_us_array::_L15 */ _L15;
   kcg_int /* TM_lib_internal::C_P005_us_array::_L16 */ _L16;
@@ -72,7 +72,7 @@ typedef struct {
 extern void C_P005_us_array_TM_lib_internal(
   /* TM_lib_internal::C_P005_us_array::i */kcg_int i,
   /* TM_lib_internal::C_P005_us_array::n_iter_int */kcg_int n_iter_int,
-  /* TM_lib_internal::C_P005_us_array::flat */P005_sections_array_flat_TM *flat,
+  /* TM_lib_internal::C_P005_us_array::flat */P005_sections_array_flat_T_TM *flat,
   outC_C_P005_us_array_TM_lib_internal *outC);
 
 extern void C_P005_us_array_reset_TM_lib_internal(
@@ -81,6 +81,6 @@ extern void C_P005_us_array_reset_TM_lib_internal(
 #endif /* _C_P005_us_array_TM_lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_us_array_TM_lib_internal.h
-** Generation date: 2015-06-04T14:43:42
+** Generation date: 2015-06-05T10:39:17
 *************************************************************$ */
 

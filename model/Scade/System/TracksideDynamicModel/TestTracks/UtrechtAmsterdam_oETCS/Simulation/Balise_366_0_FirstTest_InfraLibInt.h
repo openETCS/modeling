@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-02T15:02:41
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 #ifndef _Balise_366_0_FirstTest_InfraLibInt_H_
 #define _Balise_366_0_FirstTest_InfraLibInt_H_
@@ -25,15 +25,15 @@ typedef struct {
   kcg_bool tmp;
   /* -------------------- (-debug) no assertions  -------------------- */
   /* ------------------- (-debug) local variables -------------------- */
-  kcg_bool /* FirstTest::InfraLibInt::Balise_366_0::_L2 */ _L2;
   B_data_internal_FirstTest_InfraLibInt /* FirstTest::InfraLibInt::Balise_366_0::_L4 */ _L4;
   B_data_internal_FirstTest_InfraLibInt /* FirstTest::InfraLibInt::Balise_366_0::_L5 */ _L5;
   B_data_internal_FirstTest_InfraLibInt /* FirstTest::InfraLibInt::Balise_366_0::_L15 */ _L15;
   B_data_internal_FirstTest_InfraLibInt /* FirstTest::InfraLibInt::Balise_366_0::_L17 */ _L17;
   BaliseTelegramHeader_int_T_TM /* FirstTest::InfraLibInt::Balise_366_0::_L19 */ _L19;
   kcg_int /* FirstTest::InfraLibInt::Balise_366_0::_L20 */ _L20;
-  kcg_int /* FirstTest::InfraLibInt::Balise_366_0::_L21 */ _L21;
   BaliseTelegramHeader_int_T_TM /* FirstTest::InfraLibInt::Balise_366_0::_L23 */ _L23;
+  kcg_bool /* FirstTest::InfraLibInt::Balise_366_0::_L2 */ _L2;
+  kcg_int /* FirstTest::InfraLibInt::Balise_366_0::_L21 */ _L21;
 } outC_Balise_366_0_FirstTest_InfraLibInt;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -50,6 +50,6 @@ extern void Balise_366_0_reset_FirstTest_InfraLibInt(
 #endif /* _Balise_366_0_FirstTest_InfraLibInt_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_366_0_FirstTest_InfraLibInt.h
-** Generation date: 2015-06-02T15:02:41
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 
