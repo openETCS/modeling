@@ -1,13 +1,13 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-06T10:22:38
 *************************************************************$ */
 #ifndef _Balise_Localisation_InfraLib_H_
 #define _Balise_Localisation_InfraLib_H_
 
 #include "kcg_types.h"
-#include "TOOLS_convert_engineering_TM_conversions.h"
 #include "Balise_Interdistance_InfraLib.h"
+#include "TOOLS_convert_engineering_TM_conversions.h"
 
 /* =====================  no input structure  ====================== */
 
@@ -65,6 +65,6 @@ extern void Balise_Localisation_reset_InfraLib(
 #endif /* _Balise_Localisation_InfraLib_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_Localisation_InfraLib.h
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-06T10:22:38
 *************************************************************$ */
 
