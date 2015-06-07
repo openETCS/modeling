@@ -13,18 +13,18 @@ extern TypeUtils _SCSIM_kcg_real_Utils;
 extern TypeUtils _SCSIM_kcg_bool_Utils;
 extern TypeUtils _SCSIM_kcg_char_Utils;
 extern TypeUtils _SCSIM_kcg_int_Utils;
-extern TypeUtils _SCSIM_struct__4059_Utils;
-extern TypeUtils _SCSIM_struct__4072_Utils;
+extern TypeUtils _SCSIM_struct__4123_Utils;
+extern TypeUtils _SCSIM_struct__4136_Utils;
 extern TypeUtils _SCSIM_array_int_500_Utils;
-extern TypeUtils _SCSIM_struct__4088_Utils;
-extern TypeUtils _SCSIM_array__4096_Utils;
-extern TypeUtils _SCSIM_struct__4099_Utils;
-extern TypeUtils _SCSIM_struct__4104_Utils;
-extern TypeUtils _SCSIM_struct__4109_Utils;
-extern TypeUtils _SCSIM_struct__4117_Utils;
-extern TypeUtils _SCSIM_struct__4126_Utils;
-extern TypeUtils _SCSIM_array__4137_Utils;
-extern TypeUtils _SCSIM_struct__4140_Utils;
+extern TypeUtils _SCSIM_struct__4152_Utils;
+extern TypeUtils _SCSIM_array__4160_Utils;
+extern TypeUtils _SCSIM_struct__4163_Utils;
+extern TypeUtils _SCSIM_struct__4168_Utils;
+extern TypeUtils _SCSIM_struct__4173_Utils;
+extern TypeUtils _SCSIM_struct__4181_Utils;
+extern TypeUtils _SCSIM_struct__4190_Utils;
+extern TypeUtils _SCSIM_array__4201_Utils;
+extern TypeUtils _SCSIM_struct__4204_Utils;
 extern TypeUtils _SCSIM_array_int_7_Utils;
 extern TypeUtils _SCSIM_array_int_500_500_Utils;
 extern TypeUtils _SCSIM_array_int_461_Utils;
@@ -51,10 +51,10 @@ extern TypeUtils _SCSIM_CompressedBaliseMessage_TM_Utils;
 extern TypeUtils _SCSIM_BaliseTelegramHeader_int_T_TM_Utils;
 extern TypeUtils _SCSIM_OrBG_TM_Utils;
 extern TypeUtils _SCSIM_OrLine_TM_Utils;
-extern TypeUtils _SCSIM_P005_TM_Utils;
-extern TypeUtils _SCSIM_P005Es_T_TM_Utils;
-extern TypeUtils _SCSIM_P005E_T_TM_Utils;
-extern TypeUtils _SCSIM_P005E_array_T_TM_Utils;
+extern TypeUtils _SCSIM_P005old_TM_Utils;
+extern TypeUtils _SCSIM_P005Es_Told_TM_Utils;
+extern TypeUtils _SCSIM_P005E_Told_TM_Utils;
+extern TypeUtils _SCSIM_P005E_array_Told_TM_Utils;
 extern TypeUtils _SCSIM_BaliseGroupData_TM_Utils;
 extern TypeUtils _SCSIM_CompressedPackets_T_Common_Types_Pkg_Utils;
 extern TypeUtils _SCSIM_Metadata_T_Common_Types_Pkg_Utils;
@@ -116,29 +116,29 @@ extern int compare_kcg_int_type(int*, const char*, const void*);
 #define get_kcg_int_filter_utils 0
 #define kcg_int_filter_values 0
 /****************************************************************
- ** struct__4059
+ ** struct__4123
  ****************************************************************/
-extern const char * struct__4059_to_string(const void* pValue);
-extern int check_struct__4059_string(const char* strValue);
-extern int string_to_struct__4059(const char* strValue, void* pValue);
-int is_struct__4059_allow_double_convertion();
-extern const char * get_struct__4059_signature();
-extern int compare_struct__4059_type(int*, const char*, const void*);
-#define struct__4059_filter_size 10
-extern FilterUtils get_struct__4059_filter_utils(const char* strFilter, void* pValue);
-extern const char * struct__4059_filter_values[10];
+extern const char * struct__4123_to_string(const void* pValue);
+extern int check_struct__4123_string(const char* strValue);
+extern int string_to_struct__4123(const char* strValue, void* pValue);
+int is_struct__4123_allow_double_convertion();
+extern const char * get_struct__4123_signature();
+extern int compare_struct__4123_type(int*, const char*, const void*);
+#define struct__4123_filter_size 10
+extern FilterUtils get_struct__4123_filter_utils(const char* strFilter, void* pValue);
+extern const char * struct__4123_filter_values[10];
 /****************************************************************
- ** struct__4072
+ ** struct__4136
  ****************************************************************/
-extern const char * struct__4072_to_string(const void* pValue);
-extern int check_struct__4072_string(const char* strValue);
-extern int string_to_struct__4072(const char* strValue, void* pValue);
-int is_struct__4072_allow_double_convertion();
-extern const char * get_struct__4072_signature();
-extern int compare_struct__4072_type(int*, const char*, const void*);
-#define struct__4072_filter_size 10
-extern FilterUtils get_struct__4072_filter_utils(const char* strFilter, void* pValue);
-extern const char * struct__4072_filter_values[10];
+extern const char * struct__4136_to_string(const void* pValue);
+extern int check_struct__4136_string(const char* strValue);
+extern int string_to_struct__4136(const char* strValue, void* pValue);
+int is_struct__4136_allow_double_convertion();
+extern const char * get_struct__4136_signature();
+extern int compare_struct__4136_type(int*, const char*, const void*);
+#define struct__4136_filter_size 10
+extern FilterUtils get_struct__4136_filter_utils(const char* strFilter, void* pValue);
+extern const char * struct__4136_filter_values[10];
 /****************************************************************
  ** array_int_500
  ****************************************************************/
@@ -152,113 +152,113 @@ extern int compare_array_int_500_type(int*, const char*, const void*);
 extern FilterUtils get_array_int_500_filter_utils(const char* strFilter, void* pValue);
 #define array_int_500_filter_values 0
 /****************************************************************
- ** struct__4088
+ ** struct__4152
  ****************************************************************/
-extern const char * struct__4088_to_string(const void* pValue);
-extern int check_struct__4088_string(const char* strValue);
-extern int string_to_struct__4088(const char* strValue, void* pValue);
-int is_struct__4088_allow_double_convertion();
-extern const char * get_struct__4088_signature();
-extern int compare_struct__4088_type(int*, const char*, const void*);
-#define struct__4088_filter_size 5
-extern FilterUtils get_struct__4088_filter_utils(const char* strFilter, void* pValue);
-extern const char * struct__4088_filter_values[5];
+extern const char * struct__4152_to_string(const void* pValue);
+extern int check_struct__4152_string(const char* strValue);
+extern int string_to_struct__4152(const char* strValue, void* pValue);
+int is_struct__4152_allow_double_convertion();
+extern const char * get_struct__4152_signature();
+extern int compare_struct__4152_type(int*, const char*, const void*);
+#define struct__4152_filter_size 5
+extern FilterUtils get_struct__4152_filter_utils(const char* strFilter, void* pValue);
+extern const char * struct__4152_filter_values[5];
 /****************************************************************
- ** array__4096
+ ** array__4160
  ****************************************************************/
-extern const char * array__4096_to_string(const void* pValue);
-extern int check_array__4096_string(const char* strValue);
-extern int string_to_array__4096(const char* strValue, void* pValue);
-int is_array__4096_allow_double_convertion();
-extern const char * get_array__4096_signature();
-extern int compare_array__4096_type(int*, const char*, const void*);
-#define array__4096_filter_size 30
-extern FilterUtils get_array__4096_filter_utils(const char* strFilter, void* pValue);
-#define array__4096_filter_values 0
+extern const char * array__4160_to_string(const void* pValue);
+extern int check_array__4160_string(const char* strValue);
+extern int string_to_array__4160(const char* strValue, void* pValue);
+int is_array__4160_allow_double_convertion();
+extern const char * get_array__4160_signature();
+extern int compare_array__4160_type(int*, const char*, const void*);
+#define array__4160_filter_size 30
+extern FilterUtils get_array__4160_filter_utils(const char* strFilter, void* pValue);
+#define array__4160_filter_values 0
 /****************************************************************
- ** struct__4099
+ ** struct__4163
  ****************************************************************/
-extern const char * struct__4099_to_string(const void* pValue);
-extern int check_struct__4099_string(const char* strValue);
-extern int string_to_struct__4099(const char* strValue, void* pValue);
-int is_struct__4099_allow_double_convertion();
-extern const char * get_struct__4099_signature();
-extern int compare_struct__4099_type(int*, const char*, const void*);
-#define struct__4099_filter_size 2
-extern FilterUtils get_struct__4099_filter_utils(const char* strFilter, void* pValue);
-extern const char * struct__4099_filter_values[2];
+extern const char * struct__4163_to_string(const void* pValue);
+extern int check_struct__4163_string(const char* strValue);
+extern int string_to_struct__4163(const char* strValue, void* pValue);
+int is_struct__4163_allow_double_convertion();
+extern const char * get_struct__4163_signature();
+extern int compare_struct__4163_type(int*, const char*, const void*);
+#define struct__4163_filter_size 2
+extern FilterUtils get_struct__4163_filter_utils(const char* strFilter, void* pValue);
+extern const char * struct__4163_filter_values[2];
 /****************************************************************
- ** struct__4104
+ ** struct__4168
  ****************************************************************/
-extern const char * struct__4104_to_string(const void* pValue);
-extern int check_struct__4104_string(const char* strValue);
-extern int string_to_struct__4104(const char* strValue, void* pValue);
-int is_struct__4104_allow_double_convertion();
-extern const char * get_struct__4104_signature();
-extern int compare_struct__4104_type(int*, const char*, const void*);
-#define struct__4104_filter_size 2
-extern FilterUtils get_struct__4104_filter_utils(const char* strFilter, void* pValue);
-extern const char * struct__4104_filter_values[2];
+extern const char * struct__4168_to_string(const void* pValue);
+extern int check_struct__4168_string(const char* strValue);
+extern int string_to_struct__4168(const char* strValue, void* pValue);
+int is_struct__4168_allow_double_convertion();
+extern const char * get_struct__4168_signature();
+extern int compare_struct__4168_type(int*, const char*, const void*);
+#define struct__4168_filter_size 2
+extern FilterUtils get_struct__4168_filter_utils(const char* strFilter, void* pValue);
+extern const char * struct__4168_filter_values[2];
 /****************************************************************
- ** struct__4109
+ ** struct__4173
  ****************************************************************/
-extern const char * struct__4109_to_string(const void* pValue);
-extern int check_struct__4109_string(const char* strValue);
-extern int string_to_struct__4109(const char* strValue, void* pValue);
-int is_struct__4109_allow_double_convertion();
-extern const char * get_struct__4109_signature();
-extern int compare_struct__4109_type(int*, const char*, const void*);
-#define struct__4109_filter_size 5
-extern FilterUtils get_struct__4109_filter_utils(const char* strFilter, void* pValue);
-extern const char * struct__4109_filter_values[5];
+extern const char * struct__4173_to_string(const void* pValue);
+extern int check_struct__4173_string(const char* strValue);
+extern int string_to_struct__4173(const char* strValue, void* pValue);
+int is_struct__4173_allow_double_convertion();
+extern const char * get_struct__4173_signature();
+extern int compare_struct__4173_type(int*, const char*, const void*);
+#define struct__4173_filter_size 5
+extern FilterUtils get_struct__4173_filter_utils(const char* strFilter, void* pValue);
+extern const char * struct__4173_filter_values[5];
 /****************************************************************
- ** struct__4117
+ ** struct__4181
  ****************************************************************/
-extern const char * struct__4117_to_string(const void* pValue);
-extern int check_struct__4117_string(const char* strValue);
-extern int string_to_struct__4117(const char* strValue, void* pValue);
-int is_struct__4117_allow_double_convertion();
-extern const char * get_struct__4117_signature();
-extern int compare_struct__4117_type(int*, const char*, const void*);
-#define struct__4117_filter_size 6
-extern FilterUtils get_struct__4117_filter_utils(const char* strFilter, void* pValue);
-extern const char * struct__4117_filter_values[6];
+extern const char * struct__4181_to_string(const void* pValue);
+extern int check_struct__4181_string(const char* strValue);
+extern int string_to_struct__4181(const char* strValue, void* pValue);
+int is_struct__4181_allow_double_convertion();
+extern const char * get_struct__4181_signature();
+extern int compare_struct__4181_type(int*, const char*, const void*);
+#define struct__4181_filter_size 6
+extern FilterUtils get_struct__4181_filter_utils(const char* strFilter, void* pValue);
+extern const char * struct__4181_filter_values[6];
 /****************************************************************
- ** struct__4126
+ ** struct__4190
  ****************************************************************/
-extern const char * struct__4126_to_string(const void* pValue);
-extern int check_struct__4126_string(const char* strValue);
-extern int string_to_struct__4126(const char* strValue, void* pValue);
-int is_struct__4126_allow_double_convertion();
-extern const char * get_struct__4126_signature();
-extern int compare_struct__4126_type(int*, const char*, const void*);
-#define struct__4126_filter_size 8
-extern FilterUtils get_struct__4126_filter_utils(const char* strFilter, void* pValue);
-extern const char * struct__4126_filter_values[8];
+extern const char * struct__4190_to_string(const void* pValue);
+extern int check_struct__4190_string(const char* strValue);
+extern int string_to_struct__4190(const char* strValue, void* pValue);
+int is_struct__4190_allow_double_convertion();
+extern const char * get_struct__4190_signature();
+extern int compare_struct__4190_type(int*, const char*, const void*);
+#define struct__4190_filter_size 8
+extern FilterUtils get_struct__4190_filter_utils(const char* strFilter, void* pValue);
+extern const char * struct__4190_filter_values[8];
 /****************************************************************
- ** array__4137
+ ** array__4201
  ****************************************************************/
-extern const char * array__4137_to_string(const void* pValue);
-extern int check_array__4137_string(const char* strValue);
-extern int string_to_array__4137(const char* strValue, void* pValue);
-int is_array__4137_allow_double_convertion();
-extern const char * get_array__4137_signature();
-extern int compare_array__4137_type(int*, const char*, const void*);
-#define array__4137_filter_size 5
-extern FilterUtils get_array__4137_filter_utils(const char* strFilter, void* pValue);
-#define array__4137_filter_values 0
+extern const char * array__4201_to_string(const void* pValue);
+extern int check_array__4201_string(const char* strValue);
+extern int string_to_array__4201(const char* strValue, void* pValue);
+int is_array__4201_allow_double_convertion();
+extern const char * get_array__4201_signature();
+extern int compare_array__4201_type(int*, const char*, const void*);
+#define array__4201_filter_size 5
+extern FilterUtils get_array__4201_filter_utils(const char* strFilter, void* pValue);
+#define array__4201_filter_values 0
 /****************************************************************
- ** struct__4140
+ ** struct__4204
  ****************************************************************/
-extern const char * struct__4140_to_string(const void* pValue);
-extern int check_struct__4140_string(const char* strValue);
-extern int string_to_struct__4140(const char* strValue, void* pValue);
-int is_struct__4140_allow_double_convertion();
-extern const char * get_struct__4140_signature();
-extern int compare_struct__4140_type(int*, const char*, const void*);
-#define struct__4140_filter_size 6
-extern FilterUtils get_struct__4140_filter_utils(const char* strFilter, void* pValue);
-extern const char * struct__4140_filter_values[6];
+extern const char * struct__4204_to_string(const void* pValue);
+extern int check_struct__4204_string(const char* strValue);
+extern int string_to_struct__4204(const char* strValue, void* pValue);
+int is_struct__4204_allow_double_convertion();
+extern const char * get_struct__4204_signature();
+extern int compare_struct__4204_type(int*, const char*, const void*);
+#define struct__4204_filter_size 6
+extern FilterUtils get_struct__4204_filter_utils(const char* strFilter, void* pValue);
+extern const char * struct__4204_filter_values[6];
 /****************************************************************
  ** array_int_7
  ****************************************************************/
@@ -531,11 +531,11 @@ extern int check_B_data_internal_FirstTest_InfraLibInt_string(const char* strVal
 extern int string_to_B_data_internal_FirstTest_InfraLibInt(const char* strValue, void* pValue);
 int is_B_data_internal_FirstTest_InfraLibInt_allow_double_convertion();
 extern int B_data_internal_FirstTest_InfraLibInt_to_double(double * nValue, const void*);
-#define get_B_data_internal_FirstTest_InfraLibInt_signature get_struct__4117_signature
-#define compare_B_data_internal_FirstTest_InfraLibInt_type compare_struct__4117_type
-#define B_data_internal_FirstTest_InfraLibInt_filter_size struct__4117_filter_size
-#define get_B_data_internal_FirstTest_InfraLibInt_filter_utils get_struct__4117_filter_utils
-#define B_data_internal_FirstTest_InfraLibInt_filter_values struct__4117_filter_values
+#define get_B_data_internal_FirstTest_InfraLibInt_signature get_struct__4181_signature
+#define compare_B_data_internal_FirstTest_InfraLibInt_type compare_struct__4181_type
+#define B_data_internal_FirstTest_InfraLibInt_filter_size struct__4181_filter_size
+#define get_B_data_internal_FirstTest_InfraLibInt_filter_utils get_struct__4181_filter_utils
+#define B_data_internal_FirstTest_InfraLibInt_filter_values struct__4181_filter_values
 /****************************************************************
  ** CompressedBaliseMessage_TM
  ****************************************************************/
@@ -544,11 +544,11 @@ extern int check_CompressedBaliseMessage_TM_string(const char* strValue);
 extern int string_to_CompressedBaliseMessage_TM(const char* strValue, void* pValue);
 int is_CompressedBaliseMessage_TM_allow_double_convertion();
 extern int CompressedBaliseMessage_TM_to_double(double * nValue, const void*);
-#define get_CompressedBaliseMessage_TM_signature get_struct__4104_signature
-#define compare_CompressedBaliseMessage_TM_type compare_struct__4104_type
-#define CompressedBaliseMessage_TM_filter_size struct__4104_filter_size
-#define get_CompressedBaliseMessage_TM_filter_utils get_struct__4104_filter_utils
-#define CompressedBaliseMessage_TM_filter_values struct__4104_filter_values
+#define get_CompressedBaliseMessage_TM_signature get_struct__4168_signature
+#define compare_CompressedBaliseMessage_TM_type compare_struct__4168_type
+#define CompressedBaliseMessage_TM_filter_size struct__4168_filter_size
+#define get_CompressedBaliseMessage_TM_filter_utils get_struct__4168_filter_utils
+#define CompressedBaliseMessage_TM_filter_values struct__4168_filter_values
 /****************************************************************
  ** BaliseTelegramHeader_int_T_TM
  ****************************************************************/
@@ -557,11 +557,11 @@ extern int check_BaliseTelegramHeader_int_T_TM_string(const char* strValue);
 extern int string_to_BaliseTelegramHeader_int_T_TM(const char* strValue, void* pValue);
 int is_BaliseTelegramHeader_int_T_TM_allow_double_convertion();
 extern int BaliseTelegramHeader_int_T_TM_to_double(double * nValue, const void*);
-#define get_BaliseTelegramHeader_int_T_TM_signature get_struct__4072_signature
-#define compare_BaliseTelegramHeader_int_T_TM_type compare_struct__4072_type
-#define BaliseTelegramHeader_int_T_TM_filter_size struct__4072_filter_size
-#define get_BaliseTelegramHeader_int_T_TM_filter_utils get_struct__4072_filter_utils
-#define BaliseTelegramHeader_int_T_TM_filter_values struct__4072_filter_values
+#define get_BaliseTelegramHeader_int_T_TM_signature get_struct__4136_signature
+#define compare_BaliseTelegramHeader_int_T_TM_type compare_struct__4136_type
+#define BaliseTelegramHeader_int_T_TM_filter_size struct__4136_filter_size
+#define get_BaliseTelegramHeader_int_T_TM_filter_utils get_struct__4136_filter_utils
+#define BaliseTelegramHeader_int_T_TM_filter_values struct__4136_filter_values
 /****************************************************************
  ** OrBG_TM
  ****************************************************************/
@@ -589,57 +589,57 @@ extern int compare_OrLine_TM_type(int*, const char*, const void*);
 #define get_OrLine_TM_filter_utils 0
 #define OrLine_TM_filter_values 0
 /****************************************************************
- ** P005_TM
+ ** P005old_TM
  ****************************************************************/
-extern const char * P005_TM_to_string(const void* pValue);
-extern int check_P005_TM_string(const char* strValue);
-extern int string_to_P005_TM(const char* strValue, void* pValue);
-int is_P005_TM_allow_double_convertion();
-extern int P005_TM_to_double(double * nValue, const void*);
-#define get_P005_TM_signature get_struct__4140_signature
-#define compare_P005_TM_type compare_struct__4140_type
-#define P005_TM_filter_size struct__4140_filter_size
-#define get_P005_TM_filter_utils get_struct__4140_filter_utils
-#define P005_TM_filter_values struct__4140_filter_values
+extern const char * P005old_TM_to_string(const void* pValue);
+extern int check_P005old_TM_string(const char* strValue);
+extern int string_to_P005old_TM(const char* strValue, void* pValue);
+int is_P005old_TM_allow_double_convertion();
+extern int P005old_TM_to_double(double * nValue, const void*);
+#define get_P005old_TM_signature get_struct__4204_signature
+#define compare_P005old_TM_type compare_struct__4204_type
+#define P005old_TM_filter_size struct__4204_filter_size
+#define get_P005old_TM_filter_utils get_struct__4204_filter_utils
+#define P005old_TM_filter_values struct__4204_filter_values
 /****************************************************************
- ** P005Es_T_TM
+ ** P005Es_Told_TM
  ****************************************************************/
-extern const char * P005Es_T_TM_to_string(const void* pValue);
-extern int check_P005Es_T_TM_string(const char* strValue);
-extern int string_to_P005Es_T_TM(const char* strValue, void* pValue);
-int is_P005Es_T_TM_allow_double_convertion();
-extern int P005Es_T_TM_to_double(double * nValue, const void*);
-#define get_P005Es_T_TM_signature get_array__4137_signature
-#define compare_P005Es_T_TM_type compare_array__4137_type
-#define P005Es_T_TM_filter_size array__4137_filter_size
-#define get_P005Es_T_TM_filter_utils get_array__4137_filter_utils
-#define P005Es_T_TM_filter_values array__4137_filter_values
+extern const char * P005Es_Told_TM_to_string(const void* pValue);
+extern int check_P005Es_Told_TM_string(const char* strValue);
+extern int string_to_P005Es_Told_TM(const char* strValue, void* pValue);
+int is_P005Es_Told_TM_allow_double_convertion();
+extern int P005Es_Told_TM_to_double(double * nValue, const void*);
+#define get_P005Es_Told_TM_signature get_array__4201_signature
+#define compare_P005Es_Told_TM_type compare_array__4201_type
+#define P005Es_Told_TM_filter_size array__4201_filter_size
+#define get_P005Es_Told_TM_filter_utils get_array__4201_filter_utils
+#define P005Es_Told_TM_filter_values array__4201_filter_values
 /****************************************************************
- ** P005E_T_TM
+ ** P005E_Told_TM
  ****************************************************************/
-extern const char * P005E_T_TM_to_string(const void* pValue);
-extern int check_P005E_T_TM_string(const char* strValue);
-extern int string_to_P005E_T_TM(const char* strValue, void* pValue);
-int is_P005E_T_TM_allow_double_convertion();
-extern int P005E_T_TM_to_double(double * nValue, const void*);
-#define get_P005E_T_TM_signature get_struct__4126_signature
-#define compare_P005E_T_TM_type compare_struct__4126_type
-#define P005E_T_TM_filter_size struct__4126_filter_size
-#define get_P005E_T_TM_filter_utils get_struct__4126_filter_utils
-#define P005E_T_TM_filter_values struct__4126_filter_values
+extern const char * P005E_Told_TM_to_string(const void* pValue);
+extern int check_P005E_Told_TM_string(const char* strValue);
+extern int string_to_P005E_Told_TM(const char* strValue, void* pValue);
+int is_P005E_Told_TM_allow_double_convertion();
+extern int P005E_Told_TM_to_double(double * nValue, const void*);
+#define get_P005E_Told_TM_signature get_struct__4190_signature
+#define compare_P005E_Told_TM_type compare_struct__4190_type
+#define P005E_Told_TM_filter_size struct__4190_filter_size
+#define get_P005E_Told_TM_filter_utils get_struct__4190_filter_utils
+#define P005E_Told_TM_filter_values struct__4190_filter_values
 /****************************************************************
- ** P005E_array_T_TM
+ ** P005E_array_Told_TM
  ****************************************************************/
-extern const char * P005E_array_T_TM_to_string(const void* pValue);
-extern int check_P005E_array_T_TM_string(const char* strValue);
-extern int string_to_P005E_array_T_TM(const char* strValue, void* pValue);
-int is_P005E_array_T_TM_allow_double_convertion();
-extern int P005E_array_T_TM_to_double(double * nValue, const void*);
-#define get_P005E_array_T_TM_signature get_array_int_7_signature
-#define compare_P005E_array_T_TM_type compare_array_int_7_type
-#define P005E_array_T_TM_filter_size array_int_7_filter_size
-#define get_P005E_array_T_TM_filter_utils get_array_int_7_filter_utils
-#define P005E_array_T_TM_filter_values array_int_7_filter_values
+extern const char * P005E_array_Told_TM_to_string(const void* pValue);
+extern int check_P005E_array_Told_TM_string(const char* strValue);
+extern int string_to_P005E_array_Told_TM(const char* strValue, void* pValue);
+int is_P005E_array_Told_TM_allow_double_convertion();
+extern int P005E_array_Told_TM_to_double(double * nValue, const void*);
+#define get_P005E_array_Told_TM_signature get_array_int_7_signature
+#define compare_P005E_array_Told_TM_type compare_array_int_7_type
+#define P005E_array_Told_TM_filter_size array_int_7_filter_size
+#define get_P005E_array_Told_TM_filter_utils get_array_int_7_filter_utils
+#define P005E_array_Told_TM_filter_values array_int_7_filter_values
 /****************************************************************
  ** BaliseGroupData_TM
  ****************************************************************/
@@ -648,11 +648,11 @@ extern int check_BaliseGroupData_TM_string(const char* strValue);
 extern int string_to_BaliseGroupData_TM(const char* strValue, void* pValue);
 int is_BaliseGroupData_TM_allow_double_convertion();
 extern int BaliseGroupData_TM_to_double(double * nValue, const void*);
-#define get_BaliseGroupData_TM_signature get_struct__4109_signature
-#define compare_BaliseGroupData_TM_type compare_struct__4109_type
-#define BaliseGroupData_TM_filter_size struct__4109_filter_size
-#define get_BaliseGroupData_TM_filter_utils get_struct__4109_filter_utils
-#define BaliseGroupData_TM_filter_values struct__4109_filter_values
+#define get_BaliseGroupData_TM_signature get_struct__4173_signature
+#define compare_BaliseGroupData_TM_type compare_struct__4173_type
+#define BaliseGroupData_TM_filter_size struct__4173_filter_size
+#define get_BaliseGroupData_TM_filter_utils get_struct__4173_filter_utils
+#define BaliseGroupData_TM_filter_values struct__4173_filter_values
 /****************************************************************
  ** CompressedPackets_T_Common_Types_Pkg
  ****************************************************************/
@@ -661,11 +661,11 @@ extern int check_CompressedPackets_T_Common_Types_Pkg_string(const char* strValu
 extern int string_to_CompressedPackets_T_Common_Types_Pkg(const char* strValue, void* pValue);
 int is_CompressedPackets_T_Common_Types_Pkg_allow_double_convertion();
 extern int CompressedPackets_T_Common_Types_Pkg_to_double(double * nValue, const void*);
-#define get_CompressedPackets_T_Common_Types_Pkg_signature get_struct__4099_signature
-#define compare_CompressedPackets_T_Common_Types_Pkg_type compare_struct__4099_type
-#define CompressedPackets_T_Common_Types_Pkg_filter_size struct__4099_filter_size
-#define get_CompressedPackets_T_Common_Types_Pkg_filter_utils get_struct__4099_filter_utils
-#define CompressedPackets_T_Common_Types_Pkg_filter_values struct__4099_filter_values
+#define get_CompressedPackets_T_Common_Types_Pkg_signature get_struct__4163_signature
+#define compare_CompressedPackets_T_Common_Types_Pkg_type compare_struct__4163_type
+#define CompressedPackets_T_Common_Types_Pkg_filter_size struct__4163_filter_size
+#define get_CompressedPackets_T_Common_Types_Pkg_filter_utils get_struct__4163_filter_utils
+#define CompressedPackets_T_Common_Types_Pkg_filter_values struct__4163_filter_values
 /****************************************************************
  ** Metadata_T_Common_Types_Pkg
  ****************************************************************/
@@ -674,11 +674,11 @@ extern int check_Metadata_T_Common_Types_Pkg_string(const char* strValue);
 extern int string_to_Metadata_T_Common_Types_Pkg(const char* strValue, void* pValue);
 int is_Metadata_T_Common_Types_Pkg_allow_double_convertion();
 extern int Metadata_T_Common_Types_Pkg_to_double(double * nValue, const void*);
-#define get_Metadata_T_Common_Types_Pkg_signature get_array__4096_signature
-#define compare_Metadata_T_Common_Types_Pkg_type compare_array__4096_type
-#define Metadata_T_Common_Types_Pkg_filter_size array__4096_filter_size
-#define get_Metadata_T_Common_Types_Pkg_filter_utils get_array__4096_filter_utils
-#define Metadata_T_Common_Types_Pkg_filter_values array__4096_filter_values
+#define get_Metadata_T_Common_Types_Pkg_signature get_array__4160_signature
+#define compare_Metadata_T_Common_Types_Pkg_type compare_array__4160_type
+#define Metadata_T_Common_Types_Pkg_filter_size array__4160_filter_size
+#define get_Metadata_T_Common_Types_Pkg_filter_utils get_array__4160_filter_utils
+#define Metadata_T_Common_Types_Pkg_filter_values array__4160_filter_values
 /****************************************************************
  ** MetadataElement_T_Common_Types_Pkg
  ****************************************************************/
@@ -687,11 +687,11 @@ extern int check_MetadataElement_T_Common_Types_Pkg_string(const char* strValue)
 extern int string_to_MetadataElement_T_Common_Types_Pkg(const char* strValue, void* pValue);
 int is_MetadataElement_T_Common_Types_Pkg_allow_double_convertion();
 extern int MetadataElement_T_Common_Types_Pkg_to_double(double * nValue, const void*);
-#define get_MetadataElement_T_Common_Types_Pkg_signature get_struct__4088_signature
-#define compare_MetadataElement_T_Common_Types_Pkg_type compare_struct__4088_type
-#define MetadataElement_T_Common_Types_Pkg_filter_size struct__4088_filter_size
-#define get_MetadataElement_T_Common_Types_Pkg_filter_utils get_struct__4088_filter_utils
-#define MetadataElement_T_Common_Types_Pkg_filter_values struct__4088_filter_values
+#define get_MetadataElement_T_Common_Types_Pkg_signature get_struct__4152_signature
+#define compare_MetadataElement_T_Common_Types_Pkg_type compare_struct__4152_type
+#define MetadataElement_T_Common_Types_Pkg_filter_size struct__4152_filter_size
+#define get_MetadataElement_T_Common_Types_Pkg_filter_utils get_struct__4152_filter_utils
+#define MetadataElement_T_Common_Types_Pkg_filter_values struct__4152_filter_values
 /****************************************************************
  ** CompressedPacketData_T_Common_Types_Pkg
  ****************************************************************/
@@ -713,11 +713,11 @@ extern int check_BaliseGroupData_Basics_string(const char* strValue);
 extern int string_to_BaliseGroupData_Basics(const char* strValue, void* pValue);
 int is_BaliseGroupData_Basics_allow_double_convertion();
 extern int BaliseGroupData_Basics_to_double(double * nValue, const void*);
-#define get_BaliseGroupData_Basics_signature get_struct__4109_signature
-#define compare_BaliseGroupData_Basics_type compare_struct__4109_type
-#define BaliseGroupData_Basics_filter_size struct__4109_filter_size
-#define get_BaliseGroupData_Basics_filter_utils get_struct__4109_filter_utils
-#define BaliseGroupData_Basics_filter_values struct__4109_filter_values
+#define get_BaliseGroupData_Basics_signature get_struct__4173_signature
+#define compare_BaliseGroupData_Basics_type compare_struct__4173_type
+#define BaliseGroupData_Basics_filter_size struct__4173_filter_size
+#define get_BaliseGroupData_Basics_filter_utils get_struct__4173_filter_utils
+#define BaliseGroupData_Basics_filter_values struct__4173_filter_values
 /****************************************************************
  ** TelegramHeader_T_BG_Types_Pkg
  ****************************************************************/
@@ -726,10 +726,10 @@ extern int check_TelegramHeader_T_BG_Types_Pkg_string(const char* strValue);
 extern int string_to_TelegramHeader_T_BG_Types_Pkg(const char* strValue, void* pValue);
 int is_TelegramHeader_T_BG_Types_Pkg_allow_double_convertion();
 extern int TelegramHeader_T_BG_Types_Pkg_to_double(double * nValue, const void*);
-#define get_TelegramHeader_T_BG_Types_Pkg_signature get_struct__4059_signature
-#define compare_TelegramHeader_T_BG_Types_Pkg_type compare_struct__4059_type
-#define TelegramHeader_T_BG_Types_Pkg_filter_size struct__4059_filter_size
-#define get_TelegramHeader_T_BG_Types_Pkg_filter_utils get_struct__4059_filter_utils
-#define TelegramHeader_T_BG_Types_Pkg_filter_values struct__4059_filter_values
+#define get_TelegramHeader_T_BG_Types_Pkg_signature get_struct__4123_signature
+#define compare_TelegramHeader_T_BG_Types_Pkg_type compare_struct__4123_type
+#define TelegramHeader_T_BG_Types_Pkg_filter_size struct__4123_filter_size
+#define get_TelegramHeader_T_BG_Types_Pkg_filter_utils get_struct__4123_filter_utils
+#define TelegramHeader_T_BG_Types_Pkg_filter_values struct__4123_filter_values
 
 #endif /*STORY00A_FIRSTTEST_TYPES_CONVERTION */

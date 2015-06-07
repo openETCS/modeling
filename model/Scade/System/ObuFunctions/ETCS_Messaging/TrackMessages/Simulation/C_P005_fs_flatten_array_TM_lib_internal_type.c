@@ -67,16 +67,16 @@ TypeUtils _SCSIM_array_int_7_Utils = {array_int_7_to_string,
 	get_array_int_7_filter_utils,
 	array_int_7_filter_size,
 	array_int_7_filter_values};
-TypeUtils _SCSIM_array_int_7_32_Utils = {array_int_7_32_to_string,
-	check_array_int_7_32_string,
-	string_to_array_int_7_32,
-	is_array_int_7_32_allow_double_convertion,
+TypeUtils _SCSIM_array_int_7_33_Utils = {array_int_7_33_to_string,
+	check_array_int_7_33_string,
+	string_to_array_int_7_33,
+	is_array_int_7_33_allow_double_convertion,
 	0,
-	compare_array_int_7_32_type,
-	get_array_int_7_32_signature,
-	get_array_int_7_32_filter_utils,
-	array_int_7_32_filter_size,
-	array_int_7_32_filter_values};
+	compare_array_int_7_33_type,
+	get_array_int_7_33_signature,
+	get_array_int_7_33_filter_utils,
+	array_int_7_33_filter_size,
+	array_int_7_33_filter_values};
 TypeUtils _SCSIM_array_int_224_Utils = {array_int_224_to_string,
 	check_array_int_224_string,
 	string_to_array_int_224,
@@ -87,16 +87,16 @@ TypeUtils _SCSIM_array_int_224_Utils = {array_int_224_to_string,
 	get_array_int_224_filter_utils,
 	array_int_224_filter_size,
 	array_int_224_filter_values};
-TypeUtils _SCSIM_P005_sections_array_flat_TM_Utils = {P005_sections_array_flat_TM_to_string,
-	check_P005_sections_array_flat_TM_string,
-	string_to_P005_sections_array_flat_TM,
-	is_P005_sections_array_flat_TM_allow_double_convertion,
-	P005_sections_array_flat_TM_to_double,
-	compare_P005_sections_array_flat_TM_type,
-	get_P005_sections_array_flat_TM_signature,
-	get_P005_sections_array_flat_TM_filter_utils,
-	P005_sections_array_flat_TM_filter_size,
-	P005_sections_array_flat_TM_filter_values};
+TypeUtils _SCSIM_P005_sections_array_flat_T_TM_Utils = {P005_sections_array_flat_T_TM_to_string,
+	check_P005_sections_array_flat_T_TM_string,
+	string_to_P005_sections_array_flat_T_TM,
+	is_P005_sections_array_flat_T_TM_allow_double_convertion,
+	P005_sections_array_flat_T_TM_to_double,
+	compare_P005_sections_array_flat_T_TM_type,
+	get_P005_sections_array_flat_T_TM_signature,
+	get_P005_sections_array_flat_T_TM_filter_utils,
+	P005_sections_array_flat_T_TM_filter_size,
+	P005_sections_array_flat_T_TM_filter_values};
 TypeUtils _SCSIM_P005_OBU_sectionlist_array_T_TM_Utils = {P005_OBU_sectionlist_array_T_TM_to_string,
 	check_P005_OBU_sectionlist_array_T_TM_string,
 	string_to_P005_OBU_sectionlist_array_T_TM,
@@ -107,16 +107,16 @@ TypeUtils _SCSIM_P005_OBU_sectionlist_array_T_TM_Utils = {P005_OBU_sectionlist_a
 	get_P005_OBU_sectionlist_array_T_TM_filter_utils,
 	P005_OBU_sectionlist_array_T_TM_filter_size,
 	P005_OBU_sectionlist_array_T_TM_filter_values};
-TypeUtils _SCSIM_P005_trackside_section_array_TM_Utils = {P005_trackside_section_array_TM_to_string,
-	check_P005_trackside_section_array_TM_string,
-	string_to_P005_trackside_section_array_TM,
-	is_P005_trackside_section_array_TM_allow_double_convertion,
-	P005_trackside_section_array_TM_to_double,
-	compare_P005_trackside_section_array_TM_type,
-	get_P005_trackside_section_array_TM_signature,
-	get_P005_trackside_section_array_TM_filter_utils,
-	P005_trackside_section_array_TM_filter_size,
-	P005_trackside_section_array_TM_filter_values};
+TypeUtils _SCSIM_P005_section_array_T_TM_Utils = {P005_section_array_T_TM_to_string,
+	check_P005_section_array_T_TM_string,
+	string_to_P005_section_array_T_TM,
+	is_P005_section_array_T_TM_allow_double_convertion,
+	P005_section_array_T_TM_to_double,
+	compare_P005_section_array_T_TM_type,
+	get_P005_section_array_T_TM_signature,
+	get_P005_section_array_T_TM_filter_utils,
+	P005_section_array_T_TM_filter_size,
+	P005_section_array_T_TM_filter_values};
 
 /****************************************************************
  ** kcg_real
@@ -492,43 +492,43 @@ int check_array_int_7_string(const char* strValue) {
 
 
 /****************************************************************
- ** array_int_7_32
+ ** array_int_7_33
  ****************************************************************/
-void* array_int_7_32_projection(void** pValues, int nIndex) {
-	return &((*(array_int_7_32*)pValues)[nIndex]);
+void* array_int_7_33_projection(void** pValues, int nIndex) {
+	return &((*(array_int_7_33*)pValues)[nIndex]);
 }
 
-const char * array_int_7_32_to_string(const void* pValue) {
-	return (char*) pSimulator->m_pfnArrayToString((const void**)pValue, array_int_7_to_string, 32, array_int_7_32_projection);
+const char * array_int_7_33_to_string(const void* pValue) {
+	return (char*) pSimulator->m_pfnArrayToString((const void**)pValue, array_int_7_to_string, 33, array_int_7_33_projection);
 }
 
-int compare_array_int_7_32_type(int* pResult, const char* toCompare, const void* pValue) {
-	return pSimulator->m_pfnArrayComparison(pResult, toCompare, (const void**)pValue, compare_array_int_7_type , 32, array_int_7_32_projection);
+int compare_array_int_7_33_type(int* pResult, const char* toCompare, const void* pValue) {
+	return pSimulator->m_pfnArrayComparison(pResult, toCompare, (const void**)pValue, compare_array_int_7_type , 33, array_int_7_33_projection);
 }
 
-int is_array_int_7_32_allow_double_convertion() {
+int is_array_int_7_33_allow_double_convertion() {
 	return 0;
 }
 
-int string_to_array_int_7_32(const char* strValue, void* pValue) {
-	static array_int_7_32 rTemp;
-	int nResult = pSimulator->m_pfnArrayFromString(strValue, (void**)(void*)&rTemp, string_to_array_int_7, 32, array_int_7_32_projection);
+int string_to_array_int_7_33(const char* strValue, void* pValue) {
+	static array_int_7_33 rTemp;
+	int nResult = pSimulator->m_pfnArrayFromString(strValue, (void**)(void*)&rTemp, string_to_array_int_7, 33, array_int_7_33_projection);
 	if (nResult == 1)
-		kcg_copy_array_int_7_32(&(*((array_int_7_32*)pValue)), &(rTemp));
+		kcg_copy_array_int_7_33(&(*((array_int_7_33*)pValue)), &(rTemp));
 	return nResult;
 }
 
-const char * get_array_int_7_32_signature() {
-	return pSimulator->m_pfnArraySignature(get_array_int_7_signature, 32);
+const char * get_array_int_7_33_signature() {
+	return pSimulator->m_pfnArraySignature(get_array_int_7_signature, 33);
 }
 
-FilterUtils get_array_int_7_32_filter_utils(const char* strFilter, void* pValue) {
-	return pSimulator->m_pfnGetArrayFilterUtils(&_SCSIM_array_int_7_Utils, strFilter, (void**)pValue, 32, array_int_7_32_projection);
+FilterUtils get_array_int_7_33_filter_utils(const char* strFilter, void* pValue) {
+	return pSimulator->m_pfnGetArrayFilterUtils(&_SCSIM_array_int_7_Utils, strFilter, (void**)pValue, 33, array_int_7_33_projection);
 }
 
-int check_array_int_7_32_string(const char* strValue) {
-	static array_int_7_32 rTemp;
-	return string_to_array_int_7_32(strValue, &rTemp);
+int check_array_int_7_33_string(const char* strValue) {
+	static array_int_7_33 rTemp;
+	return string_to_array_int_7_33(strValue, &rTemp);
 }
 
 
@@ -574,48 +574,48 @@ int check_array_int_224_string(const char* strValue) {
 
 
 /****************************************************************
- ** P005_sections_array_flat_TM
+ ** P005_sections_array_flat_T_TM
  ****************************************************************/
-struct SimTypeVTable* pSimP005_sections_array_flat_TMVTable;
-const char * P005_sections_array_flat_TM_to_string(const void* pValue) {
-	if (pSimP005_sections_array_flat_TMVTable != 0 && pSimP005_sections_array_flat_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
-		return *(char**)pSimP005_sections_array_flat_TMVTable->m_pfnToType(SptString, pValue);
+struct SimTypeVTable* pSimP005_sections_array_flat_T_TMVTable;
+const char * P005_sections_array_flat_T_TM_to_string(const void* pValue) {
+	if (pSimP005_sections_array_flat_T_TMVTable != 0 && pSimP005_sections_array_flat_T_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
+		return *(char**)pSimP005_sections_array_flat_T_TMVTable->m_pfnToType(SptString, pValue);
 	return array_int_224_to_string(pValue);
 }
 
-int string_to_P005_sections_array_flat_TM(const char* strValue, void* pValue) {
-	if (pSimP005_sections_array_flat_TMVTable != 0 && pSimP005_sections_array_flat_TMVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
-		static P005_sections_array_flat_TM rTemp;
-		int nResult = pSimP005_sections_array_flat_TMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
+int string_to_P005_sections_array_flat_T_TM(const char* strValue, void* pValue) {
+	if (pSimP005_sections_array_flat_T_TMVTable != 0 && pSimP005_sections_array_flat_T_TMVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
+		static P005_sections_array_flat_T_TM rTemp;
+		int nResult = pSimP005_sections_array_flat_T_TMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_array_int_224(&(*((P005_sections_array_flat_TM*)pValue)), &(rTemp));
+			kcg_copy_array_int_224(&(*((P005_sections_array_flat_T_TM*)pValue)), &(rTemp));
 		return nResult;
 	}
 	return string_to_array_int_224(strValue, pValue);
 }
 
-int is_P005_sections_array_flat_TM_allow_double_convertion() {
-	if (pSimP005_sections_array_flat_TMVTable != 0) {
+int is_P005_sections_array_flat_T_TM_allow_double_convertion() {
+	if (pSimP005_sections_array_flat_T_TMVTable != 0) {
 		int nConvertionAllowed = 0;
-		nConvertionAllowed |= pSimP005_sections_array_flat_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
-		nConvertionAllowed |= pSimP005_sections_array_flat_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
-		nConvertionAllowed |= pSimP005_sections_array_flat_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
-		nConvertionAllowed |= pSimP005_sections_array_flat_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
+		nConvertionAllowed |= pSimP005_sections_array_flat_T_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
+		nConvertionAllowed |= pSimP005_sections_array_flat_T_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
+		nConvertionAllowed |= pSimP005_sections_array_flat_T_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
+		nConvertionAllowed |= pSimP005_sections_array_flat_T_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
 	return is_array_int_224_allow_double_convertion();
 }
 
-int P005_sections_array_flat_TM_to_double(double * nValue, const void* pValue) {
-	if (pSimP005_sections_array_flat_TMVTable != 0) {
-		if (pSimP005_sections_array_flat_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
-			*nValue = (double)(*(long*)pSimP005_sections_array_flat_TMVTable->m_pfnToType(SptLong, pValue));
-		else if (pSimP005_sections_array_flat_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
-			*nValue = (double)(*(int*)pSimP005_sections_array_flat_TMVTable->m_pfnToType(SptShort, pValue));
-		else if (pSimP005_sections_array_flat_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
-			*nValue = (*(double*)pSimP005_sections_array_flat_TMVTable->m_pfnToType(SptDouble, pValue));
-		else if (pSimP005_sections_array_flat_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
-			*nValue = (double)(*(float*)pSimP005_sections_array_flat_TMVTable->m_pfnToType(SptFloat, pValue));
+int P005_sections_array_flat_T_TM_to_double(double * nValue, const void* pValue) {
+	if (pSimP005_sections_array_flat_T_TMVTable != 0) {
+		if (pSimP005_sections_array_flat_T_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
+			*nValue = (double)(*(long*)pSimP005_sections_array_flat_T_TMVTable->m_pfnToType(SptLong, pValue));
+		else if (pSimP005_sections_array_flat_T_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
+			*nValue = (double)(*(int*)pSimP005_sections_array_flat_T_TMVTable->m_pfnToType(SptShort, pValue));
+		else if (pSimP005_sections_array_flat_T_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
+			*nValue = (*(double*)pSimP005_sections_array_flat_T_TMVTable->m_pfnToType(SptDouble, pValue));
+		else if (pSimP005_sections_array_flat_T_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
+			*nValue = (double)(*(float*)pSimP005_sections_array_flat_T_TMVTable->m_pfnToType(SptFloat, pValue));
 		else
 			return 0;
 		return 1;
@@ -625,9 +625,9 @@ int P005_sections_array_flat_TM_to_double(double * nValue, const void* pValue) {
 	return 0;
 }
 
-int check_P005_sections_array_flat_TM_string(const char* strValue) {
-	static P005_sections_array_flat_TM rTemp;
-	return string_to_P005_sections_array_flat_TM(strValue, &rTemp);
+int check_P005_sections_array_flat_T_TM_string(const char* strValue) {
+	static P005_sections_array_flat_T_TM rTemp;
+	return string_to_P005_sections_array_flat_T_TM(strValue, &rTemp);
 }
 
 
@@ -638,7 +638,7 @@ struct SimTypeVTable* pSimP005_OBU_sectionlist_array_T_TMVTable;
 const char * P005_OBU_sectionlist_array_T_TM_to_string(const void* pValue) {
 	if (pSimP005_OBU_sectionlist_array_T_TMVTable != 0 && pSimP005_OBU_sectionlist_array_T_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimP005_OBU_sectionlist_array_T_TMVTable->m_pfnToType(SptString, pValue);
-	return array_int_7_32_to_string(pValue);
+	return array_int_7_33_to_string(pValue);
 }
 
 int string_to_P005_OBU_sectionlist_array_T_TM(const char* strValue, void* pValue) {
@@ -646,10 +646,10 @@ int string_to_P005_OBU_sectionlist_array_T_TM(const char* strValue, void* pValue
 		static P005_OBU_sectionlist_array_T_TM rTemp;
 		int nResult = pSimP005_OBU_sectionlist_array_T_TMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_array_int_7_32(&(*((P005_OBU_sectionlist_array_T_TM*)pValue)), &(rTemp));
+			kcg_copy_array_int_7_33(&(*((P005_OBU_sectionlist_array_T_TM*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_array_int_7_32(strValue, pValue);
+	return string_to_array_int_7_33(strValue, pValue);
 }
 
 int is_P005_OBU_sectionlist_array_T_TM_allow_double_convertion() {
@@ -661,7 +661,7 @@ int is_P005_OBU_sectionlist_array_T_TM_allow_double_convertion() {
 		nConvertionAllowed |= pSimP005_OBU_sectionlist_array_T_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_array_int_7_32_allow_double_convertion();
+	return is_array_int_7_33_allow_double_convertion();
 }
 
 int P005_OBU_sectionlist_array_T_TM_to_double(double * nValue, const void* pValue) {
@@ -678,8 +678,8 @@ int P005_OBU_sectionlist_array_T_TM_to_double(double * nValue, const void* pValu
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_array_int_7_32_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_array_int_7_32_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_array_int_7_33_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_array_int_7_33_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -690,48 +690,48 @@ int check_P005_OBU_sectionlist_array_T_TM_string(const char* strValue) {
 
 
 /****************************************************************
- ** P005_trackside_section_array_TM
+ ** P005_section_array_T_TM
  ****************************************************************/
-struct SimTypeVTable* pSimP005_trackside_section_array_TMVTable;
-const char * P005_trackside_section_array_TM_to_string(const void* pValue) {
-	if (pSimP005_trackside_section_array_TMVTable != 0 && pSimP005_trackside_section_array_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
-		return *(char**)pSimP005_trackside_section_array_TMVTable->m_pfnToType(SptString, pValue);
+struct SimTypeVTable* pSimP005_section_array_T_TMVTable;
+const char * P005_section_array_T_TM_to_string(const void* pValue) {
+	if (pSimP005_section_array_T_TMVTable != 0 && pSimP005_section_array_T_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
+		return *(char**)pSimP005_section_array_T_TMVTable->m_pfnToType(SptString, pValue);
 	return array_int_7_to_string(pValue);
 }
 
-int string_to_P005_trackside_section_array_TM(const char* strValue, void* pValue) {
-	if (pSimP005_trackside_section_array_TMVTable != 0 && pSimP005_trackside_section_array_TMVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
-		static P005_trackside_section_array_TM rTemp;
-		int nResult = pSimP005_trackside_section_array_TMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
+int string_to_P005_section_array_T_TM(const char* strValue, void* pValue) {
+	if (pSimP005_section_array_T_TMVTable != 0 && pSimP005_section_array_T_TMVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
+		static P005_section_array_T_TM rTemp;
+		int nResult = pSimP005_section_array_T_TMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_array_int_7(&(*((P005_trackside_section_array_TM*)pValue)), &(rTemp));
+			kcg_copy_array_int_7(&(*((P005_section_array_T_TM*)pValue)), &(rTemp));
 		return nResult;
 	}
 	return string_to_array_int_7(strValue, pValue);
 }
 
-int is_P005_trackside_section_array_TM_allow_double_convertion() {
-	if (pSimP005_trackside_section_array_TMVTable != 0) {
+int is_P005_section_array_T_TM_allow_double_convertion() {
+	if (pSimP005_section_array_T_TMVTable != 0) {
 		int nConvertionAllowed = 0;
-		nConvertionAllowed |= pSimP005_trackside_section_array_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
-		nConvertionAllowed |= pSimP005_trackside_section_array_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
-		nConvertionAllowed |= pSimP005_trackside_section_array_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
-		nConvertionAllowed |= pSimP005_trackside_section_array_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
+		nConvertionAllowed |= pSimP005_section_array_T_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
+		nConvertionAllowed |= pSimP005_section_array_T_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
+		nConvertionAllowed |= pSimP005_section_array_T_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
+		nConvertionAllowed |= pSimP005_section_array_T_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
 	return is_array_int_7_allow_double_convertion();
 }
 
-int P005_trackside_section_array_TM_to_double(double * nValue, const void* pValue) {
-	if (pSimP005_trackside_section_array_TMVTable != 0) {
-		if (pSimP005_trackside_section_array_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
-			*nValue = (double)(*(long*)pSimP005_trackside_section_array_TMVTable->m_pfnToType(SptLong, pValue));
-		else if (pSimP005_trackside_section_array_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
-			*nValue = (double)(*(int*)pSimP005_trackside_section_array_TMVTable->m_pfnToType(SptShort, pValue));
-		else if (pSimP005_trackside_section_array_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
-			*nValue = (*(double*)pSimP005_trackside_section_array_TMVTable->m_pfnToType(SptDouble, pValue));
-		else if (pSimP005_trackside_section_array_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
-			*nValue = (double)(*(float*)pSimP005_trackside_section_array_TMVTable->m_pfnToType(SptFloat, pValue));
+int P005_section_array_T_TM_to_double(double * nValue, const void* pValue) {
+	if (pSimP005_section_array_T_TMVTable != 0) {
+		if (pSimP005_section_array_T_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
+			*nValue = (double)(*(long*)pSimP005_section_array_T_TMVTable->m_pfnToType(SptLong, pValue));
+		else if (pSimP005_section_array_T_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
+			*nValue = (double)(*(int*)pSimP005_section_array_T_TMVTable->m_pfnToType(SptShort, pValue));
+		else if (pSimP005_section_array_T_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
+			*nValue = (*(double*)pSimP005_section_array_T_TMVTable->m_pfnToType(SptDouble, pValue));
+		else if (pSimP005_section_array_T_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
+			*nValue = (double)(*(float*)pSimP005_section_array_T_TMVTable->m_pfnToType(SptFloat, pValue));
 		else
 			return 0;
 		return 1;
@@ -741,9 +741,9 @@ int P005_trackside_section_array_TM_to_double(double * nValue, const void* pValu
 	return 0;
 }
 
-int check_P005_trackside_section_array_TM_string(const char* strValue) {
-	static P005_trackside_section_array_TM rTemp;
-	return string_to_P005_trackside_section_array_TM(strValue, &rTemp);
+int check_P005_section_array_T_TM_string(const char* strValue) {
+	static P005_section_array_T_TM rTemp;
+	return string_to_P005_section_array_T_TM(strValue, &rTemp);
 }
 
 

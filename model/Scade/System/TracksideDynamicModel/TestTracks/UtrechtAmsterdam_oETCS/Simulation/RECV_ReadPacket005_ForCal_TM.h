@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-02T15:02:42
+** Generation date: 2015-06-04T16:57:14
 *************************************************************$ */
 #ifndef _RECV_ReadPacket005_ForCal_TM_H_
 #define _RECV_ReadPacket005_ForCal_TM_H_
@@ -45,6 +45,6 @@ extern void RECV_ReadPacket005_ForCal_reset_TM(
 #endif /* _RECV_ReadPacket005_ForCal_TM_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** RECV_ReadPacket005_ForCal_TM.h
-** Generation date: 2015-06-02T15:02:42
+** Generation date: 2015-06-04T16:57:14
 *************************************************************$ */
 

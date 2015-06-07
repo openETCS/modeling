@@ -1,18 +1,18 @@
-#ifndef TESTSTORYY00A_P005_INTERNAL_INTERFACE
-#define TESTSTORYY00A_P005_INTERNAL_INTERFACE
+#ifndef SHEET05_AMSTEL_AMSTERDAMUTRECHTL1_SHEET05_AMSTEL_INTERFACE
+#define SHEET05_AMSTEL_AMSTERDAMUTRECHTL1_SHEET05_AMSTEL_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "TestStoryy00A_P005_Internal.h"
+#include "Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_TestStoryy00A_P005_Internal inputs_ctx;
-extern outC_TestStoryy00A_P005_Internal outputs_ctx;
+extern inC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel inputs_ctx;
+extern outC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*TESTSTORYY00A_P005_INTERNAL_INTERFACE */
+#endif /*SHEET05_AMSTEL_AMSTERDAMUTRECHTL1_SHEET05_AMSTEL_INTERFACE */

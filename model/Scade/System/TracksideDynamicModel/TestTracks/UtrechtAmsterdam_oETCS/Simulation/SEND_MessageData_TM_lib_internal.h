@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-02T15:02:41
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 #ifndef _SEND_MessageData_TM_lib_internal_H_
 #define _SEND_MessageData_TM_lib_internal_H_
@@ -49,6 +49,6 @@ extern void SEND_MessageData_reset_TM_lib_internal(
 #endif /* _SEND_MessageData_TM_lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SEND_MessageData_TM_lib_internal.h
-** Generation date: 2015-06-02T15:02:41
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 

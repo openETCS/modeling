@@ -14943,13 +14943,13 @@
 						</Variable>
 					</locals>
 					<data>
-						<!-- _L78 = ( foldi C_P005_fs_flatten_array<<TM::(1+DIM_N_ITER) * 7>>)(_L76, _L80); -->
+						<!-- _L78 = ( foldi C_P005_fs_flatten_array<<(TM::DIM_N_ITER + 1) * 7>>)(_L76, _L80); -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L78"/>
 							</lefts>
 							<right>
-								<!-- ( foldi C_P005_fs_flatten_array<<TM::(1+DIM_N_ITER) * 7>>)(_L76, _L80) -->
+								<!-- ( foldi C_P005_fs_flatten_array<<(TM::DIM_N_ITER + 1) * 7>>)(_L76, _L80) -->
 								<CallExpression>
 									<operator>
 										<IteratorOp iterator="foldi">
@@ -14961,7 +14961,23 @@
 												</OpCall>
 											</operator>
 											<size>
-												<TextExpression text="TM::(1+DIM_N_ITER) * 7"/>
+												<!-- (TM::DIM_N_ITER + 1) * 7 -->
+												<NAryOp operator="*">
+													<operands>
+														<!-- (TM::DIM_N_ITER + 1) -->
+														<NAryOp operator="+">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="TM::DIM_N_ITER"/>
+																	</path>
+																</IdExpression>
+																<ConstValue value="1"/>
+															</operands>
+														</NAryOp>
+														<ConstValue value="7"/>
+													</operands>
+												</NAryOp>
 											</size>
 										</IteratorOp>
 									</operator>
@@ -15202,8 +15218,8 @@
 											<positions>
 												<Point x="10530" y="5398"/>
 												<Point x="11509" y="5398"/>
-												<Point x="11509" y="5424"/>
-												<Point x="12488" y="5424"/>
+												<Point x="11509" y="5398"/>
+												<Point x="12488" y="5398"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1c51e/7FB8/11C8/556f2ad15be1" dstEquation="!ed/1c374/7FB8/11C8/556f179412c3">
@@ -15962,7 +15978,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM::P005_trackside_sectionlist_array_T"/>
+										<TypeRef name="TM::P005_OBU_sectionlist_array_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -16062,7 +16078,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="TM::P005_trackside_sectionlist_array_T"/>
+										<TypeRef name="TM::P005_OBU_sectionlist_array_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -16490,6 +16506,18 @@
 				</Operator>
 				<Operator kind="function" name="C_P005_unflatten_sections">
 					<inputs>
+						<Variable name="nid_packet_ok">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1ccbe/760A/1264/557175675cba"/>
+							</pragmas>
+						</Variable>
 						<Variable name="n_iter">
 							<type>
 								<NamedType>
@@ -16653,7 +16681,7 @@
 								<ed:Variable oid="!ed/38fcc/7FB8/11C8/55703a4898e"/>
 							</pragmas>
 						</Variable>
-						<Variable name="_L10">
+						<Variable name="_L11">
 							<type>
 								<NamedType>
 									<type>
@@ -16662,7 +16690,7 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/38fe0/7FB8/11C8/55703a547fe7"/>
+								<ed:Variable oid="!ed/1ccc0/760A/1264/557175ae34e3"/>
 							</pragmas>
 						</Variable>
 					</locals>
@@ -16715,14 +16743,14 @@
 								<ed:Equation oid="!ed/38f31/7FB8/11C8/55703649146b"/>
 							</pragmas>
 						</Equation>
-						<!-- _L7, _L9 = ( mapwi C_P005_us_array<<TM::DIM_N_ITER + 1>> if _L10 default (DEFAULT... -->
+						<!-- _L7, _L9 = ( mapwi C_P005_us_array<<TM::DIM_N_ITER + 1>> if _L11 default (DEFAULT... -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L7"/>
 								<VariableRef name="_L9"/>
 							</lefts>
 							<right>
-								<!-- ( mapwi C_P005_us_array<<TM::DIM_N_ITER + 1>> if _L10 default (DEFAULT_OBU_sectio... -->
+								<!-- ( mapwi C_P005_us_array<<TM::DIM_N_ITER + 1>> if _L11 default (DEFAULT_OBU_sectio... -->
 								<CallExpression>
 									<operator>
 										<PartialIteratorOp iterator="mapwi">
@@ -16749,7 +16777,7 @@
 											<if>
 												<IdExpression>
 													<path>
-														<ConstVarRef name="_L10"/>
+														<ConstVarRef name="_L11"/>
 													</path>
 												</IdExpression>
 											</if>
@@ -16876,16 +16904,20 @@
 								<ed:Equation oid="!ed/38fd1/7FB8/11C8/55703a50cad"/>
 							</pragmas>
 						</Equation>
-						<!-- _L10 = true; -->
+						<!-- _L11 = nid_packet_ok; -->
 						<Equation>
 							<lefts>
-								<VariableRef name="_L10"/>
+								<VariableRef name="_L11"/>
 							</lefts>
 							<right>
-								<ConstValue value="true"/>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="nid_packet_ok"/>
+									</path>
+								</IdExpression>
 							</right>
 							<pragmas>
-								<ed:Equation oid="!ed/38fdf/7FB8/11C8/55703a543958"/>
+								<ed:Equation oid="!ed/1ccbf/760A/1264/557175ae291"/>
 							</pragmas>
 						</Equation>
 					</data>
@@ -16912,7 +16944,7 @@
 										</EquationGE>
 										<EquationGE presentable="!ed/38f31/7FB8/11C8/55703649146b">
 											<position>
-												<Point x="2143" y="5847"/>
+												<Point x="1984" y="5847"/>
 											</position>
 											<size>
 												<Size width="265" height="502"/>
@@ -16936,7 +16968,7 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/38f31/7FB8/11C8/55703649146b" dstEquation="!ed/38f6a/7FB8/11C8/557038d41c21">
 											<positions>
-												<Point x="2408" y="6112"/>
+												<Point x="2249" y="6112"/>
 												<Point x="3122" y="6112"/>
 												<Point x="3122" y="6165"/>
 												<Point x="3836" y="6165"/>
@@ -16954,8 +16986,8 @@
 											<positions>
 												<Point x="2249" y="7382"/>
 												<Point x="3043" y="7382"/>
-												<Point x="3043" y="7408"/>
-												<Point x="3836" y="7408"/>
+												<Point x="3043" y="7382"/>
+												<Point x="3836" y="7382"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/38f80/7FB8/11C8/5570390c52e0" dstEquation="!ed/38f52/7FB8/11C8/5570368e114b">
@@ -16990,27 +17022,27 @@
 												<Point x="15822" y="5292"/>
 											</positions>
 										</Edge>
-										<EquationGE kind="OBJ_LIT" presentable="!ed/38fdf/7FB8/11C8/55703a543958">
-											<position>
-												<Point x="10001" y="2805"/>
-											</position>
-											<size>
-												<Size width="212" height="317"/>
-											</size>
-										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/38fdf/7FB8/11C8/55703a543958" dstEquation="!ed/38f52/7FB8/11C8/5570368e114b">
-											<positions>
-												<Point x="10213" y="2963"/>
-												<Point x="10874" y="2963"/>
-												<Point x="10874" y="3625"/>
-											</positions>
-										</Edge>
 										<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/38f52/7FB8/11C8/5570368e114b" dstEquation="!ed/38d6b/7FB8/11C8/55702bac44e8">
 											<positions>
 												<Point x="13838" y="6959"/>
 												<Point x="17198" y="6959"/>
 												<Point x="17198" y="6959"/>
 												<Point x="20585" y="6959"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/1ccbf/760A/1264/557175ae291">
+											<position>
+												<Point x="1984" y="2619"/>
+											</position>
+											<size>
+												<Size width="265" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1ccbf/760A/1264/557175ae291" dstEquation="!ed/38f52/7FB8/11C8/5570368e114b">
+											<positions>
+												<Point x="2249" y="2884"/>
+												<Point x="10874" y="2884"/>
+												<Point x="10874" y="3625"/>
 											</positions>
 										</Edge>
 									</presentationElements>

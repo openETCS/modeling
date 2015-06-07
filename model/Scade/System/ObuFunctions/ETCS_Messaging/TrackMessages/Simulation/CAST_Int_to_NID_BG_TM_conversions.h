@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-04T14:43:42
+** Generation date: 2015-06-05T10:39:17
 *************************************************************$ */
 #ifndef _CAST_Int_to_NID_BG_TM_conversions_H_
 #define _CAST_Int_to_NID_BG_TM_conversions_H_
@@ -39,6 +39,6 @@ extern void CAST_Int_to_NID_BG_reset_TM_conversions(
 #endif /* _CAST_Int_to_NID_BG_TM_conversions_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** CAST_Int_to_NID_BG_TM_conversions.h
-** Generation date: 2015-06-04T14:43:42
+** Generation date: 2015-06-05T10:39:17
 *************************************************************$ */
 

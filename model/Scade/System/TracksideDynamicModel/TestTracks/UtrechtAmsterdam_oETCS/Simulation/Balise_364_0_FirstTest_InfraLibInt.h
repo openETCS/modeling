@@ -1,13 +1,13 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-02T15:02:41
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 #ifndef _Balise_364_0_FirstTest_InfraLibInt_H_
 #define _Balise_364_0_FirstTest_InfraLibInt_H_
 
 #include "kcg_types.h"
-#include "Balise_Localisation_FirstTest_InfraLibInt.h"
 #include "Balise_Packets_364_FirstTest_InfraLibInt.h"
+#include "Balise_Localisation_InfraLib.h"
 
 /* =====================  no input structure  ====================== */
 
@@ -20,20 +20,20 @@ typedef struct {
   /* -----------------------  no local memory  ----------------------- */
   /* ---------------------  sub nodes' contexts  --------------------- */
   outC_Balise_Packets_364_FirstTest_InfraLibInt /* 1 */ _1_Context_1;
-  outC_Balise_Localisation_FirstTest_InfraLibInt /* 1 */ Context_1;
+  outC_Balise_Localisation_InfraLib /* 1 */ Context_1;
   /* ------------------ clocks of observable data -------------------- */
   kcg_bool tmp;
   /* -------------------- (-debug) no assertions  -------------------- */
   /* ------------------- (-debug) local variables -------------------- */
-  kcg_bool /* FirstTest::InfraLibInt::Balise_364_0::_L2 */ _L2;
   B_data_internal_FirstTest_InfraLibInt /* FirstTest::InfraLibInt::Balise_364_0::_L4 */ _L4;
   B_data_internal_FirstTest_InfraLibInt /* FirstTest::InfraLibInt::Balise_364_0::_L5 */ _L5;
   B_data_internal_FirstTest_InfraLibInt /* FirstTest::InfraLibInt::Balise_364_0::_L15 */ _L15;
   B_data_internal_FirstTest_InfraLibInt /* FirstTest::InfraLibInt::Balise_364_0::_L17 */ _L17;
   BaliseTelegramHeader_int_T_TM /* FirstTest::InfraLibInt::Balise_364_0::_L19 */ _L19;
   kcg_int /* FirstTest::InfraLibInt::Balise_364_0::_L20 */ _L20;
-  kcg_int /* FirstTest::InfraLibInt::Balise_364_0::_L21 */ _L21;
   BaliseTelegramHeader_int_T_TM /* FirstTest::InfraLibInt::Balise_364_0::_L23 */ _L23;
+  kcg_bool /* FirstTest::InfraLibInt::Balise_364_0::_L2 */ _L2;
+  kcg_int /* FirstTest::InfraLibInt::Balise_364_0::_L21 */ _L21;
 } outC_Balise_364_0_FirstTest_InfraLibInt;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -50,6 +50,6 @@ extern void Balise_364_0_reset_FirstTest_InfraLibInt(
 #endif /* _Balise_364_0_FirstTest_InfraLibInt_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_364_0_FirstTest_InfraLibInt.h
-** Generation date: 2015-06-02T15:02:41
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 

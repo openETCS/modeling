@@ -4851,9 +4851,9 @@ void* _SCSIM_Get_TOOLS_convert_engineering_TM_conversions_Handle(void* pInstance
  ****************************************************************/
 void _SCSIM_Mapping_Send_364_P005_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
 	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_Send_364_P005_FirstTest_InfraLibInt_Handle, nClockHandleIdent, pfnClockActive);
-	_SCSIM_Mapping_SEND_WritePacket005_IT_TM("TM::SEND_WritePacket005_IT", "1", 1167, 1168, &_SCSIM_ClockActive_kcg_true);
+	_SCSIM_Mapping_SEND_WritePacket005_IT_legacy_TM_trackside("TM_trackside::SEND_WritePacket005_IT_legacy", "1", 1167, 1168, &_SCSIM_ClockActive_kcg_true);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L3", &_SCSIM_CompressedPackets_T_Common_Types_Pkg_Utils, 1169, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L4", &_SCSIM_P005_TM_Utils, 1170, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L4", &_SCSIM_P005old_TM_Utils, 1170, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L8", &_SCSIM_kcg_bool_Utils, 1171, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L6", &_SCSIM_kcg_bool_Utils, 1172, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L7", &_SCSIM_CompressedPackets_T_Common_Types_Pkg_Utils, 1173, valid, 0, 0);
@@ -4891,14 +4891,14 @@ void* _SCSIM_Get_Send_364_P005_FirstTest_InfraLibInt_Handle(void* pInstance, int
 }
 
 /****************************************************************
- ** TM::SEND_WritePacket005_IT/ mapping function
+ ** TM_trackside::SEND_WritePacket005_IT_legacy/ mapping function
  ****************************************************************/
-void _SCSIM_Mapping_SEND_WritePacket005_IT_TM(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
-	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_SEND_WritePacket005_IT_TM_Handle, nClockHandleIdent, pfnClockActive);
+void _SCSIM_Mapping_SEND_WritePacket005_IT_legacy_TM_trackside(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
+	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_SEND_WritePacket005_IT_legacy_TM_trackside_Handle, nClockHandleIdent, pfnClockActive);
 	_SCSIM_Mapping_SIM_SEND_WriteBaliseMessa_DRAFTS("DRAFTS::SIM_SEND_WriteBaliseMessageHeader", "1", 1176, 0, 0);
 	_SCSIM_Mapping_SEND_MessageData_TM_lib_internal("TM_lib_internal::SEND_MessageData", "1", 1177, 0, 0);
 	_SCSIM_Mapping_SEND_ConvertP005forWrite_IT_TM_conversions("TM_conversions::SEND_ConvertP005forWrite_IT", "1", 1178, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_P005_TM_Utils, 1179, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_P005old_TM_Utils, 1179, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L4", &_SCSIM_Metadata_T_Common_Types_Pkg_Utils, 1180, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L10", &_SCSIM_CompressedPacketData_T_Common_Types_Pkg_Utils, 1181, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L18", &_SCSIM_kcg_bool_Utils, 1182, valid, 0, 0);
@@ -4915,8 +4915,8 @@ void _SCSIM_Mapping_SEND_WritePacket005_IT_TM(const char* pszPath, const char* p
 	pSimulator->m_pfnPopInstance(pSimulator);
 }
 
-void* _SCSIM_Get_SEND_WritePacket005_IT_TM_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
-	outC_SEND_WritePacket005_IT_TM* pContext = (outC_SEND_WritePacket005_IT_TM*)pInstance;
+void* _SCSIM_Get_SEND_WritePacket005_IT_legacy_TM_trackside_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
+	outC_SEND_WritePacket005_IT_legacy_TM_trackside* pContext = (outC_SEND_WritePacket005_IT_legacy_TM_trackside*)pInstance;
 	switch (nHandleIdent) {
 		case 1176:
 			return &((*pContext)._1_Context_1);
@@ -5119,49 +5119,80 @@ void* _SCSIM_Get_SEND_MessageData_TM_lib_internal_Handle(void* pInstance, int nH
  ****************************************************************/
 void _SCSIM_Mapping_SEND_ConvertP005forWrite_IT_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
 	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_SEND_ConvertP005forWrite_IT_TM_conversions_Handle, nClockHandleIdent, pfnClockActive);
-	_SCSIM_Mapping_CAST_Int_to_Q_DIR_TM_conversions("TM_conversions::CAST_Int_to_Q_DIR", "1", 1231, 0, 0);
-	_SCSIM_Mapping_SEND_ConvertP005forWriteS_TM_conversions("TM_conversions::SEND_ConvertP005forWriteSection_IT", "1", 1232, 0, 0);
-	_SCSIM_Mapping_SEND_ConvertP005forWriteS_TM_conversions("TM_conversions::SEND_ConvertP005forWriteSection_IT", "2", 1233, 0, 0);
-	_SCSIM_Mapping_SEND_ConvertP005forWriteS_TM_conversions("TM_conversions::SEND_ConvertP005forWriteSection_IT", "3", 1234, 0, 0);
-	_SCSIM_Mapping_SEND_ConvertP005forWriteS_TM_conversions("TM_conversions::SEND_ConvertP005forWriteSection_IT", "4", 1235, 0, 0);
-	_SCSIM_Mapping_SEND_ConvertP005forWriteS_TM_conversions("TM_conversions::SEND_ConvertP005forWriteSection_IT", "5", 1236, 0, 0);
-	_SCSIM_Mapping_TOOLS_calculate_L_PACKET_TM_conversions("TM_conversions::TOOLS_calculate_L_PACKET", "1", 1237, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_P005_TM_Utils, 1238, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L204", &_SCSIM_MetadataElement_T_Common_Types_Pkg_Utils, 1239, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L205", &_SCSIM_kcg_int_Utils, 1240, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L206", &_SCSIM_kcg_int_Utils, 1241, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L209", &_SCSIM_array_int_461_Utils, 1242, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L211", &_SCSIM_array_int_500_Utils, 1243, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L212", &_SCSIM_kcg_int_Utils, 1244, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L213", &_SCSIM_kcg_int_Utils, 1245, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L230", &_SCSIM_P005E_T_TM_Utils, 1246, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L229", &_SCSIM_P005E_T_TM_Utils, 1247, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L228", &_SCSIM_P005E_T_TM_Utils, 1248, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L227", &_SCSIM_P005E_T_TM_Utils, 1249, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L226", &_SCSIM_P005E_T_TM_Utils, 1250, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L325", &_SCSIM_array_int_11_Utils, 1251, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L327", &_SCSIM_array_int_18_Utils, 1252, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L328", &_SCSIM_array_int_25_Utils, 1253, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L329", &_SCSIM_array_int_32_Utils, 1254, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L330", &_SCSIM_array_int_39_Utils, 1255, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L336", &_SCSIM_kcg_int_Utils, 1256, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L355", &_SCSIM_array_int_4_Utils, 1257, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L219", &_SCSIM_P005Es_T_TM_Utils, 1258, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L218", &_SCSIM_kcg_int_Utils, 1259, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L217", &_SCSIM_kcg_int_Utils, 1260, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L216", &_SCSIM_kcg_int_Utils, 1261, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L215", &_SCSIM_kcg_int_Utils, 1262, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L214", &_SCSIM_kcg_bool_Utils, 1263, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L356", &_SCSIM_Q_DIR_Utils, 1264, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L357", &_SCSIM_P005E_array_T_TM_Utils, 1265, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L358", &_SCSIM_P005E_array_T_TM_Utils, 1266, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L359", &_SCSIM_P005E_array_T_TM_Utils, 1267, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L360", &_SCSIM_P005E_array_T_TM_Utils, 1268, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L361", &_SCSIM_P005E_array_T_TM_Utils, 1269, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L364", &_SCSIM_kcg_int_Utils, 1270, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L363", &_SCSIM_kcg_int_Utils, 1271, valid, 0, 0);
-	pSimulator->m_pfnAddOutput(pSimulator, "Header", &_SCSIM_MetadataElement_T_Common_Types_Pkg_Utils, 1272, valid, 0, 0);
-	pSimulator->m_pfnAddOutput(pSimulator, "RM05_out", &_SCSIM_CompressedPacketData_T_Common_Types_Pkg_Utils, 1273, valid, 0, 0);
+	/*<< Inlined TM_conversions::CAST_Int_to_Q_DIR*/
+	pSimulator->m_pfnPushInstance(pSimulator, "TM_conversions::CAST_Int_to_Q_DIR", "1", 0, 0, 0, 0);
+	pSimulator->m_pfnAddOutput(pSimulator, "q_dir", &_SCSIM_Q_DIR_Utils, 1231, valid, 0, 0);
+	pSimulator->m_pfnAddInput(pSimulator, "q_dir_int", &_SCSIM_kcg_int_Utils, 1232, valid, 0, 0);
+	pSimulator->m_pfnPushActivateIf(pSimulator, "IfBlock1");
+	pSimulator->m_pfnPushBranch(pSimulator, "else", &_SCSIM_1233_Utils, 1233);
+	pSimulator->m_pfnPushBranch(pSimulator, "else", &_SCSIM_1234_Utils, 1234);
+	pSimulator->m_pfnPushBranch(pSimulator, "else", &_SCSIM_1235_Utils, 1235);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L2", &_SCSIM_Q_DIR_Utils, 1236, valid, 1235, &_SCSIM_ClockActive_kcg_false);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_kcg_bool_Utils, 1237, valid, 1235, &_SCSIM_ClockActive_kcg_false);
+	pSimulator->m_pfnPopBranch(pSimulator);
+	pSimulator->m_pfnPushBranch(pSimulator, "then", &_SCSIM_1238_Utils, 1238);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L2", &_SCSIM_Q_DIR_Utils, 1239, valid, 1238, &_SCSIM_ClockActive_kcg_true);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L4", &_SCSIM_kcg_bool_Utils, 1240, valid, 1238, &_SCSIM_ClockActive_kcg_true);
+	pSimulator->m_pfnPopBranch(pSimulator);
+	pSimulator->m_pfnPopBranch(pSimulator);
+	pSimulator->m_pfnPushBranch(pSimulator, "then", &_SCSIM_1241_Utils, 1241);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L3", &_SCSIM_Q_DIR_Utils, 1242, valid, 1241, &_SCSIM_ClockActive_kcg_true);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L5", &_SCSIM_kcg_bool_Utils, 1243, valid, 1241, &_SCSIM_ClockActive_kcg_true);
+	pSimulator->m_pfnPopBranch(pSimulator);
+	pSimulator->m_pfnPopBranch(pSimulator);
+	pSimulator->m_pfnPushBranch(pSimulator, "then", &_SCSIM_1244_Utils, 1244);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L4", &_SCSIM_Q_DIR_Utils, 1245, valid, 1244, &_SCSIM_ClockActive_kcg_true);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L5", &_SCSIM_kcg_bool_Utils, 1246, valid, 1244, &_SCSIM_ClockActive_kcg_true);
+	pSimulator->m_pfnPopBranch(pSimulator);
+	pSimulator->m_pfnPopActivateIf(pSimulator);
+	pSimulator->m_pfnAddLocal(pSimulator, "error", &_SCSIM_kcg_bool_Utils, 1247, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "q_dir_in", &_SCSIM_kcg_int_Utils, 1248, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L13", &_SCSIM_kcg_bool_Utils, 1249, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L12", &_SCSIM_kcg_int_Utils, 1250, valid, 0, 0);
+	pSimulator->m_pfnPopInstance(pSimulator);
+	/*>>*/
+	_SCSIM_Mapping_SEND_ConvertP005forWriteS_TM_conversions("TM_conversions::SEND_ConvertP005forWriteSection_IT", "1", 1251, 0, 0);
+	_SCSIM_Mapping_SEND_ConvertP005forWriteS_TM_conversions("TM_conversions::SEND_ConvertP005forWriteSection_IT", "2", 1252, 0, 0);
+	_SCSIM_Mapping_SEND_ConvertP005forWriteS_TM_conversions("TM_conversions::SEND_ConvertP005forWriteSection_IT", "3", 1253, 0, 0);
+	_SCSIM_Mapping_SEND_ConvertP005forWriteS_TM_conversions("TM_conversions::SEND_ConvertP005forWriteSection_IT", "4", 1254, 0, 0);
+	_SCSIM_Mapping_SEND_ConvertP005forWriteS_TM_conversions("TM_conversions::SEND_ConvertP005forWriteSection_IT", "5", 1255, 0, 0);
+	_SCSIM_Mapping_TOOLS_calculate_L_PACKET_TM_conversions("TM_conversions::TOOLS_calculate_L_PACKET", "1", 1256, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_P005old_TM_Utils, 1257, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L204", &_SCSIM_MetadataElement_T_Common_Types_Pkg_Utils, 1258, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L205", &_SCSIM_kcg_int_Utils, 1259, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L206", &_SCSIM_kcg_int_Utils, 1260, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L209", &_SCSIM_array_int_461_Utils, 1261, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L211", &_SCSIM_array_int_500_Utils, 1262, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L212", &_SCSIM_kcg_int_Utils, 1263, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L213", &_SCSIM_kcg_int_Utils, 1264, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L230", &_SCSIM_P005E_Told_TM_Utils, 1265, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L229", &_SCSIM_P005E_Told_TM_Utils, 1266, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L228", &_SCSIM_P005E_Told_TM_Utils, 1267, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L227", &_SCSIM_P005E_Told_TM_Utils, 1268, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L226", &_SCSIM_P005E_Told_TM_Utils, 1269, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L325", &_SCSIM_array_int_11_Utils, 1270, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L327", &_SCSIM_array_int_18_Utils, 1271, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L328", &_SCSIM_array_int_25_Utils, 1272, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L329", &_SCSIM_array_int_32_Utils, 1273, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L330", &_SCSIM_array_int_39_Utils, 1274, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L336", &_SCSIM_kcg_int_Utils, 1275, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L355", &_SCSIM_array_int_4_Utils, 1276, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L219", &_SCSIM_P005Es_Told_TM_Utils, 1277, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L218", &_SCSIM_kcg_int_Utils, 1278, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L217", &_SCSIM_kcg_int_Utils, 1279, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L216", &_SCSIM_kcg_int_Utils, 1280, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L215", &_SCSIM_kcg_int_Utils, 1281, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L214", &_SCSIM_kcg_bool_Utils, 1282, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L356", &_SCSIM_Q_DIR_Utils, 1283, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L357", &_SCSIM_P005E_array_Told_TM_Utils, 1284, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L358", &_SCSIM_P005E_array_Told_TM_Utils, 1285, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L359", &_SCSIM_P005E_array_Told_TM_Utils, 1286, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L360", &_SCSIM_P005E_array_Told_TM_Utils, 1287, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L361", &_SCSIM_P005E_array_Told_TM_Utils, 1288, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L364", &_SCSIM_kcg_int_Utils, 1289, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L363", &_SCSIM_kcg_int_Utils, 1290, valid, 0, 0);
+	pSimulator->m_pfnAddOutput(pSimulator, "Header", &_SCSIM_MetadataElement_T_Common_Types_Pkg_Utils, 1291, valid, 0, 0);
+	pSimulator->m_pfnAddOutput(pSimulator, "RM05_out", &_SCSIM_CompressedPacketData_T_Common_Types_Pkg_Utils, 1292, valid, 0, 0);
 	pSimulator->m_pfnPopInstance(pSimulator);
 }
 
@@ -5169,90 +5200,128 @@ void* _SCSIM_Get_SEND_ConvertP005forWrite_IT_TM_conversions_Handle(void* pInstan
 	outC_SEND_ConvertP005forWrite_IT_TM_conversions* pContext = (outC_SEND_ConvertP005forWrite_IT_TM_conversions*)pInstance;
 	switch (nHandleIdent) {
 		case 1231:
-			return &((*pContext)._2_Context_1);
+			return &((*pContext).q_dir_1);
 		case 1232:
-			return &((*pContext)._1_Context_1);
+			return &((*pContext).q_dir_int_1);
 		case 1233:
-			return &((*pContext).Context_2);
+			return &((*pContext).IfBlock1_clock_1);
 		case 1234:
-			return &((*pContext).Context_3);
+			return &((*pContext)._3_else_clock_1_IfBlock1);
 		case 1235:
-			return &((*pContext).Context_4);
+			return &((*pContext).else_clock_1_IfBlock1);
 		case 1236:
-			return &((*pContext).Context_5);
+			return &((*pContext)._L2_1_IfBlock1);
 		case 1237:
-			return &((*pContext).Context_1);
+			return &((*pContext)._L1_1_IfBlock1);
 		case 1238:
-			return &((*pContext)._L1);
+			return &((*pContext).else_clock_1_IfBlock1);
 		case 1239:
-			return &((*pContext)._L204);
+			return &((*pContext)._L2_12_IfBlock1);
 		case 1240:
-			return &((*pContext)._L205);
+			return &((*pContext)._L4_1_IfBlock1);
 		case 1241:
-			return &((*pContext)._L206);
+			return &((*pContext)._3_else_clock_1_IfBlock1);
 		case 1242:
-			return &((*pContext)._L209);
+			return &((*pContext)._L3_1_IfBlock1);
 		case 1243:
-			return &((*pContext)._L211);
+			return &((*pContext)._L5_1_IfBlock1);
 		case 1244:
-			return &((*pContext)._L212);
+			return &((*pContext).IfBlock1_clock_1);
 		case 1245:
-			return &((*pContext)._L213);
+			return &((*pContext)._L4_14_IfBlock1);
 		case 1246:
-			return &((*pContext)._L230);
+			return &((*pContext)._L5_15_IfBlock1);
 		case 1247:
-			return &((*pContext)._L229);
+			return &((*pContext).error_1);
 		case 1248:
-			return &((*pContext)._L228);
+			return &((*pContext).q_dir_in_1);
 		case 1249:
-			return &((*pContext)._L227);
+			return &((*pContext)._L13_1);
 		case 1250:
-			return &((*pContext)._L226);
+			return &((*pContext)._L12_1);
 		case 1251:
-			return &((*pContext)._L325);
+			return &((*pContext)._1_Context_1);
 		case 1252:
-			return &((*pContext)._L327);
+			return &((*pContext).Context_2);
 		case 1253:
-			return &((*pContext)._L328);
+			return &((*pContext).Context_3);
 		case 1254:
-			return &((*pContext)._L329);
+			return &((*pContext).Context_4);
 		case 1255:
-			return &((*pContext)._L330);
+			return &((*pContext).Context_5);
 		case 1256:
-			return &((*pContext)._L336);
+			return &((*pContext).Context_1);
 		case 1257:
-			return &((*pContext)._L355);
+			return &((*pContext)._L1);
 		case 1258:
-			return &((*pContext)._L219);
+			return &((*pContext)._L204);
 		case 1259:
-			return &((*pContext)._L218);
+			return &((*pContext)._L205);
 		case 1260:
-			return &((*pContext)._L217);
+			return &((*pContext)._L206);
 		case 1261:
-			return &((*pContext)._L216);
+			return &((*pContext)._L209);
 		case 1262:
-			return &((*pContext)._L215);
+			return &((*pContext)._L211);
 		case 1263:
-			return &((*pContext)._L214);
+			return &((*pContext)._L212);
 		case 1264:
-			return &((*pContext)._L356);
+			return &((*pContext)._L213);
 		case 1265:
-			return &((*pContext)._L357);
+			return &((*pContext)._L230);
 		case 1266:
-			return &((*pContext)._L358);
+			return &((*pContext)._L229);
 		case 1267:
-			return &((*pContext)._L359);
+			return &((*pContext)._L228);
 		case 1268:
-			return &((*pContext)._L360);
+			return &((*pContext)._L227);
 		case 1269:
-			return &((*pContext)._L361);
+			return &((*pContext)._L226);
 		case 1270:
-			return &((*pContext)._L364);
+			return &((*pContext)._L325);
 		case 1271:
-			return &((*pContext)._L363);
+			return &((*pContext)._L327);
 		case 1272:
-			return &((*pContext).Header);
+			return &((*pContext)._L328);
 		case 1273:
+			return &((*pContext)._L329);
+		case 1274:
+			return &((*pContext)._L330);
+		case 1275:
+			return &((*pContext)._L336);
+		case 1276:
+			return &((*pContext)._L355);
+		case 1277:
+			return &((*pContext)._L219);
+		case 1278:
+			return &((*pContext)._L218);
+		case 1279:
+			return &((*pContext)._L217);
+		case 1280:
+			return &((*pContext)._L216);
+		case 1281:
+			return &((*pContext)._L215);
+		case 1282:
+			return &((*pContext)._L214);
+		case 1283:
+			return &((*pContext)._L356);
+		case 1284:
+			return &((*pContext)._L357);
+		case 1285:
+			return &((*pContext)._L358);
+		case 1286:
+			return &((*pContext)._L359);
+		case 1287:
+			return &((*pContext)._L360);
+		case 1288:
+			return &((*pContext)._L361);
+		case 1289:
+			return &((*pContext)._L364);
+		case 1290:
+			return &((*pContext)._L363);
+		case 1291:
+			return &((*pContext).Header);
+		case 1292:
 			return &((*pContext).RM05_out);
 		default:
 			break;
@@ -5260,46 +5329,76 @@ void* _SCSIM_Get_SEND_ConvertP005forWrite_IT_TM_conversions_Handle(void* pInstan
 	return 0;
 }
 
+static int Is1235Active(void * pHandle) {
+	return *((kcg_bool*)pHandle) != kcg_false  ? 0 : 1;
+}
+ControlUtils _SCSIM_1235_Utils = {Is1235Active};
+
+static int Is1238Active(void * pHandle) {
+	return *((kcg_bool*)pHandle) != kcg_false  ? 1 : 0;
+}
+ControlUtils _SCSIM_1238_Utils = {Is1238Active};
+
+static int Is1234Active(void * pHandle) {
+	return *((kcg_bool*)pHandle) != kcg_false  ? 0 : 1;
+}
+ControlUtils _SCSIM_1234_Utils = {Is1234Active};
+
+static int Is1241Active(void * pHandle) {
+	return *((kcg_bool*)pHandle) != kcg_false  ? 1 : 0;
+}
+ControlUtils _SCSIM_1241_Utils = {Is1241Active};
+
+static int Is1233Active(void * pHandle) {
+	return *((kcg_bool*)pHandle) != kcg_false  ? 0 : 1;
+}
+ControlUtils _SCSIM_1233_Utils = {Is1233Active};
+
+static int Is1244Active(void * pHandle) {
+	return *((kcg_bool*)pHandle) != kcg_false  ? 1 : 0;
+}
+ControlUtils _SCSIM_1244_Utils = {Is1244Active};
+
 /****************************************************************
  ** DRAFTS::SEND_FindSlot/ mapping function
  ****************************************************************/
 void _SCSIM_Mapping_SEND_FindSlot_DRAFTS(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
 	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_SEND_FindSlot_DRAFTS_Handle, nClockHandleIdent, pfnClockActive);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_kcg_int_Utils, 1274, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L2", &_SCSIM_MetadataElement_T_Common_Types_Pkg_Utils, 1275, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L3", &_SCSIM_MetadataElement_T_Common_Types_Pkg_Utils, 1276, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L17", &_SCSIM_kcg_bool_Utils, 1277, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L19", &_SCSIM_kcg_int_Utils, 1278, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L27", &_SCSIM_NID_PACKET_Utils, 1279, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L28", &_SCSIM_kcg_int_Utils, 1280, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L29", &_SCSIM_NID_PACKET_Utils, 1281, valid, 0, 0);
-	pSimulator->m_pfnAddOutput(pSimulator, "Cont", &_SCSIM_kcg_bool_Utils, 1282, valid, 0, 0);
-	pSimulator->m_pfnAddOutput(pSimulator, "Acc", &_SCSIM_kcg_int_Utils, 1283, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_kcg_int_Utils, 1293, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L2", &_SCSIM_MetadataElement_T_Common_Types_Pkg_Utils, 1294, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L3", &_SCSIM_MetadataElement_T_Common_Types_Pkg_Utils, 1295, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L17", &_SCSIM_kcg_bool_Utils, 1296, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L19", &_SCSIM_kcg_int_Utils, 1297, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L27", &_SCSIM_NID_PACKET_Utils, 1298, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L28", &_SCSIM_kcg_int_Utils, 1299, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L29", &_SCSIM_NID_PACKET_Utils, 1300, valid, 0, 0);
+	pSimulator->m_pfnAddOutput(pSimulator, "Cont", &_SCSIM_kcg_bool_Utils, 1301, valid, 0, 0);
+	pSimulator->m_pfnAddOutput(pSimulator, "Acc", &_SCSIM_kcg_int_Utils, 1302, valid, 0, 0);
 	pSimulator->m_pfnPopInstance(pSimulator);
 }
 
 void* _SCSIM_Get_SEND_FindSlot_DRAFTS_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
 	outC_SEND_FindSlot_DRAFTS* pContext = (outC_SEND_FindSlot_DRAFTS*)pInstance;
 	switch (nHandleIdent) {
-		case 1274:
+		case 1293:
 			return &((*pContext)._L1);
-		case 1275:
+		case 1294:
 			return &((*pContext)._L2);
-		case 1276:
+		case 1295:
 			return &((*pContext)._L3);
-		case 1277:
+		case 1296:
 			return &((*pContext)._L17);
-		case 1278:
+		case 1297:
 			return &((*pContext)._L19);
-		case 1279:
+		case 1298:
 			return &((*pContext)._L27);
-		case 1280:
+		case 1299:
 			return &((*pContext)._L28);
-		case 1281:
+		case 1300:
 			return &((*pContext)._L29);
-		case 1282:
+		case 1301:
 			return &((*pContext).Cont);
-		case 1283:
+		case 1302:
 			return &((*pContext).Acc);
 		default:
 			break;
@@ -5312,56 +5411,56 @@ void* _SCSIM_Get_SEND_FindSlot_DRAFTS_Handle(void* pInstance, int nHandleIdent, 
  ****************************************************************/
 void _SCSIM_Mapping_SEND_WriteBaliseDataElement_TM_lib_internal(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
 	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_SEND_WriteBaliseDataElement_TM_lib_internal_Handle, nClockHandleIdent, pfnClockActive);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_kcg_int_Utils, 1284, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L2", &_SCSIM_kcg_int_Utils, 1285, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L3", &_SCSIM_CompressedPacketData_T_Common_Types_Pkg_Utils, 1286, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L4", &_SCSIM_kcg_int_Utils, 1287, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L5", &_SCSIM_kcg_int_Utils, 1288, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L6", &_SCSIM_kcg_bool_Utils, 1289, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L7", &_SCSIM_kcg_bool_Utils, 1290, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L8", &_SCSIM_kcg_bool_Utils, 1291, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L9", &_SCSIM_kcg_int_Utils, 1292, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L10", &_SCSIM_kcg_int_Utils, 1293, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L14", &_SCSIM_kcg_int_Utils, 1294, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L16", &_SCSIM_kcg_int_Utils, 1295, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L17", &_SCSIM_kcg_int_Utils, 1296, valid, 0, 0);
-	pSimulator->m_pfnAddOutput(pSimulator, "Cont", &_SCSIM_kcg_bool_Utils, 1297, valid, 0, 0);
-	pSimulator->m_pfnAddOutput(pSimulator, "DataOut", &_SCSIM_kcg_int_Utils, 1298, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_kcg_int_Utils, 1303, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L2", &_SCSIM_kcg_int_Utils, 1304, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L3", &_SCSIM_CompressedPacketData_T_Common_Types_Pkg_Utils, 1305, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L4", &_SCSIM_kcg_int_Utils, 1306, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L5", &_SCSIM_kcg_int_Utils, 1307, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L6", &_SCSIM_kcg_bool_Utils, 1308, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L7", &_SCSIM_kcg_bool_Utils, 1309, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L8", &_SCSIM_kcg_bool_Utils, 1310, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L9", &_SCSIM_kcg_int_Utils, 1311, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L10", &_SCSIM_kcg_int_Utils, 1312, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L14", &_SCSIM_kcg_int_Utils, 1313, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L16", &_SCSIM_kcg_int_Utils, 1314, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L17", &_SCSIM_kcg_int_Utils, 1315, valid, 0, 0);
+	pSimulator->m_pfnAddOutput(pSimulator, "Cont", &_SCSIM_kcg_bool_Utils, 1316, valid, 0, 0);
+	pSimulator->m_pfnAddOutput(pSimulator, "DataOut", &_SCSIM_kcg_int_Utils, 1317, valid, 0, 0);
 	pSimulator->m_pfnPopInstance(pSimulator);
 }
 
 void* _SCSIM_Get_SEND_WriteBaliseDataElement_TM_lib_internal_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
 	outC_SEND_WriteBaliseDataElement_TM_lib_internal* pContext = (outC_SEND_WriteBaliseDataElement_TM_lib_internal*)pInstance;
 	switch (nHandleIdent) {
-		case 1284:
+		case 1303:
 			return &((*pContext)._L1);
-		case 1285:
+		case 1304:
 			return &((*pContext)._L2);
-		case 1286:
+		case 1305:
 			return &((*pContext)._L3);
-		case 1287:
+		case 1306:
 			return &((*pContext)._L4);
-		case 1288:
+		case 1307:
 			return &((*pContext)._L5);
-		case 1289:
+		case 1308:
 			return &((*pContext)._L6);
-		case 1290:
+		case 1309:
 			return &((*pContext)._L7);
-		case 1291:
+		case 1310:
 			return &((*pContext)._L8);
-		case 1292:
+		case 1311:
 			return &((*pContext)._L9);
-		case 1293:
+		case 1312:
 			return &((*pContext)._L10);
-		case 1294:
+		case 1313:
 			return &((*pContext)._L14);
-		case 1295:
+		case 1314:
 			return &((*pContext)._L16);
-		case 1296:
+		case 1315:
 			return &((*pContext)._L17);
-		case 1297:
+		case 1316:
 			return &((*pContext).Cont);
-		case 1298:
+		case 1317:
 			return &((*pContext).DataOut);
 		default:
 			break;
@@ -5370,123 +5469,11 @@ void* _SCSIM_Get_SEND_WriteBaliseDataElement_TM_lib_internal_Handle(void* pInsta
 }
 
 /****************************************************************
- ** TM_conversions::CAST_Int_to_Q_DIR/ mapping function
- ****************************************************************/
-void _SCSIM_Mapping_CAST_Int_to_Q_DIR_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
-	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_CAST_Int_to_Q_DIR_TM_conversions_Handle, nClockHandleIdent, pfnClockActive);
-	pSimulator->m_pfnPushActivateIf(pSimulator, "IfBlock1");
-	pSimulator->m_pfnPushBranch(pSimulator, "else", &_SCSIM_1299_Utils, 1299);
-	pSimulator->m_pfnPushBranch(pSimulator, "else", &_SCSIM_1300_Utils, 1300);
-	pSimulator->m_pfnPushBranch(pSimulator, "else", &_SCSIM_1301_Utils, 1301);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L2", &_SCSIM_Q_DIR_Utils, 1302, valid, 1301, &_SCSIM_ClockActive_kcg_false);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_kcg_bool_Utils, 1303, valid, 1301, &_SCSIM_ClockActive_kcg_false);
-	pSimulator->m_pfnPopBranch(pSimulator);
-	pSimulator->m_pfnPushBranch(pSimulator, "then", &_SCSIM_1304_Utils, 1304);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L2", &_SCSIM_Q_DIR_Utils, 1305, valid, 1304, &_SCSIM_ClockActive_kcg_true);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L4", &_SCSIM_kcg_bool_Utils, 1306, valid, 1304, &_SCSIM_ClockActive_kcg_true);
-	pSimulator->m_pfnPopBranch(pSimulator);
-	pSimulator->m_pfnPopBranch(pSimulator);
-	pSimulator->m_pfnPushBranch(pSimulator, "then", &_SCSIM_1307_Utils, 1307);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L3", &_SCSIM_Q_DIR_Utils, 1308, valid, 1307, &_SCSIM_ClockActive_kcg_true);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L5", &_SCSIM_kcg_bool_Utils, 1309, valid, 1307, &_SCSIM_ClockActive_kcg_true);
-	pSimulator->m_pfnPopBranch(pSimulator);
-	pSimulator->m_pfnPopBranch(pSimulator);
-	pSimulator->m_pfnPushBranch(pSimulator, "then", &_SCSIM_1310_Utils, 1310);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L4", &_SCSIM_Q_DIR_Utils, 1311, valid, 1310, &_SCSIM_ClockActive_kcg_true);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L5", &_SCSIM_kcg_bool_Utils, 1312, valid, 1310, &_SCSIM_ClockActive_kcg_true);
-	pSimulator->m_pfnPopBranch(pSimulator);
-	pSimulator->m_pfnPopActivateIf(pSimulator);
-	pSimulator->m_pfnAddLocal(pSimulator, "error", &_SCSIM_kcg_bool_Utils, 1313, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "q_dir_in", &_SCSIM_kcg_int_Utils, 1314, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L13", &_SCSIM_kcg_bool_Utils, 1315, valid, 0, 0);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L12", &_SCSIM_kcg_int_Utils, 1316, valid, 0, 0);
-	pSimulator->m_pfnAddOutput(pSimulator, "q_dir", &_SCSIM_Q_DIR_Utils, 1317, valid, 0, 0);
-	pSimulator->m_pfnPopInstance(pSimulator);
-}
-
-void* _SCSIM_Get_CAST_Int_to_Q_DIR_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
-	outC_CAST_Int_to_Q_DIR_TM_conversions* pContext = (outC_CAST_Int_to_Q_DIR_TM_conversions*)pInstance;
-	switch (nHandleIdent) {
-		case 1299:
-			return &((*pContext).IfBlock1_clock);
-		case 1300:
-			return &((*pContext)._1_else_clock_IfBlock1);
-		case 1301:
-			return &((*pContext).else_clock_IfBlock1);
-		case 1302:
-			return &((*pContext)._L24_IfBlock1);
-		case 1303:
-			return &((*pContext)._L1_IfBlock1);
-		case 1304:
-			return &((*pContext).else_clock_IfBlock1);
-		case 1305:
-			return &((*pContext)._L2_IfBlock1);
-		case 1306:
-			return &((*pContext)._L43_IfBlock1);
-		case 1307:
-			return &((*pContext)._1_else_clock_IfBlock1);
-		case 1308:
-			return &((*pContext)._L3_IfBlock1);
-		case 1309:
-			return &((*pContext)._L52_IfBlock1);
-		case 1310:
-			return &((*pContext).IfBlock1_clock);
-		case 1311:
-			return &((*pContext)._L4_IfBlock1);
-		case 1312:
-			return &((*pContext)._L5_IfBlock1);
-		case 1313:
-			return &((*pContext).error);
-		case 1314:
-			return &((*pContext).q_dir_in);
-		case 1315:
-			return &((*pContext)._L13);
-		case 1316:
-			return &((*pContext)._L12);
-		case 1317:
-			return &((*pContext).q_dir);
-		default:
-			break;
-	}
-	return 0;
-}
-
-static int Is1301Active(void * pHandle) {
-	return *((kcg_bool*)pHandle) != kcg_false  ? 0 : 1;
-}
-ControlUtils _SCSIM_1301_Utils = {Is1301Active};
-
-static int Is1304Active(void * pHandle) {
-	return *((kcg_bool*)pHandle) != kcg_false  ? 1 : 0;
-}
-ControlUtils _SCSIM_1304_Utils = {Is1304Active};
-
-static int Is1300Active(void * pHandle) {
-	return *((kcg_bool*)pHandle) != kcg_false  ? 0 : 1;
-}
-ControlUtils _SCSIM_1300_Utils = {Is1300Active};
-
-static int Is1307Active(void * pHandle) {
-	return *((kcg_bool*)pHandle) != kcg_false  ? 1 : 0;
-}
-ControlUtils _SCSIM_1307_Utils = {Is1307Active};
-
-static int Is1299Active(void * pHandle) {
-	return *((kcg_bool*)pHandle) != kcg_false  ? 0 : 1;
-}
-ControlUtils _SCSIM_1299_Utils = {Is1299Active};
-
-static int Is1310Active(void * pHandle) {
-	return *((kcg_bool*)pHandle) != kcg_false  ? 1 : 0;
-}
-ControlUtils _SCSIM_1310_Utils = {Is1310Active};
-
-/****************************************************************
  ** TM_conversions::SEND_ConvertP005forWriteSection_IT/ mapping function
  ****************************************************************/
 void _SCSIM_Mapping_SEND_ConvertP005forWriteS_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
 	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_SEND_ConvertP005forWriteS_TM_conversions_Handle, nClockHandleIdent, pfnClockActive);
-	pSimulator->m_pfnAddLocal(pSimulator, "_L365", &_SCSIM_P005E_T_TM_Utils, 1318, valid, 0, 0);
+	pSimulator->m_pfnAddLocal(pSimulator, "_L365", &_SCSIM_P005E_Told_TM_Utils, 1318, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L374", &_SCSIM_kcg_int_Utils, 1319, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L373", &_SCSIM_kcg_int_Utils, 1320, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L372", &_SCSIM_kcg_int_Utils, 1321, valid, 0, 0);
@@ -5496,7 +5483,7 @@ void _SCSIM_Mapping_SEND_ConvertP005forWriteS_TM_conversions(const char* pszPath
 	pSimulator->m_pfnAddLocal(pSimulator, "_L368", &_SCSIM_kcg_int_Utils, 1325, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L367", &_SCSIM_kcg_bool_Utils, 1326, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L383", &_SCSIM_array_int_7_Utils, 1327, valid, 0, 0);
-	pSimulator->m_pfnAddOutput(pSimulator, "SectionArray", &_SCSIM_P005E_array_T_TM_Utils, 1328, valid, 0, 0);
+	pSimulator->m_pfnAddOutput(pSimulator, "SectionArray", &_SCSIM_P005E_array_Told_TM_Utils, 1328, valid, 0, 0);
 	pSimulator->m_pfnPopInstance(pSimulator);
 }
 

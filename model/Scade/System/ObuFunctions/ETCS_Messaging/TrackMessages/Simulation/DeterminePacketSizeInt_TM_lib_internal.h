@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-03T19:30:19
+** Generation date: 2015-06-05T13:35:13
 *************************************************************$ */
 #ifndef _DeterminePacketSizeInt_TM_lib_internal_H_
 #define _DeterminePacketSizeInt_TM_lib_internal_H_
@@ -41,6 +41,6 @@ extern void DeterminePacketSizeInt_reset_TM_lib_internal(
 #endif /* _DeterminePacketSizeInt_TM_lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** DeterminePacketSizeInt_TM_lib_internal.h
-** Generation date: 2015-06-03T19:30:19
+** Generation date: 2015-06-05T13:35:13
 *************************************************************$ */
 

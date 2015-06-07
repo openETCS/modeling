@@ -1,7 +1,7 @@
 #include "C_P005_flatten_sections_TM_lib_internal_interface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "3303fb0b804822b7ec6c6ca7a025193d";
+const char* _SCSIM_CheckSum = "08226848b9e8260c302202d3b05911db";
 const char* _SCSIM_SmuTypesCheckSum = "28e18c1b393c1cd143584174bcc1ba87";
 
 /*******************************
@@ -28,7 +28,7 @@ static outC_C_P005_flatten_sections_TM_lib_internal outputs_ctx_restore;
 /* separate_io: outputs instanciation */
 
 static void _SCSIM_RestoreInterface(void) {
-	kcg_copy_array__189(&(inputs_ctx.MergedSections), &(inputs_ctx_restore.MergedSections));
+	kcg_copy_array__197(&(inputs_ctx.MergedSections), &(inputs_ctx_restore.MergedSections));
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -36,7 +36,7 @@ static void _SCSIM_RestoreInterface(void) {
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	kcg_copy_array__189(&(inputs_ctx_execute.MergedSections), &(inputs_ctx.MergedSections));
+	kcg_copy_array__197(&(inputs_ctx_execute.MergedSections), &(inputs_ctx.MergedSections));
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 

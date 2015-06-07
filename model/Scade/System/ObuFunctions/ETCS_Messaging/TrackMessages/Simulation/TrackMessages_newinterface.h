@@ -1,18 +1,18 @@
-#ifndef C_P005_UNFLATTEN_SECTIONS_TM_LIB_INTERNAL_INTERFACE
-#define C_P005_UNFLATTEN_SECTIONS_TM_LIB_INTERNAL_INTERFACE
+#ifndef WRITE_P005_TM_TRACKSIDE_INTERFACE
+#define WRITE_P005_TM_TRACKSIDE_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "C_P005_unflatten_sections_TM_lib_internal.h"
+#include "Write_P005_TM_trackside.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_C_P005_unflatten_sections_TM_lib_internal inputs_ctx;
-extern outC_C_P005_unflatten_sections_TM_lib_internal outputs_ctx;
+extern inC_Write_P005_TM_trackside inputs_ctx;
+extern outC_Write_P005_TM_trackside outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*C_P005_UNFLATTEN_SECTIONS_TM_LIB_INTERNAL_INTERFACE */
+#endif /*WRITE_P005_TM_TRACKSIDE_INTERFACE */

@@ -1,12 +1,12 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-02T15:02:41
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 #ifndef _Balise_Packets_364_FirstTest_InfraLibInt_H_
 #define _Balise_Packets_364_FirstTest_InfraLibInt_H_
 
 #include "kcg_types.h"
-#include "Send_364_P005_FirstTest_InfraLibInt.h"
+#include "Send_BG364_P005_FirstTest_InfraLibInt.h"
 
 /* =====================  no input structure  ====================== */
 
@@ -18,7 +18,7 @@ typedef struct {
   /* -----------------  no initialization variables  ----------------- */
   /* -----------------------  no local memory  ----------------------- */
   /* ---------------------  sub nodes' contexts  --------------------- */
-  outC_Send_364_P005_FirstTest_InfraLibInt /* 2 */ Context_2;
+  outC_Send_BG364_P005_FirstTest_InfraLibInt /* 1 */ Context_1;
   /* ----------------- no clocks of observable data ------------------ */
   /* -------------------- (-debug) no assertions  -------------------- */
   /* ------------------- (-debug) local variables -------------------- */
@@ -91,7 +91,6 @@ typedef struct {
   CompressedPackets_T_Common_Types_Pkg /* FirstTest::InfraLibInt::Balise_Packets_364::_L8 */ _L8;
   CompressedPackets_T_Common_Types_Pkg /* FirstTest::InfraLibInt::Balise_Packets_364::_L9 */ _L9;
   CompressedPackets_T_Common_Types_Pkg /* FirstTest::InfraLibInt::Balise_Packets_364::_L10 */ _L10;
-  CompressedPackets_T_Common_Types_Pkg /* FirstTest::InfraLibInt::Balise_Packets_364::_L11 */ _L11;
   CompressedPackets_T_Common_Types_Pkg /* FirstTest::InfraLibInt::Balise_Packets_364::_L21 */ _L21;
   CompressedPackets_T_Common_Types_Pkg /* FirstTest::InfraLibInt::Balise_Packets_364::_L20 */ _L20;
   CompressedPackets_T_Common_Types_Pkg /* FirstTest::InfraLibInt::Balise_Packets_364::_L19 */ _L19;
@@ -112,6 +111,7 @@ typedef struct {
   B_data_internal_FirstTest_InfraLibInt /* FirstTest::InfraLibInt::Balise_Packets_364::_L31 */ _L31;
   B_data_internal_FirstTest_InfraLibInt /* FirstTest::InfraLibInt::Balise_Packets_364::_L33 */ _L33;
   kcg_bool /* FirstTest::InfraLibInt::Balise_Packets_364::_L32 */ _L32;
+  CompressedPackets_T_Common_Types_Pkg /* FirstTest::InfraLibInt::Balise_Packets_364::_L11 */ _L11;
 } outC_Balise_Packets_364_FirstTest_InfraLibInt;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -127,6 +127,6 @@ extern void Balise_Packets_364_reset_FirstTest_InfraLibInt(
 #endif /* _Balise_Packets_364_FirstTest_InfraLibInt_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_Packets_364_FirstTest_InfraLibInt.h
-** Generation date: 2015-06-02T15:02:41
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 
