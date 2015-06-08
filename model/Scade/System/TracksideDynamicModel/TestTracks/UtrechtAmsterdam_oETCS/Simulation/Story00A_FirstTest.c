@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-04-25T17:50:04
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -9,23 +9,24 @@
 
 void Story00A_reset_FirstTest(outC_Story00A_FirstTest *outC)
 {
-  /* 1 */ RECV_ConvertBaliseHeader_CT_reset(&outC->_1_Context_1);
+  /* 1 */ RECV_ConvertBaliseHeader_CT_reset_TM_conversions(&outC->_1_Context_1);
   /* 1 */ Story00A_BTM_reset_FirstTest(&outC->Context_1);
 }
 
 /* FirstTest::Story00A */
 void Story00A_FirstTest(
-  inC_Story00A_FirstTest *inC,
+  /* FirstTest::Story00A::Loc */kcg_real Loc,
   outC_Story00A_FirstTest *outC)
 {
-  outC->_L8 = inC->Loc;
+  outC->_L8 = Loc;
   /* 1 */ Story00A_BTM_FirstTest(outC->_L8, &outC->Context_1);
-  kcg_copy_TM_CompressedBaliseMessage(&outC->_L4, &outC->Context_1.BM);
+  kcg_copy_CompressedBaliseMessage_TM(&outC->_L4, &outC->Context_1.BM);
   kcg_copy_CompressedPackets_T_Common_Types_Pkg(
     &outC->_L2,
     &outC->_L4.Messages);
-  kcg_copy_TM_BaliseTelegramHeader_int_T(&outC->_L1, &outC->_L4.Header);
-  /* 1 */ RECV_ConvertBaliseHeader_CT(&outC->_L1, &outC->_1_Context_1);
+  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L1, &outC->_L4.Header);
+  /* 1 */
+  RECV_ConvertBaliseHeader_CT_TM_conversions(&outC->_L1, &outC->_1_Context_1);
   kcg_copy_TelegramHeader_T_BG_Types_Pkg(
     &outC->_L7,
     &outC->_1_Context_1.BaliseTelegramHeaderOut);
@@ -35,6 +36,6 @@ void Story00A_FirstTest(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Story00A_FirstTest.c
-** Generation date: 2015-04-25T17:50:04
+** Generation date: 2015-06-05T13:58:18
 *************************************************************$ */
 

@@ -20,7 +20,8 @@
   \paragraph{Interface}
   The DMI Controller has two interfaces. One between DMI Controller and DMI Display and one between DMI Controller and DMI Management. 
   The structure of the interface between DMI Controller and DMI Display is driven by the logic of SCADE Display therefore It doesn't follow any standard or constraints (It will not be described in this chapter).
-  DMI Controller and DMI Management exchange packets. Each packet is a structured type with a valid flag (a boolean variable), the DMI controller takes into account the data inside the packet only when the valid flag is true.\\
+  DMI Controller and DMI Management exchange packets. Each packet is a structured type with a valid flag (a boolean variable), the DMI controller takes into account the data inside the packet only when the valid flag is true.
+
   The interface between DMI Controller and DMI Management consist of three parts according with the direction of the information:
   
   \begin{itemize}
@@ -53,7 +54,7 @@ In the following table are listed the inputs coming from DMI Management with a b
   
       Please note: TIU\_trainStatus input is missing in the above table. This is the only input coming directly from TIU and contains the open/close Desk signal. 
     
-  \subparagraph{From DMI Controller to DMI Management }
+  \subparagraph{From DMI Controller to DMI Management}
   In the following table are listed the outputs directed to DMI Management with a brief description:\\
   %\begin{table}[H]
     \begin{tabular}{| c | l | l | l | l |}
@@ -72,7 +73,7 @@ In the following table are listed the inputs coming from DMI Management with a b
     \label{tbl:DMICtrToDMIMng}
   %\end{table}
     
-\subparagraph{Both ways direction }
+\subparagraph{Both ways direction}
 In the following table are listed the outputs/inputs  to/from DMI Management with a brief description:\\
   
   %\begin{table}[H]
@@ -90,7 +91,8 @@ In the following table are listed the outputs/inputs  to/from DMI Management wit
   
 
 \paragraph{Functional Design Description}
-  \textbf{Please note}: \textit{DMI Controller is a project under construction, a lot of features and functionalities are missing, therefore the structure described below is a draft version and will be changing in the future.}\\
+  \textbf{Please note}: \textit{DMI Controller is a project under construction, a lot of features and functionalities are missing, therefore the structure described below is a draft version and will be changing in the future.}
+  
   The informations (received and sent) could be divided in two groups: Sporadic and Periodic. The first one are received/sent aperiodically in any time instead the second one are received/sent periodically, with a fixed deadline. Are part of Periodic group the output DM\_status\_report and the input DMI\_dynamic all other are Sporadic. Therefore, the structure of DMI Controller module consists of a first main state machine \textit{CabinSM} (Fig. \ref{fig:CabinSM}) triggered by  a \textit{OpenDesk} signal (from TIU). Inside the \textit{DeskIsOpen} state there are other two state machines :\textit{HandshakeSM} and \textit{DynamicInfoSM} (Fig. \ref{fig:DynSporSM}).
   
   HandshakeSM performs an initial handshake between DMI Controller and DMI Management. Before that, no data has to be sent or received to/from DMI Management. When the transition is fired a DMI\_identifier packet is sent to DMI Management with informations about the DMI (e.g. DMI identifier, DMI name etc.). At this point the DMI Controler is ready to manage the sporadic information (e.g. Enter or revalidate DriverID, Enter or revalidate Train running number etc.). 

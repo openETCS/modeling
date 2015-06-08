@@ -1,10 +1,10 @@
 /* UtrechtAmsterdam_oETCS_newmapping.h */
 
-#include "Story00A_FirstTest.h"
+#include "Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_Story00A_FirstTest inputs_ctx;
-extern outC_Story00A_FirstTest outputs_ctx;
+extern inC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel inputs_ctx;
+extern outC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel outputs_ctx;
 

@@ -1,18 +1,18 @@
-#ifndef STORY00A_FIRSTTEST_INTERFACE
-#define STORY00A_FIRSTTEST_INTERFACE
+#ifndef SHEET05_AMSTEL_AMSTERDAMUTRECHTL1_SHEET05_AMSTEL_INTERFACE
+#define SHEET05_AMSTEL_AMSTERDAMUTRECHTL1_SHEET05_AMSTEL_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "Story00A_FirstTest.h"
+#include "Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_Story00A_FirstTest inputs_ctx;
-extern outC_Story00A_FirstTest outputs_ctx;
+extern inC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel inputs_ctx;
+extern outC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*STORY00A_FIRSTTEST_INTERFACE */
+#endif /*SHEET05_AMSTEL_AMSTERDAMUTRECHTL1_SHEET05_AMSTEL_INTERFACE */

@@ -57,16 +57,26 @@ TypeUtils _SCSIM_kcg_int_Utils = {kcg_int_to_string,
 	get_kcg_int_filter_utils,
 	kcg_int_filter_size,
 	kcg_int_filter_values};
-TypeUtils _SCSIM_struct__3653_Utils = {struct__3653_to_string,
-	check_struct__3653_string,
-	string_to_struct__3653,
-	is_struct__3653_allow_double_convertion,
+TypeUtils _SCSIM_struct__4123_Utils = {struct__4123_to_string,
+	check_struct__4123_string,
+	string_to_struct__4123,
+	is_struct__4123_allow_double_convertion,
 	0,
-	compare_struct__3653_type,
-	get_struct__3653_signature,
-	get_struct__3653_filter_utils,
-	struct__3653_filter_size,
-	struct__3653_filter_values};
+	compare_struct__4123_type,
+	get_struct__4123_signature,
+	get_struct__4123_filter_utils,
+	struct__4123_filter_size,
+	struct__4123_filter_values};
+TypeUtils _SCSIM_struct__4136_Utils = {struct__4136_to_string,
+	check_struct__4136_string,
+	string_to_struct__4136,
+	is_struct__4136_allow_double_convertion,
+	0,
+	compare_struct__4136_type,
+	get_struct__4136_signature,
+	get_struct__4136_filter_utils,
+	struct__4136_filter_size,
+	struct__4136_filter_values};
 TypeUtils _SCSIM_array_int_500_Utils = {array_int_500_to_string,
 	check_array_int_500_string,
 	string_to_array_int_500,
@@ -77,106 +87,96 @@ TypeUtils _SCSIM_array_int_500_Utils = {array_int_500_to_string,
 	get_array_int_500_filter_utils,
 	array_int_500_filter_size,
 	array_int_500_filter_values};
-TypeUtils _SCSIM_struct__3669_Utils = {struct__3669_to_string,
-	check_struct__3669_string,
-	string_to_struct__3669,
-	is_struct__3669_allow_double_convertion,
+TypeUtils _SCSIM_struct__4152_Utils = {struct__4152_to_string,
+	check_struct__4152_string,
+	string_to_struct__4152,
+	is_struct__4152_allow_double_convertion,
 	0,
-	compare_struct__3669_type,
-	get_struct__3669_signature,
-	get_struct__3669_filter_utils,
-	struct__3669_filter_size,
-	struct__3669_filter_values};
-TypeUtils _SCSIM_array__3677_Utils = {array__3677_to_string,
-	check_array__3677_string,
-	string_to_array__3677,
-	is_array__3677_allow_double_convertion,
+	compare_struct__4152_type,
+	get_struct__4152_signature,
+	get_struct__4152_filter_utils,
+	struct__4152_filter_size,
+	struct__4152_filter_values};
+TypeUtils _SCSIM_array__4160_Utils = {array__4160_to_string,
+	check_array__4160_string,
+	string_to_array__4160,
+	is_array__4160_allow_double_convertion,
 	0,
-	compare_array__3677_type,
-	get_array__3677_signature,
-	get_array__3677_filter_utils,
-	array__3677_filter_size,
-	array__3677_filter_values};
-TypeUtils _SCSIM_struct__3680_Utils = {struct__3680_to_string,
-	check_struct__3680_string,
-	string_to_struct__3680,
-	is_struct__3680_allow_double_convertion,
+	compare_array__4160_type,
+	get_array__4160_signature,
+	get_array__4160_filter_utils,
+	array__4160_filter_size,
+	array__4160_filter_values};
+TypeUtils _SCSIM_struct__4163_Utils = {struct__4163_to_string,
+	check_struct__4163_string,
+	string_to_struct__4163,
+	is_struct__4163_allow_double_convertion,
 	0,
-	compare_struct__3680_type,
-	get_struct__3680_signature,
-	get_struct__3680_filter_utils,
-	struct__3680_filter_size,
-	struct__3680_filter_values};
-TypeUtils _SCSIM_struct__3685_Utils = {struct__3685_to_string,
-	check_struct__3685_string,
-	string_to_struct__3685,
-	is_struct__3685_allow_double_convertion,
+	compare_struct__4163_type,
+	get_struct__4163_signature,
+	get_struct__4163_filter_utils,
+	struct__4163_filter_size,
+	struct__4163_filter_values};
+TypeUtils _SCSIM_struct__4168_Utils = {struct__4168_to_string,
+	check_struct__4168_string,
+	string_to_struct__4168,
+	is_struct__4168_allow_double_convertion,
 	0,
-	compare_struct__3685_type,
-	get_struct__3685_signature,
-	get_struct__3685_filter_utils,
-	struct__3685_filter_size,
-	struct__3685_filter_values};
-TypeUtils _SCSIM_struct__3693_Utils = {struct__3693_to_string,
-	check_struct__3693_string,
-	string_to_struct__3693,
-	is_struct__3693_allow_double_convertion,
+	compare_struct__4168_type,
+	get_struct__4168_signature,
+	get_struct__4168_filter_utils,
+	struct__4168_filter_size,
+	struct__4168_filter_values};
+TypeUtils _SCSIM_struct__4173_Utils = {struct__4173_to_string,
+	check_struct__4173_string,
+	string_to_struct__4173,
+	is_struct__4173_allow_double_convertion,
 	0,
-	compare_struct__3693_type,
-	get_struct__3693_signature,
-	get_struct__3693_filter_utils,
-	struct__3693_filter_size,
-	struct__3693_filter_values};
-TypeUtils _SCSIM_struct__3706_Utils = {struct__3706_to_string,
-	check_struct__3706_string,
-	string_to_struct__3706,
-	is_struct__3706_allow_double_convertion,
+	compare_struct__4173_type,
+	get_struct__4173_signature,
+	get_struct__4173_filter_utils,
+	struct__4173_filter_size,
+	struct__4173_filter_values};
+TypeUtils _SCSIM_struct__4181_Utils = {struct__4181_to_string,
+	check_struct__4181_string,
+	string_to_struct__4181,
+	is_struct__4181_allow_double_convertion,
 	0,
-	compare_struct__3706_type,
-	get_struct__3706_signature,
-	get_struct__3706_filter_utils,
-	struct__3706_filter_size,
-	struct__3706_filter_values};
-TypeUtils _SCSIM_struct__3715_Utils = {struct__3715_to_string,
-	check_struct__3715_string,
-	string_to_struct__3715,
-	is_struct__3715_allow_double_convertion,
+	compare_struct__4181_type,
+	get_struct__4181_signature,
+	get_struct__4181_filter_utils,
+	struct__4181_filter_size,
+	struct__4181_filter_values};
+TypeUtils _SCSIM_struct__4190_Utils = {struct__4190_to_string,
+	check_struct__4190_string,
+	string_to_struct__4190,
+	is_struct__4190_allow_double_convertion,
 	0,
-	compare_struct__3715_type,
-	get_struct__3715_signature,
-	get_struct__3715_filter_utils,
-	struct__3715_filter_size,
-	struct__3715_filter_values};
-TypeUtils _SCSIM_struct__3720_Utils = {struct__3720_to_string,
-	check_struct__3720_string,
-	string_to_struct__3720,
-	is_struct__3720_allow_double_convertion,
+	compare_struct__4190_type,
+	get_struct__4190_signature,
+	get_struct__4190_filter_utils,
+	struct__4190_filter_size,
+	struct__4190_filter_values};
+TypeUtils _SCSIM_array__4201_Utils = {array__4201_to_string,
+	check_array__4201_string,
+	string_to_array__4201,
+	is_array__4201_allow_double_convertion,
 	0,
-	compare_struct__3720_type,
-	get_struct__3720_signature,
-	get_struct__3720_filter_utils,
-	struct__3720_filter_size,
-	struct__3720_filter_values};
-TypeUtils _SCSIM_array__3731_Utils = {array__3731_to_string,
-	check_array__3731_string,
-	string_to_array__3731,
-	is_array__3731_allow_double_convertion,
+	compare_array__4201_type,
+	get_array__4201_signature,
+	get_array__4201_filter_utils,
+	array__4201_filter_size,
+	array__4201_filter_values};
+TypeUtils _SCSIM_struct__4204_Utils = {struct__4204_to_string,
+	check_struct__4204_string,
+	string_to_struct__4204,
+	is_struct__4204_allow_double_convertion,
 	0,
-	compare_array__3731_type,
-	get_array__3731_signature,
-	get_array__3731_filter_utils,
-	array__3731_filter_size,
-	array__3731_filter_values};
-TypeUtils _SCSIM_struct__3734_Utils = {struct__3734_to_string,
-	check_struct__3734_string,
-	string_to_struct__3734,
-	is_struct__3734_allow_double_convertion,
-	0,
-	compare_struct__3734_type,
-	get_struct__3734_signature,
-	get_struct__3734_filter_utils,
-	struct__3734_filter_size,
-	struct__3734_filter_values};
+	compare_struct__4204_type,
+	get_struct__4204_signature,
+	get_struct__4204_filter_utils,
+	struct__4204_filter_size,
+	struct__4204_filter_values};
 TypeUtils _SCSIM_array_int_7_Utils = {array_int_7_to_string,
 	check_array_int_7_string,
 	string_to_array_int_7,
@@ -187,6 +187,16 @@ TypeUtils _SCSIM_array_int_7_Utils = {array_int_7_to_string,
 	get_array_int_7_filter_utils,
 	array_int_7_filter_size,
 	array_int_7_filter_values};
+TypeUtils _SCSIM_array_int_500_500_Utils = {array_int_500_500_to_string,
+	check_array_int_500_500_string,
+	string_to_array_int_500_500,
+	is_array_int_500_500_allow_double_convertion,
+	0,
+	compare_array_int_500_500_type,
+	get_array_int_500_500_signature,
+	get_array_int_500_500_filter_utils,
+	array_int_500_500_filter_size,
+	array_int_500_500_filter_values};
 TypeUtils _SCSIM_array_int_461_Utils = {array_int_461_to_string,
 	check_array_int_461_string,
 	string_to_array_int_461,
@@ -257,36 +267,6 @@ TypeUtils _SCSIM_array_int_4_Utils = {array_int_4_to_string,
 	get_array_int_4_filter_utils,
 	array_int_4_filter_size,
 	array_int_4_filter_values};
-TypeUtils _SCSIM_array_int_500_500_Utils = {array_int_500_500_to_string,
-	check_array_int_500_500_string,
-	string_to_array_int_500_500,
-	is_array_int_500_500_allow_double_convertion,
-	0,
-	compare_array_int_500_500_type,
-	get_array_int_500_500_signature,
-	get_array_int_500_500_filter_utils,
-	array_int_500_500_filter_size,
-	array_int_500_500_filter_values};
-TypeUtils _SCSIM_TM_CompressedBaliseMessage_Utils = {TM_CompressedBaliseMessage_to_string,
-	check_TM_CompressedBaliseMessage_string,
-	string_to_TM_CompressedBaliseMessage,
-	is_TM_CompressedBaliseMessage_allow_double_convertion,
-	TM_CompressedBaliseMessage_to_double,
-	compare_TM_CompressedBaliseMessage_type,
-	get_TM_CompressedBaliseMessage_signature,
-	get_TM_CompressedBaliseMessage_filter_utils,
-	TM_CompressedBaliseMessage_filter_size,
-	TM_CompressedBaliseMessage_filter_values};
-TypeUtils _SCSIM_TM_BaliseTelegramHeader_int_T_Utils = {TM_BaliseTelegramHeader_int_T_to_string,
-	check_TM_BaliseTelegramHeader_int_T_string,
-	string_to_TM_BaliseTelegramHeader_int_T,
-	is_TM_BaliseTelegramHeader_int_T_allow_double_convertion,
-	TM_BaliseTelegramHeader_int_T_to_double,
-	compare_TM_BaliseTelegramHeader_int_T_type,
-	get_TM_BaliseTelegramHeader_int_T_signature,
-	get_TM_BaliseTelegramHeader_int_T_filter_utils,
-	TM_BaliseTelegramHeader_int_T_filter_size,
-	TM_BaliseTelegramHeader_int_T_filter_values};
 TypeUtils _SCSIM_NID_PACKET_Utils = {NID_PACKET_to_string,
 	check_NID_PACKET_string,
 	string_to_NID_PACKET,
@@ -307,76 +287,6 @@ TypeUtils _SCSIM_Q_DIR_Utils = {Q_DIR_to_string,
 	get_Q_DIR_filter_utils,
 	Q_DIR_filter_size,
 	Q_DIR_filter_values};
-TypeUtils _SCSIM_TM_OrBG_Utils = {TM_OrBG_to_string,
-	check_TM_OrBG_string,
-	string_to_TM_OrBG,
-	is_TM_OrBG_allow_double_convertion,
-	TM_OrBG_to_double,
-	compare_TM_OrBG_type,
-	get_TM_OrBG_signature,
-	get_TM_OrBG_filter_utils,
-	TM_OrBG_filter_size,
-	TM_OrBG_filter_values};
-TypeUtils _SCSIM_TM_OrLine_Utils = {TM_OrLine_to_string,
-	check_TM_OrLine_string,
-	string_to_TM_OrLine,
-	is_TM_OrLine_allow_double_convertion,
-	TM_OrLine_to_double,
-	compare_TM_OrLine_type,
-	get_TM_OrLine_signature,
-	get_TM_OrLine_filter_utils,
-	TM_OrLine_filter_size,
-	TM_OrLine_filter_values};
-TypeUtils _SCSIM_TM_P005_Utils = {TM_P005_to_string,
-	check_TM_P005_string,
-	string_to_TM_P005,
-	is_TM_P005_allow_double_convertion,
-	TM_P005_to_double,
-	compare_TM_P005_type,
-	get_TM_P005_signature,
-	get_TM_P005_filter_utils,
-	TM_P005_filter_size,
-	TM_P005_filter_values};
-TypeUtils _SCSIM_TM_P05Es_T_Utils = {TM_P05Es_T_to_string,
-	check_TM_P05Es_T_string,
-	string_to_TM_P05Es_T,
-	is_TM_P05Es_T_allow_double_convertion,
-	TM_P05Es_T_to_double,
-	compare_TM_P05Es_T_type,
-	get_TM_P05Es_T_signature,
-	get_TM_P05Es_T_filter_utils,
-	TM_P05Es_T_filter_size,
-	TM_P05Es_T_filter_values};
-TypeUtils _SCSIM_TM_P005E_T_Utils = {TM_P005E_T_to_string,
-	check_TM_P005E_T_string,
-	string_to_TM_P005E_T,
-	is_TM_P005E_T_allow_double_convertion,
-	TM_P005E_T_to_double,
-	compare_TM_P005E_T_type,
-	get_TM_P005E_T_signature,
-	get_TM_P005E_T_filter_utils,
-	TM_P005E_T_filter_size,
-	TM_P005E_T_filter_values};
-TypeUtils _SCSIM_TM_P005E_array_T_Utils = {TM_P005E_array_T_to_string,
-	check_TM_P005E_array_T_string,
-	string_to_TM_P005E_array_T,
-	is_TM_P005E_array_T_allow_double_convertion,
-	TM_P005E_array_T_to_double,
-	compare_TM_P005E_array_T_type,
-	get_TM_P005E_array_T_signature,
-	get_TM_P005E_array_T_filter_utils,
-	TM_P005E_array_T_filter_size,
-	TM_P005E_array_T_filter_values};
-TypeUtils _SCSIM_TM_BaliseGroupData_Utils = {TM_BaliseGroupData_to_string,
-	check_TM_BaliseGroupData_string,
-	string_to_TM_BaliseGroupData,
-	is_TM_BaliseGroupData_allow_double_convertion,
-	TM_BaliseGroupData_to_double,
-	compare_TM_BaliseGroupData_type,
-	get_TM_BaliseGroupData_signature,
-	get_TM_BaliseGroupData_filter_utils,
-	TM_BaliseGroupData_filter_size,
-	TM_BaliseGroupData_filter_values};
 TypeUtils _SCSIM_Q_UPDOWN_Utils = {Q_UPDOWN_to_string,
 	check_Q_UPDOWN_string,
 	string_to_Q_UPDOWN,
@@ -477,16 +387,106 @@ TypeUtils _SCSIM_Q_LINK_Utils = {Q_LINK_to_string,
 	get_Q_LINK_filter_utils,
 	Q_LINK_filter_size,
 	Q_LINK_filter_values};
-TypeUtils _SCSIM_B_data_internal_FirstTest_InfraLib_Utils = {B_data_internal_FirstTest_InfraLib_to_string,
-	check_B_data_internal_FirstTest_InfraLib_string,
-	string_to_B_data_internal_FirstTest_InfraLib,
-	is_B_data_internal_FirstTest_InfraLib_allow_double_convertion,
-	B_data_internal_FirstTest_InfraLib_to_double,
-	compare_B_data_internal_FirstTest_InfraLib_type,
-	get_B_data_internal_FirstTest_InfraLib_signature,
-	get_B_data_internal_FirstTest_InfraLib_filter_utils,
-	B_data_internal_FirstTest_InfraLib_filter_size,
-	B_data_internal_FirstTest_InfraLib_filter_values};
+TypeUtils _SCSIM_B_data_internal_FirstTest_InfraLibInt_Utils = {B_data_internal_FirstTest_InfraLibInt_to_string,
+	check_B_data_internal_FirstTest_InfraLibInt_string,
+	string_to_B_data_internal_FirstTest_InfraLibInt,
+	is_B_data_internal_FirstTest_InfraLibInt_allow_double_convertion,
+	B_data_internal_FirstTest_InfraLibInt_to_double,
+	compare_B_data_internal_FirstTest_InfraLibInt_type,
+	get_B_data_internal_FirstTest_InfraLibInt_signature,
+	get_B_data_internal_FirstTest_InfraLibInt_filter_utils,
+	B_data_internal_FirstTest_InfraLibInt_filter_size,
+	B_data_internal_FirstTest_InfraLibInt_filter_values};
+TypeUtils _SCSIM_CompressedBaliseMessage_TM_Utils = {CompressedBaliseMessage_TM_to_string,
+	check_CompressedBaliseMessage_TM_string,
+	string_to_CompressedBaliseMessage_TM,
+	is_CompressedBaliseMessage_TM_allow_double_convertion,
+	CompressedBaliseMessage_TM_to_double,
+	compare_CompressedBaliseMessage_TM_type,
+	get_CompressedBaliseMessage_TM_signature,
+	get_CompressedBaliseMessage_TM_filter_utils,
+	CompressedBaliseMessage_TM_filter_size,
+	CompressedBaliseMessage_TM_filter_values};
+TypeUtils _SCSIM_BaliseTelegramHeader_int_T_TM_Utils = {BaliseTelegramHeader_int_T_TM_to_string,
+	check_BaliseTelegramHeader_int_T_TM_string,
+	string_to_BaliseTelegramHeader_int_T_TM,
+	is_BaliseTelegramHeader_int_T_TM_allow_double_convertion,
+	BaliseTelegramHeader_int_T_TM_to_double,
+	compare_BaliseTelegramHeader_int_T_TM_type,
+	get_BaliseTelegramHeader_int_T_TM_signature,
+	get_BaliseTelegramHeader_int_T_TM_filter_utils,
+	BaliseTelegramHeader_int_T_TM_filter_size,
+	BaliseTelegramHeader_int_T_TM_filter_values};
+TypeUtils _SCSIM_OrBG_TM_Utils = {OrBG_TM_to_string,
+	check_OrBG_TM_string,
+	string_to_OrBG_TM,
+	is_OrBG_TM_allow_double_convertion,
+	OrBG_TM_to_double,
+	compare_OrBG_TM_type,
+	get_OrBG_TM_signature,
+	get_OrBG_TM_filter_utils,
+	OrBG_TM_filter_size,
+	OrBG_TM_filter_values};
+TypeUtils _SCSIM_OrLine_TM_Utils = {OrLine_TM_to_string,
+	check_OrLine_TM_string,
+	string_to_OrLine_TM,
+	is_OrLine_TM_allow_double_convertion,
+	OrLine_TM_to_double,
+	compare_OrLine_TM_type,
+	get_OrLine_TM_signature,
+	get_OrLine_TM_filter_utils,
+	OrLine_TM_filter_size,
+	OrLine_TM_filter_values};
+TypeUtils _SCSIM_P005old_TM_Utils = {P005old_TM_to_string,
+	check_P005old_TM_string,
+	string_to_P005old_TM,
+	is_P005old_TM_allow_double_convertion,
+	P005old_TM_to_double,
+	compare_P005old_TM_type,
+	get_P005old_TM_signature,
+	get_P005old_TM_filter_utils,
+	P005old_TM_filter_size,
+	P005old_TM_filter_values};
+TypeUtils _SCSIM_P005Es_Told_TM_Utils = {P005Es_Told_TM_to_string,
+	check_P005Es_Told_TM_string,
+	string_to_P005Es_Told_TM,
+	is_P005Es_Told_TM_allow_double_convertion,
+	P005Es_Told_TM_to_double,
+	compare_P005Es_Told_TM_type,
+	get_P005Es_Told_TM_signature,
+	get_P005Es_Told_TM_filter_utils,
+	P005Es_Told_TM_filter_size,
+	P005Es_Told_TM_filter_values};
+TypeUtils _SCSIM_P005E_Told_TM_Utils = {P005E_Told_TM_to_string,
+	check_P005E_Told_TM_string,
+	string_to_P005E_Told_TM,
+	is_P005E_Told_TM_allow_double_convertion,
+	P005E_Told_TM_to_double,
+	compare_P005E_Told_TM_type,
+	get_P005E_Told_TM_signature,
+	get_P005E_Told_TM_filter_utils,
+	P005E_Told_TM_filter_size,
+	P005E_Told_TM_filter_values};
+TypeUtils _SCSIM_P005E_array_Told_TM_Utils = {P005E_array_Told_TM_to_string,
+	check_P005E_array_Told_TM_string,
+	string_to_P005E_array_Told_TM,
+	is_P005E_array_Told_TM_allow_double_convertion,
+	P005E_array_Told_TM_to_double,
+	compare_P005E_array_Told_TM_type,
+	get_P005E_array_Told_TM_signature,
+	get_P005E_array_Told_TM_filter_utils,
+	P005E_array_Told_TM_filter_size,
+	P005E_array_Told_TM_filter_values};
+TypeUtils _SCSIM_BaliseGroupData_TM_Utils = {BaliseGroupData_TM_to_string,
+	check_BaliseGroupData_TM_string,
+	string_to_BaliseGroupData_TM,
+	is_BaliseGroupData_TM_allow_double_convertion,
+	BaliseGroupData_TM_to_double,
+	compare_BaliseGroupData_TM_type,
+	get_BaliseGroupData_TM_signature,
+	get_BaliseGroupData_TM_filter_utils,
+	BaliseGroupData_TM_filter_size,
+	BaliseGroupData_TM_filter_values};
 TypeUtils _SCSIM_CompressedPackets_T_Common_Types_Pkg_Utils = {CompressedPackets_T_Common_Types_Pkg_to_string,
 	check_CompressedPackets_T_Common_Types_Pkg_string,
 	string_to_CompressedPackets_T_Common_Types_Pkg,
@@ -881,9 +881,9 @@ int check_kcg_int_string(const char* strValue) {
 
 
 /****************************************************************
- ** struct__3653
+ ** struct__4123
  ****************************************************************/
-static void Fill_struct__3653_StructSimValue(struct__3653 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__4123_StructSimValue(struct__4123 * pStruct, StructSimValue * pValues) {
 	/*q_updown label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->q_updown) : 0;
 	pValues[0].m_pTypeUtils = &_SCSIM_Q_UPDOWN_Utils;
@@ -926,52 +926,147 @@ static void Fill_struct__3653_StructSimValue(struct__3653 * pStruct, StructSimVa
 	pValues[9].m_pszName = "q_link";
 }
 
-const char * struct__3653_to_string(const void* pValue) {
+const char * struct__4123_to_string(const void* pValue) {
 	static StructSimValue values[10];
-	Fill_struct__3653_StructSimValue(((struct__3653*)pValue), values);
+	Fill_struct__4123_StructSimValue(((struct__4123*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 10);
 }
 
-int string_to_struct__3653(const char* strValue, void* pValue) {
-	static struct__3653 rTemp;
+int string_to_struct__4123(const char* strValue, void* pValue) {
+	static struct__4123 rTemp;
 	int nResult = 0;
 	static StructSimValue values[10];
-	kcg_copy_struct__3653(&(rTemp), &(*((struct__3653*)pValue)));
-	Fill_struct__3653_StructSimValue(&rTemp, values);
+	kcg_copy_struct__4123(&(rTemp), &(*((struct__4123*)pValue)));
+	Fill_struct__4123_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 10);
 	if (nResult == 1)
-		kcg_copy_struct__3653(&(*((struct__3653*)pValue)), &(rTemp));
+		kcg_copy_struct__4123(&(*((struct__4123*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__3653_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__4123_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[10];
-	Fill_struct__3653_StructSimValue((struct__3653*)pValue, values);
+	Fill_struct__4123_StructSimValue((struct__4123*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 10);
 }
 
 
-int is_struct__3653_allow_double_convertion() {
+int is_struct__4123_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__3653_signature() {
+const char * get_struct__4123_signature() {
 	static StructSimValue values[10];
-	Fill_struct__3653_StructSimValue(0, values);
+	Fill_struct__4123_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 10);
 }
 
-FilterUtils get_struct__3653_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__4123_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[10];
-	Fill_struct__3653_StructSimValue((struct__3653*)pValue, values);
+	Fill_struct__4123_StructSimValue((struct__4123*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 10, strFilter);
 }
 
-const char * struct__3653_filter_values[10] = {"q_updown", "m_version", "q_media", "n_pig", "n_total", "m_dup", "m_mcount", "nid_c", "nid_bg", "q_link"};
-int check_struct__3653_string(const char* strValue) {
-	static struct__3653 rTemp;
-	return string_to_struct__3653(strValue, &rTemp);
+const char * struct__4123_filter_values[10] = {"q_updown", "m_version", "q_media", "n_pig", "n_total", "m_dup", "m_mcount", "nid_c", "nid_bg", "q_link"};
+int check_struct__4123_string(const char* strValue) {
+	static struct__4123 rTemp;
+	return string_to_struct__4123(strValue, &rTemp);
+}
+
+
+/****************************************************************
+ ** struct__4136
+ ****************************************************************/
+static void Fill_struct__4136_StructSimValue(struct__4136 * pStruct, StructSimValue * pValues) {
+	/*q_updown label.*/
+	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->q_updown) : 0;
+	pValues[0].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
+	pValues[0].m_pszName = "q_updown";
+	/*m_version label.*/
+	pValues[1].m_pPtr = pStruct != 0 ? &(pStruct->m_version) : 0;
+	pValues[1].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
+	pValues[1].m_pszName = "m_version";
+	/*q_media label.*/
+	pValues[2].m_pPtr = pStruct != 0 ? &(pStruct->q_media) : 0;
+	pValues[2].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
+	pValues[2].m_pszName = "q_media";
+	/*n_pig label.*/
+	pValues[3].m_pPtr = pStruct != 0 ? &(pStruct->n_pig) : 0;
+	pValues[3].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
+	pValues[3].m_pszName = "n_pig";
+	/*n_total label.*/
+	pValues[4].m_pPtr = pStruct != 0 ? &(pStruct->n_total) : 0;
+	pValues[4].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
+	pValues[4].m_pszName = "n_total";
+	/*m_dup label.*/
+	pValues[5].m_pPtr = pStruct != 0 ? &(pStruct->m_dup) : 0;
+	pValues[5].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
+	pValues[5].m_pszName = "m_dup";
+	/*m_mcount label.*/
+	pValues[6].m_pPtr = pStruct != 0 ? &(pStruct->m_mcount) : 0;
+	pValues[6].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
+	pValues[6].m_pszName = "m_mcount";
+	/*nid_c label.*/
+	pValues[7].m_pPtr = pStruct != 0 ? &(pStruct->nid_c) : 0;
+	pValues[7].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
+	pValues[7].m_pszName = "nid_c";
+	/*nid_bg label.*/
+	pValues[8].m_pPtr = pStruct != 0 ? &(pStruct->nid_bg) : 0;
+	pValues[8].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
+	pValues[8].m_pszName = "nid_bg";
+	/*q_link label.*/
+	pValues[9].m_pPtr = pStruct != 0 ? &(pStruct->q_link) : 0;
+	pValues[9].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
+	pValues[9].m_pszName = "q_link";
+}
+
+const char * struct__4136_to_string(const void* pValue) {
+	static StructSimValue values[10];
+	Fill_struct__4136_StructSimValue(((struct__4136*)pValue), values);
+	return pSimulator->m_pfnStructureToString(values, 10);
+}
+
+int string_to_struct__4136(const char* strValue, void* pValue) {
+	static struct__4136 rTemp;
+	int nResult = 0;
+	static StructSimValue values[10];
+	kcg_copy_struct__4136(&(rTemp), &(*((struct__4136*)pValue)));
+	Fill_struct__4136_StructSimValue(&rTemp, values);
+	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 10);
+	if (nResult == 1)
+		kcg_copy_struct__4136(&(*((struct__4136*)pValue)), &(rTemp));
+	return nResult;
+}
+
+int compare_struct__4136_type(int* pResult, const char* toCompare, const void* pValue) {
+	static StructSimValue values[10];
+	Fill_struct__4136_StructSimValue((struct__4136*)pValue, values);
+	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 10);
+}
+
+
+int is_struct__4136_allow_double_convertion() {
+	return 0;
+}
+
+
+const char * get_struct__4136_signature() {
+	static StructSimValue values[10];
+	Fill_struct__4136_StructSimValue(0, values);
+	return pSimulator->m_pfnStructureSignature(values, 10);
+}
+
+FilterUtils get_struct__4136_filter_utils(const char* strFilter, void* pValue) {
+	static StructSimValue values[10];
+	Fill_struct__4136_StructSimValue((struct__4136*)pValue, values);
+	return pSimulator->m_pfnGetStructureFilterUtils(values, 10, strFilter);
+}
+
+const char * struct__4136_filter_values[10] = {"q_updown", "m_version", "q_media", "n_pig", "n_total", "m_dup", "m_mcount", "nid_c", "nid_bg", "q_link"};
+int check_struct__4136_string(const char* strValue) {
+	static struct__4136 rTemp;
+	return string_to_struct__4136(strValue, &rTemp);
 }
 
 
@@ -1017,9 +1112,9 @@ int check_array_int_500_string(const char* strValue) {
 
 
 /****************************************************************
- ** struct__3669
+ ** struct__4152
  ****************************************************************/
-static void Fill_struct__3669_StructSimValue(struct__3669 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__4152_StructSimValue(struct__4152 * pStruct, StructSimValue * pValues) {
 	/*nid_packet label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->nid_packet) : 0;
 	pValues[0].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
@@ -1042,103 +1137,103 @@ static void Fill_struct__3669_StructSimValue(struct__3669 * pStruct, StructSimVa
 	pValues[4].m_pszName = "endAddress";
 }
 
-const char * struct__3669_to_string(const void* pValue) {
+const char * struct__4152_to_string(const void* pValue) {
 	static StructSimValue values[5];
-	Fill_struct__3669_StructSimValue(((struct__3669*)pValue), values);
+	Fill_struct__4152_StructSimValue(((struct__4152*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 5);
 }
 
-int string_to_struct__3669(const char* strValue, void* pValue) {
-	static struct__3669 rTemp;
+int string_to_struct__4152(const char* strValue, void* pValue) {
+	static struct__4152 rTemp;
 	int nResult = 0;
 	static StructSimValue values[5];
-	kcg_copy_struct__3669(&(rTemp), &(*((struct__3669*)pValue)));
-	Fill_struct__3669_StructSimValue(&rTemp, values);
+	kcg_copy_struct__4152(&(rTemp), &(*((struct__4152*)pValue)));
+	Fill_struct__4152_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 5);
 	if (nResult == 1)
-		kcg_copy_struct__3669(&(*((struct__3669*)pValue)), &(rTemp));
+		kcg_copy_struct__4152(&(*((struct__4152*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__3669_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__4152_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[5];
-	Fill_struct__3669_StructSimValue((struct__3669*)pValue, values);
+	Fill_struct__4152_StructSimValue((struct__4152*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 5);
 }
 
 
-int is_struct__3669_allow_double_convertion() {
+int is_struct__4152_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__3669_signature() {
+const char * get_struct__4152_signature() {
 	static StructSimValue values[5];
-	Fill_struct__3669_StructSimValue(0, values);
+	Fill_struct__4152_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 5);
 }
 
-FilterUtils get_struct__3669_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__4152_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[5];
-	Fill_struct__3669_StructSimValue((struct__3669*)pValue, values);
+	Fill_struct__4152_StructSimValue((struct__4152*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 5, strFilter);
 }
 
-const char * struct__3669_filter_values[5] = {"nid_packet", "q_dir", "valid", "startAddress", "endAddress"};
-int check_struct__3669_string(const char* strValue) {
-	static struct__3669 rTemp;
-	return string_to_struct__3669(strValue, &rTemp);
+const char * struct__4152_filter_values[5] = {"nid_packet", "q_dir", "valid", "startAddress", "endAddress"};
+int check_struct__4152_string(const char* strValue) {
+	static struct__4152 rTemp;
+	return string_to_struct__4152(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** array__3677
+ ** array__4160
  ****************************************************************/
-void* array__3677_projection(void** pValues, int nIndex) {
-	return &((*(array__3677*)pValues)[nIndex]);
+void* array__4160_projection(void** pValues, int nIndex) {
+	return &((*(array__4160*)pValues)[nIndex]);
 }
 
-const char * array__3677_to_string(const void* pValue) {
-	return (char*) pSimulator->m_pfnArrayToString((const void**)pValue, struct__3669_to_string, 30, array__3677_projection);
+const char * array__4160_to_string(const void* pValue) {
+	return (char*) pSimulator->m_pfnArrayToString((const void**)pValue, struct__4152_to_string, 30, array__4160_projection);
 }
 
-int compare_array__3677_type(int* pResult, const char* toCompare, const void* pValue) {
-	return pSimulator->m_pfnArrayComparison(pResult, toCompare, (const void**)pValue, compare_struct__3669_type , 30, array__3677_projection);
+int compare_array__4160_type(int* pResult, const char* toCompare, const void* pValue) {
+	return pSimulator->m_pfnArrayComparison(pResult, toCompare, (const void**)pValue, compare_struct__4152_type , 30, array__4160_projection);
 }
 
-int is_array__3677_allow_double_convertion() {
+int is_array__4160_allow_double_convertion() {
 	return 0;
 }
 
-int string_to_array__3677(const char* strValue, void* pValue) {
-	static array__3677 rTemp;
-	int nResult = pSimulator->m_pfnArrayFromString(strValue, (void**)(void*)&rTemp, string_to_struct__3669, 30, array__3677_projection);
+int string_to_array__4160(const char* strValue, void* pValue) {
+	static array__4160 rTemp;
+	int nResult = pSimulator->m_pfnArrayFromString(strValue, (void**)(void*)&rTemp, string_to_struct__4152, 30, array__4160_projection);
 	if (nResult == 1)
-		kcg_copy_array__3677(&(*((array__3677*)pValue)), &(rTemp));
+		kcg_copy_array__4160(&(*((array__4160*)pValue)), &(rTemp));
 	return nResult;
 }
 
-const char * get_array__3677_signature() {
-	return pSimulator->m_pfnArraySignature(get_struct__3669_signature, 30);
+const char * get_array__4160_signature() {
+	return pSimulator->m_pfnArraySignature(get_struct__4152_signature, 30);
 }
 
-FilterUtils get_array__3677_filter_utils(const char* strFilter, void* pValue) {
-	return pSimulator->m_pfnGetArrayFilterUtils(&_SCSIM_struct__3669_Utils, strFilter, (void**)pValue, 30, array__3677_projection);
+FilterUtils get_array__4160_filter_utils(const char* strFilter, void* pValue) {
+	return pSimulator->m_pfnGetArrayFilterUtils(&_SCSIM_struct__4152_Utils, strFilter, (void**)pValue, 30, array__4160_projection);
 }
 
-int check_array__3677_string(const char* strValue) {
-	static array__3677 rTemp;
-	return string_to_array__3677(strValue, &rTemp);
+int check_array__4160_string(const char* strValue) {
+	static array__4160 rTemp;
+	return string_to_array__4160(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** struct__3680
+ ** struct__4163
  ****************************************************************/
-static void Fill_struct__3680_StructSimValue(struct__3680 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__4163_StructSimValue(struct__4163 * pStruct, StructSimValue * pValues) {
 	/*PacketHeaders label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->PacketHeaders) : 0;
-	pValues[0].m_pTypeUtils = &_SCSIM_array__3677_Utils;
+	pValues[0].m_pTypeUtils = &_SCSIM_array__4160_Utils;
 	pValues[0].m_pszName = "PacketHeaders";
 	/*PacketData label.*/
 	pValues[1].m_pPtr = pStruct != 0 ? &(pStruct->PacketData) : 0;
@@ -1146,59 +1241,122 @@ static void Fill_struct__3680_StructSimValue(struct__3680 * pStruct, StructSimVa
 	pValues[1].m_pszName = "PacketData";
 }
 
-const char * struct__3680_to_string(const void* pValue) {
+const char * struct__4163_to_string(const void* pValue) {
 	static StructSimValue values[2];
-	Fill_struct__3680_StructSimValue(((struct__3680*)pValue), values);
+	Fill_struct__4163_StructSimValue(((struct__4163*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 2);
 }
 
-int string_to_struct__3680(const char* strValue, void* pValue) {
-	static struct__3680 rTemp;
+int string_to_struct__4163(const char* strValue, void* pValue) {
+	static struct__4163 rTemp;
 	int nResult = 0;
 	static StructSimValue values[2];
-	kcg_copy_struct__3680(&(rTemp), &(*((struct__3680*)pValue)));
-	Fill_struct__3680_StructSimValue(&rTemp, values);
+	kcg_copy_struct__4163(&(rTemp), &(*((struct__4163*)pValue)));
+	Fill_struct__4163_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 2);
 	if (nResult == 1)
-		kcg_copy_struct__3680(&(*((struct__3680*)pValue)), &(rTemp));
+		kcg_copy_struct__4163(&(*((struct__4163*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__3680_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__4163_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[2];
-	Fill_struct__3680_StructSimValue((struct__3680*)pValue, values);
+	Fill_struct__4163_StructSimValue((struct__4163*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 2);
 }
 
 
-int is_struct__3680_allow_double_convertion() {
+int is_struct__4163_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__3680_signature() {
+const char * get_struct__4163_signature() {
 	static StructSimValue values[2];
-	Fill_struct__3680_StructSimValue(0, values);
+	Fill_struct__4163_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 2);
 }
 
-FilterUtils get_struct__3680_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__4163_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[2];
-	Fill_struct__3680_StructSimValue((struct__3680*)pValue, values);
+	Fill_struct__4163_StructSimValue((struct__4163*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 2, strFilter);
 }
 
-const char * struct__3680_filter_values[2] = {"PacketHeaders", "PacketData"};
-int check_struct__3680_string(const char* strValue) {
-	static struct__3680 rTemp;
-	return string_to_struct__3680(strValue, &rTemp);
+const char * struct__4163_filter_values[2] = {"PacketHeaders", "PacketData"};
+int check_struct__4163_string(const char* strValue) {
+	static struct__4163 rTemp;
+	return string_to_struct__4163(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** struct__3685
+ ** struct__4168
  ****************************************************************/
-static void Fill_struct__3685_StructSimValue(struct__3685 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__4168_StructSimValue(struct__4168 * pStruct, StructSimValue * pValues) {
+	/*Header label.*/
+	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->Header) : 0;
+	pValues[0].m_pTypeUtils = &_SCSIM_struct__4136_Utils;
+	pValues[0].m_pszName = "Header";
+	/*Messages label.*/
+	pValues[1].m_pPtr = pStruct != 0 ? &(pStruct->Messages) : 0;
+	pValues[1].m_pTypeUtils = &_SCSIM_struct__4163_Utils;
+	pValues[1].m_pszName = "Messages";
+}
+
+const char * struct__4168_to_string(const void* pValue) {
+	static StructSimValue values[2];
+	Fill_struct__4168_StructSimValue(((struct__4168*)pValue), values);
+	return pSimulator->m_pfnStructureToString(values, 2);
+}
+
+int string_to_struct__4168(const char* strValue, void* pValue) {
+	static struct__4168 rTemp;
+	int nResult = 0;
+	static StructSimValue values[2];
+	kcg_copy_struct__4168(&(rTemp), &(*((struct__4168*)pValue)));
+	Fill_struct__4168_StructSimValue(&rTemp, values);
+	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 2);
+	if (nResult == 1)
+		kcg_copy_struct__4168(&(*((struct__4168*)pValue)), &(rTemp));
+	return nResult;
+}
+
+int compare_struct__4168_type(int* pResult, const char* toCompare, const void* pValue) {
+	static StructSimValue values[2];
+	Fill_struct__4168_StructSimValue((struct__4168*)pValue, values);
+	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 2);
+}
+
+
+int is_struct__4168_allow_double_convertion() {
+	return 0;
+}
+
+
+const char * get_struct__4168_signature() {
+	static StructSimValue values[2];
+	Fill_struct__4168_StructSimValue(0, values);
+	return pSimulator->m_pfnStructureSignature(values, 2);
+}
+
+FilterUtils get_struct__4168_filter_utils(const char* strFilter, void* pValue) {
+	static StructSimValue values[2];
+	Fill_struct__4168_StructSimValue((struct__4168*)pValue, values);
+	return pSimulator->m_pfnGetStructureFilterUtils(values, 2, strFilter);
+}
+
+const char * struct__4168_filter_values[2] = {"Header", "Messages"};
+int check_struct__4168_string(const char* strValue) {
+	static struct__4168 rTemp;
+	return string_to_struct__4168(strValue, &rTemp);
+}
+
+
+/****************************************************************
+ ** struct__4173
+ ****************************************************************/
+static void Fill_struct__4173_StructSimValue(struct__4173 * pStruct, StructSimValue * pValues) {
 	/*NID_C label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->NID_C) : 0;
 	pValues[0].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
@@ -1213,169 +1371,74 @@ static void Fill_struct__3685_StructSimValue(struct__3685 * pStruct, StructSimVa
 	pValues[2].m_pszName = "Pos";
 	/*Or_BG label.*/
 	pValues[3].m_pPtr = pStruct != 0 ? &(pStruct->Or_BG) : 0;
-	pValues[3].m_pTypeUtils = &_SCSIM_TM_OrBG_Utils;
+	pValues[3].m_pTypeUtils = &_SCSIM_OrBG_TM_Utils;
 	pValues[3].m_pszName = "Or_BG";
 	/*Or_Line label.*/
 	pValues[4].m_pPtr = pStruct != 0 ? &(pStruct->Or_Line) : 0;
-	pValues[4].m_pTypeUtils = &_SCSIM_TM_OrLine_Utils;
+	pValues[4].m_pTypeUtils = &_SCSIM_OrLine_TM_Utils;
 	pValues[4].m_pszName = "Or_Line";
 }
 
-const char * struct__3685_to_string(const void* pValue) {
+const char * struct__4173_to_string(const void* pValue) {
 	static StructSimValue values[5];
-	Fill_struct__3685_StructSimValue(((struct__3685*)pValue), values);
+	Fill_struct__4173_StructSimValue(((struct__4173*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 5);
 }
 
-int string_to_struct__3685(const char* strValue, void* pValue) {
-	static struct__3685 rTemp;
+int string_to_struct__4173(const char* strValue, void* pValue) {
+	static struct__4173 rTemp;
 	int nResult = 0;
 	static StructSimValue values[5];
-	kcg_copy_struct__3685(&(rTemp), &(*((struct__3685*)pValue)));
-	Fill_struct__3685_StructSimValue(&rTemp, values);
+	kcg_copy_struct__4173(&(rTemp), &(*((struct__4173*)pValue)));
+	Fill_struct__4173_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 5);
 	if (nResult == 1)
-		kcg_copy_struct__3685(&(*((struct__3685*)pValue)), &(rTemp));
+		kcg_copy_struct__4173(&(*((struct__4173*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__3685_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__4173_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[5];
-	Fill_struct__3685_StructSimValue((struct__3685*)pValue, values);
+	Fill_struct__4173_StructSimValue((struct__4173*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 5);
 }
 
 
-int is_struct__3685_allow_double_convertion() {
+int is_struct__4173_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__3685_signature() {
+const char * get_struct__4173_signature() {
 	static StructSimValue values[5];
-	Fill_struct__3685_StructSimValue(0, values);
+	Fill_struct__4173_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 5);
 }
 
-FilterUtils get_struct__3685_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__4173_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[5];
-	Fill_struct__3685_StructSimValue((struct__3685*)pValue, values);
+	Fill_struct__4173_StructSimValue((struct__4173*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 5, strFilter);
 }
 
-const char * struct__3685_filter_values[5] = {"NID_C", "NID_BG", "Pos", "Or_BG", "Or_Line"};
-int check_struct__3685_string(const char* strValue) {
-	static struct__3685 rTemp;
-	return string_to_struct__3685(strValue, &rTemp);
+const char * struct__4173_filter_values[5] = {"NID_C", "NID_BG", "Pos", "Or_BG", "Or_Line"};
+int check_struct__4173_string(const char* strValue) {
+	static struct__4173 rTemp;
+	return string_to_struct__4173(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** struct__3693
+ ** struct__4181
  ****************************************************************/
-static void Fill_struct__3693_StructSimValue(struct__3693 * pStruct, StructSimValue * pValues) {
-	/*q_updown label.*/
-	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->q_updown) : 0;
-	pValues[0].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
-	pValues[0].m_pszName = "q_updown";
-	/*m_version label.*/
-	pValues[1].m_pPtr = pStruct != 0 ? &(pStruct->m_version) : 0;
-	pValues[1].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
-	pValues[1].m_pszName = "m_version";
-	/*q_media label.*/
-	pValues[2].m_pPtr = pStruct != 0 ? &(pStruct->q_media) : 0;
-	pValues[2].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
-	pValues[2].m_pszName = "q_media";
-	/*n_pig label.*/
-	pValues[3].m_pPtr = pStruct != 0 ? &(pStruct->n_pig) : 0;
-	pValues[3].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
-	pValues[3].m_pszName = "n_pig";
-	/*n_total label.*/
-	pValues[4].m_pPtr = pStruct != 0 ? &(pStruct->n_total) : 0;
-	pValues[4].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
-	pValues[4].m_pszName = "n_total";
-	/*m_dup label.*/
-	pValues[5].m_pPtr = pStruct != 0 ? &(pStruct->m_dup) : 0;
-	pValues[5].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
-	pValues[5].m_pszName = "m_dup";
-	/*m_mcount label.*/
-	pValues[6].m_pPtr = pStruct != 0 ? &(pStruct->m_mcount) : 0;
-	pValues[6].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
-	pValues[6].m_pszName = "m_mcount";
-	/*nid_c label.*/
-	pValues[7].m_pPtr = pStruct != 0 ? &(pStruct->nid_c) : 0;
-	pValues[7].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
-	pValues[7].m_pszName = "nid_c";
-	/*nid_bg label.*/
-	pValues[8].m_pPtr = pStruct != 0 ? &(pStruct->nid_bg) : 0;
-	pValues[8].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
-	pValues[8].m_pszName = "nid_bg";
-	/*q_link label.*/
-	pValues[9].m_pPtr = pStruct != 0 ? &(pStruct->q_link) : 0;
-	pValues[9].m_pTypeUtils = &_SCSIM_kcg_int_Utils;
-	pValues[9].m_pszName = "q_link";
-}
-
-const char * struct__3693_to_string(const void* pValue) {
-	static StructSimValue values[10];
-	Fill_struct__3693_StructSimValue(((struct__3693*)pValue), values);
-	return pSimulator->m_pfnStructureToString(values, 10);
-}
-
-int string_to_struct__3693(const char* strValue, void* pValue) {
-	static struct__3693 rTemp;
-	int nResult = 0;
-	static StructSimValue values[10];
-	kcg_copy_struct__3693(&(rTemp), &(*((struct__3693*)pValue)));
-	Fill_struct__3693_StructSimValue(&rTemp, values);
-	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 10);
-	if (nResult == 1)
-		kcg_copy_struct__3693(&(*((struct__3693*)pValue)), &(rTemp));
-	return nResult;
-}
-
-int compare_struct__3693_type(int* pResult, const char* toCompare, const void* pValue) {
-	static StructSimValue values[10];
-	Fill_struct__3693_StructSimValue((struct__3693*)pValue, values);
-	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 10);
-}
-
-
-int is_struct__3693_allow_double_convertion() {
-	return 0;
-}
-
-
-const char * get_struct__3693_signature() {
-	static StructSimValue values[10];
-	Fill_struct__3693_StructSimValue(0, values);
-	return pSimulator->m_pfnStructureSignature(values, 10);
-}
-
-FilterUtils get_struct__3693_filter_utils(const char* strFilter, void* pValue) {
-	static StructSimValue values[10];
-	Fill_struct__3693_StructSimValue((struct__3693*)pValue, values);
-	return pSimulator->m_pfnGetStructureFilterUtils(values, 10, strFilter);
-}
-
-const char * struct__3693_filter_values[10] = {"q_updown", "m_version", "q_media", "n_pig", "n_total", "m_dup", "m_mcount", "nid_c", "nid_bg", "q_link"};
-int check_struct__3693_string(const char* strValue) {
-	static struct__3693 rTemp;
-	return string_to_struct__3693(strValue, &rTemp);
-}
-
-
-/****************************************************************
- ** struct__3706
- ****************************************************************/
-static void Fill_struct__3706_StructSimValue(struct__3706 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__4181_StructSimValue(struct__4181 * pStruct, StructSimValue * pValues) {
 	/*header label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->header) : 0;
-	pValues[0].m_pTypeUtils = &_SCSIM_struct__3693_Utils;
+	pValues[0].m_pTypeUtils = &_SCSIM_struct__4136_Utils;
 	pValues[0].m_pszName = "header";
 	/*packets label.*/
 	pValues[1].m_pPtr = pStruct != 0 ? &(pStruct->packets) : 0;
-	pValues[1].m_pTypeUtils = &_SCSIM_struct__3680_Utils;
+	pValues[1].m_pTypeUtils = &_SCSIM_struct__4163_Utils;
 	pValues[1].m_pszName = "packets";
 	/*engineering_BG_location label.*/
 	pValues[2].m_pPtr = pStruct != 0 ? &(pStruct->engineering_BG_location) : 0;
@@ -1395,122 +1458,59 @@ static void Fill_struct__3706_StructSimValue(struct__3706 * pStruct, StructSimVa
 	pValues[5].m_pszName = "balise_passed";
 }
 
-const char * struct__3706_to_string(const void* pValue) {
+const char * struct__4181_to_string(const void* pValue) {
 	static StructSimValue values[6];
-	Fill_struct__3706_StructSimValue(((struct__3706*)pValue), values);
+	Fill_struct__4181_StructSimValue(((struct__4181*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 6);
 }
 
-int string_to_struct__3706(const char* strValue, void* pValue) {
-	static struct__3706 rTemp;
+int string_to_struct__4181(const char* strValue, void* pValue) {
+	static struct__4181 rTemp;
 	int nResult = 0;
 	static StructSimValue values[6];
-	kcg_copy_struct__3706(&(rTemp), &(*((struct__3706*)pValue)));
-	Fill_struct__3706_StructSimValue(&rTemp, values);
+	kcg_copy_struct__4181(&(rTemp), &(*((struct__4181*)pValue)));
+	Fill_struct__4181_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 6);
 	if (nResult == 1)
-		kcg_copy_struct__3706(&(*((struct__3706*)pValue)), &(rTemp));
+		kcg_copy_struct__4181(&(*((struct__4181*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__3706_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__4181_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[6];
-	Fill_struct__3706_StructSimValue((struct__3706*)pValue, values);
+	Fill_struct__4181_StructSimValue((struct__4181*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 6);
 }
 
 
-int is_struct__3706_allow_double_convertion() {
+int is_struct__4181_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__3706_signature() {
+const char * get_struct__4181_signature() {
 	static StructSimValue values[6];
-	Fill_struct__3706_StructSimValue(0, values);
+	Fill_struct__4181_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 6);
 }
 
-FilterUtils get_struct__3706_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__4181_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[6];
-	Fill_struct__3706_StructSimValue((struct__3706*)pValue, values);
+	Fill_struct__4181_StructSimValue((struct__4181*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 6, strFilter);
 }
 
-const char * struct__3706_filter_values[6] = {"header", "packets", "engineering_BG_location", "TrainPos", "pig_nom_0", "balise_passed"};
-int check_struct__3706_string(const char* strValue) {
-	static struct__3706 rTemp;
-	return string_to_struct__3706(strValue, &rTemp);
+const char * struct__4181_filter_values[6] = {"header", "packets", "engineering_BG_location", "TrainPos", "pig_nom_0", "balise_passed"};
+int check_struct__4181_string(const char* strValue) {
+	static struct__4181 rTemp;
+	return string_to_struct__4181(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** struct__3715
+ ** struct__4190
  ****************************************************************/
-static void Fill_struct__3715_StructSimValue(struct__3715 * pStruct, StructSimValue * pValues) {
-	/*Header label.*/
-	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->Header) : 0;
-	pValues[0].m_pTypeUtils = &_SCSIM_struct__3693_Utils;
-	pValues[0].m_pszName = "Header";
-	/*Messages label.*/
-	pValues[1].m_pPtr = pStruct != 0 ? &(pStruct->Messages) : 0;
-	pValues[1].m_pTypeUtils = &_SCSIM_struct__3680_Utils;
-	pValues[1].m_pszName = "Messages";
-}
-
-const char * struct__3715_to_string(const void* pValue) {
-	static StructSimValue values[2];
-	Fill_struct__3715_StructSimValue(((struct__3715*)pValue), values);
-	return pSimulator->m_pfnStructureToString(values, 2);
-}
-
-int string_to_struct__3715(const char* strValue, void* pValue) {
-	static struct__3715 rTemp;
-	int nResult = 0;
-	static StructSimValue values[2];
-	kcg_copy_struct__3715(&(rTemp), &(*((struct__3715*)pValue)));
-	Fill_struct__3715_StructSimValue(&rTemp, values);
-	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 2);
-	if (nResult == 1)
-		kcg_copy_struct__3715(&(*((struct__3715*)pValue)), &(rTemp));
-	return nResult;
-}
-
-int compare_struct__3715_type(int* pResult, const char* toCompare, const void* pValue) {
-	static StructSimValue values[2];
-	Fill_struct__3715_StructSimValue((struct__3715*)pValue, values);
-	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 2);
-}
-
-
-int is_struct__3715_allow_double_convertion() {
-	return 0;
-}
-
-
-const char * get_struct__3715_signature() {
-	static StructSimValue values[2];
-	Fill_struct__3715_StructSimValue(0, values);
-	return pSimulator->m_pfnStructureSignature(values, 2);
-}
-
-FilterUtils get_struct__3715_filter_utils(const char* strFilter, void* pValue) {
-	static StructSimValue values[2];
-	Fill_struct__3715_StructSimValue((struct__3715*)pValue, values);
-	return pSimulator->m_pfnGetStructureFilterUtils(values, 2, strFilter);
-}
-
-const char * struct__3715_filter_values[2] = {"Header", "Messages"};
-int check_struct__3715_string(const char* strValue) {
-	static struct__3715 rTemp;
-	return string_to_struct__3715(strValue, &rTemp);
-}
-
-
-/****************************************************************
- ** struct__3720
- ****************************************************************/
-static void Fill_struct__3720_StructSimValue(struct__3720 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__4190_StructSimValue(struct__4190 * pStruct, StructSimValue * pValues) {
 	/*valid label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->valid) : 0;
 	pValues[0].m_pTypeUtils = &_SCSIM_kcg_bool_Utils;
@@ -1545,100 +1545,100 @@ static void Fill_struct__3720_StructSimValue(struct__3720 * pStruct, StructSimVa
 	pValues[7].m_pszName = "Q_LOCACC";
 }
 
-const char * struct__3720_to_string(const void* pValue) {
+const char * struct__4190_to_string(const void* pValue) {
 	static StructSimValue values[8];
-	Fill_struct__3720_StructSimValue(((struct__3720*)pValue), values);
+	Fill_struct__4190_StructSimValue(((struct__4190*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 8);
 }
 
-int string_to_struct__3720(const char* strValue, void* pValue) {
-	static struct__3720 rTemp;
+int string_to_struct__4190(const char* strValue, void* pValue) {
+	static struct__4190 rTemp;
 	int nResult = 0;
 	static StructSimValue values[8];
-	kcg_copy_struct__3720(&(rTemp), &(*((struct__3720*)pValue)));
-	Fill_struct__3720_StructSimValue(&rTemp, values);
+	kcg_copy_struct__4190(&(rTemp), &(*((struct__4190*)pValue)));
+	Fill_struct__4190_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 8);
 	if (nResult == 1)
-		kcg_copy_struct__3720(&(*((struct__3720*)pValue)), &(rTemp));
+		kcg_copy_struct__4190(&(*((struct__4190*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__3720_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__4190_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[8];
-	Fill_struct__3720_StructSimValue((struct__3720*)pValue, values);
+	Fill_struct__4190_StructSimValue((struct__4190*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 8);
 }
 
 
-int is_struct__3720_allow_double_convertion() {
+int is_struct__4190_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__3720_signature() {
+const char * get_struct__4190_signature() {
 	static StructSimValue values[8];
-	Fill_struct__3720_StructSimValue(0, values);
+	Fill_struct__4190_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 8);
 }
 
-FilterUtils get_struct__3720_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__4190_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[8];
-	Fill_struct__3720_StructSimValue((struct__3720*)pValue, values);
+	Fill_struct__4190_StructSimValue((struct__4190*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 8, strFilter);
 }
 
-const char * struct__3720_filter_values[8] = {"valid", "D_LINK", "Q_NEWCOUNTRY", "NID_C", "NID_BG", "Q_LINKORIENTATION", "Q_LINKREACTION", "Q_LOCACC"};
-int check_struct__3720_string(const char* strValue) {
-	static struct__3720 rTemp;
-	return string_to_struct__3720(strValue, &rTemp);
+const char * struct__4190_filter_values[8] = {"valid", "D_LINK", "Q_NEWCOUNTRY", "NID_C", "NID_BG", "Q_LINKORIENTATION", "Q_LINKREACTION", "Q_LOCACC"};
+int check_struct__4190_string(const char* strValue) {
+	static struct__4190 rTemp;
+	return string_to_struct__4190(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** array__3731
+ ** array__4201
  ****************************************************************/
-void* array__3731_projection(void** pValues, int nIndex) {
-	return &((*(array__3731*)pValues)[nIndex]);
+void* array__4201_projection(void** pValues, int nIndex) {
+	return &((*(array__4201*)pValues)[nIndex]);
 }
 
-const char * array__3731_to_string(const void* pValue) {
-	return (char*) pSimulator->m_pfnArrayToString((const void**)pValue, struct__3720_to_string, 5, array__3731_projection);
+const char * array__4201_to_string(const void* pValue) {
+	return (char*) pSimulator->m_pfnArrayToString((const void**)pValue, struct__4190_to_string, 5, array__4201_projection);
 }
 
-int compare_array__3731_type(int* pResult, const char* toCompare, const void* pValue) {
-	return pSimulator->m_pfnArrayComparison(pResult, toCompare, (const void**)pValue, compare_struct__3720_type , 5, array__3731_projection);
+int compare_array__4201_type(int* pResult, const char* toCompare, const void* pValue) {
+	return pSimulator->m_pfnArrayComparison(pResult, toCompare, (const void**)pValue, compare_struct__4190_type , 5, array__4201_projection);
 }
 
-int is_array__3731_allow_double_convertion() {
+int is_array__4201_allow_double_convertion() {
 	return 0;
 }
 
-int string_to_array__3731(const char* strValue, void* pValue) {
-	static array__3731 rTemp;
-	int nResult = pSimulator->m_pfnArrayFromString(strValue, (void**)(void*)&rTemp, string_to_struct__3720, 5, array__3731_projection);
+int string_to_array__4201(const char* strValue, void* pValue) {
+	static array__4201 rTemp;
+	int nResult = pSimulator->m_pfnArrayFromString(strValue, (void**)(void*)&rTemp, string_to_struct__4190, 5, array__4201_projection);
 	if (nResult == 1)
-		kcg_copy_array__3731(&(*((array__3731*)pValue)), &(rTemp));
+		kcg_copy_array__4201(&(*((array__4201*)pValue)), &(rTemp));
 	return nResult;
 }
 
-const char * get_array__3731_signature() {
-	return pSimulator->m_pfnArraySignature(get_struct__3720_signature, 5);
+const char * get_array__4201_signature() {
+	return pSimulator->m_pfnArraySignature(get_struct__4190_signature, 5);
 }
 
-FilterUtils get_array__3731_filter_utils(const char* strFilter, void* pValue) {
-	return pSimulator->m_pfnGetArrayFilterUtils(&_SCSIM_struct__3720_Utils, strFilter, (void**)pValue, 5, array__3731_projection);
+FilterUtils get_array__4201_filter_utils(const char* strFilter, void* pValue) {
+	return pSimulator->m_pfnGetArrayFilterUtils(&_SCSIM_struct__4190_Utils, strFilter, (void**)pValue, 5, array__4201_projection);
 }
 
-int check_array__3731_string(const char* strValue) {
-	static array__3731 rTemp;
-	return string_to_array__3731(strValue, &rTemp);
+int check_array__4201_string(const char* strValue) {
+	static array__4201 rTemp;
+	return string_to_array__4201(strValue, &rTemp);
 }
 
 
 /****************************************************************
- ** struct__3734
+ ** struct__4204
  ****************************************************************/
-static void Fill_struct__3734_StructSimValue(struct__3734 * pStruct, StructSimValue * pValues) {
+static void Fill_struct__4204_StructSimValue(struct__4204 * pStruct, StructSimValue * pValues) {
 	/*valid label.*/
 	pValues[0].m_pPtr = pStruct != 0 ? &(pStruct->valid) : 0;
 	pValues[0].m_pTypeUtils = &_SCSIM_kcg_bool_Utils;
@@ -1661,56 +1661,56 @@ static void Fill_struct__3734_StructSimValue(struct__3734 * pStruct, StructSimVa
 	pValues[4].m_pszName = "N_ITER";
 	/*SECTIONS label.*/
 	pValues[5].m_pPtr = pStruct != 0 ? &(pStruct->SECTIONS) : 0;
-	pValues[5].m_pTypeUtils = &_SCSIM_array__3731_Utils;
+	pValues[5].m_pTypeUtils = &_SCSIM_array__4201_Utils;
 	pValues[5].m_pszName = "SECTIONS";
 }
 
-const char * struct__3734_to_string(const void* pValue) {
+const char * struct__4204_to_string(const void* pValue) {
 	static StructSimValue values[6];
-	Fill_struct__3734_StructSimValue(((struct__3734*)pValue), values);
+	Fill_struct__4204_StructSimValue(((struct__4204*)pValue), values);
 	return pSimulator->m_pfnStructureToString(values, 6);
 }
 
-int string_to_struct__3734(const char* strValue, void* pValue) {
-	static struct__3734 rTemp;
+int string_to_struct__4204(const char* strValue, void* pValue) {
+	static struct__4204 rTemp;
 	int nResult = 0;
 	static StructSimValue values[6];
-	kcg_copy_struct__3734(&(rTemp), &(*((struct__3734*)pValue)));
-	Fill_struct__3734_StructSimValue(&rTemp, values);
+	kcg_copy_struct__4204(&(rTemp), &(*((struct__4204*)pValue)));
+	Fill_struct__4204_StructSimValue(&rTemp, values);
 	nResult = pSimulator->m_pfnStructureFromString(strValue, values, 6);
 	if (nResult == 1)
-		kcg_copy_struct__3734(&(*((struct__3734*)pValue)), &(rTemp));
+		kcg_copy_struct__4204(&(*((struct__4204*)pValue)), &(rTemp));
 	return nResult;
 }
 
-int compare_struct__3734_type(int* pResult, const char* toCompare, const void* pValue) {
+int compare_struct__4204_type(int* pResult, const char* toCompare, const void* pValue) {
 	static StructSimValue values[6];
-	Fill_struct__3734_StructSimValue((struct__3734*)pValue, values);
+	Fill_struct__4204_StructSimValue((struct__4204*)pValue, values);
 	return pSimulator->m_pfnStructureComparison(pResult, toCompare, values, 6);
 }
 
 
-int is_struct__3734_allow_double_convertion() {
+int is_struct__4204_allow_double_convertion() {
 	return 0;
 }
 
 
-const char * get_struct__3734_signature() {
+const char * get_struct__4204_signature() {
 	static StructSimValue values[6];
-	Fill_struct__3734_StructSimValue(0, values);
+	Fill_struct__4204_StructSimValue(0, values);
 	return pSimulator->m_pfnStructureSignature(values, 6);
 }
 
-FilterUtils get_struct__3734_filter_utils(const char* strFilter, void* pValue) {
+FilterUtils get_struct__4204_filter_utils(const char* strFilter, void* pValue) {
 	static StructSimValue values[6];
-	Fill_struct__3734_StructSimValue((struct__3734*)pValue, values);
+	Fill_struct__4204_StructSimValue((struct__4204*)pValue, values);
 	return pSimulator->m_pfnGetStructureFilterUtils(values, 6, strFilter);
 }
 
-const char * struct__3734_filter_values[6] = {"valid", "Q_DIR", "L_PACKET", "Q_SCALE", "N_ITER", "SECTIONS"};
-int check_struct__3734_string(const char* strValue) {
-	static struct__3734 rTemp;
-	return string_to_struct__3734(strValue, &rTemp);
+const char * struct__4204_filter_values[6] = {"valid", "Q_DIR", "L_PACKET", "Q_SCALE", "N_ITER", "SECTIONS"};
+int check_struct__4204_string(const char* strValue) {
+	static struct__4204 rTemp;
+	return string_to_struct__4204(strValue, &rTemp);
 }
 
 
@@ -1752,6 +1752,47 @@ FilterUtils get_array_int_7_filter_utils(const char* strFilter, void* pValue) {
 int check_array_int_7_string(const char* strValue) {
 	static array_int_7 rTemp;
 	return string_to_array_int_7(strValue, &rTemp);
+}
+
+
+/****************************************************************
+ ** array_int_500_500
+ ****************************************************************/
+void* array_int_500_500_projection(void** pValues, int nIndex) {
+	return &((*(array_int_500_500*)pValues)[nIndex]);
+}
+
+const char * array_int_500_500_to_string(const void* pValue) {
+	return (char*) pSimulator->m_pfnArrayToString((const void**)pValue, array_int_500_to_string, 500, array_int_500_500_projection);
+}
+
+int compare_array_int_500_500_type(int* pResult, const char* toCompare, const void* pValue) {
+	return pSimulator->m_pfnArrayComparison(pResult, toCompare, (const void**)pValue, compare_array_int_500_type , 500, array_int_500_500_projection);
+}
+
+int is_array_int_500_500_allow_double_convertion() {
+	return 0;
+}
+
+int string_to_array_int_500_500(const char* strValue, void* pValue) {
+	static array_int_500_500 rTemp;
+	int nResult = pSimulator->m_pfnArrayFromString(strValue, (void**)(void*)&rTemp, string_to_array_int_500, 500, array_int_500_500_projection);
+	if (nResult == 1)
+		kcg_copy_array_int_500_500(&(*((array_int_500_500*)pValue)), &(rTemp));
+	return nResult;
+}
+
+const char * get_array_int_500_500_signature() {
+	return pSimulator->m_pfnArraySignature(get_array_int_500_signature, 500);
+}
+
+FilterUtils get_array_int_500_500_filter_utils(const char* strFilter, void* pValue) {
+	return pSimulator->m_pfnGetArrayFilterUtils(&_SCSIM_array_int_500_Utils, strFilter, (void**)pValue, 500, array_int_500_500_projection);
+}
+
+int check_array_int_500_500_string(const char* strValue) {
+	static array_int_500_500 rTemp;
+	return string_to_array_int_500_500(strValue, &rTemp);
 }
 
 
@@ -2043,163 +2084,6 @@ int check_array_int_4_string(const char* strValue) {
 
 
 /****************************************************************
- ** array_int_500_500
- ****************************************************************/
-void* array_int_500_500_projection(void** pValues, int nIndex) {
-	return &((*(array_int_500_500*)pValues)[nIndex]);
-}
-
-const char * array_int_500_500_to_string(const void* pValue) {
-	return (char*) pSimulator->m_pfnArrayToString((const void**)pValue, array_int_500_to_string, 500, array_int_500_500_projection);
-}
-
-int compare_array_int_500_500_type(int* pResult, const char* toCompare, const void* pValue) {
-	return pSimulator->m_pfnArrayComparison(pResult, toCompare, (const void**)pValue, compare_array_int_500_type , 500, array_int_500_500_projection);
-}
-
-int is_array_int_500_500_allow_double_convertion() {
-	return 0;
-}
-
-int string_to_array_int_500_500(const char* strValue, void* pValue) {
-	static array_int_500_500 rTemp;
-	int nResult = pSimulator->m_pfnArrayFromString(strValue, (void**)(void*)&rTemp, string_to_array_int_500, 500, array_int_500_500_projection);
-	if (nResult == 1)
-		kcg_copy_array_int_500_500(&(*((array_int_500_500*)pValue)), &(rTemp));
-	return nResult;
-}
-
-const char * get_array_int_500_500_signature() {
-	return pSimulator->m_pfnArraySignature(get_array_int_500_signature, 500);
-}
-
-FilterUtils get_array_int_500_500_filter_utils(const char* strFilter, void* pValue) {
-	return pSimulator->m_pfnGetArrayFilterUtils(&_SCSIM_array_int_500_Utils, strFilter, (void**)pValue, 500, array_int_500_500_projection);
-}
-
-int check_array_int_500_500_string(const char* strValue) {
-	static array_int_500_500 rTemp;
-	return string_to_array_int_500_500(strValue, &rTemp);
-}
-
-
-/****************************************************************
- ** TM_CompressedBaliseMessage
- ****************************************************************/
-struct SimTypeVTable* pSimTM_CompressedBaliseMessageVTable;
-const char * TM_CompressedBaliseMessage_to_string(const void* pValue) {
-	if (pSimTM_CompressedBaliseMessageVTable != 0 && pSimTM_CompressedBaliseMessageVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
-		return *(char**)pSimTM_CompressedBaliseMessageVTable->m_pfnToType(SptString, pValue);
-	return struct__3715_to_string(pValue);
-}
-
-int string_to_TM_CompressedBaliseMessage(const char* strValue, void* pValue) {
-	if (pSimTM_CompressedBaliseMessageVTable != 0 && pSimTM_CompressedBaliseMessageVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
-		static TM_CompressedBaliseMessage rTemp;
-		int nResult = pSimTM_CompressedBaliseMessageVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
-		if (nResult == 1)
-			kcg_copy_struct__3715(&(*((TM_CompressedBaliseMessage*)pValue)), &(rTemp));
-		return nResult;
-	}
-	return string_to_struct__3715(strValue, pValue);
-}
-
-int is_TM_CompressedBaliseMessage_allow_double_convertion() {
-	if (pSimTM_CompressedBaliseMessageVTable != 0) {
-		int nConvertionAllowed = 0;
-		nConvertionAllowed |= pSimTM_CompressedBaliseMessageVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
-		nConvertionAllowed |= pSimTM_CompressedBaliseMessageVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
-		nConvertionAllowed |= pSimTM_CompressedBaliseMessageVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
-		nConvertionAllowed |= pSimTM_CompressedBaliseMessageVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
-		return nConvertionAllowed;
-	}
-	return is_struct__3715_allow_double_convertion();
-}
-
-int TM_CompressedBaliseMessage_to_double(double * nValue, const void* pValue) {
-	if (pSimTM_CompressedBaliseMessageVTable != 0) {
-		if (pSimTM_CompressedBaliseMessageVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
-			*nValue = (double)(*(long*)pSimTM_CompressedBaliseMessageVTable->m_pfnToType(SptLong, pValue));
-		else if (pSimTM_CompressedBaliseMessageVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
-			*nValue = (double)(*(int*)pSimTM_CompressedBaliseMessageVTable->m_pfnToType(SptShort, pValue));
-		else if (pSimTM_CompressedBaliseMessageVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
-			*nValue = (*(double*)pSimTM_CompressedBaliseMessageVTable->m_pfnToType(SptDouble, pValue));
-		else if (pSimTM_CompressedBaliseMessageVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
-			*nValue = (double)(*(float*)pSimTM_CompressedBaliseMessageVTable->m_pfnToType(SptFloat, pValue));
-		else
-			return 0;
-		return 1;
-	}
-	if (_SCSIM_struct__3715_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__3715_Utils.m_pfnTypeToDouble(nValue, pValue);
-	return 0;
-}
-
-int check_TM_CompressedBaliseMessage_string(const char* strValue) {
-	static TM_CompressedBaliseMessage rTemp;
-	return string_to_TM_CompressedBaliseMessage(strValue, &rTemp);
-}
-
-
-/****************************************************************
- ** TM_BaliseTelegramHeader_int_T
- ****************************************************************/
-struct SimTypeVTable* pSimTM_BaliseTelegramHeader_int_TVTable;
-const char * TM_BaliseTelegramHeader_int_T_to_string(const void* pValue) {
-	if (pSimTM_BaliseTelegramHeader_int_TVTable != 0 && pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
-		return *(char**)pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnToType(SptString, pValue);
-	return struct__3693_to_string(pValue);
-}
-
-int string_to_TM_BaliseTelegramHeader_int_T(const char* strValue, void* pValue) {
-	if (pSimTM_BaliseTelegramHeader_int_TVTable != 0 && pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
-		static TM_BaliseTelegramHeader_int_T rTemp;
-		int nResult = pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
-		if (nResult == 1)
-			kcg_copy_struct__3693(&(*((TM_BaliseTelegramHeader_int_T*)pValue)), &(rTemp));
-		return nResult;
-	}
-	return string_to_struct__3693(strValue, pValue);
-}
-
-int is_TM_BaliseTelegramHeader_int_T_allow_double_convertion() {
-	if (pSimTM_BaliseTelegramHeader_int_TVTable != 0) {
-		int nConvertionAllowed = 0;
-		nConvertionAllowed |= pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
-		nConvertionAllowed |= pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
-		nConvertionAllowed |= pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
-		nConvertionAllowed |= pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
-		return nConvertionAllowed;
-	}
-	return is_struct__3693_allow_double_convertion();
-}
-
-int TM_BaliseTelegramHeader_int_T_to_double(double * nValue, const void* pValue) {
-	if (pSimTM_BaliseTelegramHeader_int_TVTable != 0) {
-		if (pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
-			*nValue = (double)(*(long*)pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnToType(SptLong, pValue));
-		else if (pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
-			*nValue = (double)(*(int*)pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnToType(SptShort, pValue));
-		else if (pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
-			*nValue = (*(double*)pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnToType(SptDouble, pValue));
-		else if (pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
-			*nValue = (double)(*(float*)pSimTM_BaliseTelegramHeader_int_TVTable->m_pfnToType(SptFloat, pValue));
-		else
-			return 0;
-		return 1;
-	}
-	if (_SCSIM_struct__3693_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__3693_Utils.m_pfnTypeToDouble(nValue, pValue);
-	return 0;
-}
-
-int check_TM_BaliseTelegramHeader_int_T_string(const char* strValue) {
-	static TM_BaliseTelegramHeader_int_T rTemp;
-	return string_to_TM_BaliseTelegramHeader_int_T(strValue, &rTemp);
-}
-
-
-/****************************************************************
  ** NID_PACKET
  ****************************************************************/
 struct SimTypeVTable* pSimNID_PACKETVTable;
@@ -2342,456 +2226,6 @@ const char * get_Q_DIR_signature() {
 int check_Q_DIR_string(const char* strValue) {
 	static Q_DIR rTemp;
 	return string_to_Q_DIR(strValue, &rTemp);
-}
-
-
-/****************************************************************
- ** TM_OrBG
- ****************************************************************/
-struct SimTypeVTable* pSimTM_OrBGVTable;
-const char * TM_OrBG_to_string(const void* pValue) {
-	if (pSimTM_OrBGVTable != 0 && pSimTM_OrBGVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
-		return *(char**)pSimTM_OrBGVTable->m_pfnToType(SptString, pValue);
-	switch (*((TM_OrBG*)pValue)) {
-	case Amsterdam:
-		return "Amsterdam";
-	case Utrecht:
-		return "Utrecht";
-	default:
-		return "?";
-	}
-}
-
-int string_to_TM_OrBG(const char* strValue, void* pValue) {
-	if (pSimTM_OrBGVTable != 0 && pSimTM_OrBGVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
-		TM_OrBG rTemp;		int nResult = pSimTM_OrBGVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
-		if (nResult == 1)
-			*((TM_OrBG*)pValue) = rTemp;
-		return nResult;
-	}
-	if(strcmp(strValue, "Amsterdam") == 0)
-		*((TM_OrBG*)pValue) = Amsterdam;
-	else if(strcmp(strValue, "Utrecht") == 0)
-		*((TM_OrBG*)pValue) = Utrecht;
-	else 
-		return 0;
-	return 1;
-}
-
-int is_TM_OrBG_allow_double_convertion() {
-	return 1;
-}
-
-
-int TM_OrBG_to_double(double * nValue, const void* pValue) {
-	switch (*((TM_OrBG*)pValue)) {
-	case Amsterdam:
-		*nValue = 0.0;
-		break;
-	case Utrecht:
-		*nValue = 1.0;
-		break;
-	default:
-		return 0;
-	}
-	return 1;
-}
-
-
-int compare_TM_OrBG_type(int* pResult, const char* toCompare, const void* pValue) {
-	static TM_OrBG rTemp;
-	const TM_OrBG* pCurrent = (const TM_OrBG*)pValue;
-	if (string_to_TM_OrBG(toCompare, &rTemp) == 0)
-		return 0;
-	if (*pCurrent > rTemp)
-		*pResult = 1;
-	else if (*pCurrent < rTemp)
-		*pResult = -1;
-	else
-		*pResult = 0;
-	return 1;
-}
-
-const char * get_TM_OrBG_signature() {
-	return "E"
-		"|Amsterdam"
-		"|Utrecht"
-		;
-}
-
-int check_TM_OrBG_string(const char* strValue) {
-	static TM_OrBG rTemp;
-	return string_to_TM_OrBG(strValue, &rTemp);
-}
-
-
-/****************************************************************
- ** TM_OrLine
- ****************************************************************/
-struct SimTypeVTable* pSimTM_OrLineVTable;
-const char * TM_OrLine_to_string(const void* pValue) {
-	if (pSimTM_OrLineVTable != 0 && pSimTM_OrLineVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
-		return *(char**)pSimTM_OrLineVTable->m_pfnToType(SptString, pValue);
-	switch (*((TM_OrLine*)pValue)) {
-	case N:
-		return "N";
-	case Z:
-		return "Z";
-	default:
-		return "?";
-	}
-}
-
-int string_to_TM_OrLine(const char* strValue, void* pValue) {
-	if (pSimTM_OrLineVTable != 0 && pSimTM_OrLineVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
-		TM_OrLine rTemp;		int nResult = pSimTM_OrLineVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
-		if (nResult == 1)
-			*((TM_OrLine*)pValue) = rTemp;
-		return nResult;
-	}
-	if(strcmp(strValue, "N") == 0)
-		*((TM_OrLine*)pValue) = N;
-	else if(strcmp(strValue, "Z") == 0)
-		*((TM_OrLine*)pValue) = Z;
-	else 
-		return 0;
-	return 1;
-}
-
-int is_TM_OrLine_allow_double_convertion() {
-	return 1;
-}
-
-
-int TM_OrLine_to_double(double * nValue, const void* pValue) {
-	switch (*((TM_OrLine*)pValue)) {
-	case N:
-		*nValue = 0.0;
-		break;
-	case Z:
-		*nValue = 1.0;
-		break;
-	default:
-		return 0;
-	}
-	return 1;
-}
-
-
-int compare_TM_OrLine_type(int* pResult, const char* toCompare, const void* pValue) {
-	static TM_OrLine rTemp;
-	const TM_OrLine* pCurrent = (const TM_OrLine*)pValue;
-	if (string_to_TM_OrLine(toCompare, &rTemp) == 0)
-		return 0;
-	if (*pCurrent > rTemp)
-		*pResult = 1;
-	else if (*pCurrent < rTemp)
-		*pResult = -1;
-	else
-		*pResult = 0;
-	return 1;
-}
-
-const char * get_TM_OrLine_signature() {
-	return "E"
-		"|N"
-		"|Z"
-		;
-}
-
-int check_TM_OrLine_string(const char* strValue) {
-	static TM_OrLine rTemp;
-	return string_to_TM_OrLine(strValue, &rTemp);
-}
-
-
-/****************************************************************
- ** TM_P005
- ****************************************************************/
-struct SimTypeVTable* pSimTM_P005VTable;
-const char * TM_P005_to_string(const void* pValue) {
-	if (pSimTM_P005VTable != 0 && pSimTM_P005VTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
-		return *(char**)pSimTM_P005VTable->m_pfnToType(SptString, pValue);
-	return struct__3734_to_string(pValue);
-}
-
-int string_to_TM_P005(const char* strValue, void* pValue) {
-	if (pSimTM_P005VTable != 0 && pSimTM_P005VTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
-		static TM_P005 rTemp;
-		int nResult = pSimTM_P005VTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
-		if (nResult == 1)
-			kcg_copy_struct__3734(&(*((TM_P005*)pValue)), &(rTemp));
-		return nResult;
-	}
-	return string_to_struct__3734(strValue, pValue);
-}
-
-int is_TM_P005_allow_double_convertion() {
-	if (pSimTM_P005VTable != 0) {
-		int nConvertionAllowed = 0;
-		nConvertionAllowed |= pSimTM_P005VTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
-		nConvertionAllowed |= pSimTM_P005VTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
-		nConvertionAllowed |= pSimTM_P005VTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
-		nConvertionAllowed |= pSimTM_P005VTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
-		return nConvertionAllowed;
-	}
-	return is_struct__3734_allow_double_convertion();
-}
-
-int TM_P005_to_double(double * nValue, const void* pValue) {
-	if (pSimTM_P005VTable != 0) {
-		if (pSimTM_P005VTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
-			*nValue = (double)(*(long*)pSimTM_P005VTable->m_pfnToType(SptLong, pValue));
-		else if (pSimTM_P005VTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
-			*nValue = (double)(*(int*)pSimTM_P005VTable->m_pfnToType(SptShort, pValue));
-		else if (pSimTM_P005VTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
-			*nValue = (*(double*)pSimTM_P005VTable->m_pfnToType(SptDouble, pValue));
-		else if (pSimTM_P005VTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
-			*nValue = (double)(*(float*)pSimTM_P005VTable->m_pfnToType(SptFloat, pValue));
-		else
-			return 0;
-		return 1;
-	}
-	if (_SCSIM_struct__3734_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__3734_Utils.m_pfnTypeToDouble(nValue, pValue);
-	return 0;
-}
-
-int check_TM_P005_string(const char* strValue) {
-	static TM_P005 rTemp;
-	return string_to_TM_P005(strValue, &rTemp);
-}
-
-
-/****************************************************************
- ** TM_P05Es_T
- ****************************************************************/
-struct SimTypeVTable* pSimTM_P05Es_TVTable;
-const char * TM_P05Es_T_to_string(const void* pValue) {
-	if (pSimTM_P05Es_TVTable != 0 && pSimTM_P05Es_TVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
-		return *(char**)pSimTM_P05Es_TVTable->m_pfnToType(SptString, pValue);
-	return array__3731_to_string(pValue);
-}
-
-int string_to_TM_P05Es_T(const char* strValue, void* pValue) {
-	if (pSimTM_P05Es_TVTable != 0 && pSimTM_P05Es_TVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
-		static TM_P05Es_T rTemp;
-		int nResult = pSimTM_P05Es_TVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
-		if (nResult == 1)
-			kcg_copy_array__3731(&(*((TM_P05Es_T*)pValue)), &(rTemp));
-		return nResult;
-	}
-	return string_to_array__3731(strValue, pValue);
-}
-
-int is_TM_P05Es_T_allow_double_convertion() {
-	if (pSimTM_P05Es_TVTable != 0) {
-		int nConvertionAllowed = 0;
-		nConvertionAllowed |= pSimTM_P05Es_TVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
-		nConvertionAllowed |= pSimTM_P05Es_TVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
-		nConvertionAllowed |= pSimTM_P05Es_TVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
-		nConvertionAllowed |= pSimTM_P05Es_TVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
-		return nConvertionAllowed;
-	}
-	return is_array__3731_allow_double_convertion();
-}
-
-int TM_P05Es_T_to_double(double * nValue, const void* pValue) {
-	if (pSimTM_P05Es_TVTable != 0) {
-		if (pSimTM_P05Es_TVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
-			*nValue = (double)(*(long*)pSimTM_P05Es_TVTable->m_pfnToType(SptLong, pValue));
-		else if (pSimTM_P05Es_TVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
-			*nValue = (double)(*(int*)pSimTM_P05Es_TVTable->m_pfnToType(SptShort, pValue));
-		else if (pSimTM_P05Es_TVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
-			*nValue = (*(double*)pSimTM_P05Es_TVTable->m_pfnToType(SptDouble, pValue));
-		else if (pSimTM_P05Es_TVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
-			*nValue = (double)(*(float*)pSimTM_P05Es_TVTable->m_pfnToType(SptFloat, pValue));
-		else
-			return 0;
-		return 1;
-	}
-	if (_SCSIM_array__3731_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_array__3731_Utils.m_pfnTypeToDouble(nValue, pValue);
-	return 0;
-}
-
-int check_TM_P05Es_T_string(const char* strValue) {
-	static TM_P05Es_T rTemp;
-	return string_to_TM_P05Es_T(strValue, &rTemp);
-}
-
-
-/****************************************************************
- ** TM_P005E_T
- ****************************************************************/
-struct SimTypeVTable* pSimTM_P005E_TVTable;
-const char * TM_P005E_T_to_string(const void* pValue) {
-	if (pSimTM_P005E_TVTable != 0 && pSimTM_P005E_TVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
-		return *(char**)pSimTM_P005E_TVTable->m_pfnToType(SptString, pValue);
-	return struct__3720_to_string(pValue);
-}
-
-int string_to_TM_P005E_T(const char* strValue, void* pValue) {
-	if (pSimTM_P005E_TVTable != 0 && pSimTM_P005E_TVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
-		static TM_P005E_T rTemp;
-		int nResult = pSimTM_P005E_TVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
-		if (nResult == 1)
-			kcg_copy_struct__3720(&(*((TM_P005E_T*)pValue)), &(rTemp));
-		return nResult;
-	}
-	return string_to_struct__3720(strValue, pValue);
-}
-
-int is_TM_P005E_T_allow_double_convertion() {
-	if (pSimTM_P005E_TVTable != 0) {
-		int nConvertionAllowed = 0;
-		nConvertionAllowed |= pSimTM_P005E_TVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
-		nConvertionAllowed |= pSimTM_P005E_TVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
-		nConvertionAllowed |= pSimTM_P005E_TVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
-		nConvertionAllowed |= pSimTM_P005E_TVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
-		return nConvertionAllowed;
-	}
-	return is_struct__3720_allow_double_convertion();
-}
-
-int TM_P005E_T_to_double(double * nValue, const void* pValue) {
-	if (pSimTM_P005E_TVTable != 0) {
-		if (pSimTM_P005E_TVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
-			*nValue = (double)(*(long*)pSimTM_P005E_TVTable->m_pfnToType(SptLong, pValue));
-		else if (pSimTM_P005E_TVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
-			*nValue = (double)(*(int*)pSimTM_P005E_TVTable->m_pfnToType(SptShort, pValue));
-		else if (pSimTM_P005E_TVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
-			*nValue = (*(double*)pSimTM_P005E_TVTable->m_pfnToType(SptDouble, pValue));
-		else if (pSimTM_P005E_TVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
-			*nValue = (double)(*(float*)pSimTM_P005E_TVTable->m_pfnToType(SptFloat, pValue));
-		else
-			return 0;
-		return 1;
-	}
-	if (_SCSIM_struct__3720_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__3720_Utils.m_pfnTypeToDouble(nValue, pValue);
-	return 0;
-}
-
-int check_TM_P005E_T_string(const char* strValue) {
-	static TM_P005E_T rTemp;
-	return string_to_TM_P005E_T(strValue, &rTemp);
-}
-
-
-/****************************************************************
- ** TM_P005E_array_T
- ****************************************************************/
-struct SimTypeVTable* pSimTM_P005E_array_TVTable;
-const char * TM_P005E_array_T_to_string(const void* pValue) {
-	if (pSimTM_P005E_array_TVTable != 0 && pSimTM_P005E_array_TVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
-		return *(char**)pSimTM_P005E_array_TVTable->m_pfnToType(SptString, pValue);
-	return array_int_7_to_string(pValue);
-}
-
-int string_to_TM_P005E_array_T(const char* strValue, void* pValue) {
-	if (pSimTM_P005E_array_TVTable != 0 && pSimTM_P005E_array_TVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
-		static TM_P005E_array_T rTemp;
-		int nResult = pSimTM_P005E_array_TVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
-		if (nResult == 1)
-			kcg_copy_array_int_7(&(*((TM_P005E_array_T*)pValue)), &(rTemp));
-		return nResult;
-	}
-	return string_to_array_int_7(strValue, pValue);
-}
-
-int is_TM_P005E_array_T_allow_double_convertion() {
-	if (pSimTM_P005E_array_TVTable != 0) {
-		int nConvertionAllowed = 0;
-		nConvertionAllowed |= pSimTM_P005E_array_TVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
-		nConvertionAllowed |= pSimTM_P005E_array_TVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
-		nConvertionAllowed |= pSimTM_P005E_array_TVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
-		nConvertionAllowed |= pSimTM_P005E_array_TVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
-		return nConvertionAllowed;
-	}
-	return is_array_int_7_allow_double_convertion();
-}
-
-int TM_P005E_array_T_to_double(double * nValue, const void* pValue) {
-	if (pSimTM_P005E_array_TVTable != 0) {
-		if (pSimTM_P005E_array_TVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
-			*nValue = (double)(*(long*)pSimTM_P005E_array_TVTable->m_pfnToType(SptLong, pValue));
-		else if (pSimTM_P005E_array_TVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
-			*nValue = (double)(*(int*)pSimTM_P005E_array_TVTable->m_pfnToType(SptShort, pValue));
-		else if (pSimTM_P005E_array_TVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
-			*nValue = (*(double*)pSimTM_P005E_array_TVTable->m_pfnToType(SptDouble, pValue));
-		else if (pSimTM_P005E_array_TVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
-			*nValue = (double)(*(float*)pSimTM_P005E_array_TVTable->m_pfnToType(SptFloat, pValue));
-		else
-			return 0;
-		return 1;
-	}
-	if (_SCSIM_array_int_7_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_array_int_7_Utils.m_pfnTypeToDouble(nValue, pValue);
-	return 0;
-}
-
-int check_TM_P005E_array_T_string(const char* strValue) {
-	static TM_P005E_array_T rTemp;
-	return string_to_TM_P005E_array_T(strValue, &rTemp);
-}
-
-
-/****************************************************************
- ** TM_BaliseGroupData
- ****************************************************************/
-struct SimTypeVTable* pSimTM_BaliseGroupDataVTable;
-const char * TM_BaliseGroupData_to_string(const void* pValue) {
-	if (pSimTM_BaliseGroupDataVTable != 0 && pSimTM_BaliseGroupDataVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
-		return *(char**)pSimTM_BaliseGroupDataVTable->m_pfnToType(SptString, pValue);
-	return struct__3685_to_string(pValue);
-}
-
-int string_to_TM_BaliseGroupData(const char* strValue, void* pValue) {
-	if (pSimTM_BaliseGroupDataVTable != 0 && pSimTM_BaliseGroupDataVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
-		static TM_BaliseGroupData rTemp;
-		int nResult = pSimTM_BaliseGroupDataVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
-		if (nResult == 1)
-			kcg_copy_struct__3685(&(*((TM_BaliseGroupData*)pValue)), &(rTemp));
-		return nResult;
-	}
-	return string_to_struct__3685(strValue, pValue);
-}
-
-int is_TM_BaliseGroupData_allow_double_convertion() {
-	if (pSimTM_BaliseGroupDataVTable != 0) {
-		int nConvertionAllowed = 0;
-		nConvertionAllowed |= pSimTM_BaliseGroupDataVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
-		nConvertionAllowed |= pSimTM_BaliseGroupDataVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
-		nConvertionAllowed |= pSimTM_BaliseGroupDataVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
-		nConvertionAllowed |= pSimTM_BaliseGroupDataVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
-		return nConvertionAllowed;
-	}
-	return is_struct__3685_allow_double_convertion();
-}
-
-int TM_BaliseGroupData_to_double(double * nValue, const void* pValue) {
-	if (pSimTM_BaliseGroupDataVTable != 0) {
-		if (pSimTM_BaliseGroupDataVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
-			*nValue = (double)(*(long*)pSimTM_BaliseGroupDataVTable->m_pfnToType(SptLong, pValue));
-		else if (pSimTM_BaliseGroupDataVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
-			*nValue = (double)(*(int*)pSimTM_BaliseGroupDataVTable->m_pfnToType(SptShort, pValue));
-		else if (pSimTM_BaliseGroupDataVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
-			*nValue = (*(double*)pSimTM_BaliseGroupDataVTable->m_pfnToType(SptDouble, pValue));
-		else if (pSimTM_BaliseGroupDataVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
-			*nValue = (double)(*(float*)pSimTM_BaliseGroupDataVTable->m_pfnToType(SptFloat, pValue));
-		else
-			return 0;
-		return 1;
-	}
-	if (_SCSIM_struct__3685_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__3685_Utils.m_pfnTypeToDouble(nValue, pValue);
-	return 0;
-}
-
-int check_TM_BaliseGroupData_string(const char* strValue) {
-	static TM_BaliseGroupData rTemp;
-	return string_to_TM_BaliseGroupData(strValue, &rTemp);
 }
 
 
@@ -3650,60 +3084,626 @@ int check_Q_LINK_string(const char* strValue) {
 
 
 /****************************************************************
- ** B_data_internal_FirstTest_InfraLib
+ ** B_data_internal_FirstTest_InfraLibInt
  ****************************************************************/
-struct SimTypeVTable* pSimB_data_internal_FirstTest_InfraLibVTable;
-const char * B_data_internal_FirstTest_InfraLib_to_string(const void* pValue) {
-	if (pSimB_data_internal_FirstTest_InfraLibVTable != 0 && pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
-		return *(char**)pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnToType(SptString, pValue);
-	return struct__3706_to_string(pValue);
+struct SimTypeVTable* pSimB_data_internal_FirstTest_InfraLibIntVTable;
+const char * B_data_internal_FirstTest_InfraLibInt_to_string(const void* pValue) {
+	if (pSimB_data_internal_FirstTest_InfraLibIntVTable != 0 && pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
+		return *(char**)pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnToType(SptString, pValue);
+	return struct__4181_to_string(pValue);
 }
 
-int string_to_B_data_internal_FirstTest_InfraLib(const char* strValue, void* pValue) {
-	if (pSimB_data_internal_FirstTest_InfraLibVTable != 0 && pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
-		static B_data_internal_FirstTest_InfraLib rTemp;
-		int nResult = pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
+int string_to_B_data_internal_FirstTest_InfraLibInt(const char* strValue, void* pValue) {
+	if (pSimB_data_internal_FirstTest_InfraLibIntVTable != 0 && pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
+		static B_data_internal_FirstTest_InfraLibInt rTemp;
+		int nResult = pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__3706(&(*((B_data_internal_FirstTest_InfraLib*)pValue)), &(rTemp));
+			kcg_copy_struct__4181(&(*((B_data_internal_FirstTest_InfraLibInt*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__3706(strValue, pValue);
+	return string_to_struct__4181(strValue, pValue);
 }
 
-int is_B_data_internal_FirstTest_InfraLib_allow_double_convertion() {
-	if (pSimB_data_internal_FirstTest_InfraLibVTable != 0) {
+int is_B_data_internal_FirstTest_InfraLibInt_allow_double_convertion() {
+	if (pSimB_data_internal_FirstTest_InfraLibIntVTable != 0) {
 		int nConvertionAllowed = 0;
-		nConvertionAllowed |= pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
-		nConvertionAllowed |= pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
-		nConvertionAllowed |= pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
-		nConvertionAllowed |= pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
+		nConvertionAllowed |= pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
+		nConvertionAllowed |= pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
+		nConvertionAllowed |= pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
+		nConvertionAllowed |= pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__3706_allow_double_convertion();
+	return is_struct__4181_allow_double_convertion();
 }
 
-int B_data_internal_FirstTest_InfraLib_to_double(double * nValue, const void* pValue) {
-	if (pSimB_data_internal_FirstTest_InfraLibVTable != 0) {
-		if (pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
-			*nValue = (double)(*(long*)pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnToType(SptLong, pValue));
-		else if (pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
-			*nValue = (double)(*(int*)pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnToType(SptShort, pValue));
-		else if (pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
-			*nValue = (*(double*)pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnToType(SptDouble, pValue));
-		else if (pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
-			*nValue = (double)(*(float*)pSimB_data_internal_FirstTest_InfraLibVTable->m_pfnToType(SptFloat, pValue));
+int B_data_internal_FirstTest_InfraLibInt_to_double(double * nValue, const void* pValue) {
+	if (pSimB_data_internal_FirstTest_InfraLibIntVTable != 0) {
+		if (pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
+			*nValue = (double)(*(long*)pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnToType(SptLong, pValue));
+		else if (pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
+			*nValue = (double)(*(int*)pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnToType(SptShort, pValue));
+		else if (pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
+			*nValue = (*(double*)pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnToType(SptDouble, pValue));
+		else if (pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
+			*nValue = (double)(*(float*)pSimB_data_internal_FirstTest_InfraLibIntVTable->m_pfnToType(SptFloat, pValue));
 		else
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__3706_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__3706_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__4181_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__4181_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
-int check_B_data_internal_FirstTest_InfraLib_string(const char* strValue) {
-	static B_data_internal_FirstTest_InfraLib rTemp;
-	return string_to_B_data_internal_FirstTest_InfraLib(strValue, &rTemp);
+int check_B_data_internal_FirstTest_InfraLibInt_string(const char* strValue) {
+	static B_data_internal_FirstTest_InfraLibInt rTemp;
+	return string_to_B_data_internal_FirstTest_InfraLibInt(strValue, &rTemp);
+}
+
+
+/****************************************************************
+ ** CompressedBaliseMessage_TM
+ ****************************************************************/
+struct SimTypeVTable* pSimCompressedBaliseMessage_TMVTable;
+const char * CompressedBaliseMessage_TM_to_string(const void* pValue) {
+	if (pSimCompressedBaliseMessage_TMVTable != 0 && pSimCompressedBaliseMessage_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
+		return *(char**)pSimCompressedBaliseMessage_TMVTable->m_pfnToType(SptString, pValue);
+	return struct__4168_to_string(pValue);
+}
+
+int string_to_CompressedBaliseMessage_TM(const char* strValue, void* pValue) {
+	if (pSimCompressedBaliseMessage_TMVTable != 0 && pSimCompressedBaliseMessage_TMVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
+		static CompressedBaliseMessage_TM rTemp;
+		int nResult = pSimCompressedBaliseMessage_TMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
+		if (nResult == 1)
+			kcg_copy_struct__4168(&(*((CompressedBaliseMessage_TM*)pValue)), &(rTemp));
+		return nResult;
+	}
+	return string_to_struct__4168(strValue, pValue);
+}
+
+int is_CompressedBaliseMessage_TM_allow_double_convertion() {
+	if (pSimCompressedBaliseMessage_TMVTable != 0) {
+		int nConvertionAllowed = 0;
+		nConvertionAllowed |= pSimCompressedBaliseMessage_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
+		nConvertionAllowed |= pSimCompressedBaliseMessage_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
+		nConvertionAllowed |= pSimCompressedBaliseMessage_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
+		nConvertionAllowed |= pSimCompressedBaliseMessage_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
+		return nConvertionAllowed;
+	}
+	return is_struct__4168_allow_double_convertion();
+}
+
+int CompressedBaliseMessage_TM_to_double(double * nValue, const void* pValue) {
+	if (pSimCompressedBaliseMessage_TMVTable != 0) {
+		if (pSimCompressedBaliseMessage_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
+			*nValue = (double)(*(long*)pSimCompressedBaliseMessage_TMVTable->m_pfnToType(SptLong, pValue));
+		else if (pSimCompressedBaliseMessage_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
+			*nValue = (double)(*(int*)pSimCompressedBaliseMessage_TMVTable->m_pfnToType(SptShort, pValue));
+		else if (pSimCompressedBaliseMessage_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
+			*nValue = (*(double*)pSimCompressedBaliseMessage_TMVTable->m_pfnToType(SptDouble, pValue));
+		else if (pSimCompressedBaliseMessage_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
+			*nValue = (double)(*(float*)pSimCompressedBaliseMessage_TMVTable->m_pfnToType(SptFloat, pValue));
+		else
+			return 0;
+		return 1;
+	}
+	if (_SCSIM_struct__4168_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__4168_Utils.m_pfnTypeToDouble(nValue, pValue);
+	return 0;
+}
+
+int check_CompressedBaliseMessage_TM_string(const char* strValue) {
+	static CompressedBaliseMessage_TM rTemp;
+	return string_to_CompressedBaliseMessage_TM(strValue, &rTemp);
+}
+
+
+/****************************************************************
+ ** BaliseTelegramHeader_int_T_TM
+ ****************************************************************/
+struct SimTypeVTable* pSimBaliseTelegramHeader_int_T_TMVTable;
+const char * BaliseTelegramHeader_int_T_TM_to_string(const void* pValue) {
+	if (pSimBaliseTelegramHeader_int_T_TMVTable != 0 && pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
+		return *(char**)pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnToType(SptString, pValue);
+	return struct__4136_to_string(pValue);
+}
+
+int string_to_BaliseTelegramHeader_int_T_TM(const char* strValue, void* pValue) {
+	if (pSimBaliseTelegramHeader_int_T_TMVTable != 0 && pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
+		static BaliseTelegramHeader_int_T_TM rTemp;
+		int nResult = pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
+		if (nResult == 1)
+			kcg_copy_struct__4136(&(*((BaliseTelegramHeader_int_T_TM*)pValue)), &(rTemp));
+		return nResult;
+	}
+	return string_to_struct__4136(strValue, pValue);
+}
+
+int is_BaliseTelegramHeader_int_T_TM_allow_double_convertion() {
+	if (pSimBaliseTelegramHeader_int_T_TMVTable != 0) {
+		int nConvertionAllowed = 0;
+		nConvertionAllowed |= pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
+		nConvertionAllowed |= pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
+		nConvertionAllowed |= pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
+		nConvertionAllowed |= pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
+		return nConvertionAllowed;
+	}
+	return is_struct__4136_allow_double_convertion();
+}
+
+int BaliseTelegramHeader_int_T_TM_to_double(double * nValue, const void* pValue) {
+	if (pSimBaliseTelegramHeader_int_T_TMVTable != 0) {
+		if (pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
+			*nValue = (double)(*(long*)pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnToType(SptLong, pValue));
+		else if (pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
+			*nValue = (double)(*(int*)pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnToType(SptShort, pValue));
+		else if (pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
+			*nValue = (*(double*)pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnToType(SptDouble, pValue));
+		else if (pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
+			*nValue = (double)(*(float*)pSimBaliseTelegramHeader_int_T_TMVTable->m_pfnToType(SptFloat, pValue));
+		else
+			return 0;
+		return 1;
+	}
+	if (_SCSIM_struct__4136_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__4136_Utils.m_pfnTypeToDouble(nValue, pValue);
+	return 0;
+}
+
+int check_BaliseTelegramHeader_int_T_TM_string(const char* strValue) {
+	static BaliseTelegramHeader_int_T_TM rTemp;
+	return string_to_BaliseTelegramHeader_int_T_TM(strValue, &rTemp);
+}
+
+
+/****************************************************************
+ ** OrBG_TM
+ ****************************************************************/
+struct SimTypeVTable* pSimOrBG_TMVTable;
+const char * OrBG_TM_to_string(const void* pValue) {
+	if (pSimOrBG_TMVTable != 0 && pSimOrBG_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
+		return *(char**)pSimOrBG_TMVTable->m_pfnToType(SptString, pValue);
+	switch (*((OrBG_TM*)pValue)) {
+	case Amsterdam_TM:
+		return "TM::Amsterdam";
+	case Utrecht_TM:
+		return "TM::Utrecht";
+	default:
+		return "?";
+	}
+}
+
+int string_to_OrBG_TM(const char* strValue, void* pValue) {
+	if (pSimOrBG_TMVTable != 0 && pSimOrBG_TMVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
+		OrBG_TM rTemp;		int nResult = pSimOrBG_TMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
+		if (nResult == 1)
+			*((OrBG_TM*)pValue) = rTemp;
+		return nResult;
+	}
+	if(strcmp(strValue, "Amsterdam") == 0 || strcmp(strValue, "TM::Amsterdam") == 0)
+		*((OrBG_TM*)pValue) = Amsterdam_TM;
+	else if(strcmp(strValue, "Utrecht") == 0 || strcmp(strValue, "TM::Utrecht") == 0)
+		*((OrBG_TM*)pValue) = Utrecht_TM;
+	else 
+		return 0;
+	return 1;
+}
+
+int is_OrBG_TM_allow_double_convertion() {
+	return 1;
+}
+
+
+int OrBG_TM_to_double(double * nValue, const void* pValue) {
+	switch (*((OrBG_TM*)pValue)) {
+	case Amsterdam_TM:
+		*nValue = 0.0;
+		break;
+	case Utrecht_TM:
+		*nValue = 1.0;
+		break;
+	default:
+		return 0;
+	}
+	return 1;
+}
+
+
+int compare_OrBG_TM_type(int* pResult, const char* toCompare, const void* pValue) {
+	static OrBG_TM rTemp;
+	const OrBG_TM* pCurrent = (const OrBG_TM*)pValue;
+	if (string_to_OrBG_TM(toCompare, &rTemp) == 0)
+		return 0;
+	if (*pCurrent > rTemp)
+		*pResult = 1;
+	else if (*pCurrent < rTemp)
+		*pResult = -1;
+	else
+		*pResult = 0;
+	return 1;
+}
+
+const char * get_OrBG_TM_signature() {
+	return "E"
+		"|TM::Amsterdam"
+		"|TM::Utrecht"
+		;
+}
+
+int check_OrBG_TM_string(const char* strValue) {
+	static OrBG_TM rTemp;
+	return string_to_OrBG_TM(strValue, &rTemp);
+}
+
+
+/****************************************************************
+ ** OrLine_TM
+ ****************************************************************/
+struct SimTypeVTable* pSimOrLine_TMVTable;
+const char * OrLine_TM_to_string(const void* pValue) {
+	if (pSimOrLine_TMVTable != 0 && pSimOrLine_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
+		return *(char**)pSimOrLine_TMVTable->m_pfnToType(SptString, pValue);
+	switch (*((OrLine_TM*)pValue)) {
+	case N_TM:
+		return "TM::N";
+	case Z_TM:
+		return "TM::Z";
+	default:
+		return "?";
+	}
+}
+
+int string_to_OrLine_TM(const char* strValue, void* pValue) {
+	if (pSimOrLine_TMVTable != 0 && pSimOrLine_TMVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
+		OrLine_TM rTemp;		int nResult = pSimOrLine_TMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
+		if (nResult == 1)
+			*((OrLine_TM*)pValue) = rTemp;
+		return nResult;
+	}
+	if(strcmp(strValue, "N") == 0 || strcmp(strValue, "TM::N") == 0)
+		*((OrLine_TM*)pValue) = N_TM;
+	else if(strcmp(strValue, "Z") == 0 || strcmp(strValue, "TM::Z") == 0)
+		*((OrLine_TM*)pValue) = Z_TM;
+	else 
+		return 0;
+	return 1;
+}
+
+int is_OrLine_TM_allow_double_convertion() {
+	return 1;
+}
+
+
+int OrLine_TM_to_double(double * nValue, const void* pValue) {
+	switch (*((OrLine_TM*)pValue)) {
+	case N_TM:
+		*nValue = 0.0;
+		break;
+	case Z_TM:
+		*nValue = 1.0;
+		break;
+	default:
+		return 0;
+	}
+	return 1;
+}
+
+
+int compare_OrLine_TM_type(int* pResult, const char* toCompare, const void* pValue) {
+	static OrLine_TM rTemp;
+	const OrLine_TM* pCurrent = (const OrLine_TM*)pValue;
+	if (string_to_OrLine_TM(toCompare, &rTemp) == 0)
+		return 0;
+	if (*pCurrent > rTemp)
+		*pResult = 1;
+	else if (*pCurrent < rTemp)
+		*pResult = -1;
+	else
+		*pResult = 0;
+	return 1;
+}
+
+const char * get_OrLine_TM_signature() {
+	return "E"
+		"|TM::N"
+		"|TM::Z"
+		;
+}
+
+int check_OrLine_TM_string(const char* strValue) {
+	static OrLine_TM rTemp;
+	return string_to_OrLine_TM(strValue, &rTemp);
+}
+
+
+/****************************************************************
+ ** P005old_TM
+ ****************************************************************/
+struct SimTypeVTable* pSimP005old_TMVTable;
+const char * P005old_TM_to_string(const void* pValue) {
+	if (pSimP005old_TMVTable != 0 && pSimP005old_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
+		return *(char**)pSimP005old_TMVTable->m_pfnToType(SptString, pValue);
+	return struct__4204_to_string(pValue);
+}
+
+int string_to_P005old_TM(const char* strValue, void* pValue) {
+	if (pSimP005old_TMVTable != 0 && pSimP005old_TMVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
+		static P005old_TM rTemp;
+		int nResult = pSimP005old_TMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
+		if (nResult == 1)
+			kcg_copy_struct__4204(&(*((P005old_TM*)pValue)), &(rTemp));
+		return nResult;
+	}
+	return string_to_struct__4204(strValue, pValue);
+}
+
+int is_P005old_TM_allow_double_convertion() {
+	if (pSimP005old_TMVTable != 0) {
+		int nConvertionAllowed = 0;
+		nConvertionAllowed |= pSimP005old_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
+		nConvertionAllowed |= pSimP005old_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
+		nConvertionAllowed |= pSimP005old_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
+		nConvertionAllowed |= pSimP005old_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
+		return nConvertionAllowed;
+	}
+	return is_struct__4204_allow_double_convertion();
+}
+
+int P005old_TM_to_double(double * nValue, const void* pValue) {
+	if (pSimP005old_TMVTable != 0) {
+		if (pSimP005old_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
+			*nValue = (double)(*(long*)pSimP005old_TMVTable->m_pfnToType(SptLong, pValue));
+		else if (pSimP005old_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
+			*nValue = (double)(*(int*)pSimP005old_TMVTable->m_pfnToType(SptShort, pValue));
+		else if (pSimP005old_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
+			*nValue = (*(double*)pSimP005old_TMVTable->m_pfnToType(SptDouble, pValue));
+		else if (pSimP005old_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
+			*nValue = (double)(*(float*)pSimP005old_TMVTable->m_pfnToType(SptFloat, pValue));
+		else
+			return 0;
+		return 1;
+	}
+	if (_SCSIM_struct__4204_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__4204_Utils.m_pfnTypeToDouble(nValue, pValue);
+	return 0;
+}
+
+int check_P005old_TM_string(const char* strValue) {
+	static P005old_TM rTemp;
+	return string_to_P005old_TM(strValue, &rTemp);
+}
+
+
+/****************************************************************
+ ** P005Es_Told_TM
+ ****************************************************************/
+struct SimTypeVTable* pSimP005Es_Told_TMVTable;
+const char * P005Es_Told_TM_to_string(const void* pValue) {
+	if (pSimP005Es_Told_TMVTable != 0 && pSimP005Es_Told_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
+		return *(char**)pSimP005Es_Told_TMVTable->m_pfnToType(SptString, pValue);
+	return array__4201_to_string(pValue);
+}
+
+int string_to_P005Es_Told_TM(const char* strValue, void* pValue) {
+	if (pSimP005Es_Told_TMVTable != 0 && pSimP005Es_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
+		static P005Es_Told_TM rTemp;
+		int nResult = pSimP005Es_Told_TMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
+		if (nResult == 1)
+			kcg_copy_array__4201(&(*((P005Es_Told_TM*)pValue)), &(rTemp));
+		return nResult;
+	}
+	return string_to_array__4201(strValue, pValue);
+}
+
+int is_P005Es_Told_TM_allow_double_convertion() {
+	if (pSimP005Es_Told_TMVTable != 0) {
+		int nConvertionAllowed = 0;
+		nConvertionAllowed |= pSimP005Es_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
+		nConvertionAllowed |= pSimP005Es_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
+		nConvertionAllowed |= pSimP005Es_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
+		nConvertionAllowed |= pSimP005Es_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
+		return nConvertionAllowed;
+	}
+	return is_array__4201_allow_double_convertion();
+}
+
+int P005Es_Told_TM_to_double(double * nValue, const void* pValue) {
+	if (pSimP005Es_Told_TMVTable != 0) {
+		if (pSimP005Es_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
+			*nValue = (double)(*(long*)pSimP005Es_Told_TMVTable->m_pfnToType(SptLong, pValue));
+		else if (pSimP005Es_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
+			*nValue = (double)(*(int*)pSimP005Es_Told_TMVTable->m_pfnToType(SptShort, pValue));
+		else if (pSimP005Es_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
+			*nValue = (*(double*)pSimP005Es_Told_TMVTable->m_pfnToType(SptDouble, pValue));
+		else if (pSimP005Es_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
+			*nValue = (double)(*(float*)pSimP005Es_Told_TMVTable->m_pfnToType(SptFloat, pValue));
+		else
+			return 0;
+		return 1;
+	}
+	if (_SCSIM_array__4201_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_array__4201_Utils.m_pfnTypeToDouble(nValue, pValue);
+	return 0;
+}
+
+int check_P005Es_Told_TM_string(const char* strValue) {
+	static P005Es_Told_TM rTemp;
+	return string_to_P005Es_Told_TM(strValue, &rTemp);
+}
+
+
+/****************************************************************
+ ** P005E_Told_TM
+ ****************************************************************/
+struct SimTypeVTable* pSimP005E_Told_TMVTable;
+const char * P005E_Told_TM_to_string(const void* pValue) {
+	if (pSimP005E_Told_TMVTable != 0 && pSimP005E_Told_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
+		return *(char**)pSimP005E_Told_TMVTable->m_pfnToType(SptString, pValue);
+	return struct__4190_to_string(pValue);
+}
+
+int string_to_P005E_Told_TM(const char* strValue, void* pValue) {
+	if (pSimP005E_Told_TMVTable != 0 && pSimP005E_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
+		static P005E_Told_TM rTemp;
+		int nResult = pSimP005E_Told_TMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
+		if (nResult == 1)
+			kcg_copy_struct__4190(&(*((P005E_Told_TM*)pValue)), &(rTemp));
+		return nResult;
+	}
+	return string_to_struct__4190(strValue, pValue);
+}
+
+int is_P005E_Told_TM_allow_double_convertion() {
+	if (pSimP005E_Told_TMVTable != 0) {
+		int nConvertionAllowed = 0;
+		nConvertionAllowed |= pSimP005E_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
+		nConvertionAllowed |= pSimP005E_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
+		nConvertionAllowed |= pSimP005E_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
+		nConvertionAllowed |= pSimP005E_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
+		return nConvertionAllowed;
+	}
+	return is_struct__4190_allow_double_convertion();
+}
+
+int P005E_Told_TM_to_double(double * nValue, const void* pValue) {
+	if (pSimP005E_Told_TMVTable != 0) {
+		if (pSimP005E_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
+			*nValue = (double)(*(long*)pSimP005E_Told_TMVTable->m_pfnToType(SptLong, pValue));
+		else if (pSimP005E_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
+			*nValue = (double)(*(int*)pSimP005E_Told_TMVTable->m_pfnToType(SptShort, pValue));
+		else if (pSimP005E_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
+			*nValue = (*(double*)pSimP005E_Told_TMVTable->m_pfnToType(SptDouble, pValue));
+		else if (pSimP005E_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
+			*nValue = (double)(*(float*)pSimP005E_Told_TMVTable->m_pfnToType(SptFloat, pValue));
+		else
+			return 0;
+		return 1;
+	}
+	if (_SCSIM_struct__4190_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__4190_Utils.m_pfnTypeToDouble(nValue, pValue);
+	return 0;
+}
+
+int check_P005E_Told_TM_string(const char* strValue) {
+	static P005E_Told_TM rTemp;
+	return string_to_P005E_Told_TM(strValue, &rTemp);
+}
+
+
+/****************************************************************
+ ** P005E_array_Told_TM
+ ****************************************************************/
+struct SimTypeVTable* pSimP005E_array_Told_TMVTable;
+const char * P005E_array_Told_TM_to_string(const void* pValue) {
+	if (pSimP005E_array_Told_TMVTable != 0 && pSimP005E_array_Told_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
+		return *(char**)pSimP005E_array_Told_TMVTable->m_pfnToType(SptString, pValue);
+	return array_int_7_to_string(pValue);
+}
+
+int string_to_P005E_array_Told_TM(const char* strValue, void* pValue) {
+	if (pSimP005E_array_Told_TMVTable != 0 && pSimP005E_array_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
+		static P005E_array_Told_TM rTemp;
+		int nResult = pSimP005E_array_Told_TMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
+		if (nResult == 1)
+			kcg_copy_array_int_7(&(*((P005E_array_Told_TM*)pValue)), &(rTemp));
+		return nResult;
+	}
+	return string_to_array_int_7(strValue, pValue);
+}
+
+int is_P005E_array_Told_TM_allow_double_convertion() {
+	if (pSimP005E_array_Told_TMVTable != 0) {
+		int nConvertionAllowed = 0;
+		nConvertionAllowed |= pSimP005E_array_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
+		nConvertionAllowed |= pSimP005E_array_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
+		nConvertionAllowed |= pSimP005E_array_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
+		nConvertionAllowed |= pSimP005E_array_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
+		return nConvertionAllowed;
+	}
+	return is_array_int_7_allow_double_convertion();
+}
+
+int P005E_array_Told_TM_to_double(double * nValue, const void* pValue) {
+	if (pSimP005E_array_Told_TMVTable != 0) {
+		if (pSimP005E_array_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
+			*nValue = (double)(*(long*)pSimP005E_array_Told_TMVTable->m_pfnToType(SptLong, pValue));
+		else if (pSimP005E_array_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
+			*nValue = (double)(*(int*)pSimP005E_array_Told_TMVTable->m_pfnToType(SptShort, pValue));
+		else if (pSimP005E_array_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
+			*nValue = (*(double*)pSimP005E_array_Told_TMVTable->m_pfnToType(SptDouble, pValue));
+		else if (pSimP005E_array_Told_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
+			*nValue = (double)(*(float*)pSimP005E_array_Told_TMVTable->m_pfnToType(SptFloat, pValue));
+		else
+			return 0;
+		return 1;
+	}
+	if (_SCSIM_array_int_7_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_array_int_7_Utils.m_pfnTypeToDouble(nValue, pValue);
+	return 0;
+}
+
+int check_P005E_array_Told_TM_string(const char* strValue) {
+	static P005E_array_Told_TM rTemp;
+	return string_to_P005E_array_Told_TM(strValue, &rTemp);
+}
+
+
+/****************************************************************
+ ** BaliseGroupData_TM
+ ****************************************************************/
+struct SimTypeVTable* pSimBaliseGroupData_TMVTable;
+const char * BaliseGroupData_TM_to_string(const void* pValue) {
+	if (pSimBaliseGroupData_TMVTable != 0 && pSimBaliseGroupData_TMVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
+		return *(char**)pSimBaliseGroupData_TMVTable->m_pfnToType(SptString, pValue);
+	return struct__4173_to_string(pValue);
+}
+
+int string_to_BaliseGroupData_TM(const char* strValue, void* pValue) {
+	if (pSimBaliseGroupData_TMVTable != 0 && pSimBaliseGroupData_TMVTable->m_pfnGetConvInfo(SptNone, SptString) == 1) {
+		static BaliseGroupData_TM rTemp;
+		int nResult = pSimBaliseGroupData_TMVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
+		if (nResult == 1)
+			kcg_copy_struct__4173(&(*((BaliseGroupData_TM*)pValue)), &(rTemp));
+		return nResult;
+	}
+	return string_to_struct__4173(strValue, pValue);
+}
+
+int is_BaliseGroupData_TM_allow_double_convertion() {
+	if (pSimBaliseGroupData_TMVTable != 0) {
+		int nConvertionAllowed = 0;
+		nConvertionAllowed |= pSimBaliseGroupData_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1;
+		nConvertionAllowed |= pSimBaliseGroupData_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1;
+		nConvertionAllowed |= pSimBaliseGroupData_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1;
+		nConvertionAllowed |= pSimBaliseGroupData_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
+		return nConvertionAllowed;
+	}
+	return is_struct__4173_allow_double_convertion();
+}
+
+int BaliseGroupData_TM_to_double(double * nValue, const void* pValue) {
+	if (pSimBaliseGroupData_TMVTable != 0) {
+		if (pSimBaliseGroupData_TMVTable->m_pfnGetConvInfo(SptNone, SptLong) == 1)
+			*nValue = (double)(*(long*)pSimBaliseGroupData_TMVTable->m_pfnToType(SptLong, pValue));
+		else if (pSimBaliseGroupData_TMVTable->m_pfnGetConvInfo(SptNone, SptShort) == 1)
+			*nValue = (double)(*(int*)pSimBaliseGroupData_TMVTable->m_pfnToType(SptShort, pValue));
+		else if (pSimBaliseGroupData_TMVTable->m_pfnGetConvInfo(SptNone, SptDouble) == 1)
+			*nValue = (*(double*)pSimBaliseGroupData_TMVTable->m_pfnToType(SptDouble, pValue));
+		else if (pSimBaliseGroupData_TMVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1)
+			*nValue = (double)(*(float*)pSimBaliseGroupData_TMVTable->m_pfnToType(SptFloat, pValue));
+		else
+			return 0;
+		return 1;
+	}
+	if (_SCSIM_struct__4173_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__4173_Utils.m_pfnTypeToDouble(nValue, pValue);
+	return 0;
+}
+
+int check_BaliseGroupData_TM_string(const char* strValue) {
+	static BaliseGroupData_TM rTemp;
+	return string_to_BaliseGroupData_TM(strValue, &rTemp);
 }
 
 
@@ -3714,7 +3714,7 @@ struct SimTypeVTable* pSimCompressedPackets_T_Common_Types_PkgVTable;
 const char * CompressedPackets_T_Common_Types_Pkg_to_string(const void* pValue) {
 	if (pSimCompressedPackets_T_Common_Types_PkgVTable != 0 && pSimCompressedPackets_T_Common_Types_PkgVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimCompressedPackets_T_Common_Types_PkgVTable->m_pfnToType(SptString, pValue);
-	return struct__3680_to_string(pValue);
+	return struct__4163_to_string(pValue);
 }
 
 int string_to_CompressedPackets_T_Common_Types_Pkg(const char* strValue, void* pValue) {
@@ -3722,10 +3722,10 @@ int string_to_CompressedPackets_T_Common_Types_Pkg(const char* strValue, void* p
 		static CompressedPackets_T_Common_Types_Pkg rTemp;
 		int nResult = pSimCompressedPackets_T_Common_Types_PkgVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__3680(&(*((CompressedPackets_T_Common_Types_Pkg*)pValue)), &(rTemp));
+			kcg_copy_struct__4163(&(*((CompressedPackets_T_Common_Types_Pkg*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__3680(strValue, pValue);
+	return string_to_struct__4163(strValue, pValue);
 }
 
 int is_CompressedPackets_T_Common_Types_Pkg_allow_double_convertion() {
@@ -3737,7 +3737,7 @@ int is_CompressedPackets_T_Common_Types_Pkg_allow_double_convertion() {
 		nConvertionAllowed |= pSimCompressedPackets_T_Common_Types_PkgVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__3680_allow_double_convertion();
+	return is_struct__4163_allow_double_convertion();
 }
 
 int CompressedPackets_T_Common_Types_Pkg_to_double(double * nValue, const void* pValue) {
@@ -3754,8 +3754,8 @@ int CompressedPackets_T_Common_Types_Pkg_to_double(double * nValue, const void* 
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__3680_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__3680_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__4163_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__4163_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -3772,7 +3772,7 @@ struct SimTypeVTable* pSimMetadata_T_Common_Types_PkgVTable;
 const char * Metadata_T_Common_Types_Pkg_to_string(const void* pValue) {
 	if (pSimMetadata_T_Common_Types_PkgVTable != 0 && pSimMetadata_T_Common_Types_PkgVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimMetadata_T_Common_Types_PkgVTable->m_pfnToType(SptString, pValue);
-	return array__3677_to_string(pValue);
+	return array__4160_to_string(pValue);
 }
 
 int string_to_Metadata_T_Common_Types_Pkg(const char* strValue, void* pValue) {
@@ -3780,10 +3780,10 @@ int string_to_Metadata_T_Common_Types_Pkg(const char* strValue, void* pValue) {
 		static Metadata_T_Common_Types_Pkg rTemp;
 		int nResult = pSimMetadata_T_Common_Types_PkgVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_array__3677(&(*((Metadata_T_Common_Types_Pkg*)pValue)), &(rTemp));
+			kcg_copy_array__4160(&(*((Metadata_T_Common_Types_Pkg*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_array__3677(strValue, pValue);
+	return string_to_array__4160(strValue, pValue);
 }
 
 int is_Metadata_T_Common_Types_Pkg_allow_double_convertion() {
@@ -3795,7 +3795,7 @@ int is_Metadata_T_Common_Types_Pkg_allow_double_convertion() {
 		nConvertionAllowed |= pSimMetadata_T_Common_Types_PkgVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_array__3677_allow_double_convertion();
+	return is_array__4160_allow_double_convertion();
 }
 
 int Metadata_T_Common_Types_Pkg_to_double(double * nValue, const void* pValue) {
@@ -3812,8 +3812,8 @@ int Metadata_T_Common_Types_Pkg_to_double(double * nValue, const void* pValue) {
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_array__3677_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_array__3677_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_array__4160_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_array__4160_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -3830,7 +3830,7 @@ struct SimTypeVTable* pSimMetadataElement_T_Common_Types_PkgVTable;
 const char * MetadataElement_T_Common_Types_Pkg_to_string(const void* pValue) {
 	if (pSimMetadataElement_T_Common_Types_PkgVTable != 0 && pSimMetadataElement_T_Common_Types_PkgVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimMetadataElement_T_Common_Types_PkgVTable->m_pfnToType(SptString, pValue);
-	return struct__3669_to_string(pValue);
+	return struct__4152_to_string(pValue);
 }
 
 int string_to_MetadataElement_T_Common_Types_Pkg(const char* strValue, void* pValue) {
@@ -3838,10 +3838,10 @@ int string_to_MetadataElement_T_Common_Types_Pkg(const char* strValue, void* pVa
 		static MetadataElement_T_Common_Types_Pkg rTemp;
 		int nResult = pSimMetadataElement_T_Common_Types_PkgVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__3669(&(*((MetadataElement_T_Common_Types_Pkg*)pValue)), &(rTemp));
+			kcg_copy_struct__4152(&(*((MetadataElement_T_Common_Types_Pkg*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__3669(strValue, pValue);
+	return string_to_struct__4152(strValue, pValue);
 }
 
 int is_MetadataElement_T_Common_Types_Pkg_allow_double_convertion() {
@@ -3853,7 +3853,7 @@ int is_MetadataElement_T_Common_Types_Pkg_allow_double_convertion() {
 		nConvertionAllowed |= pSimMetadataElement_T_Common_Types_PkgVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__3669_allow_double_convertion();
+	return is_struct__4152_allow_double_convertion();
 }
 
 int MetadataElement_T_Common_Types_Pkg_to_double(double * nValue, const void* pValue) {
@@ -3870,8 +3870,8 @@ int MetadataElement_T_Common_Types_Pkg_to_double(double * nValue, const void* pV
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__3669_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__3669_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__4152_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__4152_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -3946,7 +3946,7 @@ struct SimTypeVTable* pSimBaliseGroupData_BasicsVTable;
 const char * BaliseGroupData_Basics_to_string(const void* pValue) {
 	if (pSimBaliseGroupData_BasicsVTable != 0 && pSimBaliseGroupData_BasicsVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimBaliseGroupData_BasicsVTable->m_pfnToType(SptString, pValue);
-	return struct__3685_to_string(pValue);
+	return struct__4173_to_string(pValue);
 }
 
 int string_to_BaliseGroupData_Basics(const char* strValue, void* pValue) {
@@ -3954,10 +3954,10 @@ int string_to_BaliseGroupData_Basics(const char* strValue, void* pValue) {
 		static BaliseGroupData_Basics rTemp;
 		int nResult = pSimBaliseGroupData_BasicsVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__3685(&(*((BaliseGroupData_Basics*)pValue)), &(rTemp));
+			kcg_copy_struct__4173(&(*((BaliseGroupData_Basics*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__3685(strValue, pValue);
+	return string_to_struct__4173(strValue, pValue);
 }
 
 int is_BaliseGroupData_Basics_allow_double_convertion() {
@@ -3969,7 +3969,7 @@ int is_BaliseGroupData_Basics_allow_double_convertion() {
 		nConvertionAllowed |= pSimBaliseGroupData_BasicsVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__3685_allow_double_convertion();
+	return is_struct__4173_allow_double_convertion();
 }
 
 int BaliseGroupData_Basics_to_double(double * nValue, const void* pValue) {
@@ -3986,8 +3986,8 @@ int BaliseGroupData_Basics_to_double(double * nValue, const void* pValue) {
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__3685_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__3685_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__4173_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__4173_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
@@ -4004,7 +4004,7 @@ struct SimTypeVTable* pSimTelegramHeader_T_BG_Types_PkgVTable;
 const char * TelegramHeader_T_BG_Types_Pkg_to_string(const void* pValue) {
 	if (pSimTelegramHeader_T_BG_Types_PkgVTable != 0 && pSimTelegramHeader_T_BG_Types_PkgVTable->m_pfnGetConvInfo(SptString, SptNone) == 1)
 		return *(char**)pSimTelegramHeader_T_BG_Types_PkgVTable->m_pfnToType(SptString, pValue);
-	return struct__3653_to_string(pValue);
+	return struct__4123_to_string(pValue);
 }
 
 int string_to_TelegramHeader_T_BG_Types_Pkg(const char* strValue, void* pValue) {
@@ -4012,10 +4012,10 @@ int string_to_TelegramHeader_T_BG_Types_Pkg(const char* strValue, void* pValue) 
 		static TelegramHeader_T_BG_Types_Pkg rTemp;
 		int nResult = pSimTelegramHeader_T_BG_Types_PkgVTable->m_pfnFromType(SptString, (const void*)&strValue, &rTemp);
 		if (nResult == 1)
-			kcg_copy_struct__3653(&(*((TelegramHeader_T_BG_Types_Pkg*)pValue)), &(rTemp));
+			kcg_copy_struct__4123(&(*((TelegramHeader_T_BG_Types_Pkg*)pValue)), &(rTemp));
 		return nResult;
 	}
-	return string_to_struct__3653(strValue, pValue);
+	return string_to_struct__4123(strValue, pValue);
 }
 
 int is_TelegramHeader_T_BG_Types_Pkg_allow_double_convertion() {
@@ -4027,7 +4027,7 @@ int is_TelegramHeader_T_BG_Types_Pkg_allow_double_convertion() {
 		nConvertionAllowed |= pSimTelegramHeader_T_BG_Types_PkgVTable->m_pfnGetConvInfo(SptNone, SptFloat) == 1;
 		return nConvertionAllowed;
 	}
-	return is_struct__3653_allow_double_convertion();
+	return is_struct__4123_allow_double_convertion();
 }
 
 int TelegramHeader_T_BG_Types_Pkg_to_double(double * nValue, const void* pValue) {
@@ -4044,8 +4044,8 @@ int TelegramHeader_T_BG_Types_Pkg_to_double(double * nValue, const void* pValue)
 			return 0;
 		return 1;
 	}
-	if (_SCSIM_struct__3653_Utils.m_pfnTypeToDouble != 0)
-		return _SCSIM_struct__3653_Utils.m_pfnTypeToDouble(nValue, pValue);
+	if (_SCSIM_struct__4123_Utils.m_pfnTypeToDouble != 0)
+		return _SCSIM_struct__4123_Utils.m_pfnTypeToDouble(nValue, pValue);
 	return 0;
 }
 
