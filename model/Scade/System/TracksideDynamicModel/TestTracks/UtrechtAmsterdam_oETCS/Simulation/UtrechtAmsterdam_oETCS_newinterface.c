@@ -1,7 +1,7 @@
 #include "UtrechtAmsterdam_oETCS_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "22b4b7637a51bb7e9532c10da23c6589";
+const char* _SCSIM_CheckSum = "2216d376dc7240d354f9a66e2303ce24";
 const char* _SCSIM_SmuTypesCheckSum = "d5b51fa9eff9683da46173266ac496c5";
 
 /*******************************
@@ -17,18 +17,19 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-inC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel inputs_ctx;
-static inC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel inputs_ctx_restore;
-static inC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel inputs_ctx_execute;
-outC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel outputs_ctx;
-static outC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel outputs_ctx_restore;
+inC_TestStory00A_P005_Internal inputs_ctx;
+static inC_TestStory00A_P005_Internal inputs_ctx_restore;
+static inC_TestStory00A_P005_Internal inputs_ctx_execute;
+outC_TestStory00A_P005_Internal outputs_ctx;
+static outC_TestStory00A_P005_Internal outputs_ctx_restore;
 
 /* separate_io: inputs instanciation */
 
 /* separate_io: outputs instanciation */
 
 static void _SCSIM_RestoreInterface(void) {
-	kcg_copy_struct__1384(&(inputs_ctx.SectionData_in), &(inputs_ctx_restore.SectionData_in));
+	inputs_ctx.LRBG = inputs_ctx_restore.LRBG;
+	inputs_ctx.Loc = inputs_ctx_restore.Loc;
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -36,7 +37,8 @@ static void _SCSIM_RestoreInterface(void) {
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	kcg_copy_struct__1384(&(inputs_ctx_execute.SectionData_in), &(inputs_ctx.SectionData_in));
+	inputs_ctx_execute.LRBG = inputs_ctx.LRBG;
+	inputs_ctx_execute.Loc = inputs_ctx.Loc;
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
@@ -49,7 +51,7 @@ void SimInit(void) {
 #ifdef EXTENDED_SIM
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
-	Sheet05_Amstel_reset_AmsterdamUtrechtL1_Sheet05_Amstel(&outputs_ctx);
+	TestStory00A_P005_reset_Internal(&outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimInit();
 #endif /* EXTENDED_SIM */
@@ -64,7 +66,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel(&inputs_ctx_execute, &outputs_ctx);
+	TestStory00A_P005_Internal(&inputs_ctx_execute, &outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -79,12 +81,12 @@ void SimStop(void) {
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(inC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel);
+	nSize += sizeof(inC_TestStory00A_P005_Internal);
 
 /* separate_io: add (not in ctx) inputs size */
 
 /* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel);
+	nSize += sizeof(outC_TestStory00A_P005_Internal);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -93,14 +95,14 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &inputs_ctx, sizeof(inC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel));
-	pCurrent += sizeof(inC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel);
+	memcpy(pCurrent, &inputs_ctx, sizeof(inC_TestStory00A_P005_Internal));
+	pCurrent += sizeof(inC_TestStory00A_P005_Internal);
 
 	/* separate_io: dump (not in ctx) inputs */
 
 	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel));
-	pCurrent += sizeof(outC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel);
+	memcpy(pCurrent, &outputs_ctx, sizeof(outC_TestStory00A_P005_Internal));
+	pCurrent += sizeof(outC_TestStory00A_P005_Internal);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -108,14 +110,14 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&inputs_ctx, pCurrent, sizeof(inC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel));
-	pCurrent += sizeof(inC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel);
+	memcpy(&inputs_ctx, pCurrent, sizeof(inC_TestStory00A_P005_Internal));
+	pCurrent += sizeof(inC_TestStory00A_P005_Internal);
 
 	/* separate_io: restore (not in ctx) inputs */
 
 	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel));
-	pCurrent += sizeof(outC_Sheet05_Amstel_AmsterdamUtrechtL1_Sheet05_Amstel);
+	memcpy(&outputs_ctx, pCurrent, sizeof(outC_TestStory00A_P005_Internal));
+	pCurrent += sizeof(outC_TestStory00A_P005_Internal);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */

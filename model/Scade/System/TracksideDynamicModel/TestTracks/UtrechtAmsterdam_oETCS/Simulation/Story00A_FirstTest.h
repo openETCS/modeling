@@ -1,13 +1,13 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 #ifndef _Story00A_FirstTest_H_
 #define _Story00A_FirstTest_H_
 
 #include "kcg_types.h"
 #include "Story00A_BTM_FirstTest.h"
-#include "RECV_ConvertBaliseHeader_CT_TM_conversions.h"
+#include "CASTLIB_BaliseHeaders_TM_conversions.h"
 
 /* =====================  no input structure  ====================== */
 
@@ -20,7 +20,7 @@ typedef struct {
   /* -----------------  no initialization variables  ----------------- */
   /* -----------------------  no local memory  ----------------------- */
   /* ---------------------  sub nodes' contexts  --------------------- */
-  outC_RECV_ConvertBaliseHeader_CT_TM_conversions /* 1 */ _1_Context_1;
+  outC_CASTLIB_BaliseHeaders_TM_conversions /* 1 */ _1_Context_1;
   outC_Story00A_BTM_FirstTest /* 1 */ Context_1;
   /* ----------------- no clocks of observable data ------------------ */
   /* -------------------- (-debug) no assertions  -------------------- */
@@ -43,6 +43,6 @@ extern void Story00A_reset_FirstTest(outC_Story00A_FirstTest *outC);
 #endif /* _Story00A_FirstTest_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Story00A_FirstTest.h
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 

@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 #ifndef _C_P005_compr_onboard_TM_conversions_H_
 #define _C_P005_compr_onboard_TM_conversions_H_
@@ -80,7 +80,7 @@ typedef struct {
   kcg_int /* TM_conversions::C_P005_compr_onboard::_L14 */ _L14;
   kcg_int /* TM_conversions::C_P005_compr_onboard::_L15 */ _L15;
   kcg_int /* TM_conversions::C_P005_compr_onboard::_L16 */ _L16;
-  array_int_224 /* TM_conversions::C_P005_compr_onboard::_L13 */ _L13;
+  array_int_231 /* TM_conversions::C_P005_compr_onboard::_L13 */ _L13;
   NID_PACKET /* TM_conversions::C_P005_compr_onboard::_L12 */ _L12;
   Q_DIR /* TM_conversions::C_P005_compr_onboard::_L11 */ _L11;
   P005_OBU_T_TM /* TM_conversions::C_P005_compr_onboard::_L10 */ _L10;
@@ -112,6 +112,6 @@ extern void C_P005_compr_onboard_reset_TM_conversions(
 #endif /* _C_P005_compr_onboard_TM_conversions_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_compr_onboard_TM_conversions.h
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 

@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -70,7 +70,7 @@ void C_P005_compr_onboard_TM_conversions(
   kcg_copy_array_int_1(&outC->_L2, (array_int_1 *) &outC->_L9[4]);
   outC->_L17 = outC->_L2[0];
   outC->_L14 = outC->_L6[0];
-  kcg_copy_array_int_224(&outC->_L13, (array_int_224 *) &outC->_L9[5]);
+  kcg_copy_array_int_231(&outC->_L13, (array_int_231 *) &outC->_L9[5]);
   outC->q_dir_int_1 = outC->_L14;
   outC->_9__L12_1 = outC->q_dir_int_1;
   outC->q_dir_in_1 = outC->_9__L12_1;
@@ -245,6 +245,6 @@ void C_P005_compr_onboard_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_compr_onboard_TM_conversions.c
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 

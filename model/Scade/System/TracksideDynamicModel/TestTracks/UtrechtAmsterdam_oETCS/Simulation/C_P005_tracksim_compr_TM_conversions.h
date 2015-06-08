@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 #ifndef _C_P005_tracksim_compr_TM_conversions_H_
 #define _C_P005_tracksim_compr_TM_conversions_H_
@@ -46,7 +46,7 @@ typedef struct {
   P005_trackside_int_T_TM /* TM_conversions::C_P005_tracksim_compr::_L1 */ _L1;
   MetadataElement_T_Common_Types_Pkg /* TM_conversions::C_P005_tracksim_compr::_L204 */ _L204;
   kcg_int /* TM_conversions::C_P005_tracksim_compr::_L206 */ _L206;
-  array_int_271 /* TM_conversions::C_P005_tracksim_compr::_L209 */ _L209;
+  array_int_264 /* TM_conversions::C_P005_tracksim_compr::_L209 */ _L209;
   kcg_int /* TM_conversions::C_P005_tracksim_compr::_L212 */ _L212;
   kcg_int /* TM_conversions::C_P005_tracksim_compr::_L213 */ _L213;
   kcg_int /* TM_conversions::C_P005_tracksim_compr::_L336 */ _L336;
@@ -72,9 +72,9 @@ typedef struct {
   P005_sections_array_flat_T_TM /* TM_conversions::C_P005_tracksim_compr::_L380 */ _L380;
   array_int_5 /* TM_conversions::C_P005_tracksim_compr::_L381 */ _L381;
   array_int_500 /* TM_conversions::C_P005_tracksim_compr::_L383 */ _L383;
-  array_int_229 /* TM_conversions::C_P005_tracksim_compr::_L384 */ _L384;
-  array__5705 /* TM_conversions::C_P005_tracksim_compr::_L386 */ _L386;
-  array__5681 /* TM_conversions::C_P005_tracksim_compr::_L385 */ _L385;
+  array_int_236 /* TM_conversions::C_P005_tracksim_compr::_L384 */ _L384;
+  array__5463 /* TM_conversions::C_P005_tracksim_compr::_L386 */ _L386;
+  array__5439 /* TM_conversions::C_P005_tracksim_compr::_L385 */ _L385;
   kcg_int /* TM_conversions::C_P005_tracksim_compr::_L387 */ _L387;
 } outC_C_P005_tracksim_compr_TM_conversions;
 
@@ -90,6 +90,6 @@ extern void C_P005_tracksim_compr_reset_TM_conversions(
 #endif /* _C_P005_tracksim_compr_TM_conversions_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_tracksim_compr_TM_conversions.h
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 

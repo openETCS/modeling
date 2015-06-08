@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 #ifndef _C_P005_fs_struct_to_array_TM_lib_internal_H_
 #define _C_P005_fs_struct_to_array_TM_lib_internal_H_
@@ -22,13 +22,13 @@ typedef struct {
   /* ------------------- (-debug) local variables -------------------- */
   P005_section_int_T_TM /* TM_lib_internal::C_P005_fs_struct_to_array::_L1 */ _L1;
   array_int_7 /* TM_lib_internal::C_P005_fs_struct_to_array::_L2 */ _L2;
-  kcg_int /* TM_lib_internal::C_P005_fs_struct_to_array::_L9 */ _L9;
-  kcg_int /* TM_lib_internal::C_P005_fs_struct_to_array::_L8 */ _L8;
-  kcg_int /* TM_lib_internal::C_P005_fs_struct_to_array::_L7 */ _L7;
   kcg_int /* TM_lib_internal::C_P005_fs_struct_to_array::_L6 */ _L6;
   kcg_int /* TM_lib_internal::C_P005_fs_struct_to_array::_L5 */ _L5;
   kcg_int /* TM_lib_internal::C_P005_fs_struct_to_array::_L4 */ _L4;
   kcg_int /* TM_lib_internal::C_P005_fs_struct_to_array::_L3 */ _L3;
+  kcg_int /* TM_lib_internal::C_P005_fs_struct_to_array::_L12 */ _L12;
+  kcg_int /* TM_lib_internal::C_P005_fs_struct_to_array::_L11 */ _L11;
+  kcg_int /* TM_lib_internal::C_P005_fs_struct_to_array::_L10 */ _L10;
 } outC_C_P005_fs_struct_to_array_TM_lib_internal;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -43,6 +43,6 @@ extern void C_P005_fs_struct_to_array_reset_TM_lib_internal(
 #endif /* _C_P005_fs_struct_to_array_TM_lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_fs_struct_to_array_TM_lib_internal.h
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 

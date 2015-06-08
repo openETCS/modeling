@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-06T10:22:38
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 #ifndef _No_Balise_Packets_InfraLib_H_
 #define _No_Balise_Packets_InfraLib_H_
@@ -20,97 +20,12 @@ typedef struct {
   /* ----------------- no clocks of observable data ------------------ */
   /* -------------------- (-debug) no assertions  -------------------- */
   /* ------------------- (-debug) local variables -------------------- */
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_11;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_11;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_11;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_12;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_12;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_12;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_13;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_13;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_13;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_14;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_14;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_14;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_15;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_15;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_15;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_16;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_16;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_16;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_17;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_17;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_17;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_18;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_18;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_18;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_19;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_19;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_19;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_20;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_20;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_20;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_0;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_0;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_0;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_9;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_9;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_9;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_8;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_8;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_8;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_7;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_7;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_7;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_6;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_6;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_6;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_5;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_5;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_5;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_4;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_4;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_4;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_3;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_3;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_3;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_2;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_2;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_2;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::_L1 */ _L1_1;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_out */ B_data_out_1;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Packet::B_data_in */ B_data_in_1;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::B_data_in */ B_data_in;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::B_data_out */ B_data_out;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::B_data_link */ B_data_link;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L2 */ _L2;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L3 */ _L3;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L4 */ _L4;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L5 */ _L5;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L6 */ _L6;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L7 */ _L7;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L8 */ _L8;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L9 */ _L9;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L10 */ _L10;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L11 */ _L11;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L21 */ _L21;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L20 */ _L20;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L19 */ _L19;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L18 */ _L18;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L17 */ _L17;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L16 */ _L16;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L15 */ _L15;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L14 */ _L14;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L13 */ _L13;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L12 */ _L12;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L22 */ _L22;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L24 */ _L24;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L25 */ _L25;
-  B_data_internal_T_InfraLib /* InfraLib::No_Balise_Packets::_L26 */ _L26;
-  BaliseTelegramHeader_int_T_TM /* InfraLib::No_Balise_Packets::_L28 */ _L28;
-  B_data_internal_T_InfraLib /* InfraLib::No_Balise_Packets::_L29 */ _L29;
-  CompressedPackets_T_Common_Types_Pkg /* InfraLib::No_Balise_Packets::_L30 */ _L30;
+  BaliseTelegramHeader_int_T_TM /* InfraLib::No_Balise_Packets::_L29 */ _L29;
+  B_data_internal_T_InfraLib /* InfraLib::No_Balise_Packets::_L36 */ _L36;
+  kcg_bool /* InfraLib::No_Balise_Packets::_L35 */ _L35;
+  BaliseTelegramHeader_int_T_TM /* InfraLib::No_Balise_Packets::_L32 */ _L32;
   B_data_internal_T_InfraLib /* InfraLib::No_Balise_Packets::_L31 */ _L31;
+  B_data_internal_T_InfraLib /* InfraLib::No_Balise_Packets::_L30 */ _L30;
 } outC_No_Balise_Packets_InfraLib;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -126,6 +41,6 @@ extern void No_Balise_Packets_reset_InfraLib(
 #endif /* _No_Balise_Packets_InfraLib_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** No_Balise_Packets_InfraLib.h
-** Generation date: 2015-06-06T10:22:38
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 

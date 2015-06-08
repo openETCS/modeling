@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -60,7 +60,7 @@ void C_P005_tracksim_compr_TM_conversions(
   for (i2 = 0; i2 < 1; i2++) {
     kcg_copy_P005_section_int_T_TM(&outC->_L386[i2], &outC->_L375);
   }
-  kcg_copy_array__5705(&outC->_L385[0], &outC->_L386);
+  kcg_copy_array__5463(&outC->_L385[0], &outC->_L386);
   kcg_copy_P005_trackide_sectionlist_T_TM(&outC->_L385[1], &outC->_L365);
   outC->_L373[0] = outC->_L387;
   outC->_L373[1] = outC->_L215;
@@ -79,15 +79,15 @@ void C_P005_tracksim_compr_TM_conversions(
   kcg_copy_array_int_5(&outC->_L384[0], &outC->_L381);
   kcg_copy_P005_sections_array_flat_T_TM(&outC->_L384[5], &outC->_L380);
   outC->_L336 = 0;
-  for (i = 0; i < 271; i++) {
+  for (i = 0; i < 264; i++) {
     outC->_L209[i] = outC->_L336;
   }
-  kcg_copy_array_int_229(&outC->_L383[0], &outC->_L384);
-  kcg_copy_array_int_271(&outC->_L383[229], &outC->_L209);
+  kcg_copy_array_int_236(&outC->_L383[0], &outC->_L384);
+  kcg_copy_array_int_264(&outC->_L383[236], &outC->_L209);
   /* 1 */
   DeterminePacketSizeInt_TM_lib_internal(
     outC->_L366,
-    4 + 1,
+    4 + 1 + 7,
     7,
     &outC->_1_Context_1);
   outC->_L379 = outC->_1_Context_1.p_size;
@@ -174,6 +174,6 @@ void C_P005_tracksim_compr_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_tracksim_compr_TM_conversions.c
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 
