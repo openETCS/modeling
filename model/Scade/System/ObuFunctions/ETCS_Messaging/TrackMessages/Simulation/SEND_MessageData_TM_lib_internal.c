@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-05T13:35:13
+** Generation date: 2015-06-09T19:50:49
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -83,6 +83,6 @@ void SEND_MessageData_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SEND_MessageData_TM_lib_internal.c
-** Generation date: 2015-06-05T13:35:13
+** Generation date: 2015-06-09T19:50:49
 *************************************************************$ */
 
