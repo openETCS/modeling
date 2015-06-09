@@ -1,18 +1,18 @@
-#ifndef WRITE_P027V1_TM_TRACKSIDE_INTERFACE
-#define WRITE_P027V1_TM_TRACKSIDE_INTERFACE
+#ifndef T_EXTRACT_NID_PACKET_FROM_TM_LIB_INTERNAL_INTERFACE
+#define T_EXTRACT_NID_PACKET_FROM_TM_LIB_INTERNAL_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "Write_P027V1_TM_trackside.h"
+#include "T_Extract_NID_packet_from_TM_lib_internal.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_Write_P027V1_TM_trackside inputs_ctx;
-extern outC_Write_P027V1_TM_trackside outputs_ctx;
+extern inC_T_Extract_NID_packet_from_TM_lib_internal inputs_ctx;
+extern outC_T_Extract_NID_packet_from_TM_lib_internal outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*WRITE_P027V1_TM_TRACKSIDE_INTERFACE */
+#endif /*T_EXTRACT_NID_PACKET_FROM_TM_LIB_INTERNAL_INTERFACE */

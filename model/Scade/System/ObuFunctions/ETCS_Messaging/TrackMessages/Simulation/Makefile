@@ -11,46 +11,10 @@ LIB_MINGW_GCC = "C:/Program Files/Esterel Technologies/SCADE R15.2/contrib/Msys/
 
 C_FLAGS = -O2 -pedantic
 
-all: TM_trackside__Write_P027V1.exe TM_trackside__Write_P027V1.dll 
+all: TM_lib_internal__T_Extract_NID_packet_from_Meta.exe TM_lib_internal__T_Extract_NID_packet_from_Meta.dll 
 
-win32/Write_P027V1_TM_trackside.o: Write_P027V1_TM_trackside.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Write_P027V1_TM_trackside.c" -o "win32\Write_P027V1_TM_trackside.o"
-
-win32/C_P027V1_tracksim_merge_s_TM_conversions.o: C_P027V1_tracksim_merge_s_TM_conversions.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "C_P027V1_tracksim_merge_s_TM_conversions.c" -o "win32\C_P027V1_tracksim_merge_s_TM_conversions.o"
-
-win32/C_P027V1_tracksim_compr_o_TM_conversions.o: C_P027V1_tracksim_compr_o_TM_conversions.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "C_P027V1_tracksim_compr_o_TM_conversions.c" -o "win32\C_P027V1_tracksim_compr_o_TM_conversions.o"
-
-win32/T_DeterminePacketSizeInt_TM_lib_internal.o: T_DeterminePacketSizeInt_TM_lib_internal.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "T_DeterminePacketSizeInt_TM_lib_internal.c" -o "win32\T_DeterminePacketSizeInt_TM_lib_internal.o"
-
-win32/C_P027_flatten_sections_qdiff_TM_lib_internal.o: C_P027_flatten_sections_qdiff_TM_lib_internal.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "C_P027_flatten_sections_qdiff_TM_lib_internal.c" -o "win32\C_P027_flatten_sections_qdiff_TM_lib_internal.o"
-
-win32/C_P027V1_fs_struct_to_arr_TM_lib_internal.o: C_P027V1_fs_struct_to_arr_TM_lib_internal.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "C_P027V1_fs_struct_to_arr_TM_lib_internal.c" -o "win32\C_P027V1_fs_struct_to_arr_TM_lib_internal.o"
-
-win32/C_P027V1_fs_flatten_array_TM_lib_internal.o: C_P027V1_fs_flatten_array_TM_lib_internal.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "C_P027V1_fs_flatten_array_TM_lib_internal.c" -o "win32\C_P027V1_fs_flatten_array_TM_lib_internal.o"
-
-win32/C_P027V1_tracksim_compr_body_TM_conversions.o: C_P027V1_tracksim_compr_body_TM_conversions.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "C_P027V1_tracksim_compr_body_TM_conversions.c" -o "win32\C_P027V1_tracksim_compr_body_TM_conversions.o"
-
-win32/T_Build_Metadata_Packet_ID_TM_lib_internal.o: T_Build_Metadata_Packet_ID_TM_lib_internal.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "T_Build_Metadata_Packet_ID_TM_lib_internal.c" -o "win32\T_Build_Metadata_Packet_ID_TM_lib_internal.o"
-
-win32/SEND_MessageData_TM_lib_internal.o: SEND_MessageData_TM_lib_internal.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "SEND_MessageData_TM_lib_internal.c" -o "win32\SEND_MessageData_TM_lib_internal.o"
-
-win32/SEND_WriteBaliseDataElement_TM_lib_internal.o: SEND_WriteBaliseDataElement_TM_lib_internal.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "SEND_WriteBaliseDataElement_TM_lib_internal.c" -o "win32\SEND_WriteBaliseDataElement_TM_lib_internal.o"
-
-win32/SEND_WriteMessageHeader_TM_lib_internal.o: SEND_WriteMessageHeader_TM_lib_internal.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "SEND_WriteMessageHeader_TM_lib_internal.c" -o "win32\SEND_WriteMessageHeader_TM_lib_internal.o"
-
-win32/SEND_FindSlot_TM_lib_internal.o: SEND_FindSlot_TM_lib_internal.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "SEND_FindSlot_TM_lib_internal.c" -o "win32\SEND_FindSlot_TM_lib_internal.o"
+win32/T_Extract_NID_packet_from_TM_lib_internal.o: T_Extract_NID_packet_from_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "T_Extract_NID_packet_from_TM_lib_internal.c" -o "win32\T_Extract_NID_packet_from_TM_lib_internal.o"
 
 win32/kcg_types.o: kcg_types.c
 	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "kcg_types.c" -o "win32\kcg_types.o"
@@ -76,20 +40,20 @@ win32/NewSmuTypes.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R15.2/SCADE/
 win32/SmuConverter.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R15.2/SCADE/lib/SmuConverter.c
 	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "C:\Program Files\Esterel Technologies\SCADE R15.2\SCADE\lib\SmuConverter.c" -o "win32\SmuConverter.o"
 
-TM_trackside__Write_P027V1.dll: win32/Write_P027V1_TM_trackside.o win32/C_P027V1_tracksim_merge_s_TM_conversions.o win32/C_P027V1_tracksim_compr_o_TM_conversions.o win32/T_DeterminePacketSizeInt_TM_lib_internal.o win32/C_P027_flatten_sections_qdiff_TM_lib_internal.o win32/C_P027V1_fs_struct_to_arr_TM_lib_internal.o win32/C_P027V1_fs_flatten_array_TM_lib_internal.o win32/C_P027V1_tracksim_compr_body_TM_conversions.o win32/T_Build_Metadata_Packet_ID_TM_lib_internal.o win32/SEND_MessageData_TM_lib_internal.o win32/SEND_WriteBaliseDataElement_TM_lib_internal.o win32/SEND_WriteMessageHeader_TM_lib_internal.o win32/SEND_FindSlot_TM_lib_internal.o win32/kcg_types.o win32/kcg_consts.o win32/TrackMessages_newtype.o win32/TrackMessages_newmapping.o win32/TrackMessages_newinterface.o win32/SmuProxy.o win32/NewSmuTypes.o win32/SmuConverter.o SmuExport.def 
-	ld --shared -Bdynamic -e _DllMainCRTStartup@12 --enable-auto-image-base  $(LIB_MINGW)/dllcrt2.o $(LIB_MINGW_GCC)/crtbegin.o -L$(LIB_MINGW) -L$(LIB_MINGW_GCC) "win32\Write_P027V1_TM_trackside.o" "win32\C_P027V1_tracksim_merge_s_TM_conversions.o" "win32\C_P027V1_tracksim_compr_o_TM_conversions.o" "win32\T_DeterminePacketSizeInt_TM_lib_internal.o" "win32\C_P027_flatten_sections_qdiff_TM_lib_internal.o" "win32\C_P027V1_fs_struct_to_arr_TM_lib_internal.o" "win32\C_P027V1_fs_flatten_array_TM_lib_internal.o" "win32\C_P027V1_tracksim_compr_body_TM_conversions.o" "win32\T_Build_Metadata_Packet_ID_TM_lib_internal.o" "win32\SEND_MessageData_TM_lib_internal.o" "win32\SEND_WriteBaliseDataElement_TM_lib_internal.o" "win32\SEND_WriteMessageHeader_TM_lib_internal.o" "win32\SEND_FindSlot_TM_lib_internal.o" "win32\kcg_types.o" "win32\kcg_consts.o" "win32\TrackMessages_newtype.o" "win32\TrackMessages_newmapping.o" "win32\TrackMessages_newinterface.o" "win32\SmuProxy.o" "win32\NewSmuTypes.o" "win32\SmuConverter.o"  "SmuExport.def" -lm -lwsock32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -luser32 -lkernel32 -ladvapi32 -lshell32 $(LIB_MINGW_GCC)/crtend.o -o "TM_trackside__Write_P027V1.dll" 
+TM_lib_internal__T_Extract_NID_packet_from_Meta.dll: win32/T_Extract_NID_packet_from_TM_lib_internal.o win32/kcg_types.o win32/kcg_consts.o win32/TrackMessages_newtype.o win32/TrackMessages_newmapping.o win32/TrackMessages_newinterface.o win32/SmuProxy.o win32/NewSmuTypes.o win32/SmuConverter.o SmuExport.def 
+	ld --shared -Bdynamic -e _DllMainCRTStartup@12 --enable-auto-image-base  $(LIB_MINGW)/dllcrt2.o $(LIB_MINGW_GCC)/crtbegin.o -L$(LIB_MINGW) -L$(LIB_MINGW_GCC) "win32\T_Extract_NID_packet_from_TM_lib_internal.o" "win32\kcg_types.o" "win32\kcg_consts.o" "win32\TrackMessages_newtype.o" "win32\TrackMessages_newmapping.o" "win32\TrackMessages_newinterface.o" "win32\SmuProxy.o" "win32\NewSmuTypes.o" "win32\SmuConverter.o"  "SmuExport.def" -lm -lwsock32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -luser32 -lkernel32 -ladvapi32 -lshell32 $(LIB_MINGW_GCC)/crtend.o -o "TM_lib_internal__T_Extract_NID_packet_from_Meta.dll" 
 
 SmuExport.def: C:/Program\ Files/Esterel\ Technologies/SCADE\ R15.2/SCADE/lib/SmuExport.def
 	copy "C:\Program Files\Esterel Technologies\SCADE R15.2\SCADE\lib\SmuExport.def" "SmuExport.def"
 
-win32/Write_P027V1_TM_trackside_dll.o: Write_P027V1_TM_trackside_dll.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Write_P027V1_TM_trackside_dll.c" -o "win32\Write_P027V1_TM_trackside_dll.o"
+win32/T_Extract_NID_packet_from_TM_lib_internal_dll.o: T_Extract_NID_packet_from_TM_lib_internal_dll.c
+	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "T_Extract_NID_packet_from_TM_lib_internal_dll.c" -o "win32\T_Extract_NID_packet_from_TM_lib_internal_dll.o"
 
 win32/SmuMainWindows.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R15.2/SCADE/lib/SmuMainWindows.c
 	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "C:\Program Files\Esterel Technologies\SCADE R15.2\SCADE\lib\SmuMainWindows.c" -o "win32\SmuMainWindows.o"
 
-TM_trackside__Write_P027V1.exe: win32/Write_P027V1_TM_trackside_dll.o win32/SmuMainWindows.o 
-	gcc "win32\Write_P027V1_TM_trackside_dll.o" "win32\SmuMainWindows.o" -lm -lwsock32 -o "TM_trackside__Write_P027V1.exe" 
+TM_lib_internal__T_Extract_NID_packet_from_Meta.exe: win32/T_Extract_NID_packet_from_TM_lib_internal_dll.o win32/SmuMainWindows.o 
+	gcc "win32\T_Extract_NID_packet_from_TM_lib_internal_dll.o" "win32\SmuMainWindows.o" -lm -lwsock32 -o "TM_lib_internal__T_Extract_NID_packet_from_Meta.exe" 
 
 #############################################################
 ######    End of Makefile
