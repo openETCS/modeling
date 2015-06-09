@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T12:04:05
 *************************************************************$ */
 #ifndef _C_P005_unflatten_sections_TM_lib_internal_H_
 #define _C_P005_unflatten_sections_TM_lib_internal_H_
@@ -27,11 +27,8 @@ typedef struct {
   array_int_33 /* TM_lib_internal::C_P005_unflatten_sections::_L5 */ _L5;
   array_int_231_33 /* TM_lib_internal::C_P005_unflatten_sections::_L6 */ _L6;
   kcg_int /* TM_lib_internal::C_P005_unflatten_sections::_L7 */ _L7;
-  array__5350 /* TM_lib_internal::C_P005_unflatten_sections::_L9 */ _L9;
+  array__5338 /* TM_lib_internal::C_P005_unflatten_sections::_L9 */ _L9;
   kcg_bool /* TM_lib_internal::C_P005_unflatten_sections::_L11 */ _L11;
-  kcg_bool /* TM_lib_internal::C_P005_unflatten_sections::_L12 */ _L12;
-  kcg_bool /* TM_lib_internal::C_P005_unflatten_sections::_L13 */ _L13;
-  kcg_int /* TM_lib_internal::C_P005_unflatten_sections::_L14 */ _L14;
 } outC_C_P005_unflatten_sections_TM_lib_internal;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -48,6 +45,6 @@ extern void C_P005_unflatten_sections_reset_TM_lib_internal(
 #endif /* _C_P005_unflatten_sections_TM_lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_unflatten_sections_TM_lib_internal.h
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T12:04:05
 *************************************************************$ */
 

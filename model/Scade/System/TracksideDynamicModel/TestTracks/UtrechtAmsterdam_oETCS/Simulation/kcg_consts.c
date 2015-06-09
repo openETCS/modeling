@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T12:04:05
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -115,7 +115,7 @@ const Metadata_T_Common_Types_Pkg DEFAULT_Headers_TM = { { 0, Q_DIR_Reverse,
 
 /* Packets426::BG364_P005 */
 const P005_trackside_int_T_TM BG364_P005_Packets426 = { kcg_true, 5, 2, 1200, 1,
-  172, 0, 0, 365, 0, 0, 2, 29, { { 55, 0, 0, 366, 0, 0, 2 }, { 152, 0, 0, 366,
+  172, 0, 0, 365, 0, 0, 2, 29, { { 55, 0, 0, 366, 0, 0, 2 }, { 152, 0, 0, 367,
       0, 0, 2 }, { 141, 0, 0, 368, 0, 0, 2 }, { 53, 0, 0, 369, 0, 0, 2 }, { 471,
       0, 0, 341, 0, 0, 2 }, { 468, 0, 0, 370, 0, 0, 2 }, { 53, 0, 0, 371, 1, 0,
       2 }, { 433, 0, 0, 372, 0, 0, 2 }, { 200, 0, 0, 373, 0, 0, 2 }, { 232, 0,
@@ -257,6 +257,6 @@ const MetadataElement_T_Common_Types_Pkg DEFAULT_PHeader_TM = { 0,
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_consts.c
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T12:04:05
 *************************************************************$ */
 

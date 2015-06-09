@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T12:04:05
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -49,7 +49,7 @@ void C_P005_ForCalcTrainPos_TM_conversions(
   }
   _5_noname = outC->_L10;
   _4_noname = outC->_L8;
-  kcg_copy_array__5475(&outC->_L18, (array__5475 *) &outC->_L11[0]);
+  kcg_copy_array__5463(&outC->_L18, (array__5463 *) &outC->_L11[0]);
   outC->_L6 = outC->_L2.valid;
   noname = outC->_L6;
   for (i = 0; i < 4; i++) {
@@ -69,6 +69,6 @@ void C_P005_ForCalcTrainPos_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_ForCalcTrainPos_TM_conversions.c
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T12:04:05
 *************************************************************$ */
 
