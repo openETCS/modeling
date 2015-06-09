@@ -59,24 +59,12 @@
 								<ed:Field oid="!ed/281e5/7E4E/14A4/551d433d40eb"/>
 							</pragmas>
 						</Field>
-						<Field name="m_EmergencyData">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="EmergencyData_T"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Field oid="!ed/25c81/4DE3/1754/553a16c3251f"/>
-							</pragmas>
-						</Field>
 					</fields>
 				</Struct>
 			</definition>
 			<pragmas>
 				<ed:Type oid="!ed/10f5de/83F/13D8/551bce0360e6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-					<comment>Stores session releated information, including train data, position data and emergency data.</comment>
+					<comment>Stores session releated information. This includes train and the current position data.</comment>
 				</ed:Type>
 			</pragmas>
 		</Type>
@@ -401,20 +389,6 @@
 											</flow>
 										</LabelledExpression>
 										<LabelledExpression label="nid_ntc">
-											<flow>
-												<ConstValue value="0"/>
-											</flow>
-										</LabelledExpression>
-									</data>
-								</DataStructOp>
-							</flow>
-						</LabelledExpression>
-						<LabelledExpression label="m_EmergencyData">
-							<flow>
-								<!-- {nid_em : 0} -->
-								<DataStructOp>
-									<data>
-										<LabelledExpression label="nid_em">
 											<flow>
 												<ConstValue value="0"/>
 											</flow>
@@ -2143,7 +2117,7 @@
 								</ed:Field>
 							</pragmas>
 						</Field>
-						<Field name="m_NationalParameters">
+						<Field name="m_NationalParams">
 							<type>
 								<NamedType>
 									<type>
@@ -2157,7 +2131,7 @@
 								</ed:Field>
 							</pragmas>
 						</Field>
-						<Field name="m_MovementAuthorityRequestParameters">
+						<Field name="m_MAReqParams">
 							<type>
 								<NamedType>
 									<type>
@@ -2171,7 +2145,7 @@
 								</ed:Field>
 							</pragmas>
 						</Field>
-						<Field name="m_PositionReportParameters">
+						<Field name="m_PosRepParams">
 							<type>
 								<NamedType>
 									<type>
@@ -4047,6 +4021,20 @@
 							<pragmas>
 								<ed:Field oid="!ed/29e14/14A5/A8C/5523859735af" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
 									<comment>§7.5.1.164</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="t_nvcontact">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_NVCONTACT"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/41f5c/5FA6/1068/55754a1d5f74" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+									<comment>§7.5.1.148</comment>
 								</ed:Field>
 							</pragmas>
 						</Field>
@@ -17593,7 +17581,7 @@
 								</IdExpression>
 							</flow>
 						</LabelledExpression>
-						<LabelledExpression label="m_NationalParameters">
+						<LabelledExpression label="m_NationalParams">
 							<flow>
 								<!-- {nid_c : 0, v_nvshunt : 0, v_nvstff : 0, v_nvonsight : 0, v_nvunfit : 0, v_nvrel ... -->
 								<DataStructOp>
@@ -17628,11 +17616,16 @@
 												<ConstValue value="0"/>
 											</flow>
 										</LabelledExpression>
+										<LabelledExpression label="t_nvcontact">
+											<flow>
+												<ConstValue value="0"/>
+											</flow>
+										</LabelledExpression>
 									</data>
 								</DataStructOp>
 							</flow>
 						</LabelledExpression>
-						<LabelledExpression label="m_MovementAuthorityRequestParameters">
+						<LabelledExpression label="m_MAReqParams">
 							<flow>
 								<!-- {q_dir : Q_DIR_Reverse, t_mar : 0, t_timeoutrqst : 0, t_cycrqst : 0} -->
 								<DataStructOp>
@@ -17665,7 +17658,7 @@
 								</DataStructOp>
 							</flow>
 						</LabelledExpression>
-						<LabelledExpression label="m_PositionReportParameters">
+						<LabelledExpression label="m_PosRepParams">
 							<flow>
 								<!-- {q_dir : Q_DIR_Reverse, q_scale : Q_SCALE_10_cm_scale, t_cycloc : 0, d_cycloc : 0... -->
 								<DataStructOp>
@@ -20232,31 +20225,6 @@
 				<ed:Constant oid="!ed/269cb/4ADF/1284/5536d8b6707d"/>
 			</pragmas>
 		</Constant>
-		<Type name="EmergencyData_T">
-			<definition>
-				<Struct>
-					<fields>
-						<Field name="nid_em">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="NID_EM"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Field oid="!ed/25c1a/4DE3/1754/553a1641266" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
-									<comment>§7.5.1.87</comment>
-								</ed:Field>
-							</pragmas>
-						</Field>
-					</fields>
-				</Struct>
-			</definition>
-			<pragmas>
-				<ed:Type oid="!ed/25c19/4DE3/1754/553a162e2c6f"/>
-			</pragmas>
-		</Type>
 		<Constant name="NID_MESSAGE_136">
 			<type>
 				<NamedType>
@@ -46868,6 +46836,25 @@
 												<ConstValue value="0.0"/>
 											</flow>
 										</LabelledExpression>
+										<LabelledExpression label="xNID_EM">
+											<flow>
+												<ConstValue value="0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="xQ_EMERGENCYSTOP">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="Q_EMERGENCYSTOP_Conditional_Emergency_Stop_accepted_with_update_of_EOA"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="xNID_TEXTMESSAGE">
+											<flow>
+												<ConstValue value="0"/>
+											</flow>
+										</LabelledExpression>
 									</data>
 								</DataStructOp>
 							</flow>
@@ -47240,6 +47227,25 @@
 															</flow>
 														</LabelledExpression>
 														<LabelledExpression label="TrainRunningNumber">
+															<flow>
+																<ConstValue value="0"/>
+															</flow>
+														</LabelledExpression>
+													</data>
+												</DataStructOp>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="p9">
+											<flow>
+												<!-- {valid : false, transitionInformation : 0} -->
+												<DataStructOp>
+													<data>
+														<LabelledExpression label="valid">
+															<flow>
+																<ConstValue value="false"/>
+															</flow>
+														</LabelledExpression>
+														<LabelledExpression label="transitionInformation">
 															<flow>
 																<ConstValue value="0"/>
 															</flow>
@@ -49169,6 +49175,51 @@
 			</value>
 			<pragmas>
 				<ed:Constant oid="!ed/3a290/24E/13F8/555c50076ff1"/>
+			</pragmas>
+		</Constant>
+		<Constant name="T_NVCONTACT_UNLIMITED">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="T_NVCONTACT"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="255"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/42074/5FA6/1068/5575554241f6"/>
+			</pragmas>
+		</Constant>
+		<Constant name="T_NVCONTACT_FACTOR">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0.75"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4208e/5FA6/1068/5575559f19da"/>
+			</pragmas>
+		</Constant>
+		<Constant name="T_NVCONTACT_DEFAULT">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="T_NVCONTACT"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/421f0/5FA6/1068/55755c005a63"/>
 			</pragmas>
 		</Constant>
 	</declarations>
