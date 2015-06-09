@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-09T11:10:48
+** Generation date: 2015-06-09T12:04:05
 *************************************************************$ */
 
 #include "kcg_types.h"
@@ -516,6 +516,6 @@ kcg_bool kcg_comp_struct__5404(struct__5404 *kcg_c1, struct__5404 *kcg_c2)
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_types.c
-** Generation date: 2015-06-09T11:10:48
+** Generation date: 2015-06-09T12:04:05
 *************************************************************$ */
 

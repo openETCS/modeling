@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-09T11:10:49
+** Generation date: 2015-06-09T12:04:05
 *************************************************************$ */
 #ifndef _No_Balise_Packets_InfraLib_H_
 #define _No_Balise_Packets_InfraLib_H_
@@ -40,6 +40,6 @@ extern void No_Balise_Packets_reset_InfraLib(
 #endif /* _No_Balise_Packets_InfraLib_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** No_Balise_Packets_InfraLib.h
-** Generation date: 2015-06-09T11:10:49
+** Generation date: 2015-06-09T12:04:05
 *************************************************************$ */
 
