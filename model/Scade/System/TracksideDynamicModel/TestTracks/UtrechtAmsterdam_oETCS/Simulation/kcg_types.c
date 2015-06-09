@@ -1,18 +1,18 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T11:10:48
 *************************************************************$ */
 
 #include "kcg_types.h"
 
-kcg_bool kcg_comp_array__5304(array__5304 *kcg_c1, array__5304 *kcg_c2)
+kcg_bool kcg_comp_array__5292(array__5292 *kcg_c1, array__5292 *kcg_c2)
 {
   kcg_bool kcg_equ;
   kcg_int kcg_ci;
   
   kcg_equ = kcg_true;
   for (kcg_ci = 0; kcg_ci < 4; kcg_ci++) {
-    kcg_equ = kcg_equ & kcg_comp_struct__5290(
+    kcg_equ = kcg_equ & kcg_comp_struct__5278(
         &(*kcg_c1)[kcg_ci],
         &(*kcg_c2)[kcg_ci]);
   }
@@ -31,28 +31,28 @@ kcg_bool kcg_comp_array_int_500(array_int_500 *kcg_c1, array_int_500 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_array__5331(array__5331 *kcg_c1, array__5331 *kcg_c2)
+kcg_bool kcg_comp_array__5319(array__5319 *kcg_c1, array__5319 *kcg_c2)
 {
   kcg_bool kcg_equ;
   kcg_int kcg_ci;
   
   kcg_equ = kcg_true;
   for (kcg_ci = 0; kcg_ci < 30; kcg_ci++) {
-    kcg_equ = kcg_equ & kcg_comp_struct__5323(
+    kcg_equ = kcg_equ & kcg_comp_struct__5311(
         &(*kcg_c1)[kcg_ci],
         &(*kcg_c2)[kcg_ci]);
   }
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_array__5350(array__5350 *kcg_c1, array__5350 *kcg_c2)
+kcg_bool kcg_comp_array__5338(array__5338 *kcg_c1, array__5338 *kcg_c2)
 {
   kcg_bool kcg_equ;
   kcg_int kcg_ci;
   
   kcg_equ = kcg_true;
   for (kcg_ci = 0; kcg_ci < 33; kcg_ci++) {
-    kcg_equ = kcg_equ & kcg_comp_struct__5339(
+    kcg_equ = kcg_equ & kcg_comp_struct__5327(
         &(*kcg_c1)[kcg_ci],
         &(*kcg_c2)[kcg_ci]);
   }
@@ -83,14 +83,14 @@ kcg_bool kcg_comp_array_int_3(array_int_3 *kcg_c1, array_int_3 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_array__5413(array__5413 *kcg_c1, array__5413 *kcg_c2)
+kcg_bool kcg_comp_array__5401(array__5401 *kcg_c1, array__5401 *kcg_c2)
 {
   kcg_bool kcg_equ;
   kcg_int kcg_ci;
   
   kcg_equ = kcg_true;
   for (kcg_ci = 0; kcg_ci < 32; kcg_ci++) {
-    kcg_equ = kcg_equ & kcg_comp_struct__5403(
+    kcg_equ = kcg_equ & kcg_comp_struct__5391(
         &(*kcg_c1)[kcg_ci],
         &(*kcg_c2)[kcg_ci]);
   }
@@ -123,14 +123,14 @@ kcg_bool kcg_comp_array_int_7_33(array_int_7_33 *kcg_c1, array_int_7_33 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_array__5439(array__5439 *kcg_c1, array__5439 *kcg_c2)
+kcg_bool kcg_comp_array__5427(array__5427 *kcg_c1, array__5427 *kcg_c2)
 {
   kcg_bool kcg_equ;
   kcg_int kcg_ci;
   
   kcg_equ = kcg_true;
   for (kcg_ci = 0; kcg_ci < 33; kcg_ci++) {
-    kcg_equ = kcg_equ & kcg_comp_struct__5403(
+    kcg_equ = kcg_equ & kcg_comp_struct__5391(
         &(*kcg_c1)[kcg_ci],
         &(*kcg_c2)[kcg_ci]);
   }
@@ -229,14 +229,14 @@ kcg_bool kcg_comp_array_int_236(array_int_236 *kcg_c1, array_int_236 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_array__5463(array__5463 *kcg_c1, array__5463 *kcg_c2)
+kcg_bool kcg_comp_array__5451(array__5451 *kcg_c1, array__5451 *kcg_c2)
 {
   kcg_bool kcg_equ;
   kcg_int kcg_ci;
   
   kcg_equ = kcg_true;
   for (kcg_ci = 0; kcg_ci < 1; kcg_ci++) {
-    kcg_equ = kcg_equ & kcg_comp_struct__5403(
+    kcg_equ = kcg_equ & kcg_comp_struct__5391(
         &(*kcg_c1)[kcg_ci],
         &(*kcg_c2)[kcg_ci]);
   }
@@ -283,21 +283,21 @@ kcg_bool kcg_comp_array_int_231_33(
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_array__5475(array__5475 *kcg_c1, array__5475 *kcg_c2)
+kcg_bool kcg_comp_array__5463(array__5463 *kcg_c1, array__5463 *kcg_c2)
 {
   kcg_bool kcg_equ;
   kcg_int kcg_ci;
   
   kcg_equ = kcg_true;
   for (kcg_ci = 0; kcg_ci < 4; kcg_ci++) {
-    kcg_equ = kcg_equ & kcg_comp_struct__5339(
+    kcg_equ = kcg_equ & kcg_comp_struct__5327(
         &(*kcg_c1)[kcg_ci],
         &(*kcg_c2)[kcg_ci]);
   }
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_array__5478(array__5478 *kcg_c1, array__5478 *kcg_c2)
+kcg_bool kcg_comp_array__5466(array__5466 *kcg_c1, array__5466 *kcg_c2)
 {
   kcg_bool kcg_equ;
   kcg_int kcg_ci;
@@ -309,7 +309,7 @@ kcg_bool kcg_comp_array__5478(array__5478 *kcg_c1, array__5478 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_array__5481(array__5481 *kcg_c1, array__5481 *kcg_c2)
+kcg_bool kcg_comp_array__5469(array__5469 *kcg_c1, array__5469 *kcg_c2)
 {
   kcg_bool kcg_equ;
   kcg_int kcg_ci;
@@ -321,7 +321,7 @@ kcg_bool kcg_comp_array__5481(array__5481 *kcg_c1, array__5481 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__5290(struct__5290 *kcg_c1, struct__5290 *kcg_c2)
+kcg_bool kcg_comp_struct__5278(struct__5278 *kcg_c1, struct__5278 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
@@ -340,7 +340,7 @@ kcg_bool kcg_comp_struct__5290(struct__5290 *kcg_c1, struct__5290 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__5307(struct__5307 *kcg_c1, struct__5307 *kcg_c2)
+kcg_bool kcg_comp_struct__5295(struct__5295 *kcg_c1, struct__5295 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
@@ -358,7 +358,7 @@ kcg_bool kcg_comp_struct__5307(struct__5307 *kcg_c1, struct__5307 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__5323(struct__5323 *kcg_c1, struct__5323 *kcg_c2)
+kcg_bool kcg_comp_struct__5311(struct__5311 *kcg_c1, struct__5311 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
@@ -371,7 +371,7 @@ kcg_bool kcg_comp_struct__5323(struct__5323 *kcg_c1, struct__5323 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__5334(struct__5334 *kcg_c1, struct__5334 *kcg_c2)
+kcg_bool kcg_comp_struct__5322(struct__5322 *kcg_c1, struct__5322 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
@@ -379,13 +379,13 @@ kcg_bool kcg_comp_struct__5334(struct__5334 *kcg_c1, struct__5334 *kcg_c2)
   kcg_equ = kcg_equ & kcg_comp_array_int_500(
       &kcg_c1->PacketData,
       &kcg_c2->PacketData);
-  kcg_equ = kcg_equ & kcg_comp_array__5331(
+  kcg_equ = kcg_equ & kcg_comp_array__5319(
       &kcg_c1->PacketHeaders,
       &kcg_c2->PacketHeaders);
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__5339(struct__5339 *kcg_c1, struct__5339 *kcg_c2)
+kcg_bool kcg_comp_struct__5327(struct__5327 *kcg_c1, struct__5327 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
@@ -401,12 +401,12 @@ kcg_bool kcg_comp_struct__5339(struct__5339 *kcg_c1, struct__5339 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__5353(struct__5353 *kcg_c1, struct__5353 *kcg_c2)
+kcg_bool kcg_comp_struct__5341(struct__5341 *kcg_c1, struct__5341 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
   kcg_equ = kcg_true;
-  kcg_equ = kcg_equ & kcg_comp_array__5350(
+  kcg_equ = kcg_equ & kcg_comp_array__5338(
       &kcg_c1->sections,
       &kcg_c2->sections);
   kcg_equ = kcg_equ & (kcg_c1->n_iter == kcg_c2->n_iter);
@@ -417,7 +417,7 @@ kcg_bool kcg_comp_struct__5353(struct__5353 *kcg_c1, struct__5353 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__5368(struct__5368 *kcg_c1, struct__5368 *kcg_c2)
+kcg_bool kcg_comp_struct__5356(struct__5356 *kcg_c1, struct__5356 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
@@ -435,19 +435,19 @@ kcg_bool kcg_comp_struct__5368(struct__5368 *kcg_c1, struct__5368 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__5381(struct__5381 *kcg_c1, struct__5381 *kcg_c2)
+kcg_bool kcg_comp_struct__5369(struct__5369 *kcg_c1, struct__5369 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
   kcg_equ = kcg_true;
-  kcg_equ = kcg_equ & kcg_comp_struct__5334(
+  kcg_equ = kcg_equ & kcg_comp_struct__5322(
       &kcg_c1->Messages,
       &kcg_c2->Messages);
-  kcg_equ = kcg_equ & kcg_comp_struct__5368(&kcg_c1->Header, &kcg_c2->Header);
+  kcg_equ = kcg_equ & kcg_comp_struct__5356(&kcg_c1->Header, &kcg_c2->Header);
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__5386(struct__5386 *kcg_c1, struct__5386 *kcg_c2)
+kcg_bool kcg_comp_struct__5374(struct__5374 *kcg_c1, struct__5374 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
@@ -457,12 +457,12 @@ kcg_bool kcg_comp_struct__5386(struct__5386 *kcg_c1, struct__5386 *kcg_c2)
   kcg_equ = kcg_equ & (kcg_c1->TrainPos == kcg_c2->TrainPos);
   kcg_equ = kcg_equ & (kcg_c1->engineering_BG_location ==
       kcg_c2->engineering_BG_location);
-  kcg_equ = kcg_equ & kcg_comp_struct__5334(&kcg_c1->packets, &kcg_c2->packets);
-  kcg_equ = kcg_equ & kcg_comp_struct__5368(&kcg_c1->header, &kcg_c2->header);
+  kcg_equ = kcg_equ & kcg_comp_struct__5322(&kcg_c1->packets, &kcg_c2->packets);
+  kcg_equ = kcg_equ & kcg_comp_struct__5356(&kcg_c1->header, &kcg_c2->header);
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__5395(struct__5395 *kcg_c1, struct__5395 *kcg_c2)
+kcg_bool kcg_comp_struct__5383(struct__5383 *kcg_c1, struct__5383 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
@@ -475,7 +475,7 @@ kcg_bool kcg_comp_struct__5395(struct__5395 *kcg_c1, struct__5395 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__5403(struct__5403 *kcg_c1, struct__5403 *kcg_c2)
+kcg_bool kcg_comp_struct__5391(struct__5391 *kcg_c1, struct__5391 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
@@ -490,12 +490,12 @@ kcg_bool kcg_comp_struct__5403(struct__5403 *kcg_c1, struct__5403 *kcg_c2)
   return kcg_equ;
 }
 
-kcg_bool kcg_comp_struct__5416(struct__5416 *kcg_c1, struct__5416 *kcg_c2)
+kcg_bool kcg_comp_struct__5404(struct__5404 *kcg_c1, struct__5404 *kcg_c2)
 {
   kcg_bool kcg_equ;
   
   kcg_equ = kcg_true;
-  kcg_equ = kcg_equ & kcg_comp_array__5413(
+  kcg_equ = kcg_equ & kcg_comp_array__5401(
       &kcg_c1->SECTIONS,
       &kcg_c2->SECTIONS);
   kcg_equ = kcg_equ & (kcg_c1->N_ITER == kcg_c2->N_ITER);
@@ -516,6 +516,6 @@ kcg_bool kcg_comp_struct__5416(struct__5416 *kcg_c1, struct__5416 *kcg_c2)
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_types.c
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T11:10:48
 *************************************************************$ */
 

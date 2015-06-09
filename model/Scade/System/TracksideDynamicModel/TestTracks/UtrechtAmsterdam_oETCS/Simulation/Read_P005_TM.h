@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T11:10:49
 *************************************************************$ */
 #ifndef _Read_P005_TM_H_
 #define _Read_P005_TM_H_
@@ -41,6 +41,6 @@ extern void Read_P005_reset_TM(outC_Read_P005_TM *outC);
 #endif /* _Read_P005_TM_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Read_P005_TM.h
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T11:10:49
 *************************************************************$ */
 

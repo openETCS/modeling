@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T11:10:49
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -37,6 +37,6 @@ void C_P005_fs_struct_to_array_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_fs_struct_to_array_TM_lib_internal.c
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T11:10:49
 *************************************************************$ */
 

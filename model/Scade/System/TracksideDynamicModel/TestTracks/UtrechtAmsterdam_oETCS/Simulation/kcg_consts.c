@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T11:10:48
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -257,6 +257,6 @@ const MetadataElement_T_Common_Types_Pkg DEFAULT_PHeader_TM = { 0,
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_consts.c
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T11:10:48
 *************************************************************$ */
 

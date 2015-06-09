@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T11:10:49
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -36,7 +36,7 @@ void C_P005_us_array_TM_lib_internal(
 {
   outC->_L5 = i;
   outC->_L18 = DIM_P005_n_sections_TM_lib_internal;
-  outC->_L16 = outC->_L5 / outC->_L18;
+  outC->_L16 = outC->_L5 * outC->_L18;
   kcg_copy_P005_sections_array_flat_T_TM(&outC->_L1, flat);
   /* 4 */
   C_P005_extract_el_section_TM_lib_internal(
@@ -121,6 +121,6 @@ void C_P005_us_array_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_us_array_TM_lib_internal.c
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T11:10:49
 *************************************************************$ */
 

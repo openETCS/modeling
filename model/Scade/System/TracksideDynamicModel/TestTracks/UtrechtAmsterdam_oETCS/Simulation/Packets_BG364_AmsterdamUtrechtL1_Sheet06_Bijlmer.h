@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T11:10:49
 *************************************************************$ */
 #ifndef _Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer_H_
 #define _Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer_H_
@@ -127,6 +127,6 @@ extern void Packets_BG364_reset_AmsterdamUtrechtL1_Sheet06_Bijlmer(
 #endif /* _Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer.h
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T11:10:49
 *************************************************************$ */
 

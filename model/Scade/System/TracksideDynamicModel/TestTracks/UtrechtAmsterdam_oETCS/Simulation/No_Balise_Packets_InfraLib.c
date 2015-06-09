@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T11:10:49
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -17,8 +17,6 @@ void No_Balise_Packets_InfraLib(
   /* InfraLib::No_Balise_Packets::Balise_data_in */B_data_internal_T_InfraLib *Balise_data_in,
   outC_No_Balise_Packets_InfraLib *outC)
 {
-  BaliseTelegramHeader_int_T_TM noname;
-  
   kcg_copy_B_data_internal_T_InfraLib(&outC->_L30, Balise_data_in);
   kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L32, Header);
   kcg_copy_B_data_internal_T_InfraLib(&outC->_L36, &outC->_L30);
@@ -31,12 +29,10 @@ void No_Balise_Packets_InfraLib(
     outC->_L31.balise_passed = outC->_L35;
   }
   kcg_copy_B_data_internal_T_InfraLib(&outC->Balise_data_out, &outC->_L31);
-  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L29, Header);
-  kcg_copy_BaliseTelegramHeader_int_T_TM(&noname, &outC->_L29);
 }
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** No_Balise_Packets_InfraLib.c
-** Generation date: 2015-06-08T18:54:31
+** Generation date: 2015-06-09T11:10:49
 *************************************************************$ */
 
