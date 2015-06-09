@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -29,8 +29,11 @@ void C_P005_unflatten_sections_TM_lib_internal(
   kcg_int i;
   kcg_int noname;
   
-  outC->_L11 = nid_packet_ok;
+  outC->_L14 = 0;
   outC->_L3 = n_iter;
+  outC->_L13 = outC->_L14 < outC->_L3;
+  outC->_L11 = nid_packet_ok;
+  outC->_L12 = outC->_L11 & outC->_L13;
   for (i2 = 0; i2 < 33; i2++) {
     outC->_L5[i2] = outC->_L3;
   }
@@ -38,7 +41,7 @@ void C_P005_unflatten_sections_TM_lib_internal(
   for (i1 = 0; i1 < 33; i1++) {
     kcg_copy_P005_sections_array_flat_T_TM(&outC->_L6[i1], &outC->_L1);
   }
-  if (outC->_L11) {
+  if (outC->_L12) {
     for (i = 0; i < 33; i++) {
       /* 1 */
       C_P005_us_array_TM_lib_internal(
@@ -63,7 +66,7 @@ void C_P005_unflatten_sections_TM_lib_internal(
   for (i = outC->_L7; i < 33; i++) {
     kcg_copy_P005_section_enum_T_TM(
       &outC->_L9[i],
-      (P005_section_enum_T_TM *) &DEFAULT_OBU_section_TM_lib_internal);
+      (P005_section_enum_T_TM *) &DEFAULT_P005_OBU_section_TM_lib_internal);
   }
 #endif /* KCG_MAPW_CPY */
   
@@ -73,6 +76,6 @@ void C_P005_unflatten_sections_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_unflatten_sections_TM_lib_internal.c
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 

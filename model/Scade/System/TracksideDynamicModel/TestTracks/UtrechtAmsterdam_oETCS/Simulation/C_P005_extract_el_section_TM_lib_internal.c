@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -23,7 +23,7 @@ void C_P005_extract_el_section_TM_lib_internal(
   outC->_L1 = offset;
   outC->_L3 = modulo;
   outC->_L5 = outC->_L1 + outC->_L3;
-  if ((0 <= outC->_L5) & (outC->_L5 < 224)) {
+  if ((0 <= outC->_L5) & (outC->_L5 < 231)) {
     outC->_L6 = outC->_L2[outC->_L5];
   }
   else {
@@ -34,6 +34,6 @@ void C_P005_extract_el_section_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_extract_el_section_TM_lib_internal.c
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 

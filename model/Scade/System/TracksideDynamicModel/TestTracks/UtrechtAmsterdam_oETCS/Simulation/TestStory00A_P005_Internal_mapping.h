@@ -23,9 +23,9 @@ void* _SCSIM_Get_Read_P005_ForCalcTrainPos_TM_Handle(void* pInstance, int nHandl
 void _SCSIM_Mapping_Story00A_BTM_FirstTest(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_Story00A_BTM_FirstTest_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "RECV_ConvertBaliseHeader_CT_TM_conversions.h"
-void _SCSIM_Mapping_RECV_ConvertBaliseHeader_CT_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_RECV_ConvertBaliseHeader_CT_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "CASTLIB_BaliseHeaders_TM_conversions.h"
+void _SCSIM_Mapping_CASTLIB_BaliseHeaders_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_CASTLIB_BaliseHeaders_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
 #include "Read_P005_TM.h"
 void _SCSIM_Mapping_Read_P005_TM(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
@@ -35,120 +35,132 @@ void* _SCSIM_Get_Read_P005_TM_Handle(void* pInstance, int nHandleIdent, int* pIt
 void _SCSIM_Mapping_C_P005_ForCalcTrainPos_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_C_P005_ForCalcTrainPos_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_Group_364_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_Group_364_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_Group_364_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_Group_367_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_Group_367_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_Group_367_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_Group_367_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_Group_367_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_Group_367_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_Group_368_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_Group_368_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_Group_368_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_Group_368_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_Group_368_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_Group_368_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_Group_366_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_Group_366_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_Group_366_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_Group_366_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_Group_366_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_Group_366_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_Group_369_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_Group_369_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_Group_369_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_Group_369_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_Group_369_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_Group_369_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_Group_365_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_Group_365_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_Group_365_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_Group_365_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_Group_365_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_Group_365_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_Group_341_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_Group_341_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_Group_341_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_Group_341_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_Group_341_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_Group_341_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
 #include "CAST_Int_to_Q_UPDOWN_TM_conversions.h"
 void _SCSIM_Mapping_CAST_Int_to_Q_UPDOWN_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_CAST_Int_to_Q_UPDOWN_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-extern ControlUtils _SCSIM_606_Utils;
-extern ControlUtils _SCSIM_609_Utils;
-extern ControlUtils _SCSIM_605_Utils;
 extern ControlUtils _SCSIM_612_Utils;
+extern ControlUtils _SCSIM_615_Utils;
+extern ControlUtils _SCSIM_611_Utils;
+extern ControlUtils _SCSIM_618_Utils;
 #include "CAST_Int_to_M_VERSION_TM_conversions.h"
 void _SCSIM_Mapping_CAST_Int_to_M_VERSION_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_CAST_Int_to_M_VERSION_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-extern ControlUtils _SCSIM_623_Utils;
-extern ControlUtils _SCSIM_626_Utils;
-extern ControlUtils _SCSIM_622_Utils;
 extern ControlUtils _SCSIM_629_Utils;
-extern ControlUtils _SCSIM_621_Utils;
 extern ControlUtils _SCSIM_632_Utils;
-extern ControlUtils _SCSIM_620_Utils;
+extern ControlUtils _SCSIM_628_Utils;
 extern ControlUtils _SCSIM_635_Utils;
+extern ControlUtils _SCSIM_627_Utils;
+extern ControlUtils _SCSIM_638_Utils;
+extern ControlUtils _SCSIM_626_Utils;
+extern ControlUtils _SCSIM_641_Utils;
 #include "CAST_Int_to_Q_MEDIA_TM_conversions.h"
 void _SCSIM_Mapping_CAST_Int_to_Q_MEDIA_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_CAST_Int_to_Q_MEDIA_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-extern ControlUtils _SCSIM_644_Utils;
-extern ControlUtils _SCSIM_647_Utils;
-extern ControlUtils _SCSIM_643_Utils;
 extern ControlUtils _SCSIM_650_Utils;
+extern ControlUtils _SCSIM_653_Utils;
+extern ControlUtils _SCSIM_649_Utils;
+extern ControlUtils _SCSIM_656_Utils;
 #include "CAST_Int_to_N_PIG_TM_conversions.h"
 void _SCSIM_Mapping_CAST_Int_to_N_PIG_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_CAST_Int_to_N_PIG_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-extern ControlUtils _SCSIM_665_Utils;
-extern ControlUtils _SCSIM_668_Utils;
-extern ControlUtils _SCSIM_664_Utils;
 extern ControlUtils _SCSIM_671_Utils;
-extern ControlUtils _SCSIM_663_Utils;
 extern ControlUtils _SCSIM_674_Utils;
-extern ControlUtils _SCSIM_662_Utils;
+extern ControlUtils _SCSIM_670_Utils;
 extern ControlUtils _SCSIM_677_Utils;
-extern ControlUtils _SCSIM_661_Utils;
+extern ControlUtils _SCSIM_669_Utils;
 extern ControlUtils _SCSIM_680_Utils;
-extern ControlUtils _SCSIM_660_Utils;
+extern ControlUtils _SCSIM_668_Utils;
 extern ControlUtils _SCSIM_683_Utils;
-extern ControlUtils _SCSIM_659_Utils;
+extern ControlUtils _SCSIM_667_Utils;
 extern ControlUtils _SCSIM_686_Utils;
-extern ControlUtils _SCSIM_658_Utils;
+extern ControlUtils _SCSIM_666_Utils;
 extern ControlUtils _SCSIM_689_Utils;
+extern ControlUtils _SCSIM_665_Utils;
+extern ControlUtils _SCSIM_692_Utils;
+extern ControlUtils _SCSIM_664_Utils;
+extern ControlUtils _SCSIM_695_Utils;
 #include "CAST_Int_to_N_TOTAL_TM_conversions.h"
 void _SCSIM_Mapping_CAST_Int_to_N_TOTAL_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_CAST_Int_to_N_TOTAL_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-extern ControlUtils _SCSIM_704_Utils;
-extern ControlUtils _SCSIM_707_Utils;
-extern ControlUtils _SCSIM_703_Utils;
 extern ControlUtils _SCSIM_710_Utils;
-extern ControlUtils _SCSIM_702_Utils;
 extern ControlUtils _SCSIM_713_Utils;
-extern ControlUtils _SCSIM_701_Utils;
+extern ControlUtils _SCSIM_709_Utils;
 extern ControlUtils _SCSIM_716_Utils;
-extern ControlUtils _SCSIM_700_Utils;
+extern ControlUtils _SCSIM_708_Utils;
 extern ControlUtils _SCSIM_719_Utils;
-extern ControlUtils _SCSIM_699_Utils;
+extern ControlUtils _SCSIM_707_Utils;
 extern ControlUtils _SCSIM_722_Utils;
-extern ControlUtils _SCSIM_698_Utils;
+extern ControlUtils _SCSIM_706_Utils;
 extern ControlUtils _SCSIM_725_Utils;
-extern ControlUtils _SCSIM_697_Utils;
+extern ControlUtils _SCSIM_705_Utils;
 extern ControlUtils _SCSIM_728_Utils;
+extern ControlUtils _SCSIM_704_Utils;
+extern ControlUtils _SCSIM_731_Utils;
+extern ControlUtils _SCSIM_703_Utils;
+extern ControlUtils _SCSIM_734_Utils;
 #include "CAST_Int_to_M_DUP_TM_conversions.h"
 void _SCSIM_Mapping_CAST_Int_to_M_DUP_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_CAST_Int_to_M_DUP_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-extern ControlUtils _SCSIM_738_Utils;
-extern ControlUtils _SCSIM_741_Utils;
-extern ControlUtils _SCSIM_737_Utils;
 extern ControlUtils _SCSIM_744_Utils;
-extern ControlUtils _SCSIM_736_Utils;
 extern ControlUtils _SCSIM_747_Utils;
+extern ControlUtils _SCSIM_743_Utils;
+extern ControlUtils _SCSIM_750_Utils;
+extern ControlUtils _SCSIM_742_Utils;
+extern ControlUtils _SCSIM_753_Utils;
+#include "CAST_Int_to_M_MCOUNT_TM_conversions.h"
+void _SCSIM_Mapping_CAST_Int_to_M_MCOUNT_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_CAST_Int_to_M_MCOUNT_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+
+#include "CAST_Int_to_NID_C_TM_conversions.h"
+void _SCSIM_Mapping_CAST_Int_to_NID_C_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_CAST_Int_to_NID_C_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+
+#include "CAST_Int_to_NID_BG_TM_conversions.h"
+void _SCSIM_Mapping_CAST_Int_to_NID_BG_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_CAST_Int_to_NID_BG_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+
 #include "CAST_Int_to_Q_LINK_TM_conversions.h"
 void _SCSIM_Mapping_CAST_Int_to_Q_LINK_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_CAST_Int_to_Q_LINK_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-extern ControlUtils _SCSIM_756_Utils;
-extern ControlUtils _SCSIM_759_Utils;
-extern ControlUtils _SCSIM_755_Utils;
-extern ControlUtils _SCSIM_762_Utils;
+extern ControlUtils _SCSIM_780_Utils;
+extern ControlUtils _SCSIM_783_Utils;
+extern ControlUtils _SCSIM_779_Utils;
+extern ControlUtils _SCSIM_786_Utils;
 #include "RECV_ReadPackets_TM_lib_internal.h"
 void _SCSIM_Mapping_RECV_ReadPackets_TM_lib_internal(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_RECV_ReadPackets_TM_lib_internal_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
@@ -157,85 +169,85 @@ void* _SCSIM_Get_RECV_ReadPackets_TM_lib_internal_Handle(void* pInstance, int nH
 void _SCSIM_Mapping_C_P005_compr_onboard_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_C_P005_compr_onboard_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-extern ControlUtils _SCSIM_788_Utils;
-extern ControlUtils _SCSIM_791_Utils;
-extern ControlUtils _SCSIM_787_Utils;
-extern ControlUtils _SCSIM_794_Utils;
-extern ControlUtils _SCSIM_786_Utils;
-extern ControlUtils _SCSIM_797_Utils;
-extern ControlUtils _SCSIM_823_Utils;
-extern ControlUtils _SCSIM_826_Utils;
-extern ControlUtils _SCSIM_822_Utils;
-extern ControlUtils _SCSIM_829_Utils;
+extern ControlUtils _SCSIM_812_Utils;
+extern ControlUtils _SCSIM_815_Utils;
+extern ControlUtils _SCSIM_811_Utils;
+extern ControlUtils _SCSIM_818_Utils;
+extern ControlUtils _SCSIM_810_Utils;
 extern ControlUtils _SCSIM_821_Utils;
-extern ControlUtils _SCSIM_832_Utils;
+extern ControlUtils _SCSIM_847_Utils;
+extern ControlUtils _SCSIM_850_Utils;
+extern ControlUtils _SCSIM_846_Utils;
+extern ControlUtils _SCSIM_853_Utils;
+extern ControlUtils _SCSIM_845_Utils;
+extern ControlUtils _SCSIM_856_Utils;
 #include "C_P005_LinkedBGs_TM_conversions.h"
 void _SCSIM_Mapping_C_P005_LinkedBGs_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_C_P005_LinkedBGs_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_364_1_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_364_1_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_364_1_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_364_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_364_1_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_364_1_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_Group_Init_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_Group_Init_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_Group_Init_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_Group_Init_InfraLib.h"
+void _SCSIM_Mapping_Balise_Group_Init_InfraLib(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_Group_Init_InfraLib_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_Group_Close_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_Group_Close_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_Group_Close_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_Group_Close_InfraLib.h"
+void _SCSIM_Mapping_Balise_Group_Close_InfraLib(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_Group_Close_InfraLib_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_364_0_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_364_0_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_364_0_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_364_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_364_0_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_364_0_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_367_0_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_367_0_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_367_0_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_367_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_367_0_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_367_0_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_367_1_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_367_1_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_367_1_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_367_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_367_1_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_367_1_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_368_1_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_368_1_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_368_1_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_368_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_368_1_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_368_1_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_368_0_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_368_0_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_368_0_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_368_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_368_0_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_368_0_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_366_0_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_366_0_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_366_0_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_366_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_366_0_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_366_0_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_366_1_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_366_1_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_366_1_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_366_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_366_1_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_366_1_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_369_1_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_369_1_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_369_1_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_369_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_369_1_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_369_1_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_369_0_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_369_0_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_369_0_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_369_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_369_0_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_369_0_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_365_0_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_365_0_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_365_0_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_365_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_365_0_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_365_0_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_365_1_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_365_1_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_365_1_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_365_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_365_1_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_365_1_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_341_0_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_341_0_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_341_0_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_341_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_341_0_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_341_0_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_341_1_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_341_1_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_341_1_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_341_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_341_1_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_341_1_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
 #include "RECV_LookupPacket_TM_lib_internal.h"
 void _SCSIM_Mapping_RECV_LookupPacket_TM_lib_internal(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
@@ -249,21 +261,17 @@ void* _SCSIM_Get_RECV_ReadPacketKernel_TM_lib_internal_Handle(void* pInstance, i
 void _SCSIM_Mapping_C_P005_unflatten_sections_TM_lib_internal(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_C_P005_unflatten_sections_TM_lib_internal_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_Packets_364_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_Packets_364_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_Packets_364_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
-
-#include "Balise_Localisation_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_Localisation_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_Localisation_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
-
 #include "Balise_Localisation_InfraLib.h"
 void _SCSIM_Mapping_Balise_Localisation_InfraLib(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_Balise_Localisation_InfraLib_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "TEMPLATE_Balise_Packets_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_TEMPLATE_Balise_Packets_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_TEMPLATE_Balise_Packets_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+
+#include "No_Balise_Packets_InfraLib.h"
+void _SCSIM_Mapping_No_Balise_Packets_InfraLib(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_No_Balise_Packets_InfraLib_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
 #include "RECV_LookupPacketLoop_TM_lib_internal.h"
 void _SCSIM_Mapping_RECV_LookupPacketLoop_TM_lib_internal(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
@@ -277,21 +285,17 @@ void* _SCSIM_Get_RECV_ReadPacketKernelLoop_TM_lib_internal_Handle(void* pInstanc
 void _SCSIM_Mapping_C_P005_us_array_TM_lib_internal(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_C_P005_us_array_TM_lib_internal_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Send_BG364_P005_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Send_BG364_P005_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Send_BG364_P005_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
-
-#include "Balise_Interdistance_FirstTest_InfraLibInt.h"
-void _SCSIM_Mapping_Balise_Interdistance_FirstTest_InfraLibInt(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_Interdistance_FirstTest_InfraLibInt_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_Interdistance_InfraLib.h"
+void _SCSIM_Mapping_Balise_Interdistance_InfraLib(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_Interdistance_InfraLib_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
 #include "TOOLS_convert_engineering_TM_conversions.h"
 void _SCSIM_Mapping_TOOLS_convert_engineering_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_TOOLS_convert_engineering_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_Interdistance_InfraLib.h"
-void _SCSIM_Mapping_Balise_Interdistance_InfraLib(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_Interdistance_InfraLib_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Send_P005_InfraLib.h"
+void _SCSIM_Mapping_Send_P005_InfraLib(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Send_P005_InfraLib_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
 #include "C_P005_extract_el_section_TM_lib_internal.h"
 void _SCSIM_Mapping_C_P005_extract_el_section_TM_lib_internal(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
@@ -301,44 +305,36 @@ void* _SCSIM_Get_C_P005_extract_el_section_TM_lib_internal_Handle(void* pInstanc
 void _SCSIM_Mapping_CAST_Int_to_D_LINK_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_CAST_Int_to_D_LINK_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "CAST_Int_to_NID_C_TM_conversions.h"
-void _SCSIM_Mapping_CAST_Int_to_NID_C_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_CAST_Int_to_NID_C_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
-
-#include "CAST_Int_to_NID_BG_TM_conversions.h"
-void _SCSIM_Mapping_CAST_Int_to_NID_BG_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_CAST_Int_to_NID_BG_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
-
 #include "CAST_Int_to_Q_NEWCOUNTRY_TM_conversions.h"
 void _SCSIM_Mapping_CAST_Int_to_Q_NEWCOUNTRY_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_CAST_Int_to_Q_NEWCOUNTRY_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-extern ControlUtils _SCSIM_1498_Utils;
-extern ControlUtils _SCSIM_1501_Utils;
-extern ControlUtils _SCSIM_1497_Utils;
-extern ControlUtils _SCSIM_1504_Utils;
-#include "CAST_Int_to_Q_LINKORIENTATION_TM_conversions.h"
-void _SCSIM_Mapping_CAST_Int_to_Q_LINKORIENTATION_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_CAST_Int_to_Q_LINKORIENTATION_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
-
-extern ControlUtils _SCSIM_1513_Utils;
-extern ControlUtils _SCSIM_1516_Utils;
-extern ControlUtils _SCSIM_1512_Utils;
-extern ControlUtils _SCSIM_1519_Utils;
-#include "CAST_Int_to_Q_LINKREACTION_TM_conversions.h"
-void _SCSIM_Mapping_CAST_Int_to_Q_LINKREACTION_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_CAST_Int_to_Q_LINKREACTION_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
-
-extern ControlUtils _SCSIM_1529_Utils;
-extern ControlUtils _SCSIM_1532_Utils;
-extern ControlUtils _SCSIM_1528_Utils;
-extern ControlUtils _SCSIM_1535_Utils;
-extern ControlUtils _SCSIM_1527_Utils;
-extern ControlUtils _SCSIM_1538_Utils;
+extern ControlUtils _SCSIM_1389_Utils;
+extern ControlUtils _SCSIM_1392_Utils;
+extern ControlUtils _SCSIM_1388_Utils;
+extern ControlUtils _SCSIM_1395_Utils;
 #include "CAST_Int_to_Q_LOCACC_TM_conversions.h"
 void _SCSIM_Mapping_CAST_Int_to_Q_LOCACC_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_CAST_Int_to_Q_LOCACC_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
+#include "CAST_Int_to_Q_LINKREACTION_TM_conversions.h"
+void _SCSIM_Mapping_CAST_Int_to_Q_LINKREACTION_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_CAST_Int_to_Q_LINKREACTION_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+
+extern ControlUtils _SCSIM_1411_Utils;
+extern ControlUtils _SCSIM_1414_Utils;
+extern ControlUtils _SCSIM_1410_Utils;
+extern ControlUtils _SCSIM_1417_Utils;
+extern ControlUtils _SCSIM_1409_Utils;
+extern ControlUtils _SCSIM_1420_Utils;
+#include "CAST_Int_to_Q_LINKORIENTATION_TM_conversions.h"
+void _SCSIM_Mapping_CAST_Int_to_Q_LINKORIENTATION_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_CAST_Int_to_Q_LINKORIENTATION_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+
+extern ControlUtils _SCSIM_1429_Utils;
+extern ControlUtils _SCSIM_1432_Utils;
+extern ControlUtils _SCSIM_1428_Utils;
+extern ControlUtils _SCSIM_1435_Utils;
 #include "Write_P005_TM_trackside.h"
 void _SCSIM_Mapping_Write_P005_TM_trackside(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_Write_P005_TM_trackside_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
@@ -355,12 +351,12 @@ void* _SCSIM_Get_SEND_MessageData_TM_lib_internal_Handle(void* pInstance, int nH
 void _SCSIM_Mapping_C_P005_tracksim_compr_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_C_P005_tracksim_compr_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-extern ControlUtils _SCSIM_1611_Utils;
-extern ControlUtils _SCSIM_1614_Utils;
-extern ControlUtils _SCSIM_1610_Utils;
-extern ControlUtils _SCSIM_1617_Utils;
-extern ControlUtils _SCSIM_1609_Utils;
-extern ControlUtils _SCSIM_1620_Utils;
+extern ControlUtils _SCSIM_1502_Utils;
+extern ControlUtils _SCSIM_1505_Utils;
+extern ControlUtils _SCSIM_1501_Utils;
+extern ControlUtils _SCSIM_1508_Utils;
+extern ControlUtils _SCSIM_1500_Utils;
+extern ControlUtils _SCSIM_1511_Utils;
 #include "SEND_FindSlot_DRAFTS.h"
 void _SCSIM_Mapping_SEND_FindSlot_DRAFTS(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_SEND_FindSlot_DRAFTS_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);

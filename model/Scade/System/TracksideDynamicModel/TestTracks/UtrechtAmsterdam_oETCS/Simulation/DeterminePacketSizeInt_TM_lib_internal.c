@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -29,6 +29,6 @@ void DeterminePacketSizeInt_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** DeterminePacketSizeInt_TM_lib_internal.c
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 

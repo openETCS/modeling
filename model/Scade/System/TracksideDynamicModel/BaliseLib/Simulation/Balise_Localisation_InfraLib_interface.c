@@ -1,7 +1,7 @@
 #include "Balise_Localisation_InfraLib_interface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "235c67a4c12a2ff04e52b5de9fe2c885";
+const char* _SCSIM_CheckSum = "42de2ebaadf27ed7abf74ccc4b2f1a0d";
 const char* _SCSIM_SmuTypesCheckSum = "28e18c1b393c1cd143584174bcc1ba87";
 
 /*******************************
@@ -28,8 +28,8 @@ static outC_Balise_Localisation_InfraLib outputs_ctx_restore;
 /* separate_io: outputs instanciation */
 
 static void _SCSIM_RestoreInterface(void) {
-	kcg_copy_struct__337(&(inputs_ctx.B_data_in), &(inputs_ctx_restore.B_data_in));
-	kcg_copy_struct__324(&(inputs_ctx.Header), &(inputs_ctx_restore.Header));
+	kcg_copy_struct__390(&(inputs_ctx.B_data_in), &(inputs_ctx_restore.B_data_in));
+	kcg_copy_struct__358(&(inputs_ctx.Header), &(inputs_ctx_restore.Header));
 	inputs_ctx.PIG_nom = inputs_ctx_restore.PIG_nom;
 	outputs_ctx = outputs_ctx_restore;
 
@@ -38,8 +38,8 @@ static void _SCSIM_RestoreInterface(void) {
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	kcg_copy_struct__337(&(inputs_ctx_execute.B_data_in), &(inputs_ctx.B_data_in));
-	kcg_copy_struct__324(&(inputs_ctx_execute.Header), &(inputs_ctx.Header));
+	kcg_copy_struct__390(&(inputs_ctx_execute.B_data_in), &(inputs_ctx.B_data_in));
+	kcg_copy_struct__358(&(inputs_ctx_execute.Header), &(inputs_ctx.Header));
 	inputs_ctx_execute.PIG_nom = inputs_ctx.PIG_nom;
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }

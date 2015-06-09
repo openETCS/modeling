@@ -1,7 +1,7 @@
 #include "BaliseLib_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "04fd1d23e13270695575fd57fcabfb23";
+const char* _SCSIM_CheckSum = "e9383387d3cdfa60aa862d865d9a8edc";
 const char* _SCSIM_SmuTypesCheckSum = "d5b51fa9eff9683da46173266ac496c5";
 
 /*******************************
@@ -17,20 +17,20 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-inC_TrackDiscontinuity_InfraLib inputs_ctx;
-static inC_TrackDiscontinuity_InfraLib inputs_ctx_restore;
-static inC_TrackDiscontinuity_InfraLib inputs_ctx_execute;
-outC_TrackDiscontinuity_InfraLib outputs_ctx;
-static outC_TrackDiscontinuity_InfraLib outputs_ctx_restore;
+inC_Balise_Localisation_InfraLib inputs_ctx;
+static inC_Balise_Localisation_InfraLib inputs_ctx_restore;
+static inC_Balise_Localisation_InfraLib inputs_ctx_execute;
+outC_Balise_Localisation_InfraLib outputs_ctx;
+static outC_Balise_Localisation_InfraLib outputs_ctx_restore;
 
 /* separate_io: inputs instanciation */
 
 /* separate_io: outputs instanciation */
 
 static void _SCSIM_RestoreInterface(void) {
-	kcg_copy_struct__340(&(inputs_ctx.SectionData_in), &(inputs_ctx_restore.SectionData_in));
-	inputs_ctx.StartSection = inputs_ctx_restore.StartSection;
-	inputs_ctx.EndSection = inputs_ctx_restore.EndSection;
+	kcg_copy_struct__390(&(inputs_ctx.B_data_in), &(inputs_ctx_restore.B_data_in));
+	kcg_copy_struct__358(&(inputs_ctx.Header), &(inputs_ctx_restore.Header));
+	inputs_ctx.PIG_nom = inputs_ctx_restore.PIG_nom;
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -38,9 +38,9 @@ static void _SCSIM_RestoreInterface(void) {
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	kcg_copy_struct__340(&(inputs_ctx_execute.SectionData_in), &(inputs_ctx.SectionData_in));
-	inputs_ctx_execute.StartSection = inputs_ctx.StartSection;
-	inputs_ctx_execute.EndSection = inputs_ctx.EndSection;
+	kcg_copy_struct__390(&(inputs_ctx_execute.B_data_in), &(inputs_ctx.B_data_in));
+	kcg_copy_struct__358(&(inputs_ctx_execute.Header), &(inputs_ctx.Header));
+	inputs_ctx_execute.PIG_nom = inputs_ctx.PIG_nom;
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
@@ -53,7 +53,7 @@ void SimInit(void) {
 #ifdef EXTENDED_SIM
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
-	TrackDiscontinuity_reset_InfraLib(&outputs_ctx);
+	Balise_Localisation_reset_InfraLib(&outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimInit();
 #endif /* EXTENDED_SIM */
@@ -68,7 +68,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	TrackDiscontinuity_InfraLib(&inputs_ctx_execute, &outputs_ctx);
+	Balise_Localisation_InfraLib(&inputs_ctx_execute, &outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -83,12 +83,12 @@ void SimStop(void) {
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(inC_TrackDiscontinuity_InfraLib);
+	nSize += sizeof(inC_Balise_Localisation_InfraLib);
 
 /* separate_io: add (not in ctx) inputs size */
 
 /* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_TrackDiscontinuity_InfraLib);
+	nSize += sizeof(outC_Balise_Localisation_InfraLib);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -97,14 +97,14 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &inputs_ctx, sizeof(inC_TrackDiscontinuity_InfraLib));
-	pCurrent += sizeof(inC_TrackDiscontinuity_InfraLib);
+	memcpy(pCurrent, &inputs_ctx, sizeof(inC_Balise_Localisation_InfraLib));
+	pCurrent += sizeof(inC_Balise_Localisation_InfraLib);
 
 	/* separate_io: dump (not in ctx) inputs */
 
 	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_TrackDiscontinuity_InfraLib));
-	pCurrent += sizeof(outC_TrackDiscontinuity_InfraLib);
+	memcpy(pCurrent, &outputs_ctx, sizeof(outC_Balise_Localisation_InfraLib));
+	pCurrent += sizeof(outC_Balise_Localisation_InfraLib);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -112,14 +112,14 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&inputs_ctx, pCurrent, sizeof(inC_TrackDiscontinuity_InfraLib));
-	pCurrent += sizeof(inC_TrackDiscontinuity_InfraLib);
+	memcpy(&inputs_ctx, pCurrent, sizeof(inC_Balise_Localisation_InfraLib));
+	pCurrent += sizeof(inC_Balise_Localisation_InfraLib);
 
 	/* separate_io: restore (not in ctx) inputs */
 
 	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_TrackDiscontinuity_InfraLib));
-	pCurrent += sizeof(outC_TrackDiscontinuity_InfraLib);
+	memcpy(&outputs_ctx, pCurrent, sizeof(outC_Balise_Localisation_InfraLib));
+	pCurrent += sizeof(outC_Balise_Localisation_InfraLib);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */

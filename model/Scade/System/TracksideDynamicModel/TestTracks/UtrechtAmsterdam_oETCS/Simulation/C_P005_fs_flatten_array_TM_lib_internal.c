@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -34,7 +34,7 @@ void C_P005_fs_flatten_array_TM_lib_internal(
   kcg_copy_P005_sections_array_flat_T_TM(&outC->_L1, Acc);
   outC->_L8 = i;
   kcg_copy_P005_sections_array_flat_T_TM(&outC->_L7, &outC->_L1);
-  if ((0 <= outC->_L8) & (outC->_L8 < 224)) {
+  if ((0 <= outC->_L8) & (outC->_L8 < 231)) {
     outC->_L7[outC->_L8] = outC->_L10;
   }
   kcg_copy_P005_sections_array_flat_T_TM(&outC->flat, &outC->_L7);
@@ -42,6 +42,6 @@ void C_P005_fs_flatten_array_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_fs_flatten_array_TM_lib_internal.c
-** Generation date: 2015-06-05T13:58:18
+** Generation date: 2015-06-08T18:54:31
 *************************************************************$ */
 

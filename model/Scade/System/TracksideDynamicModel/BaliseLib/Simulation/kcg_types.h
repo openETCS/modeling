@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/BaliseLib/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-04-27T21:06:24
+** Generation date: 2015-06-08T18:46:58
 *************************************************************$ */
 #ifndef _KCG_TYPES_H_
 #define _KCG_TYPES_H_
@@ -59,13 +59,20 @@ typedef enum {
 typedef kcg_int NID_PACKET;
 
 typedef struct {
-  kcg_real TrainPos_in;
-  kcg_int OffsetTotal;
-  kcg_real TrainPosCalibrated;
-} struct__297;
+  kcg_int q_updown;
+  kcg_int m_version;
+  kcg_int q_media;
+  kcg_int n_pig;
+  kcg_int n_total;
+  kcg_int m_dup;
+  kcg_int m_mcount;
+  kcg_int nid_c;
+  kcg_int nid_bg;
+  kcg_int q_link;
+} struct__358;
 
-/* InfraLib::TrainPosRaw_T */
-typedef struct__297 TrainPosRaw_T_InfraLib;
+/* TM::BaliseTelegramHeader_int_T */
+typedef struct__358 BaliseTelegramHeader_int_T_TM;
 
 typedef kcg_int array_int_500[500];
 
@@ -78,111 +85,75 @@ typedef struct {
   kcg_bool valid;
   kcg_int startAddress;
   kcg_int endAddress;
-} struct__306;
+} struct__374;
 
 /* Common_Types_Pkg::MetadataElement_T */
-typedef struct__306 MetadataElement_T_Common_Types_Pkg;
+typedef struct__374 MetadataElement_T_Common_Types_Pkg;
 
-typedef MetadataElement_T_Common_Types_Pkg array__314[30];
+typedef MetadataElement_T_Common_Types_Pkg array__382[30];
 
 /* Common_Types_Pkg::Metadata_T */
-typedef array__314 Metadata_T_Common_Types_Pkg;
+typedef array__382 Metadata_T_Common_Types_Pkg;
 
 typedef struct {
   Metadata_T_Common_Types_Pkg PacketHeaders;
   CompressedPacketData_T_Common_Types_Pkg PacketData;
-} struct__317;
+} struct__385;
 
 /* Common_Types_Pkg::CompressedPackets_T */
-typedef struct__317 CompressedPackets_T_Common_Types_Pkg;
+typedef struct__385 CompressedPackets_T_Common_Types_Pkg;
 
 typedef struct {
-  kcg_int q_updown;
-  kcg_int m_version;
-  kcg_int q_media;
-  kcg_int n_pig;
-  kcg_int n_total;
-  kcg_int m_dup;
-  kcg_int m_mcount;
-  kcg_int nid_c;
-  kcg_int nid_bg;
-  kcg_int q_link;
-} struct__322;
+  BaliseTelegramHeader_int_T_TM header;
+  CompressedPackets_T_Common_Types_Pkg packets;
+  kcg_int engineering_BG_location;
+  kcg_real TrainPos;
+  kcg_int pig_nom_0;
+  kcg_bool balise_passed;
+} struct__390;
 
-/* TM_BaliseTelegramHeader_int_T */
-typedef struct__322 TM_BaliseTelegramHeader_int_T;
+/* InfraLib::B_data_internal_T */
+typedef struct__390 B_data_internal_T_InfraLib;
 
-typedef struct {
-  TM_BaliseTelegramHeader_int_T Header;
-  CompressedPackets_T_Common_Types_Pkg Messages;
-} struct__335;
+#ifndef kcg_copy_struct__358
+#define kcg_copy_struct__358(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__358)))
+#endif /* kcg_copy_struct__358 */
 
-/* TM_CompressedBaliseMessage */
-typedef struct__335 TM_CompressedBaliseMessage;
+#ifndef kcg_copy_struct__374
+#define kcg_copy_struct__374(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__374)))
+#endif /* kcg_copy_struct__374 */
 
-typedef struct {
-  TrainPosRaw_T_InfraLib TrainPosRaw;
-  TM_CompressedBaliseMessage BG_Message;
-} struct__340;
+#ifndef kcg_copy_struct__385
+#define kcg_copy_struct__385(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__385)))
+#endif /* kcg_copy_struct__385 */
 
-/* InfraLib::TrackSectionData_T */
-typedef struct__340 TrackSectionData_T_InfraLib;
-
-#ifndef kcg_copy_struct__297
-#define kcg_copy_struct__297(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__297)))
-#endif /* kcg_copy_struct__297 */
-
-#ifndef kcg_copy_struct__306
-#define kcg_copy_struct__306(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__306)))
-#endif /* kcg_copy_struct__306 */
-
-#ifndef kcg_copy_struct__317
-#define kcg_copy_struct__317(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__317)))
-#endif /* kcg_copy_struct__317 */
-
-#ifndef kcg_copy_struct__322
-#define kcg_copy_struct__322(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__322)))
-#endif /* kcg_copy_struct__322 */
-
-#ifndef kcg_copy_struct__335
-#define kcg_copy_struct__335(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__335)))
-#endif /* kcg_copy_struct__335 */
-
-#ifndef kcg_copy_struct__340
-#define kcg_copy_struct__340(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__340)))
-#endif /* kcg_copy_struct__340 */
+#ifndef kcg_copy_struct__390
+#define kcg_copy_struct__390(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__390)))
+#endif /* kcg_copy_struct__390 */
 
 #ifndef kcg_copy_array_int_500
 #define kcg_copy_array_int_500(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array_int_500)))
 #endif /* kcg_copy_array_int_500 */
 
-#ifndef kcg_copy_array__314
-#define kcg_copy_array__314(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array__314)))
-#endif /* kcg_copy_array__314 */
+#ifndef kcg_copy_array__382
+#define kcg_copy_array__382(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array__382)))
+#endif /* kcg_copy_array__382 */
 
-#ifndef kcg_comp_struct__297
-extern kcg_bool kcg_comp_struct__297(struct__297 *kcg_c1, struct__297 *kcg_c2);
-#endif /* kcg_comp_struct__297 */
+#ifndef kcg_comp_struct__358
+extern kcg_bool kcg_comp_struct__358(struct__358 *kcg_c1, struct__358 *kcg_c2);
+#endif /* kcg_comp_struct__358 */
 
-#ifndef kcg_comp_struct__306
-extern kcg_bool kcg_comp_struct__306(struct__306 *kcg_c1, struct__306 *kcg_c2);
-#endif /* kcg_comp_struct__306 */
+#ifndef kcg_comp_struct__374
+extern kcg_bool kcg_comp_struct__374(struct__374 *kcg_c1, struct__374 *kcg_c2);
+#endif /* kcg_comp_struct__374 */
 
-#ifndef kcg_comp_struct__317
-extern kcg_bool kcg_comp_struct__317(struct__317 *kcg_c1, struct__317 *kcg_c2);
-#endif /* kcg_comp_struct__317 */
+#ifndef kcg_comp_struct__385
+extern kcg_bool kcg_comp_struct__385(struct__385 *kcg_c1, struct__385 *kcg_c2);
+#endif /* kcg_comp_struct__385 */
 
-#ifndef kcg_comp_struct__322
-extern kcg_bool kcg_comp_struct__322(struct__322 *kcg_c1, struct__322 *kcg_c2);
-#endif /* kcg_comp_struct__322 */
-
-#ifndef kcg_comp_struct__335
-extern kcg_bool kcg_comp_struct__335(struct__335 *kcg_c1, struct__335 *kcg_c2);
-#endif /* kcg_comp_struct__335 */
-
-#ifndef kcg_comp_struct__340
-extern kcg_bool kcg_comp_struct__340(struct__340 *kcg_c1, struct__340 *kcg_c2);
-#endif /* kcg_comp_struct__340 */
+#ifndef kcg_comp_struct__390
+extern kcg_bool kcg_comp_struct__390(struct__390 *kcg_c1, struct__390 *kcg_c2);
+#endif /* kcg_comp_struct__390 */
 
 #ifndef kcg_comp_array_int_500
 extern kcg_bool kcg_comp_array_int_500(
@@ -190,45 +161,37 @@ extern kcg_bool kcg_comp_array_int_500(
   array_int_500 *kcg_c2);
 #endif /* kcg_comp_array_int_500 */
 
-#ifndef kcg_comp_array__314
-extern kcg_bool kcg_comp_array__314(array__314 *kcg_c1, array__314 *kcg_c2);
-#endif /* kcg_comp_array__314 */
+#ifndef kcg_comp_array__382
+extern kcg_bool kcg_comp_array__382(array__382 *kcg_c1, array__382 *kcg_c2);
+#endif /* kcg_comp_array__382 */
 
-#define kcg_comp_TrainPosRaw_T_InfraLib kcg_comp_struct__297
+#define kcg_comp_B_data_internal_T_InfraLib kcg_comp_struct__390
 
-#define kcg_copy_TrainPosRaw_T_InfraLib kcg_copy_struct__297
-
-#define kcg_comp_TrackSectionData_T_InfraLib kcg_comp_struct__340
-
-#define kcg_copy_TrackSectionData_T_InfraLib kcg_copy_struct__340
-
-#define kcg_comp_TM_BaliseTelegramHeader_int_T kcg_comp_struct__322
-
-#define kcg_copy_TM_BaliseTelegramHeader_int_T kcg_copy_struct__322
-
-#define kcg_comp_TM_CompressedBaliseMessage kcg_comp_struct__335
-
-#define kcg_copy_TM_CompressedBaliseMessage kcg_copy_struct__335
+#define kcg_copy_B_data_internal_T_InfraLib kcg_copy_struct__390
 
 #define kcg_comp_CompressedPacketData_T_Common_Types_Pkg kcg_comp_array_int_500
 
 #define kcg_copy_CompressedPacketData_T_Common_Types_Pkg kcg_copy_array_int_500
 
-#define kcg_comp_MetadataElement_T_Common_Types_Pkg kcg_comp_struct__306
+#define kcg_comp_MetadataElement_T_Common_Types_Pkg kcg_comp_struct__374
 
-#define kcg_copy_MetadataElement_T_Common_Types_Pkg kcg_copy_struct__306
+#define kcg_copy_MetadataElement_T_Common_Types_Pkg kcg_copy_struct__374
 
-#define kcg_comp_Metadata_T_Common_Types_Pkg kcg_comp_array__314
+#define kcg_comp_Metadata_T_Common_Types_Pkg kcg_comp_array__382
 
-#define kcg_copy_Metadata_T_Common_Types_Pkg kcg_copy_array__314
+#define kcg_copy_Metadata_T_Common_Types_Pkg kcg_copy_array__382
 
-#define kcg_comp_CompressedPackets_T_Common_Types_Pkg kcg_comp_struct__317
+#define kcg_comp_CompressedPackets_T_Common_Types_Pkg kcg_comp_struct__385
 
-#define kcg_copy_CompressedPackets_T_Common_Types_Pkg kcg_copy_struct__317
+#define kcg_copy_CompressedPackets_T_Common_Types_Pkg kcg_copy_struct__385
+
+#define kcg_comp_BaliseTelegramHeader_int_T_TM kcg_comp_struct__358
+
+#define kcg_copy_BaliseTelegramHeader_int_T_TM kcg_copy_struct__358
 
 #endif /* _KCG_TYPES_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_types.h
-** Generation date: 2015-04-27T21:06:24
+** Generation date: 2015-06-08T18:46:58
 *************************************************************$ */
 
