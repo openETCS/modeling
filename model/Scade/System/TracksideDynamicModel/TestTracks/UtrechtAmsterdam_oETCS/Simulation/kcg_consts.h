@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-09T12:04:05
+** Generation date: 2015-06-09T14:04:51
 *************************************************************$ */
 #ifndef _KCG_CONSTS_H_
 #define _KCG_CONSTS_H_
@@ -43,8 +43,8 @@ extern const P005_sections_array_flat_T_TM DEFAULT_P005_sections_array_flat_TM;
 /* TM::DEFAULT_Headers */
 extern const Metadata_T_Common_Types_Pkg DEFAULT_Headers_TM;
 
-/* Packets426::BG364_P005 */
-extern const P005_trackside_int_T_TM BG364_P005_Packets426;
+/* Packets426::BG364_P005_00A */
+extern const P005_trackside_int_T_TM BG364_P005_00A_Packets426;
 
 /* Balises426::BG367_header_B0 */
 extern const BaliseTelegramHeader_int_T_TM BG367_header_B0_Balises426;
@@ -329,7 +329,7 @@ extern const P005_section_enum_T_TM DEFAULT_P005_OBU_section_TM_lib_internal;
 #define INT_Q_NEWCOUNTRY_not_same_TM_conversions 1
 
 /* TM_conversions::ENUM_Q_NEWCOUNTRY_not_same */
-#define ENUM_Q_NEWCOUNTRY_not_same_TM_conversions Q_NEWCOUNTRY_Same_country__or__railway_administration_no_NID_C_follows
+#define ENUM_Q_NEWCOUNTRY_not_same_TM_conversions Q_NEWCOUNTRY_Not_the_same_country__or__railway_administration_NID_C_follows
 
 /* TM_conversions::ENUM_Q_NEWCOUNTRY_same */
 #define ENUM_Q_NEWCOUNTRY_same_TM_conversions Q_NEWCOUNTRY_Same_country__or__railway_administration_no_NID_C_follows
@@ -394,6 +394,6 @@ extern const MetadataElement_T_Common_Types_Pkg DEFAULT_PHeader_TM;
 #endif /* _KCG_CONSTS_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_consts.h
-** Generation date: 2015-06-09T12:04:05
+** Generation date: 2015-06-09T14:04:51
 *************************************************************$ */
 

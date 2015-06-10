@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-09T12:04:05
+** Generation date: 2015-06-09T14:04:51
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -28,7 +28,8 @@ void Story00A_BTM_reset_FirstTest(outC_Story00A_BTM_FirstTest *outC)
   Balise_Group_365_reset_AmsterdamUtrechtL1_Sheet06_Bijlmer(
     &outC->_1_Context_1);
   /* 1 */
-  Balise_Group_364_reset_AmsterdamUtrechtL1_Sheet06_Bijlmer(&outC->Context_1);
+  Balise_Group_364_00A_reset_AmsterdamUtrechtL1_Sheet06_Bijlmer(
+    &outC->Context_1);
 }
 
 /* FirstTest::Story00A_BTM */
@@ -41,7 +42,7 @@ void Story00A_BTM_FirstTest(
     (CompressedBaliseMessage_TM *) &DEFAULT_BTMMessage_TM);
   outC->_L33 = TrainPos;
   /* 1 */
-  Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer(
+  Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer(
     &outC->_L36,
     outC->_L33,
     (BaliseGroupData_TM *) &BG364_Balises426,
@@ -108,6 +109,6 @@ void Story00A_BTM_FirstTest(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Story00A_BTM_FirstTest.c
-** Generation date: 2015-06-09T12:04:05
+** Generation date: 2015-06-09T14:04:51
 *************************************************************$ */
 
