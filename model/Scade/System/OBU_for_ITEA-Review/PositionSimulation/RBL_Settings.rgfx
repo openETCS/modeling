@@ -8,7 +8,7 @@
     <IDE>
         <environment_id value="1101509228"/>
         <codeIntegration keyboardId="0" periodicity="33" pointerId="0"/>
-        <scade path="Testbench_Suite/Testbench_Suite.etp"/>
+        <scade path="Testbench_Suite/Testbench_Suite.etp;../../OBU_PreIntegrations/Testbench_Integration/Testbench_Integration.etp"/>
         <ratio horizontal="1" vertical="1"/>
         <colorMap crc="427884849" name="colorTable.sct" path="."/>
         <lineWidthMap crc="1678555679" path="default"/>
@@ -48,6 +48,12 @@
                         <init>false</init>
                     </output>
                     <output memory="true" name="overrideSDM" oid="95c9bddc-64e8-4f28-9366-a10faf8236ef" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="overrideBrakeBuildupTime" oid="3a18ff71-a073-4d65-8259-9b54b17899bd" type="bool">
+                        <init>false</init>
+                    </output>
+                    <output memory="true" name="overrideAirResistance" oid="4724fe12-6247-436c-8bc2-80033c7944ae" type="bool">
                         <init>false</init>
                     </output>
                 </outputs>
@@ -188,18 +194,99 @@
                         </texture>
                     </properties>
                 </rectangle>
-                <referenceContainer oid="04795138-8786-4add-9320-b56bf89fe50d">
+                <referenceContainer oid="e3e6a74f-14ee-4509-9bc5-af0d095bcb91">
                     <pathFromRoot value="2"/>
+                    <properties modular="false" name="ListBox">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>-214.0</init>
+                            </x>
+                            <y>
+                                <init>15.5</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="ListBox.wgfx" path="$(RAPID_PROTOTYPER)\Widgets\White\Controls - Enumerates"/>
+                        <crc value="601459876"/>
+                        <inputParameters>
+                            <parameter control="false" name="Enabled" oid="d6b23f7b-46e8-4d84-8448-dd6dba9f1c44" type="bool">
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="true" name="Width" oid="44610aec-6623-4a83-9d1f-46d5141c500a" type="real">
+                                <init>168.0</init>
+                            </parameter>
+                            <parameter control="false" name="NbMaxItems" oid="a9f015fa-475f-432f-8daf-e55124493e70" type="int">
+                                <init>4</init>
+                            </parameter>
+                            <parameter control="false" name="LabelStringLines" oid="2a8f1265-6e35-4231-b970-dac90b3c7137" representation="index" type="int">
+                                <init>1</init>
+                            </parameter>
+                            <parameter control="false" name="LabelString2" oid="2af9314d-c06f-46f5-8cf5-bf4e1cd6dece" representation="as_string" type="char^255">
+                                <init>[76, 97, 98, 101, 108, 0]</init>
+                            </parameter>
+                            <parameter control="false" name="TextAlignment" oid="aedef833-68cc-4364-99c8-4d097a3afd3f" representation="index" type="int">
+                                <init>1</init>
+                            </parameter>
+                            <parameter control="false" name="DefaultEntry" oid="7871159e-0cca-4afa-a7e4-2c16df09e1d7" type="int">
+                                <init>1</init>
+                            </parameter>
+                            <parameter control="false" name="Entry1" oid="efec912e-344d-456f-a4f2-fc9ae1e9fcd0" representation="as_string" type="char^255">
+                                <init>[78, 111, 116, 32, 114, 101, 103, 105, 115, 116, 101, 114, 101, 100, 0]</init>
+                            </parameter>
+                            <parameter control="false" name="Entry2" oid="a4fef36a-7362-42f8-8503-ff07fa3ab85b" representation="as_string" type="char^255">
+                                <init>[82, 101, 103, 105, 115, 116, 101, 114, 101, 100, 0]</init>
+                            </parameter>
+                            <parameter control="false" name="Entry3" oid="72e98cff-0008-4ed0-8594-73a45db97fef" representation="as_string" type="char^255">
+                                <init>[78, 111, 116, 32, 99, 111, 110, 110, 101, 99, 116, 101, 100, 0]</init>
+                            </parameter>
+                            <parameter control="false" name="Entry4" oid="18f53e46-645a-4621-aae5-7291aa1509b7" representation="as_string" type="char^255">
+                                <init>[67, 111, 110, 110, 101, 99, 116, 101, 100, 0]</init>
+                            </parameter>
+                            <parameter control="false" name="Entry5" oid="90cebd4a-0a9f-453b-8b93-2c02415aee76" representation="as_string" type="char^255">
+                                <init>[73, 116, 101, 109, 32, 53, 0]</init>
+                            </parameter>
+                            <parameter control="false" name="Entry6" oid="c038fb4c-78df-4f63-a842-df54f89222b0" representation="as_string" type="char^255">
+                                <init>[73, 116, 101, 109, 32, 54, 0]</init>
+                            </parameter>
+                        </inputParameters>
+                        <outputParameters>
+                            <parameter name="Open" oid="549a2b1a-6048-4164-907c-f4ffd118e8a1" type="bool"/>
+                            <parameter name="SelectedEntry" oid="7b3b91e7-5239-421c-bef0-8f684974ba96" type="int">
+                                <expr>selectedRadioStatus</expr>
+                            </parameter>
+                            <parameter name="LabelString" oid="5f6b495a-1afe-4db0-a290-ab39eab329dd" representation="as_string" type="char^255"/>
+                        </outputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
+                <referenceContainer oid="04795138-8786-4add-9320-b56bf89fe50d">
+                    <pathFromRoot value="3"/>
                     <properties modular="false" name="RoundToggleButton">
                         <visible>
                             <init>true</init>
                         </visible>
                         <origin>
                             <x>
-                                <init>94.0</init>
+                                <init>77.0</init>
                             </x>
                             <y>
-                                <init>-72.0</init>
+                                <init>-78.0</init>
                             </y>
                         </origin>
                         <scale>
@@ -223,18 +310,18 @@
                                 <init>true</init>
                             </parameter>
                             <parameter control="false" name="SelectedColor" oid="0c4c679c-3bd9-4ab2-b1ea-1b89463e8471" representation="color" type="int">
-                                <init>44</init>
+                                <init>7</init>
                             </parameter>
                             <parameter control="false" name="TextVisible" oid="e0046017-60ea-4cb1-92b6-e3ebfbb47bd1" type="bool">
                                 <init>true</init>
                             </parameter>
                             <parameter control="false" name="Text" oid="a43768d0-0222-4c91-8033-35f0e2113417" representation="as_string" type="char^255">
-                                <init>[33, 0]</init>
+                                <init>[83, 68, 77, 0]</init>
                             </parameter>
                             <parameter control="false" name="TextSize" oid="c57b681d-8b20-4f79-bd96-bb54f4207975" representation="index" type="int">
                                 <init>1</init>
                             </parameter>
-                            <parameter control="false" name="Radius" oid="0b0c8aca-940b-4364-bd8f-a49de26a7c87" type="real">
+                            <parameter control="true" name="Radius" oid="0b0c8aca-940b-4364-bd8f-a49de26a7c87" type="real">
                                 <init>25.0</init>
                             </parameter>
                         </inputParameters>
@@ -247,17 +334,17 @@
                     <children/>
                 </referenceContainer>
                 <referenceContainer oid="a8dd0df3-3ae5-4f04-b452-3159cdef2bbc">
-                    <pathFromRoot value="3"/>
+                    <pathFromRoot value="4"/>
                     <properties modular="false" name="LED">
                         <visible>
                             <init>true</init>
                         </visible>
                         <origin>
                             <x>
-                                <init>319.0</init>
+                                <init>328.0</init>
                             </x>
                             <y>
-                                <init>-72.0</init>
+                                <init>-78.0</init>
                             </y>
                         </origin>
                         <scale>
@@ -284,7 +371,7 @@
                             <parameter control="false" name="LEDColor" oid="07d7b1a4-6e20-4683-b82f-1234b88d91db" representation="color" type="int">
                                 <init>78</init>
                             </parameter>
-                            <parameter control="false" name="Radius" oid="e6424eb6-00ee-48f8-87ae-f9e5919d47cb" type="real">
+                            <parameter control="true" name="Radius" oid="e6424eb6-00ee-48f8-87ae-f9e5919d47cb" type="real">
                                 <init>25.0</init>
                             </parameter>
                             <parameter control="false" name="LabelVisible" oid="d3a175b2-c462-41dc-86c0-f40c946b4f9e" type="bool">
@@ -294,61 +381,6 @@
                                 <init>[77, 65, 0]</init>
                             </parameter>
                         </inputParameters>
-                    </properties>
-                    <children/>
-                </referenceContainer>
-                <referenceContainer oid="6cc824c8-917f-44bf-887e-a5ec58a92f04">
-                    <pathFromRoot value="4"/>
-                    <properties modular="false" name="RoundPushButton">
-                        <visible>
-                            <init>true</init>
-                        </visible>
-                        <origin>
-                            <x>
-                                <init>206.5</init>
-                            </x>
-                            <y>
-                                <init>-72.0</init>
-                            </y>
-                        </origin>
-                        <scale>
-                            <x>
-                                <init>1.0</init>
-                            </x>
-                            <y>
-                                <init>1.0</init>
-                            </y>
-                        </scale>
-                        <rotate>
-                            <angle>
-                                <init>0.0</init>
-                            </angle>
-                        </rotate>
-                        <orientation clockwise="false"/>
-                        <file name="RoundPushButton.wgfx" path="$(RAPID_PROTOTYPER)\Widgets\White\Controls - Buttons"/>
-                        <crc value="1304406027"/>
-                        <inputParameters>
-                            <parameter control="false" name="Enabled" oid="aac9758d-785f-41e6-8314-a615ed2a34a2" type="bool">
-                                <init>true</init>
-                            </parameter>
-                            <parameter control="false" name="TextVisible" oid="6e60c12a-cb58-4dde-a5ea-3fd261b37da2" type="bool">
-                                <init>true</init>
-                            </parameter>
-                            <parameter control="false" name="Text" oid="19002396-43e3-40c2-b099-86ca476b40ce" representation="as_string" type="char^255">
-                                <init>[71, 111, 33, 0]</init>
-                            </parameter>
-                            <parameter control="false" name="TextSize" oid="f40520a2-13a5-4ab3-9fff-8ebaa7eca82c" representation="index" type="int">
-                                <init>1</init>
-                            </parameter>
-                            <parameter control="false" name="Radius" oid="c723be43-2ff9-469c-aea3-ebb24505b37b" type="real">
-                                <init>25.0</init>
-                            </parameter>
-                        </inputParameters>
-                        <outputParameters>
-                            <parameter name="evtClick" oid="a2bb13d5-d6ef-490f-859a-5c6f9b068b36" type="bool">
-                                <expr>establishMoRCSession</expr>
-                            </parameter>
-                        </outputParameters>
                     </properties>
                     <children/>
                 </referenceContainer>
@@ -438,89 +470,8 @@
                         </vertAlign>
                     </properties>
                 </text>
-                <referenceContainer oid="e3e6a74f-14ee-4509-9bc5-af0d095bcb91">
-                    <pathFromRoot value="7"/>
-                    <properties modular="false" name="ListBox">
-                        <visible>
-                            <init>true</init>
-                        </visible>
-                        <origin>
-                            <x>
-                                <init>-214.0</init>
-                            </x>
-                            <y>
-                                <init>15.5</init>
-                            </y>
-                        </origin>
-                        <scale>
-                            <x>
-                                <init>1.0</init>
-                            </x>
-                            <y>
-                                <init>1.0</init>
-                            </y>
-                        </scale>
-                        <rotate>
-                            <angle>
-                                <init>0.0</init>
-                            </angle>
-                        </rotate>
-                        <orientation clockwise="false"/>
-                        <file name="ListBox.wgfx" path="$(RAPID_PROTOTYPER)\Widgets\White\Controls - Enumerates"/>
-                        <crc value="601459876"/>
-                        <inputParameters>
-                            <parameter control="false" name="Enabled" oid="d6b23f7b-46e8-4d84-8448-dd6dba9f1c44" type="bool">
-                                <init>true</init>
-                            </parameter>
-                            <parameter control="false" name="Width" oid="44610aec-6623-4a83-9d1f-46d5141c500a" type="real">
-                                <init>168.0</init>
-                            </parameter>
-                            <parameter control="false" name="NbMaxItems" oid="a9f015fa-475f-432f-8daf-e55124493e70" type="int">
-                                <init>4</init>
-                            </parameter>
-                            <parameter control="false" name="LabelStringLines" oid="2a8f1265-6e35-4231-b970-dac90b3c7137" representation="index" type="int">
-                                <init>1</init>
-                            </parameter>
-                            <parameter control="false" name="LabelString2" oid="2af9314d-c06f-46f5-8cf5-bf4e1cd6dece" representation="as_string" type="char^255">
-                                <init>[76, 97, 98, 101, 108, 0]</init>
-                            </parameter>
-                            <parameter control="false" name="TextAlignment" oid="aedef833-68cc-4364-99c8-4d097a3afd3f" representation="index" type="int">
-                                <init>1</init>
-                            </parameter>
-                            <parameter control="false" name="DefaultEntry" oid="7871159e-0cca-4afa-a7e4-2c16df09e1d7" type="int">
-                                <init>1</init>
-                            </parameter>
-                            <parameter control="false" name="Entry1" oid="efec912e-344d-456f-a4f2-fc9ae1e9fcd0" representation="as_string" type="char^255">
-                                <init>[78, 111, 116, 32, 114, 101, 103, 105, 115, 116, 101, 114, 101, 100, 0]</init>
-                            </parameter>
-                            <parameter control="false" name="Entry2" oid="a4fef36a-7362-42f8-8503-ff07fa3ab85b" representation="as_string" type="char^255">
-                                <init>[82, 101, 103, 105, 115, 116, 101, 114, 101, 100, 0]</init>
-                            </parameter>
-                            <parameter control="false" name="Entry3" oid="72e98cff-0008-4ed0-8594-73a45db97fef" representation="as_string" type="char^255">
-                                <init>[78, 111, 116, 32, 99, 111, 110, 110, 101, 99, 116, 101, 100, 0]</init>
-                            </parameter>
-                            <parameter control="false" name="Entry4" oid="18f53e46-645a-4621-aae5-7291aa1509b7" representation="as_string" type="char^255">
-                                <init>[67, 111, 110, 110, 101, 99, 116, 101, 100, 0]</init>
-                            </parameter>
-                            <parameter control="false" name="Entry5" oid="90cebd4a-0a9f-453b-8b93-2c02415aee76" representation="as_string" type="char^255">
-                                <init>[73, 116, 101, 109, 32, 53, 0]</init>
-                            </parameter>
-                            <parameter control="false" name="Entry6" oid="c038fb4c-78df-4f63-a842-df54f89222b0" representation="as_string" type="char^255">
-                                <init>[73, 116, 101, 109, 32, 54, 0]</init>
-                            </parameter>
-                        </inputParameters>
-                        <outputParameters>
-                            <parameter name="Open" oid="549a2b1a-6048-4164-907c-f4ffd118e8a1" type="bool"/>
-                            <parameter name="SelectedEntry" oid="7b3b91e7-5239-421c-bef0-8f684974ba96" type="int">
-                                <expr>selectedRadioStatus</expr>
-                            </parameter>
-                            <parameter name="LabelString" oid="5f6b495a-1afe-4db0-a290-ab39eab329dd" representation="as_string" type="char^255"/>
-                        </outputParameters>
-                    </properties>
-                    <children/>
-                </referenceContainer>
                 <text oid="b69c493b-a5d1-4837-859f-03284b5cb7a8">
-                    <pathFromRoot value="8"/>
+                    <pathFromRoot value="7"/>
                     <properties name="text">
                         <visible>
                             <init>true</init>
@@ -562,51 +513,8 @@
                         </vertAlign>
                     </properties>
                 </text>
-                <text oid="a9c5c31e-7165-4197-b944-15663c960e61">
-                    <pathFromRoot value="9"/>
-                    <properties name="text">
-                        <visible>
-                            <init>true</init>
-                        </visible>
-                        <multiline>
-                            <init>false</init>
-                        </multiline>
-                        <position>
-                            <x>
-                                <init>168.0</init>
-                            </x>
-                            <y>
-                                <init>-39.75</init>
-                            </y>
-                        </position>
-                        <maxLength>
-                            <init>255</init>
-                        </maxLength>
-                        <textValue type="char">
-                            <init>[81,117,105,99,107,32,83,116,97,114,116,0]</init>
-                        </textValue>
-                        <haloing>
-                            <init>false</init>
-                        </haloing>
-                        <outlineColor>
-                            <init>2</init>
-                        </outlineColor>
-                        <lineWidth>
-                            <init>2</init>
-                        </lineWidth>
-                        <font>
-                            <init>1</init>
-                        </font>
-                        <horizAlign>
-                            <init>left</init>
-                        </horizAlign>
-                        <vertAlign>
-                            <init>bottom</init>
-                        </vertAlign>
-                    </properties>
-                </text>
                 <text oid="a75bb9c9-f5e4-4b72-a85b-0962c448d06a">
-                    <pathFromRoot value="10"/>
+                    <pathFromRoot value="8"/>
                     <properties name="text">
                         <visible>
                             <init>true</init>
@@ -616,17 +524,17 @@
                         </multiline>
                         <position>
                             <x>
-                                <init>40.0</init>
+                                <init>46.0</init>
                             </x>
                             <y>
-                                <init>-39.75</init>
+                                <init>-42.75</init>
                             </y>
                         </position>
                         <maxLength>
                             <init>255</init>
                         </maxLength>
                         <textValue type="char">
-                            <init>[79,118,101,114,114,105,100,101,32,83,68,77,0]</init>
+                            <init>[79,118,101,114,114,105,100,101,0]</init>
                         </textValue>
                         <haloing>
                             <init>false</init>
@@ -649,7 +557,7 @@
                     </properties>
                 </text>
                 <rectangle oid="de3f5596-27fb-4dc7-b1eb-a562c1041e35">
-                    <pathFromRoot value="11"/>
+                    <pathFromRoot value="9"/>
                     <properties name="rectangle">
                         <visible>
                             <init>true</init>
@@ -708,7 +616,7 @@
                     </properties>
                 </rectangle>
                 <richText oid="8533d2b9-5ef8-4390-bb32-a0bef6085588">
-                    <pathFromRoot value="12"/>
+                    <pathFromRoot value="10"/>
                     <properties name="rich text">
                         <visible>
                             <init>true</init>
@@ -745,7 +653,7 @@
                     </properties>
                 </richText>
                 <rectangle oid="9fce5727-28a5-427c-a91e-a01dfcca5c8f">
-                    <pathFromRoot value="13"/>
+                    <pathFromRoot value="11"/>
                     <properties name="rectangle">
                         <visible>
                             <init>true</init>
@@ -804,7 +712,7 @@
                     </properties>
                 </rectangle>
                 <richText oid="4c948eb2-bcf2-42b1-99d7-bfc6a56f8e39">
-                    <pathFromRoot value="14"/>
+                    <pathFromRoot value="12"/>
                     <properties name="rich text">
                         <visible>
                             <init>true</init>
@@ -841,17 +749,17 @@
                     </properties>
                 </richText>
                 <richText oid="08c1d3c2-ccd2-4ba3-9d97-c89d6687dd49">
-                    <pathFromRoot value="15"/>
+                    <pathFromRoot value="13"/>
                     <properties name="rich text">
                         <visible>
                             <init>true</init>
                         </visible>
                         <position>
                             <x>
-                                <init>310.0</init>
+                                <init>316.0</init>
                             </x>
                             <y>
-                                <init>-39.75</init>
+                                <init>-40.75</init>
                             </y>
                         </position>
                         <maxLength>
@@ -877,6 +785,122 @@
                         </vertAlign>
                     </properties>
                 </richText>
+                <referenceContainer oid="9a59e3b5-3826-4f03-a682-04f9020c7d6b">
+                    <pathFromRoot value="14"/>
+                    <properties modular="false" name="RoundToggleButton">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>244.333</init>
+                            </x>
+                            <y>
+                                <init>-78.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="RoundToggleButton.wgfx" path="$(RAPID_PROTOTYPER)\Widgets\White\Controls - Buttons"/>
+                        <crc value="3860185116"/>
+                        <inputParameters>
+                            <parameter control="false" name="Enabled" oid="f6ade46c-dd0d-41ca-be35-1793747b02f3" type="bool">
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="SelectedColor" oid="0c4c679c-3bd9-4ab2-b1ea-1b89463e8471" representation="color" type="int">
+                                <init>7</init>
+                            </parameter>
+                            <parameter control="false" name="TextVisible" oid="e0046017-60ea-4cb1-92b6-e3ebfbb47bd1" type="bool">
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="Text" oid="a43768d0-0222-4c91-8033-35f0e2113417" representation="as_string" type="char^255">
+                                <init>[65, 82, 0]</init>
+                            </parameter>
+                            <parameter control="false" name="TextSize" oid="c57b681d-8b20-4f79-bd96-bb54f4207975" representation="index" type="int">
+                                <init>1</init>
+                            </parameter>
+                            <parameter control="true" name="Radius" oid="0b0c8aca-940b-4364-bd8f-a49de26a7c87" type="real">
+                                <init>25.0</init>
+                            </parameter>
+                        </inputParameters>
+                        <outputParameters>
+                            <parameter name="Selected" oid="9b26be54-deb7-49b8-b825-ac61d6a14cd7" type="bool">
+                                <expr>overrideAirResistance</expr>
+                            </parameter>
+                        </outputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
+                <referenceContainer oid="c3872d2e-ae30-469f-9d6c-7f3de93da862">
+                    <pathFromRoot value="15"/>
+                    <properties modular="false" name="RoundToggleButton">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>160.667</init>
+                            </x>
+                            <y>
+                                <init>-78.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="RoundToggleButton.wgfx" path="$(RAPID_PROTOTYPER)\Widgets\White\Controls - Buttons"/>
+                        <crc value="3860185116"/>
+                        <inputParameters>
+                            <parameter control="false" name="Enabled" oid="f6ade46c-dd0d-41ca-be35-1793747b02f3" type="bool">
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="SelectedColor" oid="0c4c679c-3bd9-4ab2-b1ea-1b89463e8471" representation="color" type="int">
+                                <init>7</init>
+                            </parameter>
+                            <parameter control="false" name="TextVisible" oid="e0046017-60ea-4cb1-92b6-e3ebfbb47bd1" type="bool">
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="Text" oid="a43768d0-0222-4c91-8033-35f0e2113417" representation="as_string" type="char^255">
+                                <init>[66, 66, 84, 0]</init>
+                            </parameter>
+                            <parameter control="false" name="TextSize" oid="c57b681d-8b20-4f79-bd96-bb54f4207975" representation="index" type="int">
+                                <init>1</init>
+                            </parameter>
+                            <parameter control="true" name="Radius" oid="0b0c8aca-940b-4364-bd8f-a49de26a7c87" type="real">
+                                <init>25.0</init>
+                            </parameter>
+                        </inputParameters>
+                        <outputParameters>
+                            <parameter name="Selected" oid="9b26be54-deb7-49b8-b825-ac61d6a14cd7" type="bool">
+                                <expr>overrideBrakeBuildupTime</expr>
+                            </parameter>
+                        </outputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
                 <referenceContainer oid="486110c6-46d5-44a3-91aa-5089ea21f9a2">
                     <pathFromRoot value="16"/>
                     <properties modular="false" name="ListBox">
@@ -912,7 +936,7 @@
                                 <expr>enableGUIModeSelection</expr>
                                 <init>true</init>
                             </parameter>
-                            <parameter control="false" name="Width" oid="44610aec-6623-4a83-9d1f-46d5141c500a" type="real">
+                            <parameter control="true" name="Width" oid="44610aec-6623-4a83-9d1f-46d5141c500a" type="real">
                                 <init>168.0</init>
                             </parameter>
                             <parameter control="false" name="NbMaxItems" oid="a9f015fa-475f-432f-8daf-e55124493e70" type="int">
@@ -993,7 +1017,7 @@
                             <parameter control="false" name="Enabled" oid="d6b23f7b-46e8-4d84-8448-dd6dba9f1c44" type="bool">
                                 <init>true</init>
                             </parameter>
-                            <parameter control="false" name="Width" oid="44610aec-6623-4a83-9d1f-46d5141c500a" type="real">
+                            <parameter control="true" name="Width" oid="44610aec-6623-4a83-9d1f-46d5141c500a" type="real">
                                 <init>168.0</init>
                             </parameter>
                             <parameter control="false" name="NbMaxItems" oid="a9f015fa-475f-432f-8daf-e55124493e70" type="int">
@@ -1045,5 +1069,5 @@
     </children>
 </specification>
 
-<!-- crc32 : 1019561908 -->
+<!-- crc32 : 2086639791 -->
 
