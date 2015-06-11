@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="function" name="Sheet06_Bijlmer">
 	<inputs>
-		<Variable name="SectionData_in">
+		<Variable name="TrainPosIn">
 			<type>
 				<NamedType>
 					<type>
-						<TypeRef name="InfraLib::TrackSectionData_T"/>
+						<TypeRef name="real"/>
 					</type>
 				</NamedType>
 			</type>
 			<pragmas>
-				<ed:Variable oid="!ed/d9df3/1F32/CBC/554b9b78cd9"/>
+				<ed:Variable oid="!ed/1dd64f/67EE/E84/557938ac2f55"/>
 			</pragmas>
 		</Variable>
 	</inputs>
@@ -41,7 +41,19 @@
 				<ed:Variable oid="!ed/10d704/5791/92C/5572b7281c18"/>
 			</pragmas>
 		</Variable>
-		<Variable name="_L2">
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1dd651/67EE/E84/557938c174ec"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
 			<type>
 				<NamedType>
 					<type>
@@ -50,18 +62,30 @@
 				</NamedType>
 			</type>
 			<pragmas>
-				<ed:Variable oid="!ed/10da47/5791/92C/5572ccbcb55"/>
+				<ed:Variable oid="!ed/1dd657/67EE/E84/557938cc2445"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L5">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="InfraLib::TrackSectionData_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1dd65d/67EE/E84/557938d1271d"/>
 			</pragmas>
 		</Variable>
 	</locals>
 	<data>
-		<!-- _L1 = Balises0003_Bijlmer(_L2); -->
+		<!-- _L1 = Balises0003_Bijlmer(_L5); -->
 		<Equation>
 			<lefts>
 				<VariableRef name="_L1"/>
 			</lefts>
 			<right>
-				<!-- Balises0003_Bijlmer(_L2) -->
+				<!-- Balises0003_Bijlmer(_L5) -->
 				<CallExpression>
 					<operator>
 						<OpCall name="1">
@@ -73,7 +97,7 @@
 					<callParameters>
 						<IdExpression>
 							<path>
-								<ConstVarRef name="_L2"/>
+								<ConstVarRef name="_L5"/>
 							</path>
 						</IdExpression>
 					</callParameters>
@@ -81,22 +105,6 @@
 			</right>
 			<pragmas>
 				<ed:Equation oid="!ed/10d703/5791/92C/5572b72854af"/>
-			</pragmas>
-		</Equation>
-		<!-- _L2 = SectionData_in; -->
-		<Equation>
-			<lefts>
-				<VariableRef name="_L2"/>
-			</lefts>
-			<right>
-				<IdExpression>
-					<path>
-						<ConstVarRef name="SectionData_in"/>
-					</path>
-				</IdExpression>
-			</right>
-			<pragmas>
-				<ed:Equation oid="!ed/10da46/5791/92C/5572ccbc4286"/>
 			</pragmas>
 		</Equation>
 		<!-- SectionData_out = _L1; -->
@@ -115,6 +123,81 @@
 				<ed:Equation oid="!ed/10da4c/5791/92C/5572ccbf39ca"/>
 			</pragmas>
 		</Equation>
+		<!-- _L3 = TrainPosIn; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="TrainPosIn"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1dd650/67EE/E84/557938c11163"/>
+			</pragmas>
+		</Equation>
+		<!-- _L4 = InfraLib::TrackInit(_L3, 0); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L4"/>
+			</lefts>
+			<right>
+				<!-- InfraLib::TrackInit(_L3, 0) -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="InfraLib::TrackInit"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L3"/>
+							</path>
+						</IdExpression>
+						<ConstValue value="0"/>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1dd656/67EE/E84/557938cc232f"/>
+			</pragmas>
+		</Equation>
+		<!-- _L5 = InfraLib::TrackDiscontinuity(_L4, 3107, 6970); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L5"/>
+			</lefts>
+			<right>
+				<!-- InfraLib::TrackDiscontinuity(_L4, 3107, 6970) -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="InfraLib::TrackDiscontinuity"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+						<ConstValue value="3107"/>
+						<ConstValue value="6970"/>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1dd65c/67EE/E84/557938d17d3a"/>
+			</pragmas>
+		</Equation>
 	</data>
 	<pragmas>
 		<ed:Operator oid="!ed/1f59a/31BF/E34/5539f6525ce0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
@@ -123,42 +206,74 @@
 					<presentationElements>
 						<EquationGE presentable="!ed/10d703/5791/92C/5572b72854af">
 							<position>
-								<Point x="5662" y="2884"/>
+								<Point x="14340" y="4657"/>
 							</position>
 							<size>
 								<Size width="7028" height="2503"/>
 							</size>
 						</EquationGE>
-						<EquationGE presentable="!ed/10da46/5791/92C/5572ccbc4286">
-							<position>
-								<Point x="2328" y="3889"/>
-							</position>
-							<size>
-								<Size width="265" height="502"/>
-							</size>
-						</EquationGE>
 						<EquationGE presentable="!ed/10da4c/5791/92C/5572ccbf39ca">
 							<position>
-								<Point x="18283" y="3889"/>
+								<Point x="26961" y="5662"/>
 							</position>
 							<size>
 								<Size width="317" height="503"/>
 							</size>
 						</EquationGE>
-						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/10da46/5791/92C/5572ccbc4286" dstEquation="!ed/10d703/5791/92C/5572b72854af">
-							<positions>
-								<Point x="2593" y="4154"/>
-								<Point x="4128" y="4154"/>
-								<Point x="4128" y="4154"/>
-								<Point x="5662" y="4154"/>
-							</positions>
-						</Edge>
 						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/10d703/5791/92C/5572b72854af" dstEquation="!ed/10da4c/5791/92C/5572ccbf39ca">
 							<positions>
-								<Point x="12700" y="4154"/>
-								<Point x="15505" y="4154"/>
-								<Point x="15505" y="4154"/>
-								<Point x="18336" y="4154"/>
+								<Point x="21378" y="5927"/>
+								<Point x="24183" y="5927"/>
+								<Point x="24183" y="5927"/>
+								<Point x="27014" y="5927"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/1dd650/67EE/E84/557938c11163">
+							<position>
+								<Point x="2646" y="5662"/>
+							</position>
+							<size>
+								<Size width="264" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/1dd656/67EE/E84/557938cc232f">
+							<position>
+								<Point x="4789" y="5212"/>
+							</position>
+							<size>
+								<Size width="1773" height="1403"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1dd650/67EE/E84/557938c11163" dstEquation="!ed/1dd656/67EE/E84/557938cc232f">
+							<positions>
+								<Point x="2910" y="5927"/>
+								<Point x="3836" y="5927"/>
+								<Point x="3836" y="5927"/>
+								<Point x="4789" y="5927"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/1dd65c/67EE/E84/557938d17d3a">
+							<position>
+								<Point x="9128" y="4657"/>
+							</position>
+							<size>
+								<Size width="3588" height="2530"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1dd656/67EE/E84/557938cc232f" dstEquation="!ed/1dd65c/67EE/E84/557938d17d3a">
+							<positions>
+								<Point x="6562" y="5927"/>
+								<Point x="7832" y="5927"/>
+								<Point x="7832" y="5927"/>
+								<Point x="9128" y="5927"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1dd65c/67EE/E84/557938d17d3a" dstEquation="!ed/10d703/5791/92C/5572b72854af">
+							<positions>
+								<Point x="12726" y="5927"/>
+								<Point x="13520" y="5927"/>
+								<Point x="13520" y="5927"/>
+								<Point x="14340" y="5927"/>
 							</positions>
 						</Edge>
 					</presentationElements>
