@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-09T19:50:49
+** Generation date: 2015-06-11T11:38:20
 *************************************************************$ */
 #ifndef _C_P027V1_tracksim_compr_body_TM_conversions_H_
 #define _C_P027V1_tracksim_compr_body_TM_conversions_H_
@@ -8,14 +8,17 @@
 #include "kcg_types.h"
 #include "T_Build_Metadata_Packet_ID_TM_lib_internal.h"
 
-/* =====================  no input structure  ====================== */
+/* ========================  input structure  ====================== */
+typedef struct {
+  P027V1_trackside_int_T_TM /* TM_conversions::C_P027V1_tracksim_compr_body::P027V1_from_track */ P027V1_from_track;
+} inC_C_P027V1_tracksim_compr_body_TM_conversions;
 
 /* ========================  context type  ========================= */
 typedef struct {
   /* ---------------------------  outputs  --------------------------- */
   MetadataElement_T_Common_Types_Pkg /* TM_conversions::C_P027V1_tracksim_compr_body::Header */ Header;
   CompressedPacketData_T_Common_Types_Pkg /* TM_conversions::C_P027V1_tracksim_compr_body::P027V1_body_compressed */ P027V1_body_compressed;
-  _2_P027V1_OBU_sectionlist_int_T_TM /* TM_conversions::C_P027V1_tracksim_compr_body::P027V1_sections */ P027V1_sections;
+  P027V1_OBU_sectionlist_int_T_TM /* TM_conversions::C_P027V1_tracksim_compr_body::P027V1_sections */ P027V1_sections;
   kcg_int /* TM_conversions::C_P027V1_tracksim_compr_body::n_iter_k_out */ n_iter_k_out;
   /* -----------------------  no local probes  ----------------------- */
   /* -----------------  no initialization variables  ----------------- */
@@ -64,8 +67,8 @@ typedef struct {
   P027V1_trackide_sectionlist_T_TM /* TM_conversions::C_P027V1_tracksim_compr_body::_L367 */ _L367;
   array_int_6 /* TM_conversions::C_P027V1_tracksim_compr_body::_L373 */ _L373;
   array_int_500 /* TM_conversions::C_P027V1_tracksim_compr_body::_L383 */ _L383;
-  array__933 /* TM_conversions::C_P027V1_tracksim_compr_body::_L386 */ _L386;
-  array__903 /* TM_conversions::C_P027V1_tracksim_compr_body::_L385 */ _L385;
+  array__467 /* TM_conversions::C_P027V1_tracksim_compr_body::_L386 */ _L386;
+  array__429 /* TM_conversions::C_P027V1_tracksim_compr_body::_L385 */ _L385;
   kcg_int /* TM_conversions::C_P027V1_tracksim_compr_body::_L387 */ _L387;
   kcg_int /* TM_conversions::C_P027V1_tracksim_compr_body::_L391 */ _L391;
   P027V1_section_int_T_TM /* TM_conversions::C_P027V1_tracksim_compr_body::_L394 */ _L394;
@@ -78,7 +81,7 @@ typedef struct {
 /* ===========  node initialization and cycle functions  =========== */
 /* TM_conversions::C_P027V1_tracksim_compr_body */
 extern void C_P027V1_tracksim_compr_body_TM_conversions(
-  /* TM_conversions::C_P027V1_tracksim_compr_body::P027V1_from_track */P027V1_trackside_int_T_TM *P027V1_from_track,
+  inC_C_P027V1_tracksim_compr_body_TM_conversions *inC,
   outC_C_P027V1_tracksim_compr_body_TM_conversions *outC);
 
 extern void C_P027V1_tracksim_compr_body_reset_TM_conversions(
@@ -87,6 +90,6 @@ extern void C_P027V1_tracksim_compr_body_reset_TM_conversions(
 #endif /* _C_P027V1_tracksim_compr_body_TM_conversions_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P027V1_tracksim_compr_body_TM_conversions.h
-** Generation date: 2015-06-09T19:50:49
+** Generation date: 2015-06-11T11:38:20
 *************************************************************$ */
 
