@@ -1,3 +1,6 @@
+**Important Note: Change of Scade Release for Modelling!!!!**  
+We NOW switch to Scade Release 16.1. Please, make sure you use this version for all commits.
+
 # Directory structure
 
 Directory | Description

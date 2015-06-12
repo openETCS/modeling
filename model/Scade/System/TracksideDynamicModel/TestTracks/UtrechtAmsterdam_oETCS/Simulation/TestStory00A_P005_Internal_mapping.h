@@ -35,9 +35,9 @@ void* _SCSIM_Get_Read_P005_TM_Handle(void* pInstance, int nHandleIdent, int* pIt
 void _SCSIM_Mapping_C_P005_ForCalcTrainPos_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_C_P005_ForCalcTrainPos_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
-void _SCSIM_Mapping_Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
 #include "Balise_Group_367_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
 void _SCSIM_Mapping_Balise_Group_367_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
@@ -185,9 +185,9 @@ extern ControlUtils _SCSIM_856_Utils;
 void _SCSIM_Mapping_C_P005_LinkedBGs_TM_conversions(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_C_P005_LinkedBGs_TM_conversions_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_364_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
-void _SCSIM_Mapping_Balise_364_1_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_364_1_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_364_1_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_364_1_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_364_1_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
 #include "Balise_Group_Init_InfraLib.h"
 void _SCSIM_Mapping_Balise_Group_Init_InfraLib(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
@@ -197,9 +197,9 @@ void* _SCSIM_Get_Balise_Group_Init_InfraLib_Handle(void* pInstance, int nHandleI
 void _SCSIM_Mapping_Balise_Group_Close_InfraLib(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_Balise_Group_Close_InfraLib_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Balise_364_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
-void _SCSIM_Mapping_Balise_364_0_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Balise_364_0_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Balise_364_0_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Balise_364_0_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Balise_364_0_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
 #include "Balise_367_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
 void _SCSIM_Mapping_Balise_367_0_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
@@ -265,9 +265,9 @@ void* _SCSIM_Get_C_P005_unflatten_sections_TM_lib_internal_Handle(void* pInstanc
 void _SCSIM_Mapping_Balise_Localisation_InfraLib(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
 void* _SCSIM_Get_Balise_Localisation_InfraLib_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
-#include "Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
-void _SCSIM_Mapping_Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
-void* _SCSIM_Get_Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
+#include "Packets_BG364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.h"
+void _SCSIM_Mapping_Packets_BG364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));
+void* _SCSIM_Get_Packets_BG364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize);
 
 #include "No_Balise_Packets_InfraLib.h"
 void _SCSIM_Mapping_No_Balise_Packets_InfraLib(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*));

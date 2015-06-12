@@ -1,7 +1,7 @@
 #include "UtrechtAmsterdam_oETCS_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "6547daa2a9ae4111885c45c9dee562d4";
+const char* _SCSIM_CheckSum = "3b11784c001df1e17fb28a6b3bb0108f";
 const char* _SCSIM_SmuTypesCheckSum = "d5b51fa9eff9683da46173266ac496c5";
 
 /*******************************

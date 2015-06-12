@@ -1,6 +1,14 @@
+**Important Note: Change of Scade Release for Modelling!!!!**  
+We NOW switch to Scade Release 16.1. Please, make sure you use this version for all commits.
+
 [![Stories in Ready](https://badge.waffle.io/openetcs/modeling.png?label=ready&title=Backlog)](https://waffle.io/openetcs/modeling)
 [![Stories in Ready](https://badge.waffle.io/openETCS/modeling.png?label=ready&title=Ready)](https://waffle.io/openETCS/modeling)
 [![Stories in "In Progress"](https://badge.waffle.io/openETCS/modeling.png?label=In Progress&title=In Progress)](https://waffle.io/openETCS/modeling)
+
+Throughput graph
+
+[![Throughput Graph](https://graphs.waffle.io/openetcs/modeling/throughput.svg)](https://waffle.io/openetcs/modeling/metrics)
+
 modeling
 =========
 

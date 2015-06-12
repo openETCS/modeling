@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-09T12:04:05
+** Generation date: 2015-06-09T14:04:51
 *************************************************************$ */
 #ifndef _Send_P005_InfraLib_H_
 #define _Send_P005_InfraLib_H_
@@ -43,6 +43,6 @@ extern void Send_P005_reset_InfraLib(outC_Send_P005_InfraLib *outC);
 #endif /* _Send_P005_InfraLib_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Send_P005_InfraLib.h
-** Generation date: 2015-06-09T12:04:05
+** Generation date: 2015-06-09T14:04:51
 *************************************************************$ */
 

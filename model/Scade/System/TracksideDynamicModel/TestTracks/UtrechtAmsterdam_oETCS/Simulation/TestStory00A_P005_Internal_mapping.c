@@ -149,7 +149,7 @@ void* _SCSIM_Get_Read_P005_ForCalcTrainPos_TM_Handle(void* pInstance, int nHandl
  ****************************************************************/
 void _SCSIM_Mapping_Story00A_BTM_FirstTest(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
 	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_Story00A_BTM_FirstTest_Handle, nClockHandleIdent, pfnClockActive);
-	_SCSIM_Mapping_Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer("AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_Group_364", "1", 28, 0, 0);
+	_SCSIM_Mapping_Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer("AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_Group_364_00A", "1", 28, 0, 0);
 	_SCSIM_Mapping_Balise_Group_367_AmsterdamUtrechtL1_Sheet06_Bijlmer("AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_Group_367", "1", 29, 0, 0);
 	_SCSIM_Mapping_Balise_Group_368_AmsterdamUtrechtL1_Sheet06_Bijlmer("AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_Group_368", "1", 30, 0, 0);
 	_SCSIM_Mapping_Balise_Group_366_AmsterdamUtrechtL1_Sheet06_Bijlmer("AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_Group_366", "1", 31, 0, 0);
@@ -433,11 +433,11 @@ void* _SCSIM_Get_C_P005_ForCalcTrainPos_TM_conversions_Handle(void* pInstance, i
 }
 
 /****************************************************************
- ** AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_Group_364/ mapping function
+ ** AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_Group_364_00A/ mapping function
  ****************************************************************/
-void _SCSIM_Mapping_Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
-	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle, nClockHandleIdent, pfnClockActive);
-	_SCSIM_Mapping_Balise_364_1_AmsterdamUtrechtL1_Sheet06_Bijlmer("AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_364_1", "1", 100, 0, 0);
+void _SCSIM_Mapping_Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
+	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle, nClockHandleIdent, pfnClockActive);
+	_SCSIM_Mapping_Balise_364_1_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer("AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_364_1_00A", "1", 100, 0, 0);
 	/*<< Inlined InfraLib::No_Balise*/
 	pSimulator->m_pfnPushInstance(pSimulator, "InfraLib::No_Balise", "1", 0, 0, 0, 0);
 	pSimulator->m_pfnAddOutput(pSimulator, "B_data_out", &_SCSIM_B_data_internal_T_InfraLib_Utils, 101, valid, 0, 0);
@@ -506,7 +506,7 @@ void _SCSIM_Mapping_Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer(const ch
 	/*>>*/
 	_SCSIM_Mapping_Balise_Group_Init_InfraLib("InfraLib::Balise_Group_Init", "1", 143, 0, 0);
 	_SCSIM_Mapping_Balise_Group_Close_InfraLib("InfraLib::Balise_Group_Close", "1", 144, 0, 0);
-	_SCSIM_Mapping_Balise_364_0_AmsterdamUtrechtL1_Sheet06_Bijlmer("AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_364_0", "1", 145, 0, 0);
+	_SCSIM_Mapping_Balise_364_0_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer("AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_364_0_00A", "1", 145, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "BaliseDataIn", &_SCSIM_B_data_internal_T_InfraLib_Utils, 146, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "BaliseDataOut", &_SCSIM_B_data_internal_T_InfraLib_Utils, 147, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L1", &_SCSIM_B_data_internal_T_InfraLib_Utils, 148, valid, 0, 0);
@@ -537,8 +537,8 @@ void _SCSIM_Mapping_Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer(const ch
 	pSimulator->m_pfnPopInstance(pSimulator);
 }
 
-void* _SCSIM_Get_Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
-	outC_Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer* pContext = (outC_Balise_Group_364_AmsterdamUtrechtL1_Sheet06_Bijlmer*)pInstance;
+void* _SCSIM_Get_Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
+	outC_Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer* pContext = (outC_Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer*)pInstance;
 	switch (nHandleIdent) {
 		case 100:
 			return &((*pContext)._2_Context_1);
@@ -3814,12 +3814,12 @@ void* _SCSIM_Get_C_P005_LinkedBGs_TM_conversions_Handle(void* pInstance, int nHa
 }
 
 /****************************************************************
- ** AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_364_1/ mapping function
+ ** AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_364_1_00A/ mapping function
  ****************************************************************/
-void _SCSIM_Mapping_Balise_364_1_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
-	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_Balise_364_1_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle, nClockHandleIdent, pfnClockActive);
+void _SCSIM_Mapping_Balise_364_1_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
+	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_Balise_364_1_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle, nClockHandleIdent, pfnClockActive);
 	_SCSIM_Mapping_Balise_Localisation_InfraLib("InfraLib::Balise_Localisation", "1", 905, 0, 0);
-	_SCSIM_Mapping_Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer("AmsterdamUtrechtL1::Sheet06_Bijlmer::Packets_BG364", "1", 906, 907, &_SCSIM_ClockActive_kcg_true);
+	_SCSIM_Mapping_Packets_BG364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer("AmsterdamUtrechtL1::Sheet06_Bijlmer::Packets_BG364_00A", "1", 906, 907, &_SCSIM_ClockActive_kcg_true);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L2", &_SCSIM_kcg_bool_Utils, 908, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L4", &_SCSIM_B_data_internal_T_InfraLib_Utils, 909, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L5", &_SCSIM_B_data_internal_T_InfraLib_Utils, 910, valid, 0, 0);
@@ -3834,8 +3834,8 @@ void _SCSIM_Mapping_Balise_364_1_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* 
 	pSimulator->m_pfnPopInstance(pSimulator);
 }
 
-void* _SCSIM_Get_Balise_364_1_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
-	outC_Balise_364_1_AmsterdamUtrechtL1_Sheet06_Bijlmer* pContext = (outC_Balise_364_1_AmsterdamUtrechtL1_Sheet06_Bijlmer*)pInstance;
+void* _SCSIM_Get_Balise_364_1_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
+	outC_Balise_364_1_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer* pContext = (outC_Balise_364_1_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer*)pInstance;
 	switch (nHandleIdent) {
 		case 905:
 			return &((*pContext).Context_1);
@@ -3961,12 +3961,12 @@ void* _SCSIM_Get_Balise_Group_Close_InfraLib_Handle(void* pInstance, int nHandle
 }
 
 /****************************************************************
- ** AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_364_0/ mapping function
+ ** AmsterdamUtrechtL1::Sheet06_Bijlmer::Balise_364_0_00A/ mapping function
  ****************************************************************/
-void _SCSIM_Mapping_Balise_364_0_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
-	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_Balise_364_0_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle, nClockHandleIdent, pfnClockActive);
+void _SCSIM_Mapping_Balise_364_0_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
+	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_Balise_364_0_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle, nClockHandleIdent, pfnClockActive);
 	_SCSIM_Mapping_Balise_Localisation_InfraLib("InfraLib::Balise_Localisation", "1", 937, 0, 0);
-	_SCSIM_Mapping_Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer("AmsterdamUtrechtL1::Sheet06_Bijlmer::Packets_BG364", "1", 938, 939, &_SCSIM_ClockActive_kcg_true);
+	_SCSIM_Mapping_Packets_BG364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer("AmsterdamUtrechtL1::Sheet06_Bijlmer::Packets_BG364_00A", "1", 938, 939, &_SCSIM_ClockActive_kcg_true);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L2", &_SCSIM_kcg_bool_Utils, 940, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L4", &_SCSIM_B_data_internal_T_InfraLib_Utils, 941, valid, 0, 0);
 	pSimulator->m_pfnAddLocal(pSimulator, "_L5", &_SCSIM_B_data_internal_T_InfraLib_Utils, 942, valid, 0, 0);
@@ -3981,8 +3981,8 @@ void _SCSIM_Mapping_Balise_364_0_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* 
 	pSimulator->m_pfnPopInstance(pSimulator);
 }
 
-void* _SCSIM_Get_Balise_364_0_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
-	outC_Balise_364_0_AmsterdamUtrechtL1_Sheet06_Bijlmer* pContext = (outC_Balise_364_0_AmsterdamUtrechtL1_Sheet06_Bijlmer*)pInstance;
+void* _SCSIM_Get_Balise_364_0_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
+	outC_Balise_364_0_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer* pContext = (outC_Balise_364_0_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer*)pInstance;
 	switch (nHandleIdent) {
 		case 937:
 			return &((*pContext).Context_1);
@@ -4989,10 +4989,10 @@ void* _SCSIM_Get_Balise_Localisation_InfraLib_Handle(void* pInstance, int nHandl
 }
 
 /****************************************************************
- ** AmsterdamUtrechtL1::Sheet06_Bijlmer::Packets_BG364/ mapping function
+ ** AmsterdamUtrechtL1::Sheet06_Bijlmer::Packets_BG364_00A/ mapping function
  ****************************************************************/
-void _SCSIM_Mapping_Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
-	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle, nClockHandleIdent, pfnClockActive);
+void _SCSIM_Mapping_Packets_BG364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char* pszPath, const char* pszInstanceName, int nHandleIdent, int nClockHandleIdent, int (*pfnClockActive)(void*)) {
+	pSimulator->m_pfnPushInstance(pSimulator, pszPath, pszInstanceName, nHandleIdent, _SCSIM_Get_Packets_BG364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle, nClockHandleIdent, pfnClockActive);
 	/*<< Inlined InfraLib::No_Packet*/
 	pSimulator->m_pfnPushInstance(pSimulator, "InfraLib::No_Packet", "1", 0, 0, 0, 0);
 	pSimulator->m_pfnAddOutput(pSimulator, "B_data_out", &_SCSIM_CompressedPackets_T_Common_Types_Pkg_Utils, 1178, valid, 0, 0);
@@ -5164,8 +5164,8 @@ void _SCSIM_Mapping_Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer(const char*
 	pSimulator->m_pfnPopInstance(pSimulator);
 }
 
-void* _SCSIM_Get_Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
-	outC_Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer* pContext = (outC_Packets_BG364_AmsterdamUtrechtL1_Sheet06_Bijlmer*)pInstance;
+void* _SCSIM_Get_Packets_BG364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer_Handle(void* pInstance, int nHandleIdent, int* pIteratorFilter, int nSize) {
+	outC_Packets_BG364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer* pContext = (outC_Packets_BG364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer*)pInstance;
 	switch (nHandleIdent) {
 		case 1178:
 			return &((*pContext).B_data_out_1);
