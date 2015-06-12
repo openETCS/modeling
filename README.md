@@ -1,4 +1,4 @@
-**Important Note: Change of Scade Release for Modelling!!!!**
+**Important Note: Change of Scade Release for Modelling!!!!**  
 We NOW switch to Scade Release 16.1. Please, make sure you use this version for all commits.
 
 [![Stories in Ready](https://badge.waffle.io/openetcs/modeling.png?label=ready&title=Backlog)](https://waffle.io/openetcs/modeling)
