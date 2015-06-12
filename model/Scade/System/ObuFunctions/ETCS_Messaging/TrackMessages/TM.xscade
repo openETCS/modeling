@@ -4053,7 +4053,23 @@
 						</NamedType>
 					</type>
 					<value>
-						<ConstValue value="12"/>
+						<!-- DIM_N_ITER * 2 + 8 -->
+						<NAryOp operator="+">
+							<operands>
+								<!-- DIM_N_ITER * 2 -->
+								<NAryOp operator="*">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="DIM_N_ITER"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="2"/>
+									</operands>
+								</NAryOp>
+								<ConstValue value="8"/>
+							</operands>
+						</NAryOp>
 					</value>
 					<pragmas>
 						<ed:Constant oid="!ed/129d4/B49/640/554b562033c3"/>
@@ -20153,6 +20169,127 @@
 						<ed:Constant oid="!ed/1e8ad/2A47/5DC/557a0cb556f0"/>
 					</pragmas>
 				</Constant>
+				<Constant name="DEFAULT_P058_sections_array_flat">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="P058_sections_array_flat_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,... -->
+						<DataArrayOp>
+							<data>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+								<ConstValue value="0"/>
+							</data>
+						</DataArrayOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1e555/2F4F/1E4/557a17cb680d"/>
+					</pragmas>
+				</Constant>
+				<Constant name="DEFAULT_P058_OBU_section">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="P058_section_enum_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- {valid : false, d_loc : 0, q_lgtloc : Q_LGTLOC_Min_safe_rear_end} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="valid">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="d_loc">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="q_lgtloc">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="Q_LGTLOC_Min_safe_rear_end"/>
+											</path>
+										</IdExpression>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1ea1b/2F4F/1E4/557a1ddc3f3"/>
+					</pragmas>
+				</Constant>
 				<Type name="RM_header">
 					<definition>
 						<Struct>
@@ -26060,6 +26197,468 @@
 						<ed:Type oid="!ed/1eabd/2A47/5DC/557a0e9c5d4c"/>
 					</pragmas>
 				</Type>
+				<Type name="P058_trackside_int_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ed5d/2A47/5DC/557a124527b7"/>
+									</pragmas>
+								</Field>
+								<Field name="NID_PACKET">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ed5e/2A47/5DC/557a12451152"/>
+									</pragmas>
+								</Field>
+								<Field name="Q_DIR">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ed5f/2A47/5DC/557a1245a1a"/>
+									</pragmas>
+								</Field>
+								<Field name="L_PACKET">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ed60/2A47/5DC/557a1245476b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+											<comment>Ignored. L_PACKET (as integer) calculated from N_ITER (if applicable)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="Q_SCALE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ed61/2A47/5DC/557a12457f29"/>
+									</pragmas>
+								</Field>
+								<Field name="T_CYCLOC">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ed62/2A47/5DC/557a124514c9"/>
+									</pragmas>
+								</Field>
+								<Field name="D_CYCLOC">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ed63/2A47/5DC/557a1245398e"/>
+									</pragmas>
+								</Field>
+								<Field name="M_LOC">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ed64/2A47/5DC/557a12455c1"/>
+									</pragmas>
+								</Field>
+								<Field name="N_ITER">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ed66/2A47/5DC/557a1245f2a"/>
+									</pragmas>
+								</Field>
+								<Field name="SECTIONS">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="P058_trackide_sectionlist_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ed67/2A47/5DC/557a1245542"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1ed5c/2A47/5DC/557a12456da1"/>
+					</pragmas>
+				</Type>
+				<Type name="P058_trackide_sectionlist_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="P058_section_int_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="DIM_N_ITER"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1ed6e/2A47/5DC/557a12902986"/>
+					</pragmas>
+				</Type>
+				<Type name="P058_section_int_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="D_LOC">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ed7a/2A47/5DC/557a12a95fb5"/>
+									</pragmas>
+								</Field>
+								<Field name="Q_LGTLOC">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ed78/2A47/5DC/557a12a910d7"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1ed77/2A47/5DC/557a12a96d4a"/>
+					</pragmas>
+				</Type>
+				<Type name="P058_OBU_sectionlist_int_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="P058_section_int_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="DIM_N_ITER"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1e181/2F4F/1E4/557a1690883"/>
+					</pragmas>
+				</Type>
+				<Type name="P058_section_array_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="2"/>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1e207/2F4F/1E4/557a175d5ea6"/>
+					</pragmas>
+				</Type>
+				<Type name="P058_sections_array_flat_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<!-- DIM_N_ITER * 2 -->
+								<NAryOp operator="*">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="DIM_N_ITER"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="2"/>
+									</operands>
+								</NAryOp>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1e22e/2F4F/1E4/557a179c6ea6"/>
+					</pragmas>
+				</Type>
+				<Type name="P058_OBU_sectionlist_array_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="P058_section_array_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="DIM_N_ITER"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1e5fb/2F4F/1E4/557a185824cc"/>
+					</pragmas>
+				</Type>
+				<Type name="P058_OBU_sectionlist_enum_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="P058_section_enum_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="DIM_N_ITER"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1e823/2F4F/1E4/557a1bde1b9b"/>
+					</pragmas>
+				</Type>
+				<Type name="P058_section_enum_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1e84a/2F4F/1E4/557a1c162b78"/>
+									</pragmas>
+								</Field>
+								<Field name="d_loc">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_LOC"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1e852/2F4F/1E4/557a1c3b2d1"/>
+									</pragmas>
+								</Field>
+								<Field name="q_lgtloc">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_LGTLOC"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1e853/2F4F/1E4/557a1c412424"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1e849/2F4F/1E4/557a1c1643b0"/>
+					</pragmas>
+				</Type>
+				<Type name="P058_OBU_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ea4f/2F4F/1E4/557a1ed24ae3"/>
+									</pragmas>
+								</Field>
+								<Field name="q_dir">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_DIR"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ea51/2F4F/1E4/557a1ed24b63"/>
+									</pragmas>
+								</Field>
+								<Field name="q_scale">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_SCALE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ea53/2F4F/1E4/557a1ed2b57"/>
+									</pragmas>
+								</Field>
+								<Field name="t_cycloc">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="T_CYCLOC"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ea54/2F4F/1E4/557a1ed236d8"/>
+									</pragmas>
+								</Field>
+								<Field name="d_cycloc">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_CYCLOC"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ea55/2F4F/1E4/557a1ed2308a"/>
+									</pragmas>
+								</Field>
+								<Field name="m_loc">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_LOC"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ea56/2F4F/1E4/557a1ed23681"/>
+									</pragmas>
+								</Field>
+								<Field name="n_iter">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="N_ITER"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ea57/2F4F/1E4/557a1ed25463"/>
+									</pragmas>
+								</Field>
+								<Field name="sections">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="P058_OBU_sectionlist_enum_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1ea58/2F4F/1E4/557a1ed21098"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1ea4e/2F4F/1E4/557a1ed24eff"/>
+					</pragmas>
+				</Type>
 				<Operator kind="function" name="Read_P005">
 					<inputs>
 						<Variable name="Message_IN">
@@ -30799,14 +31398,14 @@
 						</Variable>
 					</locals>
 					<data>
-						<!-- _L5, _L30 = TM_lib_internal::RECV_ReadPackets(_L6, 42); -->
+						<!-- _L5, _L30 = TM_lib_internal::RECV_ReadPackets(_L6, 57); -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L5"/>
 								<VariableRef name="_L30"/>
 							</lefts>
 							<right>
-								<!-- TM_lib_internal::RECV_ReadPackets(_L6, 42) -->
+								<!-- TM_lib_internal::RECV_ReadPackets(_L6, 57) -->
 								<CallExpression>
 									<operator>
 										<OpCall name="1">
@@ -30821,7 +31420,7 @@
 												<ConstVarRef name="_L6"/>
 											</path>
 										</IdExpression>
-										<ConstValue value="42"/>
+										<ConstValue value="57"/>
 									</callParameters>
 								</CallExpression>
 							</right>
@@ -30944,8 +31543,8 @@
 											<positions>
 												<Point x="33232" y="11536"/>
 												<Point x="34634" y="11536"/>
-												<Point x="34634" y="11509"/>
-												<Point x="36089" y="11509"/>
+												<Point x="34634" y="11536"/>
+												<Point x="36089" y="11536"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="2" rightExprIndex="2" srcEquation="!ed/1ebed/2A47/5DC/557a11294680" dstEquation="!ed/1ebf0/2A47/5DC/557a112964b2">
@@ -30957,6 +31556,268 @@
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1ebed/2A47/5DC/557a11294680" dstEquation="!ed/1ebf0/2A47/5DC/557a112964b2">
+											<positions>
+												<Point x="18336" y="10398"/>
+												<Point x="23019" y="10398"/>
+												<Point x="23019" y="10398"/>
+												<Point x="27702" y="10398"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="function" name="Read_P058">
+					<inputs>
+						<Variable name="Message_IN">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Common_Types_Pkg::CompressedPackets_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1eb5b/2F4F/1E4/557a20af7476"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="P058_OBU_out">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="P058_OBU_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1eb5a/2F4F/1E4/557a20af81d"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L5">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="Common_Types_Pkg::cDIM_MaxDataElementsInRMessage"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1eb56/2F4F/1E4/557a20af6cd2"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L6">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Common_Types_Pkg::CompressedPackets_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1eb57/2F4F/1E4/557a20af6fdd"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L30">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Common_Types_Pkg::MetadataElement_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1eb58/2F4F/1E4/557a20af69b9"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L166">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="P058_OBU_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1eb59/2F4F/1E4/557a20af6862"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L5, _L30 = TM_lib_internal::RECV_ReadPackets(_L6, 58); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L5"/>
+								<VariableRef name="_L30"/>
+							</lefts>
+							<right>
+								<!-- TM_lib_internal::RECV_ReadPackets(_L6, 58) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="TM_lib_internal::RECV_ReadPackets"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L6"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="58"/>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1eb51/2F4F/1E4/557a20af13af"/>
+							</pragmas>
+						</Equation>
+						<!-- P058_OBU_out = _L166; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="P058_OBU_out"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L166"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1eb52/2F4F/1E4/557a20af269a"/>
+							</pragmas>
+						</Equation>
+						<!-- _L6 = Message_IN; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L6"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Message_IN"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1eb53/2F4F/1E4/557a20af151"/>
+							</pragmas>
+						</Equation>
+						<!-- _L166 = TM_conversions::C_P058_compr_onboard(_L5, _L30); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L166"/>
+							</lefts>
+							<right>
+								<!-- TM_conversions::C_P058_compr_onboard(_L5, _L30) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="TM_conversions::C_P058_compr_onboard"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L5"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L30"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1eb54/2F4F/1E4/557a20af74b8"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/1eb50/2F4F/1E4/557a20af6330" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+							<diagrams>
+								<NetDiagram name="diagram_Read_P058_1" landscape="true" format="A4 (210 297)" oid="!ed/1eb55/2F4F/1E4/557a20af1610">
+									<presentationElements>
+										<EquationGE presentable="!ed/1eb51/2F4F/1E4/557a20af13af">
+											<position>
+												<Point x="8520" y="8202"/>
+											</position>
+											<size>
+												<Size width="9805" height="6605"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/1eb52/2F4F/1E4/557a20af269a">
+											<position>
+												<Point x="36036" y="11245"/>
+											</position>
+											<size>
+												<Size width="317" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/1eb53/2F4F/1E4/557a20af151">
+											<position>
+												<Point x="2910" y="11245"/>
+											</position>
+											<size>
+												<Size width="265" height="502"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1eb53/2F4F/1E4/557a20af151" dstEquation="!ed/1eb51/2F4F/1E4/557a20af13af">
+											<positions>
+												<Point x="3175" y="11509"/>
+												<Point x="5847" y="11509"/>
+												<Point x="5847" y="11509"/>
+												<Point x="8520" y="11509"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/1eb54/2F4F/1E4/557a20af74b8">
+											<position>
+												<Point x="27702" y="8202"/>
+											</position>
+											<size>
+												<Size width="5519" height="6631"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1eb54/2F4F/1E4/557a20af74b8" dstEquation="!ed/1eb52/2F4F/1E4/557a20af269a">
+											<positions>
+												<Point x="33232" y="11536"/>
+												<Point x="34634" y="11536"/>
+												<Point x="34634" y="11509"/>
+												<Point x="36089" y="11509"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="2" rightExprIndex="2" srcEquation="!ed/1eb51/2F4F/1E4/557a20af13af" dstEquation="!ed/1eb54/2F4F/1E4/557a20af74b8">
+											<positions>
+												<Point x="18336" y="12621"/>
+												<Point x="23019" y="12621"/>
+												<Point x="23019" y="12621"/>
+												<Point x="27702" y="12621"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1eb51/2F4F/1E4/557a20af13af" dstEquation="!ed/1eb54/2F4F/1E4/557a20af74b8">
 											<positions>
 												<Point x="18336" y="10398"/>
 												<Point x="23019" y="10398"/>
