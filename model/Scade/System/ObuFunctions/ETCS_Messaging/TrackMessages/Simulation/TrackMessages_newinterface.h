@@ -1,18 +1,18 @@
-#ifndef T_EXTRACT_NID_PACKET_FROM_TM_LIB_INTERNAL_INTERFACE
-#define T_EXTRACT_NID_PACKET_FROM_TM_LIB_INTERNAL_INTERFACE
+#ifndef C_P027V1_TRACKSIM_COMPR_BODY_TM_CONVERSIONS_INTERFACE
+#define C_P027V1_TRACKSIM_COMPR_BODY_TM_CONVERSIONS_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "T_Extract_NID_packet_from_TM_lib_internal.h"
+#include "C_P027V1_tracksim_compr_body_TM_conversions.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_T_Extract_NID_packet_from_TM_lib_internal inputs_ctx;
-extern outC_T_Extract_NID_packet_from_TM_lib_internal outputs_ctx;
+extern inC_C_P027V1_tracksim_compr_body_TM_conversions inputs_ctx;
+extern outC_C_P027V1_tracksim_compr_body_TM_conversions outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*T_EXTRACT_NID_PACKET_FROM_TM_LIB_INTERNAL_INTERFACE */
+#endif /*C_P027V1_TRACKSIM_COMPR_BODY_TM_CONVERSIONS_INTERFACE */

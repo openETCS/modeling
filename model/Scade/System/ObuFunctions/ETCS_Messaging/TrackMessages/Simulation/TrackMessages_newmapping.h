@@ -1,10 +1,10 @@
 /* TrackMessages_newmapping.h */
 
-#include "T_Extract_NID_packet_from_TM_lib_internal.h"
+#include "C_P027V1_tracksim_compr_body_TM_conversions.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_T_Extract_NID_packet_from_TM_lib_internal inputs_ctx;
-extern outC_T_Extract_NID_packet_from_TM_lib_internal outputs_ctx;
+extern inC_C_P027V1_tracksim_compr_body_TM_conversions inputs_ctx;
+extern outC_C_P027V1_tracksim_compr_body_TM_conversions outputs_ctx;
 

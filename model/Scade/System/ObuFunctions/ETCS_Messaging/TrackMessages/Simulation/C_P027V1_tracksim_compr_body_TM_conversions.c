@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-06-09T19:50:49
+** Generation date: 2015-06-11T11:38:20
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -15,7 +15,7 @@ void C_P027V1_tracksim_compr_body_reset_TM_conversions(
 
 /* TM_conversions::C_P027V1_tracksim_compr_body */
 void C_P027V1_tracksim_compr_body_TM_conversions(
-  /* TM_conversions::C_P027V1_tracksim_compr_body::P027V1_from_track */P027V1_trackside_int_T_TM *P027V1_from_track,
+  inC_C_P027V1_tracksim_compr_body_TM_conversions *inC,
   outC_C_P027V1_tracksim_compr_body_TM_conversions *outC)
 {
   kcg_int i1;
@@ -34,7 +34,7 @@ void C_P027V1_tracksim_compr_body_TM_conversions(
   /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool error_1;
   kcg_bool noname_1;
   
-  kcg_copy_P027V1_trackside_int_T_TM(&outC->_L1, P027V1_from_track);
+  kcg_copy_P027V1_trackside_int_T_TM(&outC->_L1, &inC->P027V1_from_track);
   kcg_copy_P027V1_trackide_sectionlist_T_TM(
     &outC->_L367,
     &outC->_L1.SECTIONS_SSP);
@@ -72,9 +72,9 @@ void C_P027V1_tracksim_compr_body_TM_conversions(
   for (i1 = 0; i1 < 1; i1++) {
     kcg_copy_P027V1_section_int_T_TM(&outC->_L386[i1], &outC->_L394);
   }
-  kcg_copy_array__933(&outC->_L385[0], &outC->_L386);
+  kcg_copy_array__467(&outC->_L385[0], &outC->_L386);
   kcg_copy_P027V1_trackide_sectionlist_T_TM(&outC->_L385[1], &outC->_L367);
-  kcg_copy__2_P027V1_OBU_sectionlist_int_T_TM(
+  kcg_copy_P027V1_OBU_sectionlist_int_T_TM(
     &outC->P027V1_sections,
     &outC->_L385);
   outC->_L391 = outC->n_iter_k;
@@ -171,6 +171,6 @@ void C_P027V1_tracksim_compr_body_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P027V1_tracksim_compr_body_TM_conversions.c
-** Generation date: 2015-06-09T19:50:49
+** Generation date: 2015-06-11T11:38:20
 *************************************************************$ */
 
