@@ -1,4 +1,4 @@
-Scade version to be used in the project: V16.1a**  
+Scade version to be used in the project: V16.1a  
 
 [![Stories in Ready](https://badge.waffle.io/openetcs/modeling.png?label=ready&title=Backlog)](https://waffle.io/openetcs/modeling)
 [![Stories in Ready](https://badge.waffle.io/openETCS/modeling.png?label=ready&title=Ready)](https://waffle.io/openETCS/modeling)
