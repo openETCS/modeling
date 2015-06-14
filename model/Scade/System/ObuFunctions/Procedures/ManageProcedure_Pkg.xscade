@@ -1903,11 +1903,27 @@
 												<StateRef name="Awakness_of_Train"/>
 											</target>
 											<condition>
-												<IdExpression>
-													<path>
-														<ConstVarRef name="statusCabOpen_from_TIU"/>
-													</path>
-												</IdExpression>
+												<!-- statusCabOpen_from_TIU and Status_Mode_Change_from_Level_and_Mode_Management = 1 -->
+												<NAryOp name="29" operator="and">
+													<operands>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="statusCabOpen_from_TIU"/>
+															</path>
+														</IdExpression>
+														<!-- Status_Mode_Change_from_Level_and_Mode_Management = 1 -->
+														<BinaryOp name="25" operator="=">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="Status_Mode_Change_from_Level_and_Mode_Management"/>
+																	</path>
+																</IdExpression>
+																<ConstValue value="1"/>
+															</operands>
+														</BinaryOp>
+													</operands>
+												</NAryOp>
 											</condition>
 											<effect>
 												<Action>
@@ -2147,7 +2163,7 @@
 											</target>
 											<condition>
 												<!--  not statusCabOpen_from_TIU -->
-												<UnaryOp name="1" operator="not">
+												<UnaryOp name="4" operator="not">
 													<operand>
 														<IdExpression>
 															<path>
@@ -3729,9 +3745,26 @@
 									</pragmas>
 								</State>
 								<State name="SoM_NTC_SN">
+									<locals>
+										<Variable name="_L1">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="bool"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Variable oid="!ed/1fc4b/55A1/2FF4/557d59fb2f0c"/>
+											</pragmas>
+										</Variable>
+									</locals>
 									<data>
-										<!-- () = SoMProcedure_Pkg::SoM_NTC_SN(_null); -->
+										<!-- _L1 = SoMProcedure_Pkg::SoM_NTC_SN(_null); -->
 										<Equation>
+											<lefts>
+												<VariableRef name="_L1"/>
+											</lefts>
 											<right>
 												<!-- SoMProcedure_Pkg::SoM_NTC_SN(_null) -->
 												<CallExpression>
@@ -5618,7 +5651,7 @@
 												<Point x="34555" y="19156"/>
 											</labelPos>
 											<slashPos>
-												<Point x="37624" y="19156"/>
+												<Point x="41619" y="19156"/>
 											</slashPos>
 										</TransitionGE>
 										<StateGE display="split" presentable="!ed/f78f0/7835/2150/54e46e3a32c8">
@@ -5640,10 +5673,10 @@
 												<Size width="6747" height="4763"/>
 											</labelSize>
 											<labelPos>
-												<Point x="10292" y="6694"/>
+												<Point x="8546" y="9790"/>
 											</labelPos>
 											<slashPos>
-												<Point x="12832" y="6694"/>
+												<Point x="11086" y="9790"/>
 											</slashPos>
 										</TransitionGE>
 										<TransitionGE presentable="!ed/160f6/10E7/AB8/54e5e73a4f85">
