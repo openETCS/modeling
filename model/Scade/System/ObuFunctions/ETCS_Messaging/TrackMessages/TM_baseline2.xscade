@@ -1591,7 +1591,7 @@
 						<ed:Constant oid="!ed/a444f/2237/55C/557d425d3033"/>
 					</pragmas>
 				</Constant>
-				<Constant name="NID_META_P27V1_sections">
+				<Constant name="NID_META_P027V1_sections">
 					<type>
 						<NamedType>
 							<type>
@@ -1606,7 +1606,7 @@
 						<ed:Constant oid="!ed/a49b8/2237/55C/557d426c59b9"/>
 					</pragmas>
 				</Constant>
-				<Constant name="NID_META_P27V1_body">
+				<Constant name="NID_META_P027V1_body">
 					<type>
 						<NamedType>
 							<type>
@@ -2318,7 +2318,7 @@
 						<ed:Constant oid="!ed/b4685/2237/55C/557d4513730b"/>
 					</pragmas>
 				</Constant>
-				<Constant name="NID_META_P39V1">
+				<Constant name="NID_META_P039V1">
 					<type>
 						<NamedType>
 							<type>
@@ -2331,6 +2331,82 @@
 					</value>
 					<pragmas>
 						<ed:Constant oid="!ed/21949/5D2/CB4/557d97a33eb1"/>
+					</pragmas>
+				</Constant>
+				<Constant name="DIM_MaxElementsPacket003V1">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- TM::DIM_N_ITER * 1 + 6 + 18 -->
+						<NAryOp operator="+">
+							<operands>
+								<!-- TM::DIM_N_ITER * 1 -->
+								<NAryOp operator="*">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="TM::DIM_N_ITER"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="1"/>
+									</operands>
+								</NAryOp>
+								<ConstValue value="6"/>
+								<ConstValue value="18"/>
+							</operands>
+						</NAryOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/20d16/2362/EB4/557db50c637b"/>
+					</pragmas>
+				</Constant>
+				<Constant name="NID_META_P003V1">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="31000"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/20d2c/2362/EB4/557db55e706"/>
+					</pragmas>
+				</Constant>
+				<Constant name="DEFAULT_P003V1_OBU_section">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="P003V1_section_enum_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- {valid : false, nid_c : 0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="valid">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="nid_c">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/21352/2362/EB4/557dcdb251a5"/>
 					</pragmas>
 				</Constant>
 				<Type name="P027V1_trackside_sectionlist_T">
@@ -3748,6 +3824,746 @@
 						<ed:Type oid="!ed/21c71/5D2/CB4/557d9d585ab9"/>
 					</pragmas>
 				</Type>
+				<Type name="P003V1_trackside_int_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb1f7/7215/B64/557dab78254d"/>
+									</pragmas>
+								</Field>
+								<Field name="NID_PACKET">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb1f8/7215/B64/557dab781d53"/>
+									</pragmas>
+								</Field>
+								<Field name="Q_DIR">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb1f9/7215/B64/557dab78651e"/>
+									</pragmas>
+								</Field>
+								<Field name="L_PACKET">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb1fa/7215/B64/557dab78515b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Ignored. L_PACKET (as integer) calculated from N_ITER (if applicable)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="Q_SCALE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb1fb/7215/B64/557dab78837"/>
+									</pragmas>
+								</Field>
+								<Field name="D_VALIDNV">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb1fc/7215/B64/557dab785d98"/>
+									</pragmas>
+								</Field>
+								<Field name="N_ITER">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb203/7215/B64/557dab782366"/>
+									</pragmas>
+								</Field>
+								<Field name="SECTIONS">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="P003V1_trackide_sectionlist_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb204/7215/B64/557dab786c83"/>
+									</pragmas>
+								</Field>
+								<Field name="V_NVSHUNT">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb20e/7215/B64/557dac8a375f"/>
+									</pragmas>
+								</Field>
+								<Field name="V_NVSTFF">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb21d/7215/B64/557dacb11521"/>
+									</pragmas>
+								</Field>
+								<Field name="V_NVONSIGHT">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb224/7215/B64/557dacc17bb7"/>
+									</pragmas>
+								</Field>
+								<Field name="V_NVUNFIT">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb22b/7215/B64/557dacd84ad2"/>
+									</pragmas>
+								</Field>
+								<Field name="V_NVREL">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb232/7215/B64/557dace96786"/>
+									</pragmas>
+								</Field>
+								<Field name="D_NVROLL">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb239/7215/B64/557daceae98"/>
+									</pragmas>
+								</Field>
+								<Field name="Q_NVSRBKTRG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb240/7215/B64/557daceaf86"/>
+									</pragmas>
+								</Field>
+								<Field name="Q_NVEMRRLS">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/21072/2362/EB4/557dc5abece"/>
+									</pragmas>
+								</Field>
+								<Field name="V_NVALLOWOVTRP">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb247/7215/B64/557daceb36fa"/>
+									</pragmas>
+								</Field>
+								<Field name="V_NVSUPOVTRP">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb24e/7215/B64/557daceb3b73"/>
+									</pragmas>
+								</Field>
+								<Field name="D_NVOVTRP">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb255/7215/B64/557dacec4b6b"/>
+									</pragmas>
+								</Field>
+								<Field name="T_NVOVTRP">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb25c/7215/B64/557dacec1da7"/>
+									</pragmas>
+								</Field>
+								<Field name="D_NVPOTRP">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb263/7215/B64/557daced7f76"/>
+									</pragmas>
+								</Field>
+								<Field name="M_NVCONTACT">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb26a/7215/B64/557daced66f5"/>
+									</pragmas>
+								</Field>
+								<Field name="T_NVCONTACT">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb271/7215/B64/557dacef35af"/>
+									</pragmas>
+								</Field>
+								<Field name="M_NVDERUN">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb278/7215/B64/557dacf0bad"/>
+									</pragmas>
+								</Field>
+								<Field name="D_NVSTFF">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb27f/7215/B64/557dacf038ea"/>
+									</pragmas>
+								</Field>
+								<Field name="Q_NVDRIVER_ADHES">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb286/7215/B64/557dacf168c7"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/cb1f6/7215/B64/557dab783ba2"/>
+					</pragmas>
+				</Type>
+				<Type name="P003V1_OBU_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2bd/7215/B64/557dadea796"/>
+									</pragmas>
+								</Field>
+								<Field name="q_dir">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_DIR"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2bf/7215/B64/557dadea201f"/>
+									</pragmas>
+								</Field>
+								<Field name="q_scale">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_SCALE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2c1/7215/B64/557dadea1f8"/>
+									</pragmas>
+								</Field>
+								<Field name="d_validnv">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_VALIDNV"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2c2/7215/B64/557dadea7c34"/>
+									</pragmas>
+								</Field>
+								<Field name="n_iter">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="N_ITER"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2c3/7215/B64/557dadea1e36"/>
+									</pragmas>
+								</Field>
+								<Field name="SECTIONS">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="P003V1_sectionlist_enum_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2c4/7215/B64/557dadea7c1"/>
+									</pragmas>
+								</Field>
+								<Field name="v_nvshunt">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="V_NVSHUNT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2c5/7215/B64/557dadea175b"/>
+									</pragmas>
+								</Field>
+								<Field name="v_nvstff">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="V_NVSTFF"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2c6/7215/B64/557dadea1310"/>
+									</pragmas>
+								</Field>
+								<Field name="v_nvonsight">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="V_NVONSIGHT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2c7/7215/B64/557dadea32db"/>
+									</pragmas>
+								</Field>
+								<Field name="v_nvunfit">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="V_NVUNFIT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2c8/7215/B64/557dadea2369"/>
+									</pragmas>
+								</Field>
+								<Field name="v_nvrel">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="V_NVREL"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2c9/7215/B64/557dadea7dc"/>
+									</pragmas>
+								</Field>
+								<Field name="d_nvroll">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_NVROLL"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2ca/7215/B64/557dadea65b"/>
+									</pragmas>
+								</Field>
+								<Field name="q_nvsbtsmperm">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_NVSBTSMPERM"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2cb/7215/B64/557dadea5cc9"/>
+									</pragmas>
+								</Field>
+								<Field name="q_nvemrrls">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_NVEMRRLS"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/2107c/2362/EB4/557dc5ce3e25"/>
+									</pragmas>
+								</Field>
+								<Field name="v_nvallowovtrp">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="V_NVALLOWOVTRP"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2cc/7215/B64/557dadea236a"/>
+									</pragmas>
+								</Field>
+								<Field name="v_nvsopovtrp">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="V_NVSUPOVTRP"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2cd/7215/B64/557dadea72b5"/>
+									</pragmas>
+								</Field>
+								<Field name="d_nvovtrp">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_NVOVTRP"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2ce/7215/B64/557dadea587c"/>
+									</pragmas>
+								</Field>
+								<Field name="t_nvovtrp">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="T_NVOVTRP"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2cf/7215/B64/557dadea34a0"/>
+									</pragmas>
+								</Field>
+								<Field name="d_nvpotrp">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_NVPOTRP"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2d0/7215/B64/557dadea1e77"/>
+									</pragmas>
+								</Field>
+								<Field name="m_nvcontact">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_NVCONTACT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2d1/7215/B64/557dadea321c"/>
+									</pragmas>
+								</Field>
+								<Field name="t_nvcontact">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="T_NVCONTACT"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2d2/7215/B64/557dadea5fe1"/>
+									</pragmas>
+								</Field>
+								<Field name="m_nvderun">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_NVDERUN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2d3/7215/B64/557dadea47e6"/>
+									</pragmas>
+								</Field>
+								<Field name="d_nvstff">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_NVSTFF"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2d4/7215/B64/557dadea798d"/>
+									</pragmas>
+								</Field>
+								<Field name="q_nvdriver_adhes">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_NVDRIVER_ADHES"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/cb2d5/7215/B64/557dadea2e68"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/cb2bc/7215/B64/557dadea8a7"/>
+					</pragmas>
+				</Type>
+				<Type name="Q_NVSRBKTRG">
+					<definition>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/cb34b/7215/B64/557daef34a74"/>
+					</pragmas>
+				</Type>
+				<Type name="P003V1_trackide_sectionlist_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="TM::DIM_N_ITER"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/cb3af/7215/B64/557db06d448"/>
+					</pragmas>
+				</Type>
+				<Type name="P003V1_OBU_sectionlist_int_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="TM::DIM_N_ITER"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/20dcd/2362/EB4/557db77068b4"/>
+					</pragmas>
+				</Type>
+				<Type name="P003V1_section_enum_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/21276/2362/EB4/557dca0131ee"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_c">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_C"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/21279/2362/EB4/557dca01464"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/21275/2362/EB4/557dca016dbb"/>
+					</pragmas>
+				</Type>
+				<Type name="P003V1_sectionlist_enum_T">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="P003V1_section_enum_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="TM::DIM_N_ITER"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2132c/2362/EB4/557dcc8f3a2b"/>
+					</pragmas>
+				</Type>
 				<Operator kind="function" name="Read_P027V1_sections">
 					<inputs>
 						<Variable name="i">
@@ -4607,14 +5423,14 @@
 						</Variable>
 					</locals>
 					<data>
-						<!-- _L5, _L30 = TM_lib_internal::RECV_ReadPackets(_L169, NID_META_P27V1_body); -->
+						<!-- _L5, _L30 = TM_lib_internal::RECV_ReadPackets(_L169, NID_META_P027V1_body); -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L5"/>
 								<VariableRef name="_L30"/>
 							</lefts>
 							<right>
-								<!-- TM_lib_internal::RECV_ReadPackets(_L169, NID_META_P27V1_body) -->
+								<!-- TM_lib_internal::RECV_ReadPackets(_L169, NID_META_P027V1_body) -->
 								<CallExpression>
 									<operator>
 										<OpCall name="1">
@@ -4631,7 +5447,7 @@
 										</IdExpression>
 										<IdExpression>
 											<path>
-												<ConstVarRef name="NID_META_P27V1_body"/>
+												<ConstVarRef name="NID_META_P027V1_body"/>
 											</path>
 										</IdExpression>
 									</callParameters>
@@ -5324,14 +6140,14 @@
 								<ed:Equation oid="!ed/217af/5D2/CB4/557d96153efc"/>
 							</pragmas>
 						</Equation>
-						<!-- _L5, _L30 = TM_lib_internal::RECV_ReadPackets(_L6, NID_META_P39V1); -->
+						<!-- _L5, _L30 = TM_lib_internal::RECV_ReadPackets(_L6, NID_META_P039V1); -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L5"/>
 								<VariableRef name="_L30"/>
 							</lefts>
 							<right>
-								<!-- TM_lib_internal::RECV_ReadPackets(_L6, NID_META_P39V1) -->
+								<!-- TM_lib_internal::RECV_ReadPackets(_L6, NID_META_P039V1) -->
 								<CallExpression>
 									<operator>
 										<OpCall name="1">
@@ -5348,7 +6164,7 @@
 										</IdExpression>
 										<IdExpression>
 											<path>
-												<ConstVarRef name="NID_META_P39V1"/>
+												<ConstVarRef name="NID_META_P039V1"/>
 											</path>
 										</IdExpression>
 									</callParameters>
@@ -5434,12 +6250,540 @@
 						</ed:Operator>
 					</pragmas>
 				</Operator>
+				<Operator kind="function" name="Read_P072V1">
+					<inputs>
+						<Variable name="Message_IN">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Common_Types_Pkg::CompressedPackets_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/cb091/7215/B64/557da93c5fec"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="P072_OBU_out">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="P072V1_OBU_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/cb090/7215/B64/557da93c4578"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L5">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="Common_Types_Pkg::cDIM_MaxDataElementsInRMessage"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/cb08c/7215/B64/557da93c6739"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L6">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Common_Types_Pkg::CompressedPackets_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/cb08d/7215/B64/557da93c5c53"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L30">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Common_Types_Pkg::MetadataElement_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/cb08e/7215/B64/557da93c2c47"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L166">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="P072V1_OBU_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/cb08f/7215/B64/557da93c780f"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L5, _L30 = TM_lib_internal::RECV_ReadPackets(_L6, 72); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L5"/>
+								<VariableRef name="_L30"/>
+							</lefts>
+							<right>
+								<!-- TM_lib_internal::RECV_ReadPackets(_L6, 72) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="TM_lib_internal::RECV_ReadPackets"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L6"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="72"/>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/cb087/7215/B64/557da93c953"/>
+							</pragmas>
+						</Equation>
+						<!-- P072_OBU_out = _L166; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="P072_OBU_out"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L166"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/cb088/7215/B64/557da93c13b1"/>
+							</pragmas>
+						</Equation>
+						<!-- _L6 = Message_IN; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L6"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Message_IN"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/cb089/7215/B64/557da93c5ab3"/>
+							</pragmas>
+						</Equation>
+						<!-- _L166 = TM_conversions_baseline2::C_P072V1_compr_onboard(_L5, _L30); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L166"/>
+							</lefts>
+							<right>
+								<!-- TM_conversions_baseline2::C_P072V1_compr_onboard(_L5, _L30) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="TM_conversions_baseline2::C_P072V1_compr_onboard"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L5"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L30"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/cb08a/7215/B64/557da93c268d"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/cb086/7215/B64/557da93c64b0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_Read_P072V1_1" landscape="true" format="A4 (210 297)" oid="!ed/cb08b/7215/B64/557da93c26d2">
+									<presentationElements>
+										<EquationGE presentable="!ed/cb087/7215/B64/557da93c953">
+											<position>
+												<Point x="8520" y="8202"/>
+											</position>
+											<size>
+												<Size width="9805" height="6605"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/cb088/7215/B64/557da93c13b1">
+											<position>
+												<Point x="36036" y="11245"/>
+											</position>
+											<size>
+												<Size width="317" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/cb089/7215/B64/557da93c5ab3">
+											<position>
+												<Point x="2910" y="11245"/>
+											</position>
+											<size>
+												<Size width="265" height="502"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/cb089/7215/B64/557da93c5ab3" dstEquation="!ed/cb087/7215/B64/557da93c953">
+											<positions>
+												<Point x="3175" y="11509"/>
+												<Point x="5847" y="11509"/>
+												<Point x="5847" y="11509"/>
+												<Point x="8520" y="11509"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/cb08a/7215/B64/557da93c268d">
+											<position>
+												<Point x="27702" y="8202"/>
+											</position>
+											<size>
+												<Size width="5519" height="6631"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/cb08a/7215/B64/557da93c268d" dstEquation="!ed/cb088/7215/B64/557da93c13b1">
+											<positions>
+												<Point x="33232" y="11536"/>
+												<Point x="34634" y="11536"/>
+												<Point x="34634" y="11536"/>
+												<Point x="36089" y="11536"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="2" rightExprIndex="2" srcEquation="!ed/cb087/7215/B64/557da93c953" dstEquation="!ed/cb08a/7215/B64/557da93c268d">
+											<positions>
+												<Point x="18336" y="12621"/>
+												<Point x="23019" y="12621"/>
+												<Point x="23019" y="12621"/>
+												<Point x="27702" y="12621"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/cb087/7215/B64/557da93c953" dstEquation="!ed/cb08a/7215/B64/557da93c268d">
+											<positions>
+												<Point x="18336" y="10398"/>
+												<Point x="23019" y="10398"/>
+												<Point x="23019" y="10398"/>
+												<Point x="27702" y="10398"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="function" name="Read_P003V1">
+					<inputs>
+						<Variable name="Message_IN">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Common_Types_Pkg::CompressedPackets_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/21497/2362/EB4/557dcfaa2a87"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="P003V1_OBU_out">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="P003V1_OBU_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/21496/2362/EB4/557dcfaad6e"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L6">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Common_Types_Pkg::CompressedPackets_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/21492/2362/EB4/557dcfaa518a"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L166">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="P003V1_OBU_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/21493/2362/EB4/557dcfaa3814"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L30">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Common_Types_Pkg::MetadataElement_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/21494/2362/EB4/557dcfaa674a"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L5">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="Common_Types_Pkg::cDIM_MaxDataElementsInRMessage"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/21495/2362/EB4/557dcfaa11e"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- P003V1_OBU_out = _L166; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="P003V1_OBU_out"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L166"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2148d/2362/EB4/557dcfaa1deb"/>
+							</pragmas>
+						</Equation>
+						<!-- _L6 = Message_IN; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L6"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Message_IN"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2148e/2362/EB4/557dcfaa5949"/>
+							</pragmas>
+						</Equation>
+						<!-- _L166 = TM_conversions_baseline2::C_P003V1_compr_onboard(_L5, _L30); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L166"/>
+							</lefts>
+							<right>
+								<!-- TM_conversions_baseline2::C_P003V1_compr_onboard(_L5, _L30) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="TM_conversions_baseline2::C_P003V1_compr_onboard"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L5"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L30"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/2148f/2362/EB4/557dcfaa7fb0"/>
+							</pragmas>
+						</Equation>
+						<!-- _L5, _L30 = TM_lib_internal::RECV_ReadPackets(_L6, NID_META_P039V1); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L5"/>
+								<VariableRef name="_L30"/>
+							</lefts>
+							<right>
+								<!-- TM_lib_internal::RECV_ReadPackets(_L6, NID_META_P039V1) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="TM_lib_internal::RECV_ReadPackets"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L6"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="NID_META_P039V1"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/21490/2362/EB4/557dcfaa56a7"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/2148c/2362/EB4/557dcfaa66f0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_Read_P003V1_1" landscape="true" format="A4 (210 297)" oid="!ed/21491/2362/EB4/557dcfaa382d">
+									<presentationElements>
+										<EquationGE presentable="!ed/2148d/2362/EB4/557dcfaa1deb">
+											<position>
+												<Point x="36036" y="11245"/>
+											</position>
+											<size>
+												<Size width="317" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/2148e/2362/EB4/557dcfaa5949">
+											<position>
+												<Point x="2910" y="11245"/>
+											</position>
+											<size>
+												<Size width="265" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/2148f/2362/EB4/557dcfaa7fb0">
+											<position>
+												<Point x="27702" y="8202"/>
+											</position>
+											<size>
+												<Size width="5519" height="6631"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/21490/2362/EB4/557dcfaa56a7">
+											<position>
+												<Point x="8520" y="8202"/>
+											</position>
+											<size>
+												<Size width="9805" height="6605"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2148e/2362/EB4/557dcfaa5949" dstEquation="!ed/21490/2362/EB4/557dcfaa56a7">
+											<positions>
+												<Point x="3175" y="11509"/>
+												<Point x="5847" y="11509"/>
+												<Point x="5847" y="11509"/>
+												<Point x="8520" y="11509"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2148f/2362/EB4/557dcfaa7fb0" dstEquation="!ed/2148d/2362/EB4/557dcfaa1deb">
+											<positions>
+												<Point x="33232" y="11536"/>
+												<Point x="34634" y="11536"/>
+												<Point x="34634" y="11509"/>
+												<Point x="36089" y="11509"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="2" rightExprIndex="2" srcEquation="!ed/21490/2362/EB4/557dcfaa56a7" dstEquation="!ed/2148f/2362/EB4/557dcfaa7fb0">
+											<positions>
+												<Point x="18336" y="12621"/>
+												<Point x="23019" y="12621"/>
+												<Point x="23019" y="12621"/>
+												<Point x="27702" y="12621"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/21490/2362/EB4/557dcfaa56a7" dstEquation="!ed/2148f/2362/EB4/557dcfaa7fb0">
+											<positions>
+												<Point x="18336" y="10398"/>
+												<Point x="23019" y="10398"/>
+												<Point x="23019" y="10398"/>
+												<Point x="27702" y="10398"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/a40eb/2237/55C/557d42165ff" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 					<diagrams>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/a40ec/2237/55C/557d421648fd" blockKind="constants"/>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/a40ed/2237/55C/557d42161ac3" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/a40ec/2237/55C/557d421648fd" blockKind="constants" columnsSize="0, 150, 150, 214, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/a40ed/2237/55C/557d42161ac3" blockKind="types" columnsSize="0, 186, 150, 300"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/a40ee/2237/55C/557d421620e1" blockKind="sensors"/>
 					</diagrams>
 				</ed:Package>
