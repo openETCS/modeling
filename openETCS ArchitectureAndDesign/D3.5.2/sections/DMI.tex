@@ -2,16 +2,16 @@
 %!TEX root = ../D3_5_2.tex
 
   %-----------------------------------------------------------------------
-  \subsection{DMI Controller}
+  \section{DMI Controller}
   %-----------------------------------------------------------------------
   %\tbc
   %Valerio D´Angelo/Baseliyos Jacob
 
-  \paragraph{Reference to the SRS or other Requirements (or other requirements)}
+  \subsubsection{Reference to the SRS or other Requirements (or other requirements)}
 
    ERA\_ERTMS\_015560
 
-  \paragraph{Short description of the functionality}
+  \subsubsection{Short description of the functionality}
   The DMI controller interact with the DMI display and is responsible for alls procedures between the DMI display and Driver. Furthermore, the DMI controller will interact with the DMI Management to compute the received information (e.g. driver number request, ...) and send, if necessary, data or reports to the DMI Management (acknowledge, text messages...). The DMI Controller is a passive module, this means that all the processing are performed EVC-side, therefore the DMI Controller simply responds to the requests of the EVC or Driver and performs some checks according with the information received from EVC.
 
   \begin{figure}
@@ -20,7 +20,7 @@
   \caption{DMI Interfaces}
   \end{figure}
 
-  \paragraph{Interface}
+  \subsubsection{Interface}
   The DMI Controller has two interfaces. One between DMI Controller and DMI Display and one between DMI Controller and DMI Management. 
   The structure of the interface between DMI Controller and DMI Display is driven by the logic of SCADE Display therefore It doesn't follow any standard or constraints (It will not be described in this chapter).
   DMI Controller and DMI Management exchange packets. Each packet is a structured type with a valid flag (a boolean variable), the DMI controller takes into account the data inside the packet only when the valid flag is true.
@@ -35,7 +35,7 @@
   
 
 
-\subparagraph{From DMI Management to DMI Controller}
+\paragraph{From DMI Management to DMI Controller}
 
 In the following table are listed the inputs coming from DMI Management with a brief description:\\
   %\begin{table}[H]
@@ -57,7 +57,7 @@ In the following table are listed the inputs coming from DMI Management with a b
   
       Please note: TIU\_trainStatus input is missing in the above table. This is the only input coming directly from TIU and contains the open/close Desk signal. 
     
-  \subparagraph{From DMI Controller to DMI Management}
+  \paragraph{From DMI Controller to DMI Management}
   In the following table are listed the outputs directed to DMI Management with a brief description:\\
   %\begin{table}[H]
     \begin{tabular}{| c | l | l | l | l |}
@@ -76,7 +76,7 @@ In the following table are listed the inputs coming from DMI Management with a b
     \label{tbl:DMICtrToDMIMng}
   %\end{table}
     
-\subparagraph{Both ways direction}
+\paragraph{Both ways direction}
 In the following table are listed the outputs/inputs  to/from DMI Management with a brief description:\\
   
   %\begin{table}[H]
@@ -93,7 +93,7 @@ In the following table are listed the outputs/inputs  to/from DMI Management wit
   %\end{table}
   
 
-\paragraph{Functional Design Description}
+\subsubsection{Functional Design Description}
   \textbf{Please note}: \textit{DMI Controller is a project under construction, a lot of features and functionalities are missing, therefore the structure described below is a draft version and will be changing in the future.}
   
   The informations (received and sent) could be divided in two groups: Sporadic and Periodic. The first one are received/sent aperiodically in any time instead the second one are received/sent periodically, with a fixed deadline. Are part of Periodic group the output DM\_status\_report and the input DMI\_dynamic all other are Sporadic. Therefore, the structure of DMI Controller module consists of a first main state machine \textit{CabinSM} (Fig. \ref{fig:CabinSM}) triggered by  a \textit{OpenDesk} signal (from TIU). Inside the \textit{DeskIsOpen} state there are other two state machines :\textit{HandshakeSM} and \textit{DynamicInfoSM} (Fig. \ref{fig:DynSporSM}).
@@ -146,10 +146,10 @@ In the following table are listed the outputs/inputs  to/from DMI Management wit
   	\caption{Windows state machine.}\label{fig:win_sm}
   \end{figure}
   
-\paragraph{Communication Protocol}
+\subsubsection{Communication Protocol}
 This section explains which messages are exchanged among DMI Controller, DMI Management and Start of mission procedure. As mentioned previously the DMI Controller is a passive component, It simply responds to requests, therefore is able to cover different scenarios. Below are some examples.
   
-  \subparagraph{ Start Of Mission scenario} Are detailed, through a sequence diagram, all the activities (exchanged messages) that should be done to start. In this scenario we have three actors: DMI Controller, DMI Management and SoM procedure (the module where is implemented the start of mission procedure). It's assumed that a OpenDesk signal is received and the system starts in Stand By mode (Fig. \ref{fig:SeqDiaSoM}).
+  \paragraph{ Start Of Mission scenario} Are detailed, through a sequence diagram, all the activities (exchanged messages) that should be done to start. In this scenario we have three actors: DMI Controller, DMI Management and SoM procedure (the module where is implemented the start of mission procedure). It's assumed that a OpenDesk signal is received and the system starts in Stand By mode (Fig. \ref{fig:SeqDiaSoM}).
  
   \begin{figure}
   \centering
@@ -158,7 +158,7 @@ This section explains which messages are exchanged among DMI Controller, DMI Man
   \end{figure}
   
 
-\subparagraph{ Cyclic Exchange of messages}
+\paragraph{ Cyclic Exchange of messages}
 The time between two messages has not yet been definitively established, It might change in the future. The DMI status packet implements a keep alive mechanism, this means, if the EVC does not receive any DMI status signal during the lapse time, It shall consider a failure in DMI. This check is not yet implemented.
 
     \begin{figure}
@@ -174,6 +174,6 @@ The time between two messages has not yet been definitively established, It migh
      \end{figure}
      
 
-\paragraph{Reference to the Scade Model}
+\subsubsection{Reference to the Scade Model}
 
 The SCADE model can be found on github under the following path: \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/DMI_Control}

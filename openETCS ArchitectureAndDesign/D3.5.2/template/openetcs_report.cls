@@ -575,12 +575,33 @@ TERMS AND CONDITIONS.
   \fi
   {\noindent\raggedright\interlinepenalty\@M
    \normalsize\sffamily\bfseries
-   #2}
- \nobreak\par}
+   \ifnum2>\c@secnumdepth\else\theparagraph\hspace{1em}\fi#2}\nobreak\par}
 \def\@sparagraph#1{%
   \addcontentsline{toc}{paragraph}{\itshape\fontsize{9}{12}\selectfont#1}%
   {\noindent\raggedright\interlinepenalty\@M
    \normalsize\sffamily\bfseries#1}\nobreak\par}
+%newly defind subparagrpah
+\renewcommand\subparagraph{\par
+  \addpenalty\@secpenalty\nobreak
+  \secdef\@subparagraph\@ssubparagraph}
+\def\@subparagraph[#1]#2{%
+  \ifnum2>\c@secnumdepth
+     \addcontentsline{toc}{subparagraph}{\itshape#1}%
+  \else
+    \refstepcounter{subparagraph}%
+    \addcontentsline{toc}{subparagraph}{\itshape\fontsize{9}{12}\selectfont
+      \protect\numberline{\thesubparagraph}%
+      #1}%
+  \fi
+  {\noindent\raggedright\interlinepenalty\@M
+   \normalsize\sffamily\bfseries
+   #2}
+ \nobreak\par}
+\def\@ssubparagraph#1{%
+  \addcontentsline{toc}{subparagraph}{\itshape\fontsize{9}{12}\selectfont#1}%
+  {\noindent\raggedright\interlinepenalty\@M
+   \normalsize\sffamily\bfseries#1}\nobreak\par}
+
 \def\specialchapter#1{%
   \clearpage
   \global\@topnum\z@
