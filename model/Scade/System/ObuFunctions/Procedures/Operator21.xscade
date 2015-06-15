@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="node" name="SoM_NTC_SN">
+	<inputs>
+		<Variable name="Status_Mode_Change_from_Level_and_Mode_Management">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/40b3/2623/1F00/5576292d6727"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="start_ack_to_TIU">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1fc45/55A1/2FF4/557d59fa10dc"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<signals>
+		<Signal name="requestProposeModeSN_to_DMI">
+			<pragmas>
+				<ed:Signal oid="!ed/4081/2623/1F00/5576284956a2"/>
+			</pragmas>
+		</Signal>
+	</signals>
+	<data>
+		<StateMachine name="Level_NTC_and_Mode_SN">
+			<states>
+				<State initial="true" name="State1">
+					<unless>
+						<Transition kind="restart">
+							<target>
+								<StateRef name="Waiting_for_Ack_of_proposed_Mode_SN_from_Driver"/>
+							</target>
+							<condition>
+								<ConstValue value="true"/>
+							</condition>
+							<effect>
+								<Action>
+									<data>
+										<!--  emit 'requestProposeModeSN_to_DMI; -->
+										<Emission>
+											<signals>
+												<SignalRef name="requestProposeModeSN_to_DMI"/>
+											</signals>
+											<pragmas>
+												<ed:Emission oid="!ed/4080/2623/1F00/557628291b4"/>
+											</pragmas>
+										</Emission>
+									</data>
+									<pragmas>
+										<ed:Action oid="!ed/4062/2623/1F00/5576280431f6"/>
+									</pragmas>
+								</Action>
+							</effect>
+							<pragmas>
+								<ed:Transition oid="!ed/405f/2623/1F00/557627de5865"/>
+							</pragmas>
+						</Transition>
+					</unless>
+					<pragmas>
+						<ed:State oid="!ed/4036/2623/1F00/557627b767a3"/>
+					</pragmas>
+				</State>
+				<State name="Waiting_for_Ack_of_proposed_Mode_SN_from_Driver">
+					<unless>
+						<Transition kind="restart">
+							<target>
+								<StateRef name="Level_NTC_andMode_SN"/>
+							</target>
+							<condition>
+								<!-- Status_Mode_Change_from_Level_and_Mode_Management = 4 -->
+								<BinaryOp name="2" operator="=">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="Status_Mode_Change_from_Level_and_Mode_Management"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="4"/>
+									</operands>
+								</BinaryOp>
+							</condition>
+							<pragmas>
+								<ed:Transition oid="!ed/40a3/2623/1F00/557628d73f5a"/>
+							</pragmas>
+						</Transition>
+					</unless>
+					<pragmas>
+						<ed:State oid="!ed/404f/2623/1F00/557627cf473e"/>
+					</pragmas>
+				</State>
+				<State name="Level_NTC_andMode_SN">
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1fc5c/55A1/2FF4/557d5a15a56"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- start_ack_to_TIU = _L1; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="start_ack_to_TIU"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1fc46/55A1/2FF4/557d59fa63c4"/>
+							</pragmas>
+						</Equation>
+						<!-- _L1 = true; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<ConstValue value="true"/>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1fc5b/55A1/2FF4/557d5a1526ba"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:State oid="!ed/4091/2623/1F00/557628b86f96"/>
+					</pragmas>
+				</State>
+			</states>
+			<pragmas>
+				<ed:StateMachine oid="!ed/403b/2623/1F00/557627b748a5"/>
+			</pragmas>
+		</StateMachine>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/4028/2623/1F00/557627975e61" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="diagram_SoM_NTC_SN_1" landscape="true" format="A4 (210 297)" oid="!ed/4029/2623/1F00/557627972852">
+					<presentationElements>
+						<StateMachineGE presentable="!ed/403b/2623/1F00/557627b748a5">
+							<position>
+								<Point x="2699" y="1984"/>
+							</position>
+							<size>
+								<Size width="27543" height="13282"/>
+							</size>
+						</StateMachineGE>
+						<StateGE presentable="!ed/4036/2623/1F00/557627b767a3">
+							<position>
+								<Point x="2963" y="2249"/>
+							</position>
+							<size>
+								<Size width="1852" height="1773"/>
+							</size>
+						</StateGE>
+						<StateGE presentable="!ed/404f/2623/1F00/557627cf473e">
+							<position>
+								<Point x="13256" y="7011"/>
+							</position>
+							<size>
+								<Size width="3572" height="3201"/>
+							</size>
+						</StateGE>
+						<TransitionGE presentable="!ed/405f/2623/1F00/557627de5865">
+							<positions>
+								<Point x="4815" y="3096"/>
+								<Point x="7726" y="2593"/>
+								<Point x="13282" y="5186"/>
+								<Point x="14631" y="7011"/>
+							</positions>
+							<labelSize>
+								<Size width="7038" height="1905"/>
+							</labelSize>
+							<labelPos>
+								<Point x="9208" y="2752"/>
+							</labelPos>
+							<slashPos>
+								<Point x="9948" y="2752"/>
+							</slashPos>
+						</TransitionGE>
+						<StateGE presentable="!ed/4091/2623/1F00/557628b86f96">
+							<position>
+								<Point x="23786" y="9895"/>
+							</position>
+							<size>
+								<Size width="6403" height="3149"/>
+							</size>
+						</StateGE>
+						<TransitionGE presentable="!ed/40a3/2623/1F00/557628d73f5a">
+							<positions>
+								<Point x="16828" y="8387"/>
+								<Point x="19394" y="7117"/>
+								<Point x="23521" y="7646"/>
+								<Point x="26088" y="9895"/>
+							</positions>
+							<labelSize>
+								<Size width="3254" height="3810"/>
+							</labelSize>
+							<labelPos>
+								<Point x="18653" y="5927"/>
+							</labelPos>
+							<slashPos>
+								<Point x="21114" y="5927"/>
+							</slashPos>
+						</TransitionGE>
+						<EquationGE presentable="!ed/1fc46/55A1/2FF4/557d59fa63c4">
+							<position>
+								<Point x="27252" y="11695"/>
+							</position>
+							<size>
+								<Size width="317" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/1fc5b/55A1/2FF4/557d5a1526ba">
+							<position>
+								<Point x="25056" y="11721"/>
+							</position>
+							<size>
+								<Size width="212" height="318"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1fc5b/55A1/2FF4/557d5a1526ba" dstEquation="!ed/1fc46/55A1/2FF4/557d59fa63c4">
+							<positions>
+								<Point x="25268" y="11880"/>
+								<Point x="26273" y="11880"/>
+								<Point x="26273" y="11959"/>
+								<Point x="27305" y="11959"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Constant name="numberOfObjects">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="12"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3cae/7D74/1A80/557182a52d4"/>
+			</pragmas>
+		</Constant>
+		<Type name="tSpeedPoints">
+			<definition>
+				<Table>
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="10"/>
+							</size>
+						</Table>
+					</type>
+					<size>
+						<ConstValue value="2"/>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/3d5b/7D74/1A80/557183425e40" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>First Array Distance, Second Array Speed</comment>
+				</ed:Type>
+			</pragmas>
+		</Type>
+		<Type name="tSPDI_Array">
+			<definition>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/3d44/7D74/1A80/5571834263ba"/>
+			</pragmas>
+		</Type>
+		<Type name="tScale">
+			<definition>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="9"/>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/3d3d/7D74/1A80/55718342598"/>
+			</pragmas>
+		</Type>
+		<Type name="tPASP_Array">
+			<definition>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="cPASP_Array_Size"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/3d2e/7D74/1A80/557183422e84"/>
+			</pragmas>
+		</Type>
+		<Type name="tGradient">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="GradientStart">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/3d25/7D74/1A80/55718342222b"/>
+							</pragmas>
+						</Field>
+						<Field name="GradientEnd">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/3d26/7D74/1A80/557183421300"/>
+							</pragmas>
+						</Field>
+						<Field name="GradientValue">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/3d27/7D74/1A80/55718342f8"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/3d24/7D74/1A80/557183423096"/>
+			</pragmas>
+		</Type>
+		<Type name="pixels">
+			<definition>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/3d18/7D74/1A80/557183422a7"/>
+			</pragmas>
+		</Type>
+		<Constant name="Scales">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="tScale"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="6"/>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [[0.0, 25.0, 50.0, 75.0, 100.0, 125.0, 250.0, 500.0, 1000.0], [0.0, 50.0, 100.0, ... -->
+				<DataArrayOp>
+					<data>
+						<!-- [0.0, 25.0, 50.0, 75.0, 100.0, 125.0, 250.0, 500.0, 1000.0] -->
+						<DataArrayOp>
+							<data>
+								<ConstValue value="0.0"/>
+								<ConstValue value="25.0"/>
+								<ConstValue value="50.0"/>
+								<ConstValue value="75.0"/>
+								<ConstValue value="100.0"/>
+								<ConstValue value="125.0"/>
+								<ConstValue value="250.0"/>
+								<ConstValue value="500.0"/>
+								<ConstValue value="1000.0"/>
+							</data>
+						</DataArrayOp>
+						<!-- [0.0, 50.0, 100.0, 150.0, 200.0, 250.0, 500.0, 1000.0, 2000.0] -->
+						<DataArrayOp>
+							<data>
+								<ConstValue value="0.0"/>
+								<ConstValue value="50.0"/>
+								<ConstValue value="100.0"/>
+								<ConstValue value="150.0"/>
+								<ConstValue value="200.0"/>
+								<ConstValue value="250.0"/>
+								<ConstValue value="500.0"/>
+								<ConstValue value="1000.0"/>
+								<ConstValue value="2000.0"/>
+							</data>
+						</DataArrayOp>
+						<!-- [0.0, 100.0, 200.0, 300.0, 400.0, 500.0, 1000.0, 2000.0, 4000.0] -->
+						<DataArrayOp>
+							<data>
+								<ConstValue value="0.0"/>
+								<ConstValue value="100.0"/>
+								<ConstValue value="200.0"/>
+								<ConstValue value="300.0"/>
+								<ConstValue value="400.0"/>
+								<ConstValue value="500.0"/>
+								<ConstValue value="1000.0"/>
+								<ConstValue value="2000.0"/>
+								<ConstValue value="4000.0"/>
+							</data>
+						</DataArrayOp>
+						<!-- [0.0, 200.0, 400.0, 600.0, 800.0, 1000.0, 2000.0, 4000.0, 8000.0] -->
+						<DataArrayOp>
+							<data>
+								<ConstValue value="0.0"/>
+								<ConstValue value="200.0"/>
+								<ConstValue value="400.0"/>
+								<ConstValue value="600.0"/>
+								<ConstValue value="800.0"/>
+								<ConstValue value="1000.0"/>
+								<ConstValue value="2000.0"/>
+								<ConstValue value="4000.0"/>
+								<ConstValue value="8000.0"/>
+							</data>
+						</DataArrayOp>
+						<!-- [0.0, 400.0, 600.0, 1200.0, 1600.0, 2000.0, 4000.0, 8000.0, 16000.0] -->
+						<DataArrayOp>
+							<data>
+								<ConstValue value="0.0"/>
+								<ConstValue value="400.0"/>
+								<ConstValue value="600.0"/>
+								<ConstValue value="1200.0"/>
+								<ConstValue value="1600.0"/>
+								<ConstValue value="2000.0"/>
+								<ConstValue value="4000.0"/>
+								<ConstValue value="8000.0"/>
+								<ConstValue value="16000.0"/>
+							</data>
+						</DataArrayOp>
+						<!-- [0.0, 800.0, 1600.0, 2400.0, 3200.0, 4000.0, 8000.0, 16000.0, 32000.0] -->
+						<DataArrayOp>
+							<data>
+								<ConstValue value="0.0"/>
+								<ConstValue value="800.0"/>
+								<ConstValue value="1600.0"/>
+								<ConstValue value="2400.0"/>
+								<ConstValue value="3200.0"/>
+								<ConstValue value="4000.0"/>
+								<ConstValue value="8000.0"/>
+								<ConstValue value="16000.0"/>
+								<ConstValue value="32000.0"/>
+							</data>
+						</DataArrayOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/41c3/7D74/1A80/5571913c2d76" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Scales of the zoomlevels</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="ScaleLine8">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="262.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4004/7D74/1A80/5571913c285b"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ScaleLine7">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="219.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3ff5/7D74/1A80/5571913c1cc5"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ScaleLine6">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="176.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3fe6/7D74/1A80/5571913c646e"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ScaleLine5">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="133.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3fd7/7D74/1A80/5571913c27ea"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ScaleLine4">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="119.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3fc8/7D74/1A80/5571913c4ea4"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ScaleLine3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="101.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3fb9/7D74/1A80/5571913c33fb"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ScaleLine2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="77.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3faa/7D74/1A80/5571913c5af5"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ScaleLine1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="33.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3f9b/7D74/1A80/5571913c1143"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ScaleLine0">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3f8c/7D74/1A80/5571913c3a46"/>
+			</pragmas>
+		</Constant>
+		<Constant name="logScaleFactor">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="142.84"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3f7d/7D74/1A80/5571913c4a86"/>
+			</pragmas>
+		</Constant>
+		<Constant name="LinearScaleFactors">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="6"/>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [0.94, 1.88, 3.76, 7.52, 15.04, 30.075] -->
+				<DataArrayOp>
+					<data>
+						<ConstValue value="0.94"/>
+						<ConstValue value="1.88"/>
+						<ConstValue value="3.76"/>
+						<ConstValue value="7.52"/>
+						<ConstValue value="15.04"/>
+						<ConstValue value="30.075"/>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3f6e/7D74/1A80/5571913c9a7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>used to scale distance to px</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="illegalScalesIndex">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="tScale"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- [0.0, 25.0, 50.0, 75.0, 100.0, 125.0, 250.0, 500.0, 1000.0] -->
+				<DataArrayOp>
+					<data>
+						<ConstValue value="0.0"/>
+						<ConstValue value="25.0"/>
+						<ConstValue value="50.0"/>
+						<ConstValue value="75.0"/>
+						<ConstValue value="100.0"/>
+						<ConstValue value="125.0"/>
+						<ConstValue value="250.0"/>
+						<ConstValue value="500.0"/>
+						<ConstValue value="1000.0"/>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3f2f/7D74/1A80/5571913cef5"/>
+			</pragmas>
+		</Constant>
+		<Constant name="Gradients_Dummy">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="tGradient"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="12"/>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{GradientStart : 0.0, GradientEnd : 0.0, GradientValue : 0.0}, {GradientStart : ... -->
+				<DataArrayOp>
+					<data>
+						<!-- {GradientStart : 0.0, GradientEnd : 0.0, GradientValue : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="GradientStart">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientEnd">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientValue">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {GradientStart : 0.0, GradientEnd : 0.0, GradientValue : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="GradientStart">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientEnd">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientValue">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {GradientStart : 0.0, GradientEnd : 0.0, GradientValue : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="GradientStart">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientEnd">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientValue">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {GradientStart : 0.0, GradientEnd : 0.0, GradientValue : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="GradientStart">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientEnd">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientValue">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {GradientStart : 0.0, GradientEnd : 0.0, GradientValue : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="GradientStart">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientEnd">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientValue">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {GradientStart : 0.0, GradientEnd : 0.0, GradientValue : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="GradientStart">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientEnd">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientValue">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {GradientStart : 0.0, GradientEnd : 0.0, GradientValue : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="GradientStart">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientEnd">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientValue">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {GradientStart : 0.0, GradientEnd : 0.0, GradientValue : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="GradientStart">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientEnd">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientValue">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {GradientStart : 0.0, GradientEnd : 0.0, GradientValue : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="GradientStart">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientEnd">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientValue">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {GradientStart : 0.0, GradientEnd : 0.0, GradientValue : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="GradientStart">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientEnd">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientValue">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {GradientStart : 0.0, GradientEnd : 0.0, GradientValue : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="GradientStart">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientEnd">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientValue">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {GradientStart : 0.0, GradientEnd : 0.0, GradientValue : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="GradientStart">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientEnd">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="GradientValue">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3ee0/7D74/1A80/5571913c3390"/>
+			</pragmas>
+		</Constant>
+		<Constant name="CSPDI_ArraySize">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="10"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3db1/7D74/1A80/5571913c3538"/>
+			</pragmas>
+		</Constant>
+		<Constant name="cPASP_Array_Size">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="10"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3da2/7D74/1A80/5571913c5cf8"/>
+			</pragmas>
+		</Constant>
+	</declarations>
+</File>
