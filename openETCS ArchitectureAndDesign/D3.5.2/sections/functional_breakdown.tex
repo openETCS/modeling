@@ -1,7 +1,7 @@
 %set the master document for easy compilation
 %!TEX root = ../D3_5_2.tex
 
-\section{openETCS {API} Runtime System and Input to the EVC)}
+\chapter{openETCS API Runtime System and Input to the EVC)}
 \label{chp_openETCS_API}
 %Authors: Bernd Hekele (DB)
 
@@ -14,14 +14,14 @@
 
 Figure \ref{fig:apiHighLevel} shows the structure of API with respect to the software architecture. Note that red input and output modules are were not yet implemented and thus are not part of the openETCS OBU model. The system covers functions for processing inputs from other units, functions for processing outputs to other functions and a basic runtime system. Inputs are used to feed the input to the executable model before calling it, outputs are used for collecting information provided by the executable model to be passed to the relevant interfaces after the execution cycle has finished.
 
-\subsection{Principles for Interfaces (openETCS {API})}
+\section{Principles for Interfaces (openETCS API)}
 
 Information is exchanged via asynchronous \emph{messages}. A message is a set of information corresponding to an event of a particular unit, e.g.~a balise message received from the {BTM}. For possible types of messages please refer to Chapter~\ref{information-flows}.
 
 The information is passed to the executable model as parameters to the synchronous call of a procedure (Interface to the executable model). Since the availability of input messages to the application is not guaranteed the parts of the interfaces are defined with a "present" flag. In addition, fields of input arrays quite often is of variable size. Implementation in the concrete interface in this use-case is the use of a "size" parameter and a "valid"-flag.
 
 
-\subsection{openETCS Model Runtime System}
+\section{openETCS Model Runtime System}
 The openETCS model runtime system also provides:
 \begin{description}
 
@@ -50,7 +50,7 @@ The executable model is called in cycles. In the cycle
 \end{description}
 
 
-\subsection{Input Interfaces of the openETCS API From other Units of the OBU}
+\section{Input Interfaces of the openETCS API From other Units of the OBU}
 Interfaces are defined in the Scade project APITypes (package API\_Msg\_Pkg.xscade).
 
 In the interfaces the following principles for indicating the quality of the information is used:
@@ -87,7 +87,7 @@ TIU & Train Data & All Parts \\\hline
 Information in the following sections gives an more detailed overview of the structure of the interfaces.
 
 
-\subsection{Message based interface (BTM, RTM)}
+\section{Message based interface (BTM, RTM)}
 
 
 Balise Message (Track to Train)
@@ -164,7 +164,7 @@ List of common optional parameters &
 
 The runtime system is in charge to transfer the messages from its stream mode first to  compressed message format. 
 
-\subsection{Interfaces to the Time System}
+\section{Interfaces to the Time System}
 The interface types are defined in the OBU\_Basic\_Types\_Pkg Package. The system time is defined in the basic software.
 
 The system TIME is provided to the executable model at the begin of the cycle. It is not refreshed during the cycle. The time provided to the application is equal to 0 at power-up of the EVC (it is not a “UTC time” nor a “Local
@@ -180,7 +180,7 @@ The clocking system is provided by the JRU. A GPS based clock is assumed to prov
 
 \end{itemize}
 
-\subsection{Interfaces to the Odometry System}
+\section{Interfaces to the Odometry System}
 The interface types are defined in the OBU\_Basic\_Types\_Pkg Package. 
 The odometer gives the current information of the positing system of the train. In this section the structure of the interfaces are only highlighted. Details, including the internal definitions for distances, locations speed and time are implemented in the package. 
 
@@ -226,12 +226,12 @@ indicates the direction of the train, i.e., CAB-A first, CAB-B first or unknown.
 \end{itemize}
 \end{itemize}
 
-\subsection{Interfaces to the Train Interfaces (TIU)}
+\section{Interfaces to the Train Interfaces (TIU)}
 The following infomration is based on the implementation of the Alstom API. The interface is organised in packets. The packets of the Alstom implementation are listed in the appendix to this document.
 
 The description of interfaces needed for the current scope will be added according to the use.
 
-\subsection{Output Interfaces of the openETCS API TO other Units of the OBU}
+\section{Output Interfaces of the openETCS API TO other Units of the OBU}
 
 \tablefirsthead{
 \hline 

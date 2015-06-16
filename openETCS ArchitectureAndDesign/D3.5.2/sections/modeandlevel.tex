@@ -2,7 +2,7 @@
 %!TEX root = ../D3_5_2.tex
 
 %-----------------------------------------------------------------------
-\subsection{Mode and Level}
+\section{Mode and Level}
 %-----------------------------------------------------------------------
 %\tbc
 %Marielle Petit
@@ -17,17 +17,17 @@ regarding on-board functional status and track infrastructure.
 \caption{High level Architecture}
 \end{figure}
 
-\subsubsection{Function Level Management}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function.
+\subsection{Function Level Management}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function.
 
-\paragraph{Reference to the SRS or other Requirements}
+\subsubsection{Reference to the SRS or other Requirements}
 See \citep{subset-026} section 5.10
 
-\paragraph{Short description of the functionality}
+\subsubsection{Short description of the functionality}
 The level management subsystem receives level transition order tables and selects the order with the highest probability. It stores the information about the selected transition order and transits to the requested level once the train passes the location of the level transition.
 
 If required, the driver is asked to acknowledge the transition, in case of no acknowledge or if conditions for the level transition are not fulfilled, the train gets tripped.
 
-\paragraph{Interface}
+\subsubsection{Interface}
 The interface consists of the following inputs:
 
 \begin{itemize}
@@ -69,30 +69,30 @@ and the following outputs:
   acknowledgment from the driver is necessary
 \end{itemize}
 
-\paragraph{Functional Design Description}
+\subsubsection{Functional Design Description}
 
 On the most abstract level the design consists of the \emph{manage\_priorities} function which takes the level transition order priority tables as inputs and computes the highest priority transition.
 
 This transition order is the fed to the \emph{computeLevelTransitions} operator. This operator consists of three main parts. The \emph{ComputeTransitionConditions} operator that emits the fulfilled conditions to change from a given level to a new level, the \emph{LevelStateMachine} that stores the current level and takes the computed change conditions as input for possible level transitions and finally the \emph{driverAck} operator which contains a state machine that stores the information whether the system is currently waiting for a driver acknowledge and emits the train trip information if necessary.
 
 
-\paragraph{Reference to the Scade Model}
+\subsubsection{Reference to the Scade Model}
 
 The Scade model is available on GitHub:
 \url{https://github.com/openETCS/modeling/tree/master/openETCS ArchitectureAndDesign/Work Groups/Group 3/SCADE/LevelManagement/}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection{Function Mode Management}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function.
+\subsection{Function Mode Management}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function.
 \paragraph{Reference to the SRS or other Requirements}
 see \citep{subset-026} sections 4.4, 4.6, 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 5.11, 5.12, 5.13, 5.19
 
-\paragraph{Short description of the functionality}
+\subsubsection{Short description of the functionality}
 
 
 This function is in charge of the computation of new mode to apply according to conditions from inputs (track information, driver interactions, train data,...) and other functions.
 
-\paragraph{Interface}
+\subsubsection{Interface}
 
 The inputs are the following:
 \begin{itemize}
@@ -192,44 +192,44 @@ The outputs are the following:
 \end{itemize}
 
 
-\paragraph{Functional Design Description}
+\subsubsection{Functional Design Description}
 
 Three subfunctions are defined:
 \begin{description}
 \item[Inputs] proceeds to inputs check and preparation.
 \item[ComputeModesCondition] performs all specific procedure linked to mode management and defined in  \citep{subset-026} sections 5.4, 5.5, 5.6, 5.7, 5.8, 5.9, 5.11, 5.12, 5.13, 5.19 and specifies the conditions to define a mode transition according condition table of section 4.6.3 of \citep{subset-026}
 \item[SwitchModes] performs the mode selection according the conditions and priorities defined in transition table  section 4.6.2 of \citep{subset-026}
-\item[Outputs] prepares paquet of outputs.
+\item[Outputs] prepares packet of outputs.
 \end{description}
 
 
-\begin{landscape}
+%\begin{landscape}
 \begin{figure}
 \centering
-\includegraphics[scale=0.3]{images/ManageModes.png}
+\includegraphics[scale=0.25,angle=90]{images/ManageModes.png}
 \caption{Modes subfunction architecture.}
 \end{figure}
-\end{landscape}
+%\end{landscape}
 
-\paragraph{Reference to the Scade Model}
+\subsubsection{Reference to the Scade Model}
 The Scade model is available on github:
 \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/ManageLevelsAndModes/Modes}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\subsubsection{Function Check and Provide Level and Mode}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function.
-\paragraph{Reference to the SRS or other Requirements}
+\subsection{Function Check and Provide Level and Mode}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function.
+\subsubsection{Reference to the SRS or other Requirements}
 see \citep{subset-026} section 3.6.5
 
-\paragraph{Short description of the functionality}
+\subsubsection{Short description of the functionality}
 checks compatibility between mode and level and provides outputs
 
-\paragraph{Interface}
+\subsubsection{Interface}
 \emph{To design}
 
-\paragraph{Functional Design Description}
+\subsubsection{Functional Design Description}
 \emph{To design}
 
-\paragraph{Reference to the Scade Model}
+\subsubsection{Reference to the Scade Model}
 \emph{To design}
