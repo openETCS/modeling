@@ -47,7 +47,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="BG_Types_Pkg::TelegramHeader_T"/>
+										<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -117,15 +117,51 @@
 								<ed:Variable oid="!ed/22351c/22FC/C04/55780c1a2754"/>
 							</pragmas>
 						</Variable>
+						<Variable name="_L7">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TM::CompressedBaliseMessage"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5b3e9/5B0F/AC8/55801c0ea97"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L11">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Common_Types_Pkg::CompressedPackets_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5b3f0/5B0F/AC8/55801c69b3d"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L10">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TM::BaliseTelegramHeader_int_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5b3ef/5B0F/AC8/55801c694d48"/>
+							</pragmas>
+						</Variable>
 					</locals>
 					<data>
-						<!-- _L3 = TM::Read_P005_ForCalcTrainPos(_null, _L4, _L6); -->
+						<!-- _L3 = TM::Read_P005_ForCalcTrainPos(_L11, _L4, _L6); -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L3"/>
 							</lefts>
 							<right>
-								<!-- TM::Read_P005_ForCalcTrainPos(_null, _L4, _L6) -->
+								<!-- TM::Read_P005_ForCalcTrainPos(_L11, _L4, _L6) -->
 								<CallExpression>
 									<operator>
 										<OpCall name="1">
@@ -137,7 +173,7 @@
 									<callParameters>
 										<IdExpression>
 											<path>
-												<NullRef/>
+												<ConstVarRef name="_L11"/>
 											</path>
 										</IdExpression>
 										<IdExpression>
@@ -157,7 +193,7 @@
 								<ed:Equation oid="!ed/3eece/2D83/E60/556da7152876"/>
 							</pragmas>
 						</Equation>
-						<!-- TelegramHeader = _null; -->
+						<!-- TelegramHeader = _L10; -->
 						<Equation>
 							<lefts>
 								<VariableRef name="TelegramHeader"/>
@@ -165,7 +201,7 @@
 							<right>
 								<IdExpression>
 									<path>
-										<NullRef/>
+										<ConstVarRef name="_L10"/>
 									</path>
 								</IdExpression>
 							</right>
@@ -237,6 +273,63 @@
 								<ed:Equation oid="!ed/22351b/22FC/C04/55780c1a24f"/>
 							</pragmas>
 						</Equation>
+						<!-- _L7 = FirstTest::Story00A_BTM(_L5); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L7"/>
+							</lefts>
+							<right>
+								<!-- FirstTest::Story00A_BTM(_L5) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="FirstTest::Story00A_BTM"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L5"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5b3e8/5B0F/AC8/55801c0e641a"/>
+							</pragmas>
+						</Equation>
+						<!-- _L10, _L11 = (flatten TM::CompressedBaliseMessage)(_L7); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L10"/>
+								<VariableRef name="_L11"/>
+							</lefts>
+							<right>
+								<!-- (flatten TM::CompressedBaliseMessage)(_L7) -->
+								<CallExpression>
+									<operator>
+										<FlattenOp name="1">
+											<type>
+												<TypeRef name="TM::CompressedBaliseMessage"/>
+											</type>
+										</FlattenOp>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L7"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5b3ee/5B0F/AC8/55801c693297"/>
+							</pragmas>
+						</Equation>
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/3eec5/2D83/E60/556da6992a32" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
@@ -253,7 +346,7 @@
 										</EquationGE>
 										<EquationGE presentable="!ed/3eee8/2D83/E60/556da76121ed">
 											<position>
-												<Point x="12647" y="4895"/>
+												<Point x="13864" y="1720"/>
 											</position>
 											<size>
 												<Size width="317" height="502"/>
@@ -269,7 +362,7 @@
 										</EquationGE>
 										<EquationGE presentable="!ed/3eef3/2D83/E60/556da77235e0">
 											<position>
-												<Point x="900" y="3836"/>
+												<Point x="900" y="2778"/>
 											</position>
 											<size>
 												<Size width="264" height="503"/>
@@ -285,8 +378,8 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3eece/2D83/E60/556da7152876" dstEquation="!ed/3ef00/2D83/E60/556da8575f11">
 											<positions>
-												<Point x="27120" y="4048"/>
-												<Point x="28707" y="4048"/>
+												<Point x="27146" y="4075"/>
+												<Point x="28707" y="4075"/>
 												<Point x="28707" y="3836"/>
 												<Point x="30321" y="3836"/>
 											</positions>
@@ -313,6 +406,54 @@
 												<Point x="18441" y="4974"/>
 												<Point x="18441" y="4974"/>
 												<Point x="19341" y="4974"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/5b3e8/5B0F/AC8/55801c0e641a">
+											<position>
+												<Point x="4286" y="1296"/>
+											</position>
+											<size>
+												<Size width="5255" height="3482"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3eef3/2D83/E60/556da77235e0" dstEquation="!ed/5b3e8/5B0F/AC8/55801c0e641a">
+											<positions>
+												<Point x="1164" y="3043"/>
+												<Point x="2725" y="3043"/>
+												<Point x="2725" y="3043"/>
+												<Point x="4286" y="3043"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/5b3ee/5B0F/AC8/55801c693297">
+											<position>
+												<Point x="10954" y="2408"/>
+											</position>
+											<size>
+												<Size width="1270" height="1270"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5b3e8/5B0F/AC8/55801c0e641a" dstEquation="!ed/5b3ee/5B0F/AC8/55801c693297">
+											<positions>
+												<Point x="9525" y="3043"/>
+												<Point x="10239" y="3043"/>
+												<Point x="10239" y="3043"/>
+												<Point x="10954" y="3043"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/5b3ee/5B0F/AC8/55801c693297" dstEquation="!ed/3eece/2D83/E60/556da7152876">
+											<positions>
+												<Point x="12224" y="3254"/>
+												<Point x="15769" y="3254"/>
+												<Point x="15769" y="3149"/>
+												<Point x="19341" y="3149"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5b3ee/5B0F/AC8/55801c693297" dstEquation="!ed/3eee8/2D83/E60/556da76121ed">
+											<positions>
+												<Point x="12224" y="2831"/>
+												<Point x="13070" y="2831"/>
+												<Point x="13070" y="1984"/>
+												<Point x="13917" y="1984"/>
 											</positions>
 										</Edge>
 									</presentationElements>
