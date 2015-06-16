@@ -1,9 +1,9 @@
 %set the master document for easy compilation
 %!TEX root = ../D3_5_2.tex
 
-\subsubsection{F.2.2 Calculate Train Position}\label{sss:calctrainpos}
+\subsection{F.2.2 Calculate Train Position}\label{sss:calctrainpos}
 
-\paragraph{Short Description of Functionality}
+\subsubsection{Short Description of Functionality}
 The main purpose of the function is to calculate the locations of linked and unlinked balise groups (BGs) and the current train position while the train is running along the track. 
 
 In detail, the calculateTrainPosition function provides a couple of essential subfunctions for the onboard unit. These are mainly
@@ -36,7 +36,7 @@ The calculation algorithms for locations and positions are implemented as specif
 \end{figure}
 
 
-\paragraph{Functional Structure in Stages}
+\subsubsection{Functional Structure in Stages}
 calculateTrainPositions receives its input information via its passedBG entry as an event. The first decicion to be made is, if an input event is available and if it origins from a balise group just over passed or from the RBC via radio. 
 
 If the passedBG input events is caused by over passing a balise group, the balise group gets an OBU coordinate system location assigned ("calculateBGLocations") and is stored internally. If the just passed balise group announces more balise groups ahead via linking, they are stored with their locations calculated. 
@@ -85,10 +85,10 @@ This function observes the list of \textit{BGs} and the current train position. 
 \end{enumerate}
 
 
-\paragraph{Reference to the SRS (or other requirements)}
+\subsubsection{Reference to the SRS (or other requirements)}
 The component calculateTrainPosition determines the location of linked and unlinked balise groups and the current train position during the train trip as specified mainly in \cite[Chapter~3.6]{subset-026}.
 
-\paragraph{Design Constraints and Choices}
+\subsubsection{Design Constraints and Choices}
 The following constraints and prerequisites apply:
 \begin{enumerate}
 \item The input data received from the balises groups or via radio must have been checked and filtered for validity, consistency and the appropriate train orientation before delivering them to calculateTrainPosition. 
@@ -100,7 +100,7 @@ The following constraints and prerequisites apply:
 
 
 
-\subsubsection{Provide Position Report}\label{sss:provposrep}
+\subsection{Provide Position Report}\label{sss:provposrep}
 
 \begin{figure}
 \centering
@@ -108,7 +108,7 @@ The following constraints and prerequisites apply:
 \caption{Structure of component ProvidePositionReport}\label{fig:provideposrep}
 \end{figure}
 
-\paragraph{Short Description of Functionality}
+\subsubsection{Short Description of Functionality}
 This function takes the current train position and generates a position report which is sent to the RBC. The point in time when such a report is sent is determined by events, on the one hand, and position report parameters---which are basically triggers---provided by the RBC or a balise group passed, on the other hand. The functionality is modeled using four operators, as shown in Figure~\ref{fig:provideposrep}, which are explained below.
 \begin{description}
 	\item[CalculateSafeTrainLength] Calculates the the safeTrainLength and the MinSafeRearEnd according to \cite[Chapter~3.6.5.2.4/5]{subset-026}. \\
@@ -119,10 +119,10 @@ This function takes the current train position and generates a position report w
 	\item[CollectData] This operation aggregates data of Packet 0, \dots, Packet 5 and the header to a position report.
 \end{description}
 
-\paragraph{Reference to the SRS (or other requirements}
+\subsubsection{Reference to the SRS (or other requirements)}
 Most of the functionality is described in \cite[Chapter~3.6.5]{subset-026}.
 
-\paragraph{Design Constraints and Choices}
+\subsubsection{Design Constraints and Choices}
 \begin{enumerate}
 	\item The message length (i.e., attribute \verb+L_MESSAGE+) is by default set to 0; the actual value will be set by the Bitwalker/API.
 	\item The attribute \verb+Q_SCALE+ is assumed to be constant; that is, all operations using this attribute do not convert between different values of that attribute.
@@ -133,7 +133,7 @@ Most of the functionality is described in \cite[Chapter~3.6.5]{subset-026}.
 	\item The \textit{ErrorHandler} is currently restricted to deal with a single error. As a consequence, as for each error reported a report has to be sent to the RBC, the number of reports is limited to one.
 \end{enumerate}
 
-\paragraph{Open Issues}
+\subsubsection{Open Issues}
 \begin{enumerate}
 	\item The specification requires to store the last eight balise groups for which a position report has been sent (see \cite[Chapter~3.6.2.2.2.c]{subset-026}).
 	\item For all reports that contain Packet 1 (i.e., report based on two balise groups), the RBC sends a coordinate system. It is unclear where this has to be stored (i.e., somehow the balise groups have to be stored in a database which has then to be updated), see \cite[Chapter~3.4.2.3.3.6]{subset-026}. Moreover, such a coordination system can be invalid and then has to be rejected (see \cite[Chapter~3.4.2.3.3.7-8]{subset-026}). On a more abstract level, we need to think about the interface between the RBC and the OBU or a proper abstraction thereof.
