@@ -31,7 +31,7 @@ API requirements 		& n/a \\
 
 \subsection{Interface}
 
-An overview of the interface of component [component name] is shown in Figure~\ref{f:receiveAndCheckConsistencyArch}. The inputs and outputs are described in detail in Section~\ref{s:Manage_Trackside_inputs} respectively \ref{s:Manage_Trackside_outputs}.
+An overview of the interface of component Manage\_TrackSideInformation\_Integration is shown in Figure~\ref{f:receiveAndCheckConsistencyArch}. The inputs and outputs are described in detail in Section~\ref{s:Manage_Trackside_inputs} respectively \ref{s:Manage_Trackside_outputs}.
 
 \begin{figure}
 \center
@@ -54,8 +54,11 @@ Source					& Configuration \\
 \midrule
 Type					& bool \\
 \midrule
-Valid range of values	&  true: all checks are performed\newline
-false: component InformationFilter is deactivated \\
+Valid range of values	& 
+\begin{description}
+\item[true] All checks are performed.
+\item[false] Component InformationFilter is deactivated.
+\end{description} \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
@@ -117,8 +120,11 @@ Source					& Environment \\
 \midrule
 Type					& bool \\
 \midrule
-Valid range of values	& true: All data kept in the module is deleted and no input is accepted.\newline
-false: No action. Data at input is accepted. \\
+Valid range of values	& 
+\begin{description}
+\item[true] All data kept in the module is deleted and no input is accepted.
+\item[false] No action. Data at input is accepted.
+\end{description} \\
 \midrule
 Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
 \midrule
@@ -236,6 +242,7 @@ Behaviour for values out of valid range	& [Description of components behaviour w
 \bottomrule
 \end{longtable}
 
+
 \paragraph{inSupervisingRbcId}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
@@ -256,6 +263,7 @@ Behaviour for values out of valid range	& [Description of components behaviour w
 \bottomrule
 \end{longtable}
 
+
 \paragraph{inAnnouncedBGs}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
@@ -275,6 +283,7 @@ Behaviour when value is at boundary	& [Description of components behaviour when 
 Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
 \bottomrule
 \end{longtable}
+
 
 \paragraph{q\_nvlocacc}
 
@@ -300,17 +309,17 @@ Behaviour for values out of valid range	& [Description of components behaviour w
 
 \subsubsection{Outputs}\label{s:Manage_Trackside_outputs}
 
-\paragraph{[Output 1 name]}
+\paragraph{outputMessage}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& [Name of the output] \\
+Output name				& outputMessage \\
 \midrule
-Description				& [Brief description of the output] \\
+Description				& Combines both balise and radio messages to one common datatype. This datatype contains all variables and packets, which are possible for the given scenario. \\
 \midrule
 Destination				& [Name of the destination component(s)] \\ 
 \midrule
-Type					& [Type of the output] \\
+Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
 Valid range of values	& [Complete list of valid values] \\
 \midrule
@@ -321,11 +330,56 @@ Behaviour for values out of valid range	& [Description of components behaviour w
 \end{longtable}
 
 
-\paragraph{[Output 2 name]}
+\paragraph{ApplyServiceBrake}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& [Name of the output] \\
+Output name				& ApplyServiceBrake \\
+\midrule
+Description				&  Indicates if the balise group the train just passed could not be processed correctly. The check results in the request for a service break. \\
+\midrule
+Destination				& [Name of the destination component(s)] \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& [Complete list of valid values] \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{BadBAliseMessageToDMI}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& BadBAliseMessageToDMI \\
+\midrule
+Description				& Information to be passed to the DMI to indicate the reception of a ``bad balise'' to the driver. \\
+\midrule
+Destination				& DMI \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& \begin{description}
+\item[true] ???
+\item[false] ???
+\end{description} \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{errorLinkedBG}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& errorLinkedBG \\
 \midrule
 Description				& [Brief description of the output] \\
 \midrule
@@ -333,7 +387,144 @@ Destination				& [Name of the destination component(s)] \\
 \midrule
 Type					& [Type of the output] \\
 \midrule
+Valid range of values	& \begin{description}
+\item[true] An error in a linked balise group was detected.
+\item[false] No error in a linked balise group was detected.
+\end{description} \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{errorUnlinkedBG}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& errorUnlinkedBG \\
+\midrule
+Description				& [Brief description of the output] \\
+\midrule
+Destination				& [Name of the destination component(s)] \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& \begin{description}
+\item[true] An error in a unlinked balise group was detected.
+\item[false] No error in a unlinked balise group was detected.
+\end{description} \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+\paragraph{passedBG}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& passedBG \\
+\midrule
+Description				& Provides the received balise group message in a special format needed by the component CalculateTrainPosition. \\
+\midrule
+Destination				& [Name of the destination component(s)] \\ 
+\midrule
+Type					& BG\_Types\_Pkg::passedBG\_T \\
+\midrule
 Valid range of values	& [Complete list of valid values] \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{outPositionParams}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& outPositionParams \\
+\midrule
+Description				& Provides the parameters for the position report in a special format needed by the component ProvidePositionReport. \\
+\midrule
+Destination				& [Name of the destination component(s)] \\ 
+\midrule
+Type					& Common\_Types\_Pkg::PositionReportParameter\_T \\
+\midrule
+Valid range of values	& [Complete list of valid values] \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{outRadioManagement}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& outRadioManagement \\
+\midrule
+Description				& Provides the messages for radio session management in a special format needed by the component ManagementOfRadioCommunication. \\
+\midrule
+Destination				& [Name of the destination component(s)] \\ 
+\midrule
+Type					& Common\_Types\_Pkg::radioManagementMessage\_T \\
+\midrule
+Valid range of values	& [Complete list of valid values] \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{radioSequenceError}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& radioSequenceError \\
+\midrule
+Description				& [Brief description of the output] \\
+\midrule
+Destination				& [Name of the destination component(s)] \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& \begin{description}
+\item[true] A sequence error or a timeout has been detected in the radio message.
+\item[false] No error in the radio message sequence was detected.
+\end{description} \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{radioMessageConsistencyError}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& radioMessageConsistencyError \\
+\midrule
+Description				& [Brief description of the output] \\
+\midrule
+Destination				& [Name of the destination component(s)] \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& \begin{description}
+\item[true] A consistency error has been detected in the radio message.
+\item[false] No consistency error in the radio message was detected.
+\end{description} \\
 \midrule
 Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
 \midrule
