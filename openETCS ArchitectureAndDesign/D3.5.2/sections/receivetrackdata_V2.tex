@@ -42,17 +42,39 @@ An overview of the interface of component [component name] is shown in Figure~\r
 
 \subsubsection{Inputs}\label{s:Manage_Trackside_inputs}
 
-\paragraph{[Input 1 name]}
+\paragraph{fullChecks}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Input name				& [Name of the input] \\
+Input name				& fullChecks \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& Indicates, if all checks on the message should be performed. \\
 \midrule
-Source					& [Name of the source component] \\ 
+Source					& Configuration \\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& bool \\
+\midrule
+Valid range of values	&  true: all checks are performed\newline
+false: component InformationFilter is deactivated \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{API\_trackSide\_Message}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& API\_trackSide\_Message \\
+\midrule
+Description				& Track side message received from the API. The API performs preprocessing of RTM and BTM messages and deliveres a maximum of a single message per cycle. \\
+\midrule
+Source					& API \\ 
+\midrule
+Type					& API\_Msg\_Pkg::API\_TrackSideInput\_T \\
 \midrule
 Valid range of values	& [Complete list of valid values] \\
 \midrule
@@ -63,17 +85,17 @@ Behaviour for values out of valid range	& [Description of components behaviour w
 \end{longtable}
 
 
-\paragraph{[Input 2 name]}
+\paragraph{ActualOdometry}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Input name				& [Name of the input] \\
+Input name				& ActualOdometry \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& Provided by the external odometry module of the train. It contains relative location information with inaccuracies. \\
 \midrule
-Source					& [Name of the source component] \\ 
+Source					& Odometer \\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& Obu\_BasicTypes\_Pkg::odometry\_T \\
 \midrule
 Valid range of values	& [Complete list of valid values] \\
 \midrule
@@ -82,6 +104,198 @@ Behaviour when value is at boundary	& [Description of components behaviour when 
 Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
 \bottomrule
 \end{longtable}
+
+\paragraph{reset}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& reset \\
+\midrule
+Description				& To delete all data stored in the module (e.g.~collected balise telegrams, which do not yet form a complete message), a reset input can be used. If the input is set to true, all data kept in the module is deleted and no input is accepted. \\
+\midrule
+Source					& Environment \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& true: All data kept in the module is deleted and no input is accepted.\newline
+false: No action. Data at input is accepted. \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+\paragraph{trainPosition}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& trainPosition \\
+\midrule
+Description				& Contains the current position of the train. \\
+\midrule
+Source					& CalculateTrainPosition \\ 
+\midrule
+Type					& TrainPosition\_Types\_Pck::trainPosition\_T \\
+\midrule
+Valid range of values	& \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+\paragraph{modeAndLevel}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& modeAndLevel \\
+\midrule
+Description				& Provides the current level and mode of the EVC. \\
+\midrule
+Source					& ModeAndLevel \\ 
+\midrule
+Type					& BG\_Types\_Pkg::ModeAndLevelStatus\_T \\
+\midrule
+Valid range of values	& [Complete list of valid values] \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{tNvContact}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& tNvContact \\
+\midrule
+Description				& For monitoring the safe radio connection, this national value is needed as an input. \\
+\midrule
+Source					& Database \\ 
+\midrule
+Type					& Obu\_BasicTypes\_Pkg::T\_internal\_Type \\
+\midrule
+Valid range of values	& [Complete list of valid values] \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{lastRelevantEventTimestamp}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& lastRelevantEventTimestamp \\
+\midrule
+Description				& For monitoring the safe radio connection, it is necessary that the time between two packets is less than the value of {T\_NVCONTACT}.\newline
+In situations like level-changes or announced radio holes, not the timestamp of the last message is relevant for comparison, but the timestamp of the last relevant event. This can for example be the timestamp of the level change or the timestamp of the moment, when the train was passing the end of the radiohole.\newline
+For performing this check, the timestamp of the last relevant event is provided to the model as an {T\_internal\_Type}-type. \\
+\midrule
+Source					& Database \\ 
+\midrule
+Type					& Obu\_BasicTypes\_Pkg::T\_internal\_Type \\
+\midrule
+Valid range of values	& [Complete list of valid values] \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{connectionStatus}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& connectionStatus \\
+\midrule
+Description				& Status information about the radio connection. The information is needed to perform the timing check, which depends on the connection state. \\
+\midrule
+Source					& ManageRadioCommunication \\ 
+\midrule
+Type					& Radio\_Types\_Pkg::sessionStatus\_Type \\
+\midrule
+Valid range of values	& 
+\begin{description}
+\item[DISCONNECTED] The OBU is currently not connected to a RBC.
+\item[CONNECTING] The OBU is currently connecting to the RBC. Received messages belong to the process of establishing a connection.
+\item[CONNECTION\_ESTABLISHED] The connection to the RBC is established.
+\end{description} \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+\paragraph{inSupervisingRbcId}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& inSupervisingRbcId \\
+\midrule
+Description				& For the sub component InformationFilter, the information which radio messages are sent by the supervising RBC is needed. To recognize these messages, the identifier of the supervising RBC is needed. \\
+\midrule
+Source					& Database \\ 
+\midrule
+Type					& int \\
+\midrule
+Valid range of values	& [Complete list of valid values] \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+\paragraph{inAnnouncedBGs}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& inAnnouncedBGs \\
+\midrule
+Description				& Provides information about balise groups which will be passed by the train soon. This information is generated by Calculate Train Position based on the linking information received from trackside. \\
+\midrule
+Source					& CalculateTrainPosition \\ 
+\midrule
+Type					& TrainPosition\_Types\_Pck::positionedBGs\_T \\
+\midrule
+Valid range of values	& [Complete list of valid values] \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
+\paragraph{q\_nvlocacc}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& q\_nvlocacc \\
+\midrule
+Description				& The national value determines the location accuracy. \\
+\midrule
+Source					& Database \\ 
+\midrule
+Type					& Q\_NVLOCACC \\
+\midrule
+Valid range of values	& [Complete list of valid values] \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+\bottomrule
+\end{longtable}
+
 
 
 \subsubsection{Outputs}\label{s:Manage_Trackside_outputs}
