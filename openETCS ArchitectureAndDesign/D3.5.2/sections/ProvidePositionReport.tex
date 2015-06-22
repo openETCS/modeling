@@ -1,0 +1,38 @@
+%set the master document for easy compilation
+%!TEX root = ../D3_5_2.tex
+
+\paragraph{Component Requirements}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Component name			& Provide\_Position\_Report \\
+\midrule
+Link to SCADE model		& {\footnotesize \url{???}} \\
+\midrule
+SCADE designer			& ??? \\
+\midrule
+Description				& This function takes the current train position and generates a position report which is sent to the RBC. The point in time when such a report is sent is determined by events, on the one hand, and position report parameters---which are basically triggers---provided by the RBC or a balise group passed, on the other hand. The functionality is modeled using four operators, which are explained below.
+\begin{description}
+	\item[CalculateSafeTrainLength] Calculates the the safeTrainLength and the MinSafeRearEnd according to \cite[Chapter~3.6.5.2.4/5]{subset-026}. 
+\verb+safeTrainLength =  absolute(EstimatedFrontEndPosition - MinSafeRearEnd)+, where
+\verb+MinSafeRearEnd = minSafeFrontEndPosition - L_TRAIN+.
+	\item[EvaluateTriggerAndEvents] Returns a Boolean modelling whether the sending of the next position report is triggered or not. This value is the conjunction of the evaluation of all triggers (PositionReportParameters, i.e., Packet 58) and events (see \cite[Chapter~3.6.5.1.4]{subset-026}).
+	\item[ErrorManager] Takes a boolean flag for each possible error that has been occurred and outputs the respective error using type \verb+M_ERROR+
+	\item[CollectData] This operation aggregates data of Packet 0, \dots, Packet 5 and the header to a position report.
+\end{description} \\
+\midrule
+Input documents	& 
+Subset-026, Chapter 3.6.5 \\
+\midrule
+Safety integrity level		& 4 \\
+\midrule
+Time constraints		& [If applicable description of time constraints, otherwise n/a] \\
+\midrule
+API requirements 		& [If applicable description of API requirements, otherwise n/a] \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{Interface}
+
+For an overview of the interface of this internal component we refer to the SCADE model (c.f.~link above) respectively the SCADE generated documentation.
