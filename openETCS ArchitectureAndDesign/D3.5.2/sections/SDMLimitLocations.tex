@@ -1,0 +1,31 @@
+%set the master document for easy compilation
+%!TEX root = ../D3_5_2.tex
+
+\paragraph{Component Requirements}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Component name			& SDMLimitLocations \\
+\midrule
+Link to SCADE model		& {\footnotesize \url{???}} \\
+\midrule
+SCADE designer			& ??? \\
+\midrule
+Description				& This operator calculates the various locations needed to determine the speed and distance monitoring commands. The current implementation of functionality is stateless and requires a complete recalculation each cycle. 
+
+This operator gathers all necessary input values and computes some frequently used intermediate values in the operators \texttt{surplusTractionDeltas} and \texttt{$v_{\mathit{bec}}$}. The other input preparation operator is the \texttt{TargetSelector} whose main task is to dissect the list of targets to find the Most Restrictive Target. The accompanying braking curves are extracted and promoted to trailing location calculations. Also the special values of the EOA are exposed.
+
+The operator creates the requested values for the commands package. These are in particular the preindication locations for EBD and SBD based targets, the release speed monitoring start locations, the locations for target speed monitoring of the I-, W-, P- and FLOI-curve, the related FLOI speed and the location of the permitted speed supervision limit. Included in the output are also certain flags for the validity of linked values.\\
+\midrule
+Input documents	& 
+Subset-026, Chapter 3.13.9: Supervision Limits \newline
+Subset-026, Chapter 5.3.1.2: $f_{41}$ -- accuracy of speed known on-board\newline
+Subset-026, Chapter 3.13.10: Monitoring Commands as reference for required outputs of this module \\
+\midrule
+Safety integrity level		& 4 \\
+\midrule
+Time constraints		& [If applicable description of time constraints, otherwise n/a] \\
+\midrule
+API requirements 		& [If applicable description of API requirements, otherwise n/a] \\
+\bottomrule
+\end{longtable}
