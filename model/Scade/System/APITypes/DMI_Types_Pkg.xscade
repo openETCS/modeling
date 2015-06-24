@@ -530,9 +530,36 @@
 										</IdExpression>
 									</flow>
 								</LabelledExpression>
+								<LabelledExpression label="context">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="con_undefined"/>
+											</path>
+										</IdExpression>
+									</flow>
+								</LabelledExpression>
 								<LabelledExpression label="nid_textmessage">
 									<flow>
 										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="whichLevel">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="M_LEVEL_Level_0"/>
+											</path>
+										</IdExpression>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="whichMode">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="M_MODE_Full_Supervision"/>
+											</path>
+										</IdExpression>
 									</flow>
 								</LabelledExpression>
 							</data>
@@ -3535,6 +3562,18 @@
 										</ed:Field>
 									</pragmas>
 								</Field>
+								<Field name="context">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="DMI_context_TXT_MSG_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1e7ba/5BAB/121C/558a4eb850de"/>
+									</pragmas>
+								</Field>
 								<Field name="nid_textmessage">
 									<type>
 										<NamedType>
@@ -3546,6 +3585,34 @@
 									<pragmas>
 										<ed:Field oid="!ed/1e7a8/729C/1790/5586d4a751dd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 											<comment>The id to be used for identifacation of the mesaage in the report</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="whichLevel">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_LEVEL"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1e7a6/5BAB/121C/558a4e852319" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Only relevant for level changes</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="whichMode">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_MODE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1e7b0/5BAB/121C/558a4ea33003" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Only relevant for mode changes</comment>
 										</ed:Field>
 									</pragmas>
 								</Field>
@@ -3594,6 +3661,39 @@
 					</definition>
 					<pragmas>
 						<ed:Type oid="!ed/1e77a/729C/1790/5586d0196324"/>
+					</pragmas>
+				</Type>
+				<Type name="DMI_context_TXT_MSG_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="con_undefined">
+									<pragmas>
+										<ed:Value oid="!ed/1e7a2/5BAB/121C/558a4d636933"/>
+									</pragmas>
+								</Value>
+								<Value name="con_levelMgmt">
+									<pragmas>
+										<ed:Value oid="!ed/1e7a3/5BAB/121C/558a4d7a47cc"/>
+									</pragmas>
+								</Value>
+								<Value name="con_modeChange">
+									<pragmas>
+										<ed:Value oid="!ed/1e7a4/5BAB/121C/558a4d8c456e"/>
+									</pragmas>
+								</Value>
+								<Value name="con_trackRequest">
+									<pragmas>
+										<ed:Value oid="!ed/1e7a5/5BAB/121C/558a4d9b4a72"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1e7a1/5BAB/121C/558a4d1d10ad" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>For text messages different reasons are possible. This parameter keeps the context of the text message for proper allocation of a response tpo the request</comment>
+						</ed:Type>
 					</pragmas>
 				</Type>
 			</declarations>
