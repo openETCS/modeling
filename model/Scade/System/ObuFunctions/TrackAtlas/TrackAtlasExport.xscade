@@ -3,76 +3,6 @@
 	<declarations>
 		<Package name="TrackAtlasExport">
 			<declarations>
-				<Type name="MRSP_for_DMI_T">
-					<definition>
-						<Table>
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="MRSP_for_DMI_section_T"/>
-									</type>
-								</NamedType>
-							</type>
-							<size>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="TrackAtlasTypes::MRSPMaxSections"/>
-									</path>
-								</IdExpression>
-							</size>
-						</Table>
-					</definition>
-					<pragmas>
-						<ed:Type oid="!ed/38743c/4EDE/5F8/5590983e851"/>
-					</pragmas>
-				</Type>
-				<Type name="MRSP_for_DMI_section_T">
-					<definition>
-						<Struct>
-							<fields>
-								<Field name="valid">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="bool"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/387468/4EDE/5F8/559098b337dc"/>
-									</pragmas>
-								</Field>
-								<Field name="Loc_LRBG">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/387471/4EDE/5F8/559098f33f48"/>
-									</pragmas>
-								</Field>
-								<Field name="MRS">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/387483/4EDE/5F8/5590992560e0"/>
-									</pragmas>
-								</Field>
-							</fields>
-						</Struct>
-					</definition>
-					<pragmas>
-						<ed:Type oid="!ed/387467/4EDE/5F8/559098a2700b"/>
-					</pragmas>
-				</Type>
 				<Operator kind="function" name="MRSP_to_DMI">
 					<inputs>
 						<Variable name="MRSP">
@@ -93,7 +23,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="MRSP_for_DMI_T"/>
+										<TypeRef name="TrackAtlasTypes::MRSP_for_DMI_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -121,7 +51,7 @@
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="MRSP_for_DMI_section_T"/>
+												<NullRef/>
 											</type>
 										</NamedType>
 									</type>
@@ -172,20 +102,20 @@
 								<ed:Equation oid="!ed/38742b/4EDE/5F8/5590980e2c38"/>
 							</pragmas>
 						</Equation>
-						<!-- _L2 = (map MRSP_to_loop <<TrackAtlasTypes::MRSPMaxSections>>)(_L1); -->
+						<!-- _L2 = (map MRSP_to_DMI_loop <<TrackAtlasTypes::MRSPMaxSections>>)(_L1); -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L2"/>
 							</lefts>
 							<right>
-								<!-- (map MRSP_to_loop <<TrackAtlasTypes::MRSPMaxSections>>)(_L1) -->
+								<!-- (map MRSP_to_DMI_loop <<TrackAtlasTypes::MRSPMaxSections>>)(_L1) -->
 								<CallExpression>
 									<operator>
 										<IteratorOp name="1" iterator="map">
 											<operator>
 												<OpCall name="1">
 													<operator>
-														<OperatorRef name="MRSP_to_loop"/>
+														<OperatorRef name="MRSP_to_DMI_loop"/>
 													</operator>
 												</OpCall>
 											</operator>
@@ -263,7 +193,7 @@
 						</ed:Operator>
 					</pragmas>
 				</Operator>
-				<Operator kind="function" name="MRSP_to_loop">
+				<Operator kind="function" name="MRSP_to_DMI_loop">
 					<inputs>
 						<Variable name="MRSP">
 							<type>
@@ -283,7 +213,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="MRSP_for_DMI_section_T"/>
+										<TypeRef name="TrackAtlasTypes::MRSP_for_DMI_section_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -357,7 +287,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="MRSP_for_DMI_section_T"/>
+										<TypeRef name="TrackAtlasTypes::MRSP_for_DMI_section_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -430,18 +360,18 @@
 								<ed:Equation oid="!ed/3874d4/4EDE/5F8/55909a415561"/>
 							</pragmas>
 						</Equation>
-						<!-- _L10 = (make MRSP_for_DMI_section_T)(_L2, _L4, _L5); -->
+						<!-- _L10 = (make TrackAtlasTypes::MRSP_for_DMI_section_T)(_L2, _L4, _L5); -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L10"/>
 							</lefts>
 							<right>
-								<!-- (make MRSP_for_DMI_section_T)(_L2, _L4, _L5) -->
+								<!-- (make TrackAtlasTypes::MRSP_for_DMI_section_T)(_L2, _L4, _L5) -->
 								<CallExpression>
 									<operator>
 										<MakeOp>
 											<type>
-												<TypeRef name="MRSP_for_DMI_section_T"/>
+												<TypeRef name="TrackAtlasTypes::MRSP_for_DMI_section_T"/>
 											</type>
 										</MakeOp>
 									</operator>
@@ -488,7 +418,7 @@
 					<pragmas>
 						<ed:Operator oid="!ed/387425/4EDE/5F8/559097d6661a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 							<diagrams>
-								<NetDiagram name="diagram_MRSP_to_loop_1" landscape="true" format="A4 (210 297)" oid="!ed/387426/4EDE/5F8/559097d61170">
+								<NetDiagram name="diagram_MRSP_to_DMI_loop_1" landscape="true" format="A4 (210 297)" oid="!ed/387426/4EDE/5F8/559097d61170">
 									<presentationElements>
 										<EquationGE presentable="!ed/3874c0/4EDE/5F8/55909a2b1648">
 											<position>
@@ -584,12 +514,611 @@
 						</ed:Operator>
 					</pragmas>
 				</Operator>
+				<Operator kind="function" name="GradientProfile_to_DMI">
+					<inputs>
+						<Variable name="Gradient_Profile_in">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::GradientProfile_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3ae11b/4EDE/5F8/55909c96393e"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="Gradient_Profile_for_DMI_out">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::GradientProfile_for_DMI_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3ae11c/4EDE/5F8/55909c9f5ca6"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::GradientProfile_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3ae16c/4EDE/5F8/55909dea24ca"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L2">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="TrackAtlasTypes::GradientProfile_for_DMI_section_t"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3d4dd6/4EDE/5F8/55909f47345d"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L1 = Gradient_Profile_in; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Gradient_Profile_in"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3ae16b/4EDE/5F8/55909dea4317"/>
+							</pragmas>
+						</Equation>
+						<!-- Gradient_Profile_for_DMI_out = _L2; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="Gradient_Profile_for_DMI_out"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L2"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3ae16d/4EDE/5F8/55909dea189"/>
+							</pragmas>
+						</Equation>
+						<!-- _L2 = (map GradientProfile_to_DMI_loop <<TrackAtlasTypes::GradientMaxSections>>)(... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L2"/>
+							</lefts>
+							<right>
+								<!-- (map GradientProfile_to_DMI_loop <<TrackAtlasTypes::GradientMaxSections>>)(_L1) -->
+								<CallExpression>
+									<operator>
+										<IteratorOp name="1" iterator="map">
+											<operator>
+												<OpCall name="1">
+													<operator>
+														<OperatorRef name="GradientProfile_to_DMI_loop"/>
+													</operator>
+												</OpCall>
+											</operator>
+											<size>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
+													</path>
+												</IdExpression>
+											</size>
+										</IteratorOp>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3d4dd5/4EDE/5F8/55909f476fdc"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/3ae111/4EDE/5F8/55909c4a4acc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_GradientProfile_to_DMI_1" landscape="true" format="A4 (210 297)" oid="!ed/3ae112/4EDE/5F8/55909c4a7bec">
+									<presentationElements>
+										<EquationGE presentable="!ed/3ae16b/4EDE/5F8/55909dea4317">
+											<position>
+												<Point x="4551" y="6535"/>
+											</position>
+											<size>
+												<Size width="265" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3ae16d/4EDE/5F8/55909dea189">
+											<position>
+												<Point x="21246" y="6535"/>
+											</position>
+											<size>
+												<Size width="318" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3d4dd5/4EDE/5F8/55909f476fdc">
+											<position>
+												<Point x="10972" y="5204"/>
+											</position>
+											<size>
+												<Size width="6366" height="3191"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3ae16b/4EDE/5F8/55909dea4317" dstEquation="!ed/3d4dd5/4EDE/5F8/55909f476fdc">
+											<positions>
+												<Point x="4815" y="6800"/>
+												<Point x="7885" y="6800"/>
+												<Point x="7885" y="6800"/>
+												<Point x="10980" y="6800"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3d4dd5/4EDE/5F8/55909f476fdc" dstEquation="!ed/3ae16d/4EDE/5F8/55909dea189">
+											<positions>
+												<Point x="17330" y="6800"/>
+												<Point x="19315" y="6800"/>
+												<Point x="19315" y="6800"/>
+												<Point x="21299" y="6800"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="function" name="GradientProfile_to_DMI_loop">
+					<inputs>
+						<Variable name="Gradient_section_in">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::Gradient_section_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3ae172/4EDE/5F8/55909e10251c"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="Gradiient_section_for_DMI_out">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::GradientProfile_for_DMI_section_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3ae173/4EDE/5F8/55909e463ed7"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::Gradient_section_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3d4de5/4EDE/5F8/55909f833cd4"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L6">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3d4df0/4EDE/5F8/55909f8932f8"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L5">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::G_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3d4def/4EDE/5F8/55909f89f88"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L4">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3d4dee/4EDE/5F8/55909f891f0d"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L3">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3d4ded/4EDE/5F8/55909f8924c9"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L2">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3d4dec/4EDE/5F8/55909f895db"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L12">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::GradientProfile_for_DMI_section_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3d4df7/4EDE/5F8/55909f8c324b"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L13">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3d4e05/4EDE/5F8/55909fbfbfa"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L1 = Gradient_section_in; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Gradient_section_in"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3d4de4/4EDE/5F8/55909f83894"/>
+							</pragmas>
+						</Equation>
+						<!-- Gradiient_section_for_DMI_out = _L12; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="Gradiient_section_for_DMI_out"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L12"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3d4de6/4EDE/5F8/55909f834926"/>
+							</pragmas>
+						</Equation>
+						<!-- _L2, _L3, _L4, _L5, _L6 = (flatten TrackAtlasTypes::Gradient_section_t)(_L1); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L2"/>
+								<VariableRef name="_L3"/>
+								<VariableRef name="_L4"/>
+								<VariableRef name="_L5"/>
+								<VariableRef name="_L6"/>
+							</lefts>
+							<right>
+								<!-- (flatten TrackAtlasTypes::Gradient_section_t)(_L1) -->
+								<CallExpression>
+									<operator>
+										<FlattenOp>
+											<type>
+												<TypeRef name="TrackAtlasTypes::Gradient_section_t"/>
+											</type>
+										</FlattenOp>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3d4deb/4EDE/5F8/55909f893c60"/>
+							</pragmas>
+						</Equation>
+						<!-- _L12 = (make TrackAtlasTypes::GradientProfile_for_DMI_section_t)(_L2, _L4, _L13, ... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L12"/>
+							</lefts>
+							<right>
+								<!-- (make TrackAtlasTypes::GradientProfile_for_DMI_section_t)(_L2, _L4, _L13, _L5) -->
+								<CallExpression>
+									<operator>
+										<MakeOp>
+											<type>
+												<TypeRef name="TrackAtlasTypes::GradientProfile_for_DMI_section_t"/>
+											</type>
+										</MakeOp>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L4"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L13"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L5"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3d4df6/4EDE/5F8/55909f8c3e28"/>
+							</pragmas>
+						</Equation>
+						<!-- _ = _L3; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L3"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3d4dfb/4EDE/5F8/55909faab32"/>
+							</pragmas>
+						</Equation>
+						<!-- _L13 = _L4 + _L6; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L13"/>
+							</lefts>
+							<right>
+								<!-- _L4 + _L6 -->
+								<NAryOp name="1" operator="+">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L4"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L6"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</NAryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3d4e04/4EDE/5F8/55909fbf4d35"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/3ae119/4EDE/5F8/55909c785198" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_GradientProfile_to_DMI_loop_1" landscape="true" format="A4 (210 297)" oid="!ed/3ae11a/4EDE/5F8/55909c783364">
+									<presentationElements>
+										<EquationGE presentable="!ed/3d4de4/4EDE/5F8/55909f83894">
+											<position>
+												<Point x="4445" y="5794"/>
+											</position>
+											<size>
+												<Size width="265" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3d4de6/4EDE/5F8/55909f834926">
+											<position>
+												<Point x="21246" y="5503"/>
+											</position>
+											<size>
+												<Size width="318" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3d4deb/4EDE/5F8/55909f893c60">
+											<position>
+												<Point x="5972" y="1738"/>
+											</position>
+											<size>
+												<Size width="1286" height="8615"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3d4de4/4EDE/5F8/55909f83894" dstEquation="!ed/3d4deb/4EDE/5F8/55909f893c60">
+											<positions>
+												<Point x="4710" y="6059"/>
+												<Point x="5345" y="6059"/>
+												<Point x="5345" y="6059"/>
+												<Point x="5980" y="6059"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/3d4df6/4EDE/5F8/55909f8c3e28">
+											<position>
+												<Point x="18706" y="1429"/>
+											</position>
+											<size>
+												<Size width="1286" height="8668"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3d4df6/4EDE/5F8/55909f8c3e28" dstEquation="!ed/3d4de6/4EDE/5F8/55909f834926">
+											<positions>
+												<Point x="19976" y="5768"/>
+												<Point x="20638" y="5768"/>
+												<Point x="20638" y="5768"/>
+												<Point x="21299" y="5768"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3d4deb/4EDE/5F8/55909f893c60" dstEquation="!ed/3d4df6/4EDE/5F8/55909f8c3e28">
+											<positions>
+												<Point x="7250" y="3175"/>
+												<Point x="12965" y="3175"/>
+												<Point x="12965" y="3175"/>
+												<Point x="18706" y="3175"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/3d4dfb/4EDE/5F8/55909faab32">
+											<position>
+												<Point x="8440" y="4339"/>
+											</position>
+											<size>
+												<Size width="503" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/3d4deb/4EDE/5F8/55909f893c60" dstEquation="!ed/3d4dfb/4EDE/5F8/55909faab32">
+											<positions>
+												<Point x="7250" y="4604"/>
+												<Point x="7964" y="4604"/>
+												<Point x="7964" y="4604"/>
+												<Point x="8705" y="4604"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="3" rightExprIndex="2" srcEquation="!ed/3d4deb/4EDE/5F8/55909f893c60" dstEquation="!ed/3d4df6/4EDE/5F8/55909f8c3e28">
+											<positions>
+												<Point x="7250" y="6059"/>
+												<Point x="12965" y="6059"/>
+												<Point x="12965" y="4895"/>
+												<Point x="18706" y="4895"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="4" rightExprIndex="4" srcEquation="!ed/3d4deb/4EDE/5F8/55909f893c60" dstEquation="!ed/3d4df6/4EDE/5F8/55909f8c3e28">
+											<positions>
+												<Point x="7250" y="7488"/>
+												<Point x="12965" y="7488"/>
+												<Point x="12965" y="8361"/>
+												<Point x="18706" y="8361"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/3d4e04/4EDE/5F8/55909fbf4d35">
+											<position>
+												<Point x="15690" y="5847"/>
+											</position>
+											<size>
+												<Size width="1005" height="662"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/3d4e04/4EDE/5F8/55909fbf4d35" dstEquation="!ed/3d4df6/4EDE/5F8/55909f8c3e28">
+											<positions>
+												<Point x="16695" y="6191"/>
+												<Point x="17701" y="6191"/>
+												<Point x="17701" y="6615"/>
+												<Point x="18706" y="6615"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="3" rightExprIndex="1" srcEquation="!ed/3d4deb/4EDE/5F8/55909f893c60" dstEquation="!ed/3d4e04/4EDE/5F8/55909fbf4d35">
+											<positions>
+												<Point x="7250" y="6059"/>
+												<Point x="11456" y="6059"/>
+												<Point x="11456" y="6059"/>
+												<Point x="15690" y="6059"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="5" rightExprIndex="2" srcEquation="!ed/3d4deb/4EDE/5F8/55909f893c60" dstEquation="!ed/3d4e04/4EDE/5F8/55909fbf4d35">
+											<positions>
+												<Point x="7250" y="8916"/>
+												<Point x="11456" y="8916"/>
+												<Point x="11456" y="6297"/>
+												<Point x="15690" y="6297"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/38740f/4EDE/5F8/5590977629e2" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 					<diagrams>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/387410/4EDE/5F8/559097765723" blockKind="constants"/>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/387411/4EDE/5F8/5590977669e8" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/387411/4EDE/5F8/5590977669e8" blockKind="types" columnsSize="0, 291, 150, 300"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/387412/4EDE/5F8/5590977611ae" blockKind="sensors"/>
 					</diagrams>
 				</ed:Package>
