@@ -1,17 +1,20 @@
 %set the master document for easy compilation
-%!TEX root = ../D3_5_2.tex
+%!TEX root = ../D3_5_3.tex
 
 \section{Manage\_TrackSideInformation\_Integration}
 
 \subsection{Component Requirements}
 
+\todo{Clarify detail f documentation with the trackMessages concept}
+
+
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
 Component name			& Manage\_TrackSideInformation\_Integration \\
 \midrule
-Link to SCADE model		& {\footnotesize \url{???}} \\
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/blob/master/model/Scade/System/ObuFunctions/ManageLocationRelatedInformation/BaliseGroup/Manage_TrackSideInformation_Integration/Manage_TrackSideInformation_Integration.etp}} \\
 \midrule
-SCADE designer			& [Name, affiliation] \\
+SCADE designer			& Bernd Hekele, DB Netz AG \\
 \midrule
 Description				& The block ``Manage\_TrackSideInformation\_Integration'' is responsible for receiving Eurobalise telegrams and Euroradio messages from the API and performs several consistency checks on the inputs.\newline
 
@@ -22,9 +25,9 @@ See sub-components.\\
 \midrule
 Safety integrity level		& 4 \\
 \midrule
-Time constraints		& n/a \\
+Time constraints		& The component has to be able to receive balise telegrams and radio messages according to the ETCS \cite{subset-41} performance requirements). In highspeed traffic, a group of 8 balises must be read in about 250 msec. In addition, 1 message per sec. on the radio interface is to be expected.\\
 \midrule
-API requirements 		& n/a \\
+API requirements 		& Interfaces to this unit are defined in the API sections [BTM], [EURORADIO], [ODO].In these sections, also a detailed definition of the concepts implemented on those interfaces is documented.  \\
 \bottomrule
 \end{longtable}
 
@@ -50,7 +53,7 @@ Input name				& fullChecks \\
 \midrule
 Description				& Indicates, if all checks on the message should be performed. \\
 \midrule
-Source					& Configuration \\ 
+Source					& This item is only relevant in verification phases. In a real system checks are always activated. \\ 
 \midrule
 Type					& bool \\
 \midrule
@@ -69,13 +72,13 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \end{longtable}
 
 
-\paragraph{API\_trackSide\_Message}
+\paragraph{Receive\_trackSide\_Message}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
 Input name				& API\_trackSide\_Message \\
 \midrule
-Description				& Track side message received from the API. The API performs preprocessing of RTM and BTM messages and deliveres a maximum of a single message per cycle. \\
+Description				& Track side message received from the API. The API performs preprocessing of RTM and BTM messages and deliveres a maximum of a single message per cycle. The structure of this message is defined in the API [BTM] and [EURORADIO] sections.\\
 \midrule
 Source					& API \\ 
 \midrule

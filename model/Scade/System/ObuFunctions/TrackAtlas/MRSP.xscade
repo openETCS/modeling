@@ -26139,11 +26139,11 @@
 				</Operator>
 				<Operator kind="node" name="Build_MRSP">
 					<inputs>
-						<Variable name="PacketsIn">
+						<Variable name="MessageIn">
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="Common_Types_Pkg::CompressedPackets_T"/>
+										<TypeRef name="Common_Types_Pkg::ReceivedMessage_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -26173,30 +26173,6 @@
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/79afb/FD6/5F8/5552454c67b"/>
-							</pragmas>
-						</Variable>
-						<Variable name="q_dir_in">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="Q_DIR"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/360793/4EDE/5F8/55908a6a5870"/>
-							</pragmas>
-						</Variable>
-						<Variable name="train_length">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="int"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/360799/4EDE/5F8/55908a6a783d"/>
 							</pragmas>
 						</Variable>
 					</inputs>
@@ -26375,7 +26351,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="Common_Types_Pkg::CompressedPackets_T"/>
+										<TypeRef name="Common_Types_Pkg::ReceivedMessage_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -26429,30 +26405,6 @@
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/360788/4EDE/5F8/559089971a2e"/>
-							</pragmas>
-						</Variable>
-						<Variable name="_L21">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="Q_DIR"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/36079b/4EDE/5F8/55908a6c6c44"/>
-							</pragmas>
-						</Variable>
-						<Variable name="_L22">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="int"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/36079d/4EDE/5F8/55908a6c796d"/>
 							</pragmas>
 						</Variable>
 					</locals>
@@ -26792,14 +26744,14 @@
 								<ed:Equation oid="!ed/79a4d/FD6/5F8/555241444344"/>
 							</pragmas>
 						</Equation>
-						<!-- _L12, _L20 = SP::SP_SSP(_L16, _L21, _L22); -->
+						<!-- _L12, _L20 = SP::SP_SSP(_L16, _null, _null); -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L12"/>
 								<VariableRef name="_L20"/>
 							</lefts>
 							<right>
-								<!-- SP::SP_SSP(_L16, _L21, _L22) -->
+								<!-- SP::SP_SSP(_L16, _null, _null) -->
 								<CallExpression>
 									<operator>
 										<OpCall name="1">
@@ -26816,12 +26768,12 @@
 										</IdExpression>
 										<IdExpression>
 											<path>
-												<ConstVarRef name="_L21"/>
+												<NullRef/>
 											</path>
 										</IdExpression>
 										<IdExpression>
 											<path>
-												<ConstVarRef name="_L22"/>
+												<NullRef/>
 											</path>
 										</IdExpression>
 									</callParameters>
@@ -26915,7 +26867,7 @@
 								<ed:Equation oid="!ed/79a51/FD6/5F8/55524144d6a"/>
 							</pragmas>
 						</Equation>
-						<!-- _L16 = PacketsIn; -->
+						<!-- _L16 = MessageIn; -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L16"/>
@@ -26923,7 +26875,7 @@
 							<right>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="PacketsIn"/>
+										<ConstVarRef name="MessageIn"/>
 									</path>
 								</IdExpression>
 							</right>
@@ -26977,38 +26929,6 @@
 							</right>
 							<pragmas>
 								<ed:Equation oid="!ed/79b84/FD6/5F8/55524cb53975"/>
-							</pragmas>
-						</Equation>
-						<!-- _L21 = q_dir_in; -->
-						<Equation>
-							<lefts>
-								<VariableRef name="_L21"/>
-							</lefts>
-							<right>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="q_dir_in"/>
-									</path>
-								</IdExpression>
-							</right>
-							<pragmas>
-								<ed:Equation oid="!ed/36079a/4EDE/5F8/55908a6c3607"/>
-							</pragmas>
-						</Equation>
-						<!-- _L22 = train_length; -->
-						<Equation>
-							<lefts>
-								<VariableRef name="_L22"/>
-							</lefts>
-							<right>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="train_length"/>
-									</path>
-								</IdExpression>
-							</right>
-							<pragmas>
-								<ed:Equation oid="!ed/36079c/4EDE/5F8/55908a6c3371"/>
 							</pragmas>
 						</Equation>
 					</data>
@@ -27366,38 +27286,6 @@
 												<Point x="20029" y="17330"/>
 												<Point x="20029" y="17754"/>
 												<Point x="22013" y="17754"/>
-											</positions>
-										</Edge>
-										<EquationGE presentable="!ed/36079a/4EDE/5F8/55908a6c3607">
-											<position>
-												<Point x="2487" y="16563"/>
-											</position>
-											<size>
-												<Size width="265" height="503"/>
-											</size>
-										</EquationGE>
-										<EquationGE presentable="!ed/36079c/4EDE/5F8/55908a6c3371">
-											<position>
-												<Point x="2487" y="17224"/>
-											</position>
-											<size>
-												<Size width="265" height="503"/>
-											</size>
-										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/36079a/4EDE/5F8/55908a6c3607" dstEquation="!ed/79a4e/FD6/5F8/555241443d6d">
-											<positions>
-												<Point x="2752" y="16828"/>
-												<Point x="6191" y="16828"/>
-												<Point x="6191" y="16986"/>
-												<Point x="9631" y="16986"/>
-											</positions>
-										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/36079c/4EDE/5F8/55908a6c3371" dstEquation="!ed/79a4e/FD6/5F8/555241443d6d">
-											<positions>
-												<Point x="2752" y="17489"/>
-												<Point x="6191" y="17489"/>
-												<Point x="6191" y="17489"/>
-												<Point x="9631" y="17489"/>
 											</positions>
 										</Edge>
 									</presentationElements>
