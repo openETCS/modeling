@@ -1266,6 +1266,18 @@
 								<ed:Variable oid="!ed/20a69/4F60/197C/5593e7d81cbe"/>
 							</pragmas>
 						</Variable>
+						<Variable name="Mode_is_valid_from_mode_and_Level_Management">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/20a8c/4F53/1BF8/55940455c55"/>
+							</pragmas>
+						</Variable>
 						<Variable name="_L29">
 							<type>
 								<NamedType>
@@ -2418,6 +2430,18 @@
 								<ed:Variable oid="!ed/20b49/4D8A/1F60/5593ff5d50a8"/>
 							</pragmas>
 						</Variable>
+						<Variable name="_L281">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/20a6b/4F53/1BF8/55940401490c"/>
+							</pragmas>
+						</Variable>
 					</locals>
 					<data>
 						<StateMachine name="SM1">
@@ -3317,11 +3341,36 @@
 																<StateRef name="Validation_of_Train_Data_from_Driver"/>
 															</target>
 															<condition>
-																<IdExpression>
-																	<path>
-																		<ConstVarRef name="statusTrainData_from_DMI"/>
-																	</path>
-																</IdExpression>
+																<!-- Mode_is_valid_from_mode_and_Level_Management and (M_LEVEL_Level0 or M_LEVEL_Level... -->
+																<NAryOp name="47" operator="and">
+																	<operands>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="Mode_is_valid_from_mode_and_Level_Management"/>
+																			</path>
+																		</IdExpression>
+																		<!-- (M_LEVEL_Level0 or M_LEVEL_Level1 or M_LEVEL_Level_NTC) -->
+																		<NAryOp name="27" operator="or">
+																			<operands>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="M_LEVEL_Level0"/>
+																					</path>
+																				</IdExpression>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="M_LEVEL_Level1"/>
+																					</path>
+																				</IdExpression>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="M_LEVEL_Level_NTC"/>
+																					</path>
+																				</IdExpression>
+																			</operands>
+																		</NAryOp>
+																	</operands>
+																</NAryOp>
 															</condition>
 															<effect>
 																<Action>
@@ -6954,6 +7003,46 @@
 								<ed:Equation oid="!ed/20b48/4D8A/1F60/5593ff5d3263"/>
 							</pragmas>
 						</Equation>
+						<!-- _L281 = _L220.valid; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L281"/>
+							</lefts>
+							<right>
+								<!-- _L220.valid -->
+								<PrjOp name="20">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L220"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="valid"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/20a6a/4F53/1BF8/559404013d5c"/>
+							</pragmas>
+						</Equation>
+						<!-- Mode_is_valid_from_mode_and_Level_Management = _L281; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="Mode_is_valid_from_mode_and_Level_Management"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L281"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/20a93/4F53/1BF8/5594047c270c"/>
+							</pragmas>
+						</Equation>
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/14821/7835/2150/54e44cf115bd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
@@ -8254,6 +8343,38 @@
 												<Point x="26776" y="38788"/>
 												<Point x="26776" y="38920"/>
 												<Point x="28813" y="38920"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/20a6a/4F53/1BF8/559404013d5c">
+											<position>
+												<Point x="21582" y="41876"/>
+											</position>
+											<size>
+												<Size width="2741" height="2423"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1fd65/659B/2760/55815bcb6f51" dstEquation="!ed/20a6a/4F53/1BF8/559404013d5c">
+											<positions>
+												<Point x="10292" y="6800"/>
+												<Point x="10557" y="6800"/>
+												<Point x="10557" y="43101"/>
+												<Point x="21590" y="43101"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/20a93/4F53/1BF8/5594047c270c">
+											<position>
+												<Point x="29633" y="42704"/>
+											</position>
+											<size>
+												<Size width="344" height="502"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/20a6a/4F53/1BF8/559404013d5c" dstEquation="!ed/20a93/4F53/1BF8/5594047c270c">
+											<positions>
+												<Point x="24315" y="43101"/>
+												<Point x="26961" y="43101"/>
+												<Point x="26961" y="42968"/>
+												<Point x="29633" y="42968"/>
 											</positions>
 										</Edge>
 									</presentationElements>
