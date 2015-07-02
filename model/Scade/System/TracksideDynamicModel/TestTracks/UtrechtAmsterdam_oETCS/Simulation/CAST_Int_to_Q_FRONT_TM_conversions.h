@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-03T00:04:39
+** Generation date: 2015-07-03T00:32:13
 *************************************************************$ */
 #ifndef _CAST_Int_to_Q_FRONT_TM_conversions_H_
 #define _CAST_Int_to_Q_FRONT_TM_conversions_H_
@@ -46,6 +46,6 @@ extern void CAST_Int_to_Q_FRONT_reset_TM_conversions(
 #endif /* _CAST_Int_to_Q_FRONT_TM_conversions_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** CAST_Int_to_Q_FRONT_TM_conversions.h
-** Generation date: 2015-07-03T00:04:39
+** Generation date: 2015-07-03T00:32:13
 *************************************************************$ */
 

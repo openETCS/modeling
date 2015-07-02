@@ -1,9 +1,9 @@
 /* UtrechtAmsterdam_oETCS_newmapping.h */
 
-#include "TestP027V1_Internal.h"
+#include "TestP137_Internal.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern outC_TestP027V1_Internal outputs_ctx;
+extern outC_TestP137_Internal outputs_ctx;
 
