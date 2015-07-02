@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-02T23:19:43
+** Generation date: 2015-07-03T00:04:39
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -61,6 +61,6 @@ void RECV_ReadPackets_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** RECV_ReadPackets_TM_lib_internal.c
-** Generation date: 2015-07-02T23:19:43
+** Generation date: 2015-07-03T00:04:39
 *************************************************************$ */
 

@@ -1,7 +1,7 @@
 #include "UtrechtAmsterdam_oETCS_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "5b5e9550c523e92d0a689c8b15d4750e";
+const char* _SCSIM_CheckSum = "14fbb327cfd828247a0c289741baac57";
 const char* _SCSIM_SmuTypesCheckSum = "f79c40cc4a28a84eb05b013596813063";
 
 /*******************************
@@ -17,8 +17,8 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-outC_TestP003V1_Internal outputs_ctx;
-static outC_TestP003V1_Internal outputs_ctx_restore;
+outC_TestP027V1_Internal outputs_ctx;
+static outC_TestP027V1_Internal outputs_ctx_restore;
 
 /* separate_io: inputs instanciation */
 
@@ -58,7 +58,7 @@ int SimReset(void) {
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
 #ifndef KCG_NO_EXTERN_CALL_TO_RESET
-	TestP003V1_reset_Internal(&outputs_ctx);
+	TestP027V1_reset_Internal(&outputs_ctx);
 	nRet=1;
 #else /* KCG_NO_EXTERN_CALL_TO_RESET */
 	nRet=0;
@@ -81,7 +81,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	TestP003V1_Internal( &outputs_ctx);
+	TestP027V1_Internal( &outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -101,7 +101,7 @@ int SsmGetDumpSize(void) {
 /* separate_io: add (not in ctx) inputs size */
 
 /* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_TestP003V1_Internal);
+	nSize += sizeof(outC_TestP027V1_Internal);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -114,8 +114,8 @@ void SsmGatherDumpData(char * pData) {
 	/* separate_io: dump (not in ctx) inputs */
 
 	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_TestP003V1_Internal));
-	pCurrent += sizeof(outC_TestP003V1_Internal);
+	memcpy(pCurrent, &outputs_ctx, sizeof(outC_TestP027V1_Internal));
+	pCurrent += sizeof(outC_TestP027V1_Internal);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -127,8 +127,8 @@ void SsmRestoreDumpData(const char * pData) {
 	/* separate_io: restore (not in ctx) inputs */
 
 	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_TestP003V1_Internal));
-	pCurrent += sizeof(outC_TestP003V1_Internal);
+	memcpy(&outputs_ctx, pCurrent, sizeof(outC_TestP027V1_Internal));
+	pCurrent += sizeof(outC_TestP027V1_Internal);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */

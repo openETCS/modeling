@@ -1,17 +1,17 @@
-#ifndef TESTP003V1_INTERNAL_INTERFACE
-#define TESTP003V1_INTERNAL_INTERFACE
+#ifndef TESTP027V1_INTERNAL_INTERFACE
+#define TESTP027V1_INTERNAL_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "TestP003V1_Internal.h"
+#include "TestP027V1_Internal.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern outC_TestP003V1_Internal outputs_ctx;
+extern outC_TestP027V1_Internal outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -41,4 +41,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*TESTP003V1_INTERNAL_INTERFACE */
+#endif /*TESTP027V1_INTERNAL_INTERFACE */
