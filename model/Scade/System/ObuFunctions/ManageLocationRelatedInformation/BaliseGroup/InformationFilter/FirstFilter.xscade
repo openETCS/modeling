@@ -12492,6 +12492,521 @@
 				</ed:Operator>
 			</pragmas>
 		</Operator>
+		<Operator kind="node" name="MessageContents">
+			<inputs>
+				<Variable name="inMessage">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Common_Types_Pkg::ReceivedMessage_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c95d/5885/DB8/55951af2569b"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="outLevelTransitionOrderInMessage">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c967/5885/DB8/55951b1558d5"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<locals>
+				<Variable name="_L1">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Common_Types_Pkg::ReceivedMessage_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c969/5885/DB8/55951b3c4a8d"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L2">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c97b/5885/DB8/55951bcf215a"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L3">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Config_Pkg::MAX_PACKAGES"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c987/5885/DB8/55951c037253"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L4">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c9cf/5885/DB8/55951e841925"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- _L1 = inMessage; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L1"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="inMessage"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3c968/5885/DB8/55951b3c6c50"/>
+					</pragmas>
+				</Equation>
+				<!-- _L2 = _L1.PacketHeaders; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L2"/>
+					</lefts>
+					<right>
+						<!-- _L1.PacketHeaders -->
+						<PrjOp name="1">
+							<flow>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+							</flow>
+							<with>
+								<Label name="PacketHeaders"/>
+							</with>
+						</PrjOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3c97a/5885/DB8/55951bcf642d"/>
+					</pragmas>
+				</Equation>
+				<!-- _L3 = (map Common::GetPacketId <<Config_Pkg::MAX_PACKAGES>>)(_L2); -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L3"/>
+					</lefts>
+					<right>
+						<!-- (map Common::GetPacketId <<Config_Pkg::MAX_PACKAGES>>)(_L2) -->
+						<CallExpression>
+							<operator>
+								<IteratorOp name="1" iterator="map">
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="Common::GetPacketId"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="Config_Pkg::MAX_PACKAGES"/>
+											</path>
+										</IdExpression>
+									</size>
+								</IteratorOp>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L2"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3c986/5885/DB8/55951c03d93"/>
+					</pragmas>
+				</Equation>
+				<!-- outLevelTransitionOrderInMessage = _L4; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="outLevelTransitionOrderInMessage"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3c996/5885/DB8/55951c873860"/>
+					</pragmas>
+				</Equation>
+				<!-- _L4 = (mapfold PackageContents <<Config_Pkg::MAX_PACKAGES>>)(_L3); -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L4"/>
+					</lefts>
+					<right>
+						<!-- (mapfold PackageContents <<Config_Pkg::MAX_PACKAGES>>)(_L3) -->
+						<CallExpression>
+							<operator>
+								<IteratorOp name="2" iterator="mapfold">
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="PackageContents"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="Config_Pkg::MAX_PACKAGES"/>
+											</path>
+										</IdExpression>
+									</size>
+								</IteratorOp>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L3"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3c9ce/5885/DB8/55951e84249a"/>
+					</pragmas>
+				</Equation>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/3c95b/5885/DB8/55951ad07d7a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<NetDiagram name="diagram_MessageContents_1" landscape="true" format="A4 (210 297)" oid="!ed/3c95c/5885/DB8/55951ad06c11">
+							<presentationElements>
+								<EquationGE presentable="!ed/3c968/5885/DB8/55951b3c6c50">
+									<position>
+										<Point x="2328" y="2646"/>
+									</position>
+									<size>
+										<Size width="265" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/3c97a/5885/DB8/55951bcf642d">
+									<position>
+										<Point x="5080" y="2143"/>
+									</position>
+									<size>
+										<Size width="2159" height="1551"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3c968/5885/DB8/55951b3c6c50" dstEquation="!ed/3c97a/5885/DB8/55951bcf642d">
+									<positions>
+										<Point x="2593" y="2910"/>
+										<Point x="3942" y="2910"/>
+										<Point x="3942" y="2910"/>
+										<Point x="5080" y="2910"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/3c986/5885/DB8/55951c03d93">
+									<position>
+										<Point x="10081" y="1667"/>
+									</position>
+									<size>
+										<Size width="3879" height="2477"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3c97a/5885/DB8/55951bcf642d" dstEquation="!ed/3c986/5885/DB8/55951c03d93">
+									<positions>
+										<Point x="7223" y="2910"/>
+										<Point x="8758" y="2910"/>
+										<Point x="8758" y="2910"/>
+										<Point x="10081" y="2910"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/3c996/5885/DB8/55951c873860">
+									<position>
+										<Point x="25003" y="2646"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/3c9ce/5885/DB8/55951e84249a">
+									<position>
+										<Point x="17436" y="1667"/>
+									</position>
+									<size>
+										<Size width="3853" height="2450"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3c986/5885/DB8/55951c03d93" dstEquation="!ed/3c9ce/5885/DB8/55951e84249a">
+									<positions>
+										<Point x="13970" y="2910"/>
+										<Point x="15690" y="2910"/>
+										<Point x="15690" y="2910"/>
+										<Point x="17436" y="2910"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3c9ce/5885/DB8/55951e84249a" dstEquation="!ed/3c996/5885/DB8/55951c873860">
+									<positions>
+										<Point x="21299" y="2910"/>
+										<Point x="23178" y="2910"/>
+										<Point x="23178" y="2910"/>
+										<Point x="25056" y="2910"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
+		<Operator kind="node" name="PackageContents">
+			<inputs>
+				<Variable name="inPacketId">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c99d/5885/DB8/55951cd232d8"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="outLevelTransitionOrderInMessage">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c9a6/5885/DB8/55951ce95cca"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<locals>
+				<Variable name="_L1">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c9a8/5885/DB8/55951d146409"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L2">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c9b7/5885/DB8/55951dca4192"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L3">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c9c1/5885/DB8/55951de24f5"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- _L1 = inPacketId; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L1"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="inPacketId"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3c9a7/5885/DB8/55951d14723b"/>
+					</pragmas>
+				</Equation>
+				<!-- outLevelTransitionOrderInMessage = _L2; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="outLevelTransitionOrderInMessage"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L2"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3c9ad/5885/DB8/55951d176ed2"/>
+					</pragmas>
+				</Equation>
+				<!-- _L2 = _L3 = _L1; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L2"/>
+					</lefts>
+					<right>
+						<!-- _L3 = _L1 -->
+						<BinaryOp name="1" operator="=">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L3"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</BinaryOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3c9b6/5885/DB8/55951dca348e"/>
+					</pragmas>
+				</Equation>
+				<!-- _L3 = 141; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L3"/>
+					</lefts>
+					<right>
+						<ConstValue value="141"/>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3c9c0/5885/DB8/55951de2461f"/>
+					</pragmas>
+				</Equation>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/3c99b/5885/DB8/55951ca335f4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<NetDiagram name="diagram_PackageContents_1" landscape="true" format="A4 (210 297)" oid="!ed/3c99c/5885/DB8/55951ca34892">
+							<presentationElements>
+								<EquationGE presentable="!ed/3c9a7/5885/DB8/55951d14723b">
+									<position>
+										<Point x="4577" y="1852"/>
+									</position>
+									<size>
+										<Size width="264" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/3c9ad/5885/DB8/55951d176ed2">
+									<position>
+										<Point x="19156" y="1746"/>
+									</position>
+									<size>
+										<Size width="317" height="502"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/3c9b6/5885/DB8/55951dca348e">
+									<position>
+										<Point x="11774" y="1667"/>
+									</position>
+									<size>
+										<Size width="1005" height="662"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/3c9a7/5885/DB8/55951d14723b" dstEquation="!ed/3c9b6/5885/DB8/55951dca348e">
+									<positions>
+										<Point x="4842" y="2117"/>
+										<Point x="8308" y="2117"/>
+										<Point x="8308" y="2117"/>
+										<Point x="11774" y="2117"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3c9b6/5885/DB8/55951dca348e" dstEquation="!ed/3c9ad/5885/DB8/55951d176ed2">
+									<positions>
+										<Point x="12779" y="2011"/>
+										<Point x="15981" y="2011"/>
+										<Point x="15981" y="2011"/>
+										<Point x="19209" y="2011"/>
+									</positions>
+								</Edge>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/3c9c0/5885/DB8/55951de2461f">
+									<position>
+										<Point x="10134" y="1720"/>
+									</position>
+									<size>
+										<Size width="211" height="318"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3c9c0/5885/DB8/55951de2461f" dstEquation="!ed/3c9b6/5885/DB8/55951dca348e">
+									<positions>
+										<Point x="10345" y="1879"/>
+										<Point x="10663" y="1879"/>
+										<Point x="10663" y="1879"/>
+										<Point x="11774" y="1879"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
 	</declarations>
 	<pragmas>
 		<ed:Package oid="!ed/7d3e/1895/1A40/547dba1722df" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
