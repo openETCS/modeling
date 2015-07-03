@@ -1273,7 +1273,7 @@
 								<ed:Variable oid="!ed/20a69/4F60/197C/5593e7d81cbe"/>
 							</pragmas>
 						</Variable>
-						<Variable name="Mode_is_valid_from_mode_and_Level_Management">
+						<Variable name="Mode_and_Level_is_valid_from_Mode_and_Level_Management">
 							<type>
 								<NamedType>
 									<type>
@@ -2884,12 +2884,12 @@
 																				</IdExpression>
 																			</operand>
 																		</UnaryOp>
-																		<!--  not Mode_is_valid_from_mode_and_Level_Management -->
+																		<!--  not Mode_and_Level_is_valid_from_Mode_and_Level_Management -->
 																		<UnaryOp name="15" operator="not">
 																			<operand>
 																				<IdExpression>
 																					<path>
-																						<ConstVarRef name="Mode_is_valid_from_mode_and_Level_Management"/>
+																						<ConstVarRef name="Mode_and_Level_is_valid_from_Mode_and_Level_Management"/>
 																					</path>
 																				</IdExpression>
 																			</operand>
@@ -2917,6 +2917,59 @@
 															</effect>
 															<pragmas>
 																<ed:Transition oid="!ed/20a14/53A1/1818/5593db7237cc"/>
+															</pragmas>
+														</Transition>
+														<Transition kind="restart">
+															<target>
+																<StateRef name="Validation_of_Train_Data_from_Driver"/>
+															</target>
+															<condition>
+																<!-- statusTrainNumberfirstvalidation_from_DMI and  not statusValid_position_from_Posi... -->
+																<NAryOp name="53" operator="and">
+																	<operands>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="statusTrainNumberfirstvalidation_from_DMI"/>
+																			</path>
+																		</IdExpression>
+																		<!--  not statusValid_position_from_Positon_Calculation -->
+																		<UnaryOp name="18" operator="not">
+																			<operand>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="statusValid_position_from_Positon_Calculation"/>
+																					</path>
+																				</IdExpression>
+																			</operand>
+																		</UnaryOp>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="Mode_and_Level_is_valid_from_Mode_and_Level_Management"/>
+																			</path>
+																		</IdExpression>
+																	</operands>
+																</NAryOp>
+															</condition>
+															<effect>
+																<Action>
+																	<data>
+																		<!--  emit 'requestTrainData_to_DMI; -->
+																		<Emission>
+																			<signals>
+																				<SignalRef name="requestTrainData_to_DMI"/>
+																			</signals>
+																			<pragmas>
+																				<ed:Emission oid="!ed/20a85/2815/1B60/55963f097129"/>
+																			</pragmas>
+																		</Emission>
+																	</data>
+																	<pragmas>
+																		<ed:Action oid="!ed/20a7b/2815/1B60/55963f092a19"/>
+																	</pragmas>
+																</Action>
+															</effect>
+															<pragmas>
+																<ed:Transition oid="!ed/20a63/2815/1B60/55963e9333e0"/>
 															</pragmas>
 														</Transition>
 													</unless>
@@ -3346,12 +3399,12 @@
 																<StateRef name="Validation_of_Train_Data_from_Driver"/>
 															</target>
 															<condition>
-																<!-- Mode_is_valid_from_mode_and_Level_Management and (M_LEVEL_Level0 or M_LEVEL_Level... -->
+																<!-- Mode_and_Level_is_valid_from_Mode_and_Level_Management and (M_LEVEL_Level0 or M_L... -->
 																<NAryOp name="47" operator="and">
 																	<operands>
 																		<IdExpression>
 																			<path>
-																				<ConstVarRef name="Mode_is_valid_from_mode_and_Level_Management"/>
+																				<ConstVarRef name="Mode_and_Level_is_valid_from_Mode_and_Level_Management"/>
 																			</path>
 																		</IdExpression>
 																		<!-- (M_LEVEL_Level0 or M_LEVEL_Level1 or M_LEVEL_Level_NTC) -->
@@ -3685,8 +3738,8 @@
 														<TransitionGE presentable="!ed/f78cb/7835/2150/54e46e1c2ac6">
 															<positions>
 																<Point x="47122" y="21352"/>
-																<Point x="49848" y="20955"/>
-																<Point x="52837" y="22146"/>
+																<Point x="50641" y="21696"/>
+																<Point x="53631" y="22886"/>
 																<Point x="53366" y="24183"/>
 															</positions>
 															<labelSize>
@@ -3908,7 +3961,7 @@
 														</Edge>
 														<StateGE presentable="!ed/3fe9/4020/1BF4/55761e46287">
 															<position>
-																<Point x="17277" y="29660"/>
+																<Point x="17965" y="25559"/>
 															</position>
 															<size>
 																<Size width="3361" height="4154"/>
@@ -3916,8 +3969,8 @@
 														</StateGE>
 														<TransitionGE presentable="!ed/40b4/4020/1BF4/557622294abb">
 															<positions>
-																<Point x="20638" y="31935"/>
-																<Point x="33126" y="33973"/>
+																<Point x="21325" y="27834"/>
+																<Point x="33814" y="29871"/>
 																<Point x="46249" y="31459"/>
 																<Point x="59743" y="31856"/>
 															</positions>
@@ -3925,10 +3978,10 @@
 																<Size width="5106" height="635"/>
 															</labelSize>
 															<labelPos>
-																<Point x="39449" y="27861"/>
+																<Point x="39396" y="31354"/>
 															</labelPos>
 															<slashPos>
-																<Point x="42201" y="27861"/>
+																<Point x="42148" y="31354"/>
 															</slashPos>
 														</TransitionGE>
 														<TransitionGE presentable="!ed/4140/4020/1BF4/557623793d9c">
@@ -3950,19 +4003,36 @@
 														</TransitionGE>
 														<TransitionGE presentable="!ed/20a14/53A1/1818/5593db7237cc">
 															<positions>
-																<Point x="18230" y="10901"/>
-																<Point x="17912" y="12753"/>
-																<Point x="20426" y="27808"/>
-																<Point x="20055" y="29660"/>
+																<Point x="20241" y="10901"/>
+																<Point x="20876" y="12753"/>
+																<Point x="22066" y="23707"/>
+																<Point x="20743" y="25559"/>
 															</positions>
 															<labelSize>
 																<Size width="6350" height="1588"/>
 															</labelSize>
 															<labelPos>
-																<Point x="19129" y="13388"/>
+																<Point x="13626" y="13467"/>
 															</labelPos>
 															<slashPos>
-																<Point x="21802" y="13388"/>
+																<Point x="16299" y="13467"/>
+															</slashPos>
+														</TransitionGE>
+														<TransitionGE presentable="!ed/20a63/2815/1B60/55963e9333e0">
+															<positions>
+																<Point x="17357" y="10874"/>
+																<Point x="-1905" y="18706"/>
+																<Point x="17410" y="47440"/>
+																<Point x="59743" y="32994"/>
+															</positions>
+															<labelSize>
+																<Size width="4736" height="2858"/>
+															</labelSize>
+															<labelPos>
+																<Point x="4313" y="18256"/>
+															</labelPos>
+															<slashPos>
+																<Point x="7011" y="18256"/>
 															</slashPos>
 														</TransitionGE>
 													</presentationElements>
@@ -6887,10 +6957,10 @@
 								<ed:Equation oid="!ed/20a6a/4F53/1BF8/559404013d5c"/>
 							</pragmas>
 						</Equation>
-						<!-- Mode_is_valid_from_mode_and_Level_Management = _L282; -->
+						<!-- Mode_and_Level_is_valid_from_Mode_and_Level_Management = _L282; -->
 						<Equation>
 							<lefts>
-								<VariableRef name="Mode_is_valid_from_mode_and_Level_Management"/>
+								<VariableRef name="Mode_and_Level_is_valid_from_Mode_and_Level_Management"/>
 							</lefts>
 							<right>
 								<IdExpression>
