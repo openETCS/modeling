@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-03T00:32:13
+** Generation date: 2015-07-03T12:45:00
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -139,6 +139,6 @@ void C_P065_tracksim_compr_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P065_tracksim_compr_TM_conversions.c
-** Generation date: 2015-07-03T00:32:13
+** Generation date: 2015-07-03T12:45:00
 *************************************************************$ */
 

@@ -1,17 +1,18 @@
-#ifndef TESTP137_INTERNAL_INTERFACE
-#define TESTP137_INTERNAL_INTERFACE
+#ifndef STORY00A_RBC_FIRSTTEST_INTERFACE
+#define STORY00A_RBC_FIRSTTEST_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "TestP137_Internal.h"
+#include "Story00A_RBC_FirstTest.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern outC_TestP137_Internal outputs_ctx;
+extern inC_Story00A_RBC_FirstTest inputs_ctx;
+extern outC_Story00A_RBC_FirstTest outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -41,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*TESTP137_INTERNAL_INTERFACE */
+#endif /*STORY00A_RBC_FIRSTTEST_INTERFACE */

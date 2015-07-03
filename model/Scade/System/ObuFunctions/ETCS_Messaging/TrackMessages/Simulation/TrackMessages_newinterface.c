@@ -1,8 +1,8 @@
 #include "TrackMessages_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "eb9f74157ee39a119f545f1a4206f9ef";
-const char* _SCSIM_SmuTypesCheckSum = "d5b51fa9eff9683da46173266ac496c5";
+const char* _SCSIM_CheckSum = "8bacf09c84cef022c701afc046680f52";
+const char* _SCSIM_SmuTypesCheckSum = "f79c40cc4a28a84eb05b013596813063";
 
 /*******************************
  * Validity
@@ -17,18 +17,18 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-inC_C_P027V1_tracksim_compr_body_TM_conversions inputs_ctx;
-static inC_C_P027V1_tracksim_compr_body_TM_conversions inputs_ctx_restore;
-static inC_C_P027V1_tracksim_compr_body_TM_conversions inputs_ctx_execute;
-outC_C_P027V1_tracksim_compr_body_TM_conversions outputs_ctx;
-static outC_C_P027V1_tracksim_compr_body_TM_conversions outputs_ctx_restore;
+inC_DIRTY_m_version_filter_fo_TM_specific inputs_ctx;
+static inC_DIRTY_m_version_filter_fo_TM_specific inputs_ctx_restore;
+static inC_DIRTY_m_version_filter_fo_TM_specific inputs_ctx_execute;
+outC_DIRTY_m_version_filter_fo_TM_specific outputs_ctx;
+static outC_DIRTY_m_version_filter_fo_TM_specific outputs_ctx_restore;
 
 /* separate_io: inputs instanciation */
 
 /* separate_io: outputs instanciation */
 
 static void _SCSIM_RestoreInterface(void) {
-	kcg_copy_struct__435(&(inputs_ctx.P027V1_from_track), &(inputs_ctx_restore.P027V1_from_track));
+	kcg_copy_struct__198(&(inputs_ctx.RadioMessage_in), &(inputs_ctx_restore.RadioMessage_in));
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -36,55 +36,78 @@ static void _SCSIM_RestoreInterface(void) {
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	kcg_copy_struct__435(&(inputs_ctx_execute.P027V1_from_track), &(inputs_ctx.P027V1_from_track));
+	kcg_copy_struct__198(&(inputs_ctx_execute.RadioMessage_in), &(inputs_ctx.RadioMessage_in));
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
 /*******************************
- * Cyclic function encapsulation
+ * Init/Reset function encapsulation
  *******************************/
-void SimInit(void) {
-	/* Context initialization */
+int SimInit(void) {
+	int nRet=0;
 	_SCSIM_RestoreInterface();
 #ifdef EXTENDED_SIM
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
-	C_P027V1_tracksim_compr_body_reset_TM_conversions(&outputs_ctx);
+	nRet=0;
 #ifdef EXTENDED_SIM
 	AfterSimInit();
 #endif /* EXTENDED_SIM */
+	return nRet;
+}
+
+int SimReset(void) {
+	int nRet=0;
+	_SCSIM_RestoreInterface();
+#ifdef EXTENDED_SIM
+	BeforeSimInit();
+#endif /* EXTENDED_SIM */
+#ifndef KCG_NO_EXTERN_CALL_TO_RESET
+	DIRTY_m_version_filter_fo_reset_TM_specific(&outputs_ctx);
+	nRet=1;
+#else /* KCG_NO_EXTERN_CALL_TO_RESET */
+	nRet=0;
+#endif /* KCG_NO_EXTERN_CALL_TO_RESET */
+#ifdef EXTENDED_SIM
+	AfterSimInit();
+#endif /* EXTENDED_SIM */
+	return nRet;
 }
 
 #ifdef EXTENDED_SIM
 int GraphicalInputsConnected = 1;
 #endif /* EXTENDED_SIM */
+/*******************************
+ * Cyclic function encapsulation
+ *******************************/
 int SimStep(void) {
 #ifdef EXTENDED_SIM
 	if (GraphicalInputsConnected)
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	C_P027V1_tracksim_compr_body_TM_conversions(&inputs_ctx_execute, &outputs_ctx);
+	DIRTY_m_version_filter_fo_TM_specific(&inputs_ctx_execute, &outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
 	return 1;
 }
 
-void SimStop(void) {
+int SimStop(void) {
 #ifdef EXTENDED_SIM
 	ExtendedSimStop();
 #endif /* EXTENDED_SIM */
+	return 1;
 }
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(inC_C_P027V1_tracksim_compr_body_TM_conversions);
+	nSize += sizeof(inC_DIRTY_m_version_filter_fo_TM_specific);
 
 /* separate_io: add (not in ctx) inputs size */
 
 /* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_C_P027V1_tracksim_compr_body_TM_conversions);
+	nSize += sizeof(outC_DIRTY_m_version_filter_fo_TM_specific);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -93,14 +116,14 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &inputs_ctx, sizeof(inC_C_P027V1_tracksim_compr_body_TM_conversions));
-	pCurrent += sizeof(inC_C_P027V1_tracksim_compr_body_TM_conversions);
+	memcpy(pCurrent, &inputs_ctx, sizeof(inC_DIRTY_m_version_filter_fo_TM_specific));
+	pCurrent += sizeof(inC_DIRTY_m_version_filter_fo_TM_specific);
 
 	/* separate_io: dump (not in ctx) inputs */
 
 	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_C_P027V1_tracksim_compr_body_TM_conversions));
-	pCurrent += sizeof(outC_C_P027V1_tracksim_compr_body_TM_conversions);
+	memcpy(pCurrent, &outputs_ctx, sizeof(outC_DIRTY_m_version_filter_fo_TM_specific));
+	pCurrent += sizeof(outC_DIRTY_m_version_filter_fo_TM_specific);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -108,14 +131,14 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&inputs_ctx, pCurrent, sizeof(inC_C_P027V1_tracksim_compr_body_TM_conversions));
-	pCurrent += sizeof(inC_C_P027V1_tracksim_compr_body_TM_conversions);
+	memcpy(&inputs_ctx, pCurrent, sizeof(inC_DIRTY_m_version_filter_fo_TM_specific));
+	pCurrent += sizeof(inC_DIRTY_m_version_filter_fo_TM_specific);
 
 	/* separate_io: restore (not in ctx) inputs */
 
 	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_C_P027V1_tracksim_compr_body_TM_conversions));
-	pCurrent += sizeof(outC_C_P027V1_tracksim_compr_body_TM_conversions);
+	memcpy(&outputs_ctx, pCurrent, sizeof(outC_DIRTY_m_version_filter_fo_TM_specific));
+	pCurrent += sizeof(outC_DIRTY_m_version_filter_fo_TM_specific);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
