@@ -1,7 +1,7 @@
 #include "TrackMessages_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "8bacf09c84cef022c701afc046680f52";
+const char* _SCSIM_CheckSum = "1be67761a0a05d682a0b2617a0f3e620";
 const char* _SCSIM_SmuTypesCheckSum = "f79c40cc4a28a84eb05b013596813063";
 
 /*******************************
@@ -17,18 +17,23 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-inC_DIRTY_m_version_filter_fo_TM_specific inputs_ctx;
-static inC_DIRTY_m_version_filter_fo_TM_specific inputs_ctx_restore;
-static inC_DIRTY_m_version_filter_fo_TM_specific inputs_ctx_execute;
-outC_DIRTY_m_version_filter_fo_TM_specific outputs_ctx;
-static outC_DIRTY_m_version_filter_fo_TM_specific outputs_ctx_restore;
+inC_T_Build_Metadata_Packet_I_TM_lib_internal inputs_ctx;
+static inC_T_Build_Metadata_Packet_I_TM_lib_internal inputs_ctx_restore;
+static inC_T_Build_Metadata_Packet_I_TM_lib_internal inputs_ctx_execute;
+outC_T_Build_Metadata_Packet_I_TM_lib_internal outputs_ctx;
+static outC_T_Build_Metadata_Packet_I_TM_lib_internal outputs_ctx_restore;
 
 /* separate_io: inputs instanciation */
 
 /* separate_io: outputs instanciation */
 
 static void _SCSIM_RestoreInterface(void) {
-	kcg_copy_struct__198(&(inputs_ctx.RadioMessage_in), &(inputs_ctx_restore.RadioMessage_in));
+	inputs_ctx.nid_packet_in = inputs_ctx_restore.nid_packet_in;
+	inputs_ctx.q_dir = inputs_ctx_restore.q_dir;
+	inputs_ctx.id = inputs_ctx_restore.id;
+	inputs_ctx.counter = inputs_ctx_restore.counter;
+	inputs_ctx.nid_packet_defined = inputs_ctx_restore.nid_packet_defined;
+	inputs_ctx.m_version = inputs_ctx_restore.m_version;
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -36,7 +41,12 @@ static void _SCSIM_RestoreInterface(void) {
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	kcg_copy_struct__198(&(inputs_ctx_execute.RadioMessage_in), &(inputs_ctx.RadioMessage_in));
+	inputs_ctx_execute.nid_packet_in = inputs_ctx.nid_packet_in;
+	inputs_ctx_execute.q_dir = inputs_ctx.q_dir;
+	inputs_ctx_execute.id = inputs_ctx.id;
+	inputs_ctx_execute.counter = inputs_ctx.counter;
+	inputs_ctx_execute.nid_packet_defined = inputs_ctx.nid_packet_defined;
+	inputs_ctx_execute.m_version = inputs_ctx.m_version;
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
@@ -63,7 +73,7 @@ int SimReset(void) {
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
 #ifndef KCG_NO_EXTERN_CALL_TO_RESET
-	DIRTY_m_version_filter_fo_reset_TM_specific(&outputs_ctx);
+	T_Build_Metadata_Packet_I_reset_TM_lib_internal(&outputs_ctx);
 	nRet=1;
 #else /* KCG_NO_EXTERN_CALL_TO_RESET */
 	nRet=0;
@@ -86,7 +96,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	DIRTY_m_version_filter_fo_TM_specific(&inputs_ctx_execute, &outputs_ctx);
+	T_Build_Metadata_Packet_I_TM_lib_internal(&inputs_ctx_execute, &outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -102,12 +112,12 @@ int SimStop(void) {
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(inC_DIRTY_m_version_filter_fo_TM_specific);
+	nSize += sizeof(inC_T_Build_Metadata_Packet_I_TM_lib_internal);
 
 /* separate_io: add (not in ctx) inputs size */
 
 /* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_DIRTY_m_version_filter_fo_TM_specific);
+	nSize += sizeof(outC_T_Build_Metadata_Packet_I_TM_lib_internal);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -116,14 +126,14 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &inputs_ctx, sizeof(inC_DIRTY_m_version_filter_fo_TM_specific));
-	pCurrent += sizeof(inC_DIRTY_m_version_filter_fo_TM_specific);
+	memcpy(pCurrent, &inputs_ctx, sizeof(inC_T_Build_Metadata_Packet_I_TM_lib_internal));
+	pCurrent += sizeof(inC_T_Build_Metadata_Packet_I_TM_lib_internal);
 
 	/* separate_io: dump (not in ctx) inputs */
 
 	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_DIRTY_m_version_filter_fo_TM_specific));
-	pCurrent += sizeof(outC_DIRTY_m_version_filter_fo_TM_specific);
+	memcpy(pCurrent, &outputs_ctx, sizeof(outC_T_Build_Metadata_Packet_I_TM_lib_internal));
+	pCurrent += sizeof(outC_T_Build_Metadata_Packet_I_TM_lib_internal);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -131,14 +141,14 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&inputs_ctx, pCurrent, sizeof(inC_DIRTY_m_version_filter_fo_TM_specific));
-	pCurrent += sizeof(inC_DIRTY_m_version_filter_fo_TM_specific);
+	memcpy(&inputs_ctx, pCurrent, sizeof(inC_T_Build_Metadata_Packet_I_TM_lib_internal));
+	pCurrent += sizeof(inC_T_Build_Metadata_Packet_I_TM_lib_internal);
 
 	/* separate_io: restore (not in ctx) inputs */
 
 	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_DIRTY_m_version_filter_fo_TM_specific));
-	pCurrent += sizeof(outC_DIRTY_m_version_filter_fo_TM_specific);
+	memcpy(&outputs_ctx, pCurrent, sizeof(outC_T_Build_Metadata_Packet_I_TM_lib_internal));
+	pCurrent += sizeof(outC_T_Build_Metadata_Packet_I_TM_lib_internal);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */

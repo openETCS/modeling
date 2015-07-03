@@ -1,18 +1,18 @@
-#ifndef DIRTY_M_VERSION_FILTER_FO_TM_SPECIFIC_INTERFACE
-#define DIRTY_M_VERSION_FILTER_FO_TM_SPECIFIC_INTERFACE
+#ifndef T_BUILD_METADATA_PACKET_I_TM_LIB_INTERNAL_INTERFACE
+#define T_BUILD_METADATA_PACKET_I_TM_LIB_INTERNAL_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "DIRTY_m_version_filter_fo_TM_specific.h"
+#include "T_Build_Metadata_Packet_I_TM_lib_internal.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_DIRTY_m_version_filter_fo_TM_specific inputs_ctx;
-extern outC_DIRTY_m_version_filter_fo_TM_specific outputs_ctx;
+extern inC_T_Build_Metadata_Packet_I_TM_lib_internal inputs_ctx;
+extern outC_T_Build_Metadata_Packet_I_TM_lib_internal outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*DIRTY_M_VERSION_FILTER_FO_TM_SPECIFIC_INTERFACE */
+#endif /*T_BUILD_METADATA_PACKET_I_TM_LIB_INTERNAL_INTERFACE */
