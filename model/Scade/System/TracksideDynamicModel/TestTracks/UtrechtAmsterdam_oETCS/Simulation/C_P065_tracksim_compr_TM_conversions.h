@@ -1,11 +1,12 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-03T12:45:00
+** Generation date: 2015-07-05T15:50:16
 *************************************************************$ */
 #ifndef _C_P065_tracksim_compr_TM_conversions_H_
 #define _C_P065_tracksim_compr_TM_conversions_H_
 
 #include "kcg_types.h"
+#include "T_Build_Metadata_Packet_ID_TM_lib_internal.h"
 
 /* =====================  no input structure  ====================== */
 
@@ -17,7 +18,8 @@ typedef struct {
   /* -----------------------  no local probes  ----------------------- */
   /* -----------------  no initialization variables  ----------------- */
   /* -----------------------  no local memory  ----------------------- */
-  /* -------------------- no sub nodes' contexts  -------------------- */
+  /* ---------------------  sub nodes' contexts  --------------------- */
+  outC_T_Build_Metadata_Packet_ID_TM_lib_internal /* 1 */ Context_1;
   /* ------------------ clocks of observable data -------------------- */
   kcg_bool /* TM_conversions::CAST_Int_to_Q_DIR::IfBlock1::else */ _2_else_clock_1_IfBlock1;
   kcg_bool /* TM_conversions::CAST_Int_to_Q_DIR::IfBlock1 */ IfBlock1_clock_1;
@@ -59,6 +61,7 @@ typedef struct {
   kcg_int /* TM_conversions::C_P065_tracksim_compr::_L397 */ _L397;
   kcg_int /* TM_conversions::C_P065_tracksim_compr::_L396 */ _L396;
   kcg_int /* TM_conversions::C_P065_tracksim_compr::_L400 */ _L400;
+  nid_packet_meta_TM /* TM_conversions::C_P065_tracksim_compr::_L401 */ _L401;
 } outC_C_P065_tracksim_compr_TM_conversions;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -73,6 +76,6 @@ extern void C_P065_tracksim_compr_reset_TM_conversions(
 #endif /* _C_P065_tracksim_compr_TM_conversions_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P065_tracksim_compr_TM_conversions.h
-** Generation date: 2015-07-03T12:45:00
+** Generation date: 2015-07-05T15:50:16
 *************************************************************$ */
 

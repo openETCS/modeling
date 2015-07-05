@@ -1,10 +1,9 @@
 /* UtrechtAmsterdam_oETCS_newmapping.h */
 
-#include "Story00A_RBC_FirstTest.h"
+#include "TestP065_Internal_Tests.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_Story00A_RBC_FirstTest inputs_ctx;
-extern outC_Story00A_RBC_FirstTest outputs_ctx;
+extern outC_TestP065_Internal_Tests outputs_ctx;
 

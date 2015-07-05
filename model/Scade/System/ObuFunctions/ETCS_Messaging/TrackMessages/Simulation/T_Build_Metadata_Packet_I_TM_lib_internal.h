@@ -1,21 +1,13 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-03T22:17:39
+** Generation date: 2015-07-04T22:01:33
 *************************************************************$ */
 #ifndef _T_Build_Metadata_Packet_I_TM_lib_internal_H_
 #define _T_Build_Metadata_Packet_I_TM_lib_internal_H_
 
 #include "kcg_types.h"
 
-/* ========================  input structure  ====================== */
-typedef struct {
-  kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::nid_packet_in */ nid_packet_in;
-  kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::q_dir */ q_dir;
-  kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::id */ id;
-  kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::counter */ counter;
-  NID_PACKET /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::nid_packet_defined */ nid_packet_defined;
-  kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::m_version */ m_version;
-} inC_T_Build_Metadata_Packet_I_TM_lib_internal;
+/* =====================  no input structure  ====================== */
 
 /* ========================  context type  ========================= */
 typedef struct {
@@ -40,21 +32,22 @@ typedef struct {
   kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L12 */ _L12;
   kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L13 */ _L13;
   kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L14 */ _L14;
-  kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L15 */ _L15;
-  kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L16 */ _L16;
-  kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L17 */ _L17;
   kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L18 */ _L18;
-  kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L19 */ _L19;
   kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L20 */ _L20;
-  kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L21 */ _L21;
   kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L22 */ _L22;
-  kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L23 */ _L23;
+  kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L17 */ _L17;
+  kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L16 */ _L16;
+  kcg_int /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::_L15 */ _L15;
 } outC_T_Build_Metadata_Packet_I_TM_lib_internal;
 
 /* ===========  node initialization and cycle functions  =========== */
 /* TM_lib_internal::T_Build_Metadata_Packet_ID_new */
 extern void T_Build_Metadata_Packet_I_TM_lib_internal(
-  inC_T_Build_Metadata_Packet_I_TM_lib_internal *inC,
+  /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::nid_packet_in */kcg_int nid_packet_in,
+  /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::q_dir */kcg_int q_dir,
+  /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::id */kcg_int id,
+  /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::nid_packet_defined */NID_PACKET nid_packet_defined,
+  /* TM_lib_internal::T_Build_Metadata_Packet_ID_new::m_version */kcg_int m_version,
   outC_T_Build_Metadata_Packet_I_TM_lib_internal *outC);
 
 extern void T_Build_Metadata_Packet_I_reset_TM_lib_internal(
@@ -63,6 +56,6 @@ extern void T_Build_Metadata_Packet_I_reset_TM_lib_internal(
 #endif /* _T_Build_Metadata_Packet_I_TM_lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** T_Build_Metadata_Packet_I_TM_lib_internal.h
-** Generation date: 2015-07-03T22:17:39
+** Generation date: 2015-07-04T22:01:33
 *************************************************************$ */
 

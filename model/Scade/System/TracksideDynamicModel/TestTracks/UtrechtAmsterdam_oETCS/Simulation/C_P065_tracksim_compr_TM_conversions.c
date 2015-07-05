@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-03T12:45:00
+** Generation date: 2015-07-05T15:50:16
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -10,6 +10,7 @@
 void C_P065_tracksim_compr_reset_TM_conversions(
   outC_C_P065_tracksim_compr_TM_conversions *outC)
 {
+  /* 1 */ T_Build_Metadata_Packet_ID_reset_TM_lib_internal(&outC->Context_1);
 }
 
 /* TM_conversions::C_P065_tracksim_compr */
@@ -42,6 +43,15 @@ void C_P065_tracksim_compr_TM_conversions(
   outC->_L394 = outC->_L1.L_PACKET;
   outC->_L395 = outC->_L1.Q_DIR;
   outC->_L387 = outC->_L1.NID_PACKET;
+  /* 1 */
+  T_Build_Metadata_Packet_ID_TM_lib_internal(
+    outC->_L387,
+    outC->_L395,
+    outC->_L393,
+    65,
+    INT_M_VERSION_2_0_TM,
+    &outC->Context_1);
+  outC->_L401 = outC->Context_1.nid_packet_meta;
   outC->_L388 = DIM_MaxElementsPacket065_TM;
   outC->_L373[0] = outC->_L387;
   outC->_L373[1] = outC->_L395;
@@ -98,7 +108,7 @@ void C_P065_tracksim_compr_TM_conversions(
   outC->_L213 = 1;
   outC->_L212 = outC->_L388 - outC->_L213;
   outC->_L206 = 0;
-  outC->_L204.nid_packet = outC->_L387;
+  outC->_L204.nid_packet = outC->_L401;
   outC->_L204.q_dir = outC->_L356;
   outC->_L204.valid = outC->_L214;
   outC->_L204.startAddress = outC->_L206;
@@ -139,6 +149,6 @@ void C_P065_tracksim_compr_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P065_tracksim_compr_TM_conversions.c
-** Generation date: 2015-07-03T12:45:00
+** Generation date: 2015-07-05T15:50:16
 *************************************************************$ */
 

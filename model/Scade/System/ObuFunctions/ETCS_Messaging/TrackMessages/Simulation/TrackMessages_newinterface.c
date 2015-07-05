@@ -1,7 +1,7 @@
 #include "TrackMessages_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "1be67761a0a05d682a0b2617a0f3e620";
+const char* _SCSIM_CheckSum = "9c33a71239516372486f1c19eeb3bff0";
 const char* _SCSIM_SmuTypesCheckSum = "f79c40cc4a28a84eb05b013596813063";
 
 /*******************************
@@ -17,23 +17,18 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-inC_T_Build_Metadata_Packet_I_TM_lib_internal inputs_ctx;
-static inC_T_Build_Metadata_Packet_I_TM_lib_internal inputs_ctx_restore;
-static inC_T_Build_Metadata_Packet_I_TM_lib_internal inputs_ctx_execute;
-outC_T_Build_Metadata_Packet_I_TM_lib_internal outputs_ctx;
-static outC_T_Build_Metadata_Packet_I_TM_lib_internal outputs_ctx_restore;
+inC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2 inputs_ctx;
+static inC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2 inputs_ctx_restore;
+static inC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2 inputs_ctx_execute;
+outC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2 outputs_ctx;
+static outC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2 outputs_ctx_restore;
 
 /* separate_io: inputs instanciation */
 
 /* separate_io: outputs instanciation */
 
 static void _SCSIM_RestoreInterface(void) {
-	inputs_ctx.nid_packet_in = inputs_ctx_restore.nid_packet_in;
-	inputs_ctx.q_dir = inputs_ctx_restore.q_dir;
-	inputs_ctx.id = inputs_ctx_restore.id;
-	inputs_ctx.counter = inputs_ctx_restore.counter;
-	inputs_ctx.nid_packet_defined = inputs_ctx_restore.nid_packet_defined;
-	inputs_ctx.m_version = inputs_ctx_restore.m_version;
+	kcg_copy_struct__465(&(inputs_ctx.P027V1_from_track), &(inputs_ctx_restore.P027V1_from_track));
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -41,12 +36,7 @@ static void _SCSIM_RestoreInterface(void) {
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	inputs_ctx_execute.nid_packet_in = inputs_ctx.nid_packet_in;
-	inputs_ctx_execute.q_dir = inputs_ctx.q_dir;
-	inputs_ctx_execute.id = inputs_ctx.id;
-	inputs_ctx_execute.counter = inputs_ctx.counter;
-	inputs_ctx_execute.nid_packet_defined = inputs_ctx.nid_packet_defined;
-	inputs_ctx_execute.m_version = inputs_ctx.m_version;
+	kcg_copy_struct__465(&(inputs_ctx_execute.P027V1_from_track), &(inputs_ctx.P027V1_from_track));
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
@@ -73,7 +63,7 @@ int SimReset(void) {
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
 #ifndef KCG_NO_EXTERN_CALL_TO_RESET
-	T_Build_Metadata_Packet_I_reset_TM_lib_internal(&outputs_ctx);
+	C_P027V1_tracksim_compr_body_reset_TM_conversions_baseline2(&outputs_ctx);
 	nRet=1;
 #else /* KCG_NO_EXTERN_CALL_TO_RESET */
 	nRet=0;
@@ -96,7 +86,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	T_Build_Metadata_Packet_I_TM_lib_internal(&inputs_ctx_execute, &outputs_ctx);
+	C_P027V1_tracksim_compr_body_TM_conversions_baseline2(&inputs_ctx_execute, &outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -112,12 +102,12 @@ int SimStop(void) {
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(inC_T_Build_Metadata_Packet_I_TM_lib_internal);
+	nSize += sizeof(inC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2);
 
 /* separate_io: add (not in ctx) inputs size */
 
 /* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_T_Build_Metadata_Packet_I_TM_lib_internal);
+	nSize += sizeof(outC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -126,14 +116,14 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &inputs_ctx, sizeof(inC_T_Build_Metadata_Packet_I_TM_lib_internal));
-	pCurrent += sizeof(inC_T_Build_Metadata_Packet_I_TM_lib_internal);
+	memcpy(pCurrent, &inputs_ctx, sizeof(inC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2));
+	pCurrent += sizeof(inC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2);
 
 	/* separate_io: dump (not in ctx) inputs */
 
 	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_T_Build_Metadata_Packet_I_TM_lib_internal));
-	pCurrent += sizeof(outC_T_Build_Metadata_Packet_I_TM_lib_internal);
+	memcpy(pCurrent, &outputs_ctx, sizeof(outC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2));
+	pCurrent += sizeof(outC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -141,14 +131,14 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&inputs_ctx, pCurrent, sizeof(inC_T_Build_Metadata_Packet_I_TM_lib_internal));
-	pCurrent += sizeof(inC_T_Build_Metadata_Packet_I_TM_lib_internal);
+	memcpy(&inputs_ctx, pCurrent, sizeof(inC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2));
+	pCurrent += sizeof(inC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2);
 
 	/* separate_io: restore (not in ctx) inputs */
 
 	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_T_Build_Metadata_Packet_I_TM_lib_internal));
-	pCurrent += sizeof(outC_T_Build_Metadata_Packet_I_TM_lib_internal);
+	memcpy(&outputs_ctx, pCurrent, sizeof(outC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2));
+	pCurrent += sizeof(outC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
