@@ -3682,6 +3682,113 @@
 						<ed:Constant oid="!ed/4ed98/22C9/1164/555f1161182f"/>
 					</pragmas>
 				</Constant>
+				<Constant name="cNoFilterEvents">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="filterRelatedEvents_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- {pendingL1Transition : false, pendingL12L3Transition : false, pendingAckOfTrainDa... -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="pendingL1Transition">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="pendingL12L3Transition">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="pendingAckOfTrainDataFromRBC">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="emergencyStopAccepted">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="lastAckTextMessageId">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="pendingNTCTransition">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="SPPAndGradientOnBoard">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="MACoverNotFullLength">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1d7c9/1E57/193C/559a463ae7b"/>
+					</pragmas>
+				</Constant>
+				<Constant name="cNoMetaDataElement">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="MetadataElement_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- {nid_packet : 0, q_dir : Q_DIR_Reverse, valid : false, startAddress : 0, endAddre... -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="nid_packet">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="q_dir">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="Q_DIR_Reverse"/>
+											</path>
+										</IdExpression>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="valid">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="startAddress">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="endAddress">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1d7ca/1E57/193C/559a4648119d"/>
+					</pragmas>
+				</Constant>
 				<Type name="ReceivedMessage_T">
 					<definition>
 						<Struct>
@@ -4647,7 +4754,7 @@
 						</ed:Type>
 					</pragmas>
 				</Type>
-				<Type name="eventsForFilter_T">
+				<Type name="filterRelatedEvents_T">
 					<definition>
 						<Struct>
 							<fields>
@@ -4660,12 +4767,12 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1d7c0/40C8/1A5C/558d2d426301" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>A request for a level transition to Level 1  is active</comment>
+										<ed:Field oid="!ed/1d7c9/1AD0/12F4/559a356b56aa" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Indication if an announced LEVEL 1 transition is present. Used for Level Filter exception [1].</comment>
 										</ed:Field>
 									</pragmas>
 								</Field>
-								<Field name="pendingL2L3Transition">
+								<Field name="pendingL12L3Transition">
 									<type>
 										<NamedType>
 											<type>
@@ -4674,8 +4781,8 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1d7ce/40C8/1A5C/558d2e176659" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>A request for a level transition to Level 1  is active</comment>
+										<ed:Field oid="!ed/1d7d7/1AD0/12F4/559a3713322b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Indication if an announced LEVEL 2 or LEVEL 3 transition is present. Used for Level Filter exception [2]</comment>
 										</ed:Field>
 									</pragmas>
 								</Field>
@@ -4688,12 +4795,12 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1d7d5/40C8/1A5C/558d2e8716cb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>A request for a level transition to Level 1  is active</comment>
+										<ed:Field oid="!ed/1d7d8/1AD0/12F4/559a37ab48e1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Indicate if the acknowledgement of train data is pending. Used for Level Filter exception [3].</comment>
 										</ed:Field>
 									</pragmas>
 								</Field>
-								<Field name="EmergencyStopAccepted">
+								<Field name="emergencyStopAccepted">
 									<type>
 										<NamedType>
 											<type>
@@ -4702,8 +4809,8 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1d7db/40C8/1A5C/558d2ec86270" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>A request for a level transition to Level 1  is active</comment>
+										<ed:Field oid="!ed/1d7e1/1AD0/12F4/559a380040fb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Indicate if the train performs an emergency brake. Used for Level Filter exception [5].</comment>
 										</ed:Field>
 									</pragmas>
 								</Field>
@@ -4711,13 +4818,13 @@
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="bool"/>
+												<TypeRef name="int"/>
 											</type>
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1d7e1/40C8/1A5C/558d2ef44590" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>A request for a level transition to Level 1  is active</comment>
+										<ed:Field oid="!ed/1d7f4/1AD0/12F4/559a388053df" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>The ID of the last acknowleged text message ID. Used for Level Filter exception [12].</comment>
 										</ed:Field>
 									</pragmas>
 								</Field>
@@ -4730,8 +4837,8 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1d7e7/40C8/1A5C/558d2f3eb0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>A request for a level transition to Level 1  is active</comment>
+										<ed:Field oid="!ed/1d7fd/1AD0/12F4/559a38f1257e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Indication if an announced LEVEL NTC transition is present. Used for Level Filter exception [6,7].</comment>
 										</ed:Field>
 									</pragmas>
 								</Field>
@@ -4744,8 +4851,8 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1d7ed/40C8/1A5C/558d2f83777" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>A request for a level transition to Level 1  is active</comment>
+										<ed:Field oid="!ed/1d806/1AD0/12F4/559a39735824" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Speed Profile and Gradient Profile received and available on board</comment>
 										</ed:Field>
 									</pragmas>
 								</Field>
@@ -4758,8 +4865,8 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/1d7f3/40C8/1A5C/558d2fe7986" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>A request for a level transition to Level 1  is active</comment>
+										<ed:Field oid="!ed/1d80f/1AD0/12F4/559a3a456d0a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>MA does not cover full length of the trip</comment>
 										</ed:Field>
 									</pragmas>
 								</Field>
@@ -4767,9 +4874,21 @@
 						</Struct>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/1d7bf/40C8/1A5C/558d2d115d8b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-							<comment>This type collects some special events for the information filter.</comment>
+						<ed:Type oid="!ed/1d7c8/1AD0/12F4/559a3538442d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>In this type a set of track related states of the system. The types are mainly related to Information Filter Conditions.</comment>
 						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="boll">
+					<definition>
+						<NamedType>
+							<type>
+								<NullRef/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1d7eb/1AD0/12F4/559a3833790e"/>
 					</pragmas>
 				</Type>
 			</declarations>
