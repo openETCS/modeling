@@ -1,18 +1,18 @@
-#ifndef DETERMINE_LENGTHOFTARGETLIST_INTERFACE
-#define DETERMINE_LENGTHOFTARGETLIST_INTERFACE
+#ifndef TEST_NV_INTERNAL_INTERFACE
+#define TEST_NV_INTERNAL_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "Determine_LengthOfTargetList.h"
+#include "test_NV_iNTERNAL.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_Determine_LengthOfTargetList inputs_ctx;
-extern outC_Determine_LengthOfTargetList outputs_ctx;
+extern inC_test_NV_iNTERNAL inputs_ctx;
+extern outC_test_NV_iNTERNAL outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*DETERMINE_LENGTHOFTARGETLIST_INTERFACE */
+#endif /*TEST_NV_INTERNAL_INTERFACE */

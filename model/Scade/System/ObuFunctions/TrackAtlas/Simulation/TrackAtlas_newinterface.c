@@ -1,8 +1,8 @@
 #include "TrackAtlas_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "7b8e26777d79099cd25869f5035c9d1b";
-const char* _SCSIM_SmuTypesCheckSum = "d5b51fa9eff9683da46173266ac496c5";
+const char* _SCSIM_CheckSum = "f88302e9b5f7fdbf6d29e786493b4594";
+const char* _SCSIM_SmuTypesCheckSum = "f79c40cc4a28a84eb05b013596813063";
 
 /*******************************
  * Validity
@@ -17,18 +17,18 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-inC_Determine_LengthOfTargetList inputs_ctx;
-static inC_Determine_LengthOfTargetList inputs_ctx_restore;
-static inC_Determine_LengthOfTargetList inputs_ctx_execute;
-outC_Determine_LengthOfTargetList outputs_ctx;
-static outC_Determine_LengthOfTargetList outputs_ctx_restore;
+inC_test_NV_iNTERNAL inputs_ctx;
+static inC_test_NV_iNTERNAL inputs_ctx_restore;
+static inC_test_NV_iNTERNAL inputs_ctx_execute;
+outC_test_NV_iNTERNAL outputs_ctx;
+static outC_test_NV_iNTERNAL outputs_ctx_restore;
 
 /* separate_io: inputs instanciation */
 
 /* separate_io: outputs instanciation */
 
 static void _SCSIM_RestoreInterface(void) {
-	kcg_copy_array__153(&(inputs_ctx.SSP_t_list_in), &(inputs_ctx_restore.SSP_t_list_in));
+	inputs_ctx.receive = inputs_ctx_restore.receive;
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -36,55 +36,78 @@ static void _SCSIM_RestoreInterface(void) {
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	kcg_copy_array__153(&(inputs_ctx_execute.SSP_t_list_in), &(inputs_ctx.SSP_t_list_in));
+	inputs_ctx_execute.receive = inputs_ctx.receive;
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
 /*******************************
- * Cyclic function encapsulation
+ * Init/Reset function encapsulation
  *******************************/
-void SimInit(void) {
-	/* Context initialization */
+int SimInit(void) {
+	int nRet=0;
 	_SCSIM_RestoreInterface();
 #ifdef EXTENDED_SIM
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
-	Determine_LengthOfTargetList_reset(&outputs_ctx);
+	nRet=0;
 #ifdef EXTENDED_SIM
 	AfterSimInit();
 #endif /* EXTENDED_SIM */
+	return nRet;
+}
+
+int SimReset(void) {
+	int nRet=0;
+	_SCSIM_RestoreInterface();
+#ifdef EXTENDED_SIM
+	BeforeSimInit();
+#endif /* EXTENDED_SIM */
+#ifndef KCG_NO_EXTERN_CALL_TO_RESET
+	test_NV_reset_iNTERNAL(&outputs_ctx);
+	nRet=1;
+#else /* KCG_NO_EXTERN_CALL_TO_RESET */
+	nRet=0;
+#endif /* KCG_NO_EXTERN_CALL_TO_RESET */
+#ifdef EXTENDED_SIM
+	AfterSimInit();
+#endif /* EXTENDED_SIM */
+	return nRet;
 }
 
 #ifdef EXTENDED_SIM
 int GraphicalInputsConnected = 1;
 #endif /* EXTENDED_SIM */
+/*******************************
+ * Cyclic function encapsulation
+ *******************************/
 int SimStep(void) {
 #ifdef EXTENDED_SIM
 	if (GraphicalInputsConnected)
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	Determine_LengthOfTargetList(&inputs_ctx_execute, &outputs_ctx);
+	test_NV_iNTERNAL(&inputs_ctx_execute, &outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
 	return 1;
 }
 
-void SimStop(void) {
+int SimStop(void) {
 #ifdef EXTENDED_SIM
 	ExtendedSimStop();
 #endif /* EXTENDED_SIM */
+	return 1;
 }
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(inC_Determine_LengthOfTargetList);
+	nSize += sizeof(inC_test_NV_iNTERNAL);
 
 /* separate_io: add (not in ctx) inputs size */
 
 /* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_Determine_LengthOfTargetList);
+	nSize += sizeof(outC_test_NV_iNTERNAL);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -93,14 +116,14 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &inputs_ctx, sizeof(inC_Determine_LengthOfTargetList));
-	pCurrent += sizeof(inC_Determine_LengthOfTargetList);
+	memcpy(pCurrent, &inputs_ctx, sizeof(inC_test_NV_iNTERNAL));
+	pCurrent += sizeof(inC_test_NV_iNTERNAL);
 
 	/* separate_io: dump (not in ctx) inputs */
 
 	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_Determine_LengthOfTargetList));
-	pCurrent += sizeof(outC_Determine_LengthOfTargetList);
+	memcpy(pCurrent, &outputs_ctx, sizeof(outC_test_NV_iNTERNAL));
+	pCurrent += sizeof(outC_test_NV_iNTERNAL);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -108,14 +131,14 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&inputs_ctx, pCurrent, sizeof(inC_Determine_LengthOfTargetList));
-	pCurrent += sizeof(inC_Determine_LengthOfTargetList);
+	memcpy(&inputs_ctx, pCurrent, sizeof(inC_test_NV_iNTERNAL));
+	pCurrent += sizeof(inC_test_NV_iNTERNAL);
 
 	/* separate_io: restore (not in ctx) inputs */
 
 	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_Determine_LengthOfTargetList));
-	pCurrent += sizeof(outC_Determine_LengthOfTargetList);
+	memcpy(&outputs_ctx, pCurrent, sizeof(outC_test_NV_iNTERNAL));
+	pCurrent += sizeof(outC_test_NV_iNTERNAL);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
