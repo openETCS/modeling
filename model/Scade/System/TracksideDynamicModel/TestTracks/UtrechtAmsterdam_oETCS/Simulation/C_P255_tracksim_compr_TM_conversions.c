@@ -1,0 +1,139 @@
+/* $*************** KCG Version 6.1.3 (build i6) ****************
+** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
+** Generation date: 2015-07-07T00:28:47
+*************************************************************$ */
+
+#include "kcg_consts.h"
+#include "kcg_sensors.h"
+#include "C_P255_tracksim_compr_TM_conversions.h"
+
+void C_P255_tracksim_compr_reset_TM_conversions(
+  outC_C_P255_tracksim_compr_TM_conversions *outC)
+{
+  /* 1 */ T_Build_Metadata_Packet_ID_reset_TM_lib_internal(&outC->Context_1);
+}
+
+/* TM_conversions::C_P255_tracksim_compr */
+void C_P255_tracksim_compr_TM_conversions(
+  /* TM_conversions::C_P255_tracksim_compr::P255_from_track */P255_trackside_int_T_TM *P255_from_track,
+  outC_C_P255_tracksim_compr_TM_conversions *outC)
+{
+  kcg_int i;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _10_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _9_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _8_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _7_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _6_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _5_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _4_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _3_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _2_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _1_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool error_1;
+  kcg_bool noname_1;
+  
+  kcg_copy_P255_trackside_int_T_TM(&outC->_L1, P255_from_track);
+  outC->_L387 = outC->_L1.NID_PACKET;
+  outC->_L389 = INT_Q_DIR_both_TM;
+  /* 1 */
+  T_Build_Metadata_Packet_ID_TM_lib_internal(
+    outC->_L387,
+    outC->_L389,
+    0,
+    1,
+    INT_M_VERSION_2_0_TM,
+    &outC->Context_1);
+  outC->_L390 = outC->Context_1.nid_packet_meta;
+  outC->_L388 = DIM_MaxElementsPacket255_TM;
+  outC->_L373[0] = outC->_L387;
+  outC->_L336 = 0;
+  for (i = 0; i < 499; i++) {
+    outC->_L209[i] = outC->_L336;
+  }
+  kcg_copy_array_int_1(&outC->_L383[0], &outC->_L373);
+  kcg_copy_array_int_499(&outC->_L383[1], &outC->_L209);
+  outC->q_dir_int_1 = outC->_L389;
+  outC->_L12_1 = outC->q_dir_int_1;
+  outC->q_dir_in_1 = outC->_L12_1;
+  outC->IfBlock1_clock_1 = outC->q_dir_in_1 ==
+    INT_Q_DIR_nomiinal_TM_conversions;
+  if (outC->IfBlock1_clock_1) {
+    outC->_L4_13_IfBlock1 = ENUM_Q_DIR_nominal_TM_conversions;
+    _10_q_dir_1 = outC->_L4_13_IfBlock1;
+    outC->q_dir_1 = _10_q_dir_1;
+  }
+  else {
+    outC->_2_else_clock_1_IfBlock1 = outC->q_dir_in_1 ==
+      INT_Q_DIR_reverse_TM_conversions;
+    if (outC->_2_else_clock_1_IfBlock1) {
+      outC->_L3_1_IfBlock1 = ENUM_Q_DIR_reverse_TM_conversions;
+      q_dir_1 = outC->_L3_1_IfBlock1;
+      _8_q_dir_1 = q_dir_1;
+    }
+    else {
+      outC->else_clock_1_IfBlock1 = outC->q_dir_in_1 ==
+        INT_Q_DIR_both_TM_conversions;
+      if (outC->else_clock_1_IfBlock1) {
+        outC->_L2_11_IfBlock1 = ENUM_Q_DIR_both_TM_conversions;
+        _5_q_dir_1 = outC->_L2_11_IfBlock1;
+        _2_q_dir_1 = _5_q_dir_1;
+      }
+      else {
+        outC->_L2_1_IfBlock1 = ENUM_Q_DIR_both_TM_conversions;
+        _3_q_dir_1 = outC->_L2_1_IfBlock1;
+        _2_q_dir_1 = _3_q_dir_1;
+      }
+      _8_q_dir_1 = _2_q_dir_1;
+    }
+    outC->q_dir_1 = _8_q_dir_1;
+  }
+  outC->_L356 = outC->q_dir_1;
+  outC->_L214 = outC->_L1.valid;
+  outC->_L213 = 1;
+  outC->_L212 = outC->_L388 - outC->_L213;
+  outC->_L206 = 0;
+  outC->_L204.nid_packet = outC->_L390;
+  outC->_L204.q_dir = outC->_L356;
+  outC->_L204.valid = outC->_L214;
+  outC->_L204.startAddress = outC->_L206;
+  outC->_L204.endAddress = outC->_L212;
+  kcg_copy_MetadataElement_T_Common_Types_Pkg(&outC->Header, &outC->_L204);
+  kcg_copy_CompressedPacketData_T_Common_Types_Pkg(
+    &outC->P005_compressed,
+    &outC->_L383);
+  if (outC->IfBlock1_clock_1) {
+    outC->_L5_14_IfBlock1 = kcg_false;
+    _9_error_1 = outC->_L5_14_IfBlock1;
+    outC->error_1 = _9_error_1;
+  }
+  else {
+    if (outC->_2_else_clock_1_IfBlock1) {
+      outC->_L5_1_IfBlock1 = kcg_false;
+      error_1 = outC->_L5_1_IfBlock1;
+      _7_error_1 = error_1;
+    }
+    else {
+      if (outC->else_clock_1_IfBlock1) {
+        outC->_L4_1_IfBlock1 = kcg_false;
+        _6_error_1 = outC->_L4_1_IfBlock1;
+        _1_error_1 = _6_error_1;
+      }
+      else {
+        outC->_L1_1_IfBlock1 = kcg_true;
+        _4_error_1 = outC->_L1_1_IfBlock1;
+        _1_error_1 = _4_error_1;
+      }
+      _7_error_1 = _1_error_1;
+    }
+    outC->error_1 = _7_error_1;
+  }
+  outC->_L13_1 = outC->error_1;
+  noname_1 = outC->_L13_1;
+}
+
+/* $*************** KCG Version 6.1.3 (build i6) ****************
+** C_P255_tracksim_compr_TM_conversions.c
+** Generation date: 2015-07-07T00:28:47
+*************************************************************$ */
+

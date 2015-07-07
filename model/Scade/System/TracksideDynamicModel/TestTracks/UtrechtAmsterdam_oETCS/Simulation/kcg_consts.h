@@ -1,227 +1,62 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-04-25T17:50:03
+** Generation date: 2015-07-05T15:50:16
 *************************************************************$ */
 #ifndef _KCG_CONSTS_H_
 #define _KCG_CONSTS_H_
 
 #include "kcg_types.h"
 
-/* INT_Q_UPDOWN_uplink */
-#define INT_Q_UPDOWN_uplink 1
+/* Internal_Tests::DEFAULT_CompressedPackets */
+extern const CompressedPackets_T_Common_Types_Pkg DEFAULT_CompressedPackets_Internal_Tests;
 
-/* ENUM_Q_UPDOWN_uplink_Q_UPDOWN */
-#define ENUM_Q_UPDOWN_uplink_Q_UPDOWN Q_UPDOWN_Up_link_telegram
+/* TM::DEFAULT_CompressedPackets */
+extern const CompressedPacketData_T_Common_Types_Pkg DEFAULT_CompressedPackets_TM;
 
-/* ENUM_Q_UPDOWN_downlink_Q_UPDOWN */
-#define ENUM_Q_UPDOWN_downlink_Q_UPDOWN Q_UPDOWN_Down_link_telegram
+/* TM::DEFAULT_PHeader */
+extern const MetadataElement_T_Common_Types_Pkg DEFAULT_PHeader_TM;
 
-/* INT_M_VERSION_previous_M */
-#define INT_M_VERSION_previous_M 15
+/* TM_conversions::DIM_L_max */
+#define DIM_L_max_TM_conversions 32767
 
-/* ENUM_M_VERSION_previous_M_VERSION */
-#define ENUM_M_VERSION_previous_M_VERSION M_VERSION_Previous_versions_according_to_e_g_EEIG_SRS_and_UIC_A200_SRS
+/* TM_conversions::DIM_L_min */
+#define DIM_L_min_TM_conversions 0
 
-/* INT_M_VERSION_1_0 */
-#define INT_M_VERSION_1_0 16
+/* TM_conversions::INT_Q_FRONT_train_length_delay */
+#define INT_Q_FRONT_train_length_delay_TM_conversions 0
 
-/* ENUM_M_VERSION_1_0_M_VERSION */
-#define ENUM_M_VERSION_1_0_M_VERSION M_VERSION_Version_1_0_introduced_in_SRS_1_2_0_and_reused_in_SRSs_2_0_0_and_2_2_2_and_2_3_0
+/* TM_conversions::INT_Q_FRONT_no_train_length_delay */
+#define INT_Q_FRONT_no_train_length_delay_TM_conversions 1
 
-/* INT_M_VERSION_2_0 */
-#define INT_M_VERSION_2_0 32
+/* TM_conversions::ENUM_Q_FRONT_train_length_delay */
+#define ENUM_Q_FRONT_train_length_delay_TM_conversions Q_FRONT_Train_length_delay_on_validity_end_point_of_profile_element
 
-/* ENUM_M_VERSION_2_0_M_VERSION */
-#define ENUM_M_VERSION_2_0_M_VERSION M_VERSION_Version_2_0_introduced_in_SRS_3_3_0
+/* TM_conversions::ENUM_Q_FRONT_no_train_length_delay */
+#define ENUM_Q_FRONT_no_train_length_delay_TM_conversions Q_FRONT_No_train_length_delay_on_validity_end_point_of_profile_element
 
-/* ENUM_M_VERSION_1_1_M_VERSION */
-#define ENUM_M_VERSION_1_1_M_VERSION M_VERSION_Version_1_1_introduced_in_SRS_3_3_0
+/* TM_conversions::INT_Q_SCALE_10cm */
+#define INT_Q_SCALE_10cm_TM_conversions 0
 
-/* INT_Q_MEDIA_Balise */
-#define INT_Q_MEDIA_Balise 0
+/* TM_conversions::INT_Q_SCALE_1m */
+#define INT_Q_SCALE_1m_TM_conversions 1
 
-/* ENUM_Q_MEDIA_Balise_Q_MEDIA */
-#define ENUM_Q_MEDIA_Balise_Q_MEDIA Q_MEDIA_Balise
+/* TM_conversions::INT_Q_SCALE_10m */
+#define INT_Q_SCALE_10m_TM_conversions 2
 
-/* ENUM_Q_MEDIA_Loop_Q_MEDIA */
-#define ENUM_Q_MEDIA_Loop_Q_MEDIA Q_MEDIA_Loop
+/* TM_conversions::ENUM_Q_SCALE_10cm */
+#define ENUM_Q_SCALE_10cm_TM_conversions Q_SCALE_10_cm_scale
 
-/* ENUM_N_PIG_8th_N_PIG */
-#define ENUM_N_PIG_8th_N_PIG N_PIG_I_am_the_8th
+/* TM_conversions::ENUM_Q_SCALE_10m */
+#define ENUM_Q_SCALE_10m_TM_conversions Q_SCALE_10_m_scale
 
-/* ENUM_N_PIG_7th_N_PIG */
-#define ENUM_N_PIG_7th_N_PIG N_PIG_I_am_the_7th
+/* TM_conversions::ENUM_Q_SCALE_1m */
+#define ENUM_Q_SCALE_1m_TM_conversions Q_SCALE_1_m_scale
 
-/* ENUM_N_PIG_6th_N_PIG */
-#define ENUM_N_PIG_6th_N_PIG N_PIG_I_am_the_6th
+/* TM::DIM_MaxRMessages */
+#define DIM_MaxRMessages_TM 30
 
-/* ENUM_N_PIG_5th_N_PIG */
-#define ENUM_N_PIG_5th_N_PIG N_PIG_I_am_the_5th
-
-/* ENUM_N_PIG_4th_N_PIG */
-#define ENUM_N_PIG_4th_N_PIG N_PIG_I_am_the_4th
-
-/* ENUM_N_PIG_3rd_N_PIG */
-#define ENUM_N_PIG_3rd_N_PIG N_PIG_I_am_the_3rd
-
-/* ENUM_N_PIG_2nd_N_PIG */
-#define ENUM_N_PIG_2nd_N_PIG N_PIG_I_am_the_2nd
-
-/* ENUM_N_PIG_1st_N_PIG */
-#define ENUM_N_PIG_1st_N_PIG N_PIG_I_am_the_1st
-
-/* ENUM_N_TOTAL_6_N_TOTAL */
-#define ENUM_N_TOTAL_6_N_TOTAL N_TOTAL_6_balises_in_the_group
-
-/* ENUM_N_TOTAL_7_N_TOTAL */
-#define ENUM_N_TOTAL_7_N_TOTAL N_TOTAL_7_balises_in_the_group
-
-/* ENUM_N_TOTAL_5_N_TOTAL */
-#define ENUM_N_TOTAL_5_N_TOTAL N_TOTAL_5_balises_in_the_group
-
-/* ENUM_N_TOTAL_4_N_TOTAL */
-#define ENUM_N_TOTAL_4_N_TOTAL N_TOTAL_4_balises_in_the_group
-
-/* ENUM_N_TOTAL_3_N_TOTAL */
-#define ENUM_N_TOTAL_3_N_TOTAL N_TOTAL_3_balises_in_the_group
-
-/* ENUM_N_TOTAL_2_N_TOTAL */
-#define ENUM_N_TOTAL_2_N_TOTAL N_TOTAL_2_balises_in_the_group
-
-/* ENUM_N_TOTAL_1_N_TOTAL */
-#define ENUM_N_TOTAL_1_N_TOTAL N_TOTAL_1_balise_in_the_group
-
-/* INT_M_DUP_duplicate_of_next */
-#define INT_M_DUP_duplicate_of_next 1
-
-/* INT_M_DUP_duplicate_of_previous */
-#define INT_M_DUP_duplicate_of_previous 2
-
-/* INT_M_DUP_no_duplicates */
-#define INT_M_DUP_no_duplicates 0
-
-/* ENUM_M_DUP_duplicate_of_next */
-#define ENUM_M_DUP_duplicate_of_next _1_M_DUP_This_balise_is_a_duplicate_of_the_next_balise
-
-/* ENUM_M_DUP_no_duplicates */
-#define ENUM_M_DUP_no_duplicates M_DUP_No_duplicates
-
-/* ENUM_M_DUP_duplicate_of_previous */
-#define ENUM_M_DUP_duplicate_of_previous M_DUP_This_balise_is_a_duplicate_of_the_previous_balise
-
-/* INT_Q_LINK_linked */
-#define INT_Q_LINK_linked 1
-
-/* ENUM_Q_LINK_linked_Q_LINK */
-#define ENUM_Q_LINK_linked_Q_LINK Q_LINK_Linked
-
-/* ENUM_Q_LINK_unlinked_Q_LINK */
-#define ENUM_Q_LINK_unlinked_Q_LINK Q_LINK_Unlinked
-
-/* DEFAULT_BTMMessage */
-extern const TM_CompressedBaliseMessage DEFAULT_BTMMessage;
-
-/* DIM_MaxElementsPacket005 */
-#define DIM_MaxElementsPacket005 39
-
-/* INT_Q_DIR_nomiinal */
-#define INT_Q_DIR_nomiinal 1
-
-/* ENUM_Q_DIR_nomiinal_QDIR */
-#define ENUM_Q_DIR_nomiinal_QDIR Q_DIR_Nominal
-
-/* INT_Q_DIR_both */
-#define INT_Q_DIR_both 2
-
-/* ENUM_Q_DIR_both_QDIR */
-#define ENUM_Q_DIR_both_QDIR Q_DIR_Reverse
-
-/* ENUM_Q_DIR_reverse_QDIR */
-#define ENUM_Q_DIR_reverse_QDIR Q_DIR_Reverse
-
-/* DIM_MaxRMessages */
-#define DIM_MaxRMessages 30
-
-/* DEFAULT_Headers */
-extern const Metadata_T_Common_Types_Pkg DEFAULT_Headers;
-
-/* Balises426::BG364_P005 */
-extern const TM_P005 BG364_P005_Balises426;
-
-/* Balises426::BG364_header_B1 */
-extern const TM_BaliseTelegramHeader_int_T BG364_header_B1_Balises426;
-
-/* Balises426::BG364_header_B0 */
-extern const TM_BaliseTelegramHeader_int_T BG364_header_B0_Balises426;
-
-/* Balises426::BG365_header_B0 */
-extern const TM_BaliseTelegramHeader_int_T BG365_header_B0_Balises426;
-
-/* Balises426::BG365_header_B1 */
-extern const TM_BaliseTelegramHeader_int_T BG365_header_B1_Balises426;
-
-/* Balises426::BG366_header_B0 */
-extern const TM_BaliseTelegramHeader_int_T BG366_header_B0_Balises426;
-
-/* Balises426::BG366_header_B1 */
-extern const TM_BaliseTelegramHeader_int_T BG366_header_B1_Balises426;
-
-/* Balises426::BG367_header_B0 */
-extern const TM_BaliseTelegramHeader_int_T BG367_header_B0_Balises426;
-
-/* Balises426::BG367_header_B1 */
-extern const TM_BaliseTelegramHeader_int_T BG367_header_B1_Balises426;
-
-/* Balises426::BG368_header_B1 */
-extern const TM_BaliseTelegramHeader_int_T BG368_header_B1_Balises426;
-
-/* Balises426::BG368_header_B0 */
-extern const TM_BaliseTelegramHeader_int_T BG368_header_B0_Balises426;
-
-/* Balises426::BG369_header_B1 */
-extern const TM_BaliseTelegramHeader_int_T BG369_header_B1_Balises426;
-
-/* Balises426::BG369_header_B0 */
-extern const TM_BaliseTelegramHeader_int_T BG369_header_B0_Balises426;
-
-/* FirstTest::InfraLib::DEFAULT_BaliseTelegramHd */
-extern const TM_BaliseTelegramHeader_int_T DEFAULT_BaliseTelegramHd_FirstTest_InfraLib;
-
-/* DEFAULT_TM_BaliseHeaderInt */
-extern const TM_BaliseTelegramHeader_int_T DEFAULT_TM_BaliseHeaderInt;
-
-/* DEFAULT_Packets */
-extern const CompressedPackets_T_Common_Types_Pkg DEFAULT_Packets;
-
-/* DIM_scale_eng_location */
-#define DIM_scale_eng_location 1.0
-
-/* FirstTest::InfraLib::Distance_Balises_in_BG */
-#define Distance_Balises_in_BG_FirstTest_InfraLib 2.0
-
-/* Balises426::BG341_header_B1 */
-extern const TM_BaliseTelegramHeader_int_T BG341_header_B1_Balises426;
-
-/* Balises426::BG364 */
-extern const BaliseGroupData_Basics BG364_Balises426;
-
-/* Balises426::BG365 */
-extern const BaliseGroupData_Basics BG365_Balises426;
-
-/* Balises426::BG366 */
-extern const BaliseGroupData_Basics BG366_Balises426;
-
-/* Balises426::BG367 */
-extern const BaliseGroupData_Basics BG367_Balises426;
-
-/* Balises426::BG368 */
-extern const BaliseGroupData_Basics BG368_Balises426;
-
-/* Balises426::BG369 */
-extern const BaliseGroupData_Basics BG369_Balises426;
-
-/* Balises426::BG341 */
-extern const BaliseGroupData_Basics BG341_Balises426;
+/* TM::DEFAULT_Headers */
+extern const Metadata_T_Common_Types_Pkg DEFAULT_Headers_TM;
 
 /* Common_Types_Pkg::cMetadataArraySize */
 #define cMetadataArraySize_Common_Types_Pkg cDIM_MaxRMessages_Common_Types_Pkg
@@ -229,12 +64,54 @@ extern const BaliseGroupData_Basics BG341_Balises426;
 /* Common_Types_Pkg::cDIM_MaxRMessages */
 #define cDIM_MaxRMessages_Common_Types_Pkg 30
 
+/* TM::DIM_MaxElementsPacket065 */
+#define DIM_MaxElementsPacket065_TM 9
+
+/* TM::INT_M_VERSION_2_0 */
+#define INT_M_VERSION_2_0_TM 32
+
+/* TM::ERROR_nid_packet */
+#define ERROR_nid_packet_TM (- 1)
+
+/* TM_lib_internal::DIM_offset_metadata_nid_packet */
+#define DIM_offset_metadata_nid_packet_TM_lib_internal 1000000
+
+/* TM_lib_internal::DIM_offset_metadata_q_dir */
+#define DIM_offset_metadata_q_dir_TM_lib_internal 100000
+
+/* TM_lib_internal::DIM_offset_metadata_m_version */
+#define DIM_offset_metadata_m_version_TM_lib_internal 1000
+
+/* TM_lib_internal::DIM_offset_metadata_id */
+#define DIM_offset_metadata_id_TM_lib_internal 1
+
 /* Common_Types_Pkg::cDIM_MaxDataElementsInRMessage */
 #define cDIM_MaxDataElementsInRMessage_Common_Types_Pkg 500
+
+/* TM_conversions::INT_Q_DIR_nomiinal */
+#define INT_Q_DIR_nomiinal_TM_conversions 1
+
+/* TM_conversions::INT_Q_DIR_reverse */
+#define INT_Q_DIR_reverse_TM_conversions 0
+
+/* TM_conversions::INT_Q_DIR_both */
+#define INT_Q_DIR_both_TM_conversions 2
+
+/* TM_conversions::ENUM_Q_DIR_both */
+#define ENUM_Q_DIR_both_TM_conversions Q_DIR_Both_directions
+
+/* TM_conversions::ENUM_Q_DIR_reverse */
+#define ENUM_Q_DIR_reverse_TM_conversions Q_DIR_Reverse
+
+/* TM_conversions::ENUM_Q_DIR_nominal */
+#define ENUM_Q_DIR_nominal_TM_conversions Q_DIR_Nominal
+
+/* Packets426::LRBG354_P065_1 */
+extern const P065_trackside_int_T_TM LRBG354_P065_1_Packets426;
 
 #endif /* _KCG_CONSTS_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_consts.h
-** Generation date: 2015-04-25T17:50:03
+** Generation date: 2015-07-05T15:50:16
 *************************************************************$ */
 

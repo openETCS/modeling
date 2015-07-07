@@ -1,0 +1,223 @@
+\documentclass{template/openetcs_report}
+% Use the option "nocc" if the document is not licensed under Creative Commons
+%\documentclass[nocc]{template/openetcs_article}
+\usepackage{lipsum,url}
+\usepackage{supertabular}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{color, colortbl}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue,filecolor=blue]{hyperref}
+\usepackage{listings}
+\usepackage{makeidx}
+\definecolor{gray}{rgb}{0.8,0.8,0.8}
+\usepackage[modulo]{lineno}
+\usepackage{float}
+\usepackage[color=green!40,textsize=footnotesize,textwidth=2.8cm]{todonotes}
+%\usepackage{pdflscape}
+%\usepackage[acronym, % list of acronyms
+  %section, % add the glossary to the table of content
+            %description,% acronyms have a user-supplied description,
+ %style=longheader, % table style
+ %nonumberlist % no page number
+ %]{glossaries}
+
+
+
+\graphicspath{{./template/}{.}{./images/}}
+
+%\renewcommand*{\glspostdescription}{} %Deactivate point at the end of every description
+%\renewcommand*{\glossaryname}{Glossary}
+
+%create glossary
+% \makeglossaries
+ %Glossary terms
+% \loadglsentries{glossary}
+
+\begin{document}
+\frontmatter
+\project{openETCS}
+
+\newcommand{\define}[1]{\index{#1}\emph{#1}}
+
+
+
+%Please do not change anything above this line
+%============================
+
+% The document metadata is defined below
+
+%assign a report number here
+\reportnum{OETCS/WP3/D3.5.3}
+
+%define your workpackage here
+\wp{Work Package 3: ``Modeling''}
+
+%set a title here
+\title{openETCS Architecture and Design Specification}
+
+%set a subtitle here
+\subtitle{Software Component Design and Internal Interface Specification}
+
+%set the date of the report here
+\date{June 2015}
+
+
+%document approval
+%define the name and affiliation of the people involved in the documents approbation here
+\creatorname{Peter Mahlmann}
+\creatoraffil{DB Netz AG}
+
+\techassessorname{Jan Welte}
+\techassessoraffil{Technische Universität Braunschweig}
+
+\qualityassessorname{Izaskun de la Torre}
+\qualityassessoraffil{SQS}
+
+\approvalname{Klaus-R\"udiger Hase}
+\approvalaffil{DB Netz}
+
+
+%define a list of authors and their affiliation here
+
+\author{Peter Mahlmann, Bernd Hekele, Baseliyos Jacob, Peyman Farhangi, Stefan Karg, Valerio D´Angelo}
+\affiliation{DB Netz AG}
+
+\author{Uwe Steinke}
+\affiliation{Siemens AG}
+
+\author{Christian Stahl}
+\affiliation{TWT GmbH}
+
+\author{Jakob G\"artner}
+\affiliation{LEA Railergy}
+
+\author{Jos Holtzer, Jan Welvaarts, Vincent Nuhaan}
+\affiliation{Nederlandss Spoorwegen}
+
+\author{Thorsten Schulz, Benjamin Beichler}
+\affiliation{University of Rostock}
+
+\author{Marielle Petit-Doche, Matthias G\"udemann}
+\affiliation{Systerel}
+
+\author{Veronique Gontier}
+\affiliation{All4Tec}
+
+\author{Christian Giraud, Fausto Cochetti}
+\affiliation{Alstom}
+
+\author{Alexander Stante}
+\affiliation{Fraunhofer ESK}
+
+\author{David Mentre}
+\affiliation{MERCE}
+
+
+
+% define the coverart
+\coverart[width=350pt]{openETCS_EUPL}
+
+\newpage
+%define the type of report
+\reporttype{Architecture and Design Specification}
+
+
+\begin{abstract}
+%define an abstract here
+This document describes the architecture and design specification of  the openETCS onboard unit (OBU) model. The functional scope of the openETCS OBU model is to cover the functionality required for running on the ETCS level $2$ Utrecht Amsterdam track. The OBU model is developed iteratively and the system model is documented in D3.5.x and the functional model is documented in D3.5.x, where x denotes the iteration. 
+\end{abstract}
+
+%=============================
+\maketitle
+
+%Modification history
+%if you do not need a modification history table for your document simply comment out the eight lines below
+%=============================
+
+
+\chapter*{Modification History}
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Version & Sections & Modification / Description & Author & Date \\\hline}
+\begin{supertabular}{| m{1.2cm} | m{1.5cm} | m{4.0cm} | m{3.5cm} | m{3.5cm} |}
+0.1 & all & Initial document providing structure & Peter Mahlmann& 27.05.2015 \\\hline
+0.2 & 2 & New template for design descriptions & Peter Mahlmann& 10.06.2015 \\\hline
+0.3 & all & Transferred existing documentation to new template & Peter Mahlmann& 22.06.2015 \\\hline
+
+\end{supertabular}
+
+% list subsubsections in table of contents
+%\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}   
+\setcounter{tocdepth}{3}   
+
+\tableofcontents
+\listoffiguresandtables
+\newpage
+%=============================
+
+%Uncomment the next line if you need line numbers for tracebility when the document is in review
+\linenumbers
+%=============================
+
+
+% The actual document starts below this line
+%=============================
+
+\mainmatter
+
+\input{sections/introduction.tex}
+
+\part{System Architecture and Functional Breakdown}
+
+%\input{sections/functional_breakdown}
+
+\chapter{System Architecture}\todo[fancyline]{has to be completed}
+\input{sections/system_architecture.tex}
+
+
+%\chapter{Software Architecture}
+%t.b.d.\todo[fancyline]{has to be completed}
+
+
+
+\part{Design Description}
+
+
+\chapter{F1: Receive Information from Trackside}
+
+\chapter{F2: ETCS Kernel}
+\input{sections/receivetrackdata_V2.tex}
+
+\input{sections/trainsupervision_V2.tex}
+
+\input{sections/manage_etcs_procedures_V2.tex}
+
+\input{sections/ManageTrackData_V2.tex}
+
+\input{sections/modeandlevel_V2.tex}
+
+\input{sections/managerbcprocedure_V2.tex}
+
+\chapter{F3: Measure Train Movement}
+
+\chapter{F4: Manage Radio Communication}
+
+\chapter{F5: Manage JRU}
+
+\chapter{F6: DMI Controller}
+\input{sections/DMI_V2.tex}
+
+
+\bibliographystyle{unsrt}
+\bibliography{architecture}
+
+
+%\addcontentsline{toc}{chapter}{Index}
+%\printindex
+%===================================================
+%Do NOT change anything below this line
+
+\end{document}

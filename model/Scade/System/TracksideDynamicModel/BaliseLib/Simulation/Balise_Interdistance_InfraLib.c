@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/BaliseLib/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-04-23T17:13:00
+** Generation date: 2015-06-08T18:46:58
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -53,6 +53,6 @@ void Balise_Interdistance_InfraLib(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_Interdistance_InfraLib.c
-** Generation date: 2015-04-23T17:13:00
+** Generation date: 2015-06-08T18:46:58
 *************************************************************$ */
 

@@ -1,0 +1,191 @@
+
+node #pragma ed <Operator oid="!ed/3be6/3346/A20/5554bb065437">
+	<diagrams>
+		<NetDiagram name="diagram_ButtonBehaviour_1" landscape="true" format="A4 (210 297)" oid="!ed/3be7/3346/A20/5554bb0640c3">
+			<presentationElements>
+				<StateMachineGE presentable="!ed/3beb/3346/A20/5554bb434b46">
+					<position>
+						<Point x="318" y="1746"/>
+					</position>
+					<size>
+						<Size width="13308" height="5054"/>
+					</size>
+				</StateMachineGE>
+				<StateGE presentable="!ed/3bf0/3346/A20/5554bb4874f6">
+					<position>
+						<Point x="1138" y="2990"/>
+					</position>
+					<size>
+						<Size width="4312" height="1772"/>
+					</size>
+				</StateGE>
+				<StateGE presentable="!ed/3bf5/3346/A20/5554bb4b60f2">
+					<position>
+						<Point x="8599" y="3043"/>
+					</position>
+					<size>
+						<Size width="4312" height="1772"/>
+					</size>
+				</StateGE>
+				<TransitionGE presentable="!ed/3c05/3346/A20/5554bb663a9a">
+					<positions>
+						<Point x="5450" y="3281"/>
+						<Point x="6773" y="2566"/>
+						<Point x="7805" y="3069"/>
+						<Point x="8599" y="3519"/>
+					</positions>
+					<labelSize>
+						<Size width="2461" height="635"/>
+					</labelSize>
+					<labelPos>
+						<Point x="5662" y="2196"/>
+					</labelPos>
+					<slashPos>
+						<Point x="7328" y="2196"/>
+					</slashPos>
+				</TransitionGE>
+				<TransitionGE presentable="!ed/3c08/3346/A20/5554bb6c2cf7">
+					<positions>
+						<Point x="8652" y="4657"/>
+						<Point x="7567" y="5450"/>
+						<Point x="6271" y="5027"/>
+						<Point x="5318" y="4657"/>
+					</positions>
+					<labelSize>
+						<Size width="2725" height="635"/>
+					</labelSize>
+					<labelPos>
+						<Point x="5397" y="5874"/>
+					</labelPos>
+					<slashPos>
+						<Point x="7328" y="5874"/>
+					</slashPos>
+				</TransitionGE>
+				<EquationGE presentable="!ed/3c20/3346/A20/5554bb9e6a31">
+					<position>
+						<Point x="11218" y="3889"/>
+					</position>
+					<size>
+						<Size width="318" height="503"/>
+					</size>
+				</EquationGE>
+				<EquationGE presentable="!ed/3c26/3346/A20/5554bba22556">
+					<position>
+						<Point x="3784" y="3757"/>
+					</position>
+					<size>
+						<Size width="317" height="503"/>
+					</size>
+				</EquationGE>
+				<EquationGE kind="OBJ_LIT" presentable="!ed/3c2c/3346/A20/5554bba7a17">
+					<position>
+						<Point x="2117" y="3863"/>
+					</position>
+					<size>
+						<Size width="212" height="318"/>
+					</size>
+				</EquationGE>
+				<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3c2c/3346/A20/5554bba7a17" dstEquation="!ed/3c26/3346/A20/5554bba22556">
+					<positions>
+						<Point x="2328" y="4022"/>
+						<Point x="3069" y="4022"/>
+						<Point x="3069" y="4022"/>
+						<Point x="3836" y="4022"/>
+					</positions>
+				</Edge>
+				<EquationGE kind="OBJ_LIT" presentable="!ed/3c5c/3346/A20/5554bbd15aa7">
+					<position>
+						<Point x="9366" y="3995"/>
+					</position>
+					<size>
+						<Size width="212" height="317"/>
+					</size>
+				</EquationGE>
+				<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3c5c/3346/A20/5554bbd15aa7" dstEquation="!ed/3c20/3346/A20/5554bb9e6a31">
+					<positions>
+						<Point x="9578" y="4154"/>
+						<Point x="10425" y="4154"/>
+						<Point x="10425" y="4154"/>
+						<Point x="11271" y="4154"/>
+					</positions>
+				</Edge>
+			</presentationElements>
+		</NetDiagram>
+	</diagrams>
+</Operator>
+#end
+
+ButtonBehaviour(
+      #pragma ed    <Variable oid="!ed/3be8/3346/A20/5554bb241533"/>
+#end
+
+pressed : bool; 
+      #pragma ed    <Variable oid="!ed/3be9/3346/A20/5554bb24311b"/>
+#end
+
+released : bool)
+returns (
+      #pragma ed    <Variable oid="!ed/3c1f/3346/A20/5554bb933698"/>
+#end
+
+isPressed : bool)
+let
+   #pragma ed    <StateMachine oid="!ed/3beb/3346/A20/5554bb434b46"/>
+#end
+
+   automaton SM1
+      initial state       #pragma ed       <State oid="!ed/3bf0/3346/A20/5554bb4874f6"/>
+#end
+
+Released
+      unless
+         #pragma ed          <Transition oid="!ed/3c05/3346/A20/5554bb663a9a"/>
+#end
+
+         if pressed
+            restart Pressed;
+
+      var
+                  #pragma ed          <Variable oid="!ed/3c2d/3346/A20/5554bba71481"/>
+#end
+
+_L1 : bool;
+      let
+         #pragma ed          <Equation oid="!ed/3c26/3346/A20/5554bba22556"/>
+#end
+
+         isPressed = _L1;
+         #pragma ed          <Equation oid="!ed/3c2c/3346/A20/5554bba7a17"/>
+#end
+
+         _L1 = false;
+      tel
+      state       #pragma ed       <State oid="!ed/3bf5/3346/A20/5554bb4b60f2"/>
+#end
+
+Pressed
+      unless
+         #pragma ed          <Transition oid="!ed/3c08/3346/A20/5554bb6c2cf7"/>
+#end
+
+         if released
+            restart Released;
+
+      var
+                  #pragma ed          <Variable oid="!ed/3c5d/3346/A20/5554bbd15aaf"/>
+#end
+
+_L1 : bool;
+      let
+         #pragma ed          <Equation oid="!ed/3c20/3346/A20/5554bb9e6a31"/>
+#end
+
+         isPressed = _L1;
+         #pragma ed          <Equation oid="!ed/3c5c/3346/A20/5554bbd15aa7"/>
+#end
+
+         _L1 = true;
+      tel
+   returns .. ;
+tel
+
