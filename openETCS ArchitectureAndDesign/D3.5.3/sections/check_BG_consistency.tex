@@ -1,0 +1,39 @@
+%set the master document for easy compilation
+%!TEX root = ../D3_5_3.tex
+
+\paragraph{Component Requirements}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Component name			& CheckBGConsistency \\
+\midrule
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/ManageLocationRelatedInformation/BaliseGroup/CheckBGConsistency}} \\
+\midrule
+SCADE designer			& [Name, affiliation] \\
+\midrule
+Description				& This function verifies the completeness and correctness of the received messages from balise groups. A message consists of at least a telegram and a maximum of 8 telegrams.
+\begin{itemize}
+\item A message is still complete and correct, if a telegram is missing (or not decoded or incomplete decoded ), and this telegram is duplicated within the balise group and the duplicating one is correctly read.
+\item By more than one telegram, the order of the telegrams must be either ascending (nominal) or descending(reverse).
+\item A message is correct, if  all message counters (M MCUNT) do not equal 254 (that means: The telegram never fits any message of the group). A message counter can be equal 255 (that means: The telegram fits with all telegrams of the same balise group) and all other values must be the same.
+\end{itemize}
+The orientation of the BG will also be calculated in this block. The check, if the message has been received in due time and the right at the right expected location, will be performed in "Calculate Train Position". The checks on the validity of the data in the packets and the validity with respect to the direction of motion will be performed in other modules, e.g. "Validate Data Direction". \\
+\midrule
+Input documents	& 
+Subset-026, Chapter 7 and 8: Definition of the Balise Telegram\newline
+Subset-026, Chapter 3.4.1-3, 3.16.2: Handling of Balise Telegrams\newline
+Subset-026, Chapter 3.16.2: Check of the balise group\newline
+Subset-026, Chapter 4.5.2: Active Functions Table\\
+\midrule
+Safety integrity level		& 4 \\
+\midrule
+Time constraints		& n/a \\
+\midrule
+API requirements 		& n/a \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{Interface}
+
+For an overview of the interface of this internal component we refer to the SCADE model (c.f.~link above) respectively the SCADE generated documentation.

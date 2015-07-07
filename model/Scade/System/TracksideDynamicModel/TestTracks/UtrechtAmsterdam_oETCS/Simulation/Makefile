@@ -2,199 +2,532 @@
 ######    Begin of Makefile
 #############################################################
 
-SCADE=C:\Program Files\Esterel Technologies\SCADE R15.2\SCADE\.
+SCADE=C:\Program Files\Esterel Technologies\SCADE R16.1\SCADE\.
 
 SHELL=cmd.exe
 
-LIB_MINGW = "C:/Program Files/Esterel Technologies/SCADE R15.2/contrib/Msys/mingw/lib"
-LIB_MINGW_GCC = "C:/Program Files/Esterel Technologies/SCADE R15.2/contrib/Msys/mingw/lib/gcc/mingw32/3.4.5"
-
-C_FLAGS = -O2 -pedantic
+C_FLAGS = -pedantic
 
 all: FirstTest__Story00A.exe FirstTest__Story00A.dll 
 
 win32/Story00A_FirstTest.o: Story00A_FirstTest.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Story00A_FirstTest.c" -o "win32\Story00A_FirstTest.o"
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Story00A_FirstTest.c" -o "win32\Story00A_FirstTest.o"
 
-win32/RECV_ConvertBaliseHeader_CT.o: RECV_ConvertBaliseHeader_CT.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "RECV_ConvertBaliseHeader_CT.c" -o "win32\RECV_ConvertBaliseHeader_CT.o"
+win32/Story00A_RBC_FirstTest.o: Story00A_RBC_FirstTest.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Story00A_RBC_FirstTest.c" -o "win32\Story00A_RBC_FirstTest.o"
 
-win32/TOOLS_Int_to_Q_LINK.o: TOOLS_Int_to_Q_LINK.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "TOOLS_Int_to_Q_LINK.c" -o "win32\TOOLS_Int_to_Q_LINK.o"
+win32/Amsterdam_Utrecht_Sheet06_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Amsterdam_Utrecht_Sheet06_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Amsterdam_Utrecht_Sheet06_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Amsterdam_Utrecht_Sheet06_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
 
-win32/TOOLS_Int_to_M_DUP.o: TOOLS_Int_to_M_DUP.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "TOOLS_Int_to_M_DUP.c" -o "win32\TOOLS_Int_to_M_DUP.o"
+win32/RBC_close_RadioLib.o: RBC_close_RadioLib.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "RBC_close_RadioLib.c" -o "win32\RBC_close_RadioLib.o"
 
-win32/TOOLS_Int_to_N_TOTAL.o: TOOLS_Int_to_N_TOTAL.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "TOOLS_Int_to_N_TOTAL.c" -o "win32\TOOLS_Int_to_N_TOTAL.o"
+win32/RBC_init_RadioLib.o: RBC_init_RadioLib.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "RBC_init_RadioLib.c" -o "win32\RBC_init_RadioLib.o"
 
-win32/TOOLS_Int_to_N_PIG.o: TOOLS_Int_to_N_PIG.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "TOOLS_Int_to_N_PIG.c" -o "win32\TOOLS_Int_to_N_PIG.o"
+win32/RBC_Sheet06_Bijlmer_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: RBC_Sheet06_Bijlmer_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "RBC_Sheet06_Bijlmer_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\RBC_Sheet06_Bijlmer_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
 
-win32/TOOLS_Int_to_Q_MEDIA.o: TOOLS_Int_to_Q_MEDIA.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "TOOLS_Int_to_Q_MEDIA.c" -o "win32\TOOLS_Int_to_Q_MEDIA.o"
+win32/Send_RBC_LRBG_341_D_00134_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Send_RBC_LRBG_341_D_00134_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_RBC_LRBG_341_D_00134_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Send_RBC_LRBG_341_D_00134_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
 
-win32/TOOLS_Int_to_M_VERSION.o: TOOLS_Int_to_M_VERSION.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "TOOLS_Int_to_M_VERSION.c" -o "win32\TOOLS_Int_to_M_VERSION.o"
+win32/Build_RBC_LRBG_341_D_0013_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Build_RBC_LRBG_341_D_0013_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Build_RBC_LRBG_341_D_0013_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Build_RBC_LRBG_341_D_0013_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
 
-win32/TOOLS_Int_to_Q_UPDOWN.o: TOOLS_Int_to_Q_UPDOWN.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "TOOLS_Int_to_Q_UPDOWN.c" -o "win32\TOOLS_Int_to_Q_UPDOWN.o"
+win32/Send_RBC_LRBG_369_D_00231_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Send_RBC_LRBG_369_D_00231_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_RBC_LRBG_369_D_00231_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Send_RBC_LRBG_369_D_00231_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Build_RBC_LRBG_369_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Build_RBC_LRBG_369_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Build_RBC_LRBG_369_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Build_RBC_LRBG_369_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Send_RBC_LRBG_364_D_00091_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Send_RBC_LRBG_364_D_00091_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_RBC_LRBG_364_D_00091_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Send_RBC_LRBG_364_D_00091_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Build_RBC_LRBG_364_D_0009_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Build_RBC_LRBG_364_D_0009_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Build_RBC_LRBG_364_D_0009_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Build_RBC_LRBG_364_D_0009_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/SendRadioPackets_LRBG_364_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: SendRadioPackets_LRBG_364_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "SendRadioPackets_LRBG_364_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\SendRadioPackets_LRBG_364_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Send_RBC_LRBG_362_D_00238_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Send_RBC_LRBG_362_D_00238_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_RBC_LRBG_362_D_00238_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Send_RBC_LRBG_362_D_00238_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Build_RBC_LRBG_362_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Build_RBC_LRBG_362_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Build_RBC_LRBG_362_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Build_RBC_LRBG_362_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/SendRadioPackets_LRBG_362_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: SendRadioPackets_LRBG_362_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "SendRadioPackets_LRBG_362_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\SendRadioPackets_LRBG_362_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Send_RBC_LRBG_362_D_00230_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Send_RBC_LRBG_362_D_00230_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_RBC_LRBG_362_D_00230_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Send_RBC_LRBG_362_D_00230_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/_6_Build_RBC_LRBG_362_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: _6_Build_RBC_LRBG_362_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "_6_Build_RBC_LRBG_362_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\_6_Build_RBC_LRBG_362_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/_5_SendRadioPackets_LRBG_362_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: _5_SendRadioPackets_LRBG_362_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "_5_SendRadioPackets_LRBG_362_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\_5_SendRadioPackets_LRBG_362_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Send_RBC_LRBG_362_D_00124_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Send_RBC_LRBG_362_D_00124_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_RBC_LRBG_362_D_00124_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Send_RBC_LRBG_362_D_00124_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Build_RBC_LRBG_362_D_0012_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Build_RBC_LRBG_362_D_0012_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Build_RBC_LRBG_362_D_0012_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Build_RBC_LRBG_362_D_0012_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Send_RBC_LRBG_360_D_00249_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Send_RBC_LRBG_360_D_00249_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_RBC_LRBG_360_D_00249_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Send_RBC_LRBG_360_D_00249_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Build_RBC_LRBG_360_D_0024_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Build_RBC_LRBG_360_D_0024_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Build_RBC_LRBG_360_D_0024_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Build_RBC_LRBG_360_D_0024_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Send_RBC_LRBG_358_D_00123_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Send_RBC_LRBG_358_D_00123_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_RBC_LRBG_358_D_00123_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Send_RBC_LRBG_358_D_00123_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Build_RBC_LRBG_358_D_0012_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Build_RBC_LRBG_358_D_0012_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Build_RBC_LRBG_358_D_0012_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Build_RBC_LRBG_358_D_0012_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Send_RBC_LRBG_356_D_00048_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Send_RBC_LRBG_356_D_00048_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_RBC_LRBG_356_D_00048_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Send_RBC_LRBG_356_D_00048_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Build_RBC_LRBG_356_D_0004_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Build_RBC_LRBG_356_D_0004_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Build_RBC_LRBG_356_D_0004_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Build_RBC_LRBG_356_D_0004_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Send_RBC_LRBG_355_D_00089_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Send_RBC_LRBG_355_D_00089_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_RBC_LRBG_355_D_00089_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Send_RBC_LRBG_355_D_00089_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Build_RBC_LRBG_355_D_0008_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Build_RBC_LRBG_355_D_0008_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Build_RBC_LRBG_355_D_0008_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Build_RBC_LRBG_355_D_0008_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Send_M015_JRU_MessageLibBaseline2.o: Send_M015_JRU_MessageLibBaseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_M015_JRU_MessageLibBaseline2.c" -o "win32\Send_M015_JRU_MessageLibBaseline2.o"
+
+win32/C_M015_int_to_header_TM_radio_messages.o: C_M015_int_to_header_TM_radio_messages.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_M015_int_to_header_TM_radio_messages.c" -o "win32\C_M015_int_to_header_TM_radio_messages.o"
+
+win32/No_Radio_Packets_RadioLib.o: No_Radio_Packets_RadioLib.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "No_Radio_Packets_RadioLib.c" -o "win32\No_Radio_Packets_RadioLib.o"
+
+win32/Send_RBC_LRBG_351_D_00054_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Send_RBC_LRBG_351_D_00054_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_RBC_LRBG_351_D_00054_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Send_RBC_LRBG_351_D_00054_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Build_RBC_LRBG_351_D_0005_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Build_RBC_LRBG_351_D_0005_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Build_RBC_LRBG_351_D_0005_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Build_RBC_LRBG_351_D_0005_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/SendRadioPackets_LRBG_351_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: SendRadioPackets_LRBG_351_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "SendRadioPackets_LRBG_351_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\SendRadioPackets_LRBG_351_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Send_RBC_LRBG_354_D_00275_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Send_RBC_LRBG_354_D_00275_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_RBC_LRBG_354_D_00275_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Send_RBC_LRBG_354_D_00275_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Build_RBC_LRBG_354_D_0027_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: Build_RBC_LRBG_354_D_0027_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Build_RBC_LRBG_354_D_0027_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\Build_RBC_LRBG_354_D_0027_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Send_M003_JRU_MessageLibBaseline2.o: Send_M003_JRU_MessageLibBaseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_M003_JRU_MessageLibBaseline2.c" -o "win32\Send_M003_JRU_MessageLibBaseline2.o"
+
+win32/C_M003_int__to_header_TM_radio_messages.o: C_M003_int__to_header_TM_radio_messages.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_M003_int__to_header_TM_radio_messages.c" -o "win32\C_M003_int__to_header_TM_radio_messages.o"
+
+win32/CAST_Int_to_NID_MESSAGE_TM_conversions.o: CAST_Int_to_NID_MESSAGE_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_NID_MESSAGE_TM_conversions.c" -o "win32\CAST_Int_to_NID_MESSAGE_TM_conversions.o"
+
+win32/CAST_Int_to_L_MESSAGE_TM_conversions.o: CAST_Int_to_L_MESSAGE_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_L_MESSAGE_TM_conversions.c" -o "win32\CAST_Int_to_L_MESSAGE_TM_conversions.o"
+
+win32/SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o: SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.c" -o "win32\SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o"
+
+win32/Send_P015_MessageLibBaseline2.o: Send_P015_MessageLibBaseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_P015_MessageLibBaseline2.c" -o "win32\Send_P015_MessageLibBaseline2.o"
+
+win32/Write_P015_TM_trackside.o: Write_P015_TM_trackside.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Write_P015_TM_trackside.c" -o "win32\Write_P015_TM_trackside.o"
+
+win32/C_P015_tracksim_compr_TM_conversions.o: C_P015_tracksim_compr_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P015_tracksim_compr_TM_conversions.c" -o "win32\C_P015_tracksim_compr_TM_conversions.o"
+
+win32/C_P015_flatten_sections_TM_lib_internal.o: C_P015_flatten_sections_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P015_flatten_sections_TM_lib_internal.c" -o "win32\C_P015_flatten_sections_TM_lib_internal.o"
+
+win32/C_P015_fs_struct_to_array_TM_lib_internal.o: C_P015_fs_struct_to_array_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P015_fs_struct_to_array_TM_lib_internal.c" -o "win32\C_P015_fs_struct_to_array_TM_lib_internal.o"
+
+win32/C_P015_fs_flatten_array_TM_lib_internal.o: C_P015_fs_flatten_array_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P015_fs_flatten_array_TM_lib_internal.c" -o "win32\C_P015_fs_flatten_array_TM_lib_internal.o"
+
+win32/Send_P255_MessageLibBaseline2.o: Send_P255_MessageLibBaseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_P255_MessageLibBaseline2.c" -o "win32\Send_P255_MessageLibBaseline2.o"
+
+win32/Write_P255_TM_trackside.o: Write_P255_TM_trackside.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Write_P255_TM_trackside.c" -o "win32\Write_P255_TM_trackside.o"
+
+win32/C_P255_tracksim_compr_TM_conversions.o: C_P255_tracksim_compr_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P255_tracksim_compr_TM_conversions.c" -o "win32\C_P255_tracksim_compr_TM_conversions.o"
+
+win32/Send_P065_MessageLibBaseline2.o: Send_P065_MessageLibBaseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_P065_MessageLibBaseline2.c" -o "win32\Send_P065_MessageLibBaseline2.o"
+
+win32/Write_P065_TM_trackside.o: Write_P065_TM_trackside.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Write_P065_TM_trackside.c" -o "win32\Write_P065_TM_trackside.o"
+
+win32/C_P065_tracksim_compr_TM_conversions.o: C_P065_tracksim_compr_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P065_tracksim_compr_TM_conversions.c" -o "win32\C_P065_tracksim_compr_TM_conversions.o"
+
+win32/Send_P041_MessageLibBaseline2.o: Send_P041_MessageLibBaseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_P041_MessageLibBaseline2.c" -o "win32\Send_P041_MessageLibBaseline2.o"
+
+win32/Write_P041_TM_trackside.o: Write_P041_TM_trackside.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Write_P041_TM_trackside.c" -o "win32\Write_P041_TM_trackside.o"
+
+win32/C_P041_tracksim_compr_TM_conversions.o: C_P041_tracksim_compr_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P041_tracksim_compr_TM_conversions.c" -o "win32\C_P041_tracksim_compr_TM_conversions.o"
+
+win32/C_P041_flatten_sections_TM_lib_internal.o: C_P041_flatten_sections_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P041_flatten_sections_TM_lib_internal.c" -o "win32\C_P041_flatten_sections_TM_lib_internal.o"
+
+win32/C_P041_fs_struct_to_array_TM_lib_internal.o: C_P041_fs_struct_to_array_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P041_fs_struct_to_array_TM_lib_internal.c" -o "win32\C_P041_fs_struct_to_array_TM_lib_internal.o"
+
+win32/C_P041_fs_flatten_array_TM_lib_internal.o: C_P041_fs_flatten_array_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P041_fs_flatten_array_TM_lib_internal.c" -o "win32\C_P041_fs_flatten_array_TM_lib_internal.o"
+
+win32/Send_P003V1_MessageLibBaseline2.o: Send_P003V1_MessageLibBaseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_P003V1_MessageLibBaseline2.c" -o "win32\Send_P003V1_MessageLibBaseline2.o"
+
+win32/Write_P003V1_TM_trackside_baseline2.o: Write_P003V1_TM_trackside_baseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Write_P003V1_TM_trackside_baseline2.c" -o "win32\Write_P003V1_TM_trackside_baseline2.o"
+
+win32/C_P003V1_tracksim_compr_TM_conversions_baseline2.o: C_P003V1_tracksim_compr_TM_conversions_baseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P003V1_tracksim_compr_TM_conversions_baseline2.c" -o "win32\C_P003V1_tracksim_compr_TM_conversions_baseline2.o"
+
+win32/Send_P027V1_MessageLibBaseline2.o: Send_P027V1_MessageLibBaseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_P027V1_MessageLibBaseline2.c" -o "win32\Send_P027V1_MessageLibBaseline2.o"
+
+win32/Write_P027V1_TM_trackside_baseline2.o: Write_P027V1_TM_trackside_baseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Write_P027V1_TM_trackside_baseline2.c" -o "win32\Write_P027V1_TM_trackside_baseline2.o"
+
+win32/C_P027V1_tracksim_merge_s_TM_conversions_baseline2.o: C_P027V1_tracksim_merge_s_TM_conversions_baseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P027V1_tracksim_merge_s_TM_conversions_baseline2.c" -o "win32\C_P027V1_tracksim_merge_s_TM_conversions_baseline2.o"
+
+win32/C_P027V1_tracksim_compr_o_TM_conversions_baseline2.o: C_P027V1_tracksim_compr_o_TM_conversions_baseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P027V1_tracksim_compr_o_TM_conversions_baseline2.c" -o "win32\C_P027V1_tracksim_compr_o_TM_conversions_baseline2.o"
+
+win32/C_P027_flatten_sections_qdiff_TM_lib_internal.o: C_P027_flatten_sections_qdiff_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P027_flatten_sections_qdiff_TM_lib_internal.c" -o "win32\C_P027_flatten_sections_qdiff_TM_lib_internal.o"
+
+win32/C_P027V1_fs_struct_to_arr_TM_lib_internal.o: C_P027V1_fs_struct_to_arr_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P027V1_fs_struct_to_arr_TM_lib_internal.c" -o "win32\C_P027V1_fs_struct_to_arr_TM_lib_internal.o"
+
+win32/C_P027V1_fs_flatten_array_TM_lib_internal.o: C_P027V1_fs_flatten_array_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P027V1_fs_flatten_array_TM_lib_internal.c" -o "win32\C_P027V1_fs_flatten_array_TM_lib_internal.o"
+
+win32/C_P027V1_tracksim_compr_body_TM_conversions_baseline2.o: C_P027V1_tracksim_compr_body_TM_conversions_baseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P027V1_tracksim_compr_body_TM_conversions_baseline2.c" -o "win32\C_P027V1_tracksim_compr_body_TM_conversions_baseline2.o"
+
+win32/SEND_WriteMessageHeader_TM_lib_internal.o: SEND_WriteMessageHeader_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "SEND_WriteMessageHeader_TM_lib_internal.c" -o "win32\SEND_WriteMessageHeader_TM_lib_internal.o"
+
+win32/Send_P021_MessageLibBaseline2.o: Send_P021_MessageLibBaseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_P021_MessageLibBaseline2.c" -o "win32\Send_P021_MessageLibBaseline2.o"
+
+win32/Write_P021_TM_trackside.o: Write_P021_TM_trackside.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Write_P021_TM_trackside.c" -o "win32\Write_P021_TM_trackside.o"
+
+win32/C_P021_tracksim_compr_TM_conversions.o: C_P021_tracksim_compr_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P021_tracksim_compr_TM_conversions.c" -o "win32\C_P021_tracksim_compr_TM_conversions.o"
+
+win32/C_P021_flatten_sections_TM_lib_internal.o: C_P021_flatten_sections_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P021_flatten_sections_TM_lib_internal.c" -o "win32\C_P021_flatten_sections_TM_lib_internal.o"
+
+win32/C_P021_fs_struct_to_array_TM_lib_internal.o: C_P021_fs_struct_to_array_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P021_fs_struct_to_array_TM_lib_internal.c" -o "win32\C_P021_fs_struct_to_array_TM_lib_internal.o"
+
+win32/C_P021_fs_flatten_array_TM_lib_internal.o: C_P021_fs_flatten_array_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P021_fs_flatten_array_TM_lib_internal.c" -o "win32\C_P021_fs_flatten_array_TM_lib_internal.o"
+
+win32/DIRTY_m_version_filter_fo_TM_specific.o: DIRTY_m_version_filter_fo_TM_specific.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "DIRTY_m_version_filter_fo_TM_specific.c" -o "win32\DIRTY_m_version_filter_fo_TM_specific.o"
+
+win32/C_TrackTrainMessage_to_Int_TM_conversions.o: C_TrackTrainMessage_to_Int_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_TrackTrainMessage_to_Int_TM_conversions.c" -o "win32\C_TrackTrainMessage_to_Int_TM_conversions.o"
+
+win32/CAST_D_EMERGENCYSTOP_to_int_TM_conversions.o: CAST_D_EMERGENCYSTOP_to_int_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_D_EMERGENCYSTOP_to_int_TM_conversions.c" -o "win32\CAST_D_EMERGENCYSTOP_to_int_TM_conversions.o"
+
+win32/CAST_M_VERSION_to_int_TM_conversions.o: CAST_M_VERSION_to_int_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_M_VERSION_to_int_TM_conversions.c" -o "win32\CAST_M_VERSION_to_int_TM_conversions.o"
+
+win32/CAST_Q_DIR_to_int_TM_conversions.o: CAST_Q_DIR_to_int_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Q_DIR_to_int_TM_conversions.c" -o "win32\CAST_Q_DIR_to_int_TM_conversions.o"
+
+win32/CAST_D_REF_to_int_TM_conversions.o: CAST_D_REF_to_int_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_D_REF_to_int_TM_conversions.c" -o "win32\CAST_D_REF_to_int_TM_conversions.o"
+
+win32/CAST_D_SR_to_int_TM_conversions.o: CAST_D_SR_to_int_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_D_SR_to_int_TM_conversions.c" -o "win32\CAST_D_SR_to_int_TM_conversions.o"
+
+win32/CAST_Q_SCALE_to_int_TM_conversions.o: CAST_Q_SCALE_to_int_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Q_SCALE_to_int_TM_conversions.c" -o "win32\CAST_Q_SCALE_to_int_TM_conversions.o"
+
+win32/CAST_NID_EM_to_int_TM_conversions.o: CAST_NID_EM_to_int_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_NID_EM_to_int_TM_conversions.c" -o "win32\CAST_NID_EM_to_int_TM_conversions.o"
+
+win32/CAST_NID_LRBG_to_int_TM_conversions.o: CAST_NID_LRBG_to_int_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_NID_LRBG_to_int_TM_conversions.c" -o "win32\CAST_NID_LRBG_to_int_TM_conversions.o"
+
+win32/CAST_M_ACK_to_int_TM_conversions.o: CAST_M_ACK_to_int_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_M_ACK_to_int_TM_conversions.c" -o "win32\CAST_M_ACK_to_int_TM_conversions.o"
+
+win32/CAST_T_TRAIN_to_int_TM_conversions.o: CAST_T_TRAIN_to_int_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_T_TRAIN_to_int_TM_conversions.c" -o "win32\CAST_T_TRAIN_to_int_TM_conversions.o"
+
+win32/compressed_to_Radio_Track_TM_RBC_conversions.o: compressed_to_Radio_Track_TM_RBC_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "compressed_to_Radio_Track_TM_RBC_conversions.c" -o "win32\compressed_to_Radio_Track_TM_RBC_conversions.o"
+
+win32/CAST_NID_MESSAGE_to_int_TM_conversions.o: CAST_NID_MESSAGE_to_int_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_NID_MESSAGE_to_int_TM_conversions.c" -o "win32\CAST_NID_MESSAGE_to_int_TM_conversions.o"
+
+win32/M003_to_Radio_Track_Train_H_TM_RBC_conversions.o: M003_to_Radio_Track_Train_H_TM_RBC_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "M003_to_Radio_Track_Train_H_TM_RBC_conversions.c" -o "win32\M003_to_Radio_Track_Train_H_TM_RBC_conversions.o"
+
+win32/C_header_to_M003_TM_radio_messages.o: C_header_to_M003_TM_radio_messages.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_header_to_M003_TM_radio_messages.c" -o "win32\C_header_to_M003_TM_radio_messages.o"
+
+win32/C_header_to_M008_TM_radio_messages.o: C_header_to_M008_TM_radio_messages.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_header_to_M008_TM_radio_messages.c" -o "win32\C_header_to_M008_TM_radio_messages.o"
+
+win32/CAST_Int_to_T_TRAIN_TM_conversions.o: CAST_Int_to_T_TRAIN_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_T_TRAIN_TM_conversions.c" -o "win32\CAST_Int_to_T_TRAIN_TM_conversions.o"
+
+win32/M008_to_Radio_Track_Train_H_TM_RBC_conversions.o: M008_to_Radio_Track_Train_H_TM_RBC_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "M008_to_Radio_Track_Train_H_TM_RBC_conversions.c" -o "win32\M008_to_Radio_Track_Train_H_TM_RBC_conversions.o"
+
+win32/C_header_to_M015_TM_radio_messages.o: C_header_to_M015_TM_radio_messages.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_header_to_M015_TM_radio_messages.c" -o "win32\C_header_to_M015_TM_radio_messages.o"
+
+win32/CAST_Int_to_D_EMERGENCYSTOP_TM_conversions.o: CAST_Int_to_D_EMERGENCYSTOP_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_D_EMERGENCYSTOP_TM_conversions.c" -o "win32\CAST_Int_to_D_EMERGENCYSTOP_TM_conversions.o"
+
+win32/CAST_Int_to_D_REF_TM_conversions.o: CAST_Int_to_D_REF_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_D_REF_TM_conversions.c" -o "win32\CAST_Int_to_D_REF_TM_conversions.o"
+
+win32/CAST_Int_to_NID_EM_TM_conversions.o: CAST_Int_to_NID_EM_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_NID_EM_TM_conversions.c" -o "win32\CAST_Int_to_NID_EM_TM_conversions.o"
+
+win32/M015_to_Radio_Track_Train_H_TM_RBC_conversions.o: M015_to_Radio_Track_Train_H_TM_RBC_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "M015_to_Radio_Track_Train_H_TM_RBC_conversions.c" -o "win32\M015_to_Radio_Track_Train_H_TM_RBC_conversions.o"
+
+win32/M024_to_Radio_Track_Train_H_TM_RBC_conversions.o: M024_to_Radio_Track_Train_H_TM_RBC_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "M024_to_Radio_Track_Train_H_TM_RBC_conversions.c" -o "win32\M024_to_Radio_Track_Train_H_TM_RBC_conversions.o"
+
+win32/C_header_to_M024_TM_radio_messages.o: C_header_to_M024_TM_radio_messages.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_header_to_M024_TM_radio_messages.c" -o "win32\C_header_to_M024_TM_radio_messages.o"
+
+win32/C_header_to_M032_TM_radio_messages.o: C_header_to_M032_TM_radio_messages.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_header_to_M032_TM_radio_messages.c" -o "win32\C_header_to_M032_TM_radio_messages.o"
+
+win32/CAST_Int_to_NID_LRBG_TM_conversions.o: CAST_Int_to_NID_LRBG_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_NID_LRBG_TM_conversions.c" -o "win32\CAST_Int_to_NID_LRBG_TM_conversions.o"
+
+win32/CAST_Int_to_M_ACK_TM_conversions.o: CAST_Int_to_M_ACK_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_M_ACK_TM_conversions.c" -o "win32\CAST_Int_to_M_ACK_TM_conversions.o"
+
+win32/M032_to_Radio_Track_Train_H_TM_RBC_conversions.o: M032_to_Radio_Track_Train_H_TM_RBC_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "M032_to_Radio_Track_Train_H_TM_RBC_conversions.c" -o "win32\M032_to_Radio_Track_Train_H_TM_RBC_conversions.o"
+
+win32/CASTLIB_BaliseHeaders_TM_conversions.o: CASTLIB_BaliseHeaders_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CASTLIB_BaliseHeaders_TM_conversions.c" -o "win32\CASTLIB_BaliseHeaders_TM_conversions.o"
+
+win32/CAST_Int_to_Q_LINK_TM_conversions.o: CAST_Int_to_Q_LINK_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_Q_LINK_TM_conversions.c" -o "win32\CAST_Int_to_Q_LINK_TM_conversions.o"
+
+win32/CAST_Int_to_NID_BG_TM_conversions.o: CAST_Int_to_NID_BG_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_NID_BG_TM_conversions.c" -o "win32\CAST_Int_to_NID_BG_TM_conversions.o"
+
+win32/CAST_Int_to_NID_C_TM_conversions.o: CAST_Int_to_NID_C_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_NID_C_TM_conversions.c" -o "win32\CAST_Int_to_NID_C_TM_conversions.o"
+
+win32/CAST_Int_to_M_MCOUNT_TM_conversions.o: CAST_Int_to_M_MCOUNT_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_M_MCOUNT_TM_conversions.c" -o "win32\CAST_Int_to_M_MCOUNT_TM_conversions.o"
+
+win32/CAST_Int_to_M_DUP_TM_conversions.o: CAST_Int_to_M_DUP_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_M_DUP_TM_conversions.c" -o "win32\CAST_Int_to_M_DUP_TM_conversions.o"
+
+win32/CAST_Int_to_N_TOTAL_TM_conversions.o: CAST_Int_to_N_TOTAL_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_N_TOTAL_TM_conversions.c" -o "win32\CAST_Int_to_N_TOTAL_TM_conversions.o"
+
+win32/CAST_Int_to_N_PIG_TM_conversions.o: CAST_Int_to_N_PIG_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_N_PIG_TM_conversions.c" -o "win32\CAST_Int_to_N_PIG_TM_conversions.o"
+
+win32/CAST_Int_to_Q_MEDIA_TM_conversions.o: CAST_Int_to_Q_MEDIA_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_Q_MEDIA_TM_conversions.c" -o "win32\CAST_Int_to_Q_MEDIA_TM_conversions.o"
+
+win32/CAST_Int_to_M_VERSION_TM_conversions.o: CAST_Int_to_M_VERSION_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_M_VERSION_TM_conversions.c" -o "win32\CAST_Int_to_M_VERSION_TM_conversions.o"
+
+win32/CAST_Int_to_Q_UPDOWN_TM_conversions.o: CAST_Int_to_Q_UPDOWN_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_Q_UPDOWN_TM_conversions.c" -o "win32\CAST_Int_to_Q_UPDOWN_TM_conversions.o"
 
 win32/Story00A_BTM_FirstTest.o: Story00A_BTM_FirstTest.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Story00A_BTM_FirstTest.c" -o "win32\Story00A_BTM_FirstTest.o"
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Story00A_BTM_FirstTest.c" -o "win32\Story00A_BTM_FirstTest.o"
 
-win32/Balise_Group_341_FirstTest_InfraLib.o: Balise_Group_341_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_Group_341_FirstTest_InfraLib.c" -o "win32\Balise_Group_341_FirstTest_InfraLib.o"
+win32/Balise_Group_341_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_Group_341_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_Group_341_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_Group_341_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_341_1_FirstTest_InfraLib.o: Balise_341_1_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_341_1_FirstTest_InfraLib.c" -o "win32\Balise_341_1_FirstTest_InfraLib.o"
+win32/Balise_341_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_341_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_341_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_341_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_341_0_FirstTest_InfraLib.o: Balise_341_0_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_341_0_FirstTest_InfraLib.c" -o "win32\Balise_341_0_FirstTest_InfraLib.o"
+win32/Balise_341_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_341_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_341_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_341_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_Group_369_FirstTest_InfraLib.o: Balise_Group_369_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_Group_369_FirstTest_InfraLib.c" -o "win32\Balise_Group_369_FirstTest_InfraLib.o"
+win32/Balise_Group_365_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_Group_365_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_Group_365_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_Group_365_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_369_0_FirstTest_InfraLib.o: Balise_369_0_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_369_0_FirstTest_InfraLib.c" -o "win32\Balise_369_0_FirstTest_InfraLib.o"
+win32/Balise_365_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_365_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_365_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_365_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_369_1_FirstTest_InfraLib.o: Balise_369_1_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_369_1_FirstTest_InfraLib.c" -o "win32\Balise_369_1_FirstTest_InfraLib.o"
+win32/Balise_365_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_365_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_365_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_365_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_Group_368_FirstTest_InfraLib.o: Balise_Group_368_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_Group_368_FirstTest_InfraLib.c" -o "win32\Balise_Group_368_FirstTest_InfraLib.o"
+win32/Balise_Group_369_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_Group_369_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_Group_369_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_Group_369_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_368_0_FirstTest_InfraLib.o: Balise_368_0_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_368_0_FirstTest_InfraLib.c" -o "win32\Balise_368_0_FirstTest_InfraLib.o"
+win32/Balise_369_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_369_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_369_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_369_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_368_1_FirstTest_InfraLib.o: Balise_368_1_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_368_1_FirstTest_InfraLib.c" -o "win32\Balise_368_1_FirstTest_InfraLib.o"
+win32/Balise_369_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_369_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_369_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_369_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_Group_367_FirstTest_InfraLib.o: Balise_Group_367_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_Group_367_FirstTest_InfraLib.c" -o "win32\Balise_Group_367_FirstTest_InfraLib.o"
+win32/Balise_Group_366_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_Group_366_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_Group_366_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_Group_366_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_367_1_FirstTest_InfraLib.o: Balise_367_1_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_367_1_FirstTest_InfraLib.c" -o "win32\Balise_367_1_FirstTest_InfraLib.o"
+win32/Balise_366_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_366_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_366_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_366_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_367_0_FirstTest_InfraLib.o: Balise_367_0_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_367_0_FirstTest_InfraLib.c" -o "win32\Balise_367_0_FirstTest_InfraLib.o"
+win32/Balise_366_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_366_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_366_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_366_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_Group_366_FirstTest_InfraLib.o: Balise_Group_366_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_Group_366_FirstTest_InfraLib.c" -o "win32\Balise_Group_366_FirstTest_InfraLib.o"
+win32/Balise_Group_368_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_Group_368_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_Group_368_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_Group_368_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_366_1_FirstTest_InfraLib.o: Balise_366_1_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_366_1_FirstTest_InfraLib.c" -o "win32\Balise_366_1_FirstTest_InfraLib.o"
+win32/Balise_368_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_368_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_368_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_368_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_366_0_FirstTest_InfraLib.o: Balise_366_0_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_366_0_FirstTest_InfraLib.c" -o "win32\Balise_366_0_FirstTest_InfraLib.o"
+win32/Balise_368_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_368_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_368_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_368_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_Group_365_FirstTest_InfraLib.o: Balise_Group_365_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_Group_365_FirstTest_InfraLib.c" -o "win32\Balise_Group_365_FirstTest_InfraLib.o"
+win32/Balise_Group_367_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_Group_367_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_Group_367_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_Group_367_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_365_1_FirstTest_InfraLib.o: Balise_365_1_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_365_1_FirstTest_InfraLib.c" -o "win32\Balise_365_1_FirstTest_InfraLib.o"
+win32/Balise_367_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_367_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_367_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_367_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_365_0_FirstTest_InfraLib.o: Balise_365_0_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_365_0_FirstTest_InfraLib.c" -o "win32\Balise_365_0_FirstTest_InfraLib.o"
+win32/Balise_367_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_367_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_367_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_367_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/TEMPLATE_Balise_Packets_FirstTest_InfraLib.o: TEMPLATE_Balise_Packets_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "TEMPLATE_Balise_Packets_FirstTest_InfraLib.c" -o "win32\TEMPLATE_Balise_Packets_FirstTest_InfraLib.o"
+win32/No_Balise_Packets_InfraLib.o: No_Balise_Packets_InfraLib.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "No_Balise_Packets_InfraLib.c" -o "win32\No_Balise_Packets_InfraLib.o"
 
-win32/Balise_Group_364_FirstTest_InfraLib.o: Balise_Group_364_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_Group_364_FirstTest_InfraLib.c" -o "win32\Balise_Group_364_FirstTest_InfraLib.o"
+win32/Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_364_0_FirstTest_InfraLib.o: Balise_364_0_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_364_0_FirstTest_InfraLib.c" -o "win32\Balise_364_0_FirstTest_InfraLib.o"
+win32/Balise_364_0_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_364_0_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_364_0_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_364_0_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_Group_Close_FirstTest_InfraLib.o: Balise_Group_Close_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_Group_Close_FirstTest_InfraLib.c" -o "win32\Balise_Group_Close_FirstTest_InfraLib.o"
+win32/Balise_Group_Close_InfraLib.o: Balise_Group_Close_InfraLib.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_Group_Close_InfraLib.c" -o "win32\Balise_Group_Close_InfraLib.o"
 
-win32/Balise_Group_Init_FirstTest_InfraLib.o: Balise_Group_Init_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_Group_Init_FirstTest_InfraLib.c" -o "win32\Balise_Group_Init_FirstTest_InfraLib.o"
+win32/Balise_Group_Init_InfraLib.o: Balise_Group_Init_InfraLib.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_Group_Init_InfraLib.c" -o "win32\Balise_Group_Init_InfraLib.o"
 
-win32/Balise_364_1_FirstTest_InfraLib.o: Balise_364_1_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_364_1_FirstTest_InfraLib.c" -o "win32\Balise_364_1_FirstTest_InfraLib.o"
+win32/Balise_364_1_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Balise_364_1_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_364_1_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Balise_364_1_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Balise_Packets_364_FirstTest_InfraLib.o: Balise_Packets_364_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_Packets_364_FirstTest_InfraLib.c" -o "win32\Balise_Packets_364_FirstTest_InfraLib.o"
+win32/Packets_BG364_00A_L1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o: Packets_BG364_00A_L1_AmsterdamUtrechtL1_Sheet06_Bijlmer.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Packets_BG364_00A_L1_AmsterdamUtrechtL1_Sheet06_Bijlmer.c" -o "win32\Packets_BG364_00A_L1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o"
 
-win32/Send_364_P005_FirstTest_InfraLib.o: Send_364_P005_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Send_364_P005_FirstTest_InfraLib.c" -o "win32\Send_364_P005_FirstTest_InfraLib.o"
+win32/Send_P005_MessageLibBaseline2.o: Send_P005_MessageLibBaseline2.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Send_P005_MessageLibBaseline2.c" -o "win32\Send_P005_MessageLibBaseline2.o"
 
-win32/SEND_WritePacket005_IT.o: SEND_WritePacket005_IT.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "SEND_WritePacket005_IT.c" -o "win32\SEND_WritePacket005_IT.o"
+win32/Write_P005_TM_trackside.o: Write_P005_TM_trackside.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Write_P005_TM_trackside.c" -o "win32\Write_P005_TM_trackside.o"
 
-win32/SIM_SEND_WriteRadioMessageData.o: SIM_SEND_WriteRadioMessageData.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "SIM_SEND_WriteRadioMessageData.c" -o "win32\SIM_SEND_WriteRadioMessageData.o"
+win32/C_P005_tracksim_compr_TM_conversions.o: C_P005_tracksim_compr_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P005_tracksim_compr_TM_conversions.c" -o "win32\C_P005_tracksim_compr_TM_conversions.o"
 
-win32/SIM_SEND_WriteBaliseDataE.o: SIM_SEND_WriteBaliseDataE.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "SIM_SEND_WriteBaliseDataE.c" -o "win32\SIM_SEND_WriteBaliseDataE.o"
+win32/T_Build_Metadata_Packet_ID_TM_lib_internal.o: T_Build_Metadata_Packet_ID_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "T_Build_Metadata_Packet_ID_TM_lib_internal.c" -o "win32\T_Build_Metadata_Packet_ID_TM_lib_internal.o"
 
-win32/SIM_SEND_WriteRadioMessag.o: SIM_SEND_WriteRadioMessag.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "SIM_SEND_WriteRadioMessag.c" -o "win32\SIM_SEND_WriteRadioMessag.o"
+win32/C_P005_flatten_sections_TM_lib_internal.o: C_P005_flatten_sections_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P005_flatten_sections_TM_lib_internal.c" -o "win32\C_P005_flatten_sections_TM_lib_internal.o"
 
-win32/SEND_FindSlot.o: SEND_FindSlot.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "SEND_FindSlot.c" -o "win32\SEND_FindSlot.o"
+win32/C_P005_fs_struct_to_array_TM_lib_internal.o: C_P005_fs_struct_to_array_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P005_fs_struct_to_array_TM_lib_internal.c" -o "win32\C_P005_fs_struct_to_array_TM_lib_internal.o"
 
-win32/SEND_ConvertP005forWrite_IT.o: SEND_ConvertP005forWrite_IT.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "SEND_ConvertP005forWrite_IT.c" -o "win32\SEND_ConvertP005forWrite_IT.o"
+win32/C_P005_fs_flatten_array_TM_lib_internal.o: C_P005_fs_flatten_array_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C_P005_fs_flatten_array_TM_lib_internal.c" -o "win32\C_P005_fs_flatten_array_TM_lib_internal.o"
 
-win32/TOOLS_calculate_L_PACKET.o: TOOLS_calculate_L_PACKET.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "TOOLS_calculate_L_PACKET.c" -o "win32\TOOLS_calculate_L_PACKET.o"
+win32/T_DeterminePacketSizeInt_TM_lib_internal.o: T_DeterminePacketSizeInt_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "T_DeterminePacketSizeInt_TM_lib_internal.c" -o "win32\T_DeterminePacketSizeInt_TM_lib_internal.o"
 
-win32/SEND_ConvertP005forWriteS.o: SEND_ConvertP005forWriteS.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "SEND_ConvertP005forWriteS.c" -o "win32\SEND_ConvertP005forWriteS.o"
+win32/SEND_MessageData_TM_lib_internal.o: SEND_MessageData_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "SEND_MessageData_TM_lib_internal.c" -o "win32\SEND_MessageData_TM_lib_internal.o"
 
-win32/TOOLS_Int_to_Q_DIR.o: TOOLS_Int_to_Q_DIR.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "TOOLS_Int_to_Q_DIR.c" -o "win32\TOOLS_Int_to_Q_DIR.o"
+win32/SEND_WriteBaliseDataElement_TM_lib_internal.o: SEND_WriteBaliseDataElement_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "SEND_WriteBaliseDataElement_TM_lib_internal.c" -o "win32\SEND_WriteBaliseDataElement_TM_lib_internal.o"
 
-win32/Balise_Localisation_FirstTest_InfraLib.o: Balise_Localisation_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_Localisation_FirstTest_InfraLib.c" -o "win32\Balise_Localisation_FirstTest_InfraLib.o"
+win32/SEND_WriteBaliseMessageHeader_TM_lib_internal.o: SEND_WriteBaliseMessageHeader_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "SEND_WriteBaliseMessageHeader_TM_lib_internal.c" -o "win32\SEND_WriteBaliseMessageHeader_TM_lib_internal.o"
 
-win32/TOOLS_convert_engineering.o: TOOLS_convert_engineering.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "TOOLS_convert_engineering.c" -o "win32\TOOLS_convert_engineering.o"
+win32/SEND_FindSlot_TM_lib_internal.o: SEND_FindSlot_TM_lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "SEND_FindSlot_TM_lib_internal.c" -o "win32\SEND_FindSlot_TM_lib_internal.o"
 
-win32/Balise_Interdistance_FirstTest_InfraLib.o: Balise_Interdistance_FirstTest_InfraLib.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Balise_Interdistance_FirstTest_InfraLib.c" -o "win32\Balise_Interdistance_FirstTest_InfraLib.o"
+win32/Balise_Localisation_InfraLib.o: Balise_Localisation_InfraLib.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_Localisation_InfraLib.c" -o "win32\Balise_Localisation_InfraLib.o"
+
+win32/TOOLS_convert_engineering_TM_conversions.o: TOOLS_convert_engineering_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "TOOLS_convert_engineering_TM_conversions.c" -o "win32\TOOLS_convert_engineering_TM_conversions.o"
+
+win32/Balise_Interdistance_InfraLib.o: Balise_Interdistance_InfraLib.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Balise_Interdistance_InfraLib.c" -o "win32\Balise_Interdistance_InfraLib.o"
 
 win32/kcg_types.o: kcg_types.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "kcg_types.c" -o "win32\kcg_types.o"
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "kcg_types.c" -o "win32\kcg_types.o"
 
 win32/kcg_consts.o: kcg_consts.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "kcg_consts.c" -o "win32\kcg_consts.o"
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "kcg_consts.c" -o "win32\kcg_consts.o"
 
 win32/UtrechtAmsterdam_oETCS_newtype.o: UtrechtAmsterdam_oETCS_newtype.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "UtrechtAmsterdam_oETCS_newtype.c" -o "win32\UtrechtAmsterdam_oETCS_newtype.o"
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "UtrechtAmsterdam_oETCS_newtype.c" -o "win32\UtrechtAmsterdam_oETCS_newtype.o"
 
 win32/UtrechtAmsterdam_oETCS_newmapping.o: UtrechtAmsterdam_oETCS_newmapping.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "UtrechtAmsterdam_oETCS_newmapping.c" -o "win32\UtrechtAmsterdam_oETCS_newmapping.o"
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "UtrechtAmsterdam_oETCS_newmapping.c" -o "win32\UtrechtAmsterdam_oETCS_newmapping.o"
 
 win32/UtrechtAmsterdam_oETCS_newinterface.o: UtrechtAmsterdam_oETCS_newinterface.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "UtrechtAmsterdam_oETCS_newinterface.c" -o "win32\UtrechtAmsterdam_oETCS_newinterface.o"
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "UtrechtAmsterdam_oETCS_newinterface.c" -o "win32\UtrechtAmsterdam_oETCS_newinterface.o"
 
-win32/SmuProxy.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R15.2/SCADE/lib/SmuProxy.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "C:\Program Files\Esterel Technologies\SCADE R15.2\SCADE\lib\SmuProxy.c" -o "win32\SmuProxy.o"
+win32/SmuProxy.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R16.1/SCADE/lib/SmuProxy.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C:\Program Files\Esterel Technologies\SCADE R16.1\SCADE\lib\SmuProxy.c" -o "win32\SmuProxy.o"
 
-win32/NewSmuTypes.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R15.2/SCADE/lib/NewSmuTypes.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "C:\Program Files\Esterel Technologies\SCADE R15.2\SCADE\lib\NewSmuTypes.c" -o "win32\NewSmuTypes.o"
+win32/NewSmuTypes.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R16.1/SCADE/lib/NewSmuTypes.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C:\Program Files\Esterel Technologies\SCADE R16.1\SCADE\lib\NewSmuTypes.c" -o "win32\NewSmuTypes.o"
 
-win32/SmuConverter.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R15.2/SCADE/lib/SmuConverter.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "C:\Program Files\Esterel Technologies\SCADE R15.2\SCADE\lib\SmuConverter.c" -o "win32\SmuConverter.o"
+win32/SmuConverter.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R16.1/SCADE/lib/SmuConverter.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C:\Program Files\Esterel Technologies\SCADE R16.1\SCADE\lib\SmuConverter.c" -o "win32\SmuConverter.o"
 
-FirstTest__Story00A.dll: win32/Story00A_FirstTest.o win32/RECV_ConvertBaliseHeader_CT.o win32/TOOLS_Int_to_Q_LINK.o win32/TOOLS_Int_to_M_DUP.o win32/TOOLS_Int_to_N_TOTAL.o win32/TOOLS_Int_to_N_PIG.o win32/TOOLS_Int_to_Q_MEDIA.o win32/TOOLS_Int_to_M_VERSION.o win32/TOOLS_Int_to_Q_UPDOWN.o win32/Story00A_BTM_FirstTest.o win32/Balise_Group_341_FirstTest_InfraLib.o win32/Balise_341_1_FirstTest_InfraLib.o win32/Balise_341_0_FirstTest_InfraLib.o win32/Balise_Group_369_FirstTest_InfraLib.o win32/Balise_369_0_FirstTest_InfraLib.o win32/Balise_369_1_FirstTest_InfraLib.o win32/Balise_Group_368_FirstTest_InfraLib.o win32/Balise_368_0_FirstTest_InfraLib.o win32/Balise_368_1_FirstTest_InfraLib.o win32/Balise_Group_367_FirstTest_InfraLib.o win32/Balise_367_1_FirstTest_InfraLib.o win32/Balise_367_0_FirstTest_InfraLib.o win32/Balise_Group_366_FirstTest_InfraLib.o win32/Balise_366_1_FirstTest_InfraLib.o win32/Balise_366_0_FirstTest_InfraLib.o win32/Balise_Group_365_FirstTest_InfraLib.o win32/Balise_365_1_FirstTest_InfraLib.o win32/Balise_365_0_FirstTest_InfraLib.o win32/TEMPLATE_Balise_Packets_FirstTest_InfraLib.o win32/Balise_Group_364_FirstTest_InfraLib.o win32/Balise_364_0_FirstTest_InfraLib.o win32/Balise_Group_Close_FirstTest_InfraLib.o win32/Balise_Group_Init_FirstTest_InfraLib.o win32/Balise_364_1_FirstTest_InfraLib.o win32/Balise_Packets_364_FirstTest_InfraLib.o win32/Send_364_P005_FirstTest_InfraLib.o win32/SEND_WritePacket005_IT.o win32/SIM_SEND_WriteRadioMessageData.o win32/SIM_SEND_WriteBaliseDataE.o win32/SIM_SEND_WriteRadioMessag.o win32/SEND_FindSlot.o win32/SEND_ConvertP005forWrite_IT.o win32/TOOLS_calculate_L_PACKET.o win32/SEND_ConvertP005forWriteS.o win32/TOOLS_Int_to_Q_DIR.o win32/Balise_Localisation_FirstTest_InfraLib.o win32/TOOLS_convert_engineering.o win32/Balise_Interdistance_FirstTest_InfraLib.o win32/kcg_types.o win32/kcg_consts.o win32/UtrechtAmsterdam_oETCS_newtype.o win32/UtrechtAmsterdam_oETCS_newmapping.o win32/UtrechtAmsterdam_oETCS_newinterface.o win32/SmuProxy.o win32/NewSmuTypes.o win32/SmuConverter.o SmuExport.def 
-	ld --shared -Bdynamic -e _DllMainCRTStartup@12 --enable-auto-image-base  $(LIB_MINGW)/dllcrt2.o $(LIB_MINGW_GCC)/crtbegin.o -L$(LIB_MINGW) -L$(LIB_MINGW_GCC) "@Makefile_FirstTest__Story00A_objects.txt"  "SmuExport.def" -lm -lwsock32 -lmingw32 -lgcc -lmoldname -lmingwex -lmsvcrt -luser32 -lkernel32 -ladvapi32 -lshell32 $(LIB_MINGW_GCC)/crtend.o -o "FirstTest__Story00A.dll" 
+FirstTest__Story00A.dll: win32/Story00A_FirstTest.o win32/Story00A_RBC_FirstTest.o win32/Amsterdam_Utrecht_Sheet06_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/RBC_close_RadioLib.o win32/RBC_init_RadioLib.o win32/RBC_Sheet06_Bijlmer_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Send_RBC_LRBG_341_D_00134_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Build_RBC_LRBG_341_D_0013_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Send_RBC_LRBG_369_D_00231_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Build_RBC_LRBG_369_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Send_RBC_LRBG_364_D_00091_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Build_RBC_LRBG_364_D_0009_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/SendRadioPackets_LRBG_364_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Send_RBC_LRBG_362_D_00238_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Build_RBC_LRBG_362_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/SendRadioPackets_LRBG_362_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Send_RBC_LRBG_362_D_00230_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/_6_Build_RBC_LRBG_362_D_0023_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/_5_SendRadioPackets_LRBG_362_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Send_RBC_LRBG_362_D_00124_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Build_RBC_LRBG_362_D_0012_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Send_RBC_LRBG_360_D_00249_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Build_RBC_LRBG_360_D_0024_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Send_RBC_LRBG_358_D_00123_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Build_RBC_LRBG_358_D_0012_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Send_RBC_LRBG_356_D_00048_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Build_RBC_LRBG_356_D_0004_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Send_RBC_LRBG_355_D_00089_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Build_RBC_LRBG_355_D_0008_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Send_M015_JRU_MessageLibBaseline2.o win32/C_M015_int_to_header_TM_radio_messages.o win32/No_Radio_Packets_RadioLib.o win32/Send_RBC_LRBG_351_D_00054_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Build_RBC_LRBG_351_D_0005_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/SendRadioPackets_LRBG_351_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Send_RBC_LRBG_354_D_00275_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Build_RBC_LRBG_354_D_0027_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Send_M003_JRU_MessageLibBaseline2.o win32/C_M003_int__to_header_TM_radio_messages.o win32/CAST_Int_to_NID_MESSAGE_TM_conversions.o win32/CAST_Int_to_L_MESSAGE_TM_conversions.o win32/SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.o win32/Send_P015_MessageLibBaseline2.o win32/Write_P015_TM_trackside.o win32/C_P015_tracksim_compr_TM_conversions.o win32/C_P015_flatten_sections_TM_lib_internal.o win32/C_P015_fs_struct_to_array_TM_lib_internal.o win32/C_P015_fs_flatten_array_TM_lib_internal.o win32/Send_P255_MessageLibBaseline2.o win32/Write_P255_TM_trackside.o win32/C_P255_tracksim_compr_TM_conversions.o win32/Send_P065_MessageLibBaseline2.o win32/Write_P065_TM_trackside.o win32/C_P065_tracksim_compr_TM_conversions.o win32/Send_P041_MessageLibBaseline2.o win32/Write_P041_TM_trackside.o win32/C_P041_tracksim_compr_TM_conversions.o win32/C_P041_flatten_sections_TM_lib_internal.o win32/C_P041_fs_struct_to_array_TM_lib_internal.o win32/C_P041_fs_flatten_array_TM_lib_internal.o win32/Send_P003V1_MessageLibBaseline2.o win32/Write_P003V1_TM_trackside_baseline2.o win32/C_P003V1_tracksim_compr_TM_conversions_baseline2.o win32/Send_P027V1_MessageLibBaseline2.o win32/Write_P027V1_TM_trackside_baseline2.o win32/C_P027V1_tracksim_merge_s_TM_conversions_baseline2.o win32/C_P027V1_tracksim_compr_o_TM_conversions_baseline2.o win32/C_P027_flatten_sections_qdiff_TM_lib_internal.o win32/C_P027V1_fs_struct_to_arr_TM_lib_internal.o win32/C_P027V1_fs_flatten_array_TM_lib_internal.o win32/C_P027V1_tracksim_compr_body_TM_conversions_baseline2.o win32/SEND_WriteMessageHeader_TM_lib_internal.o win32/Send_P021_MessageLibBaseline2.o win32/Write_P021_TM_trackside.o win32/C_P021_tracksim_compr_TM_conversions.o win32/C_P021_flatten_sections_TM_lib_internal.o win32/C_P021_fs_struct_to_array_TM_lib_internal.o win32/C_P021_fs_flatten_array_TM_lib_internal.o win32/DIRTY_m_version_filter_fo_TM_specific.o win32/C_TrackTrainMessage_to_Int_TM_conversions.o win32/CAST_D_EMERGENCYSTOP_to_int_TM_conversions.o win32/CAST_M_VERSION_to_int_TM_conversions.o win32/CAST_Q_DIR_to_int_TM_conversions.o win32/CAST_D_REF_to_int_TM_conversions.o win32/CAST_D_SR_to_int_TM_conversions.o win32/CAST_Q_SCALE_to_int_TM_conversions.o win32/CAST_NID_EM_to_int_TM_conversions.o win32/CAST_NID_LRBG_to_int_TM_conversions.o win32/CAST_M_ACK_to_int_TM_conversions.o win32/CAST_T_TRAIN_to_int_TM_conversions.o win32/compressed_to_Radio_Track_TM_RBC_conversions.o win32/CAST_NID_MESSAGE_to_int_TM_conversions.o win32/M003_to_Radio_Track_Train_H_TM_RBC_conversions.o win32/C_header_to_M003_TM_radio_messages.o win32/C_header_to_M008_TM_radio_messages.o win32/CAST_Int_to_T_TRAIN_TM_conversions.o win32/M008_to_Radio_Track_Train_H_TM_RBC_conversions.o win32/C_header_to_M015_TM_radio_messages.o win32/CAST_Int_to_D_EMERGENCYSTOP_TM_conversions.o win32/CAST_Int_to_D_REF_TM_conversions.o win32/CAST_Int_to_NID_EM_TM_conversions.o win32/M015_to_Radio_Track_Train_H_TM_RBC_conversions.o win32/M024_to_Radio_Track_Train_H_TM_RBC_conversions.o win32/C_header_to_M024_TM_radio_messages.o win32/C_header_to_M032_TM_radio_messages.o win32/CAST_Int_to_NID_LRBG_TM_conversions.o win32/CAST_Int_to_M_ACK_TM_conversions.o win32/M032_to_Radio_Track_Train_H_TM_RBC_conversions.o win32/CASTLIB_BaliseHeaders_TM_conversions.o win32/CAST_Int_to_Q_LINK_TM_conversions.o win32/CAST_Int_to_NID_BG_TM_conversions.o win32/CAST_Int_to_NID_C_TM_conversions.o win32/CAST_Int_to_M_MCOUNT_TM_conversions.o win32/CAST_Int_to_M_DUP_TM_conversions.o win32/CAST_Int_to_N_TOTAL_TM_conversions.o win32/CAST_Int_to_N_PIG_TM_conversions.o win32/CAST_Int_to_Q_MEDIA_TM_conversions.o win32/CAST_Int_to_M_VERSION_TM_conversions.o win32/CAST_Int_to_Q_UPDOWN_TM_conversions.o win32/Story00A_BTM_FirstTest.o win32/Balise_Group_341_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_341_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_341_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_Group_365_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_365_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_365_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_Group_369_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_369_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_369_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_Group_366_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_366_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_366_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_Group_368_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_368_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_368_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_Group_367_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_367_1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_367_0_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/No_Balise_Packets_InfraLib.o win32/Balise_Group_364_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_364_0_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Balise_Group_Close_InfraLib.o win32/Balise_Group_Init_InfraLib.o win32/Balise_364_1_00A_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Packets_BG364_00A_L1_AmsterdamUtrechtL1_Sheet06_Bijlmer.o win32/Send_P005_MessageLibBaseline2.o win32/Write_P005_TM_trackside.o win32/C_P005_tracksim_compr_TM_conversions.o win32/T_Build_Metadata_Packet_ID_TM_lib_internal.o win32/C_P005_flatten_sections_TM_lib_internal.o win32/C_P005_fs_struct_to_array_TM_lib_internal.o win32/C_P005_fs_flatten_array_TM_lib_internal.o win32/T_DeterminePacketSizeInt_TM_lib_internal.o win32/SEND_MessageData_TM_lib_internal.o win32/SEND_WriteBaliseDataElement_TM_lib_internal.o win32/SEND_WriteBaliseMessageHeader_TM_lib_internal.o win32/SEND_FindSlot_TM_lib_internal.o win32/Balise_Localisation_InfraLib.o win32/TOOLS_convert_engineering_TM_conversions.o win32/Balise_Interdistance_InfraLib.o win32/kcg_types.o win32/kcg_consts.o win32/UtrechtAmsterdam_oETCS_newtype.o win32/UtrechtAmsterdam_oETCS_newmapping.o win32/UtrechtAmsterdam_oETCS_newinterface.o win32/SmuProxy.o win32/NewSmuTypes.o win32/SmuConverter.o SmuExport.def 
+	gcc -mwindows -mwin32 -shared -static-libgcc  "@Makefile_FirstTest__Story00A_objects.txt" -Wl,--output-def,"SmuExport.def" -lm -lwsock32 -m32 -o "FirstTest__Story00A.dll" 
 
-SmuExport.def: C:/Program\ Files/Esterel\ Technologies/SCADE\ R15.2/SCADE/lib/SmuExport.def
-	copy "C:\Program Files\Esterel Technologies\SCADE R15.2\SCADE\lib\SmuExport.def" "SmuExport.def"
+SmuExport.def: C:/Program\ Files/Esterel\ Technologies/SCADE\ R16.1/SCADE/lib/SmuExport.def
+	copy "C:\Program Files\Esterel Technologies\SCADE R16.1\SCADE\lib\SmuExport.def" "SmuExport.def"
 
 win32/Story00A_FirstTest_dll.o: Story00A_FirstTest_dll.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "Story00A_FirstTest_dll.c" -o "win32\Story00A_FirstTest_dll.o"
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Story00A_FirstTest_dll.c" -o "win32\Story00A_FirstTest_dll.o"
 
-win32/SmuMainWindows.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R15.2/SCADE/lib/SmuMainWindows.c
-	gcc -I"." -I"$(SCADE)" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R15.2\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c "C:\Program Files\Esterel Technologies\SCADE R15.2\SCADE\lib\SmuMainWindows.c" -o "win32\SmuMainWindows.o"
+win32/SmuMainWindows.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R16.1/SCADE/lib/SmuMainWindows.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C:\Program Files\Esterel Technologies\SCADE R16.1\SCADE\lib\SmuMainWindows.c" -o "win32\SmuMainWindows.o"
 
 FirstTest__Story00A.exe: win32/Story00A_FirstTest_dll.o win32/SmuMainWindows.o 
-	gcc "win32\Story00A_FirstTest_dll.o" "win32\SmuMainWindows.o" -lm -lwsock32 -o "FirstTest__Story00A.exe" 
+	gcc "win32\Story00A_FirstTest_dll.o" "win32\SmuMainWindows.o" -lm -lwsock32 -m32 -o "FirstTest__Story00A.exe" 
 
 #############################################################
 ######    End of Makefile

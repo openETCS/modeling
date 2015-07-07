@@ -3,22 +3,26 @@
 %\documentclass[nocc]{template/openetcs_article}
 \usepackage{lipsum,url}
 \usepackage{supertabular}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx}
 \usepackage{multirow}
 \usepackage{color, colortbl}
-\usepackage{hyperref}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue,filecolor=blue]{hyperref}
 \usepackage{listings}
 \usepackage{makeidx}
 \definecolor{gray}{rgb}{0.8,0.8,0.8}
 \usepackage[modulo]{lineno}
 \usepackage{float}
-\usepackage{fixme}
-\usepackage{pdflscape}
+\usepackage[color=green!40,textsize=footnotesize,textwidth=2.8cm]{todonotes}
+%\usepackage{pdflscape}
 %\usepackage[acronym, % list of acronyms
   %section, % add the glossary to the table of content
             %description,% acronyms have a user-supplied description,
  %style=longheader, % table style
  %nonumberlist % no page number
  %]{glossaries}
+
+
 
 \graphicspath{{./template/}{.}{./images/}}
 
@@ -50,18 +54,18 @@
 \wp{Work Package 3: ``Modeling''}
 
 %set a title here
-\title{openETCS Design Specification}
+\title{openETCS Architecture and Design Specification}
 
 %set a subtitle here
 \subtitle{Software Component Design and Internal Interface Specification}
 
 %set the date of the report here
-\date{May 2015}
+\date{June 2015}
 
 
 %document approval
 %define the name and affiliation of the people involved in the documents approbation here
-\creatorname{Baseliyos Jacob}
+\creatorname{Peter Mahlmann}
 \creatoraffil{DB Netz AG}
 
 \techassessorname{Jan Welte}
@@ -76,36 +80,38 @@
 
 %define a list of authors and their affiliation here
 
-\author{Baseliyos Jacob, Peter Mahlmann, Bernd Hekele, Peyman Farhangi, Stefan Karg, Valerio D´Angelo}
+\author{Peter Mahlmann, Bernd Hekele, Baseliyos Jacob, Peyman Farhangi, Stefan Karg, Valerio D´Angelo}
 \affiliation{DB Netz AG}
 
 \author{Uwe Steinke}
 \affiliation{Siemens AG}
 
 \author{Christian Stahl}
-\affiliation{TWT-GmbH}
+\affiliation{TWT GmbH}
 
-\author{Jakob Gärtner}
+\author{Jakob G\"artner}
 \affiliation{LEA Railergy}
 
 \author{Jos Holtzer, Jan Welvaarts, Vincent Nuhaan}
-\affiliation{Nederlands Spoorwegen}
+\affiliation{Nederlandss Spoorwegen}
 
-\author{Benjamin Beichler, Thorsten Schulz}
+\author{Thorsten Schulz, Benjamin Beichler}
 \affiliation{University of Rostock}
 
-\author{Marielle Petit-Doche, Matthias Gudemann}
+\author{Marielle Petit-Doche, Matthias G\"udemann}
 \affiliation{Systerel}
 
-\author{Vernique Gontier}
+\author{Veronique Gontier}
 \affiliation{All4Tec}
 
-\author{Ghristian Giraud, Fausto Cochetti}
+\author{Christian Giraud, Fausto Cochetti}
 \affiliation{Alstom}
 
 \author{Alexander Stante}
 \affiliation{Fraunhofer ESK}
 
+\author{David Mentre}
+\affiliation{MERCE}
 
 
 
@@ -119,7 +125,7 @@
 
 \begin{abstract}
 %define an abstract here
-This document gives an introduction to the software and component design of the openETCS OBU model. The functional scope is tailored to cover the functionality required for the openETCS demonstration as an objective of the ITEA2 project. The goal is to develop a formal model and to demonstrate the functionality during a proof of concept on the ETCS Level 2 Utrecht Amsterdam track with real scenarios. It has to be read as a complement to the models in SysML and Scade languages. 
+This document describes the architecture and design specification of  the openETCS onboard unit (OBU) model. The functional scope of the openETCS OBU model is to cover the functionality required for running on the ETCS level $2$ Utrecht Amsterdam track. The OBU model is developed iteratively and the system model is documented in D3.5.x and the functional model is documented in D3.5.x, where x denotes the iteration.
 \end{abstract}
 
 %=============================
@@ -134,22 +140,24 @@ This document gives an introduction to the software and component design of the 
 \tablefirsthead{
 \hline 
 \rowcolor{gray} 
-Version & Section & Modification / Description & Author & Date \\\hline}
+Version & Sections & Modification / Description & Author & Date \\\hline}
 \begin{supertabular}{| m{1.2cm} | m{1.5cm} | m{4.0cm} | m{3.5cm} | m{3.5cm} |}
-0.1 & Document & Initial document providing structure & Peter Mahlmann& 27.05.2015 \\\hline
+1.0 & all & Initial document & Peter Mahlmann& 30.06.2015 \\\hline
+
 \end{supertabular}
 
 % list subsubsections in table of contents
-\setcounter{tocdepth}{3}
-
+%\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}   
+\setcounter{tocdepth}{3}   
 
 \tableofcontents
-\listoffiguresandtables
-\newpage
+%\listoffiguresandtables
+%\newpage
 %=============================
 
 %Uncomment the next line if you need line numbers for tracebility when the document is in review
-\linenumbers
+%\linenumbers
 %=============================
 
 
@@ -158,49 +166,12 @@ Version & Section & Modification / Description & Author & Date \\\hline}
 
 \mainmatter
 
-
-\chapter{Functional Breakdown}
-\input{sections/functional_breakdown}
-
-\chapter{Design Description}
-
-\section{F1: Receive information from Trackside}
-\section{F2: ETCS Kernel}
-\input{sections/receivetrackdata.tex}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function. 
-
-\input{sections/trainsupervision.tex}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function. 
-
-\input{sections/manageetcsprocedures.tex}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function. 
-
-\input{sections/managetrackdata.tex}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function. 
-
-%\input{sections/managedata.tex}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function. 
-
-%\input{sections/managedataoutput.tex}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function. 
-
-\input{sections/modeandlevel.tex}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function. 
-
-\input{sections/managerbcprocedure.tex}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function. 
-
-%\input{sections/managedmiprocedure.tex}%Mainfunction receive track data. Name should be be defined and substituded by the designer of the function. 
-
-\section{F3: Measure Train Movement}
+{\huge Important note on the documentation of this iteration of the openETCS OBU model}
 
 
-\section{F4: Manage Radio Communication}
-\input{sections/manageRadioCommunication.tex} 
-
-\section{F5: Manage JRU}
-
-\section{F6: DMI Controller}
-\input{sections/DMI}
-
-\bibliographystyle{unsrt}
-\bibliography{architecture}
+Please note that the architecture and design document of this iteration of the openETCS OBU model, i.e. D3.5.2 system model and D3.6.2 functional model, has been skipped. The reason for this is that after an initial review of the document it had been decided to completely restructure the architecture and design document  to make it more appropriate for the needs of verification and validation needs. Due to this restructuring the documentation could not be finished before the next iteration (D3.5.3 system model and D3.6.3 functional model) was about to be completed. Thus, to not waste scarce resources it has been decided to focus on the documentation of D3.5.3 and D3.6.3 and we refer to these documents.
 
 
-\addcontentsline{toc}{chapter}{Index}
-\printindex
 %===================================================
 %Do NOT change anything below this line
 

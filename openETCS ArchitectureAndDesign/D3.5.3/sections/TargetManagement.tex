@@ -1,0 +1,44 @@
+%set the master document for easy compilation
+%!TEX root = ../D3_5_3.tex
+
+\paragraph{Component Requirements}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Component name			& TargetManagement \\
+\midrule
+Link to SCADE model		& {\footnotesize \url{???}} \\
+\midrule
+SCADE designer			& Christian Stahl, TWT \\
+\midrule
+Description				&This operator calculates/updates the list of targets to be supervised by the block ``Train Supervision''. Taking the current movement authority, the most restrictive speed profile and the current maximum safe front end position as an input, the operator outputs a single End of Authority target, a list of all MRSP-Targets and a list of all LoA-Targets.
+
+\subparagraph*{Derivation of Targets from Movement Authority Sections}
+The sections of the \emph{Movement Authority} could cause two types of targets:
+\begin{description}
+\item[End Of Authority(EoA)] only one could exist and this is only in the \emph{end section} of the \emph{MA}
+\item[Limit of Authority (LoA)] is possibly in every section of the \emph{MA} except the end section
+\end{description}
+In every cycle in which the MA is updated, the operator iterates through the entire MA and puts all speed limitations by \emph{LoA}s into a list of targets. The end section is used to derived the \emph{EoA} target. All LoA targets are sorted by location.
+
+\subparagraph*{Derivation of Targets from MRSP}
+According to \cite[Chapt.~3.13.8.2]{subset-026}, every speed decrease of the MRSP is used to derive a target. Therefore in every cycle in which the MRSP is updated, the operator iterates through the entire MRSP searching for all MRSP targets. For this purpose, every element of the MRSP is compared with its successor.
+
+\subparagraph*{Update of Targets}
+In every cycle the operator monitors whether all targets are already passed. To this end, it iterates over the list of targets comparing the current max safe front end position with the target position. \\
+\midrule
+Input documents	& 
+Subset-026, Chapter 3.13.8.2: Determination of the supervised targets \\
+\midrule
+Safety integrity level		& 4 \\
+\midrule
+Time constraints		& [If applicable description of time constraints, otherwise n/a] \\
+\midrule
+API requirements 		& [If applicable description of API requirements, otherwise n/a] \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{Interface}
+
+For an overview of the interface of this internal component we refer to the SCADE model (c.f.~link above) respectively the SCADE generated documentation.

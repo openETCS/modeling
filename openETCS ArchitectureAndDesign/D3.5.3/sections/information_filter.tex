@@ -1,0 +1,66 @@
+%set the master document for easy compilation
+%!TEX root = ../D3_5_3.tex
+
+\paragraph{Component Requirements}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Component name			& CheckEuroradioMessage \\
+\midrule
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/ManageLocationRelatedInformation/BaliseGroup/InformationFilter}} \\
+\midrule
+SCADE designer			& Alexander Stante, FhG \\
+\midrule
+Description				& The filter receives track information (balise and radio) and filters them depending of the mode, level and source of the message. Only messages that pass the filter are valid and should be considered by other ETCS subsystems. Figure~\ref{fig:InformationFilterHighLevel} shows the high\-level decomposition of the functionality. The filter is consists of four  components: FirstFilter, SecondFilter, ThirdFilter and TransitionBuffer.
+
+\begin{description}
+\item[FirstFilter] This filter performs filtering of messages
+based on the current ETCS level. The decisions taken process is
+described via a big decision table which contains rows for every
+packet and columns for every ETCS level. This table encodes also if
+certain additional information is necessary to filter a message like
+pending ETCS Level transitions. Based on this filter packets of an
+incoming message is either rejected, accepted or the whole message is
+put in the TransitionBuffer. Messages are put in the TransitionBuffer
+if there is an announced level transition and the received message is
+only valid for the upcoming level.
+
+\item[SecondFilter] The SecondFilter mainly considers messages
+that are received via Euroradio. Certain messages are directly
+rejected while other may be stored in the TransitionBuffer. The buffer
+is used to store messages that are received from non supervising RBCs,
+but will be reevaluated after a RBC transition.
+
+\item[ThirdFilter] The last filter is functionally very similiar
+the the FirstFilter, however it filters depending on the mode. It also
+contains a decision table with rows for every packet but the columns
+are modes.
+
+\item[TransitionBuffer] The InformationFilter uses two
+TransitionBuffers. One is used to store up to three messages for the
+ETCS level transition and the other buffer is used for RBC
+transitions. The buffer is designed as a ring buffer and message are
+read in FIFO order.
+\end{description} \\
+\midrule
+Input documents	& 
+  Subset-026, Chapter 4.8 \\
+\midrule
+Safety integrity level	& 4 \\
+\midrule
+Time constraints		& n/a \\
+\midrule
+API requirements 		& n/a \\
+\bottomrule
+\end{longtable}
+
+\begin{figure}
+\centering
+\includegraphics [width=\textwidth]{images/informationfilter-high-level-rot.png}
+\caption{High level overview of the InformationFilter components.}
+\label{fig:InformationFilterHighLevel}
+\end{figure}
+
+\paragraph{Interface}
+
+For an overview of the interface of this internal component we refer to the SCADE model (c.f.~link above) respectively the SCADE generated documentation.

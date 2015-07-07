@@ -1,8 +1,8 @@
 #include "UtrechtAmsterdam_oETCS_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "3e4229df56a0c7c33022976cc1c9eb8d";
-const char* _SCSIM_SmuTypesCheckSum = "d5b51fa9eff9683da46173266ac496c5";
+const char* _SCSIM_CheckSum = "7283cb8376ebcc69dcf9c6dd9980ff5c";
+const char* _SCSIM_SmuTypesCheckSum = "f79c40cc4a28a84eb05b013596813063";
 
 /*******************************
  * Validity
@@ -28,7 +28,8 @@ static outC_Story00A_FirstTest outputs_ctx_restore;
 /* separate_io: outputs instanciation */
 
 static void _SCSIM_RestoreInterface(void) {
-	inputs_ctx.Loc = inputs_ctx_restore.Loc;
+	inputs_ctx.TrainPos = inputs_ctx_restore.TrainPos;
+	inputs_ctx.Trigger_in = inputs_ctx_restore.Trigger_in;
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -36,28 +37,51 @@ static void _SCSIM_RestoreInterface(void) {
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	inputs_ctx_execute.Loc = inputs_ctx.Loc;
+	inputs_ctx_execute.TrainPos = inputs_ctx.TrainPos;
+	inputs_ctx_execute.Trigger_in = inputs_ctx.Trigger_in;
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
 /*******************************
- * Cyclic function encapsulation
+ * Init/Reset function encapsulation
  *******************************/
-void SimInit(void) {
-	/* Context initialization */
+int SimInit(void) {
+	int nRet=0;
 	_SCSIM_RestoreInterface();
 #ifdef EXTENDED_SIM
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
-	Story00A_reset_FirstTest(&outputs_ctx);
+	nRet=0;
 #ifdef EXTENDED_SIM
 	AfterSimInit();
 #endif /* EXTENDED_SIM */
+	return nRet;
+}
+
+int SimReset(void) {
+	int nRet=0;
+	_SCSIM_RestoreInterface();
+#ifdef EXTENDED_SIM
+	BeforeSimInit();
+#endif /* EXTENDED_SIM */
+#ifndef KCG_NO_EXTERN_CALL_TO_RESET
+	Story00A_reset_FirstTest(&outputs_ctx);
+	nRet=1;
+#else /* KCG_NO_EXTERN_CALL_TO_RESET */
+	nRet=0;
+#endif /* KCG_NO_EXTERN_CALL_TO_RESET */
+#ifdef EXTENDED_SIM
+	AfterSimInit();
+#endif /* EXTENDED_SIM */
+	return nRet;
 }
 
 #ifdef EXTENDED_SIM
 int GraphicalInputsConnected = 1;
 #endif /* EXTENDED_SIM */
+/*******************************
+ * Cyclic function encapsulation
+ *******************************/
 int SimStep(void) {
 #ifdef EXTENDED_SIM
 	if (GraphicalInputsConnected)
@@ -71,10 +95,11 @@ int SimStep(void) {
 	return 1;
 }
 
-void SimStop(void) {
+int SimStop(void) {
 #ifdef EXTENDED_SIM
 	ExtendedSimStop();
 #endif /* EXTENDED_SIM */
+	return 1;
 }
 
 int SsmGetDumpSize(void) {

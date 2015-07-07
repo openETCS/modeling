@@ -1,10 +1,10 @@
 /* TrackAtlas_newmapping.h */
 
-#include "Determine_LengthOfTargetList.h"
+#include "test_NV_iNTERNAL.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_Determine_LengthOfTargetList inputs_ctx;
-extern outC_Determine_LengthOfTargetList outputs_ctx;
+extern inC_test_NV_iNTERNAL inputs_ctx;
+extern outC_test_NV_iNTERNAL outputs_ctx;
 

@@ -1,0 +1,36 @@
+%set the master document for easy compilation
+%!TEX root = ../D3_5_3.tex
+
+\paragraph{Component Requirements}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Component name			& Level\_Management \\
+\midrule
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/openETCS ArchitectureAndDesign/Work Groups/Group 3/SCADE/LevelManagement/}} \\
+\midrule
+SCADE designer			& Marielle Petit-Doche, Systerel \\
+\midrule
+Description				& The level management subsystem receives level transition order tables and selects the order with the highest probability. It stores the information about the selected transition order and transits to the requested level once the train passes the location of the level transition.
+
+If required, the driver is asked to acknowledge the transition, in case of no acknowledge or if conditions for the level transition are not fulfilled, the train gets tripped.
+
+On the most abstract level the design consists of the \emph{manage\_priorities} function which takes the level transition order priority tables as inputs and computes the highest priority transition.
+
+This transition order is the fed to the \emph{computeLevelTransitions} operator. This operator consists of three main parts. The \emph{ComputeTransitionConditions} operator that emits the fulfilled conditions to change from a given level to a new level, the \emph{LevelStateMachine} that stores the current level and takes the computed change conditions as input for possible level transitions and finally the \emph{driverAck} operator which contains a state machine that stores the information whether the system is currently waiting for a driver acknowledge and emits the train trip information if necessary. \\
+\midrule
+Input documents	& 
+Subset-026, Chapter 5.10 \\
+\midrule
+Safety integrity level		& 4 \\
+\midrule
+Time constraints		& [If applicable description of time constraints, otherwise n/a] \\
+\midrule
+API requirements 		& [If applicable description of API requirements, otherwise n/a] \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{Interface}
+
+For an overview of the interface of this internal component we refer to the SCADE model (c.f.~link above) respectively the SCADE generated documentation.
