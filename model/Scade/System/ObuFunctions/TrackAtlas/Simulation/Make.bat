@@ -1,5 +1,6 @@
-@SET PATH=C:/Program Files/Esterel Technologies/SCADE R15.2/SCADE/../contrib/Msys/mingw/bin;%PATH%
-@SET INCLUDE=C:/Program Files/Esterel Technologies/SCADE R15.2/SCADE/../contrib/Msys/mingw/include
-@SET LIB=C:/Program Files/Esterel Technologies/SCADE R15.2/SCADE/../contrib/Msys/mingw/lib
+@SET PATH=C:/Program Files/Esterel Technologies/SCADE R16.1/SCADE/../contrib/Msys/mingw_w64/bin;%PATH%
+@SET INCLUDE=C:/Program Files/Esterel Technologies/SCADE R16.1/SCADE/../contrib/Msys/mingw_w64/include
+@SET LIB=C:/Program Files/Esterel Technologies/SCADE R16.1/SCADE/../contrib/Msys/mingw_w64/lib
 @IF "-B"=="%1" SET ARG=%1
-@mingw32-make.exe %ARG%
+gcc -print-search-dirs
+@"C:/Program Files/Esterel Technologies/SCADE R16.1/SCADE/../contrib/Msys/mingw_w64/bin/mingw32-make.exe" -f Makefile %ARG%

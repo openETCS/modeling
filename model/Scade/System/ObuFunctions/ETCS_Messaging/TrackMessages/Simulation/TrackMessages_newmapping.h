@@ -1,10 +1,10 @@
 /* TrackMessages_newmapping.h */
 
-#include "C_P027V1_tracksim_compr_body_TM_conversions_baseline2.h"
+#include "T_Decode_metadata_new_TM_lib_internal.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2 inputs_ctx;
-extern outC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2 outputs_ctx;
+extern inC_T_Decode_metadata_new_TM_lib_internal inputs_ctx;
+extern outC_T_Decode_metadata_new_TM_lib_internal outputs_ctx;
 
