@@ -1,7 +1,7 @@
 # Directory structure
 
 Directory | Description | Status
-----------|-------------
+----------|-------------|-------
 [APITypes](https://github.com/openETCS/modeling/tree/master/model/Scade/System/APITypes) | Datatypes used at the API interface. Data delivered to the openETCS-API is provided using the datatypes in this SCADE model. | in verification
 [DMI_Control](https://github.com/openETCS/modeling/tree/master/model/Scade/System/DMI_Control) | DMI Controller project. The project is not part of the EVC kernel but needed to connect the DMI implemented in SCADE Display to the EVC interface. | under development
 [ETCS_Language](https://github.com/openETCS/modeling/tree/master/model/Scade/System/ETCS_Language) | Contains the variable definitions, packet definitions and message definitions complying to Subset 026 chapter 7 and 8. Currently only the variable definitions of chapter 7 are used in the project. The packet and message definitions are deprecated and not used in the project anymore. | in verification
