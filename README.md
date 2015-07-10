@@ -1,4 +1,4 @@
-Scade version to be used in the project: V16.1a  
+Scade version to be used in the project: V16.1b  
 
 [![Stories in Ready](https://badge.waffle.io/openetcs/modeling.png?label=ready&title=Backlog)](https://waffle.io/openetcs/modeling)
 [![Stories in Ready](https://badge.waffle.io/openETCS/modeling.png?label=ready&title=Ready)](https://waffle.io/openETCS/modeling)
@@ -12,6 +12,10 @@ modeling
 =========
 
 WP3 location for modelling results and activities.
+
+Releases
+========
+please, find more information in the [openETCS Releases plan](https://github.com/openETCS/modeling/wiki/openETCS-Release-Plan)
 
 Sprint Backlog:
 ===============
