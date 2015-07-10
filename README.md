@@ -13,6 +13,10 @@ modeling
 
 WP3 location for modelling results and activities.
 
+Releases
+========
+please, find more information in the [openETCS Releases in this plan]https://github.com/openETCS/modeling/wiki/openETCS-Release-Plan)
+
 Sprint Backlog:
 ===============
 * [waffle.io sprint backlog board](https://waffle.io/openetcs/modeling?label=Sprint-Backlog)
