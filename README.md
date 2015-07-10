@@ -21,7 +21,7 @@ Sprint Backlog:
 Repository Structure:
 =====================
 
-* [model](): the actual results of modelling in SysML and Scade
+* [model](https://github.com/openETCS/modeling/tree/master/model): the actual results of modelling in SysML and Scade
 * Final versions of [deliverables](https://github.com/openETCS/modeling/tree/master/deliverables)
 * [Description of Work](https://github.com/openETCS/modeling/tree/master/DescriptionOfWork): How to get started in the modelling team
 * [ModelingRules](https://github.com/openETCS/modeling/tree/master/ModelingRules)
