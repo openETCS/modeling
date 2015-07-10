@@ -1,0 +1,82 @@
+/* $*************** KCG Version 6.1.3 (build i6) ****************
+** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
+** Generation date: 2015-07-09T20:36:53
+*************************************************************$ */
+
+#include "kcg_consts.h"
+#include "kcg_sensors.h"
+#include "Balises0005_Abcoude_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises.h"
+
+void Balises0005_Abcoude_reset_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises(
+  outC_Balises0005_Abcoude_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises *outC)
+{
+  /* 1 */
+  Balise_Group_377_reset_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises(
+    &outC->_3_Context_1);
+  /* 1 */
+  Balise_Group_376_reset_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises(
+    &outC->_2_Context_1);
+  /* 1 */
+  Balise_Group_375_reset_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises(
+    &outC->_1_Context_1);
+  /* 1 */
+  Balise_Group_374_reset_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises(
+    &outC->Context_1);
+}
+
+/* AmsterdamUtrechtL2::Sheet08A_Abcoude_Balises::Balises0005_Abcoude */
+void Balises0005_Abcoude_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises(
+  /* AmsterdamUtrechtL2::Sheet08A_Abcoude_Balises::Balises0005_Abcoude::SectionData_in */TrackSectionData_T_InfraLib *SectionData_in,
+  outC_Balises0005_Abcoude_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises *outC)
+{
+  kcg_copy_TrackSectionData_T_InfraLib(&outC->_L6, SectionData_in);
+  kcg_copy_CompressedBaliseMessage_TM(&outC->_L3, &outC->_L6.BG_Message);
+  outC->_L2 = outC->_L6.TrainPosRaw.TrainPosCalibrated;
+  /* 1 */
+  Balise_Group_374_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises(
+    &outC->_L3,
+    outC->_L2,
+    (BaliseGroupData_TM *) &BG374_Balises426,
+    &outC->Context_1);
+  kcg_copy_CompressedBaliseMessage_TM(
+    &outC->_L1,
+    &outC->Context_1.BG_message_out);
+  /* 1 */
+  Balise_Group_375_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises(
+    &outC->_L1,
+    outC->_L2,
+    (BaliseGroupData_TM *) &BG375_Balises426,
+    &outC->_1_Context_1);
+  kcg_copy_CompressedBaliseMessage_TM(
+    &outC->_L7,
+    &outC->_1_Context_1.BG_message_out);
+  /* 1 */
+  Balise_Group_376_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises(
+    &outC->_L7,
+    outC->_L2,
+    (BaliseGroupData_TM *) &BG376_Balises426,
+    &outC->_2_Context_1);
+  kcg_copy_CompressedBaliseMessage_TM(
+    &outC->_L8,
+    &outC->_2_Context_1.BG_message_out);
+  /* 1 */
+  Balise_Group_377_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises(
+    &outC->_L8,
+    outC->_L2,
+    (BaliseGroupData_TM *) &BG374_Balises426,
+    &outC->_3_Context_1);
+  kcg_copy_CompressedBaliseMessage_TM(
+    &outC->_L9,
+    &outC->_3_Context_1.BG_message_out);
+  kcg_copy_TrackSectionData_T_InfraLib(&outC->_L4, &outC->_L6);
+  if (kcg_true) {
+    kcg_copy_CompressedBaliseMessage_TM(&outC->_L4.BG_Message, &outC->_L9);
+  }
+  kcg_copy_TrackSectionData_T_InfraLib(&outC->SectionData_out, &outC->_L4);
+}
+
+/* $*************** KCG Version 6.1.3 (build i6) ****************
+** Balises0005_Abcoude_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises.c
+** Generation date: 2015-07-09T20:36:53
+*************************************************************$ */
+

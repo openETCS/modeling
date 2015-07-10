@@ -1,22 +1,17 @@
-#ifndef STORY00A_FIRSTTEST_INTERFACE
-#define STORY00A_FIRSTTEST_INTERFACE
+#ifndef AMSTERDAM_UTRECHT_LIJN1_B_AMSTERDAMUTRECHTL2_AMSTERDAMUTRECHTTRACK1_INTERFACE
+#define AMSTERDAM_UTRECHT_LIJN1_B_AMSTERDAMUTRECHTL2_AMSTERDAMUTRECHTTRACK1_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "Story00A_FirstTest.h"
+#include "Amsterdam_Utrecht_Lijn1_b_AmsterdamUtrechtL2_AmsterdamUtrechtTrack1.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_Story00A_FirstTest inputs_ctx;
-extern outC_Story00A_FirstTest outputs_ctx;
-
-/* separate_io: inputs declaration */
-
-/* separate_io: outputs declaration */
+extern kcg_real _ctx_TrainPosSim_in_buffer;
 /*******************************
  * Validity
  *******************************/
@@ -42,4 +37,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*STORY00A_FIRSTTEST_INTERFACE */
+#endif /*AMSTERDAM_UTRECHT_LIJN1_B_AMSTERDAMUTRECHTL2_AMSTERDAMUTRECHTTRACK1_INTERFACE */

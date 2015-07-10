@@ -106,7 +106,7 @@
 				<ed:Constant oid="!ed/1ee65/4685/3754/559e4d6f187c"/>
 			</pragmas>
 		</Constant>
-		<Constant name="DIM_N_ITER">
+		<Constant name="cDim_N_ITER">
 			<type>
 				<NamedType>
 					<type>
@@ -137,13 +137,1206 @@
 			</pragmas>
 		</Constant>
 		<Operator kind="function" name="ManageMessagesToRBC">
+			<locals>
+				<Variable name="_L1">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/378cf/28FE/8B4/559f7af86d3f"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- _L1 = Common_Types_Pkg::cDIM_MaxRMessages; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L1"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Common_Types_Pkg::cDIM_MaxRMessages"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/378ce/28FE/8B4/559f7af84c7b"/>
+					</pragmas>
+				</Equation>
+			</data>
 			<pragmas>
 				<ed:Operator oid="!ed/1ec9d/42D7/1D04/559cd8b22297" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 					<diagrams>
-						<NetDiagram name="diagram_ManageMessagesToRBC_1" landscape="true" format="A4 (210 297)" oid="!ed/1ec9e/42D7/1D04/559cd8b26001"/>
+						<NetDiagram name="diagram_ManageMessagesToRBC_1" landscape="true" format="A4 (210 297)" oid="!ed/1ec9e/42D7/1D04/559cd8b26001">
+							<presentationElements>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/378ce/28FE/8B4/559f7af84c7b">
+									<position>
+										<Point x="8599" y="4260"/>
+									</position>
+									<size>
+										<Size width="212" height="317"/>
+									</size>
+								</EquationGE>
+							</presentationElements>
+						</NetDiagram>
 					</diagrams>
 				</ed:Operator>
 			</pragmas>
 		</Operator>
+		<Type name="CompressedPackets_out_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="metadata">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="MetaDataPacketsRM_array_int_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/378e6/28FE/8B4/559f7cf5204f"/>
+							</pragmas>
+						</Field>
+						<Field name="compressedPackets">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Common_Types_Pkg::CompressedPacketData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/378f0/28FE/8B4/559f7d162b31"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/378e5/28FE/8B4/559f7ca62ebe"/>
+			</pragmas>
+		</Type>
+		<Type name="MetaDataPacketsRM_array_int_T">
+			<definition>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TM::RM_header"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Common_Types_Pkg::cDIM_MaxRMessages"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/378c3/28FE/8B4/559f72718a6"/>
+			</pragmas>
+		</Type>
+		<Type name="P000_train_to_track_int_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="NID_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f477/4685/3754/559e9a983c45"/>
+							</pragmas>
+						</Field>
+						<Field name="L_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f478/4685/3754/559e9a987c00"/>
+							</pragmas>
+						</Field>
+						<Field name="Q_SCALE">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f479/4685/3754/559e9a981e9c"/>
+							</pragmas>
+						</Field>
+						<Field name="NID_LRBG">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f47a/4685/3754/559e9a98638c"/>
+							</pragmas>
+						</Field>
+						<Field name="D_LRBG">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f47b/4685/3754/559e9a9857e1"/>
+							</pragmas>
+						</Field>
+						<Field name="Q_DIRLRBG">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f47c/4685/3754/559e9a981524"/>
+							</pragmas>
+						</Field>
+						<Field name="Q_DLRBG">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f47d/4685/3754/559e9a982388"/>
+							</pragmas>
+						</Field>
+						<Field name="L_DOUBTOVER">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f47e/4685/3754/559e9a982702"/>
+							</pragmas>
+						</Field>
+						<Field name="L_DOUBTUNDER">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f47f/4685/3754/559e9a984d15"/>
+							</pragmas>
+						</Field>
+						<Field name="Q_LENGTH">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f480/4685/3754/559e9a985403"/>
+							</pragmas>
+						</Field>
+						<Field name="L_TRAININT">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f481/4685/3754/559e9a9873b5"/>
+							</pragmas>
+						</Field>
+						<Field name="V_TRAIN">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f482/4685/3754/559e9a985760"/>
+							</pragmas>
+						</Field>
+						<Field name="Q_DIRTRAIN">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f483/4685/3754/559e9a9838c"/>
+							</pragmas>
+						</Field>
+						<Field name="M_MODE">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f484/4685/3754/559e9a985b30"/>
+							</pragmas>
+						</Field>
+						<Field name="M_LEVEL">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f485/4685/3754/559e9a985ab6"/>
+							</pragmas>
+						</Field>
+						<Field name="NID_NTC">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f486/4685/3754/559e9a9837fe"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1f476/4685/3754/559e9a9815f1"/>
+			</pragmas>
+		</Type>
+		<Type name="P001_train_to_track_int_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="NID_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4dd/4685/3754/559e9b713f03"/>
+							</pragmas>
+						</Field>
+						<Field name="L_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4de/4685/3754/559e9b71265b"/>
+							</pragmas>
+						</Field>
+						<Field name="Q_SCALE">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4f3/4685/3754/559e9bae589b"/>
+							</pragmas>
+						</Field>
+						<Field name="NID_LRBG">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4e0/4685/3754/559e9b71584d"/>
+							</pragmas>
+						</Field>
+						<Field name="NID_PRVLRBG">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4e1/4685/3754/559e9b716895"/>
+							</pragmas>
+						</Field>
+						<Field name="D_LRBG">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4e2/4685/3754/559e9b715180"/>
+							</pragmas>
+						</Field>
+						<Field name="Q_DIRLRBG">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4f9/4685/3754/559e9bf231dc"/>
+							</pragmas>
+						</Field>
+						<Field name="Q_DLRBG">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4ff/4685/3754/559e9bfb56e5"/>
+							</pragmas>
+						</Field>
+						<Field name="L_DOUBTOVER">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4e5/4685/3754/559e9b716809"/>
+							</pragmas>
+						</Field>
+						<Field name="L_DOUBTUNDER">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4e6/4685/3754/559e9b711d3f"/>
+							</pragmas>
+						</Field>
+						<Field name="Q_LENGTH">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f505/4685/3754/559e9c5b31da"/>
+							</pragmas>
+						</Field>
+						<Field name="L_TRAININT">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4e8/4685/3754/559e9b717d3f"/>
+							</pragmas>
+						</Field>
+						<Field name="V_TRAIN">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4e9/4685/3754/559e9b711a14"/>
+							</pragmas>
+						</Field>
+						<Field name="Q_DIRTRAIN">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4ea/4685/3754/559e9b713685"/>
+							</pragmas>
+						</Field>
+						<Field name="M_MODE">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4eb/4685/3754/559e9b7145d2"/>
+							</pragmas>
+						</Field>
+						<Field name="M_LEVEL">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4ec/4685/3754/559e9b7171c0"/>
+							</pragmas>
+						</Field>
+						<Field name="NID_NTC">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f4ed/4685/3754/559e9b71965"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1f4dc/4685/3754/559e9b7149c9"/>
+			</pragmas>
+		</Type>
+		<Type name="P003_train_to_track_int_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="NID_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f405/4685/3754/559e99061410"/>
+							</pragmas>
+						</Field>
+						<Field name="L_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f406/4685/3754/559e990667d0"/>
+							</pragmas>
+						</Field>
+						<Field name="N_ITER">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f408/4685/3754/559e996f61ed"/>
+							</pragmas>
+						</Field>
+						<Field name="n_iter_array">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="P003_train_to_track_sectionarray_int_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f407/4685/3754/559e990653fa"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1f404/4685/3754/559e990647a5"/>
+			</pragmas>
+		</Type>
+		<Type name="P003_train_to_track_sectionarray_int_T">
+			<definition>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="P003_train_to_track_sectionlist_int_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="cDim_N_ITER"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1f423/4685/3754/559e99f37dbb"/>
+			</pragmas>
+		</Type>
+		<Type name="P003_train_to_track_sectionlist_int_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="NID_RADIO">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f412/4685/3754/559e99c0cbc"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1f411/4685/3754/559e999b21e"/>
+			</pragmas>
+		</Type>
+		<Type name="P004_train_to_track_int_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="NID_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f528/4685/3754/559e9cf51cd5"/>
+							</pragmas>
+						</Field>
+						<Field name="L_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f529/4685/3754/559e9cf5287"/>
+							</pragmas>
+						</Field>
+						<Field name="M_ERROR">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f52a/4685/3754/559e9cf53b8f"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1f527/4685/3754/559e9cf52647"/>
+			</pragmas>
+		</Type>
+		<Type name="P005_train_to_track_int_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="NID_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f53c/4685/3754/559e9d3f7c63"/>
+							</pragmas>
+						</Field>
+						<Field name="L_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f53d/4685/3754/559e9d3feda"/>
+							</pragmas>
+						</Field>
+						<Field name="NID_OPERATIONAL">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f53e/4685/3754/559e9d3f7ddf"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1f53b/4685/3754/559e9d3f2875"/>
+			</pragmas>
+		</Type>
+		<Type name="P009_train_to_track_int_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="NID_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f548/4685/3754/559e9d6071dc"/>
+							</pragmas>
+						</Field>
+						<Field name="L_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f549/4685/3754/559e9d6036d"/>
+							</pragmas>
+						</Field>
+						<Field name="NID_LTRBG">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f54a/4685/3754/559e9d6042ed"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1f547/4685/3754/559e9d602f7e"/>
+			</pragmas>
+		</Type>
+		<Type name="P011_train_to_track_int_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="NID_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f55f/4685/3754/559e9d884502"/>
+							</pragmas>
+						</Field>
+						<Field name="L_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f560/4685/3754/559e9d887746"/>
+							</pragmas>
+						</Field>
+						<Field name="NC_CDTRAIN">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f561/4685/3754/559e9d8866d5"/>
+							</pragmas>
+						</Field>
+						<Field name="NC_TRAIN">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f562/4685/3754/559e9d886d43"/>
+							</pragmas>
+						</Field>
+						<Field name="L_TRAIN">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f563/4685/3754/559e9d886217"/>
+							</pragmas>
+						</Field>
+						<Field name="V_MAXTRAIN">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f564/4685/3754/559e9d8814ef"/>
+							</pragmas>
+						</Field>
+						<Field name="M_LOADINGGAUGE">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f565/4685/3754/559e9d88b5b"/>
+							</pragmas>
+						</Field>
+						<Field name="M_AXLELOADCAT">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f566/4685/3754/559e9d88726c"/>
+							</pragmas>
+						</Field>
+						<Field name="M_AIRTIGHT">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f567/4685/3754/559e9d8838ac"/>
+							</pragmas>
+						</Field>
+						<Field name="N_AXLE">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f568/4685/3754/559e9d882440"/>
+							</pragmas>
+						</Field>
+						<Field name="N_ITER_volatge">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f569/4685/3754/559e9d88547c"/>
+							</pragmas>
+						</Field>
+						<Field name="m_voltage_section">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="P011_train_to_track_sectionarray_voltage_int_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f56a/4685/3754/559e9d882110"/>
+							</pragmas>
+						</Field>
+						<Field name="N_ITER_ntc">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f5b1/4685/3754/559e9fb5d1b"/>
+							</pragmas>
+						</Field>
+						<Field name="nid_ntc_section">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="P011_train_to_track_sectionarray_ntc_int_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f5b8/4685/3754/559e9fcf4373"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1f55e/4685/3754/559e9d8875d"/>
+			</pragmas>
+		</Type>
+		<Type name="P011_train_to_track_sectionarray_ntc_int_T">
+			<definition>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="P011_train_to_track_sectionlist_ntc_int_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="cDim_N_ITER"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1f591/4685/3754/559e9ecd676c"/>
+			</pragmas>
+		</Type>
+		<Type name="P011_train_to_track_sectionarray_voltage_int_T">
+			<definition>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="P011_train_to_track_sectionlist_voltage_int_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="cDim_N_ITER"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1f579/4685/3754/559e9e4469"/>
+			</pragmas>
+		</Type>
+		<Type name="P011_train_to_track_sectionlist_ntc_int_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="NID_NTC">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f58a/4685/3754/559e9ec359a1"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1f589/4685/3754/559e9ec3547c"/>
+			</pragmas>
+		</Type>
+		<Type name="P011_train_to_track_sectionlist_voltage_int_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="M_VOLTAGE">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f572/4685/3754/559e9dcaddf"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1f571/4685/3754/559e9dca4549"/>
+			</pragmas>
+		</Type>
+		<Type name="P044_train_to_track_int_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="NID_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f5d5/4685/3754/559ea02f36da"/>
+							</pragmas>
+						</Field>
+						<Field name="L_PACKET">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f5d6/4685/3754/559ea02f77d4"/>
+							</pragmas>
+						</Field>
+						<Field name="NID_XUSER">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f5d7/4685/3754/559ea02f57c3"/>
+							</pragmas>
+						</Field>
+						<Field name="Other_data_depending_on__NID_XUSER">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1f5d8/4685/3754/559ea02f6410"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1f5d4/4685/3754/559ea02f7973"/>
+			</pragmas>
+		</Type>
+		<Type name="TrainToTrackMessage_out_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="trainToTrackMessageHeader">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrainToTrackMessageHeader_out_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1ecc8/4685/3754/559e23204455"/>
+							</pragmas>
+						</Field>
+						<Field name="compressedRequierdVariabels">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1ecd2/4685/3754/559e23863cfa"/>
+							</pragmas>
+						</Field>
+						<Field name="compressedPacketsRM">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="CompressedPackets_out_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/378c2/28FE/8B4/559f71784664"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1ec9f/4685/3754/559e1fa8621a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>§ 8.4.4.7.1</comment>
+				</ed:Type>
+			</pragmas>
+		</Type>
+		<Type name="TrainToTrackMessageHeader_out_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="nid_message">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1eca1/4685/3754/559e221e5089" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Message Identification Number</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="t_train">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1ecab/4685/3754/559e22472f24"/>
+							</pragmas>
+						</Field>
+						<Field name="nid_engine">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/1ecb5/4685/3754/559e2266812"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/1eca0/4685/3754/559e1fd0a3"/>
+			</pragmas>
+		</Type>
 	</declarations>
 </File>
