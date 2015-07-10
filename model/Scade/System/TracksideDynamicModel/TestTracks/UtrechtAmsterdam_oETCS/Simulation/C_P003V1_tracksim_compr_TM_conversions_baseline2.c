@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-09T20:36:53
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -19,20 +19,32 @@ void C_P003V1_tracksim_compr_TM_conversions_baseline2(
   /* TM_conversions_baseline2::C_P003V1_tracksim_compr::P003V1_from_track */P003V1_trackside_int_T_TM_baseline2 *P003V1_from_track,
   outC_C_P003V1_tracksim_compr_TM_conversions_baseline2 *outC)
 {
-  kcg_int i;
-  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _10_q_dir_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _9_error_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _8_q_dir_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _7_error_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _6_error_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _5_q_dir_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _4_error_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _3_q_dir_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _2_q_dir_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _1_error_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR q_dir_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool error_1;
-  kcg_bool noname_1;
+  static kcg_int i;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */
+  static Q_DIR _10_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */
+  static kcg_bool _9_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */
+  static Q_DIR _8_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */
+  static kcg_bool _7_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */
+  static kcg_bool _6_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */
+  static Q_DIR _5_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */
+  static kcg_bool _4_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */
+  static Q_DIR _3_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */
+  static Q_DIR _2_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */
+  static kcg_bool _1_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */
+  static Q_DIR q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */
+  static kcg_bool error_1;
+  static kcg_bool noname_1;
   
   kcg_copy_P003V1_trackside_int_T_TM_baseline2(&outC->_L1, P003V1_from_track);
   outC->_L404 = outC->_L1.Q_NVDRIVER_ADHES;
@@ -203,6 +215,6 @@ void C_P003V1_tracksim_compr_TM_conversions_baseline2(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P003V1_tracksim_compr_TM_conversions_baseline2.c
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-09T20:36:53
 *************************************************************$ */
 
