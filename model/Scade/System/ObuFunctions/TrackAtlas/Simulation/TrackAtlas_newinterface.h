@@ -1,18 +1,18 @@
-#ifndef TEST_NV_INTERNAL_INTERFACE
-#define TEST_NV_INTERNAL_INTERFACE
+#ifndef MOVESECTIONSTONEWLRBG_TA_LIB_INTERNAL_INTERFACE
+#define MOVESECTIONSTONEWLRBG_TA_LIB_INTERNAL_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "test_NV_iNTERNAL.h"
+#include "MoveSectionsToNewLRBG_TA_Lib_internal.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_test_NV_iNTERNAL inputs_ctx;
-extern outC_test_NV_iNTERNAL outputs_ctx;
+extern inC_MoveSectionsToNewLRBG_TA_Lib_internal inputs_ctx;
+extern outC_MoveSectionsToNewLRBG_TA_Lib_internal outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*TEST_NV_INTERNAL_INTERFACE */
+#endif /*MOVESECTIONSTONEWLRBG_TA_LIB_INTERNAL_INTERFACE */

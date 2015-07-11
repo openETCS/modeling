@@ -1,10 +1,10 @@
 /* TrackAtlas_newmapping.h */
 
-#include "test_NV_iNTERNAL.h"
+#include "MoveSectionsToNewLRBG_TA_Lib_internal.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_test_NV_iNTERNAL inputs_ctx;
-extern outC_test_NV_iNTERNAL outputs_ctx;
+extern inC_MoveSectionsToNewLRBG_TA_Lib_internal inputs_ctx;
+extern outC_MoveSectionsToNewLRBG_TA_Lib_internal outputs_ctx;
 
