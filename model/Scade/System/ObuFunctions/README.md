@@ -11,5 +11,5 @@ Directory | Description | Status
 [SpeedSupervision](https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/SpeedSupervison) | Speed and Distance Monitoring | in verification
 [TrackAtlas](https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/TrackAtlas) | Processing module for MA and MRSP | in work
 [TrackAtlasTypes](https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/TrackAtlasTypes) | Type definitions for the TrackAtlas | in verification
-[manageData](https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/manageData) | Management functions for DMI and TIU | in work
+[manageData](https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/manageData) | Management functions for DMI and TIU | see next level
 
