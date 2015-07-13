@@ -1,18 +1,18 @@
-#ifndef MOVESECTIONSTONEWLRBG_TA_LIB_INTERNAL_INTERFACE
-#define MOVESECTIONSTONEWLRBG_TA_LIB_INTERNAL_INTERFACE
+#ifndef CONVERT_P27_TO_DISTANCEPR_TA_SSP_INTERFACE
+#define CONVERT_P27_TO_DISTANCEPR_TA_SSP_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "MoveSectionsToNewLRBG_TA_Lib_internal.h"
+#include "Convert_P27_to_DistancePr_TA_SSP.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_MoveSectionsToNewLRBG_TA_Lib_internal inputs_ctx;
-extern outC_MoveSectionsToNewLRBG_TA_Lib_internal outputs_ctx;
+extern inC_Convert_P27_to_DistancePr_TA_SSP inputs_ctx;
+extern outC_Convert_P27_to_DistancePr_TA_SSP outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*MOVESECTIONSTONEWLRBG_TA_LIB_INTERNAL_INTERFACE */
+#endif /*CONVERT_P27_TO_DISTANCEPR_TA_SSP_INTERFACE */

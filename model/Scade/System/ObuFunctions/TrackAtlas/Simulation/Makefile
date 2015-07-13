@@ -8,22 +8,25 @@ SHELL=cmd.exe
 
 C_FLAGS = -pedantic
 
-all: TA_Lib_internal__MoveSectionsToNewLRBG.exe TA_Lib_internal__MoveSectionsToNewLRBG.dll 
+all: TA_SSP__Convert_P27_to_DistanceProfile.exe TA_SSP__Convert_P27_to_DistanceProfile.dll 
 
-win32/MoveSectionsToNewLRBG_TA_Lib_internal.o: MoveSectionsToNewLRBG_TA_Lib_internal.c
-	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "MoveSectionsToNewLRBG_TA_Lib_internal.c" -o "win32\MoveSectionsToNewLRBG_TA_Lib_internal.o"
+win32/Convert_P27_to_DistancePr_TA_SSP.o: Convert_P27_to_DistancePr_TA_SSP.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Convert_P27_to_DistancePr_TA_SSP.c" -o "win32\Convert_P27_to_DistancePr_TA_SSP.o"
 
-win32/MoveSectionsToNewLRBG_Loop_TA_Lib_internal.o: MoveSectionsToNewLRBG_Loop_TA_Lib_internal.c
-	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "MoveSectionsToNewLRBG_Loop_TA_Lib_internal.c" -o "win32\MoveSectionsToNewLRBG_Loop_TA_Lib_internal.o"
+win32/_2_Convert_P27_to_DistancePr_TA_SSP.o: _2_Convert_P27_to_DistancePr_TA_SSP.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "_2_Convert_P27_to_DistancePr_TA_SSP.c" -o "win32\_2_Convert_P27_to_DistancePr_TA_SSP.o"
 
-win32/NormalizePos_TA_Lib_internal.o: NormalizePos_TA_Lib_internal.c
-	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "NormalizePos_TA_Lib_internal.c" -o "win32\NormalizePos_TA_Lib_internal.o"
+win32/Eval_Q_Front_TA_Lib_internal.o: Eval_Q_Front_TA_Lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Eval_Q_Front_TA_Lib_internal.c" -o "win32\Eval_Q_Front_TA_Lib_internal.o"
 
-win32/FindFirstRelevantForNewLRBG_TA_Lib_internal.o: FindFirstRelevantForNewLRBG_TA_Lib_internal.c
-	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "FindFirstRelevantForNewLRBG_TA_Lib_internal.c" -o "win32\FindFirstRelevantForNewLRBG_TA_Lib_internal.o"
+win32/_3_Convert_P27_to_DistancePr_TA_SSP.o: _3_Convert_P27_to_DistancePr_TA_SSP.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "_3_Convert_P27_to_DistancePr_TA_SSP.c" -o "win32\_3_Convert_P27_to_DistancePr_TA_SSP.o"
 
-win32/FindFirstRelevantForNewLR_TA_Lib_internal.o: FindFirstRelevantForNewLR_TA_Lib_internal.c
-	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "FindFirstRelevantForNewLR_TA_Lib_internal.c" -o "win32\FindFirstRelevantForNewLR_TA_Lib_internal.o"
+win32/Normalize_Distance_d_inte_TA_Lib_internal.o: Normalize_Distance_d_inte_TA_Lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Normalize_Distance_d_inte_TA_Lib_internal.c" -o "win32\Normalize_Distance_d_inte_TA_Lib_internal.o"
+
+win32/DetectSpeedIncrease_TA_Lib_internal.o: DetectSpeedIncrease_TA_Lib_internal.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "DetectSpeedIncrease_TA_Lib_internal.c" -o "win32\DetectSpeedIncrease_TA_Lib_internal.o"
 
 win32/kcg_types.o: kcg_types.c
 	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "kcg_types.c" -o "win32\kcg_types.o"
@@ -49,20 +52,20 @@ win32/NewSmuTypes.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R16.1/SCADE/
 win32/SmuConverter.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R16.1/SCADE/lib/SmuConverter.c
 	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C:\Program Files\Esterel Technologies\SCADE R16.1\SCADE\lib\SmuConverter.c" -o "win32\SmuConverter.o"
 
-TA_Lib_internal__MoveSectionsToNewLRBG.dll: win32/MoveSectionsToNewLRBG_TA_Lib_internal.o win32/MoveSectionsToNewLRBG_Loop_TA_Lib_internal.o win32/NormalizePos_TA_Lib_internal.o win32/FindFirstRelevantForNewLRBG_TA_Lib_internal.o win32/FindFirstRelevantForNewLR_TA_Lib_internal.o win32/kcg_types.o win32/kcg_consts.o win32/TrackAtlas_newtype.o win32/TrackAtlas_newmapping.o win32/TrackAtlas_newinterface.o win32/SmuProxy.o win32/NewSmuTypes.o win32/SmuConverter.o SmuExport.def 
-	gcc -mwindows -mwin32 -shared -static-libgcc  "win32\MoveSectionsToNewLRBG_TA_Lib_internal.o" "win32\MoveSectionsToNewLRBG_Loop_TA_Lib_internal.o" "win32\NormalizePos_TA_Lib_internal.o" "win32\FindFirstRelevantForNewLRBG_TA_Lib_internal.o" "win32\FindFirstRelevantForNewLR_TA_Lib_internal.o" "win32\kcg_types.o" "win32\kcg_consts.o" "win32\TrackAtlas_newtype.o" "win32\TrackAtlas_newmapping.o" "win32\TrackAtlas_newinterface.o" "win32\SmuProxy.o" "win32\NewSmuTypes.o" "win32\SmuConverter.o" -Wl,--output-def,"SmuExport.def" -lm -lwsock32 -m32 -o "TA_Lib_internal__MoveSectionsToNewLRBG.dll" 
+TA_SSP__Convert_P27_to_DistanceProfile.dll: win32/Convert_P27_to_DistancePr_TA_SSP.o win32/_2_Convert_P27_to_DistancePr_TA_SSP.o win32/Eval_Q_Front_TA_Lib_internal.o win32/_3_Convert_P27_to_DistancePr_TA_SSP.o win32/Normalize_Distance_d_inte_TA_Lib_internal.o win32/DetectSpeedIncrease_TA_Lib_internal.o win32/kcg_types.o win32/kcg_consts.o win32/TrackAtlas_newtype.o win32/TrackAtlas_newmapping.o win32/TrackAtlas_newinterface.o win32/SmuProxy.o win32/NewSmuTypes.o win32/SmuConverter.o SmuExport.def 
+	gcc -mwindows -mwin32 -shared -static-libgcc  "win32\Convert_P27_to_DistancePr_TA_SSP.o" "win32\_2_Convert_P27_to_DistancePr_TA_SSP.o" "win32\Eval_Q_Front_TA_Lib_internal.o" "win32\_3_Convert_P27_to_DistancePr_TA_SSP.o" "win32\Normalize_Distance_d_inte_TA_Lib_internal.o" "win32\DetectSpeedIncrease_TA_Lib_internal.o" "win32\kcg_types.o" "win32\kcg_consts.o" "win32\TrackAtlas_newtype.o" "win32\TrackAtlas_newmapping.o" "win32\TrackAtlas_newinterface.o" "win32\SmuProxy.o" "win32\NewSmuTypes.o" "win32\SmuConverter.o" -Wl,--output-def,"SmuExport.def" -lm -lwsock32 -m32 -o "TA_SSP__Convert_P27_to_DistanceProfile.dll" 
 
 SmuExport.def: C:/Program\ Files/Esterel\ Technologies/SCADE\ R16.1/SCADE/lib/SmuExport.def
 	copy "C:\Program Files\Esterel Technologies\SCADE R16.1\SCADE\lib\SmuExport.def" "SmuExport.def"
 
-win32/MoveSectionsToNewLRBG_TA_Lib_internal_dll.o: MoveSectionsToNewLRBG_TA_Lib_internal_dll.c
-	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "MoveSectionsToNewLRBG_TA_Lib_internal_dll.c" -o "win32\MoveSectionsToNewLRBG_TA_Lib_internal_dll.o"
+win32/Convert_P27_to_DistancePr_TA_SSP_dll.o: Convert_P27_to_DistancePr_TA_SSP_dll.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "Convert_P27_to_DistancePr_TA_SSP_dll.c" -o "win32\Convert_P27_to_DistancePr_TA_SSP_dll.o"
 
 win32/SmuMainWindows.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R16.1/SCADE/lib/SmuMainWindows.c
 	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C:\Program Files\Esterel Technologies\SCADE R16.1\SCADE\lib\SmuMainWindows.c" -o "win32\SmuMainWindows.o"
 
-TA_Lib_internal__MoveSectionsToNewLRBG.exe: win32/MoveSectionsToNewLRBG_TA_Lib_internal_dll.o win32/SmuMainWindows.o 
-	gcc "win32\MoveSectionsToNewLRBG_TA_Lib_internal_dll.o" "win32\SmuMainWindows.o" -lm -lwsock32 -m32 -o "TA_Lib_internal__MoveSectionsToNewLRBG.exe" 
+TA_SSP__Convert_P27_to_DistanceProfile.exe: win32/Convert_P27_to_DistancePr_TA_SSP_dll.o win32/SmuMainWindows.o 
+	gcc "win32\Convert_P27_to_DistancePr_TA_SSP_dll.o" "win32\SmuMainWindows.o" -lm -lwsock32 -m32 -o "TA_SSP__Convert_P27_to_DistanceProfile.exe" 
 
 #############################################################
 ######    End of Makefile
