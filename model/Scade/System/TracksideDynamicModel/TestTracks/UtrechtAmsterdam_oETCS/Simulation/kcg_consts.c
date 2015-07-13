@@ -1,9 +1,13 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 
 #include "kcg_consts.h"
+
+/* Packets426::BG352_P045 */
+const P045_trackside_int_T_TM BG352_P045_Packets426 = { kcg_true, 45, 1, 47,
+  2114079 };
 
 /* Balises426::BG352_header_B1 */
 const BaliseTelegramHeader_int_T_TM BG352_header_B1_Balises426 = { 1, 16, 0, 1,
@@ -14,8 +18,8 @@ const BaliseTelegramHeader_int_T_TM BG352_header_B0_Balises426 = { 1, 16, 0, 0,
   1, 1, 255, 426, 352, 0 };
 
 /* Balises426::BG352 */
-const BaliseGroupData_Basics BG352_Balises426 = { 426, 352, 10507, Amsterdam_TM,
-  N_TM };
+const BaliseGroupData_Basics BG352_Balises426 = { 426, 352, 105017,
+  Amsterdam_TM, N_TM };
 
 /* Packets426::BG353_P042_N */
 const P042_trackside_int_T_TM BG353_P042_N_Packets426 = { kcg_true, 42, 1, 113,
@@ -1313,6 +1317,6 @@ const CompressedBaliseMessage_TM DEFAULT_BTMMessage_TM = { { 0, 0, 0, 0, 0, 0,
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_consts.c
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 

@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -13,12 +13,12 @@ void Balise_Group_Init_reset_InfraLib(outC_Balise_Group_Init_InfraLib *outC)
 
 /* InfraLib::Balise_Group_Init */
 void Balise_Group_Init_InfraLib(
-  /* InfraLib::Balise_Group_Init::TrainPos */kcg_real TrainPos,
+  /* InfraLib::Balise_Group_Init::TrainPos */kcg_real _1_TrainPos,
   /* InfraLib::Balise_Group_Init::Engineering_Data */BaliseGroupData_TM *Engineering_Data,
   outC_Balise_Group_Init_InfraLib *outC)
 {
   outC->_L31 = kcg_false;
-  outC->_L30 = TrainPos;
+  outC->_L30 = _1_TrainPos;
   kcg_copy_BaliseGroupData_TM(&outC->_L2, Engineering_Data);
   outC->_L29 = outC->_L2.Pos;
   kcg_copy_CompressedPackets_T_Common_Types_Pkg(
@@ -41,6 +41,6 @@ void Balise_Group_Init_InfraLib(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_Group_Init_InfraLib.c
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 

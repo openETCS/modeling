@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -17,7 +17,7 @@ void Packets_BG353_reset_AmsterdamUtrechtL2_Sheet05_Amstel_Balises(
 
 /* AmsterdamUtrechtL2::Sheet05_Amstel_Balises::Packets_BG353 */
 void Packets_BG353_AmsterdamUtrechtL2_Sheet05_Amstel_Balises(
-  /* AmsterdamUtrechtL2::Sheet05_Amstel_Balises::Packets_BG353::Header */BaliseTelegramHeader_int_T_TM *Header,
+  /* AmsterdamUtrechtL2::Sheet05_Amstel_Balises::Packets_BG353::Header */BaliseTelegramHeader_int_T_TM *_1_Header,
   /* AmsterdamUtrechtL2::Sheet05_Amstel_Balises::Packets_BG353::Balise_data_in */B_data_internal_T_InfraLib *Balise_data_in,
   outC_Packets_BG353_AmsterdamUtrechtL2_Sheet05_Amstel_Balises *outC)
 {
@@ -44,7 +44,7 @@ void Packets_BG353_AmsterdamUtrechtL2_Sheet05_Amstel_Balises(
     &outC->_L34,
     &outC->Context_2.B_data_out);
   outC->_L33 = kcg_true;
-  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L28, Header);
+  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L28, _1_Header);
   kcg_copy_B_data_internal_T_InfraLib(&outC->_L29, &outC->_L26);
   if (kcg_true) {
     kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L29.header, &outC->_L28);
@@ -74,6 +74,6 @@ void Packets_BG353_AmsterdamUtrechtL2_Sheet05_Amstel_Balises(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Packets_BG353_AmsterdamUtrechtL2_Sheet05_Amstel_Balises.c
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 

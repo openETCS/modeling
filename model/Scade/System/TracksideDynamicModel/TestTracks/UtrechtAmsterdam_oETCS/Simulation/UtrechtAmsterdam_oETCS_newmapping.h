@@ -1,9 +1,9 @@
 /* UtrechtAmsterdam_oETCS_newmapping.h */
 
-#include "Amsterdam_Utrecht_Lijn1_b_AmsterdamUtrechtL2_AmsterdamUtrechtTrack1.h"
+#include "Amsterdam_Utrecht_Balises_US_Integration_June.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern kcg_real _ctx_TrainPosSim_in_buffer;
+extern kcg_real _ctx_TrainPos_buffer;
 

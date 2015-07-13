@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -16,7 +16,7 @@ void Balise_Localisation_reset_InfraLib(outC_Balise_Localisation_InfraLib *outC)
 /* InfraLib::Balise_Localisation */
 void Balise_Localisation_InfraLib(
   /* InfraLib::Balise_Localisation::B_data_in */B_data_internal_T_InfraLib *B_data_in,
-  /* InfraLib::Balise_Localisation::Header */BaliseTelegramHeader_int_T_TM *Header,
+  /* InfraLib::Balise_Localisation::Header */BaliseTelegramHeader_int_T_TM *_1_Header,
   /* InfraLib::Balise_Localisation::PIG_nom */kcg_int PIG_nom,
   outC_Balise_Localisation_InfraLib *outC)
 {
@@ -27,7 +27,7 @@ void Balise_Localisation_InfraLib(
   outC->_L48 = PIG_nom;
   outC->_L51 = 0;
   outC->_L50 = outC->_L48 == outC->_L51;
-  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L16, Header);
+  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L16, _1_Header);
   outC->_L47 = outC->_L16.n_pig;
   kcg_copy_B_data_internal_T_InfraLib(&outC->_L65, B_data_in);
   outC->_L66 = outC->_L65.pig_nom_0;
@@ -73,6 +73,6 @@ void Balise_Localisation_InfraLib(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_Localisation_InfraLib.c
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 

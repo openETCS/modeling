@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -20,10 +20,10 @@ void Write_P003V1_reset_TM_trackside_baseline2(
 /* TM_trackside_baseline2::Write_P003V1 */
 void Write_P003V1_TM_trackside_baseline2(
   /* TM_trackside_baseline2::Write_P003V1::Packet003V1 */P003V1_trackside_int_T_TM_baseline2 *Packet003V1,
-  /* TM_trackside_baseline2::Write_P003V1::Packets */CompressedPackets_T_Common_Types_Pkg *Packets,
+  /* TM_trackside_baseline2::Write_P003V1::Packets */CompressedPackets_T_Common_Types_Pkg *_1_Packets,
   outC_Write_P003V1_TM_trackside_baseline2 *outC)
 {
-  kcg_copy_CompressedPackets_T_Common_Types_Pkg(&outC->_L40, Packets);
+  kcg_copy_CompressedPackets_T_Common_Types_Pkg(&outC->_L40, _1_Packets);
   kcg_copy_CompressedPacketData_T_Common_Types_Pkg(
     &outC->_L42,
     &outC->_L40.PacketData);
@@ -72,6 +72,6 @@ void Write_P003V1_TM_trackside_baseline2(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Write_P003V1_TM_trackside_baseline2.c
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 
