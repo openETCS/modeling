@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 #ifndef _Packets_BG364_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises_H_
 #define _Packets_BG364_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises_H_
@@ -39,7 +39,7 @@ typedef struct {
 /* ===========  node initialization and cycle functions  =========== */
 /* AmsterdamUtrechtL2::Sheet06_Bijlmer_Balises::Packets_BG364 */
 extern void Packets_BG364_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises(
-  /* AmsterdamUtrechtL2::Sheet06_Bijlmer_Balises::Packets_BG364::Header */BaliseTelegramHeader_int_T_TM *Header,
+  /* AmsterdamUtrechtL2::Sheet06_Bijlmer_Balises::Packets_BG364::Header */BaliseTelegramHeader_int_T_TM *_1_Header,
   /* AmsterdamUtrechtL2::Sheet06_Bijlmer_Balises::Packets_BG364::Balise_data_in */B_data_internal_T_InfraLib *Balise_data_in,
   outC_Packets_BG364_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises *outC);
 
@@ -49,6 +49,6 @@ extern void Packets_BG364_reset_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises(
 #endif /* _Packets_BG364_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Packets_BG364_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises.h
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 

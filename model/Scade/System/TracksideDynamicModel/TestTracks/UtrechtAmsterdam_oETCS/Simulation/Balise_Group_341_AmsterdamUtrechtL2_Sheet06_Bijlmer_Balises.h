@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 #ifndef _Balise_Group_341_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises_H_
 #define _Balise_Group_341_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises_H_
@@ -48,7 +48,7 @@ typedef struct {
 /* AmsterdamUtrechtL2::Sheet06_Bijlmer_Balises::Balise_Group_341 */
 extern void Balise_Group_341_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises(
   /* AmsterdamUtrechtL2::Sheet06_Bijlmer_Balises::Balise_Group_341::BG_message_in */CompressedBaliseMessage_TM *BG_message_in,
-  /* AmsterdamUtrechtL2::Sheet06_Bijlmer_Balises::Balise_Group_341::TrainPos */kcg_real TrainPos,
+  /* AmsterdamUtrechtL2::Sheet06_Bijlmer_Balises::Balise_Group_341::TrainPos */kcg_real _1_TrainPos,
   /* AmsterdamUtrechtL2::Sheet06_Bijlmer_Balises::Balise_Group_341::Engineering_Data */BaliseGroupData_TM *Engineering_Data,
   outC_Balise_Group_341_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises *outC);
 
@@ -58,6 +58,6 @@ extern void Balise_Group_341_reset_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises(
 #endif /* _Balise_Group_341_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_Group_341_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises.h
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 

@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 #ifndef _Balise_380_1_AmsterdamUtrechtL2_Sheet08B_Abcoude_Balises_H_
 #define _Balise_380_1_AmsterdamUtrechtL2_Sheet08B_Abcoude_Balises_H_
@@ -40,7 +40,7 @@ typedef struct {
 /* AmsterdamUtrechtL2::Sheet08B_Abcoude_Balises::Balise_380_1 */
 extern void Balise_380_1_AmsterdamUtrechtL2_Sheet08B_Abcoude_Balises(
   /* AmsterdamUtrechtL2::Sheet08B_Abcoude_Balises::Balise_380_1::B_data_in */B_data_internal_T_InfraLib *B_data_in,
-  /* AmsterdamUtrechtL2::Sheet08B_Abcoude_Balises::Balise_380_1::Header */BaliseTelegramHeader_int_T_TM *Header,
+  /* AmsterdamUtrechtL2::Sheet08B_Abcoude_Balises::Balise_380_1::Header */BaliseTelegramHeader_int_T_TM *_1_Header,
   /* AmsterdamUtrechtL2::Sheet08B_Abcoude_Balises::Balise_380_1::PIG_nom */kcg_int PIG_nom,
   outC_Balise_380_1_AmsterdamUtrechtL2_Sheet08B_Abcoude_Balises *outC);
 
@@ -50,6 +50,6 @@ extern void Balise_380_1_reset_AmsterdamUtrechtL2_Sheet08B_Abcoude_Balises(
 #endif /* _Balise_380_1_AmsterdamUtrechtL2_Sheet08B_Abcoude_Balises_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_380_1_AmsterdamUtrechtL2_Sheet08B_Abcoude_Balises.h
-** Generation date: 2015-07-09T20:36:53
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 
