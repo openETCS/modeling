@@ -3528,6 +3528,35 @@
 										</DataStructOp>
 									</flow>
 								</LabelledExpression>
+								<LabelledExpression label="sendingRBC">
+									<flow>
+										<!-- {valid : false, nid_c : 0, rbc_id : 0, device_id : 0} -->
+										<DataStructOp>
+											<data>
+												<LabelledExpression label="valid">
+													<flow>
+														<ConstValue value="false"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="nid_c">
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="rbc_id">
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</LabelledExpression>
+												<LabelledExpression label="device_id">
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</LabelledExpression>
+											</data>
+										</DataStructOp>
+									</flow>
+								</LabelledExpression>
 							</data>
 						</DataStructOp>
 					</value>
@@ -3884,6 +3913,20 @@
 									<pragmas>
 										<ed:Field oid="!ed/5bec/6191/117C/549195674b6d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 											<comment>Packet Information. To access functions of the TrackMessages package are mandatory.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="sendingRBC">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="RBC_Id_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1d870/5182/1538/55a4f00b551f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Information defing the RBC which was sending the information</comment>
 										</ed:Field>
 									</pragmas>
 								</Field>
@@ -4438,6 +4481,20 @@
 										</ed:Field>
 									</pragmas>
 								</Field>
+								<Field name="sendingRBC">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="RBC_Id_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1d877/5182/1538/55a4f03028c8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Information defing the RBC which was sending the information</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
 							</fields>
 						</Struct>
 					</definition>
@@ -4501,6 +4558,20 @@
 									</type>
 									<pragmas>
 										<ed:Field oid="!ed/a6cca/39FE/1ED0/54da459f6da3"/>
+									</pragmas>
+								</Field>
+								<Field name="sendingRBC">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="RBC_Id_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1d87e/5182/1538/55a4f03b3f24" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Information defing the RBC which was sending the information</comment>
+										</ed:Field>
 									</pragmas>
 								</Field>
 							</fields>
@@ -4942,6 +5013,75 @@
 					<pragmas>
 						<ed:Type oid="!ed/1d7c8/1AD0/12F4/559a3538442d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 							<comment>In this type a set of track related states of the system. The types are mainly related to Information Filter Conditions.</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="RBC_Id_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1d850/1FEB/11C8/55a3d0cd3a5e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Valid Indicator</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_c">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_C"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1d86c/1FEB/11C8/55a3d17a2fc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Country Code of the RBC</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="rbc_id">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_RBC"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1d859/1FEB/11C8/55a3d1183c36" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Id of the RBC</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="device_id">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1d876/1FEB/11C8/55a3d1c76464" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Id of the device connected to the radio interface</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1d84e/1FEB/11C8/55a3d08f5387" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Identifies the RBC</comment>
 						</ed:Type>
 					</pragmas>
 				</Type>
