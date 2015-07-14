@@ -128,6 +128,11 @@
 										<ConstValue value="false"/>
 									</flow>
 								</LabelledExpression>
+								<LabelledExpression label="timeStampValidateToRBC">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
 							</data>
 						</DataStructOp>
 					</value>
@@ -139,19 +144,38 @@
 					<type>
 						<NamedType>
 							<type>
-								<TypeRef name="trainData_T"/>
+								<TypeRef name="TIU_Types_Pkg::trainData_T"/>
 							</type>
 						</NamedType>
 					</type>
 					<value>
-						<!-- {trainCategory : NC_TRAIN_Train_does_not_belong_to_any_of_the_Other_International... -->
+						<!-- {valid : false, acknowledgedByDriver : false, trainCategory : NC_TRAIN_Train_does... -->
 						<DataStructOp>
 							<data>
+								<LabelledExpression label="valid">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="acknowledgedByDriver">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
 								<LabelledExpression label="trainCategory">
 									<flow>
 										<IdExpression>
 											<path>
 												<ConstVarRef name="NC_TRAIN_Train_does_not_belong_to_any_of_the_Other_International_Train_Category"/>
+											</path>
+										</IdExpression>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="cantDeficientcy">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="NC_CDTRAIN_Cant_Deficiency_80_mm"/>
 											</path>
 										</IdExpression>
 									</flow>
@@ -203,6 +227,11 @@
 										<ConstValue value="0"/>
 									</flow>
 								</LabelledExpression>
+								<LabelledExpression label="numberNationalSystems">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
 								<LabelledExpression label="nationSystems">
 									<flow>
 										<!-- [0, 0, 0] -->
@@ -213,6 +242,11 @@
 												<ConstValue value="0"/>
 											</data>
 										</DataArrayOp>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="numberTractionSystems">
+									<flow>
+										<ConstValue value="0"/>
 									</flow>
 								</LabelledExpression>
 								<LabelledExpression label="tractionSystem">
@@ -368,159 +402,6 @@
 					<pragmas>
 						<ed:Type oid="!ed/48dd5/22F4/EA8/55a22f3f3a45" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 							<comment>Events of the EVC with impact on Train Data</comment>
-						</ed:Type>
-					</pragmas>
-				</Type>
-				<Type name="trainData_T">
-					<definition>
-						<Struct>
-							<fields>
-								<Field name="trainCategory">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="NC_TRAIN"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/48df3/22F4/EA8/55a2305070a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>3.18.3.2 a) Train category(ies)</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-								<Field name="trainLength">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/48df4/22F4/EA8/55a230502eb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>3.18.3.2 b) Train length</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-								<Field name="brakePerctage">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="int"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/48df5/22F4/EA8/55a230507061" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>3.18.3.2 c) Traction / Brake Parameters. This item is currently not complete</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-								<Field name="maxTrainSpeed">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/48df6/22F4/EA8/55a230502620" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>3.18.3.2 d) Maximum train speed</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-								<Field name="loadingGauge">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="M_LOADINGGAUGE"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/48df7/22F4/EA8/55a23050662b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>3.18.3.2 e) Loading gauge</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-								<Field name="axleLoadCategory">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="M_AXLELOADCAT"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/48df8/22F4/EA8/55a230502f25" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>3.18.3.2 f) Axle load category</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-								<Field name="airtightSystem">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="M_AIRTIGHT"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/48df9/22F4/EA8/55a230507213" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>3.18.3.2 h) Train fitted with airtight system</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-								<Field name="axleNumber">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="int"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/48dfa/22F4/EA8/55a23050642b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>3.18.3.2 k) Axle number</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-								<Field name="nationSystems">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Packet_TrainTypes_Pkg::aNID_NTC_T"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/48dfb/22F4/EA8/55a230505fef" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>3.18.3.2 i) List of National Systems available on-board</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-								<Field name="tractionSystem">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Packet_TrainTypes_Pkg::aTractionIdentity_T"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/48dfc/22F4/EA8/55a230502e6a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>3.18.3.2 g) Traction system(s) accepted by the engine</comment>
-										</ed:Field>
-									</pragmas>
-								</Field>
-							</fields>
-						</Struct>
-					</definition>
-					<pragmas>
-						<ed:Type oid="!ed/48df0/22F4/EA8/55a230501d00" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-							<comment>3.18.3 Train Data definition</comment>
 						</ed:Type>
 					</pragmas>
 				</Type>
@@ -681,12 +562,81 @@
 										</ed:Field>
 									</pragmas>
 								</Field>
+								<Field name="timeStampValidateToRBC">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="T_TRAIN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1f4fa/54D3/1728/55a3a09f5ee0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>8.7.4 Train data is acknowledged.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
 							</fields>
 						</Struct>
 					</definition>
 					<pragmas>
 						<ed:Type oid="!ed/1ed5a/3BCC/167C/55a26abd15ac" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 							<comment>3.18.3 Train Data definition</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="rbc_info_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1efd3/7C88/538/55a359c61ada" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Indicated the Information is valid</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="rbc_version">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_VERSION"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1efdc/7C88/538/55a359ff7ee" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Version of the RBC</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="supervisingRBCid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1efe6/7C88/538/55a35b0b1b32" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Identification of the supervising RBC in the interface to the RTM</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1efd2/7C88/538/55a3599f4792" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Information about the RBC neeed for communication</comment>
 						</ed:Type>
 					</pragmas>
 				</Type>
