@@ -1,7 +1,7 @@
 #include "UtrechtAmsterdam_oETCS_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "7283cb8376ebcc69dcf9c6dd9980ff5c";
+const char* _SCSIM_CheckSum = "caf17b1483acc99aa04707dd27013fd5";
 const char* _SCSIM_SmuTypesCheckSum = "f79c40cc4a28a84eb05b013596813063";
 
 /*******************************
@@ -17,28 +17,22 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-inC_Story00A_FirstTest inputs_ctx;
-static inC_Story00A_FirstTest inputs_ctx_restore;
-static inC_Story00A_FirstTest inputs_ctx_execute;
-outC_Story00A_FirstTest outputs_ctx;
-static outC_Story00A_FirstTest outputs_ctx_restore;
-
-/* separate_io: inputs instanciation */
-
-/* separate_io: outputs instanciation */
+static kcg_real _ctx_TrainPos_restore;
+kcg_real _ctx_TrainPos_buffer;
+static CompressedPackets_T_Common_Types_Pkg _ctx_Packets_restore;
+static TelegramHeader_T_BG_Types_Pkg _ctx_Header_restore;
+static outC_Amsterdam_Utrecht_Balises_US_Integration_June _ctx_mem_restore;
 
 static void _SCSIM_RestoreInterface(void) {
-	inputs_ctx.TrainPos = inputs_ctx_restore.TrainPos;
-	inputs_ctx.Trigger_in = inputs_ctx_restore.Trigger_in;
-	outputs_ctx = outputs_ctx_restore;
-
-	/* separate_io: outputs restore */
+	_ctx_TrainPos_buffer = _ctx_TrainPos_restore;
+	kcg_copy_struct__21773(&(Packets), &(_ctx_Packets_restore));
+	kcg_copy_struct__21746(&(Header), &(_ctx_Header_restore));
+	Ctxt_Amsterdam_Utrecht_Balises_US_Integration_June = _ctx_mem_restore;
 }
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	inputs_ctx_execute.TrainPos = inputs_ctx.TrainPos;
-	inputs_ctx_execute.Trigger_in = inputs_ctx.Trigger_in;
+	TrainPos = _ctx_TrainPos_buffer;
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
@@ -65,7 +59,7 @@ int SimReset(void) {
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
 #ifndef KCG_NO_EXTERN_CALL_TO_RESET
-	Story00A_reset_FirstTest(&outputs_ctx);
+	Amsterdam_Utrecht_Balises_reset_US_Integration_June();
 	nRet=1;
 #else /* KCG_NO_EXTERN_CALL_TO_RESET */
 	nRet=0;
@@ -88,7 +82,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	Story00A_FirstTest(&inputs_ctx_execute, &outputs_ctx);
+	Amsterdam_Utrecht_Balises_US_Integration_June();
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -104,12 +98,10 @@ int SimStop(void) {
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(inC_Story00A_FirstTest);
-
-/* separate_io: add (not in ctx) inputs size */
-
-/* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_Story00A_FirstTest);
+	nSize += sizeof(kcg_real);
+	nSize += sizeof(CompressedPackets_T_Common_Types_Pkg);
+	nSize += sizeof(TelegramHeader_T_BG_Types_Pkg);
+	nSize += sizeof(outC_Amsterdam_Utrecht_Balises_US_Integration_June);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -118,14 +110,14 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &inputs_ctx, sizeof(inC_Story00A_FirstTest));
-	pCurrent += sizeof(inC_Story00A_FirstTest);
-
-	/* separate_io: dump (not in ctx) inputs */
-
-	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_Story00A_FirstTest));
-	pCurrent += sizeof(outC_Story00A_FirstTest);
+	memcpy(pCurrent, &TrainPos, sizeof(kcg_real));
+	pCurrent += sizeof(kcg_real);
+	memcpy(pCurrent, &Packets, sizeof(CompressedPackets_T_Common_Types_Pkg));
+	pCurrent += sizeof(CompressedPackets_T_Common_Types_Pkg);
+	memcpy(pCurrent, &Header, sizeof(TelegramHeader_T_BG_Types_Pkg));
+	pCurrent += sizeof(TelegramHeader_T_BG_Types_Pkg);
+	memcpy(pCurrent, &Ctxt_Amsterdam_Utrecht_Balises_US_Integration_June, sizeof(outC_Amsterdam_Utrecht_Balises_US_Integration_June));
+	pCurrent += sizeof(outC_Amsterdam_Utrecht_Balises_US_Integration_June);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -133,14 +125,14 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&inputs_ctx, pCurrent, sizeof(inC_Story00A_FirstTest));
-	pCurrent += sizeof(inC_Story00A_FirstTest);
-
-	/* separate_io: restore (not in ctx) inputs */
-
-	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_Story00A_FirstTest));
-	pCurrent += sizeof(outC_Story00A_FirstTest);
+	memcpy(&TrainPos, pCurrent, sizeof(kcg_real));
+	pCurrent += sizeof(kcg_real);
+	memcpy(&Packets, pCurrent, sizeof(CompressedPackets_T_Common_Types_Pkg));
+	pCurrent += sizeof(CompressedPackets_T_Common_Types_Pkg);
+	memcpy(&Header, pCurrent, sizeof(TelegramHeader_T_BG_Types_Pkg));
+	pCurrent += sizeof(TelegramHeader_T_BG_Types_Pkg);
+	memcpy(&Ctxt_Amsterdam_Utrecht_Balises_US_Integration_June, pCurrent, sizeof(outC_Amsterdam_Utrecht_Balises_US_Integration_June));
+	pCurrent += sizeof(outC_Amsterdam_Utrecht_Balises_US_Integration_June);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */

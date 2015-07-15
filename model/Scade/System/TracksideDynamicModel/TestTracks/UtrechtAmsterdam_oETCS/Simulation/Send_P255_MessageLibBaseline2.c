@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -19,9 +19,9 @@ void Send_P255_MessageLibBaseline2(
   /* MessageLibBaseline2::Send_P255::P255 */P255_trackside_int_T_TM *P255,
   outC_Send_P255_MessageLibBaseline2 *outC)
 {
-  CompressedPackets_T_Common_Types_Pkg tmp;
-  kcg_bool tmp1;
-  kcg_bool noname;
+  static CompressedPackets_T_Common_Types_Pkg tmp;
+  static kcg_bool tmp1;
+  static kcg_bool noname;
   
   kcg_copy_P255_trackside_int_T_TM(&outC->_L4, P255);
   outC->_L5 = outC->_L4.valid;
@@ -53,6 +53,6 @@ void Send_P255_MessageLibBaseline2(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Send_P255_MessageLibBaseline2.c
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 

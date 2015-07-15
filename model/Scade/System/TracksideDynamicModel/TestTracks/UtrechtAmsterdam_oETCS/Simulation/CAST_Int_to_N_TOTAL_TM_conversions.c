@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-12T22:54:51
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -17,39 +17,71 @@ void CAST_Int_to_N_TOTAL_TM_conversions(
   /* TM_conversions::CAST_Int_to_N_TOTAL::int_in */kcg_int int_in,
   outC_CAST_Int_to_N_TOTAL_TM_conversions *outC)
 {
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig2;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error1;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error10;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig9;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error8;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig7;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error18;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig17;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error16;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig15;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error26;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig25;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error24;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig23;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig27;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error28;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig29;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error30;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig19;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error20;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig21;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error22;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig11;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error12;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig13;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error14;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig3;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error4;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */ N_TOTAL n_pig5;
-  /* TM_conversions::CAST_Int_to_N_TOTAL::error */ kcg_bool error6;
-  kcg_bool noname;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig2;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error1;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error10;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig9;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error8;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig7;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error18;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig17;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error16;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig15;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error26;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig25;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error24;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig23;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig27;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error28;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig29;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error30;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig19;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error20;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig21;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error22;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig11;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error12;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig13;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error14;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig3;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error4;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::n_pig */
+  static N_TOTAL n_pig5;
+  /* TM_conversions::CAST_Int_to_N_TOTAL::error */
+  static kcg_bool error6;
+  static kcg_bool noname;
   
   outC->_L3 = int_in;
   outC->n_total_in = outC->_L3;
@@ -206,6 +238,6 @@ void CAST_Int_to_N_TOTAL_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** CAST_Int_to_N_TOTAL_TM_conversions.c
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-12T22:54:51
 *************************************************************$ */
 

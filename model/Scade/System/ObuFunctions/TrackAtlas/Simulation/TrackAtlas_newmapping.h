@@ -1,10 +1,10 @@
 /* TrackAtlas_newmapping.h */
 
-#include "test_NV_iNTERNAL.h"
+#include "Convert_P27_to_DistancePr_TA_SSP.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_test_NV_iNTERNAL inputs_ctx;
-extern outC_test_NV_iNTERNAL outputs_ctx;
+extern inC_Convert_P27_to_DistancePr_TA_SSP inputs_ctx;
+extern outC_Convert_P27_to_DistancePr_TA_SSP outputs_ctx;
 

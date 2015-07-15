@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-12T22:54:51
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -17,23 +17,39 @@ void CAST_Int_to_M_VERSION_TM_conversions(
   /* TM_conversions::CAST_Int_to_M_VERSION::m_version_int */kcg_int m_version_int,
   outC_CAST_Int_to_M_VERSION_TM_conversions *outC)
 {
-  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */ M_VERSION _2_m_version;
-  /* TM_conversions::CAST_Int_to_M_VERSION::error */ kcg_bool error1;
-  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */ M_VERSION m_version;
-  /* TM_conversions::CAST_Int_to_M_VERSION::error */ kcg_bool error;
-  /* TM_conversions::CAST_Int_to_M_VERSION::error */ kcg_bool error10;
-  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */ M_VERSION _9_m_version;
-  /* TM_conversions::CAST_Int_to_M_VERSION::error */ kcg_bool error8;
-  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */ M_VERSION _7_m_version;
-  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */ M_VERSION _11_m_version;
-  /* TM_conversions::CAST_Int_to_M_VERSION::error */ kcg_bool error12;
-  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */ M_VERSION _13_m_version;
-  /* TM_conversions::CAST_Int_to_M_VERSION::error */ kcg_bool error14;
-  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */ M_VERSION _3_m_version;
-  /* TM_conversions::CAST_Int_to_M_VERSION::error */ kcg_bool error4;
-  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */ M_VERSION _5_m_version;
-  /* TM_conversions::CAST_Int_to_M_VERSION::error */ kcg_bool error6;
-  kcg_bool noname;
+  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */
+  static M_VERSION _2_m_version;
+  /* TM_conversions::CAST_Int_to_M_VERSION::error */
+  static kcg_bool error1;
+  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */
+  static M_VERSION m_version;
+  /* TM_conversions::CAST_Int_to_M_VERSION::error */
+  static kcg_bool error;
+  /* TM_conversions::CAST_Int_to_M_VERSION::error */
+  static kcg_bool error10;
+  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */
+  static M_VERSION _9_m_version;
+  /* TM_conversions::CAST_Int_to_M_VERSION::error */
+  static kcg_bool error8;
+  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */
+  static M_VERSION _7_m_version;
+  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */
+  static M_VERSION _11_m_version;
+  /* TM_conversions::CAST_Int_to_M_VERSION::error */
+  static kcg_bool error12;
+  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */
+  static M_VERSION _13_m_version;
+  /* TM_conversions::CAST_Int_to_M_VERSION::error */
+  static kcg_bool error14;
+  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */
+  static M_VERSION _3_m_version;
+  /* TM_conversions::CAST_Int_to_M_VERSION::error */
+  static kcg_bool error4;
+  /* TM_conversions::CAST_Int_to_M_VERSION::m_version */
+  static M_VERSION _5_m_version;
+  /* TM_conversions::CAST_Int_to_M_VERSION::error */
+  static kcg_bool error6;
+  static kcg_bool noname;
   
   outC->_L4 = m_version_int;
   outC->m_version_in = outC->_L4;
@@ -119,6 +135,6 @@ void CAST_Int_to_M_VERSION_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** CAST_Int_to_M_VERSION_TM_conversions.c
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-12T22:54:51
 *************************************************************$ */
 

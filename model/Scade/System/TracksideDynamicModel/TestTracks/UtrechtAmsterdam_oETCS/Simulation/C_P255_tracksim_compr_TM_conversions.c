@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -18,20 +18,32 @@ void C_P255_tracksim_compr_TM_conversions(
   /* TM_conversions::C_P255_tracksim_compr::P255_from_track */P255_trackside_int_T_TM *P255_from_track,
   outC_C_P255_tracksim_compr_TM_conversions *outC)
 {
-  kcg_int i;
-  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _10_q_dir_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _9_error_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _8_q_dir_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _7_error_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _6_error_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _5_q_dir_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _4_error_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _3_q_dir_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR _2_q_dir_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool _1_error_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */ Q_DIR q_dir_1;
-  /* TM_conversions::CAST_Int_to_Q_DIR::error */ kcg_bool error_1;
-  kcg_bool noname_1;
+  static kcg_int i;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */
+  static Q_DIR _10_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */
+  static kcg_bool _9_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */
+  static Q_DIR _8_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */
+  static kcg_bool _7_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */
+  static kcg_bool _6_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */
+  static Q_DIR _5_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */
+  static kcg_bool _4_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */
+  static Q_DIR _3_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */
+  static Q_DIR _2_q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */
+  static kcg_bool _1_error_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::q_dir */
+  static Q_DIR q_dir_1;
+  /* TM_conversions::CAST_Int_to_Q_DIR::error */
+  static kcg_bool error_1;
+  static kcg_bool noname_1;
   
   kcg_copy_P255_trackside_int_T_TM(&outC->_L1, P255_from_track);
   outC->_L387 = outC->_L1.NID_PACKET;
@@ -134,6 +146,6 @@ void C_P255_tracksim_compr_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P255_tracksim_compr_TM_conversions.c
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-12T22:54:50
 *************************************************************$ */
 

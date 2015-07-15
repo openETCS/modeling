@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-12T22:54:51
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -17,8 +17,8 @@ void CAST_Int_to_NID_BG_TM_conversions(
   /* TM_conversions::CAST_Int_to_NID_BG::nid_bg_int */kcg_int nid_bg_int,
   outC_CAST_Int_to_NID_BG_TM_conversions *outC)
 {
-  kcg_bool noname;
-  kcg_bool _1_noname;
+  static kcg_bool noname;
+  static kcg_bool _1_noname;
   
   outC->_L11 = 0;
   outC->_L10 = 16383;
@@ -32,6 +32,6 @@ void CAST_Int_to_NID_BG_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** CAST_Int_to_NID_BG_TM_conversions.c
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-12T22:54:51
 *************************************************************$ */
 

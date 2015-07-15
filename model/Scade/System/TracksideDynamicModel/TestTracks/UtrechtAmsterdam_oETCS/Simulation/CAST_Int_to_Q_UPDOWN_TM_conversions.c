@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-12T22:54:51
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -17,15 +17,23 @@ void CAST_Int_to_Q_UPDOWN_TM_conversions(
   /* TM_conversions::CAST_Int_to_Q_UPDOWN::q_updown_int */kcg_int q_updown_int,
   outC_CAST_Int_to_Q_UPDOWN_TM_conversions *outC)
 {
-  /* TM_conversions::CAST_Int_to_Q_UPDOWN::q_updown */ Q_UPDOWN _2_q_updown;
-  /* TM_conversions::CAST_Int_to_Q_UPDOWN::error */ kcg_bool error1;
-  /* TM_conversions::CAST_Int_to_Q_UPDOWN::q_updown */ Q_UPDOWN q_updown;
-  /* TM_conversions::CAST_Int_to_Q_UPDOWN::error */ kcg_bool error;
-  /* TM_conversions::CAST_Int_to_Q_UPDOWN::q_updown */ Q_UPDOWN _3_q_updown;
-  /* TM_conversions::CAST_Int_to_Q_UPDOWN::error */ kcg_bool error4;
-  /* TM_conversions::CAST_Int_to_Q_UPDOWN::q_updown */ Q_UPDOWN _5_q_updown;
-  /* TM_conversions::CAST_Int_to_Q_UPDOWN::error */ kcg_bool error6;
-  kcg_bool noname;
+  /* TM_conversions::CAST_Int_to_Q_UPDOWN::q_updown */
+  static Q_UPDOWN _2_q_updown;
+  /* TM_conversions::CAST_Int_to_Q_UPDOWN::error */
+  static kcg_bool error1;
+  /* TM_conversions::CAST_Int_to_Q_UPDOWN::q_updown */
+  static Q_UPDOWN q_updown;
+  /* TM_conversions::CAST_Int_to_Q_UPDOWN::error */
+  static kcg_bool error;
+  /* TM_conversions::CAST_Int_to_Q_UPDOWN::q_updown */
+  static Q_UPDOWN _3_q_updown;
+  /* TM_conversions::CAST_Int_to_Q_UPDOWN::error */
+  static kcg_bool error4;
+  /* TM_conversions::CAST_Int_to_Q_UPDOWN::q_updown */
+  static Q_UPDOWN _5_q_updown;
+  /* TM_conversions::CAST_Int_to_Q_UPDOWN::error */
+  static kcg_bool error6;
+  static kcg_bool noname;
   
   outC->_L12 = q_updown_int;
   outC->q_updown_in = outC->_L12;
@@ -67,6 +75,6 @@ void CAST_Int_to_Q_UPDOWN_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** CAST_Int_to_Q_UPDOWN_TM_conversions.c
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-12T22:54:51
 *************************************************************$ */
 

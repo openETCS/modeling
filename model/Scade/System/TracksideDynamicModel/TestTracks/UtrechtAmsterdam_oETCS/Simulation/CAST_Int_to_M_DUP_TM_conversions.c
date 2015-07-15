@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-12T22:54:51
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -17,19 +17,31 @@ void CAST_Int_to_M_DUP_TM_conversions(
   /* TM_conversions::CAST_Int_to_M_DUP::int_in */kcg_int int_in,
   outC_CAST_Int_to_M_DUP_TM_conversions *outC)
 {
-  /* TM_conversions::CAST_Int_to_M_DUP::m_dup */ M_DUP m_dup2;
-  /* TM_conversions::CAST_Int_to_M_DUP::error */ kcg_bool error1;
-  /* TM_conversions::CAST_Int_to_M_DUP::m_dup */ M_DUP m_dup;
-  /* TM_conversions::CAST_Int_to_M_DUP::error */ kcg_bool error;
-  /* TM_conversions::CAST_Int_to_M_DUP::error */ kcg_bool error10;
-  /* TM_conversions::CAST_Int_to_M_DUP::m_dup */ M_DUP m_dup9;
-  /* TM_conversions::CAST_Int_to_M_DUP::error */ kcg_bool error8;
-  /* TM_conversions::CAST_Int_to_M_DUP::m_dup */ M_DUP m_dup7;
-  /* TM_conversions::CAST_Int_to_M_DUP::m_dup */ M_DUP m_dup3;
-  /* TM_conversions::CAST_Int_to_M_DUP::error */ kcg_bool error4;
-  /* TM_conversions::CAST_Int_to_M_DUP::m_dup */ M_DUP m_dup5;
-  /* TM_conversions::CAST_Int_to_M_DUP::error */ kcg_bool error6;
-  kcg_bool noname;
+  /* TM_conversions::CAST_Int_to_M_DUP::m_dup */
+  static M_DUP m_dup2;
+  /* TM_conversions::CAST_Int_to_M_DUP::error */
+  static kcg_bool error1;
+  /* TM_conversions::CAST_Int_to_M_DUP::m_dup */
+  static M_DUP m_dup;
+  /* TM_conversions::CAST_Int_to_M_DUP::error */
+  static kcg_bool error;
+  /* TM_conversions::CAST_Int_to_M_DUP::error */
+  static kcg_bool error10;
+  /* TM_conversions::CAST_Int_to_M_DUP::m_dup */
+  static M_DUP m_dup9;
+  /* TM_conversions::CAST_Int_to_M_DUP::error */
+  static kcg_bool error8;
+  /* TM_conversions::CAST_Int_to_M_DUP::m_dup */
+  static M_DUP m_dup7;
+  /* TM_conversions::CAST_Int_to_M_DUP::m_dup */
+  static M_DUP m_dup3;
+  /* TM_conversions::CAST_Int_to_M_DUP::error */
+  static kcg_bool error4;
+  /* TM_conversions::CAST_Int_to_M_DUP::m_dup */
+  static M_DUP m_dup5;
+  /* TM_conversions::CAST_Int_to_M_DUP::error */
+  static kcg_bool error6;
+  static kcg_bool noname;
   
   outC->_L2 = int_in;
   outC->m_dup_in = outC->_L2;
@@ -97,6 +109,6 @@ void CAST_Int_to_M_DUP_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** CAST_Int_to_M_DUP_TM_conversions.c
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-07-12T22:54:51
 *************************************************************$ */
 
