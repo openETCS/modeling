@@ -1,0 +1,5807 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="SDMConversionModelPkg">
+			<declarations>
+				<Constant name="cBrakeServiceLambdaMax">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="135"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/bac49/15E1/122C/559d2b90183f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>as defined in A3.7</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cBrakePercentV_lim">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="4"/>
+							</size>
+						</Table>
+					</type>
+					<value>
+						<!-- [100, 120, 150, 180] -->
+						<DataArrayOp>
+							<data>
+								<ConstValue value="100"/>
+								<ConstValue value="120"/>
+								<ConstValue value="150"/>
+								<ConstValue value="180"/>
+							</data>
+						</DataArrayOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/232230/4637/1744/559e76aa581e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>as defined in A3.7</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cBrakePercentStepsMin">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="30"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/7cafd5/7114/574/55a51c752369" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>as defined in3.13.3.2.2</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cBrakePercentStepsMax">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="250"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/7caff3/7114/574/55a51c982723" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>as defined in3.13.3.2.2</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cBrakePercentSteps">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- (cBrakePercentStepsMax - cBrakePercentStepsMin) + 1 -->
+						<NAryOp operator="+">
+							<operands>
+								<!-- (cBrakePercentStepsMax - cBrakePercentStepsMin) -->
+								<BinaryOp operator="-">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="cBrakePercentStepsMax"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="cBrakePercentStepsMin"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+								<ConstValue value="1"/>
+							</operands>
+						</NAryOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/3a91f0/4637/1744/559fd9c242dc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>lookup length, ends included</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cBrakePercentSpeedSteps">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="6"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/232159/4637/1744/559e70c520b7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>as defined in A3.7</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cBrakePercentSpeedLookup">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cBrakePercentSteps"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</type>
+					<value>
+						<!-- [72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 83, 84, 85, 86, 87, 88, 88, 89, ... -->
+						<DataArrayOp>
+							<data>
+								<ConstValue value="72"/>
+								<ConstValue value="73"/>
+								<ConstValue value="74"/>
+								<ConstValue value="75"/>
+								<ConstValue value="76"/>
+								<ConstValue value="77"/>
+								<ConstValue value="78"/>
+								<ConstValue value="79"/>
+								<ConstValue value="80"/>
+								<ConstValue value="81"/>
+								<ConstValue value="82"/>
+								<ConstValue value="83"/>
+								<ConstValue value="83"/>
+								<ConstValue value="84"/>
+								<ConstValue value="85"/>
+								<ConstValue value="86"/>
+								<ConstValue value="87"/>
+								<ConstValue value="88"/>
+								<ConstValue value="88"/>
+								<ConstValue value="89"/>
+								<ConstValue value="90"/>
+								<ConstValue value="91"/>
+								<ConstValue value="91"/>
+								<ConstValue value="92"/>
+								<ConstValue value="93"/>
+								<ConstValue value="94"/>
+								<ConstValue value="94"/>
+								<ConstValue value="95"/>
+								<ConstValue value="96"/>
+								<ConstValue value="96"/>
+								<ConstValue value="97"/>
+								<ConstValue value="98"/>
+								<ConstValue value="99"/>
+								<ConstValue value="99"/>
+								<ConstValue value="100"/>
+								<ConstValue value="101"/>
+								<ConstValue value="101"/>
+								<ConstValue value="102"/>
+								<ConstValue value="103"/>
+								<ConstValue value="103"/>
+								<ConstValue value="104"/>
+								<ConstValue value="104"/>
+								<ConstValue value="105"/>
+								<ConstValue value="106"/>
+								<ConstValue value="106"/>
+								<ConstValue value="107"/>
+								<ConstValue value="108"/>
+								<ConstValue value="108"/>
+								<ConstValue value="109"/>
+								<ConstValue value="109"/>
+								<ConstValue value="110"/>
+								<ConstValue value="111"/>
+								<ConstValue value="111"/>
+								<ConstValue value="112"/>
+								<ConstValue value="112"/>
+								<ConstValue value="113"/>
+								<ConstValue value="113"/>
+								<ConstValue value="114"/>
+								<ConstValue value="115"/>
+								<ConstValue value="115"/>
+								<ConstValue value="116"/>
+								<ConstValue value="116"/>
+								<ConstValue value="117"/>
+								<ConstValue value="117"/>
+								<ConstValue value="118"/>
+								<ConstValue value="118"/>
+								<ConstValue value="119"/>
+								<ConstValue value="119"/>
+								<ConstValue value="120"/>
+								<ConstValue value="120"/>
+								<ConstValue value="121"/>
+								<ConstValue value="121"/>
+								<ConstValue value="122"/>
+								<ConstValue value="122"/>
+								<ConstValue value="123"/>
+								<ConstValue value="124"/>
+								<ConstValue value="124"/>
+								<ConstValue value="125"/>
+								<ConstValue value="125"/>
+								<ConstValue value="125"/>
+								<ConstValue value="126"/>
+								<ConstValue value="126"/>
+								<ConstValue value="127"/>
+								<ConstValue value="127"/>
+								<ConstValue value="128"/>
+								<ConstValue value="128"/>
+								<ConstValue value="129"/>
+								<ConstValue value="129"/>
+								<ConstValue value="130"/>
+								<ConstValue value="130"/>
+								<ConstValue value="131"/>
+								<ConstValue value="131"/>
+								<ConstValue value="132"/>
+								<ConstValue value="132"/>
+								<ConstValue value="133"/>
+								<ConstValue value="133"/>
+								<ConstValue value="134"/>
+								<ConstValue value="134"/>
+								<ConstValue value="134"/>
+								<ConstValue value="135"/>
+								<ConstValue value="135"/>
+								<ConstValue value="136"/>
+								<ConstValue value="136"/>
+								<ConstValue value="137"/>
+								<ConstValue value="137"/>
+								<ConstValue value="138"/>
+								<ConstValue value="138"/>
+								<ConstValue value="138"/>
+								<ConstValue value="139"/>
+								<ConstValue value="139"/>
+								<ConstValue value="140"/>
+								<ConstValue value="140"/>
+								<ConstValue value="141"/>
+								<ConstValue value="141"/>
+								<ConstValue value="141"/>
+								<ConstValue value="142"/>
+								<ConstValue value="142"/>
+								<ConstValue value="143"/>
+								<ConstValue value="143"/>
+								<ConstValue value="143"/>
+								<ConstValue value="144"/>
+								<ConstValue value="144"/>
+								<ConstValue value="145"/>
+								<ConstValue value="145"/>
+								<ConstValue value="145"/>
+								<ConstValue value="146"/>
+								<ConstValue value="146"/>
+								<ConstValue value="147"/>
+								<ConstValue value="147"/>
+								<ConstValue value="148"/>
+								<ConstValue value="148"/>
+								<ConstValue value="148"/>
+								<ConstValue value="149"/>
+								<ConstValue value="149"/>
+								<ConstValue value="149"/>
+								<ConstValue value="150"/>
+								<ConstValue value="150"/>
+								<ConstValue value="151"/>
+								<ConstValue value="151"/>
+								<ConstValue value="151"/>
+								<ConstValue value="152"/>
+								<ConstValue value="152"/>
+								<ConstValue value="153"/>
+								<ConstValue value="153"/>
+								<ConstValue value="153"/>
+								<ConstValue value="154"/>
+								<ConstValue value="154"/>
+								<ConstValue value="154"/>
+								<ConstValue value="155"/>
+								<ConstValue value="155"/>
+								<ConstValue value="156"/>
+								<ConstValue value="156"/>
+								<ConstValue value="156"/>
+								<ConstValue value="157"/>
+								<ConstValue value="157"/>
+								<ConstValue value="157"/>
+								<ConstValue value="158"/>
+								<ConstValue value="158"/>
+								<ConstValue value="158"/>
+								<ConstValue value="159"/>
+								<ConstValue value="159"/>
+								<ConstValue value="160"/>
+								<ConstValue value="160"/>
+								<ConstValue value="160"/>
+								<ConstValue value="161"/>
+								<ConstValue value="161"/>
+								<ConstValue value="161"/>
+								<ConstValue value="162"/>
+								<ConstValue value="162"/>
+								<ConstValue value="162"/>
+								<ConstValue value="163"/>
+								<ConstValue value="163"/>
+								<ConstValue value="163"/>
+								<ConstValue value="164"/>
+								<ConstValue value="164"/>
+								<ConstValue value="164"/>
+								<ConstValue value="165"/>
+								<ConstValue value="165"/>
+								<ConstValue value="165"/>
+								<ConstValue value="166"/>
+								<ConstValue value="166"/>
+								<ConstValue value="166"/>
+								<ConstValue value="167"/>
+								<ConstValue value="167"/>
+								<ConstValue value="168"/>
+								<ConstValue value="168"/>
+								<ConstValue value="168"/>
+								<ConstValue value="169"/>
+								<ConstValue value="169"/>
+								<ConstValue value="169"/>
+								<ConstValue value="169"/>
+								<ConstValue value="170"/>
+								<ConstValue value="170"/>
+								<ConstValue value="170"/>
+								<ConstValue value="171"/>
+								<ConstValue value="171"/>
+								<ConstValue value="171"/>
+								<ConstValue value="172"/>
+								<ConstValue value="172"/>
+								<ConstValue value="172"/>
+								<ConstValue value="173"/>
+								<ConstValue value="173"/>
+								<ConstValue value="173"/>
+								<ConstValue value="174"/>
+								<ConstValue value="174"/>
+								<ConstValue value="174"/>
+								<ConstValue value="175"/>
+								<ConstValue value="175"/>
+								<ConstValue value="175"/>
+								<ConstValue value="176"/>
+								<ConstValue value="176"/>
+								<ConstValue value="176"/>
+								<ConstValue value="177"/>
+								<ConstValue value="177"/>
+								<ConstValue value="177"/>
+								<ConstValue value="177"/>
+								<ConstValue value="178"/>
+								<ConstValue value="178"/>
+								<ConstValue value="178"/>
+								<ConstValue value="179"/>
+								<ConstValue value="179"/>
+							</data>
+						</DataArrayOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/3a91e7/4637/1744/559fd99775c6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>as defined in A3.7 by calculation of the power term</comment>
+							<comment>The results are rounded to nearest (math.) integer in km/h.</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="cBrakePercentALookup">
+					<type>
+						<Table>
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="cBrakePercentSpeedSteps"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cBrakePercentSteps"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</type>
+					<value>
+						<!-- [[30, 25, 29, 22, 21, 21], [31, 25, 29, 22, 22, 21], [32, 26, 30, 23, 22, 22], [3... -->
+						<DataArrayOp>
+							<data>
+								<!-- [30, 25, 29, 22, 21, 21] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="30"/>
+										<ConstValue value="25"/>
+										<ConstValue value="29"/>
+										<ConstValue value="22"/>
+										<ConstValue value="21"/>
+										<ConstValue value="21"/>
+									</data>
+								</DataArrayOp>
+								<!-- [31, 25, 29, 22, 22, 21] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="31"/>
+										<ConstValue value="25"/>
+										<ConstValue value="29"/>
+										<ConstValue value="22"/>
+										<ConstValue value="22"/>
+										<ConstValue value="21"/>
+									</data>
+								</DataArrayOp>
+								<!-- [32, 26, 30, 23, 22, 22] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="32"/>
+										<ConstValue value="26"/>
+										<ConstValue value="30"/>
+										<ConstValue value="23"/>
+										<ConstValue value="22"/>
+										<ConstValue value="22"/>
+									</data>
+								</DataArrayOp>
+								<!-- [32, 27, 30, 23, 23, 22] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="32"/>
+										<ConstValue value="27"/>
+										<ConstValue value="30"/>
+										<ConstValue value="23"/>
+										<ConstValue value="23"/>
+										<ConstValue value="22"/>
+									</data>
+								</DataArrayOp>
+								<!-- [33, 27, 31, 24, 23, 23] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="33"/>
+										<ConstValue value="27"/>
+										<ConstValue value="31"/>
+										<ConstValue value="24"/>
+										<ConstValue value="23"/>
+										<ConstValue value="23"/>
+									</data>
+								</DataArrayOp>
+								<!-- [34, 28, 32, 25, 24, 24] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="34"/>
+										<ConstValue value="28"/>
+										<ConstValue value="32"/>
+										<ConstValue value="25"/>
+										<ConstValue value="24"/>
+										<ConstValue value="24"/>
+									</data>
+								</DataArrayOp>
+								<!-- [35, 29, 32, 25, 24, 24] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="35"/>
+										<ConstValue value="29"/>
+										<ConstValue value="32"/>
+										<ConstValue value="25"/>
+										<ConstValue value="24"/>
+										<ConstValue value="24"/>
+									</data>
+								</DataArrayOp>
+								<!-- [35, 29, 33, 26, 25, 25] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="35"/>
+										<ConstValue value="29"/>
+										<ConstValue value="33"/>
+										<ConstValue value="26"/>
+										<ConstValue value="25"/>
+										<ConstValue value="25"/>
+									</data>
+								</DataArrayOp>
+								<!-- [36, 30, 33, 26, 25, 25] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="36"/>
+										<ConstValue value="30"/>
+										<ConstValue value="33"/>
+										<ConstValue value="26"/>
+										<ConstValue value="25"/>
+										<ConstValue value="25"/>
+									</data>
+								</DataArrayOp>
+								<!-- [37, 31, 34, 27, 26, 26] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="37"/>
+										<ConstValue value="31"/>
+										<ConstValue value="34"/>
+										<ConstValue value="27"/>
+										<ConstValue value="26"/>
+										<ConstValue value="26"/>
+									</data>
+								</DataArrayOp>
+								<!-- [38, 31, 35, 27, 26, 26] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="38"/>
+										<ConstValue value="31"/>
+										<ConstValue value="35"/>
+										<ConstValue value="27"/>
+										<ConstValue value="26"/>
+										<ConstValue value="26"/>
+									</data>
+								</DataArrayOp>
+								<!-- [38, 32, 35, 28, 27, 27] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="38"/>
+										<ConstValue value="32"/>
+										<ConstValue value="35"/>
+										<ConstValue value="28"/>
+										<ConstValue value="27"/>
+										<ConstValue value="27"/>
+									</data>
+								</DataArrayOp>
+								<!-- [39, 33, 36, 28, 28, 27] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="39"/>
+										<ConstValue value="33"/>
+										<ConstValue value="36"/>
+										<ConstValue value="28"/>
+										<ConstValue value="28"/>
+										<ConstValue value="27"/>
+									</data>
+								</DataArrayOp>
+								<!-- [40, 33, 36, 29, 28, 28] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="40"/>
+										<ConstValue value="33"/>
+										<ConstValue value="36"/>
+										<ConstValue value="29"/>
+										<ConstValue value="28"/>
+										<ConstValue value="28"/>
+									</data>
+								</DataArrayOp>
+								<!-- [41, 34, 37, 30, 29, 28] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="41"/>
+										<ConstValue value="34"/>
+										<ConstValue value="37"/>
+										<ConstValue value="30"/>
+										<ConstValue value="29"/>
+										<ConstValue value="28"/>
+									</data>
+								</DataArrayOp>
+								<!-- [41, 34, 38, 30, 29, 29] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="41"/>
+										<ConstValue value="34"/>
+										<ConstValue value="38"/>
+										<ConstValue value="30"/>
+										<ConstValue value="29"/>
+										<ConstValue value="29"/>
+									</data>
+								</DataArrayOp>
+								<!-- [42, 35, 38, 31, 30, 29] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="42"/>
+										<ConstValue value="35"/>
+										<ConstValue value="38"/>
+										<ConstValue value="31"/>
+										<ConstValue value="30"/>
+										<ConstValue value="29"/>
+									</data>
+								</DataArrayOp>
+								<!-- [43, 36, 39, 31, 30, 30] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="43"/>
+										<ConstValue value="36"/>
+										<ConstValue value="39"/>
+										<ConstValue value="31"/>
+										<ConstValue value="30"/>
+										<ConstValue value="30"/>
+									</data>
+								</DataArrayOp>
+								<!-- [44, 36, 40, 32, 31, 30] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="44"/>
+										<ConstValue value="36"/>
+										<ConstValue value="40"/>
+										<ConstValue value="32"/>
+										<ConstValue value="31"/>
+										<ConstValue value="30"/>
+									</data>
+								</DataArrayOp>
+								<!-- [44, 37, 40, 32, 31, 31] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="44"/>
+										<ConstValue value="37"/>
+										<ConstValue value="40"/>
+										<ConstValue value="32"/>
+										<ConstValue value="31"/>
+										<ConstValue value="31"/>
+									</data>
+								</DataArrayOp>
+								<!-- [45, 38, 41, 33, 32, 31] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="45"/>
+										<ConstValue value="38"/>
+										<ConstValue value="41"/>
+										<ConstValue value="33"/>
+										<ConstValue value="32"/>
+										<ConstValue value="31"/>
+									</data>
+								</DataArrayOp>
+								<!-- [46, 38, 42, 33, 32, 32] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="46"/>
+										<ConstValue value="38"/>
+										<ConstValue value="42"/>
+										<ConstValue value="33"/>
+										<ConstValue value="32"/>
+										<ConstValue value="32"/>
+									</data>
+								</DataArrayOp>
+								<!-- [47, 39, 42, 34, 33, 32] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="47"/>
+										<ConstValue value="39"/>
+										<ConstValue value="42"/>
+										<ConstValue value="34"/>
+										<ConstValue value="33"/>
+										<ConstValue value="32"/>
+									</data>
+								</DataArrayOp>
+								<!-- [47, 39, 43, 35, 33, 33] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="47"/>
+										<ConstValue value="39"/>
+										<ConstValue value="43"/>
+										<ConstValue value="35"/>
+										<ConstValue value="33"/>
+										<ConstValue value="33"/>
+									</data>
+								</DataArrayOp>
+								<!-- [48, 40, 44, 35, 34, 33] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="48"/>
+										<ConstValue value="40"/>
+										<ConstValue value="44"/>
+										<ConstValue value="35"/>
+										<ConstValue value="34"/>
+										<ConstValue value="33"/>
+									</data>
+								</DataArrayOp>
+								<!-- [49, 41, 44, 36, 34, 34] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="49"/>
+										<ConstValue value="41"/>
+										<ConstValue value="44"/>
+										<ConstValue value="36"/>
+										<ConstValue value="34"/>
+										<ConstValue value="34"/>
+									</data>
+								</DataArrayOp>
+								<!-- [50, 41, 45, 36, 35, 35] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="50"/>
+										<ConstValue value="41"/>
+										<ConstValue value="45"/>
+										<ConstValue value="36"/>
+										<ConstValue value="35"/>
+										<ConstValue value="35"/>
+									</data>
+								</DataArrayOp>
+								<!-- [50, 42, 46, 37, 36, 35] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="50"/>
+										<ConstValue value="42"/>
+										<ConstValue value="46"/>
+										<ConstValue value="37"/>
+										<ConstValue value="36"/>
+										<ConstValue value="35"/>
+									</data>
+								</DataArrayOp>
+								<!-- [51, 42, 47, 37, 36, 36] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="51"/>
+										<ConstValue value="42"/>
+										<ConstValue value="47"/>
+										<ConstValue value="37"/>
+										<ConstValue value="36"/>
+										<ConstValue value="36"/>
+									</data>
+								</DataArrayOp>
+								<!-- [52, 43, 47, 38, 37, 36] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="52"/>
+										<ConstValue value="43"/>
+										<ConstValue value="47"/>
+										<ConstValue value="38"/>
+										<ConstValue value="37"/>
+										<ConstValue value="36"/>
+									</data>
+								</DataArrayOp>
+								<!-- [53, 43, 48, 38, 37, 37] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="53"/>
+										<ConstValue value="43"/>
+										<ConstValue value="48"/>
+										<ConstValue value="38"/>
+										<ConstValue value="37"/>
+										<ConstValue value="37"/>
+									</data>
+								</DataArrayOp>
+								<!-- [53, 44, 49, 39, 38, 37] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="53"/>
+										<ConstValue value="44"/>
+										<ConstValue value="49"/>
+										<ConstValue value="39"/>
+										<ConstValue value="38"/>
+										<ConstValue value="37"/>
+									</data>
+								</DataArrayOp>
+								<!-- [54, 44, 50, 40, 38, 38] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="54"/>
+										<ConstValue value="44"/>
+										<ConstValue value="50"/>
+										<ConstValue value="40"/>
+										<ConstValue value="38"/>
+										<ConstValue value="38"/>
+									</data>
+								</DataArrayOp>
+								<!-- [55, 45, 50, 40, 39, 38] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="55"/>
+										<ConstValue value="45"/>
+										<ConstValue value="50"/>
+										<ConstValue value="40"/>
+										<ConstValue value="39"/>
+										<ConstValue value="38"/>
+									</data>
+								</DataArrayOp>
+								<!-- [56, 45, 51, 41, 39, 39] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="56"/>
+										<ConstValue value="45"/>
+										<ConstValue value="51"/>
+										<ConstValue value="41"/>
+										<ConstValue value="39"/>
+										<ConstValue value="39"/>
+									</data>
+								</DataArrayOp>
+								<!-- [56, 52, 41, 40, 39, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="56"/>
+										<ConstValue value="52"/>
+										<ConstValue value="41"/>
+										<ConstValue value="40"/>
+										<ConstValue value="39"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [57, 53, 42, 40, 40, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="57"/>
+										<ConstValue value="53"/>
+										<ConstValue value="42"/>
+										<ConstValue value="40"/>
+										<ConstValue value="40"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [58, 54, 42, 41, 40, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="58"/>
+										<ConstValue value="54"/>
+										<ConstValue value="42"/>
+										<ConstValue value="41"/>
+										<ConstValue value="40"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [59, 54, 43, 41, 41, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="59"/>
+										<ConstValue value="54"/>
+										<ConstValue value="43"/>
+										<ConstValue value="41"/>
+										<ConstValue value="41"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [59, 55, 43, 42, 41, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="59"/>
+										<ConstValue value="55"/>
+										<ConstValue value="43"/>
+										<ConstValue value="42"/>
+										<ConstValue value="41"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [60, 56, 44, 43, 42, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="60"/>
+										<ConstValue value="56"/>
+										<ConstValue value="44"/>
+										<ConstValue value="43"/>
+										<ConstValue value="42"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [61, 57, 45, 43, 42, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="61"/>
+										<ConstValue value="57"/>
+										<ConstValue value="45"/>
+										<ConstValue value="43"/>
+										<ConstValue value="42"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [62, 58, 45, 44, 43, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="62"/>
+										<ConstValue value="58"/>
+										<ConstValue value="45"/>
+										<ConstValue value="44"/>
+										<ConstValue value="43"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [62, 59, 46, 44, 44, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="62"/>
+										<ConstValue value="59"/>
+										<ConstValue value="46"/>
+										<ConstValue value="44"/>
+										<ConstValue value="44"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [63, 60, 46, 45, 44, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="63"/>
+										<ConstValue value="60"/>
+										<ConstValue value="46"/>
+										<ConstValue value="45"/>
+										<ConstValue value="44"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [64, 61, 47, 45, 45, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="64"/>
+										<ConstValue value="61"/>
+										<ConstValue value="47"/>
+										<ConstValue value="45"/>
+										<ConstValue value="45"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [65, 61, 47, 46, 45, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="65"/>
+										<ConstValue value="61"/>
+										<ConstValue value="47"/>
+										<ConstValue value="46"/>
+										<ConstValue value="45"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [65, 62, 48, 46, 46, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="65"/>
+										<ConstValue value="62"/>
+										<ConstValue value="48"/>
+										<ConstValue value="46"/>
+										<ConstValue value="46"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [66, 63, 49, 47, 46, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="66"/>
+										<ConstValue value="63"/>
+										<ConstValue value="49"/>
+										<ConstValue value="47"/>
+										<ConstValue value="46"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [67, 64, 49, 47, 47, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="67"/>
+										<ConstValue value="64"/>
+										<ConstValue value="49"/>
+										<ConstValue value="47"/>
+										<ConstValue value="47"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [68, 65, 50, 48, 47, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="68"/>
+										<ConstValue value="65"/>
+										<ConstValue value="50"/>
+										<ConstValue value="48"/>
+										<ConstValue value="47"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [68, 66, 50, 49, 48, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="68"/>
+										<ConstValue value="66"/>
+										<ConstValue value="50"/>
+										<ConstValue value="49"/>
+										<ConstValue value="48"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [69, 67, 51, 49, 48, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="69"/>
+										<ConstValue value="67"/>
+										<ConstValue value="51"/>
+										<ConstValue value="49"/>
+										<ConstValue value="48"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [70, 68, 52, 50, 49, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="70"/>
+										<ConstValue value="68"/>
+										<ConstValue value="52"/>
+										<ConstValue value="50"/>
+										<ConstValue value="49"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [71, 69, 52, 50, 49, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="71"/>
+										<ConstValue value="69"/>
+										<ConstValue value="52"/>
+										<ConstValue value="50"/>
+										<ConstValue value="49"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [71, 70, 53, 51, 50, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="71"/>
+										<ConstValue value="70"/>
+										<ConstValue value="53"/>
+										<ConstValue value="51"/>
+										<ConstValue value="50"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [72, 71, 53, 51, 51, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="72"/>
+										<ConstValue value="71"/>
+										<ConstValue value="53"/>
+										<ConstValue value="51"/>
+										<ConstValue value="51"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [73, 72, 54, 52, 51, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="73"/>
+										<ConstValue value="72"/>
+										<ConstValue value="54"/>
+										<ConstValue value="52"/>
+										<ConstValue value="51"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [74, 73, 54, 52, 52, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="74"/>
+										<ConstValue value="73"/>
+										<ConstValue value="54"/>
+										<ConstValue value="52"/>
+										<ConstValue value="52"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [74, 74, 55, 53, 52, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="74"/>
+										<ConstValue value="74"/>
+										<ConstValue value="55"/>
+										<ConstValue value="53"/>
+										<ConstValue value="52"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [75, 75, 56, 54, 53, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="75"/>
+										<ConstValue value="75"/>
+										<ConstValue value="56"/>
+										<ConstValue value="54"/>
+										<ConstValue value="53"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [76, 77, 56, 54, 53, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="76"/>
+										<ConstValue value="77"/>
+										<ConstValue value="56"/>
+										<ConstValue value="54"/>
+										<ConstValue value="53"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [77, 78, 57, 55, 54, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="77"/>
+										<ConstValue value="78"/>
+										<ConstValue value="57"/>
+										<ConstValue value="55"/>
+										<ConstValue value="54"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [77, 79, 57, 55, 54, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="77"/>
+										<ConstValue value="79"/>
+										<ConstValue value="57"/>
+										<ConstValue value="55"/>
+										<ConstValue value="54"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [78, 80, 58, 56, 55, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="78"/>
+										<ConstValue value="80"/>
+										<ConstValue value="58"/>
+										<ConstValue value="56"/>
+										<ConstValue value="55"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [79, 81, 59, 56, 55, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="79"/>
+										<ConstValue value="81"/>
+										<ConstValue value="59"/>
+										<ConstValue value="56"/>
+										<ConstValue value="55"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [80, 82, 59, 57, 56, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="80"/>
+										<ConstValue value="82"/>
+										<ConstValue value="59"/>
+										<ConstValue value="57"/>
+										<ConstValue value="56"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [80, 84, 60, 57, 57, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="80"/>
+										<ConstValue value="84"/>
+										<ConstValue value="60"/>
+										<ConstValue value="57"/>
+										<ConstValue value="57"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [81, 85, 60, 58, 57, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="81"/>
+										<ConstValue value="85"/>
+										<ConstValue value="60"/>
+										<ConstValue value="58"/>
+										<ConstValue value="57"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [82, 86, 61, 59, 58, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="82"/>
+										<ConstValue value="86"/>
+										<ConstValue value="61"/>
+										<ConstValue value="59"/>
+										<ConstValue value="58"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [83, 62, 59, 58, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="83"/>
+										<ConstValue value="62"/>
+										<ConstValue value="59"/>
+										<ConstValue value="58"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [83, 62, 60, 59, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="83"/>
+										<ConstValue value="62"/>
+										<ConstValue value="60"/>
+										<ConstValue value="59"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [84, 63, 60, 59, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="84"/>
+										<ConstValue value="63"/>
+										<ConstValue value="60"/>
+										<ConstValue value="59"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [85, 64, 61, 60, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="85"/>
+										<ConstValue value="64"/>
+										<ConstValue value="61"/>
+										<ConstValue value="60"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [86, 64, 61, 60, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="86"/>
+										<ConstValue value="64"/>
+										<ConstValue value="61"/>
+										<ConstValue value="60"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [86, 65, 62, 61, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="86"/>
+										<ConstValue value="65"/>
+										<ConstValue value="62"/>
+										<ConstValue value="61"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [87, 65, 63, 61, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="87"/>
+										<ConstValue value="65"/>
+										<ConstValue value="63"/>
+										<ConstValue value="61"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [88, 66, 63, 62, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="88"/>
+										<ConstValue value="66"/>
+										<ConstValue value="63"/>
+										<ConstValue value="62"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [89, 67, 64, 63, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="89"/>
+										<ConstValue value="67"/>
+										<ConstValue value="64"/>
+										<ConstValue value="63"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [89, 67, 64, 63, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="89"/>
+										<ConstValue value="67"/>
+										<ConstValue value="64"/>
+										<ConstValue value="63"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [90, 68, 65, 64, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="90"/>
+										<ConstValue value="68"/>
+										<ConstValue value="65"/>
+										<ConstValue value="64"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [91, 69, 65, 64, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="91"/>
+										<ConstValue value="69"/>
+										<ConstValue value="65"/>
+										<ConstValue value="64"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [92, 69, 66, 65, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="92"/>
+										<ConstValue value="69"/>
+										<ConstValue value="66"/>
+										<ConstValue value="65"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [92, 70, 67, 65, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="92"/>
+										<ConstValue value="70"/>
+										<ConstValue value="67"/>
+										<ConstValue value="65"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [93, 71, 67, 66, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="93"/>
+										<ConstValue value="71"/>
+										<ConstValue value="67"/>
+										<ConstValue value="66"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [94, 71, 68, 66, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="94"/>
+										<ConstValue value="71"/>
+										<ConstValue value="68"/>
+										<ConstValue value="66"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [95, 72, 68, 67, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="95"/>
+										<ConstValue value="72"/>
+										<ConstValue value="68"/>
+										<ConstValue value="67"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [95, 72, 69, 68, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="95"/>
+										<ConstValue value="72"/>
+										<ConstValue value="69"/>
+										<ConstValue value="68"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [96, 73, 70, 68, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="96"/>
+										<ConstValue value="73"/>
+										<ConstValue value="70"/>
+										<ConstValue value="68"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [97, 74, 70, 69, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="97"/>
+										<ConstValue value="74"/>
+										<ConstValue value="70"/>
+										<ConstValue value="69"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [98, 74, 71, 69, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="98"/>
+										<ConstValue value="74"/>
+										<ConstValue value="71"/>
+										<ConstValue value="69"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [98, 75, 71, 70, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="98"/>
+										<ConstValue value="75"/>
+										<ConstValue value="71"/>
+										<ConstValue value="70"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [99, 76, 72, 70, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="99"/>
+										<ConstValue value="76"/>
+										<ConstValue value="72"/>
+										<ConstValue value="70"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [100, 76, 72, 71, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="100"/>
+										<ConstValue value="76"/>
+										<ConstValue value="72"/>
+										<ConstValue value="71"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [101, 77, 73, 72, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="101"/>
+										<ConstValue value="77"/>
+										<ConstValue value="73"/>
+										<ConstValue value="72"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [101, 78, 74, 72, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="101"/>
+										<ConstValue value="78"/>
+										<ConstValue value="74"/>
+										<ConstValue value="72"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [102, 78, 74, 73, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="102"/>
+										<ConstValue value="78"/>
+										<ConstValue value="74"/>
+										<ConstValue value="73"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [103, 79, 75, 73, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="103"/>
+										<ConstValue value="79"/>
+										<ConstValue value="75"/>
+										<ConstValue value="73"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [104, 80, 75, 74, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="104"/>
+										<ConstValue value="80"/>
+										<ConstValue value="75"/>
+										<ConstValue value="74"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [104, 80, 76, 74, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="104"/>
+										<ConstValue value="80"/>
+										<ConstValue value="76"/>
+										<ConstValue value="74"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [105, 81, 77, 75, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="105"/>
+										<ConstValue value="81"/>
+										<ConstValue value="77"/>
+										<ConstValue value="75"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [106, 82, 77, 75, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="106"/>
+										<ConstValue value="82"/>
+										<ConstValue value="77"/>
+										<ConstValue value="75"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [107, 83, 78, 76, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="107"/>
+										<ConstValue value="83"/>
+										<ConstValue value="78"/>
+										<ConstValue value="76"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [107, 83, 78, 77, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="107"/>
+										<ConstValue value="83"/>
+										<ConstValue value="78"/>
+										<ConstValue value="77"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [108, 84, 79, 77, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="108"/>
+										<ConstValue value="84"/>
+										<ConstValue value="79"/>
+										<ConstValue value="77"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [109, 85, 80, 78, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="109"/>
+										<ConstValue value="85"/>
+										<ConstValue value="80"/>
+										<ConstValue value="78"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [110, 85, 80, 78, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="110"/>
+										<ConstValue value="85"/>
+										<ConstValue value="80"/>
+										<ConstValue value="78"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [110, 86, 81, 79, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="110"/>
+										<ConstValue value="86"/>
+										<ConstValue value="81"/>
+										<ConstValue value="79"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [111, 87, 82, 79, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="111"/>
+										<ConstValue value="87"/>
+										<ConstValue value="82"/>
+										<ConstValue value="79"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [112, 87, 82, 80, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="112"/>
+										<ConstValue value="87"/>
+										<ConstValue value="82"/>
+										<ConstValue value="80"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [113, 88, 83, 81, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="113"/>
+										<ConstValue value="88"/>
+										<ConstValue value="83"/>
+										<ConstValue value="81"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [113, 89, 83, 81, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="113"/>
+										<ConstValue value="89"/>
+										<ConstValue value="83"/>
+										<ConstValue value="81"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [114, 90, 84, 82, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="114"/>
+										<ConstValue value="90"/>
+										<ConstValue value="84"/>
+										<ConstValue value="82"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [115, 90, 85, 82, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="115"/>
+										<ConstValue value="90"/>
+										<ConstValue value="85"/>
+										<ConstValue value="82"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [116, 91, 85, 83, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="116"/>
+										<ConstValue value="91"/>
+										<ConstValue value="85"/>
+										<ConstValue value="83"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [116, 92, 86, 83, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="116"/>
+										<ConstValue value="92"/>
+										<ConstValue value="86"/>
+										<ConstValue value="83"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [117, 93, 87, 84, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="117"/>
+										<ConstValue value="93"/>
+										<ConstValue value="87"/>
+										<ConstValue value="84"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [118, 93, 87, 85, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="118"/>
+										<ConstValue value="93"/>
+										<ConstValue value="87"/>
+										<ConstValue value="85"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [119, 94, 88, 85, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="119"/>
+										<ConstValue value="94"/>
+										<ConstValue value="88"/>
+										<ConstValue value="85"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [119, 95, 88, 86, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="119"/>
+										<ConstValue value="95"/>
+										<ConstValue value="88"/>
+										<ConstValue value="86"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [120, 96, 89, 86, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="120"/>
+										<ConstValue value="96"/>
+										<ConstValue value="89"/>
+										<ConstValue value="86"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [121, 96, 90, 87, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="121"/>
+										<ConstValue value="96"/>
+										<ConstValue value="90"/>
+										<ConstValue value="87"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [122, 97, 90, 87, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="122"/>
+										<ConstValue value="97"/>
+										<ConstValue value="90"/>
+										<ConstValue value="87"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [122, 98, 91, 88, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="122"/>
+										<ConstValue value="98"/>
+										<ConstValue value="91"/>
+										<ConstValue value="88"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [123, 99, 92, 89, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="123"/>
+										<ConstValue value="99"/>
+										<ConstValue value="92"/>
+										<ConstValue value="89"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [124, 99, 92, 89, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="124"/>
+										<ConstValue value="99"/>
+										<ConstValue value="92"/>
+										<ConstValue value="89"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [125, 100, 93, 90, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="125"/>
+										<ConstValue value="100"/>
+										<ConstValue value="93"/>
+										<ConstValue value="90"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [125, 101, 94, 90, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="125"/>
+										<ConstValue value="101"/>
+										<ConstValue value="94"/>
+										<ConstValue value="90"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [126, 102, 94, 91, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="126"/>
+										<ConstValue value="102"/>
+										<ConstValue value="94"/>
+										<ConstValue value="91"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [127, 103, 95, 92, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="127"/>
+										<ConstValue value="103"/>
+										<ConstValue value="95"/>
+										<ConstValue value="92"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [128, 103, 96, 92, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="128"/>
+										<ConstValue value="103"/>
+										<ConstValue value="96"/>
+										<ConstValue value="92"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [128, 104, 96, 93, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="128"/>
+										<ConstValue value="104"/>
+										<ConstValue value="96"/>
+										<ConstValue value="93"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [129, 105, 97, 93, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="129"/>
+										<ConstValue value="105"/>
+										<ConstValue value="97"/>
+										<ConstValue value="93"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [130, 106, 98, 94, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="130"/>
+										<ConstValue value="106"/>
+										<ConstValue value="98"/>
+										<ConstValue value="94"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [131, 107, 98, 94, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="131"/>
+										<ConstValue value="107"/>
+										<ConstValue value="98"/>
+										<ConstValue value="94"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [131, 107, 99, 95, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="131"/>
+										<ConstValue value="107"/>
+										<ConstValue value="99"/>
+										<ConstValue value="95"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [132, 108, 100, 96, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="132"/>
+										<ConstValue value="108"/>
+										<ConstValue value="100"/>
+										<ConstValue value="96"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [133, 100, 96, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="133"/>
+										<ConstValue value="100"/>
+										<ConstValue value="96"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [134, 101, 97, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="134"/>
+										<ConstValue value="101"/>
+										<ConstValue value="97"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [134, 102, 97, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="134"/>
+										<ConstValue value="102"/>
+										<ConstValue value="97"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [135, 102, 98, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="135"/>
+										<ConstValue value="102"/>
+										<ConstValue value="98"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [136, 103, 99, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="136"/>
+										<ConstValue value="103"/>
+										<ConstValue value="99"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [137, 104, 99, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="137"/>
+										<ConstValue value="104"/>
+										<ConstValue value="99"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [137, 104, 100, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="137"/>
+										<ConstValue value="104"/>
+										<ConstValue value="100"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [138, 105, 100, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="138"/>
+										<ConstValue value="105"/>
+										<ConstValue value="100"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [139, 106, 101, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="139"/>
+										<ConstValue value="106"/>
+										<ConstValue value="101"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [140, 106, 102, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="140"/>
+										<ConstValue value="106"/>
+										<ConstValue value="102"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [140, 107, 102, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="140"/>
+										<ConstValue value="107"/>
+										<ConstValue value="102"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [141, 108, 103, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="141"/>
+										<ConstValue value="108"/>
+										<ConstValue value="103"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [142, 108, 103, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="142"/>
+										<ConstValue value="108"/>
+										<ConstValue value="103"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [143, 109, 104, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="143"/>
+										<ConstValue value="109"/>
+										<ConstValue value="104"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [143, 110, 105, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="143"/>
+										<ConstValue value="110"/>
+										<ConstValue value="105"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [144, 111, 105, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="144"/>
+										<ConstValue value="111"/>
+										<ConstValue value="105"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [145, 111, 106, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="145"/>
+										<ConstValue value="111"/>
+										<ConstValue value="106"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [146, 112, 106, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="146"/>
+										<ConstValue value="112"/>
+										<ConstValue value="106"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [146, 113, 107, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="146"/>
+										<ConstValue value="113"/>
+										<ConstValue value="107"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [147, 113, 108, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="147"/>
+										<ConstValue value="113"/>
+										<ConstValue value="108"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [148, 114, 108, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="148"/>
+										<ConstValue value="114"/>
+										<ConstValue value="108"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [149, 115, 109, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="149"/>
+										<ConstValue value="115"/>
+										<ConstValue value="109"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [149, 116, 109, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="149"/>
+										<ConstValue value="116"/>
+										<ConstValue value="109"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [150, 116, 110, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="150"/>
+										<ConstValue value="116"/>
+										<ConstValue value="110"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [151, 117, 111, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="151"/>
+										<ConstValue value="117"/>
+										<ConstValue value="111"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [152, 118, 111, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="152"/>
+										<ConstValue value="118"/>
+										<ConstValue value="111"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [152, 119, 112, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="152"/>
+										<ConstValue value="119"/>
+										<ConstValue value="112"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [153, 119, 112, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="153"/>
+										<ConstValue value="119"/>
+										<ConstValue value="112"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [154, 120, 113, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="154"/>
+										<ConstValue value="120"/>
+										<ConstValue value="113"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [155, 121, 114, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="155"/>
+										<ConstValue value="121"/>
+										<ConstValue value="114"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [155, 122, 114, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="155"/>
+										<ConstValue value="122"/>
+										<ConstValue value="114"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [156, 122, 115, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="156"/>
+										<ConstValue value="122"/>
+										<ConstValue value="115"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [157, 123, 115, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="157"/>
+										<ConstValue value="123"/>
+										<ConstValue value="115"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [158, 124, 116, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="158"/>
+										<ConstValue value="124"/>
+										<ConstValue value="116"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [158, 125, 117, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="158"/>
+										<ConstValue value="125"/>
+										<ConstValue value="117"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [159, 125, 117, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="159"/>
+										<ConstValue value="125"/>
+										<ConstValue value="117"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [160, 126, 118, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="160"/>
+										<ConstValue value="126"/>
+										<ConstValue value="118"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [161, 127, 118, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="161"/>
+										<ConstValue value="127"/>
+										<ConstValue value="118"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [161, 128, 119, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="161"/>
+										<ConstValue value="128"/>
+										<ConstValue value="119"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [162, 128, 120, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="162"/>
+										<ConstValue value="128"/>
+										<ConstValue value="120"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [163, 129, 120, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="163"/>
+										<ConstValue value="129"/>
+										<ConstValue value="120"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [164, 130, 121, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="164"/>
+										<ConstValue value="130"/>
+										<ConstValue value="121"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [164, 131, 122, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="164"/>
+										<ConstValue value="131"/>
+										<ConstValue value="122"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [165, 132, 122, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="165"/>
+										<ConstValue value="132"/>
+										<ConstValue value="122"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [166, 132, 123, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="166"/>
+										<ConstValue value="132"/>
+										<ConstValue value="123"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [167, 133, 123, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="167"/>
+										<ConstValue value="133"/>
+										<ConstValue value="123"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [167, 134, 124, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="167"/>
+										<ConstValue value="134"/>
+										<ConstValue value="124"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [168, 135, 125, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="168"/>
+										<ConstValue value="135"/>
+										<ConstValue value="125"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [169, 135, 125, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="169"/>
+										<ConstValue value="135"/>
+										<ConstValue value="125"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [170, 136, 126, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="170"/>
+										<ConstValue value="136"/>
+										<ConstValue value="126"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [170, 137, 127, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="170"/>
+										<ConstValue value="137"/>
+										<ConstValue value="127"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [171, 138, 127, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="171"/>
+										<ConstValue value="138"/>
+										<ConstValue value="127"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [172, 139, 128, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="172"/>
+										<ConstValue value="139"/>
+										<ConstValue value="128"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [173, 140, 128, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="173"/>
+										<ConstValue value="140"/>
+										<ConstValue value="128"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [173, 140, 129, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="173"/>
+										<ConstValue value="140"/>
+										<ConstValue value="129"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [174, 141, 130, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="174"/>
+										<ConstValue value="141"/>
+										<ConstValue value="130"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [175, 142, 130, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="175"/>
+										<ConstValue value="142"/>
+										<ConstValue value="130"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [176, 143, 131, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="176"/>
+										<ConstValue value="143"/>
+										<ConstValue value="131"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [176, 144, 132, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="176"/>
+										<ConstValue value="144"/>
+										<ConstValue value="132"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [177, 145, 132, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="177"/>
+										<ConstValue value="145"/>
+										<ConstValue value="132"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [178, 145, 133, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="178"/>
+										<ConstValue value="145"/>
+										<ConstValue value="133"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [179, 146, 133, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="179"/>
+										<ConstValue value="146"/>
+										<ConstValue value="133"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [179, 147, 134, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="179"/>
+										<ConstValue value="147"/>
+										<ConstValue value="134"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [180, 148, 135, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="180"/>
+										<ConstValue value="148"/>
+										<ConstValue value="135"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [181, 149, 135, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="181"/>
+										<ConstValue value="149"/>
+										<ConstValue value="135"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [182, 150, 136, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="182"/>
+										<ConstValue value="150"/>
+										<ConstValue value="136"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [182, 150, 137, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="182"/>
+										<ConstValue value="150"/>
+										<ConstValue value="137"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [183, 151, 137, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="183"/>
+										<ConstValue value="151"/>
+										<ConstValue value="137"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [184, 152, 138, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="184"/>
+										<ConstValue value="152"/>
+										<ConstValue value="138"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [185, 153, 138, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="185"/>
+										<ConstValue value="153"/>
+										<ConstValue value="138"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [185, 154, 139, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="185"/>
+										<ConstValue value="154"/>
+										<ConstValue value="139"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [186, 155, 140, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="186"/>
+										<ConstValue value="155"/>
+										<ConstValue value="140"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [187, 156, 140, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="187"/>
+										<ConstValue value="156"/>
+										<ConstValue value="140"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [188, 157, 141, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="188"/>
+										<ConstValue value="157"/>
+										<ConstValue value="141"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [188, 157, 142, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="188"/>
+										<ConstValue value="157"/>
+										<ConstValue value="142"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [189, 158, 142, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="189"/>
+										<ConstValue value="158"/>
+										<ConstValue value="142"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [190, 159, 143, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="190"/>
+										<ConstValue value="159"/>
+										<ConstValue value="143"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [191, 160, 144, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="191"/>
+										<ConstValue value="160"/>
+										<ConstValue value="144"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [191, 161, 144, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="191"/>
+										<ConstValue value="161"/>
+										<ConstValue value="144"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [192, 162, 145, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="192"/>
+										<ConstValue value="162"/>
+										<ConstValue value="145"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [193, 163, 146, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="193"/>
+										<ConstValue value="163"/>
+										<ConstValue value="146"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [194, 164, 146, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="194"/>
+										<ConstValue value="164"/>
+										<ConstValue value="146"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [194, 165, 147, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="194"/>
+										<ConstValue value="165"/>
+										<ConstValue value="147"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+								<!-- [195, 166, 148, 0, 0, 0] -->
+								<DataArrayOp>
+									<data>
+										<ConstValue value="195"/>
+										<ConstValue value="166"/>
+										<ConstValue value="148"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</data>
+								</DataArrayOp>
+							</data>
+						</DataArrayOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/3ac266/4637/1744/559fda456e96" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>as defined in A3.7 by calculation of the power term</comment>
+							<comment>The results are rounded to nearest (math.) integer in cm/s/s</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Operator kind="function" name="conversionModel">
+					<inputs>
+						<Variable name="lambda0">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/17636c/4637/1744/559e6ed82ae5"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="A">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cd9f9/7114/574/55a51fc94f7f"/>
+							</pragmas>
+						</Variable>
+						<Variable name="V">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cd9fa/7114/574/55a51fe32009"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="V_lim">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/23278d/4637/1744/559eb37d668a"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/17638b/4637/1744/559e6f3c4501"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L67">
+							<type>
+								<Table>
+									<type>
+										<Table>
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int"/>
+													</type>
+												</NamedType>
+											</type>
+											<size>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="cBrakePercentSpeedSteps"/>
+													</path>
+												</IdExpression>
+											</size>
+										</Table>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="cBrakePercentSteps"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7caf4d/7114/574/55a518f016b8"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L68">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="cBrakePercentSpeedSteps"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7caf53/7114/574/55a519183993"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L74">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="cBrakePercentSpeedSteps"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7caf9f/7114/574/55a51a08cc1"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L76">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cafb3/7114/574/55a51c5a7f51"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L77">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cb00d/7114/574/55a51cf77215"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L78">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<ConstValue value="4"/>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cb053/7114/574/55a51e9c2054"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L79">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="cBrakePercentSteps"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cd9d7/7114/574/55a51f1b6d5c"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L80">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cd9e2/7114/574/55a51f3234ca"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L81">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cd9f1/7114/574/55a51f785672"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L82">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<!-- cBrakePercentSpeedSteps + (CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP - cBrak... -->
+										<NAryOp operator="+">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="cBrakePercentSpeedSteps"/>
+													</path>
+												</IdExpression>
+												<!-- (CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP - cBrakePercentSpeedSteps) -->
+												<BinaryOp operator="-">
+													<operands>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP"/>
+															</path>
+														</IdExpression>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="cBrakePercentSpeedSteps"/>
+															</path>
+														</IdExpression>
+													</operands>
+												</BinaryOp>
+											</operands>
+										</NAryOp>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cda11/7114/574/55a520e05b16"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L83">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<!-- CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP - cBrakePercentSpeedSteps -->
+										<BinaryOp operator="-">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="cBrakePercentSpeedSteps"/>
+													</path>
+												</IdExpression>
+											</operands>
+										</BinaryOp>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cda17/7114/574/55a520f586f"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L86">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cda46/7114/574/55a522732c74"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L88">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cda63/7114/574/55a522c33ad8"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L89">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cda69/7114/574/55a522d36e8f"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L91">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cda8d/7114/574/55a526bb6d5f"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L92">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdaa8/7114/574/55a5281b346e"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L93">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdab7/7114/574/55a5282069f"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L94">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdac6/7114/574/55a5282571d3"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L95">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdaed/7114/574/55a5283f4542"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L96">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdb17/7114/574/55a528b95473"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L97">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdb1d/7114/574/55a528d481e"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L98">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdb30/7114/574/55a5292270d3"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L99">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdb47/7114/574/55a5292c3219"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L100">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdb5e/7114/574/55a529334728"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L101">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdb6d/7114/574/55a52957213"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L102">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdb74/7114/574/55a5295e66f"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L104">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdb82/7114/574/55a52a3c64ac"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L105">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdb89/7114/574/55a52a8870d4"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L106">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdb8b/7114/574/55a52c911e16"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L107">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdb96/7114/574/55a52dea2b35"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L108">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdb9d/7114/574/55a52e442587"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L109">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdba4/7114/574/55a52ebb2b37"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L110">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdbab/7114/574/55a52ec3468a"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L111">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdbb2/7114/574/55a52ec562c8"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L112">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdbb9/7114/574/55a52f467947"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L113">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdbc0/7114/574/55a52f642cba"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L114">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdbcf/7114/574/55a52fa762d8"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L115">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdbde/7114/574/55a5328f548c"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L116">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdbf5/7114/574/55a532a69c0"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L117">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7cdc0e/7114/574/55a5343c27b1"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L1 = lambda0; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="lambda0"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/17638a/4637/1744/559e6f3c6284"/>
+							</pragmas>
+						</Equation>
+						<!-- _L67 = cBrakePercentALookup; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L67"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cBrakePercentALookup"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7caf4c/7114/574/55a518f05170"/>
+							</pragmas>
+						</Equation>
+						<!-- _L68 = (_L67.[_L76] default _L74); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L68"/>
+							</lefts>
+							<right>
+								<!-- (_L67.[_L76] default _L74) -->
+								<PrjDynOp name="1">
+									<array>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L67"/>
+											</path>
+										</IdExpression>
+									</array>
+									<indexes>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L76"/>
+											</path>
+										</IdExpression>
+									</indexes>
+									<default>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L74"/>
+											</path>
+										</IdExpression>
+									</default>
+								</PrjDynOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7caf52/7114/574/55a519183a4a"/>
+							</pragmas>
+						</Equation>
+						<!-- _L74 = _L67[0]; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L74"/>
+							</lefts>
+							<right>
+								<!-- _L67[0] -->
+								<PrjOp name="1">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L67"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="0"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7caf9e/7114/574/55a51a084387"/>
+							</pragmas>
+						</Equation>
+						<!-- _L76 = _L1 - _L77; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L76"/>
+							</lefts>
+							<right>
+								<!-- _L1 - _L77 -->
+								<BinaryOp name="1" operator="-">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L77"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cafb2/7114/574/55a51c5a7651"/>
+							</pragmas>
+						</Equation>
+						<!-- _L77 = cBrakePercentStepsMin; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L77"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cBrakePercentStepsMin"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cb00c/7114/574/55a51cf75358"/>
+							</pragmas>
+						</Equation>
+						<!-- _L78 = cBrakePercentV_lim; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L78"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cBrakePercentV_lim"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cb052/7114/574/55a51e9c51b"/>
+							</pragmas>
+						</Equation>
+						<!-- _L79 = cBrakePercentSpeedLookup; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L79"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="cBrakePercentSpeedLookup"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cd9d6/7114/574/55a51f1b5527"/>
+							</pragmas>
+						</Equation>
+						<!-- _L80 = (_L79.[_L76] default _L81); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L80"/>
+							</lefts>
+							<right>
+								<!-- (_L79.[_L76] default _L81) -->
+								<PrjDynOp name="2">
+									<array>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L79"/>
+											</path>
+										</IdExpression>
+									</array>
+									<indexes>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L76"/>
+											</path>
+										</IdExpression>
+									</indexes>
+									<default>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L81"/>
+											</path>
+										</IdExpression>
+									</default>
+								</PrjDynOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cd9e1/7114/574/55a51f326ce6"/>
+							</pragmas>
+						</Equation>
+						<!-- _L81 = _L79[0]; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L81"/>
+							</lefts>
+							<right>
+								<!-- _L79[0] -->
+								<PrjOp name="2">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L79"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="0"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cd9f0/7114/574/55a51f78c17"/>
+							</pragmas>
+						</Equation>
+						<!-- V_lim = _L80; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="V_lim"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L80"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cd9f4/7114/574/55a51fb46f1c"/>
+							</pragmas>
+						</Equation>
+						<!-- A = _L82; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="A"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L82"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cda0b/7114/574/55a520cd1e28"/>
+							</pragmas>
+						</Equation>
+						<!-- _L82 = _L68 @ _L83; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L82"/>
+							</lefts>
+							<right>
+								<!-- _L68 @ _L83 -->
+								<NAryOp name="1" operator="@">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L68"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L83"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</NAryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cda10/7114/574/55a520e04218"/>
+							</pragmas>
+						</Equation>
+						<!-- _L83 = _L114 ^ (CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP - cBrakePercentSpe... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L83"/>
+							</lefts>
+							<right>
+								<!-- _L114 ^ (CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP - cBrakePercentSpeedSteps... -->
+								<ScalarToVectorOp name="1">
+									<flow>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L114"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</flow>
+									<size>
+										<!-- (CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP - cBrakePercentSpeedSteps) -->
+										<BinaryOp operator="-">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="cBrakePercentSpeedSteps"/>
+													</path>
+												</IdExpression>
+											</operands>
+										</BinaryOp>
+									</size>
+								</ScalarToVectorOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cda16/7114/574/55a520f57e7b"/>
+							</pragmas>
+						</Equation>
+						<!-- V = _L115; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="V"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L115"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cda40/7114/574/55a5225e1f4c"/>
+							</pragmas>
+						</Equation>
+						<!-- _L86 = _L114 ^ CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L86"/>
+							</lefts>
+							<right>
+								<!-- _L114 ^ CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP -->
+								<ScalarToVectorOp name="2">
+									<flow>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L114"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</flow>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="CalcBrakingCurves_types::cMAX_SPEED_VALUE_STEP"/>
+											</path>
+										</IdExpression>
+									</size>
+								</ScalarToVectorOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cda45/7114/574/55a52273f5d"/>
+							</pragmas>
+						</Equation>
+						<!-- _L88 = (_L86 with [5] = _L112); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L88"/>
+							</lefts>
+							<right>
+								<!-- (_L86 with [5] = _L112) -->
+								<ChgIthOp name="1">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L86"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="5"/>
+									</with>
+									<value>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L112"/>
+											</path>
+										</IdExpression>
+									</value>
+								</ChgIthOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cda62/7114/574/55a522c34488"/>
+							</pragmas>
+						</Equation>
+						<!-- _L89 = V_lim; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L89"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="V_lim"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cda68/7114/574/55a522d33fc2"/>
+							</pragmas>
+						</Equation>
+						<!-- _L91 = _L78[0]; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L91"/>
+							</lefts>
+							<right>
+								<!-- _L78[0] -->
+								<PrjOp name="3">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L78"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="0"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cda8c/7114/574/55a526bb116d"/>
+							</pragmas>
+						</Equation>
+						<!-- _L92 = (_L88 with [4] = _L108); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L92"/>
+							</lefts>
+							<right>
+								<!-- (_L88 with [4] = _L108) -->
+								<ChgIthOp name="2">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L88"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="4"/>
+									</with>
+									<value>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L108"/>
+											</path>
+										</IdExpression>
+									</value>
+								</ChgIthOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdaa7/7114/574/55a5281b161a"/>
+							</pragmas>
+						</Equation>
+						<!-- _L93 = (_L92 with [3] = _L106); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L93"/>
+							</lefts>
+							<right>
+								<!-- (_L92 with [3] = _L106) -->
+								<ChgIthOp name="3">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L92"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="3"/>
+									</with>
+									<value>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L106"/>
+											</path>
+										</IdExpression>
+									</value>
+								</ChgIthOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdab6/7114/574/55a5282057fd"/>
+							</pragmas>
+						</Equation>
+						<!-- _L94 = (_L93 with [2] = _L97); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L94"/>
+							</lefts>
+							<right>
+								<!-- (_L93 with [2] = _L97) -->
+								<ChgIthOp name="4">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L93"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="2"/>
+									</with>
+									<value>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L97"/>
+											</path>
+										</IdExpression>
+									</value>
+								</ChgIthOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdac5/7114/574/55a528253bdd"/>
+							</pragmas>
+						</Equation>
+						<!-- _L95 = (_L94 with [1] = _L117); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L95"/>
+							</lefts>
+							<right>
+								<!-- (_L94 with [1] = _L117) -->
+								<ChgIthOp name="5">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L94"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="1"/>
+									</with>
+									<value>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L117"/>
+											</path>
+										</IdExpression>
+									</value>
+								</ChgIthOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdaec/7114/574/55a5283f68a2"/>
+							</pragmas>
+						</Equation>
+						<!-- _L96 = _L89 <= _L91; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L96"/>
+							</lefts>
+							<right>
+								<!-- _L89 <= _L91 -->
+								<BinaryOp name="1" operator="&lt;=">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L89"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L91"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdb16/7114/574/55a528b91740"/>
+							</pragmas>
+						</Equation>
+						<!-- _L97 = if _L96 then (_L91) else (_L104); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L97"/>
+							</lefts>
+							<right>
+								<!-- if _L96 then (_L91) else (_L104) -->
+								<IfThenElseOp name="1">
+									<if>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L96"/>
+											</path>
+										</IdExpression>
+									</if>
+									<then>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L91"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</then>
+									<else>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L104"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</else>
+								</IfThenElseOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdb1c/7114/574/55a528d457b5"/>
+							</pragmas>
+						</Equation>
+						<!-- _L98 = _L78[1]; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L98"/>
+							</lefts>
+							<right>
+								<!-- _L78[1] -->
+								<PrjOp name="4">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L78"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="1"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdb2f/7114/574/55a529221e9b"/>
+							</pragmas>
+						</Equation>
+						<!-- _L99 = _L78[2]; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L99"/>
+							</lefts>
+							<right>
+								<!-- _L78[2] -->
+								<PrjOp name="5">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L78"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="2"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdb46/7114/574/55a5292c16c0"/>
+							</pragmas>
+						</Equation>
+						<!-- _L100 = _L78[3]; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L100"/>
+							</lefts>
+							<right>
+								<!-- _L78[3] -->
+								<PrjOp name="6">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L78"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="3"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdb5d/7114/574/55a529332eed"/>
+							</pragmas>
+						</Equation>
+						<!-- _L101 = _L89 <= _L98; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L101"/>
+							</lefts>
+							<right>
+								<!-- _L89 <= _L98 -->
+								<BinaryOp name="2" operator="&lt;=">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L89"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L98"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdb6c/7114/574/55a52957fa6"/>
+							</pragmas>
+						</Equation>
+						<!-- _L102 = _L89 <= _L99; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L102"/>
+							</lefts>
+							<right>
+								<!-- _L89 <= _L99 -->
+								<BinaryOp name="3" operator="&lt;=">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L89"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L99"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdb73/7114/574/55a5295e3f21"/>
+							</pragmas>
+						</Equation>
+						<!-- _L104 = if _L101 then (_L98) else (_L105); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L104"/>
+							</lefts>
+							<right>
+								<!-- if _L101 then (_L98) else (_L105) -->
+								<IfThenElseOp name="2">
+									<if>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L101"/>
+											</path>
+										</IdExpression>
+									</if>
+									<then>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L98"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</then>
+									<else>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L105"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</else>
+								</IfThenElseOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdb81/7114/574/55a52a3c1788"/>
+							</pragmas>
+						</Equation>
+						<!-- _L105 = if _L102 then (_L99) else (_L109); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L105"/>
+							</lefts>
+							<right>
+								<!-- if _L102 then (_L99) else (_L109) -->
+								<IfThenElseOp name="3">
+									<if>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L102"/>
+											</path>
+										</IdExpression>
+									</if>
+									<then>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L99"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</then>
+									<else>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L109"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</else>
+								</IfThenElseOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdb88/7114/574/55a52a881cbd"/>
+							</pragmas>
+						</Equation>
+						<!-- _L106 = if _L96 then (_L98) else (_L107); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L106"/>
+							</lefts>
+							<right>
+								<!-- if _L96 then (_L98) else (_L107) -->
+								<IfThenElseOp name="4">
+									<if>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L96"/>
+											</path>
+										</IdExpression>
+									</if>
+									<then>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L98"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</then>
+									<else>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L107"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</else>
+								</IfThenElseOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdb8a/7114/574/55a52c9146fa"/>
+							</pragmas>
+						</Equation>
+						<!-- _L107 = if _L101 then (_L99) else (_L110); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L107"/>
+							</lefts>
+							<right>
+								<!-- if _L101 then (_L99) else (_L110) -->
+								<IfThenElseOp name="5">
+									<if>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L101"/>
+											</path>
+										</IdExpression>
+									</if>
+									<then>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L99"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</then>
+									<else>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L110"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</else>
+								</IfThenElseOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdb95/7114/574/55a52dea653b"/>
+							</pragmas>
+						</Equation>
+						<!-- _L108 = if _L96 then (_L99) else (_L111); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L108"/>
+							</lefts>
+							<right>
+								<!-- if _L96 then (_L99) else (_L111) -->
+								<IfThenElseOp name="6">
+									<if>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L96"/>
+											</path>
+										</IdExpression>
+									</if>
+									<then>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L99"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</then>
+									<else>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L111"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</else>
+								</IfThenElseOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdb9c/7114/574/55a52e442005"/>
+							</pragmas>
+						</Equation>
+						<!-- _L109 = if _L113 then (_L100) else (_L114); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L109"/>
+							</lefts>
+							<right>
+								<!-- if _L113 then (_L100) else (_L114) -->
+								<IfThenElseOp name="7">
+									<if>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L113"/>
+											</path>
+										</IdExpression>
+									</if>
+									<then>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L100"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</then>
+									<else>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L114"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</else>
+								</IfThenElseOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdba3/7114/574/55a52ebb102c"/>
+							</pragmas>
+						</Equation>
+						<!-- _L110 = if _L102 then (_L100) else (_L114); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L110"/>
+							</lefts>
+							<right>
+								<!-- if _L102 then (_L100) else (_L114) -->
+								<IfThenElseOp name="8">
+									<if>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L102"/>
+											</path>
+										</IdExpression>
+									</if>
+									<then>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L100"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</then>
+									<else>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L114"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</else>
+								</IfThenElseOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdbaa/7114/574/55a52ec35b0b"/>
+							</pragmas>
+						</Equation>
+						<!-- _L111 = if _L101 then (_L100) else (_L114); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L111"/>
+							</lefts>
+							<right>
+								<!-- if _L101 then (_L100) else (_L114) -->
+								<IfThenElseOp name="9">
+									<if>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L101"/>
+											</path>
+										</IdExpression>
+									</if>
+									<then>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L100"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</then>
+									<else>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L114"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</else>
+								</IfThenElseOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdbb1/7114/574/55a52ec56431"/>
+							</pragmas>
+						</Equation>
+						<!-- _L112 = if _L96 then (_L100) else (_L114); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L112"/>
+							</lefts>
+							<right>
+								<!-- if _L96 then (_L100) else (_L114) -->
+								<IfThenElseOp name="10">
+									<if>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L96"/>
+											</path>
+										</IdExpression>
+									</if>
+									<then>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L100"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</then>
+									<else>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L114"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</else>
+								</IfThenElseOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdbb8/7114/574/55a52f465bbe"/>
+							</pragmas>
+						</Equation>
+						<!-- _L113 = _L89 <= _L100; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L113"/>
+							</lefts>
+							<right>
+								<!-- _L89 <= _L100 -->
+								<BinaryOp name="4" operator="&lt;=">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L89"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L100"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdbbf/7114/574/55a52f64489e"/>
+							</pragmas>
+						</Equation>
+						<!-- _L114 = 0; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L114"/>
+							</lefts>
+							<right>
+								<ConstValue value="0"/>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdbce/7114/574/55a52fa7119a"/>
+							</pragmas>
+						</Equation>
+						<!-- _L115 = (_L95 with [0] = _L116); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L115"/>
+							</lefts>
+							<right>
+								<!-- (_L95 with [0] = _L116) -->
+								<ChgIthOp name="6">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L95"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="0"/>
+									</with>
+									<value>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L116"/>
+											</path>
+										</IdExpression>
+									</value>
+								</ChgIthOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdbdd/7114/574/55a5328f2c7d"/>
+							</pragmas>
+						</Equation>
+						<!-- _L116 = 0; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L116"/>
+							</lefts>
+							<right>
+								<ConstValue value="0"/>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdbf4/7114/574/55a532a6311e"/>
+							</pragmas>
+						</Equation>
+						<!-- _L117 = V_lim; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L117"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="V_lim"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/7cdc0d/7114/574/55a5343c5a42"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/17636a/4637/1744/559e6eb01648" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Takes the brake percent (as integer ranging [30..250]),</comment>
+							<comment>looks up the precalculated accelerations from the table (see excel sheet).</comment>
+							<comment>Also fills the speed steps defined in the SRS appendix, by removing &quot;to be ignored&quot; entries and zero-padding to the general array size.</comment>
+							<comment></comment>
+							<comment>If the input is out of range, the most restrictive entry (lambda=30, entry=0) is loaded.</comment>
+							<diagrams>
+								<NetDiagram name="diagram_conversionModel_1" landscape="true" format="A4 (210 297)" oid="!ed/17636b/4637/1744/559e6eb07c45">
+									<presentationElements>
+										<EquationGE presentable="!ed/17638a/4637/1744/559e6f3c6284">
+											<position>
+												<Point x="3757" y="6006"/>
+											</position>
+											<size>
+												<Size width="264" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/7caf4c/7114/574/55a518f05170">
+											<position>
+												<Point x="3757" y="1905"/>
+											</position>
+											<size>
+												<Size width="212" height="318"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/7caf52/7114/574/55a519183a4a">
+											<position>
+												<Point x="5345" y="1588"/>
+											</position>
+											<size>
+												<Size width="3482" height="968"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7caf4c/7114/574/55a518f05170" dstEquation="!ed/7caf52/7114/574/55a519183a4a">
+											<positions>
+												<Point x="3969" y="2064"/>
+												<Point x="4657" y="2064"/>
+												<Point x="4657" y="2064"/>
+												<Point x="5345" y="2064"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7caf9e/7114/574/55a51a084387">
+											<position>
+												<Point x="5345" y="529"/>
+											</position>
+											<size>
+												<Size width="969" height="677"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7caf4c/7114/574/55a518f05170" dstEquation="!ed/7caf9e/7114/574/55a51a084387">
+											<positions>
+												<Point x="3969" y="2064"/>
+												<Point x="4657" y="2064"/>
+												<Point x="4657" y="873"/>
+												<Point x="5345" y="873"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/7caf9e/7114/574/55a51a084387" dstEquation="!ed/7caf52/7114/574/55a519183a4a">
+											<positions>
+												<Point x="6324" y="873"/>
+												<Point x="7673" y="873"/>
+												<Point x="7673" y="2566"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7cafb2/7114/574/55a51c5a7651">
+											<position>
+												<Point x="5345" y="6165"/>
+											</position>
+											<size>
+												<Size width="1005" height="661"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/17638a/4637/1744/559e6f3c6284" dstEquation="!ed/7cafb2/7114/574/55a51c5a7651">
+											<positions>
+												<Point x="4022" y="6271"/>
+												<Point x="4683" y="6271"/>
+												<Point x="4683" y="6376"/>
+												<Point x="5345" y="6376"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cafb2/7114/574/55a51c5a7651" dstEquation="!ed/7caf52/7114/574/55a519183a4a">
+											<positions>
+												<Point x="6350" y="6509"/>
+												<Point x="6509" y="6509"/>
+												<Point x="6509" y="2566"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/7cb00c/7114/574/55a51cf75358">
+											<position>
+												<Point x="3810" y="6562"/>
+											</position>
+											<size>
+												<Size width="212" height="318"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cb00c/7114/574/55a51cf75358" dstEquation="!ed/7cafb2/7114/574/55a51c5a7651">
+											<positions>
+												<Point x="4022" y="6720"/>
+												<Point x="4683" y="6720"/>
+												<Point x="4683" y="6615"/>
+												<Point x="5345" y="6615"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/7cb052/7114/574/55a51e9c51b">
+											<position>
+												<Point x="3413" y="9181"/>
+											</position>
+											<size>
+												<Size width="212" height="317"/>
+											</size>
+										</EquationGE>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/7cd9d6/7114/574/55a51f1b5527">
+											<position>
+												<Point x="4286" y="5027"/>
+											</position>
+											<size>
+												<Size width="211" height="318"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/7cd9e1/7114/574/55a51f326ce6">
+											<position>
+												<Point x="5345" y="4710"/>
+											</position>
+											<size>
+												<Size width="3466" height="952"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cd9d6/7114/574/55a51f1b5527" dstEquation="!ed/7cd9e1/7114/574/55a51f326ce6">
+											<positions>
+												<Point x="4498" y="5186"/>
+												<Point x="4921" y="5186"/>
+												<Point x="4921" y="5186"/>
+												<Point x="5345" y="5186"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cafb2/7114/574/55a51c5a7651" dstEquation="!ed/7cd9e1/7114/574/55a51f326ce6">
+											<positions>
+												<Point x="6350" y="6509"/>
+												<Point x="6509" y="6509"/>
+												<Point x="6509" y="5662"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7cd9f0/7114/574/55a51f78c17">
+											<position>
+												<Point x="5345" y="3651"/>
+											</position>
+											<size>
+												<Size width="953" height="661"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/7cd9f0/7114/574/55a51f78c17" dstEquation="!ed/7cd9e1/7114/574/55a51f326ce6">
+											<positions>
+												<Point x="6297" y="3995"/>
+												<Point x="7646" y="3995"/>
+												<Point x="7646" y="5662"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cd9d6/7114/574/55a51f1b5527" dstEquation="!ed/7cd9f0/7114/574/55a51f78c17">
+											<positions>
+												<Point x="4498" y="5186"/>
+												<Point x="4921" y="5186"/>
+												<Point x="4921" y="3995"/>
+												<Point x="5345" y="3995"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7cd9f4/7114/574/55a51fb46f1c">
+											<position>
+												<Point x="9657" y="4921"/>
+											</position>
+											<size>
+												<Size width="344" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cd9e1/7114/574/55a51f326ce6" dstEquation="!ed/7cd9f4/7114/574/55a51fb46f1c">
+											<positions>
+												<Point x="8811" y="5186"/>
+												<Point x="9234" y="5186"/>
+												<Point x="9234" y="5186"/>
+												<Point x="9657" y="5186"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7cda0b/7114/574/55a520cd1e28">
+											<position>
+												<Point x="21458" y="2064"/>
+											</position>
+											<size>
+												<Size width="318" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/7cda10/7114/574/55a520e04218">
+											<position>
+												<Point x="20267" y="1588"/>
+											</position>
+											<size>
+												<Size width="968" height="1471"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7caf52/7114/574/55a519183a4a" dstEquation="!ed/7cda10/7114/574/55a520e04218">
+											<positions>
+												<Point x="8837" y="2090"/>
+												<Point x="14526" y="2090"/>
+												<Point x="14526" y="2090"/>
+												<Point x="20267" y="2090"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cda10/7114/574/55a520e04218" dstEquation="!ed/7cda0b/7114/574/55a520cd1e28">
+											<positions>
+												<Point x="21246" y="2328"/>
+												<Point x="21352" y="2328"/>
+												<Point x="21352" y="2328"/>
+												<Point x="21511" y="2328"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7cda16/7114/574/55a520f57e7b">
+											<position>
+												<Point x="11139" y="2223"/>
+											</position>
+											<size>
+												<Size width="968" height="678"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cda16/7114/574/55a520f57e7b" dstEquation="!ed/7cda10/7114/574/55a520e04218">
+											<positions>
+												<Point x="12118" y="2566"/>
+												<Point x="16193" y="2566"/>
+												<Point x="16193" y="2566"/>
+												<Point x="20267" y="2566"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7cda40/7114/574/55a5225e1f4c">
+											<position>
+												<Point x="21458" y="6588"/>
+											</position>
+											<size>
+												<Size width="318" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/7cda45/7114/574/55a52273f5d">
+											<position>
+												<Point x="11139" y="6376"/>
+											</position>
+											<size>
+												<Size width="952" height="952"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/7cda62/7114/574/55a522c34488">
+											<position>
+												<Point x="12621" y="6376"/>
+											</position>
+											<size>
+												<Size width="952" height="953"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cda45/7114/574/55a52273f5d" dstEquation="!ed/7cda62/7114/574/55a522c34488">
+											<positions>
+												<Point x="12091" y="6853"/>
+												<Point x="12356" y="6853"/>
+												<Point x="12356" y="6694"/>
+												<Point x="12621" y="6694"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7cda68/7114/574/55a522d33fc2">
+											<position>
+												<Point x="5292" y="7726"/>
+											</position>
+											<size>
+												<Size width="265" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/7cda8c/7114/574/55a526bb116d">
+											<position>
+												<Point x="5345" y="8996"/>
+											</position>
+											<size>
+												<Size width="968" height="677"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cb052/7114/574/55a51e9c51b" dstEquation="!ed/7cda8c/7114/574/55a526bb116d">
+											<positions>
+												<Point x="3625" y="9340"/>
+												<Point x="4471" y="9340"/>
+												<Point x="4471" y="9340"/>
+												<Point x="5345" y="9340"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7cdaa7/7114/574/55a5281b161a">
+											<position>
+												<Point x="14155" y="6376"/>
+											</position>
+											<size>
+												<Size width="953" height="953"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/7cdab6/7114/574/55a5282057fd">
+											<position>
+												<Point x="15690" y="6376"/>
+											</position>
+											<size>
+												<Size width="952" height="953"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/7cdac5/7114/574/55a528253bdd">
+											<position>
+												<Point x="17224" y="6376"/>
+											</position>
+											<size>
+												<Size width="952" height="953"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/7cdaec/7114/574/55a5283f68a2">
+											<position>
+												<Point x="18759" y="6376"/>
+											</position>
+											<size>
+												<Size width="953" height="952"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cda62/7114/574/55a522c34488" dstEquation="!ed/7cdaa7/7114/574/55a5281b161a">
+											<positions>
+												<Point x="13573" y="6853"/>
+												<Point x="13864" y="6853"/>
+												<Point x="13864" y="6694"/>
+												<Point x="14155" y="6694"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdaa7/7114/574/55a5281b161a" dstEquation="!ed/7cdab6/7114/574/55a5282057fd">
+											<positions>
+												<Point x="15108" y="6853"/>
+												<Point x="15399" y="6853"/>
+												<Point x="15399" y="6694"/>
+												<Point x="15690" y="6694"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdab6/7114/574/55a5282057fd" dstEquation="!ed/7cdac5/7114/574/55a528253bdd">
+											<positions>
+												<Point x="16642" y="6853"/>
+												<Point x="16933" y="6853"/>
+												<Point x="16933" y="6694"/>
+												<Point x="17224" y="6694"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdac5/7114/574/55a528253bdd" dstEquation="!ed/7cdaec/7114/574/55a5283f68a2">
+											<positions>
+												<Point x="18177" y="6853"/>
+												<Point x="18468" y="6853"/>
+												<Point x="18468" y="6694"/>
+												<Point x="18759" y="6694"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7cdb16/7114/574/55a528b91740">
+											<position>
+												<Point x="7805" y="8361"/>
+											</position>
+											<size>
+												<Size width="1006" height="661"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cda8c/7114/574/55a526bb116d" dstEquation="!ed/7cdb16/7114/574/55a528b91740">
+											<positions>
+												<Point x="6324" y="9340"/>
+												<Point x="7038" y="9340"/>
+												<Point x="7038" y="8811"/>
+												<Point x="7805" y="8811"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cda68/7114/574/55a522d33fc2" dstEquation="!ed/7cdb16/7114/574/55a528b91740">
+											<positions>
+												<Point x="5556" y="7990"/>
+												<Point x="6668" y="7990"/>
+												<Point x="6668" y="8573"/>
+												<Point x="7805" y="8573"/>
+											</positions>
+										</Edge>
+										<EquationGE rotation="90" presentable="!ed/7cdb1c/7114/574/55a528d457b5">
+											<position>
+												<Point x="16404" y="8229"/>
+											</position>
+											<size>
+												<Size width="1005" height="926"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdb16/7114/574/55a528b91740" dstEquation="!ed/7cdb1c/7114/574/55a528d457b5">
+											<positions>
+												<Point x="8811" y="8705"/>
+												<Point x="12674" y="8705"/>
+												<Point x="12674" y="8705"/>
+												<Point x="16457" y="8705"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cda8c/7114/574/55a526bb116d" dstEquation="!ed/7cdb1c/7114/574/55a528d457b5">
+											<positions>
+												<Point x="6324" y="9340"/>
+												<Point x="16775" y="9340"/>
+												<Point x="16748" y="9340"/>
+												<Point x="16748" y="9208"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb1c/7114/574/55a528d457b5" dstEquation="!ed/7cdac5/7114/574/55a528253bdd">
+											<positions>
+												<Point x="16907" y="8202"/>
+												<Point x="16907" y="7011"/>
+												<Point x="17224" y="7011"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7cdb2f/7114/574/55a529221e9b">
+											<position>
+												<Point x="5345" y="10345"/>
+											</position>
+											<size>
+												<Size width="952" height="662"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/7cdb46/7114/574/55a5292c16c0">
+											<position>
+												<Point x="5345" y="11695"/>
+											</position>
+											<size>
+												<Size width="952" height="662"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/7cdb5d/7114/574/55a529332eed">
+											<position>
+												<Point x="5345" y="13044"/>
+											</position>
+											<size>
+												<Size width="952" height="661"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cb052/7114/574/55a51e9c51b" dstEquation="!ed/7cdb2f/7114/574/55a529221e9b">
+											<positions>
+												<Point x="3625" y="9340"/>
+												<Point x="4471" y="9340"/>
+												<Point x="4471" y="10689"/>
+												<Point x="5345" y="10689"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cb052/7114/574/55a51e9c51b" dstEquation="!ed/7cdb46/7114/574/55a5292c16c0">
+											<positions>
+												<Point x="3625" y="9340"/>
+												<Point x="4471" y="9340"/>
+												<Point x="4471" y="12039"/>
+												<Point x="5345" y="12039"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cb052/7114/574/55a51e9c51b" dstEquation="!ed/7cdb5d/7114/574/55a529332eed">
+											<positions>
+												<Point x="3625" y="9340"/>
+												<Point x="4471" y="9340"/>
+												<Point x="4471" y="13388"/>
+												<Point x="5345" y="13388"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7cdb6c/7114/574/55a52957fa6">
+											<position>
+												<Point x="7805" y="9710"/>
+											</position>
+											<size>
+												<Size width="1005" height="661"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/7cdb73/7114/574/55a5295e3f21">
+											<position>
+												<Point x="7805" y="11060"/>
+											</position>
+											<size>
+												<Size width="1005" height="662"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cda68/7114/574/55a522d33fc2" dstEquation="!ed/7cdb6c/7114/574/55a52957fa6">
+											<positions>
+												<Point x="5556" y="7990"/>
+												<Point x="6668" y="7990"/>
+												<Point x="6668" y="9922"/>
+												<Point x="7805" y="9922"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cda68/7114/574/55a522d33fc2" dstEquation="!ed/7cdb73/7114/574/55a5295e3f21">
+											<positions>
+												<Point x="5556" y="7990"/>
+												<Point x="6668" y="7990"/>
+												<Point x="6668" y="11271"/>
+												<Point x="7805" y="11271"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb2f/7114/574/55a529221e9b" dstEquation="!ed/7cdb6c/7114/574/55a52957fa6">
+											<positions>
+												<Point x="6297" y="10689"/>
+												<Point x="7038" y="10689"/>
+												<Point x="7038" y="10160"/>
+												<Point x="7805" y="10160"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb46/7114/574/55a5292c16c0" dstEquation="!ed/7cdb73/7114/574/55a5295e3f21">
+											<positions>
+												<Point x="6297" y="12039"/>
+												<Point x="7038" y="12039"/>
+												<Point x="7038" y="11509"/>
+												<Point x="7805" y="11509"/>
+											</positions>
+										</Edge>
+										<EquationGE rotation="90" presentable="!ed/7cdb81/7114/574/55a52a3c1788">
+											<position>
+												<Point x="16563" y="9578"/>
+											</position>
+											<size>
+												<Size width="1005" height="926"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb2f/7114/574/55a529221e9b" dstEquation="!ed/7cdb81/7114/574/55a52a3c1788">
+											<positions>
+												<Point x="6297" y="10689"/>
+												<Point x="16933" y="10689"/>
+												<Point x="16907" y="10689"/>
+												<Point x="16907" y="10557"/>
+											</positions>
+										</Edge>
+										<EquationGE rotation="90" presentable="!ed/7cdb88/7114/574/55a52a881cbd">
+											<position>
+												<Point x="16722" y="10927"/>
+											</position>
+											<size>
+												<Size width="1006" height="926"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb46/7114/574/55a5292c16c0" dstEquation="!ed/7cdb88/7114/574/55a52a881cbd">
+											<positions>
+												<Point x="6297" y="12039"/>
+												<Point x="17092" y="12039"/>
+												<Point x="17066" y="12039"/>
+												<Point x="17066" y="11906"/>
+											</positions>
+										</Edge>
+										<EquationGE rotation="90" presentable="!ed/7cdb8a/7114/574/55a52c9146fa">
+											<position>
+												<Point x="14870" y="8229"/>
+											</position>
+											<size>
+												<Size width="1005" height="926"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/7cdb81/7114/574/55a52a3c1788" dstEquation="!ed/7cdb1c/7114/574/55a528d457b5">
+											<positions>
+												<Point x="17066" y="9551"/>
+												<Point x="17066" y="9446"/>
+												<Point x="17066" y="9446"/>
+												<Point x="17066" y="9208"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/7cdb88/7114/574/55a52a881cbd" dstEquation="!ed/7cdb81/7114/574/55a52a3c1788">
+											<positions>
+												<Point x="17224" y="10901"/>
+												<Point x="17224" y="10795"/>
+												<Point x="17224" y="10795"/>
+												<Point x="17224" y="10557"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb8a/7114/574/55a52c9146fa" dstEquation="!ed/7cdab6/7114/574/55a5282057fd">
+											<positions>
+												<Point x="15372" y="8202"/>
+												<Point x="15372" y="7011"/>
+												<Point x="15690" y="7011"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb2f/7114/574/55a529221e9b" dstEquation="!ed/7cdb8a/7114/574/55a52c9146fa">
+											<positions>
+												<Point x="6297" y="10689"/>
+												<Point x="15214" y="10689"/>
+												<Point x="15214" y="9208"/>
+											</positions>
+										</Edge>
+										<EquationGE rotation="90" presentable="!ed/7cdb95/7114/574/55a52dea653b">
+											<position>
+												<Point x="15055" y="9578"/>
+											</position>
+											<size>
+												<Size width="1005" height="926"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/7cdb95/7114/574/55a52dea653b" dstEquation="!ed/7cdb8a/7114/574/55a52c9146fa">
+											<positions>
+												<Point x="15558" y="9551"/>
+												<Point x="15558" y="9393"/>
+												<Point x="15558" y="9393"/>
+												<Point x="15558" y="9208"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb46/7114/574/55a5292c16c0" dstEquation="!ed/7cdb95/7114/574/55a52dea653b">
+											<positions>
+												<Point x="6297" y="12039"/>
+												<Point x="15399" y="12039"/>
+												<Point x="15399" y="10557"/>
+											</positions>
+										</Edge>
+										<EquationGE rotation="90" presentable="!ed/7cdb9c/7114/574/55a52e442005">
+											<position>
+												<Point x="13361" y="8229"/>
+											</position>
+											<size>
+												<Size width="1005" height="926"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb46/7114/574/55a5292c16c0" dstEquation="!ed/7cdb9c/7114/574/55a52e442005">
+											<positions>
+												<Point x="6297" y="12039"/>
+												<Point x="13705" y="12039"/>
+												<Point x="13705" y="9208"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb9c/7114/574/55a52e442005" dstEquation="!ed/7cdaa7/7114/574/55a5281b161a">
+											<positions>
+												<Point x="13864" y="8202"/>
+												<Point x="13864" y="7011"/>
+												<Point x="14155" y="7011"/>
+											</positions>
+										</Edge>
+										<EquationGE rotation="90" presentable="!ed/7cdba3/7114/574/55a52ebb102c">
+											<position>
+												<Point x="16907" y="12250"/>
+											</position>
+											<size>
+												<Size width="1006" height="926"/>
+											</size>
+										</EquationGE>
+										<EquationGE rotation="90" presentable="!ed/7cdbaa/7114/574/55a52ec35b0b">
+											<position>
+												<Point x="15214" y="10927"/>
+											</position>
+											<size>
+												<Size width="1006" height="926"/>
+											</size>
+										</EquationGE>
+										<EquationGE rotation="90" presentable="!ed/7cdbb1/7114/574/55a52ec56431">
+											<position>
+												<Point x="13520" y="9578"/>
+											</position>
+											<size>
+												<Size width="1006" height="926"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/7cdba3/7114/574/55a52ebb102c" dstEquation="!ed/7cdb88/7114/574/55a52a881cbd">
+											<positions>
+												<Point x="17410" y="12224"/>
+												<Point x="17410" y="12171"/>
+												<Point x="17410" y="12171"/>
+												<Point x="17410" y="11906"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/7cdbaa/7114/574/55a52ec35b0b" dstEquation="!ed/7cdb95/7114/574/55a52dea653b">
+											<positions>
+												<Point x="15716" y="10901"/>
+												<Point x="15716" y="10769"/>
+												<Point x="15716" y="10769"/>
+												<Point x="15716" y="10557"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/7cdbb1/7114/574/55a52ec56431" dstEquation="!ed/7cdb9c/7114/574/55a52e442005">
+											<positions>
+												<Point x="14023" y="9551"/>
+												<Point x="14023" y="9393"/>
+												<Point x="14023" y="9393"/>
+												<Point x="14023" y="9208"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb5d/7114/574/55a529332eed" dstEquation="!ed/7cdbb1/7114/574/55a52ec56431">
+											<positions>
+												<Point x="6297" y="13388"/>
+												<Point x="13864" y="13388"/>
+												<Point x="13864" y="10557"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb5d/7114/574/55a529332eed" dstEquation="!ed/7cdbaa/7114/574/55a52ec35b0b">
+											<positions>
+												<Point x="6297" y="13388"/>
+												<Point x="15558" y="13388"/>
+												<Point x="15558" y="11906"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb5d/7114/574/55a529332eed" dstEquation="!ed/7cdba3/7114/574/55a52ebb102c">
+											<positions>
+												<Point x="6297" y="13388"/>
+												<Point x="17251" y="13388"/>
+												<Point x="17251" y="13229"/>
+											</positions>
+										</Edge>
+										<EquationGE rotation="90" presentable="!ed/7cdbb8/7114/574/55a52f465bbe">
+											<position>
+												<Point x="11853" y="8229"/>
+											</position>
+											<size>
+												<Size width="1005" height="926"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb5d/7114/574/55a529332eed" dstEquation="!ed/7cdbb8/7114/574/55a52f465bbe">
+											<positions>
+												<Point x="6297" y="13388"/>
+												<Point x="12197" y="13388"/>
+												<Point x="12197" y="9208"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7cdbbf/7114/574/55a52f64489e">
+											<position>
+												<Point x="7805" y="12383"/>
+											</position>
+											<size>
+												<Size width="1006" height="661"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdb5d/7114/574/55a529332eed" dstEquation="!ed/7cdbbf/7114/574/55a52f64489e">
+											<positions>
+												<Point x="6297" y="13388"/>
+												<Point x="7038" y="13388"/>
+												<Point x="7038" y="12832"/>
+												<Point x="7805" y="12832"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cda68/7114/574/55a522d33fc2" dstEquation="!ed/7cdbbf/7114/574/55a52f64489e">
+											<positions>
+												<Point x="5556" y="7990"/>
+												<Point x="6668" y="7990"/>
+												<Point x="6668" y="12594"/>
+												<Point x="7805" y="12594"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdbb8/7114/574/55a52f465bbe" dstEquation="!ed/7cda62/7114/574/55a522c34488">
+											<positions>
+												<Point x="12356" y="8202"/>
+												<Point x="12356" y="7011"/>
+												<Point x="12621" y="7011"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/7cdbce/7114/574/55a52fa7119a">
+											<position>
+												<Point x="10345" y="13494"/>
+											</position>
+											<size>
+												<Size width="211" height="317"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/7cdbce/7114/574/55a52fa7119a" dstEquation="!ed/7cdbb8/7114/574/55a52f465bbe">
+											<positions>
+												<Point x="10557" y="13653"/>
+												<Point x="12515" y="13653"/>
+												<Point x="12515" y="9208"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/7cdbce/7114/574/55a52fa7119a" dstEquation="!ed/7cdbb1/7114/574/55a52ec56431">
+											<positions>
+												<Point x="10557" y="13653"/>
+												<Point x="14182" y="13653"/>
+												<Point x="14182" y="10557"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/7cdbce/7114/574/55a52fa7119a" dstEquation="!ed/7cdbaa/7114/574/55a52ec35b0b">
+											<positions>
+												<Point x="10557" y="13653"/>
+												<Point x="15875" y="13653"/>
+												<Point x="15875" y="11906"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/7cdbce/7114/574/55a52fa7119a" dstEquation="!ed/7cdba3/7114/574/55a52ebb102c">
+											<positions>
+												<Point x="10557" y="13653"/>
+												<Point x="17568" y="13653"/>
+												<Point x="17568" y="13229"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdb6c/7114/574/55a52957fa6" dstEquation="!ed/7cdb81/7114/574/55a52a3c1788">
+											<positions>
+												<Point x="8811" y="10054"/>
+												<Point x="12753" y="10054"/>
+												<Point x="12753" y="10054"/>
+												<Point x="16616" y="10054"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdb73/7114/574/55a5295e3f21" dstEquation="!ed/7cdb88/7114/574/55a52a881cbd">
+											<positions>
+												<Point x="8811" y="11404"/>
+												<Point x="12832" y="11404"/>
+												<Point x="12832" y="11404"/>
+												<Point x="16775" y="11404"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdbbf/7114/574/55a52f64489e" dstEquation="!ed/7cdba3/7114/574/55a52ebb102c">
+											<positions>
+												<Point x="8811" y="12726"/>
+												<Point x="12912" y="12726"/>
+												<Point x="12912" y="12726"/>
+												<Point x="16960" y="12726"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdb16/7114/574/55a528b91740" dstEquation="!ed/7cdb8a/7114/574/55a52c9146fa">
+											<positions>
+												<Point x="8811" y="8705"/>
+												<Point x="14923" y="8705"/>
+												<Point x="14923" y="8705"/>
+												<Point x="14923" y="8705"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdb16/7114/574/55a528b91740" dstEquation="!ed/7cdb9c/7114/574/55a52e442005">
+											<positions>
+												<Point x="8811" y="8705"/>
+												<Point x="13414" y="8705"/>
+												<Point x="13414" y="8705"/>
+												<Point x="13414" y="8705"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdb16/7114/574/55a528b91740" dstEquation="!ed/7cdbb8/7114/574/55a52f465bbe">
+											<positions>
+												<Point x="8811" y="8705"/>
+												<Point x="11853" y="8705"/>
+												<Point x="11853" y="8705"/>
+												<Point x="11906" y="8705"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdb6c/7114/574/55a52957fa6" dstEquation="!ed/7cdb95/7114/574/55a52dea653b">
+											<positions>
+												<Point x="8811" y="10054"/>
+												<Point x="14711" y="10054"/>
+												<Point x="14711" y="10054"/>
+												<Point x="15108" y="10054"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdb6c/7114/574/55a52957fa6" dstEquation="!ed/7cdbb1/7114/574/55a52ec56431">
+											<positions>
+												<Point x="8811" y="10054"/>
+												<Point x="13150" y="10054"/>
+												<Point x="13150" y="10054"/>
+												<Point x="13573" y="10054"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdb73/7114/574/55a5295e3f21" dstEquation="!ed/7cdbaa/7114/574/55a52ec35b0b">
+											<positions>
+												<Point x="8811" y="11404"/>
+												<Point x="14499" y="11404"/>
+												<Point x="14499" y="11404"/>
+												<Point x="15266" y="11404"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdbce/7114/574/55a52fa7119a" dstEquation="!ed/7cda45/7114/574/55a52273f5d">
+											<positions>
+												<Point x="10557" y="13653"/>
+												<Point x="10848" y="13653"/>
+												<Point x="10848" y="6853"/>
+												<Point x="11139" y="6853"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7cdbdd/7114/574/55a5328f2c7d">
+											<position>
+												<Point x="20267" y="6376"/>
+											</position>
+											<size>
+												<Size width="952" height="952"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdaec/7114/574/55a5283f68a2" dstEquation="!ed/7cdbdd/7114/574/55a5328f2c7d">
+											<positions>
+												<Point x="19711" y="6853"/>
+												<Point x="19976" y="6853"/>
+												<Point x="19976" y="6694"/>
+												<Point x="20267" y="6694"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdbdd/7114/574/55a5328f2c7d" dstEquation="!ed/7cda40/7114/574/55a5225e1f4c">
+											<positions>
+												<Point x="21220" y="6853"/>
+												<Point x="21352" y="6853"/>
+												<Point x="21352" y="6853"/>
+												<Point x="21511" y="6853"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/7cdbf4/7114/574/55a532a6311e">
+											<position>
+												<Point x="19500" y="7805"/>
+											</position>
+											<size>
+												<Size width="212" height="317"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdbf4/7114/574/55a532a6311e" dstEquation="!ed/7cdbdd/7114/574/55a5328f2c7d">
+											<positions>
+												<Point x="19711" y="7964"/>
+												<Point x="19976" y="7964"/>
+												<Point x="19976" y="7011"/>
+												<Point x="20267" y="7011"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7cdbce/7114/574/55a52fa7119a" dstEquation="!ed/7cda16/7114/574/55a520f57e7b">
+											<positions>
+												<Point x="10557" y="13653"/>
+												<Point x="10848" y="13653"/>
+												<Point x="10848" y="2566"/>
+												<Point x="11139" y="2566"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/7cdc0d/7114/574/55a5343c5a42">
+											<position>
+												<Point x="17939" y="7726"/>
+											</position>
+											<size>
+												<Size width="264" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/7cdc0d/7114/574/55a5343c5a42" dstEquation="!ed/7cdaec/7114/574/55a5283f68a2">
+											<positions>
+												<Point x="18203" y="7990"/>
+												<Point x="18468" y="7990"/>
+												<Point x="18468" y="7011"/>
+												<Point x="18759" y="7011"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/c6cbf/2430/1278/55a540b23fbe" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/c6cc0/2430/1278/55a540b246e7" blockKind="constants" columnsSize="0, 197, 150, 292, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/c6cc1/2430/1278/55a540b2b4d" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/c6cc2/2430/1278/55a540b24d2b" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>
