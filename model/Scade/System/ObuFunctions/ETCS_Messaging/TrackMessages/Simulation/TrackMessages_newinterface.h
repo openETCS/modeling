@@ -1,18 +1,18 @@
-#ifndef T_DECODE_METADATA_NEW_TM_LIB_INTERNAL_INTERFACE
-#define T_DECODE_METADATA_NEW_TM_LIB_INTERNAL_INTERFACE
+#ifndef SENDRADIOMESSAGE_TRAINTOTRACK_TM_RADIO_MESSAGES_INTERFACE
+#define SENDRADIOMESSAGE_TRAINTOTRACK_TM_RADIO_MESSAGES_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "T_Decode_metadata_new_TM_lib_internal.h"
+#include "SendRadioMessage_TrainToTrack_TM_radio_messages.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_T_Decode_metadata_new_TM_lib_internal inputs_ctx;
-extern outC_T_Decode_metadata_new_TM_lib_internal outputs_ctx;
+extern inC_SendRadioMessage_TrainToTrack_TM_radio_messages inputs_ctx;
+extern outC_SendRadioMessage_TrainToTrack_TM_radio_messages outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*T_DECODE_METADATA_NEW_TM_LIB_INTERNAL_INTERFACE */
+#endif /*SENDRADIOMESSAGE_TRAINTOTRACK_TM_RADIO_MESSAGES_INTERFACE */

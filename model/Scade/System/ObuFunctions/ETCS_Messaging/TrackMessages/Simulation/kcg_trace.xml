@@ -1,45 +1,165 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--$*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-06T16:53:59
+** Generation date: 2015-07-19T14:15:36
 *************************************************************$-->
-<Model date="2015-07-06T16:53:59" commandLine="s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt">
-  <Package scadeName="TM_lib_internal">
-    <Constant scadeName="DIM_offset_metadata_nid_packet" scadeType="int"
-        targetName="DIM_offset_metadata_nid_packet_TM_lib_internal" targetType="kcg_int" macroDef="true"/>
-    <Constant scadeName="DIM_offset_metadata_q_dir" scadeType="int"
-        targetName="DIM_offset_metadata_q_dir_TM_lib_internal" targetType="kcg_int" macroDef="true"/>
-    <Constant scadeName="DIM_offset_metadata_m_version" scadeType="int"
-        targetName="DIM_offset_metadata_m_version_TM_lib_internal" targetType="kcg_int" macroDef="true"/>
-    <Constant scadeName="DIM_offset_metadata_id" scadeType="int" targetName="DIM_offset_metadata_id_TM_lib_internal"
+<Model date="2015-07-19T14:15:36" commandLine="s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt">
+  <NamedType scadeName="NID_MESSAGE" targetName="NID_MESSAGE" refType="kcg_int"/>
+  <NamedType scadeName="L_MESSAGE" targetName="L_MESSAGE" refType="kcg_int"/>
+  <NamedType scadeName="T_TRAIN" targetName="T_TRAIN" refType="kcg_real"/>
+  <NamedType scadeName="NID_ENGINE" targetName="NID_ENGINE" refType="kcg_int"/>
+  <Package scadeName="TM_radio_messages">
+    <Constant scadeName="DEFAULT_TrainToTrackMessage" scadeType="TM_radio_messages::M_TrainTrack_Radio"
+        targetName="DEFAULT_TrainToTrackMessage_TM_radio_messages" targetType="M_TrainTrack_Radio_TM_radio_messages"/>
+    <Constant scadeName="DIM_FIFO_Train_To_Track" scadeType="int" targetName="DIM_FIFO_Train_To_Track_TM_radio_messages"
         targetType="kcg_int" macroDef="true"/>
-    <RootNode scadeName="T_Decode_metadata_new" headerFile="T_Decode_metadata_new_TM_lib_internal.h"
-        targetCycleFct="T_Decode_metadata_new_TM_lib_internal"
-        targetInitFct="T_Decode_metadata_new_reset_TM_lib_internal">
-      <Input scadeName="Metadata_in" scadeType="int" targetName="Metadata_in" targetType="kcg_int" inCtx="true"/>
-      <Output scadeName="nid_packet" scadeType="int" targetName="nid_packet" targetType="kcg_int" inCtx="true"/>
-      <Output scadeName="id" scadeType="int" targetName="id" targetType="kcg_int" inCtx="true"/>
-      <Output scadeName="m_version" scadeType="int" targetName="m_version" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L1" scadeType="int" targetName="_L1" targetType="kcg_int" inCtx="true"/>
+    <NamedType scadeName="M_TrainTrack_Radio" targetName="M_TrainTrack_Radio_TM_radio_messages" refType="struct__244"/>
+    <RootNode scadeName="SendRadioMessage_TrainToTrack" headerFile="SendRadioMessage_TrainToTrack_TM_radio_messages.h"
+        targetCycleFct="SendRadioMessage_TrainToTrack_TM_radio_messages"
+        targetInitFct="SendRadioMessage_TrainToTrack_reset_TM_radio_messages">
+      <Input scadeName="New_Message" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="New_Message"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Input scadeName="MessageBus" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="MessageBus"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Output scadeName="MessageBus_out" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="MessageBus_out"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="_L1"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="_L2"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L3" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="_L3"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L20" scadeType="bool" targetName="_L20" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L21" scadeType="bool" targetName="_L21" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L22" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="_L22"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L23" scadeType="bool" targetName="_L23" targetType="kcg_bool" inCtx="true"/>
+      <NodeInstance scadeName="TM_radio_messages::SendRadioMessage_TrainToTrack_Buffer" instName="1"
+          refName="_3_SendRadioMessage_TrainToT_TM_radio_messages" clockVar="tmp" clockVal="kcg_true">
+        <OutCtxVar targetName="Context_1" clockVar="tmp" clockVal="kcg_true"/>
+      </NodeInstance>
+      <Clock targetName="tmp" targetType="kcg_bool" inCtx="true"/>
+      <OutCtxType targetName="outC_SendRadioMessage_TrainToTrack_TM_radio_messages"/>
+      <InCtxType targetName="inC_SendRadioMessage_TrainToTrack_TM_radio_messages"/>
+    </RootNode>
+    <NoExpNode scadeName="SendRadioMessage_TrainToTrack_Buffer"
+        headerFile="_3_SendRadioMessage_TrainToT_TM_radio_messages.h"
+        targetCycleFct="_3_SendRadioMessage_TrainToT_TM_radio_messages"
+        targetInitFct="_3_SendRadioMessage_TrainToT_reset_TM_radio_messages">
+      <Input scadeName="New_Message" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="New_Message"
+          targetType="M_TrainTrack_Radio_TM_radio_messages"/>
+      <Input scadeName="Wait" scadeType="bool" targetName="Wait" targetType="kcg_bool"/>
+      <Output scadeName="MessageBus_out" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="MessageBus_out"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="_L1"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L3" scadeType="bool" targetName="_L3" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="_L4"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L5" scadeType="int" targetName="_L5" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L6" scadeType="int" targetName="_L6" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L8" scadeType="int^(TM_radio_messages::DIM_FIFO_Train_To_Track)" targetName="_L8"
+          targetType="array_int_20" inCtx="true"/>
+      <Local scadeName="_L9" scadeType="int^(TM_radio_messages::DIM_FIFO_Train_To_Track)" targetName="_L9"
+          targetType="array_int_20" inCtx="true"/>
+      <Local scadeName="_L10" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="_L10"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L11"
+          scadeType="TM_radio_messages::M_TrainTrack_Radio^(TM_radio_messages::DIM_FIFO_Train_To_Track)"
+          targetName="_L11" targetType="array__258" inCtx="true"/>
+      <Iterator iteratorKind="foldi" scadeSize="20" targetSize="20">
+        <NodeInstance scadeName="TM_radio_messages::SendRadioMessage_TrainToTrack_FIFO" instName="1"
+            refName="_2_SendRadioMessage_TrainToT_TM_radio_messages">
+          <OutCtxVar targetName="_1_Context_1"/>
+        </NodeInstance>
+      </Iterator>
+      <NodeInstance scadeName="TM_radio_messages::SendRadioMessage_TrainToTrack_Pointer" instName="1"
+          refName="SendRadioMessage_TrainToT_TM_radio_messages">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+      <OutCtxType targetName="outC__3_SendRadioMessage_TrainToT_TM_radio_messages"/>
+    </NoExpNode>
+    <NoExpNode scadeName="SendRadioMessage_TrainToTrack_FIFO"
+        headerFile="_2_SendRadioMessage_TrainToT_TM_radio_messages.h"
+        targetCycleFct="_2_SendRadioMessage_TrainToT_TM_radio_messages"
+        targetInitFct="_2_SendRadioMessage_TrainToT_reset_TM_radio_messages">
+      <Input scadeName="i" scadeType="int" targetName="i" targetType="kcg_int"/>
+      <Input scadeName="Acc" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="Acc"
+          targetType="M_TrainTrack_Radio_TM_radio_messages"/>
+      <Input scadeName="New_Message" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="New_Message"
+          targetType="M_TrainTrack_Radio_TM_radio_messages"/>
+      <Input scadeName="ReadPointer" scadeType="int" targetName="ReadPointer" targetType="kcg_int"/>
+      <Input scadeName="WritePointer" scadeType="int" targetName="WritePointer" targetType="kcg_int"/>
+      <Output scadeName="MessageBus_out" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="MessageBus_out"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="int" targetName="_L4" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L5" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="_L5"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L6" scadeType="int" targetName="_L6" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L7" scadeType="int" targetName="_L7" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L9" scadeType="bool" targetName="_L9" targetType="kcg_bool" inCtx="true"/>
+      <Memory scadeName="_L10" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="_L10"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L11" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="_L11"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L12" scadeType="int" targetName="_L12" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L13" scadeType="bool" targetName="_L13" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L14" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="_L14"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L15" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="_L15"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <NodeInstance scadeName="TM_radio_messages::SendRadioMessage_TrainToTrack_Storage" instName="1"
+          refName="_1_SendRadioMessage_TrainToT_TM_radio_messages" clockVar="tmp" clockVal="kcg_true">
+        <OutCtxVar targetName="Context_1" clockVar="tmp" clockVal="kcg_true"/>
+      </NodeInstance>
+      <NodeInstance scadeName="=" instName="1"/>
+      <NodeInstance scadeName="=" instName="2"/>
+      <Clock targetName="tmp" targetType="kcg_bool" inCtx="true"/>
+      <Init targetName="init" targetType="kcg_bool" inCtx="true"/>
+      <OutCtxType targetName="outC__2_SendRadioMessage_TrainToT_TM_radio_messages"/>
+    </NoExpNode>
+    <NoExpNode scadeName="SendRadioMessage_TrainToTrack_Storage"
+        headerFile="_1_SendRadioMessage_TrainToT_TM_radio_messages.h"
+        targetCycleFct="_1_SendRadioMessage_TrainToT_TM_radio_messages"
+        targetInitFct="_1_SendRadioMessage_TrainToT_reset_TM_radio_messages">
+      <Input scadeName="New_Message" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="New_Message"
+          targetType="M_TrainTrack_Radio_TM_radio_messages"/>
+      <Output scadeName="Message_out" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="Message_out"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="TM_radio_messages::M_TrainTrack_Radio" targetName="_L1"
+          targetType="M_TrainTrack_Radio_TM_radio_messages" inCtx="true"/>
+      <OutCtxType targetName="outC__1_SendRadioMessage_TrainToT_TM_radio_messages"/>
+    </NoExpNode>
+    <NoExpNode scadeName="SendRadioMessage_TrainToTrack_Pointer"
+        headerFile="SendRadioMessage_TrainToT_TM_radio_messages.h"
+        targetCycleFct="SendRadioMessage_TrainToT_TM_radio_messages"
+        targetInitFct="SendRadioMessage_TrainToT_reset_TM_radio_messages">
+      <Input scadeName="wait" scadeType="bool" targetName="wait" targetType="kcg_bool"/>
+      <Output scadeName="ReadPointer" scadeType="int" targetName="ReadPointer" targetType="kcg_int" mem="true"
+          inCtx="true"/>
+      <Output scadeName="WritePointer" scadeType="int" targetName="WritePointer" targetType="kcg_int" mem="true"
+          inCtx="true"/>
+      <Local scadeName="_L1" scadeType="bool" targetName="_L1" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="int" targetName="_L2" targetType="kcg_int" inCtx="true"/>
       <Local scadeName="_L3" scadeType="int" targetName="_L3" targetType="kcg_int" inCtx="true"/>
       <Local scadeName="_L4" scadeType="int" targetName="_L4" targetType="kcg_int" inCtx="true"/>
       <Local scadeName="_L5" scadeType="int" targetName="_L5" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L6" scadeType="int" targetName="_L6" targetType="kcg_int" inCtx="true"/>
       <Local scadeName="_L7" scadeType="int" targetName="_L7" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L6" scadeType="int" targetName="_L6" targetType="kcg_int" inCtx="true"/>
       <Local scadeName="_L8" scadeType="int" targetName="_L8" targetType="kcg_int" inCtx="true"/>
       <Local scadeName="_L9" scadeType="int" targetName="_L9" targetType="kcg_int" inCtx="true"/>
       <Local scadeName="_L10" scadeType="int" targetName="_L10" targetType="kcg_int" inCtx="true"/>
       <Local scadeName="_L11" scadeType="int" targetName="_L11" targetType="kcg_int" inCtx="true"/>
-      <NodeInstance scadeName="div" instName="1"/>
+      <Local scadeName="_L12" scadeType="int" targetName="_L12" targetType="kcg_int" inCtx="true"/>
+      <NodeInstance scadeName="+" instName="1"/>
+      <NodeInstance scadeName="+" instName="2"/>
       <NodeInstance scadeName="mod" instName="1"/>
-      <NodeInstance scadeName="div" instName="2"/>
       <NodeInstance scadeName="mod" instName="2"/>
-      <NodeInstance scadeName="div" instName="3"/>
-      <OutCtxType targetName="outC_T_Decode_metadata_new_TM_lib_internal"/>
-      <InCtxType targetName="inC_T_Decode_metadata_new_TM_lib_internal"/>
-    </RootNode>
+      <Init targetName="init" targetType="kcg_bool" inCtx="true"/>
+      <OutCtxType targetName="outC_SendRadioMessage_TrainToT_TM_radio_messages"/>
+    </NoExpNode>
   </Package>
-  <Option name="root_node_name" value="TM_lib_internal::T_Decode_metadata_new"/>
+  <Option name="root_node_name" value="TM_radio_messages::SendRadioMessage_TrainToTrack"/>
   <Option name="target" value="C"/>
   <Option name="target_dir"
       value="C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation"/>
@@ -70,8 +190,22 @@
   <PredefType scadeName="bool" targetName="kcg_bool"/>
   <PredefType scadeName="char" targetName="kcg_char"/>
   <PredefType scadeName="int" targetName="kcg_int"/>
+  <StructType targetName="struct__244" targetCopyFct="kcg_copy_struct__244" targetCompFct="kcg_comp_struct__244">
+    <Field scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool"/>
+    <Field scadeName="nid_message" scadeType="NID_MESSAGE" targetName="nid_message" targetType="kcg_int"/>
+    <Field scadeName="l_message" scadeType="L_MESSAGE" targetName="l_message" targetType="kcg_int"/>
+    <Field scadeName="t_train" scadeType="T_TRAIN" targetName="t_train" targetType="kcg_real"/>
+    <Field scadeName="nid_engine" scadeType="NID_ENGINE" targetName="nid_engine" targetType="kcg_int"/>
+    <Field scadeName="field1" scadeType="int" targetName="field1" targetType="kcg_int"/>
+    <Field scadeName="field2" scadeType="int" targetName="field2" targetType="kcg_int"/>
+    <Field scadeName="field3" scadeType="int" targetName="field3" targetType="kcg_int"/>
+  </StructType>
+  <ArrayType targetName="array_int_20" cellType="kcg_int" size="20" targetCopyFct="kcg_copy_array_int_20"
+      targetCompFct="kcg_comp_array_int_20"/>
+  <ArrayType targetName="array__258" cellType="struct__244" size="20" targetCopyFct="kcg_copy_array__258"
+      targetCompFct="kcg_comp_array__258"/>
 </Model>
 <!--$*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_trace.xml
-** Generation date: 2015-07-06T16:53:59
+** Generation date: 2015-07-19T14:15:36
 *************************************************************$-->
