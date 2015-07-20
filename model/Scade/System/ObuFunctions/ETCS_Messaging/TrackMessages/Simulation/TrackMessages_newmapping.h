@@ -1,10 +1,10 @@
 /* TrackMessages_newmapping.h */
 
-#include "T_Decode_metadata_new_TM_lib_internal.h"
+#include "SendRadioMessage_TrainToTrack_TM_radio_messages.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_T_Decode_metadata_new_TM_lib_internal inputs_ctx;
-extern outC_T_Decode_metadata_new_TM_lib_internal outputs_ctx;
+extern inC_SendRadioMessage_TrainToTrack_TM_radio_messages inputs_ctx;
+extern outC_SendRadioMessage_TrainToTrack_TM_radio_messages outputs_ctx;
 
