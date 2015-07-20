@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="TM_TrainToTrack_lib_internal">
+			<declarations>
+				<Operator kind="function" name="C_P003_flatten_sections">
+					<inputs>
+						<Variable name="MergedSections">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TM_TrainToTrack::P003_nid_radio_list_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/fd90a/4644/B20/55ac856f7887"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="Flattened">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TM_TrainToTrack::P003_nid_radio_list_int_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/fd909/4644/B20/55ac856f47ad"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L75">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TM_TrainToTrack::P003_nid_radio_list_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/fd905/4644/B20/55ac856f1fc"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L74">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="TM_TrainToTrack::DIM_nid_radio_list"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/fd906/4644/B20/55ac856f4d13"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L75 = MergedSections; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L75"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="MergedSections"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/fd8ff/4644/B20/55ac856f534e"/>
+							</pragmas>
+						</Equation>
+						<!-- Flattened = _L74; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="Flattened"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L74"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/fd901/4644/B20/55ac856f6a7c"/>
+							</pragmas>
+						</Equation>
+						<!-- _L74 = (map C_P003_fs_struct_to_array <<TM_TrainToTrack::DIM_nid_radio_list>>)(_L... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L74"/>
+							</lefts>
+							<right>
+								<!-- (map C_P003_fs_struct_to_array <<TM_TrainToTrack::DIM_nid_radio_list>>)(_L75) -->
+								<CallExpression>
+									<operator>
+										<IteratorOp name="2" iterator="map">
+											<operator>
+												<OpCall name="1">
+													<operator>
+														<OperatorRef name="C_P003_fs_struct_to_array"/>
+													</operator>
+												</OpCall>
+											</operator>
+											<size>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="TM_TrainToTrack::DIM_nid_radio_list"/>
+													</path>
+												</IdExpression>
+											</size>
+										</IteratorOp>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L75"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/fd8fe/4644/B20/55ac856f5cfc"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/fd8fc/4644/B20/55ac856f5d68" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_C_P003_flatten_sections_1" landscape="true" format="A4 (210 297)" oid="!ed/fd903/4644/B20/55ac856f7707">
+									<presentationElements>
+										<EquationGE presentable="!ed/fd8ff/4644/B20/55ac856f534e">
+											<position>
+												<Point x="2514" y="5133"/>
+											</position>
+											<size>
+												<Size width="264" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/fd901/4644/B20/55ac856f6a7c">
+											<position>
+												<Point x="16484" y="5133"/>
+											</position>
+											<size>
+												<Size width="318" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/fd8fe/4644/B20/55ac856f5cfc" dstEquation="!ed/fd901/4644/B20/55ac856f6a7c">
+											<positions>
+												<Point x="10530" y="5398"/>
+												<Point x="13520" y="5398"/>
+												<Point x="13520" y="5398"/>
+												<Point x="16536" y="5398"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/fd8ff/4644/B20/55ac856f534e" dstEquation="!ed/fd8fe/4644/B20/55ac856f5cfc">
+											<positions>
+												<Point x="2778" y="5398"/>
+												<Point x="4207" y="5398"/>
+												<Point x="4207" y="5398"/>
+												<Point x="5662" y="5398"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/fd8fe/4644/B20/55ac856f5cfc">
+											<position>
+												<Point x="5662" y="3731"/>
+											</position>
+											<size>
+												<Size width="4868" height="3307"/>
+											</size>
+										</EquationGE>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="function" name="C_P003_fs_struct_to_array">
+					<inputs>
+						<Variable name="section">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_RADIO"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/fd988/4644/B20/55ac856f4e14"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="section_arrays">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/fd987/4644/B20/55ac856f13a3"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_RADIO"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/fd97e/4644/B20/55ac856f2f32"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L13">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/fdae8/4644/B20/55ac8789786c"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L1 = section; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="section"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/fd979/4644/B20/55ac856f1689"/>
+							</pragmas>
+						</Equation>
+						<!-- section_arrays = _L13; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="section_arrays"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L13"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/fd97a/4644/B20/55ac856f5b25"/>
+							</pragmas>
+						</Equation>
+						<!-- _L13 = TM_conversions::CAST_NID_RADIO_to_int(_L1); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L13"/>
+							</lefts>
+							<right>
+								<!-- TM_conversions::CAST_NID_RADIO_to_int(_L1) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="TM_conversions::CAST_NID_RADIO_to_int"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/fdae7/4644/B20/55ac87896b7"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/fd978/4644/B20/55ac856f2415" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_C_P003_fs_struct_to_array_1" landscape="true" format="A4 (210 297)" oid="!ed/fd97d/4644/B20/55ac856fd28">
+									<presentationElements>
+										<EquationGE presentable="!ed/fd979/4644/B20/55ac856f1689">
+											<position>
+												<Point x="1138" y="4524"/>
+											</position>
+											<size>
+												<Size width="265" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/fd97a/4644/B20/55ac856f5b25">
+											<position>
+												<Point x="12462" y="4524"/>
+											</position>
+											<size>
+												<Size width="318" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/fdae7/4644/B20/55ac87896b7">
+											<position>
+												<Point x="5231" y="4067"/>
+											</position>
+											<size>
+												<Size width="4434" height="1418"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/fdae7/4644/B20/55ac87896b7" dstEquation="!ed/fd97a/4644/B20/55ac856f5b25">
+											<positions>
+												<Point x="9657" y="4789"/>
+												<Point x="11086" y="4789"/>
+												<Point x="11086" y="4789"/>
+												<Point x="12515" y="4789"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/fd979/4644/B20/55ac856f1689" dstEquation="!ed/fdae7/4644/B20/55ac87896b7">
+											<positions>
+												<Point x="1402" y="4789"/>
+												<Point x="3307" y="4789"/>
+												<Point x="3307" y="4789"/>
+												<Point x="5239" y="4789"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/fd864/4644/B20/55ac85527b9b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/fd865/4644/B20/55ac85527d67" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/fd866/4644/B20/55ac8552bfa" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/fd867/4644/B20/55ac85527749" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>
