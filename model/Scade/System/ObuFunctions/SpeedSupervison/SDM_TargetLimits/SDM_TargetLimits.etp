@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Project id="1" oid_count="176" defaultConfiguration="21">
+<Project id="1" oid_count="179" defaultConfiguration="21">
 	<props>
 		<Prop id="10" name="@STUDIO:PRODUCT">
 			<value>SC</value>
@@ -210,12 +210,6 @@
 			<value>true</value>
 			<configuration>63</configuration>
 		</Prop>
-		<Prop id="71" name="@SCADE:DEFAULTFILE">
-			<value>MLRI_Integration.xscade</value>
-		</Prop>
-		<Prop id="72" name="@SCADE:SEMFILE">
-			<value>MLRI_Integration.err</value>
-		</Prop>
 		<Prop id="73" name="@SCADE:NOTEFILE">
 			<value>$(SCADE)/lib/DefaultAty.aty</value>
 		</Prop>
@@ -235,10 +229,10 @@
 			<value>= SDMLimitLocations in Train Supervision =&#xA;&#xA;== Short description of the functionality ==&#xA;This operator calculates the various locations needed to determine the speed and distance monitoring commands. The current implementation of functionality is stateless and requires a complete recalculation each cycle.&#xA;&#xA;== Interface ==&#xA;=== Input ===&#xA;  @MRSPProfile Speed profile related to current track under train.&#xA;  @odometry, @trainLocations External state of train provided by odometry.&#xA;  @targetCollection The different target (list) types wrapped in a structure.&#xA;  @curveCollection The related braking curves correlated to above targets.&#xA;  @v_release Release speed as defined by external sources.&#xA;  @v_ura Speed under reading amount.&#xA;  @inhibitUnderReadingCompensation A flag defined by National Value, relating to above item.&#xA;  @T_bs, @T_be, @T_tractionCutOff Time constants defined externally or in other modules.&#xA;&#xA;=== Output ===&#xA;  @locations Internal type to wrap the locations calculated herein and pass it on directly to SDM-Commands-Operator.&#xA;  @MostRestrictiveTarget An internal structure to contain the information the target based locations are linked to.&#xA;  @FLOIisSBI1 Flag is true if First Line of Intervention uses the service brake curve (SBI1) or false if it uses deceleration values based on the emergency brake curve (SBI2).&#xA;  @v_target The designated speed of the Most Restrictive Target. This is a convienience reference into the above data structure. &#xA;  @v_MRSP The current Most Restrictive Speed at the Max Save Frontend of the train.&#xA;&#xA;== Functional Design Description ==&#xA;This operator gathers all necessary input values and computes some frequently used intermediate values in the suboperators @surplusTractionDeltas and @v_bec. The other input prepartion operator is the @TargetSelector whose main task is to dissect the list of targets to find the Most Restrictive Target. The accompanying braking curves are extracted and promoted to trailing location calculations. Also the special values of the EOA are exposed.&#xA;&#xA;The other half of the operator creates the requested values for the commands package. These ar in particular the preindication locations for EBD and SBD based targets, the release speed monitoring start locations, the locations for target speed monitoring of the I-, W-, P- and FLOI-curve, the related FLOI speed and the location of the permitted speed supervision limit. Included in the output are also certain flags for the validity of linked values.&#xA;&#xA;----&#xA;&#xA;D3.13 Speed Supervision&#xA;Specific implementation descriptions and references can be found in each operator's comment field.&#xA;&#xA;- Name: SDM_TargetLimits.etp&#xA;- Description: SUBSET-026-3, ISSUE : 3.3.0, 3.13.9 &quot;Supervision limits&quot;&#xA;- Copyright University of Rostock, 2015&#xA;- Licensed under the EUPL V.1.1 ( http://joinup.ec.europa.eu/software/page/eupl/licence-eupl )&#xA;- Gist URL: ---&#xA;- Cryptography: No&#xA;- Author(s): Dipl.Ing Thorsten Schulz&#xA;&#xA;The use of this software is limited to non-vital applications. &#xA;It has not been developed for vital operation purposes and must not be used for applications which may cause harm to people, physical accidents or financial </value>
 		</Prop>
 		<Prop id="79" name="@STUDIO:AUTHORS">
-			<value>&lt;authors&gt;</value>
+			<value>Thorsten Schulz --&gt; EULP</value>
 		</Prop>
 		<Prop id="80" name="@STUDIO:COMPAGNY">
-			<value>&lt;company&gt;</value>
+			<value>University of Rostock</value>
 		</Prop>
 		<Prop id="81" name="@STUDIO:DATE">
 			<value>&lt;date&gt;</value>
@@ -314,6 +308,15 @@
 			<value>52</value>
 			<value>60</value>
 			<value>63</value>
+		</Prop>
+		<Prop id="177" name="@SCADE:DEFAULTFILE">
+			<value>default.xscade</value>
+		</Prop>
+		<Prop id="178" name="@SCADE:SEMFILE">
+			<value>limits.err</value>
+		</Prop>
+		<Prop id="179" name="@SCADE:ASSTRING_TRIM">
+			<value></value>
 		</Prop>
 	</props>
 	<roots>
