@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-12T22:54:50
+** Generation date: 2015-07-21T17:55:34
 *************************************************************$ */
 #ifndef _Balise_440_0_AmsterdamUtrechtL2_Sheet15_MaarssenUtrechtCS_Balises_H_
 #define _Balise_440_0_AmsterdamUtrechtL2_Sheet15_MaarssenUtrechtCS_Balises_H_
@@ -40,7 +40,7 @@ typedef struct {
 /* AmsterdamUtrechtL2::Sheet15_MaarssenUtrechtCS_Balises::Balise_440_0 */
 extern void Balise_440_0_AmsterdamUtrechtL2_Sheet15_MaarssenUtrechtCS_Balises(
   /* AmsterdamUtrechtL2::Sheet15_MaarssenUtrechtCS_Balises::Balise_440_0::B_data_in */B_data_internal_T_InfraLib *B_data_in,
-  /* AmsterdamUtrechtL2::Sheet15_MaarssenUtrechtCS_Balises::Balise_440_0::Header */BaliseTelegramHeader_int_T_TM *_1_Header,
+  /* AmsterdamUtrechtL2::Sheet15_MaarssenUtrechtCS_Balises::Balise_440_0::Header */BaliseTelegramHeader_int_T_TM *Header,
   /* AmsterdamUtrechtL2::Sheet15_MaarssenUtrechtCS_Balises::Balise_440_0::PIG_nom */kcg_int PIG_nom,
   outC_Balise_440_0_AmsterdamUtrechtL2_Sheet15_MaarssenUtrechtCS_Balises *outC);
 
@@ -50,6 +50,6 @@ extern void Balise_440_0_reset_AmsterdamUtrechtL2_Sheet15_MaarssenUtrechtCS_Bali
 #endif /* _Balise_440_0_AmsterdamUtrechtL2_Sheet15_MaarssenUtrechtCS_Balises_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_440_0_AmsterdamUtrechtL2_Sheet15_MaarssenUtrechtCS_Balises.h
-** Generation date: 2015-07-12T22:54:50
+** Generation date: 2015-07-21T17:55:34
 *************************************************************$ */
 

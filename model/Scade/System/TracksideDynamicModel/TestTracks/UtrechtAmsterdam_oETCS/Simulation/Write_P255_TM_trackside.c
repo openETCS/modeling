@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-12T22:54:50
+** Generation date: 2015-07-21T17:55:34
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -18,10 +18,10 @@ void Write_P255_reset_TM_trackside(outC_Write_P255_TM_trackside *outC)
 /* TM_trackside::Write_P255 */
 void Write_P255_TM_trackside(
   /* TM_trackside::Write_P255::Packet255 */P255_trackside_int_T_TM *Packet255,
-  /* TM_trackside::Write_P255::Packets */CompressedPackets_T_Common_Types_Pkg *_1_Packets,
+  /* TM_trackside::Write_P255::Packets */CompressedPackets_T_Common_Types_Pkg *Packets,
   outC_Write_P255_TM_trackside *outC)
 {
-  kcg_copy_CompressedPackets_T_Common_Types_Pkg(&outC->_L40, _1_Packets);
+  kcg_copy_CompressedPackets_T_Common_Types_Pkg(&outC->_L40, Packets);
   kcg_copy_CompressedPacketData_T_Common_Types_Pkg(
     &outC->_L42,
     &outC->_L40.PacketData);
@@ -67,6 +67,6 @@ void Write_P255_TM_trackside(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Write_P255_TM_trackside.c
-** Generation date: 2015-07-12T22:54:50
+** Generation date: 2015-07-21T17:55:34
 *************************************************************$ */
 

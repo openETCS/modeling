@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-12T22:54:51
+** Generation date: 2015-07-21T17:55:34
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -17,15 +17,15 @@ void Balise_423_0_reset_AmsterdamUtrechtL2_Sheet13_Breukelen_Maarssen_Balises(
 /* AmsterdamUtrechtL2::Sheet13_Breukelen_Maarssen_Balises::Balise_423_0 */
 void Balise_423_0_AmsterdamUtrechtL2_Sheet13_Breukelen_Maarssen_Balises(
   /* AmsterdamUtrechtL2::Sheet13_Breukelen_Maarssen_Balises::Balise_423_0::B_data_in */B_data_internal_T_InfraLib *B_data_in,
-  /* AmsterdamUtrechtL2::Sheet13_Breukelen_Maarssen_Balises::Balise_423_0::Header */BaliseTelegramHeader_int_T_TM *_1_Header,
+  /* AmsterdamUtrechtL2::Sheet13_Breukelen_Maarssen_Balises::Balise_423_0::Header */BaliseTelegramHeader_int_T_TM *Header,
   /* AmsterdamUtrechtL2::Sheet13_Breukelen_Maarssen_Balises::Balise_423_0::PIG_nom */kcg_int PIG_nom,
   outC_Balise_423_0_AmsterdamUtrechtL2_Sheet13_Breukelen_Maarssen_Balises *outC)
 {
   static B_data_internal_T_InfraLib tmp;
   
-  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L23, _1_Header);
+  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L23, Header);
   outC->_L20 = PIG_nom;
-  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L19, _1_Header);
+  kcg_copy_BaliseTelegramHeader_int_T_TM(&outC->_L19, Header);
   kcg_copy_B_data_internal_T_InfraLib(&outC->_L15, B_data_in);
   /* 1 */
   Balise_Localisation_InfraLib(
@@ -57,6 +57,6 @@ void Balise_423_0_AmsterdamUtrechtL2_Sheet13_Breukelen_Maarssen_Balises(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_423_0_AmsterdamUtrechtL2_Sheet13_Breukelen_Maarssen_Balises.c
-** Generation date: 2015-07-12T22:54:51
+** Generation date: 2015-07-21T17:55:34
 *************************************************************$ */
 
