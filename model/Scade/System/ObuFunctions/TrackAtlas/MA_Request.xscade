@@ -1168,7 +1168,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/916e2/FD6/5F8/5552cd967266"/>
+								<ed:Variable oid="!ed/916e2/FD6/5F8/5552cd967266" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>message received via the bus</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</inputs>
@@ -1182,7 +1184,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/9170f/FD6/5F8/5552ce047e68"/>
+								<ed:Variable oid="!ed/9170f/FD6/5F8/5552ce047e68" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true in the clock cycle in which MA request parameter have been received</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="MA_RequestParams">
@@ -1194,7 +1198,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/91712/FD6/5F8/5552ce8757ce"/>
+								<ed:Variable oid="!ed/91712/FD6/5F8/5552ce8757ce" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>the current MA request parameters</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="ma_received">
@@ -1206,7 +1212,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/6ffee/56A0/115C/55a419284004"/>
+								<ed:Variable oid="!ed/6ffee/56A0/115C/55a419284004" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true if in this clock cycle an MA has been received</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</outputs>
@@ -1307,6 +1315,30 @@
 								<ed:Variable oid="!ed/1f94a5/15E0/1354/55b0a88a5ffa"/>
 							</pragmas>
 						</Variable>
+						<Variable name="_L11">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TM::P015_OBU_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1c3789/74F7/19A4/55b0e7687b05"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L10">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1c3788/74F7/19A4/55b0e7685de5"/>
+							</pragmas>
+						</Variable>
 					</locals>
 					<data>
 						<!-- MA_RequestParams = _L2; -->
@@ -1395,7 +1427,7 @@
 								<ed:Equation oid="!ed/1cad2a/103D/2770/558e9be13780"/>
 							</pragmas>
 						</Equation>
-						<!-- ma_received = _L9; -->
+						<!-- ma_received = _L10; -->
 						<Equation>
 							<lefts>
 								<VariableRef name="ma_received"/>
@@ -1403,7 +1435,7 @@
 							<right>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="_L9"/>
+										<ConstVarRef name="_L10"/>
 									</path>
 								</IdExpression>
 							</right>
@@ -1512,9 +1544,58 @@
 								<ed:Equation oid="!ed/1f94a4/15E0/1354/55b0a88a4f77"/>
 							</pragmas>
 						</Equation>
+						<!-- _L10, _L11 = TM::Read_P015(_L6); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L10"/>
+								<VariableRef name="_L11"/>
+							</lefts>
+							<right>
+								<!-- TM::Read_P015(_L6) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="TM::Read_P015"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L6"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1c3787/74F7/19A4/55b0e768688b"/>
+							</pragmas>
+						</Equation>
+						<!-- _ = _L11; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L11"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1c378f/74F7/19A4/55b0e7892bd"/>
+							</pragmas>
+						</Equation>
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/916b6/FD6/5F8/5552ccd17947" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>This operator reads packet 57 (i.e., MA_Request parameters) from the input bus.</comment>
+							<comment>The packet is stored in a memory such that it is available in every clock cycle</comment>
+							<comment>until the next packet is received. Furthermore, level2/3-MAs are read from the bus</comment>
+							<comment>to determine when a new MA has been received.</comment>
 							<diagrams>
 								<NetDiagram name="diagram_Receive_MA_RequestParameters_1" landscape="true" format="A4 (210 297)" oid="!ed/916b7/FD6/5F8/5552ccd12ed">
 									<presentationElements>
@@ -1560,7 +1641,7 @@
 										</EquationGE>
 										<EquationGE presentable="!ed/6fff1/56A0/115C/55a419de3e4a">
 											<position>
-												<Point x="19156" y="15346"/>
+												<Point x="19156" y="14224"/>
 											</position>
 											<size>
 												<Size width="339" height="508"/>
@@ -1639,7 +1720,7 @@
 										</Edge>
 										<EquationGE presentable="!ed/1f94a4/15E0/1354/55b0a88a4f77">
 											<position>
-												<Point x="12552" y="12404"/>
+												<Point x="14055" y="12404"/>
 											</position>
 											<size>
 												<Size width="254" height="508"/>
@@ -1647,25 +1728,57 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/1f94a4/15E0/1354/55b0a88a4f77" dstEquation="!ed/d0bda/103D/2770/558e997d5c00">
 											<positions>
-												<Point x="12806" y="12658"/>
+												<Point x="14309" y="12658"/>
 												<Point x="15071" y="12658"/>
 												<Point x="15071" y="10964"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1f94a4/15E0/1354/55b0a88a4f77" dstEquation="!ed/1cad2a/103D/2770/558e9be13780">
 											<positions>
-												<Point x="12806" y="12658"/>
+												<Point x="14309" y="12658"/>
 												<Point x="15917" y="12658"/>
 												<Point x="15917" y="12658"/>
 												<Point x="18923" y="12658"/>
 											</positions>
 										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1f94a4/15E0/1354/55b0a88a4f77" dstEquation="!ed/6fff1/56A0/115C/55a419de3e4a">
+										<EquationGE presentable="!ed/1c3787/74F7/19A4/55b0e768688b">
+											<position>
+												<Point x="5398" y="14012"/>
+											</position>
+											<size>
+												<Size width="3551" height="1435"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1f9458/15E0/1354/55b0a6b1366c" dstEquation="!ed/1c3787/74F7/19A4/55b0e768688b">
 											<positions>
-												<Point x="12806" y="12658"/>
-												<Point x="15071" y="12658"/>
-												<Point x="15071" y="15600"/>
-												<Point x="19198" y="15600"/>
+												<Point x="4487" y="9292"/>
+												<Point x="4890" y="9292"/>
+												<Point x="4890" y="14732"/>
+												<Point x="5398" y="14732"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/1c378f/74F7/19A4/55b0e7892bd">
+											<position>
+												<Point x="9673" y="14690"/>
+											</position>
+											<size>
+												<Size width="508" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/1c3787/74F7/19A4/55b0e768688b" dstEquation="!ed/1c378f/74F7/19A4/55b0e7892bd">
+											<positions>
+												<Point x="8954" y="14965"/>
+												<Point x="9440" y="14965"/>
+												<Point x="9440" y="14965"/>
+												<Point x="9927" y="14965"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1c3787/74F7/19A4/55b0e768688b" dstEquation="!ed/6fff1/56A0/115C/55a419de3e4a">
+											<positions>
+												<Point x="8954" y="14499"/>
+												<Point x="14076" y="14499"/>
+												<Point x="14076" y="14499"/>
+												<Point x="19198" y="14499"/>
 											</positions>
 										</Edge>
 									</presentationElements>
@@ -1714,7 +1827,7 @@
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/916cc/FD6/5F8/5552cd6b58c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-									<comment>packets received via the bus</comment>
+									<comment>message received via the bus</comment>
 								</ed:Variable>
 							</pragmas>
 						</Variable>
@@ -1827,6 +1940,20 @@
 							<pragmas>
 								<ed:Variable oid="!ed/32e270/15E0/1354/55b0b48053e6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 									<comment>position report packet1</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+						<Variable name="t_train">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_TRAIN"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/c36c9/54AA/834/55b11a791362" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>current timestamp</comment>
 								</ed:Variable>
 							</pragmas>
 						</Variable>
@@ -2091,6 +2218,18 @@
 								<ed:Variable oid="!ed/32e274/15E0/1354/55b0b49930aa"/>
 							</pragmas>
 						</Variable>
+						<Variable name="_L30">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_TRAIN"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/c36cb/54AA/834/55b11a906995"/>
+							</pragmas>
+						</Variable>
 					</locals>
 					<data>
 						<!-- _L2 = trainPosition; -->
@@ -2243,6 +2382,11 @@
 										<IdExpression>
 											<path>
 												<ConstVarRef name="_L29"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L30"/>
 											</path>
 										</IdExpression>
 									</callParameters>
@@ -2545,6 +2689,22 @@
 								<ed:Equation oid="!ed/32e273/15E0/1354/55b0b4991261"/>
 							</pragmas>
 						</Equation>
+						<!-- _L30 = t_train; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L30"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="t_train"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/c36ca/54AA/834/55b11a90374c"/>
+							</pragmas>
+						</Equation>
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/916b8/FD6/5F8/5552cd004206" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
@@ -2697,7 +2857,7 @@
 										</EquationGE>
 										<EquationGE presentable="!ed/16fb36/2078/1A68/559196f6355c">
 											<position>
-												<Point x="4276" y="10880"/>
+												<Point x="4149" y="10732"/>
 											</position>
 											<size>
 												<Size width="254" height="508"/>
@@ -2721,15 +2881,15 @@
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="10" srcEquation="!ed/16fb36/2078/1A68/559196f6355c" dstEquation="!ed/91741/FD6/5F8/5553055b12d6">
 											<positions>
-												<Point x="4530" y="11134"/>
-												<Point x="14161" y="11134"/>
+												<Point x="4403" y="10986"/>
+												<Point x="14161" y="10986"/>
 												<Point x="14161" y="9335"/>
 												<Point x="15515" y="9335"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/16fb47/2078/1A68/5591996310f">
 											<position>
-												<Point x="4276" y="11811"/>
+												<Point x="4149" y="11515"/>
 											</position>
 											<size>
 												<Size width="254" height="508"/>
@@ -2737,18 +2897,18 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/16fb47/2078/1A68/5591996310f" dstEquation="!ed/9170a/FD6/5F8/5552cde77e1">
 											<positions>
-												<Point x="4530" y="12065"/>
-												<Point x="11769" y="12065"/>
-												<Point x="11769" y="12065"/>
-												<Point x="20214" y="12065"/>
+												<Point x="4403" y="11769"/>
+												<Point x="11769" y="11769"/>
+												<Point x="11769" y="11769"/>
+												<Point x="20214" y="11769"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/16fb36/2078/1A68/559196f6355c" dstEquation="!ed/9170a/FD6/5F8/5552cde77e1">
 											<positions>
-												<Point x="4530" y="11134"/>
-												<Point x="12467" y="11134"/>
-												<Point x="12467" y="11134"/>
-												<Point x="20214" y="11134"/>
+												<Point x="4403" y="10986"/>
+												<Point x="12467" y="10986"/>
+												<Point x="12467" y="10986"/>
+												<Point x="20214" y="10986"/>
 											</positions>
 										</Edge>
 										<EquationGE kind="OBJ_LIT" presentable="!ed/1a91f9/2078/1A68/55919e705cb0">
@@ -2759,7 +2919,7 @@
 												<Size width="170" height="318"/>
 											</size>
 										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="6" srcEquation="!ed/1a91f9/2078/1A68/55919e705cb0" dstEquation="!ed/9170a/FD6/5F8/5552cde77e1">
+										<Edge leftVarIndex="1" rightExprIndex="7" srcEquation="!ed/1a91f9/2078/1A68/55919e705cb0" dstEquation="!ed/9170a/FD6/5F8/5552cde77e1">
 											<positions>
 												<Point x="21971" y="15388"/>
 												<Point x="22797" y="15388"/>
@@ -2847,7 +3007,7 @@
 										</Edge>
 										<EquationGE presentable="!ed/32e271/15E0/1354/55b0b49944d0">
 											<position>
-												<Point x="4276" y="12764"/>
+												<Point x="4149" y="12298"/>
 											</position>
 											<size>
 												<Size width="254" height="508"/>
@@ -2855,7 +3015,7 @@
 										</EquationGE>
 										<EquationGE presentable="!ed/32e273/15E0/1354/55b0b4991261">
 											<position>
-												<Point x="4276" y="13695"/>
+												<Point x="4149" y="13060"/>
 											</position>
 											<size>
 												<Size width="254" height="508"/>
@@ -2863,18 +3023,34 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/32e271/15E0/1354/55b0b49944d0" dstEquation="!ed/9170a/FD6/5F8/5552cde77e1">
 											<positions>
-												<Point x="4530" y="13018"/>
-												<Point x="12361" y="13018"/>
-												<Point x="12361" y="13018"/>
-												<Point x="20214" y="13018"/>
+												<Point x="4403" y="12552"/>
+												<Point x="12361" y="12552"/>
+												<Point x="12361" y="12552"/>
+												<Point x="20214" y="12552"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/32e273/15E0/1354/55b0b4991261" dstEquation="!ed/9170a/FD6/5F8/5552cde77e1">
 											<positions>
-												<Point x="4530" y="13949"/>
-												<Point x="12361" y="13949"/>
-												<Point x="12361" y="13949"/>
-												<Point x="20214" y="13949"/>
+												<Point x="4403" y="13314"/>
+												<Point x="12361" y="13314"/>
+												<Point x="12361" y="13314"/>
+												<Point x="20214" y="13314"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/c36ca/54AA/834/55b11a90374c">
+											<position>
+												<Point x="4149" y="13843"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="6" srcEquation="!ed/c36ca/54AA/834/55b11a90374c" dstEquation="!ed/9170a/FD6/5F8/5552cde77e1">
+											<positions>
+												<Point x="4403" y="14097"/>
+												<Point x="12298" y="14097"/>
+												<Point x="12298" y="14097"/>
+												<Point x="20214" y="14097"/>
 											</positions>
 										</Edge>
 									</presentationElements>
@@ -2894,7 +3070,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/16fb5a/2078/1A68/55919b407990"/>
+								<ed:Variable oid="!ed/16fb5a/2078/1A68/55919b407990" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>tue if track description has been deleted</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="trainProps">
@@ -2906,7 +3084,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/413d46/103D/2770/558ecbecaed"/>
+								<ed:Variable oid="!ed/413d46/103D/2770/558ecbecaed" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>train properties</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="packet0">
@@ -2937,9 +3117,23 @@
 								</ed:Variable>
 							</pragmas>
 						</Variable>
+						<Variable name="t_train">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_TRAIN"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/c36b3/54AA/834/55b11a2f18c6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>current timestamp</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
 					</inputs>
 					<outputs>
-						<Variable name="MA_request_out">
+						<Variable name="message132">
 							<type>
 								<NamedType>
 									<type>
@@ -2948,7 +3142,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/91722/FD6/5F8/555304962718"/>
+								<ed:Variable oid="!ed/91722/FD6/5F8/555304962718" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>message 132</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</outputs>
@@ -2975,18 +3171,6 @@
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/34acc3/103D/2770/558ec9f3516e"/>
-							</pragmas>
-						</Variable>
-						<Variable name="_L29">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="T_TRAIN"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/413d41/103D/2770/558ecbc77033"/>
 							</pragmas>
 						</Variable>
 						<Variable name="_L30">
@@ -3229,12 +3413,24 @@
 								<ed:Variable oid="!ed/32e2d7/15E0/1354/55b0be4ef6f"/>
 							</pragmas>
 						</Variable>
+						<Variable name="_L83">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_TRAIN"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/c36b5/54AA/834/55b11a4439f1"/>
+							</pragmas>
+						</Variable>
 					</locals>
 					<data>
-						<!-- MA_request_out = _L59; -->
+						<!-- message132 = _L59; -->
 						<Equation>
 							<lefts>
-								<VariableRef name="MA_request_out"/>
+								<VariableRef name="message132"/>
 							</lefts>
 							<right>
 								<IdExpression>
@@ -3269,22 +3465,6 @@
 							</right>
 							<pragmas>
 								<ed:Equation oid="!ed/34acc2/103D/2770/558ec9f31725"/>
-							</pragmas>
-						</Equation>
-						<!-- _L29 = ct_train; -->
-						<Equation>
-							<lefts>
-								<VariableRef name="_L29"/>
-							</lefts>
-							<right>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="ct_train"/>
-									</path>
-								</IdExpression>
-							</right>
-							<pragmas>
-								<ed:Equation oid="!ed/413d40/103D/2770/558ecbc71331"/>
 							</pragmas>
 						</Equation>
 						<!-- _L30 = trainProps; -->
@@ -3418,13 +3598,13 @@
 								<ed:Equation oid="!ed/16fb77/2078/1A68/55919bd07518"/>
 							</pragmas>
 						</Equation>
-						<!-- _L54 = (make Radio_Types_Pkg::Radio_TrainTrack_Header_T)(_L26, _L27, _L29, _L31, ... -->
+						<!-- _L54 = (make Radio_Types_Pkg::Radio_TrainTrack_Header_T)(_L26, _L27, _L83, _L31, ... -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L54"/>
 							</lefts>
 							<right>
-								<!-- (make Radio_Types_Pkg::Radio_TrainTrack_Header_T)(_L26, _L27, _L29, _L31, _L32, _... -->
+								<!-- (make Radio_Types_Pkg::Radio_TrainTrack_Header_T)(_L26, _L27, _L83, _L31, _L32, _... -->
 								<CallExpression>
 									<operator>
 										<MakeOp name="2">
@@ -3446,7 +3626,7 @@
 										</IdExpression>
 										<IdExpression>
 											<path>
-												<ConstVarRef name="_L29"/>
+												<ConstVarRef name="_L83"/>
 											</path>
 										</IdExpression>
 										<IdExpression>
@@ -3461,7 +3641,7 @@
 										</IdExpression>
 										<IdExpression>
 											<path>
-												<ConstVarRef name="_L29"/>
+												<ConstVarRef name="_L83"/>
 											</path>
 										</IdExpression>
 										<IdExpression>
@@ -3754,9 +3934,26 @@
 								<ed:Equation oid="!ed/32e2d6/15E0/1354/55b0be4e6665"/>
 							</pragmas>
 						</Equation>
+						<!-- _L83 = t_train; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L83"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="t_train"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/c36b4/54AA/834/55b11a446c3b"/>
+							</pragmas>
+						</Equation>
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/916e8/FD6/5F8/5552cdc024e4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>This operator builds message 132 containing the MA request packet and a position report.</comment>
 							<diagrams>
 								<NetDiagram name="diagram_Build_MA_request_1" landscape="true" format="A4 (210 297)" oid="!ed/916e9/FD6/5F8/5552cdc064be">
 									<presentationElements>
@@ -3782,14 +3979,6 @@
 											</position>
 											<size>
 												<Size width="169" height="318"/>
-											</size>
-										</EquationGE>
-										<EquationGE kind="OBJ_LIT" presentable="!ed/413d40/103D/2770/558ecbc71331">
-											<position>
-												<Point x="12658" y="3556"/>
-											</position>
-											<size>
-												<Size width="169" height="317"/>
 											</size>
 										</EquationGE>
 										<EquationGE presentable="!ed/413d50/103D/2770/558ecc02b4f">
@@ -3895,28 +4084,12 @@
 												<Point x="14372" y="3027"/>
 											</positions>
 										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/413d40/103D/2770/558ecbc71331" dstEquation="!ed/ffc1b/56A0/115C/55a41ec8f87">
-											<positions>
-												<Point x="12827" y="3725"/>
-												<Point x="13399" y="3725"/>
-												<Point x="13399" y="3704"/>
-												<Point x="14372" y="3704"/>
-											</positions>
-										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/413d56/103D/2770/558ecc0543b1" dstEquation="!ed/ffc1b/56A0/115C/55a41ec8f87">
 											<positions>
 												<Point x="5249" y="4382"/>
 												<Point x="10456" y="4382"/>
 												<Point x="10456" y="4382"/>
 												<Point x="14372" y="4382"/>
-											</positions>
-										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="6" srcEquation="!ed/413d40/103D/2770/558ecbc71331" dstEquation="!ed/ffc1b/56A0/115C/55a41ec8f87">
-											<positions>
-												<Point x="12827" y="3725"/>
-												<Point x="13399" y="3725"/>
-												<Point x="13399" y="5736"/>
-												<Point x="14372" y="5736"/>
 											</positions>
 										</Edge>
 										<EquationGE kind="OBJ_LIT" presentable="!ed/1392f7/56A0/115C/55a420bc537d">
@@ -4143,6 +4316,30 @@
 												<Point x="20426" y="6011"/>
 											</positions>
 										</Edge>
+										<EquationGE presentable="!ed/c36b4/54AA/834/55b11a446c3b">
+											<position>
+												<Point x="12742" y="3450"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/c36b4/54AA/834/55b11a446c3b" dstEquation="!ed/ffc1b/56A0/115C/55a41ec8f87">
+											<positions>
+												<Point x="12996" y="3704"/>
+												<Point x="13674" y="3704"/>
+												<Point x="13674" y="3725"/>
+												<Point x="14372" y="3725"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="6" srcEquation="!ed/c36b4/54AA/834/55b11a446c3b" dstEquation="!ed/ffc1b/56A0/115C/55a41ec8f87">
+											<positions>
+												<Point x="12996" y="3704"/>
+												<Point x="13674" y="3704"/>
+												<Point x="13674" y="5736"/>
+												<Point x="14372" y="5736"/>
+											</positions>
+										</Edge>
 									</presentationElements>
 								</NetDiagram>
 							</diagrams>
@@ -4160,7 +4357,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/91733/FD6/5F8/55530527a5b"/>
+								<ed:Variable oid="!ed/91733/FD6/5F8/55530527a5b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>the current MA request parameters</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="ma_received">
@@ -4172,7 +4371,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/16fa39/2078/1A68/55918fad6ac9"/>
+								<ed:Variable oid="!ed/16fa39/2078/1A68/55918fad6ac9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true if an MA has been received</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="in_triggerMA">
@@ -4187,7 +4388,9 @@
 								<ConstValue value="false"/>
 							</last>
 							<pragmas>
-								<ed:Variable oid="!ed/16fadb/2078/1A68/5591938023bf"/>
+								<ed:Variable oid="!ed/16fadb/2078/1A68/5591938023bf" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true, if in the last cycle an MA request has been triggered</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="trainPosition">
@@ -4199,7 +4402,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/9173a/FD6/5F8/555305436de6"/>
+								<ed:Variable oid="!ed/9173a/FD6/5F8/555305436de6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>current train position</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="systemTime">
@@ -4211,7 +4416,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/91740/FD6/5F8/555305437f2f"/>
+								<ed:Variable oid="!ed/91740/FD6/5F8/555305437f2f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>current system time</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="preindicationLocation">
@@ -4223,7 +4430,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/2818a5/103D/2770/558ea1d16746"/>
+								<ed:Variable oid="!ed/2818a5/103D/2770/558ea1d16746" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>preindication location for LOA/EOA</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="odometry">
@@ -4235,7 +4444,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/2818e6/103D/2770/558ea3842c7d"/>
+								<ed:Variable oid="!ed/2818e6/103D/2770/558ea3842c7d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>current odometry</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="MAs">
@@ -4247,7 +4458,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/28199d/103D/2770/558ea8bb1b61"/>
+								<ed:Variable oid="!ed/28199d/103D/2770/558ea8bb1b61" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>current MAs</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="fromDriver">
@@ -4273,7 +4486,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/16f8c4/2078/1A68/55918b107c7f"/>
+								<ed:Variable oid="!ed/16f8c4/2078/1A68/55918b107c7f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true if the track description has been deleted</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</inputs>
@@ -4290,7 +4505,9 @@
 								<ConstValue value="false"/>
 							</last>
 							<pragmas>
-								<ed:Variable oid="!ed/91746/FD6/5F8/5553063d6290"/>
+								<ed:Variable oid="!ed/91746/FD6/5F8/5553063d6290" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true if MA has to be requested</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</outputs>
@@ -5095,7 +5312,10 @@
 								</CallExpression>
 							</right>
 							<pragmas>
-								<ed:Equation oid="!ed/281c17/103D/2770/558eb9917f39"/>
+								<ed:Equation oid="!ed/281c17/103D/2770/558eb9917f39" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>This operator evaluates condition 3.8.2.3.a, (i.e., request MA a defined time before the </comment>
+									<comment>MA section timer has been reached).</comment>
+								</ed:Equation>
 							</pragmas>
 						</Equation>
 						<!-- _L48 = false; -->
@@ -5262,7 +5482,10 @@
 								</CallExpression>
 							</right>
 							<pragmas>
-								<ed:Equation oid="!ed/281ca0/103D/2770/558ebe36cd3"/>
+								<ed:Equation oid="!ed/281ca0/103D/2770/558ebe36cd3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>This operator checks whether an MA request shall be repeated. Once cycle after requesting an MA,</comment>
+									<comment>the current time is stored in a memory. In each cycle, it is checked whether the t_cycrqst have been passed.</comment>
+								</ed:Equation>
 							</pragmas>
 						</Equation>
 						<StateMachine name="SM1">
@@ -5588,6 +5811,15 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/9172b/FD6/5F8/555304e53f18" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>This operator evaluates the condition for triggering an MA request. If it outputs true, </comment>
+							<comment>then an MA request has to be sent.</comment>
+							<comment>The conditions are:</comment>
+							<comment>- a defined time before the preindication location has been reached</comment>
+							<comment>- a defined time before an MA timer expires</comment>
+							<comment>- an MA request has been sent but the request has to be repeated as there was no answer since</comment>
+							<comment>- one of the other reasons for requesting an MA holds</comment>
+							<comment>A small state machine model is used to store the information whether an MA request has to be repeated</comment>
+							<comment>or not (i.e., the corresponding MA has been received).</comment>
 							<diagrams>
 								<NetDiagram name="diagram_MA_Request_Supervision_1" landscape="true" format="A4 (210 297)" oid="!ed/9172c/FD6/5F8/555304e57d5f">
 									<presentationElements>
@@ -6269,7 +6501,7 @@
 				</Operator>
 				<Operator kind="function" name="Send_MA">
 					<inputs>
-						<Variable name="MA_request">
+						<Variable name="msg132">
 							<type>
 								<NamedType>
 									<type>
@@ -6278,12 +6510,14 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/9175c/FD6/5F8/55530eb81994"/>
+								<ed:Variable oid="!ed/9175c/FD6/5F8/55530eb81994" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>message 132 consisting of MA request and a position report</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</inputs>
 					<outputs>
-						<Variable name="Message_Out">
+						<Variable name="message_out">
 							<type>
 								<NamedType>
 									<type>
@@ -6292,7 +6526,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/91755/FD6/5F8/55530e7a6cdd"/>
+								<ed:Variable oid="!ed/91755/FD6/5F8/55530e7a6cdd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>message 132 consisting of MA request and a position report</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</outputs>
@@ -6311,7 +6547,7 @@
 						</Variable>
 					</locals>
 					<data>
-						<!-- _L1 = MA_request; -->
+						<!-- _L1 = msg132; -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L1"/>
@@ -6319,7 +6555,7 @@
 							<right>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="MA_request"/>
+										<ConstVarRef name="msg132"/>
 									</path>
 								</IdExpression>
 							</right>
@@ -6327,10 +6563,10 @@
 								<ed:Equation oid="!ed/1a921b/2078/1A68/55919f217ab9"/>
 							</pragmas>
 						</Equation>
-						<!-- Message_Out = _L1; -->
+						<!-- message_out = _L1; -->
 						<Equation>
 							<lefts>
-								<VariableRef name="Message_Out"/>
+								<VariableRef name="message_out"/>
 							</lefts>
 							<right>
 								<IdExpression>
@@ -6346,6 +6582,8 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/91748/FD6/5F8/5553064873c9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Propagates input message (message 132) to the output.</comment>
+							<comment>In a later stage,  this operator will implement writing the message on the bus.</comment>
 							<diagrams>
 								<NetDiagram name="diagram_Send_MA_1" landscape="true" format="A4 (210 297)" oid="!ed/91749/FD6/5F8/5553064878b4">
 									<presentationElements>
@@ -6390,7 +6628,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/281982/103D/2770/558ea7167110"/>
+								<ed:Variable oid="!ed/281982/103D/2770/558ea7167110" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Time before reaching pre-indication location for the EOA/LOA</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="trainPosition">
@@ -6402,7 +6642,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/28197f/103D/2770/558ea7161fab"/>
+								<ed:Variable oid="!ed/28197f/103D/2770/558ea7161fab" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>current train position</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="preindicationLoc">
@@ -6414,7 +6656,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/281985/103D/2770/558ea71670ae"/>
+								<ed:Variable oid="!ed/281985/103D/2770/558ea71670ae" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>preindication location for LOA/EOA</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="odometry">
@@ -6426,7 +6670,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/281988/103D/2770/558ea7166974"/>
+								<ed:Variable oid="!ed/281988/103D/2770/558ea7166974" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>current odometry</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</inputs>
@@ -6440,7 +6686,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/28198b/103D/2770/558ea7167ed0"/>
+								<ed:Variable oid="!ed/28198b/103D/2770/558ea7167ed0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true if condition holds</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</outputs>
@@ -7059,6 +7307,8 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/28197d/103D/2770/558ea7166a5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>This operator evaluates condition 3.8.2.3.a, (i.e., request MA a defined time before the </comment>
+							<comment>preindication location has been reached).</comment>
 							<diagrams>
 								<NetDiagram name="diagram_op_3_8_2_3_a_1" landscape="true" format="A4 (210 297)" oid="!ed/28197e/103D/2770/558ea716536d">
 									<presentationElements>
@@ -7251,7 +7501,7 @@
 												<Point x="9610" y="7176"/>
 												<Point x="11261" y="7176"/>
 												<Point x="11261" y="7197"/>
-												<Point x="11261" y="7176"/>
+												<Point x="11261" y="7197"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/281908/103D/2770/558ea574722a" dstEquation="!ed/281914/103D/2770/558ea594331">
@@ -7793,6 +8043,7 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/2819ad/103D/2770/558ea9634e33" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>This operator outputs the smallest timer of all MA sections.</comment>
 							<diagrams>
 								<NetDiagram name="diagram_CompareSectionTimer_1" landscape="true" format="A4 (210 297)" oid="!ed/2819ae/103D/2770/558ea96366e5">
 									<presentationElements>
@@ -8012,7 +8263,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/281c0e/103D/2770/558eb9916287"/>
+								<ed:Variable oid="!ed/281c0e/103D/2770/558eb9916287" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Time before any section timer expires or the LOA speed timer expires</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="ma_s">
@@ -8024,7 +8277,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/281c08/103D/2770/558eb9915975"/>
+								<ed:Variable oid="!ed/281c08/103D/2770/558eb9915975" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>current MA</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</inputs>
@@ -8038,7 +8293,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/281c11/103D/2770/558eb9917e77"/>
+								<ed:Variable oid="!ed/281c11/103D/2770/558eb9917e77" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true if condition holds</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</outputs>
@@ -8575,7 +8832,7 @@
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/16f8a8/2078/1A68/5591886472ed" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-									<comment>position report paramters (packet 58)</comment>
+									<comment>time after which an previously sent MA request shall be repeated (if in the meantime no MA has been received)</comment>
 								</ed:Variable>
 							</pragmas>
 						</Variable>
@@ -8591,7 +8848,9 @@
 								<ConstValue value="false"/>
 							</last>
 							<pragmas>
-								<ed:Variable oid="!ed/16f8a9/2078/1A68/55918864ed9"/>
+								<ed:Variable oid="!ed/16f8a9/2078/1A68/55918864ed9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true if an MA has been requested</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="systemTime">
@@ -8604,7 +8863,7 @@
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/16f8a7/2078/1A68/559188641cbb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-									<comment>the system time</comment>
+									<comment>current system time</comment>
 								</ed:Variable>
 							</pragmas>
 						</Variable>
@@ -8619,7 +8878,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/281c82/103D/2770/558ebe126752"/>
+								<ed:Variable oid="!ed/281c82/103D/2770/558ebe126752" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true if t_cycrqst time units after sending an MA request no MA has been received</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</outputs>
