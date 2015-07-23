@@ -1,10 +1,10 @@
-#ifndef AMSTERDAM_UTRECHT_BALISES_US_INTEGRATION_JUNE_INTERFACE
-#define AMSTERDAM_UTRECHT_BALISES_US_INTEGRATION_JUNE_INTERFACE
+#ifndef AMSTERDAM_UTRECHT_US_INTEGRATION_JUNE_INTERFACE
+#define AMSTERDAM_UTRECHT_US_INTEGRATION_JUNE_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "Amsterdam_Utrecht_Balises_US_Integration_June.h"
+#include "Amsterdam_Utrecht_US_Integration_June.h"
 
 extern SimSimulator * pSimulator;
 
@@ -12,6 +12,7 @@ extern SimSimulator * pSimulator;
  * Simulation context
  *******************************/
 extern kcg_real _ctx_TrainPos_buffer;
+extern kcg_int _ctx_Trigger_in_buffer;
 /*******************************
  * Validity
  *******************************/
@@ -37,4 +38,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*AMSTERDAM_UTRECHT_BALISES_US_INTEGRATION_JUNE_INTERFACE */
+#endif /*AMSTERDAM_UTRECHT_US_INTEGRATION_JUNE_INTERFACE */
