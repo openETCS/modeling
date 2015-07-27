@@ -3,6 +3,25 @@
 	<declarations>
 		<Package name="TargetManagement_types">
 			<declarations>
+				<Constant name="MaSections">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="TrackAtlasTypes::MAsMaxSections"/>
+							</path>
+						</IdExpression>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/26291c/5DE2/F50/55a8c33e264c"/>
+					</pragmas>
+				</Constant>
 				<Type name="Target_real_T">
 					<definition>
 						<Struct>
@@ -43,18 +62,6 @@
 										<ed:Field oid="!ed/2cb95/6534/166C/54db4dca4cb2"/>
 									</pragmas>
 								</Field>
-								<Field name="valid">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="bool"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/1aae3/138A/304/54f43b461abe"/>
-									</pragmas>
-								</Field>
 							</fields>
 						</Struct>
 					</definition>
@@ -73,11 +80,6 @@
 										<ed:Value oid="!ed/2cb97/6534/166C/54db4dca7b04"/>
 									</pragmas>
 								</Value>
-								<Value name="LoA">
-									<pragmas>
-										<ed:Value oid="!ed/98332/3A91/DF8/54eceb556be0"/>
-									</pragmas>
-								</Value>
 								<Value name="SvL">
 									<pragmas>
 										<ed:Value oid="!ed/98333/3A91/DF8/54eceb5f2755"/>
@@ -86,6 +88,16 @@
 								<Value name="MRSP">
 									<pragmas>
 										<ed:Value oid="!ed/98334/3A91/DF8/54eceb6944eb"/>
+									</pragmas>
+								</Value>
+								<Value name="invalid">
+									<pragmas>
+										<ed:Value oid="!ed/c50d9/7394/1A6C/55af8a82efe"/>
+									</pragmas>
+								</Value>
+								<Value name="LoA">
+									<pragmas>
+										<ed:Value oid="!ed/c50f1/1E98/180/55afa7f76f1d"/>
 									</pragmas>
 								</Value>
 							</values>
@@ -220,7 +232,7 @@
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/72cc4/138A/304/54f44b5b1879"/>
+										<ed:Field oid="!ed/c50e8/1E98/180/55afa7d8510b"/>
 									</pragmas>
 								</Field>
 							</fields>
@@ -230,29 +242,6 @@
 						<ed:Type oid="!ed/11be19/3A91/DF8/54ecf7633eb4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 							<comment>Target_T with integer types</comment>
 						</ed:Type>
-					</pragmas>
-				</Type>
-				<Type name="Target_list_LOA_real_T">
-					<definition>
-						<Table>
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="Target_real_T"/>
-									</type>
-								</NamedType>
-							</type>
-							<size>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="TrackAtlasTypes::MAsMaxSections"/>
-									</path>
-								</IdExpression>
-							</size>
-						</Table>
-					</definition>
-					<pragmas>
-						<ed:Type oid="!ed/13ed2c/1235/F34/54f03f97abd"/>
 					</pragmas>
 				</Type>
 				<Type name="Target_list_MRSP_real_T">
@@ -278,29 +267,6 @@
 						<ed:Type oid="!ed/b0414/138A/304/54f44ef73d98"/>
 					</pragmas>
 				</Type>
-				<Type name="MAs_real_T">
-					<definition>
-						<Table>
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="MA_section_real_T"/>
-									</type>
-								</NamedType>
-							</type>
-							<size>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="TrackAtlasTypes::MAsMaxSections"/>
-									</path>
-								</IdExpression>
-							</size>
-						</Table>
-					</definition>
-					<pragmas>
-						<ed:Type oid="!ed/5bba0/578F/938/54f60ab25270"/>
-					</pragmas>
-				</Type>
 				<Type name="MA_section_real_T">
 					<definition>
 						<Struct>
@@ -317,18 +283,16 @@
 										<ed:Field oid="!ed/5c9f9/24AA/89C/54f99eab3b94"/>
 									</pragmas>
 								</Field>
-								<Field name="EndSection">
+								<Field name="v_main">
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="bool"/>
+												<TypeRef name="SDM_Types_Pkg::V_internal_real_Type"/>
 											</type>
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/5bb91/578F/938/54f60ab21177" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>True if section is end section</comment>
-										</ed:Field>
+										<ed:Field oid="!ed/752245/574E/C58/55a92f4b4ede"/>
 									</pragmas>
 								</Field>
 								<Field name="EOA">
@@ -383,7 +347,7 @@
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="Overlap_real_T"/>
+												<TypeRef name="SDM_Types_Pkg::L_internal_real_Type"/>
 											</type>
 										</NamedType>
 									</type>
@@ -391,7 +355,7 @@
 										<ed:Field oid="!ed/5bb96/578F/938/54f60ab25700"/>
 									</pragmas>
 								</Field>
-								<Field name="ReleaseSpeedValid">
+								<Field name="q_calculate_release">
 									<type>
 										<NamedType>
 											<type>
@@ -415,34 +379,23 @@
 										<ed:Field oid="!ed/5bb97/578F/938/54f60ab21a67"/>
 									</pragmas>
 								</Field>
-							</fields>
-						</Struct>
-					</definition>
-					<pragmas>
-						<ed:Type oid="!ed/5bb90/578F/938/54f60ab23f33"/>
-					</pragmas>
-				</Type>
-				<Type name="Overlap_real_T">
-					<definition>
-						<Struct>
-							<fields>
-								<Field name="Location">
+								<Field name="level">
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="SDM_Types_Pkg::L_internal_real_Type"/>
+												<TypeRef name="TrackAtlasTypes::MA_Level_t"/>
 											</type>
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/5bbbd/578F/938/54f60b4129bf"/>
+										<ed:Field oid="!ed/75224f/574E/C58/55a92fc03bca"/>
 									</pragmas>
 								</Field>
 							</fields>
 						</Struct>
 					</definition>
 					<pragmas>
-						<ed:Type oid="!ed/5bbbc/578F/938/54f60b413ccd"/>
+						<ed:Type oid="!ed/5bb90/578F/938/54f60ab23f33"/>
 					</pragmas>
 				</Type>
 				<Type name="EOA_real_T">
@@ -494,18 +447,6 @@
 									</type>
 									<pragmas>
 										<ed:Field oid="!ed/9ce5e/578F/938/54f617834776"/>
-									</pragmas>
-								</Field>
-								<Field name="LOA_targetList">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="Target_list_LOA_real_T"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/9ce67/578F/938/54f617c67030"/>
 									</pragmas>
 								</Field>
 								<Field name="MRSP_targetList">
