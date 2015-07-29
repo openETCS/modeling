@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Operator kind="function" name="M122_dV_Operator">
+			<inputs>
+				<Variable name="MRSP">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3d77/13F/1EB8/557ec01669b4"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="dV_ebd">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3d78/13F/1EB8/557ec02362c9"/>
+					</pragmas>
+				</Variable>
+				<Variable name="dV_sbd">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/44f4/142C/1764/559399a13418"/>
+					</pragmas>
+				</Variable>
+				<Variable name="dV_warning">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/44fb/142C/1764/559399a9488d"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<data>
+				<IfBlock name="IfBlock1">
+					<block>
+						<IfNode>
+							<if>
+								<!-- MRSP > V_ebi_max -->
+								<BinaryOp name="1" operator="&gt;">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="MRSP"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="V_ebi_max"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+							</if>
+							<then>
+								<Action>
+									<data>
+										<!-- dV_ebd = dV_ebi_max; -->
+										<Equation>
+											<lefts>
+												<VariableRef name="dV_ebd"/>
+											</lefts>
+											<right>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="dV_ebi_max"/>
+													</path>
+												</IdExpression>
+											</right>
+											<pragmas>
+												<ed:Equation oid="!ed/7f46/10BE/1CCC/558144622733"/>
+											</pragmas>
+										</Equation>
+									</data>
+									<pragmas>
+										<ed:Action oid="!ed/7f29/10BE/1CCC/558144246342"/>
+									</pragmas>
+								</Action>
+							</then>
+							<else>
+								<IfNode>
+									<if>
+										<!-- MRSP < V_ebi_min -->
+										<BinaryOp name="1" operator="&lt;">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="MRSP"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="V_ebi_min"/>
+													</path>
+												</IdExpression>
+											</operands>
+										</BinaryOp>
+									</if>
+									<then>
+										<Action>
+											<data>
+												<!-- dV_ebd = dV_ebi_min; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="dV_ebd"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="dV_ebi_min"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/7f58/10BE/1CCC/5581447e78df"/>
+													</pragmas>
+												</Equation>
+											</data>
+											<pragmas>
+												<ed:Action oid="!ed/7f34/10BE/1CCC/5581442d1f08"/>
+											</pragmas>
+										</Action>
+									</then>
+									<else>
+										<Action>
+											<data>
+												<!-- dV_ebd = dV_ebi_min + dV_ebi_Slope * MRSP; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="dV_ebd"/>
+													</lefts>
+													<right>
+														<!-- dV_ebi_min + dV_ebi_Slope * MRSP -->
+														<NAryOp name="3" operator="+">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="dV_ebi_min"/>
+																	</path>
+																</IdExpression>
+																<!-- dV_ebi_Slope * MRSP -->
+																<NAryOp name="3" operator="*">
+																	<operands>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="dV_ebi_Slope"/>
+																			</path>
+																		</IdExpression>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="MRSP"/>
+																			</path>
+																		</IdExpression>
+																	</operands>
+																</NAryOp>
+															</operands>
+														</NAryOp>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/4551/3F55/38C0/558a7a6e3cb8"/>
+													</pragmas>
+												</Equation>
+											</data>
+											<pragmas>
+												<ed:Action oid="!ed/7f2a/10BE/1CCC/55814424664a"/>
+											</pragmas>
+										</Action>
+									</else>
+									<pragmas>
+										<ed:IfNode oid="!ed/7f2f/10BE/1CCC/5581442c4d2b"/>
+									</pragmas>
+								</IfNode>
+							</else>
+							<pragmas>
+								<ed:IfNode oid="!ed/7f28/10BE/1CCC/558144245310"/>
+							</pragmas>
+						</IfNode>
+					</block>
+					<pragmas>
+						<ed:IfBlock oid="!ed/7f23/10BE/1CCC/5581442231ee"/>
+					</pragmas>
+				</IfBlock>
+				<IfBlock name="IfBlock2">
+					<block>
+						<IfNode>
+							<if>
+								<!-- MRSP > V_sbi_max -->
+								<BinaryOp name="2" operator="&gt;">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="MRSP"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="V_sbi_max"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+							</if>
+							<then>
+								<Action>
+									<data>
+										<!-- dV_sbd = dV_sbi_max; -->
+										<Equation>
+											<lefts>
+												<VariableRef name="dV_sbd"/>
+											</lefts>
+											<right>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="dV_sbi_max"/>
+													</path>
+												</IdExpression>
+											</right>
+											<pragmas>
+												<ed:Equation oid="!ed/4511/142C/1764/55939a046a2f"/>
+											</pragmas>
+										</Equation>
+									</data>
+									<pragmas>
+										<ed:Action oid="!ed/455f/A13/998/55929c383065"/>
+									</pragmas>
+								</Action>
+							</then>
+							<else>
+								<IfNode>
+									<if>
+										<!-- MRSP < V_sbi_min -->
+										<BinaryOp name="3" operator="&lt;">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="MRSP"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="V_sbi_min"/>
+													</path>
+												</IdExpression>
+											</operands>
+										</BinaryOp>
+									</if>
+									<then>
+										<Action>
+											<data>
+												<!-- dV_sbd = dV_sbi_min; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="dV_sbd"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="dV_sbi_min"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/451b/142C/1764/55939a0b5a19"/>
+													</pragmas>
+												</Equation>
+											</data>
+											<pragmas>
+												<ed:Action oid="!ed/4576/A13/998/55929cb367d9"/>
+											</pragmas>
+										</Action>
+									</then>
+									<else>
+										<Action>
+											<data>
+												<!-- dV_sbd = dV_sbi_min + dV_sbi_Slope * MRSP; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="dV_sbd"/>
+													</lefts>
+													<right>
+														<!-- dV_sbi_min + dV_sbi_Slope * MRSP -->
+														<NAryOp name="4" operator="+">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="dV_sbi_min"/>
+																	</path>
+																</IdExpression>
+																<!-- dV_sbi_Slope * MRSP -->
+																<NAryOp name="4" operator="*">
+																	<operands>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="dV_sbi_Slope"/>
+																			</path>
+																		</IdExpression>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="MRSP"/>
+																			</path>
+																		</IdExpression>
+																	</operands>
+																</NAryOp>
+															</operands>
+														</NAryOp>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/4525/142C/1764/55939a24a4f"/>
+													</pragmas>
+												</Equation>
+											</data>
+											<pragmas>
+												<ed:Action oid="!ed/4560/A13/998/55929c381a1"/>
+											</pragmas>
+										</Action>
+									</else>
+									<pragmas>
+										<ed:IfNode oid="!ed/4571/A13/998/55929caf253"/>
+									</pragmas>
+								</IfNode>
+							</else>
+							<pragmas>
+								<ed:IfNode oid="!ed/455e/A13/998/55929c382f6"/>
+							</pragmas>
+						</IfNode>
+					</block>
+					<pragmas>
+						<ed:IfBlock oid="!ed/4559/A13/998/55929c2730ec"/>
+					</pragmas>
+				</IfBlock>
+				<IfBlock name="IfBlock3">
+					<block>
+						<IfNode>
+							<if>
+								<!-- MRSP > V_warning_max -->
+								<BinaryOp name="3" operator="&gt;">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="MRSP"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="V_warning_max"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+							</if>
+							<then>
+								<Action>
+									<data>
+										<!-- dV_warning = dV_warning_max; -->
+										<Equation>
+											<lefts>
+												<VariableRef name="dV_warning"/>
+											</lefts>
+											<right>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="dV_warning_max"/>
+													</path>
+												</IdExpression>
+											</right>
+											<pragmas>
+												<ed:Equation oid="!ed/454e/142C/1764/55939aa33303"/>
+											</pragmas>
+										</Equation>
+									</data>
+									<pragmas>
+										<ed:Action oid="!ed/4568/A13/998/55929c636c95"/>
+									</pragmas>
+								</Action>
+							</then>
+							<else>
+								<IfNode>
+									<if>
+										<!-- MRSP < V_warning_min -->
+										<BinaryOp name="4" operator="&lt;">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="MRSP"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="V_warning_min"/>
+													</path>
+												</IdExpression>
+											</operands>
+										</BinaryOp>
+									</if>
+									<then>
+										<Action>
+											<data>
+												<!-- dV_warning = dV_warning_min; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="dV_warning"/>
+													</lefts>
+													<right>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="dV_warning_min"/>
+															</path>
+														</IdExpression>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/4558/142C/1764/55939aade63"/>
+													</pragmas>
+												</Equation>
+											</data>
+											<pragmas>
+												<ed:Action oid="!ed/452e/142C/1764/55939a421140"/>
+											</pragmas>
+										</Action>
+									</then>
+									<else>
+										<Action>
+											<data>
+												<!-- dV_warning = dV_warning_min + dV_warning_Slope * MRSP; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="dV_warning"/>
+													</lefts>
+													<right>
+														<!-- dV_warning_min + dV_warning_Slope * MRSP -->
+														<NAryOp name="5" operator="+">
+															<operands>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="dV_warning_min"/>
+																	</path>
+																</IdExpression>
+																<!-- dV_warning_Slope * MRSP -->
+																<NAryOp name="5" operator="*">
+																	<operands>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="dV_warning_Slope"/>
+																			</path>
+																		</IdExpression>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="MRSP"/>
+																			</path>
+																		</IdExpression>
+																	</operands>
+																</NAryOp>
+															</operands>
+														</NAryOp>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/4562/142C/1764/55939ac8102b"/>
+													</pragmas>
+												</Equation>
+											</data>
+											<pragmas>
+												<ed:Action oid="!ed/4569/A13/998/55929c632728"/>
+											</pragmas>
+										</Action>
+									</else>
+									<pragmas>
+										<ed:IfNode oid="!ed/4529/142C/1764/55939a407b46"/>
+									</pragmas>
+								</IfNode>
+							</else>
+							<pragmas>
+								<ed:IfNode oid="!ed/4567/A13/998/55929c639d4"/>
+							</pragmas>
+						</IfNode>
+					</block>
+					<pragmas>
+						<ed:IfBlock oid="!ed/4562/A13/998/55929c602451"/>
+					</pragmas>
+				</IfBlock>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/3d70/13F/1EB8/557ebf9870c9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+					<diagrams>
+						<NetDiagram name="diagram_M122_dV_Operator_1" landscape="true" format="A4 (210 297)" oid="!ed/3d71/13F/1EB8/557ebf982482">
+							<presentationElements>
+								<IfBlockGE presentable="!ed/7f23/10BE/1CCC/5581442231ee">
+									<position>
+										<Point x="661" y="847"/>
+									</position>
+									<size>
+										<Size width="11589" height="5424"/>
+									</size>
+								</IfBlockGE>
+								<ActionGE display="embeddedTextual" presentable="!ed/7f29/10BE/1CCC/558144246342">
+									<position>
+										<Point x="2540" y="1482"/>
+									</position>
+									<size>
+										<Size width="6430" height="926"/>
+									</size>
+								</ActionGE>
+								<ActionGE display="embeddedTextual" presentable="!ed/7f2a/10BE/1CCC/55814424664a">
+									<position>
+										<Point x="2434" y="4630"/>
+									</position>
+									<size>
+										<Size width="6985" height="1006"/>
+									</size>
+								</ActionGE>
+								<IfNodeGE labelWidth="2196" presentable="!ed/7f28/10BE/1CCC/558144245310">
+									<position>
+										<Point x="1111" y="1561"/>
+									</position>
+								</IfNodeGE>
+								<IfNodeGE labelWidth="2117" presentable="!ed/7f2f/10BE/1CCC/5581442c4d2b">
+									<position>
+										<Point x="1111" y="3201"/>
+									</position>
+								</IfNodeGE>
+								<ActionGE display="embeddedTextual" presentable="!ed/7f34/10BE/1CCC/5581442d1f08">
+									<position>
+										<Point x="2434" y="3122"/>
+									</position>
+									<size>
+										<Size width="6430" height="926"/>
+									</size>
+								</ActionGE>
+								<IfBlockGE presentable="!ed/4559/A13/998/55929c2730ec">
+									<position>
+										<Point x="13256" y="1111"/>
+									</position>
+									<size>
+										<Size width="7699" height="4471"/>
+									</size>
+								</IfBlockGE>
+								<ActionGE display="embeddedTextual" presentable="!ed/455f/A13/998/55929c383065">
+									<position>
+										<Point x="15346" y="1561"/>
+									</position>
+									<size>
+										<Size width="4736" height="926"/>
+									</size>
+								</ActionGE>
+								<ActionGE display="embeddedTextual" presentable="!ed/4560/A13/998/55929c381a1">
+									<position>
+										<Point x="15346" y="4498"/>
+									</position>
+									<size>
+										<Size width="4736" height="926"/>
+									</size>
+								</ActionGE>
+								<IfNodeGE labelWidth="2196" presentable="!ed/455e/A13/998/55929c382f6">
+									<position>
+										<Point x="13970" y="1640"/>
+									</position>
+								</IfNodeGE>
+								<IfBlockGE presentable="!ed/4562/A13/998/55929c602451">
+									<position>
+										<Point x="820" y="6615"/>
+									</position>
+									<size>
+										<Size width="11404" height="5371"/>
+									</size>
+								</IfBlockGE>
+								<ActionGE display="embeddedTextual" presentable="!ed/4568/A13/998/55929c636c95">
+									<position>
+										<Point x="2540" y="7117"/>
+									</position>
+									<size>
+										<Size width="7091" height="926"/>
+									</size>
+								</ActionGE>
+								<ActionGE display="embeddedTextual" presentable="!ed/4569/A13/998/55929c632728">
+									<position>
+										<Point x="2540" y="10398"/>
+									</position>
+									<size>
+										<Size width="7091" height="926"/>
+									</size>
+								</ActionGE>
+								<IfNodeGE labelWidth="3863" presentable="!ed/4567/A13/998/55929c639d4">
+									<position>
+										<Point x="1270" y="7197"/>
+									</position>
+								</IfNodeGE>
+								<IfNodeGE labelWidth="2117" presentable="!ed/4571/A13/998/55929caf253">
+									<position>
+										<Point x="13970" y="3016"/>
+									</position>
+								</IfNodeGE>
+								<ActionGE display="embeddedTextual" presentable="!ed/4576/A13/998/55929cb367d9">
+									<position>
+										<Point x="15346" y="2937"/>
+									</position>
+									<size>
+										<Size width="4736" height="927"/>
+									</size>
+								</ActionGE>
+								<IfNodeGE labelWidth="5742" presentable="!ed/4529/142C/1764/55939a407b46">
+									<position>
+										<Point x="1270" y="8758"/>
+									</position>
+								</IfNodeGE>
+								<ActionGE display="embeddedTextual" presentable="!ed/452e/142C/1764/55939a421140">
+									<position>
+										<Point x="2540" y="8678"/>
+									</position>
+									<size>
+										<Size width="7091" height="926"/>
+									</size>
+								</ActionGE>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>
