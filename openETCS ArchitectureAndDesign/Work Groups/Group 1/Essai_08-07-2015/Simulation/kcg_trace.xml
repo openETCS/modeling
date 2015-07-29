@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--$*************** KCG Version 6.1.3 (build i6) ****************
+** Command: s2c613 -config D:/Open_ETCS/Models_CG/Essai/Simulation\kcg_s2c_config.txt
+** Generation date: 2015-06-24T16:37:32
+*************************************************************$-->
+<Model date="2015-06-24T16:37:32" commandLine="s2c613 -config D:/Open_ETCS/Models_CG/Essai/Simulation\kcg_s2c_config.txt">
+  <Constant scadeName="SSP_Max" scadeType="int" targetName="SSP_Max" targetType="kcg_int" macroDef="true"/>
+  <Constant scadeName="SSP_Nb" scadeType="int" targetName="SSP_Nb" targetType="kcg_int" macroDef="true"/>
+  <Constant scadeName="MRSP_Nb" scadeType="int" targetName="MRSP_Nb" targetType="kcg_int" macroDef="true"/>
+  <Constant scadeName="Vmax" scadeType="real" targetName="Vmax" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="V_ebi_max" scadeType="real" targetName="V_ebi_max" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="V_ebi_min" scadeType="real" targetName="V_ebi_min" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="dV_ebi_min" scadeType="real" targetName="dV_ebi_min" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="dV_Slope" scadeType="real" targetName="dV_Slope" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="dV_ebi_max" scadeType="real" targetName="dV_ebi_max" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="Adh_Nb" scadeType="int" targetName="Adh_Nb" targetType="kcg_int" macroDef="true"/>
+  <Constant scadeName="Grad_Nb" scadeType="int" targetName="Grad_Nb" targetType="kcg_int" macroDef="true"/>
+  <Constant scadeName="V0" scadeType="real" targetName="V0" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="V1" scadeType="real" targetName="V1" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="V2" scadeType="real" targetName="V2" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="kp3" scadeType="real" targetName="kp3" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="kp2" scadeType="real" targetName="kp2" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="kp1" scadeType="real" targetName="kp1" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="kp0" scadeType="real" targetName="kp0" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="Train1" scadeType="TY_EB_Type" targetName="Train1" targetType="TY_EB_Type"/>
+  <Constant scadeName="SB_Type" scadeType="bool" targetName="SB_Type" targetType="kcg_bool" macroDef="true"/>
+  <Constant scadeName="Alpha" scadeType="real" targetName="Alpha" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="Reason" scadeType="real" targetName="Reason" targetType="kcg_real" macroDef="true"/>
+  <Constant scadeName="MA" scadeType="TY_DistValue^(2)" targetName="MA" targetType="array__1547"/>
+  <Constant scadeName="TSR2" scadeType="TY_DistValue^(2)" targetName="TSR2" targetType="array__1547"/>
+  <Constant scadeName="SSP_ForTest" scadeType="TY_DistValue^(SSP_Max)" targetName="SSP_ForTest"
+      targetType="array__1553"/>
+  <Constant scadeName="Grad" scadeType="TY_DistValue^(Grad_Nb)" targetName="Grad" targetType="array__1553"/>
+  <Constant scadeName="Adh" scadeType="TY_Adh^(Adh_Nb)" targetName="Adh" targetType="array__1550"/>
+  <Constant scadeName="TSR1" scadeType="TY_DistValue^(2)" targetName="TSR1" targetType="array__1547"/>
+  <NamedType scadeName="TY_DistValue" targetName="TY_DistValue" refType="struct__1542"/>
+  <NamedType scadeName="TY_Adh" targetName="TY_Adh" refType="struct__1537"/>
+  <NamedType scadeName="TY_EB_Type" targetName="TY_EB_Type" refType="struct__1532"/>
+  <NamedType scadeName="TY_SizePos" targetName="TY_SizePos" refType="struct__1527"/>
+  <RootNode scadeName="Root" headerFile="Root.h" targetCycleFct="Root" targetInitFct="Root_reset">
+    <Output scadeName="dV_ebi" scadeType="real^(MRSP_Nb)" targetName="dV_ebi" targetType="array_real_25" inCtx="true"/>
+    <Output scadeName="Vebd" scadeType="real^(MRSP_Nb)" targetName="Vebd" targetType="array_real_25" inCtx="true"/>
+    <Output scadeName="Vsbd" scadeType="real^(MRSP_Nb)" targetName="Vsbd" targetType="array_real_25" inCtx="true"/>
+    <Output scadeName="C_Mode" scadeType="bool^(MRSP_Nb)" targetName="C_Mode" targetType="array_bool_25" inCtx="true"/>
+    <Output scadeName="MRSP" scadeType="real^(MRSP_Nb)" targetName="MRSP" targetType="array_real_25" inCtx="true"/>
+    <Output scadeName="Position" scadeType="real^(MRSP_Nb)" targetName="Position" targetType="array_real_25"
+        inCtx="true"/>
+    <Local scadeName="_L4" scadeType="bool^(MRSP_Nb)" targetName="_L4" targetType="array_bool_25" inCtx="true"/>
+    <Local scadeName="_L3" scadeType="real^(MRSP_Nb)" targetName="_L3" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="real^(MRSP_Nb)" targetName="_L2" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L1" scadeType="real^(MRSP_Nb)" targetName="_L1" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L10" scadeType="TY_DistValue^(SSP_Max)" targetName="_L10" targetType="array__1553" inCtx="true"/>
+    <Local scadeName="_L9" scadeType="TY_DistValue^(2)" targetName="_L9" targetType="array__1547" inCtx="true"/>
+    <Local scadeName="_L8" scadeType="TY_DistValue^(2)" targetName="_L8" targetType="array__1547" inCtx="true"/>
+    <Local scadeName="_L11" scadeType="TY_DistValue^(Grad_Nb)" targetName="_L11" targetType="array__1553" inCtx="true"/>
+    <Local scadeName="_L12" scadeType="TY_Adh^(Adh_Nb)" targetName="_L12" targetType="array__1550" inCtx="true"/>
+    <Local scadeName="_L13" scadeType="TY_DistValue^(2)" targetName="_L13" targetType="array__1547" inCtx="true"/>
+    <Local scadeName="_L14" scadeType="real^(MRSP_Nb)" targetName="_L14" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L15" scadeType="real^(MRSP_Nb)" targetName="_L15" targetType="array_real_25" inCtx="true"/>
+    <NodeInstance scadeName="Root_SDM" instName="1" refName="Root_SDM">
+      <OutCtxVar targetName="Context_1"/>
+    </NodeInstance>
+    <OutCtxType targetName="outC_Root"/>
+  </RootNode>
+  <NoExpNode scadeName="Root_SDM" headerFile="Root_SDM.h" targetCycleFct="Root_SDM" targetInitFct="Root_SDM_reset">
+    <Input scadeName="SSP" scadeType="TY_DistValue^(SSP_Max)" targetName="SSP" targetType="array__1553"/>
+    <Input scadeName="TSR_1" scadeType="TY_DistValue^(2)" targetName="TSR_1" targetType="array__1547"/>
+    <Input scadeName="TSR_2" scadeType="TY_DistValue^(2)" targetName="TSR_2" targetType="array__1547"/>
+    <Input scadeName="TSR_3" scadeType="TY_DistValue^(2)" targetName="TSR_3" targetType="array__1547"/>
+    <Input scadeName="MA_EOA" scadeType="TY_DistValue^(2)" targetName="MA_EOA" targetType="array__1547"/>
+    <Input scadeName="Gradient" scadeType="TY_DistValue^(Grad_Nb)" targetName="Gradient" targetType="array__1553"/>
+    <Input scadeName="Adh" scadeType="TY_Adh^(Adh_Nb)" targetName="Adh10" targetType="array__1550"/>
+    <Output scadeName="dV_ebi" scadeType="real^(MRSP_Nb)" targetName="dV_ebi" targetType="array_real_25" inCtx="true"/>
+    <Output scadeName="Vebd" scadeType="real^(MRSP_Nb)" targetName="Vebd" targetType="array_real_25" inCtx="true"/>
+    <Output scadeName="Vsbd" scadeType="real^(MRSP_Nb)" targetName="Vsbd" targetType="array_real_25" inCtx="true"/>
+    <Output scadeName="C_Mode" scadeType="bool^(MRSP_Nb)" targetName="C_Mode" targetType="array_bool_25" inCtx="true"/>
+    <Output scadeName="MRSP" scadeType="real^(MRSP_Nb)" targetName="MRSP" targetType="array_real_25" inCtx="true"/>
+    <Output scadeName="Position" scadeType="real^(MRSP_Nb)" targetName="Position" targetType="array_real_25"
+        inCtx="true"/>
+    <Local scadeName="_L1" scadeType="real^(MRSP_Nb)" targetName="_L1" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L3" scadeType="real^(MRSP_Nb)" targetName="_L3" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="real^(MRSP_Nb)" targetName="_L2" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L4" scadeType="real^(MRSP_Nb)" targetName="_L4" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L8" scadeType="real" targetName="_L8" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L9" scadeType="real^(MRSP_Nb)" targetName="_L9" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L10" scadeType="real^(MRSP_Nb)" targetName="_L10" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L5" scadeType="real^(MRSP_Nb)" targetName="_L5" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L11" scadeType="TY_SizePos" targetName="_L11" targetType="TY_SizePos" inCtx="true"/>
+    <Local scadeName="_L14" scadeType="TY_SizePos" targetName="_L14" targetType="TY_SizePos" inCtx="true"/>
+    <Local scadeName="_L16" scadeType="real" targetName="_L16" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L17" scadeType="real" targetName="_L17" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L19" scadeType="TY_Adh^(2)" targetName="_L19" targetType="array__1550" inCtx="true"/>
+    <Local scadeName="_L20" scadeType="TY_DistValue^(Grad_Nb)" targetName="_L20" targetType="array__1553" inCtx="true"/>
+    <Local scadeName="_L21" scadeType="TY_DistValue^(SSP_Max)" targetName="_L21" targetType="array__1553" inCtx="true"/>
+    <Local scadeName="_L22" scadeType="TY_DistValue^(2)" targetName="_L22" targetType="array__1547" inCtx="true"/>
+    <Local scadeName="_L23" scadeType="TY_DistValue^(2)" targetName="_L23" targetType="array__1547" inCtx="true"/>
+    <Local scadeName="_L24" scadeType="TY_DistValue^(2)" targetName="_L24" targetType="array__1547" inCtx="true"/>
+    <Local scadeName="_L25" scadeType="TY_DistValue^(2)" targetName="_L25" targetType="array__1547" inCtx="true"/>
+    <Local scadeName="_L26" scadeType="real^(MRSP_Nb)" targetName="_L26" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L27" scadeType="real^(MRSP_Nb)" targetName="_L27" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L28" scadeType="real^(MRSP_Nb)" targetName="_L28" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L29" scadeType="real^(MRSP_Nb)" targetName="_L29" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L30" scadeType="real" targetName="_L30" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L31" scadeType="real^(MRSP_Nb)" targetName="_L31" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L32" scadeType="real^(MRSP_Nb)" targetName="_L32" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L34" scadeType="real^(MRSP_Nb)" targetName="_L34" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L35" scadeType="real" targetName="_L35" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L38" scadeType="bool^(MRSP_Nb)" targetName="_L38" targetType="array_bool_25" inCtx="true"/>
+    <Local scadeName="_L39" scadeType="bool^(MRSP_Nb)" targetName="_L39" targetType="array_bool_25" inCtx="true"/>
+    <NodeInstance scadeName="MRSP_Operator" instName="1" refName="MRSP_Operator">
+      <OutCtxVar targetName="_1_Context_1"/>
+    </NodeInstance>
+    <NodeInstance scadeName="ACCeler_Operator" refName="ACCeler_Operator">
+      <OutCtxVar targetName="Context_ACCeler_Operator"/>
+    </NodeInstance>
+    <Iterator iteratorKind="mapfold" scadeSize="25" targetSize="25">
+      <NodeInstance scadeName="Step_Operator" instName="1" refName="Step_Operator">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+    </Iterator>
+    <Iterator iteratorKind="mapfold" scadeSize="25" targetSize="25">
+      <NodeInstance scadeName="EBD_Operator" instName="1" refName="EBD_Operator">
+        <OutCtxVar targetName="_2_Context_1"/>
+      </NodeInstance>
+    </Iterator>
+    <NodeInstance scadeName="SBD_Operator" instName="1" refName="SBD_Operator">
+      <OutCtxVar targetName="_3_Context_1"/>
+    </NodeInstance>
+    <OutCtxType targetName="outC_Root_SDM"/>
+  </NoExpNode>
+  <NoExpNode scadeName="MRSP_Operator" headerFile="MRSP_Operator.h" targetCycleFct="MRSP_Operator"
+      targetInitFct="MRSP_Operator_reset">
+    <Input scadeName="SSP" scadeType="TY_DistValue^(SSP_Max)" targetName="SSP" targetType="array__1553"/>
+    <Input scadeName="TSR_1" scadeType="TY_DistValue^(2)" targetName="TSR_1" targetType="array__1547"/>
+    <Input scadeName="TSR_2" scadeType="TY_DistValue^(2)" targetName="TSR_2" targetType="array__1547"/>
+    <Input scadeName="TSR_3" scadeType="TY_DistValue^(2)" targetName="TSR_3" targetType="array__1547"/>
+    <Input scadeName="MA_EOA" scadeType="TY_DistValue^(2)" targetName="MA_EOA" targetType="array__1547"/>
+    <Input scadeName="Position" scadeType="real^(MRSP_Nb)" targetName="Position" targetType="array_real_25"/>
+    <Output scadeName="MRSP" scadeType="real^(MRSP_Nb)" targetName="MRSP" targetType="array_real_25" inCtx="true"/>
+    <Output scadeName="dV_ebi" scadeType="real^(MRSP_Nb)" targetName="dV_ebi" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L1" scadeType="TY_DistValue^(SSP_Max)" targetName="_L1" targetType="array__1553" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="real^(MRSP_Nb)" targetName="_L2" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L4" scadeType="TY_DistValue^(2)" targetName="_L4" targetType="array__1547" inCtx="true"/>
+    <Local scadeName="_L5" scadeType="TY_DistValue^(2)" targetName="_L5" targetType="array__1547" inCtx="true"/>
+    <Local scadeName="_L7" scadeType="TY_DistValue^(2)" targetName="_L7" targetType="array__1547" inCtx="true"/>
+    <Local scadeName="_L8" scadeType="real^(MRSP_Nb)" targetName="_L8" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L9" scadeType="real^(MRSP_Nb)" targetName="_L9" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L10" scadeType="real^(MRSP_Nb)" targetName="_L10" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L11" scadeType="real^(MRSP_Nb)" targetName="_L11" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L13" scadeType="real^(MRSP_Nb)" targetName="_L13" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L14" scadeType="TY_DistValue^(2)" targetName="_L14" targetType="array__1547" inCtx="true"/>
+    <Local scadeName="_L15" scadeType="real^(MRSP_Nb)" targetName="_L15" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L16" scadeType="real^(MRSP_Nb)" targetName="_L16" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L17" scadeType="real^(MRSP_Nb)" targetName="_L17" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L18" scadeType="real^(MRSP_Nb)" targetName="_L18" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L19" scadeType="real^(MRSP_Nb)" targetName="_L19" targetType="array_real_25" inCtx="true"/>
+    <NodeInstance scadeName="Spreader_Operator" instName="1" refName="Spreader_Operator_8_4">
+      <OutCtxVar targetName="Context_1"/>
+    </NodeInstance>
+    <NodeInstance scadeName="Spreader_Operator" instName="2" refName="Spreader_Operator_2_2">
+      <OutCtxVar targetName="Context_2"/>
+    </NodeInstance>
+    <NodeInstance scadeName="Spreader_Operator" instName="3" refName="Spreader_Operator_2_2">
+      <OutCtxVar targetName="_1_Context_3"/>
+    </NodeInstance>
+    <NodeInstance scadeName="Spreader_Operator" instName="5" refName="Spreader_Operator_2_2">
+      <OutCtxVar targetName="Context_5"/>
+    </NodeInstance>
+    <NodeInstance scadeName="Spreader_Operator" instName="4" refName="Spreader_Operator_2_2">
+      <OutCtxVar targetName="Context_4"/>
+    </NodeInstance>
+    <Iterator iteratorKind="map" scadeSize="25" targetSize="25">
+      <NodeInstance scadeName="math::Min3" instName="3" refName="Min3_math_real">
+        <OutCtxVar targetName="Context_3"/>
+      </NodeInstance>
+    </Iterator>
+    <Iterator iteratorKind="map" scadeSize="25" targetSize="25">
+      <NodeInstance scadeName="math::Min3" instName="2" refName="Min3_math_real">
+        <OutCtxVar targetName="_2_Context_2"/>
+      </NodeInstance>
+    </Iterator>
+    <Iterator iteratorKind="map" scadeSize="25" targetSize="25">
+      <NodeInlining scadeName="math::Min" instName="2">
+        <Local scadeName="_L21" scadeType="&apos;T" targetName="_L21_2" targetType="array_real_25" inCtx="true"/>
+        <Local scadeName="_L22" scadeType="&apos;T" targetName="_L22_2" targetType="array_real_25" inCtx="true"/>
+        <Local scadeName="_L24" scadeType="&apos;T" targetName="_L24_2" targetType="array_real_25" inCtx="true"/>
+        <Local scadeName="_L25" scadeType="bool" targetName="_L25_2" targetType="array_bool_25" inCtx="true"/>
+        <NodeInstance scadeName="&lt;=" instName="4"/>
+      </NodeInlining>
+    </Iterator>
+    <Iterator iteratorKind="map" scadeSize="25" targetSize="25">
+      <NodeInstance scadeName="dV_Operator" instName="1" refName="dV_Operator">
+        <OutCtxVar targetName="_3_Context_1"/>
+      </NodeInstance>
+    </Iterator>
+    <OutCtxType targetName="outC_MRSP_Operator"/>
+  </NoExpNode>
+  <NoExpNode scadeName="Spreader_Operator" headerFile="Spreader_Operator_8_8.h" targetCycleFct="Spreader_Operator_8_8"
+      targetInitFct="Spreader_Operator_reset_8_8">
+    <Input scadeName="SSP_n" scadeType="TY_DistValue^(Spreader_Operator::n)" targetName="SSP_n"
+        targetType="array__1553"/>
+    <Input scadeName="Position" scadeType="real^(MRSP_Nb)" targetName="Position" targetType="array_real_25"/>
+    <Output scadeName="SSP_100" scadeType="real^(MRSP_Nb)" targetName="SSP_100" targetType="array_real_25"
+        inCtx="true"/>
+    <Local scadeName="_L9" scadeType="real^(MRSP_Nb)" targetName="_L9" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L7" scadeType="real" targetName="_L7" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L4" scadeType="real" targetName="_L4" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L5" scadeType="real^(MRSP_Nb)" targetName="_L5" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="TY_DistValue^(Spreader_Operator::n)^(MRSP_Nb)" targetName="_L2"
+        targetType="array__1562" inCtx="true"/>
+    <Local scadeName="_L10" scadeType="real" targetName="_L10" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L11" scadeType="TY_DistValue^(Spreader_Operator::n)" targetName="_L11" targetType="array__1553"
+        inCtx="true"/>
+    <Local scadeName="_L12" scadeType="real^(MRSP_Nb)" targetName="_L12" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L13" scadeType="real^((((MRSP_Nb)
+   -
+   (1))
+  -
+  (1))
+ +
+ (1))" targetName="_L13"
+        targetType="array_real_24" inCtx="true"/>
+    <Local scadeName="_L14" scadeType="real^(((((MRSP_Nb)
+    -
+    (1))
+   -
+   (1))
+  +
+  (1))
+ +
+ (1))"
+        targetName="_L14" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L15" scadeType="real^(1)" targetName="_L15" targetType="array_real_1" inCtx="true"/>
+    <Local scadeName="_L16" scadeType="real" targetName="_L16" targetType="kcg_real" inCtx="true"/>
+    <Iterator iteratorKind="mapfold" scadeSize="25" targetSize="25">
+      <NodeInstance scadeName="ScanPositions" instName="1" refName="ScanPositions_8_8">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+    </Iterator>
+    <NodeInstance scadeName="-" instName="3"/>
+    <OutCtxType targetName="outC_Spreader_Operator_8_8"/>
+  </NoExpNode>
+  <NoExpNode scadeName="Spreader_Operator" headerFile="Spreader_Operator_2_2.h" targetCycleFct="Spreader_Operator_2_2"
+      targetInitFct="Spreader_Operator_reset_2_2">
+    <Input scadeName="SSP_n" scadeType="TY_DistValue^(Spreader_Operator::n)" targetName="SSP_n"
+        targetType="array__1547"/>
+    <Input scadeName="Position" scadeType="real^(MRSP_Nb)" targetName="Position" targetType="array_real_25"/>
+    <Output scadeName="SSP_100" scadeType="real^(MRSP_Nb)" targetName="SSP_100" targetType="array_real_25"
+        inCtx="true"/>
+    <Local scadeName="_L9" scadeType="real^(MRSP_Nb)" targetName="_L9" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L7" scadeType="real" targetName="_L7" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L4" scadeType="real" targetName="_L4" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L5" scadeType="real^(MRSP_Nb)" targetName="_L5" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="TY_DistValue^(Spreader_Operator::n)^(MRSP_Nb)" targetName="_L2"
+        targetType="array__1574" inCtx="true"/>
+    <Local scadeName="_L10" scadeType="real" targetName="_L10" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L11" scadeType="TY_DistValue^(Spreader_Operator::n)" targetName="_L11" targetType="array__1547"
+        inCtx="true"/>
+    <Local scadeName="_L12" scadeType="real^(MRSP_Nb)" targetName="_L12" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L13" scadeType="real^((((MRSP_Nb)
+   -
+   (1))
+  -
+  (1))
+ +
+ (1))" targetName="_L13"
+        targetType="array_real_24" inCtx="true"/>
+    <Local scadeName="_L14" scadeType="real^(((((MRSP_Nb)
+    -
+    (1))
+   -
+   (1))
+  +
+  (1))
+ +
+ (1))"
+        targetName="_L14" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L15" scadeType="real^(1)" targetName="_L15" targetType="array_real_1" inCtx="true"/>
+    <Local scadeName="_L16" scadeType="real" targetName="_L16" targetType="kcg_real" inCtx="true"/>
+    <Iterator iteratorKind="mapfold" scadeSize="25" targetSize="25">
+      <NodeInstance scadeName="ScanPositions" instName="1" refName="ScanPositions_2_2">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+    </Iterator>
+    <NodeInstance scadeName="-" instName="3"/>
+    <OutCtxType targetName="outC_Spreader_Operator_2_2"/>
+  </NoExpNode>
+  <NoExpNode scadeName="Spreader_Operator" headerFile="Spreader_Operator_8_4.h" targetCycleFct="Spreader_Operator_8_4"
+      targetInitFct="Spreader_Operator_reset_8_4">
+    <Input scadeName="SSP_n" scadeType="TY_DistValue^(Spreader_Operator::n)" targetName="SSP_n"
+        targetType="array__1553"/>
+    <Input scadeName="Position" scadeType="real^(MRSP_Nb)" targetName="Position" targetType="array_real_25"/>
+    <Output scadeName="SSP_100" scadeType="real^(MRSP_Nb)" targetName="SSP_100" targetType="array_real_25"
+        inCtx="true"/>
+    <Local scadeName="_L9" scadeType="real^(MRSP_Nb)" targetName="_L9" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L7" scadeType="real" targetName="_L7" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L4" scadeType="real" targetName="_L4" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L5" scadeType="real^(MRSP_Nb)" targetName="_L5" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="TY_DistValue^(Spreader_Operator::n)^(MRSP_Nb)" targetName="_L2"
+        targetType="array__1562" inCtx="true"/>
+    <Local scadeName="_L10" scadeType="real" targetName="_L10" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L11" scadeType="TY_DistValue^(Spreader_Operator::n)" targetName="_L11" targetType="array__1553"
+        inCtx="true"/>
+    <Local scadeName="_L12" scadeType="real^(MRSP_Nb)" targetName="_L12" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L13" scadeType="real^((((MRSP_Nb)
+   -
+   (1))
+  -
+  (1))
+ +
+ (1))" targetName="_L13"
+        targetType="array_real_24" inCtx="true"/>
+    <Local scadeName="_L14" scadeType="real^(((((MRSP_Nb)
+    -
+    (1))
+   -
+   (1))
+  +
+  (1))
+ +
+ (1))"
+        targetName="_L14" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L15" scadeType="real^(1)" targetName="_L15" targetType="array_real_1" inCtx="true"/>
+    <Local scadeName="_L16" scadeType="real" targetName="_L16" targetType="kcg_real" inCtx="true"/>
+    <Iterator iteratorKind="mapfold" scadeSize="25" targetSize="25">
+      <NodeInstance scadeName="ScanPositions" instName="1" refName="ScanPositions_8_4">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+    </Iterator>
+    <NodeInstance scadeName="-" instName="3"/>
+    <OutCtxType targetName="outC_Spreader_Operator_8_4"/>
+  </NoExpNode>
+  <NoExpNode scadeName="ScanPositions" headerFile="ScanPositions_8_8.h" targetCycleFct="ScanPositions_8_8"
+      targetInitFct="ScanPositions_reset_8_8">
+    <Input scadeName="Pos_i_moins_1" scadeType="real" targetName="Pos_i_moins_1" targetType="kcg_real"/>
+    <Input scadeName="Pos_i" scadeType="real" targetName="Pos_i" targetType="kcg_real"/>
+    <Input scadeName="SpeedProfile" scadeType="TY_DistValue^(ScanPositions::n)" targetName="SpeedProfile"
+        targetType="array__1553"/>
+    <Input scadeName="InitMRS" scadeType="real" targetName="InitMRS" targetType="kcg_real"/>
+    <Output scadeName="Pos_i_next" scadeType="real" targetName="Pos_i_next" targetType="kcg_real" inCtx="true"/>
+    <Output scadeName="MRS" scadeType="real" targetName="MRS" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="TY_DistValue^(ScanPositions::n)" targetName="_L2" targetType="array__1553"
+        inCtx="true"/>
+    <Local scadeName="_L20" scadeType="real" targetName="_L20" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L22" scadeType="real" targetName="_L22" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L26" scadeType="real" targetName="_L26" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L27" scadeType="int" targetName="_L27" targetType="kcg_int" inCtx="true"/>
+    <Local scadeName="_L28" scadeType="bool" targetName="_L28" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L29" scadeType="real" targetName="_L29" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L30" scadeType="real^(ScanPositions::n)" targetName="_L30" targetType="array_real_8"
+        inCtx="true"/>
+    <Local scadeName="_L31" scadeType="real^(ScanPositions::n)" targetName="_L31" targetType="array_real_8"
+        inCtx="true"/>
+    <Local scadeName="_L32" scadeType="real" targetName="_L32" targetType="kcg_real" inCtx="true"/>
+    <Iterator iteratorKind="foldwi" scadeSize="8" targetSize="8">
+      <NodeInstance scadeName="ScanSSP" instName="1" refName="ScanSSP_8">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+    </Iterator>
+    <NodeInstance scadeName="&gt;" instName="2"/>
+    <OutCtxType targetName="outC_ScanPositions_8_8"/>
+  </NoExpNode>
+  <NoExpNode scadeName="ScanPositions" headerFile="ScanPositions_2_2.h" targetCycleFct="ScanPositions_2_2"
+      targetInitFct="ScanPositions_reset_2_2">
+    <Input scadeName="Pos_i_moins_1" scadeType="real" targetName="Pos_i_moins_1" targetType="kcg_real"/>
+    <Input scadeName="Pos_i" scadeType="real" targetName="Pos_i" targetType="kcg_real"/>
+    <Input scadeName="SpeedProfile" scadeType="TY_DistValue^(ScanPositions::n)" targetName="SpeedProfile"
+        targetType="array__1547"/>
+    <Input scadeName="InitMRS" scadeType="real" targetName="InitMRS" targetType="kcg_real"/>
+    <Output scadeName="Pos_i_next" scadeType="real" targetName="Pos_i_next" targetType="kcg_real" inCtx="true"/>
+    <Output scadeName="MRS" scadeType="real" targetName="MRS" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="TY_DistValue^(ScanPositions::n)" targetName="_L2" targetType="array__1547"
+        inCtx="true"/>
+    <Local scadeName="_L20" scadeType="real" targetName="_L20" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L22" scadeType="real" targetName="_L22" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L26" scadeType="real" targetName="_L26" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L27" scadeType="int" targetName="_L27" targetType="kcg_int" inCtx="true"/>
+    <Local scadeName="_L28" scadeType="bool" targetName="_L28" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L29" scadeType="real" targetName="_L29" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L30" scadeType="real^(ScanPositions::n)" targetName="_L30" targetType="array_real_2"
+        inCtx="true"/>
+    <Local scadeName="_L31" scadeType="real^(ScanPositions::n)" targetName="_L31" targetType="array_real_2"
+        inCtx="true"/>
+    <Local scadeName="_L32" scadeType="real" targetName="_L32" targetType="kcg_real" inCtx="true"/>
+    <Iterator iteratorKind="foldwi" scadeSize="8" targetSize="8">
+      <NodeInstance scadeName="ScanSSP" instName="1" refName="ScanSSP_2">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+    </Iterator>
+    <NodeInstance scadeName="&gt;" instName="2"/>
+    <OutCtxType targetName="outC_ScanPositions_2_2"/>
+  </NoExpNode>
+  <NoExpNode scadeName="ScanPositions" headerFile="ScanPositions_8_4.h" targetCycleFct="ScanPositions_8_4"
+      targetInitFct="ScanPositions_reset_8_4">
+    <Input scadeName="Pos_i_moins_1" scadeType="real" targetName="Pos_i_moins_1" targetType="kcg_real"/>
+    <Input scadeName="Pos_i" scadeType="real" targetName="Pos_i" targetType="kcg_real"/>
+    <Input scadeName="SpeedProfile" scadeType="TY_DistValue^(ScanPositions::n)" targetName="SpeedProfile"
+        targetType="array__1553"/>
+    <Input scadeName="InitMRS" scadeType="real" targetName="InitMRS" targetType="kcg_real"/>
+    <Output scadeName="Pos_i_next" scadeType="real" targetName="Pos_i_next" targetType="kcg_real" inCtx="true"/>
+    <Output scadeName="MRS" scadeType="real" targetName="MRS" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="TY_DistValue^(ScanPositions::n)" targetName="_L2" targetType="array__1553"
+        inCtx="true"/>
+    <Local scadeName="_L20" scadeType="real" targetName="_L20" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L22" scadeType="real" targetName="_L22" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L26" scadeType="real" targetName="_L26" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L27" scadeType="int" targetName="_L27" targetType="kcg_int" inCtx="true"/>
+    <Local scadeName="_L28" scadeType="bool" targetName="_L28" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L29" scadeType="real" targetName="_L29" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L30" scadeType="real^(ScanPositions::n)" targetName="_L30" targetType="array_real_8"
+        inCtx="true"/>
+    <Local scadeName="_L31" scadeType="real^(ScanPositions::n)" targetName="_L31" targetType="array_real_8"
+        inCtx="true"/>
+    <Local scadeName="_L32" scadeType="real" targetName="_L32" targetType="kcg_real" inCtx="true"/>
+    <Iterator iteratorKind="foldwi" scadeSize="8" targetSize="8">
+      <NodeInstance scadeName="ScanSSP" instName="1" refName="ScanSSP_4">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+    </Iterator>
+    <NodeInstance scadeName="&gt;" instName="2"/>
+    <OutCtxType targetName="outC_ScanPositions_8_4"/>
+  </NoExpNode>
+  <NoExpNode scadeName="ScanSSP" headerFile="ScanSSP_8.h" targetCycleFct="ScanSSP_8" targetInitFct="ScanSSP_reset_8">
+    <Input scadeName="Index" scadeType="int" targetName="Index" targetType="kcg_int"/>
+    <Input scadeName="InitMRS" scadeType="real" targetName="InitMRS" targetType="kcg_real"/>
+    <Input scadeName="Xdeb" scadeType="real" targetName="Xdeb" targetType="kcg_real"/>
+    <Input scadeName="Xend" scadeType="real" targetName="Xend" targetType="kcg_real"/>
+    <Input scadeName="SpeedElement" scadeType="TY_DistValue" targetName="SpeedElement" targetType="TY_DistValue"/>
+    <Output scadeName="Continue" scadeType="bool" targetName="Continue" targetType="kcg_bool" inCtx="true"/>
+    <Output scadeName="Updated_MRS" scadeType="real" targetName="Updated_MRS" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L1" scadeType="TY_DistValue" targetName="_L1" targetType="TY_DistValue" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="real" targetName="_L2" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L8" scadeType="real" targetName="_L8" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L7" scadeType="real" targetName="_L7" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L9" scadeType="bool" targetName="_L9" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L10" scadeType="real" targetName="_L10" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L11" scadeType="bool" targetName="_L11" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L12" scadeType="bool" targetName="_L12" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L13" scadeType="real" targetName="_L13" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L16" scadeType="int" targetName="_L16" targetType="kcg_int" inCtx="true"/>
+    <Local scadeName="_L17" scadeType="bool" targetName="_L17" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L18" scadeType="int" targetName="_L18" targetType="kcg_int" inCtx="true"/>
+    <Local scadeName="_L15" scadeType="real" targetName="_L15" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L19" scadeType="bool" targetName="_L19" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L22" scadeType="real" targetName="_L22" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L26" scadeType="real" targetName="_L26" targetType="kcg_real" inCtx="true"/>
+    <NodeInstance scadeName="&gt;=" instName="1"/>
+    <NodeInstance scadeName="&lt;" instName="1"/>
+    <NodeInstance scadeName="and" instName="1"/>
+    <NodeInstance scadeName="&lt;" instName="2"/>
+    <NodeInstance scadeName="-" instName="1"/>
+    <NodeInstance scadeName="and" instName="2"/>
+    <NodeInlining scadeName="math::Min" instName="1">
+      <Input scadeName="I1" scadeType="&apos;T" targetName="I1_1" targetType="kcg_real" inCtx="true"/>
+      <Input scadeName="I2" scadeType="&apos;T" targetName="I2_1" targetType="kcg_real" inCtx="true"/>
+      <Output scadeName="Mi_Output" scadeType="&apos;T" targetName="Mi_Output_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L21" scadeType="&apos;T" targetName="_L21_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L22" scadeType="&apos;T" targetName="_L22_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L24" scadeType="&apos;T" targetName="_L24_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L25" scadeType="bool" targetName="_L25_1" targetType="kcg_bool" inCtx="true"/>
+      <NodeInstance scadeName="&lt;=" instName="4"/>
+    </NodeInlining>
+    <OutCtxType targetName="outC_ScanSSP_8"/>
+  </NoExpNode>
+  <NoExpNode scadeName="ScanSSP" headerFile="ScanSSP_2.h" targetCycleFct="ScanSSP_2" targetInitFct="ScanSSP_reset_2">
+    <Input scadeName="Index" scadeType="int" targetName="Index" targetType="kcg_int"/>
+    <Input scadeName="InitMRS" scadeType="real" targetName="InitMRS" targetType="kcg_real"/>
+    <Input scadeName="Xdeb" scadeType="real" targetName="Xdeb" targetType="kcg_real"/>
+    <Input scadeName="Xend" scadeType="real" targetName="Xend" targetType="kcg_real"/>
+    <Input scadeName="SpeedElement" scadeType="TY_DistValue" targetName="SpeedElement" targetType="TY_DistValue"/>
+    <Output scadeName="Continue" scadeType="bool" targetName="Continue" targetType="kcg_bool" inCtx="true"/>
+    <Output scadeName="Updated_MRS" scadeType="real" targetName="Updated_MRS" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L1" scadeType="TY_DistValue" targetName="_L1" targetType="TY_DistValue" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="real" targetName="_L2" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L8" scadeType="real" targetName="_L8" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L7" scadeType="real" targetName="_L7" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L9" scadeType="bool" targetName="_L9" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L10" scadeType="real" targetName="_L10" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L11" scadeType="bool" targetName="_L11" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L12" scadeType="bool" targetName="_L12" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L13" scadeType="real" targetName="_L13" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L16" scadeType="int" targetName="_L16" targetType="kcg_int" inCtx="true"/>
+    <Local scadeName="_L17" scadeType="bool" targetName="_L17" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L18" scadeType="int" targetName="_L18" targetType="kcg_int" inCtx="true"/>
+    <Local scadeName="_L15" scadeType="real" targetName="_L15" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L19" scadeType="bool" targetName="_L19" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L22" scadeType="real" targetName="_L22" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L26" scadeType="real" targetName="_L26" targetType="kcg_real" inCtx="true"/>
+    <NodeInstance scadeName="&gt;=" instName="1"/>
+    <NodeInstance scadeName="&lt;" instName="1"/>
+    <NodeInstance scadeName="and" instName="1"/>
+    <NodeInstance scadeName="&lt;" instName="2"/>
+    <NodeInstance scadeName="-" instName="1"/>
+    <NodeInstance scadeName="and" instName="2"/>
+    <NodeInlining scadeName="math::Min" instName="1">
+      <Input scadeName="I1" scadeType="&apos;T" targetName="I1_1" targetType="kcg_real" inCtx="true"/>
+      <Input scadeName="I2" scadeType="&apos;T" targetName="I2_1" targetType="kcg_real" inCtx="true"/>
+      <Output scadeName="Mi_Output" scadeType="&apos;T" targetName="Mi_Output_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L21" scadeType="&apos;T" targetName="_L21_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L22" scadeType="&apos;T" targetName="_L22_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L24" scadeType="&apos;T" targetName="_L24_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L25" scadeType="bool" targetName="_L25_1" targetType="kcg_bool" inCtx="true"/>
+      <NodeInstance scadeName="&lt;=" instName="4"/>
+    </NodeInlining>
+    <OutCtxType targetName="outC_ScanSSP_2"/>
+  </NoExpNode>
+  <NoExpNode scadeName="ScanSSP" headerFile="ScanSSP_4.h" targetCycleFct="ScanSSP_4" targetInitFct="ScanSSP_reset_4">
+    <Input scadeName="Index" scadeType="int" targetName="Index" targetType="kcg_int"/>
+    <Input scadeName="InitMRS" scadeType="real" targetName="InitMRS" targetType="kcg_real"/>
+    <Input scadeName="Xdeb" scadeType="real" targetName="Xdeb" targetType="kcg_real"/>
+    <Input scadeName="Xend" scadeType="real" targetName="Xend" targetType="kcg_real"/>
+    <Input scadeName="SpeedElement" scadeType="TY_DistValue" targetName="SpeedElement" targetType="TY_DistValue"/>
+    <Output scadeName="Continue" scadeType="bool" targetName="Continue" targetType="kcg_bool" inCtx="true"/>
+    <Output scadeName="Updated_MRS" scadeType="real" targetName="Updated_MRS" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L1" scadeType="TY_DistValue" targetName="_L1" targetType="TY_DistValue" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="real" targetName="_L2" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L8" scadeType="real" targetName="_L8" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L7" scadeType="real" targetName="_L7" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L9" scadeType="bool" targetName="_L9" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L10" scadeType="real" targetName="_L10" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L11" scadeType="bool" targetName="_L11" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L12" scadeType="bool" targetName="_L12" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L13" scadeType="real" targetName="_L13" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L16" scadeType="int" targetName="_L16" targetType="kcg_int" inCtx="true"/>
+    <Local scadeName="_L17" scadeType="bool" targetName="_L17" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L18" scadeType="int" targetName="_L18" targetType="kcg_int" inCtx="true"/>
+    <Local scadeName="_L15" scadeType="real" targetName="_L15" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L19" scadeType="bool" targetName="_L19" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L22" scadeType="real" targetName="_L22" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L26" scadeType="real" targetName="_L26" targetType="kcg_real" inCtx="true"/>
+    <NodeInstance scadeName="&gt;=" instName="1"/>
+    <NodeInstance scadeName="&lt;" instName="1"/>
+    <NodeInstance scadeName="and" instName="1"/>
+    <NodeInstance scadeName="&lt;" instName="2"/>
+    <NodeInstance scadeName="-" instName="1"/>
+    <NodeInstance scadeName="and" instName="2"/>
+    <NodeInlining scadeName="math::Min" instName="1">
+      <Input scadeName="I1" scadeType="&apos;T" targetName="I1_1" targetType="kcg_real" inCtx="true"/>
+      <Input scadeName="I2" scadeType="&apos;T" targetName="I2_1" targetType="kcg_real" inCtx="true"/>
+      <Output scadeName="Mi_Output" scadeType="&apos;T" targetName="Mi_Output_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L21" scadeType="&apos;T" targetName="_L21_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L22" scadeType="&apos;T" targetName="_L22_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L24" scadeType="&apos;T" targetName="_L24_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L25" scadeType="bool" targetName="_L25_1" targetType="kcg_bool" inCtx="true"/>
+      <NodeInstance scadeName="&lt;=" instName="4"/>
+    </NodeInlining>
+    <OutCtxType targetName="outC_ScanSSP_4"/>
+  </NoExpNode>
+  <NoExpNode scadeName="dV_Operator" headerFile="dV_Operator.h" targetCycleFct="dV_Operator"
+      targetInitFct="dV_Operator_reset">
+    <Input scadeName="MRSP" scadeType="real" targetName="MRSP" targetType="kcg_real"/>
+    <Output scadeName="dV" scadeType="real" targetName="dV" targetType="kcg_real" inCtx="true"/>
+    <ActivateIf scadeName="IfBlock1">
+      <Condition targetName="IfBlock1_clock" inCtx="true">
+        <NodeInstance scadeName="&gt;" instName="1"/>
+      </Condition>
+      <Then>
+      </Then>
+      <Else>
+        <Condition targetName="else_clock_IfBlock1" inCtx="true">
+          <NodeInstance scadeName="&lt;" instName="1"/>
+        </Condition>
+        <Then>
+        </Then>
+        <Else>
+          <NodeInstance scadeName="+" instName="3"/>
+          <NodeInstance scadeName="*" instName="3"/>
+        </Else>
+      </Else>
+    </ActivateIf>
+    <OutCtxType targetName="outC_dV_Operator"/>
+  </NoExpNode>
+  <NoExpNode scadeName="ACCeler_Operator" headerFile="ACCeler_Operator.h" targetCycleFct="ACCeler_Operator"
+      targetInitFct="ACCeler_Operator_reset">
+    <Input scadeName="MRSP" scadeType="real^(MRSP_Nb)" targetName="MRSP" targetType="array_real_25"/>
+    <Input scadeName="Position" scadeType="real^(MRSP_Nb)" targetName="Position" targetType="array_real_25"/>
+    <Input scadeName="Adh" scadeType="TY_Adh^(Adh_Nb)" targetName="Adh7" targetType="array__1550"/>
+    <Input scadeName="Gradient" scadeType="TY_DistValue^(Grad_Nb)" targetName="Gradient" targetType="array__1553"/>
+    <Output scadeName="Asafe" scadeType="real^(MRSP_Nb)" targetName="Asafe" targetType="array_real_25" inCtx="true"/>
+    <Output scadeName="Aservice" scadeType="real^(MRSP_Nb)" targetName="Aservice" targetType="array_real_25"
+        inCtx="true"/>
+    <Local scadeName="_L1" scadeType="real^(MRSP_Nb)" targetName="_L1" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="TY_Adh^(Adh_Nb)" targetName="_L2" targetType="array__1550" inCtx="true"/>
+    <Local scadeName="_L3" scadeType="TY_DistValue^(Grad_Nb)" targetName="_L3" targetType="array__1553" inCtx="true"/>
+    <Local scadeName="_L4" scadeType="bool^(MRSP_Nb)" targetName="_L4" targetType="array_bool_25" inCtx="true"/>
+    <Local scadeName="_L5" scadeType="real^(MRSP_Nb)" targetName="_L5" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L13" scadeType="real^(MRSP_Nb)" targetName="_L13" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L14" scadeType="real^(MRSP_Nb)" targetName="_L14" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L16" scadeType="TY_EB_Type^(MRSP_Nb)" targetName="_L16" targetType="array__1589" inCtx="true"/>
+    <Local scadeName="_L17" scadeType="real^(MRSP_Nb)" targetName="_L17" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L19" scadeType="bool^(MRSP_Nb)" targetName="_L19" targetType="array_bool_25" inCtx="true"/>
+    <Local scadeName="_L21" scadeType="real^(MRSP_Nb)" targetName="_L21" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L24" scadeType="real^(MRSP_Nb)" targetName="_L24" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L25" scadeType="real^(MRSP_Nb)" targetName="_L25" targetType="array_real_25" inCtx="true"/>
+    <NodeInstance scadeName="Bool_Spreader_Operator" instName="1" refName="Bool_Spreader_Operator_2">
+      <OutCtxVar targetName="_1_Context_1"/>
+    </NodeInstance>
+    <NodeInstance scadeName="Spreader_Operator" instName="2" refName="Spreader_Operator_8_8">
+      <OutCtxVar targetName="Context_2"/>
+    </NodeInstance>
+    <Iterator iteratorKind="map" scadeSize="25" targetSize="25">
+      <NodeInstance scadeName="$+$" instName="1"/>
+    </Iterator>
+    <Iterator iteratorKind="map" scadeSize="25" targetSize="25">
+      <NodeInstance scadeName="AEB_Operator" instName="1" refName="AEB_Operator">
+        <OutCtxVar targetName="_2_Context_1"/>
+      </NodeInstance>
+    </Iterator>
+    <Iterator iteratorKind="map" scadeSize="25" targetSize="25">
+      <NodeInstance scadeName="ASB_Operator" instName="1" refName="ASB_Operator">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+    </Iterator>
+    <Iterator iteratorKind="map" scadeSize="25" targetSize="25">
+      <NodeInstance scadeName="ComputeAcc" refName="ComputeAcc">
+        <OutCtxVar targetName="Context_ComputeAcc"/>
+      </NodeInstance>
+    </Iterator>
+    <Iterator iteratorKind="map" scadeSize="25" targetSize="25">
+      <NodeInstance scadeName="$+$" instName="3"/>
+    </Iterator>
+    <OutCtxType targetName="outC_ACCeler_Operator"/>
+  </NoExpNode>
+  <NoExpNode scadeName="Bool_Spreader_Operator" headerFile="Bool_Spreader_Operator_2.h"
+      targetCycleFct="Bool_Spreader_Operator_2" targetInitFct="Bool_Spreader_Operator_reset_2">
+    <Input scadeName="Values_n" scadeType="TY_Adh^(Bool_Spreader_Operator::n)" targetName="Values_n"
+        targetType="array__1550"/>
+    <Input scadeName="Position" scadeType="real^(MRSP_Nb)" targetName="Position" targetType="array_real_25"/>
+    <Output scadeName="Values_100" scadeType="bool^(MRSP_Nb)" targetName="Values_100" targetType="array_bool_25"
+        inCtx="true"/>
+    <Local scadeName="_L9" scadeType="bool^(MRSP_Nb)" targetName="_L9" targetType="array_bool_25" inCtx="true"/>
+    <Local scadeName="_L8" scadeType="bool^(((((MRSP_Nb)
+    -
+    (1))
+   -
+   (1))
+  +
+  (1))
+ +
+ (1))"
+        targetName="_L8" targetType="array_bool_25" inCtx="true"/>
+    <Local scadeName="_L7" scadeType="real" targetName="_L7" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L6" scadeType="bool^(1)" targetName="_L6" targetType="array_bool_1" inCtx="true"/>
+    <Local scadeName="_L4" scadeType="real" targetName="_L4" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L5" scadeType="bool^(MRSP_Nb)" targetName="_L5" targetType="array_bool_25" inCtx="true"/>
+    <Local scadeName="_L3" scadeType="bool^((((MRSP_Nb)
+   -
+   (1))
+  -
+  (1))
+ +
+ (1))" targetName="_L3"
+        targetType="array_bool_24" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="TY_Adh^(Bool_Spreader_Operator::n)^(MRSP_Nb)" targetName="_L2"
+        targetType="array__1586" inCtx="true"/>
+    <Local scadeName="_L1" scadeType="bool" targetName="_L1" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L10" scadeType="bool" targetName="_L10" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L11" scadeType="TY_Adh^(Bool_Spreader_Operator::n)" targetName="_L11" targetType="array__1550"
+        inCtx="true"/>
+    <Local scadeName="_L12" scadeType="real^(MRSP_Nb)" targetName="_L12" targetType="array_real_25" inCtx="true"/>
+    <NodeInstance scadeName="-" instName="2"/>
+    <Iterator iteratorKind="mapfold" scadeSize="25" targetSize="25">
+      <NodeInstance scadeName="BooleanScanPositions" instName="1" refName="BooleanScanPositions_2">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+    </Iterator>
+    <OutCtxType targetName="outC_Bool_Spreader_Operator_2"/>
+  </NoExpNode>
+  <NoExpNode scadeName="BooleanScanPositions" headerFile="BooleanScanPositions_2.h"
+      targetCycleFct="BooleanScanPositions_2" targetInitFct="BooleanScanPositions_reset_2">
+    <Input scadeName="Pos_i_moins_1" scadeType="real" targetName="Pos_i_moins_1" targetType="kcg_real"/>
+    <Input scadeName="Pos_i" scadeType="real" targetName="Pos_i" targetType="kcg_real"/>
+    <Input scadeName="SpeedProfile" scadeType="TY_Adh^(BooleanScanPositions::n)" targetName="SpeedProfile"
+        targetType="array__1550"/>
+    <Input scadeName="InitMRS" scadeType="bool" targetName="InitMRS" targetType="kcg_bool"/>
+    <Output scadeName="Pos_i_next" scadeType="real" targetName="Pos_i_next" targetType="kcg_real" inCtx="true"/>
+    <Output scadeName="MRS" scadeType="bool" targetName="MRS" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="TY_Adh^(BooleanScanPositions::n)" targetName="_L2" targetType="array__1550"
+        inCtx="true"/>
+    <Local scadeName="_L20" scadeType="real" targetName="_L20" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L22" scadeType="bool" targetName="_L22" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L26" scadeType="real" targetName="_L26" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L27" scadeType="int" targetName="_L27" targetType="kcg_int" inCtx="true"/>
+    <Local scadeName="_L28" scadeType="bool" targetName="_L28" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L29" scadeType="real" targetName="_L29" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L30" scadeType="real^(BooleanScanPositions::n)" targetName="_L30" targetType="array_real_2"
+        inCtx="true"/>
+    <Local scadeName="_L31" scadeType="real^(BooleanScanPositions::n)" targetName="_L31" targetType="array_real_2"
+        inCtx="true"/>
+    <Local scadeName="_L32" scadeType="bool" targetName="_L32" targetType="kcg_bool" inCtx="true"/>
+    <Iterator iteratorKind="foldwi" scadeSize="2" targetSize="2">
+      <NodeInstance scadeName="ScanAdh" instName="1" refName="ScanAdh_2">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+    </Iterator>
+    <NodeInstance scadeName="&gt;" instName="1"/>
+    <OutCtxType targetName="outC_BooleanScanPositions_2"/>
+  </NoExpNode>
+  <NoExpNode scadeName="ScanAdh" headerFile="ScanAdh_2.h" targetCycleFct="ScanAdh_2" targetInitFct="ScanAdh_reset_2">
+    <Input scadeName="Index" scadeType="int" targetName="Index" targetType="kcg_int"/>
+    <Input scadeName="InitMRS" scadeType="bool" targetName="InitMRS" targetType="kcg_bool"/>
+    <Input scadeName="Xdeb" scadeType="real" targetName="Xdeb" targetType="kcg_real"/>
+    <Input scadeName="Xend" scadeType="real" targetName="Xend" targetType="kcg_real"/>
+    <Input scadeName="SpeedElement" scadeType="TY_Adh" targetName="SpeedElement" targetType="TY_Adh"/>
+    <Output scadeName="Continue" scadeType="bool" targetName="Continue" targetType="kcg_bool" inCtx="true"/>
+    <Output scadeName="Updated_MRS" scadeType="bool" targetName="Updated_MRS" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L1" scadeType="TY_Adh" targetName="_L1" targetType="TY_Adh" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="real" targetName="_L2" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L8" scadeType="bool" targetName="_L8" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L7" scadeType="real" targetName="_L7" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L9" scadeType="bool" targetName="_L9" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L10" scadeType="real" targetName="_L10" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L11" scadeType="bool" targetName="_L11" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L12" scadeType="bool" targetName="_L12" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L13" scadeType="bool" targetName="_L13" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L16" scadeType="int" targetName="_L16" targetType="kcg_int" inCtx="true"/>
+    <Local scadeName="_L17" scadeType="bool" targetName="_L17" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L18" scadeType="int" targetName="_L18" targetType="kcg_int" inCtx="true"/>
+    <Local scadeName="_L15" scadeType="bool" targetName="_L15" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L19" scadeType="bool" targetName="_L19" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L22" scadeType="bool" targetName="_L22" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L25" scadeType="bool" targetName="_L25" targetType="kcg_bool" inCtx="true"/>
+    <NodeInstance scadeName="&gt;=" instName="1"/>
+    <NodeInstance scadeName="&lt;" instName="1"/>
+    <NodeInstance scadeName="and" instName="1"/>
+    <NodeInstance scadeName="&lt;" instName="2"/>
+    <NodeInstance scadeName="-" instName="2"/>
+    <NodeInstance scadeName="and" instName="2"/>
+    <NodeInstance scadeName="and" instName="3"/>
+    <OutCtxType targetName="outC_ScanAdh_2"/>
+  </NoExpNode>
+  <NoExpNode scadeName="AEB_Operator" headerFile="AEB_Operator.h" targetCycleFct="AEB_Operator"
+      targetInitFct="AEB_Operator_reset">
+    <Input scadeName="Adh" scadeType="bool" targetName="Adh6" targetType="kcg_bool"/>
+    <Input scadeName="EB_Type" scadeType="TY_EB_Type" targetName="EB_Type" targetType="TY_EB_Type"/>
+    <Input scadeName="MRSP" scadeType="real" targetName="MRSP" targetType="kcg_real"/>
+    <Output scadeName="EB" scadeType="real" targetName="EB" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="L_EB" scadeType="real" targetName="L_EB" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L1" scadeType="bool" targetName="_L1" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="real" targetName="_L2" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L3" scadeType="real" targetName="_L3" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L4" scadeType="real" targetName="_L4" targetType="kcg_real" inCtx="true"/>
+    <ActivateIf scadeName="IfBlock1">
+      <Condition targetName="IfBlock1_clock" inCtx="true">
+        <NodeInstance scadeName="&lt;" instName="1"/>
+      </Condition>
+      <Then>
+        <NodeInstance scadeName="*" instName="1"/>
+      </Then>
+      <Else>
+        <Condition targetName="_1_else_clock_IfBlock1" inCtx="true">
+          <NodeInstance scadeName="&lt;" instName="2"/>
+        </Condition>
+        <Then>
+          <NodeInstance scadeName="*" instName="2"/>
+        </Then>
+        <Else>
+          <Condition targetName="else_clock_IfBlock1" inCtx="true">
+            <NodeInstance scadeName="&lt;" instName="3"/>
+          </Condition>
+          <Then>
+            <NodeInstance scadeName="*" instName="3"/>
+          </Then>
+          <Else>
+            <NodeInstance scadeName="*" instName="4"/>
+          </Else>
+        </Else>
+      </Else>
+    </ActivateIf>
+    <OutCtxType targetName="outC_AEB_Operator"/>
+  </NoExpNode>
+  <NoExpNode scadeName="ASB_Operator" headerFile="ASB_Operator.h" targetCycleFct="ASB_Operator"
+      targetInitFct="ASB_Operator_reset">
+    <Input scadeName="Input1" scadeType="real" targetName="Input1" targetType="kcg_real"/>
+    <Input scadeName="Input2" scadeType="bool" targetName="Input2" targetType="kcg_bool"/>
+    <Output scadeName="Output1" scadeType="real" targetName="Output1" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L1" scadeType="real" targetName="_L1" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="bool" targetName="_L2" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L4" scadeType="real" targetName="_L4" targetType="kcg_real" inCtx="true"/>
+    <OutCtxType targetName="outC_ASB_Operator"/>
+  </NoExpNode>
+  <NoExpNode scadeName="ComputeAcc" headerFile="ComputeAcc.h" targetCycleFct="ComputeAcc"
+      targetInitFct="ComputeAcc_reset">
+    <Input scadeName="Input1" scadeType="real" targetName="Input1" targetType="kcg_real"/>
+    <Output scadeName="Output1" scadeType="real" targetName="Output1" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L1" scadeType="real" targetName="_L1" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="real" targetName="_L2" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L3" scadeType="real" targetName="_L3" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L4" scadeType="real" targetName="_L4" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L5" scadeType="real" targetName="_L5" targetType="kcg_real" inCtx="true"/>
+    <NodeInstance scadeName="*" instName="1"/>
+    <NodeInstance scadeName="/" instName="1"/>
+    <OutCtxType targetName="outC_ComputeAcc"/>
+  </NoExpNode>
+  <NoExpNode scadeName="Step_Operator" headerFile="Step_Operator.h" targetCycleFct="Step_Operator"
+      targetInitFct="Step_Operator_reset">
+    <Input scadeName="SizePos" scadeType="TY_SizePos" targetName="SizePos" targetType="TY_SizePos"/>
+    <Output scadeName="Next_SizePos" scadeType="TY_SizePos" targetName="Next_SizePos" targetType="TY_SizePos"
+        inCtx="true"/>
+    <Output scadeName="SIZE" scadeType="real" targetName="SIZE" targetType="kcg_real" inCtx="true"/>
+    <Output scadeName="POS" scadeType="real" targetName="POS" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L1" scadeType="real" targetName="_L1" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="real" targetName="_L2" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L3" scadeType="real" targetName="_L3" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L12" scadeType="real" targetName="_L12" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L13" scadeType="real" targetName="_L13" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L14" scadeType="TY_SizePos" targetName="_L14" targetType="TY_SizePos" inCtx="true"/>
+    <NodeInstance scadeName="*" instName="1"/>
+    <NodeInstance scadeName="+" instName="1"/>
+    <OutCtxType targetName="outC_Step_Operator"/>
+  </NoExpNode>
+  <NoExpNode scadeName="EBD_Operator" headerFile="EBD_Operator.h" targetCycleFct="EBD_Operator"
+      targetInitFct="EBD_Operator_reset">
+    <Input scadeName="Next_Vebd" scadeType="real" targetName="Next_Vebd" targetType="kcg_real"/>
+    <Input scadeName="SIZE" scadeType="real" targetName="SIZE" targetType="kcg_real"/>
+    <Input scadeName="MRSP" scadeType="real" targetName="MRSP" targetType="kcg_real"/>
+    <Input scadeName="dV_ebi" scadeType="real" targetName="dV_ebi" targetType="kcg_real"/>
+    <Input scadeName="Asafe" scadeType="real" targetName="Asafe" targetType="kcg_real"/>
+    <Output scadeName="Vebd" scadeType="real" targetName="Vebd" targetType="kcg_real" inCtx="true"/>
+    <Output scadeName="Vebd_Table" scadeType="real" targetName="Vebd_Table" targetType="kcg_real" inCtx="true"/>
+    <Output scadeName="Ceilling_Mode" scadeType="bool" targetName="Ceilling_Mode" targetType="kcg_bool" inCtx="true"/>
+    <Local scadeName="_L1" scadeType="real" targetName="_L1" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="real" targetName="_L2" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L3" scadeType="real" targetName="_L3" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L5" scadeType="real" targetName="_L5" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L6" scadeType="real" targetName="_L6" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L8" scadeType="real" targetName="_L8" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L9" scadeType="real" targetName="_L9" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L10" scadeType="real" targetName="_L10" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L11" scadeType="real" targetName="_L11" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L12" scadeType="real" targetName="_L12" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L13" scadeType="real" targetName="_L13" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L14" scadeType="real" targetName="_L14" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L16" scadeType="real" targetName="_L16" targetType="kcg_real" inCtx="true"/>
+    <Local scadeName="_L17" scadeType="bool" targetName="_L17" targetType="kcg_bool" inCtx="true"/>
+    <NodeInstance scadeName="*" instName="1"/>
+    <NodeInstance scadeName="mathext::SqrtR" instName="1" refName="SqrtR_mathext"/>
+    <NodeInstance scadeName="*" instName="2"/>
+    <NodeInstance scadeName="+" instName="1"/>
+    <NodeInlining scadeName="math::Min" instName="1">
+      <Input scadeName="I1" scadeType="&apos;T" targetName="I1_1" targetType="kcg_real" inCtx="true"/>
+      <Input scadeName="I2" scadeType="&apos;T" targetName="I2_1" targetType="kcg_real" inCtx="true"/>
+      <Output scadeName="Mi_Output" scadeType="&apos;T" targetName="Mi_Output_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L21" scadeType="&apos;T" targetName="_L21_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L22" scadeType="&apos;T" targetName="_L22_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L24" scadeType="&apos;T" targetName="_L24_1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L25" scadeType="bool" targetName="_L25_1" targetType="kcg_bool" inCtx="true"/>
+      <NodeInstance scadeName="&lt;=" instName="4"/>
+    </NodeInlining>
+    <NodeInstance scadeName="*" instName="3"/>
+    <NodeInstance scadeName="+" instName="2"/>
+    <NodeInstance scadeName="=" instName="1"/>
+    <OutCtxType targetName="outC_EBD_Operator"/>
+  </NoExpNode>
+  <NoExpNode scadeName="SBD_Operator" headerFile="SBD_Operator.h" targetCycleFct="SBD_Operator"
+      targetInitFct="SBD_Operator_reset">
+    <Input scadeName="Aservice" scadeType="real^(MRSP_Nb)" targetName="Aservice" targetType="array_real_25"/>
+    <Output scadeName="Vsbd" scadeType="real^(MRSP_Nb)" targetName="Vsbd" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L1" scadeType="real^(MRSP_Nb)" targetName="_L1" targetType="array_real_25" inCtx="true"/>
+    <Local scadeName="_L2" scadeType="real^(MRSP_Nb)" targetName="_L2" targetType="array_real_25" inCtx="true"/>
+    <OutCtxType targetName="outC_SBD_Operator"/>
+  </NoExpNode>
+  <Package scadeName="math">
+    <ExpNode scadeName="Min"/>
+    <NoExpNode scadeName="Min3" headerFile="Min3_math_real.h" targetCycleFct="Min3_math_real"
+        targetInitFct="Min3_reset_math_real">
+      <Input scadeName="I1" scadeType="&apos;T" targetName="I1" targetType="kcg_real"/>
+      <Input scadeName="I2" scadeType="&apos;T" targetName="I2" targetType="kcg_real"/>
+      <Input scadeName="I3" scadeType="&apos;T" targetName="I3" targetType="kcg_real"/>
+      <Output scadeName="Mi3_Output" scadeType="&apos;T" targetName="Mi3_Output" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="bool" targetName="_L1" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="bool" targetName="_L2" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L3" scadeType="bool" targetName="_L3" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="&apos;T" targetName="_L4" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L5" scadeType="&apos;T" targetName="_L5" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L6" scadeType="&apos;T" targetName="_L6" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L7" scadeType="bool" targetName="_L7" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L8" scadeType="&apos;T" targetName="_L8" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L9" scadeType="&apos;T" targetName="_L9" targetType="kcg_real" inCtx="true"/>
+      <NodeInstance scadeName="&lt;=" instName="1"/>
+      <NodeInstance scadeName="&lt;=" instName="2"/>
+      <NodeInstance scadeName="&lt;=" instName="3"/>
+      <NodeInstance scadeName="and" instName="4"/>
+      <OutCtxType targetName="outC_Min3_math_real"/>
+    </NoExpNode>
+  </Package>
+  <Package scadeName="mathext">
+    <NoExpNode scadeName="SqrtR" headerFile="kcg_imported_functions.h" targetCycleFct="SqrtR_mathext" imported="true">
+      <Input scadeName="Input1" scadeType="real" targetName="Input1" targetType="kcg_real"/>
+      <Output scadeName="Output1" scadeType="real" targetType="kcg_real"/>
+    </NoExpNode>
+  </Package>
+  <Option name="root_node_name" value="Root"/>
+  <Option name="target" value="C"/>
+  <Option name="target_dir" value="D:/Open_ETCS/Models_CG/Essai/Simulation"/>
+  <Option name="exp" value="#off#"/>
+  <Option name="noexp" value="#off#"/>
+  <Option name="expall" value="#off#"/>
+  <Option name="global_root_context" value="#off#"/>
+  <Option name="optimization_level" value="0"/>
+  <Option name="macro_on_assert" value="#off#"/>
+  <Option name="global_prefix" value="#off#"/>
+  <Option name="name_length" value="200"/>
+  <Option name="significance_length" value="31"/>
+  <Option name="header" value="#off#"/>
+  <Option name="input_threshold" value="#off#"/>
+  <Option name="user_config" value="./user_macros.h"/>
+  <Option name="debug" value="#on#"/>
+  <Option name="observe" value="#off#"/>
+  <Option name="no_observe" value="#off#"/>
+  <Option name="probes" value="#on#"/>
+  <Option name="input_file" value="D:/Open_ETCS/Models_CG/Essai/Simulation/scade_model_without_unused.scade"/>
+  <Option name="wrap_c_ops" value="#off#"/>
+  <Option name="no_bitwise" value="#off#"/>
+  <Option name="warn_error" value="#off#"/>
+  <Option name="static" value="#off#"/>
+  <Option name="state_vector" value="#off#"/>
+  <PredefType scadeName="real" targetName="kcg_real"/>
+  <PredefType scadeName="bool" targetName="kcg_bool"/>
+  <PredefType scadeName="char" targetName="kcg_char"/>
+  <PredefType scadeName="int" targetName="kcg_int"/>
+  <StructType targetName="struct__1527" targetCopyFct="kcg_copy_struct__1527" targetCompFct="kcg_comp_struct__1527">
+    <Field scadeName="Size" scadeType="real" targetName="Size" targetType="kcg_real"/>
+    <Field scadeName="Pos" scadeType="real" targetName="Pos" targetType="kcg_real"/>
+  </StructType>
+  <StructType targetName="struct__1532" targetCopyFct="kcg_copy_struct__1532" targetCompFct="kcg_comp_struct__1532">
+    <Field scadeName="EB" scadeType="real" targetName="EB" targetType="kcg_real"/>
+    <Field scadeName="EB_reduit" scadeType="real" targetName="EB_reduit" targetType="kcg_real"/>
+  </StructType>
+  <StructType targetName="struct__1537" targetCopyFct="kcg_copy_struct__1537" targetCompFct="kcg_comp_struct__1537">
+    <Field scadeName="Distance" scadeType="real" targetName="Distance" targetType="kcg_real"/>
+    <Field scadeName="Adh" scadeType="bool" targetName="Adh" targetType="kcg_bool"/>
+  </StructType>
+  <StructType targetName="struct__1542" targetCopyFct="kcg_copy_struct__1542" targetCompFct="kcg_comp_struct__1542">
+    <Field scadeName="Distance" scadeType="real" targetName="Distance" targetType="kcg_real"/>
+    <Field scadeName="Value" scadeType="real" targetName="Value" targetType="kcg_real"/>
+  </StructType>
+  <ArrayType targetName="array__1547" cellType="struct__1542" size="2" targetCopyFct="kcg_copy_array__1547"
+      targetCompFct="kcg_comp_array__1547"/>
+  <ArrayType targetName="array__1550" cellType="struct__1537" size="2" targetCopyFct="kcg_copy_array__1550"
+      targetCompFct="kcg_comp_array__1550"/>
+  <ArrayType targetName="array__1553" cellType="struct__1542" size="8" targetCopyFct="kcg_copy_array__1553"
+      targetCompFct="kcg_comp_array__1553"/>
+  <ArrayType targetName="array_real_8" cellType="kcg_real" size="8" targetCopyFct="kcg_copy_array_real_8"
+      targetCompFct="kcg_comp_array_real_8"/>
+  <ArrayType targetName="array_real_25" cellType="kcg_real" size="25" targetCopyFct="kcg_copy_array_real_25"
+      targetCompFct="kcg_comp_array_real_25"/>
+  <ArrayType targetName="array__1562" cellType="array__1553" size="25" targetCopyFct="kcg_copy_array__1562"
+      targetCompFct="kcg_comp_array__1562"/>
+  <ArrayType targetName="array_real_24" cellType="kcg_real" size="24" targetCopyFct="kcg_copy_array_real_24"
+      targetCompFct="kcg_comp_array_real_24"/>
+  <ArrayType targetName="array_real_1" cellType="kcg_real" size="1" targetCopyFct="kcg_copy_array_real_1"
+      targetCompFct="kcg_comp_array_real_1"/>
+  <ArrayType targetName="array_real_2" cellType="kcg_real" size="2" targetCopyFct="kcg_copy_array_real_2"
+      targetCompFct="kcg_comp_array_real_2"/>
+  <ArrayType targetName="array__1574" cellType="array__1547" size="25" targetCopyFct="kcg_copy_array__1574"
+      targetCompFct="kcg_comp_array__1574"/>
+  <ArrayType targetName="array_bool_25" cellType="kcg_bool" size="25" targetCopyFct="kcg_copy_array_bool_25"
+      targetCompFct="kcg_comp_array_bool_25"/>
+  <ArrayType targetName="array_bool_1" cellType="kcg_bool" size="1" targetCopyFct="kcg_copy_array_bool_1"
+      targetCompFct="kcg_comp_array_bool_1"/>
+  <ArrayType targetName="array_bool_24" cellType="kcg_bool" size="24" targetCopyFct="kcg_copy_array_bool_24"
+      targetCompFct="kcg_comp_array_bool_24"/>
+  <ArrayType targetName="array__1586" cellType="array__1550" size="25" targetCopyFct="kcg_copy_array__1586"
+      targetCompFct="kcg_comp_array__1586"/>
+  <ArrayType targetName="array__1589" cellType="struct__1532" size="25" targetCopyFct="kcg_copy_array__1589"
+      targetCompFct="kcg_comp_array__1589"/>
+</Model>
+<!--$*************** KCG Version 6.1.3 (build i6) ****************
+** kcg_trace.xml
+** Generation date: 2015-06-24T16:37:32
+*************************************************************$-->
