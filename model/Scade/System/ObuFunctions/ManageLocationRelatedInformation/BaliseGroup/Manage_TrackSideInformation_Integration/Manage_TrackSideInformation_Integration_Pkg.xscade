@@ -419,6 +419,30 @@
 								<ed:Variable oid="!ed/57a4e/4DE2/A4C/55795127695c"/>
 							</pragmas>
 						</Variable>
+						<Variable probe="true" name="MSG_ID">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_MESSAGE"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5ed19/30A7/E50/55b9edc55816"/>
+							</pragmas>
+						</Variable>
+						<Variable probe="true" name="BG_ID">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_BG"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5ed29/30A7/E50/55b9ee084a8e"/>
+							</pragmas>
+						</Variable>
 						<Variable name="_L1">
 							<type>
 								<NamedType>
@@ -1293,6 +1317,66 @@
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/5c63f/1278/27C/559fb7111f4f"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L164">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_Msg_Pkg::API_TrackSideInput_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5ed34/30A7/E50/55b9ef856db0"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L165">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_Msg_Pkg::API_RadioMsgHeader_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5ed3a/30A7/E50/55b9ef9d2fe3"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L166">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_MESSAGE"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5ed69/30A7/E50/55b9efc760a9"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L168">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_Msg_Pkg::API_TelegramHeader_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5eda8/30A7/E50/55b9f0353b76"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L167">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_BG"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5eda6/30A7/E50/55b9f0353513"/>
 							</pragmas>
 						</Variable>
 					</locals>
@@ -3016,6 +3100,152 @@
 								<ed:Equation oid="!ed/5c63e/1278/27C/559fb711607c"/>
 							</pragmas>
 						</Equation>
+						<!-- _L164 = API_trackSide_Message; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L164"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="API_trackSide_Message"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5ed33/30A7/E50/55b9ef854da5"/>
+							</pragmas>
+						</Equation>
+						<!-- _L165 = _L164.rtm_msg; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L165"/>
+							</lefts>
+							<right>
+								<!-- _L164.rtm_msg -->
+								<PrjOp name="20">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L164"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="rtm_msg"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5ed39/30A7/E50/55b9ef9d1a80"/>
+							</pragmas>
+						</Equation>
+						<!-- _L166 = _L165.Radio_Common_Header.nid_message; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L166"/>
+							</lefts>
+							<right>
+								<!-- _L165.Radio_Common_Header.nid_message -->
+								<PrjOp name="21">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L165"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="Radio_Common_Header"/>
+										<Label name="nid_message"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5ed68/30A7/E50/55b9efc77378"/>
+							</pragmas>
+						</Equation>
+						<!-- MSG_ID = _L166; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="MSG_ID"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L166"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5ed82/30A7/E50/55b9f02268c3"/>
+							</pragmas>
+						</Equation>
+						<!-- _L167 = _L168.api_header.nid_bg; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L167"/>
+							</lefts>
+							<right>
+								<!-- _L168.api_header.nid_bg -->
+								<PrjOp name="23">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L168"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="api_header"/>
+										<Label name="nid_bg"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5eda5/30A7/E50/55b9f0351300"/>
+							</pragmas>
+						</Equation>
+						<!-- _L168 = _L164.btm_msg; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L168"/>
+							</lefts>
+							<right>
+								<!-- _L164.btm_msg -->
+								<PrjOp name="22">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L164"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="btm_msg"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5eda7/30A7/E50/55b9f0357ac0"/>
+							</pragmas>
+						</Equation>
+						<!-- BG_ID = _L167; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="BG_ID"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L167"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5edcd/30A7/E50/55b9f08533c2"/>
+							</pragmas>
+						</Equation>
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/1427c/2EC3/D60/54ca4390793a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
@@ -4335,6 +4565,110 @@
 												<Point x="15849" y="9816"/>
 												<Point x="16351" y="9816"/>
 												<Point x="16351" y="8308"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/5ed33/30A7/E50/55b9ef854da5">
+											<position>
+												<Point x="23839" y="2037"/>
+											</position>
+											<size>
+												<Size width="265" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/5ed39/30A7/E50/55b9ef9d1a80">
+											<position>
+												<Point x="24448" y="1773"/>
+											</position>
+											<size>
+												<Size width="953" height="953"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5ed33/30A7/E50/55b9ef854da5" dstEquation="!ed/5ed39/30A7/E50/55b9ef9d1a80">
+											<positions>
+												<Point x="24104" y="2302"/>
+												<Point x="24262" y="2302"/>
+												<Point x="24262" y="2249"/>
+												<Point x="24448" y="2249"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/5ed68/30A7/E50/55b9efc77378">
+											<position>
+												<Point x="25982" y="1773"/>
+											</position>
+											<size>
+												<Size width="2662" height="969"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5ed39/30A7/E50/55b9ef9d1a80" dstEquation="!ed/5ed68/30A7/E50/55b9efc77378">
+											<positions>
+												<Point x="25400" y="2249"/>
+												<Point x="25691" y="2249"/>
+												<Point x="25691" y="2275"/>
+												<Point x="25982" y="2275"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/5ed82/30A7/E50/55b9f02268c3">
+											<position>
+												<Point x="29871" y="2011"/>
+											</position>
+											<size>
+												<Size width="212" height="317"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5ed68/30A7/E50/55b9efc77378" dstEquation="!ed/5ed82/30A7/E50/55b9f02268c3">
+											<positions>
+												<Point x="28654" y="2275"/>
+												<Point x="29316" y="2275"/>
+												<Point x="29316" y="2275"/>
+												<Point x="29977" y="2275"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/5eda5/30A7/E50/55b9f0351300">
+											<position>
+												<Point x="25982" y="3016"/>
+											</position>
+											<size>
+												<Size width="2672" height="979"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/5eda7/30A7/E50/55b9f0357ac0">
+											<position>
+												<Point x="24448" y="3016"/>
+											</position>
+											<size>
+												<Size width="952" height="953"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5ed33/30A7/E50/55b9ef854da5" dstEquation="!ed/5eda7/30A7/E50/55b9f0357ac0">
+											<positions>
+												<Point x="24104" y="2302"/>
+												<Point x="24262" y="2302"/>
+												<Point x="24262" y="3493"/>
+												<Point x="24448" y="3493"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5eda7/30A7/E50/55b9f0357ac0" dstEquation="!ed/5eda5/30A7/E50/55b9f0351300">
+											<positions>
+												<Point x="25400" y="3493"/>
+												<Point x="25691" y="3493"/>
+												<Point x="25691" y="3519"/>
+												<Point x="25982" y="3519"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/5edcd/30A7/E50/55b9f08533c2">
+											<position>
+												<Point x="29871" y="3281"/>
+											</position>
+											<size>
+												<Size width="211" height="318"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5eda5/30A7/E50/55b9f0351300" dstEquation="!ed/5edcd/30A7/E50/55b9f08533c2">
+											<positions>
+												<Point x="28654" y="3519"/>
+												<Point x="29316" y="3519"/>
+												<Point x="29316" y="3519"/>
+												<Point x="29977" y="3519"/>
 											</positions>
 										</Edge>
 									</presentationElements>
