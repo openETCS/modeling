@@ -455,6 +455,30 @@
 								<ed:Variable oid="!ed/5ecd7/483C/1C88/55ba11af1345"/>
 							</pragmas>
 						</Variable>
+						<Variable probe="true" name="nid_P1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_PACKET"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5ee9f/5C0C/D68/55bb5c7c65cb"/>
+							</pragmas>
+						</Variable>
+						<Variable probe="true" name="nid_P2">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_PACKET"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5eeaf/5C0C/D68/55bb5ca23f73"/>
+							</pragmas>
+						</Variable>
 						<Variable name="_L1">
 							<type>
 								<NamedType>
@@ -1461,6 +1485,42 @@
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/5ed46/483C/1C88/55ba127862db"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L176">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_PACKET"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5ee9a/5C0C/D68/55bb5c554a61"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L175">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_PACKET"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5ee99/5C0C/D68/55bb5c555c2d"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L178">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="API_Msg_Pkg::API_TrackSideInput_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5eebf/5C0C/D68/55bb5cf24cd3"/>
 							</pragmas>
 						</Variable>
 					</locals>
@@ -3469,6 +3529,83 @@
 								<ed:Equation oid="!ed/5ed45/483C/1C88/55ba1278278a"/>
 							</pragmas>
 						</Equation>
+						<!-- _L175, _L176 = showPacketId(_L178); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L175"/>
+								<VariableRef name="_L176"/>
+							</lefts>
+							<right>
+								<!-- showPacketId(_L178) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="showPacketId"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L178"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5ee98/5C0C/D68/55bb5c552471"/>
+							</pragmas>
+						</Equation>
+						<!-- nid_P1 = _L175; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="nid_P1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L175"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5eeb0/5C0C/D68/55bb5ca740f8"/>
+							</pragmas>
+						</Equation>
+						<!-- nid_P2 = _L176; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="nid_P2"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L176"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5eeb1/5C0C/D68/55bb5ca732bf"/>
+							</pragmas>
+						</Equation>
+						<!-- _L178 = API_trackSide_Message; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L178"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="API_trackSide_Message"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5eebe/5C0C/D68/55bb5cf2af5"/>
+							</pragmas>
+						</Equation>
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/1427c/2EC3/D60/54ca4390793a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
@@ -4710,7 +4847,7 @@
 												<Point x="13203" y="6509"/>
 												<Point x="13547" y="6509"/>
 												<Point x="13547" y="6482"/>
-												<Point x="13547" y="6509"/>
+												<Point x="13547" y="6482"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/4293de/514E/1AA4/54fe1c39ba2" dstEquation="!ed/6088d/3EAE/1A78/54cb377a95f">
@@ -4842,8 +4979,8 @@
 											<positions>
 												<Point x="28654" y="1349"/>
 												<Point x="28919" y="1349"/>
-												<Point x="28919" y="2037"/>
-												<Point x="31141" y="2037"/>
+												<Point x="28919" y="1958"/>
+												<Point x="31141" y="1958"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/5eda5/30A7/E50/55b9f0351300">
@@ -5000,12 +5137,69 @@
 												<Point x="30057" y="5450"/>
 											</positions>
 										</Edge>
+										<EquationGE presentable="!ed/5ee98/5C0C/D68/55bb5c552471">
+											<position>
+												<Point x="3519" y="8731"/>
+											</position>
+											<size>
+												<Size width="1773" height="1402"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/5eeb0/5C0C/D68/55bb5ca740f8">
+											<position>
+												<Point x="6482" y="8969"/>
+											</position>
+											<size>
+												<Size width="212" height="317"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/5eeb1/5C0C/D68/55bb5ca732bf">
+											<position>
+												<Point x="6482" y="9419"/>
+											</position>
+											<size>
+												<Size width="212" height="317"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5ee98/5C0C/D68/55bb5c552471" dstEquation="!ed/5eeb0/5C0C/D68/55bb5ca740f8">
+											<positions>
+												<Point x="5292" y="9208"/>
+												<Point x="5927" y="9208"/>
+												<Point x="5927" y="9208"/>
+												<Point x="6588" y="9208"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/5ee98/5C0C/D68/55bb5c552471" dstEquation="!ed/5eeb1/5C0C/D68/55bb5ca732bf">
+											<positions>
+												<Point x="5292" y="9657"/>
+												<Point x="5927" y="9657"/>
+												<Point x="5927" y="9657"/>
+												<Point x="6588" y="9657"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/5eebe/5C0C/D68/55bb5cf2af5">
+											<position>
+												<Point x="3096" y="7408"/>
+											</position>
+											<size>
+												<Size width="265" height="502"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5eebe/5C0C/D68/55bb5cf2af5" dstEquation="!ed/5ee98/5C0C/D68/55bb5c552471">
+											<positions>
+												<Point x="3360" y="7673"/>
+												<Point x="3440" y="7673"/>
+												<Point x="3440" y="9446"/>
+												<Point x="3519" y="9446"/>
+											</positions>
+										</Edge>
 									</presentationElements>
 								</NetDiagram>
 							</diagrams>
 						</ed:Operator>
 					</pragmas>
 				</Operator>
+				<Operator name="showPacketId" href="Operator2.xscade"/>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/14278/2EC3/D60/54ca434a7c2a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
