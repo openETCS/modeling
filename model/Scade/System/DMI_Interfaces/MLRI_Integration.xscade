@@ -1,0 +1,777 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Type name="DMI_Status_int_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="valid">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/38f2a/6E5D/1EF4/55b5f55970d5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Valid indicator for the packet</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="systemTime">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/38f2b/6E5D/1EF4/55b5f5594e17" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Clock value of the last received dynamic data.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="statusSet">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/38f2c/6E5D/1EF4/55b5f5595f4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Set of status the DMI can be in.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="nAlive">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/38f2d/6E5D/1EF4/55b5f5594dde" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Alive counter. Needs to be incremented by the DMI in order to see communication is sane.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/38f29/6E5D/1EF4/55b5f5591ea2" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>DMI -&gt; EVC: Activity Status of the DMI</comment>
+				</ed:Type>
+			</pragmas>
+		</Type>
+		<Constant name="ENUM_DMI_DMI_Identifier_T_DMI_1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_DMI_Identifier_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::DMI_1"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39003/6E5D/1EF4/55b611c71013"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_DMI_Identifier_T_DMI_2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_DMI_Identifier_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::DMI_2"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39061/6E5D/1EF4/55b612e86da4"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_DMI_Identifier_T_DMI_1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39068/6E5D/1EF4/55b613257807"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_DMI_Identifier_T_DMI_2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="1"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3907e/6E5D/1EF4/55b6134536e8"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Cabin_Identifier_T_cabin_A">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Cabin_Identifier_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::cabin_A"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/38fca/B01/2EA0/55bf5f1177f1"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Cabin_Identifier_T_cabin_B">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Cabin_Identifier_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::cabin_B"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/38fda/B01/2EA0/55bf5f6c32c5"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Cabin_Identifier_T_cabin_A">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/38fe9/B01/2EA0/55bf5f8b5095"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Cabin_Identifier_T_cabin_B">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="1"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/38fff/B01/2EA0/55bf5fb07032"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Running_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Running_state"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3909f/B01/2EA0/55bf61d432b1"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Starting_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Starting_state"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390af/B01/2EA0/55bf6259297d"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Failure_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Failure_state"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390b6/B01/2EA0/55bf625c7016"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Running_not_active_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Running_not_active_state"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390bd/B01/2EA0/55bf625eff8"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Train_Speed_Overflow">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Train_Speed_Overflow"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390c4/B01/2EA0/55bf625e1e6f"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Invalid_track_condition">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Invalid_track_condition"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390cb/B01/2EA0/55bf625f7ac0"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Invalid_predefined_text_message">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Invalid_predefined_text_message"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390d2/B01/2EA0/55bf626023f7"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Invalid_text_message">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Invalid_text_message"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390d9/B01/2EA0/55bf6260ec6"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_HW_warning_temp_reached">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::HW_warning_temp_reached"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390e0/B01/2EA0/55bf6261ef0"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_TFT_OFF_temp_reached">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::TFT_OFF_temp_reached"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390e7/B01/2EA0/55bf62615020"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Device_OFF_temp_reached">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Device_OFF_temp_reached"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390fc/B01/2EA0/55bf666e315b"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Over_temperature">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Over_temperature"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39103/B01/2EA0/55bf66705b45"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Backlight_on_off">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Backlight_on_off"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3910a/B01/2EA0/55bf667234df"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_FAN_blocked">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::FAN_blocked"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39111/B01/2EA0/55bf667329a7"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Power_supply_key_switch_off">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Power_supply_key_switch_off"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39118/B01/2EA0/55bf6674681a"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Watchdog_not_running">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Watchdog_not_running"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3911f/B01/2EA0/55bf6674f0c"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Watchdog_not_running">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="16"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3918f/B01/2EA0/55bf67671d85"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Train_Speed_Overflow">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="4"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39188/B01/2EA0/55bf67676e44"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_TFT_OFF_temp_reached">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="9"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39181/B01/2EA0/55bf67677834"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Starting_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="1"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3917a/B01/2EA0/55bf67674daa"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Running_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39173/B01/2EA0/55bf67675d1b"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Running_not_active_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="3"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3916c/B01/2EA0/55bf676728b8"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Power_supply_key_switch_off">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="15"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39165/B01/2EA0/55bf67674e7b"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Over_temperature">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="11"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3915e/B01/2EA0/55bf67675105"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Invalid_track_condition">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="5"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39157/B01/2EA0/55bf67672982"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Invalid_text_message">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="7"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39150/B01/2EA0/55bf676741e"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Invalid_predefined_text_message">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="6"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39149/B01/2EA0/55bf6767a3c"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_HW_warning_temp_reached">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="8"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39142/B01/2EA0/55bf67677d79"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_FAN_blocked">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="14"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3913b/B01/2EA0/55bf67675113"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Failure_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="2"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39134/B01/2EA0/55bf6767468a"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Device_OFF_temp_reached">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="10"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3912d/B01/2EA0/55bf6767928"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Backlight_on_off">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="12"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39126/B01/2EA0/55bf676763d"/>
+			</pragmas>
+		</Constant>
+		<Type name="DMI_TEXT_INT_Array_T">
+			<definition>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="DMI_Types_Pkg::cDMI_charsInText"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/39d08/B01/2EA0/55bf801e389a"/>
+			</pragmas>
+		</Type>
+	</declarations>
+</File>
