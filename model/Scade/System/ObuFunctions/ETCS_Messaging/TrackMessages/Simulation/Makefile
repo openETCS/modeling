@@ -8,22 +8,16 @@ SHELL=cmd.exe
 
 C_FLAGS = -pedantic
 
-all: TM_radio_messages__SendRadioMessage_TrainToTrack.exe TM_radio_messages__SendRadioMessage_TrainToTrack.dll 
+all: TM_conversions__DECODE_NID_LRBG.exe TM_conversions__DECODE_NID_LRBG.dll 
 
-win32/SendRadioMessage_TrainToTrack_TM_radio_messages.o: SendRadioMessage_TrainToTrack_TM_radio_messages.c
-	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "SendRadioMessage_TrainToTrack_TM_radio_messages.c" -o "win32\SendRadioMessage_TrainToTrack_TM_radio_messages.o"
+win32/DECODE_NID_LRBG_TM_conversions.o: DECODE_NID_LRBG_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "DECODE_NID_LRBG_TM_conversions.c" -o "win32\DECODE_NID_LRBG_TM_conversions.o"
 
-win32/_3_SendRadioMessage_TrainToT_TM_radio_messages.o: _3_SendRadioMessage_TrainToT_TM_radio_messages.c
-	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "_3_SendRadioMessage_TrainToT_TM_radio_messages.c" -o "win32\_3_SendRadioMessage_TrainToT_TM_radio_messages.o"
+win32/CAST_Int_to_NID_BG_TM_conversions.o: CAST_Int_to_NID_BG_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_NID_BG_TM_conversions.c" -o "win32\CAST_Int_to_NID_BG_TM_conversions.o"
 
-win32/SendRadioMessage_TrainToT_TM_radio_messages.o: SendRadioMessage_TrainToT_TM_radio_messages.c
-	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "SendRadioMessage_TrainToT_TM_radio_messages.c" -o "win32\SendRadioMessage_TrainToT_TM_radio_messages.o"
-
-win32/_2_SendRadioMessage_TrainToT_TM_radio_messages.o: _2_SendRadioMessage_TrainToT_TM_radio_messages.c
-	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "_2_SendRadioMessage_TrainToT_TM_radio_messages.c" -o "win32\_2_SendRadioMessage_TrainToT_TM_radio_messages.o"
-
-win32/_1_SendRadioMessage_TrainToT_TM_radio_messages.o: _1_SendRadioMessage_TrainToT_TM_radio_messages.c
-	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "_1_SendRadioMessage_TrainToT_TM_radio_messages.c" -o "win32\_1_SendRadioMessage_TrainToT_TM_radio_messages.o"
+win32/CAST_Int_to_NID_C_TM_conversions.o: CAST_Int_to_NID_C_TM_conversions.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "CAST_Int_to_NID_C_TM_conversions.c" -o "win32\CAST_Int_to_NID_C_TM_conversions.o"
 
 win32/kcg_types.o: kcg_types.c
 	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "kcg_types.c" -o "win32\kcg_types.o"
@@ -49,20 +43,20 @@ win32/NewSmuTypes.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R16.1/SCADE/
 win32/SmuConverter.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R16.1/SCADE/lib/SmuConverter.c
 	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C:\Program Files\Esterel Technologies\SCADE R16.1\SCADE\lib\SmuConverter.c" -o "win32\SmuConverter.o"
 
-TM_radio_messages__SendRadioMessage_TrainToTrack.dll: win32/SendRadioMessage_TrainToTrack_TM_radio_messages.o win32/_3_SendRadioMessage_TrainToT_TM_radio_messages.o win32/SendRadioMessage_TrainToT_TM_radio_messages.o win32/_2_SendRadioMessage_TrainToT_TM_radio_messages.o win32/_1_SendRadioMessage_TrainToT_TM_radio_messages.o win32/kcg_types.o win32/kcg_consts.o win32/TrackMessages_newtype.o win32/TrackMessages_newmapping.o win32/TrackMessages_newinterface.o win32/SmuProxy.o win32/NewSmuTypes.o win32/SmuConverter.o SmuExport.def 
-	gcc -mwindows -mwin32 -shared -static-libgcc  "win32\SendRadioMessage_TrainToTrack_TM_radio_messages.o" "win32\_3_SendRadioMessage_TrainToT_TM_radio_messages.o" "win32\SendRadioMessage_TrainToT_TM_radio_messages.o" "win32\_2_SendRadioMessage_TrainToT_TM_radio_messages.o" "win32\_1_SendRadioMessage_TrainToT_TM_radio_messages.o" "win32\kcg_types.o" "win32\kcg_consts.o" "win32\TrackMessages_newtype.o" "win32\TrackMessages_newmapping.o" "win32\TrackMessages_newinterface.o" "win32\SmuProxy.o" "win32\NewSmuTypes.o" "win32\SmuConverter.o" -Wl,--output-def,"SmuExport.def" -lm -lwsock32 -m32 -o "TM_radio_messages__SendRadioMessage_TrainToTrack.dll" 
+TM_conversions__DECODE_NID_LRBG.dll: win32/DECODE_NID_LRBG_TM_conversions.o win32/CAST_Int_to_NID_BG_TM_conversions.o win32/CAST_Int_to_NID_C_TM_conversions.o win32/kcg_types.o win32/kcg_consts.o win32/TrackMessages_newtype.o win32/TrackMessages_newmapping.o win32/TrackMessages_newinterface.o win32/SmuProxy.o win32/NewSmuTypes.o win32/SmuConverter.o SmuExport.def 
+	gcc -mwindows -mwin32 -shared -static-libgcc  "win32\DECODE_NID_LRBG_TM_conversions.o" "win32\CAST_Int_to_NID_BG_TM_conversions.o" "win32\CAST_Int_to_NID_C_TM_conversions.o" "win32\kcg_types.o" "win32\kcg_consts.o" "win32\TrackMessages_newtype.o" "win32\TrackMessages_newmapping.o" "win32\TrackMessages_newinterface.o" "win32\SmuProxy.o" "win32\NewSmuTypes.o" "win32\SmuConverter.o" -Wl,--output-def,"SmuExport.def" -lm -lwsock32 -m32 -o "TM_conversions__DECODE_NID_LRBG.dll" 
 
 SmuExport.def: C:/Program\ Files/Esterel\ Technologies/SCADE\ R16.1/SCADE/lib/SmuExport.def
 	copy "C:\Program Files\Esterel Technologies\SCADE R16.1\SCADE\lib\SmuExport.def" "SmuExport.def"
 
-win32/SendRadioMessage_TrainToTrack_TM_radio_messages_dll.o: SendRadioMessage_TrainToTrack_TM_radio_messages_dll.c
-	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "SendRadioMessage_TrainToTrack_TM_radio_messages_dll.c" -o "win32\SendRadioMessage_TrainToTrack_TM_radio_messages_dll.o"
+win32/DECODE_NID_LRBG_TM_conversions_dll.o: DECODE_NID_LRBG_TM_conversions_dll.c
+	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "DECODE_NID_LRBG_TM_conversions_dll.c" -o "win32\DECODE_NID_LRBG_TM_conversions_dll.o"
 
 win32/SmuMainWindows.o: C:/Program\ Files/Esterel\ Technologies/SCADE\ R16.1/SCADE/lib/SmuMainWindows.c
 	gcc -I"." -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\include" -I"..\..\..\..\..\..\..\..\..\Program Files\Esterel Technologies\SCADE R16.1\SCADE\libraries\libmathext" $(C_FLAGS) -DBUILD_DLL -DSIM -DWIN32 -D_CONSOLE -D_MBCS -c -ansi -std=c99 -m32 "C:\Program Files\Esterel Technologies\SCADE R16.1\SCADE\lib\SmuMainWindows.c" -o "win32\SmuMainWindows.o"
 
-TM_radio_messages__SendRadioMessage_TrainToTrack.exe: win32/SendRadioMessage_TrainToTrack_TM_radio_messages_dll.o win32/SmuMainWindows.o 
-	gcc "win32\SendRadioMessage_TrainToTrack_TM_radio_messages_dll.o" "win32\SmuMainWindows.o" -lm -lwsock32 -m32 -o "TM_radio_messages__SendRadioMessage_TrainToTrack.exe" 
+TM_conversions__DECODE_NID_LRBG.exe: win32/DECODE_NID_LRBG_TM_conversions_dll.o win32/SmuMainWindows.o 
+	gcc "win32\DECODE_NID_LRBG_TM_conversions_dll.o" "win32\SmuMainWindows.o" -lm -lwsock32 -m32 -o "TM_conversions__DECODE_NID_LRBG.exe" 
 
 #############################################################
 ######    End of Makefile

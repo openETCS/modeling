@@ -1,18 +1,18 @@
-#ifndef SENDRADIOMESSAGE_TRAINTOTRACK_TM_RADIO_MESSAGES_INTERFACE
-#define SENDRADIOMESSAGE_TRAINTOTRACK_TM_RADIO_MESSAGES_INTERFACE
+#ifndef DECODE_NID_LRBG_TM_CONVERSIONS_INTERFACE
+#define DECODE_NID_LRBG_TM_CONVERSIONS_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "SendRadioMessage_TrainToTrack_TM_radio_messages.h"
+#include "DECODE_NID_LRBG_TM_conversions.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_SendRadioMessage_TrainToTrack_TM_radio_messages inputs_ctx;
-extern outC_SendRadioMessage_TrainToTrack_TM_radio_messages outputs_ctx;
+extern inC_DECODE_NID_LRBG_TM_conversions inputs_ctx;
+extern outC_DECODE_NID_LRBG_TM_conversions outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*SENDRADIOMESSAGE_TRAINTOTRACK_TM_RADIO_MESSAGES_INTERFACE */
+#endif /*DECODE_NID_LRBG_TM_CONVERSIONS_INTERFACE */
