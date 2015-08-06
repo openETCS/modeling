@@ -1,7 +1,7 @@
 #include "TrackMessages_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "d272c58271924af2a7ad1678324b1041";
+const char* _SCSIM_CheckSum = "b0c81dab0e73d0b86878c904e8db71c8";
 const char* _SCSIM_SmuTypesCheckSum = "f79c40cc4a28a84eb05b013596813063";
 
 /*******************************
@@ -17,19 +17,18 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-inC_SendRadioMessage_TrainToTrack_TM_radio_messages inputs_ctx;
-static inC_SendRadioMessage_TrainToTrack_TM_radio_messages inputs_ctx_restore;
-static inC_SendRadioMessage_TrainToTrack_TM_radio_messages inputs_ctx_execute;
-outC_SendRadioMessage_TrainToTrack_TM_radio_messages outputs_ctx;
-static outC_SendRadioMessage_TrainToTrack_TM_radio_messages outputs_ctx_restore;
+inC_DECODE_NID_LRBG_TM_conversions inputs_ctx;
+static inC_DECODE_NID_LRBG_TM_conversions inputs_ctx_restore;
+static inC_DECODE_NID_LRBG_TM_conversions inputs_ctx_execute;
+outC_DECODE_NID_LRBG_TM_conversions outputs_ctx;
+static outC_DECODE_NID_LRBG_TM_conversions outputs_ctx_restore;
 
 /* separate_io: inputs instanciation */
 
 /* separate_io: outputs instanciation */
 
 static void _SCSIM_RestoreInterface(void) {
-	kcg_copy_struct__244(&(inputs_ctx.New_Message), &(inputs_ctx_restore.New_Message));
-	kcg_copy_struct__244(&(inputs_ctx.MessageBus), &(inputs_ctx_restore.MessageBus));
+	inputs_ctx.nid_lrbg = inputs_ctx_restore.nid_lrbg;
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -37,8 +36,7 @@ static void _SCSIM_RestoreInterface(void) {
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	kcg_copy_struct__244(&(inputs_ctx_execute.New_Message), &(inputs_ctx.New_Message));
-	kcg_copy_struct__244(&(inputs_ctx_execute.MessageBus), &(inputs_ctx.MessageBus));
+	inputs_ctx_execute.nid_lrbg = inputs_ctx.nid_lrbg;
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
@@ -65,7 +63,7 @@ int SimReset(void) {
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
 #ifndef KCG_NO_EXTERN_CALL_TO_RESET
-	SendRadioMessage_TrainToTrack_reset_TM_radio_messages(&outputs_ctx);
+	DECODE_NID_LRBG_reset_TM_conversions(&outputs_ctx);
 	nRet=1;
 #else /* KCG_NO_EXTERN_CALL_TO_RESET */
 	nRet=0;
@@ -88,7 +86,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	SendRadioMessage_TrainToTrack_TM_radio_messages(&inputs_ctx_execute, &outputs_ctx);
+	DECODE_NID_LRBG_TM_conversions(&inputs_ctx_execute, &outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -104,12 +102,12 @@ int SimStop(void) {
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(inC_SendRadioMessage_TrainToTrack_TM_radio_messages);
+	nSize += sizeof(inC_DECODE_NID_LRBG_TM_conversions);
 
 /* separate_io: add (not in ctx) inputs size */
 
 /* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_SendRadioMessage_TrainToTrack_TM_radio_messages);
+	nSize += sizeof(outC_DECODE_NID_LRBG_TM_conversions);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -118,14 +116,14 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &inputs_ctx, sizeof(inC_SendRadioMessage_TrainToTrack_TM_radio_messages));
-	pCurrent += sizeof(inC_SendRadioMessage_TrainToTrack_TM_radio_messages);
+	memcpy(pCurrent, &inputs_ctx, sizeof(inC_DECODE_NID_LRBG_TM_conversions));
+	pCurrent += sizeof(inC_DECODE_NID_LRBG_TM_conversions);
 
 	/* separate_io: dump (not in ctx) inputs */
 
 	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_SendRadioMessage_TrainToTrack_TM_radio_messages));
-	pCurrent += sizeof(outC_SendRadioMessage_TrainToTrack_TM_radio_messages);
+	memcpy(pCurrent, &outputs_ctx, sizeof(outC_DECODE_NID_LRBG_TM_conversions));
+	pCurrent += sizeof(outC_DECODE_NID_LRBG_TM_conversions);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -133,14 +131,14 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&inputs_ctx, pCurrent, sizeof(inC_SendRadioMessage_TrainToTrack_TM_radio_messages));
-	pCurrent += sizeof(inC_SendRadioMessage_TrainToTrack_TM_radio_messages);
+	memcpy(&inputs_ctx, pCurrent, sizeof(inC_DECODE_NID_LRBG_TM_conversions));
+	pCurrent += sizeof(inC_DECODE_NID_LRBG_TM_conversions);
 
 	/* separate_io: restore (not in ctx) inputs */
 
 	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_SendRadioMessage_TrainToTrack_TM_radio_messages));
-	pCurrent += sizeof(outC_SendRadioMessage_TrainToTrack_TM_radio_messages);
+	memcpy(&outputs_ctx, pCurrent, sizeof(outC_DECODE_NID_LRBG_TM_conversions));
+	pCurrent += sizeof(outC_DECODE_NID_LRBG_TM_conversions);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
