@@ -7,291 +7,29 @@
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Component name			& TM\_lib\_internal::RECV\_ReadPackets \\
+Component name			& TM\_conversions::trackside.C\_P005\_compr\_onboard \\
 \midrule
 Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages}} \\
 \midrule
 SCADE designer			& Jakob G\"artner, LEA Railergy\\
 \midrule
-Description				& RECV\_ReadPackets extracts packet data information and raw compressed packet data from the compressed packets data flow, using filter criteria provided through parameter inputs:\newline
-\begin{itemize}
-\item NID\_PACKET: search for a specific packet
-\item Version Number: search for a specific version number
-\item Q\_DIR: search for packets that are only valid for a specific direction
-\item Serial number: search for a specific packet instance, if several instances of a given packet type exist
-\item F\_Version: Flag to decide whether to evaluate or ignore packet version information.
-\item F\_id: Flag whether to evaluate or ignore packet serial number information.\newline
-\end{itemize}
-
-The operator TM\_lib\_internal::RECV\_ReadPackets takes a set of parameter data to 
-
-\begin{itemize}
-\item 1. Search the metadata of the compressed packets data flow using the provided parameters to determine if a matching packet is contained in any given cycle
-\item 2. Output the flag "received" exactly in any cycle a matching packet is found
-\item 3. Output an array of compressed packet data that is filled with the data from the identified packet
-\end{itemize}
-
+Description				& If a matching packet 5 has been received, TM\_conversions::trackside.C\_P005\_compr\_onboard: takes the compressed packet data and converts them to an SRS conformal onboard packet format. Trailing 0 beyond the valid length of the packet are ignored. \newline
 
 \\
 
 \midrule
 Input documents	& 
 Subset-026, Chapter 7\newline
-\newline
-This function is not directly traceable to Subset-026, but is built from derived requirements\\
+\\
 \midrule
 Safety integrity level		& 4 \\
 \midrule
 Time constraints		& n/a  \\
 \midrule
-API requirements 		& In the demonstrator context, the API is fully defined on SCADE model level. For integration with external systems (BTM, Radio, Subset-076 or Subset-94), additional conversion to/ from bit-level representation will be required\\
+API requirements 		& n/a\\
 \bottomrule
 \end{longtable}
 %-------------------------------------------------------------------------------------------------------------------------
 %-------------------------------------------------------------------------------------------------------------------------
 %-------------------------------------------------------------------------------------------------------------------------
 
-
-\subsubsection{Interface}
-
-An overview of the interface of component [component name] is shown in Figure~\ref{f:trackside_interface}. The inputs and outputs are described in detail in Section~\ref{s:trackside_inputs} respectively \ref{s:trackside_outputs}.
-
-\begin{figure}
-\center
-\missingfigure{[Put SysML diagram of component here]}
-\caption{Component SysML diagram}\label{f:trackside_interface}
-\end{figure}
-
-%-------------------------------------------------------------------------------------------------------------------------
-%-------------------------------------------------------------------------------------------------------------------------
-
-
-\subsubsection{Inputs}\label{s:trackside_inputs}
-
-%-------------------------------------------------------------------------------------------------------------------------
-
-
-\paragraph{Message\_In}
-
-\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
-\toprule
-Input name				&Message\_In \\
-\midrule
-Description				& Message\_In takes the compressed track-to-train messages that have either been compressed by the trackside simulation components of the TrackMessages library, or have been filled by the API. All packets that are part of the same message are transmitted within one cycle of the model's execution. Message\_IN is taking the compressed packet information from the track to train dataflow. \newline
-  \\
-\midrule
-Source					& Manage\_TrackSideInformation\_Integration through any calling operator (TM::Read\_Pxxx) \\ 
-\midrule
-Type					& Common\_Types\_Pkg::CompressedPackets\_T \\
-\midrule
-Valid range of values 	& n/a\newline
-The consistency of the metadata is checked at the input side.\newline
-The ranges of the transported variables are checked at the conversion step (from integer format to SRS- conformal format)
- \\
-\midrule
-Behaviour when value is at boundary	& n/a \\
-\midrule
-Behaviour for values out of valid range	& n/a \newline \newline
-The content of this input is not checked, as any issues will be found at conversion level. If the metadata are not matching the search criteria the packet will be considered as non existent and will therefore be ignored. 
- \\
-\bottomrule
-\end{longtable}
-
-%-------------------------------------------------------------------------------------------------------------------------
-
-
-\paragraph{PacketID}
-
-\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
-\toprule
-Input name				&PacketID \\
-\midrule
-Description				& PacketID defines the criteria used to determine whether the compressed packets contain a packet of interest. \newline
-The information is position coded into an integer:\newline
-The format is PPPDVVSSS.
-\begin{itemize}
-\item PPP: NID\_PACKET according to 7.5.1.93. 3-digit format, leading zeros are omitted.
-\item D: Q\_DIR according to 7.5.1.103. 1- digit integer representing the decimal conversion of the binary values defined in 7.5.1.103
-\item VV: M\_VERSION according to 7.5.1.79. 2- digit integer representing the decimal conversion of the binary values defined in 7.5.1.79
-\item SSS: Serial number: search for a specific packet instance, if several instances of a given packet type exist. For packets where this is relevant, the serial number is used to identify a packet instance according to SRS definition, for example for NID\_TSR.
-\end{itemize}
-
-  \\
-\midrule
-Source					& Calling function  (TM::Read\_Pxxx). This input is realised as a SCADE hidden input, allowing the calling function to provide the information as a parameter \\ 
-\midrule
-Type					& int \\
-\midrule
-Valid range of values 	& 
-\begin{itemize}
-\item PPP: NID\_PACKET 0-999. Values that are not contained in the list of packets 7.4.1.1 are ignored.
-\item D: 0-3. Values that are not defined in 7.5.1.103 are ignored
-\item VV: 0-99. Values that are not defined in 7.5.1.79 are ignored
-\item SSS:0-999
-\end{itemize}
-.\newline
-
- \\
-\midrule
-Behaviour when value is at boundary	& n/a \\
-\midrule
-Behaviour for values out of valid range	& n/a \newline \newline
-As the metadata are automatically encoded using the values for NID\_PACKET, Q\_DIR, M\_VERSION and the serial number when a packet is compressed at trackside, out-of-range values may lead to erroneous identification of packet data. \newline
-A static validation of the parameters used by the calling function is required. 
- \\
-\bottomrule
-\end{longtable}
-
-%-------------------------------------------------------------------------------------------------------------------------
-
-
-\paragraph{F\_version}
-
-\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
-\toprule
-Input name				&F\_version \\
-\midrule
-Description				& F\_version is a flag. If set to true, version information will be taken into account when looking for a packet.\newline
-
-  \\
-\midrule
-Source					& Calling function  (TM::Read\_Pxxx). This input is realised as a SCADE hidden input, allowing the calling function to provide the information as a parameter \\ 
-\midrule
-Type					& bool \\
-\midrule
-Valid range of values 	& [true | false]
-.\newline
-
- \\
-\midrule
-Behaviour when value is at boundary	& n/a \\
-\midrule
-Behaviour for values out of valid range	& n/a  \newline
- \\
-\bottomrule
-\end{longtable}
-
-%-------------------------------------------------------------------------------------------------------------------------
-
-\paragraph{F\_id}
-
-\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
-\toprule
-Input name				&F\_id \\
-\midrule
-Description				& F\_id is a flag. If set to true, serial number information will be taken into account when looking for a packet.\newline
-
-  \\
-\midrule
-Source					& Calling function  (TM::Read\_Pxxx). This input is realised as a SCADE hidden input, allowing the calling function to provide the information as a parameter \\ 
-\midrule
-Type					& bool \\
-\midrule
-Valid range of values 	& [true | false]
-.\newline
-
- \\
-\midrule
-Behaviour when value is at boundary	& n/a \\
-\midrule
-Behaviour for values out of valid range	& n/a  \newline
-
- \\
-\bottomrule
-\end{longtable}
-
-%-------------------------------------------------------------------------------------------------------------------------
-%-------------------------------------------------------------------------------------------------------------------------
-
-\subsubsection{Outputs}\label{s:trackside_outputs}
-
-
-\paragraph{Data}
-
-\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
-\toprule
-Output name				& Data \\
-\midrule
-Description				& Contents of the packet, in integer array format. The first n elements of this array contain the data, trailing 0 that are beyond the length of the packet described in the metadata can be ignored. \\
-\midrule
-Destination				& Any calling operator\\ 
-\midrule
-Type					& Common\_Types\_Pkg::CompressedPacketData\_T\\
-\midrule
-Valid range of values	& n/a 
-
- \\
-\midrule
-Behaviour when value is at boundary	& n/a \\
-\midrule
-Behaviour for values out of valid range	& n/a\newline
-
-
- \\
-\midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
-\bottomrule
-\end{longtable}
-
-%-------------------------------------------------------------------------------------------------------------------------
-
-
-\paragraph{Metadata}
-
-\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
-\toprule
-Output name				& Metadata \\
-\midrule
-Description				& Raw Metadata for the found packet \\
-\midrule
-Destination				& Any calling operator\\ 
-\midrule
-Type					& Common\_Types\_Pkg::MetadataElement\_T\\
-\midrule
-Valid range of values	& n/a 
-
- \\
-\midrule
-Behaviour when value is at boundary	& n/a \\
-\midrule
-Behaviour for values out of valid range	& n/a\newline
-
-
- \\
-\midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
-\bottomrule
-\end{longtable}
-
-%-------------------------------------------------------------------------------------------------------------------------
-
-\paragraph{received}
-
-\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
-\toprule
-Output name				& received \\
-\midrule
-Description				& Flag to indicate reception of a packet 5 from trackside in the current cycle \\
-\midrule
-Destination				& Any calling component\\ 
-\midrule
-Type					& bool \\
-\midrule
-Valid range of values	&
-[true | false]
- \\
-\midrule
-Behaviour when value is at boundary	& n/a \\
-\midrule
-Behaviour for values out of valid range	& n/a \\
-\midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
-\bottomrule
-\end{longtable}
-
-
-
-%\subsection{Sub Components}
-
-%\subsubsection{Name\_of\_Subcomponent}
-%\input{sections/Name\_of\_Subcomponent.tex}
