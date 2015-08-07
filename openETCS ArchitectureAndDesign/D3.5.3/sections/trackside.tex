@@ -1,7 +1,7 @@
 %set the master document for easy compilation
 %!TEX root = ../D3_5_3.tex
 
-\section{ETCS\_Messaging: TrackMessages}
+\section{ETCS Messaging: TrackMessages}
 
 \subsection{Component Requirements}
 
@@ -14,17 +14,15 @@ Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/
 SCADE designer			& Jakob G\"artner, LEA Railergy \newline
 Mairamou Haman Adji, LEA Railergy\\
 \midrule
-Description				& TrackMessages is a library containing functionality to
+Description				& TrackMessages is a library containing functionality to:\newline
 \begin{itemize}
-\item Transport train-to-track and track-to-train messages and packets using a compressed format which is conceptually close to the ETCS language as defined in Subset-026
+\item Transport TrainToTrack and TrackToTrain messages and packets using a compressed format which is conceptually close to the ETCS language as defined in Subset-026
 \item Compress trackside information and decompress it in the onboard unit, taking into account different baseline versions and providing transparent translation.
-\item Compress trainside information and decompress it in the trackside simulation models, taking into account different baseline versions and providing transparent translation.
+\item Compress trainside information and decompress it in the trackside simulation models, taking into account different baseline versions and providing transparent translation. \newline
 \end{itemize}
-As TrackMessages is a library with various components supporting all packets and messages defined in Subset-026, we have selected one exemplary function to document the concept. As only the packet/ message- related functionality is specific, this approach will allow a first understanding of the concept and the related interfaces. For a full discussion of the library, refer to the [specifc chapter? document?]
 
+As TrackMessages is a library with various components supporting all packets and messages defined in Subset-026, we have selected one exemplary function to document the concept. As only the packet/ message- related functionality is specific, this approach will allow a first understanding of the concept and the related interfaces. For a full discussion of the library, refer to the [specifc chapter? document?]\newline
 The function Read\_P005 extracts a packet 5 (Gradient Profile) from the compressed packets data flow, if present. It translates the integer- coded compressed data with the help of the metadata in the header section of the CompressedPackets\_T formatted data flow. After performing variable-level translation and exception detection, a baseline-3 conformal packet 5 is available for use within the relevant OBU functions.
-
-The objective of this component (the full TrackMessages library) is to provide a full formalisation of the chapters in Subset-026 listed in the input documents row of this table.
 \\
 
 \midrule
@@ -32,20 +30,21 @@ Input documents	&
 Subset-026, Chapter 6\newline
 Subset-026, Chapter 7\newline
 Subset-026, Chapter 8\newline
-\\
+\newline
+The objective of this component (the full TrackMessages library) is to provide a full formalisation of above chapters in Subset-026\\
 \midrule
-Safety integrity level	& 4 \\
+Safety integrity level		& 4 \\
 \midrule
 Time constraints		& n/a (for the provided example function) \\
 \midrule
-API requirements 		& In the demonstrator context, the API is fully defined on SCADE model level. For integration with external systems (BTM, Radio, Subset-076 or Subset-94), additional conversion to/ from bit-level representation will be required.\\
+API requirements 		& In the demonstrator context, the API is fully defined on SCADE model level. For integration with external systems (BTM, Radio, Subset-076 or Subset-94), additional conversion to/ from bit-level representation will be required\\
 \bottomrule
 \end{longtable}
 
 
 \subsection{Interface}
 
-An overview of the interface of component TrackMessages::Read\_P005 is shown in Figure~\ref{f:trackside_interface}. The inputs and outputs are described in detail in Section~\ref{s:trackside_inputs} respectively \ref{s:trackside_outputs}.
+An overview of the interface of component [component name] is shown in Figure~\ref{f:trackside_interface}. The inputs and outputs are described in detail in Section~\ref{s:trackside_inputs} respectively \ref{s:trackside_outputs}.
 
 \begin{figure}
 \center
@@ -60,20 +59,24 @@ An overview of the interface of component TrackMessages::Read\_P005 is shown in 
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Input name				& Message\_In \\
+Input name				&Message\_In \\
 \midrule
-Description				& Message\_In takes the compressed track-to-train messages that have either been compressed by the trackside simulation components of the TrackMessages library, or have been filled by the API. All packets that are part of the same message are transmitted within one cycle of the model's execution. Message\_IN is taking the compressed packet information from the track to train dataflow. \\
+Description				& Message\_In takes the compressed track-to-train messages that have either been compressed by the trackside simulation components of the TrackMessages library, or have been filled by the API. All packets that are part of the same message are transmitted within one cycle of the model's execution. Message\_IN is taking the compressed packet information from the track to train dataflow. \newline
+  \\
 \midrule
 Source					& Manage\_TrackSideInformation\_Integration \\ 
 \midrule
 Type					& Common\_Types\_Pkg::CompressedPackets\_T \\
 \midrule
-Valid range of values 	& The consistency of the metadata is checked at the input side. The ranges of the transported variables are checked at the conversion step (from integer format to SRS- conformal format)
+Valid range of values 	& n/a\newline
+The consistency of the metadata is checked at the input side.\newline
+The ranges of the transported variables are checked at the conversion step (from integer format to SRS- conformal format)
  \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& The content of this input is not checked, as any issues will be found at conversion level. If the metadata are not matching the search criteria the packet will be considered as non existent and will therefore be ignored. 
+Behaviour for values out of valid range	& n/a \newline \newline
+The content of this input is not checked, as any issues will be found at conversion level. If the metadata are not matching the search criteria the packet will be considered as non existent and will therefore be ignored. 
  \\
 \bottomrule
 \end{longtable}
@@ -84,7 +87,7 @@ Behaviour for values out of valid range	& The content of this input is not check
 \subsubsection{Outputs}\label{s:trackside_outputs}
 
 \paragraph{received}
-\todo[fancyline]{Needs to be detailed. Destinations should be listed explicitly, true and false values should be decribed briefly.}
+
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
 Output name				& received \\
@@ -96,10 +99,7 @@ Destination				& Any calling component\\
 Type					& bool \\
 \midrule
 Valid range of values	&
-\begin{description}
-\item[true] ???
-\item[false] ???
-\end{description}
+[true | false]
  \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
@@ -171,6 +171,9 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 
 
 \subsection{Sub Components}
+
+\subsubsection{Read\_Packets}
+\input{sections/trackside.readpackets.tex}
 
 %\subsubsection{Name\_of\_Subcomponent}
 %\input{sections/Name\_of\_Subcomponent.tex}
