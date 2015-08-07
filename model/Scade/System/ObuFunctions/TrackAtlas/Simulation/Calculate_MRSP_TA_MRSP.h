@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _Calculate_MRSP_TA_MRSP_H_
 #define _Calculate_MRSP_TA_MRSP_H_
@@ -33,9 +33,9 @@ typedef struct {
   SSP_t_matrix_t_TA_MRSP /* TA_MRSP::Calculate_MRSP::_L3 */ _L3;
   kcg_int /* TA_MRSP::Calculate_MRSP::_L6 */ _L6;
   kcg_bool /* TA_MRSP::Calculate_MRSP::_L8 */ _L8;
-  array__10564 /* TA_MRSP::Calculate_MRSP::_L9 */ _L9;
-  array__10567 /* TA_MRSP::Calculate_MRSP::_L10 */ _L10;
-  array__10491 /* TA_MRSP::Calculate_MRSP::_L12 */ _L12;
+  array__10581 /* TA_MRSP::Calculate_MRSP::_L9 */ _L9;
+  array__10584 /* TA_MRSP::Calculate_MRSP::_L10 */ _L10;
+  array__10508 /* TA_MRSP::Calculate_MRSP::_L12 */ _L12;
   array_int_200 /* TA_MRSP::Calculate_MRSP::_L14 */ _L14;
   SSP_matrix_t_TA_MRSP /* TA_MRSP::Calculate_MRSP::_L15 */ _L15;
   kcg_int /* TA_MRSP::Calculate_MRSP::_L17 */ _L17;
@@ -52,6 +52,6 @@ extern void Calculate_MRSP_reset_TA_MRSP(outC_Calculate_MRSP_TA_MRSP *outC);
 #endif /* _Calculate_MRSP_TA_MRSP_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Calculate_MRSP_TA_MRSP.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

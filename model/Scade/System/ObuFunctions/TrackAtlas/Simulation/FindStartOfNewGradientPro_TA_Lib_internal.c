@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -27,7 +27,7 @@ void FindStartOfNewGradientPro_TA_Lib_internal(
   outC->_L13 = outC->_L14 > outC->_L12;
   kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L2, Profile_in);
   outC->_L3 = i;
-  if ((0 <= outC->_L3) & (outC->_L3 < 10)) {
+  if ((0 <= outC->_L3) & (outC->_L3 < 50)) {
     kcg_copy_Gradient_section_t_TrackAtlasTypes(
       &outC->_L4,
       &outC->_L2[outC->_L3]);
@@ -54,6 +54,6 @@ void FindStartOfNewGradientPro_TA_Lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** FindStartOfNewGradientPro_TA_Lib_internal.c
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

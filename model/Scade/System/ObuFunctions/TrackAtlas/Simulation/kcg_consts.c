@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -16,6 +16,21 @@ const P021_section_enum_T_TM DEFAULT_P021_OBU_section_TM = { kcg_false, 0,
 /* TrackAtlasTypes::DEFAULT_GradientProfile */
 const GradientProfile_t_TrackAtlasTypes DEFAULT_GradientProfile_TrackAtlasTypes = {
   { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0,
+    0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0,
+    0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, {
+    kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0,
+    0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0,
+    0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, {
+    kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0,
+    0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0,
+    0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, {
+    kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0,
+    0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0,
+    0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, {
+    kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0,
+    0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0,
+    0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, {
+    kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0,
     0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0,
     0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 }, {
     kcg_false, 0, 0, 0, 0 }, { kcg_false, 0, 0, 0, 0 } };
@@ -301,9 +316,9 @@ const P003V1_OBU_T_TM_baseline2 INIT_P3V1_TA_Storage = { kcg_false,
 const DataForModeAndLevel_t_TrackAtlasTypes DEFAULT_to_ML_TA_Export = { {
     kcg_false, kcg_false, kcg_false, kcg_false, kcg_false, kcg_false, kcg_false,
     kcg_false, kcg_false, kcg_false, kcg_false, kcg_false, kcg_false, kcg_false,
-    kcg_false }, 0, 0, { 0, Profile_OS_Level_And_Mode_Types_Pkg, 0, 0, 0 }, {
-    kcg_false, kcg_false, kcg_false, kcg_false, kcg_false }, { kcg_false, 0, 0,
-    0, 0 }, { { kcg_false, M_LEVELTR_Level_0, 0, 0 }, { kcg_false,
+    kcg_false }, 0, 0, 0, 0, { 0, Profile_OS_Level_And_Mode_Types_Pkg, 0, 0,
+    0 }, { kcg_false, kcg_false, kcg_false, kcg_false, kcg_false }, { kcg_false,
+    0, 0, 0, 0 }, { { kcg_false, M_LEVELTR_Level_0, 0, 0 }, { kcg_false,
       M_LEVELTR_Level_0, 0, 0 }, { kcg_false, M_LEVELTR_Level_0, 0, 0 }, {
       kcg_false, M_LEVELTR_Level_0, 0, 0 }, { kcg_false, M_LEVELTR_Level_0, 0,
       0 }, { kcg_false, M_LEVELTR_Level_0, 0, 0 }, { kcg_false,
@@ -345,7 +360,7 @@ const DataForModeAndLevel_t_TrackAtlasTypes DEFAULT_to_ML_TA_Export = { {
 const Radio_TrainTrack_Message_T_Radio_Types_Pkg cPacket132_MA_Request = {
   kcg_false, { kcg_false, 0, 0.0, 0, Q_MARQSTREASON_Start_selected_by_driver,
     0.0, 0,
-    _13_Q_EMERGENCYSTOP_Conditional_Emergency_Stop_accepted_with_update_of_EOA,
+    _8_Q_EMERGENCYSTOP_Conditional_Emergency_Stop_accepted_with_update_of_EOA,
     0 }, { { kcg_false, { 0, 0, Q_SCALE_10_cm_scale, 0, 0, Q_DIRLRBG_Reverse,
         Q_DLRBG_Reverse, 0, 0,
         Q_LENGTH_No_train_integrity_information_available, 0, 0,
@@ -433,6 +448,6 @@ const PT9_Level23_TransitionInformation_T_Packet_TrainTypes_Pkg cPT9_Level23_MA_
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_consts.c
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

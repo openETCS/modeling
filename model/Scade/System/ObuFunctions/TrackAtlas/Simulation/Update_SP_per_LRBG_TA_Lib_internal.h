@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _Update_SP_per_LRBG_TA_Lib_internal_H_
 #define _Update_SP_per_LRBG_TA_Lib_internal_H_
@@ -28,7 +28,7 @@ typedef struct {
   SSP_cat_t_TA_MRSP /* TA_Lib_internal::Update_SP_per_LRBG::_L5 */ _L5;
   array_int_33 /* TA_Lib_internal::Update_SP_per_LRBG::_L9 */ _L9;
   SSP_cat_t_TA_MRSP /* TA_Lib_internal::Update_SP_per_LRBG::_L14 */ _L14;
-  array__10579 /* TA_Lib_internal::Update_SP_per_LRBG::_L15 */ _L15;
+  array__10596 /* TA_Lib_internal::Update_SP_per_LRBG::_L15 */ _L15;
   kcg_int /* TA_Lib_internal::Update_SP_per_LRBG::_L20 */ _L20;
   kcg_int /* TA_Lib_internal::Update_SP_per_LRBG::_L21 */ _L21;
   V_internal_Type_Obu_BasicTypes_Pkg /* TA_Lib_internal::Update_SP_per_LRBG::_L23 */ _L23;
@@ -38,13 +38,13 @@ typedef struct {
   SSP_section_t_TA_MRSP /* TA_Lib_internal::Update_SP_per_LRBG::_L26 */ _L26;
   kcg_bool /* TA_Lib_internal::Update_SP_per_LRBG::_L29 */ _L29;
   SSP_section_t_TA_MRSP /* TA_Lib_internal::Update_SP_per_LRBG::_L30 */ _L30;
-  array__10591 /* TA_Lib_internal::Update_SP_per_LRBG::_L34 */ _L34;
+  array__10608 /* TA_Lib_internal::Update_SP_per_LRBG::_L34 */ _L34;
   SSP_cat_t_TA_MRSP /* TA_Lib_internal::Update_SP_per_LRBG::_L35 */ _L35;
   kcg_bool /* TA_Lib_internal::Update_SP_per_LRBG::_L36 */ _L36;
   kcg_bool /* TA_Lib_internal::Update_SP_per_LRBG::_L37 */ _L37;
   kcg_int /* TA_Lib_internal::Update_SP_per_LRBG::_L38 */ _L38;
-  array__10399 /* TA_Lib_internal::Update_SP_per_LRBG::_L39 */ _L39;
-  array__10594 /* TA_Lib_internal::Update_SP_per_LRBG::_L41 */ _L41;
+  array__10416 /* TA_Lib_internal::Update_SP_per_LRBG::_L39 */ _L39;
+  array__10611 /* TA_Lib_internal::Update_SP_per_LRBG::_L41 */ _L41;
   SSP_cat_t_TA_MRSP /* TA_Lib_internal::Update_SP_per_LRBG::_L45 */ _L45;
   SSP_cat_t_TA_MRSP /* TA_Lib_internal::Update_SP_per_LRBG::_L46 */ _L46;
 } outC_Update_SP_per_LRBG_TA_Lib_internal;
@@ -65,6 +65,6 @@ extern void Update_SP_per_LRBG_reset_TA_Lib_internal(
 #endif /* _Update_SP_per_LRBG_TA_Lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Update_SP_per_LRBG_TA_Lib_internal.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

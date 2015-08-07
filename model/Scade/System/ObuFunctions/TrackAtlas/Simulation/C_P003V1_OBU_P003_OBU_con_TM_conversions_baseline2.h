@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _C_P003V1_OBU_P003_OBU_con_TM_conversions_baseline2_H_
 #define _C_P003V1_OBU_P003_OBU_con_TM_conversions_baseline2_H_
@@ -25,12 +25,12 @@ typedef struct {
   P003V1_OBU_T_TM_baseline2 /* TM_conversions_baseline2::C_P003V1_OBU_P003_OBU_convert_nid_c_list::_L59 */ _L59;
   N_ITER /* TM_conversions_baseline2::C_P003V1_OBU_P003_OBU_convert_nid_c_list::_L108 */ _L108;
   P003V1_sectionlist_enum_T_TM_baseline2 /* TM_conversions_baseline2::C_P003V1_OBU_P003_OBU_convert_nid_c_list::_L109 */ _L109;
-  array__10600 /* TM_conversions_baseline2::C_P003V1_OBU_P003_OBU_convert_nid_c_list::_L110 */ _L110;
+  array__10617 /* TM_conversions_baseline2::C_P003V1_OBU_P003_OBU_convert_nid_c_list::_L110 */ _L110;
   P003V1_section_enum_T_TM_baseline2 /* TM_conversions_baseline2::C_P003V1_OBU_P003_OBU_convert_nid_c_list::_L111 */ _L111;
   NID_C /* TM_conversions_baseline2::C_P003V1_OBU_P003_OBU_convert_nid_c_list::_L112 */ _L112;
-  array__10223 /* TM_conversions_baseline2::C_P003V1_OBU_P003_OBU_convert_nid_c_list::_L113 */ _L113;
+  array__10240 /* TM_conversions_baseline2::C_P003V1_OBU_P003_OBU_convert_nid_c_list::_L113 */ _L113;
   P003V1_section_enum_T_TM_baseline2 /* TM_conversions_baseline2::C_P003V1_OBU_P003_OBU_convert_nid_c_list::_L115 */ _L115;
-  array__10603 /* TM_conversions_baseline2::C_P003V1_OBU_P003_OBU_convert_nid_c_list::_L116 */ _L116;
+  array__10620 /* TM_conversions_baseline2::C_P003V1_OBU_P003_OBU_convert_nid_c_list::_L116 */ _L116;
 } outC_C_P003V1_OBU_P003_OBU_con_TM_conversions_baseline2;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -45,6 +45,6 @@ extern void C_P003V1_OBU_P003_OBU_con_reset_TM_conversions_baseline2(
 #endif /* _C_P003V1_OBU_P003_OBU_con_TM_conversions_baseline2_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P003V1_OBU_P003_OBU_con_TM_conversions_baseline2.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 
