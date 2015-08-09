@@ -1228,7 +1228,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/1f949e/15E0/1354/55b0a86d45e9"/>
+								<ed:Variable oid="!ed/1f949e/15E0/1354/55b0a86d45e9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true if packet 57 is valid in the current clock cycle</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="_L1">
@@ -1592,10 +1594,10 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/916b6/FD6/5F8/5552ccd17947" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-							<comment>This operator reads packet 57 (i.e., MA_Request parameters) from the input bus.</comment>
+							<comment>This operator reads packet 57 (i.e., the MA_Request parameters) from the input bus.</comment>
 							<comment>The packet is stored in a memory such that it is available in every clock cycle</comment>
-							<comment>until the next packet is received. Furthermore, level2/3-MAs are read from the bus</comment>
-							<comment>to determine when a new MA has been received.</comment>
+							<comment>until the next packet 57 is received. Furthermore, level2/3-MAs are read from the bus</comment>
+							<comment>to determine that a new MA has been received.</comment>
 							<diagrams>
 								<NetDiagram name="diagram_Receive_MA_RequestParameters_1" landscape="true" format="A4 (210 297)" oid="!ed/916b7/FD6/5F8/5552ccd12ed">
 									<presentationElements>
@@ -1987,7 +1989,9 @@
 								<ConstValue value="false"/>
 							</last>
 							<pragmas>
-								<ed:Variable oid="!ed/16faec/2078/1A68/5591942e4db9"/>
+								<ed:Variable oid="!ed/16faec/2078/1A68/5591942e4db9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true if MA shall be requested (i.e., at least one of the trigger conditions holds)</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable probe="true" name="exception">
@@ -2850,7 +2854,7 @@
 										</EquationGE>
 										<EquationGE presentable="!ed/16faed/2078/1A68/5591942edd6">
 											<position>
-												<Point x="24278" y="6858"/>
+												<Point x="24342" y="5927"/>
 											</position>
 											<size>
 												<Size width="360" height="508"/>
@@ -2860,8 +2864,8 @@
 											<positions>
 												<Point x="19431" y="6181"/>
 												<Point x="19918" y="6181"/>
-												<Point x="19918" y="7112"/>
-												<Point x="24278" y="7112"/>
+												<Point x="19918" y="6181"/>
+												<Point x="24342" y="6181"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/16faf2/2078/1A68/5591944d5c94">
@@ -4011,6 +4015,7 @@
 					<pragmas>
 						<ed:Operator oid="!ed/916e8/FD6/5F8/5552cdc024e4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 							<comment>This operator builds message 132 containing the MA request packet and a position report.</comment>
+							<comment>Currently, not all values of Q_MARQSTREASON are beings sent.</comment>
 							<diagrams>
 								<NetDiagram name="diagram_Build_MA_request_1" landscape="true" format="A4 (210 297)" oid="!ed/916e9/FD6/5F8/5552cdc064be">
 									<presentationElements>
@@ -4567,7 +4572,7 @@
 								</ed:Variable>
 							</pragmas>
 						</Variable>
-						<Variable name="error">
+						<Variable name="exception">
 							<type>
 								<NamedType>
 									<type>
@@ -4576,7 +4581,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/e638c/1E8A/DFC/55c4e79b3475"/>
+								<ed:Variable oid="!ed/e638c/1E8A/DFC/55c4e79b3475" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true if an exception occurred</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</outputs>
@@ -6002,10 +6009,10 @@
 								<ed:Equation oid="!ed/e6386/1E8A/DFC/55c4e7855a34"/>
 							</pragmas>
 						</Equation>
-						<!-- error = _L76; -->
+						<!-- exception = _L76; -->
 						<Equation>
 							<lefts>
-								<VariableRef name="error"/>
+								<VariableRef name="exception"/>
 							</lefts>
 							<right>
 								<IdExpression>
@@ -6028,7 +6035,7 @@
 							<comment>- a defined time before an MA timer expires</comment>
 							<comment>- an MA request has been sent but the request has to be repeated as there was no answer since</comment>
 							<comment>- one of the other reasons for requesting an MA holds</comment>
-							<comment>A small state machine model is used to store the information whether an MA request has to be repeated</comment>
+							<comment>A simple state machine model stores the information whether an MA request has to be repeated</comment>
 							<comment>or not (i.e., the corresponding MA has been received).</comment>
 							<diagrams>
 								<NetDiagram name="diagram_MA_Request_Supervision_1" landscape="true" format="A4 (210 297)" oid="!ed/9172c/FD6/5F8/555304e57d5f">
@@ -6972,7 +6979,7 @@
 								</ed:Variable>
 							</pragmas>
 						</Variable>
-						<Variable name="error">
+						<Variable name="exception">
 							<type>
 								<NamedType>
 									<type>
@@ -6981,7 +6988,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/e635d/1E8A/DFC/55c4e6944ec1"/>
+								<ed:Variable oid="!ed/e635d/1E8A/DFC/55c4e6944ec1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true if an exception occurred</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</outputs>
@@ -7709,10 +7718,10 @@
 								<ed:Equation oid="!ed/e6357/1E8A/DFC/55c4e6803b4d"/>
 							</pragmas>
 						</Equation>
-						<!-- error = _L26; -->
+						<!-- exception = _L26; -->
 						<Equation>
 							<lefts>
-								<VariableRef name="error"/>
+								<VariableRef name="exception"/>
 							</lefts>
 							<right>
 								<IdExpression>
@@ -8140,7 +8149,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/2819b3/103D/2770/558eaac33116"/>
+								<ed:Variable oid="!ed/2819b3/103D/2770/558eaac33116" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>timer value that is being compared to the ma section timer</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 						<Variable name="ma_section">
@@ -8152,7 +8163,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/2819b0/103D/2770/558ea98d2339"/>
+								<ed:Variable oid="!ed/2819b0/103D/2770/558ea98d2339" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>ma section</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</inputs>
@@ -8166,7 +8179,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/2819b2/103D/2770/558eaa8f632a"/>
+								<ed:Variable oid="!ed/2819b2/103D/2770/558eaa8f632a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>minimum of the two timer values being compared</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</outputs>
@@ -9158,6 +9173,8 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/281c06/103D/2770/558eb9913c4f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>This operator evaluates condition 3.8.2.3.b, (i.e., request MA a defined time before the </comment>
+							<comment>timer of any MA section or the LOA speed expires).</comment>
 							<diagrams>
 								<NetDiagram name="diagramm_op_3_8_2_3_b_1" landscape="true" format="A4 (210 297)" oid="!ed/281c07/103D/2770/558eb9911f05">
 									<presentationElements>
@@ -9398,7 +9415,7 @@
 								</ed:Variable>
 							</pragmas>
 						</Variable>
-						<Variable name="error">
+						<Variable name="exception">
 							<type>
 								<NamedType>
 									<type>
@@ -9407,7 +9424,9 @@
 								</NamedType>
 							</type>
 							<pragmas>
-								<ed:Variable oid="!ed/e636b/1E8A/DFC/55c4e717543e"/>
+								<ed:Variable oid="!ed/e636b/1E8A/DFC/55c4e717543e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true if an exception occurred</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</outputs>
@@ -9763,10 +9782,10 @@
 								<ed:Equation oid="!ed/e6364/1E8A/DFC/55c4e6cc2b32"/>
 							</pragmas>
 						</Equation>
-						<!-- error = _L14; -->
+						<!-- exception = _L14; -->
 						<Equation>
 							<lefts>
-								<VariableRef name="error"/>
+								<VariableRef name="exception"/>
 							</lefts>
 							<right>
 								<IdExpression>
@@ -9794,6 +9813,10 @@
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/281c80/103D/2770/558ebdd81b2d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>This operator triggers the repetition of MA requests if no MA has been sent by the RBC</comment>
+							<comment>within T_CYCREQ time units. The time when an MA is requested is stored in a memory.</comment>
+							<comment>Then, in every clock cycle the difference between current time and stored is compared</comment>
+							<comment>with T_CYCREQ.</comment>
 							<diagrams>
 								<NetDiagram name="diagram_op_RepeatReq_1" landscape="true" format="A4 (210 297)" oid="!ed/281c81/103D/2770/558ebdd85329">
 									<presentationElements>
