@@ -1,10 +1,9 @@
 /* UtrechtAmsterdam_oETCS_newmapping.h */
 
-#include "Amsterdam_Utrecht_US_Integration_June.h"
+#include "SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern kcg_real _ctx_TrainPos_buffer;
-extern kcg_int _ctx_Trigger_in_buffer;
+extern CompressedPackets_T_Common_Types_Pkg _ctx_Radio_packets_in_buffer;
 

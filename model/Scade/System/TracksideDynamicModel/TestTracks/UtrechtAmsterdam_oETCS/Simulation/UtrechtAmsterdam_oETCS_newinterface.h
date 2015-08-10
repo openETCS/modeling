@@ -1,18 +1,17 @@
-#ifndef AMSTERDAM_UTRECHT_US_INTEGRATION_JUNE_INTERFACE
-#define AMSTERDAM_UTRECHT_US_INTEGRATION_JUNE_INTERFACE
+#ifndef SENDRADIOPACKETS_LRBG_354_AMSTERDAMUTRECHTL2_SHEET06_BIJLMER_RBC_INTERFACE
+#define SENDRADIOPACKETS_LRBG_354_AMSTERDAMUTRECHTL2_SHEET06_BIJLMER_RBC_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "Amsterdam_Utrecht_US_Integration_June.h"
+#include "SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern kcg_real _ctx_TrainPos_buffer;
-extern kcg_int _ctx_Trigger_in_buffer;
+extern CompressedPackets_T_Common_Types_Pkg _ctx_Radio_packets_in_buffer;
 /*******************************
  * Validity
  *******************************/
@@ -38,4 +37,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*AMSTERDAM_UTRECHT_US_INTEGRATION_JUNE_INTERFACE */
+#endif /*SENDRADIOPACKETS_LRBG_354_AMSTERDAMUTRECHTL2_SHEET06_BIJLMER_RBC_INTERFACE */

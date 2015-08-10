@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-10T16:11:03
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -61,6 +61,7 @@ void C_P015_tracksim_compr_TM_conversions(
   outC->_L366 = outC->_L1.T_ENDTIMER;
   outC->_L367 = outC->_L1.Q_ENDTIMER;
   outC->_L368 = outC->_L1.D_SECTIONTIMERSTOPLOC;
+  outC->_L405 = outC->_L1.T_SECTIONTIMER;
   outC->_L369 = outC->_L1.Q_SECTIONTIMER;
   outC->_L370 = outC->_L1.L_ENDSECTION;
   kcg_copy_P015_trackide_sectionlist_T_TM(&outC->_L371, &outC->_L1.SECTIONS);
@@ -93,22 +94,23 @@ void C_P015_tracksim_compr_TM_conversions(
   outC->_L373[5] = outC->_L219;
   outC->_L399[0] = outC->_L370;
   outC->_L399[1] = outC->_L369;
-  outC->_L399[2] = outC->_L368;
-  outC->_L399[3] = outC->_L367;
-  outC->_L399[4] = outC->_L366;
-  outC->_L399[5] = outC->_L365;
-  outC->_L399[6] = outC->_L395;
-  outC->_L399[7] = outC->_L394;
-  outC->_L399[8] = outC->_L393;
-  outC->_L399[9] = outC->_L392;
-  outC->_L399[10] = outC->_L391;
-  outC->_L399[11] = outC->_L390;
-  outC->_L399[12] = outC->_L389;
-  outC->_L399[13] = outC->_L388;
+  outC->_L399[2] = outC->_L405;
+  outC->_L399[3] = outC->_L368;
+  outC->_L399[4] = outC->_L367;
+  outC->_L399[5] = outC->_L366;
+  outC->_L399[6] = outC->_L365;
+  outC->_L399[7] = outC->_L395;
+  outC->_L399[8] = outC->_L394;
+  outC->_L399[9] = outC->_L393;
+  outC->_L399[10] = outC->_L392;
+  outC->_L399[11] = outC->_L391;
+  outC->_L399[12] = outC->_L390;
+  outC->_L399[13] = outC->_L389;
+  outC->_L399[14] = outC->_L388;
   kcg_copy_array_int_6(&outC->_L381[0], &outC->_L373);
-  kcg_copy_array_int_14(&outC->_L381[6], &outC->_L399);
-  kcg_copy_array_int_20(&outC->_L400[0], &outC->_L381);
-  kcg_copy_array_int_1(&outC->_L400[20], &outC->_L403);
+  kcg_copy_array_int_15(&outC->_L381[6], &outC->_L399);
+  kcg_copy_array_int_21(&outC->_L400[0], &outC->_L381);
+  kcg_copy_array_int_1(&outC->_L400[21], &outC->_L403);
   kcg_copy_P015_trackide_sectionlist_T_TM(&outC->sections, &outC->_L371);
   kcg_copy_P015_trackide_sectionlist_T_TM(&outC->_L398, &outC->sections);
   /* 1 */
@@ -116,18 +118,18 @@ void C_P015_tracksim_compr_TM_conversions(
   kcg_copy_P015_sections_array_flat_T_TM(
     &outC->_L380,
     &outC->_1_Context_1.Flattened);
-  kcg_copy_array_int_21(&outC->_L384[0], &outC->_L400);
-  kcg_copy_P015_sections_array_flat_T_TM(&outC->_L384[21], &outC->_L380);
+  kcg_copy_array_int_22(&outC->_L384[0], &outC->_L400);
+  kcg_copy_P015_sections_array_flat_T_TM(&outC->_L384[22], &outC->_L380);
   outC->_L336 = 0;
-  for (i = 0; i < 351; i++) {
+  for (i = 0; i < 350; i++) {
     outC->_L209[i] = outC->_L336;
   }
-  kcg_copy_array_int_149(&outC->_L383[0], &outC->_L384);
-  kcg_copy_array_int_351(&outC->_L383[149], &outC->_L209);
+  kcg_copy_array_int_150(&outC->_L383[0], &outC->_L384);
+  kcg_copy_array_int_350(&outC->_L383[150], &outC->_L209);
   /* 1 */
   T_DeterminePacketSizeInt_TM_lib_internal(
     outC->_L396,
-    6 + 1 + 14,
+    6 + 1 + 15,
     4,
     &outC->_2_Context_1);
   outC->_L379 = outC->_2_Context_1.p_size;
@@ -214,6 +216,6 @@ void C_P015_tracksim_compr_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P015_tracksim_compr_TM_conversions.c
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-10T16:11:03
 *************************************************************$ */
 
