@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef __20_MRSP_DetermineRelevantSpe_TA_MRSP_H_
 #define __20_MRSP_DetermineRelevantSpe_TA_MRSP_H_
@@ -35,7 +35,7 @@ typedef struct {
   kcg_int /* TA_MRSP::MRSP_DetermineRelevantSpeedperCat::_L64 */ _L64;
   SSP_relevant_target_t_TA_MRSP /* TA_MRSP::MRSP_DetermineRelevantSpeedperCat::_L65 */ _L65;
   array_int_33 /* TA_MRSP::MRSP_DetermineRelevantSpeedperCat::_L66 */ _L66;
-  array__10558 /* TA_MRSP::MRSP_DetermineRelevantSpeedperCat::_L67 */ _L67;
+  array__10575 /* TA_MRSP::MRSP_DetermineRelevantSpeedperCat::_L67 */ _L67;
 } outC__20_MRSP_DetermineRelevantSpe_TA_MRSP;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -51,6 +51,6 @@ extern void _20_MRSP_DetermineRelevantSpe_reset_TA_MRSP(
 #endif /* __20_MRSP_DetermineRelevantSpe_TA_MRSP_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** _20_MRSP_DetermineRelevantSpe_TA_MRSP.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

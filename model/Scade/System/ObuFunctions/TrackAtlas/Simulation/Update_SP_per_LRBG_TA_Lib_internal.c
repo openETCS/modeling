@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -71,11 +71,11 @@ void Update_SP_per_LRBG_TA_Lib_internal(
     kcg_copy_SSP_section_t_TA_MRSP(&outC->_L41[i3], &outC->_L30);
   }
   kcg_copy_SSP_cat_t_TA_MRSP(&outC->_L35, new_SP);
-  kcg_copy_array__10591(&outC->_L34, (array__10591 *) &outC->_L35[1]);
-  kcg_copy_array__10594(&outC->_L39[0], &outC->_L41);
-  kcg_copy_array__10591(&outC->_L39[1], &outC->_L34);
+  kcg_copy_array__10608(&outC->_L34, (array__10608 *) &outC->_L35[1]);
+  kcg_copy_array__10611(&outC->_L39[0], &outC->_L41);
+  kcg_copy_array__10608(&outC->_L39[1], &outC->_L34);
   for (i2 = 0; i2 < 33; i2++) {
-    kcg_copy_array__10399(&outC->_L15[i2], &outC->_L39);
+    kcg_copy_array__10416(&outC->_L15[i2], &outC->_L39);
   }
   for (i1 = 0; i1 < 33; i1++) {
     outC->_L9[i1] = outC->_L1;
@@ -99,6 +99,6 @@ void Update_SP_per_LRBG_TA_Lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Update_SP_per_LRBG_TA_Lib_internal.c
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

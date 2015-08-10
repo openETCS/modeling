@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _MRSP_Find_First_in_each_t_TA_MRSP_H_
 #define _MRSP_Find_First_in_each_t_TA_MRSP_H_
@@ -22,7 +22,7 @@ typedef struct {
   /* ----------------- no clocks of observable data ------------------ */
   /* -------------------- (-debug) no assertions  -------------------- */
   /* ------------------- (-debug) local variables -------------------- */
-  array__10488 /* TA_MRSP::MRSP_Find_First_in_each_t_SSP_cat::_L1 */ _L1;
+  array__10505 /* TA_MRSP::MRSP_Find_First_in_each_t_SSP_cat::_L1 */ _L1;
   SSP_t_matrix_t_TA_MRSP /* TA_MRSP::MRSP_Find_First_in_each_t_SSP_cat::_L3 */ _L3;
 } outC_MRSP_Find_First_in_each_t_TA_MRSP;
 
@@ -38,6 +38,6 @@ extern void MRSP_Find_First_in_each_t_reset_TA_MRSP(
 #endif /* _MRSP_Find_First_in_each_t_TA_MRSP_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** MRSP_Find_First_in_each_t_TA_MRSP.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

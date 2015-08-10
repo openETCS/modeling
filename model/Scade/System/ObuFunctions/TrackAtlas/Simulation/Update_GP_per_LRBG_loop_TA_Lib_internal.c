@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -23,7 +23,7 @@ void Update_GP_per_LRBG_loop_TA_Lib_internal(
   kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L20, GP);
   kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L6, new_GP_received);
   outC->_L11 = i;
-  if ((0 <= outC->_L11) & (outC->_L11 < 10)) {
+  if ((0 <= outC->_L11) & (outC->_L11 < 50)) {
     kcg_copy_Gradient_section_t_TrackAtlasTypes(
       &outC->_L15,
       &outC->_L6[outC->_L11]);
@@ -38,7 +38,7 @@ void Update_GP_per_LRBG_loop_TA_Lib_internal(
   outC->_L4 = First_Section_To_Replace;
   outC->_L7 = outC->_L5 + outC->_L4;
   kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L19, &outC->_L20);
-  if ((0 <= outC->_L7) & (outC->_L7 < 10)) {
+  if ((0 <= outC->_L7) & (outC->_L7 < 50)) {
     kcg_copy_Gradient_section_t_TrackAtlasTypes(
       &outC->_L19[outC->_L7],
       &outC->_L15);
@@ -50,6 +50,6 @@ void Update_GP_per_LRBG_loop_TA_Lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Update_GP_per_LRBG_loop_TA_Lib_internal.c
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

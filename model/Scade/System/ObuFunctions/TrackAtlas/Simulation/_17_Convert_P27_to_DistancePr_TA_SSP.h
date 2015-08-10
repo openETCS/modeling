@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef __17_Convert_P27_to_DistancePr_TA_SSP_H_
 #define __17_Convert_P27_to_DistancePr_TA_SSP_H_
@@ -36,17 +36,17 @@ typedef struct {
   SSP_section_t_TA_MRSP /* TA_SSP::Convert_P27_to_DistanceProfile::_L67 */ _L67;
   V_internal_Type_Obu_BasicTypes_Pkg /* TA_SSP::Convert_P27_to_DistanceProfile::_L68 */ _L68;
   Q_SCALE /* TA_SSP::Convert_P27_to_DistanceProfile::_L65 */ _L65;
-  array__10582 /* TA_SSP::Convert_P27_to_DistanceProfile::_L64 */ _L64;
+  array__10599 /* TA_SSP::Convert_P27_to_DistanceProfile::_L64 */ _L64;
   P027V1_OBU_T_TM_baseline2 /* TA_SSP::Convert_P27_to_DistanceProfile::_L63 */ _L63;
   P027V1_section_enum_T_TM_baseline2 /* TA_SSP::Convert_P27_to_DistanceProfile::_L62 */ _L62;
-  array__10585 /* TA_SSP::Convert_P27_to_DistanceProfile::_L74 */ _L74;
-  array__10549 /* TA_SSP::Convert_P27_to_DistanceProfile::_L76 */ _L76;
+  array__10602 /* TA_SSP::Convert_P27_to_DistanceProfile::_L74 */ _L74;
+  array__10566 /* TA_SSP::Convert_P27_to_DistanceProfile::_L76 */ _L76;
   SSP_cat_t_TA_MRSP /* TA_SSP::Convert_P27_to_DistanceProfile::_L77 */ _L77;
   array_int_33 /* TA_SSP::Convert_P27_to_DistanceProfile::_L81 */ _L81;
   array_int_33 /* TA_SSP::Convert_P27_to_DistanceProfile::_L82 */ _L82;
   SSP_cat_t_TA_MRSP /* TA_SSP::Convert_P27_to_DistanceProfile::_L83 */ _L83;
-  array__10420 /* TA_SSP::Convert_P27_to_DistanceProfile::_L84 */ _L84;
-  array__10588 /* TA_SSP::Convert_P27_to_DistanceProfile::_L85 */ _L85;
+  array__10437 /* TA_SSP::Convert_P27_to_DistanceProfile::_L84 */ _L84;
+  array__10605 /* TA_SSP::Convert_P27_to_DistanceProfile::_L85 */ _L85;
   P027V1_section_enum_T_TM_baseline2 /* TA_SSP::Convert_P27_to_DistanceProfile::_L86 */ _L86;
 } outC__17_Convert_P27_to_DistancePr_TA_SSP;
 
@@ -63,6 +63,6 @@ extern void _17_Convert_P27_to_DistancePr_reset_TA_SSP(
 #endif /* __17_Convert_P27_to_DistancePr_TA_SSP_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** _17_Convert_P27_to_DistancePr_TA_SSP.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

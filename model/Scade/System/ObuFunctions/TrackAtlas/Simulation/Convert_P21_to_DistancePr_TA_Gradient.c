@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -74,7 +74,7 @@ void Convert_P21_to_DistancePr_TA_Gradient(
   kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L125, acc);
   outC->_L131 = i;
   kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L133, &outC->_L125);
-  if ((0 <= outC->_L131) & (outC->_L131 < 10)) {
+  if ((0 <= outC->_L131) & (outC->_L131 < 50)) {
     kcg_copy_Gradient_section_t_TrackAtlasTypes(
       &outC->_L133[outC->_L131],
       &outC->_L136);
@@ -86,6 +86,6 @@ void Convert_P21_to_DistancePr_TA_Gradient(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Convert_P21_to_DistancePr_TA_Gradient.c
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 
