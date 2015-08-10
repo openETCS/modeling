@@ -1,13 +1,13 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-10T16:11:03
 *************************************************************$ */
 #ifndef _C_P015_tracksim_compr_TM_conversions_H_
 #define _C_P015_tracksim_compr_TM_conversions_H_
 
 #include "kcg_types.h"
-#include "T_Build_Metadata_Packet_ID_TM_lib_internal.h"
 #include "T_DeterminePacketSizeInt_TM_lib_internal.h"
+#include "T_Build_Metadata_Packet_ID_TM_lib_internal.h"
 #include "C_P015_flatten_sections_TM_lib_internal.h"
 
 /* =====================  no input structure  ====================== */
@@ -50,7 +50,7 @@ typedef struct {
   P015_trackside_int_T_TM /* TM_conversions::C_P015_tracksim_compr::_L1 */ _L1;
   MetadataElement_T_Common_Types_Pkg /* TM_conversions::C_P015_tracksim_compr::_L204 */ _L204;
   kcg_int /* TM_conversions::C_P015_tracksim_compr::_L206 */ _L206;
-  array_int_351 /* TM_conversions::C_P015_tracksim_compr::_L209 */ _L209;
+  array_int_350 /* TM_conversions::C_P015_tracksim_compr::_L209 */ _L209;
   kcg_int /* TM_conversions::C_P015_tracksim_compr::_L212 */ _L212;
   kcg_int /* TM_conversions::C_P015_tracksim_compr::_L213 */ _L213;
   kcg_int /* TM_conversions::C_P015_tracksim_compr::_L336 */ _L336;
@@ -72,9 +72,9 @@ typedef struct {
   kcg_int /* TM_conversions::C_P015_tracksim_compr::_L378 */ _L378;
   kcg_int /* TM_conversions::C_P015_tracksim_compr::_L379 */ _L379;
   P015_sections_array_flat_T_TM /* TM_conversions::C_P015_tracksim_compr::_L380 */ _L380;
-  array_int_20 /* TM_conversions::C_P015_tracksim_compr::_L381 */ _L381;
+  array_int_21 /* TM_conversions::C_P015_tracksim_compr::_L381 */ _L381;
   array_int_500 /* TM_conversions::C_P015_tracksim_compr::_L383 */ _L383;
-  array_int_149 /* TM_conversions::C_P015_tracksim_compr::_L384 */ _L384;
+  array_int_150 /* TM_conversions::C_P015_tracksim_compr::_L384 */ _L384;
   kcg_int /* TM_conversions::C_P015_tracksim_compr::_L387 */ _L387;
   kcg_int /* TM_conversions::C_P015_tracksim_compr::_L395 */ _L395;
   kcg_int /* TM_conversions::C_P015_tracksim_compr::_L394 */ _L394;
@@ -86,11 +86,12 @@ typedef struct {
   kcg_int /* TM_conversions::C_P015_tracksim_compr::_L388 */ _L388;
   kcg_int /* TM_conversions::C_P015_tracksim_compr::_L396 */ _L396;
   P015_trackide_sectionlist_T_TM /* TM_conversions::C_P015_tracksim_compr::_L398 */ _L398;
-  array_int_14 /* TM_conversions::C_P015_tracksim_compr::_L399 */ _L399;
-  array_int_21 /* TM_conversions::C_P015_tracksim_compr::_L400 */ _L400;
+  array_int_15 /* TM_conversions::C_P015_tracksim_compr::_L399 */ _L399;
+  array_int_22 /* TM_conversions::C_P015_tracksim_compr::_L400 */ _L400;
   kcg_int /* TM_conversions::C_P015_tracksim_compr::_L402 */ _L402;
   array_int_1 /* TM_conversions::C_P015_tracksim_compr::_L403 */ _L403;
   nid_packet_meta_TM /* TM_conversions::C_P015_tracksim_compr::_L404 */ _L404;
+  kcg_int /* TM_conversions::C_P015_tracksim_compr::_L405 */ _L405;
 } outC_C_P015_tracksim_compr_TM_conversions;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -105,6 +106,6 @@ extern void C_P015_tracksim_compr_reset_TM_conversions(
 #endif /* _C_P015_tracksim_compr_TM_conversions_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P015_tracksim_compr_TM_conversions.h
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-10T16:11:03
 *************************************************************$ */
 

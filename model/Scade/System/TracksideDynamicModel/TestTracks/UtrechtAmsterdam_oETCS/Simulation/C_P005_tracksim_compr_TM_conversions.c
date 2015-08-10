@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-10T16:11:03
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -82,7 +82,7 @@ void C_P005_tracksim_compr_TM_conversions(
   for (i2 = 0; i2 < 1; i2++) {
     kcg_copy_P005_section_int_T_TM(&outC->_L386[i2], &outC->_L375);
   }
-  kcg_copy_array__30258(&outC->_L385[0], &outC->_L386);
+  kcg_copy_array__3253(&outC->_L385[0], &outC->_L386);
   kcg_copy_P005_trackide_sectionlist_T_TM(&outC->_L385[1], &outC->_L365);
   outC->_L373[0] = outC->_L387;
   outC->_L373[1] = outC->_L215;
@@ -196,6 +196,6 @@ void C_P005_tracksim_compr_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_tracksim_compr_TM_conversions.c
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-10T16:11:03
 *************************************************************$ */
 
