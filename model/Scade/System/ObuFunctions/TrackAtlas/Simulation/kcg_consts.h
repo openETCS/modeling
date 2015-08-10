@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _KCG_CONSTS_H_
 #define _KCG_CONSTS_H_
@@ -214,11 +214,11 @@ extern const P003V1_section_enum_T_TM_baseline2 DEFAULT_P003V1_OBU_section_TM_ba
 /* TA_Storage::INIT_P3V1 */
 extern const P003V1_OBU_T_TM_baseline2 INIT_P3V1_TA_Storage;
 
+/* TrackAtlasTypes::GradientMaxSections */
+#define GradientMaxSections_TrackAtlasTypes 50
+
 /* TA_Export::DEFAULT_to_ML */
 extern const DataForModeAndLevel_t_TrackAtlasTypes DEFAULT_to_ML_TA_Export;
-
-/* TrackAtlasTypes::GradientMaxSections */
-#define GradientMaxSections_TrackAtlasTypes 10
 
 /* MA_Request::cPacket132 */
 extern const Radio_TrainTrack_Message_T_Radio_Types_Pkg cPacket132_MA_Request;
@@ -368,7 +368,7 @@ extern const P57_MovementAuthorityRequestParameters_T_Packet_Types_Pkg cMA_Reque
 #define cNid_em_MA_Request 0
 
 /* MA_Request::cQemergencyStop */
-#define cQemergencyStop_MA_Request _13_Q_EMERGENCYSTOP_Conditional_Emergency_Stop_accepted_with_update_of_EOA
+#define cQemergencyStop_MA_Request _8_Q_EMERGENCYSTOP_Conditional_Emergency_Stop_accepted_with_update_of_EOA
 
 /* MA_Request::cNidTextMessage */
 #define cNidTextMessage_MA_Request 0
@@ -409,6 +409,6 @@ extern const PT9_Level23_TransitionInformation_T_Packet_TrainTypes_Pkg cPT9_Leve
 #endif /* _KCG_CONSTS_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_consts.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

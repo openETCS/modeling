@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _FindFirstRelevantSPForNewLRBG_TA_Lib_internal_H_
 #define _FindFirstRelevantSPForNewLRBG_TA_Lib_internal_H_
@@ -28,7 +28,7 @@ typedef struct {
   kcg_bool /* TA_Lib_internal::FindFirstRelevantSPForNewLRBG::_L96 */ _L96;
   kcg_int /* TA_Lib_internal::FindFirstRelevantSPForNewLRBG::_L100 */ _L100;
   kcg_int /* TA_Lib_internal::FindFirstRelevantSPForNewLRBG::_L168 */ _L168;
-  array__10579 /* TA_Lib_internal::FindFirstRelevantSPForNewLRBG::_L169 */ _L169;
+  array__10596 /* TA_Lib_internal::FindFirstRelevantSPForNewLRBG::_L169 */ _L169;
   array_int_33 /* TA_Lib_internal::FindFirstRelevantSPForNewLRBG::_L170 */ _L170;
 } outC_FindFirstRelevantSPForNewLRBG_TA_Lib_internal;
 
@@ -45,6 +45,6 @@ extern void FindFirstRelevantSPForNewLRBG_reset_TA_Lib_internal(
 #endif /* _FindFirstRelevantSPForNewLRBG_TA_Lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** FindFirstRelevantSPForNewLRBG_TA_Lib_internal.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

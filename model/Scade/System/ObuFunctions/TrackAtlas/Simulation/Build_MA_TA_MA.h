@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _Build_MA_TA_MA_H_
 #define _Build_MA_TA_MA_H_
@@ -47,6 +47,6 @@ extern void Build_MA_reset_TA_MA(outC_Build_MA_TA_MA *outC);
 #endif /* _Build_MA_TA_MA_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Build_MA_TA_MA.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

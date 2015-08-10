@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _MRSP_Split_And_Reverse_SS_TA_MRSP_H_
 #define _MRSP_Split_And_Reverse_SS_TA_MRSP_H_
@@ -25,7 +25,7 @@ typedef struct {
   /* ------------------- (-debug) local variables -------------------- */
   SSP_matrix_t_TA_MRSP /* TA_MRSP::MRSP_Split_And_Reverse_SSP_matrix::_L1 */ _L1;
   array_int_33_11 /* TA_MRSP::MRSP_Split_And_Reverse_SSP_matrix::_L27 */ _L27;
-  array__10442 /* TA_MRSP::MRSP_Split_And_Reverse_SSP_matrix::_L51 */ _L51;
+  array__10459 /* TA_MRSP::MRSP_Split_And_Reverse_SSP_matrix::_L51 */ _L51;
 } outC_MRSP_Split_And_Reverse_SS_TA_MRSP;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -40,6 +40,6 @@ extern void MRSP_Split_And_Reverse_SS_reset_TA_MRSP(
 #endif /* _MRSP_Split_And_Reverse_SS_TA_MRSP_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** MRSP_Split_And_Reverse_SS_TA_MRSP.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

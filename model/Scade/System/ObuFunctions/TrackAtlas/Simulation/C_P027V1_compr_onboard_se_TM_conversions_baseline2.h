@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _C_P027V1_compr_onboard_se_TM_conversions_baseline2_H_
 #define _C_P027V1_compr_onboard_se_TM_conversions_baseline2_H_
@@ -40,7 +40,7 @@ typedef struct {
   array_int_32 /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::_L5 */ _L5_1;
   array_int_64_32 /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::_L6 */ _L6_1;
   kcg_int /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::_L7 */ _L7_1;
-  array__10408 /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::_L9 */ _L9_1;
+  array__10425 /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::_L9 */ _L9_1;
   kcg_bool /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::_L11 */ _L11_1;
   _2_P027V1_OBU_sectionlist_enum_qdiff_T_TM_baseline2 /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::sections */ sections_1;
   P027V1_sections_array_flat_qdiff_T_TM_baseline2 /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::flat */ flat_1;
@@ -78,6 +78,6 @@ extern void C_P027V1_compr_onboard_se_reset_TM_conversions_baseline2(
 #endif /* _C_P027V1_compr_onboard_se_TM_conversions_baseline2_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P027V1_compr_onboard_se_TM_conversions_baseline2.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

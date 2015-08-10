@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _MRSP_FindMax_of_all_t_cats_TA_MRSP_H_
 #define _MRSP_FindMax_of_all_t_cats_TA_MRSP_H_
@@ -28,7 +28,7 @@ typedef struct {
   kcg_bool /* TA_MRSP::MRSP_FindMax_of_all_t_cats::_L25 */ _L25;
   SSP_t_indexed_matrix_element_TA_MRSP /* TA_MRSP::MRSP_FindMax_of_all_t_cats::_L26 */ _L26;
   kcg_int /* TA_MRSP::MRSP_FindMax_of_all_t_cats::_L24 */ _L24;
-  array__10555 /* TA_MRSP::MRSP_FindMax_of_all_t_cats::_L61 */ _L61;
+  array__10572 /* TA_MRSP::MRSP_FindMax_of_all_t_cats::_L61 */ _L61;
   SSP_t_indexed_matrix_element_TA_MRSP /* TA_MRSP::MRSP_FindMax_of_all_t_cats::_L62 */ _L62;
 } outC_MRSP_FindMax_of_all_t_cats_TA_MRSP;
 
@@ -44,6 +44,6 @@ extern void MRSP_FindMax_of_all_t_cats_reset_TA_MRSP(
 #endif /* _MRSP_FindMax_of_all_t_cats_TA_MRSP_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** MRSP_FindMax_of_all_t_cats_TA_MRSP.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

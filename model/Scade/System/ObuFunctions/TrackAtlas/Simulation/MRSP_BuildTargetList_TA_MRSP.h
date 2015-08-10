@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _MRSP_BuildTargetList_TA_MRSP_H_
 #define _MRSP_BuildTargetList_TA_MRSP_H_
@@ -22,7 +22,7 @@ typedef struct {
   /* ----------------- no clocks of observable data ------------------ */
   /* -------------------- (-debug) no assertions  -------------------- */
   /* ------------------- (-debug) local variables -------------------- */
-  array__10451 /* TA_MRSP::MRSP_BuildTargetList::_L1 */ _L1;
+  array__10468 /* TA_MRSP::MRSP_BuildTargetList::_L1 */ _L1;
   SSP_t_matrix_t_TA_MRSP /* TA_MRSP::MRSP_BuildTargetList::_L3 */ _L3;
   SSP_t_matrix_t_TA_MRSP /* TA_MRSP::MRSP_BuildTargetList::_L4 */ _L4;
   SSP_t_list_t_TA_MRSP /* TA_MRSP::MRSP_BuildTargetList::_L5 */ _L5;
@@ -40,6 +40,6 @@ extern void MRSP_BuildTargetList_reset_TA_MRSP(
 #endif /* _MRSP_BuildTargetList_TA_MRSP_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** MRSP_BuildTargetList_TA_MRSP.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

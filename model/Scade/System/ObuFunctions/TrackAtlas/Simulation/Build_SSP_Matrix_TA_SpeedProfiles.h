@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _Build_SSP_Matrix_TA_SpeedProfiles_H_
 #define _Build_SSP_Matrix_TA_SpeedProfiles_H_
@@ -32,7 +32,7 @@ typedef struct {
   SSP_cat_t_TA_MRSP /* TA_SpeedProfiles::Build_SSP_Matrix::_L9 */ _L9;
   SSP_cat_t_TA_MRSP /* TA_SpeedProfiles::Build_SSP_Matrix::_L10 */ _L10;
   SSP_cat_t_TA_MRSP /* TA_SpeedProfiles::Build_SSP_Matrix::_L11 */ _L11;
-  array__10442 /* TA_SpeedProfiles::Build_SSP_Matrix::_L12 */ _L12;
+  array__10459 /* TA_SpeedProfiles::Build_SSP_Matrix::_L12 */ _L12;
   kcg_bool /* TA_SpeedProfiles::Build_SSP_Matrix::_L13 */ _L13;
 } outC_Build_SSP_Matrix_TA_SpeedProfiles;
 
@@ -59,6 +59,6 @@ extern void Build_SSP_Matrix_reset_TA_SpeedProfiles(
 #endif /* _Build_SSP_Matrix_TA_SpeedProfiles_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Build_SSP_Matrix_TA_SpeedProfiles.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 
