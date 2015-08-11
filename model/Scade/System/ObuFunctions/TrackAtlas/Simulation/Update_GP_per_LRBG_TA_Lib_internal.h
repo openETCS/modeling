@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _Update_GP_per_LRBG_TA_Lib_internal_H_
 #define _Update_GP_per_LRBG_TA_Lib_internal_H_
@@ -29,7 +29,7 @@ typedef struct {
   array_int_33 /* TA_Lib_internal::Update_GP_per_LRBG::_L9 */ _L9;
   GradientProfile_t_TrackAtlasTypes /* TA_Lib_internal::Update_GP_per_LRBG::_L14 */ _L14;
   GradientProfile_t_TrackAtlasTypes /* TA_Lib_internal::Update_GP_per_LRBG::_L45 */ _L45;
-  array__10543 /* TA_Lib_internal::Update_GP_per_LRBG::_L47 */ _L47;
+  array__10560 /* TA_Lib_internal::Update_GP_per_LRBG::_L47 */ _L47;
 } outC_Update_GP_per_LRBG_TA_Lib_internal;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -45,6 +45,6 @@ extern void Update_GP_per_LRBG_reset_TA_Lib_internal(
 #endif /* _Update_GP_per_LRBG_TA_Lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Update_GP_per_LRBG_TA_Lib_internal.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

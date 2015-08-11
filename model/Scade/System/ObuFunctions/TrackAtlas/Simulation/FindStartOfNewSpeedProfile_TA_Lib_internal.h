@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _FindStartOfNewSpeedProfile_TA_Lib_internal_H_
 #define _FindStartOfNewSpeedProfile_TA_Lib_internal_H_
@@ -27,7 +27,7 @@ typedef struct {
   SSP_cat_t_TA_MRSP /* TA_Lib_internal::FindStartOfNewSpeedProfile::_L93 */ _L93;
   kcg_int /* TA_Lib_internal::FindStartOfNewSpeedProfile::_L94 */ _L94;
   kcg_bool /* TA_Lib_internal::FindStartOfNewSpeedProfile::_L96 */ _L96;
-  array__10579 /* TA_Lib_internal::FindStartOfNewSpeedProfile::_L98 */ _L98;
+  array__10596 /* TA_Lib_internal::FindStartOfNewSpeedProfile::_L98 */ _L98;
   kcg_int /* TA_Lib_internal::FindStartOfNewSpeedProfile::_L99 */ _L99;
   kcg_int /* TA_Lib_internal::FindStartOfNewSpeedProfile::_L100 */ _L100;
   array_int_33 /* TA_Lib_internal::FindStartOfNewSpeedProfile::_L167 */ _L167;
@@ -46,6 +46,6 @@ extern void FindStartOfNewSpeedProfile_reset_TA_Lib_internal(
 #endif /* _FindStartOfNewSpeedProfile_TA_Lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** FindStartOfNewSpeedProfile_TA_Lib_internal.h
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

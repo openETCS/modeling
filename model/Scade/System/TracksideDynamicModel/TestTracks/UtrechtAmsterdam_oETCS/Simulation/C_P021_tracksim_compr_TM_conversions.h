@@ -1,14 +1,14 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-11T09:13:50
 *************************************************************$ */
 #ifndef _C_P021_tracksim_compr_TM_conversions_H_
 #define _C_P021_tracksim_compr_TM_conversions_H_
 
 #include "kcg_types.h"
-#include "T_Build_Metadata_Packet_ID_TM_lib_internal.h"
 #include "T_DeterminePacketSizeInt_TM_lib_internal.h"
 #include "C_P021_flatten_sections_TM_lib_internal.h"
+#include "T_Build_Metadata_Packet_ID_TM_lib_internal.h"
 
 /* =====================  no input structure  ====================== */
 
@@ -71,9 +71,9 @@ typedef struct {
   array_int_5 /* TM_conversions::C_P021_tracksim_compr::_L381 */ _L381;
   array_int_500 /* TM_conversions::C_P021_tracksim_compr::_L383 */ _L383;
   array_int_104 /* TM_conversions::C_P021_tracksim_compr::_L384 */ _L384;
-  array__30067 /* TM_conversions::C_P021_tracksim_compr::_L385 */ _L385;
+  array__1828 /* TM_conversions::C_P021_tracksim_compr::_L385 */ _L385;
   kcg_int /* TM_conversions::C_P021_tracksim_compr::_L387 */ _L387;
-  array__30231 /* TM_conversions::C_P021_tracksim_compr::_L386 */ _L386;
+  array__1890 /* TM_conversions::C_P021_tracksim_compr::_L386 */ _L386;
   nid_packet_meta_TM /* TM_conversions::C_P021_tracksim_compr::_L388 */ _L388;
 } outC_C_P021_tracksim_compr_TM_conversions;
 
@@ -89,6 +89,6 @@ extern void C_P021_tracksim_compr_reset_TM_conversions(
 #endif /* _C_P021_tracksim_compr_TM_conversions_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P021_tracksim_compr_TM_conversions.h
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-11T09:13:50
 *************************************************************$ */
 

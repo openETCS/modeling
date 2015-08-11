@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -45,25 +45,25 @@ void Receive_MA_RequestParameters_MA_Request(
   kcg_copy_P015_OBU_T_TM(&noname, &outC->_L11);
   outC->ma_received = outC->_L10;
   outC->IsNew = outC->_L9;
-  kcg_copy_struct__9753(&outC->_L7_1, &outC->Init_1);
+  kcg_copy_struct__9768(&outC->_L7_1, &outC->Init_1);
   if (outC->init) {
-    kcg_copy_struct__9753(&outC->_L6_1, &outC->_L7_1);
+    kcg_copy_struct__9768(&outC->_L6_1, &outC->_L7_1);
   }
   else {
-    kcg_copy_struct__9753(&outC->_L6_1, &outC->_L4_1);
+    kcg_copy_struct__9768(&outC->_L6_1, &outC->_L4_1);
   }
   outC->_L5_1 = outC->Write_1;
   kcg_copy_P57_MovementAuthorityRequestParameters_T_Packet_Types_Pkg(
     &outC->BM_Input_1,
     &outC->_L8);
-  kcg_copy_struct__9753(&outC->_L2_1, &outC->BM_Input_1);
+  kcg_copy_struct__9768(&outC->_L2_1, &outC->BM_Input_1);
   if (outC->_L5_1) {
-    kcg_copy_struct__9753(&outC->_L4_1, &outC->_L2_1);
+    kcg_copy_struct__9768(&outC->_L4_1, &outC->_L2_1);
   }
   else {
-    kcg_copy_struct__9753(&outC->_L4_1, &outC->_L6_1);
+    kcg_copy_struct__9768(&outC->_L4_1, &outC->_L6_1);
   }
-  kcg_copy_struct__9753(&outC->Memorized_1, &outC->_L4_1);
+  kcg_copy_struct__9768(&outC->Memorized_1, &outC->_L4_1);
   kcg_copy_P57_MovementAuthorityRequestParameters_T_Packet_Types_Pkg(
     &outC->_L2,
     &outC->Memorized_1);
@@ -75,6 +75,6 @@ void Receive_MA_RequestParameters_MA_Request(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Receive_MA_RequestParameters_MA_Request.c
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

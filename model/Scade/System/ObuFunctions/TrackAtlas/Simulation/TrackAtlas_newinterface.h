@@ -1,18 +1,18 @@
-#ifndef TRACKATLASNEXTGEN_TRACKATLAS_INTERFACE
-#define TRACKATLASNEXTGEN_TRACKATLAS_INTERFACE
+#ifndef TRACKATLAS_TRACKATLAS_INTERFACE
+#define TRACKATLAS_TRACKATLAS_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "TrackAtlasNextGen_TrackAtlas.h"
+#include "TrackAtlas_TrackAtlas.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_TrackAtlasNextGen_TrackAtlas inputs_ctx;
-extern outC_TrackAtlasNextGen_TrackAtlas outputs_ctx;
+extern inC_TrackAtlas_TrackAtlas inputs_ctx;
+extern outC_TrackAtlas_TrackAtlas outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*TRACKATLASNEXTGEN_TRACKATLAS_INTERFACE */
+#endif /*TRACKATLAS_TRACKATLAS_INTERFACE */

@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -43,9 +43,9 @@ void _17_Convert_P27_to_DistancePr_TA_SSP(
   kcg_copy_P027V1_OBU_sectionlist_enum_T_TM_baseline2(
     &outC->_L71,
     &outC->_L73.sections);
-  kcg_copy_array__10582(&outC->_L64, (array__10582 *) &outC->_L71[1]);
-  kcg_copy_array__10582(&outC->_L84[0], &outC->_L64);
-  kcg_copy_array__10588(&outC->_L84[32], &outC->_L85);
+  kcg_copy_array__10599(&outC->_L64, (array__10599 *) &outC->_L71[1]);
+  kcg_copy_array__10599(&outC->_L84[0], &outC->_L64);
+  kcg_copy_array__10605(&outC->_L84[32], &outC->_L85);
   kcg_copy_P027V1_OBU_T_TM_baseline2(&outC->_L63, Packet27_in);
   outC->_L65 = outC->_L63.q_scale;
   kcg_copy_P027V1_OBU_T_TM_baseline2(&outC->_L70, Packet27_in);
@@ -69,7 +69,7 @@ void _17_Convert_P27_to_DistancePr_TA_SSP(
     &outC->_L83,
     (SSP_cat_t_TA_MRSP *) &DEFAULT_SSP_cat_TA_MRSP);
   for (i4 = 0; i4 < 33; i4++) {
-    kcg_copy_array__10420(&outC->_L74[i4], &outC->_L84);
+    kcg_copy_array__10437(&outC->_L74[i4], &outC->_L84);
   }
   outC->_L69 = TrainLength;
   for (i3 = 0; i3 < 33; i3++) {
@@ -102,6 +102,6 @@ void _17_Convert_P27_to_DistancePr_TA_SSP(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** _17_Convert_P27_to_DistancePr_TA_SSP.c
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

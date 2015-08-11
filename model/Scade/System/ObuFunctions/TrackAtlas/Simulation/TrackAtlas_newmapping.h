@@ -1,10 +1,10 @@
 /* TrackAtlas_newmapping.h */
 
-#include "TrackAtlasNextGen_TrackAtlas.h"
+#include "TrackAtlas_TrackAtlas.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_TrackAtlasNextGen_TrackAtlas inputs_ctx;
-extern outC_TrackAtlasNextGen_TrackAtlas outputs_ctx;
+extern inC_TrackAtlas_TrackAtlas inputs_ctx;
+extern outC_TrackAtlas_TrackAtlas outputs_ctx;
 

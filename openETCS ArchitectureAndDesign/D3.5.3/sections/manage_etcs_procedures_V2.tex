@@ -9,20 +9,20 @@
 \toprule
 Component name			& Manage\_ETCS\_Procedures \\
 \midrule
-Link to SCADE model		& {\footnotesize \url{???}} \\
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/Procedures}} \\
 \midrule
-SCADE designer			& ??? \\
+SCADE designer			&  Baseliyos Jacob, DB Netz AG\\
 \midrule
-Description				& ??? \\
+Description				& This function describes the Start of Mission procedure of the train until the current status will change to another mode, level or other procedure. \\
 \midrule
 Input documents	& 
-Subset-026, Chapter ???\\
+Subset-026, Chapter 5.4\\
 \midrule
 Safety integrity level		& 4 \\
 \midrule
-Time constraints		& [If applicable description of time constraints, otherwise n/a] \\
+Time constraints		& n/a \\
 \midrule
-API requirements 		& [If applicable description of API requirements, otherwise n/a] \\
+API requirements 		& n/a \\
 \bottomrule
 \end{longtable}
 
@@ -40,106 +40,396 @@ An overview of the interface of component Manage\_ETCS\_Procedures is shown in F
 
 \subsubsection{Inputs}\label{s:etcs_procedures_inputs}
 
-\paragraph{[Input 1 name]}
+\paragraph{statusDMI\_from\_DMI}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Input name				& [Name of the input] \\
+Input name				& statusDMI\_from\_DMI \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& input interface of DMI Controller status \\
 \midrule
-Source					& [Name of the source component] \\ 
+Source					& manageDMI  \\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& DMI\_Types\_Pkg::DMI\_EVC\_status\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& Input type is a structure, for details we refer to the data dictionary \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& function will not be triggered  \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & function will not be triggered \\
 \bottomrule
 \end{longtable}
 
 
-\paragraph{[Input 2 name]}
+\paragraph{Status\_MA\_FS\_SR\_OS\_LS\_SH\_from\_MA\_L2\_Management}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Input name				& [Name of the input] \\
+Input name				& Status\_MA\_FS\_SR\_OS\_LS\_SH\_from\_MA\_L2\_Management \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& Status of MA, Mode and Level from Level and Mode Management \\
 \midrule
-Source					& [Name of the source component] \\ 
+Source					& ManageLevelsAndModes \\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& bool \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& \begin{description}
+\item[true]Movement Authority for Level 2 FS is valid
+\item[false]Movement Authority for Level 2 FS is not valid
+\end{description} \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
 \end{longtable}
 
+\paragraph{systemtime}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& systemtime \\
+\midrule
+Description				& Standardized system time used for all internal calculations \\
+\midrule
+Source					& Obu\_BasicTypes \\ 
+\midrule
+Type					& Obu\_BasicTypes\_Pkg::T\_internal\_Type \\
+\midrule
+Valid range of values	& 
+$[0,\text{maximum positive int value of target platform}]$ \\
+\midrule
+Behaviour when value is at boundary	& system time is assumed to be valid \\
+\midrule
+Behaviour for values out of valid range	& system time is assumed to be valid \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & system time is assumed to be valid \\
+\bottomrule
+\end{longtable}
+
+\paragraph{StatusModeandLevel\_from\_Level\_and\_Mode\_Management}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& StatusModeandLevel\_from\_Level\_and\_Mode\_Management  \\
+\midrule
+Description				& Status of Mode and Level \\
+\midrule
+Source					&  ManageLevelsAndModes\\ 
+\midrule
+Type					& Level\_And\_Mode\_Types\_Pkg::T\_Mode\_Level \\
+\midrule
+Valid range of values	& 
+Input type is a structure, for details we refer to the data dictionary \\
+\midrule
+Behaviour when value is at boundary	& This function assumes the input to be valid \\
+\midrule
+Behaviour for values out of valid range	& This function assumes the input to be valid\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & This function assumes the input to be valid \\
+\bottomrule
+\end{longtable}
+
+\paragraph{mobileSwStatus\_p\_from\_MoRC}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& mobileSwStatus\_p\_from\_MoRC  \\
+\midrule
+Description				& Information about SW status from Management of Radio Communication function \\
+\midrule
+Source					&  MoRC\\ 
+\midrule
+Type					& MoRC\_Pck::mobileSWStatus\_Type \\
+\midrule
+Valid range of values	& Input type is a structure, for details we refer to the data dictionary \\
+\midrule
+Behaviour when value is at boundary	& This function assumes the input to be valid \\
+\midrule
+Behaviour for values out of valid range	& This function assumes the input to be valid \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & This function assumes the input to be valid \\
+\bottomrule
+\end{longtable}
+
+\paragraph{statusRBCSessioneEstabilished\_status\_from\_MoRC}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& statusRBCSessioneEstabilished\_status\_from\_MoRC  \\
+\midrule
+Description				& Information about RBC Session status from the Management of Radio Communication function \\
+\midrule
+Source					&  MoRC\\ 
+\midrule
+Type					& Radio\_Types\_Pkg::sessionStatus\_Type \\
+\midrule
+Valid range of values	& Input type is a structure, for details we refer to the data dictionary \\
+\midrule
+Behaviour when value is at boundary	& This function assumes the input to be valid \\
+\midrule
+Behaviour for values out of valid range	& This function assumes the input to be valid\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & This function assumes the input to be valid \\
+\bottomrule
+\end{longtable}
+
+\paragraph{cabStatus\_from\_TIU}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& cabStatus\_from\_TIU  \\
+\midrule
+Description				& Information about cab desk status from Train Interface Unit function \\
+\midrule
+Source					&  manageTIU\\ 
+\midrule
+Type					& TIU\_Types\_Pkg::TIU\_trainStatus\_T \\
+\midrule
+Valid range of values	& Input type is a structure, for details we refer to the data dictionary \\
+\midrule
+Behaviour when value is at boundary	& This function assumes the input to be valid \\
+\midrule
+Behaviour for values out of valid range	& This function assumes the input to be valid\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & This function assumes the input to be valid \\
+\bottomrule
+\end{longtable}
+
+\paragraph{statusValid\_Position\_from\_Position\_Calculation}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& statusValid\_Position\_from\_Position\_Calculation  \\
+\midrule
+Description				& Information about validity status of the train position calculation \\
+\midrule
+Source					&  TrainPosition\\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& \begin{description}
+\item[true]Calculated train position is valid
+\item[false]Calculated train position is not valid
+\end{description} \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{status\_DMIlevel\_from\_DMI}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& status\_DMIlevel\_from\_DMI  \\
+\midrule
+Description				& Information about the status of DMI menu and level request from DMIcController function \\
+\midrule
+Source					&  manageDMI\\ 
+\midrule
+Type					& DMI\_Messages\_DMI\_to\_EVC\_Pkg::DMI\_Driver\_Request\_T \\
+\midrule
+Valid range of values	& Input type is a structure, for details we refer to the data dictionary \\
+\midrule
+Behaviour when value is at boundary	& This function assumes the input to be valid \\
+\midrule
+Behaviour for values out of valid range	& This function assumes the input to be valid\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & This function assumes the input to be valid \\
+\bottomrule
+\end{longtable}
+
+\paragraph{LevelValid\_from\_Level\_and\_Mode\_Management}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& LevelValid\_from\_Level\_and\_Mode\_Management  \\
+\midrule
+Description				& Information about the validty status of  the StatusModeandLevel\_from\_Level\_and\_Mode\_Management input \\
+\midrule
+Source					& ManageLevelsAndModes \\
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& \begin{description}
+\item[true]Level and Mode information are valid
+\item[false]Level and Mode information are not valid
+\end{description} \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
 
 \subsubsection{Outputs}\label{s:etcs_procedures_outputs}
 
-\paragraph{[Output 1 name]}
+\paragraph{DMI\_Entry\_Request\_to\_DMI}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& [Name of the output] \\
+Output name				& DMI\_Entry\_Request\_to\_DMI \\
 \midrule
-Description				& [Brief description of the output] \\
+Description				& Information about input request to the driver \\
 \midrule
-Destination				& [Name of the destination component(s)] \\ 
+Destination				& manageDMI \\ 
 \midrule
-Type					& [Type of the output] \\
+Type					& DMI\_Messages\_EVC\_to\_DMI\_Pkg::DMI\_Entry\_Request\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& Input type is a structure, for details we refer to the data dictionary \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& Output is assumed to be valid \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& Output is assumed to be valid \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Output is assumed to be valid \\
 \bottomrule
 \end{longtable}
 
-
-\paragraph{[Output 2 name]}
+\paragraph{request\_Start\_Mobile\_Terminal\_and\_RBC\_Registration\_to\_MoRC}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& [Name of the output] \\
+Output name				& request\_Start\_Mobile\_Terminal\_and\_RBC\_Registration\_to\_MoRC \\
 \midrule
-Description				& [Brief description of the output] \\
+Description				& This output is a trigger to start the mobile terminal and RBC session registration within the Management of Radio Communication function \\
 \midrule
-Destination				& [Name of the destination component(s)] \\ 
+Destination				& MoRC \\ 
 \midrule
-Type					& [Type of the output] \\
+Type					& Common\_Types\_Pkg::radioManagementMessage\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& Input type is a structure, for details we refer to the data dictionary \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& Output is assumed to be valid \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& Output is assumed to be valid \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Output is assumed to be valid \\
+\bottomrule
+\end{longtable}
+
+\paragraph{powerUp\_to\_MoRC}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& powerUp\_to\_MoRC \\
+\midrule
+Description				& This output is the trigger to activate the Management of Radio Communication function \\
+\midrule
+Destination				& MoRC \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& \begin{description}
+\item[true]MoRC will be activated 
+\item[false]no action
+\end{description} \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{statusstartofmissionongoing\_to\_MoRC}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& statusstartofmissionongoing\_to\_MoRC \\
+\midrule
+Description				& This output gives the information about the start of mission status procedure to the Management of Radio Communication function \\
+\midrule
+Destination				& MoRC \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& \begin{description}
+\item[true]Start of mission procedure is currently ongoing
+\item[false]Start of mission procedure is currently not ongoing
+\end{description} \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{powerOff\_to\_MoRC}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& powerOff\_to\_MoRC \\
+\midrule
+Description				& This output is the trigger to de-activate the Management of Radio Communication function \\
+\midrule
+Destination				& MoRC \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& \begin{description}
+\item[true]MoRC will be deactivated 
+\item[false]no action
+\end{description} \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{start\_ack\_to\_TIU}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& start\_ack\_to\_TIU \\
+\midrule
+Description				& This output indicates that the start of mission procedure is completed \\
+\midrule
+Destination				& manageTIU \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	&  \begin{description}
+\item[true]Start of mission procedure is completed 
+\end{description} \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
 \end{longtable}
 
 
 \subsection{Sub Components}\label{s:etcs_procedures_subcomponents}
 
-\subsubsection{Awakening\_of\_train}
+\subsubsection{Awakness\_of\_Train}
 \input{sections/Awakening_of_train.tex}
 
-\subsubsection{SOM\_Level\_2\_3}
-\input{sections/SOM_Level_2_3.tex}
+\subsubsection{NP}
+\input{sections/NP.tex}
+
+\subsubsection{SoM\_L2\_3\_FS\_SR\_OS\_LS\_SH}
+\input{sections/SoM_L2_3_FS_SR_OS_LS_SH.tex}
+
+\subsubsection{SoM\_NTC\_SN}
+\input{sections/SoM_NTC_SN.tex}
 
 

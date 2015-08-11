@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -30,9 +30,9 @@ void C_P003V1_OBU_P003_OBU_con_TM_conversions_baseline2(
   kcg_copy_P003V1_sectionlist_enum_T_TM_baseline2(
     &outC->_L109,
     &outC->_L59.SECTIONS);
-  kcg_copy_array__10600(&outC->_L110, (array__10600 *) &outC->_L109[1]);
-  kcg_copy_array__10600(&outC->_L113[0], &outC->_L110);
-  kcg_copy_array__10603(&outC->_L113[31], &outC->_L116);
+  kcg_copy_array__10617(&outC->_L110, (array__10617 *) &outC->_L109[1]);
+  kcg_copy_array__10617(&outC->_L113[0], &outC->_L110);
+  kcg_copy_array__10620(&outC->_L113[31], &outC->_L116);
   kcg_copy_P003V1_section_enum_T_TM_baseline2(&outC->_L111, &outC->_L109[0]);
   outC->_L112 = outC->_L111.nid_c;
   outC->_L108 = outC->_L59.n_iter;
@@ -45,6 +45,6 @@ void C_P003V1_OBU_P003_OBU_con_TM_conversions_baseline2(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P003V1_OBU_P003_OBU_con_TM_conversions_baseline2.c
-** Generation date: 2015-07-28T17:06:46
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

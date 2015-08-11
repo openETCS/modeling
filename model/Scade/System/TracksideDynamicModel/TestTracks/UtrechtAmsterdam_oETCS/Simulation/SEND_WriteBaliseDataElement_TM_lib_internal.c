@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-11T09:13:50
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -50,6 +50,6 @@ void SEND_WriteBaliseDataElement_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SEND_WriteBaliseDataElement_TM_lib_internal.c
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-11T09:13:50
 *************************************************************$ */
 
