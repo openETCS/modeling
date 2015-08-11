@@ -1,0 +1,37 @@
+/* $*************** KCG Version 6.1.3 (build i6) ****************
+** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
+** Generation date: 2015-08-11T09:13:50
+*************************************************************$ */
+
+#include "kcg_consts.h"
+#include "kcg_sensors.h"
+#include "CAST_Int_to_D_GRADIENT_TM_conversions.h"
+
+void CAST_Int_to_D_GRADIENT_reset_TM_conversions(
+  outC_CAST_Int_to_D_GRADIENT_TM_conversions *outC)
+{
+}
+
+/* TM_conversions::CAST_Int_to_D_GRADIENT */
+void CAST_Int_to_D_GRADIENT_TM_conversions(
+  /* TM_conversions::CAST_Int_to_D_GRADIENT::d_gradient_int */kcg_int d_gradient_int,
+  outC_CAST_Int_to_D_GRADIENT_TM_conversions *outC)
+{
+  static kcg_bool noname;
+  static kcg_bool _1_noname;
+  
+  outC->_L9 = DIM_D_min_TM_conversions;
+  outC->_L8 = DIM_D_max_TM_conversions;
+  outC->_L1 = d_gradient_int;
+  outC->_L7 = outC->_L1 > outC->_L8;
+  _1_noname = outC->_L7;
+  outC->_L6 = outC->_L1 < outC->_L9;
+  noname = outC->_L6;
+  outC->d_gradient = outC->_L1;
+}
+
+/* $*************** KCG Version 6.1.3 (build i6) ****************
+** CAST_Int_to_D_GRADIENT_TM_conversions.c
+** Generation date: 2015-08-11T09:13:50
+*************************************************************$ */
+
