@@ -80,6 +80,21 @@
 								<ed:Variable oid="!ed/aa2c9/412F/9CC/552bec7c61de"/>
 							</pragmas>
 						</Variable>
+						<Variable name="startOfMission">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/220e1/4A65/A8/55cb700433bd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Indicate the phase of the mission start is completed.</comment>
+									<comment>This information is needed to control the flow of acknowledments dor level changes.</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
 					</inputs>
 					<outputs>
 						<Variable name="Data_From_Track_To_Mode">
@@ -1440,6 +1455,18 @@
 								<ed:Variable oid="!ed/7f959/3619/A58/553a4bf66143"/>
 							</pragmas>
 						</Variable>
+						<Variable name="_L113">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/220e3/4A65/A8/55cb700824a8"/>
+							</pragmas>
+						</Variable>
 					</locals>
 					<data>
 						<!-- Loc_MA_SSP_Gradient_Available = _L68; -->
@@ -2712,7 +2739,7 @@
 								<ed:Equation oid="!ed/b5bf7/34C7/6B4/5527e44743a2"/>
 							</pragmas>
 						</Equation>
-						<!-- _L84, _L83, _L82, _L112 = Input_Level_Transition(_L85, _L86); -->
+						<!-- _L84, _L83, _L82, _L112 = Input_Level_Transition(_L85, _L86, _L113); -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L84"/>
@@ -2721,7 +2748,7 @@
 								<VariableRef name="_L112"/>
 							</lefts>
 							<right>
-								<!-- Input_Level_Transition(_L85, _L86) -->
+								<!-- Input_Level_Transition(_L85, _L86, _L113) -->
 								<CallExpression>
 									<operator>
 										<OpCall name="1">
@@ -2739,6 +2766,11 @@
 										<IdExpression>
 											<path>
 												<ConstVarRef name="_L86"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L113"/>
 											</path>
 										</IdExpression>
 									</callParameters>
@@ -3053,6 +3085,22 @@
 							</right>
 							<pragmas>
 								<ed:Equation oid="!ed/7f95f/3619/A58/553a4e2f34f8"/>
+							</pragmas>
+						</Equation>
+						<!-- _L113 = startOfMission; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L113"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="startOfMission"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/220e2/4A65/A8/55cb700823a1"/>
 							</pragmas>
 						</Equation>
 					</data>
@@ -4007,7 +4055,7 @@
 										</Edge>
 										<EquationGE presentable="!ed/b5c1d/34C7/6B4/5527e4d27379">
 											<position>
-												<Point x="30136" y="19738"/>
+												<Point x="30136" y="19315"/>
 											</position>
 											<size>
 												<Size width="265" height="503"/>
@@ -4015,7 +4063,7 @@
 										</EquationGE>
 										<EquationGE presentable="!ed/b5c1f/34C7/6B4/5527e4d22b5">
 											<position>
-												<Point x="30136" y="21405"/>
+												<Point x="30136" y="20585"/>
 											</position>
 											<size>
 												<Size width="265" height="503"/>
@@ -4023,18 +4071,18 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/b5c1d/34C7/6B4/5527e4d27379" dstEquation="!ed/b5bff/34C7/6B4/5527e4893b67">
 											<positions>
-												<Point x="30401" y="20003"/>
-												<Point x="32068" y="20003"/>
-												<Point x="32068" y="20003"/>
-												<Point x="33734" y="20003"/>
+												<Point x="30401" y="19579"/>
+												<Point x="32068" y="19579"/>
+												<Point x="32068" y="19579"/>
+												<Point x="33734" y="19579"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/b5c1f/34C7/6B4/5527e4d22b5" dstEquation="!ed/b5bff/34C7/6B4/5527e4893b67">
 											<positions>
-												<Point x="30401" y="21669"/>
-												<Point x="32068" y="21669"/>
-												<Point x="32068" y="21669"/>
-												<Point x="33734" y="21669"/>
+												<Point x="30401" y="20849"/>
+												<Point x="32068" y="20849"/>
+												<Point x="32068" y="20849"/>
+												<Point x="33734" y="20849"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/aa0df/760F/878/552b7d341204">
@@ -4331,6 +4379,22 @@
 												<Point x="39979" y="22384"/>
 												<Point x="39979" y="22384"/>
 												<Point x="40984" y="22384"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/220e2/4A65/A8/55cb700823a1">
+											<position>
+												<Point x="30136" y="21855"/>
+											</position>
+											<size>
+												<Size width="265" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/220e2/4A65/A8/55cb700823a1" dstEquation="!ed/b5bff/34C7/6B4/5527e4893b67">
+											<positions>
+												<Point x="30401" y="22119"/>
+												<Point x="32068" y="22119"/>
+												<Point x="32068" y="22119"/>
+												<Point x="33734" y="22119"/>
 											</positions>
 										</Edge>
 									</presentationElements>
@@ -11208,6 +11272,21 @@
 								<ed:Variable oid="!ed/b5c1b/34C7/6B4/5527e4a842dc"/>
 							</pragmas>
 						</Variable>
+						<Variable name="startOfMission">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/220c5/4A65/A8/55cb6efda68" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Indicate the phase of the mission start is completed.</comment>
+									<comment>This information is needed to control the flow of acknowledments dor level changes.</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
 					</inputs>
 					<outputs>
 						<Variable name="conditional_transition">
@@ -11740,6 +11819,30 @@
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/220ad/1727/1BD0/55cb58e67115"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L56">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/220c7/4A65/A8/55cb6f1e2163"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L57">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/220cc/7A8C/240/55cb786934e6"/>
 							</pragmas>
 						</Variable>
 					</locals>
@@ -12551,15 +12654,20 @@
 								<ed:Equation oid="!ed/220da/48AD/230/55cb43a551c9"/>
 							</pragmas>
 						</Equation>
-						<!-- _L55 = _L53 and _L33; -->
+						<!-- _L55 = _L57 and _L53 and _L33; -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L55"/>
 							</lefts>
 							<right>
-								<!-- _L53 and _L33 -->
+								<!-- _L57 and _L53 and _L33 -->
 								<NAryOp name="1" operator="and">
 									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L57"/>
+											</path>
+										</IdExpression>
 										<IdExpression>
 											<path>
 												<ConstVarRef name="_L53"/>
@@ -12575,6 +12683,43 @@
 							</right>
 							<pragmas>
 								<ed:Equation oid="!ed/220ac/1727/1BD0/55cb58e66ee"/>
+							</pragmas>
+						</Equation>
+						<!-- _L56 = startOfMission; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L56"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="startOfMission"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/220c6/4A65/A8/55cb6f1e20fc"/>
+							</pragmas>
+						</Equation>
+						<!-- _L57 =  not _L56; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L57"/>
+							</lefts>
+							<right>
+								<!--  not _L56 -->
+								<UnaryOp name="1" operator="not">
+									<operand>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L56"/>
+											</path>
+										</IdExpression>
+									</operand>
+								</UnaryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/220cb/7A8C/240/55cb78697475"/>
 							</pragmas>
 						</Equation>
 					</data>
@@ -13131,7 +13276,7 @@
 										</Edge>
 										<EquationGE presentable="!ed/220d4/48AD/230/55cb4383353f">
 											<position>
-												<Point x="28760" y="1508"/>
+												<Point x="28760" y="1984"/>
 											</position>
 											<size>
 												<Size width="1005" height="662"/>
@@ -13141,13 +13286,13 @@
 											<positions>
 												<Point x="26670" y="6218"/>
 												<Point x="27702" y="6218"/>
-												<Point x="27702" y="1958"/>
-												<Point x="28760" y="1958"/>
+												<Point x="27702" y="2434"/>
+												<Point x="28760" y="2434"/>
 											</positions>
 										</Edge>
 										<EquationGE kind="OBJ_LIT" presentable="!ed/220da/48AD/230/55cb43a551c9">
 											<position>
-												<Point x="27808" y="1323"/>
+												<Point x="27887" y="2037"/>
 											</position>
 											<size>
 												<Size width="211" height="317"/>
@@ -13155,10 +13300,10 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/220da/48AD/230/55cb43a551c9" dstEquation="!ed/220d4/48AD/230/55cb4383353f">
 											<positions>
-												<Point x="28019" y="1482"/>
-												<Point x="28390" y="1482"/>
-												<Point x="28390" y="1720"/>
-												<Point x="28760" y="1720"/>
+												<Point x="28099" y="2196"/>
+												<Point x="28416" y="2196"/>
+												<Point x="28416" y="2196"/>
+												<Point x="28760" y="2196"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/220ac/1727/1BD0/55cb58e66ee">
@@ -13169,28 +13314,60 @@
 												<Size width="1021" height="1181"/>
 											</size>
 										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/220d4/48AD/230/55cb4383353f" dstEquation="!ed/220ac/1727/1BD0/55cb58e66ee">
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/220ac/1727/1BD0/55cb58e66ee" dstEquation="!ed/7f95a/3619/A58/553a4c1b363f">
 											<positions>
-												<Point x="29766" y="1852"/>
-												<Point x="30189" y="1852"/>
-												<Point x="30189" y="2117"/>
-												<Point x="30639" y="2117"/>
+												<Point x="31671" y="2328"/>
+												<Point x="32147" y="2328"/>
+												<Point x="32147" y="2328"/>
+												<Point x="32650" y="2328"/>
 											</positions>
 										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/b5cba/34C7/6B4/5527e8714588" dstEquation="!ed/220ac/1727/1BD0/55cb58e66ee">
+										<EquationGE presentable="!ed/220c6/4A65/A8/55cb6f1e20fc">
+											<position>
+												<Point x="27834" y="1005"/>
+											</position>
+											<size>
+												<Size width="265" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/b5cba/34C7/6B4/5527e8714588" dstEquation="!ed/220ac/1727/1BD0/55cb58e66ee">
 											<positions>
 												<Point x="26670" y="3863"/>
 												<Point x="28654" y="3863"/>
-												<Point x="28654" y="2487"/>
-												<Point x="30639" y="2487"/>
+												<Point x="28654" y="2619"/>
+												<Point x="30639" y="2619"/>
 											</positions>
 										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/220ac/1727/1BD0/55cb58e66ee" dstEquation="!ed/7f95a/3619/A58/553a4c1b363f">
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/220d4/48AD/230/55cb4383353f" dstEquation="!ed/220ac/1727/1BD0/55cb58e66ee">
 											<positions>
-												<Point x="31644" y="2302"/>
-												<Point x="32147" y="2302"/>
-												<Point x="32147" y="2302"/>
-												<Point x="32650" y="2302"/>
+												<Point x="29766" y="2328"/>
+												<Point x="30189" y="2328"/>
+												<Point x="30189" y="2328"/>
+												<Point x="30639" y="2328"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/220cb/7A8C/240/55cb78697475">
+											<position>
+												<Point x="28681" y="926"/>
+											</position>
+											<size>
+												<Size width="1005" height="662"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/220c6/4A65/A8/55cb6f1e20fc" dstEquation="!ed/220cb/7A8C/240/55cb78697475">
+											<positions>
+												<Point x="28099" y="1270"/>
+												<Point x="28390" y="1270"/>
+												<Point x="28390" y="1270"/>
+												<Point x="28681" y="1270"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/220cb/7A8C/240/55cb78697475" dstEquation="!ed/220ac/1727/1BD0/55cb58e66ee">
+											<positions>
+												<Point x="29686" y="1270"/>
+												<Point x="30163" y="1270"/>
+												<Point x="30163" y="2011"/>
+												<Point x="30639" y="2011"/>
 											</positions>
 										</Edge>
 									</presentationElements>
@@ -16674,12 +16851,6 @@
 								</NetDiagram>
 							</diagrams>
 						</ed:Operator>
-						<kcg:Pragma>
-							doc &quot;Remark_1&quot; {Description = &quot;Converts the linking distance variables into the uniform distance type - Copyright Siemens AG, 2014 - Licensed under the EUPL V.1.1 ( http://joinup.ec.europa.eu/software/page/eupl/licence-eupl ) - Gist URL: --- - Cryptography: No - Author(s): Uwe Steinke   The use of this software is limited to non-vital applications.  It has not been developed for vital operation purposes and must not be used for applications which may cause harm to people, physical accidents or financial loss.  THEREFORE, NO LIABILITY WILL BE GIVEN FOR SUCH AND ANY OTHER KIND OF USE.  &quot;}
-						</kcg:Pragma>
-						<kcg:Pragma>
-							doc &quot;GdC_1&quot; {Author = &quot;Uwe Steinke&quot;, DateC = &quot;Created : 2014-05-22&quot;, DateM = &quot;Modified : 2014-05-22&quot;, Version = &quot;00.02.00&quot;}
-						</kcg:Pragma>
 					</pragmas>
 				</Operator>
 			</declarations>
