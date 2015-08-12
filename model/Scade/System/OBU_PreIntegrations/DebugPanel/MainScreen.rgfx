@@ -54,6 +54,9 @@
                     <input name="tractionCutOff" oid="16705145-89ab-4b0c-a448-7ee80a4d0417" type="bool">
                         <init>false</init>
                     </input>
+                    <input name="afbActive" oid="a96447ce-3e79-4407-bc4d-8469afe70c9b" type="bool">
+                        <init>false</init>
+                    </input>
                 </inputs>
                 <outputs>
                     <output memory="true" name="startDrive" oid="3a77adc2-2c19-4d42-bc3d-cb25e636f148" type="bool">
@@ -61,9 +64,6 @@
                     </output>
                     <output memory="true" name="reset" oid="8242c7a7-8c65-4d6c-93c2-19d2a35940fa" type="bool">
                         <init>false</init>
-                    </output>
-                    <output memory="true" name="tractionBrakeControl" oid="503bab89-c847-495e-84c4-6e43afa2973a" type="real">
-                        <init>0.0</init>
                     </output>
                     <output memory="true" name="criticalFailure" oid="b4e50700-6310-4f5b-8298-aafa4acaf35f" type="bool">
                         <init>false</init>
@@ -76,6 +76,15 @@
                     </output>
                     <output memory="true" name="openDesk" oid="78cf441a-6d05-4662-81d6-a7ed60b9c02d" type="bool">
                         <init>false</init>
+                    </output>
+                    <output memory="true" name="targetSpeed" oid="067caafe-9fee-4c15-8d00-2912ea80650b" type="real">
+                        <init>0.0</init>
+                    </output>
+                    <output memory="true" name="brake" oid="fb35cf05-d025-47d4-9859-e976143d30df" type="real">
+                        <init>0.0</init>
+                    </output>
+                    <output memory="true" name="traction" oid="3f85bf23-64da-4083-ba79-7529dde3750e" type="real">
+                        <init>0.0</init>
                     </output>
                 </outputs>
             </declaration>
@@ -229,7 +238,7 @@
                         </visible>
                         <firstPoint>
                             <x>
-                                <init>-20.0</init>
+                                <init>-19.0</init>
                             </x>
                             <y>
                                 <init>1.0</init>
@@ -237,7 +246,7 @@
                         </firstPoint>
                         <thirdPoint>
                             <x>
-                                <init>-484.0</init>
+                                <init>-483.0</init>
                             </x>
                             <y>
                                 <init>312.0</init>
@@ -404,100 +413,8 @@
                     </properties>
                     <children/>
                 </referenceContainer>
-                <referenceContainer oid="51e91992-4a8d-4dee-8be5-9cda520d5f86">
-                    <pathFromRoot value="5"/>
-                    <properties modular="false" name="DiscreteVerticalSlider">
-                        <visible>
-                            <init>true</init>
-                        </visible>
-                        <origin>
-                            <x>
-                                <init>-166.0</init>
-                            </x>
-                            <y>
-                                <init>53.0</init>
-                            </y>
-                        </origin>
-                        <scale>
-                            <x>
-                                <init>1.0</init>
-                            </x>
-                            <y>
-                                <init>1.0</init>
-                            </y>
-                        </scale>
-                        <rotate>
-                            <angle>
-                                <init>0.0</init>
-                            </angle>
-                        </rotate>
-                        <orientation clockwise="false"/>
-                        <file name="Slider.wgfx" path="$(RAPID_PROTOTYPER)\Widgets"/>
-                        <crc value="1804046510"/>
-                        <inputParameters>
-                            <parameter control="false" name="SizeX" oid="45d4cf7f-e024-41b5-83a9-84a92e7aa620" type="real">
-                                <init>20.0</init>
-                            </parameter>
-                            <parameter control="false" name="SizeY" oid="103e257b-3b48-40ee-baac-71e8678c71ed" type="real">
-                                <init>151.0</init>
-                            </parameter>
-                            <parameter control="false" name="Enable" oid="5c2bc57c-bac9-46cd-944e-0dc6c364202a" type="bool">
-                                <init>true</init>
-                            </parameter>
-                            <parameter control="false" name="Style" oid="f5c1daa7-19d2-419f-927d-db7833c23a63" representation="index" type="int">
-                                <init>5</init>
-                            </parameter>
-                            <parameter control="false" name="TextColor" oid="2699036d-dc80-4230-885f-164b88a0fad4" representation="color" type="int">
-                                <init>2</init>
-                            </parameter>
-                            <parameter control="false" name="Font" oid="e0fb27a0-c70c-4d8c-bbe7-32f9a343a250" representation="font" type="int">
-                                <init>0</init>
-                            </parameter>
-                            <parameter control="false" name="BackColor" oid="3df8cd5e-e430-4bd3-928e-b74773b0ad8e" representation="color" type="int">
-                                <init>2</init>
-                            </parameter>
-                            <parameter control="false" name="InValue" oid="8adfe35c-90d6-4746-9a07-fd66eb0d3d76" type="real">
-                                <init>0.0</init>
-                            </parameter>
-                            <parameter control="false" name="MinValue" oid="f0090185-f195-4b87-96f1-e4882306f136" type="real">
-                                <init>-300.0</init>
-                            </parameter>
-                            <parameter control="false" name="MaxValue" oid="4a42e74f-d11c-488f-abe2-4aa05393598d" type="real">
-                                <init>100.0</init>
-                            </parameter>
-                            <parameter control="false" name="ValueDelta" oid="72d8f3b6-62ed-46e4-8af2-4c96cd7176b9" type="real">
-                                <init>10.0</init>
-                            </parameter>
-                            <parameter control="false" name="Orientation" oid="380c148f-af0a-463f-9189-3ec1cfc72160" representation="index" type="int">
-                                <init>3</init>
-                            </parameter>
-                            <parameter control="false" name="GraduationsPosition" oid="dab3f2f1-cd4c-45da-8e6d-b1f35036189e" representation="index" type="int">
-                                <init>2</init>
-                            </parameter>
-                            <parameter control="false" name="ShowGraduations" oid="bae06267-2b53-452b-9291-366306b011d9" representation="index" type="int">
-                                <init>2</init>
-                            </parameter>
-                            <parameter control="false" name="InValueSet" oid="eaeedacf-1731-4708-9d37-4cfa266cc796" type="bool">
-                                <init>false</init>
-                            </parameter>
-                            <parameter control="false" name="Legend" oid="cc04bd11-aa8e-4295-9946-6d81b533fe64" representation="as_string" type="char^255">
-                                <init>[84, 114, 97, 99, 116, 105, 111, 110, 47, 66, 114, 97, 107, 101, 0]</init>
-                            </parameter>
-                            <parameter control="false" name="TextColor_disable" oid="3e791080-4a6f-4e19-bfdb-8e5052b6cbdb" representation="color" type="int">
-                                <init>4</init>
-                            </parameter>
-                        </inputParameters>
-                        <outputParameters>
-                            <parameter name="Value" oid="e63bae09-bbf2-4952-af67-66ae4a06d88a" type="real">
-                                <expr>tractionBrakeControl</expr>
-                            </parameter>
-                            <parameter name="ValueChangeEmit" oid="f8af6416-bb96-4454-979a-e52e877bfe2b" type="bool"/>
-                        </outputParameters>
-                    </properties>
-                    <children/>
-                </referenceContainer>
                 <referenceContainer oid="7b4081ad-fa13-4600-ab36-9e6b7d04a4c4">
-                    <pathFromRoot value="6"/>
+                    <pathFromRoot value="5"/>
                     <properties modular="false" name="AnalogCounter">
                         <visible>
                             <init>true</init>
@@ -578,7 +495,7 @@
                     <children/>
                 </referenceContainer>
                 <text oid="823f38ab-4612-45ce-a231-71503fc0bdfc">
-                    <pathFromRoot value="7"/>
+                    <pathFromRoot value="6"/>
                     <properties name="text">
                         <visible>
                             <init>true</init>
@@ -620,74 +537,8 @@
                         </vertAlign>
                     </properties>
                 </text>
-                <referenceContainer oid="60de74b2-f1fb-40db-b14f-94a32cc50100">
-                    <pathFromRoot value="8"/>
-                    <properties modular="false" name="NumericDisplay">
-                        <visible>
-                            <init>true</init>
-                        </visible>
-                        <origin>
-                            <x>
-                                <init>-253.0</init>
-                            </x>
-                            <y>
-                                <init>124.5</init>
-                            </y>
-                        </origin>
-                        <scale>
-                            <x>
-                                <init>1.0</init>
-                            </x>
-                            <y>
-                                <init>1.0</init>
-                            </y>
-                        </scale>
-                        <rotate>
-                            <angle>
-                                <init>0.0</init>
-                            </angle>
-                        </rotate>
-                        <orientation clockwise="false"/>
-                        <file name="NumericDisplay.wgfx" path="$(RAPID_PROTOTYPER)\Widgets"/>
-                        <crc value="3030854497"/>
-                        <inputParameters>
-                            <parameter control="false" name="Value" oid="a3a5f970-1420-4fe1-9bd8-e35a8f306807" type="real">
-                                <expr>tractionBrakeControl</expr>
-                                <init>0.0</init>
-                            </parameter>
-                            <parameter control="false" name="ValueColor" oid="b982d917-8d18-417d-b064-017d245af51c" representation="color" type="int">
-                                <init>1</init>
-                            </parameter>
-                            <parameter control="false" name="BackColor" oid="3626f080-6df7-44a5-a206-b03d79290764" representation="color" type="int">
-                                <init>2</init>
-                            </parameter>
-                            <parameter control="false" name="NumberFormat" oid="9ca35185-6fbd-4767-aa97-1ff4ae261528" representation="index" type="int">
-                                <init>1</init>
-                            </parameter>
-                            <parameter control="false" name="Legend" oid="3d8e3172-2c79-48a9-a235-d6bba2894b8d" representation="as_string" type="char^255">
-                                <init>[84, 114, 97, 99, 116, 105, 111, 110, 47, 66, 114, 97, 107, 101, 58, 0]</init>
-                            </parameter>
-                            <parameter control="false" name="LegendColor" oid="e83a7fd8-ed56-419c-8274-f0026bf8b7bf" representation="color" type="int">
-                                <init>2</init>
-                            </parameter>
-                            <parameter control="false" name="Unit" oid="fe4bc7f8-1d1c-4907-9b1c-0110346f9c12" representation="as_string" type="char^255">
-                                <init>[0]</init>
-                            </parameter>
-                            <parameter control="false" name="UnitColor" oid="dc370f04-f53b-4986-b9a3-b1a7f5789537" representation="color" type="int">
-                                <init>2</init>
-                            </parameter>
-                            <parameter control="false" name="Font" oid="b4a39410-bf6a-4c05-8956-31515a1c7ee6" representation="font" type="int">
-                                <init>0</init>
-                            </parameter>
-                            <parameter control="false" name="Width" oid="081b8163-a890-4fc0-b2ea-edd5a62a2d99" type="real">
-                                <init>60.0</init>
-                            </parameter>
-                        </inputParameters>
-                    </properties>
-                    <children/>
-                </referenceContainer>
                 <referenceContainer oid="ed332cfa-baf3-4fe2-b360-5e67fb674c49">
-                    <pathFromRoot value="9"/>
+                    <pathFromRoot value="7"/>
                     <properties modular="false" name="NumericDisplay">
                         <visible>
                             <init>true</init>
@@ -753,7 +604,7 @@
                     <children/>
                 </referenceContainer>
                 <referenceContainer oid="f6cba029-1969-4221-a341-66f30fd17d07">
-                    <pathFromRoot value="10"/>
+                    <pathFromRoot value="8"/>
                     <properties modular="false" name="Graph_4x1000">
                         <visible>
                             <init>true</init>
@@ -905,7 +756,7 @@
                     <children/>
                 </referenceContainer>
                 <referenceContainer oid="20f49dec-9139-409e-9bcb-ee23841f507f">
-                    <pathFromRoot value="11"/>
+                    <pathFromRoot value="9"/>
                     <properties modular="false" name="Graph_4x1000">
                         <visible>
                             <init>true</init>
@@ -1057,7 +908,7 @@
                     <children/>
                 </referenceContainer>
                 <referenceContainer oid="e0a387b6-7ff1-41f3-a0fd-4bd3a8122552">
-                    <pathFromRoot value="12"/>
+                    <pathFromRoot value="10"/>
                     <properties modular="false" name="NumericEntry">
                         <visible>
                             <init>true</init>
@@ -1167,7 +1018,7 @@
                     <children/>
                 </referenceContainer>
                 <richText oid="c83f5f6f-ae7a-44a1-8c6d-d0fa7050d057">
-                    <pathFromRoot value="13"/>
+                    <pathFromRoot value="11"/>
                     <properties name="rich text">
                         <visible>
                             <init>true</init>
@@ -1204,7 +1055,7 @@
                     </properties>
                 </richText>
                 <referenceContainer oid="ab701978-d458-4819-a6d5-b1aedef4559a">
-                    <pathFromRoot value="14"/>
+                    <pathFromRoot value="12"/>
                     <properties modular="false" name="RoundToggleButton">
                         <visible>
                             <init>true</init>
@@ -1287,7 +1138,7 @@
                     <children/>
                 </referenceContainer>
                 <referenceContainer oid="5481df16-3b4f-4f8b-8055-9e445d811389">
-                    <pathFromRoot value="15"/>
+                    <pathFromRoot value="13"/>
                     <properties modular="false" name="LED">
                         <visible>
                             <init>true</init>
@@ -1347,7 +1198,7 @@
                     <children/>
                 </referenceContainer>
                 <referenceContainer oid="0fe315e4-4ef3-4daf-baf8-a12828d4c0e2">
-                    <pathFromRoot value="16"/>
+                    <pathFromRoot value="14"/>
                     <properties modular="false" name="LED">
                         <visible>
                             <init>true</init>
@@ -1407,7 +1258,7 @@
                     <children/>
                 </referenceContainer>
                 <rectangle oid="4d1468a1-a390-48ea-8875-f09548d41f66">
-                    <pathFromRoot value="17"/>
+                    <pathFromRoot value="15"/>
                     <properties name="rectangle">
                         <visible>
                             <init>true</init>
@@ -1469,7 +1320,7 @@
                     </properties>
                 </rectangle>
                 <richText oid="3ade9c27-847e-40aa-8ed4-860f5aa5575f">
-                    <pathFromRoot value="18"/>
+                    <pathFromRoot value="16"/>
                     <properties name="rich text">
                         <visible>
                             <init>true</init>
@@ -1506,7 +1357,7 @@
                     </properties>
                 </richText>
                 <referenceContainer oid="184b1fda-1c13-4e22-8036-3558b17c552a">
-                    <pathFromRoot value="19"/>
+                    <pathFromRoot value="17"/>
                     <properties modular="false" name="LED">
                         <visible>
                             <init>true</init>
@@ -1565,6 +1416,408 @@
                     </properties>
                     <children/>
                 </referenceContainer>
+                <referenceContainer oid="b5212d79-c011-4cab-b69f-8f7d79a43245">
+                    <pathFromRoot value="18"/>
+                    <properties modular="false" name="Slider">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>-394.0</init>
+                            </x>
+                            <y>
+                                <init>45.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="Slider.wgfx" path="$(RAPID_PROTOTYPER)\Widgets"/>
+                        <crc value="1804046510"/>
+                        <inputParameters>
+                            <parameter control="false" name="SizeX" oid="45d4cf7f-e024-41b5-83a9-84a92e7aa620" type="real">
+                                <init>26.015</init>
+                            </parameter>
+                            <parameter control="false" name="SizeY" oid="103e257b-3b48-40ee-baac-71e8678c71ed" type="real">
+                                <init>179.0</init>
+                            </parameter>
+                            <parameter control="false" name="Enable" oid="5c2bc57c-bac9-46cd-944e-0dc6c364202a" type="bool">
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="Style" oid="f5c1daa7-19d2-419f-927d-db7833c23a63" representation="index" type="int">
+                                <init>3</init>
+                            </parameter>
+                            <parameter control="false" name="TextColor" oid="2699036d-dc80-4230-885f-164b88a0fad4" representation="color" type="int">
+                                <init>2</init>
+                            </parameter>
+                            <parameter control="false" name="Font" oid="e0fb27a0-c70c-4d8c-bbe7-32f9a343a250" representation="font" type="int">
+                                <init>1</init>
+                            </parameter>
+                            <parameter control="false" name="BackColor" oid="3df8cd5e-e430-4bd3-928e-b74773b0ad8e" representation="color" type="int">
+                                <init>2</init>
+                            </parameter>
+                            <parameter control="false" name="InValue" oid="8adfe35c-90d6-4746-9a07-fd66eb0d3d76" type="real">
+                                <init>0.0</init>
+                            </parameter>
+                            <parameter control="false" name="MinValue" oid="f0090185-f195-4b87-96f1-e4882306f136" type="real">
+                                <init>0.0</init>
+                            </parameter>
+                            <parameter control="false" name="MaxValue" oid="4a42e74f-d11c-488f-abe2-4aa05393598d" type="real">
+                                <init>330.0</init>
+                            </parameter>
+                            <parameter control="false" name="ValueDelta" oid="72d8f3b6-62ed-46e4-8af2-4c96cd7176b9" type="real">
+                                <init>1.0</init>
+                            </parameter>
+                            <parameter control="false" name="Orientation" oid="380c148f-af0a-463f-9189-3ec1cfc72160" representation="index" type="int">
+                                <init>3</init>
+                            </parameter>
+                            <parameter control="false" name="GraduationsPosition" oid="dab3f2f1-cd4c-45da-8e6d-b1f35036189e" representation="index" type="int">
+                                <init>2</init>
+                            </parameter>
+                            <parameter control="false" name="ShowGraduations" oid="bae06267-2b53-452b-9291-366306b011d9" representation="index" type="int">
+                                <init>4</init>
+                            </parameter>
+                            <parameter control="false" name="InValueSet" oid="eaeedacf-1731-4708-9d37-4cfa266cc796" type="bool">
+                                <init>false</init>
+                            </parameter>
+                            <parameter control="false" name="Legend" oid="cc04bd11-aa8e-4295-9946-6d81b533fe64" representation="as_string" type="char^255">
+                                <init>[84, 97, 114, 103, 101, 116, 32, 115, 112, 101, 101, 100, 0]</init>
+                            </parameter>
+                            <parameter control="false" name="TextColor_disable" oid="3e791080-4a6f-4e19-bfdb-8e5052b6cbdb" representation="color" type="int">
+                                <init>4</init>
+                            </parameter>
+                        </inputParameters>
+                        <outputParameters>
+                            <parameter name="Value" oid="e63bae09-bbf2-4952-af67-66ae4a06d88a" type="real">
+                                <expr>targetSpeed</expr>
+                            </parameter>
+                            <parameter name="ValueChangeEmit" oid="f8af6416-bb96-4454-979a-e52e877bfe2b" type="bool"/>
+                        </outputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
+                <referenceContainer oid="35542a5d-9b75-4e10-bca8-76757a937f6e">
+                    <pathFromRoot value="19"/>
+                    <properties modular="false" name="Slider">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>-308.0</init>
+                            </x>
+                            <y>
+                                <init>45.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="Slider.wgfx" path="$(RAPID_PROTOTYPER)\Widgets"/>
+                        <crc value="1804046510"/>
+                        <inputParameters>
+                            <parameter control="false" name="SizeX" oid="45d4cf7f-e024-41b5-83a9-84a92e7aa620" type="real">
+                                <init>22.0</init>
+                            </parameter>
+                            <parameter control="false" name="SizeY" oid="103e257b-3b48-40ee-baac-71e8678c71ed" type="real">
+                                <init>177.0</init>
+                            </parameter>
+                            <parameter control="false" name="Enable" oid="5c2bc57c-bac9-46cd-944e-0dc6c364202a" type="bool">
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="Style" oid="f5c1daa7-19d2-419f-927d-db7833c23a63" representation="index" type="int">
+                                <init>3</init>
+                            </parameter>
+                            <parameter control="false" name="TextColor" oid="2699036d-dc80-4230-885f-164b88a0fad4" representation="color" type="int">
+                                <init>2</init>
+                            </parameter>
+                            <parameter control="false" name="Font" oid="e0fb27a0-c70c-4d8c-bbe7-32f9a343a250" representation="font" type="int">
+                                <init>1</init>
+                            </parameter>
+                            <parameter control="false" name="BackColor" oid="3df8cd5e-e430-4bd3-928e-b74773b0ad8e" representation="color" type="int">
+                                <init>2</init>
+                            </parameter>
+                            <parameter control="false" name="InValue" oid="8adfe35c-90d6-4746-9a07-fd66eb0d3d76" type="real">
+                                <init>0.0</init>
+                            </parameter>
+                            <parameter control="false" name="MinValue" oid="f0090185-f195-4b87-96f1-e4882306f136" type="real">
+                                <init>0.0</init>
+                            </parameter>
+                            <parameter control="false" name="MaxValue" oid="4a42e74f-d11c-488f-abe2-4aa05393598d" type="real">
+                                <init>100.0</init>
+                            </parameter>
+                            <parameter control="false" name="ValueDelta" oid="72d8f3b6-62ed-46e4-8af2-4c96cd7176b9" type="real">
+                                <init>1.0</init>
+                            </parameter>
+                            <parameter control="false" name="Orientation" oid="380c148f-af0a-463f-9189-3ec1cfc72160" representation="index" type="int">
+                                <init>3</init>
+                            </parameter>
+                            <parameter control="false" name="GraduationsPosition" oid="dab3f2f1-cd4c-45da-8e6d-b1f35036189e" representation="index" type="int">
+                                <init>4</init>
+                            </parameter>
+                            <parameter control="false" name="ShowGraduations" oid="bae06267-2b53-452b-9291-366306b011d9" representation="index" type="int">
+                                <init>4</init>
+                            </parameter>
+                            <parameter control="false" name="InValueSet" oid="eaeedacf-1731-4708-9d37-4cfa266cc796" type="bool">
+                                <init>false</init>
+                            </parameter>
+                            <parameter control="false" name="Legend" oid="cc04bd11-aa8e-4295-9946-6d81b533fe64" representation="as_string" type="char^255">
+                                <init>[84, 114, 97, 99, 116, 105, 111, 110, 0]</init>
+                            </parameter>
+                            <parameter control="false" name="TextColor_disable" oid="3e791080-4a6f-4e19-bfdb-8e5052b6cbdb" representation="color" type="int">
+                                <init>4</init>
+                            </parameter>
+                        </inputParameters>
+                        <outputParameters>
+                            <parameter name="Value" oid="e63bae09-bbf2-4952-af67-66ae4a06d88a" type="real">
+                                <expr>traction</expr>
+                            </parameter>
+                            <parameter name="ValueChangeEmit" oid="f8af6416-bb96-4454-979a-e52e877bfe2b" type="bool"/>
+                        </outputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
+                <referenceContainer oid="5af9ae84-3b3d-4b40-9749-e05c91b09d8e">
+                    <pathFromRoot value="20"/>
+                    <properties modular="false" name="Slider">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>-144.0</init>
+                            </x>
+                            <y>
+                                <init>45.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="Slider.wgfx" path="$(RAPID_PROTOTYPER)\Widgets"/>
+                        <crc value="1804046510"/>
+                        <inputParameters>
+                            <parameter control="false" name="SizeX" oid="45d4cf7f-e024-41b5-83a9-84a92e7aa620" type="real">
+                                <init>25.979</init>
+                            </parameter>
+                            <parameter control="false" name="SizeY" oid="103e257b-3b48-40ee-baac-71e8678c71ed" type="real">
+                                <init>176.0</init>
+                            </parameter>
+                            <parameter control="false" name="Enable" oid="5c2bc57c-bac9-46cd-944e-0dc6c364202a" type="bool">
+                                <init>true</init>
+                            </parameter>
+                            <parameter control="false" name="Style" oid="f5c1daa7-19d2-419f-927d-db7833c23a63" representation="index" type="int">
+                                <init>3</init>
+                            </parameter>
+                            <parameter control="false" name="TextColor" oid="2699036d-dc80-4230-885f-164b88a0fad4" representation="color" type="int">
+                                <init>2</init>
+                            </parameter>
+                            <parameter control="false" name="Font" oid="e0fb27a0-c70c-4d8c-bbe7-32f9a343a250" representation="font" type="int">
+                                <init>1</init>
+                            </parameter>
+                            <parameter control="false" name="BackColor" oid="3df8cd5e-e430-4bd3-928e-b74773b0ad8e" representation="color" type="int">
+                                <init>2</init>
+                            </parameter>
+                            <parameter control="false" name="InValue" oid="8adfe35c-90d6-4746-9a07-fd66eb0d3d76" type="real">
+                                <init>0.0</init>
+                            </parameter>
+                            <parameter control="false" name="MinValue" oid="f0090185-f195-4b87-96f1-e4882306f136" type="real">
+                                <init>0.0</init>
+                            </parameter>
+                            <parameter control="false" name="MaxValue" oid="4a42e74f-d11c-488f-abe2-4aa05393598d" type="real">
+                                <init>300.0</init>
+                            </parameter>
+                            <parameter control="false" name="ValueDelta" oid="72d8f3b6-62ed-46e4-8af2-4c96cd7176b9" type="real">
+                                <init>1.0</init>
+                            </parameter>
+                            <parameter control="false" name="Orientation" oid="380c148f-af0a-463f-9189-3ec1cfc72160" representation="index" type="int">
+                                <init>4</init>
+                            </parameter>
+                            <parameter control="false" name="GraduationsPosition" oid="dab3f2f1-cd4c-45da-8e6d-b1f35036189e" representation="index" type="int">
+                                <init>4</init>
+                            </parameter>
+                            <parameter control="false" name="ShowGraduations" oid="bae06267-2b53-452b-9291-366306b011d9" representation="index" type="int">
+                                <init>4</init>
+                            </parameter>
+                            <parameter control="false" name="InValueSet" oid="eaeedacf-1731-4708-9d37-4cfa266cc796" type="bool">
+                                <init>false</init>
+                            </parameter>
+                            <parameter control="false" name="Legend" oid="cc04bd11-aa8e-4295-9946-6d81b533fe64" representation="as_string" type="char^255">
+                                <init>[66, 114, 97, 107, 101, 0]</init>
+                            </parameter>
+                            <parameter control="false" name="TextColor_disable" oid="3e791080-4a6f-4e19-bfdb-8e5052b6cbdb" representation="color" type="int">
+                                <init>4</init>
+                            </parameter>
+                        </inputParameters>
+                        <outputParameters>
+                            <parameter name="Value" oid="e63bae09-bbf2-4952-af67-66ae4a06d88a" type="real">
+                                <expr>brake</expr>
+                            </parameter>
+                            <parameter name="ValueChangeEmit" oid="f8af6416-bb96-4454-979a-e52e877bfe2b" type="bool"/>
+                        </outputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
+                <referenceContainer oid="ce273702-5efc-4633-800c-17480f0c5419">
+                    <pathFromRoot value="21"/>
+                    <properties modular="false" name="LED">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>-450.0</init>
+                            </x>
+                            <y>
+                                <init>150.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="LED.wgfx" path="$(RAPID_PROTOTYPER)\Widgets"/>
+                        <crc value="3623383844"/>
+                        <inputParameters>
+                            <parameter control="false" name="SizeX" oid="b50c0fdc-f138-44d2-a60a-01cf4040c145" type="real">
+                                <init>20.0</init>
+                            </parameter>
+                            <parameter control="false" name="SizeY" oid="df2255be-4190-4ff1-a16e-b49ba5ab9a70" type="real">
+                                <init>20.0</init>
+                            </parameter>
+                            <parameter control="false" name="Style" oid="b92b8804-3d1c-46c9-90c2-9ae4fe1933fd" representation="index" type="int">
+                                <init>2</init>
+                            </parameter>
+                            <parameter control="false" name="LEDOn" oid="e01c6bbf-dcc2-4976-9fa8-36c21a18dabd" type="bool">
+                                <expr>afbActive</expr>
+                                <init>false</init>
+                            </parameter>
+                            <parameter control="false" name="LEDColor" oid="07d7b1a4-6e20-4683-b82f-1234b88d91db" representation="color" type="int">
+                                <init>61</init>
+                            </parameter>
+                            <parameter control="false" name="Legend" oid="e43f4a50-f0e2-48d3-9bba-79c9889e8c92" representation="as_string" type="char^255">
+                                <init>[65, 70, 66, 0]</init>
+                            </parameter>
+                            <parameter control="false" name="LegendColor" oid="9d6f8669-9361-4193-a44f-be5331d1d132" representation="color" type="int">
+                                <init>2</init>
+                            </parameter>
+                            <parameter control="false" name="Font" oid="b1c4cf11-8c08-4643-8a5f-dd985a65d7f0" representation="font" type="int">
+                                <init>0</init>
+                            </parameter>
+                        </inputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
+                <referenceContainer oid="e38f8747-8cce-4af6-bd05-40e7dc064ee3">
+                    <pathFromRoot value="22"/>
+                    <properties modular="false" name="NumericDisplay">
+                        <visible>
+                            <init>true</init>
+                        </visible>
+                        <origin>
+                            <x>
+                                <init>-474.0</init>
+                            </x>
+                            <y>
+                                <init>126.0</init>
+                            </y>
+                        </origin>
+                        <scale>
+                            <x>
+                                <init>1.0</init>
+                            </x>
+                            <y>
+                                <init>1.0</init>
+                            </y>
+                        </scale>
+                        <rotate>
+                            <angle>
+                                <init>0.0</init>
+                            </angle>
+                        </rotate>
+                        <orientation clockwise="false"/>
+                        <file name="NumericDisplay.wgfx" path="$(RAPID_PROTOTYPER)\Widgets"/>
+                        <crc value="3030854497"/>
+                        <inputParameters>
+                            <parameter control="false" name="Value" oid="a3a5f970-1420-4fe1-9bd8-e35a8f306807" type="real">
+                                <expr>targetSpeed</expr>
+                                <init>0.0</init>
+                            </parameter>
+                            <parameter control="false" name="ValueColor" oid="b982d917-8d18-417d-b064-017d245af51c" representation="color" type="int">
+                                <init>1</init>
+                            </parameter>
+                            <parameter control="false" name="BackColor" oid="3626f080-6df7-44a5-a206-b03d79290764" representation="color" type="int">
+                                <init>2</init>
+                            </parameter>
+                            <parameter control="false" name="NumberFormat" oid="9ca35185-6fbd-4767-aa97-1ff4ae261528" representation="index" type="int">
+                                <init>1</init>
+                            </parameter>
+                            <parameter control="false" name="Legend" oid="3d8e3172-2c79-48a9-a235-d6bba2894b8d" representation="as_string" type="char^255">
+                                <init>[0]</init>
+                            </parameter>
+                            <parameter control="false" name="LegendColor" oid="e83a7fd8-ed56-419c-8274-f0026bf8b7bf" representation="color" type="int">
+                                <init>2</init>
+                            </parameter>
+                            <parameter control="false" name="Unit" oid="fe4bc7f8-1d1c-4907-9b1c-0110346f9c12" representation="as_string" type="char^255">
+                                <init>[0]</init>
+                            </parameter>
+                            <parameter control="false" name="UnitColor" oid="dc370f04-f53b-4986-b9a3-b1a7f5789537" representation="color" type="int">
+                                <init>2</init>
+                            </parameter>
+                            <parameter control="false" name="Font" oid="b4a39410-bf6a-4c05-8956-31515a1c7ee6" representation="font" type="int">
+                                <init>1</init>
+                            </parameter>
+                            <parameter control="true" name="Width" oid="081b8163-a890-4fc0-b2ea-edd5a62a2d99" type="real">
+                                <init>60.0</init>
+                            </parameter>
+                        </inputParameters>
+                    </properties>
+                    <children/>
+                </referenceContainer>
             </children>
         </layer>
         <layer oid="173c56ec-d1f8-461c-8978-afd73b0308cb">
@@ -1592,5 +1845,5 @@
     </children>
 </specification>
 
-<!-- crc32 : 1657502856 -->
+<!-- crc32 : 2975065301 -->
 
