@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-12T18:07:48
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 #ifndef _Send_P137_MessageLibBaseline2_H_
 #define _Send_P137_MessageLibBaseline2_H_
@@ -44,6 +44,6 @@ extern void Send_P137_reset_MessageLibBaseline2(
 #endif /* _Send_P137_MessageLibBaseline2_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Send_P137_MessageLibBaseline2.h
-** Generation date: 2015-08-12T18:07:48
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 

@@ -1,17 +1,17 @@
-#ifndef TRIGGERSPECIFICBALISE_INTERNAL_TESTS_INTERFACE
-#define TRIGGERSPECIFICBALISE_INTERNAL_TESTS_INTERFACE
+#ifndef DRIVEALLBGS_INTERNAL_TESTS_INTERFACE
+#define DRIVEALLBGS_INTERNAL_TESTS_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "TriggerSpecificBalise_Internal_Tests.h"
+#include "DriveAllBGs_Internal_Tests.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern kcg_int _ctx_nid_BG_looked_for_buffer;
+extern kcg_bool _ctx_reset_buffer;
 /*******************************
  * Validity
  *******************************/
@@ -37,4 +37,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*TRIGGERSPECIFICBALISE_INTERNAL_TESTS_INTERFACE */
+#endif /*DRIVEALLBGS_INTERNAL_TESTS_INTERFACE */
