@@ -1,129 +1,44 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-11T09:13:49
+** Generation date: 2015-08-12T19:26:02
 *************************************************************$ */
 
 #include "kcg_consts.h"
 
-/* Internal_Tests::DEFAULT_CompressedPackets */
-const CompressedPackets_T_Common_Types_Pkg DEFAULT_CompressedPackets_Internal_Tests = {
-  { { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0,
-      0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false,
-      0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse,
-      kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0,
-      Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, {
-      0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0,
-      0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false,
-      0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse,
-      kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0,
-      Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, {
-      0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0,
-      0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false,
-      0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse,
-      kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0,
-      Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, {
-      0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0,
-      0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 } }, { 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
+/* Internal_Tests::BalisePositions */
+const BPos_Internal_Tests BalisePositions_Internal_Tests = { { 352, 242.0 }, {
+    353, 1181.0 }, { 354, 2801.0 }, { 351, 3613.0 }, { 355, 3667.0 }, { 356,
+    3821.0 }, { 357, 3871.0 }, { 358, 4046.0 }, { 359, 4215.0 }, { 360,
+    4270.0 }, { 361, 4698.0 }, { 362, 4752.0 }, { 363, 4990.0 }, { 364,
+    5044.0 }, { 365, 5216.0 }, { 366, 5271.0 }, { 367, 5423.0 }, { 368,
+    5564.0 }, { 369, 5617.0 }, { 341, 6088.0 }, { 370, 6556.0 }, { 371,
+    6609.0 }, { 372, 7042.0 }, { 373, 7242.0 }, { 374, 7474.0 }, { 375,
+    7942.0 }, { 376, 8391.0 }, { 377, 8762.0 }, { 378, 9177.0 }, { 379,
+    9231.0 }, { 380, 9458.0 }, { 381, 9512.0 }, { 382, 9712.0 }, { 383,
+    10212.0 }, { 384, 10642.0 }, { 385, 10707.0 }, { 386, 10896.0 }, { 387,
+    10950.0 }, { 388, 11450.0 }, { 389, 12198.0 }, { 390, 12305.0 }, { 391,
+    12806.0 }, { 392, 13680.0 }, { 393, 13788.0 }, { 394, 14495.0 }, { 395,
+    15191.0 }, { 396, 15300.0 }, { 397, 15992.0 }, { 398, 16691.0 }, { 399,
+    16818.0 }, { 400, 17436.0 }, { 401, 18048.0 }, { 402, 18353.0 }, { 403,
+    18943.0 }, { 404, 19507.0 }, { 405, 19846.0 }, { 406, 20365.0 }, { 407,
+    20814.0 }, { 408, 21210.0 }, { 409, 21285.0 }, { 410, 21339.0 }, { 476,
+    21429.0 }, { 411, 21874.0 }, { 412, 21929.0 }, { 413, 22110.0 }, { 414,
+    22297.0 }, { 415, 22350.0 }, { 416, 22648.0 }, { 417, 22702.0 }, { 418,
+    22762.0 }, { 419, 23573.0 }, { 420, 24121.0 }, { 421, 24907.0 }, { 422,
+    25550.0 }, { 423, 26069.0 }, { 424, 26861.0 }, { 425, 26927.0 }, { 426,
+    27174.0 }, { 427, 27228.0 }, { 428, 27399.0 }, { 429, 27737.0 }, { 477,
+    28076.0 }, { 430, 28376.0 }, { 431, 28430.0 }, { 432, 28905.0 }, { 433,
+    28959.0 }, { 434, 29028.0 }, { 435, 29082.0 }, { 436, 29307.0 }, { 437,
+    29373.0 }, { 438, 30181.0 }, { 439, 30410.0 }, { 440, 31118.0 }, { 441,
+    31781.0 }, { 442, 31973.0 }, { 443, 31997.0 }, { 444, 32483.0 }, { 445,
+    32537.0 }, { 0, 0.0 }, { 0, 0.0 } };
 
-/* TM::DEFAULT_CompressedPackets */
-const CompressedPacketData_T_Common_Types_Pkg DEFAULT_CompressedPackets_TM = {
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0 };
-
-/* TM::DEFAULT_PHeader */
-const MetadataElement_T_Common_Types_Pkg DEFAULT_PHeader_TM = { 0,
-  Q_DIR_Reverse, kcg_false, 0, 0 };
-
-/* TM::DEFAULT_P021_OBU_section */
-const P021_section_enum_T_TM DEFAULT_P021_OBU_section_TM = { kcg_false, 0,
-  Q_GDIR_downhill, 0 };
-
-/* TM::DEFAULT_Headers */
-const Metadata_T_Common_Types_Pkg DEFAULT_Headers_TM = { { 0, Q_DIR_Reverse,
-    kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0,
-    Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, {
-    0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-  { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-  { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-  { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-  { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-  { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-  { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-  { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-  { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-  { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-  { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-  { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-  { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0,
-    0 } };
-
-/* TM::DEFAULT_P021_sections_array_flat */
-const P021_sections_array_flat_T_TM DEFAULT_P021_sections_array_flat_TM = { 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-
-/* Packets426::LRBG354_P021_1 */
-const P021_trackside_int_T_TM LRBG354_P021_1_Packets426 = { kcg_true, 21, 1,
-  246, 1, 0, 0, 3, 8, { { 861, 1, 6 }, { 150, 0, 5 }, { 230, 0, 1 }, { 40, 0,
-      13 }, { 190, 0, 7 }, { 160, 0, 3 }, { 580, 0, 0 }, { 82, 0, 255 }, { 0, 0,
-      0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0,
-      0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, {
-      0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0,
-      0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0,
-      0, 0 } } };
-
-/* TM_specific::DEFAULT_P021_legacy */
-const P21_GradientProfiles_T_Packet_Types_Pkg DEFAULT_P021_legacy_TM_specific = {
-  { kcg_false, Q_DIR_Reverse, Q_SCALE_10_cm_scale, 0, Q_GDIR_downhill, 0 }, {
-    kcg_false, Q_DIR_Reverse, Q_SCALE_10_cm_scale, 0, Q_GDIR_downhill, 0 }, {
-    kcg_false, Q_DIR_Reverse, Q_SCALE_10_cm_scale, 0, Q_GDIR_downhill, 0 }, {
-    kcg_false, Q_DIR_Reverse, Q_SCALE_10_cm_scale, 0, Q_GDIR_downhill, 0 }, {
-    kcg_false, Q_DIR_Reverse, Q_SCALE_10_cm_scale, 0, Q_GDIR_downhill, 0 }, {
-    kcg_false, Q_DIR_Reverse, Q_SCALE_10_cm_scale, 0, Q_GDIR_downhill, 0 }, {
-    kcg_false, Q_DIR_Reverse, Q_SCALE_10_cm_scale, 0, Q_GDIR_downhill, 0 } };
+/* Internal_Tests::DEFAULT_BPos_single */
+const BPos_Single_Internal_Tests DEFAULT_BPos_single_Internal_Tests = { 0,
+  0.0 };
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_consts.c
-** Generation date: 2015-08-11T09:13:49
+** Generation date: 2015-08-12T19:26:02
 *************************************************************$ */
 
