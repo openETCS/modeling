@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 #ifndef _Balise_352_1_AmsterdamUtrechtL2_Sheet05_Amstel_Balises_H_
 #define _Balise_352_1_AmsterdamUtrechtL2_Sheet05_Amstel_Balises_H_
@@ -50,6 +50,6 @@ extern void Balise_352_1_reset_AmsterdamUtrechtL2_Sheet05_Amstel_Balises(
 #endif /* _Balise_352_1_AmsterdamUtrechtL2_Sheet05_Amstel_Balises_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_352_1_AmsterdamUtrechtL2_Sheet05_Amstel_Balises.h
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 

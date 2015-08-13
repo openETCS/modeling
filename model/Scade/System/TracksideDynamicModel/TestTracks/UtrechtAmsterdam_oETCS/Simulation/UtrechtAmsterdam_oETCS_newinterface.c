@@ -1,7 +1,7 @@
 #include "UtrechtAmsterdam_oETCS_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "712267d95b8b0e9f9a9feef332c04792";
+const char* _SCSIM_CheckSum = "92fc8ae53f6a378a8f7565d4e447e16c";
 const char* _SCSIM_SmuTypesCheckSum = "f79c40cc4a28a84eb05b013596813063";
 
 /*******************************
@@ -17,20 +17,20 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-static CompressedPackets_T_Common_Types_Pkg _ctx_Radio_packets_in_restore;
-CompressedPackets_T_Common_Types_Pkg _ctx_Radio_packets_in_buffer;
-static CompressedPackets_T_Common_Types_Pkg _ctx_Radio_packets_out_restore;
-static outC_SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC _ctx_mem_restore;
+static kcg_bool _ctx_reset_restore;
+kcg_bool _ctx_reset_buffer;
+static CompressedBaliseMessage_TM _ctx_BG_data_restore;
+static outC_DriveAllBGs_Internal_Tests _ctx_mem_restore;
 
 static void _SCSIM_RestoreInterface(void) {
-	kcg_copy_struct__2946(&(_ctx_Radio_packets_in_buffer), &(_ctx_Radio_packets_in_restore));
-	kcg_copy_struct__2946(&(Radio_packets_out), &(_ctx_Radio_packets_out_restore));
-	Ctxt_SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC = _ctx_mem_restore;
+	_ctx_reset_buffer = _ctx_reset_restore;
+	kcg_copy_struct__20894(&(BG_data), &(_ctx_BG_data_restore));
+	Ctxt_DriveAllBGs_Internal_Tests = _ctx_mem_restore;
 }
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	kcg_copy_struct__2946(&(Radio_packets_in), &(_ctx_Radio_packets_in_buffer));
+	reset = _ctx_reset_buffer;
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
@@ -57,7 +57,7 @@ int SimReset(void) {
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
 #ifndef KCG_NO_EXTERN_CALL_TO_RESET
-	SendRadioPackets_LRBG_354_reset_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC();
+	DriveAllBGs_reset_Internal_Tests();
 	nRet=1;
 #else /* KCG_NO_EXTERN_CALL_TO_RESET */
 	nRet=0;
@@ -80,7 +80,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC();
+	DriveAllBGs_Internal_Tests();
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -96,9 +96,9 @@ int SimStop(void) {
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(CompressedPackets_T_Common_Types_Pkg);
-	nSize += sizeof(CompressedPackets_T_Common_Types_Pkg);
-	nSize += sizeof(outC_SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC);
+	nSize += sizeof(kcg_bool);
+	nSize += sizeof(CompressedBaliseMessage_TM);
+	nSize += sizeof(outC_DriveAllBGs_Internal_Tests);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -107,12 +107,12 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &Radio_packets_in, sizeof(CompressedPackets_T_Common_Types_Pkg));
-	pCurrent += sizeof(CompressedPackets_T_Common_Types_Pkg);
-	memcpy(pCurrent, &Radio_packets_out, sizeof(CompressedPackets_T_Common_Types_Pkg));
-	pCurrent += sizeof(CompressedPackets_T_Common_Types_Pkg);
-	memcpy(pCurrent, &Ctxt_SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC, sizeof(outC_SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC));
-	pCurrent += sizeof(outC_SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC);
+	memcpy(pCurrent, &reset, sizeof(kcg_bool));
+	pCurrent += sizeof(kcg_bool);
+	memcpy(pCurrent, &BG_data, sizeof(CompressedBaliseMessage_TM));
+	pCurrent += sizeof(CompressedBaliseMessage_TM);
+	memcpy(pCurrent, &Ctxt_DriveAllBGs_Internal_Tests, sizeof(outC_DriveAllBGs_Internal_Tests));
+	pCurrent += sizeof(outC_DriveAllBGs_Internal_Tests);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -120,12 +120,12 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&Radio_packets_in, pCurrent, sizeof(CompressedPackets_T_Common_Types_Pkg));
-	pCurrent += sizeof(CompressedPackets_T_Common_Types_Pkg);
-	memcpy(&Radio_packets_out, pCurrent, sizeof(CompressedPackets_T_Common_Types_Pkg));
-	pCurrent += sizeof(CompressedPackets_T_Common_Types_Pkg);
-	memcpy(&Ctxt_SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC, pCurrent, sizeof(outC_SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC));
-	pCurrent += sizeof(outC_SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC);
+	memcpy(&reset, pCurrent, sizeof(kcg_bool));
+	pCurrent += sizeof(kcg_bool);
+	memcpy(&BG_data, pCurrent, sizeof(CompressedBaliseMessage_TM));
+	pCurrent += sizeof(CompressedBaliseMessage_TM);
+	memcpy(&Ctxt_DriveAllBGs_Internal_Tests, pCurrent, sizeof(outC_DriveAllBGs_Internal_Tests));
+	pCurrent += sizeof(outC_DriveAllBGs_Internal_Tests);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */

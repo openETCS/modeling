@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 #ifndef _Balise_Group_422_AmsterdamUtrechtL2_Sheet13_Breukelen_Maarssen_Balises_H_
 #define _Balise_Group_422_AmsterdamUtrechtL2_Sheet13_Breukelen_Maarssen_Balises_H_
@@ -102,7 +102,7 @@ typedef struct {
 /* AmsterdamUtrechtL2::Sheet13_Breukelen_Maarssen_Balises::Balise_Group_422 */
 extern void Balise_Group_422_AmsterdamUtrechtL2_Sheet13_Breukelen_Maarssen_Balises(
   /* AmsterdamUtrechtL2::Sheet13_Breukelen_Maarssen_Balises::Balise_Group_422::BG_message_in */CompressedBaliseMessage_TM *BG_message_in,
-  /* AmsterdamUtrechtL2::Sheet13_Breukelen_Maarssen_Balises::Balise_Group_422::TrainPos */kcg_real _7_TrainPos,
+  /* AmsterdamUtrechtL2::Sheet13_Breukelen_Maarssen_Balises::Balise_Group_422::TrainPos */kcg_real TrainPos,
   /* AmsterdamUtrechtL2::Sheet13_Breukelen_Maarssen_Balises::Balise_Group_422::Engineering_Data */BaliseGroupData_TM *Engineering_Data,
   outC_Balise_Group_422_AmsterdamUtrechtL2_Sheet13_Breukelen_Maarssen_Balises *outC);
 
@@ -112,6 +112,6 @@ extern void Balise_Group_422_reset_AmsterdamUtrechtL2_Sheet13_Breukelen_Maarssen
 #endif /* _Balise_Group_422_AmsterdamUtrechtL2_Sheet13_Breukelen_Maarssen_Balises_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_Group_422_AmsterdamUtrechtL2_Sheet13_Breukelen_Maarssen_Balises.h
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 

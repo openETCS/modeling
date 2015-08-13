@@ -1,17 +1,17 @@
-#ifndef SENDRADIOPACKETS_LRBG_354_AMSTERDAMUTRECHTL2_SHEET06_BIJLMER_RBC_INTERFACE
-#define SENDRADIOPACKETS_LRBG_354_AMSTERDAMUTRECHTL2_SHEET06_BIJLMER_RBC_INTERFACE
+#ifndef DRIVEALLBGS_INTERNAL_TESTS_INTERFACE
+#define DRIVEALLBGS_INTERNAL_TESTS_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "SendRadioPackets_LRBG_354_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.h"
+#include "DriveAllBGs_Internal_Tests.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern CompressedPackets_T_Common_Types_Pkg _ctx_Radio_packets_in_buffer;
+extern kcg_bool _ctx_reset_buffer;
 /*******************************
  * Validity
  *******************************/
@@ -37,4 +37,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*SENDRADIOPACKETS_LRBG_354_AMSTERDAMUTRECHTL2_SHEET06_BIJLMER_RBC_INTERFACE */
+#endif /*DRIVEALLBGS_INTERNAL_TESTS_INTERFACE */

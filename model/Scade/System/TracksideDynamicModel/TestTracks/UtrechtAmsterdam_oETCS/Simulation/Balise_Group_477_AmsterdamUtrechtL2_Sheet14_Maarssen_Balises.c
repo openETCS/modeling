@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-12T20:04:59
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -23,7 +23,7 @@ void Balise_Group_477_reset_AmsterdamUtrechtL2_Sheet14_Maarssen_Balises(
 /* AmsterdamUtrechtL2::Sheet14_Maarssen_Balises::Balise_Group_477 */
 void Balise_Group_477_AmsterdamUtrechtL2_Sheet14_Maarssen_Balises(
   /* AmsterdamUtrechtL2::Sheet14_Maarssen_Balises::Balise_Group_477::BG_message_in */CompressedBaliseMessage_TM *BG_message_in,
-  /* AmsterdamUtrechtL2::Sheet14_Maarssen_Balises::Balise_Group_477::TrainPos */kcg_real _7_TrainPos,
+  /* AmsterdamUtrechtL2::Sheet14_Maarssen_Balises::Balise_Group_477::TrainPos */kcg_real TrainPos,
   /* AmsterdamUtrechtL2::Sheet14_Maarssen_Balises::Balise_Group_477::Engineering_Data */BaliseGroupData_TM *Engineering_Data,
   outC_Balise_Group_477_AmsterdamUtrechtL2_Sheet14_Maarssen_Balises *outC)
 {
@@ -72,7 +72,7 @@ void Balise_Group_477_AmsterdamUtrechtL2_Sheet14_Maarssen_Balises(
     &outC->Header_1,
     (BaliseTelegramHeader_int_T_TM *) &DEFAULT_BaliseTelegramHd_InfraLib);
   kcg_copy_CompressedBaliseMessage_TM(&outC->_L29, BG_message_in);
-  outC->_L28 = _7_TrainPos;
+  outC->_L28 = TrainPos;
   kcg_copy_BaliseGroupData_TM(&outC->_L19, Engineering_Data);
   /* 1 */ Balise_Group_Init_InfraLib(outC->_L28, &outC->_L19, &outC->Context_1);
   kcg_copy_B_data_internal_T_InfraLib(
@@ -162,6 +162,6 @@ void Balise_Group_477_AmsterdamUtrechtL2_Sheet14_Maarssen_Balises(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_Group_477_AmsterdamUtrechtL2_Sheet14_Maarssen_Balises.c
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-12T20:04:59
 *************************************************************$ */
 

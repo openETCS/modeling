@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -63,7 +63,7 @@ void Balises0005_Abcoude_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises(
   Balise_Group_377_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises(
     &outC->_L8,
     outC->_L2,
-    (BaliseGroupData_TM *) &BG374_Balises426,
+    (BaliseGroupData_TM *) &BG377_Balises426,
     &outC->_3_Context_1);
   kcg_copy_CompressedBaliseMessage_TM(
     &outC->_L9,
@@ -77,6 +77,6 @@ void Balises0005_Abcoude_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balises0005_Abcoude_AmsterdamUtrechtL2_Sheet08A_Abcoude_Balises.c
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 

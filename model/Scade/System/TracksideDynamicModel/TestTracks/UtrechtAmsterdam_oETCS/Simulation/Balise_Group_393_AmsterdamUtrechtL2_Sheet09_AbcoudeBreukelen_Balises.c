@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -23,14 +23,14 @@ void Balise_Group_393_reset_AmsterdamUtrechtL2_Sheet09_AbcoudeBreukelen_Balises(
 /* AmsterdamUtrechtL2::Sheet09_AbcoudeBreukelen_Balises::Balise_Group_393 */
 void Balise_Group_393_AmsterdamUtrechtL2_Sheet09_AbcoudeBreukelen_Balises(
   /* AmsterdamUtrechtL2::Sheet09_AbcoudeBreukelen_Balises::Balise_Group_393::BG_message_in */CompressedBaliseMessage_TM *BG_message_in,
-  /* AmsterdamUtrechtL2::Sheet09_AbcoudeBreukelen_Balises::Balise_Group_393::TrainPos */kcg_real _1_TrainPos,
+  /* AmsterdamUtrechtL2::Sheet09_AbcoudeBreukelen_Balises::Balise_Group_393::TrainPos */kcg_real TrainPos,
   /* AmsterdamUtrechtL2::Sheet09_AbcoudeBreukelen_Balises::Balise_Group_393::Engineering_Data */BaliseGroupData_TM *Engineering_Data,
   outC_Balise_Group_393_AmsterdamUtrechtL2_Sheet09_AbcoudeBreukelen_Balises *outC)
 {
   static kcg_bool noname;
   
   kcg_copy_CompressedBaliseMessage_TM(&outC->_L29, BG_message_in);
-  outC->_L28 = _1_TrainPos;
+  outC->_L28 = TrainPos;
   kcg_copy_BaliseGroupData_TM(&outC->_L19, Engineering_Data);
   /* 1 */ Balise_Group_Init_InfraLib(outC->_L28, &outC->_L19, &outC->Context_1);
   kcg_copy_B_data_internal_T_InfraLib(
@@ -42,7 +42,7 @@ void Balise_Group_393_AmsterdamUtrechtL2_Sheet09_AbcoudeBreukelen_Balises(
   /* 1 */
   Balise_393_1_AmsterdamUtrechtL2_Sheet09_AbcoudeBreukelen_Balises(
     &outC->_L9,
-    (BaliseTelegramHeader_int_T_TM *) &BG392_header_B1_Balises426,
+    (BaliseTelegramHeader_int_T_TM *) &BG393_header_B1_Balises426,
     outC->_L20,
     &outC->_1_Context_1);
   kcg_copy_B_data_internal_T_InfraLib(
@@ -52,7 +52,7 @@ void Balise_Group_393_AmsterdamUtrechtL2_Sheet09_AbcoudeBreukelen_Balises(
   /* 1 */
   Balise_393_0_AmsterdamUtrechtL2_Sheet09_AbcoudeBreukelen_Balises(
     &outC->_L8,
-    (BaliseTelegramHeader_int_T_TM *) &BG392_header_B0_Balises426,
+    (BaliseTelegramHeader_int_T_TM *) &BG393_header_B0_Balises426,
     outC->_L21,
     &outC->_2_Context_1);
   kcg_copy_B_data_internal_T_InfraLib(
@@ -72,6 +72,6 @@ void Balise_Group_393_AmsterdamUtrechtL2_Sheet09_AbcoudeBreukelen_Balises(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_Group_393_AmsterdamUtrechtL2_Sheet09_AbcoudeBreukelen_Balises.c
-** Generation date: 2015-07-21T17:55:34
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 

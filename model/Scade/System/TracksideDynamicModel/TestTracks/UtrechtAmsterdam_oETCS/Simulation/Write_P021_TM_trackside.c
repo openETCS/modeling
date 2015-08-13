@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-10T16:11:03
+** Generation date: 2015-08-12T10:47:32
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -67,6 +67,6 @@ void Write_P021_TM_trackside(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Write_P021_TM_trackside.c
-** Generation date: 2015-08-10T16:11:03
+** Generation date: 2015-08-12T10:47:32
 *************************************************************$ */
 
