@@ -5,11 +5,11 @@
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Component name			& Calculate\_Train\_Position \\
+Component name			& calculateTrainPosition \\
 \midrule
-Link to SCADE model		& {\footnotesize \url{???}} \\
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/ManageLocationRelatedInformation/TrainPosition/CalculateTrainPosition}} \\
 \midrule
-SCADE designer			& ??? \\
+SCADE designer			& Uwe Steinke / Siemens AG \\
 \midrule
 Description				& The main purpose of the function is to calculate the locations of linked and unlinked balise groups (BGs) and the current train position while the train is running along the track. In detail, the calculateTrainPosition function provides a couple of essential subfunctions for the onboard unit. These are mainly
 \begin{itemize}
@@ -31,13 +31,194 @@ Subset-026, Chapter 3.6 \\
 \midrule
 Safety integrity level		& 4 \\
 \midrule
-Time constraints		& [If applicable description of time constraints, otherwise n/a] \\
+Time constraints		& n/a \\
 \midrule
-API requirements 		& [If applicable description of API requirements, otherwise n/a] \\
+API requirements 		& See interface description below \\
 \bottomrule
 \end{longtable}
 
 
 \paragraph{Interface}
 
-For an overview of the interface of this internal component we refer to the SCADE model (c.f.~link above) respectively the SCADE generated documentation.
+An overview of the interface of component calculateTrainPosition is shown in Figure~\ref{f:calculateTrainPosition_interface}. The inputs and outputs are described in detail in Section~\ref{s:calculateTrainPosition_inputs} respectively \ref{s:trackside_outputs}.
+
+\begin{figure}
+\center
+\missingfigure{[Put SysML diagram of component here]}
+\caption{Component SysML diagram}\label{f:calculateTrainPosition_interface}
+\end{figure}
+
+\subsubsection{Inputs}\label{s:calculateTrainPosition_inputs}
+
+\paragraph{currentOdometry}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& currentOdometry \\
+
+\midrule
+Description				& currentOdometry is the actual odometry information as known by the whole EVC model and provided by the models external interface. \newline
+  \\
+\midrule
+Source					& External model interface input \\ 
+\midrule
+Type					& Obu\_BasicTypes\_Pkg::odometry\_T \\  
+\midrule
+Valid range of values	& Obu\_BasicTypes\_Pkg::odometry\_T is a complex data type. \\
+\midrule
+Valid range of values	& Obu\_BasicTypes\_Pkg::odometry\_T is a complex data type. Values are given for each element.\newline Format is: Type Name: range/ list of values
+\begin{itemize}
+\item bool valid: [true | false]. Must be permanently set to "true".
+\item timestamp: (0 - 2147483647). Current time in ms, must be monotonically increasing.
+\item odo: Obu\_BasicTypes\_Pkg::OdometryLocations\_T: current odometry log values with uncertainties; must behave according to {\footnotesize\url{https://github.com/openETCS/SRS-Analysis/blob/master/System%20Analysis/WorkingRepository/Group4/SUBSET_26_3-6/DetermineTrainLocationProcedures.pdf}} [[ 3.1 ]]. Members of OdometryLocations\_T are: 
+\begin{itemize}
+\item o\_nominal: L\_internal\_Type: nominal value in cm.
+\item o\_min:     L\_internal\_Type: \newline min. distance = o\_min2 - o\_min1
+\item o\_max:     L\_internal\_Type: \newline max distance = o\_max2 - o\_max1
+\end{itemize}
+
+\item speed: Obu\_BasicTypes\_Pkg::OdometrySpeeds\_T: not used by calculateTrainPosition
+\item acceleration: Obu\_BasicTypes\_Pkg::A\_internal\_Type: not used by calculateTrainPosition
+\item motionState: \newline [noMotion | Motion]
+\item motionDirection: Obu\_BasicTypes\_Pkg::odoMotionDirection\_T \newline [ unknownDirection | cabAFirst | cabBFirst ]
+\end{itemize}  \\
+
+                     	&  \emph{calculateTrainPosition requires consistent value sets of currentOdometry. calculateTrainPosition itself does not check.}
+\\
+
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. In all other cases, calculateTrainPosition does not have the knowledge for out-of-range checks. \\
+\bottomrule
+\end{longtable}
+
+
+
+\paragraph{msgFromTrack}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& msgFromTrack \\
+
+\midrule
+Description				& With msgFromTrack calculateTrainPosition receives datagrams from balise groups and RBC. \newline
+  \\
+\midrule
+Source					& Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration/ \\ 
+\midrule
+Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\  
+\midrule
+Valid range of values	& Common\_Types\_Pkg::ReceivedMessage\_T is a complex data type. Values are given for each element.\newline Format is: Type Name: range/ list of values
+\begin{itemize}
+\item bool valid: [true | false]. "true" flags a datagram as received and to be evaluated by calculateTrainPosition. Must be set for exactly 1 clock for each received datagram and stay unset otherwise
+\item source: Common\_Types\_Pkg::MsgSource\_T: Designates the source of the datagram: \newline ( msrc\_undefined | msrc\_Euroradio | msrc\_Eurobalise | msrc\_RadioInfillUnit | msrc\_OBU ) 
+
+\item radioMetaData: Common\_Types\_Pkg::radioMetaData\_T: not used by calculateTrainPosition
+
+\item BG\_Common\_Header: BG\_Types\_Pkg::BG\_Header\_T: Header information received from balise groups, refer to Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration
+
+\item Radio\_Common\_Header: Radio\_Types\_Pkg::Radio\_TrackTrain\_Header\_T: Header information received from RBC via radio, refer to Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration
+
+\item packets: Common\_Types\_Types\_Pkg::CompressedPackets\_T: datagram packets, refer to Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration. calculatesTrainPosition extracts packet 5 (linking information), if available.
+
+\item sendingRBC: Common\_Types\_Types\_Pkg::RBC\_Id\_T: designates the origin RBC and the mobile modem channel used onboard, if received via radio. Refer to Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration for more detailed information.
+
+\end{itemize}  \\
+
+                     	&  \emph{calculateTrainPosition expects the received information to be consistent and validated before applied to. It does not check, if the information is appropriate due to current EVC mode, level, train or balise orientation. Received balise group or linking information already known by calculateTrainPosition overrides former data.}
+\\
+
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. In all other cases, calculateTrainPosition does not have the knowledge for out-of-range checks. \\
+
+\bottomrule
+\end{longtable}
+
+
+
+
+\paragraph{trainProperties}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& trainProperties \\
+
+\midrule
+Description				& Supplies calculateTrainPosition with train specific properties required for position calculation. \newline
+  \\
+\midrule
+Source					& EVC\_Support\_Pkg::maintainTrainProperties/ \\ 
+\midrule
+Type					& TrainPosition\_Types\_Pck::trainProperties\_T \\  
+\midrule
+Valid range of values	& TrainPosition\_Types\_Pck::trainProperties\_T is a complex data type. Values are given for each element.\newline Format is: Type Name: range/ list of values
+\begin{itemize}
+\item nid\_engine:: NID\_ENGINE as defined by subset 026-7. 
+\item nid\_operational: NID\_OPERATIONAL as defined by subset 026-7. 
+\item l\_train: L\_TRAIN as defined by subset 026-7. 
+
+\item d\_baliseAntenna\_2\_frontend: Obu\_BasicTypes\_Pkg::LocWithInAcc\_T:  Distance from the trains balise antenna to the trains front end, in cm with uncertainties. 
+
+\item d\_frontend\_2\_rearend: Obu\_BasicTypes\_Pkg::LocWithInAcc\_T:  Distance from the trains Distance from the trains front end to rear end, in cm with uncertainties. 
+
+\item locationAccuracy\_DefaultValue: Obu\_BasicTypes\_Pkg::LocWithInAcc\_T:  Default location accuracy of balise groups (subset 026, 3.6.4.3.2), in cm with uncertainties. 
+
+\item centerDetectionAcc\_DefaultValue: Obu\_BasicTypes\_Pkg::LocWithInAcc\_T:  Default  accuracy of balise groups detection of the BTM, in cm with uncertainties. Will be applied, if centerDetectionInaccuracy from BTM is not available, especially for announced and not yet passed BGs. 
+
+\end{itemize}  \\
+
+                     	&  \emph{calculateTrainPosition expects this information to be consistent and validated before applied to.}
+\\
+
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. In all other cases, calculateTrainPosition does not have the knowledge for out-of-range checks. \\
+
+\bottomrule
+\end{longtable}
+
+
+
+\paragraph{passedBG}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& passedBG \\
+
+\midrule
+Description				& Deprecated alternative input to msgFromTrack. Must not be used any more and is subject to be removed in subsequent releases.  \newline
+  \\
+
+\bottomrule
+\end{longtable}
+
+
+\paragraph{reset}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& reset \\
+
+\midrule
+Description				& Resets and keeps calculateTrainPosition at its initial state and deletes all internally stored data. \newline
+  \\
+\midrule
+Source					& To whom it may concern/ \\ 
+\midrule
+Type					& bool \\  
+\midrule
+Valid range of values	& [ false | true ] \\
+
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. \\
+
+\bottomrule
+\end{longtable}
+
+
