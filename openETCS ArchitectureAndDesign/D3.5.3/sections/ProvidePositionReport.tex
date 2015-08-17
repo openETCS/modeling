@@ -9,16 +9,23 @@ Component name			& Provide\_Position\_Report \\
 \midrule
 Link to SCADE model		& {\footnotesize \url{???}} \\
 \midrule
-SCADE designer			& ??? \\
+SCADE designer			& Christian Stahl, TWT GmbH \\
 \midrule
-Description				& This function takes the current train position and generates a position report which is sent to the RBC. The point in time when such a report is sent is determined by events, on the one hand, and position report parameters---which are basically triggers---provided by the RBC or a balise group passed, on the other hand. The functionality is modeled using four operators, which are explained below.
+Description				&  The component builds a position report for the RBC, i.e., message 132, and provides it as an output.  There are two triggers for sending message 132:  (1) at least
+one of the triggers of the position report parameters (packet 58) holds or 
+(2) one of the events enabling the sending of the report occurs.
+As the core position report (i.e., packet 0 or 1) is added to other packets, the
+component also provides in every clock cycle this core position report. At most one of the two packets is valid.
+
+Figure~\ref{f:provide_position_report_interface} depicts the architecture of the component. In the following, we describe the functionality of each subcomponent:
 \begin{description}
-	\item[CalculateSafeTrainLength] Calculates the the safeTrainLength and the MinSafeRearEnd according to \cite[Chapter~3.6.5.2.4/5]{subset-026}. 
-\verb+safeTrainLength =  absolute(EstimatedFrontEndPosition - MinSafeRearEnd)+, where
-\verb+MinSafeRearEnd = minSafeFrontEndPosition - L_TRAIN+.
-	\item[EvaluateTriggerAndEvents] Returns a Boolean modelling whether the sending of the next position report is triggered or not. This value is the conjunction of the evaluation of all triggers (PositionReportParameters, i.e., Packet 58) and events (see \cite[Chapter~3.6.5.1.4]{subset-026}).
-	\item[ErrorManager] Takes a boolean flag for each possible error that has been occurred and outputs the respective error using type \verb+M_ERROR+
-	\item[CollectData] This operation aggregates data of Packet 0, \dots, Packet 5 and the header to a position report.
+	\item[ReceiveReportParameters] The component reads the position report parameters (i.e., packet 58) from the message bus. When a report is received, the BG information provided is used to 
+update the location of respective BG. This BG is being stored in the list of the last 8 BGs.
+	\item[PosReport\_Supervision] The component supervises trigger (i.e., position report parameter) and events that trigger the sending of a position report. If the output is true, then a report has to be sent.
+	\item[ErrorManager] The component takes all nine possible error messages as an input and aggregates them to a vector.
+	\item[Build\_Packets0\_1] The component builds packets 0 and 1; at most one of them is valid.
+	\item[Build\_PosReport] The component builds nine position report messages---there can be up to nine errors, and for each error an individual report has to be sent. 
+\item[AddBGToFIFO] The component adds the current reported BG to the list of BGs for which a report has been sent. Adding of this BG is performed according to the FIFO method.
 \end{description} \\
 \midrule
 Input documents	& 
@@ -35,4 +42,11 @@ API requirements 		& [If applicable description of API requirements, otherwise n
 
 \paragraph{Interface}
 
-For an overview of the interface of this internal component we refer to the SCADE model (c.f.~link above) respectively the SCADE generated documentation.
+\begin{figure}
+\center
+\missingfigure{[Put SysML diagram of component here]}
+\caption{Provide Position Report component SysML diagram}\label{f:provide_position_report_interface}
+\end{figure}
+
+
+Figure~\ref{f:provide_position_report_interface} shows the architecture of component Provide Position Report. Most of the inputs and outputs have been explained in detail in Section~\ref{s:manage_track_data_inputs} and Section~\ref{s:manage_track_data_outputs}
