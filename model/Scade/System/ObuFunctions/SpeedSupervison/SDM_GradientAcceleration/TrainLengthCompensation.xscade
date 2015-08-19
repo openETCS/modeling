@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="function" name="TrainLengthCompensation">
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="function" name="TrainLengthCompensation">
 	<inputs>
 		<Variable name="d_est_front">
 			<type>
@@ -383,7 +383,7 @@
 				<ed:Variable oid="!ed/2c65a/2970/17E0/555c8a7957b5"/>
 			</pragmas>
 		</Variable>
-		<Variable name="_L39">
+		<Variable name="_L41">
 			<type>
 				<NamedType>
 					<type>
@@ -392,10 +392,34 @@
 				</NamedType>
 			</type>
 			<pragmas>
-				<ed:Variable oid="!ed/2c65d/2970/17E0/555c8a95576"/>
+				<ed:Variable oid="!ed/2c71d/2970/17E0/555ca7e477cf"/>
 			</pragmas>
 		</Variable>
-		<Variable name="_L38">
+		<Variable name="_L42">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/543a5/7AF5/1234/55d45d411387"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L45">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="SDM_GradientAcceleration_types::GradientProfile_real_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/543cc/7AF5/1234/55d45d703717"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L44">
 			<type>
 				<NamedType>
 					<type>
@@ -404,10 +428,22 @@
 				</NamedType>
 			</type>
 			<pragmas>
-				<ed:Variable oid="!ed/2c65c/2970/17E0/555c8a953384"/>
+				<ed:Variable oid="!ed/543ca/7AF5/1234/55d45d704540"/>
 			</pragmas>
 		</Variable>
-		<Variable name="_L40">
+		<Variable name="_L43">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="SDM_GradientAcceleration_types::Gradient_section_real_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/543c8/7AF5/1234/55d45d702307"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L46">
 			<type>
 				<NamedType>
 					<type>
@@ -416,19 +452,19 @@
 				</NamedType>
 			</type>
 			<pragmas>
-				<ed:Variable oid="!ed/2c70a/2970/17E0/555c8d2e28e2"/>
+				<ed:Variable oid="!ed/543ce/7AF5/1234/55d45d8160e0"/>
 			</pragmas>
 		</Variable>
-		<Variable name="_L41">
+		<Variable name="_L47">
 			<type>
 				<NamedType>
 					<type>
-						<TypeRef name="real"/>
+						<TypeRef name="SDM_Types_Pkg::L_internal_real_Type"/>
 					</type>
 				</NamedType>
 			</type>
 			<pragmas>
-				<ed:Variable oid="!ed/2c71d/2970/17E0/555ca7e477cf"/>
+				<ed:Variable oid="!ed/543e5/7AF5/1234/55d45d8c3e57"/>
 			</pragmas>
 		</Variable>
 	</locals>
@@ -465,14 +501,14 @@
 				<ed:Equation oid="!ed/16315/CBA/8BC/5548b63570da"/>
 			</pragmas>
 		</Equation>
-		<!-- _L5, _L3 = ( foldwi internalCycle<<SDM_GradientAcceleration_types::GradientMaxSec... -->
+		<!-- _L5, _L3 = (foldwi internalCycle <<SDM_GradientAcceleration_types::GradientMaxSec... -->
 		<Equation>
 			<lefts>
 				<VariableRef name="_L5"/>
 				<VariableRef name="_L3"/>
 			</lefts>
 			<right>
-				<!-- ( foldwi internalCycle<<SDM_GradientAcceleration_types::GradientMaxSectionsTrainl... -->
+				<!-- (foldwi internalCycle <<SDM_GradientAcceleration_types::GradientMaxSectionsTrainl... -->
 				<CallExpression>
 					<operator>
 						<PartialIteratorOp iterator="foldwi">
@@ -538,13 +574,13 @@
 				<ed:Equation oid="!ed/16181/2970/17E0/555c804b41e5"/>
 			</pragmas>
 		</Equation>
-		<!-- _L7 = _L6 ^ (TrackAtlasTypes::GradientMaxSections * 2); -->
+		<!-- _L7 = _L6 ^ SDM_GradientAcceleration_types::GradientMaxSectionsTrainlengthCompens... -->
 		<Equation>
 			<lefts>
 				<VariableRef name="_L7"/>
 			</lefts>
 			<right>
-				<!-- _L6 ^ (TrackAtlasTypes::GradientMaxSections * 2) -->
+				<!-- _L6 ^ SDM_GradientAcceleration_types::GradientMaxSectionsTrainlengthCompensated -->
 				<ScalarToVectorOp name="1">
 					<flow>
 						<ListExpression>
@@ -558,17 +594,11 @@
 						</ListExpression>
 					</flow>
 					<size>
-						<!-- (TrackAtlasTypes::GradientMaxSections * 2) -->
-						<NAryOp operator="*">
-							<operands>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
-									</path>
-								</IdExpression>
-								<ConstValue value="2"/>
-							</operands>
-						</NAryOp>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="SDM_GradientAcceleration_types::GradientMaxSectionsTrainlengthCompensated"/>
+							</path>
+						</IdExpression>
 					</size>
 				</ScalarToVectorOp>
 			</right>
@@ -576,13 +606,13 @@
 				<ed:Equation oid="!ed/16194/2970/17E0/555c807123a"/>
 			</pragmas>
 		</Equation>
-		<!-- _L8 = _L1 ^ (TrackAtlasTypes::GradientMaxSections * 2); -->
+		<!-- _L8 = _L1 ^ SDM_GradientAcceleration_types::GradientMaxSectionsTrainlengthCompens... -->
 		<Equation>
 			<lefts>
 				<VariableRef name="_L8"/>
 			</lefts>
 			<right>
-				<!-- _L1 ^ (TrackAtlasTypes::GradientMaxSections * 2) -->
+				<!-- _L1 ^ SDM_GradientAcceleration_types::GradientMaxSectionsTrainlengthCompensated -->
 				<ScalarToVectorOp name="2">
 					<flow>
 						<ListExpression>
@@ -596,17 +626,11 @@
 						</ListExpression>
 					</flow>
 					<size>
-						<!-- (TrackAtlasTypes::GradientMaxSections * 2) -->
-						<NAryOp operator="*">
-							<operands>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
-									</path>
-								</IdExpression>
-								<ConstValue value="2"/>
-							</operands>
-						</NAryOp>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="SDM_GradientAcceleration_types::GradientMaxSectionsTrainlengthCompensated"/>
+							</path>
+						</IdExpression>
 					</size>
 				</ScalarToVectorOp>
 			</right>
@@ -957,80 +981,44 @@
 				<ed:Equation oid="!ed/2c658/2970/17E0/555c8a76534d"/>
 			</pragmas>
 		</Equation>
-		<!-- _L38, _L39 = CalcBrakingCurves_types::searchIdxFloor(_null, _null, _null, _null, ... -->
+		<!-- _L42, _L41 = (foldwi SearchIndexOfFrontendOnGradientprofile <<SDM_GradientAcceler... -->
 		<Equation>
 			<lefts>
-				<VariableRef name="_L38"/>
-				<VariableRef name="_L39"/>
-			</lefts>
-			<right>
-				<!-- CalcBrakingCurves_types::searchIdxFloor(_null, _null, _null, _null, _null) -->
-				<CallExpression>
-					<operator>
-						<OpCall name="1">
-							<operator>
-								<OperatorRef name="CalcBrakingCurves_types::searchIdxFloor"/>
-							</operator>
-						</OpCall>
-					</operator>
-					<callParameters>
-						<IdExpression>
-							<path>
-								<NullRef/>
-							</path>
-						</IdExpression>
-						<IdExpression>
-							<path>
-								<NullRef/>
-							</path>
-						</IdExpression>
-						<IdExpression>
-							<path>
-								<NullRef/>
-							</path>
-						</IdExpression>
-						<IdExpression>
-							<path>
-								<NullRef/>
-							</path>
-						</IdExpression>
-						<IdExpression>
-							<path>
-								<NullRef/>
-							</path>
-						</IdExpression>
-					</callParameters>
-				</CallExpression>
-			</right>
-			<pragmas>
-				<ed:Equation oid="!ed/2c65b/2970/17E0/555c8a9560f"/>
-			</pragmas>
-		</Equation>
-		<!-- _L41, _L40 = SearchIndexOfFrontendOnGradientprofile(_null, _null, _null, _null); -->
-		<Equation>
-			<lefts>
+				<VariableRef name="_L42"/>
 				<VariableRef name="_L41"/>
-				<VariableRef name="_L40"/>
 			</lefts>
 			<right>
-				<!-- SearchIndexOfFrontendOnGradientprofile(_null, _null, _null, _null) -->
+				<!-- (foldwi SearchIndexOfFrontendOnGradientprofile <<SDM_GradientAcceleration_types::... -->
 				<CallExpression>
 					<operator>
-						<OpCall name="1">
+						<PartialIteratorOp name="1" iterator="foldwi">
 							<operator>
-								<OperatorRef name="SearchIndexOfFrontendOnGradientprofile"/>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="SearchIndexOfFrontendOnGradientprofile"/>
+									</operator>
+								</OpCall>
 							</operator>
-						</OpCall>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="SDM_GradientAcceleration_types::GradientMaxSectionsTrainlengthCompensated"/>
+									</path>
+								</IdExpression>
+							</size>
+							<if>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L44"/>
+									</path>
+								</IdExpression>
+							</if>
+						</PartialIteratorOp>
 					</operator>
 					<callParameters>
 						<IdExpression>
 							<path>
-								<NullRef/>
-							</path>
-						</IdExpression>
-						<IdExpression>
-							<path>
-								<NullRef/>
+								<ConstVarRef name="_L46"/>
 							</path>
 						</IdExpression>
 						<IdExpression>
@@ -1050,9 +1038,101 @@
 				<ed:Equation oid="!ed/2c709/2970/17E0/555c8d2e33ef"/>
 			</pragmas>
 		</Equation>
+		<!-- _L43 = _L45[0]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L43"/>
+			</lefts>
+			<right>
+				<!-- _L45[0] -->
+				<PrjOp name="4">
+					<flow>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L45"/>
+							</path>
+						</IdExpression>
+					</flow>
+					<with>
+						<ConstValue value="0"/>
+					</with>
+				</PrjOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/543c7/7AF5/1234/55d45d704c4c"/>
+			</pragmas>
+		</Equation>
+		<!-- _L44 = _L43.valid; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L44"/>
+			</lefts>
+			<right>
+				<!-- _L43.valid -->
+				<PrjOp name="3">
+					<flow>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L43"/>
+							</path>
+						</IdExpression>
+					</flow>
+					<with>
+						<Label name="valid"/>
+					</with>
+				</PrjOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/543c9/7AF5/1234/55d45d707ccf"/>
+			</pragmas>
+		</Equation>
+		<!-- _L45 = GradientProfile; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L45"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="GradientProfile"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/543cb/7AF5/1234/55d45d705b86"/>
+			</pragmas>
+		</Equation>
+		<!-- _L46 = 0; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L46"/>
+			</lefts>
+			<right>
+				<ConstValue value="0"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/543cd/7AF5/1234/55d45d81257a"/>
+			</pragmas>
+		</Equation>
+		<!-- _L47 = d_est_front; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L47"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="d_est_front"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/543e4/7AF5/1234/55d45d8c39a"/>
+			</pragmas>
+		</Equation>
 	</data>
 	<pragmas>
-		<ed:Operator oid="!ed/a53d/CBA/8BC/5548b5af4e83" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+		<ed:Operator oid="!ed/a53d/CBA/8BC/5548b5af4e83" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 			<diagrams>
 				<NetDiagram name="diagram_TrainLengthCompensation_1" landscape="true" format="A4 (210 297)" oid="!ed/a53e/CBA/8BC/5548b5af21a8">
 					<presentationElements>
@@ -1315,8 +1395,8 @@
 							<positions>
 								<Point x="7699" y="7911"/>
 								<Point x="8493" y="7911"/>
-								<Point x="8493" y="7885"/>
-								<Point x="9287" y="7885"/>
+								<Point x="8493" y="7911"/>
+								<Point x="9287" y="7911"/>
 							</positions>
 						</Edge>
 						<EquationGE presentable="!ed/2c5b6/2970/17E0/555c89aac71">
@@ -1382,20 +1462,85 @@
 								<Point x="9287" y="9631"/>
 							</positions>
 						</Edge>
-						<EquationGE presentable="!ed/2c65b/2970/17E0/555c8a9560f">
-							<position>
-								<Point x="7594" y="17171"/>
-							</position>
-							<size>
-								<Size width="1772" height="1403"/>
-							</size>
-						</EquationGE>
 						<EquationGE presentable="!ed/2c709/2970/17E0/555c8d2e33ef">
 							<position>
-								<Point x="2514" y="5133"/>
+								<Point x="15708" y="16132"/>
 							</position>
 							<size>
-								<Size width="1772" height="1402"/>
+								<Size width="5387" height="3349"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/543c7/7AF5/1234/55d45d704c4c">
+							<position>
+								<Point x="12912" y="14896"/>
+							</position>
+							<size>
+								<Size width="979" height="847"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/543c9/7AF5/1234/55d45d707ccf">
+							<position>
+								<Point x="14340" y="14843"/>
+							</position>
+							<size>
+								<Size width="952" height="953"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/543cb/7AF5/1234/55d45d705b86">
+							<position>
+								<Point x="12303" y="15028"/>
+							</position>
+							<size>
+								<Size width="265" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/543c7/7AF5/1234/55d45d704c4c" dstEquation="!ed/543c9/7AF5/1234/55d45d707ccf">
+							<positions>
+								<Point x="13891" y="15319"/>
+								<Point x="14102" y="15319"/>
+								<Point x="14102" y="15319"/>
+								<Point x="14340" y="15319"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/543cb/7AF5/1234/55d45d705b86" dstEquation="!ed/543c7/7AF5/1234/55d45d704c4c">
+							<positions>
+								<Point x="12568" y="15293"/>
+								<Point x="12806" y="15293"/>
+								<Point x="12806" y="15293"/>
+								<Point x="12912" y="15293"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/543c9/7AF5/1234/55d45d707ccf" dstEquation="!ed/2c709/2970/17E0/555c8d2e33ef">
+							<positions>
+								<Point x="15293" y="15319"/>
+								<Point x="18415" y="15319"/>
+								<Point x="18415" y="15954"/>
+								<Point x="18389" y="15954"/>
+								<Point x="18389" y="16140"/>
+							</positions>
+						</Edge>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/543cd/7AF5/1234/55d45d81257a">
+							<position>
+								<Point x="14182" y="17145"/>
+							</position>
+							<size>
+								<Size width="211" height="318"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/543cd/7AF5/1234/55d45d81257a" dstEquation="!ed/2c709/2970/17E0/555c8d2e33ef">
+							<positions>
+								<Point x="14393" y="17304"/>
+								<Point x="15055" y="17304"/>
+								<Point x="15055" y="17463"/>
+								<Point x="15716" y="17463"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/543e4/7AF5/1234/55d45d8c39a">
+							<position>
+								<Point x="10742" y="17965"/>
+							</position>
+							<size>
+								<Size width="265" height="503"/>
 							</size>
 						</EquationGE>
 					</presentationElements>
