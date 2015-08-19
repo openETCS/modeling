@@ -1,0 +1,2309 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Type name="DMI_Status_INT_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="valid">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/38f2a/6E5D/1EF4/55b5f55970d5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Valid indicator for the packet</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="systemTime">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/38f2b/6E5D/1EF4/55b5f5594e17" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Clock value of the last received dynamic data.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="statusSet">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/38f2c/6E5D/1EF4/55b5f5595f4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Set of status the DMI can be in.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="nAlive">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/38f2d/6E5D/1EF4/55b5f5594dde" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Alive counter. Needs to be incremented by the DMI in order to see communication is sane.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/38f29/6E5D/1EF4/55b5f5591ea2" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>DMI -&gt; EVC: Activity Status of the DMI</comment>
+				</ed:Type>
+			</pragmas>
+		</Type>
+		<Constant name="ENUM_DMI_DMI_Identifier_T_DMI_1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_DMI_Identifier_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::DMI_1"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39003/6E5D/1EF4/55b611c71013"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_DMI_Identifier_T_DMI_2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_DMI_Identifier_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::DMI_2"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39061/6E5D/1EF4/55b612e86da4"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_DMI_Identifier_T_DMI_1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39068/6E5D/1EF4/55b613257807"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_DMI_Identifier_T_DMI_2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="1"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3907e/6E5D/1EF4/55b6134536e8"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Cabin_Identifier_T_cabin_A">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Cabin_Identifier_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::cabin_A"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/38fca/B01/2EA0/55bf5f1177f1"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Cabin_Identifier_T_cabin_B">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Cabin_Identifier_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::cabin_B"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/38fda/B01/2EA0/55bf5f6c32c5"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Cabin_Identifier_T_cabin_A">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/38fe9/B01/2EA0/55bf5f8b5095"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Cabin_Identifier_T_cabin_B">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="1"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/38fff/B01/2EA0/55bf5fb07032"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Running_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Running_state"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3909f/B01/2EA0/55bf61d432b1"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Starting_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Starting_state"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390af/B01/2EA0/55bf6259297d"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Failure_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Failure_state"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390b6/B01/2EA0/55bf625c7016"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Running_not_active_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Running_not_active_state"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390bd/B01/2EA0/55bf625eff8"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Train_Speed_Overflow">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Train_Speed_Overflow"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390c4/B01/2EA0/55bf625e1e6f"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Invalid_track_condition">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Invalid_track_condition"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390cb/B01/2EA0/55bf625f7ac0"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Invalid_predefined_text_message">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Invalid_predefined_text_message"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390d2/B01/2EA0/55bf626023f7"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Invalid_text_message">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Invalid_text_message"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390d9/B01/2EA0/55bf6260ec6"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_HW_warning_temp_reached">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::HW_warning_temp_reached"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390e0/B01/2EA0/55bf6261ef0"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_TFT_OFF_temp_reached">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::TFT_OFF_temp_reached"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390e7/B01/2EA0/55bf62615020"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Device_OFF_temp_reached">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Device_OFF_temp_reached"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/390fc/B01/2EA0/55bf666e315b"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Over_temperature">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Over_temperature"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39103/B01/2EA0/55bf66705b45"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Backlight_on_off">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Backlight_on_off"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3910a/B01/2EA0/55bf667234df"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_FAN_blocked">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::FAN_blocked"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39111/B01/2EA0/55bf667329a7"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Power_supply_key_switch_off">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Power_supply_key_switch_off"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39118/B01/2EA0/55bf6674681a"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_StatusSet_T_Watchdog_not_running">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_StatusSet_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Watchdog_not_running"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3911f/B01/2EA0/55bf6674f0c"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Watchdog_not_running">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="16"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3918f/B01/2EA0/55bf67671d85"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Train_Speed_Overflow">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="4"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39188/B01/2EA0/55bf67676e44"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_TFT_OFF_temp_reached">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="9"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39181/B01/2EA0/55bf67677834"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Starting_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="1"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3917a/B01/2EA0/55bf67674daa"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Running_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39173/B01/2EA0/55bf67675d1b"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Running_not_active_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="3"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3916c/B01/2EA0/55bf676728b8"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Power_supply_key_switch_off">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="15"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39165/B01/2EA0/55bf67674e7b"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Over_temperature">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="11"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3915e/B01/2EA0/55bf67675105"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Invalid_track_condition">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="5"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39157/B01/2EA0/55bf67672982"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Invalid_text_message">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="7"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39150/B01/2EA0/55bf676741e"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Invalid_predefined_text_message">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="6"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39149/B01/2EA0/55bf6767a3c"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_HW_warning_temp_reached">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="8"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39142/B01/2EA0/55bf67677d79"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_FAN_blocked">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="14"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3913b/B01/2EA0/55bf67675113"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Failure_state">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="2"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39134/B01/2EA0/55bf6767468a"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Device_OFF_temp_reached">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="10"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3912d/B01/2EA0/55bf6767928"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_StatusSet_T_Backlight_on_off">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="12"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39126/B01/2EA0/55bf676763d"/>
+			</pragmas>
+		</Constant>
+		<Type name="DMI_TEXT_INT_Array_T">
+			<definition>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="DMI_Types_Pkg::cDMI_charsInText"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/39d08/B01/2EA0/55bf801e389a"/>
+			</pragmas>
+		</Type>
+		<Type name="DMI_Identifier_INT_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="valid">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/39086/61D/146C/55c0aab3481f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Valid indicator for the packet</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="systemTime">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/39087/61D/146C/55c0aab31597" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Clock value of the last received dynamic data.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="DMI_Identifier">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/39088/61D/146C/55c0aab3b8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Identifier of the DMI</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="Cabin_Identifier">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/39089/61D/146C/55c0aab33da7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Idntifier of the Cabin</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="l_name">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="L_TEXT"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/3908a/61D/146C/55c0aab36110" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>length of the DMI name</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="DMI_name">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="DMI_TEXT_INT_Array_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/3908b/61D/146C/55c0aab328a6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Name of the DMI</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="M_VERSION">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/3908c/61D/146C/55c0aab33b23" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Version of the DMI</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/39085/61D/146C/55c0aab34c26"/>
+			</pragmas>
+		</Type>
+		<Constant name="ENUM_DMI_Request_T_Train_running_number_entry_aborted">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Train_running_number_entry_aborted"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/396f5/4FD/3768/55c1feb1382a"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Train_data_entry_aborted">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Train_data_entry_aborted"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/396ee/4FD/3768/55c1feb16abf"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Track_Ahead_Free_is_validated">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Track_Ahead_Free_is_validated"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/396e7/4FD/3768/55c1feb13b3a"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_The_Train_Integrity_request">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::The_Train_Integrity_request"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/396e0/4FD/3768/55c1feb13440"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Start_of_mission">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Start_of_mission"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/396d9/4FD/3768/55c1feb17208"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_SR_data_entry_aborted">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::SR_data_entry_aborted"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/396d2/4FD/3768/55c1feb1cbd"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Shunting_exit">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Shunting_exit"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/396cb/4FD/3768/55c1feb16b43"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Shunting_entry">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Shunting_entry"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/396c4/4FD/3768/55c1feb15397"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Show_tunnel_stopping_information">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Show_tunnel_stopping_information"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/396bd/4FD/3768/55c1feb16502"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Set_VBC_request">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Set_VBC_request"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/396b6/4FD/3768/55c1feb145d7"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Scroll_text_up">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Scroll_text_up"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/396af/4FD/3768/55c1feb14eed"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Scroll_text_down">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Scroll_text_down"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/396a8/4FD/3768/55c1feb11027"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Request_to_use_short_number">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Request_to_use_short_number"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/396a1/4FD/3768/55c1feb12748"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Request_to_show_supervision_data">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Request_to_show_supervision_data"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3969a/4FD/3768/55c1feb15917"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Request_to_show_geographical_position">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Request_to_show_geographical_position"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39693/4FD/3768/55c1feb118a3"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Request_to_hide_supervision_data">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Request_to_hide_supervision_data"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3968c/4FD/3768/55c1feb14138"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Request_to_hide_geographical_information">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Request_to_hide_geographical_information"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39685/4FD/3768/55c1feb17243"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Request_to_contact_last_known_RBC">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Request_to_contact_last_known_RBC"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3967e/4FD/3768/55c1feb17213"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Request_isolation">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Request_isolation"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39677/4FD/3768/55c1feb11b7a"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Request_for_train_data_view">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Request_for_train_data_view"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39670/4FD/3768/55c1feb13a0a"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Request_for_train_data">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Request_for_train_data"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39669/4FD/3768/55c1feb1a88"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Request_for_system_version">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Request_for_system_version"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39662/4FD/3768/55c1feb13297"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Request_for_switching_train_data_entry">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Request_for_switching_train_data_entry"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3965b/4FD/3768/55c1feb121c3"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Request_for_SR_data">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Request_for_SR_data"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39654/4FD/3768/55c1feb1579b"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Request_for_radio_network_entry">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Request_for_radio_network_entry"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3964d/4FD/3768/55c1feb1320b"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Request_for_Adhesion_factor_data">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Request_for_Adhesion_factor_data"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39646/4FD/3768/55c1feb11986"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Remove_VBC_request">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Remove_VBC_request"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3963f/4FD/3768/55c1feb14fe2"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Radio_network_entry_aborted">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Radio_network_entry_aborted"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39638/4FD/3768/55c1feb121aa"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Override_route_unsuitability">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Override_route_unsuitability"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39631/4FD/3768/55c1feb13897"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Override_EOA">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Override_EOA"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3962a/4FD/3768/55c1feb16fc"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_NTC_data_entry_request">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::NTC_data_entry_request"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39623/4FD/3768/55c1feb14764"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Non_leading_exit">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Non_leading_exit"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3961c/4FD/3768/55c1feb162fe"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Non_leading">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Non_leading"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39615/4FD/3768/55c1feb17e7c"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Maintain_shunting">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Maintain_shunting"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3960e/4FD/3768/55c1feb161b7"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Level_entry_request">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Level_entry_request"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39607/4FD/3768/55c1feb17e4e"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Language_changed">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Language_changed"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39600/4FD/3768/55c1feb15ce2"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_Hide_tunnel_stopping_information">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::Hide_tunnel_stopping_information"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/395f9/4FD/3768/55c1feb17d89"/>
+			</pragmas>
+		</Constant>
+		<Constant name="ENUM_DMI_Request_T_End_of_NTC_data_entry">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_Request_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="DMI_Types_Pkg::End_of_NTC_data_entry"/>
+					</path>
+				</IdExpression>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/395f2/4FD/3768/55c1feb121b6"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Train_running_number_entry_aborted">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="19"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39909/4FD/3768/55c1fee052f6"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Train_data_entry_aborted">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="18"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/398fb/4FD/3768/55c1fee030ae"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Track_Ahead_Free_is_validated">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="30"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/398ed/4FD/3768/55c1fee0383e"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_The_Train_Integrity_request">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="31"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/398df/4FD/3768/55c1fee05092"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Start_of_mission">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/398d1/4FD/3768/55c1fee051e4"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_SR_data_entry_aborted">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="20"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/398c3/4FD/3768/55c1fee06c6e"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Shunting_exit">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="2"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/398b5/4FD/3768/55c1fee03b83"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Shunting_entry">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="1"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/398a7/4FD/3768/55c1fee0362"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Show_tunnel_stopping_information">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="34"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39899/4FD/3768/55c1fee07052"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Set_VBC_request">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="32"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3988b/4FD/3768/55c1fee077bb"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Scroll_text_up">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="25"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3987d/4FD/3768/55c1fee0485a"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Scroll_text_down">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="26"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3986f/4FD/3768/55c1fee014c8"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Request_to_use_short_number">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="28"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39861/4FD/3768/55c1fee03e7"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Request_to_show_supervision_data">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="23"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39853/4FD/3768/55c1fee044f0"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Request_to_show_geographical_position">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="16"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39845/4FD/3768/55c1fee0393d"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Request_to_hide_supervision_data">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="24"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39837/4FD/3768/55c1fee06c03"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Request_to_hide_geographical_information">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="22"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39829/4FD/3768/55c1fee0388e"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Request_to_contact_last_known_RBC">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="27"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3981b/4FD/3768/55c1fee019cf"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Request_isolation">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="29"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3980d/4FD/3768/55c1fee03a2b"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Request_for_train_data_view">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="15"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/397ff/4FD/3768/55c1fee08f4"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Request_for_train_data">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="10"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/397f1/4FD/3768/55c1fee06af8"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Request_for_system_version">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="13"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/397e3/4FD/3768/55c1fee01dfb"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Request_for_switching_train_data_entry">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="14"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/397d5/4FD/3768/55c1fee02b24"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Request_for_SR_data">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="12"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/397c7/4FD/3768/55c1fee05aa4"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Request_for_radio_network_entry">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="9"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/397b9/4FD/3768/55c1fee01318"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Request_for_Adhesion_factor_data">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="11"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/397ab/4FD/3768/55c1fee0797e"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Remove_VBC_request">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="33"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3979d/4FD/3768/55c1fee012af"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Radio_network_entry_aborted">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="21"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3978f/4FD/3768/55c1fee025bb"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Override_route_unsuitability">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="8"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39781/4FD/3768/55c1fee03ea6"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Override_EOA">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="7"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39773/4FD/3768/55c1fee0344"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_NTC_data_entry_request">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="36"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39765/4FD/3768/55c1fee02054"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Non_leading_exit">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="4"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39757/4FD/3768/55c1fee07b0a"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Non_leading">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="3"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39749/4FD/3768/55c1fee01b9c"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Maintain_shunting">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="5"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3973b/4FD/3768/55c1fee07f9d"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Level_entry_request">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="6"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3972d/4FD/3768/55c1fee03f22"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Language_changed">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="17"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3971f/4FD/3768/55c1fee03e02"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_Hide_tunnel_stopping_information">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="35"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39711/4FD/3768/55c1fee012bc"/>
+			</pragmas>
+		</Constant>
+		<Constant name="INT_DMI_Request_T_End_of_NTC_data_entry">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="37"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/39703/4FD/3768/55c1fedf6ec0"/>
+			</pragmas>
+		</Constant>
+		<Type name="DMI_Driver_Request_INT_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="valid">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/3a0e7/4FD/3768/55c20cf257c6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Valid indicator for the packet</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="systemTime">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/3a0e8/4FD/3768/55c20cf24887" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Clock value of the last received dynamic data.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="m_request">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/3a0e9/4FD/3768/55c20cf22363"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/3a0e6/4FD/3768/55c20cf273b7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>DMI -&gt; EVC: Driver Request or Acknowledgement (other than text)</comment>
+				</ed:Type>
+			</pragmas>
+		</Type>
+		<Type name="DriverIdentifier_INT_T">
+			<definition>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="DMI_Messages_Bothways_Pkg::cDiverIdentifierLength"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/3c6c7/4FD/3768/55c23c9470f3"/>
+			</pragmas>
+		</Type>
+		<Type name="DMI_Driver_Identifier_INT_T">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="valid">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/3c766/4FD/3768/55c2403c1e96" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Valid indicator for the packet</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="systemTime">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/3c767/4FD/3768/55c2403c51dd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Clock value of the last received dynamic data.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+						<Field name="driverIdentifier">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="DriverIdentifier_INT_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/3c768/4FD/3768/55c2403c6bef" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>EVC supplies the default train running number using this packet. This packet supplies the EVC with the train running number entered by the driver.</comment>
+								</ed:Field>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/3c765/4FD/3768/55c2403c5682" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>DMI &lt;-&gt; EVC: Default or Entered Driver Identifier</comment>
+				</ed:Type>
+			</pragmas>
+		</Type>
+	</declarations>
+</File>

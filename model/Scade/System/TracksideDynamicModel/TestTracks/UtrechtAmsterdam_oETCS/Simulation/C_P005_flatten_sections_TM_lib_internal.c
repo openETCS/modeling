@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-08-11T08:59:25
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -10,7 +10,7 @@
 void C_P005_flatten_sections_reset_TM_lib_internal(
   outC_C_P005_flatten_sections_TM_lib_internal *outC)
 {
-  kcg_int i;
+  static kcg_int i;
   
   for (i = 0; i < 231; i++) {
     /* 2 */
@@ -27,10 +27,10 @@ void C_P005_flatten_sections_TM_lib_internal(
   /* TM_lib_internal::C_P005_flatten_sections::MergedSections */P005_OBU_sectionlist_int_T_TM *MergedSections,
   outC_C_P005_flatten_sections_TM_lib_internal *outC)
 {
-  kcg_int i2;
-  kcg_int i1;
-  P005_sections_array_flat_T_TM tmp;
-  kcg_int i;
+  static kcg_int i2;
+  static kcg_int i1;
+  static P005_sections_array_flat_T_TM tmp;
+  static kcg_int i;
   
   kcg_copy_P005_OBU_sectionlist_int_T_TM(&outC->_L75, MergedSections);
   for (i2 = 0; i2 < 33; i2++) {
@@ -66,6 +66,6 @@ void C_P005_flatten_sections_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_flatten_sections_TM_lib_internal.c
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-08-11T08:59:25
 *************************************************************$ */
 

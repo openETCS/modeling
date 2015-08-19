@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="TM_TrainTrack_Bus">
+			<declarations>
+				<Constant name="CycleTime">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="50"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/fbe5d/4644/B20/55aba4ed292" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>EVC cycle time in ms. Edit this variable to adapt the Train to Track Message bus to a different cycle time.</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="Cycles_per_second">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- 1000 / CycleTime -->
+						<BinaryOp operator="/">
+							<operands>
+								<ConstValue value="1000"/>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="CycleTime"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</BinaryOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/fbe6e/4644/B20/55aba517bf5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>*LOCKED*</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="Messages_per_cycle">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- CycleTime / Resolution_T_TRAIN -->
+						<BinaryOp operator="/">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="CycleTime"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Resolution_T_TRAIN"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</BinaryOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/fbe7f/4644/B20/55aba56d6fae" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>*LOCKED*</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Constant name="Resolution_T_TRAIN">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="10"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/fbe88/4644/B20/55aba5813f6b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>*LOCKED*</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Type name="T_TRAIN_int_T">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/fbe36/4644/B20/55aba44256e0"/>
+					</pragmas>
+				</Type>
+				<Operator kind="node" name="Test">
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TM_radio_messages::M_TrainTrack_Radio_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/fbea2/4644/B20/55aba7233e0c"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L2">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TM_radio_messages::M_TrainTrack_Radio_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/fc3d3/4644/B20/55abaf711f2d"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L3">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/fc3d9/4644/B20/55abafc338db"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L4">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/fc3dc/4644/B20/55abafe51ab5"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L5">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/fc4af/4644/B20/55abb1443cf4"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L6">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/fc4b6/4644/B20/55abb14438fa"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- () = SendMessage(); -->
+						<Equation>
+							<right>
+								<!-- SendMessage() -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="SendMessage"/>
+											</operator>
+										</OpCall>
+									</operator>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/fbdeb/4644/B20/55ab9bfa689c"/>
+							</pragmas>
+						</Equation>
+						<!-- () = MergeMessage_to_Bus(); -->
+						<Equation>
+							<right>
+								<!-- MergeMessage_to_Bus() -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="MergeMessage_to_Bus"/>
+											</operator>
+										</OpCall>
+									</operator>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/fbdfc/4644/B20/55ab9c3c5535"/>
+							</pragmas>
+						</Equation>
+						<!-- () = BufferBus_to_Radio(); -->
+						<Equation>
+							<right>
+								<!-- BufferBus_to_Radio() -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="BufferBus_to_Radio"/>
+											</operator>
+										</OpCall>
+									</operator>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/fbe03/4644/B20/55ab9c6446cd"/>
+							</pragmas>
+						</Equation>
+						<!-- () = Convert_to_Baseline2(); -->
+						<Equation>
+							<right>
+								<!-- Convert_to_Baseline2() -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="Convert_to_Baseline2"/>
+											</operator>
+										</OpCall>
+									</operator>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/fbe0a/4644/B20/55ab9ca93945"/>
+							</pragmas>
+						</Equation>
+						<!-- _L1, _L3, _L4 = TM_radio_messages::Send_M129(_null, _null, _null, _null, _null, _... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+								<VariableRef name="_L3"/>
+								<VariableRef name="_L4"/>
+							</lefts>
+							<right>
+								<!-- TM_radio_messages::Send_M129(_null, _null, _null, _null, _null, _null, _null) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="TM_radio_messages::Send_M129"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/fbea1/4644/B20/55aba7235f7e"/>
+							</pragmas>
+						</Equation>
+						<!-- _L2, _L6, _L5 = TM_radio_messages::Send_M147(_null, _null, _null, _null, _null, _... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L2"/>
+								<VariableRef name="_L6"/>
+								<VariableRef name="_L5"/>
+							</lefts>
+							<right>
+								<!-- TM_radio_messages::Send_M147(_null, _null, _null, _null, _null, _null) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="TM_radio_messages::Send_M147"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<NullRef/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/fc3d2/4644/B20/55abaf7158ea"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/fbde5/4644/B20/55ab9bca71bb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_Test_1" landscape="true" format="A4 (210 297)" oid="!ed/fbde6/4644/B20/55ab9bca5c07">
+									<presentationElements>
+										<EquationGE presentable="!ed/fbdeb/4644/B20/55ab9bfa689c">
+											<position>
+												<Point x="3863" y="2778"/>
+											</position>
+											<size>
+												<Size width="1773" height="1403"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/fbdfc/4644/B20/55ab9c3c5535">
+											<position>
+												<Point x="15028" y="2778"/>
+											</position>
+											<size>
+												<Size width="5440" height="3958"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/fbe03/4644/B20/55ab9c6446cd">
+											<position>
+												<Point x="27464" y="3545"/>
+											</position>
+											<size>
+												<Size width="3694" height="1974"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/fbe0a/4644/B20/55ab9ca93945">
+											<position>
+												<Point x="22429" y="2770"/>
+											</position>
+											<size>
+												<Size width="3111" height="3906"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/fbea1/4644/B20/55aba7235f7e">
+											<position>
+												<Point x="2929" y="6660"/>
+											</position>
+											<size>
+												<Size width="6736" height="3270"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/fc3d2/4644/B20/55abaf7158ea">
+											<position>
+												<Point x="11165" y="8043"/>
+											</position>
+											<size>
+												<Size width="7583" height="3376"/>
+											</size>
+										</EquationGE>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="SendMessage">
+					<pragmas>
+						<ed:Operator oid="!ed/fbde7/4644/B20/55ab9bea67f3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_SendMessage_1" landscape="true" format="A4 (210 297)" oid="!ed/fbde8/4644/B20/55ab9bea5f40"/>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="MergeMessage_to_Bus">
+					<pragmas>
+						<ed:Operator oid="!ed/fbdfa/4644/B20/55ab9c2ffed" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_MergeMessage_to_Bus_1" landscape="true" format="A4 (210 297)" oid="!ed/fbdfb/4644/B20/55ab9c2f587"/>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="BufferBus_to_Radio">
+					<pragmas>
+						<ed:Operator oid="!ed/fbe01/4644/B20/55ab9c546211" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_BufferBus_to_Radio_1" landscape="true" format="A4 (210 297)" oid="!ed/fbe02/4644/B20/55ab9c5470da"/>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="Convert_to_Baseline2">
+					<pragmas>
+						<ed:Operator oid="!ed/fbe08/4644/B20/55ab9c953ec2" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_Convert_to_Baseline2_1" landscape="true" format="A4 (210 297)" oid="!ed/fbe09/4644/B20/55ab9c953d95"/>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/fbde1/4644/B20/55ab9bab634" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/fbde2/4644/B20/55ab9bab7d06" blockKind="constants" columnsSize="0, 150, 150, 150, 573"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/fbde3/4644/B20/55ab9bab6143" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/fbde4/4644/B20/55ab9bab63e0" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

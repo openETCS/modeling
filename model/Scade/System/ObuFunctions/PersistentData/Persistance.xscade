@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="Persistance">
+			<declarations>
+				<Operator kind="function" name="Save">
+					<inputs>
+						<Variable name="CurrentMemory">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7c315/421D/1130/558c017f1540" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Current set of data used by EVC during the simulation</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="PersistantMemory">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/77c1a/421D/1130/558bba66761f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Set of data saved ready to be restored when EVC exiting no power mode</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L90">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3bd5a/11D5/1B04/5594f4575599"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L91">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3bd67/11D5/1B04/5594f4605009"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L92">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3bd6d/11D5/1B04/5594f468b93"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L90 = (_L91 with .IsValid = _L92); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L90"/>
+							</lefts>
+							<right>
+								<!-- (_L91 with .IsValid = _L92) -->
+								<ChgIthOp name="1">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L91"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="IsValid"/>
+									</with>
+									<value>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L92"/>
+											</path>
+										</IdExpression>
+									</value>
+								</ChgIthOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3bd59/11D5/1B04/5594f457187c"/>
+							</pragmas>
+						</Equation>
+						<!-- _L91 = CurrentMemory; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L91"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="CurrentMemory"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3bd66/11D5/1B04/5594f4606e62"/>
+							</pragmas>
+						</Equation>
+						<!-- _L92 = true; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L92"/>
+							</lefts>
+							<right>
+								<ConstValue value="true"/>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3bd6c/11D5/1B04/5594f468330f"/>
+							</pragmas>
+						</Equation>
+						<!-- PersistantMemory = _L90; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="PersistantMemory"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L90"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3bd85/11D5/1B04/5594f487490"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/77b85/421D/1130/558bb7b43b66" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Operator to save persistant data in current set of data if EVC enters in no power mode</comment>
+							<diagrams>
+								<NetDiagram name="diagram_Save_1" landscape="true" format="A4 (210 297)" oid="!ed/77b86/421D/1130/558bb7b46796">
+									<presentationElements>
+										<EquationGE presentable="!ed/3bd59/11D5/1B04/5594f457187c">
+											<position>
+												<Point x="7268" y="8247"/>
+											</position>
+											<size>
+												<Size width="4170" height="3297"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3bd66/11D5/1B04/5594f4606e62">
+											<position>
+												<Point x="4842" y="9075"/>
+											</position>
+											<size>
+												<Size width="264" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3bd66/11D5/1B04/5594f4606e62" dstEquation="!ed/3bd59/11D5/1B04/5594f457187c">
+											<positions>
+												<Point x="5106" y="9340"/>
+												<Point x="6191" y="9340"/>
+												<Point x="6191" y="9340"/>
+												<Point x="7276" y="9340"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/3bd6c/11D5/1B04/5594f468330f">
+											<position>
+												<Point x="5001" y="10292"/>
+											</position>
+											<size>
+												<Size width="211" height="317"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/3bd6c/11D5/1B04/5594f468330f" dstEquation="!ed/3bd59/11D5/1B04/5594f457187c">
+											<positions>
+												<Point x="5212" y="10451"/>
+												<Point x="6244" y="10451"/>
+												<Point x="6244" y="10451"/>
+												<Point x="7276" y="10451"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/3bd85/11D5/1B04/5594f487490">
+											<position>
+												<Point x="17330" y="9631"/>
+											</position>
+											<size>
+												<Size width="318" height="502"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3bd59/11D5/1B04/5594f457187c" dstEquation="!ed/3bd85/11D5/1B04/5594f487490">
+											<positions>
+												<Point x="11430" y="9895"/>
+												<Point x="14393" y="9895"/>
+												<Point x="14393" y="9895"/>
+												<Point x="17383" y="9895"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="function" name="Restore">
+					<inputs>
+						<Variable name="PersistantMemory">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable commentsToC="true" oid="!ed/3ab03/66AC/1BC8/5593d7ff2374" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Data to restore when EVC leaves no power mode</comment>
+								</ed:Variable>
+								<kcg:Pragma>
+									doc Data to restore when EVC leaves no power mode
+								</kcg:Pragma>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="RestoredMemory">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable commentsToC="true" oid="!ed/3ab17/66AC/1BC8/5593d845974" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Current data used by EVC and which will contain restored data</comment>
+								</ed:Variable>
+								<kcg:Pragma>
+									doc Current data used by EVC and which will contain restored data
+								</kcg:Pragma>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L67">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3ab24/66AC/1BC8/5593d858102d"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L67 = PersistantMemory; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L67"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="PersistantMemory"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3ab23/66AC/1BC8/5593d85868eb"/>
+							</pragmas>
+						</Equation>
+						<!-- RestoredMemory = _L67; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="RestoredMemory"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L67"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3ab2f/66AC/1BC8/5593d90471b3"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/7bf21/421D/1130/558bcd3b715" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Operator to restore persistant data in current set of data if EVC exits from no power mode</comment>
+							<diagrams>
+								<NetDiagram name="diagram_Restore_1" landscape="true" format="A4 (210 297)" oid="!ed/7bf48/421D/1130/558bcd3b7356">
+									<presentationElements>
+										<EquationGE presentable="!ed/3ab23/66AC/1BC8/5593d85868eb">
+											<position>
+												<Point x="3889" y="4868"/>
+											</position>
+											<size>
+												<Size width="265" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3ab2f/66AC/1BC8/5593d90471b3">
+											<position>
+												<Point x="12383" y="4868"/>
+											</position>
+											<size>
+												<Size width="317" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3ab23/66AC/1BC8/5593d85868eb" dstEquation="!ed/3ab2f/66AC/1BC8/5593d90471b3">
+											<positions>
+												<Point x="4154" y="5133"/>
+												<Point x="8281" y="5133"/>
+												<Point x="8281" y="5133"/>
+												<Point x="12435" y="5133"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/77b81/421D/1130/558bb77f3d8c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/77b82/421D/1130/558bb77f21f7" blockKind="constants" columnsSize="0, 195, 150, 272, 777"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/77b83/421D/1130/558bb77f1111" blockKind="types" columnsSize="0, 232, 346, 726"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/77b84/421D/1130/558bb77f39e7" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

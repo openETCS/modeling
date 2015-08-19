@@ -1,0 +1,940 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="DataLifeCycle">
+			<declarations>
+				<Operator kind="node" name="DataLifeCycleMode">
+					<inputs>
+						<Variable name="NewMode">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="M_MODE"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7bff0/421D/1130/558becdb707e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Current EVC mode</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+						<Variable name="CurrentMemory">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7c2de/421D/1130/558bfd026965" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Current set of data used by EVC</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+						<Variable name="PersistantMemoryIn">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/39fcd/7154/1714/558cfe727277" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Set of data to restore if restoration operation is needed ( EVC exiting from no power mode)</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+						<Variable name="ColdMovementDetected_or_NoColdMovementDetector">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3cafc/66AC/1BC8/5593ec993e10" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true if there is cold movement detector and a cold movement is detected or if there is not any cold movement detector</comment>
+									<comment>false if there is cold movement detector and no cold movement is detected (SRS 4.11)</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="UpdatedMemory">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7c2e5/421D/1130/558bfd023389" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>New set of data updated according to mode change (SRS 4.10 and SRS 4.11) and save/restore operation if needed</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+						<Variable name="PersistantMemoryOut">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/7c2ed/421D/1130/558bfedf3b1b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Set of data saved because EVC goes in no power mode</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable probe="true" name="Pr_RBCParam_UpdatedMem">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="SavedRBCParameters_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c011/2345/1888/559e578e1a96"/>
+							</pragmas>
+						</Variable>
+						<Variable probe="true" name="Pr_RBCParam_PersistantMem">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="SavedRBCParameters_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c020/2345/1888/559e57ad4db9"/>
+							</pragmas>
+						</Variable>
+						<Variable probe="true" name="Pr_EnteringNewMode">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c02f/2345/1888/559e59786028"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L10">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3cac0/66AC/1BC8/5593ebd6641f"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L12">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="M_MODE"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3cac7/66AC/1BC8/5593ebfc7046"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L11">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3cac6/66AC/1BC8/5593ebfc2cc"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L16">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="M_MODE"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3cae2/66AC/1BC8/5593ec42397f"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L17">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="M_MODE"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3caef/66AC/1BC8/5593ec5b1706"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L18">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3caf1/66AC/1BC8/5593ec7b27e4"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L19">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3caf7/66AC/1BC8/5593ec87322b"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L20">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3cafe/66AC/1BC8/5593ecb65106"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L23">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3cb45/66AC/1BC8/5593ee92fc"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L31">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="AllMemoryData_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3cbb8/66AC/1BC8/5593f88528b3"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L32">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="SavedRBCParameters_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3bfe5/2345/1888/559e57502627"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L33">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="SavedRBCParameters_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c000/2345/1888/559e575873d2"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L10 = (activate DataLifeCycleTools::ManageNPExiting every _L11 default (CurrentM... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L10"/>
+							</lefts>
+							<right>
+								<!-- (activate DataLifeCycleTools::ManageNPExiting every _L11 default (CurrentMemory))... -->
+								<CallExpression>
+									<operator>
+										<ActivateNoInitOp>
+											<operator>
+												<OpCall name="1">
+													<operator>
+														<OperatorRef name="DataLifeCycleTools::ManageNPExiting"/>
+													</operator>
+												</OpCall>
+											</operator>
+											<every>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L11"/>
+													</path>
+												</IdExpression>
+											</every>
+											<default>
+												<ListExpression>
+													<items>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="CurrentMemory"/>
+															</path>
+														</IdExpression>
+													</items>
+												</ListExpression>
+											</default>
+										</ActivateNoInitOp>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L17"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L12"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L18"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L19"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L20"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3cabf/66AC/1BC8/5593ebd6c62"/>
+							</pragmas>
+						</Equation>
+						<!-- _L11, _L12 = DataLifeCycleTools::ModeHasChanged(_L16); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L11"/>
+								<VariableRef name="_L12"/>
+							</lefts>
+							<right>
+								<!-- DataLifeCycleTools::ModeHasChanged(_L16) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="DataLifeCycleTools::ModeHasChanged"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L16"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3cac5/66AC/1BC8/5593ebfc507"/>
+							</pragmas>
+						</Equation>
+						<!-- _L16 = NewMode; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L16"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="NewMode"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3cae1/66AC/1BC8/5593ec4255f6"/>
+							</pragmas>
+						</Equation>
+						<!-- _L17 = NewMode; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L17"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="NewMode"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3caee/66AC/1BC8/5593ec5b7857"/>
+							</pragmas>
+						</Equation>
+						<!-- _L18 = CurrentMemory; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L18"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="CurrentMemory"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3caf0/66AC/1BC8/5593ec7b5ec5"/>
+							</pragmas>
+						</Equation>
+						<!-- _L19 = PersistantMemoryIn; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L19"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="PersistantMemoryIn"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3caf6/66AC/1BC8/5593ec874a76"/>
+							</pragmas>
+						</Equation>
+						<!-- _L20 = ColdMovementDetected_or_NoColdMovementDetector; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L20"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="ColdMovementDetected_or_NoColdMovementDetector"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3cafd/66AC/1BC8/5593ecb61010"/>
+							</pragmas>
+						</Equation>
+						<!-- _L23, _L31 = (activate DataLifeCycleTools::ManageStoredInfoAccordingToModeEnterin... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L23"/>
+								<VariableRef name="_L31"/>
+							</lefts>
+							<right>
+								<!-- (activate DataLifeCycleTools::ManageStoredInfoAccordingToModeEntering every _L11 ... -->
+								<CallExpression>
+									<operator>
+										<ActivateNoInitOp>
+											<operator>
+												<OpCall name="1">
+													<operator>
+														<OperatorRef name="DataLifeCycleTools::ManageStoredInfoAccordingToModeEntering"/>
+													</operator>
+												</OpCall>
+											</operator>
+											<every>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L11"/>
+													</path>
+												</IdExpression>
+											</every>
+											<default>
+												<ListExpression>
+													<items>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="_L10"/>
+															</path>
+														</IdExpression>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="PersistantMemoryIn"/>
+															</path>
+														</IdExpression>
+													</items>
+												</ListExpression>
+											</default>
+										</ActivateNoInitOp>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L10"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L16"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3cb44/66AC/1BC8/5593ee92f54"/>
+							</pragmas>
+						</Equation>
+						<!-- PersistantMemoryOut = _L31; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="PersistantMemoryOut"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L31"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3cbb9/66AC/1BC8/5593f8b01c28"/>
+							</pragmas>
+						</Equation>
+						<!-- UpdatedMemory = _L23; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="UpdatedMemory"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L23"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3cbc7/66AC/1BC8/5593f8dd2a3d"/>
+							</pragmas>
+						</Equation>
+						<!-- _L32 = _L23.SaveRBCParams; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L32"/>
+							</lefts>
+							<right>
+								<!-- _L23.SaveRBCParams -->
+								<PrjOp name="1">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L23"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="SaveRBCParams"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3bfe4/2345/1888/559e5750fbb"/>
+							</pragmas>
+						</Equation>
+						<!-- _L33 = _L31.SaveRBCParams; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L33"/>
+							</lefts>
+							<right>
+								<!-- _L31.SaveRBCParams -->
+								<PrjOp name="2">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L31"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="SaveRBCParams"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3bfff/2345/1888/559e575878f6"/>
+							</pragmas>
+						</Equation>
+						<!-- Pr_RBCParam_UpdatedMem = _L32; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="Pr_RBCParam_UpdatedMem"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L32"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3c012/2345/1888/559e578e3df4"/>
+							</pragmas>
+						</Equation>
+						<!-- Pr_RBCParam_PersistantMem = _L33; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="Pr_RBCParam_PersistantMem"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L33"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3c021/2345/1888/559e57ad2eaa"/>
+							</pragmas>
+						</Equation>
+						<!-- Pr_EnteringNewMode = _L11; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="Pr_EnteringNewMode"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L11"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3c030/2345/1888/559e59783a59"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/7bfee/421D/1130/558beb671afc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Operator to implement Data life cycle manager (SRS 4.10 and SRS 4.11)</comment>
+							<comment>It's the root operator</comment>
+							<diagrams>
+								<NetDiagram name="diagram_DataLifeCycleMode_1" landscape="true" format="A4 (210 297)" oid="!ed/7bfef/421D/1130/558beb67405c">
+									<presentationElements>
+										<EquationGE presentable="!ed/3cabf/66AC/1BC8/5593ebd6c62">
+											<position>
+												<Point x="20346" y="4128"/>
+											</position>
+											<size>
+												<Size width="5598" height="4885"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3cac5/66AC/1BC8/5593ebfc507">
+											<position>
+												<Point x="4101" y="4022"/>
+											</position>
+											<size>
+												<Size width="4382" height="2636"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3cae1/66AC/1BC8/5593ec4255f6">
+											<position>
+												<Point x="1746" y="5080"/>
+											</position>
+											<size>
+												<Size width="264" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3cae1/66AC/1BC8/5593ec4255f6" dstEquation="!ed/3cac5/66AC/1BC8/5593ebfc507">
+											<positions>
+												<Point x="2011" y="5345"/>
+												<Point x="2725" y="5345"/>
+												<Point x="2725" y="5345"/>
+												<Point x="4101" y="5345"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/3caee/66AC/1BC8/5593ec5b7857">
+											<position>
+												<Point x="18706" y="4683"/>
+											</position>
+											<size>
+												<Size width="265" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3caf0/66AC/1BC8/5593ec7b5ec5">
+											<position>
+												<Point x="18706" y="6324"/>
+											</position>
+											<size>
+												<Size width="265" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3caf6/66AC/1BC8/5593ec874a76">
+											<position>
+												<Point x="18733" y="7117"/>
+											</position>
+											<size>
+												<Size width="264" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3cafd/66AC/1BC8/5593ecb61010">
+											<position>
+												<Point x="18733" y="7938"/>
+											</position>
+											<size>
+												<Size width="264" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3cb44/66AC/1BC8/5593ee92f54">
+											<position>
+												<Point x="7250" y="13944"/>
+											</position>
+											<size>
+												<Size width="5704" height="4487"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="6" srcEquation="!ed/3cafd/66AC/1BC8/5593ecb61010" dstEquation="!ed/3cabf/66AC/1BC8/5593ebd6c62">
+											<positions>
+												<Point x="18997" y="8202"/>
+												<Point x="19659" y="8202"/>
+												<Point x="19659" y="8202"/>
+												<Point x="20346" y="8202"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/3caf6/66AC/1BC8/5593ec874a76" dstEquation="!ed/3cabf/66AC/1BC8/5593ebd6c62">
+											<positions>
+												<Point x="18997" y="7382"/>
+												<Point x="19659" y="7382"/>
+												<Point x="19659" y="7382"/>
+												<Point x="20346" y="7382"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/3caf0/66AC/1BC8/5593ec7b5ec5" dstEquation="!ed/3cabf/66AC/1BC8/5593ebd6c62">
+											<positions>
+												<Point x="18971" y="6588"/>
+												<Point x="19659" y="6588"/>
+												<Point x="19659" y="6588"/>
+												<Point x="20346" y="6588"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="2" rightExprIndex="3" srcEquation="!ed/3cac5/66AC/1BC8/5593ebfc507" dstEquation="!ed/3cabf/66AC/1BC8/5593ebd6c62">
+											<positions>
+												<Point x="8493" y="5794"/>
+												<Point x="14393" y="5794"/>
+												<Point x="14393" y="5794"/>
+												<Point x="20346" y="5794"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/3caee/66AC/1BC8/5593ec5b7857" dstEquation="!ed/3cabf/66AC/1BC8/5593ebd6c62">
+											<positions>
+												<Point x="18971" y="4948"/>
+												<Point x="19659" y="4948"/>
+												<Point x="19659" y="4948"/>
+												<Point x="20346" y="4948"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/3cbb9/66AC/1BC8/5593f8b01c28">
+											<position>
+												<Point x="15690" y="16669"/>
+											</position>
+											<size>
+												<Size width="317" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3cbc7/66AC/1BC8/5593f8dd2a3d">
+											<position>
+												<Point x="15743" y="15187"/>
+											</position>
+											<size>
+												<Size width="317" height="502"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/3cb44/66AC/1BC8/5593ee92f54" dstEquation="!ed/3cbb9/66AC/1BC8/5593f8b01c28">
+											<positions>
+												<Point x="12965" y="16933"/>
+												<Point x="14340" y="16933"/>
+												<Point x="14340" y="16933"/>
+												<Point x="15743" y="16933"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3cb44/66AC/1BC8/5593ee92f54" dstEquation="!ed/3cbc7/66AC/1BC8/5593f8dd2a3d">
+											<positions>
+												<Point x="12965" y="15452"/>
+												<Point x="14367" y="15452"/>
+												<Point x="14367" y="15452"/>
+												<Point x="15796" y="15452"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/3cae1/66AC/1BC8/5593ec4255f6" dstEquation="!ed/3cb44/66AC/1BC8/5593ee92f54">
+											<positions>
+												<Point x="2011" y="5345"/>
+												<Point x="2143" y="5345"/>
+												<Point x="2143" y="16933"/>
+												<Point x="7250" y="16933"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/3bfe4/2345/1888/559e5750fbb">
+											<position>
+												<Point x="16669" y="12647"/>
+											</position>
+											<size>
+												<Size width="952" height="953"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3bfff/2345/1888/559e575878f6">
+											<position>
+												<Point x="15629" y="18619"/>
+											</position>
+											<size>
+												<Size width="968" height="915"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3cb44/66AC/1BC8/5593ee92f54" dstEquation="!ed/3bfe4/2345/1888/559e5750fbb">
+											<positions>
+												<Point x="12965" y="15452"/>
+												<Point x="14817" y="15452"/>
+												<Point x="14817" y="13123"/>
+												<Point x="16669" y="13123"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/3cb44/66AC/1BC8/5593ee92f54" dstEquation="!ed/3bfff/2345/1888/559e575878f6">
+											<positions>
+												<Point x="12965" y="16933"/>
+												<Point x="14288" y="16933"/>
+												<Point x="14288" y="19076"/>
+												<Point x="15637" y="19076"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/3c012/2345/1888/559e578e3df4">
+											<position>
+												<Point x="20638" y="12885"/>
+											</position>
+											<size>
+												<Size width="211" height="318"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3bfe4/2345/1888/559e5750fbb" dstEquation="!ed/3c012/2345/1888/559e578e3df4">
+											<positions>
+												<Point x="17621" y="13123"/>
+												<Point x="19182" y="13123"/>
+												<Point x="19182" y="13123"/>
+												<Point x="20743" y="13123"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/3c021/2345/1888/559e57ad2eaa">
+											<position>
+												<Point x="20770" y="18838"/>
+											</position>
+											<size>
+												<Size width="211" height="317"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3bfff/2345/1888/559e575878f6" dstEquation="!ed/3c021/2345/1888/559e57ad2eaa">
+											<positions>
+												<Point x="16589" y="19076"/>
+												<Point x="18733" y="19076"/>
+												<Point x="18733" y="19076"/>
+												<Point x="20876" y="19076"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/3c030/2345/1888/559e59783a59">
+											<position>
+												<Point x="11906" y="2540"/>
+											</position>
+											<size>
+												<Size width="212" height="318"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3cac5/66AC/1BC8/5593ebfc507" dstEquation="!ed/3c030/2345/1888/559e59783a59">
+											<positions>
+												<Point x="8493" y="4895"/>
+												<Point x="10239" y="4895"/>
+												<Point x="10239" y="2778"/>
+												<Point x="12012" y="2778"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3cac5/66AC/1BC8/5593ebfc507" dstEquation="!ed/3cb44/66AC/1BC8/5593ee92f54">
+											<positions>
+												<Point x="8493" y="4895"/>
+												<Point x="10107" y="4895"/>
+												<Point x="10107" y="13944"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3cac5/66AC/1BC8/5593ebfc507" dstEquation="!ed/3cabf/66AC/1BC8/5593ebd6c62">
+											<positions>
+												<Point x="8493" y="4895"/>
+												<Point x="15822" y="4895"/>
+												<Point x="15822" y="2805"/>
+												<Point x="23151" y="2805"/>
+												<Point x="23151" y="4128"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/3cabf/66AC/1BC8/5593ebd6c62" dstEquation="!ed/3cb44/66AC/1BC8/5593ee92f54">
+											<positions>
+												<Point x="25956" y="6588"/>
+												<Point x="27279" y="6588"/>
+												<Point x="27279" y="11007"/>
+												<Point x="5927" y="11007"/>
+												<Point x="5927" y="15452"/>
+												<Point x="7250" y="15452"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/3cabf/66AC/1BC8/5593ebd6c62" dstEquation="!ed/3cb44/66AC/1BC8/5593ee92f54">
+											<positions>
+												<Point x="25956" y="6588"/>
+												<Point x="27279" y="6588"/>
+												<Point x="27279" y="19764"/>
+												<Point x="9155" y="19764"/>
+												<Point x="9155" y="18441"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/7bfea/421D/1130/558bea835b6d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/7bfeb/421D/1130/558bea833894" blockKind="constants" columnsSize="0, 150, 150, 437, 540"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/7bfec/421D/1130/558bea8357da" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/7bfed/421D/1130/558bea833385" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

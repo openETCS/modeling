@@ -1,10 +1,9 @@
 /* UtrechtAmsterdam_oETCS_newmapping.h */
 
-#include "Story00A_FirstTest.h"
+#include "DriveAllBGs_Internal_Tests.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_Story00A_FirstTest inputs_ctx;
-extern outC_Story00A_FirstTest outputs_ctx;
+extern kcg_bool _ctx_reset_buffer;
 

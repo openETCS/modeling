@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-06T16:53:59
+** Generation date: 2015-08-06T10:52:03
 *************************************************************$ */
 #ifndef _KCG_TYPES_H_
 #define _KCG_TYPES_H_
@@ -49,9 +49,18 @@ typedef unsigned char kcg_char;
 #define kcg_assign_array kcg_assign
 #endif /* kcg_assign_array */
 
+/* NID_C */
+typedef kcg_int NID_C;
+
+/* NID_BG */
+typedef kcg_int NID_BG;
+
+/* NID_LRBG */
+typedef kcg_int NID_LRBG;
+
 #endif /* _KCG_TYPES_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_types.h
-** Generation date: 2015-07-06T16:53:59
+** Generation date: 2015-08-06T10:52:03
 *************************************************************$ */
 

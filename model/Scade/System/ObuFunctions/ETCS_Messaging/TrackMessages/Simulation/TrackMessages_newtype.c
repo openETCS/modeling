@@ -705,4 +705,343 @@ SimTypeUtils _Type_kcg_int_Utils = {
     sizeof(kcg_int)
 };
 
-#include "C:/program files/esterel technologies/scade r16.1/scade/lib/kcg_conv.c"
+/****************************************************************
+ ** NID_C 
+ ****************************************************************/
+
+struct SimTypeVTable *pSimNID_CVTable;
+
+int NID_C_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+{
+    if (pSimNID_CVTable != NULL
+        && pSimNID_CVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimNID_CVTable->m_pfnToType(SptString, pValue), pData);
+    }
+    return kcg_int_to_string(pValue, pfnStrAppend, pData);
+}
+
+int string_to_NID_C(const char *str, void *pValue, char **endptr)
+{
+    int nRet=0;
+    skip_whitespace(str);
+    if (pSimNID_CVTable != NULL) {
+        nRet=string_to_VTable(str, pSimNID_CVTable, pValue, endptr);
+    }
+    if (nRet==0) {
+        nRet = string_to_kcg_int(str, pValue, endptr);
+    }
+    return nRet;
+}
+
+int is_NID_C_double_conversion_allowed()
+{
+    if (pSimNID_CVTable != NULL) {
+        return is_VTable_double_conversion_allowed(pSimNID_CVTable);
+    }
+    return is_kcg_int_double_conversion_allowed();
+}
+
+int is_NID_C_long_convertion_allowed()
+{
+    if (pSimNID_CVTable != NULL) {
+        return is_VTable_long_convertion_allowed(pSimNID_CVTable);
+    }
+    return is_kcg_int_long_convertion_allowed();
+}
+
+void compare_NID_C(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+{
+    int unitResult=0;
+    /* Customized comparison */
+    if (pSimNID_CVTable != NULL
+        && pSimNID_CVTable->m_version >= Scv612
+        && pSimNID_CVTable->m_pfnCompare != NULL) {
+        if (pSimNID_CVTable->m_version >= Scv65) {
+            /* R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
+            unitResult=pSimNID_CVTable->m_pfnCompare(pResult, pValue1, pValue2);
+        } else {
+            /* Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
+            pSimNID_CVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            updateCompareResult(unitResult, pResult);
+        }
+    } else {
+        /* Predefined comparison */
+        compare_kcg_int(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
+    }
+    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
+        pfnStrListAppend(pszPath, pListErrPaths);
+}
+
+int NID_C_to_double(const void *pValue, double *nRetValue)
+{
+    if (pSimNID_CVTable != NULL) {
+        return VTable_to_double(pValue, pSimNID_CVTable, nRetValue);
+    }
+    return kcg_int_to_double(pValue, nRetValue);
+}
+
+int NID_C_to_long(const void *pValue, long *nRetValue)
+{
+    if (pSimNID_CVTable != NULL) {
+        return VTable_to_long(pValue, pSimNID_CVTable, nRetValue);
+    }
+    return kcg_int_to_long(pValue, nRetValue);
+}
+
+int get_NID_C_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+{
+    return get_kcg_int_signature(pfnStrAppend, pData);
+}
+
+int set_NID_C_default_value(void *pValue)
+{
+    return set_kcg_int_default_value(pValue);
+}
+
+int check_NID_C_string(const char *str, char **endptr)
+{
+    static NID_C rTemp;
+    return string_to_NID_C(str, &rTemp, endptr);
+}
+
+SimTypeUtils _Type_NID_C_Utils = {
+    NID_C_to_string,
+    check_NID_C_string,
+    string_to_NID_C,
+    is_NID_C_double_conversion_allowed,
+    NID_C_to_double,
+    is_NID_C_long_convertion_allowed,
+    NID_C_to_long,
+    compare_NID_C,
+    get_NID_C_signature,
+    set_NID_C_default_value,
+    sizeof(NID_C)
+};
+
+/****************************************************************
+ ** NID_BG 
+ ****************************************************************/
+
+struct SimTypeVTable *pSimNID_BGVTable;
+
+int NID_BG_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+{
+    if (pSimNID_BGVTable != NULL
+        && pSimNID_BGVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimNID_BGVTable->m_pfnToType(SptString, pValue), pData);
+    }
+    return kcg_int_to_string(pValue, pfnStrAppend, pData);
+}
+
+int string_to_NID_BG(const char *str, void *pValue, char **endptr)
+{
+    int nRet=0;
+    skip_whitespace(str);
+    if (pSimNID_BGVTable != NULL) {
+        nRet=string_to_VTable(str, pSimNID_BGVTable, pValue, endptr);
+    }
+    if (nRet==0) {
+        nRet = string_to_kcg_int(str, pValue, endptr);
+    }
+    return nRet;
+}
+
+int is_NID_BG_double_conversion_allowed()
+{
+    if (pSimNID_BGVTable != NULL) {
+        return is_VTable_double_conversion_allowed(pSimNID_BGVTable);
+    }
+    return is_kcg_int_double_conversion_allowed();
+}
+
+int is_NID_BG_long_convertion_allowed()
+{
+    if (pSimNID_BGVTable != NULL) {
+        return is_VTable_long_convertion_allowed(pSimNID_BGVTable);
+    }
+    return is_kcg_int_long_convertion_allowed();
+}
+
+void compare_NID_BG(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+{
+    int unitResult=0;
+    /* Customized comparison */
+    if (pSimNID_BGVTable != NULL
+        && pSimNID_BGVTable->m_version >= Scv612
+        && pSimNID_BGVTable->m_pfnCompare != NULL) {
+        if (pSimNID_BGVTable->m_version >= Scv65) {
+            /* R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
+            unitResult=pSimNID_BGVTable->m_pfnCompare(pResult, pValue1, pValue2);
+        } else {
+            /* Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
+            pSimNID_BGVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            updateCompareResult(unitResult, pResult);
+        }
+    } else {
+        /* Predefined comparison */
+        compare_kcg_int(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
+    }
+    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
+        pfnStrListAppend(pszPath, pListErrPaths);
+}
+
+int NID_BG_to_double(const void *pValue, double *nRetValue)
+{
+    if (pSimNID_BGVTable != NULL) {
+        return VTable_to_double(pValue, pSimNID_BGVTable, nRetValue);
+    }
+    return kcg_int_to_double(pValue, nRetValue);
+}
+
+int NID_BG_to_long(const void *pValue, long *nRetValue)
+{
+    if (pSimNID_BGVTable != NULL) {
+        return VTable_to_long(pValue, pSimNID_BGVTable, nRetValue);
+    }
+    return kcg_int_to_long(pValue, nRetValue);
+}
+
+int get_NID_BG_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+{
+    return get_kcg_int_signature(pfnStrAppend, pData);
+}
+
+int set_NID_BG_default_value(void *pValue)
+{
+    return set_kcg_int_default_value(pValue);
+}
+
+int check_NID_BG_string(const char *str, char **endptr)
+{
+    static NID_BG rTemp;
+    return string_to_NID_BG(str, &rTemp, endptr);
+}
+
+SimTypeUtils _Type_NID_BG_Utils = {
+    NID_BG_to_string,
+    check_NID_BG_string,
+    string_to_NID_BG,
+    is_NID_BG_double_conversion_allowed,
+    NID_BG_to_double,
+    is_NID_BG_long_convertion_allowed,
+    NID_BG_to_long,
+    compare_NID_BG,
+    get_NID_BG_signature,
+    set_NID_BG_default_value,
+    sizeof(NID_BG)
+};
+
+/****************************************************************
+ ** NID_LRBG 
+ ****************************************************************/
+
+struct SimTypeVTable *pSimNID_LRBGVTable;
+
+int NID_LRBG_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+{
+    if (pSimNID_LRBGVTable != NULL
+        && pSimNID_LRBGVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimNID_LRBGVTable->m_pfnToType(SptString, pValue), pData);
+    }
+    return kcg_int_to_string(pValue, pfnStrAppend, pData);
+}
+
+int string_to_NID_LRBG(const char *str, void *pValue, char **endptr)
+{
+    int nRet=0;
+    skip_whitespace(str);
+    if (pSimNID_LRBGVTable != NULL) {
+        nRet=string_to_VTable(str, pSimNID_LRBGVTable, pValue, endptr);
+    }
+    if (nRet==0) {
+        nRet = string_to_kcg_int(str, pValue, endptr);
+    }
+    return nRet;
+}
+
+int is_NID_LRBG_double_conversion_allowed()
+{
+    if (pSimNID_LRBGVTable != NULL) {
+        return is_VTable_double_conversion_allowed(pSimNID_LRBGVTable);
+    }
+    return is_kcg_int_double_conversion_allowed();
+}
+
+int is_NID_LRBG_long_convertion_allowed()
+{
+    if (pSimNID_LRBGVTable != NULL) {
+        return is_VTable_long_convertion_allowed(pSimNID_LRBGVTable);
+    }
+    return is_kcg_int_long_convertion_allowed();
+}
+
+void compare_NID_LRBG(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+{
+    int unitResult=0;
+    /* Customized comparison */
+    if (pSimNID_LRBGVTable != NULL
+        && pSimNID_LRBGVTable->m_version >= Scv612
+        && pSimNID_LRBGVTable->m_pfnCompare != NULL) {
+        if (pSimNID_LRBGVTable->m_version >= Scv65) {
+            /* R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
+            unitResult=pSimNID_LRBGVTable->m_pfnCompare(pResult, pValue1, pValue2);
+        } else {
+            /* Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
+            pSimNID_LRBGVTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            updateCompareResult(unitResult, pResult);
+        }
+    } else {
+        /* Predefined comparison */
+        compare_kcg_int(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
+    }
+    if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
+        pfnStrListAppend(pszPath, pListErrPaths);
+}
+
+int NID_LRBG_to_double(const void *pValue, double *nRetValue)
+{
+    if (pSimNID_LRBGVTable != NULL) {
+        return VTable_to_double(pValue, pSimNID_LRBGVTable, nRetValue);
+    }
+    return kcg_int_to_double(pValue, nRetValue);
+}
+
+int NID_LRBG_to_long(const void *pValue, long *nRetValue)
+{
+    if (pSimNID_LRBGVTable != NULL) {
+        return VTable_to_long(pValue, pSimNID_LRBGVTable, nRetValue);
+    }
+    return kcg_int_to_long(pValue, nRetValue);
+}
+
+int get_NID_LRBG_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+{
+    return get_kcg_int_signature(pfnStrAppend, pData);
+}
+
+int set_NID_LRBG_default_value(void *pValue)
+{
+    return set_kcg_int_default_value(pValue);
+}
+
+int check_NID_LRBG_string(const char *str, char **endptr)
+{
+    static NID_LRBG rTemp;
+    return string_to_NID_LRBG(str, &rTemp, endptr);
+}
+
+SimTypeUtils _Type_NID_LRBG_Utils = {
+    NID_LRBG_to_string,
+    check_NID_LRBG_string,
+    string_to_NID_LRBG,
+    is_NID_LRBG_double_conversion_allowed,
+    NID_LRBG_to_double,
+    is_NID_LRBG_long_convertion_allowed,
+    NID_LRBG_to_long,
+    compare_NID_LRBG,
+    get_NID_LRBG_signature,
+    set_NID_LRBG_default_value,
+    sizeof(NID_LRBG)
+};
+
+#include "C:/Program Files/Esterel Technologies/SCADE R16.1/SCADE/lib/kcg_conv.c"

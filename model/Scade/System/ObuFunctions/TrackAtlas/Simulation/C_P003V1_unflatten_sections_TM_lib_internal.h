@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-07T01:45:05
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _C_P003V1_unflatten_sections_TM_lib_internal_H_
 #define _C_P003V1_unflatten_sections_TM_lib_internal_H_
@@ -27,7 +27,7 @@ typedef struct {
   array_int_32 /* TM_lib_internal::C_P003V1_unflatten_sections::_L5 */ _L5;
   array_int_32_32 /* TM_lib_internal::C_P003V1_unflatten_sections::_L6 */ _L6;
   kcg_int /* TM_lib_internal::C_P003V1_unflatten_sections::_L7 */ _L7;
-  array__2454 /* TM_lib_internal::C_P003V1_unflatten_sections::_L9 */ _L9;
+  array__10240 /* TM_lib_internal::C_P003V1_unflatten_sections::_L9 */ _L9;
   kcg_bool /* TM_lib_internal::C_P003V1_unflatten_sections::_L11 */ _L11;
 } outC_C_P003V1_unflatten_sections_TM_lib_internal;
 
@@ -45,6 +45,6 @@ extern void C_P003V1_unflatten_sections_reset_TM_lib_internal(
 #endif /* _C_P003V1_unflatten_sections_TM_lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P003V1_unflatten_sections_TM_lib_internal.h
-** Generation date: 2015-07-07T01:45:05
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

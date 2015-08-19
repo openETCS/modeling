@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -10,7 +10,7 @@
 void SEND_WriteBaliseMessageHeader_reset_TM_lib_internal(
   outC_SEND_WriteBaliseMessageHeader_TM_lib_internal *outC)
 {
-  kcg_int i;
+  static kcg_int i;
   
   for (i = 0; i < 30; i++) {
     /* 1 */ SEND_FindSlot_reset_TM_lib_internal(&outC->Context_1[i]);
@@ -23,8 +23,8 @@ void SEND_WriteBaliseMessageHeader_TM_lib_internal(
   /* TM_lib_internal::SEND_WriteBaliseMessageHeader::NewHeader */MetadataElement_T_Common_Types_Pkg *NewHeader,
   outC_SEND_WriteBaliseMessageHeader_TM_lib_internal *outC)
 {
-  kcg_int tmp;
-  kcg_int i;
+  static kcg_int tmp;
+  static kcg_int i;
   
   outC->_L5 = 0;
   kcg_copy_Metadata_T_Common_Types_Pkg(&outC->_L1, HeadersIn);
@@ -91,6 +91,6 @@ void SEND_WriteBaliseMessageHeader_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SEND_WriteBaliseMessageHeader_TM_lib_internal.c
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 

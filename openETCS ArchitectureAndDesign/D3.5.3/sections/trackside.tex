@@ -1,0 +1,183 @@
+%set the master document for easy compilation
+%!TEX root = ../D3_5_3.tex
+
+\section{ETCS Messaging: TrackMessages}
+
+\subsection{Component Requirements}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Component name			& TrackMessages::Read\_P005 \\
+\midrule
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages}} \\
+\midrule
+SCADE designer			& Jakob G\"artner, LEA Railergy \newline
+Mairamou Haman Adji, LEA Railergy\\
+\midrule
+Description				& TrackMessages is a library containing functionality to:\newline
+\begin{itemize}
+\item Transport TrainToTrack and TrackToTrain messages and packets using a compressed format which is conceptually close to the ETCS language as defined in Subset-026
+\item Compress trackside information and decompress it in the onboard unit, taking into account different baseline versions and providing transparent translation.
+\item Compress trainside information and decompress it in the trackside simulation models, taking into account different baseline versions and providing transparent translation. \newline
+\end{itemize}
+
+As TrackMessages is a library with various components supporting all packets and messages defined in Subset-026, we have selected one exemplary function to document the concept. As only the packet/ message- related functionality is specific, this approach will allow a first understanding of the concept and the related interfaces. For a full discussion of the library, refer to the [specifc chapter? document?]\newline
+The function Read\_P005 extracts a packet 5 (Gradient Profile) from the compressed packets data flow, if present. It translates the integer- coded compressed data with the help of the metadata in the header section of the CompressedPackets\_T formatted data flow. After performing variable-level translation and exception detection, a baseline-3 conformal packet 5 is available for use within the relevant OBU functions.
+\\
+
+\midrule
+Input documents	& 
+Subset-026, Chapter 6\newline
+Subset-026, Chapter 7\newline
+Subset-026, Chapter 8\newline
+\newline
+The objective of this component (the full TrackMessages library) is to provide a full formalisation of above chapters in Subset-026\\
+\midrule
+Safety integrity level		& 4 \\
+\midrule
+Time constraints		& n/a (for the provided example function) \\
+\midrule
+API requirements 		& In the demonstrator context, the API is fully defined on SCADE model level. For integration with external systems (BTM, Radio, Subset-076 or Subset-94), additional conversion to/ from bit-level representation will be required\\
+\bottomrule
+\end{longtable}
+
+
+\subsection{Interface}
+
+An overview of the interface of component [component name] is shown in Figure~\ref{f:trackside_interface}. The inputs and outputs are described in detail in Section~\ref{s:trackside_inputs} respectively \ref{s:trackside_outputs}.
+
+\begin{figure}
+\center
+\missingfigure{[Put SysML diagram of component here]}
+\caption{Component SysML diagram}\label{f:trackside_interface}
+\end{figure}
+
+
+\subsubsection{Inputs}\label{s:trackside_inputs}
+
+\paragraph{Message\_In}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				&Message\_In \\
+\midrule
+Description				& Message\_In takes the compressed track-to-train messages that have either been compressed by the trackside simulation components of the TrackMessages library, or have been filled by the API. All packets that are part of the same message are transmitted within one cycle of the model's execution. Message\_IN is taking the compressed packet information from the track to train dataflow. \newline
+  \\
+\midrule
+Source					& Manage\_TrackSideInformation\_Integration \\ 
+\midrule
+Type					& Common\_Types\_Pkg::CompressedPackets\_T \\
+\midrule
+Valid range of values 	& n/a\newline
+The consistency of the metadata is checked at the input side.\newline
+The ranges of the transported variables are checked at the conversion step (from integer format to SRS- conformal format)
+ \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \newline \newline
+The content of this input is not checked, as any issues will be found at conversion level. If the metadata are not matching the search criteria the packet will be considered as non existent and will therefore be ignored. 
+ \\
+\bottomrule
+\end{longtable}
+
+
+
+
+\subsubsection{Outputs}\label{s:trackside_outputs}
+
+\paragraph{received}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& received \\
+\midrule
+Description				& Flag to indicate reception of a packet 5 from trackside in the current cycle \\
+\midrule
+Destination				& Any calling component\\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	&
+[true | false]
+ \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{P005\_OBU\_out}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& P005\_OBU\_out \\
+\midrule
+Description				& Gradient Profile (Packet 5) according to 7.4.2.2 \\
+\midrule
+Destination				& Any calling operator\\ 
+\midrule
+Type					& TM::P005\_OBU\_T\\
+\midrule
+Valid range of values	& TM::P005\_OBU\_T is a complex data type. Values are given for each element.\newline Format is: Type Name: range/ list of values
+\begin{itemize}
+\item bool valid: [true | false]
+\item q\_dir Q\_DIR:\newline  [Q\_DIR\_Both\_directions |\newline Q\_DIR\_Nominal |\newline Q\_DIR\_Reverse]
+\item l\_packet L\_PACKET: (0-8191)
+\item q\_scale Q\_SCALE: \newline[ENUM\_Q\_SCALE\_10cm |\newline ENUM\_Q\_SCALE\_1m |\newline ENUM\_Q\_SCALE\_10m]
+\item n\_iter N\_ITER: (0-33)\newline \emph{(Remark: start section from the original packet is integrated into the list of sections)}
+\end{itemize}
+The structured element sections is an array of type P005\_section\_enum\_T. For each element, the valid range of values is as follows:
+\begin{itemize}
+\item bool valid: [true | false]\newline \emph{(Remark: Check for consistency with the value of n\_iter)}
+\item d\_link D\_LINK: (0-32767)
+\item q\_newcountry Q\_NEWCOUNTRY:\newline [TM\_conversions::ENUM\_Q\_NEWCOUNTRY\_same |\newline TM\_conversions::ENUM\_Q\_NEWCOUNTRY\_not\_same]
+\item nid\_c NID\_C: (0-1023)
+\item nid\_bg NID\_BG: (0-16383)
+\item q\_linkorientation Q\_LINKORIENTATION:\newline [TM\_conversions::ENUM\_Q\_LINKORIENTATION\_reverse|\newline TM\_conversions::ENUM\_Q\_LINKORIENTATION\_nominal]
+\item q\_linkreaction Q\_LINKREACTION:\newline [TM\_conversions::ENUM\_Q\_LINKREACTION\_Train\_trip |\newline TM\_conversions::ENUM\_Q\_LINKREACTION\_Apply\_service\_brake\newline TM\_conversions::ENUM\_Q\_LINKREACTION\_No\_Reaction]
+\item q\_locacc Q\_LOCACC: (0-63)
+\end{itemize}
+
+\emph{Only an output structure with the structured element "valid" set to "true" is to be considered as received. If this field is set to true, the Output 1 (received) must equally be set to "true".}
+
+ 
+
+ \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& The component is prepared for the upcoming error/exception handling concept. An error flag is, at the moment, raised internally if any of the compressed input values is out of range. A hierarchical error processing is foreseen.\newline
+
+\emph{The types that have been defined in the package S026\_7 do not provide any default/ invalid value. The following fields are therefore set to an arbitrary value upon reception of an out-of-range value from track side, and the internal error flag is raised:}
+\begin{itemize}
+\item q\_dir Q\_DIR:\newline  set to: Q\_DIR\_Both\_directions
+\item q\_scale Q\_SCALE: \newline set to: ENUM\_Q\_SCALE\_10cm 
+\item q\_newcountry Q\_NEWCOUNTRY:\newline set to:[TM\_conversions::ENUM\_Q\_NEWCOUNTRY\_same |\newline TM\_conversions::ENUM\_Q\_NEWCOUNTRY\_not\_same]
+\item q\_newcountry Q\_NEWCOUNTRY:\newline set to: TM\_conversions::ENUM\_Q\_NEWCOUNTRY\_not\_same
+\item q\_linkorientation Q\_LINKORIENTATION:\newline set to: TM\_conversions::ENUM\_Q\_LINKORIENTATION\_reverse
+\item q\_linkreaction Q\_LINKREACTION:\newline set to: TM\_conversions::ENUM\_Q\_LINKREACTION\_Train\_trip
+\end{itemize}
+
+ \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+
+\subsection{Sub Components}
+
+\subsubsection{Read\_Packets}
+\input{sections/trackside.readpackets.tex}
+
+\subsubsection{Extract Packet 5}
+\input{sections/trackside.Cp005ComprOnboard.tex}
+
+
+%\subsubsection{Name\_of\_Subcomponent}
+%\input{sections/Name\_of\_Subcomponent.tex}

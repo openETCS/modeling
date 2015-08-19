@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-06T16:53:59
+** Generation date: 2015-08-06T10:52:03
 *************************************************************$ */
 #ifndef _KCG_SENSORS_H_
 #define _KCG_SENSORS_H_
@@ -10,6 +10,6 @@
 #endif /* _KCG_SENSORS_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_sensors.h
-** Generation date: 2015-07-06T16:53:59
+** Generation date: 2015-08-06T10:52:03
 *************************************************************$ */
 

@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -10,7 +10,7 @@
 void SEND_MessageData_reset_TM_lib_internal(
   outC_SEND_MessageData_TM_lib_internal *outC)
 {
-  kcg_int i;
+  static kcg_int i;
   
   for (i = 0; i < 500; i++) {
     /* 1 */
@@ -26,11 +26,11 @@ void SEND_MessageData_TM_lib_internal(
   /* TM_lib_internal::SEND_MessageData::DataElementIn */CompressedPacketData_T_Common_Types_Pkg *DataElementIn,
   outC_SEND_MessageData_TM_lib_internal *outC)
 {
-  kcg_int i3;
-  kcg_int i2;
-  kcg_int i1;
-  kcg_int i;
-  kcg_int noname;
+  static kcg_int i3;
+  static kcg_int i2;
+  static kcg_int i1;
+  static kcg_int i;
+  static kcg_int noname;
   
   outC->_L408 = EndAddress;
   for (i3 = 0; i3 < 500; i3++) {
@@ -83,6 +83,6 @@ void SEND_MessageData_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SEND_MessageData_TM_lib_internal.c
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 

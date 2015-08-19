@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Operator kind="function" name="SelectHighestPriorityTransition">
+			<inputs>
+				<Variable name="PriorityTable">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Level_And_Mode_Types_Pkg::T_LevelTransition_PriorityTable"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/177925/4664/660/54f050623c50"/>
+					</pragmas>
+				</Variable>
+				<Variable name="ERTMS_capabilities">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Level_And_Mode_Types_Pkg::T_ERTMS_capabilities"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/177926/4664/660/54f0506265cf"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="levelTransition">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Level_And_Mode_Types_Pkg::T_LevelTransition"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/177924/4664/660/54f05062ded"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<locals>
+				<Variable name="_L1">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Level_And_Mode_Types_Pkg::T_LevelTransition_PriorityTable"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/17791f/4664/660/54f050622eb7"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L2">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Level_And_Mode_Types_Pkg::T_ERTMS_capabilities"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/177920/4664/660/54f050624cd0"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L66">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Level_And_Mode_Types_Pkg::T_LevelTransition"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/177921/4664/660/54f050622c86"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L67">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Level_And_Mode_Types_Pkg::T_LevelTransition"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/177922/4664/660/54f05062e55"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L68">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Level_And_Mode_Types_Pkg::T_ERTMS_capabilities"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="5"/>
+							</size>
+						</Table>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/177923/4664/660/54f05062193f"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- _L1 = PriorityTable; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L1"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="PriorityTable"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/177918/4664/660/54f050622319"/>
+					</pragmas>
+				</Equation>
+				<!-- _L2 = ERTMS_capabilities; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L2"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="ERTMS_capabilities"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/177919/4664/660/54f050623203"/>
+					</pragmas>
+				</Equation>
+				<!-- _L66 = (fold compareTransitions <<Level_And_Mode_Types_Pkg::M_Max_TransitionInPri... -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L66"/>
+					</lefts>
+					<right>
+						<!-- (fold compareTransitions <<Level_And_Mode_Types_Pkg::M_Max_TransitionInPriorityTa... -->
+						<CallExpression>
+							<operator>
+								<IteratorOp iterator="fold">
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="compareTransitions"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="Level_And_Mode_Types_Pkg::M_Max_TransitionInPriorityTable"/>
+											</path>
+										</IdExpression>
+									</size>
+								</IteratorOp>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L67"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L68"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/17791a/4664/660/54f050622056"/>
+					</pragmas>
+				</Equation>
+				<!-- _L67 = Level_And_Mode_Types_Pkg::M_Default_Transition; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L67"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Level_And_Mode_Types_Pkg::M_Default_Transition"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/17791b/4664/660/54f05062495e"/>
+					</pragmas>
+				</Equation>
+				<!-- levelTransition = _L66; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="levelTransition"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L66"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/17791c/4664/660/54f0506262b1"/>
+					</pragmas>
+				</Equation>
+				<!-- _L68 = _L2 ^ 5; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L68"/>
+					</lefts>
+					<right>
+						<!-- _L2 ^ 5 -->
+						<ScalarToVectorOp name="1">
+							<flow>
+								<ListExpression>
+									<items>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+									</items>
+								</ListExpression>
+							</flow>
+							<size>
+								<ConstValue value="5"/>
+							</size>
+						</ScalarToVectorOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/17791d/4664/660/54f050624825"/>
+					</pragmas>
+				</Equation>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/177917/4664/660/54f050625f6a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>This operator selects the transition order with the highest priority. REQ 5.10.2.4</comment>
+					<comment>This selection is done by choosing the first non-empty transition order which is supported by the ERTMS capabilities.</comment>
+					<comment></comment>
+					<comment>Priority: Level Transition Order / Immediate Order &gt; Conditional Order &gt; Driver Selection</comment>
+					<diagrams>
+						<NetDiagram name="diagram_SelectHighestPriorityTransition_1" landscape="true" format="A4 (210 297)" oid="!ed/17791e/4664/660/54f050627773">
+							<presentationElements>
+								<EquationGE presentable="!ed/177918/4664/660/54f050622319">
+									<position>
+										<Point x="9525" y="6535"/>
+									</position>
+									<size>
+										<Size width="265" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/177919/4664/660/54f050623203">
+									<position>
+										<Point x="5741" y="8520"/>
+									</position>
+									<size>
+										<Size width="265" height="502"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/17791a/4664/660/54f050622056">
+									<position>
+										<Point x="12189" y="2850"/>
+									</position>
+									<size>
+										<Size width="8086" height="7900"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/17791b/4664/660/54f05062495e">
+									<position>
+										<Point x="9546" y="4678"/>
+									</position>
+									<size>
+										<Size width="170" height="296"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/17791c/4664/660/54f0506262b1">
+									<position>
+										<Point x="23707" y="6562"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/17791a/4664/660/54f050622056" dstEquation="!ed/17791c/4664/660/54f0506262b1">
+									<positions>
+										<Point x="20267" y="6800"/>
+										<Point x="22013" y="6800"/>
+										<Point x="22013" y="6800"/>
+										<Point x="23760" y="6800"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/177918/4664/660/54f050622319" dstEquation="!ed/17791a/4664/660/54f050622056">
+									<positions>
+										<Point x="9790" y="6800"/>
+										<Point x="11218" y="6800"/>
+										<Point x="11218" y="6800"/>
+										<Point x="12197" y="6800"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/17791b/4664/660/54f05062495e" dstEquation="!ed/17791a/4664/660/54f050622056">
+									<positions>
+										<Point x="9710" y="4815"/>
+										<Point x="11377" y="4815"/>
+										<Point x="11377" y="4815"/>
+										<Point x="12197" y="4815"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/17791d/4664/660/54f050624825">
+									<position>
+										<Point x="7832" y="8308"/>
+									</position>
+									<size>
+										<Size width="953" height="953"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/17791d/4664/660/54f050624825" dstEquation="!ed/17791a/4664/660/54f050622056">
+									<positions>
+										<Point x="8784" y="8784"/>
+										<Point x="9578" y="8784"/>
+										<Point x="9578" y="8784"/>
+										<Point x="12197" y="8784"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/177919/4664/660/54f050623203" dstEquation="!ed/17791d/4664/660/54f050624825">
+									<positions>
+										<Point x="6006" y="8784"/>
+										<Point x="6906" y="8784"/>
+										<Point x="6906" y="8784"/>
+										<Point x="7832" y="8784"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>

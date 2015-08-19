@@ -1,21 +1,21 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-07T01:45:05
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 #ifndef _Read_P003V1_TM_baseline2_H_
 #define _Read_P003V1_TM_baseline2_H_
 
 #include "kcg_types.h"
-#include "C_P003V1_compr_onboard_TM_conversions_baseline2.h"
 #include "RECV_ReadPackets_TM_lib_internal.h"
+#include "C_P003V1_compr_onboard_TM_conversions_baseline2.h"
 
 /* =====================  no input structure  ====================== */
 
 /* ========================  context type  ========================= */
 typedef struct {
   /* ---------------------------  outputs  --------------------------- */
-  P003V1_OBU_T_TM_baseline2 /* TM_baseline2::Read_P003V1::P003V1_OBU_out */ P003V1_OBU_out;
   kcg_bool /* TM_baseline2::Read_P003V1::received */ received;
+  P003V1_OBU_T_TM_baseline2 /* TM_baseline2::Read_P003V1::P003V1_OBU_out */ P003V1_OBU_out;
   /* -----------------------  no local probes  ----------------------- */
   /* -----------------  no initialization variables  ----------------- */
   /* -----------------------  no local memory  ----------------------- */
@@ -43,6 +43,6 @@ extern void Read_P003V1_reset_TM_baseline2(outC_Read_P003V1_TM_baseline2 *outC);
 #endif /* _Read_P003V1_TM_baseline2_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Read_P003V1_TM_baseline2.h
-** Generation date: 2015-07-07T01:45:05
+** Generation date: 2015-08-07T17:15:59
 *************************************************************$ */
 

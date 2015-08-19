@@ -1,18 +1,18 @@
-#ifndef T_DECODE_METADATA_NEW_TM_LIB_INTERNAL_INTERFACE
-#define T_DECODE_METADATA_NEW_TM_LIB_INTERNAL_INTERFACE
+#ifndef DECODE_NID_LRBG_TM_CONVERSIONS_INTERFACE
+#define DECODE_NID_LRBG_TM_CONVERSIONS_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "T_Decode_metadata_new_TM_lib_internal.h"
+#include "DECODE_NID_LRBG_TM_conversions.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_T_Decode_metadata_new_TM_lib_internal inputs_ctx;
-extern outC_T_Decode_metadata_new_TM_lib_internal outputs_ctx;
+extern inC_DECODE_NID_LRBG_TM_conversions inputs_ctx;
+extern outC_DECODE_NID_LRBG_TM_conversions outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*T_DECODE_METADATA_NEW_TM_LIB_INTERNAL_INTERFACE */
+#endif /*DECODE_NID_LRBG_TM_CONVERSIONS_INTERFACE */

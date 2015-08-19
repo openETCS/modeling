@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="node" name="Int_array_to_string">
+	<inputs>
+		<Variable name="dmi_text">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_TEXT_INT_Array_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/39d29/B01/2EA0/55bf81349dc"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_TEXT_INT_Array_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/39d3c/B01/2EA0/55bf81c46799"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="DMI_Types_Pkg::cDMI_charsInText"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/39d42/B01/2EA0/55bf81ce71ed"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = dmi_text; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="dmi_text"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/39d3b/B01/2EA0/55bf81c4629f"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 = (map Char_to_Int <<DMI_Types_Pkg::cDMI_charsInText>>)(_L1); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<!-- (map Char_to_Int <<DMI_Types_Pkg::cDMI_charsInText>>)(_L1) -->
+				<CallExpression>
+					<operator>
+						<IteratorOp name="1" iterator="map">
+							<operator>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="Char_to_Int"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="DMI_Types_Pkg::cDMI_charsInText"/>
+									</path>
+								</IdExpression>
+							</size>
+						</IteratorOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/39d41/B01/2EA0/55bf81ce660f"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/39d27/B01/2EA0/55bf813473f3" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="diagram_Int_array_to_string_1" landscape="true" format="A4 (210 297)" oid="!ed/39d28/B01/2EA0/55bf81343515">
+					<presentationElements>
+						<EquationGE presentable="!ed/39d3b/B01/2EA0/55bf81c4629f">
+							<position>
+								<Point x="5662" y="3493"/>
+							</position>
+							<size>
+								<Size width="265" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/39d41/B01/2EA0/55bf81ce660f">
+							<position>
+								<Point x="7858" y="3149"/>
+							</position>
+							<size>
+								<Size width="1773" height="1402"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/39d3b/B01/2EA0/55bf81c4629f" dstEquation="!ed/39d41/B01/2EA0/55bf81ce660f">
+							<positions>
+								<Point x="5927" y="3757"/>
+								<Point x="6879" y="3757"/>
+								<Point x="6879" y="3863"/>
+								<Point x="7858" y="3863"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

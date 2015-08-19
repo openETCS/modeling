@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -20,7 +20,7 @@ void Balise_Localisation_InfraLib(
   /* InfraLib::Balise_Localisation::PIG_nom */kcg_int PIG_nom,
   outC_Balise_Localisation_InfraLib *outC)
 {
-  kcg_int noname;
+  static kcg_int noname;
   
   outC->_L92 = ReleaseDelta_InfraLib;
   outC->I2_1 = outC->_L92;
@@ -73,6 +73,6 @@ void Balise_Localisation_InfraLib(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_Localisation_InfraLib.c
-** Generation date: 2015-07-07T00:28:47
+** Generation date: 2015-08-12T20:04:58
 *************************************************************$ */
 
