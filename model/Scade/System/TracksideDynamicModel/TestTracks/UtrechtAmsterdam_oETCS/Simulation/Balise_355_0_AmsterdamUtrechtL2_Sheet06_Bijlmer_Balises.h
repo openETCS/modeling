@@ -1,13 +1,13 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-12T20:04:58
+** Generation date: 2015-08-20T18:20:31
 *************************************************************$ */
 #ifndef _Balise_355_0_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises_H_
 #define _Balise_355_0_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises_H_
 
 #include "kcg_types.h"
-#include "Packets_BG355_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises.h"
 #include "Balise_Localisation_InfraLib.h"
+#include "Packets_BG355_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises.h"
 
 /* =====================  no input structure  ====================== */
 
@@ -50,6 +50,6 @@ extern void Balise_355_0_reset_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises(
 #endif /* _Balise_355_0_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_355_0_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises.h
-** Generation date: 2015-08-12T20:04:58
+** Generation date: 2015-08-20T18:20:31
 *************************************************************$ */
 

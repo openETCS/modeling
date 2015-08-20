@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-11T08:59:25
+** Generation date: 2015-08-17T13:54:12
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -42,6 +42,6 @@ void C_P005_fs_flatten_array_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_fs_flatten_array_TM_lib_internal.c
-** Generation date: 2015-08-11T08:59:25
+** Generation date: 2015-08-17T13:54:12
 *************************************************************$ */
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--$*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-12T20:04:59
+** Generation date: 2015-08-20T18:20:32
 *************************************************************$-->
-<Model date="2015-08-12T20:04:59" commandLine="s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt">
+<Model date="2015-08-20T18:20:32" commandLine="s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt">
   <NamedType scadeName="NID_BG" targetName="NID_BG" refType="kcg_int"/>
   <NamedType scadeName="NID_PACKET" targetName="NID_PACKET" refType="kcg_int"/>
   <EnumType scadeName="Q_DIR" targetName="Q_DIR">
@@ -16,39 +16,71 @@
         targetType="BPos_Internal_Tests"/>
     <Constant scadeName="DEFAULT_BPos_single" scadeType="Internal_Tests::BPos_Single"
         targetName="DEFAULT_BPos_single_Internal_Tests" targetType="BPos_Single_Internal_Tests"/>
-    <NamedType scadeName="BPos" targetName="BPos_Internal_Tests" refType="array__21063"/>
-    <NamedType scadeName="BPos_Single" targetName="BPos_Single_Internal_Tests" refType="struct__21058"/>
-    <RootNode scadeName="DriveAllBGs" headerFile="DriveAllBGs_Internal_Tests.h"
-        targetCycleFct="DriveAllBGs_Internal_Tests" targetInitFct="DriveAllBGs_reset_Internal_Tests">
-      <Input scadeName="reset" scadeType="bool" targetName="reset" targetType="kcg_bool"/>
+    <NamedType scadeName="BPos" targetName="BPos_Internal_Tests" refType="array__21120"/>
+    <NamedType scadeName="BPos_Single" targetName="BPos_Single_Internal_Tests" refType="struct__21115"/>
+    <RootNode scadeName="DriveAllBalisesRaspberry" headerFile="DriveAllBalisesRaspberry_Internal_Tests.h"
+        targetCycleFct="DriveAllBalisesRaspberry_Internal_Tests"
+        targetInitFct="DriveAllBalisesRaspberry_reset_Internal_Tests">
       <Output scadeName="BG_data" scadeType="TM::CompressedBaliseMessage" targetName="BG_data"
           targetType="CompressedBaliseMessage_TM"/>
+      <Local scadeName="_L1" scadeType="TM::CompressedBaliseMessage" targetName="_L1"
+          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="bool" targetName="_L2" targetType="kcg_bool" inCtx="true"/>
+      <NodeInstance scadeName="Internal_Tests::DriveAllBalises" instName="1" refName="DriveAllBalises_Internal_Tests">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+      <MemCtxVar targetName="Ctxt_DriveAllBalisesRaspberry_Internal_Tests"/>
+      <OutCtxType targetName="outC_DriveAllBalisesRaspberry_Internal_Tests"/>
+    </RootNode>
+    <NoExpNode scadeName="DriveAllBalises" headerFile="DriveAllBalises_Internal_Tests.h"
+        targetCycleFct="DriveAllBalises_Internal_Tests" targetInitFct="DriveAllBalises_reset_Internal_Tests">
+      <Input scadeName="reset" scadeType="bool" targetName="reset" targetType="kcg_bool"/>
+      <Output scadeName="BG_data" scadeType="TM::CompressedBaliseMessage" targetName="BG_data"
+          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
       <Local scadeName="_L1" scadeType="bool" targetName="_L1" targetType="kcg_bool" inCtx="true"/>
       <Local scadeName="_L3" scadeType="NID_BG" targetName="_L3" targetType="NID_BG" inCtx="true"/>
       <Local scadeName="_L2" scadeType="real" targetName="_L2" targetType="kcg_real" inCtx="true"/>
       <Local scadeName="_L4" scadeType="TM::CompressedBaliseMessage" targetName="_L4"
           targetType="CompressedBaliseMessage_TM" inCtx="true"/>
-      <NodeInstance scadeName="Internal_Tests::TriggerAllBalisesSequence" instName="1"
-          refName="TriggerAllBalisesSequence_Internal_Tests">
+      <NodeInstance scadeName="Internal_Tests::TriggerAllBalisesInSequence" instName="1"
+          refName="TriggerAllBalisesInSequence_Internal_Tests">
         <OutCtxVar targetName="Context_1"/>
       </NodeInstance>
       <NodeInstance scadeName="AmsterdamUtrechtL2::AmsterdamUtrechtTrack1::Amsterdam_Utrecht_Lijn1_balises" instName="1"
           refName="Amsterdam_Utrecht_Lijn1_b_AmsterdamUtrechtL2_AmsterdamUtrechtTrack1">
         <OutCtxVar targetName="_1_Context_1"/>
       </NodeInstance>
-      <MemCtxVar targetName="Ctxt_DriveAllBGs_Internal_Tests"/>
-      <OutCtxType targetName="outC_DriveAllBGs_Internal_Tests"/>
-    </RootNode>
-    <NoExpNode scadeName="TriggerAllBalisesSequence" headerFile="TriggerAllBalisesSequence_Internal_Tests.h"
-        targetCycleFct="TriggerAllBalisesSequence_Internal_Tests"
-        targetInitFct="TriggerAllBalisesSequence_reset_Internal_Tests">
-      <Input scadeName="reset" scadeType="bool" targetName="reset1" targetType="kcg_bool"/>
+      <OutCtxType targetName="outC_DriveAllBalises_Internal_Tests"/>
+    </NoExpNode>
+    <NoExpNode scadeName="TriggerAllBalisesInSequence" headerFile="TriggerAllBalisesInSequence_Internal_Tests.h"
+        targetCycleFct="TriggerAllBalisesInSequence_Internal_Tests"
+        targetInitFct="TriggerAllBalisesInSequence_reset_Internal_Tests">
+      <Input scadeName="reset" scadeType="bool" targetName="reset" targetType="kcg_bool"/>
       <Output scadeName="TrainPos" scadeType="real" targetName="TrainPos" targetType="kcg_real" inCtx="true"/>
       <Output scadeName="nid_BG" scadeType="NID_BG" targetName="nid_BG" targetType="NID_BG" inCtx="true"/>
       <Local scadeName="_L2" scadeType="NID_BG" targetName="_L2" targetType="NID_BG" inCtx="true"/>
       <Local scadeName="_L1" scadeType="real" targetName="_L1" targetType="kcg_real" inCtx="true"/>
       <Local scadeName="_L3" scadeType="int" targetName="_L3" targetType="kcg_int" inCtx="true"/>
       <Local scadeName="_L4" scadeType="bool" targetName="_L4" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L5" scadeType="int" targetName="_L5" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L6" scadeType="int" targetName="_L6" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L7" scadeType="int" targetName="_L7" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L8" scadeType="bool" targetName="_L8" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L9" scadeType="real" targetName="_L9" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L10" scadeType="real" targetName="_L10" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L11" scadeType="real" targetName="_L11" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L12" scadeType="real" targetName="_L12" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L13" scadeType="int" targetName="_L13" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L14" scadeType="int" targetName="_L14" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L15" scadeType="int" targetName="_L15" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L16" scadeType="int" targetName="_L16" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L23" scadeType="real" targetName="_L23" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L22" scadeType="bool" targetName="_L22" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L21" scadeType="int" targetName="_L21" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L20" scadeType="int" targetName="_L20" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L19" scadeType="real" targetName="_L19" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L18" scadeType="int" targetName="_L18" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L17" scadeType="real" targetName="_L17" targetType="kcg_real" inCtx="true"/>
       <NodeInstance scadeName="Internal_Tests::TriggerBaliseByIndex" instName="1"
           refName="TriggerBaliseByIndex_Internal_Tests">
         <OutCtxVar targetName="_1_Context_1"/>
@@ -56,7 +88,15 @@
       <NodeInstance scadeName="pwlinear::ClockCounter" instName="1" refName="ClockCounter_pwlinear">
         <OutCtxVar targetName="Context_1"/>
       </NodeInstance>
-      <OutCtxType targetName="outC_TriggerAllBalisesSequence_Internal_Tests"/>
+      <NodeInstance scadeName="mod" instName="1"/>
+      <NodeInstance scadeName="=" instName="1"/>
+      <NodeInstance scadeName="*" instName="3"/>
+      <NodeInstance scadeName="+" instName="1"/>
+      <NodeInstance scadeName="div" instName="1"/>
+      <NodeInstance scadeName="mod" instName="2"/>
+      <NodeInstance scadeName="mod" instName="3"/>
+      <NodeInstance scadeName="=" instName="2"/>
+      <OutCtxType targetName="outC_TriggerAllBalisesInSequence_Internal_Tests"/>
     </NoExpNode>
     <NoExpNode scadeName="TriggerBaliseByIndex" headerFile="TriggerBaliseByIndex_Internal_Tests.h"
         targetCycleFct="TriggerBaliseByIndex_Internal_Tests" targetInitFct="TriggerBaliseByIndex_reset_Internal_Tests">
@@ -126,6 +166,307 @@
       <NodeInstance scadeName="+" instName="5"/>
       <Init targetName="init" targetType="kcg_bool" inCtx="true"/>
       <OutCtxType targetName="outC_ClockCounter_pwlinear"/>
+    </NoExpNode>
+  </Package>
+  <Package scadeName="InfraLib">
+    <Constant scadeName="Distance_Balises_in_BG" scadeType="real" targetName="Distance_Balises_in_BG_InfraLib"
+        targetType="kcg_real" macroDef="true"/>
+    <Constant scadeName="Half_Distance_Balises_in_BG" scadeType="real" targetName="Half_Distance_Balises_in_BG_InfraLib"
+        targetType="kcg_real" macroDef="true"/>
+    <Constant scadeName="ReleaseDelta" scadeType="real" targetName="ReleaseDelta_InfraLib" targetType="kcg_real"
+        macroDef="true"/>
+    <Constant scadeName="DEFAULT_BaliseTelegramHd" scadeType="TM::BaliseTelegramHeader_int_T"
+        targetName="DEFAULT_BaliseTelegramHd_InfraLib" targetType="BaliseTelegramHeader_int_T_TM"/>
+    <NamedType scadeName="B_data_internal_T" targetName="B_data_internal_T_InfraLib" refType="struct__20964"/>
+    <NamedType scadeName="TrackSectionData_T" targetName="TrackSectionData_T_InfraLib" refType="struct__20979"/>
+    <NamedType scadeName="TrainPosRaw_T" targetName="TrainPosRaw_T_InfraLib" refType="struct__20973"/>
+    <NoExpNode scadeName="Balise_Localisation" headerFile="Balise_Localisation_InfraLib.h"
+        targetCycleFct="Balise_Localisation_InfraLib" targetInitFct="Balise_Localisation_reset_InfraLib">
+      <Input scadeName="B_data_in" scadeType="InfraLib::B_data_internal_T" targetName="B_data_in"
+          targetType="B_data_internal_T_InfraLib"/>
+      <Input scadeName="Header" scadeType="TM::BaliseTelegramHeader_int_T" targetName="Header"
+          targetType="BaliseTelegramHeader_int_T_TM"/>
+      <Input scadeName="PIG_nom" scadeType="int" targetName="PIG_nom" targetType="kcg_int"/>
+      <Output scadeName="PIG_0_out" scadeType="int" targetName="PIG_0_out" targetType="kcg_int" inCtx="true"/>
+      <Output scadeName="TrainPass" scadeType="bool" targetName="TrainPass" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L15" scadeType="int" targetName="_L15" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L16" scadeType="TM::BaliseTelegramHeader_int_T" targetName="_L16"
+          targetType="BaliseTelegramHeader_int_T_TM" inCtx="true"/>
+      <Local scadeName="_L47" scadeType="int" targetName="_L47" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L48" scadeType="int" targetName="_L48" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L50" scadeType="bool" targetName="_L50" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L51" scadeType="int" targetName="_L51" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L52" scadeType="int" targetName="_L52" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L65" scadeType="InfraLib::B_data_internal_T" targetName="_L65"
+          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L66" scadeType="int" targetName="_L66" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L73" scadeType="real" targetName="_L73" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L71" scadeType="InfraLib::B_data_internal_T" targetName="_L71"
+          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L68" scadeType="int" targetName="_L68" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L75" scadeType="real" targetName="_L75" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L76" scadeType="real" targetName="_L76" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L77" scadeType="real" targetName="_L77" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L82" scadeType="real" targetName="_L82" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L90" scadeType="real" targetName="_L90" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L91" scadeType="real" targetName="_L91" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L92" scadeType="real" targetName="_L92" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L93" scadeType="real" targetName="_L93" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L94" scadeType="bool" targetName="_L94" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L95" scadeType="bool" targetName="_L95" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L96" scadeType="bool" targetName="_L96" targetType="kcg_bool" inCtx="true"/>
+      <NodeInstance scadeName="=" instName="2"/>
+      <NodeInstance scadeName="InfraLib::Balise_Interdistance" instName="1" refName="Balise_Interdistance_InfraLib">
+        <OutCtxVar targetName="Context_1"/>
+      </NodeInstance>
+      <NodeInstance scadeName="+" instName="1"/>
+      <NodeInstance scadeName="TM_conversions::TOOLS_convert_engineering_location" instName="1"
+          refName="TOOLS_convert_engineering_TM_conversions">
+        <OutCtxVar targetName="_1_Context_1"/>
+      </NodeInstance>
+      <NodeInstance scadeName="+" instName="3"/>
+      <NodeInstance scadeName="-" instName="2"/>
+      <NodeInlining scadeName="math::Min" instName="1">
+        <Input scadeName="I1" scadeType="&apos;T" targetName="I1_1" targetType="kcg_real" inCtx="true"/>
+        <Input scadeName="I2" scadeType="&apos;T" targetName="I2_1" targetType="kcg_real" inCtx="true"/>
+        <Output scadeName="Mi_Output" scadeType="&apos;T" targetName="Mi_Output_1" targetType="kcg_real" inCtx="true"/>
+        <Local scadeName="_L21" scadeType="&apos;T" targetName="_L21_1" targetType="kcg_real" inCtx="true"/>
+        <Local scadeName="_L22" scadeType="&apos;T" targetName="_L22_1" targetType="kcg_real" inCtx="true"/>
+        <Local scadeName="_L24" scadeType="&apos;T" targetName="_L24_1" targetType="kcg_real" inCtx="true"/>
+        <Local scadeName="_L25" scadeType="bool" targetName="_L25_1" targetType="kcg_bool" inCtx="true"/>
+        <NodeInstance scadeName="&lt;=" instName="4"/>
+      </NodeInlining>
+      <NodeInstance scadeName="&lt;=" instName="1"/>
+      <NodeInstance scadeName="&gt;" instName="2"/>
+      <NodeInstance scadeName="and" instName="5"/>
+      <OutCtxType targetName="outC_Balise_Localisation_InfraLib"/>
+    </NoExpNode>
+    <NoExpNode scadeName="Balise_Interdistance" headerFile="Balise_Interdistance_InfraLib.h"
+        targetCycleFct="Balise_Interdistance_InfraLib" targetInitFct="Balise_Interdistance_reset_InfraLib">
+      <Input scadeName="pig0" scadeType="int" targetName="pig0" targetType="kcg_int"/>
+      <Input scadeName="n_pig" scadeType="int" targetName="n_pig" targetType="kcg_int"/>
+      <Output scadeName="distance_BB" scadeType="real" targetName="distance_BB" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="real" targetName="_L1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="real" targetName="_L2" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L3" scadeType="real" targetName="_L3" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="real" targetName="_L4" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L5" scadeType="real" targetName="_L5" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L6" scadeType="int" targetName="_L6" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L8" scadeType="bool" targetName="_L8" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L9" scadeType="int" targetName="_L9" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L10" scadeType="int" targetName="_L10" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L11" scadeType="int" targetName="_L11" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L12" scadeType="real" targetName="_L12" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L13" scadeType="int" targetName="_L13" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L14" scadeType="real" targetName="_L14" targetType="kcg_real" inCtx="true"/>
+      <NodeInstance scadeName="*" instName="1"/>
+      <NodeInstance scadeName="=" instName="1"/>
+      <NodeInstance scadeName="-" instName="1"/>
+      <NodeInstance scadeName="*" instName="2"/>
+      <NodeInlining scadeName="math::Abs" instName="1">
+        <Input scadeName="A_Input" scadeType="&apos;T" targetName="A_Input_1" targetType="kcg_int" inCtx="true"/>
+        <Output scadeName="A_Output" scadeType="&apos;T" targetName="A_Output_1" targetType="kcg_int" inCtx="true"/>
+        <Local scadeName="_L1" scadeType="bool" targetName="_L1_1" targetType="kcg_bool" inCtx="true"/>
+        <Local scadeName="_L2" scadeType="&apos;T" targetName="_L2_1" targetType="kcg_int" inCtx="true"/>
+        <Local scadeName="_L3" scadeType="&apos;T" targetName="_L3_1" targetType="kcg_int" inCtx="true"/>
+        <Local scadeName="_L5" scadeType="&apos;T" targetName="_L5_1" targetType="kcg_int" inCtx="true"/>
+        <Local scadeName="_L8" scadeType="&apos;T" targetName="_L8_1" targetType="kcg_int" inCtx="true"/>
+        <NodeInstance scadeName="&lt;=" instName="1"/>
+        <NodeInstance scadeName="-" instName="5"/>
+      </NodeInlining>
+      <NodeInstance scadeName="real " instName="1"/>
+      <OutCtxType targetName="outC_Balise_Interdistance_InfraLib"/>
+    </NoExpNode>
+    <NoExpNode scadeName="Balise_Group_Init" headerFile="Balise_Group_Init_InfraLib.h"
+        targetCycleFct="Balise_Group_Init_InfraLib" targetInitFct="Balise_Group_Init_reset_InfraLib">
+      <Input scadeName="TrainPos" scadeType="real" targetName="TrainPos" targetType="kcg_real"/>
+      <Input scadeName="Engineering_Data" scadeType="TM::BaliseGroupData" targetName="Engineering_Data"
+          targetType="BaliseGroupData_TM"/>
+      <Output scadeName="BG_internal_out" scadeType="InfraLib::B_data_internal_T" targetName="BG_internal_out"
+          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="TM::BaliseGroupData" targetName="_L2" targetType="BaliseGroupData_TM"
+          inCtx="true"/>
+      <Local scadeName="_L14" scadeType="int" targetName="_L14" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L26" scadeType="InfraLib::B_data_internal_T" targetName="_L26"
+          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L27" scadeType="TM::BaliseTelegramHeader_int_T" targetName="_L27"
+          targetType="BaliseTelegramHeader_int_T_TM" inCtx="true"/>
+      <Local scadeName="_L28" scadeType="Common_Types_Pkg::CompressedPackets_T" targetName="_L28"
+          targetType="CompressedPackets_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L29" scadeType="int" targetName="_L29" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L30" scadeType="real" targetName="_L30" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L31" scadeType="bool" targetName="_L31" targetType="kcg_bool" inCtx="true"/>
+      <OutCtxType targetName="outC_Balise_Group_Init_InfraLib"/>
+    </NoExpNode>
+    <NoExpNode scadeName="Balise_Group_Close" headerFile="Balise_Group_Close_InfraLib.h"
+        targetCycleFct="Balise_Group_Close_InfraLib" targetInitFct="Balise_Group_Close_reset_InfraLib">
+      <Input scadeName="BG_internal_in" scadeType="InfraLib::B_data_internal_T" targetName="BG_internal_in"
+          targetType="B_data_internal_T_InfraLib"/>
+      <Input scadeName="BG_message_in" scadeType="TM::CompressedBaliseMessage" targetName="BG_message_in"
+          targetType="CompressedBaliseMessage_TM"/>
+      <Output scadeName="Error_out" scadeType="bool" targetName="Error_out" targetType="kcg_bool" inCtx="true"/>
+      <Output scadeName="BG_message_out" scadeType="TM::CompressedBaliseMessage" targetName="BG_message_out"
+          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="TM::CompressedBaliseMessage" targetName="_L2"
+          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
+      <Local scadeName="_L20" scadeType="TM::CompressedBaliseMessage" targetName="_L20"
+          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
+      <Local scadeName="_L21" scadeType="InfraLib::B_data_internal_T" targetName="_L21"
+          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L22" scadeType="TM::BaliseTelegramHeader_int_T" targetName="_L22"
+          targetType="BaliseTelegramHeader_int_T_TM" inCtx="true"/>
+      <Local scadeName="_L23" scadeType="Common_Types_Pkg::CompressedPackets_T" targetName="_L23"
+          targetType="CompressedPackets_T_Common_Types_Pkg" inCtx="true"/>
+      <Local scadeName="_L24" scadeType="TM::CompressedBaliseMessage" targetName="_L24"
+          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
+      <Local scadeName="_L25" scadeType="bool" targetName="_L25" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L26" scadeType="bool" targetName="_L26" targetType="kcg_bool" inCtx="true"/>
+      <OutCtxType targetName="outC_Balise_Group_Close_InfraLib"/>
+    </NoExpNode>
+    <NoExpNode scadeName="No_Balise_Packets" headerFile="No_Balise_Packets_InfraLib.h"
+        targetCycleFct="No_Balise_Packets_InfraLib" targetInitFct="No_Balise_Packets_reset_InfraLib">
+      <Input scadeName="Header" scadeType="TM::BaliseTelegramHeader_int_T" targetName="Header"
+          targetType="BaliseTelegramHeader_int_T_TM"/>
+      <Input scadeName="Balise_data_in" scadeType="InfraLib::B_data_internal_T" targetName="Balise_data_in"
+          targetType="B_data_internal_T_InfraLib"/>
+      <Output scadeName="Balise_data_out" scadeType="InfraLib::B_data_internal_T" targetName="Balise_data_out"
+          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L36" scadeType="InfraLib::B_data_internal_T" targetName="_L36"
+          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L35" scadeType="bool" targetName="_L35" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L32" scadeType="TM::BaliseTelegramHeader_int_T" targetName="_L32"
+          targetType="BaliseTelegramHeader_int_T_TM" inCtx="true"/>
+      <Local scadeName="_L31" scadeType="InfraLib::B_data_internal_T" targetName="_L31"
+          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L30" scadeType="InfraLib::B_data_internal_T" targetName="_L30"
+          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
+      <OutCtxType targetName="outC_No_Balise_Packets_InfraLib"/>
+    </NoExpNode>
+    <ExpNode scadeName="No_Balise"/>
+    <NoExpNode scadeName="TrackDiscontinuity" headerFile="TrackDiscontinuity_InfraLib.h"
+        targetCycleFct="TrackDiscontinuity_InfraLib" targetInitFct="TrackDiscontinuity_reset_InfraLib">
+      <Input scadeName="SectionData_in" scadeType="InfraLib::TrackSectionData_T" targetName="SectionData_in"
+          targetType="TrackSectionData_T_InfraLib"/>
+      <Input scadeName="StartSection" scadeType="int" targetName="StartSection" targetType="kcg_int"/>
+      <Input scadeName="EndSection" scadeType="int" targetName="EndSection" targetType="kcg_int"/>
+      <Output scadeName="SectionData_out" scadeType="InfraLib::TrackSectionData_T" targetName="SectionData_out"
+          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
+      <Local scadeName="NewOffset" scadeType="int" targetName="NewOffset" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="int" targetName="_L2" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L3" scadeType="int" targetName="_L3" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L16" scadeType="InfraLib::TrackSectionData_T" targetName="_L16"
+          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L49" scadeType="int" targetName="_L49" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L50" scadeType="int" targetName="_L50" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L57" scadeType="int" targetName="_L57" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L59" scadeType="real" targetName="_L59" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L60" scadeType="real" targetName="_L60" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L61" scadeType="bool" targetName="_L61" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L62" scadeType="bool" targetName="_L62" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L63" scadeType="bool" targetName="_L63" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L79" scadeType="real" targetName="_L79" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L80" scadeType="InfraLib::TrackSectionData_T" targetName="_L80"
+          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L81" scadeType="InfraLib::TrainPosRaw_T" targetName="_L81" targetType="TrainPosRaw_T_InfraLib"
+          inCtx="true"/>
+      <Local scadeName="_L82" scadeType="real" targetName="_L82" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L83" scadeType="int" targetName="_L83" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L88" scadeType="InfraLib::TrackSectionData_T" targetName="_L88"
+          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L89" scadeType="InfraLib::TrainPosRaw_T" targetName="_L89" targetType="TrainPosRaw_T_InfraLib"
+          inCtx="true"/>
+      <Local scadeName="_L90" scadeType="InfraLib::TrainPosRaw_T" targetName="_L90" targetType="TrainPosRaw_T_InfraLib"
+          inCtx="true"/>
+      <Local scadeName="_L91" scadeType="int" targetName="_L91" targetType="kcg_int" inCtx="true"/>
+      <NodeInstance scadeName="-" instName="2"/>
+      <NodeInlining scadeName="math::Abs" instName="3">
+        <Input scadeName="A_Input" scadeType="&apos;T" targetName="A_Input_3" targetType="kcg_int" inCtx="true"/>
+        <Output scadeName="A_Output" scadeType="&apos;T" targetName="A_Output_3" targetType="kcg_int" inCtx="true"/>
+        <Local scadeName="_L1" scadeType="bool" targetName="_L1_3" targetType="kcg_bool" inCtx="true"/>
+        <Local scadeName="_L2" scadeType="&apos;T" targetName="_L2_3" targetType="kcg_int" inCtx="true"/>
+        <Local scadeName="_L3" scadeType="&apos;T" targetName="_L3_3" targetType="kcg_int" inCtx="true"/>
+        <Local scadeName="_L5" scadeType="&apos;T" targetName="_L5_3" targetType="kcg_int" inCtx="true"/>
+        <Local scadeName="_L8" scadeType="&apos;T" targetName="_L8_3" targetType="kcg_int" inCtx="true"/>
+        <NodeInstance scadeName="&lt;=" instName="1"/>
+        <NodeInstance scadeName="-" instName="5"/>
+      </NodeInlining>
+      <NodeInstance scadeName="+" instName="3"/>
+      <NodeInstance scadeName="real " instName="3"/>
+      <NodeInstance scadeName="real " instName="4"/>
+      <NodeInstance scadeName="&gt;=" instName="3"/>
+      <NodeInstance scadeName="&lt;" instName="3"/>
+      <NodeInstance scadeName="and" instName="2"/>
+      <NodeInstance scadeName="InfraLib::TrackDiscontinuity_CalcTrainPos" instName="2"
+          refName="TrackDiscontinuity_CalcTr_InfraLib" clockVar="tmp" clockVal="kcg_true">
+        <OutCtxVar targetName="Context_2" clockVar="tmp" clockVal="kcg_true"/>
+      </NodeInstance>
+      <Clock targetName="tmp" targetType="kcg_bool" inCtx="true"/>
+      <OutCtxType targetName="outC_TrackDiscontinuity_InfraLib"/>
+    </NoExpNode>
+    <NoExpNode scadeName="TrackDiscontinuity_CalcTrainPos" headerFile="TrackDiscontinuity_CalcTr_InfraLib.h"
+        targetCycleFct="TrackDiscontinuity_CalcTr_InfraLib" targetInitFct="TrackDiscontinuity_CalcTr_reset_InfraLib">
+      <Input scadeName="DeltaIn" scadeType="int" targetName="DeltaIn" targetType="kcg_int"/>
+      <Input scadeName="StartSection" scadeType="int" targetName="StartSection" targetType="kcg_int"/>
+      <Input scadeName="SectionDataIn" scadeType="InfraLib::TrackSectionData_T" targetName="SectionDataIn"
+          targetType="TrackSectionData_T_InfraLib"/>
+      <Output scadeName="TrainPosCalibrated" scadeType="real" targetName="TrainPosCalibrated" targetType="kcg_real"
+          inCtx="true"/>
+      <Local scadeName="_L15" scadeType="int" targetName="_L15" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L18" scadeType="bool" targetName="_L18" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L19" scadeType="int" targetName="_L19" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L22" scadeType="int" targetName="_L22" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L21" scadeType="int" targetName="_L21" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L20" scadeType="int" targetName="_L20" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L26" scadeType="real" targetName="_L26" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L25" scadeType="real" targetName="_L25" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L24" scadeType="real" targetName="_L24" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L23" scadeType="real" targetName="_L23" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L28" scadeType="int" targetName="_L28" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L27" scadeType="InfraLib::TrackSectionData_T" targetName="_L27"
+          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L29" scadeType="InfraLib::TrainPosRaw_T" targetName="_L29" targetType="TrainPosRaw_T_InfraLib"
+          inCtx="true"/>
+      <Local scadeName="_L30" scadeType="int" targetName="_L30" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L31" scadeType="real" targetName="_L31" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L33" scadeType="real" targetName="_L33" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L32" scadeType="real" targetName="_L32" targetType="kcg_real" inCtx="true"/>
+      <NodeInstance scadeName="&gt;=" instName="2"/>
+      <NodeInstance scadeName="-" instName="1"/>
+      <NodeInstance scadeName="real " instName="5"/>
+      <NodeInstance scadeName="*" instName="2"/>
+      <NodeInstance scadeName="real " instName="4"/>
+      <NodeInstance scadeName="+" instName="2"/>
+      <NodeInstance scadeName="real " instName="6"/>
+      <OutCtxType targetName="outC_TrackDiscontinuity_CalcTr_InfraLib"/>
+    </NoExpNode>
+    <NoExpNode scadeName="TrackInit" headerFile="TrackInit_InfraLib.h" targetCycleFct="TrackInit_InfraLib"
+        targetInitFct="TrackInit_reset_InfraLib">
+      <Input scadeName="TrainPosIn" scadeType="real" targetName="TrainPosIn" targetType="kcg_real"/>
+      <Input scadeName="InitialOffset" scadeType="int" targetName="InitialOffset" targetType="kcg_int"/>
+      <Output scadeName="SectionData_out" scadeType="InfraLib::TrackSectionData_T" targetName="SectionData_out"
+          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="real" targetName="_L1" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="TM::CompressedBaliseMessage" targetName="_L4"
+          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
+      <Local scadeName="_L8" scadeType="InfraLib::TrackSectionData_T" targetName="_L8"
+          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L10" scadeType="InfraLib::TrainPosRaw_T" targetName="_L10" targetType="TrainPosRaw_T_InfraLib"
+          inCtx="true"/>
+      <Local scadeName="_L11" scadeType="real" targetName="_L11" targetType="kcg_real" inCtx="true"/>
+      <Local scadeName="_L12" scadeType="int" targetName="_L12" targetType="kcg_int" inCtx="true"/>
+      <OutCtxType targetName="outC_TrackInit_InfraLib"/>
+    </NoExpNode>
+    <NoExpNode scadeName="TrackClose" headerFile="TrackClose_InfraLib.h" targetCycleFct="TrackClose_InfraLib"
+        targetInitFct="TrackClose_reset_InfraLib">
+      <Input scadeName="SectionData_in" scadeType="InfraLib::TrackSectionData_T" targetName="SectionData_in"
+          targetType="TrackSectionData_T_InfraLib"/>
+      <Output scadeName="BaliseMessage" scadeType="TM::CompressedBaliseMessage" targetName="BaliseMessage"
+          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="InfraLib::TrackSectionData_T" targetName="_L1"
+          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
+      <Local scadeName="_L6" scadeType="TM::CompressedBaliseMessage" targetName="_L6"
+          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
+      <OutCtxType targetName="outC_TrackClose_InfraLib"/>
     </NoExpNode>
   </Package>
   <Package scadeName="AmsterdamUtrechtL2">
@@ -18635,7 +18976,7 @@
         targetName="BG441_header_B1_Balises426" targetType="BaliseTelegramHeader_int_T_TM"/>
   </Package>
   <Package scadeName="Basics">
-    <NamedType scadeName="BaliseGroupData" targetName="BaliseGroupData_Basics" refType="struct__20910"/>
+    <NamedType scadeName="BaliseGroupData" targetName="BaliseGroupData_Basics" refType="struct__20956"/>
   </Package>
   <Package scadeName="TM">
     <Constant scadeName="DIM_scale_eng_location" scadeType="real" targetName="DIM_scale_eng_location_TM"
@@ -18684,337 +19025,36 @@
       <EnumVal scadeName="Z" targetName="Z_TM"/>
     </EnumType>
     <NamedType scadeName="BaliseTelegramHeader_int_T" targetName="BaliseTelegramHeader_int_T_TM"
-        refType="struct__20881"/>
-    <NamedType scadeName="P255_trackside_int_T" targetName="P255_trackside_int_T_TM" refType="struct__20927"/>
+        refType="struct__20938"/>
+    <NamedType scadeName="P255_trackside_int_T" targetName="P255_trackside_int_T_TM" refType="struct__20984"/>
     <NamedType scadeName="nid_packet_meta" targetName="nid_packet_meta_TM" refType="kcg_int"/>
-    <NamedType scadeName="P045_trackside_int_T" targetName="P045_trackside_int_T_TM" refType="struct__21050"/>
-    <NamedType scadeName="BaliseGroupData" targetName="BaliseGroupData_TM" refType="struct__20910"/>
-    <NamedType scadeName="CompressedBaliseMessage" targetName="CompressedBaliseMessage_TM" refType="struct__20894"/>
-    <NamedType scadeName="P042_trackside_int_T" targetName="P042_trackside_int_T_TM" refType="struct__21006"/>
-    <NamedType scadeName="P046_trackside_int_T" targetName="P046_trackside_int_T_TM" refType="struct__20995"/>
+    <NamedType scadeName="P045_trackside_int_T" targetName="P045_trackside_int_T_TM" refType="struct__21107"/>
+    <NamedType scadeName="BaliseGroupData" targetName="BaliseGroupData_TM" refType="struct__20956"/>
+    <NamedType scadeName="CompressedBaliseMessage" targetName="CompressedBaliseMessage_TM" refType="struct__20951"/>
+    <NamedType scadeName="P042_trackside_int_T" targetName="P042_trackside_int_T_TM" refType="struct__21063"/>
+    <NamedType scadeName="P046_trackside_int_T" targetName="P046_trackside_int_T_TM" refType="struct__21052"/>
     <NamedType scadeName="P046_trackide_sectionlist_T" targetName="P046_trackide_sectionlist_T_TM"
-        refType="array__20992"/>
-    <NamedType scadeName="P046_section_int_T" targetName="P046_section_int_T_TM" refType="struct__20978"/>
+        refType="array__21049"/>
+    <NamedType scadeName="P046_section_int_T" targetName="P046_section_int_T_TM" refType="struct__21035"/>
     <NamedType scadeName="P046_sections_array_flat_T" targetName="P046_sections_array_flat_T_TM"
         refType="array_int_66"/>
     <NamedType scadeName="P046_OBU_sectionlist_array_T" targetName="P046_OBU_sectionlist_array_T_TM"
         refType="array_int_2_33"/>
     <NamedType scadeName="P046_section_array_T" targetName="P046_section_array_T_TM" refType="array_int_2"/>
     <NamedType scadeName="P046_OBU_sectionlist_int_T" targetName="P046_OBU_sectionlist_int_T_TM"
-        refType="array__20989"/>
-    <NamedType scadeName="P041_trackside_int_T" targetName="P041_trackside_int_T_TM" refType="struct__20961"/>
+        refType="array__21046"/>
+    <NamedType scadeName="P041_trackside_int_T" targetName="P041_trackside_int_T_TM" refType="struct__21018"/>
     <NamedType scadeName="P041_trackide_sectionlist_T" targetName="P041_trackide_sectionlist_T_TM"
-        refType="array__20958"/>
-    <NamedType scadeName="P041_section_int_T" targetName="P041_section_int_T_TM" refType="struct__20943"/>
+        refType="array__21015"/>
+    <NamedType scadeName="P041_section_int_T" targetName="P041_section_int_T_TM" refType="struct__21000"/>
     <NamedType scadeName="P041_sections_array_flat_T" targetName="P041_sections_array_flat_T_TM"
         refType="array_int_99"/>
     <NamedType scadeName="P041_OBU_sectionlist_array_T" targetName="P041_OBU_sectionlist_array_T_TM"
         refType="array_int_3_33"/>
     <NamedType scadeName="P041_section_array_T" targetName="P041_section_array_T_TM" refType="array_int_3"/>
     <NamedType scadeName="P041_OBU_sectionlist_int_T" targetName="P041_OBU_sectionlist_int_T_TM"
-        refType="array__20955"/>
-    <NamedType scadeName="P137_trackside_int_T" targetName="P137_trackside_int_T_TM" refType="struct__20932"/>
-  </Package>
-  <Package scadeName="InfraLib">
-    <Constant scadeName="Distance_Balises_in_BG" scadeType="real" targetName="Distance_Balises_in_BG_InfraLib"
-        targetType="kcg_real" macroDef="true"/>
-    <Constant scadeName="Half_Distance_Balises_in_BG" scadeType="real" targetName="Half_Distance_Balises_in_BG_InfraLib"
-        targetType="kcg_real" macroDef="true"/>
-    <Constant scadeName="ReleaseDelta" scadeType="real" targetName="ReleaseDelta_InfraLib" targetType="kcg_real"
-        macroDef="true"/>
-    <Constant scadeName="DEFAULT_BaliseTelegramHd" scadeType="TM::BaliseTelegramHeader_int_T"
-        targetName="DEFAULT_BaliseTelegramHd_InfraLib" targetType="BaliseTelegramHeader_int_T_TM"/>
-    <NamedType scadeName="B_data_internal_T" targetName="B_data_internal_T_InfraLib" refType="struct__20918"/>
-    <NamedType scadeName="TrackSectionData_T" targetName="TrackSectionData_T_InfraLib" refType="struct__20905"/>
-    <NamedType scadeName="TrainPosRaw_T" targetName="TrainPosRaw_T_InfraLib" refType="struct__20899"/>
-    <NoExpNode scadeName="Balise_Localisation" headerFile="Balise_Localisation_InfraLib.h"
-        targetCycleFct="Balise_Localisation_InfraLib" targetInitFct="Balise_Localisation_reset_InfraLib">
-      <Input scadeName="B_data_in" scadeType="InfraLib::B_data_internal_T" targetName="B_data_in"
-          targetType="B_data_internal_T_InfraLib"/>
-      <Input scadeName="Header" scadeType="TM::BaliseTelegramHeader_int_T" targetName="Header"
-          targetType="BaliseTelegramHeader_int_T_TM"/>
-      <Input scadeName="PIG_nom" scadeType="int" targetName="PIG_nom" targetType="kcg_int"/>
-      <Output scadeName="PIG_0_out" scadeType="int" targetName="PIG_0_out" targetType="kcg_int" inCtx="true"/>
-      <Output scadeName="TrainPass" scadeType="bool" targetName="TrainPass" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L15" scadeType="int" targetName="_L15" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L16" scadeType="TM::BaliseTelegramHeader_int_T" targetName="_L16"
-          targetType="BaliseTelegramHeader_int_T_TM" inCtx="true"/>
-      <Local scadeName="_L47" scadeType="int" targetName="_L47" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L48" scadeType="int" targetName="_L48" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L50" scadeType="bool" targetName="_L50" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L51" scadeType="int" targetName="_L51" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L52" scadeType="int" targetName="_L52" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L65" scadeType="InfraLib::B_data_internal_T" targetName="_L65"
-          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L66" scadeType="int" targetName="_L66" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L73" scadeType="real" targetName="_L73" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L71" scadeType="InfraLib::B_data_internal_T" targetName="_L71"
-          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L68" scadeType="int" targetName="_L68" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L75" scadeType="real" targetName="_L75" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L76" scadeType="real" targetName="_L76" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L77" scadeType="real" targetName="_L77" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L82" scadeType="real" targetName="_L82" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L90" scadeType="real" targetName="_L90" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L91" scadeType="real" targetName="_L91" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L92" scadeType="real" targetName="_L92" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L93" scadeType="real" targetName="_L93" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L94" scadeType="bool" targetName="_L94" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L95" scadeType="bool" targetName="_L95" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L96" scadeType="bool" targetName="_L96" targetType="kcg_bool" inCtx="true"/>
-      <NodeInstance scadeName="=" instName="2"/>
-      <NodeInstance scadeName="InfraLib::Balise_Interdistance" instName="1" refName="Balise_Interdistance_InfraLib">
-        <OutCtxVar targetName="Context_1"/>
-      </NodeInstance>
-      <NodeInstance scadeName="+" instName="1"/>
-      <NodeInstance scadeName="TM_conversions::TOOLS_convert_engineering_location" instName="1"
-          refName="TOOLS_convert_engineering_TM_conversions">
-        <OutCtxVar targetName="_1_Context_1"/>
-      </NodeInstance>
-      <NodeInstance scadeName="+" instName="3"/>
-      <NodeInstance scadeName="-" instName="2"/>
-      <NodeInlining scadeName="math::Min" instName="1">
-        <Input scadeName="I1" scadeType="&apos;T" targetName="I1_1" targetType="kcg_real" inCtx="true"/>
-        <Input scadeName="I2" scadeType="&apos;T" targetName="I2_1" targetType="kcg_real" inCtx="true"/>
-        <Output scadeName="Mi_Output" scadeType="&apos;T" targetName="Mi_Output_1" targetType="kcg_real" inCtx="true"/>
-        <Local scadeName="_L21" scadeType="&apos;T" targetName="_L21_1" targetType="kcg_real" inCtx="true"/>
-        <Local scadeName="_L22" scadeType="&apos;T" targetName="_L22_1" targetType="kcg_real" inCtx="true"/>
-        <Local scadeName="_L24" scadeType="&apos;T" targetName="_L24_1" targetType="kcg_real" inCtx="true"/>
-        <Local scadeName="_L25" scadeType="bool" targetName="_L25_1" targetType="kcg_bool" inCtx="true"/>
-        <NodeInstance scadeName="&lt;=" instName="4"/>
-      </NodeInlining>
-      <NodeInstance scadeName="&lt;=" instName="1"/>
-      <NodeInstance scadeName="&gt;" instName="2"/>
-      <NodeInstance scadeName="and" instName="5"/>
-      <OutCtxType targetName="outC_Balise_Localisation_InfraLib"/>
-    </NoExpNode>
-    <NoExpNode scadeName="Balise_Interdistance" headerFile="Balise_Interdistance_InfraLib.h"
-        targetCycleFct="Balise_Interdistance_InfraLib" targetInitFct="Balise_Interdistance_reset_InfraLib">
-      <Input scadeName="pig0" scadeType="int" targetName="pig0" targetType="kcg_int"/>
-      <Input scadeName="n_pig" scadeType="int" targetName="n_pig" targetType="kcg_int"/>
-      <Output scadeName="distance_BB" scadeType="real" targetName="distance_BB" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L1" scadeType="real" targetName="_L1" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L2" scadeType="real" targetName="_L2" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L3" scadeType="real" targetName="_L3" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L4" scadeType="real" targetName="_L4" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L5" scadeType="real" targetName="_L5" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L6" scadeType="int" targetName="_L6" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L8" scadeType="bool" targetName="_L8" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L9" scadeType="int" targetName="_L9" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L10" scadeType="int" targetName="_L10" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L11" scadeType="int" targetName="_L11" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L12" scadeType="real" targetName="_L12" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L13" scadeType="int" targetName="_L13" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L14" scadeType="real" targetName="_L14" targetType="kcg_real" inCtx="true"/>
-      <NodeInstance scadeName="*" instName="1"/>
-      <NodeInstance scadeName="=" instName="1"/>
-      <NodeInstance scadeName="-" instName="1"/>
-      <NodeInstance scadeName="*" instName="2"/>
-      <NodeInlining scadeName="math::Abs" instName="1">
-        <Input scadeName="A_Input" scadeType="&apos;T" targetName="A_Input_1" targetType="kcg_int" inCtx="true"/>
-        <Output scadeName="A_Output" scadeType="&apos;T" targetName="A_Output_1" targetType="kcg_int" inCtx="true"/>
-        <Local scadeName="_L1" scadeType="bool" targetName="_L1_1" targetType="kcg_bool" inCtx="true"/>
-        <Local scadeName="_L2" scadeType="&apos;T" targetName="_L2_1" targetType="kcg_int" inCtx="true"/>
-        <Local scadeName="_L3" scadeType="&apos;T" targetName="_L3_1" targetType="kcg_int" inCtx="true"/>
-        <Local scadeName="_L5" scadeType="&apos;T" targetName="_L5_1" targetType="kcg_int" inCtx="true"/>
-        <Local scadeName="_L8" scadeType="&apos;T" targetName="_L8_1" targetType="kcg_int" inCtx="true"/>
-        <NodeInstance scadeName="&lt;=" instName="1"/>
-        <NodeInstance scadeName="-" instName="5"/>
-      </NodeInlining>
-      <NodeInstance scadeName="real " instName="1"/>
-      <OutCtxType targetName="outC_Balise_Interdistance_InfraLib"/>
-    </NoExpNode>
-    <NoExpNode scadeName="Balise_Group_Init" headerFile="Balise_Group_Init_InfraLib.h"
-        targetCycleFct="Balise_Group_Init_InfraLib" targetInitFct="Balise_Group_Init_reset_InfraLib">
-      <Input scadeName="TrainPos" scadeType="real" targetName="TrainPos" targetType="kcg_real"/>
-      <Input scadeName="Engineering_Data" scadeType="TM::BaliseGroupData" targetName="Engineering_Data"
-          targetType="BaliseGroupData_TM"/>
-      <Output scadeName="BG_internal_out" scadeType="InfraLib::B_data_internal_T" targetName="BG_internal_out"
-          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L2" scadeType="TM::BaliseGroupData" targetName="_L2" targetType="BaliseGroupData_TM"
-          inCtx="true"/>
-      <Local scadeName="_L14" scadeType="int" targetName="_L14" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L26" scadeType="InfraLib::B_data_internal_T" targetName="_L26"
-          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L27" scadeType="TM::BaliseTelegramHeader_int_T" targetName="_L27"
-          targetType="BaliseTelegramHeader_int_T_TM" inCtx="true"/>
-      <Local scadeName="_L28" scadeType="Common_Types_Pkg::CompressedPackets_T" targetName="_L28"
-          targetType="CompressedPackets_T_Common_Types_Pkg" inCtx="true"/>
-      <Local scadeName="_L29" scadeType="int" targetName="_L29" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L30" scadeType="real" targetName="_L30" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L31" scadeType="bool" targetName="_L31" targetType="kcg_bool" inCtx="true"/>
-      <OutCtxType targetName="outC_Balise_Group_Init_InfraLib"/>
-    </NoExpNode>
-    <NoExpNode scadeName="Balise_Group_Close" headerFile="Balise_Group_Close_InfraLib.h"
-        targetCycleFct="Balise_Group_Close_InfraLib" targetInitFct="Balise_Group_Close_reset_InfraLib">
-      <Input scadeName="BG_internal_in" scadeType="InfraLib::B_data_internal_T" targetName="BG_internal_in"
-          targetType="B_data_internal_T_InfraLib"/>
-      <Input scadeName="BG_message_in" scadeType="TM::CompressedBaliseMessage" targetName="BG_message_in"
-          targetType="CompressedBaliseMessage_TM"/>
-      <Output scadeName="Error_out" scadeType="bool" targetName="Error_out" targetType="kcg_bool" inCtx="true"/>
-      <Output scadeName="BG_message_out" scadeType="TM::CompressedBaliseMessage" targetName="BG_message_out"
-          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
-      <Local scadeName="_L2" scadeType="TM::CompressedBaliseMessage" targetName="_L2"
-          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
-      <Local scadeName="_L20" scadeType="TM::CompressedBaliseMessage" targetName="_L20"
-          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
-      <Local scadeName="_L21" scadeType="InfraLib::B_data_internal_T" targetName="_L21"
-          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L22" scadeType="TM::BaliseTelegramHeader_int_T" targetName="_L22"
-          targetType="BaliseTelegramHeader_int_T_TM" inCtx="true"/>
-      <Local scadeName="_L23" scadeType="Common_Types_Pkg::CompressedPackets_T" targetName="_L23"
-          targetType="CompressedPackets_T_Common_Types_Pkg" inCtx="true"/>
-      <Local scadeName="_L24" scadeType="TM::CompressedBaliseMessage" targetName="_L24"
-          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
-      <Local scadeName="_L25" scadeType="bool" targetName="_L25" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L26" scadeType="bool" targetName="_L26" targetType="kcg_bool" inCtx="true"/>
-      <OutCtxType targetName="outC_Balise_Group_Close_InfraLib"/>
-    </NoExpNode>
-    <NoExpNode scadeName="No_Balise_Packets" headerFile="No_Balise_Packets_InfraLib.h"
-        targetCycleFct="No_Balise_Packets_InfraLib" targetInitFct="No_Balise_Packets_reset_InfraLib">
-      <Input scadeName="Header" scadeType="TM::BaliseTelegramHeader_int_T" targetName="Header"
-          targetType="BaliseTelegramHeader_int_T_TM"/>
-      <Input scadeName="Balise_data_in" scadeType="InfraLib::B_data_internal_T" targetName="Balise_data_in"
-          targetType="B_data_internal_T_InfraLib"/>
-      <Output scadeName="Balise_data_out" scadeType="InfraLib::B_data_internal_T" targetName="Balise_data_out"
-          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L36" scadeType="InfraLib::B_data_internal_T" targetName="_L36"
-          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L35" scadeType="bool" targetName="_L35" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L32" scadeType="TM::BaliseTelegramHeader_int_T" targetName="_L32"
-          targetType="BaliseTelegramHeader_int_T_TM" inCtx="true"/>
-      <Local scadeName="_L31" scadeType="InfraLib::B_data_internal_T" targetName="_L31"
-          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L30" scadeType="InfraLib::B_data_internal_T" targetName="_L30"
-          targetType="B_data_internal_T_InfraLib" inCtx="true"/>
-      <OutCtxType targetName="outC_No_Balise_Packets_InfraLib"/>
-    </NoExpNode>
-    <ExpNode scadeName="No_Balise"/>
-    <NoExpNode scadeName="TrackDiscontinuity" headerFile="TrackDiscontinuity_InfraLib.h"
-        targetCycleFct="TrackDiscontinuity_InfraLib" targetInitFct="TrackDiscontinuity_reset_InfraLib">
-      <Input scadeName="SectionData_in" scadeType="InfraLib::TrackSectionData_T" targetName="SectionData_in"
-          targetType="TrackSectionData_T_InfraLib"/>
-      <Input scadeName="StartSection" scadeType="int" targetName="StartSection" targetType="kcg_int"/>
-      <Input scadeName="EndSection" scadeType="int" targetName="EndSection" targetType="kcg_int"/>
-      <Output scadeName="SectionData_out" scadeType="InfraLib::TrackSectionData_T" targetName="SectionData_out"
-          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
-      <Local scadeName="NewOffset" scadeType="int" targetName="NewOffset" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L2" scadeType="int" targetName="_L2" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L3" scadeType="int" targetName="_L3" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L16" scadeType="InfraLib::TrackSectionData_T" targetName="_L16"
-          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L49" scadeType="int" targetName="_L49" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L50" scadeType="int" targetName="_L50" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L57" scadeType="int" targetName="_L57" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L59" scadeType="real" targetName="_L59" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L60" scadeType="real" targetName="_L60" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L61" scadeType="bool" targetName="_L61" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L62" scadeType="bool" targetName="_L62" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L63" scadeType="bool" targetName="_L63" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L79" scadeType="real" targetName="_L79" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L80" scadeType="InfraLib::TrackSectionData_T" targetName="_L80"
-          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L81" scadeType="InfraLib::TrainPosRaw_T" targetName="_L81" targetType="TrainPosRaw_T_InfraLib"
-          inCtx="true"/>
-      <Local scadeName="_L82" scadeType="real" targetName="_L82" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L83" scadeType="int" targetName="_L83" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L88" scadeType="InfraLib::TrackSectionData_T" targetName="_L88"
-          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L89" scadeType="InfraLib::TrainPosRaw_T" targetName="_L89" targetType="TrainPosRaw_T_InfraLib"
-          inCtx="true"/>
-      <Local scadeName="_L90" scadeType="InfraLib::TrainPosRaw_T" targetName="_L90" targetType="TrainPosRaw_T_InfraLib"
-          inCtx="true"/>
-      <Local scadeName="_L91" scadeType="int" targetName="_L91" targetType="kcg_int" inCtx="true"/>
-      <NodeInstance scadeName="-" instName="2"/>
-      <NodeInlining scadeName="math::Abs" instName="3">
-        <Input scadeName="A_Input" scadeType="&apos;T" targetName="A_Input_3" targetType="kcg_int" inCtx="true"/>
-        <Output scadeName="A_Output" scadeType="&apos;T" targetName="A_Output_3" targetType="kcg_int" inCtx="true"/>
-        <Local scadeName="_L1" scadeType="bool" targetName="_L1_3" targetType="kcg_bool" inCtx="true"/>
-        <Local scadeName="_L2" scadeType="&apos;T" targetName="_L2_3" targetType="kcg_int" inCtx="true"/>
-        <Local scadeName="_L3" scadeType="&apos;T" targetName="_L3_3" targetType="kcg_int" inCtx="true"/>
-        <Local scadeName="_L5" scadeType="&apos;T" targetName="_L5_3" targetType="kcg_int" inCtx="true"/>
-        <Local scadeName="_L8" scadeType="&apos;T" targetName="_L8_3" targetType="kcg_int" inCtx="true"/>
-        <NodeInstance scadeName="&lt;=" instName="1"/>
-        <NodeInstance scadeName="-" instName="5"/>
-      </NodeInlining>
-      <NodeInstance scadeName="+" instName="3"/>
-      <NodeInstance scadeName="real " instName="3"/>
-      <NodeInstance scadeName="real " instName="4"/>
-      <NodeInstance scadeName="&gt;=" instName="3"/>
-      <NodeInstance scadeName="&lt;" instName="3"/>
-      <NodeInstance scadeName="and" instName="2"/>
-      <NodeInstance scadeName="InfraLib::TrackDiscontinuity_CalcTrainPos" instName="2"
-          refName="TrackDiscontinuity_CalcTr_InfraLib" clockVar="tmp" clockVal="kcg_true">
-        <OutCtxVar targetName="Context_2" clockVar="tmp" clockVal="kcg_true"/>
-      </NodeInstance>
-      <Clock targetName="tmp" targetType="kcg_bool" inCtx="true"/>
-      <OutCtxType targetName="outC_TrackDiscontinuity_InfraLib"/>
-    </NoExpNode>
-    <NoExpNode scadeName="TrackDiscontinuity_CalcTrainPos" headerFile="TrackDiscontinuity_CalcTr_InfraLib.h"
-        targetCycleFct="TrackDiscontinuity_CalcTr_InfraLib" targetInitFct="TrackDiscontinuity_CalcTr_reset_InfraLib">
-      <Input scadeName="DeltaIn" scadeType="int" targetName="DeltaIn" targetType="kcg_int"/>
-      <Input scadeName="StartSection" scadeType="int" targetName="StartSection" targetType="kcg_int"/>
-      <Input scadeName="SectionDataIn" scadeType="InfraLib::TrackSectionData_T" targetName="SectionDataIn"
-          targetType="TrackSectionData_T_InfraLib"/>
-      <Output scadeName="TrainPosCalibrated" scadeType="real" targetName="TrainPosCalibrated" targetType="kcg_real"
-          inCtx="true"/>
-      <Local scadeName="_L15" scadeType="int" targetName="_L15" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L18" scadeType="bool" targetName="_L18" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L19" scadeType="int" targetName="_L19" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L22" scadeType="int" targetName="_L22" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L21" scadeType="int" targetName="_L21" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L20" scadeType="int" targetName="_L20" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L26" scadeType="real" targetName="_L26" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L25" scadeType="real" targetName="_L25" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L24" scadeType="real" targetName="_L24" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L23" scadeType="real" targetName="_L23" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L28" scadeType="int" targetName="_L28" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L27" scadeType="InfraLib::TrackSectionData_T" targetName="_L27"
-          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L29" scadeType="InfraLib::TrainPosRaw_T" targetName="_L29" targetType="TrainPosRaw_T_InfraLib"
-          inCtx="true"/>
-      <Local scadeName="_L30" scadeType="int" targetName="_L30" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L31" scadeType="real" targetName="_L31" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L33" scadeType="real" targetName="_L33" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L32" scadeType="real" targetName="_L32" targetType="kcg_real" inCtx="true"/>
-      <NodeInstance scadeName="&gt;=" instName="2"/>
-      <NodeInstance scadeName="-" instName="1"/>
-      <NodeInstance scadeName="real " instName="5"/>
-      <NodeInstance scadeName="*" instName="2"/>
-      <NodeInstance scadeName="real " instName="4"/>
-      <NodeInstance scadeName="+" instName="2"/>
-      <NodeInstance scadeName="real " instName="6"/>
-      <OutCtxType targetName="outC_TrackDiscontinuity_CalcTr_InfraLib"/>
-    </NoExpNode>
-    <NoExpNode scadeName="TrackInit" headerFile="TrackInit_InfraLib.h" targetCycleFct="TrackInit_InfraLib"
-        targetInitFct="TrackInit_reset_InfraLib">
-      <Input scadeName="TrainPosIn" scadeType="real" targetName="TrainPosIn" targetType="kcg_real"/>
-      <Input scadeName="InitialOffset" scadeType="int" targetName="InitialOffset" targetType="kcg_int"/>
-      <Output scadeName="SectionData_out" scadeType="InfraLib::TrackSectionData_T" targetName="SectionData_out"
-          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L1" scadeType="real" targetName="_L1" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L4" scadeType="TM::CompressedBaliseMessage" targetName="_L4"
-          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
-      <Local scadeName="_L8" scadeType="InfraLib::TrackSectionData_T" targetName="_L8"
-          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L10" scadeType="InfraLib::TrainPosRaw_T" targetName="_L10" targetType="TrainPosRaw_T_InfraLib"
-          inCtx="true"/>
-      <Local scadeName="_L11" scadeType="real" targetName="_L11" targetType="kcg_real" inCtx="true"/>
-      <Local scadeName="_L12" scadeType="int" targetName="_L12" targetType="kcg_int" inCtx="true"/>
-      <OutCtxType targetName="outC_TrackInit_InfraLib"/>
-    </NoExpNode>
-    <NoExpNode scadeName="TrackClose" headerFile="TrackClose_InfraLib.h" targetCycleFct="TrackClose_InfraLib"
-        targetInitFct="TrackClose_reset_InfraLib">
-      <Input scadeName="SectionData_in" scadeType="InfraLib::TrackSectionData_T" targetName="SectionData_in"
-          targetType="TrackSectionData_T_InfraLib"/>
-      <Output scadeName="BaliseMessage" scadeType="TM::CompressedBaliseMessage" targetName="BaliseMessage"
-          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
-      <Local scadeName="_L1" scadeType="InfraLib::TrackSectionData_T" targetName="_L1"
-          targetType="TrackSectionData_T_InfraLib" inCtx="true"/>
-      <Local scadeName="_L6" scadeType="TM::CompressedBaliseMessage" targetName="_L6"
-          targetType="CompressedBaliseMessage_TM" inCtx="true"/>
-      <OutCtxType targetName="outC_TrackClose_InfraLib"/>
-    </NoExpNode>
+        refType="array__21012"/>
+    <NamedType scadeName="P137_trackside_int_T" targetName="P137_trackside_int_T_TM" refType="struct__20989"/>
   </Package>
   <Package scadeName="math">
     <ExpNode scadeName="Abs"/>
@@ -19394,12 +19434,12 @@
   *
   (2)))"
           targetName="_L384" targetType="array_int_70" inCtx="true"/>
-      <Local scadeName="_L386" scadeType="TM::P046_section_int_T^(1)" targetName="_L386" targetType="array__21099"
+      <Local scadeName="_L386" scadeType="TM::P046_section_int_T^(1)" targetName="_L386" targetType="array__21156"
           inCtx="true"/>
       <Local scadeName="_L385" scadeType="TM::P046_section_int_T^((1)
  +
  (TM::DIM_N_ITER))" targetName="_L385"
-          targetType="array__20989" inCtx="true"/>
+          targetType="array__21046" inCtx="true"/>
       <Local scadeName="_L387" scadeType="int" targetName="_L387" targetType="kcg_int" inCtx="true"/>
       <Local scadeName="_L388" scadeType="TM::P046_section_int_T" targetName="_L388" targetType="P046_section_int_T_TM"
           inCtx="true"/>
@@ -19539,12 +19579,12 @@
   *
   (3)))"
           targetName="_L384" targetType="array_int_105" inCtx="true"/>
-      <Local scadeName="_L386" scadeType="TM::P041_section_int_T^(1)" targetName="_L386" targetType="array__21129"
+      <Local scadeName="_L386" scadeType="TM::P041_section_int_T^(1)" targetName="_L386" targetType="array__21186"
           inCtx="true"/>
       <Local scadeName="_L385" scadeType="TM::P041_section_int_T^((1)
  +
  (TM::DIM_N_ITER))" targetName="_L385"
-          targetType="array__20955" inCtx="true"/>
+          targetType="array__21012" inCtx="true"/>
       <Local scadeName="_L387" scadeType="int" targetName="_L387" targetType="kcg_int" inCtx="true"/>
       <Local scadeName="_L388" scadeType="TM::nid_packet_meta" targetName="_L388" targetType="nid_packet_meta_TM"
           inCtx="true"/>
@@ -19713,9 +19753,9 @@
     <Constant scadeName="cDIM_MaxDataElementsInRMessage" scadeType="int"
         targetName="cDIM_MaxDataElementsInRMessage_Common_Types_Pkg" targetType="kcg_int" macroDef="true"/>
     <NamedType scadeName="CompressedPackets_T" targetName="CompressedPackets_T_Common_Types_Pkg"
-        refType="struct__20876"/>
-    <NamedType scadeName="Metadata_T" targetName="Metadata_T_Common_Types_Pkg" refType="array__20873"/>
-    <NamedType scadeName="MetadataElement_T" targetName="MetadataElement_T_Common_Types_Pkg" refType="struct__20865"/>
+        refType="struct__20933"/>
+    <NamedType scadeName="Metadata_T" targetName="Metadata_T_Common_Types_Pkg" refType="array__20930"/>
+    <NamedType scadeName="MetadataElement_T" targetName="MetadataElement_T_Common_Types_Pkg" refType="struct__20922"/>
     <NamedType scadeName="CompressedPacketData_T" targetName="CompressedPacketData_T_Common_Types_Pkg"
         refType="array_int_500"/>
   </Package>
@@ -20554,7 +20594,7 @@
     <Constant scadeName="DIM_MaxElementsPacket003V1" scadeType="int"
         targetName="DIM_MaxElementsPacket003V1_TM_baseline2" targetType="kcg_int" macroDef="true"/>
     <NamedType scadeName="P003V1_trackside_int_T" targetName="P003V1_trackside_int_T_TM_baseline2"
-        refType="struct__21021"/>
+        refType="struct__21078"/>
     <NamedType scadeName="P003V1_trackide_sectionlist_T" targetName="P003V1_trackide_sectionlist_T_TM_baseline2"
         refType="array_int_32"/>
   </Package>
@@ -20747,7 +20787,7 @@
       <OutCtxType targetName="outC_C_P003V1_tracksim_compr_TM_conversions_baseline2"/>
     </NoExpNode>
   </Package>
-  <Option name="root_node_name" value="Internal_Tests::DriveAllBGs"/>
+  <Option name="root_node_name" value="Internal_Tests::DriveAllBalisesRaspberry"/>
   <Option name="target" value="C"/>
   <Option name="target_dir"
       value="C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation"/>
@@ -20780,22 +20820,22 @@
   <PredefType scadeName="int" targetName="kcg_int"/>
   <ArrayType targetName="array_int_500" cellType="kcg_int" size="500" targetCopyFct="kcg_copy_array_int_500"
       targetCompFct="kcg_comp_array_int_500"/>
-  <StructType targetName="struct__20865" targetCopyFct="kcg_copy_struct__20865" targetCompFct="kcg_comp_struct__20865">
+  <StructType targetName="struct__20922" targetCopyFct="kcg_copy_struct__20922" targetCompFct="kcg_comp_struct__20922">
     <Field scadeName="nid_packet" scadeType="NID_PACKET" targetName="nid_packet" targetType="kcg_int"/>
     <Field scadeName="q_dir" scadeType="Q_DIR" targetName="q_dir" targetType="Q_DIR"/>
     <Field scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool"/>
     <Field scadeName="startAddress" scadeType="int" targetName="startAddress" targetType="kcg_int"/>
     <Field scadeName="endAddress" scadeType="int" targetName="endAddress" targetType="kcg_int"/>
   </StructType>
-  <ArrayType targetName="array__20873" cellType="struct__20865" size="30" targetCopyFct="kcg_copy_array__20873"
-      targetCompFct="kcg_comp_array__20873"/>
-  <StructType targetName="struct__20876" targetCopyFct="kcg_copy_struct__20876" targetCompFct="kcg_comp_struct__20876">
+  <ArrayType targetName="array__20930" cellType="struct__20922" size="30" targetCopyFct="kcg_copy_array__20930"
+      targetCompFct="kcg_comp_array__20930"/>
+  <StructType targetName="struct__20933" targetCopyFct="kcg_copy_struct__20933" targetCompFct="kcg_comp_struct__20933">
     <Field scadeName="PacketHeaders" scadeType="Common_Types_Pkg::Metadata_T" targetName="PacketHeaders"
-        targetType="array__20873"/>
+        targetType="array__20930"/>
     <Field scadeName="PacketData" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="PacketData"
         targetType="array_int_500"/>
   </StructType>
-  <StructType targetName="struct__20881" targetCopyFct="kcg_copy_struct__20881" targetCompFct="kcg_comp_struct__20881">
+  <StructType targetName="struct__20938" targetCopyFct="kcg_copy_struct__20938" targetCompFct="kcg_comp_struct__20938">
     <Field scadeName="q_updown" scadeType="int" targetName="q_updown" targetType="kcg_int"/>
     <Field scadeName="m_version" scadeType="int" targetName="m_version" targetType="kcg_int"/>
     <Field scadeName="q_media" scadeType="int" targetName="q_media" targetType="kcg_int"/>
@@ -20807,46 +20847,46 @@
     <Field scadeName="nid_bg" scadeType="int" targetName="nid_bg" targetType="kcg_int"/>
     <Field scadeName="q_link" scadeType="int" targetName="q_link" targetType="kcg_int"/>
   </StructType>
-  <StructType targetName="struct__20894" targetCopyFct="kcg_copy_struct__20894" targetCompFct="kcg_comp_struct__20894">
+  <StructType targetName="struct__20951" targetCopyFct="kcg_copy_struct__20951" targetCompFct="kcg_comp_struct__20951">
     <Field scadeName="Header" scadeType="TM::BaliseTelegramHeader_int_T" targetName="Header"
-        targetType="struct__20881"/>
+        targetType="struct__20938"/>
     <Field scadeName="Messages" scadeType="Common_Types_Pkg::CompressedPackets_T" targetName="Messages"
-        targetType="struct__20876"/>
+        targetType="struct__20933"/>
   </StructType>
-  <StructType targetName="struct__20899" targetCopyFct="kcg_copy_struct__20899" targetCompFct="kcg_comp_struct__20899">
-    <Field scadeName="TrainPos_in" scadeType="real" targetName="TrainPos_in" targetType="kcg_real"/>
-    <Field scadeName="OffsetTotal" scadeType="int" targetName="OffsetTotal" targetType="kcg_int"/>
-    <Field scadeName="TrainPosCalibrated" scadeType="real" targetName="TrainPosCalibrated" targetType="kcg_real"/>
-  </StructType>
-  <StructType targetName="struct__20905" targetCopyFct="kcg_copy_struct__20905" targetCompFct="kcg_comp_struct__20905">
-    <Field scadeName="TrainPosRaw" scadeType="InfraLib::TrainPosRaw_T" targetName="TrainPosRaw"
-        targetType="struct__20899"/>
-    <Field scadeName="BG_Message" scadeType="TM::CompressedBaliseMessage" targetName="BG_Message"
-        targetType="struct__20894"/>
-  </StructType>
-  <StructType targetName="struct__20910" targetCopyFct="kcg_copy_struct__20910" targetCompFct="kcg_comp_struct__20910">
+  <StructType targetName="struct__20956" targetCopyFct="kcg_copy_struct__20956" targetCompFct="kcg_comp_struct__20956">
     <Field scadeName="NID_C" scadeType="int" targetName="NID_C" targetType="kcg_int"/>
     <Field scadeName="NID_BG" scadeType="int" targetName="NID_BG" targetType="kcg_int"/>
     <Field scadeName="Pos" scadeType="int" targetName="Pos" targetType="kcg_int"/>
     <Field scadeName="Or_BG" scadeType="TM::OrBG" targetName="Or_BG" targetType="OrBG_TM"/>
     <Field scadeName="Or_Line" scadeType="TM::OrLine" targetName="Or_Line" targetType="OrLine_TM"/>
   </StructType>
-  <StructType targetName="struct__20918" targetCopyFct="kcg_copy_struct__20918" targetCompFct="kcg_comp_struct__20918">
+  <StructType targetName="struct__20964" targetCopyFct="kcg_copy_struct__20964" targetCompFct="kcg_comp_struct__20964">
     <Field scadeName="header" scadeType="TM::BaliseTelegramHeader_int_T" targetName="header"
-        targetType="struct__20881"/>
+        targetType="struct__20938"/>
     <Field scadeName="packets" scadeType="Common_Types_Pkg::CompressedPackets_T" targetName="packets"
-        targetType="struct__20876"/>
+        targetType="struct__20933"/>
     <Field scadeName="engineering_BG_location" scadeType="int" targetName="engineering_BG_location"
         targetType="kcg_int"/>
     <Field scadeName="TrainPos" scadeType="real" targetName="TrainPos" targetType="kcg_real"/>
     <Field scadeName="pig_nom_0" scadeType="int" targetName="pig_nom_0" targetType="kcg_int"/>
     <Field scadeName="balise_passed" scadeType="bool" targetName="balise_passed" targetType="kcg_bool"/>
   </StructType>
-  <StructType targetName="struct__20927" targetCopyFct="kcg_copy_struct__20927" targetCompFct="kcg_comp_struct__20927">
+  <StructType targetName="struct__20973" targetCopyFct="kcg_copy_struct__20973" targetCompFct="kcg_comp_struct__20973">
+    <Field scadeName="TrainPos_in" scadeType="real" targetName="TrainPos_in" targetType="kcg_real"/>
+    <Field scadeName="OffsetTotal" scadeType="int" targetName="OffsetTotal" targetType="kcg_int"/>
+    <Field scadeName="TrainPosCalibrated" scadeType="real" targetName="TrainPosCalibrated" targetType="kcg_real"/>
+  </StructType>
+  <StructType targetName="struct__20979" targetCopyFct="kcg_copy_struct__20979" targetCompFct="kcg_comp_struct__20979">
+    <Field scadeName="TrainPosRaw" scadeType="InfraLib::TrainPosRaw_T" targetName="TrainPosRaw"
+        targetType="struct__20973"/>
+    <Field scadeName="BG_Message" scadeType="TM::CompressedBaliseMessage" targetName="BG_Message"
+        targetType="struct__20951"/>
+  </StructType>
+  <StructType targetName="struct__20984" targetCopyFct="kcg_copy_struct__20984" targetCompFct="kcg_comp_struct__20984">
     <Field scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool"/>
     <Field scadeName="NID_PACKET" scadeType="int" targetName="NID_PACKET" targetType="kcg_int"/>
   </StructType>
-  <StructType targetName="struct__20932" targetCopyFct="kcg_copy_struct__20932" targetCompFct="kcg_comp_struct__20932">
+  <StructType targetName="struct__20989" targetCopyFct="kcg_copy_struct__20989" targetCompFct="kcg_comp_struct__20989">
     <Field scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool"/>
     <Field scadeName="NID_PACKET" scadeType="int" targetName="NID_PACKET" targetType="kcg_int"/>
     <Field scadeName="Q_DIR" scadeType="int" targetName="Q_DIR" targetType="kcg_int"/>
@@ -20855,7 +20895,7 @@
   </StructType>
   <ArrayType targetName="array_int_3" cellType="kcg_int" size="3" targetCopyFct="kcg_copy_array_int_3"
       targetCompFct="kcg_comp_array_int_3"/>
-  <StructType targetName="struct__20943" targetCopyFct="kcg_copy_struct__20943" targetCompFct="kcg_comp_struct__20943">
+  <StructType targetName="struct__21000" targetCopyFct="kcg_copy_struct__21000" targetCompFct="kcg_comp_struct__21000">
     <Field scadeName="M_LEVELTR" scadeType="int" targetName="M_LEVELTR" targetType="kcg_int"/>
     <Field scadeName="NID_NTC" scadeType="int" targetName="NID_NTC" targetType="kcg_int"/>
     <Field scadeName="L_ACKLEVELTR" scadeType="int" targetName="L_ACKLEVELTR" targetType="kcg_int"/>
@@ -20864,11 +20904,11 @@
       targetCompFct="kcg_comp_array_int_3_33"/>
   <ArrayType targetName="array_int_99" cellType="kcg_int" size="99" targetCopyFct="kcg_copy_array_int_99"
       targetCompFct="kcg_comp_array_int_99"/>
-  <ArrayType targetName="array__20955" cellType="struct__20943" size="33" targetCopyFct="kcg_copy_array__20955"
-      targetCompFct="kcg_comp_array__20955"/>
-  <ArrayType targetName="array__20958" cellType="struct__20943" size="32" targetCopyFct="kcg_copy_array__20958"
-      targetCompFct="kcg_comp_array__20958"/>
-  <StructType targetName="struct__20961" targetCopyFct="kcg_copy_struct__20961" targetCompFct="kcg_comp_struct__20961">
+  <ArrayType targetName="array__21012" cellType="struct__21000" size="33" targetCopyFct="kcg_copy_array__21012"
+      targetCompFct="kcg_comp_array__21012"/>
+  <ArrayType targetName="array__21015" cellType="struct__21000" size="32" targetCopyFct="kcg_copy_array__21015"
+      targetCompFct="kcg_comp_array__21015"/>
+  <StructType targetName="struct__21018" targetCopyFct="kcg_copy_struct__21018" targetCompFct="kcg_comp_struct__21018">
     <Field scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool"/>
     <Field scadeName="NID_PACKET" scadeType="int" targetName="NID_PACKET" targetType="kcg_int"/>
     <Field scadeName="Q_DIR" scadeType="int" targetName="Q_DIR" targetType="kcg_int"/>
@@ -20880,11 +20920,11 @@
     <Field scadeName="L_ACKLEVELTR" scadeType="int" targetName="L_ACKLEVELTR" targetType="kcg_int"/>
     <Field scadeName="N_ITER" scadeType="int" targetName="N_ITER" targetType="kcg_int"/>
     <Field scadeName="SECTIONS" scadeType="TM::P041_trackide_sectionlist_T" targetName="SECTIONS"
-        targetType="array__20958"/>
+        targetType="array__21015"/>
   </StructType>
   <ArrayType targetName="array_int_2" cellType="kcg_int" size="2" targetCopyFct="kcg_copy_array_int_2"
       targetCompFct="kcg_comp_array_int_2"/>
-  <StructType targetName="struct__20978" targetCopyFct="kcg_copy_struct__20978" targetCompFct="kcg_comp_struct__20978">
+  <StructType targetName="struct__21035" targetCopyFct="kcg_copy_struct__21035" targetCompFct="kcg_comp_struct__21035">
     <Field scadeName="M_LEVELTR" scadeType="int" targetName="M_LEVELTR" targetType="kcg_int"/>
     <Field scadeName="NID_NTC" scadeType="int" targetName="NID_NTC" targetType="kcg_int"/>
   </StructType>
@@ -20892,11 +20932,11 @@
       targetCompFct="kcg_comp_array_int_2_33"/>
   <ArrayType targetName="array_int_66" cellType="kcg_int" size="66" targetCopyFct="kcg_copy_array_int_66"
       targetCompFct="kcg_comp_array_int_66"/>
-  <ArrayType targetName="array__20989" cellType="struct__20978" size="33" targetCopyFct="kcg_copy_array__20989"
-      targetCompFct="kcg_comp_array__20989"/>
-  <ArrayType targetName="array__20992" cellType="struct__20978" size="32" targetCopyFct="kcg_copy_array__20992"
-      targetCompFct="kcg_comp_array__20992"/>
-  <StructType targetName="struct__20995" targetCopyFct="kcg_copy_struct__20995" targetCompFct="kcg_comp_struct__20995">
+  <ArrayType targetName="array__21046" cellType="struct__21035" size="33" targetCopyFct="kcg_copy_array__21046"
+      targetCompFct="kcg_comp_array__21046"/>
+  <ArrayType targetName="array__21049" cellType="struct__21035" size="32" targetCopyFct="kcg_copy_array__21049"
+      targetCompFct="kcg_comp_array__21049"/>
+  <StructType targetName="struct__21052" targetCopyFct="kcg_copy_struct__21052" targetCompFct="kcg_comp_struct__21052">
     <Field scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool"/>
     <Field scadeName="NID_PACKET" scadeType="int" targetName="NID_PACKET" targetType="kcg_int"/>
     <Field scadeName="Q_DIR" scadeType="int" targetName="Q_DIR" targetType="kcg_int"/>
@@ -20905,9 +20945,9 @@
     <Field scadeName="NID_NTC" scadeType="int" targetName="NID_NTC" targetType="kcg_int"/>
     <Field scadeName="N_ITER" scadeType="int" targetName="N_ITER" targetType="kcg_int"/>
     <Field scadeName="SECTIONS" scadeType="TM::P046_trackide_sectionlist_T" targetName="SECTIONS"
-        targetType="array__20992"/>
+        targetType="array__21049"/>
   </StructType>
-  <StructType targetName="struct__21006" targetCopyFct="kcg_copy_struct__21006" targetCompFct="kcg_comp_struct__21006">
+  <StructType targetName="struct__21063" targetCopyFct="kcg_copy_struct__21063" targetCompFct="kcg_comp_struct__21063">
     <Field scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool"/>
     <Field scadeName="NID_PACKET" scadeType="int" targetName="NID_PACKET" targetType="kcg_int"/>
     <Field scadeName="Q_DIR" scadeType="int" targetName="Q_DIR" targetType="kcg_int"/>
@@ -20920,7 +20960,7 @@
   </StructType>
   <ArrayType targetName="array_int_32" cellType="kcg_int" size="32" targetCopyFct="kcg_copy_array_int_32"
       targetCompFct="kcg_comp_array_int_32"/>
-  <StructType targetName="struct__21021" targetCopyFct="kcg_copy_struct__21021" targetCompFct="kcg_comp_struct__21021">
+  <StructType targetName="struct__21078" targetCopyFct="kcg_copy_struct__21078" targetCompFct="kcg_comp_struct__21078">
     <Field scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool"/>
     <Field scadeName="NID_PACKET" scadeType="int" targetName="NID_PACKET" targetType="kcg_int"/>
     <Field scadeName="Q_DIR" scadeType="int" targetName="Q_DIR" targetType="kcg_int"/>
@@ -20949,19 +20989,19 @@
     <Field scadeName="D_NVSTFF" scadeType="int" targetName="D_NVSTFF" targetType="kcg_int"/>
     <Field scadeName="Q_NVDRIVER_ADHES" scadeType="int" targetName="Q_NVDRIVER_ADHES" targetType="kcg_int"/>
   </StructType>
-  <StructType targetName="struct__21050" targetCopyFct="kcg_copy_struct__21050" targetCompFct="kcg_comp_struct__21050">
+  <StructType targetName="struct__21107" targetCopyFct="kcg_copy_struct__21107" targetCompFct="kcg_comp_struct__21107">
     <Field scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool"/>
     <Field scadeName="NID_PACKET" scadeType="int" targetName="NID_PACKET" targetType="kcg_int"/>
     <Field scadeName="Q_DIR" scadeType="int" targetName="Q_DIR" targetType="kcg_int"/>
     <Field scadeName="L_PACKET" scadeType="int" targetName="L_PACKET" targetType="kcg_int"/>
     <Field scadeName="NID_MN" scadeType="int" targetName="NID_MN" targetType="kcg_int"/>
   </StructType>
-  <StructType targetName="struct__21058" targetCopyFct="kcg_copy_struct__21058" targetCompFct="kcg_comp_struct__21058">
+  <StructType targetName="struct__21115" targetCopyFct="kcg_copy_struct__21115" targetCompFct="kcg_comp_struct__21115">
     <Field scadeName="NID_BG" scadeType="int" targetName="NID_BG" targetType="kcg_int"/>
     <Field scadeName="TrainPos" scadeType="real" targetName="TrainPos" targetType="kcg_real"/>
   </StructType>
-  <ArrayType targetName="array__21063" cellType="struct__21058" size="100" targetCopyFct="kcg_copy_array__21063"
-      targetCompFct="kcg_comp_array__21063"/>
+  <ArrayType targetName="array__21120" cellType="struct__21115" size="100" targetCopyFct="kcg_copy_array__21120"
+      targetCompFct="kcg_comp_array__21120"/>
   <ArrayType targetName="array_int_100" cellType="kcg_int" size="100" targetCopyFct="kcg_copy_array_int_100"
       targetCompFct="kcg_comp_array_int_100"/>
   <ArrayType targetName="array_int_500_500" cellType="array_int_500" size="500"
@@ -20984,8 +21024,8 @@
       targetCompFct="kcg_comp_array_int_430"/>
   <ArrayType targetName="array_int_70" cellType="kcg_int" size="70" targetCopyFct="kcg_copy_array_int_70"
       targetCompFct="kcg_comp_array_int_70"/>
-  <ArrayType targetName="array__21099" cellType="struct__20978" size="1" targetCopyFct="kcg_copy_array__21099"
-      targetCompFct="kcg_comp_array__21099"/>
+  <ArrayType targetName="array__21156" cellType="struct__21035" size="1" targetCopyFct="kcg_copy_array__21156"
+      targetCompFct="kcg_comp_array__21156"/>
   <ArrayType targetName="array_int_444" cellType="kcg_int" size="444" targetCopyFct="kcg_copy_array_int_444"
       targetCompFct="kcg_comp_array_int_444"/>
   <ArrayType targetName="array_int_6" cellType="kcg_int" size="6" targetCopyFct="kcg_copy_array_int_6"
@@ -21004,10 +21044,10 @@
       targetCompFct="kcg_comp_array_int_5"/>
   <ArrayType targetName="array_int_105" cellType="kcg_int" size="105" targetCopyFct="kcg_copy_array_int_105"
       targetCompFct="kcg_comp_array_int_105"/>
-  <ArrayType targetName="array__21129" cellType="struct__20943" size="1" targetCopyFct="kcg_copy_array__21129"
-      targetCompFct="kcg_comp_array__21129"/>
+  <ArrayType targetName="array__21186" cellType="struct__21000" size="1" targetCopyFct="kcg_copy_array__21186"
+      targetCompFct="kcg_comp_array__21186"/>
 </Model>
 <!--$*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_trace.xml
-** Generation date: 2015-08-12T20:04:59
+** Generation date: 2015-08-20T18:20:32
 *************************************************************$-->
