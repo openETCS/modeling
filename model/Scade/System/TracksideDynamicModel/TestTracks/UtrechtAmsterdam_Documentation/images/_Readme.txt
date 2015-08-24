@@ -1,0 +1,1 @@
+Please provide new images as .eps files for best rendering quality

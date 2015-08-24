@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-11T08:59:25
+** Generation date: 2015-08-17T13:54:12
 *************************************************************$ */
 #ifndef _TestP005_Internal_Tests_H_
 #define _TestP005_Internal_Tests_H_
@@ -45,6 +45,6 @@ extern P005_OBU_T_TM PacketOut;
 #endif /* _TestP005_Internal_Tests_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** TestP005_Internal_Tests.h
-** Generation date: 2015-08-11T08:59:25
+** Generation date: 2015-08-17T13:54:12
 *************************************************************$ */
 

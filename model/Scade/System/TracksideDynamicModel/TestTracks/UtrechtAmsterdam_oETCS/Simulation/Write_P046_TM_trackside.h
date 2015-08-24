@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-12T20:04:58
+** Generation date: 2015-08-20T18:20:31
 *************************************************************$ */
 #ifndef _Write_P046_TM_trackside_H_
 #define _Write_P046_TM_trackside_H_
@@ -53,6 +53,6 @@ extern void Write_P046_reset_TM_trackside(outC_Write_P046_TM_trackside *outC);
 #endif /* _Write_P046_TM_trackside_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Write_P046_TM_trackside.h
-** Generation date: 2015-08-12T20:04:58
+** Generation date: 2015-08-20T18:20:31
 *************************************************************$ */
 

@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-12T20:04:58
+** Generation date: 2015-08-20T18:20:31
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -62,6 +62,6 @@ void Balise_370_0_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Balise_370_0_AmsterdamUtrechtL2_Sheet06_Bijlmer_Balises.c
-** Generation date: 2015-08-12T20:04:58
+** Generation date: 2015-08-20T18:20:31
 *************************************************************$ */
 

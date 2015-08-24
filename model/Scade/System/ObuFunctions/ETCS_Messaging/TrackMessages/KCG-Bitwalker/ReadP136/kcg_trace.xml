@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--$*************** KCG Version 6.1.3 (build i6) ****************
+** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/KCG-Bitwalker/ReadP136\kcg_s2c_config.txt
+** Generation date: 2015-08-21T16:12:21
+*************************************************************$-->
+<Model date="2015-08-21T16:12:21" commandLine="s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/KCG-Bitwalker/ReadP136\kcg_s2c_config.txt">
+  <NamedType scadeName="NID_PACKET" targetName="NID_PACKET" refType="kcg_int"/>
+  <EnumType scadeName="Q_DIR" targetName="Q_DIR">
+    <EnumVal scadeName="Q_DIR_Reverse" targetName="Q_DIR_Reverse"/>
+    <EnumVal scadeName="Q_DIR_Nominal" targetName="Q_DIR_Nominal"/>
+    <EnumVal scadeName="Q_DIR_Both_directions" targetName="Q_DIR_Both_directions"/>
+  </EnumType>
+  <EnumType scadeName="Q_NEWCOUNTRY" targetName="Q_NEWCOUNTRY">
+    <EnumVal scadeName="Q_NEWCOUNTRY_Same_country__or__railway_administration_no_NID_C_follows"
+        targetName="Q_NEWCOUNTRY_Same_country__or__railway_administration_no_NID_C_follows"/>
+    <EnumVal scadeName="Q_NEWCOUNTRY_Not_the_same_country__or__railway_administration_NID_C_follows"
+        targetName="Q_NEWCOUNTRY_Not_the_same_country__or__railway_administration_NID_C_follows"/>
+  </EnumType>
+  <NamedType scadeName="NID_C" targetName="NID_C" refType="kcg_int"/>
+  <NamedType scadeName="NID_BG" targetName="NID_BG" refType="kcg_int"/>
+  <Package scadeName="TM">
+    <Constant scadeName="DIM_MaxRMessages" scadeType="int" targetName="DIM_MaxRMessages_TM" targetType="kcg_int"
+        macroDef="true"/>
+    <Constant scadeName="DEFAULT_PHeader" scadeType="Common_Types_Pkg::MetadataElement_T"
+        targetName="DEFAULT_PHeader_TM" targetType="MetadataElement_T_Common_Types_Pkg"/>
+    <Constant scadeName="DEFAULT_CompressedPackets" scadeType="Common_Types_Pkg::CompressedPacketData_T"
+        targetName="DEFAULT_CompressedPackets_TM" targetType="CompressedPacketData_T_Common_Types_Pkg"/>
+    <Constant scadeName="DIM_MaxElementsPacket136" scadeType="int" targetName="DIM_MaxElementsPacket136_TM"
+        targetType="kcg_int" macroDef="true"/>
+    <NamedType scadeName="P136_OBU_T" targetName="P136_OBU_T_TM" refType="struct__880"/>
+    <NamedType scadeName="Array06" targetName="Array06_TM" refType="array_int_6"/>
+    <RootNode scadeName="Read_P136" headerFile="Read_P136_TM.h" targetCycleFct="Read_P136_TM"
+        targetInitFct="Read_P136_reset_TM">
+      <Input scadeName="Message_IN" scadeType="Common_Types_Pkg::CompressedPackets_T" targetName="Message_IN"
+          targetType="CompressedPackets_T_Common_Types_Pkg" inCtx="true"/>
+      <Output scadeName="received" scadeType="bool" targetName="received" targetType="kcg_bool" inCtx="true"/>
+      <Output scadeName="P136_OBU_out" scadeType="TM::P136_OBU_T" targetName="P136_OBU_out" targetType="P136_OBU_T_TM"
+          inCtx="true"/>
+      <Local scadeName="_L5" scadeType="int^(Common_Types_Pkg::cDIM_MaxDataElementsInRMessage)" targetName="_L5"
+          targetType="array_int_500"/>
+      <Local scadeName="_L6" scadeType="Common_Types_Pkg::CompressedPackets_T" targetName="Message_IN"
+          targetType="CompressedPackets_T_Common_Types_Pkg"/>
+      <Local scadeName="_L30" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="_L30"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Local scadeName="_L166" scadeType="TM::P136_OBU_T" targetName="P136_OBU_out" targetType="P136_OBU_T_TM"
+          inCtx="true"/>
+      <Local scadeName="_L167" scadeType="bool" targetName="received" targetType="kcg_bool" inCtx="true"/>
+      <NodeInstance scadeName="TM_lib_internal::RECV_ReadPackets" instName="1"
+          refName="RECV_ReadPackets_TM_lib_internal"/>
+      <NodeInstance scadeName="TM_conversions::C_P136_compr_onboard" instName="1"
+          refName="C_P136_compr_onboard_TM_conversions"/>
+      <OutCtxType targetName="outC_Read_P136_TM"/>
+      <InCtxType targetName="inC_Read_P136_TM"/>
+    </RootNode>
+  </Package>
+  <Package scadeName="TM_lib_internal">
+    <Constant scadeName="DIM_offset_metadata_nid_packet" scadeType="int"
+        targetName="DIM_offset_metadata_nid_packet_TM_lib_internal" targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="DIM_offset_metadata_q_dir" scadeType="int"
+        targetName="DIM_offset_metadata_q_dir_TM_lib_internal" targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="DIM_offset_metadata_m_version" scadeType="int"
+        targetName="DIM_offset_metadata_m_version_TM_lib_internal" targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="DIM_offset_metadata_id" scadeType="int" targetName="DIM_offset_metadata_id_TM_lib_internal"
+        targetType="kcg_int" macroDef="true"/>
+    <NoExpNode scadeName="RECV_ReadPackets" headerFile="RECV_ReadPackets_TM_lib_internal.h"
+        targetCycleFct="RECV_ReadPackets_TM_lib_internal">
+      <Input scadeName="Packets" scadeType="Common_Types_Pkg::CompressedPackets_T" targetName="Packets"
+          targetType="CompressedPackets_T_Common_Types_Pkg"/>
+      <Input scadeName="PacketID" scadeType="int" targetName="PacketID" targetType="kcg_int"/>
+      <Input scadeName="F_version" scadeType="bool" targetName="F_version" targetType="kcg_bool"/>
+      <Input scadeName="F_id" scadeType="bool" targetName="F_id" targetType="kcg_bool"/>
+      <Output scadeName="Data" scadeType="int^(Common_Types_Pkg::cDIM_MaxDataElementsInRMessage)" targetName="Data"
+          targetType="array_int_500"/>
+      <Output scadeName="Metadata" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="Metadata"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Output scadeName="received" scadeType="bool" targetName="received" targetType="kcg_bool"/>
+      <Local scadeName="_L3" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="Metadata"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Local scadeName="_L2" scadeType="int" targetName="_L2" targetType="kcg_int"/>
+      <Local scadeName="_L1" scadeType="bool" targetName="received" targetType="kcg_bool"/>
+      <Local scadeName="_L4" scadeType="int^(Common_Types_Pkg::cDIM_MaxDataElementsInRMessage)" targetName="Data"
+          targetType="array_int_500"/>
+      <Local scadeName="_L44" scadeType="Common_Types_Pkg::CompressedPacketData_T"
+          targetName="DEFAULT_CompressedPackets_TM" targetType="CompressedPacketData_T_Common_Types_Pkg"/>
+      <Local scadeName="_L45" scadeType="int" targetName="PacketID" targetType="kcg_int"/>
+      <Local scadeName="_L46" scadeType="Common_Types_Pkg::CompressedPackets_T" targetName="Packets"
+          targetType="CompressedPackets_T_Common_Types_Pkg"/>
+      <Local scadeName="_L49" scadeType="bool" targetName="F_version" targetType="kcg_bool"/>
+      <Local scadeName="_L50" scadeType="bool" targetName="F_id" targetType="kcg_bool"/>
+      <NodeInstance scadeName="TM_lib_internal::RECV_LookupPacket" instName="1"
+          refName="RECV_LookupPacket_TM_lib_internal"/>
+      <NodeInstance scadeName="TM_lib_internal::RECV_ReadPacketKernel" instName="1"
+          refName="RECV_ReadPacketKernel_TM_lib_internal"/>
+    </NoExpNode>
+    <NoExpNode scadeName="RECV_LookupPacket" headerFile="RECV_LookupPacket_TM_lib_internal.h"
+        targetCycleFct="RECV_LookupPacket_TM_lib_internal">
+      <Input scadeName="Message_ID" scadeType="int" targetName="Message_ID" targetType="kcg_int"/>
+      <Input scadeName="HeadersIN" scadeType="Common_Types_Pkg::Metadata_T" targetName="HeadersIN"
+          targetType="Metadata_T_Common_Types_Pkg"/>
+      <Input scadeName="F_version" scadeType="bool" targetName="F_version" targetType="kcg_bool"/>
+      <Input scadeName="F_id" scadeType="bool" targetName="F_id" targetType="kcg_bool"/>
+      <Output scadeName="Found" scadeType="bool" targetName="Found" targetType="kcg_bool"/>
+      <Output scadeName="Index" scadeType="int" targetName="Index" targetType="kcg_int"/>
+      <Output scadeName="HeaderFound" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="HeaderFound"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Local scadeName="_L1" scadeType="Common_Types_Pkg::Metadata_T" targetName="HeadersIN"
+          targetType="Metadata_T_Common_Types_Pkg"/>
+      <Local scadeName="_L2" scadeType="int" targetName="Message_ID" targetType="kcg_int"/>
+      <Local scadeName="_L4" scadeType="int" targetName="_L4" targetType="kcg_int"/>
+      <Local scadeName="_L23" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="_L23"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Local scadeName="_L26" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="HeaderFound"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Local scadeName="_L22" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="DEFAULT_PHeader_TM"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Local scadeName="_L27" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="DEFAULT_PHeader_TM"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Local scadeName="_L28" scadeType="int" targetName="Index" targetType="kcg_int"/>
+      <Local scadeName="_L30" scadeType="bool" targetName="Found" targetType="kcg_bool"/>
+      <Local scadeName="_L31" scadeType="bool" targetName="F_version" targetType="kcg_bool"/>
+      <Local scadeName="_L32" scadeType="bool" targetName="F_id" targetType="kcg_bool"/>
+      <Local scadeName="_L34" scadeType="int" targetName="Message_ID" targetType="kcg_int"/>
+      <Local scadeName="_L35" scadeType="bool" targetName="F_version" targetType="kcg_bool"/>
+      <Local scadeName="_L36" scadeType="bool" targetName="F_id" targetType="kcg_bool"/>
+      <Iterator iteratorKind="foldwi" scadeSize="30" targetSize="30">
+        <NodeInstance scadeName="TM_lib_internal::RECV_LookupPacketLoop" instName="1"
+            refName="RECV_LookupPacketLoop_TM_lib_internal"/>
+      </Iterator>
+      <NodeInstance scadeName="-" instName="1"/>
+      <NodeInstance scadeName="TM_lib_internal::T_Filter_Metadata" instName="1"
+          refName="T_Filter_Metadata_TM_lib_internal"/>
+    </NoExpNode>
+    <NoExpNode scadeName="RECV_LookupPacketLoop" headerFile="RECV_LookupPacketLoop_TM_lib_internal.h"
+        targetCycleFct="RECV_LookupPacketLoop_TM_lib_internal">
+      <Input scadeName="Index" scadeType="int" targetName="Index" targetType="kcg_int"/>
+      <Input scadeName="HeaderInit" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="HeaderInit"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Input scadeName="Message_in" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="Message_in"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Input scadeName="ID_in" scadeType="int" targetName="ID_in" targetType="kcg_int"/>
+      <Input scadeName="F_version" scadeType="bool" targetName="F_version" targetType="kcg_bool"/>
+      <Input scadeName="F_id" scadeType="bool" targetName="F_id" targetType="kcg_bool"/>
+      <Output scadeName="Cont" scadeType="bool" targetName="Cont" targetType="kcg_bool"/>
+      <Output scadeName="HeaderFound" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="HeaderFound"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Local scadeName="_L3" scadeType="int" targetName="ID_in" targetType="kcg_int"/>
+      <Local scadeName="_L4" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="Message_in"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Local scadeName="_L29" scadeType="bool" targetName="Cont" targetType="kcg_bool"/>
+      <Local scadeName="_L30" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="HeaderInit"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Local scadeName="_L31" scadeType="int" targetName="Index" targetType="kcg_int"/>
+      <Local scadeName="_L33" scadeType="bool" targetName="F_version" targetType="kcg_bool"/>
+      <Local scadeName="_L34" scadeType="bool" targetName="F_id" targetType="kcg_bool"/>
+      <NodeInstance scadeName="not" instName="1"/>
+      <NodeInstance scadeName="TM_lib_internal::T_Filter_Metadata" instName="1"
+          refName="T_Filter_Metadata_TM_lib_internal"/>
+    </NoExpNode>
+    <NoExpNode scadeName="T_Filter_Metadata" headerFile="T_Filter_Metadata_TM_lib_internal.h"
+        targetCycleFct="T_Filter_Metadata_TM_lib_internal">
+      <Input scadeName="Metadata_from_track" scadeType="int" targetName="Metadata_from_track" targetType="kcg_int"/>
+      <Input scadeName="Metadata_looked_for" scadeType="int" targetName="Metadata_looked_for" targetType="kcg_int"/>
+      <Input scadeName="F_version" scadeType="bool" targetName="F_version" targetType="kcg_bool"/>
+      <Input scadeName="F_id" scadeType="bool" targetName="F_id" targetType="kcg_bool"/>
+      <Output scadeName="data_match" scadeType="bool" targetName="data_match" targetType="kcg_bool"/>
+      <Local scadeName="_L1" scadeType="int" targetName="Metadata_from_track" targetType="kcg_int"/>
+      <Local scadeName="_L2" scadeType="int" targetName="Metadata_looked_for" targetType="kcg_int"/>
+      <Local scadeName="_L6" scadeType="int" targetName="_L6" targetType="kcg_int"/>
+      <Local scadeName="_L4" scadeType="int" targetName="_L4" targetType="kcg_int"/>
+      <Local scadeName="_L3" scadeType="int" targetName="_L3" targetType="kcg_int"/>
+      <Local scadeName="_L10" scadeType="int" targetName="_L10" targetType="kcg_int"/>
+      <Local scadeName="_L8" scadeType="int" targetName="_L8" targetType="kcg_int"/>
+      <Local scadeName="_L7" scadeType="int" targetName="_L7" targetType="kcg_int"/>
+      <Local scadeName="_L17" scadeType="bool" targetName="F_id" targetType="kcg_bool"/>
+      <Local scadeName="_L18" scadeType="bool" targetName="F_version" targetType="kcg_bool"/>
+      <Local scadeName="_L19" scadeType="bool" targetName="data_match" targetType="kcg_bool"/>
+      <NodeInstance scadeName="TM_lib_internal::T_Decode_metadata_new" instName="1"
+          refName="T_Decode_metadata_new_TM_lib_internal"/>
+      <NodeInstance scadeName="TM_lib_internal::T_Decode_metadata_new" instName="2"
+          refName="T_Decode_metadata_new_TM_lib_internal"/>
+      <NodeInstance scadeName="=" instName="1"/>
+      <NodeInstance scadeName="and" instName="1"/>
+      <NodeInstance scadeName="TM_lib_internal::T_Filter_Metadata_Element" instName="1"
+          refName="T_Filter_Metadata_Element_TM_lib_internal"/>
+      <NodeInstance scadeName="TM_lib_internal::T_Filter_Metadata_Element" instName="3"
+          refName="T_Filter_Metadata_Element_TM_lib_internal"/>
+    </NoExpNode>
+    <NoExpNode scadeName="T_Decode_metadata_new" headerFile="T_Decode_metadata_new_TM_lib_internal.h"
+        targetCycleFct="T_Decode_metadata_new_TM_lib_internal">
+      <Input scadeName="Metadata_in" scadeType="int" targetName="Metadata_in" targetType="kcg_int"/>
+      <Output scadeName="nid_packet" scadeType="int" targetName="nid_packet" targetType="kcg_int"/>
+      <Output scadeName="id" scadeType="int" targetName="id" targetType="kcg_int"/>
+      <Output scadeName="m_version" scadeType="int" targetName="m_version" targetType="kcg_int"/>
+      <Local scadeName="_L1" scadeType="int" targetName="Metadata_in" targetType="kcg_int"/>
+      <Local scadeName="_L4" scadeType="int" targetName="nid_packet" targetType="kcg_int"/>
+      <Local scadeName="_L5" scadeType="int" targetName="_L5" targetType="kcg_int"/>
+      <Local scadeName="_L8" scadeType="int" targetName="m_version" targetType="kcg_int"/>
+      <Local scadeName="_L10" scadeType="int" targetName="id" targetType="kcg_int"/>
+      <NodeInstance scadeName="div" instName="1"/>
+      <NodeInstance scadeName="mod" instName="1"/>
+      <NodeInstance scadeName="div" instName="2"/>
+      <NodeInstance scadeName="mod" instName="2"/>
+      <NodeInstance scadeName="div" instName="3"/>
+    </NoExpNode>
+    <NoExpNode scadeName="T_Filter_Metadata_Element" headerFile="T_Filter_Metadata_Element_TM_lib_internal.h"
+        targetCycleFct="T_Filter_Metadata_Element_TM_lib_internal">
+      <Input scadeName="value2" scadeType="int" targetName="value2" targetType="kcg_int"/>
+      <Input scadeName="value1" scadeType="int" targetName="value1" targetType="kcg_int"/>
+      <Input scadeName="do_filter" scadeType="bool" targetName="do_filter" targetType="kcg_bool"/>
+      <Output scadeName="data_match" scadeType="bool" targetName="data_match" targetType="kcg_bool"/>
+      <Local scadeName="_L5" scadeType="int" targetName="value1" targetType="kcg_int"/>
+      <Local scadeName="_L3" scadeType="bool" targetName="data_match" targetType="kcg_bool"/>
+      <Local scadeName="_L2" scadeType="bool" targetName="do_filter" targetType="kcg_bool"/>
+      <Local scadeName="_L1" scadeType="int" targetName="value2" targetType="kcg_int"/>
+      <NodeInstance scadeName="or" instName="1"/>
+      <NodeInstance scadeName="=" instName="1"/>
+      <NodeInstance scadeName="not" instName="1"/>
+    </NoExpNode>
+    <NoExpNode scadeName="RECV_ReadPacketKernel" headerFile="RECV_ReadPacketKernel_TM_lib_internal.h"
+        targetCycleFct="RECV_ReadPacketKernel_TM_lib_internal">
+      <Input scadeName="Header" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="Header"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Input scadeName="PacketData" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="PacketData"
+          targetType="CompressedPacketData_T_Common_Types_Pkg"/>
+      <Output scadeName="PacketOut" scadeType="int^(Common_Types_Pkg::cDIM_MaxDataElementsInRMessage)"
+          targetName="PacketOut" targetType="array_int_500"/>
+      <Local scadeName="_L3" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="PacketData"
+          targetType="CompressedPacketData_T_Common_Types_Pkg"/>
+      <Local scadeName="_L4" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="Header"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Local scadeName="_L10" scadeType="int^(Common_Types_Pkg::cDIM_MaxDataElementsInRMessage)" targetName="PacketOut"
+          targetType="array_int_500"/>
+      <Local scadeName="_L22" scadeType="int" targetName="_L22" targetType="kcg_int"/>
+      <Iterator iteratorKind="mapwi" scadeSize="500" targetSize="500">
+        <NodeInstance scadeName="TM_lib_internal::RECV_ReadPacketKernelLoop" instName="1"
+            refName="RECV_ReadPacketKernelLoop_TM_lib_internal"/>
+      </Iterator>
+    </NoExpNode>
+    <NoExpNode scadeName="RECV_ReadPacketKernelLoop" headerFile="RECV_ReadPacketKernelLoop_TM_lib_internal.h"
+        targetCycleFct="RECV_ReadPacketKernelLoop_TM_lib_internal">
+      <Input scadeName="Index" scadeType="int" targetName="Index" targetType="kcg_int"/>
+      <Input scadeName="PacketData" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="PacketData"
+          targetType="CompressedPacketData_T_Common_Types_Pkg"/>
+      <Input scadeName="AddressStart" scadeType="int" targetName="AddressStart" targetType="kcg_int"/>
+      <Input scadeName="AddressEnd" scadeType="int" targetName="AddressEnd" targetType="kcg_int"/>
+      <Output scadeName="Cont" scadeType="bool" targetName="Cont" targetType="kcg_bool"/>
+      <Output scadeName="PacketOut" scadeType="int" targetName="PacketOut" targetType="kcg_int"/>
+      <Local scadeName="_L1" scadeType="int" targetName="Index" targetType="kcg_int"/>
+      <Local scadeName="_L3" scadeType="int" targetName="AddressStart" targetType="kcg_int"/>
+      <Local scadeName="_L4" scadeType="int" targetName="AddressEnd" targetType="kcg_int"/>
+      <Local scadeName="_L9" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="PacketData"
+          targetType="CompressedPacketData_T_Common_Types_Pkg"/>
+      <Local scadeName="_L18" scadeType="bool" targetName="Cont" targetType="kcg_bool"/>
+      <Local scadeName="_L20" scadeType="int" targetName="Index" targetType="kcg_int"/>
+      <Local scadeName="_L30" scadeType="int" targetName="PacketOut" targetType="kcg_int"/>
+      <Local scadeName="_L31" scadeType="int" targetName="AddressStart" targetType="kcg_int"/>
+      <NodeInstance scadeName="&lt;=" instName="1"/>
+      <NodeInstance scadeName="+" instName="1"/>
+      <NodeInstance scadeName="-" instName="1"/>
+      <NodeInstance scadeName="+" instName="2"/>
+    </NoExpNode>
+  </Package>
+  <Package scadeName="Common_Types_Pkg">
+    <Constant scadeName="cMetadataArraySize" scadeType="int" targetName="cMetadataArraySize_Common_Types_Pkg"
+        targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="cDIM_MaxRMessages" scadeType="int" targetName="cDIM_MaxRMessages_Common_Types_Pkg"
+        targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="cDIM_MaxDataElementsInRMessage" scadeType="int"
+        targetName="cDIM_MaxDataElementsInRMessage_Common_Types_Pkg" targetType="kcg_int" macroDef="true"/>
+    <NamedType scadeName="MetadataElement_T" targetName="MetadataElement_T_Common_Types_Pkg" refType="struct__869"/>
+    <NamedType scadeName="Metadata_T" targetName="Metadata_T_Common_Types_Pkg" refType="array__888"/>
+    <NamedType scadeName="CompressedPacketData_T" targetName="CompressedPacketData_T_Common_Types_Pkg"
+        refType="array_int_500"/>
+    <NamedType scadeName="CompressedPackets_T" targetName="CompressedPackets_T_Common_Types_Pkg" refType="struct__891"/>
+  </Package>
+  <Package scadeName="TM_conversions">
+    <Constant scadeName="INT_Q_DIR_nomiinal" scadeType="int" targetName="INT_Q_DIR_nomiinal_TM_conversions"
+        targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="INT_Q_DIR_reverse" scadeType="int" targetName="INT_Q_DIR_reverse_TM_conversions"
+        targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="INT_Q_DIR_both" scadeType="int" targetName="INT_Q_DIR_both_TM_conversions" targetType="kcg_int"
+        macroDef="true"/>
+    <Constant scadeName="ENUM_Q_DIR_both" scadeType="Q_DIR" targetName="ENUM_Q_DIR_both_TM_conversions"
+        targetType="Q_DIR" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_DIR_reverse" scadeType="Q_DIR" targetName="ENUM_Q_DIR_reverse_TM_conversions"
+        targetType="Q_DIR" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_DIR_nominal" scadeType="Q_DIR" targetName="ENUM_Q_DIR_nominal_TM_conversions"
+        targetType="Q_DIR" macroDef="true"/>
+    <Constant scadeName="INT_Q_NEWCOUNTRY_same" scadeType="int" targetName="INT_Q_NEWCOUNTRY_same_TM_conversions"
+        targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="INT_Q_NEWCOUNTRY_not_same" scadeType="int"
+        targetName="INT_Q_NEWCOUNTRY_not_same_TM_conversions" targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_NEWCOUNTRY_not_same" scadeType="Q_NEWCOUNTRY"
+        targetName="ENUM_Q_NEWCOUNTRY_not_same_TM_conversions" targetType="Q_NEWCOUNTRY" macroDef="true"/>
+    <Constant scadeName="ENUM_Q_NEWCOUNTRY_same" scadeType="Q_NEWCOUNTRY"
+        targetName="ENUM_Q_NEWCOUNTRY_same_TM_conversions" targetType="Q_NEWCOUNTRY" macroDef="true"/>
+    <NoExpNode scadeName="C_P136_compr_onboard" headerFile="C_P136_compr_onboard_TM_conversions.h"
+        targetCycleFct="C_P136_compr_onboard_TM_conversions">
+      <Input scadeName="PacketData" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="PacketData"
+          targetType="CompressedPacketData_T_Common_Types_Pkg"/>
+      <Input scadeName="Metadata_Element" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="Metadata_Element"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Output scadeName="P136_onboard" scadeType="TM::P136_OBU_T" targetName="P136_onboard" targetType="P136_OBU_T_TM"/>
+      <Local scadeName="_L10" scadeType="TM::P136_OBU_T" targetName="P136_onboard" targetType="P136_OBU_T_TM"/>
+      <Local scadeName="_L9" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="PacketData"
+          targetType="CompressedPacketData_T_Common_Types_Pkg"/>
+      <Local scadeName="_L20" scadeType="Common_Types_Pkg::MetadataElement_T" targetName="Metadata_Element"
+          targetType="MetadataElement_T_Common_Types_Pkg"/>
+      <Local scadeName="_L45" scadeType="int^((((TM::DIM_MaxElementsPacket136)
+   -
+   (1))
+  -
+  (0))
+ +
+ (1))"
+          targetName="_L45" targetType="array_int_6"/>
+      <NodeInlining scadeName="TM_conversions::CAST_Int_to_Q_DIR" instName="1">
+        <ActivateIf scadeName="IfBlock1">
+          <Condition targetName="IfBlock1_clock_1">
+            <NodeInstance scadeName="=" instName="14"/>
+          </Condition>
+          <Then>
+          </Then>
+          <Else>
+            <Condition targetName="_1_else_clock_1_IfBlock1">
+              <NodeInstance scadeName="=" instName="15"/>
+            </Condition>
+            <Then>
+            </Then>
+            <Else>
+              <Condition targetName="else_clock_1_IfBlock1">
+                <NodeInstance scadeName="=" instName="16"/>
+              </Condition>
+              <Then>
+              </Then>
+              <Else>
+              </Else>
+            </Else>
+          </Else>
+        </ActivateIf>
+      </NodeInlining>
+      <NodeInlining scadeName="TM_conversions::CAST_Int_to_NID_PACKET" instName="1">
+        <NodeInstance scadeName="&gt;" instName="1"/>
+        <NodeInstance scadeName="&lt;" instName="1"/>
+      </NodeInlining>
+      <NodeInstance scadeName="=" instName="1"/>
+      <NodeInstance scadeName="TM_conversions::CAST_Int_to_Q_NEWCOUNTRY" instName="1"
+          refName="CAST_Int_to_Q_NEWCOUNTRY_TM_conversions"/>
+      <NodeInstance scadeName="TM_conversions::CAST_Int_to_NID_C" instName="1"
+          refName="CAST_Int_to_NID_C_TM_conversions"/>
+      <NodeInstance scadeName="TM_conversions::CAST_Int_to_NID_BG" instName="1"
+          refName="CAST_Int_to_NID_BG_TM_conversions"/>
+    </NoExpNode>
+    <ExpNode scadeName="CAST_Int_to_Q_DIR"/>
+    <ExpNode scadeName="CAST_Int_to_NID_PACKET"/>
+    <NoExpNode scadeName="CAST_Int_to_Q_NEWCOUNTRY" headerFile="CAST_Int_to_Q_NEWCOUNTRY_TM_conversions.h"
+        targetCycleFct="CAST_Int_to_Q_NEWCOUNTRY_TM_conversions">
+      <Input scadeName="q_newcountry_int" scadeType="int" targetName="q_newcountry_int" targetType="kcg_int"/>
+      <Output scadeName="q_newcountry" scadeType="Q_NEWCOUNTRY" targetName="q_newcountry" targetType="Q_NEWCOUNTRY"/>
+      <Local scadeName="q_newcountry_in" scadeType="int" targetName="q_newcountry_int" targetType="kcg_int"/>
+      <Local scadeName="_L12" scadeType="int" targetName="q_newcountry_int" targetType="kcg_int"/>
+      <ActivateIf scadeName="IfBlock1">
+        <Condition targetName="IfBlock1_clock">
+          <NodeInstance scadeName="=" instName="1"/>
+        </Condition>
+        <Then>
+        </Then>
+        <Else>
+          <Condition targetName="else_clock_IfBlock1">
+            <NodeInstance scadeName="=" instName="2"/>
+          </Condition>
+          <Then>
+          </Then>
+          <Else>
+          </Else>
+        </Else>
+      </ActivateIf>
+    </NoExpNode>
+    <NoExpNode scadeName="CAST_Int_to_NID_C" headerFile="CAST_Int_to_NID_C_TM_conversions.h"
+        targetCycleFct="CAST_Int_to_NID_C_TM_conversions">
+      <Input scadeName="nid_c_int" scadeType="int" targetName="nid_c_int" targetType="kcg_int"/>
+      <Output scadeName="nid_c" scadeType="NID_C" targetName="nid_c" targetType="NID_C"/>
+      <Local scadeName="_L1" scadeType="int" targetName="nid_c_int" targetType="kcg_int"/>
+      <NodeInstance scadeName="&lt;" instName="1"/>
+      <NodeInstance scadeName="&gt;" instName="1"/>
+    </NoExpNode>
+    <NoExpNode scadeName="CAST_Int_to_NID_BG" headerFile="CAST_Int_to_NID_BG_TM_conversions.h"
+        targetCycleFct="CAST_Int_to_NID_BG_TM_conversions">
+      <Input scadeName="nid_bg_int" scadeType="int" targetName="nid_bg_int" targetType="kcg_int"/>
+      <Output scadeName="nid_bg" scadeType="NID_BG" targetName="nid_bg" targetType="NID_BG"/>
+      <Local scadeName="_L1" scadeType="int" targetName="nid_bg_int" targetType="kcg_int"/>
+      <NodeInstance scadeName="&lt;" instName="1"/>
+      <NodeInstance scadeName="&gt;" instName="1"/>
+    </NoExpNode>
+  </Package>
+  <Option name="root_node_name" value="TM::Read_P136"/>
+  <Option name="target" value="C"/>
+  <Option name="target_dir"
+      value="C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/KCG-Bitwalker/ReadP136"/>
+  <Option name="exp" value="#off#"/>
+  <Option name="noexp" value="#off#"/>
+  <Option name="expall" value="#off#"/>
+  <Option name="global_root_context" value="#off#"/>
+  <Option name="optimization_level" value="1"/>
+  <Option name="macro_on_assert" value="#off#"/>
+  <Option name="global_prefix" value="#off#"/>
+  <Option name="name_length" value="200"/>
+  <Option name="significance_length" value="200"/>
+  <Option name="header" value="#off#"/>
+  <Option name="input_threshold" value="#off#"/>
+  <Option name="user_config" value="./user_macros.h"/>
+  <Option name="observe" value="#off#"/>
+  <Option name="no_observe" value="#off#"/>
+  <Option name="debug" value="#off#"/>
+  <Option name="probes" value="#off#"/>
+  <Option name="input_file"
+      value="C:/GITHUB/modeling/model/Scade/System/ObuFunctions/ETCS_Messaging/TrackMessages/KCG-Bitwalker/ReadP136/scade_model_without_unused.scade"/>
+  <Option name="wrap_c_ops" value="#off#"/>
+  <Option name="no_bitwise" value="#off#"/>
+  <Option name="warn_error" value="#off#"/>
+  <Option name="static" value="#off#"/>
+  <Option name="state_vector" value="#off#"/>
+  <PredefType scadeName="real" targetName="kcg_real"/>
+  <PredefType scadeName="bool" targetName="kcg_bool"/>
+  <PredefType scadeName="char" targetName="kcg_char"/>
+  <PredefType scadeName="int" targetName="kcg_int"/>
+  <ArrayType targetName="array_int_500" cellType="kcg_int" size="500" targetCopyFct="kcg_copy_array_int_500"
+      targetCompFct="kcg_comp_array_int_500"/>
+  <StructType targetName="struct__869" targetCopyFct="kcg_copy_struct__869" targetCompFct="kcg_comp_struct__869">
+    <Field scadeName="nid_packet" scadeType="NID_PACKET" targetName="nid_packet" targetType="kcg_int"/>
+    <Field scadeName="q_dir" scadeType="Q_DIR" targetName="q_dir" targetType="Q_DIR"/>
+    <Field scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool"/>
+    <Field scadeName="startAddress" scadeType="int" targetName="startAddress" targetType="kcg_int"/>
+    <Field scadeName="endAddress" scadeType="int" targetName="endAddress" targetType="kcg_int"/>
+  </StructType>
+  <ArrayType targetName="array_int_6" cellType="kcg_int" size="6" targetCopyFct="kcg_copy_array_int_6"
+      targetCompFct="kcg_comp_array_int_6"/>
+  <StructType targetName="struct__880" targetCopyFct="kcg_copy_struct__880" targetCompFct="kcg_comp_struct__880">
+    <Field scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool"/>
+    <Field scadeName="q_dir" scadeType="Q_DIR" targetName="q_dir" targetType="Q_DIR"/>
+    <Field scadeName="q_newcountry" scadeType="Q_NEWCOUNTRY" targetName="q_newcountry" targetType="Q_NEWCOUNTRY"/>
+    <Field scadeName="nid_c" scadeType="NID_C" targetName="nid_c" targetType="kcg_int"/>
+    <Field scadeName="nid_bg" scadeType="NID_BG" targetName="nid_bg" targetType="kcg_int"/>
+  </StructType>
+  <ArrayType targetName="array__888" cellType="struct__869" size="30" targetCopyFct="kcg_copy_array__888"
+      targetCompFct="kcg_comp_array__888"/>
+  <StructType targetName="struct__891" targetCopyFct="kcg_copy_struct__891" targetCompFct="kcg_comp_struct__891">
+    <Field scadeName="PacketHeaders" scadeType="Common_Types_Pkg::Metadata_T" targetName="PacketHeaders"
+        targetType="array__888"/>
+    <Field scadeName="PacketData" scadeType="Common_Types_Pkg::CompressedPacketData_T" targetName="PacketData"
+        targetType="array_int_500"/>
+  </StructType>
+</Model>
+<!--$*************** KCG Version 6.1.3 (build i6) ****************
+** kcg_trace.xml
+** Generation date: 2015-08-21T16:12:21
+*************************************************************$-->

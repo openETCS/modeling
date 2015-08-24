@@ -69,147 +69,147 @@ extern int set_array_int_500_default_value(void *pValue);
 extern SimTypeUtils _Type_array_int_500_Utils;
 
 /****************************************************************
- ** struct__20865 
+ ** struct__20922 
  ****************************************************************/
-extern int struct__20865_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__20865_string(const char *str, char **endptr);
-extern int string_to_struct__20865(const char *str, void *pValue, char **endptr);
-extern int is_struct__20865_allow_double_conversion();
-extern int struct__20865_to_double(const void *pValue, double *nValue);
-extern int get_struct__20865_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__20865(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__20865_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__20865_Utils;
+extern int struct__20922_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__20922_string(const char *str, char **endptr);
+extern int string_to_struct__20922(const char *str, void *pValue, char **endptr);
+extern int is_struct__20922_allow_double_conversion();
+extern int struct__20922_to_double(const void *pValue, double *nValue);
+extern int get_struct__20922_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__20922(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__20922_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__20922_Utils;
 
 /****************************************************************
- ** array__20873 
+ ** array__20930 
  ****************************************************************/
-extern int array__20873_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_array__20873_string(const char *str, char **endptr);
-extern int string_to_array__20873(const char *str, void *pValue, char **endptr);
-extern int is_array__20873_allow_double_conversion();
-extern int array__20873_to_double(const void *pValue, double *nValue);
-extern int get_array__20873_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_array__20873(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_array__20873_default_value(void *pValue);
-extern SimTypeUtils _Type_array__20873_Utils;
+extern int array__20930_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_array__20930_string(const char *str, char **endptr);
+extern int string_to_array__20930(const char *str, void *pValue, char **endptr);
+extern int is_array__20930_allow_double_conversion();
+extern int array__20930_to_double(const void *pValue, double *nValue);
+extern int get_array__20930_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_array__20930(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_array__20930_default_value(void *pValue);
+extern SimTypeUtils _Type_array__20930_Utils;
 
 /****************************************************************
- ** struct__20876 
+ ** struct__20933 
  ****************************************************************/
-extern int struct__20876_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__20876_string(const char *str, char **endptr);
-extern int string_to_struct__20876(const char *str, void *pValue, char **endptr);
-extern int is_struct__20876_allow_double_conversion();
-extern int struct__20876_to_double(const void *pValue, double *nValue);
-extern int get_struct__20876_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__20876(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__20876_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__20876_Utils;
+extern int struct__20933_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__20933_string(const char *str, char **endptr);
+extern int string_to_struct__20933(const char *str, void *pValue, char **endptr);
+extern int is_struct__20933_allow_double_conversion();
+extern int struct__20933_to_double(const void *pValue, double *nValue);
+extern int get_struct__20933_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__20933(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__20933_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__20933_Utils;
 
 /****************************************************************
- ** struct__20881 
+ ** struct__20938 
  ****************************************************************/
-extern int struct__20881_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__20881_string(const char *str, char **endptr);
-extern int string_to_struct__20881(const char *str, void *pValue, char **endptr);
-extern int is_struct__20881_allow_double_conversion();
-extern int struct__20881_to_double(const void *pValue, double *nValue);
-extern int get_struct__20881_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__20881(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__20881_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__20881_Utils;
+extern int struct__20938_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__20938_string(const char *str, char **endptr);
+extern int string_to_struct__20938(const char *str, void *pValue, char **endptr);
+extern int is_struct__20938_allow_double_conversion();
+extern int struct__20938_to_double(const void *pValue, double *nValue);
+extern int get_struct__20938_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__20938(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__20938_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__20938_Utils;
 
 /****************************************************************
- ** struct__20894 
+ ** struct__20951 
  ****************************************************************/
-extern int struct__20894_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__20894_string(const char *str, char **endptr);
-extern int string_to_struct__20894(const char *str, void *pValue, char **endptr);
-extern int is_struct__20894_allow_double_conversion();
-extern int struct__20894_to_double(const void *pValue, double *nValue);
-extern int get_struct__20894_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__20894(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__20894_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__20894_Utils;
+extern int struct__20951_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__20951_string(const char *str, char **endptr);
+extern int string_to_struct__20951(const char *str, void *pValue, char **endptr);
+extern int is_struct__20951_allow_double_conversion();
+extern int struct__20951_to_double(const void *pValue, double *nValue);
+extern int get_struct__20951_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__20951(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__20951_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__20951_Utils;
 
 /****************************************************************
- ** struct__20899 
+ ** struct__20956 
  ****************************************************************/
-extern int struct__20899_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__20899_string(const char *str, char **endptr);
-extern int string_to_struct__20899(const char *str, void *pValue, char **endptr);
-extern int is_struct__20899_allow_double_conversion();
-extern int struct__20899_to_double(const void *pValue, double *nValue);
-extern int get_struct__20899_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__20899(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__20899_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__20899_Utils;
+extern int struct__20956_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__20956_string(const char *str, char **endptr);
+extern int string_to_struct__20956(const char *str, void *pValue, char **endptr);
+extern int is_struct__20956_allow_double_conversion();
+extern int struct__20956_to_double(const void *pValue, double *nValue);
+extern int get_struct__20956_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__20956(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__20956_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__20956_Utils;
 
 /****************************************************************
- ** struct__20905 
+ ** struct__20964 
  ****************************************************************/
-extern int struct__20905_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__20905_string(const char *str, char **endptr);
-extern int string_to_struct__20905(const char *str, void *pValue, char **endptr);
-extern int is_struct__20905_allow_double_conversion();
-extern int struct__20905_to_double(const void *pValue, double *nValue);
-extern int get_struct__20905_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__20905(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__20905_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__20905_Utils;
+extern int struct__20964_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__20964_string(const char *str, char **endptr);
+extern int string_to_struct__20964(const char *str, void *pValue, char **endptr);
+extern int is_struct__20964_allow_double_conversion();
+extern int struct__20964_to_double(const void *pValue, double *nValue);
+extern int get_struct__20964_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__20964(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__20964_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__20964_Utils;
 
 /****************************************************************
- ** struct__20910 
+ ** struct__20973 
  ****************************************************************/
-extern int struct__20910_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__20910_string(const char *str, char **endptr);
-extern int string_to_struct__20910(const char *str, void *pValue, char **endptr);
-extern int is_struct__20910_allow_double_conversion();
-extern int struct__20910_to_double(const void *pValue, double *nValue);
-extern int get_struct__20910_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__20910(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__20910_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__20910_Utils;
+extern int struct__20973_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__20973_string(const char *str, char **endptr);
+extern int string_to_struct__20973(const char *str, void *pValue, char **endptr);
+extern int is_struct__20973_allow_double_conversion();
+extern int struct__20973_to_double(const void *pValue, double *nValue);
+extern int get_struct__20973_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__20973(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__20973_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__20973_Utils;
 
 /****************************************************************
- ** struct__20918 
+ ** struct__20979 
  ****************************************************************/
-extern int struct__20918_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__20918_string(const char *str, char **endptr);
-extern int string_to_struct__20918(const char *str, void *pValue, char **endptr);
-extern int is_struct__20918_allow_double_conversion();
-extern int struct__20918_to_double(const void *pValue, double *nValue);
-extern int get_struct__20918_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__20918(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__20918_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__20918_Utils;
+extern int struct__20979_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__20979_string(const char *str, char **endptr);
+extern int string_to_struct__20979(const char *str, void *pValue, char **endptr);
+extern int is_struct__20979_allow_double_conversion();
+extern int struct__20979_to_double(const void *pValue, double *nValue);
+extern int get_struct__20979_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__20979(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__20979_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__20979_Utils;
 
 /****************************************************************
- ** struct__20927 
+ ** struct__20984 
  ****************************************************************/
-extern int struct__20927_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__20927_string(const char *str, char **endptr);
-extern int string_to_struct__20927(const char *str, void *pValue, char **endptr);
-extern int is_struct__20927_allow_double_conversion();
-extern int struct__20927_to_double(const void *pValue, double *nValue);
-extern int get_struct__20927_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__20927(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__20927_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__20927_Utils;
+extern int struct__20984_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__20984_string(const char *str, char **endptr);
+extern int string_to_struct__20984(const char *str, void *pValue, char **endptr);
+extern int is_struct__20984_allow_double_conversion();
+extern int struct__20984_to_double(const void *pValue, double *nValue);
+extern int get_struct__20984_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__20984(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__20984_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__20984_Utils;
 
 /****************************************************************
- ** struct__20932 
+ ** struct__20989 
  ****************************************************************/
-extern int struct__20932_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__20932_string(const char *str, char **endptr);
-extern int string_to_struct__20932(const char *str, void *pValue, char **endptr);
-extern int is_struct__20932_allow_double_conversion();
-extern int struct__20932_to_double(const void *pValue, double *nValue);
-extern int get_struct__20932_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__20932(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__20932_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__20932_Utils;
+extern int struct__20989_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__20989_string(const char *str, char **endptr);
+extern int string_to_struct__20989(const char *str, void *pValue, char **endptr);
+extern int is_struct__20989_allow_double_conversion();
+extern int struct__20989_to_double(const void *pValue, double *nValue);
+extern int get_struct__20989_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__20989(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__20989_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__20989_Utils;
 
 /****************************************************************
  ** array_int_3 
@@ -225,17 +225,17 @@ extern int set_array_int_3_default_value(void *pValue);
 extern SimTypeUtils _Type_array_int_3_Utils;
 
 /****************************************************************
- ** struct__20943 
+ ** struct__21000 
  ****************************************************************/
-extern int struct__20943_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__20943_string(const char *str, char **endptr);
-extern int string_to_struct__20943(const char *str, void *pValue, char **endptr);
-extern int is_struct__20943_allow_double_conversion();
-extern int struct__20943_to_double(const void *pValue, double *nValue);
-extern int get_struct__20943_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__20943(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__20943_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__20943_Utils;
+extern int struct__21000_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__21000_string(const char *str, char **endptr);
+extern int string_to_struct__21000(const char *str, void *pValue, char **endptr);
+extern int is_struct__21000_allow_double_conversion();
+extern int struct__21000_to_double(const void *pValue, double *nValue);
+extern int get_struct__21000_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__21000(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__21000_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__21000_Utils;
 
 /****************************************************************
  ** array_int_3_33 
@@ -264,43 +264,43 @@ extern int set_array_int_99_default_value(void *pValue);
 extern SimTypeUtils _Type_array_int_99_Utils;
 
 /****************************************************************
- ** array__20955 
+ ** array__21012 
  ****************************************************************/
-extern int array__20955_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_array__20955_string(const char *str, char **endptr);
-extern int string_to_array__20955(const char *str, void *pValue, char **endptr);
-extern int is_array__20955_allow_double_conversion();
-extern int array__20955_to_double(const void *pValue, double *nValue);
-extern int get_array__20955_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_array__20955(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_array__20955_default_value(void *pValue);
-extern SimTypeUtils _Type_array__20955_Utils;
+extern int array__21012_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_array__21012_string(const char *str, char **endptr);
+extern int string_to_array__21012(const char *str, void *pValue, char **endptr);
+extern int is_array__21012_allow_double_conversion();
+extern int array__21012_to_double(const void *pValue, double *nValue);
+extern int get_array__21012_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_array__21012(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_array__21012_default_value(void *pValue);
+extern SimTypeUtils _Type_array__21012_Utils;
 
 /****************************************************************
- ** array__20958 
+ ** array__21015 
  ****************************************************************/
-extern int array__20958_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_array__20958_string(const char *str, char **endptr);
-extern int string_to_array__20958(const char *str, void *pValue, char **endptr);
-extern int is_array__20958_allow_double_conversion();
-extern int array__20958_to_double(const void *pValue, double *nValue);
-extern int get_array__20958_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_array__20958(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_array__20958_default_value(void *pValue);
-extern SimTypeUtils _Type_array__20958_Utils;
+extern int array__21015_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_array__21015_string(const char *str, char **endptr);
+extern int string_to_array__21015(const char *str, void *pValue, char **endptr);
+extern int is_array__21015_allow_double_conversion();
+extern int array__21015_to_double(const void *pValue, double *nValue);
+extern int get_array__21015_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_array__21015(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_array__21015_default_value(void *pValue);
+extern SimTypeUtils _Type_array__21015_Utils;
 
 /****************************************************************
- ** struct__20961 
+ ** struct__21018 
  ****************************************************************/
-extern int struct__20961_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__20961_string(const char *str, char **endptr);
-extern int string_to_struct__20961(const char *str, void *pValue, char **endptr);
-extern int is_struct__20961_allow_double_conversion();
-extern int struct__20961_to_double(const void *pValue, double *nValue);
-extern int get_struct__20961_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__20961(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__20961_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__20961_Utils;
+extern int struct__21018_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__21018_string(const char *str, char **endptr);
+extern int string_to_struct__21018(const char *str, void *pValue, char **endptr);
+extern int is_struct__21018_allow_double_conversion();
+extern int struct__21018_to_double(const void *pValue, double *nValue);
+extern int get_struct__21018_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__21018(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__21018_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__21018_Utils;
 
 /****************************************************************
  ** array_int_2 
@@ -316,17 +316,17 @@ extern int set_array_int_2_default_value(void *pValue);
 extern SimTypeUtils _Type_array_int_2_Utils;
 
 /****************************************************************
- ** struct__20978 
+ ** struct__21035 
  ****************************************************************/
-extern int struct__20978_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__20978_string(const char *str, char **endptr);
-extern int string_to_struct__20978(const char *str, void *pValue, char **endptr);
-extern int is_struct__20978_allow_double_conversion();
-extern int struct__20978_to_double(const void *pValue, double *nValue);
-extern int get_struct__20978_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__20978(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__20978_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__20978_Utils;
+extern int struct__21035_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__21035_string(const char *str, char **endptr);
+extern int string_to_struct__21035(const char *str, void *pValue, char **endptr);
+extern int is_struct__21035_allow_double_conversion();
+extern int struct__21035_to_double(const void *pValue, double *nValue);
+extern int get_struct__21035_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__21035(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__21035_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__21035_Utils;
 
 /****************************************************************
  ** array_int_2_33 
@@ -355,56 +355,56 @@ extern int set_array_int_66_default_value(void *pValue);
 extern SimTypeUtils _Type_array_int_66_Utils;
 
 /****************************************************************
- ** array__20989 
+ ** array__21046 
  ****************************************************************/
-extern int array__20989_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_array__20989_string(const char *str, char **endptr);
-extern int string_to_array__20989(const char *str, void *pValue, char **endptr);
-extern int is_array__20989_allow_double_conversion();
-extern int array__20989_to_double(const void *pValue, double *nValue);
-extern int get_array__20989_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_array__20989(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_array__20989_default_value(void *pValue);
-extern SimTypeUtils _Type_array__20989_Utils;
+extern int array__21046_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_array__21046_string(const char *str, char **endptr);
+extern int string_to_array__21046(const char *str, void *pValue, char **endptr);
+extern int is_array__21046_allow_double_conversion();
+extern int array__21046_to_double(const void *pValue, double *nValue);
+extern int get_array__21046_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_array__21046(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_array__21046_default_value(void *pValue);
+extern SimTypeUtils _Type_array__21046_Utils;
 
 /****************************************************************
- ** array__20992 
+ ** array__21049 
  ****************************************************************/
-extern int array__20992_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_array__20992_string(const char *str, char **endptr);
-extern int string_to_array__20992(const char *str, void *pValue, char **endptr);
-extern int is_array__20992_allow_double_conversion();
-extern int array__20992_to_double(const void *pValue, double *nValue);
-extern int get_array__20992_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_array__20992(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_array__20992_default_value(void *pValue);
-extern SimTypeUtils _Type_array__20992_Utils;
+extern int array__21049_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_array__21049_string(const char *str, char **endptr);
+extern int string_to_array__21049(const char *str, void *pValue, char **endptr);
+extern int is_array__21049_allow_double_conversion();
+extern int array__21049_to_double(const void *pValue, double *nValue);
+extern int get_array__21049_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_array__21049(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_array__21049_default_value(void *pValue);
+extern SimTypeUtils _Type_array__21049_Utils;
 
 /****************************************************************
- ** struct__20995 
+ ** struct__21052 
  ****************************************************************/
-extern int struct__20995_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__20995_string(const char *str, char **endptr);
-extern int string_to_struct__20995(const char *str, void *pValue, char **endptr);
-extern int is_struct__20995_allow_double_conversion();
-extern int struct__20995_to_double(const void *pValue, double *nValue);
-extern int get_struct__20995_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__20995(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__20995_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__20995_Utils;
+extern int struct__21052_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__21052_string(const char *str, char **endptr);
+extern int string_to_struct__21052(const char *str, void *pValue, char **endptr);
+extern int is_struct__21052_allow_double_conversion();
+extern int struct__21052_to_double(const void *pValue, double *nValue);
+extern int get_struct__21052_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__21052(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__21052_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__21052_Utils;
 
 /****************************************************************
- ** struct__21006 
+ ** struct__21063 
  ****************************************************************/
-extern int struct__21006_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__21006_string(const char *str, char **endptr);
-extern int string_to_struct__21006(const char *str, void *pValue, char **endptr);
-extern int is_struct__21006_allow_double_conversion();
-extern int struct__21006_to_double(const void *pValue, double *nValue);
-extern int get_struct__21006_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__21006(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__21006_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__21006_Utils;
+extern int struct__21063_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__21063_string(const char *str, char **endptr);
+extern int string_to_struct__21063(const char *str, void *pValue, char **endptr);
+extern int is_struct__21063_allow_double_conversion();
+extern int struct__21063_to_double(const void *pValue, double *nValue);
+extern int get_struct__21063_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__21063(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__21063_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__21063_Utils;
 
 /****************************************************************
  ** array_int_32 
@@ -420,56 +420,56 @@ extern int set_array_int_32_default_value(void *pValue);
 extern SimTypeUtils _Type_array_int_32_Utils;
 
 /****************************************************************
- ** struct__21021 
+ ** struct__21078 
  ****************************************************************/
-extern int struct__21021_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__21021_string(const char *str, char **endptr);
-extern int string_to_struct__21021(const char *str, void *pValue, char **endptr);
-extern int is_struct__21021_allow_double_conversion();
-extern int struct__21021_to_double(const void *pValue, double *nValue);
-extern int get_struct__21021_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__21021(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__21021_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__21021_Utils;
+extern int struct__21078_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__21078_string(const char *str, char **endptr);
+extern int string_to_struct__21078(const char *str, void *pValue, char **endptr);
+extern int is_struct__21078_allow_double_conversion();
+extern int struct__21078_to_double(const void *pValue, double *nValue);
+extern int get_struct__21078_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__21078(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__21078_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__21078_Utils;
 
 /****************************************************************
- ** struct__21050 
+ ** struct__21107 
  ****************************************************************/
-extern int struct__21050_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__21050_string(const char *str, char **endptr);
-extern int string_to_struct__21050(const char *str, void *pValue, char **endptr);
-extern int is_struct__21050_allow_double_conversion();
-extern int struct__21050_to_double(const void *pValue, double *nValue);
-extern int get_struct__21050_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__21050(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__21050_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__21050_Utils;
+extern int struct__21107_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__21107_string(const char *str, char **endptr);
+extern int string_to_struct__21107(const char *str, void *pValue, char **endptr);
+extern int is_struct__21107_allow_double_conversion();
+extern int struct__21107_to_double(const void *pValue, double *nValue);
+extern int get_struct__21107_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__21107(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__21107_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__21107_Utils;
 
 /****************************************************************
- ** struct__21058 
+ ** struct__21115 
  ****************************************************************/
-extern int struct__21058_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__21058_string(const char *str, char **endptr);
-extern int string_to_struct__21058(const char *str, void *pValue, char **endptr);
-extern int is_struct__21058_allow_double_conversion();
-extern int struct__21058_to_double(const void *pValue, double *nValue);
-extern int get_struct__21058_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__21058(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__21058_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__21058_Utils;
+extern int struct__21115_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_struct__21115_string(const char *str, char **endptr);
+extern int string_to_struct__21115(const char *str, void *pValue, char **endptr);
+extern int is_struct__21115_allow_double_conversion();
+extern int struct__21115_to_double(const void *pValue, double *nValue);
+extern int get_struct__21115_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_struct__21115(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_struct__21115_default_value(void *pValue);
+extern SimTypeUtils _Type_struct__21115_Utils;
 
 /****************************************************************
- ** array__21063 
+ ** array__21120 
  ****************************************************************/
-extern int array__21063_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_array__21063_string(const char *str, char **endptr);
-extern int string_to_array__21063(const char *str, void *pValue, char **endptr);
-extern int is_array__21063_allow_double_conversion();
-extern int array__21063_to_double(const void *pValue, double *nValue);
-extern int get_array__21063_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_array__21063(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_array__21063_default_value(void *pValue);
-extern SimTypeUtils _Type_array__21063_Utils;
+extern int array__21120_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_array__21120_string(const char *str, char **endptr);
+extern int string_to_array__21120(const char *str, void *pValue, char **endptr);
+extern int is_array__21120_allow_double_conversion();
+extern int array__21120_to_double(const void *pValue, double *nValue);
+extern int get_array__21120_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_array__21120(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_array__21120_default_value(void *pValue);
+extern SimTypeUtils _Type_array__21120_Utils;
 
 /****************************************************************
  ** array_int_100 
@@ -615,17 +615,17 @@ extern int set_array_int_70_default_value(void *pValue);
 extern SimTypeUtils _Type_array_int_70_Utils;
 
 /****************************************************************
- ** array__21099 
+ ** array__21156 
  ****************************************************************/
-extern int array__21099_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_array__21099_string(const char *str, char **endptr);
-extern int string_to_array__21099(const char *str, void *pValue, char **endptr);
-extern int is_array__21099_allow_double_conversion();
-extern int array__21099_to_double(const void *pValue, double *nValue);
-extern int get_array__21099_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_array__21099(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_array__21099_default_value(void *pValue);
-extern SimTypeUtils _Type_array__21099_Utils;
+extern int array__21156_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_array__21156_string(const char *str, char **endptr);
+extern int string_to_array__21156(const char *str, void *pValue, char **endptr);
+extern int is_array__21156_allow_double_conversion();
+extern int array__21156_to_double(const void *pValue, double *nValue);
+extern int get_array__21156_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_array__21156(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_array__21156_default_value(void *pValue);
+extern SimTypeUtils _Type_array__21156_Utils;
 
 /****************************************************************
  ** array_int_444 
@@ -745,17 +745,17 @@ extern int set_array_int_105_default_value(void *pValue);
 extern SimTypeUtils _Type_array_int_105_Utils;
 
 /****************************************************************
- ** array__21129 
+ ** array__21186 
  ****************************************************************/
-extern int array__21129_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_array__21129_string(const char *str, char **endptr);
-extern int string_to_array__21129(const char *str, void *pValue, char **endptr);
-extern int is_array__21129_allow_double_conversion();
-extern int array__21129_to_double(const void *pValue, double *nValue);
-extern int get_array__21129_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_array__21129(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_array__21129_default_value(void *pValue);
-extern SimTypeUtils _Type_array__21129_Utils;
+extern int array__21186_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_array__21186_string(const char *str, char **endptr);
+extern int string_to_array__21186(const char *str, void *pValue, char **endptr);
+extern int is_array__21186_allow_double_conversion();
+extern int array__21186_to_double(const void *pValue, double *nValue);
+extern int get_array__21186_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_array__21186(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_array__21186_default_value(void *pValue);
+extern SimTypeUtils _Type_array__21186_Utils;
 
 /****************************************************************
  ** NID_BG 
@@ -821,6 +821,45 @@ extern int get_BPos_Single_Internal_Tests_signature(int (*pfnStrAppend)(const ch
 extern void compare_BPos_Single_Internal_Tests(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
 extern int set_BPos_Single_Internal_Tests_default_value(void *pValue);
 extern SimTypeUtils _Type_BPos_Single_Internal_Tests_Utils;
+
+/****************************************************************
+ ** B_data_internal_T_InfraLib 
+ ****************************************************************/
+extern int B_data_internal_T_InfraLib_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_B_data_internal_T_InfraLib_string(const char *str, char **endptr);
+extern int string_to_B_data_internal_T_InfraLib(const char *str, void *pValue, char **endptr);
+extern int is_B_data_internal_T_InfraLib_allow_double_conversion();
+extern int B_data_internal_T_InfraLib_to_double(const void *pValue, double *nValue);
+extern int get_B_data_internal_T_InfraLib_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_B_data_internal_T_InfraLib(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_B_data_internal_T_InfraLib_default_value(void *pValue);
+extern SimTypeUtils _Type_B_data_internal_T_InfraLib_Utils;
+
+/****************************************************************
+ ** TrackSectionData_T_InfraLib 
+ ****************************************************************/
+extern int TrackSectionData_T_InfraLib_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_TrackSectionData_T_InfraLib_string(const char *str, char **endptr);
+extern int string_to_TrackSectionData_T_InfraLib(const char *str, void *pValue, char **endptr);
+extern int is_TrackSectionData_T_InfraLib_allow_double_conversion();
+extern int TrackSectionData_T_InfraLib_to_double(const void *pValue, double *nValue);
+extern int get_TrackSectionData_T_InfraLib_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_TrackSectionData_T_InfraLib(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_TrackSectionData_T_InfraLib_default_value(void *pValue);
+extern SimTypeUtils _Type_TrackSectionData_T_InfraLib_Utils;
+
+/****************************************************************
+ ** TrainPosRaw_T_InfraLib 
+ ****************************************************************/
+extern int TrainPosRaw_T_InfraLib_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_TrainPosRaw_T_InfraLib_string(const char *str, char **endptr);
+extern int string_to_TrainPosRaw_T_InfraLib(const char *str, void *pValue, char **endptr);
+extern int is_TrainPosRaw_T_InfraLib_allow_double_conversion();
+extern int TrainPosRaw_T_InfraLib_to_double(const void *pValue, double *nValue);
+extern int get_TrainPosRaw_T_InfraLib_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_TrainPosRaw_T_InfraLib(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_TrainPosRaw_T_InfraLib_default_value(void *pValue);
+extern SimTypeUtils _Type_TrainPosRaw_T_InfraLib_Utils;
 
 /****************************************************************
  ** BaliseGroupData_Basics 
@@ -1146,45 +1185,6 @@ extern int get_P137_trackside_int_T_TM_signature(int (*pfnStrAppend)(const char 
 extern void compare_P137_trackside_int_T_TM(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
 extern int set_P137_trackside_int_T_TM_default_value(void *pValue);
 extern SimTypeUtils _Type_P137_trackside_int_T_TM_Utils;
-
-/****************************************************************
- ** B_data_internal_T_InfraLib 
- ****************************************************************/
-extern int B_data_internal_T_InfraLib_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_B_data_internal_T_InfraLib_string(const char *str, char **endptr);
-extern int string_to_B_data_internal_T_InfraLib(const char *str, void *pValue, char **endptr);
-extern int is_B_data_internal_T_InfraLib_allow_double_conversion();
-extern int B_data_internal_T_InfraLib_to_double(const void *pValue, double *nValue);
-extern int get_B_data_internal_T_InfraLib_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_B_data_internal_T_InfraLib(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_B_data_internal_T_InfraLib_default_value(void *pValue);
-extern SimTypeUtils _Type_B_data_internal_T_InfraLib_Utils;
-
-/****************************************************************
- ** TrackSectionData_T_InfraLib 
- ****************************************************************/
-extern int TrackSectionData_T_InfraLib_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_TrackSectionData_T_InfraLib_string(const char *str, char **endptr);
-extern int string_to_TrackSectionData_T_InfraLib(const char *str, void *pValue, char **endptr);
-extern int is_TrackSectionData_T_InfraLib_allow_double_conversion();
-extern int TrackSectionData_T_InfraLib_to_double(const void *pValue, double *nValue);
-extern int get_TrackSectionData_T_InfraLib_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_TrackSectionData_T_InfraLib(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_TrackSectionData_T_InfraLib_default_value(void *pValue);
-extern SimTypeUtils _Type_TrackSectionData_T_InfraLib_Utils;
-
-/****************************************************************
- ** TrainPosRaw_T_InfraLib 
- ****************************************************************/
-extern int TrainPosRaw_T_InfraLib_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_TrainPosRaw_T_InfraLib_string(const char *str, char **endptr);
-extern int string_to_TrainPosRaw_T_InfraLib(const char *str, void *pValue, char **endptr);
-extern int is_TrainPosRaw_T_InfraLib_allow_double_conversion();
-extern int TrainPosRaw_T_InfraLib_to_double(const void *pValue, double *nValue);
-extern int get_TrainPosRaw_T_InfraLib_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_TrainPosRaw_T_InfraLib(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_TrainPosRaw_T_InfraLib_default_value(void *pValue);
-extern SimTypeUtils _Type_TrainPosRaw_T_InfraLib_Utils;
 
 /****************************************************************
  ** CompressedPackets_T_Common_Types_Pkg 

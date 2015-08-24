@@ -1,12 +1,12 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-12T20:04:58
+** Generation date: 2015-08-20T14:44:45
 *************************************************************$ */
 #ifndef _DriveAllBGs_Internal_Tests_H_
 #define _DriveAllBGs_Internal_Tests_H_
 
 #include "kcg_types.h"
-#include "TriggerAllBalisesSequence_Internal_Tests.h"
+#include "TriggerAllBalisesInSequence_Internal_Tests.h"
 #include "Amsterdam_Utrecht_Lijn1_b_AmsterdamUtrechtL2_AmsterdamUtrechtTrack1.h"
 
 /* =====================  no input structure  ====================== */
@@ -18,7 +18,7 @@ typedef struct {
   /* -----------------------  no local memory  ----------------------- */
   /* ---------------------  sub nodes' contexts  --------------------- */
   outC_Amsterdam_Utrecht_Lijn1_b_AmsterdamUtrechtL2_AmsterdamUtrechtTrack1 /* 1 */ _1_Context_1;
-  outC_TriggerAllBalisesSequence_Internal_Tests /* 1 */ Context_1;
+  outC_TriggerAllBalisesInSequence_Internal_Tests /* 1 */ Context_1;
   /* ----------------- no clocks of observable data ------------------ */
   /* -------------------- (-debug) no assertions  -------------------- */
   /* ------------------- (-debug) local variables -------------------- */
@@ -45,6 +45,6 @@ extern CompressedBaliseMessage_TM BG_data;
 #endif /* _DriveAllBGs_Internal_Tests_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** DriveAllBGs_Internal_Tests.h
-** Generation date: 2015-08-12T20:04:58
+** Generation date: 2015-08-20T14:44:45
 *************************************************************$ */
 

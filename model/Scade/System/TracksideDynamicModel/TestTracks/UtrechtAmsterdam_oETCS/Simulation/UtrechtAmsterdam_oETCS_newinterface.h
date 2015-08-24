@@ -1,17 +1,16 @@
-#ifndef DRIVEALLBGS_INTERNAL_TESTS_INTERFACE
-#define DRIVEALLBGS_INTERNAL_TESTS_INTERFACE
+#ifndef DRIVEALLBALISESRASPBERRY_INTERNAL_TESTS_INTERFACE
+#define DRIVEALLBALISESRASPBERRY_INTERNAL_TESTS_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "DriveAllBGs_Internal_Tests.h"
+#include "DriveAllBalisesRaspberry_Internal_Tests.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern kcg_bool _ctx_reset_buffer;
 /*******************************
  * Validity
  *******************************/
@@ -37,4 +36,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*DRIVEALLBGS_INTERNAL_TESTS_INTERFACE */
+#endif /*DRIVEALLBALISESRASPBERRY_INTERNAL_TESTS_INTERFACE */

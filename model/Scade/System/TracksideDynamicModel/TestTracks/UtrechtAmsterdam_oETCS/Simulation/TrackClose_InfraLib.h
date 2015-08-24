@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-12T20:04:58
+** Generation date: 2015-08-20T18:20:31
 *************************************************************$ */
 #ifndef _TrackClose_InfraLib_H_
 #define _TrackClose_InfraLib_H_
@@ -35,6 +35,6 @@ extern void TrackClose_reset_InfraLib(outC_TrackClose_InfraLib *outC);
 #endif /* _TrackClose_InfraLib_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** TrackClose_InfraLib.h
-** Generation date: 2015-08-12T20:04:58
+** Generation date: 2015-08-20T18:20:31
 *************************************************************$ */
 

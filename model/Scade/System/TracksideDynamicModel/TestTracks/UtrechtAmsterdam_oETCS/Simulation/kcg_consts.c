@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-12T20:04:58
+** Generation date: 2015-08-20T18:20:31
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -36,6 +36,47 @@ const BPos_Internal_Tests BalisePositions_Internal_Tests = { { 352, 242.0 }, {
 /* Internal_Tests::DEFAULT_BPos_single */
 const BPos_Single_Internal_Tests DEFAULT_BPos_single_Internal_Tests = { 0,
   0.0 };
+
+/* TM::DEFAULT_BTMMessage */
+const CompressedBaliseMessage_TM DEFAULT_BTMMessage_TM = { { 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0 }, { { { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse,
+        kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0,
+        Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
+      { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0,
+        0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse,
+        kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0,
+        Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
+      { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0,
+        0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse,
+        kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0,
+        Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
+      { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0,
+        0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse,
+        kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0,
+        Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
+      { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0,
+        0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse,
+        kcg_false, 0, 0 } }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+      0, 0, 0, 0, 0, 0, 0, 0, 0 } } };
 
 /* Packets426::BG352_P045 */
 const P045_trackside_int_T_TM BG352_P045_Packets426 = { kcg_true, 45, 1, 47,
@@ -1154,6 +1195,10 @@ const BaliseTelegramHeader_int_T_TM BG436_header_B0_Balises426 = { 1, 16, 0, 0,
 const BaliseTelegramHeader_int_T_TM BG436_header_B1_Balises426 = { 1, 16, 0, 1,
   1, 2, 255, 426, 436, 1 };
 
+/* InfraLib::DEFAULT_BaliseTelegramHd */
+const BaliseTelegramHeader_int_T_TM DEFAULT_BaliseTelegramHd_InfraLib = { 0, 0,
+  0, 0, 0, 0, 0, 0, 0, 0 };
+
 /* Balises426::BG437_header_B0 */
 const BaliseTelegramHeader_int_T_TM BG437_header_B0_Balises426 = { 1, 16, 0, 0,
   1, 1, 255, 426, 437, 1 };
@@ -1161,10 +1206,6 @@ const BaliseTelegramHeader_int_T_TM BG437_header_B0_Balises426 = { 1, 16, 0, 0,
 /* Balises426::BG437_header_B1 */
 const BaliseTelegramHeader_int_T_TM BG437_header_B1_Balises426 = { 1, 16, 0, 1,
   1, 2, 255, 426, 437, 1 };
-
-/* InfraLib::DEFAULT_BaliseTelegramHd */
-const BaliseTelegramHeader_int_T_TM DEFAULT_BaliseTelegramHd_InfraLib = { 0, 0,
-  0, 0, 0, 0, 0, 0, 0, 0 };
 
 /* Balises426::BG424 */
 const BaliseGroupData_Basics BG424_Balises426 = { 426, 424, 27210 + 35,
@@ -1250,14 +1291,6 @@ const BaliseTelegramHeader_int_T_TM BG440_header_B1_Balises426 = { 1, 16, 0, 1,
 const BaliseTelegramHeader_int_T_TM BG440_header_B0_Balises426 = { 1, 16, 0, 0,
   1, 1, 255, 426, 440, 1 };
 
-/* Balises426::BG441_header_B0 */
-const BaliseTelegramHeader_int_T_TM BG441_header_B0_Balises426 = { 1, 16, 0, 0,
-  1, 1, 255, 426, 441, 1 };
-
-/* Balises426::BG441_header_B1 */
-const BaliseTelegramHeader_int_T_TM BG441_header_B1_Balises426 = { 1, 16, 0, 1,
-  1, 2, 255, 426, 441, 1 };
-
 /* TM::DEFAULT_TM_BaliseHeaderInt */
 const BaliseTelegramHeader_int_T_TM DEFAULT_TM_BaliseHeaderInt_TM = { 0, 0, 0,
   0, 0, 0, 0, 0, 0, 0 };
@@ -1302,6 +1335,14 @@ const CompressedPackets_T_Common_Types_Pkg DEFAULT_Packets_TM = { { { 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 } };
 
+/* Balises426::BG441_header_B0 */
+const BaliseTelegramHeader_int_T_TM BG441_header_B0_Balises426 = { 1, 16, 0, 0,
+  1, 1, 255, 426, 441, 1 };
+
+/* Balises426::BG441_header_B1 */
+const BaliseTelegramHeader_int_T_TM BG441_header_B1_Balises426 = { 1, 16, 0, 1,
+  1, 2, 255, 426, 441, 1 };
+
 /* Balises426::BG438 */
 const BaliseGroupData_Basics BG438_Balises426 = { 426, 438, 30534, Amsterdam_TM,
   N_TM };
@@ -1318,49 +1359,8 @@ const BaliseGroupData_Basics BG440_Balises426 = { 426, 440, 31470 + 32,
 const BaliseGroupData_Basics BG441_Balises426 = { 426, 441, 32134 + 31,
   Amsterdam_TM, N_TM };
 
-/* TM::DEFAULT_BTMMessage */
-const CompressedBaliseMessage_TM DEFAULT_BTMMessage_TM = { { 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0 }, { { { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse,
-        kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0,
-        Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-      { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0,
-        0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse,
-        kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0,
-        Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-      { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0,
-        0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse,
-        kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0,
-        Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-      { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0,
-        0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse,
-        kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0,
-        Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 },
-      { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse, kcg_false, 0,
-        0 }, { 0, Q_DIR_Reverse, kcg_false, 0, 0 }, { 0, Q_DIR_Reverse,
-        kcg_false, 0, 0 } }, { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 0, 0, 0, 0, 0, 0, 0, 0 } } };
-
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_consts.c
-** Generation date: 2015-08-12T20:04:58
+** Generation date: 2015-08-20T18:20:31
 *************************************************************$ */
 

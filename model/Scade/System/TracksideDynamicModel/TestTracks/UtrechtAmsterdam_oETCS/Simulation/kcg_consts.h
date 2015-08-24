@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-12T20:04:58
+** Generation date: 2015-08-20T18:20:31
 *************************************************************$ */
 #ifndef _KCG_CONSTS_H_
 #define _KCG_CONSTS_H_
@@ -12,6 +12,9 @@ extern const BPos_Internal_Tests BalisePositions_Internal_Tests;
 
 /* Internal_Tests::DEFAULT_BPos_single */
 extern const BPos_Single_Internal_Tests DEFAULT_BPos_single_Internal_Tests;
+
+/* TM::DEFAULT_BTMMessage */
+extern const CompressedBaliseMessage_TM DEFAULT_BTMMessage_TM;
 
 /* Packets426::BG352_P045 */
 extern const P045_trackside_int_T_TM BG352_P045_Packets426;
@@ -892,14 +895,14 @@ extern const BaliseTelegramHeader_int_T_TM BG436_header_B0_Balises426;
 /* Balises426::BG436_header_B1 */
 extern const BaliseTelegramHeader_int_T_TM BG436_header_B1_Balises426;
 
+/* InfraLib::DEFAULT_BaliseTelegramHd */
+extern const BaliseTelegramHeader_int_T_TM DEFAULT_BaliseTelegramHd_InfraLib;
+
 /* Balises426::BG437_header_B0 */
 extern const BaliseTelegramHeader_int_T_TM BG437_header_B0_Balises426;
 
 /* Balises426::BG437_header_B1 */
 extern const BaliseTelegramHeader_int_T_TM BG437_header_B1_Balises426;
-
-/* InfraLib::DEFAULT_BaliseTelegramHd */
-extern const BaliseTelegramHeader_int_T_TM DEFAULT_BaliseTelegramHd_InfraLib;
 
 /* Balises426::BG424 */
 extern const BaliseGroupData_Basics BG424_Balises426;
@@ -964,6 +967,12 @@ extern const BaliseTelegramHeader_int_T_TM BG440_header_B1_Balises426;
 /* Balises426::BG440_header_B0 */
 extern const BaliseTelegramHeader_int_T_TM BG440_header_B0_Balises426;
 
+/* TM::DEFAULT_TM_BaliseHeaderInt */
+extern const BaliseTelegramHeader_int_T_TM DEFAULT_TM_BaliseHeaderInt_TM;
+
+/* TM::DEFAULT_Packets */
+extern const CompressedPackets_T_Common_Types_Pkg DEFAULT_Packets_TM;
+
 /* InfraLib::Half_Distance_Balises_in_BG */
 #define Half_Distance_Balises_in_BG_InfraLib (Distance_Balises_in_BG_InfraLib / 2.0)
 
@@ -982,12 +991,6 @@ extern const BaliseTelegramHeader_int_T_TM BG441_header_B0_Balises426;
 /* Balises426::BG441_header_B1 */
 extern const BaliseTelegramHeader_int_T_TM BG441_header_B1_Balises426;
 
-/* TM::DEFAULT_TM_BaliseHeaderInt */
-extern const BaliseTelegramHeader_int_T_TM DEFAULT_TM_BaliseHeaderInt_TM;
-
-/* TM::DEFAULT_Packets */
-extern const CompressedPackets_T_Common_Types_Pkg DEFAULT_Packets_TM;
-
 /* Balises426::BG438 */
 extern const BaliseGroupData_Basics BG438_Balises426;
 
@@ -999,9 +1002,6 @@ extern const BaliseGroupData_Basics BG440_Balises426;
 
 /* Balises426::BG441 */
 extern const BaliseGroupData_Basics BG441_Balises426;
-
-/* TM::DEFAULT_BTMMessage */
-extern const CompressedBaliseMessage_TM DEFAULT_BTMMessage_TM;
 
 /* Common_Types_Pkg::cMetadataArraySize */
 #define cMetadataArraySize_Common_Types_Pkg cDIM_MaxRMessages_Common_Types_Pkg
@@ -1015,6 +1015,6 @@ extern const CompressedBaliseMessage_TM DEFAULT_BTMMessage_TM;
 #endif /* _KCG_CONSTS_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_consts.h
-** Generation date: 2015-08-12T20:04:58
+** Generation date: 2015-08-20T18:20:31
 *************************************************************$ */
 
