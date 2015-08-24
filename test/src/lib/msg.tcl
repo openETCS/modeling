@@ -45,6 +45,12 @@ namespace eval ::msg {
     eval util::assign "$in.Radio_Common_Header." $args  
   }
 
+  proc setMsg3 args {
+    variable in
+    eval msg::setRadioMsg nid_message=3 $args
+    msg::setPacketHeader "$in.packets.PacketHeaders\[0\]" true 21 0 1
+  }
+
   proc setMsg15 args {
     eval msg::setRadioMsg nid_message=15 $args
   }  
@@ -72,6 +78,12 @@ namespace eval ::msg {
     SSM::check "$h.xQ_EMERGENCYSTOP" $qes
   }
 
+  proc setPacketHeader {target {valid false} {nid_packet 0} {startAddress 0} {endAddress 0}} {
+    SSM::set "$target.valid" $valid
+    SSM::set "$target.nid_packet" $nid_packet
+    SSM::set "$target.startAddress" $startAddress
+    SSM::set "$target.endAddress" $endAddress
+  }
 }
 
 

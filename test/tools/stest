@@ -18,7 +18,7 @@ my $SCRIPTDIR = dirname($0);
 require "$SCRIPTDIR/lib.pl";
 
 my %OPT;
-if(!getopts("hcC", \%OPT)) { $OPT{h} = 1; }
+if(!getopts("hcrC", \%OPT)) { $OPT{h} = 1; }
 
 if($OPT{h}) { printHelp();exit 0; }
 
@@ -45,6 +45,13 @@ if($OPT{C}) {
 }
 else {
   @results = executeTests(@tests);
+}
+
+if($OPT{r}) {
+  my $fh;
+  require "$SCRIPTDIR/report.pl";
+  open($fh,">TestReport.html");
+  writeTestReport(\@results,$fh);
 }
 
 
@@ -165,7 +172,7 @@ sub executeTest {
   my @msgs = messages();
   if(@msgs) { $result{messages} = \@msgs; }
 
-  return %result;
+  return \%result;
 }
 
 
@@ -234,7 +241,7 @@ sub runScenario {
     error("cannot load simulation DLL '$dll'");
   }
   else {
-    mkdir $out;
+    mkdir dirname($out);
     my $sss = basename($scenario);
     my $cmd = "$SCSSMLNC $dll -scenario $sss -out $out";
     info($cmd);
@@ -266,10 +273,11 @@ sub compileNode {
   }
 }
 
-
 sub printHelp {
   print "USAGE: stest [-chC] [scenario]\n\n";
   print "  -c:  compile SCADE node before running a test\n";
   print "  -h:  prints this help message\n";
+  print "  -r:  generate test report\n";
   print "  -C:  only compile SCADE nodes without executing tests\n";
 }
+

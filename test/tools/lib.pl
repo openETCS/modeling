@@ -1,5 +1,4 @@
 # This Perl library provides common utility functions
-
 # for the internal test tools of openETCS/WP3.
 #-----------------------------------------------------------------------------
 # History:
@@ -25,19 +24,19 @@ sub messages { return @messages }
 # array @messages, and sets the global variable $hasErrors to 1.
 sub error {
   $hasErrors = 1;
-  push @messages, ("E",$_[0]);
+  push @messages, {type=>"E", msg=>$_[0]};
   printred("$_[0]\n");
 }
 
 # Prints the specified warning and stores the message in the global array @messages
 sub warning {
-  push @messages, ("W",$_[0]);
+  push @messages, {type=>"W", msg=>$_[0]};
   printyellow("$_[0]\n");
 }
 
 # Appends the specified message to the array @messages
 sub info {
-  push @messages, ("I",$_[0]);
+  push @messages, {type=>"I",msg=>$_[0]};
 }
 
 
@@ -56,4 +55,9 @@ sub printred {
   print "\e[1;31;40m$_[0]\e[0m";
 }
 
+# Returns the current timestamp as string
+sub timestamp {
+  my ($DAY,$MONTH,$YEAR,$HOUR,$MIN) = (localtime)[3,4,5,2,1];
+  return sprintf "%02d.%02d.%02d %02d:%02d", $DAY, $MONTH+1, $YEAR-100, $HOUR, $MIN;
+}
 1;
