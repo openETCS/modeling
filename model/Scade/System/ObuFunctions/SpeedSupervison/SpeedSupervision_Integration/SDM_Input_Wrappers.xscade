@@ -105,6 +105,18 @@
 								<ed:Variable oid="!ed/9ce4b/578F/938/54f615944b9b"/>
 							</pragmas>
 						</Variable>
+						<Variable name="gp_out">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="SDM_GradientAcceleration_types::GradientProfile_real_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/114c8d/837/23F0/55d5f2de317"/>
+							</pragmas>
+						</Variable>
 						<Variable name="gp_update_out">
 							<type>
 								<NamedType>
@@ -668,6 +680,29 @@
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/d7314/277B/13FC/55af5ca769a7"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L269">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="SDM_GradientAcceleration_types::Gradient_section_real_t"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/114c75/837/23F0/55d5f2b6754a"/>
 							</pragmas>
 						</Variable>
 					</locals>
@@ -1750,20 +1785,59 @@
 								<ed:Equation oid="!ed/d7320/277B/13FC/55af5db05456"/>
 							</pragmas>
 						</Equation>
-						<!-- _ = _L265; -->
+						<!-- _L269 = (map ConvertGradient_section <<TrackAtlasTypes::GradientMaxSections>>)(_L... -->
 						<Equation>
 							<lefts>
-								<VariableRef name="_"/>
+								<VariableRef name="_L269"/>
+							</lefts>
+							<right>
+								<!-- (map ConvertGradient_section <<TrackAtlasTypes::GradientMaxSections>>)(_L265) -->
+								<CallExpression>
+									<operator>
+										<IteratorOp name="2" iterator="map">
+											<operator>
+												<OpCall name="1">
+													<operator>
+														<OperatorRef name="ConvertGradient_section"/>
+													</operator>
+												</OpCall>
+											</operator>
+											<size>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
+													</path>
+												</IdExpression>
+											</size>
+										</IteratorOp>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L265"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/114c74/837/23F0/55d5f2b65b61"/>
+							</pragmas>
+						</Equation>
+						<!-- gp_out = _L269; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="gp_out"/>
 							</lefts>
 							<right>
 								<IdExpression>
 									<path>
-										<ConstVarRef name="_L265"/>
+										<ConstVarRef name="_L269"/>
 									</path>
 								</IdExpression>
 							</right>
 							<pragmas>
-								<ed:Equation oid="!ed/d7326/277B/13FC/55af5e091b7f"/>
+								<ed:Equation oid="!ed/114c8e/837/23F0/55d5f2de7db3"/>
 							</pragmas>
 						</Equation>
 					</data>
@@ -2488,8 +2562,8 @@
 											<positions>
 												<Point x="6747" y="10927"/>
 												<Point x="8176" y="10927"/>
-												<Point x="8176" y="10901"/>
-												<Point x="9631" y="10901"/>
+												<Point x="8176" y="10927"/>
+												<Point x="9631" y="10927"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="2" rightExprIndex="2" srcEquation="!ed/d7301/277B/13FC/55af5c88445c" dstEquation="!ed/752118/574E/C58/55a924dc2702">
@@ -2536,20 +2610,36 @@
 												<Point x="7303" y="8520"/>
 											</positions>
 										</Edge>
-										<EquationGE presentable="!ed/d7326/277B/13FC/55af5e091b7f">
+										<EquationGE presentable="!ed/114c74/837/23F0/55d5f2b65b61">
 											<position>
-												<Point x="7250" y="9049"/>
+												<Point x="12004" y="7400"/>
 											</position>
 											<size>
-												<Size width="503" height="503"/>
+												<Size width="4064" height="2080"/>
 											</size>
 										</EquationGE>
-										<Edge leftVarIndex="4" rightExprIndex="1" srcEquation="!ed/d7301/277B/13FC/55af5c88445c" dstEquation="!ed/d7326/277B/13FC/55af5e091b7f">
+										<Edge leftVarIndex="4" rightExprIndex="1" srcEquation="!ed/d7301/277B/13FC/55af5c88445c" dstEquation="!ed/114c74/837/23F0/55d5f2b65b61">
 											<positions>
 												<Point x="6747" y="9313"/>
-												<Point x="7117" y="9313"/>
-												<Point x="7117" y="9313"/>
-												<Point x="7514" y="9313"/>
+												<Point x="11536" y="9313"/>
+												<Point x="11536" y="8440"/>
+												<Point x="12012" y="8440"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/114c8e/837/23F0/55d5f2de7db3">
+											<position>
+												<Point x="19659" y="8784"/>
+											</position>
+											<size>
+												<Size width="317" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/114c74/837/23F0/55d5f2b65b61" dstEquation="!ed/114c8e/837/23F0/55d5f2de7db3">
+											<positions>
+												<Point x="16060" y="8440"/>
+												<Point x="16722" y="8440"/>
+												<Point x="16722" y="9049"/>
+												<Point x="19711" y="9049"/>
 											</positions>
 										</Edge>
 									</presentationElements>
@@ -4145,7 +4235,7 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/4104e/578F/938/54f609625e7e" dstEquation="!ed/41034/578F/938/54f608bb2347">
 											<positions>
-												<Point x="13123" y="4630"/>
+												<Point x="13150" y="4630"/>
 												<Point x="14102" y="4630"/>
 												<Point x="14102" y="3413"/>
 												<Point x="15028" y="3413"/>
@@ -4153,7 +4243,7 @@
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/41048/578F/938/54f60955299a" dstEquation="!ed/41034/578F/938/54f608bb2347">
 											<positions>
-												<Point x="13123" y="2910"/>
+												<Point x="13150" y="2910"/>
 												<Point x="14102" y="2910"/>
 												<Point x="14102" y="2328"/>
 												<Point x="15028" y="2328"/>
@@ -4161,15 +4251,15 @@
 										</Edge>
 										<Edge leftVarIndex="4" rightExprIndex="1" srcEquation="!ed/4102b/578F/938/54f6085f74e4" dstEquation="!ed/4104e/578F/938/54f609625e7e">
 											<positions>
-												<Point x="6033" y="4630"/>
-												<Point x="6562" y="4630"/>
-												<Point x="6562" y="4630"/>
-												<Point x="7091" y="4630"/>
+												<Point x="6059" y="4657"/>
+												<Point x="6562" y="4657"/>
+												<Point x="6562" y="4657"/>
+												<Point x="7091" y="4657"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="3" rightExprIndex="1" srcEquation="!ed/4102b/578F/938/54f6085f74e4" dstEquation="!ed/4103b/578F/938/54f60908200e">
 											<positions>
-												<Point x="6033" y="3784"/>
+												<Point x="6059" y="3784"/>
 												<Point x="6271" y="3784"/>
 												<Point x="6271" y="3784"/>
 												<Point x="6509" y="3784"/>
@@ -4177,15 +4267,15 @@
 										</Edge>
 										<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/4102b/578F/938/54f6085f74e4" dstEquation="!ed/41048/578F/938/54f60955299a">
 											<positions>
-												<Point x="6033" y="2910"/>
-												<Point x="6562" y="2910"/>
-												<Point x="6562" y="2910"/>
-												<Point x="7091" y="2910"/>
+												<Point x="6059" y="2937"/>
+												<Point x="6562" y="2937"/>
+												<Point x="6562" y="2937"/>
+												<Point x="7091" y="2937"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/4102b/578F/938/54f6085f74e4" dstEquation="!ed/41034/578F/938/54f608bb2347">
 											<positions>
-												<Point x="6033" y="2064"/>
+												<Point x="6059" y="2064"/>
 												<Point x="14579" y="2064"/>
 												<Point x="14579" y="4471"/>
 												<Point x="15028" y="4471"/>
@@ -6217,6 +6307,7 @@
 						</ed:Operator>
 					</pragmas>
 				</Operator>
+				<Operator name="ConvertGradient_section" href="ConvertGradient_section.xscade"/>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/be5eb/2115/1C84/54ecbd6d1494" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
