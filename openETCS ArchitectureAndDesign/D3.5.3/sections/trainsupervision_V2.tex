@@ -1,53 +1,53 @@
 %set the master document for easy compilation
 %!TEX root = ../D3_5_3.tex
 
-\section{Train\_Supervision}
+\section{Speed and Distance Monitoring}
 
 \subsection{Component Requirements}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Component name			& TrainSupervision \\
+Component name			& SpeedSupervision_Integration (``SDM'')\\
 \midrule
-Link to SCADE model		& {\footnotesize \url{???}} \\
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/SpeedSupervison}} \\
 \midrule
-SCADE designer			& Christian Stahl, TWT \\
+SCADE designer			& Benjamin Beichler, University of Rostock; Christian Stahl, TWT; Thorsten Schulz, University of Rostock \\
 \midrule
-Description				& The task of block ``Train Supervision'' is to monitor the speed of the train and the train location and as such to ensure that the speed remains within the given speed and distance limits. This block is mainly based on \cite[Chapt.~3.13]{subset-026}.
+Description				& The task of SDM is to monitor the speed of the train and the train location and as such to ensure that the speed remains within the given speed and distance limits. This block is based on \cite[Chapt.~3.13]{subset-026}.
 
-The block ``Train Supervision'' takes as input (1) movement related information such as train speed, train position and acceleration, (2) train related information such as brake information and train length, and (3) track related information such as speed and distance limits and national values.
+The integration node ``SpeedSupervision\_Integration'' takes as input (1) movement related information such as train speed, train position and acceleration, (2) train related information such as brake information and train length, and (3) track related information such as speed and distance limits and national values.
 
-Based on this information a speed profile is calculated. Speed restrictions create target speeds (targets) that have to be followed. For each such target braking curves are generated to supervise at which location of the track the train must perform the brake. In case of no target restrictions the train may accelerate to the supervised maximum speed of the speed profile. These calculations lead to commands being sent to the driver and the brake system.
+Based on this information a speed profile is calculated. Speed restrictions create target speeds (targets) that have to be followed. For each such target braking curves are generated to supervise at which location of the track the train must apply the brake. In case of no target restrictions the train may accelerate to the supervised maximum speed of the speed profile. These calculations lead to commands being sent to the driver and the brake system.
 
 The functionality is modeled using eight operators, as shown in Figure~\ref{f:ssv}, which are explained below.
 
-The current status of the analysis of ``Train Supervision'' and a functional breakdown can be found in a separate document, \verb+SpeedSupervision_analysis.pdf+.\\
+The current status of the analysis of ``SDM'' and a functional breakdown can be found in a separate document, \verb+SpeedSupervision_analysis.pdf+.\\
 \midrule
 Input documents	& 
 Subset-026, Chapter 3.13: Speed and distance monitoring \\
 \midrule
 Safety integrity level		& 4 \\
 \midrule
-Time constraints		& [If applicable description of time constraints, otherwise n/a] \\
+Time constraints		& n/a \\
 \midrule
-API requirements 		& [If applicable description of API requirements, otherwise n/a] \\
+API requirements 		& n/a \\
 \bottomrule
 \end{longtable}
 
 
 \subsection{Interface}
 
-An overview of the interface of component [component name] is shown in Figure~\ref{f:ssv}. The inputs and outputs are described in detail in Section~\ref{s:trainsupervision_inputs} respectively \ref{s:trainsupervision_outputs}. Sub components are described in Section~\ref{s:trainsupervision_subcomponents}.
+An overview of the interface of component SpeedSupervision\_integration is shown in Figure~\ref{f:ssv}. The inputs and outputs are described in detail in Section~\ref{s:SDM_inputs} respectively \ref{s:SDM_outputs}. Sub components are described in Section~\ref{s:SDM_subcomponents}.
 
 \begin{figure}
 \centering
 \includegraphics[width=0.95\textheight, angle=90]{../images/speedsupervision.png}
-\caption{Structure of component ProvidePositionReport.}\label{f:ssv}
+\caption{Structure of component SpeedSupervision\_Integration.}\label{f:ssv}
 \end{figure}
 
 
 
-\subsubsection{Inputs}\label{s:trainsupervision_inputs}
+\subsubsection{Inputs}\label{s:SDM_inputs}
 
 \paragraph{NationalValues}
 
@@ -57,17 +57,17 @@ Input name				& NationalValues \\
 \midrule
 Description				& This input is packet 3 of \cite[Chapt.~8]{subset-026}, describing the national values.  \\
 \midrule
-Source					& ??? \\ 
+Source					& Track Atlas Data \\ 
 \midrule
 Type					& P3\_NationalValues\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& P3\_NationalValues\_T is a complex data type \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& as specified in SRS \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& currently not checked \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & not checked; node must not be called without reasonable National Value \\
 \bottomrule
 \end{longtable}
 
@@ -84,13 +84,13 @@ Source					& Manage Track Data \\
 \midrule
 Type					& trainPosition\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& complex data type \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& not checked, may overflow \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& currently not checked \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & not checked; node must not be called without reasonable position data \\
 \bottomrule
 \end{longtable}
 
@@ -107,13 +107,16 @@ Source					& Odometry \\
 \midrule
 Type					& odometry\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& complex data type \\
+ & used fields are: \\
+ & - acceleration: Obu\_BasicTypes\_Pkg::A\_internal\_Type. No valid range defined, neither checked. \\
+ & - motionState: [noMotion | Motion] (enum type) \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& possible overflow not evaluated \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& not checked \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & not handled, valid data is expected for valid function \\
 \bottomrule
 \end{longtable}
 
@@ -124,19 +127,19 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Input name				& m\_level \\
 \midrule
-Description				& This input is the current level of the train. \\
+Description				& This input is the current level of the train. (will be removed in next release!)\\
 \midrule
 Source					& Mode and Level \\ 
 \midrule
 Type					& M\_LEVEL \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& enum type, valid range is ensured at compile time \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
 \end{longtable}
 
@@ -153,13 +156,15 @@ Source					& Database \\
 \midrule
 Type					& trainProperties\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& complex type \\
+ & used fields are: \\
+ & d_baliseAntenna_2_frontend.nominal: Obu\_BasicTypes\_Pkg::L\_internal\_Type No valid range defined, neither checked. \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Value is only evaluated in Level 1. Low values (e.g. invalid-default 0) will lead to early trip, brake and alike. Larger values will lead to late braking, possibly numeric overflow. \\
 \bottomrule
 \end{longtable}
 
@@ -172,17 +177,17 @@ Input name				& MRSP \\
 \midrule
 Description				& This input is the most restrictive speed profile. \\
 \midrule
-Source					& ??? \\ 
+Source					& Track Atlas \\ 
 \midrule
 Type					& MRSP\_Profile\_t \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& complex type \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & at least one valid entry is expected (the maximum vehicle speed), else a trip shall be commanded. \\
 \bottomrule
 \end{longtable}
 
@@ -199,13 +204,13 @@ Source					& ??? \\
 \midrule
 Type					& MAs\_t \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& complex type \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & on .valid = false, brake/trip should be commanded. \\
 \bottomrule
 \end{longtable}
 
@@ -222,13 +227,13 @@ Source					& internal \\
 \midrule
 Type					& bool \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& \[false, true\] \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& limited range, check at compile time \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& limited range, check at compile time \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
 \end{longtable}
 
@@ -245,18 +250,18 @@ Source					& internal \\
 \midrule
 Type					& bool \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& \[false, true\] \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& limited range, check at compile time \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& limited range, check at compile time \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
 \end{longtable}
 
 
-\subsubsection{Outputs}\label{s:trainsupervision_outputs}
+\subsubsection{Outputs}\label{s:SDM_outputs}
 
 \paragraph{sdmToDMI}
 
@@ -266,17 +271,17 @@ Output name				& sdmToDMI \\
 \midrule
 Description				& This output contains information about different speeds and positions, on the one hand and the current supervision status, on the other hand. This information shall be displayed to the driver. \\
 \midrule
-Destination				& [Name of the destination component(s)] \\ 
+Destination				& DMI \\ 
 \midrule
 Type					& speedSupervisionForDMI\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n/a \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & .valid can be false \\
 \bottomrule
 \end{longtable}
 
@@ -293,13 +298,13 @@ Destination				& [Name of the destination component(s)] \\
 \midrule
 Type					& Target\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n/a \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & .valid may be false if no target is supervised or known, other values of this output must be ignored then. \\
 \bottomrule
 \end{longtable}
 
@@ -316,13 +321,13 @@ Destination				& [Name of the destination component(s)] \\
 \midrule
 Type					& SDM\_Commands\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n/a \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & overall .valid is always set, individual speeds have their corresponding valid flag. \\
 \bottomrule
 \end{longtable}
 
@@ -336,15 +341,15 @@ Description				& This output is the brake command, indicating whether performing
 \midrule
 Destination				& [Name of the destination component(s)] \\ 
 \midrule
-Type					& Brake\_command\_T \\
+Type					& Brake\_command\_T (enum)\\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& [brake_signal_command_not_defined, apply_brake, release_brake] \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
 \end{longtable}
 
@@ -361,13 +366,13 @@ Destination				& [Name of the destination component(s)] \\
 \midrule
 Type					& bool \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& [false, true] \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
 \end{longtable}
 
@@ -384,18 +389,18 @@ Destination				& [Name of the destination component(s)] \\
 \midrule
 Type					& bool \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& [false/true] \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
 \end{longtable}
 
 
-\subsection{Sub Components}\label{s:trainsupervision_subcomponents}
+\subsection{Sub Components}\label{s:SDM_subcomponents}
 
 \subsubsection{Receive\_TrackSide\_Msg}
 \input{sections/SDM_InputWrapper.tex}
