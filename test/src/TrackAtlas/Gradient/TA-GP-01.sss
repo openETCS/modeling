@@ -5,13 +5,29 @@
 
 # History:
 # - 24.08.15, J. Kastner: initial version
-source ../../lib/msg.tcl
-source ../../lib/train.tcl
+source gradient.tcl
 
 set eut "TA_Gradient::Build_GradientProfile"
+set gpOut "$eut/GP"
 msg::input "$eut/MessageIn"
 
-msg::setMsg3
-util::check "$eut/" updated=true
+# @1 NOP
+# @in no message
+# @out update=false, no gradient data
+msg::setMsgNone
+checkGP 0 valid=false L_Gradient=0
+checkUpdated false
+SSM::cycle
+
+# @2 Receive a gradient profile with a single section
+# @in
+# @out
+msg::setMsg3 q_dir=$Q_DIR_Nominal 
+msg::addPkt21 q_dir=$Q_DIR_Nominal q_scale=$Q_SCALE_1m n_iter=1\
+              section0=123,$Q_GDIR_downhill,10
+checkGP 0 valid=true
+checkGP 1 valid=false
+#checkGP 2 valid=false
+#checkUpdated true
 SSM::cycle
 
