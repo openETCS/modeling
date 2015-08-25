@@ -1,0 +1,283 @@
+#!/usr/bin/perl -w
+#-----------------------------------------------------------------------------
+# This script executes annotated SCADE scenario tests (.sss) scripts and
+# generates a HTML result report.
+#
+# Project: openETCS / WP3
+#-----------------------------------------------------------------------------
+# History:
+# - 22.08.15, J. Kastner: initial version
+#-----------------------------------------------------------------------------
+use strict;
+use warnings;
+use File::Basename;
+use Cwd;
+use Getopt::Std;
+
+my $SCRIPTDIR = dirname($0);
+require "$SCRIPTDIR/lib.pl";
+
+my %OPT;
+if(!getopts("hcrC", \%OPT)) { $OPT{h} = 1; }
+
+if($OPT{h}) { printHelp();exit 0; }
+
+# default SCADE model root directory
+my $MROOT ||= "$SCRIPTDIR/../../model/Scade/System/";
+# default SCADE configuration
+my $MCONFIG ||= "Simulation";
+# default SCADE command
+my $SCADE ||= "SCADE.exe";
+# default SCADE batch simulation command
+my $SCSSMLNC ||= "SCSSMLNC.exe";
+
+my (@tests,@results,@compiledNodes);
+
+if($ARGV[0]) {
+  $tests[0] = loadTest($ARGV[0])
+}
+else {
+  @tests = findTests(".");
+}
+
+if($OPT{C}) {
+  print "Not yet implemented!\n"
+}
+else {
+  @results = executeTests(@tests);
+}
+
+if($OPT{r}) {
+  my $fh;
+  require "$SCRIPTDIR/report.pl";
+  open($fh,">TestReport.html");
+  writeTestReport(\@results,$fh);
+}
+
+
+############################### FUNCTIONS #################################
+# Parses the header of a test script and returns the meta information 
+# defined therein.
+#
+# Params:
+# - the file name of the script
+#
+# Returns:
+# A hash with the script meta information
+sub readTestHeader {
+  my ($file) = @_;
+  my ($in, $tag, $data, %meta);
+
+  open($in, "<", $file)
+    or die "Couldn't open test script '$file'";
+
+  while(<$in>) {
+    if(!/^#/) { last; }
+    if(my @t = /^#\s*@(\w+):(.*)/) {
+      if($tag) { $meta{$tag} = $data; }
+      ($tag,$data) = @t;
+      $tag = substr(lc($tag),0,4);
+      $data =~ s/^\s+//;
+      $data =~ s/\s+$//;
+    }
+    elsif ($tag) {
+      my ($t) = /^#(.*)/;
+      $t =~ s/^\s+//;
+      $t =~ s/\s+$//;
+      if($t !~ /^$/) {
+        $data = $data . " " . $t ;
+      }
+    }
+  }
+  if($tag) { $meta{$tag} = $data; }
+
+  return %meta;
+}
+
+
+# Returns the metadata records for all .sss scripts found in or below the specified directory
+#
+# Params:
+# - directory
+#
+# Returns:
+# Array of hashes with the following keys: id, path, titl, desc, proj, conf, node, sfile, sdir
+sub findTests {
+  my ($dir) = @_;
+  my (@scripts);
+  use File::Find;
+
+  find sub {
+    if(/.+\.sss$/) {
+      my $dir = $File::Find::dir;
+      (my $id = $_) =~ s/\.sss$//;
+      my %t = readTestHeader($_);
+      $t{sfile} = $File::Find::name;
+      $t{sdir} = $dir;
+      $t{id} = $id;
+      push @scripts, \%t;
+    }
+  }, $dir;
+
+  return @scripts;
+}
+
+# Return the metadata record for the specified test script
+sub loadTest {
+  my ($file) = @_;
+  my %t = readTestHeader($file);
+  $t{sfile} = $file;
+  $t{sdir} = dirname($file);
+  my $id = basename($file);
+  $id =~ s/\.sss$//;
+  $t{id} = $id;
+  return \%t;
+}
+
+sub executeTests {
+  my (@tests) = @_;
+  return map(executeTest($_),@tests);
+}
+
+# Executes a single .sss test script
+#
+# Param:
+# - hash reference with the following keys: id, path, titl, desc, proj, conf, node
+sub executeTest {
+  my ($spec) = @_;
+  my (%result);
+
+  clearMessages();
+
+  print "---------- Test '$spec->{sfile}' ----------\n";
+  if( checkTestSpec($spec) ) {
+    my %s = %$spec;
+
+    if($OPT{c}) {
+      compileNode($s{pfile},$s{node},$s{conf});
+    }
+
+    runScenario($s{pdir},$s{conf},$s{node},$s{sfile},"out/$s{id}.out");
+
+    if(hasErrors()) {
+      printred("FAILED\n");
+    }
+    else {
+      printgreen("SUCCESS\n");
+    }
+  }
+
+  $result{spec} = $spec;
+  if(hasErrors()) { $result{hasErrors} = 1; }
+  my @msgs = messages();
+  if(@msgs) { $result{messages} = \@msgs; }
+
+  return \%result;
+}
+
+
+# Checks if the specified test metainfo hash is valid,
+# and adds the properties pdir and pfile to it.
+#
+# Params:
+# - hash with test metainfo (as used by exectueTest)
+#
+# Returns:
+# 1 if valid, otherwise false; errors and warnings are stored in the globals @errors and @warnings
+sub checkTestSpec {
+  my ($spec) = @_;
+  my %s = %$spec;
+
+  if(!$s{sdir}) { error("cannot run test: no sdir set!"); return 0; }
+  if(! -r $s{sfile}) { error("cannot run test '$s{sfile}': scenario does not exist or is not readable"); return 0; }
+  if(!$s{id}) { error("cannot run test '" . $s{sfile} ."': missing test id"); return 0; }
+  if(!$s{proj}) { error("cannot run test '" . $s{sfile} ."': \@project not defined"); return 0; }
+  if(!$s{node}) { error("cannot run test '" . $s{sfile} ."': \@node not defined"); return 0; }
+
+  if(!$s{conf}) {
+    warning("\@Config not defined; using '$MCONFIG'");
+    $spec->{conf} = $MCONFIG;
+  }
+  
+  my $project;
+  if($s{proj} =~ m/^\./) {
+    $project = "$s{sdir}/$s{proj}";
+  }
+  else {
+    ($project = $s{proj}) =~ s/\$MROOT/$MROOT/;
+  }
+
+  if(! -r $project) {
+      error("cannot run test '" . $s{sfile} ."': cannot read project '$project'");
+      return 0;
+  }
+  else {
+    $spec->{pfile} = $project;
+    $spec->{pdir} = dirname($project);
+  }
+  return 1;
+}
+
+
+# Runs a .sss script using SCSSMLNC.exe with a compile node DLL
+#
+# Params:
+# - path to the SCADE project directory
+# - name of the configuration (i.e. name of the target directory)
+# - node to be tested
+# - path to the scenario file
+# - path to the output file
+sub runScenario {
+  use File::Spec;
+  my ($projectdir,$config,$node,$scenario,$out) = @_;
+  $node =~ s/::/__/;
+  my $rundir = File::Spec->rel2abs(dirname($scenario));
+  my $dll = File::Spec->rel2abs("$projectdir/$config/$node.dll");
+  $dll = File::Spec->abs2rel($dll,$rundir);
+
+  my $olddir = getcwd();
+  chdir $rundir;
+  if(! -r $dll) {
+    error("cannot load simulation DLL '$dll'");
+  }
+  else {
+    mkdir dirname($out);
+    my $sss = basename($scenario);
+    my $cmd = "$SCSSMLNC $dll -scenario $sss -out $out";
+    info($cmd);
+    my @output = `$cmd`;
+    for (@output) {
+      if(/^\s*$/) {}
+      elsif (s/^>\s*(.+)/$1/) { info($_); print $_; }
+      else { error($_); }
+    }
+  }
+  chdir $olddir;
+}
+
+
+# Compiles the specified SCADE node for batch simulation.
+#
+# Params:
+# - path to the SCADE project file (.etp)
+# - name of the Node to be compiled
+# - configuration to be used for compilation
+sub compileNode {
+  my ($project, $node, $config) = @_;
+  # compile every node only once
+  if (! grep( /^$node$/, @compiledNodes ) ) {
+    my $cmd = "$SCADE -code $project -root $node -sim -conf $config";
+    info($cmd);
+    system($cmd);
+    push @compiledNodes, $node;
+  }
+}
+
+sub printHelp {
+  print "USAGE: stest [-chC] [scenario]\n\n";
+  print "  -c:  compile SCADE node before running a test\n";
+  print "  -h:  prints this help message\n";
+  print "  -r:  generate test report\n";
+  print "  -C:  only compile SCADE nodes without executing tests\n";
+}
+

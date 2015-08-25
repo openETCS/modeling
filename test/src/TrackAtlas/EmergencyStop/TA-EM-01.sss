@@ -1,0 +1,78 @@
+# @Title: Unconditional Emergency Stop (Msg16)
+# @Project: $MROOT/ObuFunctions/TrackAtlas/TrackAtlas.etp
+# @Node: TA_EmergencyStop::Manage_EmergencyStop
+# @Config: Simulation
+
+# History:
+# - 24.08.15, J. Kastner: initial version
+source manage_emergency.tcl
+
+# 1) nop
+msg::setMsgNone
+checkOutput tripTrain=false rejectNewMA=false cesAccepted=false updateEOA=false newEOA=0 cesRevoked=false
+msg::checkMsg147
+SSM::cycle
+#print_activeStates
+
+# 2) receive Msg16
+msg::setMsg16 nid_em=4321
+input 20 100
+checkOutput tripTrain=true rejectNewMA=true cesAccepted=false updateEOA=false newEOA=0 cesRevoked=false
+msg::checkMsg147 true 20 4321 2
+SSM::cycle
+
+# 3) nop
+msg::setMsgNone
+input 30 150
+checkOutput tripTrain=true rejectNewMA=true cesAccepted=false updateEOA=false newEOA=0 cesRevoked=false
+msg::checkMsg147 false
+SSM::cycle
+
+# 4) receive Msg18
+msg::setMsg18 nid_em=4321
+input 40 200
+checkOutput tripTrain=false rejectNewMA=false cesAccepted=false updateEOA=false newEOA=0 cesRevoked=false
+msg::checkMsg147
+SSM::cycle
+
+# 5) nop
+msg::setMsgNone
+input 50 250
+checkOutput tripTrain=false rejectNewMA=false cesAccepted=false updateEOA=false newEOA=0 cesRevoked=false
+msg::checkMsg147
+SSM::cycle
+
+# 6) receive Msg16
+msg::setMsg16 nid_em=5432
+input 60 300
+checkOutput tripTrain=true rejectNewMA=true cesAccepted=false updateEOA=false newEOA=0 cesRevoked=false
+msg::checkMsg147 true 50 5432 2
+SSM::cycle
+
+# 7) receive Msg18 with wrong ID
+msg::setMsg18 nid_em=4321
+input 70 350
+checkOutput tripTrain=true rejectNewMA=true cesAccepted=false updateEOA=false newEOA=0 cesRevoked=false
+msg::checkMsg147
+SSM::cycle
+
+# 8) nop
+msg::setMsgNone
+input 80 400
+checkOutput tripTrain=true rejectNewMA=true cesAccepted=false updateEOA=false newEOA=0 cesRevoked=false
+msg::checkMsg147
+SSM::cycle
+
+# 9) receive Msg18
+msg::setMsg18 nid_em=5432
+input 90 450
+checkOutput tripTrain=false rejectNewMA=false cesAccepted=false updateEOA=false newEOA=0 cesRevoked=false
+msg::checkMsg147
+SSM::cycle
+
+# 10) nop
+msg::setMsgNone
+input 100 500
+checkOutput tripTrain=false rejectNewMA=false cesAccepted=false updateEOA=false newEOA=0 cesRevoked=false
+msg::checkMsg147
+SSM::cycle
