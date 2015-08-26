@@ -49,6 +49,9 @@
     <availablePage>
       <emfPageIdentifier href="openETCS_EVC.notation#_fPrcYEcnEeW3GN1GLXFTrQ"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_gGfEMEvrEeW5INCKn-fcDw"/>
+    </availablePage>
   </pageList>
   <sashModel xmi:id="_rJvpUx5kEeWg95oxeH6B_w" currentSelection="_rJvpVB5kEeWg95oxeH6B_w">
     <windows xmi:id="_rJvpVR5kEeWg95oxeH6B_w">
