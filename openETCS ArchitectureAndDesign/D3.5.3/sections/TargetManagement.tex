@@ -7,34 +7,35 @@
 \toprule
 Component name			& TargetManagement \\
 \midrule
-Link to SCADE model		& {\footnotesize \url{???}} \\
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/SpeedSupervison/TargetManagement}} \\
 \midrule
-SCADE designer			& Christian Stahl, TWT \\
+SCADE designer			&  Benjamin Beichler, University of Rostock\newline
+Thorsten Schulz, University of Rostock \\
 \midrule
-Description				&This operator calculates/updates the list of targets to be supervised by the block ``Train Supervision''. Taking the current movement authority, the most restrictive speed profile and the current maximum safe front end position as an input, the operator outputs a single End of Authority target, a list of all MRSP-Targets and a list of all LoA-Targets.
+Description				& This operator calculates/updates the list of targets to be supervised by SDM. Taking the current movement authority, the most restrictive speed profile and the current maximum safe front end position as an input, the operator outputs a list of MRSP-Targets and a Limit-of-Authority-Target (LoA) or, if an End of Authority is known, the End-of-Authority-Target (EoA) and the Supervised Location (SvL). Since LoA and SvL are mutually exclusive but both result in a trip-target, they use the same flow.
 
-\subparagraph*{Derivation of Targets from Movement Authority Sections}
-The sections of the \emph{Movement Authority} could cause two types of targets:
+\subparagraph*{Derivation of Targets from Movement Authority}
+The \emph{Movement Authority} creates three types of targets:
 \begin{description}
-\item[End Of Authority(EoA)] only one could exist and this is only in the \emph{end section} of the \emph{MA}
-\item[Limit of Authority (LoA)] is possibly in every section of the \emph{MA} except the end section
+\item[Limit of Authority (LoA)] if the End of Authority is not yet known to the RBC and is accompanied by a speed limit for the given location.
+\item[End Of Authority (EoA)] requires the train to stop and creates a Service Brake Target
+\item[Supervised Location (SvL)] is derived from the EoA but results in an emergency brake target and on passing in a trip. The SvL may be offset from the EoA to the Overlap (OL) or the Dangerpoint (DP).
 \end{description}
-In every cycle in which the MA is updated, the operator iterates through the entire MA and puts all speed limitations by \emph{LoA}s into a list of targets. The end section is used to derived the \emph{EoA} target. All LoA targets are sorted by location.
 
 \subparagraph*{Derivation of Targets from MRSP}
 According to \cite[Chapt.~3.13.8.2]{subset-026}, every speed decrease of the MRSP is used to derive a target. Therefore in every cycle in which the MRSP is updated, the operator iterates through the entire MRSP searching for all MRSP targets. For this purpose, every element of the MRSP is compared with its successor.
 
 \subparagraph*{Update of Targets}
-In every cycle the operator monitors whether all targets are already passed. To this end, it iterates over the list of targets comparing the current max safe front end position with the target position. \\
+In every cycle the operator monitors whether all targets are already passed. To this end, it iterates over the list of targets comparing the current front end position with the target's location. \\
 \midrule
 Input documents	& 
 Subset-026, Chapter 3.13.8.2: Determination of the supervised targets \\
 \midrule
 Safety integrity level		& 4 \\
 \midrule
-Time constraints		& [If applicable description of time constraints, otherwise n/a] \\
+Time constraints		& n/a \\
 \midrule
-API requirements 		& [If applicable description of API requirements, otherwise n/a] \\
+API requirements 		& n/a \\
 \bottomrule
 \end{longtable}
 

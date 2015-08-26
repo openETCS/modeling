@@ -1,0 +1,163 @@
+%set the master document for easy compilation
+%!TEX root = ../D3_5_3.tex
+
+\section{trainData}
+
+\subsection{Component Requirements}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Component name			& trainData \\
+\midrule
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/blob/master/model/Scade/System/ObuFunctions/manageData/trainData/trainData.etp}} \\
+\midrule
+SCADE designer			& Bernd Hekele (DB) \\
+\midrule
+Description				& Implementation of the train data with the corresponding interfaces to track, driver and RBC.\newline
+Data first is received from the train (TIU).
+Second step: train data is sent to the driver (DMI).
+The part relevant for driver interface is confirmed by the driver and sent back to the evc.
+Data received via this interface is merged with the data received via TIU.\newline
+Message Flow:\newline
+Message 129 (Validated Train Data) \newline
+Message 8 (Acknowledment of Train Data) is processed as apart of the validation procedure with the RBC.\newline
+Message 146 (Acknolwedement)\newline
+Messages from RBC: \newline
+Message 8 (Acknowledment) is processed as apart of the validation procedure with the RBC. \\
+\midrule
+Input documents	& 
+Subset-026, Chapter 3.18.3\\
+\midrule
+Safety integrity level		& 4 \\
+\midrule
+Time constraints		& n/a
+\\
+\midrule
+API requirements 		& Train Data needs systemtime for stamping messages, access to input from the track messages and access to the output of RBC messages\\
+\bottomrule
+\end{longtable}
+
+
+\subsection{Interface}
+
+An overview of the interface of component trainData is shown in Figure~\ref{f:traindata_interface}. The inputs and outputs are described in detail in Section~\ref{s:traindata_inputs} respectively \ref{s:traindata_outputs}. Sub components are described in Section~\ref{s:traindata_subcomponents}.
+
+\begin{figure}
+\center
+\missingfigure{[Put SysML diagram of component here]}
+\caption{Manage\_Track\_Data component SysML diagram}\label{f:traindata_interface}
+\end{figure}
+
+
+\subsubsection{Inputs}\label{s:traindata_inputs}
+
+\paragraph{reset}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& reset \\
+\midrule
+Description				& triggers the reset of the train data and the train data status data\\
+\midrule
+Source					& persistant data status management\\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& 
+\begin{description}
+\item[true] ???
+\item[false] ???
+\end{description}
+\todo[inline]{To be completed}\\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{trainDatafromTIU}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& trainDatafromTIU \\
+\midrule
+Description				& train data received via TIU. Change of data is indicated with the valid flag. This data is expected to be received in the first place. In the current implementation it is not supported to change data after a mission has been started.\\
+\midrule
+Source					& Train Interface Unit (TIU) \\ 
+\midrule
+Type					& TIU\_Types\_Pkg::trainData\_T \\
+\midrule
+Valid range of values	& Input with valid information is indicated with the valid flag. \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary]
+\todo[inline]{To be completed} \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range]
+\todo[inline]{To be completed} \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \todo[inline]{To be completed}\\
+\bottomrule
+\end{longtable}
+
+
+\subsubsection{Outputs}\label{s:traindata_outputs}
+
+\paragraph{[Output 1 name]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& [Name of the output] \\
+\midrule
+Description				& [Brief description of the output] \\
+\midrule
+Destination				& [Name of the destination component(s)] \\ 
+\midrule
+Type					& [Type of the output] \\
+\midrule
+Valid range of values	& [Complete list of valid values] \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{[Output 2 name]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& [Name of the output] \\
+\midrule
+Description				& [Brief description of the output] \\
+\midrule
+Destination				& [Name of the destination component(s)] \\ 
+\midrule
+Type					& [Type of the output] \\
+\midrule
+Valid range of values	& [Complete list of valid values] \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+\bottomrule
+\end{longtable}
+
+
+\subsection{Sub Components}\label{s:manage_track_data_subcomponents}
+
+\subsubsection{Calculate\_Train\_Position}
+\input{sections/Calculate_Train_Position_V2.tex}
+
+\subsubsection{Provide\_Position\_Report}
+\input{sections/ProvidePositionReport.tex}
+
+
