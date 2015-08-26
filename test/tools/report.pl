@@ -1,4 +1,8 @@
 # Provides functions for generating HTML reports
+#-----------------------------------------------------------------------------
+# History:
+# - 25.08.15, J. Kastner: initial version
+#-----------------------------------------------------------------------------
 use strict;
 use warnings FATAL => 'all';
 

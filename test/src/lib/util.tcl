@@ -10,6 +10,10 @@ namespace eval ::util {
     puts "> $msg"
   }
 
+  proc error {msg} {
+    ::error $msg
+  }
+
   # Assigns values to a SCADE input (structure) using path as prefix.
   #
   # Example:
@@ -45,6 +49,11 @@ namespace eval ::util {
       set t [split $arg =]
       SSM::check "$path[lindex $t 0]" [lindex $t 1]
     }
+  }
+
+  # Tcl 8.4 polyfill for Tcl 8.5 command lrepeat
+  proc lrepeat {iter elem} {
+    split [string repeat $elem $iter] ""
   }
 }
 

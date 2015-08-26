@@ -2,7 +2,7 @@
 # for the internal test tools of openETCS/WP3.
 #-----------------------------------------------------------------------------
 # History:
-# - 22.08.15, J. Kastner: inital version
+# - 22.08.15, J. Kastner: initial version
 use strict;
 use warnings;
 
