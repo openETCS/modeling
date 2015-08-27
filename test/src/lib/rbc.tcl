@@ -7,10 +7,6 @@ source "[file dirname [info script]]/util.tcl"
 
 namespace eval ::rbc {
   ################################# CONSTANTS #################################
-  #variable DIM_MaxRMessages 30
-  #variable DIM_N_ITER 32
-  #variable DIM_MaxElementsPacket015 [expr ($DIM_N_ITER+1) * 3 + 4 + 1]
-  #variable DIM_MaxElementsPacket021 $DIM_MaxElementsPacket015
 
 
   ############################### INTERNAL VARS ###############################
@@ -20,6 +16,13 @@ namespace eval ::rbc {
   variable trackMsg "$rbc/outRadioTrackTrainMessage"
   variable sessionMgt "$rbc/outSessionManagement"
 
+  ################################# SIMULATION #################################
+  
+  proc executeSimulationStep {t_train {n_steps 1}} {
+	SSM::cycle
+	expr {$t_train + 0.2*$n_steps}
+  }
+  
 
   ################################## MESSAGES ##################################
   
@@ -31,18 +34,28 @@ namespace eval ::rbc {
     SSM::set $triggeredTrackMsg {((0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (((0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0), (0, Q_DIR_Reverse, false, 0, 0)), (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)))}
   }
   
+  # sets the visibility of the message on true
+  # - internal function
   proc prepareTrainMsg {} {
     variable trainMsg
     util::assign "$trainMsg." present=true
     util::assign "$trainMsg.header." present=true
   }
   
+  # sets the properties of the train message header
   proc setTrainMsgHeader {args} {
     variable trainMsg
     rbc::prepareTrainMsg
     eval util::assign "$trainMsg.header." $args  
   }
   
+  # sets the properties of the triggered track message header
+  proc setTriggeredTrackMsgHeader {args} {
+    variable triggeredTrackMsg
+    eval util::assign "$triggeredTrackMsg.Header." $args  
+  }
+  
+  # checks the properties of the track message header
   proc checkTrackMsgHeader {args} {
     variable trackMsg
     eval util::check "$trackMsg.Header." $args  
@@ -50,6 +63,7 @@ namespace eval ::rbc {
 
   ################################## PACKETS ##################################
   
+  # sets the properties of the train message packet 0
   proc setTrainMsgPacket0 {args} {
     variable trainMsg
 	util::assign "$trainMsg.packets.p0." valid=true
@@ -58,11 +72,13 @@ namespace eval ::rbc {
 
   ################################## SESSION ##################################
   
+  # checks the properties of the train data
   proc checkTrainData {args} {
     variable sessionMgt
     eval util::check "$sessionMgt.m_TrainData." $args  
   }
   
+  # checks the properties of the position data
   proc checkPositionData {args} {
     variable sessionMgt
     eval util::check "$sessionMgt.m_PosData." $args  

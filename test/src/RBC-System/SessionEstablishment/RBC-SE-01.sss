@@ -15,20 +15,21 @@
 source ../../lib/rbc.tcl
 source ../../lib/util.tcl
 
-# variables
+# ------------------------ variables -----------------------------
+# t_train will increase automatically by using following syntax for run simulation steps:
+# - set t_train [rbc::executeSimulationStep $t_train] --> means 1 step
+# - set t_train [rbc::executeSimulationStep $t_train 5] --> means 5 steps
 set t_train 0.2
 
 # (01) -----------------------------------------------------------
 # Initialization
 rbc::resetMessages
 # cycle
-#rbc::executeSimulationStep $t_train
-puts $t_train
-SSM::cycle
+set t_train [rbc::executeSimulationStep $t_train]
 
 # (02) -----------------------------------------------------------
 # Send Train Message 155 (OBU to RBC)
-rbc::setTrainMsgHeader nid_message=155 t_train=0.4 nid_engine=50001
+rbc::setTrainMsgHeader nid_message=155 t_train=$t_train nid_engine=50001
 # Check Output Message 32 (RBC to OBU)
 rbc::checkTrackMsgHeader nid_message=32 t_train=20 m_ack=0 nid_lrbg=16777215
 # version 15 or 16?
@@ -37,65 +38,72 @@ rbc::checkTrackMsgHeader nid_message=32 t_train=20 m_ack=0 nid_lrbg=16777215
 rbc::checkTrainData nid_engine=50001
 rbc::checkPositionData nid_lrbg=16777215
 # cycle
-SSM::cycle
+set t_train [rbc::executeSimulationStep $t_train]
 
 # (03) -----------------------------------------------------------
 # empty cycle
 rbc::resetMessages
-SSM::cycle
+set t_train [rbc::executeSimulationStep $t_train]
 
 # (04) -----------------------------------------------------------
 # Send Train Message 159 (OBU to RBC)
-rbc::setTrainMsgHeader nid_message=159 t_train=0.8 nid_engine=50001
+rbc::setTrainMsgHeader nid_message=159 t_train=$t_train nid_engine=50001
 # Check Session Management
 rbc::checkTrainData nid_engine=50001
 rbc::checkPositionData nid_lrbg=16777215
 # cycle
-SSM::cycle
+set t_train [rbc::executeSimulationStep $t_train]
 
 # (05) -----------------------------------------------------------
 # empty cycle
 rbc::resetMessages
-SSM::cycle
+set t_train [rbc::executeSimulationStep $t_train]
 
 # (06) -----------------------------------------------------------
 # Send Train Message 129 including (empty) Packet 0 (OBU to RBC)
-rbc::setTrainMsgHeader nid_message=129 t_train=1.2 nid_engine=50001
+rbc::setTrainMsgHeader nid_message=129 t_train=$t_train nid_engine=50001
 rbc::setTrainMsgPacket0 NID_PACKET=0 L_PACKET=8190
 # Check Track Message 8 (RBC to OBU)
-rbc::checkTrackMsgHeader nid_message=8 t_train=100 m_ack=1
+rbc::checkTrackMsgHeader nid_message=8 m_ack=1
 # Check Session Management
 rbc::checkTrainData nid_engine=50001
 # cycle
-SSM::cycle
+set t_train [rbc::executeSimulationStep $t_train]
 
 # (07) -----------------------------------------------------------
 # empty cycle
 rbc::resetMessages
-SSM::cycle
+set t_train [rbc::executeSimulationStep $t_train]
 
 # (08) -----------------------------------------------------------
+# Send Train Message 146 (OBU to RBC)
+rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=1.0
+# cycle
+set t_train [rbc::executeSimulationStep $t_train]
 
+# (09) -----------------------------------------------------------
+# Check Track Message 24 (RBC to OBU)
+rbc::checkTrackMsgHeader nid_message=24 m_ack=1
+set t_train [rbc::executeSimulationStep $t_train]
 
+# (10) -----------------------------------------------------------
+# empty cycle
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train]
 
+# (11) -----------------------------------------------------------
+# Send Train Message 146 (OBU to RBC)
+rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=1.6
+set t_train [rbc::executeSimulationStep $t_train]
 
-# SSM::cycle 2 ; #Zyklus 3
+# (12) -----------------------------------------------------------
+# empty cycle
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train]
 
-# ------------	Input Message 146 from OBU to RBC	------------
-
-# SSM::set $rbc/inRadioTrainTrackMsg.header.nid_message 146 ;                
-# SSM::set $rbc/inRadioTrainTrackMsg.header.t_train 7050
-# SSM::set $rbc/inRadioTrainTrackMsg.header.nid_engine 10580
-
-# ------------	Output Message 24 from RBC to OBU	------------
-# SSM::check $rbc/outRadioTrackTrainMessage.Header.nid_message 24
-# SSM::check $rbc/outRadioTrackTrainMessage.Header.t_train 20
-# SSM::check $rbc/outRadioTrackTrainMessage.Header.m_ack 1
-# SSM::check $rbc/outRadioTrackTrainMessage.Header.nid_lrbg 16777215 ; #Unknown
-
-# SSM::cycle ; #Zyklus 4
-
-# ------------	Input Message 146 from OBU to RBC	------------
-# SSM::set $rbc/inRadioTrainTrackMsg.header.nid_message 146
-# SSM::set $rbc/inRadioTrainTrackMsg.header.t_train 7050
-# SSM::set $rbc/inRadioTrainTrackMsg.header.nid_engine 10580
+# (13) -----------------------------------------------------------
+# Trigger Train Message 16 as a test of the established connection (OBU to RBC)
+rbc::setTriggeredTrackMsgHeader nid_message=16 m_ack=1 nid_em=123
+# check if triggered train message is computed and send out
+rbc::checkTrackMsgHeader nid_message=16 m_ack=1 nid_em=123
+set t_train [rbc::executeSimulationStep $t_train]
