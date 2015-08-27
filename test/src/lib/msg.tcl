@@ -1,15 +1,18 @@
-# Common utility procedures for handling radio messages
+# Common utility procedures for setting/checking of radio messages
 #
 # History:
 # - 24.08.15, J. Kastner: initial version
 # - 25.08.15, J. Kastner: add addPkt and addPkt21
+# - 26.08.15, J. Kastner: add addPkt15
 
 source "[file dirname [info script]]/util.tcl"
 
 namespace eval ::msg {
   ################################# CONSTANTS #################################
+  variable DIM_MaxRMessages 30
   variable DIM_N_ITER 32
-  variable DIM_MaxElementsPacket021 [expr ($DIM_N_ITER+1) * 3 + 4 + 1]
+  variable DIM_MaxElementsPacket015 [expr ($DIM_N_ITER+1) * 3 + 4 + 1]
+  variable DIM_MaxElementsPacket021 $DIM_MaxElementsPacket015
 
 
   ############################### INTERNAL VARS ###############################
@@ -43,6 +46,7 @@ namespace eval ::msg {
     variable in
     SSM::set "$in.source" msrc_undefined
     SSM::set "$in.valid" false
+    resetPkts
   }
 
 
@@ -60,6 +64,7 @@ namespace eval ::msg {
       set k [lindex $t 0]
       switch $k {
         q_dir   { set v [qdirEnum [lindex $t 1]] }
+        q_scale { set v [qscaleEnum [lindex $t 1]] }
         default { set v [lindex $t 1] }
       }
       SSM::set "$in.Radio_Common_Header.$k" $v
@@ -122,12 +127,72 @@ namespace eval ::msg {
     set nextPktStart $addr
   }
 
+  proc resetPkts {} {
+    variable in
+    variable DIM_MaxRMessages
+
+    for {set i 0} {$i < $DIM_MaxRMessages} {incr i} {
+      msg::setPacketHeader "$in.packets.PacketHeaders\[$i\]"
+    }
+  }
+
+  proc addPkt15 {args} {
+    variable DIM_MaxElementsPacket015
+    # list with all packet15 data elements
+    set elems [util::lrepeat $DIM_MaxElementsPacket015 0]
+    # the first six elements are: nid_packet, q_dir, l_packet, q_scale, v_loa, t_loa
+    lset elems 0 15
+    foreach arg $args {
+      set t [split $arg =]
+      set k [lindex $t 0]
+      set v [lindex $t 1] 
+      switch -glob $k {
+        q_dir                 { lset elems 1 $v }
+        q_scale               { lset elems 3 $v }
+        v_loa                 { lset elems 4 $v }
+        t_loa                 { lset elems 5 $v }
+        l_endsection          { lset elems 6 $v }
+        q_sectiontimer        { lset elems 7 $v }
+        t_sectiontimer        { lset elems 8 $v }
+        d_sectiontimerstoploc { lset elems 9 $v }
+        q_endtimer            { lset elems 10 $v }
+        t_endtimer            { lset elems 11 $v }
+        d_endtimerstartloc    { lset elems 12 $v }
+        q_dangerpoint         { lset elems 13 $v }
+        d_dp                  { lset elems 14 $v }
+        v_releasedp           { lset elems 15 $v }
+        q_overlap             { lset elems 16 $v }
+        d_startol             { lset elems 17 $v }
+        t_ol                  { lset elems 18 $v }
+        d_ol                  { lset elems 19 $v }
+        v_releaseol           { lset elems 20 $v }
+        n_iter                { lset elems 21 $v }
+        section* { 
+          set sectionId [string range $k 7 8]
+          set sectionData [split $v ,]
+          set i [expr 22 + ($sectionId - 1)*4]
+          lset elems $i [lindex $sectionData 0]
+          incr i
+          lset elems $i [lindex $sectionData 1]
+          incr i
+          lset elems $i [lindex $sectionData 2]
+          incr i
+          lset elems $i [lindex $sectionData 2]
+        }
+        default { util::error "variable '[lindex $t 0]' not supported by Packet15" }
+      }
+    }
+
+    util::log "Packet15: $elems"
+    eval addPkt 15 $elems
+  }
+ 
 
   proc addPkt21 {args} {
     variable DIM_MaxElementsPacket021
     # list with all packet21 data elements
     set elems [util::lrepeat $DIM_MaxElementsPacket021 0]
-    # the first five elements are: nid_packet, q_dir, ???, q_scale, n_iter
+    # the first five elements are: nid_packet, q_dir, l_packet, q_scale, n_iter
     lset elems 0 21
     foreach arg $args {
       set t [split $arg =]
@@ -151,11 +216,11 @@ namespace eval ::msg {
       }
     }
 
-    util::log $elems
+    util::log "Packet21: $elems"
     eval addPkt 21 $elems
   }
     
- 
+
   proc setPacketHeader {target {valid false} {nid_packet 0} {startAddress 0} {endAddress 0}} {
     SSM::set "$target.valid" $valid
     SSM::set "$target.nid_packet" [calcPacketId $nid_packet]
@@ -167,6 +232,7 @@ namespace eval ::msg {
     expr $nid_packet*1000000 + $q_dir*100000 + $m_version*1000 + $id
   }
 
+  # Translates a Q_DIR value (0-2) to the corresponding enum label
   proc qdirEnum {q_dir} {
     switch $q_dir {
       0 {return Q_DIR_Reverse}
@@ -175,5 +241,14 @@ namespace eval ::msg {
       default {util::error "Invalid value for q_dir: $q_dir"}
     }
   }      
+
+  # Translates a Q_SCALE value (0-2) to the corresponding enum label
+  proc qscaleEnum {q_scale} {
+    switch $q_scale {
+      0 {return Q_SCALE_10_cm_scale} 
+      1 {return Q_SCALE_1_m_scale}
+      2 {return Q_SCALE_10_m_scale}
+    }
+  }
 }
 
