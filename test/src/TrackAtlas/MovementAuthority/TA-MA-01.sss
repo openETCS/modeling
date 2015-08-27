@@ -1,0 +1,27 @@
+# @Title: Basic MA data extraction from Packet15
+# @Project: $MROOT/ObuFunctions/TrackAtlas/TrackAtlas.etp
+# @Node: TA_MA::Build_MA
+# @Config: Simulation
+
+# History:
+# - 26.08.15, J. Kastner: initial version
+source ma.tcl
+
+set eut "TA_MA::Build_MA"
+msg::input "$eut/MessageIn"
+
+# @1 NOP
+# @in no message; no NV
+# @out new_MA=false
+msg::setMsgNone
+checkMA false
+SSM::cycle
+
+# @2 Receive a simple MA without sections
+# @in Msg3 + Pkt15 (v_loa=11, t_loa=42); no NV
+# @out MA(v_loa=55, t_loa=42000)
+msg::setMsg3 q_dir=$Q_DIR_Reverse 
+msg::addPkt15 q_dir=$Q_DIR_Nominal q_scale=$Q_SCALE_1m v_loa=11 t_loa=42
+checkMA true valid=true v_loa=55 t_loa=42000
+SSM::cycle
+
