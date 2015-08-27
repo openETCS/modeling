@@ -1,0 +1,59 @@
+# @Title: Unconditional Emergency Stop (Msg16)
+# @Project: $MROOT/RBC-System/RBC-System.etp
+# @Node: RBC_Internal_Test_Pkg__RBC_Wrapper
+# @Config: Simulation
+
+# Author: Alexander Pinnau
+# Created: 26.08.2015
+# Last changed: 27.08.2015
+# Test description:
+# - trigger an unconditional emergency stop (message 16)
+# - check if RBC computes the message
+# - sending an acknowledgement of unconditional emergency stop (message 147) --> with the proper nid_em
+# - check if a second message 16 could be sent
+
+# imports
+source ../../lib/rbc.tcl
+source ../../lib/util.tcl
+
+# ------------------------ variables -----------------------------
+# t_train will increase automatically by using following syntax for run simulation steps:
+# - set t_train [rbc::executeSimulationStep $t_train] --> means 1 step
+# - set t_train [rbc::executeSimulationStep $t_train 5] --> means 5 steps
+set t_train 0.2
+
+# (01) -----------------------------------------------------------
+# Establishment of radio connection (RBC <-> OBU)
+set t_train [rbc::establishRadioSession $t_train]
+
+# (02) -----------------------------------------------------------
+# Trigger Train Message 16 (Trigger -> RBC)
+rbc::setTriggeredTrackMsgHeader nid_message=16 m_ack=1 nid_em=123
+# check if triggered train message is computed and send out (RBC -> OBU)
+rbc::checkTrackMsgHeader nid_message=16 m_ack=1 nid_em=123
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (03) -----------------------------------------------------------
+# empty cycle
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (04) -----------------------------------------------------------
+# Send Train Message 147 and empty packet 0 (OBU to RBC)
+rbc::setTrainMsgHeader nid_message=147 t_train=$t_train nid_engine=50001 xNID_EM=123\
+                       xQ_EMERGENCYSTOP=Q_EMERGENCYSTOP_Unconditional_Emergency_Stop_accepted
+rbc::setTrainMsgPacket0 NID_PACKET=0
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (05) -----------------------------------------------------------
+# empty cycle
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (06) -----------------------------------------------------------
+# Trigger a second train message 16 (Trigger -> RBC)
+rbc::setTriggeredTrackMsgHeader nid_message=16 m_ack=1 nid_em=123
+# check if second triggered train message is computed and send out (RBC -> OBU)
+# if this is true the acknowledgement of the first unconditional emergency stop was accepted by the RBC
+rbc::checkTrackMsgHeader nid_message=16 m_ack=1 nid_em=123
+set t_train [rbc::executeSimulationStep $t_train]

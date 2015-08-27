@@ -23,7 +23,6 @@ namespace eval ::rbc {
 	expr {$t_train + 0.2*$n_steps}
   }
   
-
   ################################## MESSAGES ##################################
   
   # clears the train message and the triggered track message
@@ -70,7 +69,7 @@ namespace eval ::rbc {
     eval util::assign "$trainMsg.packets.p0.packet0." $args  
   }
 
-  ################################## SESSION ##################################
+  ############################ SESSION MANAGEMENT #############################
   
   # checks the properties of the train data
   proc checkTrainData {args} {
@@ -82,6 +81,56 @@ namespace eval ::rbc {
   proc checkPositionData {args} {
     variable sessionMgt
     eval util::check "$sessionMgt.m_PosData." $args  
+  }
+  
+  ########################## SESSION ESTABLISHMENT ############################
+  
+  # establishes the radio connection (RBC <-> OBU)
+  proc establishRadioSession {t_train} {
+    # (01) Initialization cycle
+    rbc::resetMessages
+    set t_train [rbc::executeSimulationStep $t_train]
+
+    # (02) Send Train Message 155 (OBU to RBC)
+    rbc::setTrainMsgHeader nid_message=155 t_train=$t_train nid_engine=50001
+    set t_train [rbc::executeSimulationStep $t_train]
+
+    # (03) empty cycle
+    rbc::resetMessages
+    set t_train [rbc::executeSimulationStep $t_train]
+
+    # (04) Send Train Message 159 (OBU to RBC)
+    rbc::setTrainMsgHeader nid_message=159 t_train=$t_train nid_engine=50001
+    set t_train [rbc::executeSimulationStep $t_train]
+
+    # (05) empty cycle
+    rbc::resetMessages
+    set t_train [rbc::executeSimulationStep $t_train]
+
+    # (06) Send Train Message 129 including (empty) Packet 0 (OBU to RBC)
+    rbc::setTrainMsgHeader nid_message=129 t_train=$t_train nid_engine=50001
+    rbc::setTrainMsgPacket0 NID_PACKET=0 L_PACKET=8190
+    set t_train [rbc::executeSimulationStep $t_train]
+
+    # (07) empty cycle
+    rbc::resetMessages
+    set t_train [rbc::executeSimulationStep $t_train]
+
+    # (08) Send Train Message 146 (OBU to RBC)
+    rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=1.0
+    # cycle
+    set t_train [rbc::executeSimulationStep $t_train]
+
+    # (09) 2 empty cycles
+    rbc::resetMessages
+    set t_train [rbc::executeSimulationStep $t_train 2]
+
+    # (10) Send Train Message 146 (OBU to RBC)
+    rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=1.6
+    set t_train [rbc::executeSimulationStep $t_train 2]
+    
+	# return the actually train time
+	return $t_train
   }
 
   
