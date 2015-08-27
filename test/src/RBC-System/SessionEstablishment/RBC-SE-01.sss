@@ -1,0 +1,109 @@
+# @Title: RBC: Session Establishment
+# @Project: $MROOT/RBC-System/RBC-System.etp
+# @Node: RBC_Internal_Test_Pkg__RBC_Wrapper
+# @Config: Simulation
+
+# Author: Alexander Pinnau
+# Created: 26.08.2015
+# Last changed: 27.08.2015
+# Test description:
+# - establish the session between RBC and OBU
+# TODO:
+# [ ] which is the right m_version? see step 02
+
+# imports
+source ../../lib/rbc.tcl
+source ../../lib/util.tcl
+
+# ------------------------ variables -----------------------------
+# t_train will increase automatically by using following syntax for run simulation steps:
+# - set t_train [rbc::executeSimulationStep $t_train] --> means 1 step
+# - set t_train [rbc::executeSimulationStep $t_train 5] --> means 5 steps
+set t_train 0.2
+
+# (01) -----------------------------------------------------------
+# Initialization
+rbc::resetMessages
+# cycle
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (02) -----------------------------------------------------------
+# Send Train Message 155 (OBU to RBC)
+rbc::setTrainMsgHeader nid_message=155 t_train=$t_train nid_engine=50001
+# Check Output Message 32 (RBC to OBU)
+rbc::checkTrackMsgHeader nid_message=32 t_train=20 m_ack=0 nid_lrbg=16777215
+# version 15 or 16?
+#rbc::checkTrackMsgHeader m_version=15
+# Check Session Management
+rbc::checkTrainData nid_engine=50001
+rbc::checkPositionData nid_lrbg=16777215
+# cycle
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (03) -----------------------------------------------------------
+# empty cycle
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (04) -----------------------------------------------------------
+# Send Train Message 159 (OBU to RBC)
+rbc::setTrainMsgHeader nid_message=159 t_train=$t_train nid_engine=50001
+# Check Session Management
+rbc::checkTrainData nid_engine=50001
+rbc::checkPositionData nid_lrbg=16777215
+# cycle
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (05) -----------------------------------------------------------
+# empty cycle
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (06) -----------------------------------------------------------
+# Send Train Message 129 including (empty) Packet 0 (OBU to RBC)
+rbc::setTrainMsgHeader nid_message=129 t_train=$t_train nid_engine=50001
+rbc::setTrainMsgPacket0 NID_PACKET=0
+# Check Track Message 8 (RBC to OBU)
+rbc::checkTrackMsgHeader nid_message=8 m_ack=1
+# Check Session Management
+rbc::checkTrainData nid_engine=50001
+# cycle
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (07) -----------------------------------------------------------
+# empty cycle
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (08) -----------------------------------------------------------
+# Send Train Message 146 (OBU to RBC)
+rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=1.0
+# cycle
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (09) -----------------------------------------------------------
+# Check Track Message 24 (RBC to OBU)
+rbc::checkTrackMsgHeader nid_message=24 m_ack=1
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (10) -----------------------------------------------------------
+# empty cycle
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (11) -----------------------------------------------------------
+# Send Train Message 146 (OBU to RBC)
+rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=1.6
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (12) -----------------------------------------------------------
+# empty cycle
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (13) -----------------------------------------------------------
+# Trigger Train Message 16 as a test of the established connection (OBU to RBC)
+rbc::setTriggeredTrackMsgHeader nid_message=16 m_ack=1 nid_em=123
+# check if triggered train message is computed and send out
+rbc::checkTrackMsgHeader nid_message=16 m_ack=1 nid_em=123
+set t_train [rbc::executeSimulationStep $t_train]
