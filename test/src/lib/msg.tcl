@@ -4,6 +4,7 @@
 # - 24.08.15, J. Kastner: initial version
 # - 25.08.15, J. Kastner: add addPkt and addPkt21
 # - 26.08.15, J. Kastner: add addPkt15
+# - 27.08.15, J. Kastner: correct actual packet length in addPkt15, addPkt21
 
 source "[file dirname [info script]]/util.tcl"
 
@@ -11,8 +12,9 @@ namespace eval ::msg {
   ################################# CONSTANTS #################################
   variable DIM_MaxRMessages 30
   variable DIM_N_ITER 32
-  variable DIM_MaxElementsPacket015 [expr ($DIM_N_ITER+1) * 3 + 4 + 1]
-  variable DIM_MaxElementsPacket021 $DIM_MaxElementsPacket015
+  variable DIM_MaxElementsPacket003v1 231
+  variable DIM_MaxElementsPacket015 [expr $DIM_N_ITER * 4 + 15 + 1 + 6]
+  variable DIM_MaxElementsPacket021 [expr ($DIM_N_ITER+1) * 3 + 4 + 1]
 
 
   ############################### INTERNAL VARS ###############################
@@ -136,12 +138,63 @@ namespace eval ::msg {
     }
   }
 
+  proc addPkt3v1 {args} {
+    variable DIM_MaxElementsPacket003v1
+    # list with all packet15 data elements
+    set elems [util::lrepeat $DIM_MaxElementsPacket003v1 0]
+    lset elems 0 3
+    set lastSec 0
+    foreach arg $args {
+      set t [split $arg =]
+      set k [lindex $t 0]
+      set v [lindex $t 1] 
+      switch -glob $k {
+        q_dir            { lset elems 1 $v }
+        q_scale          { lset elems 3 $v }
+        d_validnv        { lset elems 4 $v }
+        n_iter           { lset elems 5 $v }
+        v_nvshunt        { lset elems 6 $v } 
+        v_nvstff         { lset elems 7 $v }
+        v_nvonsight      { lset elems 8 $v }
+        v_nvunfit        { lset elems 9 $v }
+        v_nvrel          { lset elems 10 $v }
+        v_nvroll         { lset elems 11 $v }
+        q_nvsrbktrg      { lset elems 12 $v }
+        q_nvemrrls       { lset elems 13 $v }
+        v_nvallowovtrp   { lset elems 14 $v }
+        v_nvsupovtrp     { lset elems 15 $v }
+        d_nvovtrp        { lset elems 16 $v }
+        t_nvovtrp        { lset elems 17 $v }
+        d_nvpotrp        { lset elems 18 $v }
+        m_nvcontact      { lset elems 19 $v }
+        t_nvcontact      { lset elems 20 $v }
+        m_nvderun        { lset elems 21 $v }
+        d_nvstff         { lset elems 22 $v }
+        q_nvdriver_adhes { lset elems 23 $v }
+        nid_c* { 
+          set sectionId [string range $k 5 6]
+          if [expr $sectionId > $lastSec] { set lastSec $sectionId }
+          set i [expr 23 + ($sectionId - 1)]
+          lset elems $i $v
+        }
+        default { util::error "variable '[lindex $t 0]' not supported by Packet003v1" }
+      }
+    }
+
+    set elems [lrange $elems 0 [expr 23 + $lastSec]]
+    util::log "Packet003v1: $elems"
+    eval addPkt 3 $elems
+  }
+
+
+ 
   proc addPkt15 {args} {
     variable DIM_MaxElementsPacket015
     # list with all packet15 data elements
     set elems [util::lrepeat $DIM_MaxElementsPacket015 0]
     # the first six elements are: nid_packet, q_dir, l_packet, q_scale, v_loa, t_loa
     lset elems 0 15
+    set lastSec 0
     foreach arg $args {
       set t [split $arg =]
       set k [lindex $t 0]
@@ -169,6 +222,7 @@ namespace eval ::msg {
         n_iter                { lset elems 21 $v }
         section* { 
           set sectionId [string range $k 7 8]
+          if [expr $sectionId > $lastSec] { set lastSec $sectionId }
           set sectionData [split $v ,]
           set i [expr 22 + ($sectionId - 1)*4]
           lset elems $i [lindex $sectionData 0]
@@ -183,6 +237,7 @@ namespace eval ::msg {
       }
     }
 
+    set elems [lrange $elems 0 [expr 21 + 4*$lastSec]]
     util::log "Packet15: $elems"
     eval addPkt 15 $elems
   }
@@ -194,6 +249,7 @@ namespace eval ::msg {
     set elems [util::lrepeat $DIM_MaxElementsPacket021 0]
     # the first five elements are: nid_packet, q_dir, l_packet, q_scale, n_iter
     lset elems 0 21
+    set lastSec 0
     foreach arg $args {
       set t [split $arg =]
       set k [lindex $t 0]
@@ -204,6 +260,7 @@ namespace eval ::msg {
         n_iter   { lset elems 4 $v }
         section* { 
           set sectionId [string range $k 7 8]
+          if [expr $sectionId > $lastSec] { set lastSec $sectionId }
           set sectionData [split $v ,]
           set i [expr 5 + $sectionId*3]
           lset elems $i [lindex $sectionData 0]
@@ -216,10 +273,15 @@ namespace eval ::msg {
       }
     }
 
+    set elems [lrange $elems 0 [expr 4 + 3*($lastSec+1)]]
     util::log "Packet21: $elems"
     eval addPkt 21 $elems
   }
     
+
+  proc addPkt27 {args} {
+  }
+
 
   proc setPacketHeader {target {valid false} {nid_packet 0} {startAddress 0} {endAddress 0}} {
     SSM::set "$target.valid" $valid
