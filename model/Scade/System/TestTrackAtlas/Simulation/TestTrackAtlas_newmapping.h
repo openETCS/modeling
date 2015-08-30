@@ -1,9 +1,10 @@
 /* TestTrackAtlas_newmapping.h */
 
-#include "TestDistanceConversionSSP.h"
+#include "TestGradientProfile.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern outC_TestDistanceConversionSSP outputs_ctx;
+extern inC_TestGradientProfile inputs_ctx;
+extern outC_TestGradientProfile outputs_ctx;
 
