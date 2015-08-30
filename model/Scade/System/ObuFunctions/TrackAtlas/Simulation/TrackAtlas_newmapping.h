@@ -1,10 +1,10 @@
 /* TrackAtlas_newmapping.h */
 
-#include "TrackAtlas_TrackAtlas.h"
+#include "FlipFlopSet_digital.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_TrackAtlas_TrackAtlas inputs_ctx;
-extern outC_TrackAtlas_TrackAtlas outputs_ctx;
+extern inC_FlipFlopSet_digital inputs_ctx;
+extern outC_FlipFlopSet_digital outputs_ctx;
 
