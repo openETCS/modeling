@@ -1,18 +1,18 @@
-#ifndef FLIPFLOPSET_DIGITAL_INTERFACE
-#define FLIPFLOPSET_DIGITAL_INTERFACE
+#ifndef CONVERT_P21_TO_DISTANCEPR_TA_GRADIENT_INTERFACE
+#define CONVERT_P21_TO_DISTANCEPR_TA_GRADIENT_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "FlipFlopSet_digital.h"
+#include "Convert_P21_to_DistancePr_TA_Gradient.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_FlipFlopSet_digital inputs_ctx;
-extern outC_FlipFlopSet_digital outputs_ctx;
+extern inC_Convert_P21_to_DistancePr_TA_Gradient inputs_ctx;
+extern outC_Convert_P21_to_DistancePr_TA_Gradient outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*FLIPFLOPSET_DIGITAL_INTERFACE */
+#endif /*CONVERT_P21_TO_DISTANCEPR_TA_GRADIENT_INTERFACE */

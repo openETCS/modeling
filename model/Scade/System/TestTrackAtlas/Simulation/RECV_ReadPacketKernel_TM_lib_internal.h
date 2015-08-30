@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-30T07:05:41
+** Generation date: 2015-08-30T07:55:34
 *************************************************************$ */
 #ifndef _RECV_ReadPacketKernel_TM_lib_internal_H_
 #define _RECV_ReadPacketKernel_TM_lib_internal_H_
@@ -47,6 +47,6 @@ extern void RECV_ReadPacketKernel_reset_TM_lib_internal(
 #endif /* _RECV_ReadPacketKernel_TM_lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** RECV_ReadPacketKernel_TM_lib_internal.h
-** Generation date: 2015-08-30T07:05:41
+** Generation date: 2015-08-30T07:55:34
 *************************************************************$ */
 
