@@ -1,17 +1,17 @@
-#ifndef TESTDISTANCECONVERSION_INTERFACE
-#define TESTDISTANCECONVERSION_INTERFACE
+#ifndef TESTDISTANCECONVERSIONSSP_INTERFACE
+#define TESTDISTANCECONVERSIONSSP_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "TestDistanceConversion.h"
+#include "TestDistanceConversionSSP.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern outC_TestDistanceConversion outputs_ctx;
+extern outC_TestDistanceConversionSSP outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -41,4 +41,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*TESTDISTANCECONVERSION_INTERFACE */
+#endif /*TESTDISTANCECONVERSIONSSP_INTERFACE */

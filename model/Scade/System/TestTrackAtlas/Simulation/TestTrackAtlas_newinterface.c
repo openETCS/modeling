@@ -1,7 +1,7 @@
 #include "TestTrackAtlas_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "8bf35c1a8065733880e634189990bc65";
+const char* _SCSIM_CheckSum = "f9d62b840a7223c2e4649157f09ec7f7";
 const char* _SCSIM_SmuTypesCheckSum = "f79c40cc4a28a84eb05b013596813063";
 
 /*******************************
@@ -17,8 +17,8 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-outC_TestDistanceConversion outputs_ctx;
-static outC_TestDistanceConversion outputs_ctx_restore;
+outC_TestDistanceConversionSSP outputs_ctx;
+static outC_TestDistanceConversionSSP outputs_ctx_restore;
 
 /* separate_io: inputs instanciation */
 
@@ -58,7 +58,7 @@ int SimReset(void) {
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
 #ifndef KCG_NO_EXTERN_CALL_TO_RESET
-	TestDistanceConversion_reset(&outputs_ctx);
+	TestDistanceConversionSSP_reset(&outputs_ctx);
 	nRet=1;
 #else /* KCG_NO_EXTERN_CALL_TO_RESET */
 	nRet=0;
@@ -81,7 +81,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	TestDistanceConversion( &outputs_ctx);
+	TestDistanceConversionSSP( &outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -101,7 +101,7 @@ int SsmGetDumpSize(void) {
 /* separate_io: add (not in ctx) inputs size */
 
 /* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_TestDistanceConversion);
+	nSize += sizeof(outC_TestDistanceConversionSSP);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -114,8 +114,8 @@ void SsmGatherDumpData(char * pData) {
 	/* separate_io: dump (not in ctx) inputs */
 
 	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_TestDistanceConversion));
-	pCurrent += sizeof(outC_TestDistanceConversion);
+	memcpy(pCurrent, &outputs_ctx, sizeof(outC_TestDistanceConversionSSP));
+	pCurrent += sizeof(outC_TestDistanceConversionSSP);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -127,8 +127,8 @@ void SsmRestoreDumpData(const char * pData) {
 	/* separate_io: restore (not in ctx) inputs */
 
 	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_TestDistanceConversion));
-	pCurrent += sizeof(outC_TestDistanceConversion);
+	memcpy(&outputs_ctx, pCurrent, sizeof(outC_TestDistanceConversionSSP));
+	pCurrent += sizeof(outC_TestDistanceConversionSSP);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */

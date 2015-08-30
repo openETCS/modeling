@@ -1,9 +1,9 @@
 /* TestTrackAtlas_newmapping.h */
 
-#include "TestDistanceConversion.h"
+#include "TestDistanceConversionSSP.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern outC_TestDistanceConversion outputs_ctx;
+extern outC_TestDistanceConversionSSP outputs_ctx;
 
