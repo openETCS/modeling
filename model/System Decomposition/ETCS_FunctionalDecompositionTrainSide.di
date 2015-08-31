@@ -64,6 +64,9 @@
     <availablePage>
       <emfPageIdentifier href="ETCS_FunctionalDecompositionTrainSide.notation#_zVXTELwQEeSUKZXYPvJd4g"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="ETCS_FunctionalDecompositionTrainSide.notation#_LcUIAFAZEeWpfZXdq4uWjw"/>
+    </availablePage>
   </pageList>
   <sashModel xmi:id="_SvwrcqJJEeSWfMnzaDjRTg" currentSelection="_Svwrc6JJEeSWfMnzaDjRTg">
     <windows xmi:id="_SvwrdKJJEeSWfMnzaDjRTg">
