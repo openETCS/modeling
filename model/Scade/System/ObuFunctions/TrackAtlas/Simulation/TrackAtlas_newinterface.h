@@ -1,18 +1,18 @@
-#ifndef TRACKATLAS_TRACKATLAS_INTERFACE
-#define TRACKATLAS_TRACKATLAS_INTERFACE
+#ifndef UPDATE_GP_PER_LRBG_TA_LIB_INTERNAL_INTERFACE
+#define UPDATE_GP_PER_LRBG_TA_LIB_INTERNAL_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "TrackAtlas_TrackAtlas.h"
+#include "Update_GP_per_LRBG_TA_Lib_internal.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_TrackAtlas_TrackAtlas inputs_ctx;
-extern outC_TrackAtlas_TrackAtlas outputs_ctx;
+extern inC_Update_GP_per_LRBG_TA_Lib_internal inputs_ctx;
+extern outC_Update_GP_per_LRBG_TA_Lib_internal outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*TRACKATLAS_TRACKATLAS_INTERFACE */
+#endif /*UPDATE_GP_PER_LRBG_TA_LIB_INTERNAL_INTERFACE */

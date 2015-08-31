@@ -1,60 +1,44 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-07T17:15:59
+** Generation date: 2015-08-30T07:18:56
 *************************************************************$ */
 #ifndef _Convert_P21_to_DistancePr_TA_Gradient_H_
 #define _Convert_P21_to_DistancePr_TA_Gradient_H_
 
 #include "kcg_types.h"
-#include "Normalize_Distance_d_inte_TA_Lib_internal.h"
-#include "EVAL_Q_GDIR_TA_Lib_internal.h"
+#include "_1_Convert_P21_to_DistancePr_TA_Gradient.h"
 
-/* =====================  no input structure  ====================== */
+/* ========================  input structure  ====================== */
+typedef struct {
+  P021_OBU_T_TM /* TA_Gradient::Convert_P21_to_DistanceProfile::Packet21_in */ Packet21_in;
+} inC_Convert_P21_to_DistancePr_TA_Gradient;
 
 /* ========================  context type  ========================= */
 typedef struct {
   /* ---------------------------  outputs  --------------------------- */
-  GradientProfile_t_TrackAtlasTypes /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::GradientProfile */ GradientProfile;
+  GradientProfile_t_TrackAtlasTypes /* TA_Gradient::Convert_P21_to_DistanceProfile::GradientProfile */ GradientProfile;
   /* -----------------------  no local probes  ----------------------- */
   /* -----------------  no initialization variables  ----------------- */
   /* -----------------------  no local memory  ----------------------- */
   /* ---------------------  sub nodes' contexts  --------------------- */
-  outC_Normalize_Distance_d_inte_TA_Lib_internal /* 4 */ Context_4;
-  outC_EVAL_Q_GDIR_TA_Lib_internal /* 2 */ Context_2;
-  outC_Normalize_Distance_d_inte_TA_Lib_internal /* 3 */ Context_3;
+  outC__1_Convert_P21_to_DistancePr_TA_Gradient /* 1 */ Context_1[33];
   /* ----------------- no clocks of observable data ------------------ */
   /* -------------------- (-debug) no assertions  -------------------- */
   /* ------------------- (-debug) local variables -------------------- */
-  kcg_int /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L141 */ _L141;
-  P021_section_enum_T_TM /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L140 */ _L140;
-  Q_SCALE /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L139 */ _L139;
-  D_GRADIENT /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L138 */ _L138;
-  D_GRADIENT /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L137 */ _L137;
-  Gradient_section_t_TrackAtlasTypes /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L136 */ _L136;
-  L_internal_Type_Obu_BasicTypes_Pkg /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L135 */ _L135;
-  kcg_int /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L134 */ _L134;
-  GradientProfile_t_TrackAtlasTypes /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L133 */ _L133;
-  kcg_int /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L132 */ _L132;
-  kcg_int /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L131 */ _L131;
-  kcg_bool /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L130 */ _L130;
-  Q_GDIR /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L129 */ _L129;
-  P021_OBU_sectionlist_enum_T_TM /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L128 */ _L128;
-  G_internal_Type_Obu_BasicTypes_Pkg /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L127 */ _L127;
-  kcg_int /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L126 */ _L126;
-  GradientProfile_t_TrackAtlasTypes /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L125 */ _L125;
-  G_A /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L124 */ _L124;
-  P021_section_enum_T_TM /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L123 */ _L123;
-  L_internal_Type_Obu_BasicTypes_Pkg /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L122 */ _L122;
-  P021_OBU_sectionlist_enum_T_TM /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::_L121 */ _L121;
+  P021_OBU_T_TM /* TA_Gradient::Convert_P21_to_DistanceProfile::_L73 */ _L73;
+  P021_OBU_sectionlist_enum_T_TM /* TA_Gradient::Convert_P21_to_DistanceProfile::_L71 */ _L71;
+  Q_SCALE /* TA_Gradient::Convert_P21_to_DistanceProfile::_L65 */ _L65;
+  P021_OBU_T_TM /* TA_Gradient::Convert_P21_to_DistanceProfile::_L63 */ _L63;
+  array__336 /* TA_Gradient::Convert_P21_to_DistanceProfile::_L74 */ _L74;
+  array__339 /* TA_Gradient::Convert_P21_to_DistanceProfile::_L76 */ _L76;
+  GradientProfile_t_TrackAtlasTypes /* TA_Gradient::Convert_P21_to_DistanceProfile::_L77 */ _L77;
+  GradientProfile_t_TrackAtlasTypes /* TA_Gradient::Convert_P21_to_DistanceProfile::_L83 */ _L83;
 } outC_Convert_P21_to_DistancePr_TA_Gradient;
 
 /* ===========  node initialization and cycle functions  =========== */
-/* TA_Gradient::Convert_P21_to_DistanceProfile_loop */
+/* TA_Gradient::Convert_P21_to_DistanceProfile */
 extern void Convert_P21_to_DistancePr_TA_Gradient(
-  /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::i */kcg_int i,
-  /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::acc */GradientProfile_t_TrackAtlasTypes *acc,
-  /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::SectionIn */P021_OBU_sectionlist_enum_T_TM *SectionIn,
-  /* TA_Gradient::Convert_P21_to_DistanceProfile_loop::q_scale */Q_SCALE q_scale,
+  inC_Convert_P21_to_DistancePr_TA_Gradient *inC,
   outC_Convert_P21_to_DistancePr_TA_Gradient *outC);
 
 extern void Convert_P21_to_DistancePr_reset_TA_Gradient(
@@ -63,6 +47,6 @@ extern void Convert_P21_to_DistancePr_reset_TA_Gradient(
 #endif /* _Convert_P21_to_DistancePr_TA_Gradient_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Convert_P21_to_DistancePr_TA_Gradient.h
-** Generation date: 2015-08-07T17:15:59
+** Generation date: 2015-08-30T07:18:56
 *************************************************************$ */
 

@@ -1,10 +1,10 @@
 /* TrackAtlas_newmapping.h */
 
-#include "TrackAtlas_TrackAtlas.h"
+#include "Update_GP_per_LRBG_TA_Lib_internal.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_TrackAtlas_TrackAtlas inputs_ctx;
-extern outC_TrackAtlas_TrackAtlas outputs_ctx;
+extern inC_Update_GP_per_LRBG_TA_Lib_internal inputs_ctx;
+extern outC_Update_GP_per_LRBG_TA_Lib_internal outputs_ctx;
 

@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-07T17:15:59
+** Generation date: 2015-08-30T11:09:09
 *************************************************************$ */
 #ifndef _Update_GP_per_LRBG_TA_Lib_internal_H_
 #define _Update_GP_per_LRBG_TA_Lib_internal_H_
@@ -9,7 +9,11 @@
 #include "FindStartOfNewGradientProfile_TA_Lib_internal.h"
 #include "Update_GP_per_LRBG_loop_TA_Lib_internal.h"
 
-/* =====================  no input structure  ====================== */
+/* ========================  input structure  ====================== */
+typedef struct {
+  GradientProfile_t_TrackAtlasTypes /* TA_Lib_internal::Update_GP_per_LRBG::new_GP */ new_GP;
+  GradientProfile_t_TrackAtlasTypes /* TA_Lib_internal::Update_GP_per_LRBG::Last_GradientProfile_in */ Last_GradientProfile_in;
+} inC_Update_GP_per_LRBG_TA_Lib_internal;
 
 /* ========================  context type  ========================= */
 typedef struct {
@@ -21,7 +25,8 @@ typedef struct {
   /* ---------------------  sub nodes' contexts  --------------------- */
   outC_Update_GP_per_LRBG_loop_TA_Lib_internal /* 1 */ _1_Context_1[33];
   outC_FindStartOfNewGradientProfile_TA_Lib_internal /* 1 */ Context_1;
-  /* ----------------- no clocks of observable data ------------------ */
+  /* ------------------ clocks of observable data -------------------- */
+  kcg_bool tmp;
   /* -------------------- (-debug) no assertions  -------------------- */
   /* ------------------- (-debug) local variables -------------------- */
   kcg_int /* TA_Lib_internal::Update_GP_per_LRBG::_L1 */ _L1;
@@ -29,14 +34,14 @@ typedef struct {
   array_int_33 /* TA_Lib_internal::Update_GP_per_LRBG::_L9 */ _L9;
   GradientProfile_t_TrackAtlasTypes /* TA_Lib_internal::Update_GP_per_LRBG::_L14 */ _L14;
   GradientProfile_t_TrackAtlasTypes /* TA_Lib_internal::Update_GP_per_LRBG::_L45 */ _L45;
-  array__10560 /* TA_Lib_internal::Update_GP_per_LRBG::_L47 */ _L47;
+  array__248 /* TA_Lib_internal::Update_GP_per_LRBG::_L47 */ _L47;
+  kcg_bool /* TA_Lib_internal::Update_GP_per_LRBG::_L148 */ _L148;
 } outC_Update_GP_per_LRBG_TA_Lib_internal;
 
 /* ===========  node initialization and cycle functions  =========== */
 /* TA_Lib_internal::Update_GP_per_LRBG */
 extern void Update_GP_per_LRBG_TA_Lib_internal(
-  /* TA_Lib_internal::Update_GP_per_LRBG::new_GP */GradientProfile_t_TrackAtlasTypes *new_GP,
-  /* TA_Lib_internal::Update_GP_per_LRBG::Last_GradientProfile_in */GradientProfile_t_TrackAtlasTypes *Last_GradientProfile_in,
+  inC_Update_GP_per_LRBG_TA_Lib_internal *inC,
   outC_Update_GP_per_LRBG_TA_Lib_internal *outC);
 
 extern void Update_GP_per_LRBG_reset_TA_Lib_internal(
@@ -45,6 +50,6 @@ extern void Update_GP_per_LRBG_reset_TA_Lib_internal(
 #endif /* _Update_GP_per_LRBG_TA_Lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Update_GP_per_LRBG_TA_Lib_internal.h
-** Generation date: 2015-08-07T17:15:59
+** Generation date: 2015-08-30T11:09:09
 *************************************************************$ */
 
