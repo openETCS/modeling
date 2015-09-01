@@ -1,10 +1,10 @@
-#ifndef DRIVEALLBALISESRASPBERRY_INTERNAL_TESTS_INTERFACE
-#define DRIVEALLBALISESRASPBERRY_INTERNAL_TESTS_INTERFACE
+#ifndef TESTP027V1_INTERNAL_TESTS_INTERFACE
+#define TESTP027V1_INTERNAL_TESTS_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "DriveAllBalisesRaspberry_Internal_Tests.h"
+#include "TestP027V1_Internal_Tests.h"
 
 extern SimSimulator * pSimulator;
 
@@ -36,4 +36,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*DRIVEALLBALISESRASPBERRY_INTERNAL_TESTS_INTERFACE */
+#endif /*TESTP027V1_INTERNAL_TESTS_INTERFACE */

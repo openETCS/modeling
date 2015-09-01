@@ -1,9 +1,8 @@
 /* UtrechtAmsterdam_oETCS_newmapping.h */
 
-#include "UAB_Amsterdam_Utrecht_Lijn1_balises.h"
+#include "UAB_TestP015_Internal_Tests.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern kcg_real _ctx_UAB_TrainPosSim_in_buffer;
 
