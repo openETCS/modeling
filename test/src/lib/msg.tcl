@@ -5,6 +5,7 @@
 # - 25.08.15, J. Kastner: add addPkt and addPkt21
 # - 26.08.15, J. Kastner: add addPkt15
 # - 27.08.15, J. Kastner: correct actual packet length in addPkt15, addPkt21
+# - 01.09.15, J. Kastner: add addPkt41
 
 source "[file dirname [info script]]/util.tcl"
 
@@ -15,6 +16,7 @@ namespace eval ::msg {
   variable DIM_MaxElementsPacket003v1 231
   variable DIM_MaxElementsPacket015 [expr $DIM_N_ITER * 4 + 15 + 1 + 6]
   variable DIM_MaxElementsPacket021 [expr ($DIM_N_ITER+1) * 3 + 4 + 1]
+  variable DIM_MaxElementsPacket041 [expr ($DIM_N_ITER+1) * 3 + 6]
 
 
   ############################### INTERNAL VARS ###############################
@@ -282,6 +284,41 @@ namespace eval ::msg {
   proc addPkt27 {args} {
   }
 
+  proc addPkt41 {args} {
+    variable DIM_MaxElementsPacket041
+    # list with all packet41 data elements
+    set elems [util::lrepeat $DIM_MaxElementsPacket041 0]
+    # the first six elements are: nid_packet, q_dir, l_packet, q_scale, v_loa, t_loa
+    lset elems 0 41
+    set lastSec 0
+    foreach arg $args {
+      set t [split $arg =]
+      set k [lindex $t 0]
+      set v [lindex $t 1] 
+      switch -glob $k {
+        q_dir                 { lset elems 1 $v }
+        q_scale               { lset elems 3 $v }
+        d_leveltr             { lset elems 4 $v }
+        n_iter                { lset elems 5 $v }
+        leveltr* { 
+          set sectionId [string range $k 7 8]
+          if [expr $sectionId > $lastSec] { set lastSec $sectionId }
+          set sectionData [split $v ,]
+          set i [expr 5 + $sectionId*3]
+          lset elems $i [lindex $sectionData 0]
+          incr i
+          lset elems $i [lindex $sectionData 1]
+          incr i
+          lset elems $i [lindex $sectionData 2]
+        }
+        default { util::error "variable '[lindex $t 0]' not supported by Packet41" }
+      }
+    }
+ 
+    set elems [lrange $elems 0 [expr 4 + 3*($lastSec+1)]]
+    util::log "Packet41: $elems"
+    eval addPkt 41 $elems
+  }
 
   proc setPacketHeader {target {valid false} {nid_packet 0} {startAddress 0} {endAddress 0}} {
     SSM::set "$target.valid" $valid
