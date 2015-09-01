@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-30T11:58:44
+** Generation date: 2015-09-02T01:48:41
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -14,11 +14,13 @@ void C_P027_flatten_sections_qdiff_reset_TM_lib_internal(
   
   for (i = 0; i < 32; i++) {
     /* 1 */
-    C_P027V1_fs_flatten_array_reset_TM_lib_internal(&outC->_1_Context_1[i]);
+    C_P027V1_fs_flatten_array_qdiff_reset_TM_lib_internal(
+      &outC->_1_Context_1[i]);
   }
   for (i = 0; i < 32; i++) {
     /* 1 */
-    C_P027V1_fs_struct_to_arr_reset_TM_lib_internal(&outC->Context_1[i]);
+    C_P027V1_fs_struct_to_array_qdiff_reset_TM_lib_internal(
+      &outC->Context_1[i]);
   }
 }
 
@@ -37,7 +39,7 @@ void C_P027_flatten_sections_qdiff_TM_lib_internal(
     MergedSections);
   for (i2 = 0; i2 < 32; i2++) {
     /* 1 */
-    C_P027V1_fs_struct_to_arr_TM_lib_internal(
+    C_P027V1_fs_struct_to_array_qdiff_TM_lib_internal(
       &outC->_L75[i2],
       &outC->Context_1[i2]);
     kcg_copy_P027V1_section_array_qdiff_T_TM_baseline2(
@@ -57,7 +59,7 @@ void C_P027_flatten_sections_qdiff_TM_lib_internal(
   for (i = 0; i < 32; i++) {
     kcg_copy_P027V1_sections_array_flat_qdiff_T_TM_baseline2(&tmp, &outC->_L83);
     /* 1 */
-    C_P027V1_fs_flatten_array_TM_lib_internal(
+    C_P027V1_fs_flatten_array_qdiff_TM_lib_internal(
       i,
       &tmp,
       &outC->_L84[i],
@@ -73,6 +75,6 @@ void C_P027_flatten_sections_qdiff_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P027_flatten_sections_qdiff_TM_lib_internal.c
-** Generation date: 2015-08-30T11:58:44
+** Generation date: 2015-09-02T01:48:41
 *************************************************************$ */
 

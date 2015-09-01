@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-30T11:58:44
+** Generation date: 2015-09-02T01:48:40
 *************************************************************$ */
 #ifndef _C_P027V1_tracksim_compr_body_TM_conversions_baseline2_H_
 #define _C_P027V1_tracksim_compr_body_TM_conversions_baseline2_H_
@@ -15,7 +15,7 @@ typedef struct {
   /* ---------------------------  outputs  --------------------------- */
   MetadataElement_T_Common_Types_Pkg /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::Header */ Header;
   CompressedPacketData_T_Common_Types_Pkg /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::P027V1_body_compressed */ P027V1_body_compressed;
-  _2_P027V1_OBU_sectionlist_int_T_TM_baseline2 /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::P027V1_sections */ P027V1_sections;
+  P027V1_OBU_sectionlist_int_T_TM_baseline2 /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::P027V1_sections */ P027V1_sections;
   kcg_int /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::n_iter_k_out */ n_iter_k_out;
   kcg_int /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::meta_first_section */ meta_first_section;
   /* -----------------------  no local probes  ----------------------- */
@@ -65,8 +65,8 @@ typedef struct {
   P027V1_trackside_sectionlist_T_TM_baseline2 /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::_L367 */ _L367;
   array_int_6 /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::_L373 */ _L373;
   array_int_500 /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::_L383 */ _L383;
-  array__10910 /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::_L386 */ _L386;
-  array__10561 /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::_L385 */ _L385;
+  array__11050 /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::_L386 */ _L386;
+  array__10692 /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::_L385 */ _L385;
   kcg_int /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::_L387 */ _L387;
   kcg_int /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::_L391 */ _L391;
   P027V1_section_int_T_TM_baseline2 /* TM_conversions_baseline2::C_P027V1_tracksim_compr_body::_L394 */ _L394;
@@ -89,6 +89,6 @@ extern void C_P027V1_tracksim_compr_body_reset_TM_conversions_baseline2(
 #endif /* _C_P027V1_tracksim_compr_body_TM_conversions_baseline2_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P027V1_tracksim_compr_body_TM_conversions_baseline2.h
-** Generation date: 2015-08-30T11:58:44
+** Generation date: 2015-09-02T01:48:40
 *************************************************************$ */
 
