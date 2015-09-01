@@ -1,7 +1,7 @@
 #include "UtrechtAmsterdam_oETCS_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "4f6b54c436970998672761ef57047747";
+const char* _SCSIM_CheckSum = "6d2634273a9f79767a12dd569172e730";
 const char* _SCSIM_SmuTypesCheckSum = "f79c40cc4a28a84eb05b013596813063";
 
 /*******************************
@@ -14,18 +14,14 @@ int notvalid(void * pHandle) {
 	return 0;
 }
 
-static kcg_real _ctx_UAB_TrainPosSim_in_restore;
-kcg_real _ctx_UAB_TrainPosSim_in_buffer;
-static UAB_CompressedBaliseMessage_TM _ctx_UAB_BaliseMessage_restore;
+static UAB_P015_OBU_T_TM _ctx_UAB_PacketOut_restore;
 
 static void _SCSIM_RestoreInterface(void) {
-	_ctx_UAB_TrainPosSim_in_buffer = _ctx_UAB_TrainPosSim_in_restore;
-	UAB_kcg_copy_struct__21276(&(UAB_BaliseMessage), &(_ctx_UAB_BaliseMessage_restore));
+	UAB_kcg_copy_struct__2695(&(UAB_PacketOut), &(_ctx_UAB_PacketOut_restore));
 }
 
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
-	UAB_TrainPosSim_in = _ctx_UAB_TrainPosSim_in_buffer;
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
@@ -52,7 +48,7 @@ int SimReset(void) {
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
 #ifndef KCG_NO_EXTERN_CALL_TO_RESET
-	UAB_Amsterdam_Utrecht_Lijn1_balises_reset();
+	UAB_TestP015_reset_Internal_Tests();
 	nRet=1;
 #else /* KCG_NO_EXTERN_CALL_TO_RESET */
 	nRet=0;
@@ -75,7 +71,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	UAB_Amsterdam_Utrecht_Lijn1_balises();
+	UAB_TestP015_Internal_Tests();
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -91,8 +87,7 @@ int SimStop(void) {
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(kcg_real);
-	nSize += sizeof(UAB_CompressedBaliseMessage_TM);
+	nSize += sizeof(UAB_P015_OBU_T_TM);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -101,10 +96,8 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &UAB_TrainPosSim_in, sizeof(kcg_real));
-	pCurrent += sizeof(kcg_real);
-	memcpy(pCurrent, &UAB_BaliseMessage, sizeof(UAB_CompressedBaliseMessage_TM));
-	pCurrent += sizeof(UAB_CompressedBaliseMessage_TM);
+	memcpy(pCurrent, &UAB_PacketOut, sizeof(UAB_P015_OBU_T_TM));
+	pCurrent += sizeof(UAB_P015_OBU_T_TM);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -112,10 +105,8 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&UAB_TrainPosSim_in, pCurrent, sizeof(kcg_real));
-	pCurrent += sizeof(kcg_real);
-	memcpy(&UAB_BaliseMessage, pCurrent, sizeof(UAB_CompressedBaliseMessage_TM));
-	pCurrent += sizeof(UAB_CompressedBaliseMessage_TM);
+	memcpy(&UAB_PacketOut, pCurrent, sizeof(UAB_P015_OBU_T_TM));
+	pCurrent += sizeof(UAB_P015_OBU_T_TM);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */

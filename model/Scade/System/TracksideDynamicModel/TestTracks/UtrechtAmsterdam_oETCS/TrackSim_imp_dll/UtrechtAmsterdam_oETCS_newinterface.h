@@ -1,14 +1,13 @@
-#ifndef UAB_AMSTERDAM_UTRECHT_LIJN1_BALISES_INTERFACE
-#define UAB_AMSTERDAM_UTRECHT_LIJN1_BALISES_INTERFACE
+#ifndef UAB_TESTP015_INTERNAL_TESTS_INTERFACE
+#define UAB_TESTP015_INTERNAL_TESTS_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "UAB_Amsterdam_Utrecht_Lijn1_balises.h"
+#include "UAB_TestP015_Internal_Tests.h"
 
 extern SimSimulator * pSimulator;
 
-extern kcg_real _ctx_UAB_TrainPosSim_in_buffer;
 /*******************************
  * Validity
  *******************************/
@@ -34,4 +33,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*UAB_AMSTERDAM_UTRECHT_LIJN1_BALISES_INTERFACE */
+#endif /*UAB_TESTP015_INTERNAL_TESTS_INTERFACE */

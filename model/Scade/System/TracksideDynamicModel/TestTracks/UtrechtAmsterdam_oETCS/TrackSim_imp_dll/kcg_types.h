@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/TrackSim_imp_dll\kcg_s2c_config.txt
-** Generation date: 2015-08-20T20:42:30
+** Generation date: 2015-08-27T15:14:25
 *************************************************************$ */
 #ifndef _UAB_KCG_TYPES_H_
 #define _UAB_KCG_TYPES_H_
@@ -49,10 +49,32 @@ typedef unsigned char kcg_char;
 #define kcg_assign_array kcg_assign
 #endif /* kcg_assign_array */
 
-/* TM::OrBG */
-typedef enum { UAB_Amsterdam_TM, UAB_Utrecht_TM } UAB_OrBG_TM;
-/* TM::OrLine */
-typedef enum { UAB_N_TM, UAB_Z_TM } UAB_OrLine_TM;
+/* Q_SECTIONTIMER */
+typedef enum {
+  UAB_Q_SECTIONTIMER_No_Section_Timer_information = 0,
+  UAB_Q_SECTIONTIMER_Section_Timer_information_to_follow = 1
+} UAB_Q_SECTIONTIMER;
+/* Q_OVERLAP */
+typedef enum {
+  UAB_Q_OVERLAP_No_overlap_information = 0,
+  UAB_Q_OVERLAP_Overlap_information_to_follow = 1
+} UAB_Q_OVERLAP;
+/* Q_DANGERPOINT */
+typedef enum {
+  UAB_Q_DANGERPOINT_No_danger_point_information = 0,
+  UAB_Q_DANGERPOINT_Danger_point_information_to_follow = 1
+} UAB_Q_DANGERPOINT;
+/* Q_ENDTIMER */
+typedef enum {
+  UAB_Q_ENDTIMER_No_End_section_timer_information = 0,
+  UAB_Q_ENDTIMER_End_section_timer_information_to_follow = 1
+} UAB_Q_ENDTIMER;
+/* Q_SCALE */
+typedef enum {
+  UAB_Q_SCALE_10_cm_scale = 0,
+  UAB_Q_SCALE_1_m_scale = 1,
+  UAB_Q_SCALE_10_m_scale = 2
+} UAB_Q_SCALE;
 /* Q_DIR */
 typedef enum {
   UAB_Q_DIR_Reverse = 0,
@@ -62,17 +84,101 @@ typedef enum {
 /* NID_PACKET */
 typedef kcg_int UAB_NID_PACKET;
 
+/* D_DP */
+typedef kcg_int UAB_D_DP;
+
+/* D_OL */
+typedef kcg_int UAB_D_OL;
+
+/* V_LOA */
+typedef kcg_int UAB_V_LOA;
+
+/* T_ENDTIMER */
+typedef kcg_int UAB_T_ENDTIMER;
+
+/* L_SECTION */
+typedef kcg_int UAB_L_SECTION;
+
+/* T_SECTIONTIMER */
+typedef kcg_int UAB_T_SECTIONTIMER;
+
+/* D_SECTIONTIMERSTOPLOC */
+typedef kcg_int UAB_D_SECTIONTIMERSTOPLOC;
+
+/* T_LOA */
+typedef kcg_int UAB_T_LOA;
+
+/* N_ITER */
+typedef kcg_int UAB_N_ITER;
+
+/* L_ENDSECTION */
+typedef kcg_int UAB_L_ENDSECTION;
+
+/* D_ENDTIMERSTARTLOC */
+typedef kcg_int UAB_D_ENDTIMERSTARTLOC;
+
+/* V_RELEASEDP */
+typedef kcg_int UAB_V_RELEASEDP;
+
+/* D_STARTOL */
+typedef kcg_int UAB_D_STARTOL;
+
+/* T_OL */
+typedef kcg_int UAB_T_OL;
+
+/* V_RELEASEOL */
+typedef kcg_int UAB_V_RELEASEOL;
+
 /* TM::nid_packet_meta */
 typedef kcg_int UAB_nid_packet_meta_TM;
 
 typedef struct {
-  kcg_real TrainPos_in;
-  kcg_int OffsetTotal;
-  kcg_real TrainPosCalibrated;
-} UAB_struct__21238;
+  kcg_int L_SECTION;
+  kcg_int Q_SECTIONTIMER;
+  kcg_int T_SECTIONTIMER;
+  kcg_int D_SECTIONTIMERSTOPLOC;
+} UAB_struct__2619;
 
-/* InfraLib::TrainPosRaw_T */
-typedef UAB_struct__21238 UAB_TrainPosRaw_T_InfraLib;
+/* TM::P015_section_int_T */
+typedef UAB_struct__2619 UAB_P015_section_int_T_TM;
+
+typedef UAB_P015_section_int_T_TM UAB_array__2626[32];
+
+/* TM::P015_trackide_sectionlist_T */
+typedef UAB_array__2626 UAB_P015_trackide_sectionlist_T_TM;
+
+/* TM::P015_OBU_sectionlist_int_T */
+typedef UAB_array__2626 UAB_P015_OBU_sectionlist_int_T_TM;
+
+typedef struct {
+  kcg_bool valid;
+  kcg_int NID_PACKET;
+  kcg_int Q_DIR;
+  kcg_int L_PACKET;
+  kcg_int Q_SCALE;
+  kcg_int V_LOA;
+  kcg_int T_LOA;
+  kcg_int N_ITER;
+  UAB_P015_trackide_sectionlist_T_TM SECTIONS;
+  kcg_int L_ENDSECTION;
+  kcg_int Q_SECTIONTIMER;
+  kcg_int T_SECTIONTIMER;
+  kcg_int D_SECTIONTIMERSTOPLOC;
+  kcg_int Q_ENDTIMER;
+  kcg_int T_ENDTIMER;
+  kcg_int D_ENDTIMERSTARTLOC;
+  kcg_int Q_DANGERPOINT;
+  kcg_int D_DP;
+  kcg_int V_RELEASEDP;
+  kcg_int Q_OVERLAP;
+  kcg_int D_STARTOL;
+  kcg_int T_OL;
+  kcg_int D_OL;
+  kcg_int V_RELEASEOL;
+} UAB_struct__2629;
+
+/* TM::P015_trackside_int_T */
+typedef UAB_struct__2629 UAB_P015_trackside_int_T_TM;
 
 typedef kcg_int UAB_array_int_500[500];
 
@@ -85,495 +191,200 @@ typedef struct {
   kcg_bool valid;
   kcg_int startAddress;
   kcg_int endAddress;
-} UAB_struct__21247;
+} UAB_struct__2659;
 
 /* Common_Types_Pkg::MetadataElement_T */
-typedef UAB_struct__21247 UAB_MetadataElement_T_Common_Types_Pkg;
+typedef UAB_struct__2659 UAB_MetadataElement_T_Common_Types_Pkg;
 
-typedef UAB_MetadataElement_T_Common_Types_Pkg UAB_array__21255[30];
+typedef kcg_int UAB_array_int_4[4];
+
+/* TM::P015_section_array_T */
+typedef UAB_array_int_4 UAB_P015_section_array_T_TM;
+
+typedef UAB_P015_section_array_T_TM UAB_array_int_4_32[32];
+
+/* TM::P015_OBU_sectionlist_array_T */
+typedef UAB_array_int_4_32 UAB_P015_OBU_sectionlist_array_T_TM;
+
+typedef kcg_int UAB_array_int_128[128];
+
+/* TM::P015_sections_array_flat_T */
+typedef UAB_array_int_128 UAB_P015_sections_array_flat_T_TM;
+
+typedef UAB_MetadataElement_T_Common_Types_Pkg UAB_array__2676[30];
 
 /* Common_Types_Pkg::Metadata_T */
-typedef UAB_array__21255 UAB_Metadata_T_Common_Types_Pkg;
+typedef UAB_array__2676 UAB_Metadata_T_Common_Types_Pkg;
 
 typedef struct {
   UAB_Metadata_T_Common_Types_Pkg PacketHeaders;
   UAB_CompressedPacketData_T_Common_Types_Pkg PacketData;
-} UAB_struct__21258;
+} UAB_struct__2679;
 
 /* Common_Types_Pkg::CompressedPackets_T */
-typedef UAB_struct__21258 UAB_CompressedPackets_T_Common_Types_Pkg;
-
-typedef struct {
-  kcg_int q_updown;
-  kcg_int m_version;
-  kcg_int q_media;
-  kcg_int n_pig;
-  kcg_int n_total;
-  kcg_int m_dup;
-  kcg_int m_mcount;
-  kcg_int nid_c;
-  kcg_int nid_bg;
-  kcg_int q_link;
-} UAB_struct__21263;
-
-/* TM::BaliseTelegramHeader_int_T */
-typedef UAB_struct__21263 UAB_BaliseTelegramHeader_int_T_TM;
-
-typedef struct {
-  UAB_BaliseTelegramHeader_int_T_TM Header;
-  UAB_CompressedPackets_T_Common_Types_Pkg Messages;
-} UAB_struct__21276;
-
-/* TM::CompressedBaliseMessage */
-typedef UAB_struct__21276 UAB_CompressedBaliseMessage_TM;
-
-typedef struct {
-  UAB_TrainPosRaw_T_InfraLib TrainPosRaw;
-  UAB_CompressedBaliseMessage_TM BG_Message;
-} UAB_struct__21281;
-
-/* InfraLib::TrackSectionData_T */
-typedef UAB_struct__21281 UAB_TrackSectionData_T_InfraLib;
-
-typedef struct {
-  kcg_int NID_C;
-  kcg_int NID_BG;
-  kcg_int Pos;
-  UAB_OrBG_TM Or_BG;
-  UAB_OrLine_TM Or_Line;
-} UAB_struct__21286;
-
-/* Basics::BaliseGroupData */
-typedef UAB_struct__21286 UAB_BaliseGroupData_Basics;
-
-/* TM::BaliseGroupData */
-typedef UAB_struct__21286 UAB_BaliseGroupData_TM;
-
-typedef struct {
-  UAB_BaliseTelegramHeader_int_T_TM header;
-  UAB_CompressedPackets_T_Common_Types_Pkg packets;
-  kcg_int engineering_BG_location;
-  kcg_real TrainPos;
-  kcg_int pig_nom_0;
-  kcg_bool balise_passed;
-} UAB_struct__21294;
-
-/* InfraLib::B_data_internal_T */
-typedef UAB_struct__21294 UAB_B_data_internal_T_InfraLib;
-
-typedef struct { kcg_bool valid; kcg_int NID_PACKET; } UAB_struct__21303;
-
-/* TM::P255_trackside_int_T */
-typedef UAB_struct__21303 UAB_P255_trackside_int_T_TM;
+typedef UAB_struct__2679 UAB_CompressedPackets_T_Common_Types_Pkg;
 
 typedef struct {
   kcg_bool valid;
-  kcg_int NID_PACKET;
-  kcg_int Q_DIR;
-  kcg_int L_PACKET;
-  kcg_int Q_SRSTOP;
-} UAB_struct__21308;
+  UAB_L_SECTION l_section;
+  UAB_Q_SECTIONTIMER q_sectiontimer;
+  UAB_T_SECTIONTIMER t_sectiontimer;
+  UAB_D_SECTIONTIMERSTOPLOC d_sectiontimerstoploc;
+} UAB_struct__2684;
 
-/* TM::P137_trackside_int_T */
-typedef UAB_struct__21308 UAB_P137_trackside_int_T_TM;
+/* TM::P015_section_enum_T */
+typedef UAB_struct__2684 UAB_P015_section_enum_T_TM;
 
-typedef kcg_int UAB_array_int_3[3];
+typedef UAB_P015_section_enum_T_TM UAB_array__2692[32];
 
-/* TM::P041_section_array_T */
-typedef UAB_array_int_3 UAB_P041_section_array_T_TM;
-
-typedef struct {
-  kcg_int M_LEVELTR;
-  kcg_int NID_NTC;
-  kcg_int L_ACKLEVELTR;
-} UAB_struct__21319;
-
-/* TM::P041_section_int_T */
-typedef UAB_struct__21319 UAB_P041_section_int_T_TM;
-
-typedef UAB_P041_section_array_T_TM UAB_array_int_3_33[33];
-
-/* TM::P041_OBU_sectionlist_array_T */
-typedef UAB_array_int_3_33 UAB_P041_OBU_sectionlist_array_T_TM;
-
-typedef kcg_int UAB_array_int_99[99];
-
-/* TM::P041_sections_array_flat_T */
-typedef UAB_array_int_99 UAB_P041_sections_array_flat_T_TM;
-
-typedef UAB_P041_section_int_T_TM UAB_array__21331[33];
-
-/* TM::P041_OBU_sectionlist_int_T */
-typedef UAB_array__21331 UAB_P041_OBU_sectionlist_int_T_TM;
-
-typedef UAB_P041_section_int_T_TM UAB_array__21334[32];
-
-/* TM::P041_trackide_sectionlist_T */
-typedef UAB_array__21334 UAB_P041_trackide_sectionlist_T_TM;
+/* TM::P015_OBU_sectionlist_enum_T */
+typedef UAB_array__2692 UAB_P015_OBU_sectionlist_enum_T_TM;
 
 typedef struct {
   kcg_bool valid;
-  kcg_int NID_PACKET;
-  kcg_int Q_DIR;
-  kcg_int L_PACKET;
-  kcg_int Q_SCALE;
-  kcg_int D_LEVELTR;
-  kcg_int M_LEVELTR;
-  kcg_int NID_NTC;
-  kcg_int L_ACKLEVELTR;
-  kcg_int N_ITER;
-  UAB_P041_trackide_sectionlist_T_TM SECTIONS;
-} UAB_struct__21337;
+  UAB_Q_DIR q_dir;
+  UAB_Q_SCALE q_scale;
+  UAB_V_LOA v_loa;
+  UAB_T_LOA t_loa;
+  UAB_N_ITER n_iter;
+  UAB_P015_OBU_sectionlist_enum_T_TM sections;
+  UAB_L_ENDSECTION l_endsection;
+  UAB_Q_SECTIONTIMER q_sectiontimer;
+  UAB_T_SECTIONTIMER t_sectiontimer;
+  UAB_D_SECTIONTIMERSTOPLOC d_sectiontimerstoploc;
+  UAB_Q_ENDTIMER q_endtimer;
+  UAB_T_ENDTIMER t_endtimer;
+  UAB_D_ENDTIMERSTARTLOC d_endtimerstartloc;
+  UAB_Q_DANGERPOINT q_dangerpoint;
+  UAB_D_DP d_dp;
+  UAB_V_RELEASEDP v_releasedp;
+  UAB_Q_OVERLAP q_overlap;
+  UAB_D_STARTOL d_startol;
+  UAB_T_OL t_ol;
+  UAB_D_OL d_ol;
+  UAB_V_RELEASEOL v_releaseol;
+} UAB_struct__2695;
 
-/* TM::P041_trackside_int_T */
-typedef UAB_struct__21337 UAB_P041_trackside_int_T_TM;
+/* TM::P015_OBU_T */
+typedef UAB_struct__2695 UAB_P015_OBU_T_TM;
 
-typedef kcg_int UAB_array_int_2[2];
+typedef kcg_int UAB_array_int_15[15];
 
-/* TM::P046_section_array_T */
-typedef UAB_array_int_2 UAB_P046_section_array_T_TM;
+/* TM::Array15 */
+typedef UAB_array_int_15 UAB_Array15_TM;
 
-typedef struct { kcg_int M_LEVELTR; kcg_int NID_NTC; } UAB_struct__21354;
+typedef kcg_int UAB_array_int_6[6];
 
-/* TM::P046_section_int_T */
-typedef UAB_struct__21354 UAB_P046_section_int_T_TM;
+/* TM::Array06 */
+typedef UAB_array_int_6 UAB_Array06_TM;
 
-typedef UAB_P046_section_array_T_TM UAB_array_int_2_33[33];
+typedef kcg_int UAB_array_int_350[350];
 
-/* TM::P046_OBU_sectionlist_array_T */
-typedef UAB_array_int_2_33 UAB_P046_OBU_sectionlist_array_T_TM;
+#ifndef UAB_kcg_copy_struct__2619
+#define UAB_kcg_copy_struct__2619(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__2619)))
+#endif /* UAB_kcg_copy_struct__2619 */
 
-typedef kcg_int UAB_array_int_66[66];
+#ifndef UAB_kcg_copy_struct__2629
+#define UAB_kcg_copy_struct__2629(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__2629)))
+#endif /* UAB_kcg_copy_struct__2629 */
 
-/* TM::P046_sections_array_flat_T */
-typedef UAB_array_int_66 UAB_P046_sections_array_flat_T_TM;
+#ifndef UAB_kcg_copy_struct__2659
+#define UAB_kcg_copy_struct__2659(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__2659)))
+#endif /* UAB_kcg_copy_struct__2659 */
 
-typedef UAB_P046_section_int_T_TM UAB_array__21365[33];
+#ifndef UAB_kcg_copy_struct__2679
+#define UAB_kcg_copy_struct__2679(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__2679)))
+#endif /* UAB_kcg_copy_struct__2679 */
 
-/* TM::P046_OBU_sectionlist_int_T */
-typedef UAB_array__21365 UAB_P046_OBU_sectionlist_int_T_TM;
+#ifndef UAB_kcg_copy_struct__2684
+#define UAB_kcg_copy_struct__2684(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__2684)))
+#endif /* UAB_kcg_copy_struct__2684 */
 
-typedef UAB_P046_section_int_T_TM UAB_array__21368[32];
+#ifndef UAB_kcg_copy_struct__2695
+#define UAB_kcg_copy_struct__2695(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__2695)))
+#endif /* UAB_kcg_copy_struct__2695 */
 
-/* TM::P046_trackide_sectionlist_T */
-typedef UAB_array__21368 UAB_P046_trackide_sectionlist_T_TM;
-
-typedef struct {
-  kcg_bool valid;
-  kcg_int NID_PACKET;
-  kcg_int Q_DIR;
-  kcg_int L_PACKET;
-  kcg_int M_LEVELTR;
-  kcg_int NID_NTC;
-  kcg_int N_ITER;
-  UAB_P046_trackide_sectionlist_T_TM SECTIONS;
-} UAB_struct__21371;
-
-/* TM::P046_trackside_int_T */
-typedef UAB_struct__21371 UAB_P046_trackside_int_T_TM;
-
-typedef struct {
-  kcg_bool valid;
-  kcg_int NID_PACKET;
-  kcg_int Q_DIR;
-  kcg_int L_PACKET;
-  kcg_int Q_RBC;
-  kcg_int NID_C;
-  kcg_int NID_RBC;
-  kcg_int NID_RADIO;
-  kcg_int Q_SLEEPSESSION;
-} UAB_struct__21382;
-
-/* TM::P042_trackside_int_T */
-typedef UAB_struct__21382 UAB_P042_trackside_int_T_TM;
-
-typedef kcg_int UAB_array_int_32[32];
-
-/* TM_baseline2::P003V1_trackide_sectionlist_T */
-typedef UAB_array_int_32 UAB_P003V1_trackide_sectionlist_T_TM_baseline2;
-
-typedef struct {
-  kcg_bool valid;
-  kcg_int NID_PACKET;
-  kcg_int Q_DIR;
-  kcg_int L_PACKET;
-  kcg_int Q_SCALE;
-  kcg_int D_VALIDNV;
-  kcg_int N_ITER;
-  UAB_P003V1_trackide_sectionlist_T_TM_baseline2 SECTIONS;
-  kcg_int V_NVSHUNT;
-  kcg_int V_NVSTFF;
-  kcg_int V_NVONSIGHT;
-  kcg_int V_NVUNFIT;
-  kcg_int V_NVREL;
-  kcg_int D_NVROLL;
-  kcg_int Q_NVSRBKTRG;
-  kcg_int Q_NVEMRRLS;
-  kcg_int V_NVALLOWOVTRP;
-  kcg_int V_NVSUPOVTRP;
-  kcg_int D_NVOVTRP;
-  kcg_int T_NVOVTRP;
-  kcg_int D_NVPOTRP;
-  kcg_int M_NVCONTACT;
-  kcg_int T_NVCONTACT;
-  kcg_int M_NVDERUN;
-  kcg_int D_NVSTFF;
-  kcg_int Q_NVDRIVER_ADHES;
-} UAB_struct__21397;
-
-/* TM_baseline2::P003V1_trackside_int_T */
-typedef UAB_struct__21397 UAB_P003V1_trackside_int_T_TM_baseline2;
-
-typedef struct {
-  kcg_bool valid;
-  kcg_int NID_PACKET;
-  kcg_int Q_DIR;
-  kcg_int L_PACKET;
-  kcg_int NID_MN;
-} UAB_struct__21426;
-
-/* TM::P045_trackside_int_T */
-typedef UAB_struct__21426 UAB_P045_trackside_int_T_TM;
-
-typedef kcg_int UAB_array_int_430[430];
-
-typedef kcg_int UAB_array_int_444[444];
-
-typedef kcg_int UAB_array_int_395[395];
-
-#ifndef UAB_kcg_copy_struct__21238
-#define UAB_kcg_copy_struct__21238(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21238)))
-#endif /* UAB_kcg_copy_struct__21238 */
-
-#ifndef UAB_kcg_copy_struct__21247
-#define UAB_kcg_copy_struct__21247(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21247)))
-#endif /* UAB_kcg_copy_struct__21247 */
-
-#ifndef UAB_kcg_copy_struct__21258
-#define UAB_kcg_copy_struct__21258(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21258)))
-#endif /* UAB_kcg_copy_struct__21258 */
-
-#ifndef UAB_kcg_copy_struct__21263
-#define UAB_kcg_copy_struct__21263(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21263)))
-#endif /* UAB_kcg_copy_struct__21263 */
-
-#ifndef UAB_kcg_copy_struct__21276
-#define UAB_kcg_copy_struct__21276(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21276)))
-#endif /* UAB_kcg_copy_struct__21276 */
-
-#ifndef UAB_kcg_copy_struct__21281
-#define UAB_kcg_copy_struct__21281(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21281)))
-#endif /* UAB_kcg_copy_struct__21281 */
-
-#ifndef UAB_kcg_copy_struct__21286
-#define UAB_kcg_copy_struct__21286(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21286)))
-#endif /* UAB_kcg_copy_struct__21286 */
-
-#ifndef UAB_kcg_copy_struct__21294
-#define UAB_kcg_copy_struct__21294(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21294)))
-#endif /* UAB_kcg_copy_struct__21294 */
-
-#ifndef UAB_kcg_copy_struct__21303
-#define UAB_kcg_copy_struct__21303(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21303)))
-#endif /* UAB_kcg_copy_struct__21303 */
-
-#ifndef UAB_kcg_copy_struct__21308
-#define UAB_kcg_copy_struct__21308(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21308)))
-#endif /* UAB_kcg_copy_struct__21308 */
-
-#ifndef UAB_kcg_copy_struct__21319
-#define UAB_kcg_copy_struct__21319(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21319)))
-#endif /* UAB_kcg_copy_struct__21319 */
-
-#ifndef UAB_kcg_copy_struct__21337
-#define UAB_kcg_copy_struct__21337(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21337)))
-#endif /* UAB_kcg_copy_struct__21337 */
-
-#ifndef UAB_kcg_copy_struct__21354
-#define UAB_kcg_copy_struct__21354(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21354)))
-#endif /* UAB_kcg_copy_struct__21354 */
-
-#ifndef UAB_kcg_copy_struct__21371
-#define UAB_kcg_copy_struct__21371(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21371)))
-#endif /* UAB_kcg_copy_struct__21371 */
-
-#ifndef UAB_kcg_copy_struct__21382
-#define UAB_kcg_copy_struct__21382(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21382)))
-#endif /* UAB_kcg_copy_struct__21382 */
-
-#ifndef UAB_kcg_copy_struct__21397
-#define UAB_kcg_copy_struct__21397(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21397)))
-#endif /* UAB_kcg_copy_struct__21397 */
-
-#ifndef UAB_kcg_copy_struct__21426
-#define UAB_kcg_copy_struct__21426(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (UAB_struct__21426)))
-#endif /* UAB_kcg_copy_struct__21426 */
+#ifndef UAB_kcg_copy_array__2626
+#define UAB_kcg_copy_array__2626(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array__2626)))
+#endif /* UAB_kcg_copy_array__2626 */
 
 #ifndef UAB_kcg_copy_array_int_500
 #define UAB_kcg_copy_array_int_500(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_500)))
 #endif /* UAB_kcg_copy_array_int_500 */
 
-#ifndef UAB_kcg_copy_array__21255
-#define UAB_kcg_copy_array__21255(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array__21255)))
-#endif /* UAB_kcg_copy_array__21255 */
+#ifndef UAB_kcg_copy_array_int_4
+#define UAB_kcg_copy_array_int_4(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_4)))
+#endif /* UAB_kcg_copy_array_int_4 */
 
-#ifndef UAB_kcg_copy_array_int_3
-#define UAB_kcg_copy_array_int_3(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_3)))
-#endif /* UAB_kcg_copy_array_int_3 */
+#ifndef UAB_kcg_copy_array_int_4_32
+#define UAB_kcg_copy_array_int_4_32(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_4_32)))
+#endif /* UAB_kcg_copy_array_int_4_32 */
 
-#ifndef UAB_kcg_copy_array_int_3_33
-#define UAB_kcg_copy_array_int_3_33(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_3_33)))
-#endif /* UAB_kcg_copy_array_int_3_33 */
+#ifndef UAB_kcg_copy_array_int_128
+#define UAB_kcg_copy_array_int_128(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_128)))
+#endif /* UAB_kcg_copy_array_int_128 */
 
-#ifndef UAB_kcg_copy_array_int_99
-#define UAB_kcg_copy_array_int_99(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_99)))
-#endif /* UAB_kcg_copy_array_int_99 */
+#ifndef UAB_kcg_copy_array__2676
+#define UAB_kcg_copy_array__2676(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array__2676)))
+#endif /* UAB_kcg_copy_array__2676 */
 
-#ifndef UAB_kcg_copy_array__21331
-#define UAB_kcg_copy_array__21331(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array__21331)))
-#endif /* UAB_kcg_copy_array__21331 */
+#ifndef UAB_kcg_copy_array__2692
+#define UAB_kcg_copy_array__2692(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array__2692)))
+#endif /* UAB_kcg_copy_array__2692 */
 
-#ifndef UAB_kcg_copy_array__21334
-#define UAB_kcg_copy_array__21334(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array__21334)))
-#endif /* UAB_kcg_copy_array__21334 */
+#ifndef UAB_kcg_copy_array_int_15
+#define UAB_kcg_copy_array_int_15(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_15)))
+#endif /* UAB_kcg_copy_array_int_15 */
 
-#ifndef UAB_kcg_copy_array_int_2
-#define UAB_kcg_copy_array_int_2(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_2)))
-#endif /* UAB_kcg_copy_array_int_2 */
+#ifndef UAB_kcg_copy_array_int_6
+#define UAB_kcg_copy_array_int_6(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_6)))
+#endif /* UAB_kcg_copy_array_int_6 */
 
-#ifndef UAB_kcg_copy_array_int_2_33
-#define UAB_kcg_copy_array_int_2_33(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_2_33)))
-#endif /* UAB_kcg_copy_array_int_2_33 */
+#ifndef UAB_kcg_copy_array_int_350
+#define UAB_kcg_copy_array_int_350(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_350)))
+#endif /* UAB_kcg_copy_array_int_350 */
 
-#ifndef UAB_kcg_copy_array_int_66
-#define UAB_kcg_copy_array_int_66(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_66)))
-#endif /* UAB_kcg_copy_array_int_66 */
+#ifndef UAB_kcg_comp_struct__2619
+extern kcg_bool UAB_kcg_comp_struct__2619(
+  UAB_struct__2619 *kcg_c1,
+  UAB_struct__2619 *kcg_c2);
+#endif /* UAB_kcg_comp_struct__2619 */
 
-#ifndef UAB_kcg_copy_array__21365
-#define UAB_kcg_copy_array__21365(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array__21365)))
-#endif /* UAB_kcg_copy_array__21365 */
+#ifndef UAB_kcg_comp_struct__2629
+extern kcg_bool UAB_kcg_comp_struct__2629(
+  UAB_struct__2629 *kcg_c1,
+  UAB_struct__2629 *kcg_c2);
+#endif /* UAB_kcg_comp_struct__2629 */
 
-#ifndef UAB_kcg_copy_array__21368
-#define UAB_kcg_copy_array__21368(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array__21368)))
-#endif /* UAB_kcg_copy_array__21368 */
+#ifndef UAB_kcg_comp_struct__2659
+extern kcg_bool UAB_kcg_comp_struct__2659(
+  UAB_struct__2659 *kcg_c1,
+  UAB_struct__2659 *kcg_c2);
+#endif /* UAB_kcg_comp_struct__2659 */
 
-#ifndef UAB_kcg_copy_array_int_32
-#define UAB_kcg_copy_array_int_32(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_32)))
-#endif /* UAB_kcg_copy_array_int_32 */
+#ifndef UAB_kcg_comp_struct__2679
+extern kcg_bool UAB_kcg_comp_struct__2679(
+  UAB_struct__2679 *kcg_c1,
+  UAB_struct__2679 *kcg_c2);
+#endif /* UAB_kcg_comp_struct__2679 */
 
-#ifndef UAB_kcg_copy_array_int_430
-#define UAB_kcg_copy_array_int_430(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_430)))
-#endif /* UAB_kcg_copy_array_int_430 */
+#ifndef UAB_kcg_comp_struct__2684
+extern kcg_bool UAB_kcg_comp_struct__2684(
+  UAB_struct__2684 *kcg_c1,
+  UAB_struct__2684 *kcg_c2);
+#endif /* UAB_kcg_comp_struct__2684 */
 
-#ifndef UAB_kcg_copy_array_int_444
-#define UAB_kcg_copy_array_int_444(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_444)))
-#endif /* UAB_kcg_copy_array_int_444 */
+#ifndef UAB_kcg_comp_struct__2695
+extern kcg_bool UAB_kcg_comp_struct__2695(
+  UAB_struct__2695 *kcg_c1,
+  UAB_struct__2695 *kcg_c2);
+#endif /* UAB_kcg_comp_struct__2695 */
 
-#ifndef UAB_kcg_copy_array_int_395
-#define UAB_kcg_copy_array_int_395(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (UAB_array_int_395)))
-#endif /* UAB_kcg_copy_array_int_395 */
-
-#ifndef UAB_kcg_comp_struct__21238
-extern kcg_bool UAB_kcg_comp_struct__21238(
-  UAB_struct__21238 *kcg_c1,
-  UAB_struct__21238 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21238 */
-
-#ifndef UAB_kcg_comp_struct__21247
-extern kcg_bool UAB_kcg_comp_struct__21247(
-  UAB_struct__21247 *kcg_c1,
-  UAB_struct__21247 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21247 */
-
-#ifndef UAB_kcg_comp_struct__21258
-extern kcg_bool UAB_kcg_comp_struct__21258(
-  UAB_struct__21258 *kcg_c1,
-  UAB_struct__21258 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21258 */
-
-#ifndef UAB_kcg_comp_struct__21263
-extern kcg_bool UAB_kcg_comp_struct__21263(
-  UAB_struct__21263 *kcg_c1,
-  UAB_struct__21263 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21263 */
-
-#ifndef UAB_kcg_comp_struct__21276
-extern kcg_bool UAB_kcg_comp_struct__21276(
-  UAB_struct__21276 *kcg_c1,
-  UAB_struct__21276 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21276 */
-
-#ifndef UAB_kcg_comp_struct__21281
-extern kcg_bool UAB_kcg_comp_struct__21281(
-  UAB_struct__21281 *kcg_c1,
-  UAB_struct__21281 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21281 */
-
-#ifndef UAB_kcg_comp_struct__21286
-extern kcg_bool UAB_kcg_comp_struct__21286(
-  UAB_struct__21286 *kcg_c1,
-  UAB_struct__21286 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21286 */
-
-#ifndef UAB_kcg_comp_struct__21294
-extern kcg_bool UAB_kcg_comp_struct__21294(
-  UAB_struct__21294 *kcg_c1,
-  UAB_struct__21294 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21294 */
-
-#ifndef UAB_kcg_comp_struct__21303
-extern kcg_bool UAB_kcg_comp_struct__21303(
-  UAB_struct__21303 *kcg_c1,
-  UAB_struct__21303 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21303 */
-
-#ifndef UAB_kcg_comp_struct__21308
-extern kcg_bool UAB_kcg_comp_struct__21308(
-  UAB_struct__21308 *kcg_c1,
-  UAB_struct__21308 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21308 */
-
-#ifndef UAB_kcg_comp_struct__21319
-extern kcg_bool UAB_kcg_comp_struct__21319(
-  UAB_struct__21319 *kcg_c1,
-  UAB_struct__21319 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21319 */
-
-#ifndef UAB_kcg_comp_struct__21337
-extern kcg_bool UAB_kcg_comp_struct__21337(
-  UAB_struct__21337 *kcg_c1,
-  UAB_struct__21337 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21337 */
-
-#ifndef UAB_kcg_comp_struct__21354
-extern kcg_bool UAB_kcg_comp_struct__21354(
-  UAB_struct__21354 *kcg_c1,
-  UAB_struct__21354 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21354 */
-
-#ifndef UAB_kcg_comp_struct__21371
-extern kcg_bool UAB_kcg_comp_struct__21371(
-  UAB_struct__21371 *kcg_c1,
-  UAB_struct__21371 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21371 */
-
-#ifndef UAB_kcg_comp_struct__21382
-extern kcg_bool UAB_kcg_comp_struct__21382(
-  UAB_struct__21382 *kcg_c1,
-  UAB_struct__21382 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21382 */
-
-#ifndef UAB_kcg_comp_struct__21397
-extern kcg_bool UAB_kcg_comp_struct__21397(
-  UAB_struct__21397 *kcg_c1,
-  UAB_struct__21397 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21397 */
-
-#ifndef UAB_kcg_comp_struct__21426
-extern kcg_bool UAB_kcg_comp_struct__21426(
-  UAB_struct__21426 *kcg_c1,
-  UAB_struct__21426 *kcg_c2);
-#endif /* UAB_kcg_comp_struct__21426 */
+#ifndef UAB_kcg_comp_array__2626
+extern kcg_bool UAB_kcg_comp_array__2626(
+  UAB_array__2626 *kcg_c1,
+  UAB_array__2626 *kcg_c2);
+#endif /* UAB_kcg_comp_array__2626 */
 
 #ifndef UAB_kcg_comp_array_int_500
 extern kcg_bool UAB_kcg_comp_array_int_500(
@@ -581,223 +392,121 @@ extern kcg_bool UAB_kcg_comp_array_int_500(
   UAB_array_int_500 *kcg_c2);
 #endif /* UAB_kcg_comp_array_int_500 */
 
-#ifndef UAB_kcg_comp_array__21255
-extern kcg_bool UAB_kcg_comp_array__21255(
-  UAB_array__21255 *kcg_c1,
-  UAB_array__21255 *kcg_c2);
-#endif /* UAB_kcg_comp_array__21255 */
+#ifndef UAB_kcg_comp_array_int_4
+extern kcg_bool UAB_kcg_comp_array_int_4(
+  UAB_array_int_4 *kcg_c1,
+  UAB_array_int_4 *kcg_c2);
+#endif /* UAB_kcg_comp_array_int_4 */
 
-#ifndef UAB_kcg_comp_array_int_3
-extern kcg_bool UAB_kcg_comp_array_int_3(
-  UAB_array_int_3 *kcg_c1,
-  UAB_array_int_3 *kcg_c2);
-#endif /* UAB_kcg_comp_array_int_3 */
+#ifndef UAB_kcg_comp_array_int_4_32
+extern kcg_bool UAB_kcg_comp_array_int_4_32(
+  UAB_array_int_4_32 *kcg_c1,
+  UAB_array_int_4_32 *kcg_c2);
+#endif /* UAB_kcg_comp_array_int_4_32 */
 
-#ifndef UAB_kcg_comp_array_int_3_33
-extern kcg_bool UAB_kcg_comp_array_int_3_33(
-  UAB_array_int_3_33 *kcg_c1,
-  UAB_array_int_3_33 *kcg_c2);
-#endif /* UAB_kcg_comp_array_int_3_33 */
+#ifndef UAB_kcg_comp_array_int_128
+extern kcg_bool UAB_kcg_comp_array_int_128(
+  UAB_array_int_128 *kcg_c1,
+  UAB_array_int_128 *kcg_c2);
+#endif /* UAB_kcg_comp_array_int_128 */
 
-#ifndef UAB_kcg_comp_array_int_99
-extern kcg_bool UAB_kcg_comp_array_int_99(
-  UAB_array_int_99 *kcg_c1,
-  UAB_array_int_99 *kcg_c2);
-#endif /* UAB_kcg_comp_array_int_99 */
+#ifndef UAB_kcg_comp_array__2676
+extern kcg_bool UAB_kcg_comp_array__2676(
+  UAB_array__2676 *kcg_c1,
+  UAB_array__2676 *kcg_c2);
+#endif /* UAB_kcg_comp_array__2676 */
 
-#ifndef UAB_kcg_comp_array__21331
-extern kcg_bool UAB_kcg_comp_array__21331(
-  UAB_array__21331 *kcg_c1,
-  UAB_array__21331 *kcg_c2);
-#endif /* UAB_kcg_comp_array__21331 */
+#ifndef UAB_kcg_comp_array__2692
+extern kcg_bool UAB_kcg_comp_array__2692(
+  UAB_array__2692 *kcg_c1,
+  UAB_array__2692 *kcg_c2);
+#endif /* UAB_kcg_comp_array__2692 */
 
-#ifndef UAB_kcg_comp_array__21334
-extern kcg_bool UAB_kcg_comp_array__21334(
-  UAB_array__21334 *kcg_c1,
-  UAB_array__21334 *kcg_c2);
-#endif /* UAB_kcg_comp_array__21334 */
+#ifndef UAB_kcg_comp_array_int_15
+extern kcg_bool UAB_kcg_comp_array_int_15(
+  UAB_array_int_15 *kcg_c1,
+  UAB_array_int_15 *kcg_c2);
+#endif /* UAB_kcg_comp_array_int_15 */
 
-#ifndef UAB_kcg_comp_array_int_2
-extern kcg_bool UAB_kcg_comp_array_int_2(
-  UAB_array_int_2 *kcg_c1,
-  UAB_array_int_2 *kcg_c2);
-#endif /* UAB_kcg_comp_array_int_2 */
+#ifndef UAB_kcg_comp_array_int_6
+extern kcg_bool UAB_kcg_comp_array_int_6(
+  UAB_array_int_6 *kcg_c1,
+  UAB_array_int_6 *kcg_c2);
+#endif /* UAB_kcg_comp_array_int_6 */
 
-#ifndef UAB_kcg_comp_array_int_2_33
-extern kcg_bool UAB_kcg_comp_array_int_2_33(
-  UAB_array_int_2_33 *kcg_c1,
-  UAB_array_int_2_33 *kcg_c2);
-#endif /* UAB_kcg_comp_array_int_2_33 */
+#ifndef UAB_kcg_comp_array_int_350
+extern kcg_bool UAB_kcg_comp_array_int_350(
+  UAB_array_int_350 *kcg_c1,
+  UAB_array_int_350 *kcg_c2);
+#endif /* UAB_kcg_comp_array_int_350 */
 
-#ifndef UAB_kcg_comp_array_int_66
-extern kcg_bool UAB_kcg_comp_array_int_66(
-  UAB_array_int_66 *kcg_c1,
-  UAB_array_int_66 *kcg_c2);
-#endif /* UAB_kcg_comp_array_int_66 */
+#define UAB_kcg_comp_CompressedPackets_T_Common_Types_Pkg UAB_kcg_comp_struct__2679
 
-#ifndef UAB_kcg_comp_array__21365
-extern kcg_bool UAB_kcg_comp_array__21365(
-  UAB_array__21365 *kcg_c1,
-  UAB_array__21365 *kcg_c2);
-#endif /* UAB_kcg_comp_array__21365 */
-
-#ifndef UAB_kcg_comp_array__21368
-extern kcg_bool UAB_kcg_comp_array__21368(
-  UAB_array__21368 *kcg_c1,
-  UAB_array__21368 *kcg_c2);
-#endif /* UAB_kcg_comp_array__21368 */
-
-#ifndef UAB_kcg_comp_array_int_32
-extern kcg_bool UAB_kcg_comp_array_int_32(
-  UAB_array_int_32 *kcg_c1,
-  UAB_array_int_32 *kcg_c2);
-#endif /* UAB_kcg_comp_array_int_32 */
-
-#ifndef UAB_kcg_comp_array_int_430
-extern kcg_bool UAB_kcg_comp_array_int_430(
-  UAB_array_int_430 *kcg_c1,
-  UAB_array_int_430 *kcg_c2);
-#endif /* UAB_kcg_comp_array_int_430 */
-
-#ifndef UAB_kcg_comp_array_int_444
-extern kcg_bool UAB_kcg_comp_array_int_444(
-  UAB_array_int_444 *kcg_c1,
-  UAB_array_int_444 *kcg_c2);
-#endif /* UAB_kcg_comp_array_int_444 */
-
-#ifndef UAB_kcg_comp_array_int_395
-extern kcg_bool UAB_kcg_comp_array_int_395(
-  UAB_array_int_395 *kcg_c1,
-  UAB_array_int_395 *kcg_c2);
-#endif /* UAB_kcg_comp_array_int_395 */
-
-#define UAB_kcg_comp_P045_trackside_int_T_TM UAB_kcg_comp_struct__21426
-
-#define UAB_kcg_copy_P045_trackside_int_T_TM UAB_kcg_copy_struct__21426
-
-#define UAB_kcg_comp_P255_trackside_int_T_TM UAB_kcg_comp_struct__21303
-
-#define UAB_kcg_copy_P255_trackside_int_T_TM UAB_kcg_copy_struct__21303
-
-#define UAB_kcg_comp_BaliseTelegramHeader_int_T_TM UAB_kcg_comp_struct__21263
-
-#define UAB_kcg_copy_BaliseTelegramHeader_int_T_TM UAB_kcg_copy_struct__21263
+#define UAB_kcg_copy_CompressedPackets_T_Common_Types_Pkg UAB_kcg_copy_struct__2679
 
 #define UAB_kcg_comp_CompressedPacketData_T_Common_Types_Pkg UAB_kcg_comp_array_int_500
 
 #define UAB_kcg_copy_CompressedPacketData_T_Common_Types_Pkg UAB_kcg_copy_array_int_500
 
-#define UAB_kcg_comp_MetadataElement_T_Common_Types_Pkg UAB_kcg_comp_struct__21247
+#define UAB_kcg_comp_Metadata_T_Common_Types_Pkg UAB_kcg_comp_array__2676
 
-#define UAB_kcg_copy_MetadataElement_T_Common_Types_Pkg UAB_kcg_copy_struct__21247
+#define UAB_kcg_copy_Metadata_T_Common_Types_Pkg UAB_kcg_copy_array__2676
 
-#define UAB_kcg_comp_BaliseGroupData_Basics UAB_kcg_comp_struct__21286
+#define UAB_kcg_comp_MetadataElement_T_Common_Types_Pkg UAB_kcg_comp_struct__2659
 
-#define UAB_kcg_copy_BaliseGroupData_Basics UAB_kcg_copy_struct__21286
+#define UAB_kcg_copy_MetadataElement_T_Common_Types_Pkg UAB_kcg_copy_struct__2659
 
-#define UAB_kcg_comp_Metadata_T_Common_Types_Pkg UAB_kcg_comp_array__21255
+#define UAB_kcg_comp_P015_OBU_sectionlist_int_T_TM UAB_kcg_comp_array__2626
 
-#define UAB_kcg_copy_Metadata_T_Common_Types_Pkg UAB_kcg_copy_array__21255
+#define UAB_kcg_copy_P015_OBU_sectionlist_int_T_TM UAB_kcg_copy_array__2626
 
-#define UAB_kcg_comp_CompressedPackets_T_Common_Types_Pkg UAB_kcg_comp_struct__21258
+#define UAB_kcg_comp_P015_section_array_T_TM UAB_kcg_comp_array_int_4
 
-#define UAB_kcg_copy_CompressedPackets_T_Common_Types_Pkg UAB_kcg_copy_struct__21258
+#define UAB_kcg_copy_P015_section_array_T_TM UAB_kcg_copy_array_int_4
 
-#define UAB_kcg_comp_TrainPosRaw_T_InfraLib UAB_kcg_comp_struct__21238
+#define UAB_kcg_comp_P015_OBU_sectionlist_array_T_TM UAB_kcg_comp_array_int_4_32
 
-#define UAB_kcg_copy_TrainPosRaw_T_InfraLib UAB_kcg_copy_struct__21238
+#define UAB_kcg_copy_P015_OBU_sectionlist_array_T_TM UAB_kcg_copy_array_int_4_32
 
-#define UAB_kcg_comp_TrackSectionData_T_InfraLib UAB_kcg_comp_struct__21281
+#define UAB_kcg_comp_P015_section_int_T_TM UAB_kcg_comp_struct__2619
 
-#define UAB_kcg_copy_TrackSectionData_T_InfraLib UAB_kcg_copy_struct__21281
+#define UAB_kcg_copy_P015_section_int_T_TM UAB_kcg_copy_struct__2619
 
-#define UAB_kcg_comp_B_data_internal_T_InfraLib UAB_kcg_comp_struct__21294
+#define UAB_kcg_comp_P015_trackide_sectionlist_T_TM UAB_kcg_comp_array__2626
 
-#define UAB_kcg_copy_B_data_internal_T_InfraLib UAB_kcg_copy_struct__21294
+#define UAB_kcg_copy_P015_trackide_sectionlist_T_TM UAB_kcg_copy_array__2626
 
-#define UAB_kcg_comp_P003V1_trackide_sectionlist_T_TM_baseline2 UAB_kcg_comp_array_int_32
+#define UAB_kcg_comp_P015_trackside_int_T_TM UAB_kcg_comp_struct__2629
 
-#define UAB_kcg_copy_P003V1_trackide_sectionlist_T_TM_baseline2 UAB_kcg_copy_array_int_32
+#define UAB_kcg_copy_P015_trackside_int_T_TM UAB_kcg_copy_struct__2629
 
-#define UAB_kcg_comp_P003V1_trackside_int_T_TM_baseline2 UAB_kcg_comp_struct__21397
+#define UAB_kcg_comp_P015_OBU_T_TM UAB_kcg_comp_struct__2695
 
-#define UAB_kcg_copy_P003V1_trackside_int_T_TM_baseline2 UAB_kcg_copy_struct__21397
+#define UAB_kcg_copy_P015_OBU_T_TM UAB_kcg_copy_struct__2695
 
-#define UAB_kcg_comp_P137_trackside_int_T_TM UAB_kcg_comp_struct__21308
+#define UAB_kcg_comp_Array15_TM UAB_kcg_comp_array_int_15
 
-#define UAB_kcg_copy_P137_trackside_int_T_TM UAB_kcg_copy_struct__21308
+#define UAB_kcg_copy_Array15_TM UAB_kcg_copy_array_int_15
 
-#define UAB_kcg_comp_P041_OBU_sectionlist_int_T_TM UAB_kcg_comp_array__21331
+#define UAB_kcg_comp_P015_OBU_sectionlist_enum_T_TM UAB_kcg_comp_array__2692
 
-#define UAB_kcg_copy_P041_OBU_sectionlist_int_T_TM UAB_kcg_copy_array__21331
+#define UAB_kcg_copy_P015_OBU_sectionlist_enum_T_TM UAB_kcg_copy_array__2692
 
-#define UAB_kcg_comp_P041_section_array_T_TM UAB_kcg_comp_array_int_3
+#define UAB_kcg_comp_P015_sections_array_flat_T_TM UAB_kcg_comp_array_int_128
 
-#define UAB_kcg_copy_P041_section_array_T_TM UAB_kcg_copy_array_int_3
+#define UAB_kcg_copy_P015_sections_array_flat_T_TM UAB_kcg_copy_array_int_128
 
-#define UAB_kcg_comp_P041_OBU_sectionlist_array_T_TM UAB_kcg_comp_array_int_3_33
+#define UAB_kcg_comp_P015_section_enum_T_TM UAB_kcg_comp_struct__2684
 
-#define UAB_kcg_copy_P041_OBU_sectionlist_array_T_TM UAB_kcg_copy_array_int_3_33
+#define UAB_kcg_copy_P015_section_enum_T_TM UAB_kcg_copy_struct__2684
 
-#define UAB_kcg_comp_P041_sections_array_flat_T_TM UAB_kcg_comp_array_int_99
+#define UAB_kcg_comp_Array06_TM UAB_kcg_comp_array_int_6
 
-#define UAB_kcg_copy_P041_sections_array_flat_T_TM UAB_kcg_copy_array_int_99
-
-#define UAB_kcg_comp_P041_section_int_T_TM UAB_kcg_comp_struct__21319
-
-#define UAB_kcg_copy_P041_section_int_T_TM UAB_kcg_copy_struct__21319
-
-#define UAB_kcg_comp_P041_trackide_sectionlist_T_TM UAB_kcg_comp_array__21334
-
-#define UAB_kcg_copy_P041_trackide_sectionlist_T_TM UAB_kcg_copy_array__21334
-
-#define UAB_kcg_comp_P041_trackside_int_T_TM UAB_kcg_comp_struct__21337
-
-#define UAB_kcg_copy_P041_trackside_int_T_TM UAB_kcg_copy_struct__21337
-
-#define UAB_kcg_comp_P046_OBU_sectionlist_int_T_TM UAB_kcg_comp_array__21365
-
-#define UAB_kcg_copy_P046_OBU_sectionlist_int_T_TM UAB_kcg_copy_array__21365
-
-#define UAB_kcg_comp_P046_section_array_T_TM UAB_kcg_comp_array_int_2
-
-#define UAB_kcg_copy_P046_section_array_T_TM UAB_kcg_copy_array_int_2
-
-#define UAB_kcg_comp_P046_OBU_sectionlist_array_T_TM UAB_kcg_comp_array_int_2_33
-
-#define UAB_kcg_copy_P046_OBU_sectionlist_array_T_TM UAB_kcg_copy_array_int_2_33
-
-#define UAB_kcg_comp_P046_sections_array_flat_T_TM UAB_kcg_comp_array_int_66
-
-#define UAB_kcg_copy_P046_sections_array_flat_T_TM UAB_kcg_copy_array_int_66
-
-#define UAB_kcg_comp_P046_section_int_T_TM UAB_kcg_comp_struct__21354
-
-#define UAB_kcg_copy_P046_section_int_T_TM UAB_kcg_copy_struct__21354
-
-#define UAB_kcg_comp_P046_trackide_sectionlist_T_TM UAB_kcg_comp_array__21368
-
-#define UAB_kcg_copy_P046_trackide_sectionlist_T_TM UAB_kcg_copy_array__21368
-
-#define UAB_kcg_comp_P046_trackside_int_T_TM UAB_kcg_comp_struct__21371
-
-#define UAB_kcg_copy_P046_trackside_int_T_TM UAB_kcg_copy_struct__21371
-
-#define UAB_kcg_comp_P042_trackside_int_T_TM UAB_kcg_comp_struct__21382
-
-#define UAB_kcg_copy_P042_trackside_int_T_TM UAB_kcg_copy_struct__21382
-
-#define UAB_kcg_comp_CompressedBaliseMessage_TM UAB_kcg_comp_struct__21276
-
-#define UAB_kcg_copy_CompressedBaliseMessage_TM UAB_kcg_copy_struct__21276
-
-#define UAB_kcg_comp_BaliseGroupData_TM UAB_kcg_comp_struct__21286
-
-#define UAB_kcg_copy_BaliseGroupData_TM UAB_kcg_copy_struct__21286
+#define UAB_kcg_copy_Array06_TM UAB_kcg_copy_array_int_6
 
 #endif /* _UAB_KCG_TYPES_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_types.h
-** Generation date: 2015-08-20T20:42:30
+** Generation date: 2015-08-27T15:14:25
 *************************************************************$ */
 

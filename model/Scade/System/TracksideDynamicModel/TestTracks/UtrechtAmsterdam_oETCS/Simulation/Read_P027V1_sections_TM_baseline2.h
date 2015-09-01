@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TracksideDynamicModel/TestTracks/UtrechtAmsterdam_oETCS/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-20T15:03:10
+** Generation date: 2015-08-27T16:09:02
 *************************************************************$ */
 #ifndef _Read_P027V1_sections_TM_baseline2_H_
 #define _Read_P027V1_sections_TM_baseline2_H_
@@ -54,6 +54,6 @@ extern void Read_P027V1_sections_reset_TM_baseline2(
 #endif /* _Read_P027V1_sections_TM_baseline2_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Read_P027V1_sections_TM_baseline2.h
-** Generation date: 2015-08-20T15:03:10
+** Generation date: 2015-08-27T16:09:02
 *************************************************************$ */
 
