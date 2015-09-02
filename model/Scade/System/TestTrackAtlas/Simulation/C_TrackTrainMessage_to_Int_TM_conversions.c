@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-30T11:58:44
+** Generation date: 2015-09-02T17:34:33
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -89,11 +89,11 @@ void C_TrackTrainMessage_to_Int_TM_conversions(
   outC->_L32.q_dir = outC->_L43;
   outC->_L32.d_emergencystop = outC->_L45;
   outC->_L32.m_version = outC->_L44;
-  kcg_copy__3_Radio_TrackTrain_Header_T_TM(&outC->Message_Out, &outC->_L32);
+  kcg_copy_Radio_TrackTrain_Header_T_TM(&outC->Message_Out, &outC->_L32);
 }
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_TrackTrainMessage_to_Int_TM_conversions.c
-** Generation date: 2015-08-30T11:58:44
+** Generation date: 2015-09-02T17:34:33
 *************************************************************$ */
 

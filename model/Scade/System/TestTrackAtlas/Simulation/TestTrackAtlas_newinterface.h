@@ -1,18 +1,18 @@
-#ifndef TESTGRADIENTPROFILE_INTERFACE
-#define TESTGRADIENTPROFILE_INTERFACE
+#ifndef TESTGRADIENTPROFILE_WITH_DMI_IF_INTERFACE
+#define TESTGRADIENTPROFILE_WITH_DMI_IF_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "TestGradientProfile.h"
+#include "TestGradientProfile_with_DMI_IF.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_TestGradientProfile inputs_ctx;
-extern outC_TestGradientProfile outputs_ctx;
+extern inC_TestGradientProfile_with_DMI_IF inputs_ctx;
+extern outC_TestGradientProfile_with_DMI_IF outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*TESTGRADIENTPROFILE_INTERFACE */
+#endif /*TESTGRADIENTPROFILE_WITH_DMI_IF_INTERFACE */
