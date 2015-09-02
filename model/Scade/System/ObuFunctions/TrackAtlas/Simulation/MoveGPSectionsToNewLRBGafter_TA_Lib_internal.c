@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-07T17:15:59
+** Generation date: 2015-08-31T17:23:27
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -21,8 +21,7 @@ void MoveGPSectionsToNewLRBGafter_reset_TA_Lib_internal(
 
 /* TA_Lib_internal::MoveGPSectionsToNewLRBGafter */
 void MoveGPSectionsToNewLRBGafter_TA_Lib_internal(
-  /* TA_Lib_internal::MoveGPSectionsToNewLRBGafter::ProfileIn */GradientProfile_t_TrackAtlasTypes *ProfileIn,
-  /* TA_Lib_internal::MoveGPSectionsToNewLRBGafter::Distance_2LRBGs */kcg_int Distance_2LRBGs,
+  inC_MoveGPSectionsToNewLRBGafter_TA_Lib_internal *inC,
   outC_MoveGPSectionsToNewLRBGafter_TA_Lib_internal *outC)
 {
   kcg_int i2;
@@ -30,11 +29,11 @@ void MoveGPSectionsToNewLRBGafter_TA_Lib_internal(
   GradientProfile_t_TrackAtlasTypes tmp;
   kcg_int i;
   
-  outC->_L3 = Distance_2LRBGs;
+  outC->_L3 = inC->Loc_BG;
   for (i2 = 0; i2 < 33; i2++) {
     outC->_L6[i2] = outC->_L3;
   }
-  kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L2, ProfileIn);
+  kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L2, &inC->ProfileIn);
   /* 1 */
   FindFirstRelevantGPForNewLRBG_TA_Lib_internal(
     &outC->_L2,
@@ -63,6 +62,6 @@ void MoveGPSectionsToNewLRBGafter_TA_Lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** MoveGPSectionsToNewLRBGafter_TA_Lib_internal.c
-** Generation date: 2015-08-07T17:15:59
+** Generation date: 2015-08-31T17:23:27
 *************************************************************$ */
 

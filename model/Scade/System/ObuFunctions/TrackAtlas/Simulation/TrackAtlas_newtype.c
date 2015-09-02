@@ -706,379 +706,379 @@ SimTypeUtils _Type_kcg_int_Utils = {
 };
 
 /****************************************************************
- ** struct__237 
+ ** struct__296 
  ****************************************************************/
 
-struct SimTypeVTable *pSimstruct__237VTable;
+struct SimTypeVTable *pSimstruct__296VTable;
 
-static SimFieldUtils struct__237_fields[] = {
-    {"valid", offsetof(struct__237,valid), &_Type_kcg_bool_Utils},
-    {"Loc_Absolute", offsetof(struct__237,Loc_Absolute), &_Type_kcg_int_Utils},
-    {"Loc_LRBG", offsetof(struct__237,Loc_LRBG), &_Type_kcg_int_Utils},
-    {"Gradient", offsetof(struct__237,Gradient), &_Type_kcg_int_Utils},
-    {"L_Gradient", offsetof(struct__237,L_Gradient), &_Type_kcg_int_Utils},
+static SimFieldUtils struct__296_fields[] = {
+    {"valid", offsetof(struct__296,valid), &_Type_kcg_bool_Utils},
+    {"Loc_Absolute", offsetof(struct__296,Loc_Absolute), &_Type_kcg_int_Utils},
+    {"Loc_LRBG", offsetof(struct__296,Loc_LRBG), &_Type_kcg_int_Utils},
+    {"Gradient", offsetof(struct__296,Gradient), &_Type_kcg_int_Utils},
+    {"L_Gradient", offsetof(struct__296,L_Gradient), &_Type_kcg_int_Utils},
 };
 
-int struct__237_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+int struct__296_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
 {
-    if (pSimstruct__237VTable != NULL
-        && pSimstruct__237VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimstruct__237VTable->m_pfnToType(SptString, pValue), pData);
+    if (pSimstruct__296VTable != NULL
+        && pSimstruct__296VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimstruct__296VTable->m_pfnToType(SptString, pValue), pData);
     }
-    return pConverter->m_pfnStructureToString(pValue, struct__237_fields, 5, pfnStrAppend, pData);
+    return pConverter->m_pfnStructureToString(pValue, struct__296_fields, 5, pfnStrAppend, pData);
 }
 
-int string_to_struct__237(const char *str, void *pValue, char **endptr)
+int string_to_struct__296(const char *str, void *pValue, char **endptr)
 {
     int nRet=0;
     skip_whitespace(str);
-    if (pSimstruct__237VTable != NULL) {
-        nRet=string_to_VTable(str, pSimstruct__237VTable, pValue, endptr);
+    if (pSimstruct__296VTable != NULL) {
+        nRet=string_to_VTable(str, pSimstruct__296VTable, pValue, endptr);
     }
     if (nRet==0) {
-        nRet=pConverter->m_pfnStringToStructure(str, pValue, struct__237_fields, 5, endptr);
+        nRet=pConverter->m_pfnStringToStructure(str, pValue, struct__296_fields, 5, endptr);
     }
     return nRet;
 }
 
-int is_struct__237_double_conversion_allowed()
+int is_struct__296_double_conversion_allowed()
 {
-    if (pSimstruct__237VTable != NULL) {
-        return is_VTable_double_conversion_allowed(pSimstruct__237VTable);
+    if (pSimstruct__296VTable != NULL) {
+        return is_VTable_double_conversion_allowed(pSimstruct__296VTable);
     }
     return 0;
 }
 
-int is_struct__237_long_convertion_allowed()
+int is_struct__296_long_convertion_allowed()
 {
-    if (pSimstruct__237VTable != NULL) {
-        return is_VTable_long_convertion_allowed(pSimstruct__237VTable);
+    if (pSimstruct__296VTable != NULL) {
+        return is_VTable_long_convertion_allowed(pSimstruct__296VTable);
     }
     return 0;
 }
 
-void compare_struct__237(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+void compare_struct__296(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
 {
     int unitResult=0;
     /* Customized comparison */
-    if (pSimstruct__237VTable != NULL
-        && pSimstruct__237VTable->m_version >= Scv612
-        && pSimstruct__237VTable->m_pfnCompare != NULL) {
-        if (pSimstruct__237VTable->m_version >= Scv65) {
+    if (pSimstruct__296VTable != NULL
+        && pSimstruct__296VTable->m_version >= Scv612
+        && pSimstruct__296VTable->m_pfnCompare != NULL) {
+        if (pSimstruct__296VTable->m_version >= Scv65) {
             /* R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimstruct__237VTable->m_pfnCompare(pResult, pValue1, pValue2);
+            unitResult=pSimstruct__296VTable->m_pfnCompare(pResult, pValue1, pValue2);
         } else {
             /* Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimstruct__237VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            pSimstruct__296VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
             updateCompareResult(unitResult, pResult);
         }
     } else {
         /* Predefined comparison */
-        pConverter->m_pfnStructureComparison(pResult, pValue1, pValue2, struct__237_fields, 5, pData, pszPath, pfnStrListAppend, pListErrPaths);
+        pConverter->m_pfnStructureComparison(pResult, pValue1, pValue2, struct__296_fields, 5, pData, pszPath, pfnStrListAppend, pListErrPaths);
     }
     if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
         pfnStrListAppend(pszPath, pListErrPaths);
 }
 
-int struct__237_to_double(const void *pValue, double *nRetValue)
+int struct__296_to_double(const void *pValue, double *nRetValue)
 {
-    if (pSimstruct__237VTable != NULL) {
-        return VTable_to_double(pValue, pSimstruct__237VTable, nRetValue);
+    if (pSimstruct__296VTable != NULL) {
+        return VTable_to_double(pValue, pSimstruct__296VTable, nRetValue);
     }
     return 0;
 }
 
-int struct__237_to_long(const void *pValue, long *nRetValue)
+int struct__296_to_long(const void *pValue, long *nRetValue)
 {
-    if (pSimstruct__237VTable != NULL) {
-        return VTable_to_long(pValue, pSimstruct__237VTable, nRetValue);
+    if (pSimstruct__296VTable != NULL) {
+        return VTable_to_long(pValue, pSimstruct__296VTable, nRetValue);
     }
     return 0;
 }
 
-int get_struct__237_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+int get_struct__296_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
 {
-    return get_structure_signature(struct__237_fields, 5, pfnStrAppend, pData);
+    return get_structure_signature(struct__296_fields, 5, pfnStrAppend, pData);
 }
 
-int set_struct__237_default_value(void *pValue)
+int set_struct__296_default_value(void *pValue)
 {
-    set_kcg_bool_default_value(&(((struct__237*)pValue)->valid));
-    set_kcg_int_default_value(&(((struct__237*)pValue)->Loc_Absolute));
-    set_kcg_int_default_value(&(((struct__237*)pValue)->Loc_LRBG));
-    set_kcg_int_default_value(&(((struct__237*)pValue)->Gradient));
-    set_kcg_int_default_value(&(((struct__237*)pValue)->L_Gradient));
+    set_kcg_bool_default_value(&(((struct__296*)pValue)->valid));
+    set_kcg_int_default_value(&(((struct__296*)pValue)->Loc_Absolute));
+    set_kcg_int_default_value(&(((struct__296*)pValue)->Loc_LRBG));
+    set_kcg_int_default_value(&(((struct__296*)pValue)->Gradient));
+    set_kcg_int_default_value(&(((struct__296*)pValue)->L_Gradient));
     return 1;
 }
 
-int check_struct__237_string(const char *str, char **endptr)
+int check_struct__296_string(const char *str, char **endptr)
 {
-    static struct__237 rTemp;
-    return string_to_struct__237(str, &rTemp, endptr);
+    static struct__296 rTemp;
+    return string_to_struct__296(str, &rTemp, endptr);
 }
 
-SimTypeUtils _Type_struct__237_Utils = {
-    struct__237_to_string,
-    check_struct__237_string,
-    string_to_struct__237,
-    is_struct__237_double_conversion_allowed,
-    struct__237_to_double,
-    is_struct__237_long_convertion_allowed,
-    struct__237_to_long,
-    compare_struct__237,
-    get_struct__237_signature,
-    set_struct__237_default_value,
-    sizeof(struct__237)
+SimTypeUtils _Type_struct__296_Utils = {
+    struct__296_to_string,
+    check_struct__296_string,
+    string_to_struct__296,
+    is_struct__296_double_conversion_allowed,
+    struct__296_to_double,
+    is_struct__296_long_convertion_allowed,
+    struct__296_to_long,
+    compare_struct__296,
+    get_struct__296_signature,
+    set_struct__296_default_value,
+    sizeof(struct__296)
 };
 
 /****************************************************************
- ** array__245 
+ ** array__304 
  ****************************************************************/
 
-struct SimTypeVTable *pSimarray__245VTable;
+struct SimTypeVTable *pSimarray__304VTable;
 
-int array__245_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+int array__304_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
 {
-    if (pSimarray__245VTable != NULL
-        && pSimarray__245VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimarray__245VTable->m_pfnToType(SptString, pValue), pData);
+    if (pSimarray__304VTable != NULL
+        && pSimarray__304VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimarray__304VTable->m_pfnToType(SptString, pValue), pData);
     }
-    return pConverter->m_pfnArrayToString(pValue, struct__237_to_string, 50, sizeof(struct__237), pfnStrAppend, pData);
+    return pConverter->m_pfnArrayToString(pValue, struct__296_to_string, 50, sizeof(struct__296), pfnStrAppend, pData);
 }
 
-int string_to_array__245(const char *str, void *pValue, char **endptr)
+int string_to_array__304(const char *str, void *pValue, char **endptr)
 {
     int nRet=0;
     skip_whitespace(str);
-    if (pSimarray__245VTable != NULL) {
-        nRet=string_to_VTable(str, pSimarray__245VTable, pValue, endptr);
+    if (pSimarray__304VTable != NULL) {
+        nRet=string_to_VTable(str, pSimarray__304VTable, pValue, endptr);
     }
     if (nRet==0) {
-        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_struct__237_Utils, 50, sizeof(struct__237), endptr);
+        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_struct__296_Utils, 50, sizeof(struct__296), endptr);
     }
     return nRet;
 }
 
-int is_array__245_double_conversion_allowed()
+int is_array__304_double_conversion_allowed()
 {
-    if (pSimarray__245VTable != NULL) {
-        return is_VTable_double_conversion_allowed(pSimarray__245VTable);
+    if (pSimarray__304VTable != NULL) {
+        return is_VTable_double_conversion_allowed(pSimarray__304VTable);
     }
     return 0;
 }
 
-int is_array__245_long_convertion_allowed()
+int is_array__304_long_convertion_allowed()
 {
-    if (pSimarray__245VTable != NULL) {
-        return is_VTable_long_convertion_allowed(pSimarray__245VTable);
+    if (pSimarray__304VTable != NULL) {
+        return is_VTable_long_convertion_allowed(pSimarray__304VTable);
     }
     return 0;
 }
 
-void compare_array__245(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+void compare_array__304(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
 {
     int unitResult=0;
     /* Customized comparison */
-    if (pSimarray__245VTable != NULL
-        && pSimarray__245VTable->m_version >= Scv612
-        && pSimarray__245VTable->m_pfnCompare != NULL) {
-        if (pSimarray__245VTable->m_version >= Scv65) {
+    if (pSimarray__304VTable != NULL
+        && pSimarray__304VTable->m_version >= Scv612
+        && pSimarray__304VTable->m_pfnCompare != NULL) {
+        if (pSimarray__304VTable->m_version >= Scv65) {
             /* R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimarray__245VTable->m_pfnCompare(pResult, pValue1, pValue2);
+            unitResult=pSimarray__304VTable->m_pfnCompare(pResult, pValue1, pValue2);
         } else {
             /* Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimarray__245VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            pSimarray__304VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
             updateCompareResult(unitResult, pResult);
         }
     } else {
         /* Predefined comparison */
         pConverter->m_pfnArrayComparison(pResult, pValue1, pValue2, 
-                compare_struct__237, 50, sizeof(struct__237), pData, pszPath, pfnStrListAppend, pListErrPaths);
+                compare_struct__296, 50, sizeof(struct__296), pData, pszPath, pfnStrListAppend, pListErrPaths);
     }
     if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
         pfnStrListAppend(pszPath, pListErrPaths);
 }
 
-int array__245_to_double(const void *pValue, double *nRetValue)
+int array__304_to_double(const void *pValue, double *nRetValue)
 {
-    if (pSimarray__245VTable != NULL) {
-        return VTable_to_double(pValue, pSimarray__245VTable, nRetValue);
+    if (pSimarray__304VTable != NULL) {
+        return VTable_to_double(pValue, pSimarray__304VTable, nRetValue);
     }
     return 0;
 }
 
-int array__245_to_long(const void *pValue, long *nRetValue)
+int array__304_to_long(const void *pValue, long *nRetValue)
 {
-    if (pSimarray__245VTable != NULL) {
-        return VTable_to_long(pValue, pSimarray__245VTable, nRetValue);
+    if (pSimarray__304VTable != NULL) {
+        return VTable_to_long(pValue, pSimarray__304VTable, nRetValue);
     }
     return 0;
 }
 
-int get_array__245_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+int get_array__304_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
 {
     int i;
     pfnStrAppend("(", pData);
     for (i = 0; i < 50; i++) {
         if(i > 0)
             pfnStrAppend(",", pData);
-        get_struct__237_signature(pfnStrAppend, pData);
+        get_struct__296_signature(pfnStrAppend, pData);
     }
     pfnStrAppend(")", pData);
     return 1;
 }
 
-int set_array__245_default_value(void *pValue)
+int set_array__304_default_value(void *pValue)
 {
     int i;
     for (i = 0; i < 50; i++)
-        set_struct__237_default_value(&((struct__237*)pValue)[i]);
+        set_struct__296_default_value(&((struct__296*)pValue)[i]);
     return 1;
 }
 
-int check_array__245_string(const char *str, char **endptr)
+int check_array__304_string(const char *str, char **endptr)
 {
-    static array__245 rTemp;
-    return string_to_array__245(str, &rTemp, endptr);
+    static array__304 rTemp;
+    return string_to_array__304(str, &rTemp, endptr);
 }
 
-SimTypeUtils _Type_array__245_Utils = {
-    array__245_to_string,
-    check_array__245_string,
-    string_to_array__245,
-    is_array__245_double_conversion_allowed,
-    array__245_to_double,
-    is_array__245_long_convertion_allowed,
-    array__245_to_long,
-    compare_array__245,
-    get_array__245_signature,
-    set_array__245_default_value,
-    sizeof(array__245)
+SimTypeUtils _Type_array__304_Utils = {
+    array__304_to_string,
+    check_array__304_string,
+    string_to_array__304,
+    is_array__304_double_conversion_allowed,
+    array__304_to_double,
+    is_array__304_long_convertion_allowed,
+    array__304_to_long,
+    compare_array__304,
+    get_array__304_signature,
+    set_array__304_default_value,
+    sizeof(array__304)
 };
 
 /****************************************************************
- ** array__248 
+ ** array__307 
  ****************************************************************/
 
-struct SimTypeVTable *pSimarray__248VTable;
+struct SimTypeVTable *pSimarray__307VTable;
 
-int array__248_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
+int array__307_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData)
 {
-    if (pSimarray__248VTable != NULL
-        && pSimarray__248VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
-       return pfnStrAppend(*(char**)pSimarray__248VTable->m_pfnToType(SptString, pValue), pData);
+    if (pSimarray__307VTable != NULL
+        && pSimarray__307VTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
+       return pfnStrAppend(*(char**)pSimarray__307VTable->m_pfnToType(SptString, pValue), pData);
     }
-    return pConverter->m_pfnArrayToString(pValue, array__245_to_string, 33, sizeof(array__245), pfnStrAppend, pData);
+    return pConverter->m_pfnArrayToString(pValue, array__304_to_string, 33, sizeof(array__304), pfnStrAppend, pData);
 }
 
-int string_to_array__248(const char *str, void *pValue, char **endptr)
+int string_to_array__307(const char *str, void *pValue, char **endptr)
 {
     int nRet=0;
     skip_whitespace(str);
-    if (pSimarray__248VTable != NULL) {
-        nRet=string_to_VTable(str, pSimarray__248VTable, pValue, endptr);
+    if (pSimarray__307VTable != NULL) {
+        nRet=string_to_VTable(str, pSimarray__307VTable, pValue, endptr);
     }
     if (nRet==0) {
-        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_array__245_Utils, 33, sizeof(array__245), endptr);
+        nRet = pConverter->m_pfnStringToArray(str, pValue, &_Type_array__304_Utils, 33, sizeof(array__304), endptr);
     }
     return nRet;
 }
 
-int is_array__248_double_conversion_allowed()
+int is_array__307_double_conversion_allowed()
 {
-    if (pSimarray__248VTable != NULL) {
-        return is_VTable_double_conversion_allowed(pSimarray__248VTable);
+    if (pSimarray__307VTable != NULL) {
+        return is_VTable_double_conversion_allowed(pSimarray__307VTable);
     }
     return 0;
 }
 
-int is_array__248_long_convertion_allowed()
+int is_array__307_long_convertion_allowed()
 {
-    if (pSimarray__248VTable != NULL) {
-        return is_VTable_long_convertion_allowed(pSimarray__248VTable);
+    if (pSimarray__307VTable != NULL) {
+        return is_VTable_long_convertion_allowed(pSimarray__307VTable);
     }
     return 0;
 }
 
-void compare_array__248(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
+void compare_array__307(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
 {
     int unitResult=0;
     /* Customized comparison */
-    if (pSimarray__248VTable != NULL
-        && pSimarray__248VTable->m_version >= Scv612
-        && pSimarray__248VTable->m_pfnCompare != NULL) {
-        if (pSimarray__248VTable->m_version >= Scv65) {
+    if (pSimarray__307VTable != NULL
+        && pSimarray__307VTable->m_version >= Scv612
+        && pSimarray__307VTable->m_pfnCompare != NULL) {
+        if (pSimarray__307VTable->m_version >= Scv65) {
             /* R15 and higher: VTable Compare function shall UPDATE *pResult global flag (*pResult|=SIM_CMP_RES_LT/...): */
-            unitResult=pSimarray__248VTable->m_pfnCompare(pResult, pValue1, pValue2);
+            unitResult=pSimarray__307VTable->m_pfnCompare(pResult, pValue1, pValue2);
         } else {
             /* Before R15: VTable Compare function shall SET *pResult global flag (*pResult=-1/1/0): */
-            pSimarray__248VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
+            pSimarray__307VTable->m_pfnCompare(&unitResult, pValue1, pValue2);
             updateCompareResult(unitResult, pResult);
         }
     } else {
         /* Predefined comparison */
         pConverter->m_pfnArrayComparison(pResult, pValue1, pValue2, 
-                compare_array__245, 33, sizeof(array__245), pData, pszPath, pfnStrListAppend, pListErrPaths);
+                compare_array__304, 33, sizeof(array__304), pData, pszPath, pfnStrListAppend, pListErrPaths);
     }
     if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
         pfnStrListAppend(pszPath, pListErrPaths);
 }
 
-int array__248_to_double(const void *pValue, double *nRetValue)
+int array__307_to_double(const void *pValue, double *nRetValue)
 {
-    if (pSimarray__248VTable != NULL) {
-        return VTable_to_double(pValue, pSimarray__248VTable, nRetValue);
+    if (pSimarray__307VTable != NULL) {
+        return VTable_to_double(pValue, pSimarray__307VTable, nRetValue);
     }
     return 0;
 }
 
-int array__248_to_long(const void *pValue, long *nRetValue)
+int array__307_to_long(const void *pValue, long *nRetValue)
 {
-    if (pSimarray__248VTable != NULL) {
-        return VTable_to_long(pValue, pSimarray__248VTable, nRetValue);
+    if (pSimarray__307VTable != NULL) {
+        return VTable_to_long(pValue, pSimarray__307VTable, nRetValue);
     }
     return 0;
 }
 
-int get_array__248_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
+int get_array__307_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
 {
     int i;
     pfnStrAppend("(", pData);
     for (i = 0; i < 33; i++) {
         if(i > 0)
             pfnStrAppend(",", pData);
-        get_array__245_signature(pfnStrAppend, pData);
+        get_array__304_signature(pfnStrAppend, pData);
     }
     pfnStrAppend(")", pData);
     return 1;
 }
 
-int set_array__248_default_value(void *pValue)
+int set_array__307_default_value(void *pValue)
 {
     int i;
     for (i = 0; i < 33; i++)
-        set_array__245_default_value(&((array__245*)pValue)[i]);
+        set_array__304_default_value(&((array__304*)pValue)[i]);
     return 1;
 }
 
-int check_array__248_string(const char *str, char **endptr)
+int check_array__307_string(const char *str, char **endptr)
 {
-    static array__248 rTemp;
-    return string_to_array__248(str, &rTemp, endptr);
+    static array__307 rTemp;
+    return string_to_array__307(str, &rTemp, endptr);
 }
 
-SimTypeUtils _Type_array__248_Utils = {
-    array__248_to_string,
-    check_array__248_string,
-    string_to_array__248,
-    is_array__248_double_conversion_allowed,
-    array__248_to_double,
-    is_array__248_long_convertion_allowed,
-    array__248_to_long,
-    compare_array__248,
-    get_array__248_signature,
-    set_array__248_default_value,
-    sizeof(array__248)
+SimTypeUtils _Type_array__307_Utils = {
+    array__307_to_string,
+    check_array__307_string,
+    string_to_array__307,
+    is_array__307_double_conversion_allowed,
+    array__307_to_double,
+    is_array__307_long_convertion_allowed,
+    array__307_to_long,
+    compare_array__307,
+    get_array__307_signature,
+    set_array__307_default_value,
+    sizeof(array__307)
 };
 
 /****************************************************************
@@ -1218,7 +1218,7 @@ int Gradient_section_t_TrackAtlasTypes_to_string(const void *pValue, PFNSTRAPPEN
         && pSimGradient_section_t_TrackAtlasTypesVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
        return pfnStrAppend(*(char**)pSimGradient_section_t_TrackAtlasTypesVTable->m_pfnToType(SptString, pValue), pData);
     }
-    return struct__237_to_string(pValue, pfnStrAppend, pData);
+    return struct__296_to_string(pValue, pfnStrAppend, pData);
 }
 
 int string_to_Gradient_section_t_TrackAtlasTypes(const char *str, void *pValue, char **endptr)
@@ -1229,7 +1229,7 @@ int string_to_Gradient_section_t_TrackAtlasTypes(const char *str, void *pValue, 
         nRet=string_to_VTable(str, pSimGradient_section_t_TrackAtlasTypesVTable, pValue, endptr);
     }
     if (nRet==0) {
-        nRet = string_to_struct__237(str, pValue, endptr);
+        nRet = string_to_struct__296(str, pValue, endptr);
     }
     return nRet;
 }
@@ -1239,7 +1239,7 @@ int is_Gradient_section_t_TrackAtlasTypes_double_conversion_allowed()
     if (pSimGradient_section_t_TrackAtlasTypesVTable != NULL) {
         return is_VTable_double_conversion_allowed(pSimGradient_section_t_TrackAtlasTypesVTable);
     }
-    return is_struct__237_double_conversion_allowed();
+    return is_struct__296_double_conversion_allowed();
 }
 
 int is_Gradient_section_t_TrackAtlasTypes_long_convertion_allowed()
@@ -1247,7 +1247,7 @@ int is_Gradient_section_t_TrackAtlasTypes_long_convertion_allowed()
     if (pSimGradient_section_t_TrackAtlasTypesVTable != NULL) {
         return is_VTable_long_convertion_allowed(pSimGradient_section_t_TrackAtlasTypesVTable);
     }
-    return is_struct__237_long_convertion_allowed();
+    return is_struct__296_long_convertion_allowed();
 }
 
 void compare_Gradient_section_t_TrackAtlasTypes(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
@@ -1267,7 +1267,7 @@ void compare_Gradient_section_t_TrackAtlasTypes(int *pResult, const void *pValue
         }
     } else {
         /* Predefined comparison */
-        compare_struct__237(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
+        compare_struct__296(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
     }
     if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
         pfnStrListAppend(pszPath, pListErrPaths);
@@ -1278,7 +1278,7 @@ int Gradient_section_t_TrackAtlasTypes_to_double(const void *pValue, double *nRe
     if (pSimGradient_section_t_TrackAtlasTypesVTable != NULL) {
         return VTable_to_double(pValue, pSimGradient_section_t_TrackAtlasTypesVTable, nRetValue);
     }
-    return struct__237_to_double(pValue, nRetValue);
+    return struct__296_to_double(pValue, nRetValue);
 }
 
 int Gradient_section_t_TrackAtlasTypes_to_long(const void *pValue, long *nRetValue)
@@ -1286,17 +1286,17 @@ int Gradient_section_t_TrackAtlasTypes_to_long(const void *pValue, long *nRetVal
     if (pSimGradient_section_t_TrackAtlasTypesVTable != NULL) {
         return VTable_to_long(pValue, pSimGradient_section_t_TrackAtlasTypesVTable, nRetValue);
     }
-    return struct__237_to_long(pValue, nRetValue);
+    return struct__296_to_long(pValue, nRetValue);
 }
 
 int get_Gradient_section_t_TrackAtlasTypes_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
 {
-    return get_struct__237_signature(pfnStrAppend, pData);
+    return get_struct__296_signature(pfnStrAppend, pData);
 }
 
 int set_Gradient_section_t_TrackAtlasTypes_default_value(void *pValue)
 {
-    return set_struct__237_default_value(pValue);
+    return set_struct__296_default_value(pValue);
 }
 
 int check_Gradient_section_t_TrackAtlasTypes_string(const char *str, char **endptr)
@@ -1331,7 +1331,7 @@ int GradientProfile_t_TrackAtlasTypes_to_string(const void *pValue, PFNSTRAPPEND
         && pSimGradientProfile_t_TrackAtlasTypesVTable->m_pfnGetConvInfo(SptString, SptNone) == 1) {
        return pfnStrAppend(*(char**)pSimGradientProfile_t_TrackAtlasTypesVTable->m_pfnToType(SptString, pValue), pData);
     }
-    return array__245_to_string(pValue, pfnStrAppend, pData);
+    return array__304_to_string(pValue, pfnStrAppend, pData);
 }
 
 int string_to_GradientProfile_t_TrackAtlasTypes(const char *str, void *pValue, char **endptr)
@@ -1342,7 +1342,7 @@ int string_to_GradientProfile_t_TrackAtlasTypes(const char *str, void *pValue, c
         nRet=string_to_VTable(str, pSimGradientProfile_t_TrackAtlasTypesVTable, pValue, endptr);
     }
     if (nRet==0) {
-        nRet = string_to_array__245(str, pValue, endptr);
+        nRet = string_to_array__304(str, pValue, endptr);
     }
     return nRet;
 }
@@ -1352,7 +1352,7 @@ int is_GradientProfile_t_TrackAtlasTypes_double_conversion_allowed()
     if (pSimGradientProfile_t_TrackAtlasTypesVTable != NULL) {
         return is_VTable_double_conversion_allowed(pSimGradientProfile_t_TrackAtlasTypesVTable);
     }
-    return is_array__245_double_conversion_allowed();
+    return is_array__304_double_conversion_allowed();
 }
 
 int is_GradientProfile_t_TrackAtlasTypes_long_convertion_allowed()
@@ -1360,7 +1360,7 @@ int is_GradientProfile_t_TrackAtlasTypes_long_convertion_allowed()
     if (pSimGradientProfile_t_TrackAtlasTypesVTable != NULL) {
         return is_VTable_long_convertion_allowed(pSimGradientProfile_t_TrackAtlasTypesVTable);
     }
-    return is_array__245_long_convertion_allowed();
+    return is_array__304_long_convertion_allowed();
 }
 
 void compare_GradientProfile_t_TrackAtlasTypes(int *pResult, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths)
@@ -1380,7 +1380,7 @@ void compare_GradientProfile_t_TrackAtlasTypes(int *pResult, const void *pValue1
         }
     } else {
         /* Predefined comparison */
-        compare_array__245(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
+        compare_array__304(pResult, pValue1, pValue2, pData, pszPath, pfnStrListAppend, pListErrPaths);
     }
     if (unitResult!=0 && pfnStrListAppend!=NULL && pszPath!=NULL && *pszPath!=0 && pListErrPaths!=NULL)
         pfnStrListAppend(pszPath, pListErrPaths);
@@ -1391,7 +1391,7 @@ int GradientProfile_t_TrackAtlasTypes_to_double(const void *pValue, double *nRet
     if (pSimGradientProfile_t_TrackAtlasTypesVTable != NULL) {
         return VTable_to_double(pValue, pSimGradientProfile_t_TrackAtlasTypesVTable, nRetValue);
     }
-    return array__245_to_double(pValue, nRetValue);
+    return array__304_to_double(pValue, nRetValue);
 }
 
 int GradientProfile_t_TrackAtlasTypes_to_long(const void *pValue, long *nRetValue)
@@ -1399,17 +1399,17 @@ int GradientProfile_t_TrackAtlasTypes_to_long(const void *pValue, long *nRetValu
     if (pSimGradientProfile_t_TrackAtlasTypesVTable != NULL) {
         return VTable_to_long(pValue, pSimGradientProfile_t_TrackAtlasTypesVTable, nRetValue);
     }
-    return array__245_to_long(pValue, nRetValue);
+    return array__304_to_long(pValue, nRetValue);
 }
 
 int get_GradientProfile_t_TrackAtlasTypes_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData)
 {
-    return get_array__245_signature(pfnStrAppend, pData);
+    return get_array__304_signature(pfnStrAppend, pData);
 }
 
 int set_GradientProfile_t_TrackAtlasTypes_default_value(void *pValue)
 {
-    return set_array__245_default_value(pValue);
+    return set_array__304_default_value(pValue);
 }
 
 int check_GradientProfile_t_TrackAtlasTypes_string(const char *str, char **endptr)

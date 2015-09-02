@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-07T17:15:59
+** Generation date: 2015-08-31T17:23:27
 *************************************************************$ */
 #ifndef _MoveGPSectionsToNewLRBGafter_TA_Lib_internal_H_
 #define _MoveGPSectionsToNewLRBGafter_TA_Lib_internal_H_
@@ -9,7 +9,11 @@
 #include "FindFirstRelevantGPForNewLRBG_TA_Lib_internal.h"
 #include "MoveGPSectionsToNewLRBGaf_TA_Lib_internal.h"
 
-/* =====================  no input structure  ====================== */
+/* ========================  input structure  ====================== */
+typedef struct {
+  GradientProfile_t_TrackAtlasTypes /* TA_Lib_internal::MoveGPSectionsToNewLRBGafter::ProfileIn */ ProfileIn;
+  kcg_int /* TA_Lib_internal::MoveGPSectionsToNewLRBGafter::Loc_BG */ Loc_BG;
+} inC_MoveGPSectionsToNewLRBGafter_TA_Lib_internal;
 
 /* ========================  context type  ========================= */
 typedef struct {
@@ -35,8 +39,7 @@ typedef struct {
 /* ===========  node initialization and cycle functions  =========== */
 /* TA_Lib_internal::MoveGPSectionsToNewLRBGafter */
 extern void MoveGPSectionsToNewLRBGafter_TA_Lib_internal(
-  /* TA_Lib_internal::MoveGPSectionsToNewLRBGafter::ProfileIn */GradientProfile_t_TrackAtlasTypes *ProfileIn,
-  /* TA_Lib_internal::MoveGPSectionsToNewLRBGafter::Distance_2LRBGs */kcg_int Distance_2LRBGs,
+  inC_MoveGPSectionsToNewLRBGafter_TA_Lib_internal *inC,
   outC_MoveGPSectionsToNewLRBGafter_TA_Lib_internal *outC);
 
 extern void MoveGPSectionsToNewLRBGafter_reset_TA_Lib_internal(
@@ -45,6 +48,6 @@ extern void MoveGPSectionsToNewLRBGafter_reset_TA_Lib_internal(
 #endif /* _MoveGPSectionsToNewLRBGafter_TA_Lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** MoveGPSectionsToNewLRBGafter_TA_Lib_internal.h
-** Generation date: 2015-08-07T17:15:59
+** Generation date: 2015-08-31T17:23:27
 *************************************************************$ */
 

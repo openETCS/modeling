@@ -1,10 +1,10 @@
 /* TrackAtlas_newmapping.h */
 
-#include "Update_GP_per_LRBG_TA_Lib_internal.h"
+#include "Calc_Distance_from_LRBG_TA_Gradient.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_Update_GP_per_LRBG_TA_Lib_internal inputs_ctx;
-extern outC_Update_GP_per_LRBG_TA_Lib_internal outputs_ctx;
+extern inC_Calc_Distance_from_LRBG_TA_Gradient inputs_ctx;
+extern outC_Calc_Distance_from_LRBG_TA_Gradient outputs_ctx;
 
