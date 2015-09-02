@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-02T01:48:40
+** Generation date: 2015-08-30T11:58:44
 *************************************************************$ */
 #ifndef _Write_P041_TM_trackside_H_
 #define _Write_P041_TM_trackside_H_
@@ -53,6 +53,6 @@ extern void Write_P041_reset_TM_trackside(outC_Write_P041_TM_trackside *outC);
 #endif /* _Write_P041_TM_trackside_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Write_P041_TM_trackside.h
-** Generation date: 2015-09-02T01:48:40
+** Generation date: 2015-08-30T11:58:44
 *************************************************************$ */
 

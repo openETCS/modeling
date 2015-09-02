@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-02T01:48:41
+** Generation date: 2015-08-30T11:58:44
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -14,7 +14,7 @@ void Write_P027V1_reset_TM_trackside_baseline2(
   
   for (i = 0; i < 33; i++) {
     /* 1 */
-    C_P027V1_tracksim_merge_sections_reset_TM_conversions_baseline2(
+    C_P027V1_tracksim_merge_s_reset_TM_conversions_baseline2(
       &outC->_3_Context_1[i]);
   }
   /* 1 */ SEND_MessageData_reset_TM_lib_internal(&outC->_2_Context_1);
@@ -50,7 +50,7 @@ void Write_P027V1_TM_trackside_baseline2(
   kcg_copy_CompressedPacketData_T_Common_Types_Pkg(
     &outC->_L44,
     &outC->Context_1.P027V1_body_compressed);
-  kcg_copy_P027V1_OBU_sectionlist_int_T_TM_baseline2(
+  kcg_copy__2_P027V1_OBU_sectionlist_int_T_TM_baseline2(
     &outC->_L45,
     &outC->Context_1.P027V1_sections);
   outC->_L46 = outC->Context_1.n_iter_k_out;
@@ -92,7 +92,7 @@ void Write_P027V1_TM_trackside_baseline2(
     for (i = 0; i < 33; i++) {
       kcg_copy_CompressedPackets_T_Common_Types_Pkg(&tmp, &outC->_L51);
       /* 1 */
-      C_P027V1_tracksim_merge_sections_TM_conversions_baseline2(
+      C_P027V1_tracksim_merge_s_TM_conversions_baseline2(
         i,
         &tmp,
         &outC->_L45[i],
@@ -119,6 +119,6 @@ void Write_P027V1_TM_trackside_baseline2(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Write_P027V1_TM_trackside_baseline2.c
-** Generation date: 2015-09-02T01:48:41
+** Generation date: 2015-08-30T11:58:44
 *************************************************************$ */
 

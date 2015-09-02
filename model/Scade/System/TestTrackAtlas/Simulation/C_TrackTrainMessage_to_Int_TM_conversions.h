@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-02T01:48:40
+** Generation date: 2015-08-30T11:58:44
 *************************************************************$ */
 #ifndef _C_TrackTrainMessage_to_Int_TM_conversions_H_
 #define _C_TrackTrainMessage_to_Int_TM_conversions_H_
@@ -23,7 +23,7 @@
 /* ========================  context type  ========================= */
 typedef struct {
   /* ---------------------------  outputs  --------------------------- */
-  Radio_TrackTrain_Header_T_TM /* TM_conversions::C_TrackTrainMessage_to_Int::Message_Out */ Message_Out;
+  _3_Radio_TrackTrain_Header_T_TM /* TM_conversions::C_TrackTrainMessage_to_Int::Message_Out */ Message_Out;
   /* -----------------------  no local probes  ----------------------- */
   /* -----------------  no initialization variables  ----------------- */
   /* -----------------------  no local memory  ----------------------- */
@@ -60,7 +60,7 @@ typedef struct {
   NID_MESSAGE /* TM_conversions::C_TrackTrainMessage_to_Int::_L4 */ _L4;
   T_internal_Type_Obu_BasicTypes_Pkg /* TM_conversions::C_TrackTrainMessage_to_Int::_L3 */ _L3;
   kcg_int /* TM_conversions::C_TrackTrainMessage_to_Int::_L2 */ _L2;
-  Radio_TrackTrain_Header_T_TM /* TM_conversions::C_TrackTrainMessage_to_Int::_L32 */ _L32;
+  _3_Radio_TrackTrain_Header_T_TM /* TM_conversions::C_TrackTrainMessage_to_Int::_L32 */ _L32;
   kcg_int /* TM_conversions::C_TrackTrainMessage_to_Int::_L33 */ _L33;
   kcg_int /* TM_conversions::C_TrackTrainMessage_to_Int::_L34 */ _L34;
   kcg_int /* TM_conversions::C_TrackTrainMessage_to_Int::_L35 */ _L35;
@@ -88,6 +88,6 @@ extern void C_TrackTrainMessage_to_Int_reset_TM_conversions(
 #endif /* _C_TrackTrainMessage_to_Int_TM_conversions_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_TrackTrainMessage_to_Int_TM_conversions.h
-** Generation date: 2015-09-02T01:48:40
+** Generation date: 2015-08-30T11:58:44
 *************************************************************$ */
 

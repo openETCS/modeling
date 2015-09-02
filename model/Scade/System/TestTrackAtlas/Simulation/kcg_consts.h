@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-02T01:48:40
+** Generation date: 2015-08-30T11:58:44
 *************************************************************$ */
 #ifndef _KCG_CONSTS_H_
 #define _KCG_CONSTS_H_
@@ -37,11 +37,11 @@ extern const trainPosition_T_TrainPosition_Types_Pck TrainPos1;
 /* TA_Gradient::DEFAULT_GP_Section */
 extern const Gradient_section_t_TrackAtlasTypes DEFAULT_GP_Section_TA_Gradient;
 
-/* TA_MRSP::DIM_maxSSP_individual_sections */
-#define DIM_maxSSP_individual_sections_TA_MRSP 33
-
 /* TrackAtlasTypes::DEFAULT_GradientSection */
 extern const Gradient_section_t_TrackAtlasTypes DEFAULT_GradientSection_TrackAtlasTypes;
+
+/* TA_MRSP::DIM_maxSSP_individual_sections */
+#define DIM_maxSSP_individual_sections_TA_MRSP 33
 
 /* TM::DEFAULT_CompressedPackets */
 extern const CompressedPacketData_T_Common_Types_Pkg DEFAULT_CompressedPackets_TM;
@@ -254,7 +254,7 @@ extern const M_003_int_T_TM_radio_messages LRBG_364_D_00091_1_M003_Messages_426;
 #define INT_Q_ORIENTATION_nominal_TM_conversions 1
 
 /* TM_conversions::ENUM_Q_ORIENTATION_reverse */
-#define ENUM_Q_ORIENTATION_reverse_TM_conversions Q_ORIENTATION_The_balise_group_has_been_passed_by_the_train_in_reverse_direction
+#define ENUM_Q_ORIENTATION_reverse_TM_conversions _4_Q_ORIENTATION_The_balise_group_has_been_passed_by_the_train_in_reverse_direction
 
 /* TM_conversions::ENUM_Q_ORIENTATION_nominal */
 #define ENUM_Q_ORIENTATION_nominal_TM_conversions Q_ORIENTATION_The_balise_group_has_been_passed_by_the_train_in_nominal_direction
@@ -400,6 +400,6 @@ extern const M_TrackTrain_Radio_T_TM_radio_messages no_message_US_Integration_Ju
 #endif /* _KCG_CONSTS_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_consts.h
-** Generation date: 2015-09-02T01:48:40
+** Generation date: 2015-08-30T11:58:44
 *************************************************************$ */
 

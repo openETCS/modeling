@@ -1,7 +1,7 @@
 #include "TestTrackAtlas_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "50b46ed0c5cdf8d6854b27e17e221fe2";
+const char* _SCSIM_CheckSum = "42c9a1d4b6a140afe4b093381a02a0ee";
 const char* _SCSIM_SmuTypesCheckSum = "f79c40cc4a28a84eb05b013596813063";
 
 /*******************************

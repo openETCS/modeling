@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-02T01:48:41
+** Generation date: 2015-08-30T11:58:44
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -96,6 +96,6 @@ void CAST_Q_SCALE_to_int_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** CAST_Q_SCALE_to_int_TM_conversions.c
-** Generation date: 2015-09-02T01:48:41
+** Generation date: 2015-08-30T11:58:44
 *************************************************************$ */
 

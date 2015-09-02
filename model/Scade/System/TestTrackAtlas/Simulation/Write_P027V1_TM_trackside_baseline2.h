@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-02T01:48:40
+** Generation date: 2015-08-30T11:58:44
 *************************************************************$ */
 #ifndef _Write_P027V1_TM_trackside_baseline2_H_
 #define _Write_P027V1_TM_trackside_baseline2_H_
@@ -9,7 +9,7 @@
 #include "SEND_MessageData_TM_lib_internal.h"
 #include "SEND_WriteMessageHeader_TM_lib_internal.h"
 #include "C_P027V1_tracksim_compr_body_TM_conversions_baseline2.h"
-#include "C_P027V1_tracksim_merge_sections_TM_conversions_baseline2.h"
+#include "C_P027V1_tracksim_merge_s_TM_conversions_baseline2.h"
 
 /* =====================  no input structure  ====================== */
 
@@ -22,7 +22,7 @@ typedef struct {
   /* -----------------  no initialization variables  ----------------- */
   /* -----------------------  no local memory  ----------------------- */
   /* ---------------------  sub nodes' contexts  --------------------- */
-  outC_C_P027V1_tracksim_merge_sections_TM_conversions_baseline2 /* 1 */ _3_Context_1[33];
+  outC_C_P027V1_tracksim_merge_s_TM_conversions_baseline2 /* 1 */ _3_Context_1[33];
   outC_SEND_MessageData_TM_lib_internal /* 1 */ _2_Context_1;
   outC_SEND_WriteMessageHeader_TM_lib_internal /* 1 */ _1_Context_1;
   outC_C_P027V1_tracksim_compr_body_TM_conversions_baseline2 /* 1 */ Context_1;
@@ -41,7 +41,7 @@ typedef struct {
   Metadata_T_Common_Types_Pkg /* TM_trackside_baseline2::Write_P027V1::_L41 */ _L41;
   CompressedPacketData_T_Common_Types_Pkg /* TM_trackside_baseline2::Write_P027V1::_L44 */ _L44;
   MetadataElement_T_Common_Types_Pkg /* TM_trackside_baseline2::Write_P027V1::_L43 */ _L43;
-  P027V1_OBU_sectionlist_int_T_TM_baseline2 /* TM_trackside_baseline2::Write_P027V1::_L45 */ _L45;
+  _2_P027V1_OBU_sectionlist_int_T_TM_baseline2 /* TM_trackside_baseline2::Write_P027V1::_L45 */ _L45;
   kcg_int /* TM_trackside_baseline2::Write_P027V1::_L46 */ _L46;
   kcg_int /* TM_trackside_baseline2::Write_P027V1::_L50 */ _L50;
   CompressedPackets_T_Common_Types_Pkg /* TM_trackside_baseline2::Write_P027V1::_L51 */ _L51;
@@ -64,6 +64,6 @@ extern void Write_P027V1_reset_TM_trackside_baseline2(
 #endif /* _Write_P027V1_TM_trackside_baseline2_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Write_P027V1_TM_trackside_baseline2.h
-** Generation date: 2015-09-02T01:48:40
+** Generation date: 2015-08-30T11:58:44
 *************************************************************$ */
 

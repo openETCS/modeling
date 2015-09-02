@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-02T01:48:40
+** Generation date: 2015-08-30T11:58:44
 *************************************************************$ */
 #ifndef _RBC_close_RadioLib_H_
 #define _RBC_close_RadioLib_H_
@@ -39,6 +39,6 @@ extern void RBC_close_reset_RadioLib(outC_RBC_close_RadioLib *outC);
 #endif /* _RBC_close_RadioLib_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** RBC_close_RadioLib.h
-** Generation date: 2015-09-02T01:48:40
+** Generation date: 2015-08-30T11:58:44
 *************************************************************$ */
 
