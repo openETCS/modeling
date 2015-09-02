@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-07T17:15:59
+** Generation date: 2015-09-01T16:26:32
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -21,7 +21,7 @@ void FindFirstRelevantGPForNewLRBG_reset_TA_Lib_internal(
 /* TA_Lib_internal::FindFirstRelevantGPForNewLRBG */
 void FindFirstRelevantGPForNewLRBG_TA_Lib_internal(
   /* TA_Lib_internal::FindFirstRelevantGPForNewLRBG::Profile_in */GradientProfile_t_TrackAtlasTypes *Profile_in,
-  /* TA_Lib_internal::FindFirstRelevantGPForNewLRBG::Distance_2LRBGs */kcg_int Distance_2LRBGs,
+  /* TA_Lib_internal::FindFirstRelevantGPForNewLRBG::Loc_BG */kcg_int Loc_BG,
   outC_FindFirstRelevantGPForNewLRBG_TA_Lib_internal *outC)
 {
   kcg_int i2;
@@ -30,7 +30,7 @@ void FindFirstRelevantGPForNewLRBG_TA_Lib_internal(
   kcg_int i;
   kcg_int noname;
   
-  outC->_L1 = Distance_2LRBGs;
+  outC->_L1 = Loc_BG;
   for (i2 = 0; i2 < 33; i2++) {
     outC->_L170[i2] = outC->_L1;
   }
@@ -67,6 +67,6 @@ void FindFirstRelevantGPForNewLRBG_TA_Lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** FindFirstRelevantGPForNewLRBG_TA_Lib_internal.c
-** Generation date: 2015-08-07T17:15:59
+** Generation date: 2015-09-01T16:26:32
 *************************************************************$ */
 

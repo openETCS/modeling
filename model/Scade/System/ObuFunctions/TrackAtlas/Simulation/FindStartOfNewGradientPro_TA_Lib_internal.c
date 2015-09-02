@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-30T11:09:09
+** Generation date: 2015-08-31T19:03:53
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -12,12 +12,12 @@ void FindStartOfNewGradientPro_reset_TA_Lib_internal(
 {
 }
 
-/* TA_Lib_internal::FindStartOfNewGradientProfile_LOOP */
+/* TA_Lib_internal::FindStartOfNewGradientProfileAbs_LOOP */
 void FindStartOfNewGradientPro_TA_Lib_internal(
-  /* TA_Lib_internal::FindStartOfNewGradientProfile_LOOP::i */kcg_int i,
-  /* TA_Lib_internal::FindStartOfNewGradientProfile_LOOP::Acc */kcg_int Acc,
-  /* TA_Lib_internal::FindStartOfNewGradientProfile_LOOP::distance_in */L_internal_Type_Obu_BasicTypes_Pkg distance_in,
-  /* TA_Lib_internal::FindStartOfNewGradientProfile_LOOP::Profile_in */GradientProfile_t_TrackAtlasTypes *Profile_in,
+  /* TA_Lib_internal::FindStartOfNewGradientProfileAbs_LOOP::i */kcg_int i,
+  /* TA_Lib_internal::FindStartOfNewGradientProfileAbs_LOOP::Acc */kcg_int Acc,
+  /* TA_Lib_internal::FindStartOfNewGradientProfileAbs_LOOP::distance_in */L_internal_Type_Obu_BasicTypes_Pkg distance_in,
+  /* TA_Lib_internal::FindStartOfNewGradientProfileAbs_LOOP::Profile_in */GradientProfile_t_TrackAtlasTypes *Profile_in,
   outC_FindStartOfNewGradientPro_TA_Lib_internal *outC)
 {
   kcg_int noname;
@@ -38,7 +38,7 @@ void FindStartOfNewGradientPro_TA_Lib_internal(
       (Gradient_section_t_TrackAtlasTypes *)
         &DEFAULT_GradientSection_TrackAtlasTypes);
   }
-  outC->_L5 = outC->_L4.Loc_LRBG;
+  outC->_L5 = outC->_L4.Loc_Absolute;
   outC->_L15 = outC->_L12 == outC->_L5;
   outC->_L16 = outC->_L13 & outC->_L15;
   outC->_L17 = !outC->_L16;
@@ -54,6 +54,6 @@ void FindStartOfNewGradientPro_TA_Lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** FindStartOfNewGradientPro_TA_Lib_internal.c
-** Generation date: 2015-08-30T11:09:09
+** Generation date: 2015-08-31T19:03:53
 *************************************************************$ */
 

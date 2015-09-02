@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-07T17:15:59
+** Generation date: 2015-08-31T19:03:53
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -29,11 +29,8 @@ void C_P021_unflatten_sections_TM_lib_internal(
   kcg_int i;
   kcg_int noname;
   
-  outC->_L14 = 0;
-  outC->_L3 = n_iter;
-  outC->_L13 = outC->_L14 < outC->_L3;
   outC->_L11 = nid_packet_ok;
-  outC->_L12 = outC->_L11 & outC->_L13;
+  outC->_L3 = n_iter;
   for (i2 = 0; i2 < 33; i2++) {
     outC->_L5[i2] = outC->_L3;
   }
@@ -41,7 +38,7 @@ void C_P021_unflatten_sections_TM_lib_internal(
   for (i1 = 0; i1 < 33; i1++) {
     kcg_copy_P021_sections_array_flat_T_TM(&outC->_L6[i1], &outC->_L1);
   }
-  if (outC->_L12) {
+  if (outC->_L11) {
     for (i = 0; i < 33; i++) {
       /* 1 */
       C_P021_us_array_TM_lib_internal(
@@ -76,6 +73,6 @@ void C_P021_unflatten_sections_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P021_unflatten_sections_TM_lib_internal.c
-** Generation date: 2015-08-07T17:15:59
+** Generation date: 2015-08-31T19:03:53
 *************************************************************$ */
 
