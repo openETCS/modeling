@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Operator kind="node" name="A_behavior">
+			<inputs>
+				<Variable name="DistanceToTarget">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3cab/6265/1354/54e36c424006"/>
+					</pragmas>
+				</Variable>
+				<Variable name="OverA">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c9a/3AFE/3E0/54e36cd81f7c"/>
+					</pragmas>
+				</Variable>
+				<Variable name="MousePressed">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c99/3AFE/3E0/54e36cd8630c"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="InterpolatedDistanceToTarget">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3cb1/6265/1354/54e36c423e78"/>
+					</pragmas>
+				</Variable>
+				<Variable name="DistanceToTargetVisible">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3c98/3AFE/3E0/54e36cd8682f"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<locals>
+				<Variable name="_L1">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3ca1/6265/1354/54e36c295bbc"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L2">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="float32"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3cb3/6265/1354/54e36c44884"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- _L1 = CalculateDistanceToTarget(_L2); -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L1"/>
+					</lefts>
+					<right>
+						<!-- CalculateDistanceToTarget(_L2) -->
+						<CallExpression>
+							<operator>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="CalculateDistanceToTarget"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L2"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3ca0/6265/1354/54e36c292a97"/>
+					</pragmas>
+				</Equation>
+				<!-- _L2 = DistanceToTarget; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L2"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="DistanceToTarget"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3cb2/6265/1354/54e36c444a42"/>
+					</pragmas>
+				</Equation>
+				<!-- InterpolatedDistanceToTarget = _L1; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="InterpolatedDistanceToTarget"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3cb4/6265/1354/54e36c442e10"/>
+					</pragmas>
+				</Equation>
+				<StateMachine name="ShowDistanceToTarget">
+					<states>
+						<State initial="true" name="VisibleState">
+							<unless>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="InvisibleState"/>
+									</target>
+									<condition>
+										<!-- MousePressed and OverA -->
+										<NAryOp name="1" operator="and">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="MousePressed"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="OverA"/>
+													</path>
+												</IdExpression>
+											</operands>
+										</NAryOp>
+									</condition>
+									<pragmas>
+										<ed:Transition oid="!ed/3ca0/3AFE/3E0/54e36cd875e0"/>
+									</pragmas>
+								</Transition>
+							</unless>
+							<locals>
+								<Variable name="_L1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/3c9f/3AFE/3E0/54e36cd8bcb"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<!-- DistanceToTargetVisible = _L1; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="DistanceToTargetVisible"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/3c9d/3AFE/3E0/54e36cd87e46"/>
+									</pragmas>
+								</Equation>
+								<!-- _L1 = true; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L1"/>
+									</lefts>
+									<right>
+										<ConstValue value="true"/>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/3c9e/3AFE/3E0/54e36cd8502f"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<pragmas>
+								<ed:State oid="!ed/3c9c/3AFE/3E0/54e36cd827fb"/>
+							</pragmas>
+						</State>
+						<State name="InvisibleState">
+							<unless>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="VisibleState"/>
+									</target>
+									<condition>
+										<!-- MousePressed and OverA -->
+										<NAryOp name="2" operator="and">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="MousePressed"/>
+													</path>
+												</IdExpression>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="OverA"/>
+													</path>
+												</IdExpression>
+											</operands>
+										</NAryOp>
+									</condition>
+									<pragmas>
+										<ed:Transition oid="!ed/3ca5/3AFE/3E0/54e36cd838aa"/>
+									</pragmas>
+								</Transition>
+							</unless>
+							<locals>
+								<Variable name="_L1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/3ca4/3AFE/3E0/54e36cd82c27"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<!-- DistanceToTargetVisible = _L1; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="DistanceToTargetVisible"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/3ca2/3AFE/3E0/54e36cd87a8d"/>
+									</pragmas>
+								</Equation>
+								<!-- _L1 = false; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L1"/>
+									</lefts>
+									<right>
+										<ConstValue value="false"/>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/3ca3/3AFE/3E0/54e36cd82c92"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<pragmas>
+								<ed:State oid="!ed/3ca1/3AFE/3E0/54e36cd8e15"/>
+							</pragmas>
+						</State>
+					</states>
+					<pragmas>
+						<ed:StateMachine oid="!ed/3c9b/3AFE/3E0/54e36cd85bc9"/>
+					</pragmas>
+				</StateMachine>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/3bfb/6265/1354/54e36c18549c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<NetDiagram name="diagram_A_behavior_1" landscape="true" format="A4 (210 297)" oid="!ed/3bfc/6265/1354/54e36c18432">
+							<presentationElements>
+								<EquationGE presentable="!ed/3ca0/6265/1354/54e36c292a97">
+									<position>
+										<Point x="9313" y="2582"/>
+									</position>
+									<size>
+										<Size width="1778" height="1397"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/3cb2/6265/1354/54e36c444a42">
+									<position>
+										<Point x="7557" y="3027"/>
+									</position>
+									<size>
+										<Size width="254" height="508"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/3cb4/6265/1354/54e36c442e10">
+									<position>
+										<Point x="12615" y="3027"/>
+									</position>
+									<size>
+										<Size width="339" height="508"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3cb2/6265/1354/54e36c444a42" dstEquation="!ed/3ca0/6265/1354/54e36c292a97">
+									<positions>
+										<Point x="7811" y="3281"/>
+										<Point x="8551" y="3281"/>
+										<Point x="8551" y="3281"/>
+										<Point x="9313" y="3281"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3ca0/6265/1354/54e36c292a97" dstEquation="!ed/3cb4/6265/1354/54e36c442e10">
+									<positions>
+										<Point x="11091" y="3281"/>
+										<Point x="11875" y="3281"/>
+										<Point x="11875" y="3281"/>
+										<Point x="12658" y="3281"/>
+									</positions>
+								</Edge>
+								<StateMachineGE presentable="!ed/3c9b/3AFE/3E0/54e36cd85bc9">
+									<position>
+										<Point x="2371" y="5419"/>
+									</position>
+									<size>
+										<Size width="13674" height="4509"/>
+									</size>
+								</StateMachineGE>
+								<StateGE presentable="!ed/3c9c/3AFE/3E0/54e36cd827fb">
+									<position>
+										<Point x="2921" y="6604"/>
+									</position>
+									<size>
+										<Size width="5980" height="1773"/>
+									</size>
+								</StateGE>
+								<EquationGE presentable="!ed/3c9d/3AFE/3E0/54e36cd87e46">
+									<position>
+										<Point x="5419" y="7514"/>
+									</position>
+									<size>
+										<Size width="318" height="502"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/3c9e/3AFE/3E0/54e36cd8502f">
+									<position>
+										<Point x="4064" y="7620"/>
+									</position>
+									<size>
+										<Size width="169" height="317"/>
+									</size>
+								</EquationGE>
+								<StateGE presentable="!ed/3ca1/3AFE/3E0/54e36cd8e15">
+									<position>
+										<Point x="9440" y="6668"/>
+									</position>
+									<size>
+										<Size width="5980" height="1773"/>
+									</size>
+								</StateGE>
+								<EquationGE presentable="!ed/3ca2/3AFE/3E0/54e36cd87a8d">
+									<position>
+										<Point x="11980" y="7514"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/3ca3/3AFE/3E0/54e36cd82c92">
+									<position>
+										<Point x="10774" y="7620"/>
+									</position>
+									<size>
+										<Size width="169" height="317"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3ca3/3AFE/3E0/54e36cd82c92" dstEquation="!ed/3ca2/3AFE/3E0/54e36cd87a8d">
+									<positions>
+										<Point x="10943" y="7789"/>
+										<Point x="11472" y="7789"/>
+										<Point x="11472" y="7789"/>
+										<Point x="12023" y="7789"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3c9e/3AFE/3E0/54e36cd8502f" dstEquation="!ed/3c9d/3AFE/3E0/54e36cd87e46">
+									<positions>
+										<Point x="4233" y="7789"/>
+										<Point x="4763" y="7789"/>
+										<Point x="4763" y="7789"/>
+										<Point x="5461" y="7789"/>
+									</positions>
+								</Edge>
+								<TransitionGE presentable="!ed/3ca0/3AFE/3E0/54e36cd875e0">
+									<positions>
+										<Point x="7641" y="6604"/>
+										<Point x="9081" y="5948"/>
+										<Point x="9885" y="6287"/>
+										<Point x="10710" y="6668"/>
+									</positions>
+									<labelSize>
+										<Size width="3979" height="318"/>
+									</labelSize>
+									<labelPos>
+										<Point x="7159" y="5538"/>
+									</labelPos>
+									<slashPos>
+										<Point x="10351" y="5546"/>
+									</slashPos>
+								</TransitionGE>
+								<TransitionGE presentable="!ed/3ca5/3AFE/3E0/54e36cd838aa">
+									<positions>
+										<Point x="10710" y="8446"/>
+										<Point x="9208" y="9419"/>
+										<Point x="8192" y="8911"/>
+										<Point x="7176" y="8382"/>
+									</positions>
+									<labelSize>
+										<Size width="4233" height="318"/>
+									</labelSize>
+									<labelPos>
+										<Point x="7080" y="9348"/>
+									</labelPos>
+									<slashPos>
+										<Point x="10520" y="9356"/>
+									</slashPos>
+								</TransitionGE>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>
