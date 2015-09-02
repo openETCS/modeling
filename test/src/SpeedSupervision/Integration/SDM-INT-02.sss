@@ -1,0 +1,57 @@
+# @Title: TBD
+# @Project: $MROOT/ObuFunctions/SpeedSupervison/SpeedSupervision_Integration/SpeedSupervision_Integration.etp
+# @Node: SpeedSupervision_Integration_Pkg::SpeedSupervision_Integration
+# @Config: Simulation
+
+# History:
+# - 31.08.15, J. Kastner: initial version
+source sdm.tcl
+
+
+# @1 set default TrainData (ICE3); default TrainProps; t=0, pos=0, speed=0, accel=0
+# @in 
+# @out 
+setDefaultTrainData
+setDefaultTrainProps
+setDataFromTA freshMRSP=false\
+              mrsp0:valid=true,Loc_Abs=0,Loc_LRBG=0,MRS=140\
+              mrsp1:valid=true,Loc_Abs=3200000,Loc_LRBG=3200000,MRS=0
+setOdo valid=true tstamp=0 pos=0 speed=0 accel=0 
+checkOutput service=undefined emergency=release overpassed=false
+SSM::cycle
+#logSdmToDMI
+#logTarget
+
+# @2
+setOdo tstamp=1000 pos=1000 speed=100 accel=0
+checkDMI valid=true permittedSpeed=140
+checkOutput service=undefined emergency=release overpassed=false
+SSM::cycle
+logSdmToDMI
+#logTarget
+
+# @3
+checkDMI valid=true permittedSpeed=140
+checkOutput service=undefined emergency=release overpassed=false
+SSM::cycle
+
+# @4
+setOdo tstamp=1000 pos=358034 speed=100 accel=0
+setDataFromTA freshMA=true freshMRSP=true\
+              mrsp0:valid=true,Loc_Abs=0,Loc_LRBG=0,MRS=140\
+              mrsp1:valid=true,Loc_Abs=3200000,Loc_LRBG=3200000,MRS=0
+util::assign "$eut/TrainPosition." valid=true timestamp=1000 trainOrientationToLRBG=Q_DIRLRBG_Nominal trainRunningDirectionToLRBG=Q_DIRTRAIN_Nominal\
+                                   trainPositionIsUnknown=false noCoordinateSystemHasBeenAssigned=false linkingIsUsedOnboard=false\
+                                   estimatedFrontEndPosition=358034 maxSafeFrontEndPostion=360489 minSafeFrontEndPosition=356580 nominalOrReverseToLRBG=Q_DLRBG_Nominal
+util::assign "$eut/TrainPosition.LRBG." valid=true nid_c=426 nid_bg=354 q_link=Q_LINK_Linked location.nominal=280203
+ma::setMA valid=true v_loa=0 q_dir=Q_DIR_Nominal v_loa=0 t_loa_unlimited=true t_loa=0 n_iter=0 q_dangerpoint=false q_overlap=false q_endtimer=false\
+          section0:valid=true,q_endsection=true,l_section=224300,q_sectiontimer=false,t_sectiontimer=0,d_sectiontimerstoploc=0\
+          section1:valid=false,q_endsection=false,l_section=0,q_sectiontimer=false,t_sectiontimer=0,d_sectiontimerstoploc=0
+checkOutput service=undefined emergency=release overpassed=false
+SSM::cycle
+logSdmToDMI
+
+setDataFromTA freshMA=false freshMRSP=false
+checkOutput service=undefined emergency=release overpassed=false
+SSM::cycle
+logSdmToDMI

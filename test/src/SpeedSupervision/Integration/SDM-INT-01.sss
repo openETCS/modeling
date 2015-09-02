@@ -1,0 +1,90 @@
+# @Title: TBD
+# @Project: $MROOT/ObuFunctions/SpeedSupervison/SpeedSupervision_Integration/SpeedSupervision_Integration.etp
+# @Node: SpeedSupervision_Integration_Pkg::SpeedSupervision_Integration
+# @Config: Simulation
+
+# History:
+# - 31.08.15, J. Kastner: initial version
+source sdm.tcl
+
+
+# @1 set default TrainData (ICE3); default TrainProps; t=0, pos=0, speed=0, accel=0
+# @in 
+# @out 
+setDefaultTrainData
+setDefaultTrainProps
+setDataFromTA freshMRSP=false\
+              mrsp0:valid=true,Loc_Abs=0,Loc_LRBG=0,MRS=140\
+              mrsp1:valid=true,Loc_Abs=3200000,Loc_LRBG=3200000,MRS=0
+setOdo valid=true tstamp=0 pos=0 speed=0 accel=0 
+checkOutput service=undefined emergency=release overpassed=false
+SSM::cycle
+#logSdmToDMI
+#logTarget
+
+# @2
+setOdo tstamp=1000 pos=1000 speed=100 accel=0
+checkDMI valid=true permittedSpeed=140
+checkOutput service=undefined emergency=release overpassed=false
+SSM::cycle
+#logSdmToDMI
+#logTarget
+
+## @3
+setOdo tstamp=2000 pos=2000 speed=140 accel=0
+checkDMI valid=true permittedSpeed=140
+checkOutput service=undefined emergency=release overpassed=false
+SSM::cycle
+#logSdmToDMI
+##logTarget
+
+# @4
+# @todo why does the cmd for the emergency brake switch from release to undefined?
+setOdo tstamp=3000 pos=3000 speed=160 accel=0
+checkDMI valid=true permittedSpeed=140
+checkOutput service=apply emergency=undefined overpassed=false
+SSM::cycle
+#logSdmToDMI
+#logOdo
+
+# @5
+# @todo why does emergency brake switch back to 'release'?
+#setOdo tstamp=4000 pos=4000 speed=180 accel=0
+#checkDMI valid=true permittedSpeed=140
+#checkOutput service=apply emergency=release overpassed=false
+#SSM::cycle
+#logSdmToDMI
+#logOdo
+
+SSM::cycle
+SSM::cycle
+SSM::cycle
+SSM::cycle
+
+# @6
+#setOdo tstamp=5000 pos=5000 speed=300 accel=0
+#checkDMI valid=true permittedSpeed=140
+#checkOutput service=apply emergency=apply overpassed=false
+#SSM::cycle
+
+# @7
+setOdo tstamp=6000 pos=6000 speed=130 accel=0
+checkDMI valid=true permittedSpeed=140
+checkOutput service=apply emergency=release overpassed=false
+SSM::cycle
+SSM::cycle
+
+# @8
+setOdo tstamp=7000 pos=7000 speed=0 accel=0
+checkDMI valid=true permittedSpeed=140
+checkOutput service=apply emergency=release overpassed=false
+SSM::cycle
+SSM::cycle
+SSM::cycle
+
+## @9
+#setOdo tstamp=100000 pos=7000 speed=0 accel=0
+#checkDMI valid=true permittedSpeed=140
+#checkOutput service=apply emergency=release overpassed=false
+#SSM::cycle
+#logOdo

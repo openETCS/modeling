@@ -10,24 +10,87 @@ source gradient.tcl
 set eut "TA_Gradient::Build_GradientProfile"
 set gpOut "$eut/GP"
 msg::input "$eut/MessageIn"
+train::inputTrainPosition "$eut/train_position"
 
-# @1 NOP
-# @in no message
+# @1 Initialize train position and LRBG
+# @in no message; LRBG 987 @1000cm
 # @out update=false, no gradient data
 msg::setMsgNone
-checkGP 0 valid=false L_Gradient=0
-checkUpdated false
+train::setTrainPos valid=true nominalOrReverseToLRBG=Q_DLRBG_Nominal trainOrientationToLRBG=Q_DIRLRBG_Nominal trainRunningDirectionToLRBG=Q_DIRTRAIN_Nominal
+train::setTrainPosLRBG valid=true nid_c=1 nid_bg=987 q_link=Q_LINK_Linked location.nominal=1000
+checkGP 0 valid=false
+checkOutput updated=false available=false
 SSM::cycle
 
 # @2 Receive a gradient profile with a single section
 # @in
 # @out
-msg::setMsg3 q_dir=$Q_DIR_Nominal 
+# @todo is L_Gradient=0 really correct in this case?
+msg::setMsg3 q_dir=$Q_DIR_Nominal nid_lrbg=987
 msg::addPkt21 q_dir=$Q_DIR_Nominal q_scale=$Q_SCALE_1m n_iter=0\
               section0=123,$Q_GDIR_downhill,10
-checkGP 0 valid=true
+checkOutput updated=true available=true
+checkGP 0 valid=true Loc_Absolute=13300 Loc_LRBG=0 Gradient=-10 L_Gradient=-1000
 checkGP 1 valid=false
-#checkGP 2 valid=false
-#checkUpdated true
 SSM::cycle
 
+# @3 NOP
+msg::setMsgNone
+checkOutput updated=false available=true
+checkGP 0 valid=true Loc_Absolute=13300 Loc_LRBG=0 Gradient=-10 L_Gradient=-1000
+checkGP 1 valid=false
+SSM::cycle
+
+# @4 Append a gradient profile with two sections (one end section)
+msg::setMsg3 
+msg::addPkt21 q_dir=$Q_DIR_Nominal q_scale=$Q_SCALE_10m n_iter=1\
+              section0=23,$Q_GDIR_downhill,2\
+              section1=11,$Q_GDIR_downhill,255
+checkOutput updated=true available=true
+checkGP 0 valid=true Loc_Absolute=13300 Loc_LRBG=0 Gradient=-10 L_Gradient=23000
+checkGP 1 valid=true Loc_Absolute=24000 Loc_LRBG=23000 Gradient=-2 L_Gradient=11000
+checkGP 2 valid=true Loc_Absolute=35000 Loc_LRBG=34000 Gradient=255 L_Gradient=0
+checkGP 3 valid=false
+SSM::cycle
+
+# @5 NOP
+msg::setMsgNone
+checkOutput updated=false available=true
+checkGP 0 valid=true Loc_Absolute=13300 Loc_LRBG=0 Gradient=-10 L_Gradient=23000
+checkGP 1 valid=true Loc_Absolute=24000 Loc_LRBG=23000 Gradient=-2 L_Gradient=11000
+checkGP 2 valid=true Loc_Absolute=35000 Loc_LRBG=34000 Gradient=-255 L_Gradient=0
+checkGP 3 valid=false
+SSM::cycle
+
+
+# @6 change LRBG
+# @todo shouldn't we expect a re-computed gradient profile?
+msg::setRadioMsg nid_lrbg=988
+train::setTrainPosLRBG valid=true nid_c=1 nid_bg=988 q_link=Q_LINK_Linked location.nominal=15000
+train::setTrainPosPrevLRBG valid=true nid_c=1 nid_bg=987 q_link=Q_LINK_Linked location.nominal=1000
+checkOutput updated=false available=true
+checkGP 0 valid=true Loc_Absolute=13300 Loc_LRBG=0 Gradient=-10 L_Gradient=23000
+checkGP 1 valid=true Loc_Absolute=24000 Loc_LRBG=23000 Gradient=-2 L_Gradient=11000
+checkGP 2 valid=true Loc_Absolute=35000 Loc_LRBG=34000 Gradient=-255 L_Gradient=0
+checkGP 3 valid=false
+SSM::cycle
+
+# @7 NOP
+msg::setMsgNone
+checkOutput updated=false available=true
+checkGP 0 valid=true Loc_Absolute=13300 Loc_LRBG=0 Gradient=-10 L_Gradient=23000
+checkGP 1 valid=true Loc_Absolute=24000 Loc_LRBG=23000 Gradient=-2 L_Gradient=11000
+checkGP 2 valid=true Loc_Absolute=35000 Loc_LRBG=34000 Gradient=-255 L_Gradient=0
+checkGP 3 valid=false
+SSM::cycle
+
+# @8 update gradient profile
+msg::setMsg3 nid_lrbg=988
+msg::addPkt21 q_dir=$Q_DIR_Nominal q_scale=$Q_SCALE_10cm n_iter=2\
+              section0=0,$Q_GDIR_uphill,0\
+              section1=22,$Q_GDIR_uphill,33\
+              section2=33,$Q_GDIR_uphill,255
+checkOutput updated=true available=true
+checkGP 0 valid=true Loc_Absolute=15000 Loc_LRBG=0 Gradient=0 L_Gradient=220
+checkGP 1 valid=true Loc_Absolute=15000 Loc_LRBG=0 Gradient=33 L_Gradient=330
+SSM::cycle

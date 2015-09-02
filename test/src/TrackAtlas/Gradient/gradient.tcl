@@ -4,8 +4,14 @@ source ../../lib/train.tcl
 source ../../lib/util.tcl
 source ../../lib/const.tcl
 
-proc checkUpdated {flag} {
-  util::check "$::eut/" "updated=$flag"
+proc checkOutput {args} {
+  foreach arg $args {
+    switch -glob $arg {
+      updated=* { util::check "$::eut/" $arg }
+      available=* { util::check "$::eut/" $arg }
+      default { util::error "unknown property $arg" }
+    }
+  }
 }
 
 proc checkGP {pos args} {

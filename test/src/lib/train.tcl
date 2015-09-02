@@ -11,9 +11,21 @@ namespace eval ::train {
 
   proc inputTrainPosition {path} {
     variable inTrainPos
-    set inTrainPos path
+    set inTrainPos $path
   }
 
-  proc setTrainPos {} {
+  proc setTrainPos {args} {
+    variable inTrainPos
+    eval util::assign "$inTrainPos." $args
+  }
+
+  proc setTrainPosLRBG {args} {
+    variable inTrainPos
+    eval util::assign "$inTrainPos.LRBG." $args
+  }
+
+  proc setTrainPosPrevLRBG {args} {
+    variable inTrainPos
+    eval util::assign "$inTrainPos.prvLRBG." $args
   }
 }

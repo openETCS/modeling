@@ -11,7 +11,6 @@ proc checkMA {flag args} {
       section* {
         set t [split $arg :]
         set sectionId [string range [lindex $t 0] 7 8]
-        util::log $sectionId
         set data [split [lindex $t 1] ,]
         eval util::check {"$::eut/MA_onboard_out.sections\[$sectionId\]."} $data
       }
