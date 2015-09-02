@@ -1,10 +1,10 @@
 /* TrackAtlas_newmapping.h */
 
-#include "Calc_Distance_from_LRBG_TA_Gradient.h"
+#include "EVAL_Q_GDIR_TA_Lib_internal.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_Calc_Distance_from_LRBG_TA_Gradient inputs_ctx;
-extern outC_Calc_Distance_from_LRBG_TA_Gradient outputs_ctx;
+extern inC_EVAL_Q_GDIR_TA_Lib_internal inputs_ctx;
+extern outC_EVAL_Q_GDIR_TA_Lib_internal outputs_ctx;
 
