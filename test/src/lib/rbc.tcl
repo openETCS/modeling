@@ -107,9 +107,9 @@ namespace eval ::rbc {
     rbc::resetMessages
     set t_train [rbc::executeSimulationStep $t_train]
 
-    # (06) Send Train Message 129 including (empty) Packet 0 (OBU to RBC)
+    # (06) Send Train Message 129 including Packet 0 (OBU to RBC)
     rbc::setTrainMsgHeader nid_message=129 t_train=$t_train nid_engine=50001
-    rbc::setTrainMsgPacket0 NID_PACKET=0 L_PACKET=8190
+    rbc::setTrainMsgPacket0 NID_PACKET=0 NID_LRBG=353 L_PACKET=8190
     set t_train [rbc::executeSimulationStep $t_train]
 
     # (07) empty cycle
