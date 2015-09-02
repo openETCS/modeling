@@ -56,95 +56,30 @@ extern int set_kcg_int_default_value(void *pValue);
 extern SimTypeUtils _Type_kcg_int_Utils;
 
 /****************************************************************
- ** struct__296 
+ ** Q_GDIR 
  ****************************************************************/
-extern int struct__296_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_struct__296_string(const char *str, char **endptr);
-extern int string_to_struct__296(const char *str, void *pValue, char **endptr);
-extern int is_struct__296_allow_double_conversion();
-extern int struct__296_to_double(const void *pValue, double *nValue);
-extern int get_struct__296_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_struct__296(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_struct__296_default_value(void *pValue);
-extern SimTypeUtils _Type_struct__296_Utils;
+extern int Q_GDIR_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_Q_GDIR_string(const char *str, char **endptr);
+extern int string_to_Q_GDIR(const char *str, void *pValue, char **endptr);
+extern int is_Q_GDIR_allow_double_conversion();
+extern int Q_GDIR_to_double(const void *pValue, double *nValue);
+extern int get_Q_GDIR_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_Q_GDIR(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_Q_GDIR_default_value(void *pValue);
+extern SimTypeUtils _Type_Q_GDIR_Utils;
 
 /****************************************************************
- ** array__304 
+ ** G_A 
  ****************************************************************/
-extern int array__304_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_array__304_string(const char *str, char **endptr);
-extern int string_to_array__304(const char *str, void *pValue, char **endptr);
-extern int is_array__304_allow_double_conversion();
-extern int array__304_to_double(const void *pValue, double *nValue);
-extern int get_array__304_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_array__304(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_array__304_default_value(void *pValue);
-extern SimTypeUtils _Type_array__304_Utils;
-
-/****************************************************************
- ** array__307 
- ****************************************************************/
-extern int array__307_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_array__307_string(const char *str, char **endptr);
-extern int string_to_array__307(const char *str, void *pValue, char **endptr);
-extern int is_array__307_allow_double_conversion();
-extern int array__307_to_double(const void *pValue, double *nValue);
-extern int get_array__307_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_array__307(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_array__307_default_value(void *pValue);
-extern SimTypeUtils _Type_array__307_Utils;
-
-/****************************************************************
- ** array_int_33 
- ****************************************************************/
-extern int array_int_33_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_array_int_33_string(const char *str, char **endptr);
-extern int string_to_array_int_33(const char *str, void *pValue, char **endptr);
-extern int is_array_int_33_allow_double_conversion();
-extern int array_int_33_to_double(const void *pValue, double *nValue);
-extern int get_array_int_33_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_array_int_33(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_array_int_33_default_value(void *pValue);
-extern SimTypeUtils _Type_array_int_33_Utils;
-
-/****************************************************************
- ** Gradient_section_t_TrackAtlasTypes 
- ****************************************************************/
-extern int Gradient_section_t_TrackAtlasTypes_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_Gradient_section_t_TrackAtlasTypes_string(const char *str, char **endptr);
-extern int string_to_Gradient_section_t_TrackAtlasTypes(const char *str, void *pValue, char **endptr);
-extern int is_Gradient_section_t_TrackAtlasTypes_allow_double_conversion();
-extern int Gradient_section_t_TrackAtlasTypes_to_double(const void *pValue, double *nValue);
-extern int get_Gradient_section_t_TrackAtlasTypes_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_Gradient_section_t_TrackAtlasTypes(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_Gradient_section_t_TrackAtlasTypes_default_value(void *pValue);
-extern SimTypeUtils _Type_Gradient_section_t_TrackAtlasTypes_Utils;
-
-/****************************************************************
- ** GradientProfile_t_TrackAtlasTypes 
- ****************************************************************/
-extern int GradientProfile_t_TrackAtlasTypes_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_GradientProfile_t_TrackAtlasTypes_string(const char *str, char **endptr);
-extern int string_to_GradientProfile_t_TrackAtlasTypes(const char *str, void *pValue, char **endptr);
-extern int is_GradientProfile_t_TrackAtlasTypes_allow_double_conversion();
-extern int GradientProfile_t_TrackAtlasTypes_to_double(const void *pValue, double *nValue);
-extern int get_GradientProfile_t_TrackAtlasTypes_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_GradientProfile_t_TrackAtlasTypes(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_GradientProfile_t_TrackAtlasTypes_default_value(void *pValue);
-extern SimTypeUtils _Type_GradientProfile_t_TrackAtlasTypes_Utils;
-
-/****************************************************************
- ** L_internal_Type_Obu_BasicTypes_Pkg 
- ****************************************************************/
-extern int L_internal_Type_Obu_BasicTypes_Pkg_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
-extern int check_L_internal_Type_Obu_BasicTypes_Pkg_string(const char *str, char **endptr);
-extern int string_to_L_internal_Type_Obu_BasicTypes_Pkg(const char *str, void *pValue, char **endptr);
-extern int is_L_internal_Type_Obu_BasicTypes_Pkg_allow_double_conversion();
-extern int L_internal_Type_Obu_BasicTypes_Pkg_to_double(const void *pValue, double *nValue);
-extern int get_L_internal_Type_Obu_BasicTypes_Pkg_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
-extern void compare_L_internal_Type_Obu_BasicTypes_Pkg(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
-extern int set_L_internal_Type_Obu_BasicTypes_Pkg_default_value(void *pValue);
-extern SimTypeUtils _Type_L_internal_Type_Obu_BasicTypes_Pkg_Utils;
+extern int G_A_to_string(const void *pValue, PFNSTRAPPEND pfnStrAppend, void *pData);
+extern int check_G_A_string(const char *str, char **endptr);
+extern int string_to_G_A(const char *str, void *pValue, char **endptr);
+extern int is_G_A_allow_double_conversion();
+extern int G_A_to_double(const void *pValue, double *nValue);
+extern int get_G_A_signature(int (*pfnStrAppend)(const char *str, void *pData), void *pData);
+extern void compare_G_A(int *nStatus, const void *pValue1, const void *pValue2, void *pData, const char *pszPath, PFNSTRAPPEND pfnStrListAppend, void *pListErrPaths);
+extern int set_G_A_default_value(void *pValue);
+extern SimTypeUtils _Type_G_A_Utils;
 
 /****************************************************************
  ** G_internal_Type_Obu_BasicTypes_Pkg 
