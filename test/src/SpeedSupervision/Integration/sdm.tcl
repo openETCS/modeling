@@ -5,22 +5,24 @@ source ../../lib/ma.tcl
 
 set eut "SpeedSupervision_Integration_Pkg::SpeedSupervision_Integration"
 ma::input "$eut/dataFromTrackAtlas.MA"
+train::inputTrainProps "$eut/trainProps"
+train::inputTrainData "$eut/trainData"
 
-proc setDefaultTrainData {} {
-  setTrainData valid=true acknowledgedByDriver=false trainCategory=NC_TRAIN_Passenger_train\
-               cantDeficientcy=NC_CDTRAIN_Cant_Deficiency_80_mm trainLength=20084 brakePerctage=198\
-               maxTrainSpeed=330 loadingGauge=M_LOADINGGAUGE_G1 axleLoadCategory=M_AXLELOADCAT_HS17\
-               airtightSystem=M_AIRTIGHT_Not_fitted axleNumber=32 numberNationalSystems=2 nationSystems.0=1\
-               nationSystems.1=2 nationSystems.2=0 numberTractionSystems=3
-}
-
-proc setDefaultTrainProps {} {
-  setTrainProps nid_engine=4321 nid_operational=1234 l_train=200\
-                d_baliseAntenna_2_frontend.nominal=500 d_baliseAntenna_2_frontend.d_min=490 d_baliseAntenna_2_frontend.d_max=510\
-                d_frontend_2_rearend.nominal=20084 d_frontend_2_rearend.d_min=19900 d_frontend_2_rearend.d_max=20200\
-                locationAccuracy_DefaultValue.nominal=0 locationAccuracy_DefaultValue.d_min=-100 locationAccuracy_DefaultValue.d_max=100\
-                centerDetectionAcc_DefaultValue.nominal=0 centerDetectionAcc_DefaultValue.d_min=-10 centerDetectionAcc_DefaultValue.d_max=10
-}
+#proc setDefaultTrainData {} {
+#  setTrainData valid=true acknowledgedByDriver=false trainCategory=NC_TRAIN_Passenger_train\
+#               cantDeficientcy=NC_CDTRAIN_Cant_Deficiency_80_mm trainLength=20084 brakePerctage=198\
+#               maxTrainSpeed=330 loadingGauge=M_LOADINGGAUGE_G1 axleLoadCategory=M_AXLELOADCAT_HS17\
+#               airtightSystem=M_AIRTIGHT_Not_fitted axleNumber=32 numberNationalSystems=2 nationSystems.0=1\
+#               nationSystems.1=2 nationSystems.2=0 numberTractionSystems=3
+#}
+#
+#proc setDefaultTrainProps {} {
+#  setTrainProps nid_engine=4321 nid_operational=1234 l_train=200\
+#                d_baliseAntenna_2_frontend.nominal=500 d_baliseAntenna_2_frontend.d_min=490 d_baliseAntenna_2_frontend.d_max=510\
+#                d_frontend_2_rearend.nominal=20084 d_frontend_2_rearend.d_min=19900 d_frontend_2_rearend.d_max=20200\
+#                locationAccuracy_DefaultValue.nominal=0 locationAccuracy_DefaultValue.d_min=-100 locationAccuracy_DefaultValue.d_max=100\
+#                centerDetectionAcc_DefaultValue.nominal=0 centerDetectionAcc_DefaultValue.d_min=-10 centerDetectionAcc_DefaultValue.d_max=10
+#}
 
 proc setDataFromTA {args} {
   foreach arg $args {
@@ -50,13 +52,13 @@ proc logOdo {} {
   util::logOutputs "$::eut/odometry." speed.v_safeNominal speed.v_rawNominal speed.v_lower speed.v_upper
 }
 
-proc setTrainProps {args} {
-  eval util::assign "$::eut/trainProps." $args
-}
-
-proc setTrainData {args} {
-  eval util::assign "$::eut/trainData." $args
-}
+#proc setTrainProps {args} {
+#  eval util::assign "$::eut/trainProps." $args
+#}
+#
+#proc setTrainData {args} {
+#  eval util::assign "$::eut/trainData." $args
+#}
   
 proc setOdo {args} {
   set h "$::eut/odometry"

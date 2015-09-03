@@ -3,6 +3,7 @@
 # History:
 # - 24.08.15, J. Kastner: initial version
 # - 01.09.15, J. Kastner: add logOutputs
+# - 03.09.15, J. Kastner: improve logOutputs
 
 namespace eval ::util {
 
@@ -13,8 +14,13 @@ namespace eval ::util {
 
   proc logOutputs {prefix args} {
     log "values for $prefix: " 
+    set w1 0
     foreach arg $args {
-      log "- $arg=[SSM::get $prefix$arg]"
+      set len [string length $arg]
+      if { $len > $w1 } { set w1 $len }
+    }
+    foreach arg $args {
+      log [format "- %-*s = %s" $w1 $arg [SSM::get $prefix$arg]]
     }
   }
     

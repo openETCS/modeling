@@ -1,0 +1,37 @@
+# @Title: TBD
+# @Project: $MROOT/ObuFunctions/TrackAtlas/TrackAtlas.etp
+# @Node: TA_MRSP::Build_MRSP
+# @Config: Simulation
+
+# History:
+# - 24.08.15, J. Kastner: initial version
+source mrsp.tcl
+# @1 t=0, pos=0, speed=0, accel=0
+# @in 
+# @out 
+#util::assign "$eut/" train_length=20000
+train::setDefaultTrainPos
+msg::setMsgNone
+checkOutput newMRSP=true SSP_available=false
+SSM::cycle
+train::logTrainPos
+
+# @2 NOP
+train::updateTrainPos 100 100
+checkOutput newMRSP=false SSP_available=false
+SSM::cycle
+
+# @3
+train::updateTrainPos 100 100
+msg::setMsg3 q_scale=$Q_SCALE_1m q_dir=$Q_DIR_Nominal nid_lrbg=1
+msg::addPkt27v1 q_scale=$Q_SCALE_1m q_dir=$Q_DIR_Nominal n_iter=0 sections:d_static=111,v_static=5|dstatic=500,v_static=10|dstatic=1000,v_static=127
+SSM::cycle
+checkOutput newMRSP=true SSP_available=true
+logMRSP
+#train::logTrainPos
+#msg::setMsg3
+#msg::addPkt27v1 n_iter=1 q_scale=$Q_SCALE_1m sections:d_static=1,v_static=4|d_static=13
+
+#util::check "$eut/" new_SSP=true {P27V1_local.sections[0].v_static=20}
+#SSM::cycle
+
