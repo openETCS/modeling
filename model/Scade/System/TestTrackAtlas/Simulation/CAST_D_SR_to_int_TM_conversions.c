@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-02T17:34:33
+** Generation date: 2015-08-28T11:32:44
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -32,6 +32,6 @@ void CAST_D_SR_to_int_TM_conversions(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** CAST_D_SR_to_int_TM_conversions.c
-** Generation date: 2015-09-02T17:34:33
+** Generation date: 2015-08-28T11:32:44
 *************************************************************$ */
 

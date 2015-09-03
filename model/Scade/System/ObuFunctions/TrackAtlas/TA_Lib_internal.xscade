@@ -38211,25 +38211,13 @@
 								<ed:Variable oid="!ed/176a84/67BC/DBC/55a26f8c5d48"/>
 							</pragmas>
 						</Variable>
-						<Variable name="train_length_in">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/176a96/67BC/DBC/55a26fcf34d4"/>
-							</pragmas>
-						</Variable>
 					</inputs>
 					<outputs>
-						<Variable name="added_train_length">
+						<Variable name="add_train_length">
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+										<TypeRef name="bool"/>
 									</type>
 								</NamedType>
 							</type>
@@ -38304,50 +38292,46 @@
 									<then>
 										<Action>
 											<locals>
-												<Variable name="_L1">
+												<Variable name="_L2">
 													<type>
 														<NamedType>
 															<type>
-																<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+																<TypeRef name="bool"/>
 															</type>
 														</NamedType>
 													</type>
 													<pragmas>
-														<ed:Variable oid="!ed/176ae5/67BC/DBC/55a270bacef"/>
+														<ed:Variable oid="!ed/6e70c/6847/1218/55e84611574a"/>
 													</pragmas>
 												</Variable>
 											</locals>
 											<data>
-												<!-- _L1 = train_length_in; -->
+												<!-- add_train_length = _L2; -->
 												<Equation>
 													<lefts>
-														<VariableRef name="_L1"/>
+														<VariableRef name="add_train_length"/>
 													</lefts>
 													<right>
 														<IdExpression>
 															<path>
-																<ConstVarRef name="train_length_in"/>
-															</path>
-														</IdExpression>
-													</right>
-													<pragmas>
-														<ed:Equation oid="!ed/176ae4/67BC/DBC/55a270ba1e5d"/>
-													</pragmas>
-												</Equation>
-												<!-- added_train_length = _L1; -->
-												<Equation>
-													<lefts>
-														<VariableRef name="added_train_length"/>
-													</lefts>
-													<right>
-														<IdExpression>
-															<path>
-																<ConstVarRef name="_L1"/>
+																<ConstVarRef name="_L2"/>
 															</path>
 														</IdExpression>
 													</right>
 													<pragmas>
 														<ed:Equation oid="!ed/176aed/67BC/DBC/55a270bd18e2"/>
+													</pragmas>
+												</Equation>
+												<!-- _L2 = true; -->
+												<Equation>
+													<lefts>
+														<VariableRef name="_L2"/>
+													</lefts>
+													<right>
+														<ConstValue value="true"/>
+													</right>
+													<pragmas>
+														<ed:Equation oid="!ed/6e70b/6847/1218/55e84611582e"/>
 													</pragmas>
 												</Equation>
 											</data>
@@ -38363,7 +38347,7 @@
 													<type>
 														<NamedType>
 															<type>
-																<TypeRef name="int"/>
+																<TypeRef name="bool"/>
 															</type>
 														</NamedType>
 													</type>
@@ -38373,10 +38357,10 @@
 												</Variable>
 											</locals>
 											<data>
-												<!-- added_train_length = _L1; -->
+												<!-- add_train_length = _L1; -->
 												<Equation>
 													<lefts>
-														<VariableRef name="added_train_length"/>
+														<VariableRef name="add_train_length"/>
 													</lefts>
 													<right>
 														<IdExpression>
@@ -38389,13 +38373,13 @@
 														<ed:Equation oid="!ed/176aee/67BC/DBC/55a270da4a5f"/>
 													</pragmas>
 												</Equation>
-												<!-- _L1 = 0; -->
+												<!-- _L1 = false; -->
 												<Equation>
 													<lefts>
 														<VariableRef name="_L1"/>
 													</lefts>
 													<right>
-														<ConstValue value="0"/>
+														<ConstValue value="false"/>
 													</right>
 													<pragmas>
 														<ed:Equation oid="!ed/176af7/67BC/DBC/55a270e475ef"/>
@@ -38491,14 +38475,6 @@
 												<Point x="6297" y="2593"/>
 											</positions>
 										</Edge>
-										<EquationGE presentable="!ed/176ae4/67BC/DBC/55a270ba1e5d">
-											<position>
-												<Point x="18203" y="3519"/>
-											</position>
-											<size>
-												<Size width="265" height="503"/>
-											</size>
-										</EquationGE>
 										<EquationGE presentable="!ed/176aed/67BC/DBC/55a270bd18e2">
 											<position>
 												<Point x="24315" y="3519"/>
@@ -38507,14 +38483,6 @@
 												<Size width="318" height="503"/>
 											</size>
 										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/176ae4/67BC/DBC/55a270ba1e5d" dstEquation="!ed/176aed/67BC/DBC/55a270bd18e2">
-											<positions>
-												<Point x="18468" y="3784"/>
-												<Point x="21405" y="3784"/>
-												<Point x="21405" y="3784"/>
-												<Point x="24368" y="3784"/>
-											</positions>
-										</Edge>
 										<EquationGE presentable="!ed/176aee/67BC/DBC/55a270da4a5f">
 											<position>
 												<Point x="24315" y="6006"/>
@@ -38537,6 +38505,22 @@
 												<Point x="21458" y="6271"/>
 												<Point x="21458" y="6271"/>
 												<Point x="24368" y="6271"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/6e70b/6847/1218/55e84611582e">
+											<position>
+												<Point x="18362" y="3625"/>
+											</position>
+											<size>
+												<Size width="212" height="318"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6e70b/6847/1218/55e84611582e" dstEquation="!ed/176aed/67BC/DBC/55a270bd18e2">
+											<positions>
+												<Point x="18574" y="3784"/>
+												<Point x="21458" y="3784"/>
+												<Point x="21458" y="3784"/>
+												<Point x="24368" y="3784"/>
 											</positions>
 										</Edge>
 									</presentationElements>
