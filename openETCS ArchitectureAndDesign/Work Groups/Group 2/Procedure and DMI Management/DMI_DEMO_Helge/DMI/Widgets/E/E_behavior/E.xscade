@@ -1,0 +1,2220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="E">
+			<declarations>
+				<Package name="Colors">
+					<declarations>
+						<Constant name="White">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<value>
+								<ConstValue value="1"/>
+							</value>
+							<pragmas>
+								<ed:Constant oid="!ed/3d4a/2672/990/54e42f442703"/>
+							</pragmas>
+						</Constant>
+						<Constant name="Yellow">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<value>
+								<ConstValue value="8"/>
+							</value>
+							<pragmas>
+								<ed:Constant oid="!ed/3d4b/2672/990/54e42f4e6588"/>
+							</pragmas>
+						</Constant>
+					</declarations>
+					<pragmas>
+						<ed:Package oid="!ed/3d46/2672/990/54e42f3b1b44" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3d47/2672/990/54e42f3b1498" blockKind="constants"/>
+								<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3d48/2672/990/54e42f3b35c8" blockKind="types"/>
+								<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3d49/2672/990/54e42f3b3622" blockKind="sensors"/>
+							</diagrams>
+						</ed:Package>
+					</pragmas>
+				</Package>
+				<Constant name="C_TextLength">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int32"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="16"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/3c08/6F75/1760/54e37cce3c3c"/>
+					</pragmas>
+				</Constant>
+				<Constant name="C_DefaultText">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="T_E5to9AreaText"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '] -->
+						<DataArrayOp>
+							<data>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+							</data>
+						</DataArrayOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/3c78/2672/990/54e42e612f15"/>
+					</pragmas>
+				</Constant>
+				<Constant name="C_DefaultTime">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="T_E5to9AreaTime"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- [' ', ' ', ' ', ' ', ' '] -->
+						<DataArrayOp>
+							<data>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+								<ConstValue value="' '"/>
+							</data>
+						</DataArrayOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/3c86/2672/990/54e42e67379e"/>
+					</pragmas>
+				</Constant>
+				<Constant name="C_TextCycleTime">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int32"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="100"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/42cc/2672/990/54e4312e5ade"/>
+					</pragmas>
+				</Constant>
+				<Type name="T_E5to9AreaText">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="char"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="C_TextLength"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3c19/6F75/1760/54e37ce25230"/>
+					</pragmas>
+				</Type>
+				<Type name="T_E5to9AreaTime">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="char"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="5"/>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3c20/2672/990/54e42db4c5d"/>
+					</pragmas>
+				</Type>
+				<Operator kind="node" name="Behavior">
+					<outputs>
+						<Variable name="E5_Text">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_E5to9AreaText"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c07/6F75/1760/54e37cb868d6"/>
+							</pragmas>
+						</Variable>
+						<Variable name="E5_Time">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_E5to9AreaTime"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c37/2672/990/54e42dd94267"/>
+							</pragmas>
+						</Variable>
+						<Variable name="E5_FontColor">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c01/6F75/1760/54e37ca95e81"/>
+							</pragmas>
+						</Variable>
+						<Variable name="E6_Text">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_E5to9AreaText"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c31/6F75/1760/54e37d247de8"/>
+							</pragmas>
+						</Variable>
+						<Variable name="E6_Time">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_E5to9AreaTime"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c3e/2672/990/54e42ddb6e79"/>
+							</pragmas>
+						</Variable>
+						<Variable name="E6_FontColor">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c37/6F75/1760/54e37d245e15"/>
+							</pragmas>
+						</Variable>
+						<Variable name="E7_Text">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_E5to9AreaText"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c3e/6F75/1760/54e37d25424c"/>
+							</pragmas>
+						</Variable>
+						<Variable name="E7_Time">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_E5to9AreaTime"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c45/2672/990/54e42ddc4dde"/>
+							</pragmas>
+						</Variable>
+						<Variable name="E7_FontColor">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c44/6F75/1760/54e37d252fb9"/>
+							</pragmas>
+						</Variable>
+						<Variable name="E8_Text">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_E5to9AreaText"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c4b/6F75/1760/54e37d267a96"/>
+							</pragmas>
+						</Variable>
+						<Variable name="E8_Time">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_E5to9AreaTime"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c4c/2672/990/54e42ddd6ac"/>
+							</pragmas>
+						</Variable>
+						<Variable name="E8_FontColor">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c51/6F75/1760/54e37d262acd"/>
+							</pragmas>
+						</Variable>
+						<Variable name="E9_Text">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_E5to9AreaText"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c58/6F75/1760/54e37d274726"/>
+							</pragmas>
+						</Variable>
+						<Variable name="E9_Time">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_E5to9AreaTime"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c53/2672/990/54e42dde66c9"/>
+							</pragmas>
+						</Variable>
+						<Variable name="E9_FontColor">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3c5e/6F75/1760/54e37d2741f4"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<signals>
+						<Signal name="SwitchColor">
+							<pragmas>
+								<ed:Signal oid="!ed/437c/2672/990/54e431f31255"/>
+							</pragmas>
+						</Signal>
+					</signals>
+					<data>
+						<StateMachine name="SM4">
+							<states>
+								<State initial="true" name="ToplevelReset">
+									<unless>
+										<Transition kind="restart">
+											<target>
+												<StateRef name="ToplevelReset"/>
+											</target>
+											<condition>
+												<!-- (20 * C_TextCycleTime) times true -->
+												<BinaryOp name="13" operator="times">
+													<operands>
+														<!-- 20 * C_TextCycleTime -->
+														<NAryOp name="1" operator="*">
+															<operands>
+																<ConstValue value="20"/>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="C_TextCycleTime"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</NAryOp>
+														<ConstValue value="true"/>
+													</operands>
+												</BinaryOp>
+											</condition>
+											<effect>
+												<Action>
+													<pragmas>
+														<ed:Action oid="!ed/4a18/2672/990/54e4344d3952"/>
+													</pragmas>
+												</Action>
+											</effect>
+											<pragmas>
+												<ed:Transition oid="!ed/4a0d/2672/990/54e434437cd0"/>
+											</pragmas>
+										</Transition>
+									</unless>
+									<data>
+										<StateMachine name="SM1">
+											<states>
+												<State initial="true" name="White">
+													<data>
+														<StateMachine name="SM2">
+															<states>
+																<State initial="true" name="InitState">
+																	<data>
+																		<!-- E5_Text = ['S', 'C', 'A', 'D', 'E', ' ', 'D', 'i', 's', 'p', 'l', 'a', 'y', ' ', ... -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E5_Text"/>
+																			</lefts>
+																			<right>
+																				<!-- ['S', 'C', 'A', 'D', 'E', ' ', 'D', 'i', 's', 'p', 'l', 'a', 'y', ' ', ' ', ' '] -->
+																				<DataArrayOp name="67">
+																					<data>
+																						<ConstValue value="'S'"/>
+																						<ConstValue value="'C'"/>
+																						<ConstValue value="'A'"/>
+																						<ConstValue value="'D'"/>
+																						<ConstValue value="'E'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="'D'"/>
+																						<ConstValue value="'i'"/>
+																						<ConstValue value="'s'"/>
+																						<ConstValue value="'p'"/>
+																						<ConstValue value="'l'"/>
+																						<ConstValue value="'a'"/>
+																						<ConstValue value="'y'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48ce/2672/990/54e43345898"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E6_Text = C_DefaultText; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E6_Text"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="C_DefaultText"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48cf/2672/990/54e433454416"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E7_Text = C_DefaultText; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E7_Text"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="C_DefaultText"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48d0/2672/990/54e4334567b8"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E8_Text = C_DefaultText; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E8_Text"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="C_DefaultText"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48d1/2672/990/54e433456a72"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E9_Text = C_DefaultText; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E9_Text"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="C_DefaultText"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48d2/2672/990/54e43345998"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E5_Time = ['0', '0', ':', '0', '0']; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E5_Time"/>
+																			</lefts>
+																			<right>
+																				<!-- ['0', '0', ':', '0', '0'] -->
+																				<DataArrayOp name="68">
+																					<data>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="':'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'0'"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48d3/2672/990/54e433452596"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E6_Time = C_DefaultTime; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E6_Time"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="C_DefaultTime"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48d4/2672/990/54e4334556fb"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E7_Time = C_DefaultTime; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E7_Time"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="C_DefaultTime"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48d5/2672/990/54e433451da0"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E8_Time = C_DefaultTime; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E8_Time"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="C_DefaultTime"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48d6/2672/990/54e433453860"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E9_Time = C_DefaultTime; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E9_Time"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="C_DefaultTime"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48d7/2672/990/54e433455e87"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E5_FontColor = Colors::White; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E5_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::White"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48d8/2672/990/54e4334518e"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E6_FontColor = Colors::White; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E6_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::White"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48d9/2672/990/54e433452df4"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E7_FontColor = Colors::White; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E7_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::White"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48da/2672/990/54e433452684"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E8_FontColor = Colors::White; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E8_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::White"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48db/2672/990/54e4334548fb"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E9_FontColor = Colors::White; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E9_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::White"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/48dc/2672/990/54e433456cd0"/>
+																			</pragmas>
+																		</Equation>
+																	</data>
+																	<until>
+																		<Transition kind="restart">
+																			<target>
+																				<StateRef name="WhiteE6"/>
+																			</target>
+																			<condition>
+																				<!-- C_TextCycleTime times true -->
+																				<BinaryOp name="1" operator="times">
+																					<operands>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="C_TextCycleTime"/>
+																							</path>
+																						</IdExpression>
+																						<ConstValue value="true"/>
+																					</operands>
+																				</BinaryOp>
+																			</condition>
+																			<effect>
+																				<Action>
+																					<pragmas>
+																						<ed:Action oid="!ed/42b2/2672/990/54e431112191"/>
+																					</pragmas>
+																				</Action>
+																			</effect>
+																			<pragmas>
+																				<ed:Transition oid="!ed/42a6/2672/990/54e431062390"/>
+																			</pragmas>
+																		</Transition>
+																	</until>
+																	<pragmas>
+																		<ed:State oid="!ed/3c6f/2672/990/54e42e48168a"/>
+																	</pragmas>
+																</State>
+																<State name="WhiteE6">
+																	<data>
+																		<!-- E6_Text = ['S', 'C', 'A', 'D', 'E', ' ', 'S', 'u', 'i', 't', 'e', ' ', ' ', ' ', ... -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E6_Text"/>
+																			</lefts>
+																			<right>
+																				<!-- ['S', 'C', 'A', 'D', 'E', ' ', 'S', 'u', 'i', 't', 'e', ' ', ' ', ' ', ' ', ' '] -->
+																				<DataArrayOp name="69">
+																					<data>
+																						<ConstValue value="'S'"/>
+																						<ConstValue value="'C'"/>
+																						<ConstValue value="'A'"/>
+																						<ConstValue value="'D'"/>
+																						<ConstValue value="'E'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="'S'"/>
+																						<ConstValue value="'u'"/>
+																						<ConstValue value="'i'"/>
+																						<ConstValue value="'t'"/>
+																						<ConstValue value="'e'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/491f/2672/990/54e4337069cb"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E6_Time = ['0', '0', ':', '0', '1']; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E6_Time"/>
+																			</lefts>
+																			<right>
+																				<!-- ['0', '0', ':', '0', '1'] -->
+																				<DataArrayOp name="70">
+																					<data>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="':'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'1'"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4920/2672/990/54e43370307a"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E6_FontColor = Colors::White; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E6_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::White"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4921/2672/990/54e433706f8e"/>
+																			</pragmas>
+																		</Equation>
+																	</data>
+																	<until>
+																		<Transition kind="restart">
+																			<target>
+																				<StateRef name="WhiteE7"/>
+																			</target>
+																			<condition>
+																				<!-- C_TextCycleTime times true -->
+																				<BinaryOp name="6" operator="times">
+																					<operands>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="C_TextCycleTime"/>
+																							</path>
+																						</IdExpression>
+																						<ConstValue value="true"/>
+																					</operands>
+																				</BinaryOp>
+																			</condition>
+																			<pragmas>
+																				<ed:Transition oid="!ed/42c2/2672/990/54e4311473bf"/>
+																			</pragmas>
+																		</Transition>
+																	</until>
+																	<pragmas>
+																		<ed:State oid="!ed/3f47/2672/990/54e42fbe1c94"/>
+																	</pragmas>
+																</State>
+																<State name="WhiteE7">
+																	<data>
+																		<!-- E7_Text = ['E', 'T', 'C', 'S', ' ', 'D', 'r', 'i', 'v', 'e', 'r', ' ', ' ', ' ', ... -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E7_Text"/>
+																			</lefts>
+																			<right>
+																				<!-- ['E', 'T', 'C', 'S', ' ', 'D', 'r', 'i', 'v', 'e', 'r', ' ', ' ', ' ', ' ', ' '] -->
+																				<DataArrayOp name="77">
+																					<data>
+																						<ConstValue value="'E'"/>
+																						<ConstValue value="'T'"/>
+																						<ConstValue value="'C'"/>
+																						<ConstValue value="'S'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="'D'"/>
+																						<ConstValue value="'r'"/>
+																						<ConstValue value="'i'"/>
+																						<ConstValue value="'v'"/>
+																						<ConstValue value="'e'"/>
+																						<ConstValue value="'r'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4964/2672/990/54e433892c73"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E7_Time = ['0', '0', ':', '0', '2']; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E7_Time"/>
+																			</lefts>
+																			<right>
+																				<!-- ['0', '0', ':', '0', '2'] -->
+																				<DataArrayOp name="78">
+																					<data>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="':'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'2'"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4965/2672/990/54e433895b5"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E7_FontColor = Colors::White; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E7_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::White"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4966/2672/990/54e4338943af"/>
+																			</pragmas>
+																		</Equation>
+																	</data>
+																	<until>
+																		<Transition kind="restart">
+																			<target>
+																				<StateRef name="WhiteE8"/>
+																			</target>
+																			<condition>
+																				<!-- C_TextCycleTime times true -->
+																				<BinaryOp name="5" operator="times">
+																					<operands>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="C_TextCycleTime"/>
+																							</path>
+																						</IdExpression>
+																						<ConstValue value="true"/>
+																					</operands>
+																				</BinaryOp>
+																			</condition>
+																			<pragmas>
+																				<ed:Transition oid="!ed/42c3/2672/990/54e4311a5e36"/>
+																			</pragmas>
+																		</Transition>
+																	</until>
+																	<pragmas>
+																		<ed:State oid="!ed/3ffc/2672/990/54e42fe9335f"/>
+																	</pragmas>
+																</State>
+																<State name="WhiteE8">
+																	<data>
+																		<!-- E8_Text = ['M', 'a', 'c', 'h', 'i', 'n', 'e', ' ', 'I', 'n', 't', 'e', 'r', '-', ... -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E8_Text"/>
+																			</lefts>
+																			<right>
+																				<!-- ['M', 'a', 'c', 'h', 'i', 'n', 'e', ' ', 'I', 'n', 't', 'e', 'r', '-', ' ', ' '] -->
+																				<DataArrayOp name="81">
+																					<data>
+																						<ConstValue value="'M'"/>
+																						<ConstValue value="'a'"/>
+																						<ConstValue value="'c'"/>
+																						<ConstValue value="'h'"/>
+																						<ConstValue value="'i'"/>
+																						<ConstValue value="'n'"/>
+																						<ConstValue value="'e'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="'I'"/>
+																						<ConstValue value="'n'"/>
+																						<ConstValue value="'t'"/>
+																						<ConstValue value="'e'"/>
+																						<ConstValue value="'r'"/>
+																						<ConstValue value="'-'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4986/2672/990/54e433986d36"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E8_Time = ['0', '0', ':', '0', '3']; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E8_Time"/>
+																			</lefts>
+																			<right>
+																				<!-- ['0', '0', ':', '0', '3'] -->
+																				<DataArrayOp name="82">
+																					<data>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="':'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'3'"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4987/2672/990/54e433987880"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E8_FontColor = Colors::White; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E8_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::White"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4988/2672/990/54e433982931"/>
+																			</pragmas>
+																		</Equation>
+																	</data>
+																	<until>
+																		<Transition kind="restart">
+																			<target>
+																				<StateRef name="WhiteE9"/>
+																			</target>
+																			<condition>
+																				<!-- C_TextCycleTime times true -->
+																				<BinaryOp name="4" operator="times">
+																					<operands>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="C_TextCycleTime"/>
+																							</path>
+																						</IdExpression>
+																						<ConstValue value="true"/>
+																					</operands>
+																				</BinaryOp>
+																			</condition>
+																			<pragmas>
+																				<ed:Transition oid="!ed/42c4/2672/990/54e4311d45b1"/>
+																			</pragmas>
+																		</Transition>
+																	</until>
+																	<pragmas>
+																		<ed:State oid="!ed/40a1/2672/990/54e43017d0a"/>
+																	</pragmas>
+																</State>
+																<State name="WhiteE9">
+																	<data>
+																		<!-- E9_Text = ['f', 'a', 'c', 'e', ' ', 'd', 'e', 'm', 'o', ' ', ' ', ' ', ' ', ' ', ... -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E9_Text"/>
+																			</lefts>
+																			<right>
+																				<!-- ['f', 'a', 'c', 'e', ' ', 'd', 'e', 'm', 'o', ' ', ' ', ' ', ' ', ' ', ' ', ' '] -->
+																				<DataArrayOp name="85">
+																					<data>
+																						<ConstValue value="'f'"/>
+																						<ConstValue value="'a'"/>
+																						<ConstValue value="'c'"/>
+																						<ConstValue value="'e'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="'d'"/>
+																						<ConstValue value="'e'"/>
+																						<ConstValue value="'m'"/>
+																						<ConstValue value="'o'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/49a4/2672/990/54e433a426af"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E9_Time = ['0', '0', ':', '0', '4']; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E9_Time"/>
+																			</lefts>
+																			<right>
+																				<!-- ['0', '0', ':', '0', '4'] -->
+																				<DataArrayOp name="86">
+																					<data>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="':'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'4'"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/49a5/2672/990/54e433a46e64"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E9_FontColor = Colors::White; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E9_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::White"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/49a6/2672/990/54e433a45772"/>
+																			</pragmas>
+																		</Equation>
+																	</data>
+																	<until>
+																		<Transition kind="restart">
+																			<target>
+																				<StateRef name="WhiteE5"/>
+																			</target>
+																			<condition>
+																				<!-- C_TextCycleTime times true -->
+																				<BinaryOp name="3" operator="times">
+																					<operands>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="C_TextCycleTime"/>
+																							</path>
+																						</IdExpression>
+																						<ConstValue value="true"/>
+																					</operands>
+																				</BinaryOp>
+																			</condition>
+																			<effect>
+																				<Action>
+																					<data>
+																						<!--  emit 'SwitchColor; -->
+																						<Emission>
+																							<signals>
+																								<SignalRef name="SwitchColor"/>
+																							</signals>
+																							<pragmas>
+																								<ed:Emission oid="!ed/439e/2672/990/54e4321d1b6c"/>
+																							</pragmas>
+																						</Emission>
+																					</data>
+																					<pragmas>
+																						<ed:Action oid="!ed/4394/2672/990/54e4321d5d96"/>
+																					</pragmas>
+																				</Action>
+																			</effect>
+																			<pragmas>
+																				<ed:Transition oid="!ed/42c5/2672/990/54e431224dc4"/>
+																			</pragmas>
+																		</Transition>
+																	</until>
+																	<pragmas>
+																		<ed:State oid="!ed/416c/2672/990/54e430442968"/>
+																	</pragmas>
+																</State>
+																<State name="WhiteE5">
+																	<data>
+																		<!-- E5_Text = ['S', 'C', 'A', 'D', 'E', ' ', 'D', 'i', 's', 'p', 'l', 'a', 'y', ' ', ... -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E5_Text"/>
+																			</lefts>
+																			<right>
+																				<!-- ['S', 'C', 'A', 'D', 'E', ' ', 'D', 'i', 's', 'p', 'l', 'a', 'y', ' ', ' ', ' '] -->
+																				<DataArrayOp name="71">
+																					<data>
+																						<ConstValue value="'S'"/>
+																						<ConstValue value="'C'"/>
+																						<ConstValue value="'A'"/>
+																						<ConstValue value="'D'"/>
+																						<ConstValue value="'E'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="'D'"/>
+																						<ConstValue value="'i'"/>
+																						<ConstValue value="'s'"/>
+																						<ConstValue value="'p'"/>
+																						<ConstValue value="'l'"/>
+																						<ConstValue value="'a'"/>
+																						<ConstValue value="'y'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4938/2672/990/54e4337755b9"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E5_Time = ['0', '0', ':', '0', '0']; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E5_Time"/>
+																			</lefts>
+																			<right>
+																				<!-- ['0', '0', ':', '0', '0'] -->
+																				<DataArrayOp name="72">
+																					<data>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="':'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'0'"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4939/2672/990/54e4337764e2"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E5_FontColor = Colors::White; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E5_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::White"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/493a/2672/990/54e4337756b"/>
+																			</pragmas>
+																		</Equation>
+																	</data>
+																	<until>
+																		<Transition kind="restart">
+																			<target>
+																				<StateRef name="WhiteE6"/>
+																			</target>
+																			<condition>
+																				<!-- C_TextCycleTime times true -->
+																				<BinaryOp name="2" operator="times">
+																					<operands>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="C_TextCycleTime"/>
+																							</path>
+																						</IdExpression>
+																						<ConstValue value="true"/>
+																					</operands>
+																				</BinaryOp>
+																			</condition>
+																			<pragmas>
+																				<ed:Transition oid="!ed/42c9/2672/990/54e4312826f3"/>
+																			</pragmas>
+																		</Transition>
+																	</until>
+																	<pragmas>
+																		<ed:State oid="!ed/4204/2672/990/54e430566205"/>
+																	</pragmas>
+																</State>
+															</states>
+															<pragmas>
+																<ed:StateMachine oid="!ed/3c66/2672/990/54e42e333d77"/>
+															</pragmas>
+														</StateMachine>
+													</data>
+													<until>
+														<Transition kind="resume">
+															<target>
+																<StateRef name="Yellow"/>
+															</target>
+															<condition>
+																<Present>
+																	<signal>
+																		<SignalRef name="SwitchColor"/>
+																	</signal>
+																</Present>
+															</condition>
+															<pragmas>
+																<ed:Transition oid="!ed/48ac/2672/990/54e4330f3918"/>
+															</pragmas>
+														</Transition>
+													</until>
+													<pragmas>
+														<ed:State oid="!ed/3c54/2672/990/54e42dfb5422"/>
+													</pragmas>
+												</State>
+												<State name="Yellow">
+													<data>
+														<StateMachine name="SM2">
+															<states>
+																<State name="YellowE6">
+																	<data>
+																		<!-- E6_Text = ['S', 'C', 'A', 'D', 'E', ' ', 'S', 'u', 'i', 't', 'e', ' ', ' ', ' ', ... -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E6_Text"/>
+																			</lefts>
+																			<right>
+																				<!-- ['S', 'C', 'A', 'D', 'E', ' ', 'S', 'u', 'i', 't', 'e', ' ', ' ', ' ', ' ', ' '] -->
+																				<DataArrayOp name="75">
+																					<data>
+																						<ConstValue value="'S'"/>
+																						<ConstValue value="'C'"/>
+																						<ConstValue value="'A'"/>
+																						<ConstValue value="'D'"/>
+																						<ConstValue value="'E'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="'S'"/>
+																						<ConstValue value="'u'"/>
+																						<ConstValue value="'i'"/>
+																						<ConstValue value="'t'"/>
+																						<ConstValue value="'e'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4951/2672/990/54e4337e5211"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E6_Time = ['0', '0', ':', '0', '1']; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E6_Time"/>
+																			</lefts>
+																			<right>
+																				<!-- ['0', '0', ':', '0', '1'] -->
+																				<DataArrayOp name="76">
+																					<data>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="':'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'1'"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4952/2672/990/54e4337e183c"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E6_FontColor = Colors::Yellow; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E6_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::Yellow"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4953/2672/990/54e4337e3125"/>
+																			</pragmas>
+																		</Equation>
+																	</data>
+																	<until>
+																		<Transition kind="restart">
+																			<target>
+																				<StateRef name="YellowE7"/>
+																			</target>
+																			<condition>
+																				<!-- C_TextCycleTime times true -->
+																				<BinaryOp name="8" operator="times">
+																					<operands>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="C_TextCycleTime"/>
+																							</path>
+																						</IdExpression>
+																						<ConstValue value="true"/>
+																					</operands>
+																				</BinaryOp>
+																			</condition>
+																			<pragmas>
+																				<ed:Transition oid="!ed/481e/2672/990/54e4324956fe"/>
+																			</pragmas>
+																		</Transition>
+																	</until>
+																	<pragmas>
+																		<ed:State oid="!ed/481a/2672/990/54e43249d1d"/>
+																	</pragmas>
+																</State>
+																<State name="YellowE7">
+																	<data>
+																		<!-- E7_Text = ['E', 'T', 'C', 'S', ' ', 'D', 'r', 'i', 'v', 'e', 'r', ' ', ' ', ' ', ... -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E7_Text"/>
+																			</lefts>
+																			<right>
+																				<!-- ['E', 'T', 'C', 'S', ' ', 'D', 'r', 'i', 'v', 'e', 'r', ' ', ' ', ' ', ' ', ' '] -->
+																				<DataArrayOp name="79">
+																					<data>
+																						<ConstValue value="'E'"/>
+																						<ConstValue value="'T'"/>
+																						<ConstValue value="'C'"/>
+																						<ConstValue value="'S'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="'D'"/>
+																						<ConstValue value="'r'"/>
+																						<ConstValue value="'i'"/>
+																						<ConstValue value="'v'"/>
+																						<ConstValue value="'e'"/>
+																						<ConstValue value="'r'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4970/2672/990/54e4338f2540"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E7_Time = ['0', '0', ':', '0', '2']; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E7_Time"/>
+																			</lefts>
+																			<right>
+																				<!-- ['0', '0', ':', '0', '2'] -->
+																				<DataArrayOp name="80">
+																					<data>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="':'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'2'"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4971/2672/990/54e4338f762e"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E7_FontColor = Colors::Yellow; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E7_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::Yellow"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4972/2672/990/54e4338fb66"/>
+																			</pragmas>
+																		</Equation>
+																	</data>
+																	<until>
+																		<Transition kind="restart">
+																			<target>
+																				<StateRef name="YellowE8"/>
+																			</target>
+																			<condition>
+																				<!-- C_TextCycleTime times true -->
+																				<BinaryOp name="9" operator="times">
+																					<operands>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="C_TextCycleTime"/>
+																							</path>
+																						</IdExpression>
+																						<ConstValue value="true"/>
+																					</operands>
+																				</BinaryOp>
+																			</condition>
+																			<pragmas>
+																				<ed:Transition oid="!ed/4823/2672/990/54e4324972a2"/>
+																			</pragmas>
+																		</Transition>
+																	</until>
+																	<pragmas>
+																		<ed:State oid="!ed/481f/2672/990/54e43249546e"/>
+																	</pragmas>
+																</State>
+																<State name="YellowE8">
+																	<data>
+																		<!-- E8_Text = ['M', 'a', 'c', 'h', 'i', 'n', 'e', ' ', 'I', 'n', 't', 'e', 'r', '-', ... -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E8_Text"/>
+																			</lefts>
+																			<right>
+																				<!-- ['M', 'a', 'c', 'h', 'i', 'n', 'e', ' ', 'I', 'n', 't', 'e', 'r', '-', ' ', ' '] -->
+																				<DataArrayOp name="83">
+																					<data>
+																						<ConstValue value="'M'"/>
+																						<ConstValue value="'a'"/>
+																						<ConstValue value="'c'"/>
+																						<ConstValue value="'h'"/>
+																						<ConstValue value="'i'"/>
+																						<ConstValue value="'n'"/>
+																						<ConstValue value="'e'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="'I'"/>
+																						<ConstValue value="'n'"/>
+																						<ConstValue value="'t'"/>
+																						<ConstValue value="'e'"/>
+																						<ConstValue value="'r'"/>
+																						<ConstValue value="'-'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4992/2672/990/54e4339c413"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E8_Time = ['0', '0', ':', '0', '3']; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E8_Time"/>
+																			</lefts>
+																			<right>
+																				<!-- ['0', '0', ':', '0', '3'] -->
+																				<DataArrayOp name="84">
+																					<data>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="':'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'3'"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4993/2672/990/54e4339c16dc"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E8_FontColor = Colors::Yellow; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E8_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::Yellow"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4994/2672/990/54e4339c7d02"/>
+																			</pragmas>
+																		</Equation>
+																	</data>
+																	<until>
+																		<Transition kind="restart">
+																			<target>
+																				<StateRef name="YellowE9"/>
+																			</target>
+																			<condition>
+																				<!-- C_TextCycleTime times true -->
+																				<BinaryOp name="10" operator="times">
+																					<operands>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="C_TextCycleTime"/>
+																							</path>
+																						</IdExpression>
+																						<ConstValue value="true"/>
+																					</operands>
+																				</BinaryOp>
+																			</condition>
+																			<pragmas>
+																				<ed:Transition oid="!ed/4828/2672/990/54e43249193a"/>
+																			</pragmas>
+																		</Transition>
+																	</until>
+																	<pragmas>
+																		<ed:State oid="!ed/4824/2672/990/54e432494075"/>
+																	</pragmas>
+																</State>
+																<State name="YellowE9">
+																	<data>
+																		<!-- E9_Text = ['f', 'a', 'c', 'e', ' ', 'd', 'e', 'm', 'o', ' ', ' ', ' ', ' ', ' ', ... -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E9_Text"/>
+																			</lefts>
+																			<right>
+																				<!-- ['f', 'a', 'c', 'e', ' ', 'd', 'e', 'm', 'o', ' ', ' ', ' ', ' ', ' ', ' ', ' '] -->
+																				<DataArrayOp name="87">
+																					<data>
+																						<ConstValue value="'f'"/>
+																						<ConstValue value="'a'"/>
+																						<ConstValue value="'c'"/>
+																						<ConstValue value="'e'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="'d'"/>
+																						<ConstValue value="'e'"/>
+																						<ConstValue value="'m'"/>
+																						<ConstValue value="'o'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/49b0/2672/990/54e433a979b2"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E9_Time = ['0', '0', ':', '0', '4']; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E9_Time"/>
+																			</lefts>
+																			<right>
+																				<!-- ['0', '0', ':', '0', '4'] -->
+																				<DataArrayOp name="88">
+																					<data>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="':'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'4'"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/49b1/2672/990/54e433a915ec"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E9_FontColor = Colors::Yellow; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E9_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::Yellow"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/49b2/2672/990/54e433a968ec"/>
+																			</pragmas>
+																		</Equation>
+																	</data>
+																	<until>
+																		<Transition kind="restart">
+																			<target>
+																				<StateRef name="YellowE5"/>
+																			</target>
+																			<condition>
+																				<!-- C_TextCycleTime times true -->
+																				<BinaryOp name="11" operator="times">
+																					<operands>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="C_TextCycleTime"/>
+																							</path>
+																						</IdExpression>
+																						<ConstValue value="true"/>
+																					</operands>
+																				</BinaryOp>
+																			</condition>
+																			<effect>
+																				<Action>
+																					<data>
+																						<!--  emit 'SwitchColor; -->
+																						<Emission>
+																							<signals>
+																								<SignalRef name="SwitchColor"/>
+																							</signals>
+																							<pragmas>
+																								<ed:Emission oid="!ed/482f/2672/990/54e4324922d2"/>
+																							</pragmas>
+																						</Emission>
+																					</data>
+																					<pragmas>
+																						<ed:Action oid="!ed/482e/2672/990/54e432491034"/>
+																					</pragmas>
+																				</Action>
+																			</effect>
+																			<pragmas>
+																				<ed:Transition oid="!ed/482d/2672/990/54e432492e91"/>
+																			</pragmas>
+																		</Transition>
+																	</until>
+																	<pragmas>
+																		<ed:State oid="!ed/4829/2672/990/54e4324919f5"/>
+																	</pragmas>
+																</State>
+																<State initial="true" name="YellowE5">
+																	<data>
+																		<!-- E5_Text = ['S', 'C', 'A', 'D', 'E', ' ', 'D', 'i', 's', 'p', 'l', 'a', 'y', ' ', ... -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E5_Text"/>
+																			</lefts>
+																			<right>
+																				<!-- ['S', 'C', 'A', 'D', 'E', ' ', 'D', 'i', 's', 'p', 'l', 'a', 'y', ' ', ' ', ' '] -->
+																				<DataArrayOp name="73">
+																					<data>
+																						<ConstValue value="'S'"/>
+																						<ConstValue value="'C'"/>
+																						<ConstValue value="'A'"/>
+																						<ConstValue value="'D'"/>
+																						<ConstValue value="'E'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="'D'"/>
+																						<ConstValue value="'i'"/>
+																						<ConstValue value="'s'"/>
+																						<ConstValue value="'p'"/>
+																						<ConstValue value="'l'"/>
+																						<ConstValue value="'a'"/>
+																						<ConstValue value="'y'"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																						<ConstValue value="' '"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4945/2672/990/54e4337b285b"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E5_Time = ['0', '0', ':', '0', '0']; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E5_Time"/>
+																			</lefts>
+																			<right>
+																				<!-- ['0', '0', ':', '0', '0'] -->
+																				<DataArrayOp name="74">
+																					<data>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="':'"/>
+																						<ConstValue value="'0'"/>
+																						<ConstValue value="'0'"/>
+																					</data>
+																				</DataArrayOp>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4946/2672/990/54e4337b41b4"/>
+																			</pragmas>
+																		</Equation>
+																		<!-- E5_FontColor = Colors::Yellow; -->
+																		<Equation>
+																			<lefts>
+																				<VariableRef name="E5_FontColor"/>
+																			</lefts>
+																			<right>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="Colors::Yellow"/>
+																					</path>
+																				</IdExpression>
+																			</right>
+																			<pragmas>
+																				<ed:Equation oid="!ed/4947/2672/990/54e4337bcf9"/>
+																			</pragmas>
+																		</Equation>
+																	</data>
+																	<until>
+																		<Transition kind="restart">
+																			<target>
+																				<StateRef name="YellowE6"/>
+																			</target>
+																			<condition>
+																				<!-- C_TextCycleTime times true -->
+																				<BinaryOp name="12" operator="times">
+																					<operands>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="C_TextCycleTime"/>
+																							</path>
+																						</IdExpression>
+																						<ConstValue value="true"/>
+																					</operands>
+																				</BinaryOp>
+																			</condition>
+																			<pragmas>
+																				<ed:Transition oid="!ed/4834/2672/990/54e4324941ee"/>
+																			</pragmas>
+																		</Transition>
+																	</until>
+																	<pragmas>
+																		<ed:State oid="!ed/4830/2672/990/54e43249e15"/>
+																	</pragmas>
+																</State>
+															</states>
+															<pragmas>
+																<ed:StateMachine oid="!ed/4807/2672/990/54e4324921e"/>
+															</pragmas>
+														</StateMachine>
+													</data>
+													<until>
+														<Transition kind="resume">
+															<target>
+																<StateRef name="White"/>
+															</target>
+															<condition>
+																<Present>
+																	<signal>
+																		<SignalRef name="SwitchColor"/>
+																	</signal>
+																</Present>
+															</condition>
+															<pragmas>
+																<ed:Transition oid="!ed/48b7/2672/990/54e433201513"/>
+															</pragmas>
+														</Transition>
+													</until>
+													<pragmas>
+														<ed:State oid="!ed/4806/2672/990/54e432491cda"/>
+													</pragmas>
+												</State>
+											</states>
+											<pragmas>
+												<ed:StateMachine oid="!ed/3c62/6F75/1760/54e37d6f3843"/>
+											</pragmas>
+										</StateMachine>
+									</data>
+									<pragmas>
+										<ed:State oid="!ed/49bc/2672/990/54e433d43b3a"/>
+									</pragmas>
+								</State>
+							</states>
+							<pragmas>
+								<ed:StateMachine oid="!ed/49bb/2672/990/54e433d47287"/>
+							</pragmas>
+						</StateMachine>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/3bff/6F75/1760/54e37aca1970" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_Behavior_1" landscape="true" format="A4 (210 297)" oid="!ed/3c00/6F75/1760/54e37aca366d">
+									<presentationElements>
+										<StateMachineGE presentable="!ed/49bb/2672/990/54e433d47287">
+											<position>
+												<Point x="212" y="159"/>
+											</position>
+											<size>
+												<Size width="28998" height="15637"/>
+											</size>
+										</StateMachineGE>
+										<StateGE presentable="!ed/49bc/2672/990/54e433d43b3a">
+											<position>
+												<Point x="370" y="212"/>
+											</position>
+											<size>
+												<Size width="28655" height="14552"/>
+											</size>
+										</StateGE>
+										<StateMachineGE presentable="!ed/3c62/6F75/1760/54e37d6f3843">
+											<position>
+												<Point x="450" y="979"/>
+											</position>
+											<size>
+												<Size width="28443" height="13547"/>
+											</size>
+										</StateMachineGE>
+										<StateGE presentable="!ed/3c54/2672/990/54e42dfb5422">
+											<position>
+												<Point x="741" y="1164"/>
+											</position>
+											<size>
+												<Size width="13176" height="13176"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/48ac/2672/990/54e4330f3918">
+											<positions>
+												<Point x="13917" y="6085"/>
+												<Point x="14631" y="5768"/>
+												<Point x="15055" y="5874"/>
+												<Point x="15505" y="6138"/>
+											</positions>
+											<labelSize>
+												<Size width="2249" height="953"/>
+											</labelSize>
+											<labelPos>
+												<Point x="13997" y="4684"/>
+											</labelPos>
+											<slashPos>
+												<Point x="15451" y="4683"/>
+											</slashPos>
+										</TransitionGE>
+										<StateMachineGE presentable="!ed/3c66/2672/990/54e42e333d77">
+											<position>
+												<Point x="953" y="1931"/>
+											</position>
+											<size>
+												<Size width="12858" height="12251"/>
+											</size>
+										</StateMachineGE>
+										<StateGE display="embeddedTextual" presentable="!ed/3c6f/2672/990/54e42e48168a">
+											<position>
+												<Point x="1191" y="2011"/>
+											</position>
+											<size>
+												<Size width="4021" height="5529"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/42a6/2672/990/54e431062390">
+											<positions>
+												<Point x="5212" y="3651"/>
+												<Point x="8467" y="3651"/>
+												<Point x="11113" y="3307"/>
+												<Point x="11165" y="4260"/>
+											</positions>
+											<labelSize>
+												<Size width="3360" height="1905"/>
+											</labelSize>
+											<labelPos>
+												<Point x="5876" y="4048"/>
+											</labelPos>
+											<slashPos>
+												<Point x="8440" y="4048"/>
+											</slashPos>
+										</TransitionGE>
+										<StateGE display="embeddedTextual" presentable="!ed/3f47/2672/990/54e42fbe1c94">
+											<position>
+												<Point x="9155" y="4260"/>
+											</position>
+											<size>
+												<Size width="4021" height="2037"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/42c2/2672/990/54e4311473bf">
+											<positions>
+												<Point x="13176" y="5768"/>
+												<Point x="13653" y="6826"/>
+												<Point x="13414" y="8334"/>
+												<Point x="13176" y="8811"/>
+											</positions>
+											<labelSize>
+												<Size width="2805" height="1905"/>
+											</labelSize>
+											<labelPos>
+												<Point x="9977" y="7963"/>
+											</labelPos>
+											<slashPos>
+												<Point x="11986" y="7963"/>
+											</slashPos>
+										</TransitionGE>
+										<StateGE display="embeddedTextual" presentable="!ed/3ffc/2672/990/54e42fe9335f">
+											<position>
+												<Point x="9155" y="7911"/>
+											</position>
+											<size>
+												<Size width="4021" height="2037"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/42c3/2672/990/54e4311a5e36">
+											<positions>
+												<Point x="13176" y="9393"/>
+												<Point x="13494" y="10583"/>
+												<Point x="13256" y="12039"/>
+												<Point x="13097" y="12409"/>
+											</positions>
+											<labelSize>
+												<Size width="2725" height="1905"/>
+											</labelSize>
+											<labelPos>
+												<Point x="9977" y="10318"/>
+											</labelPos>
+											<slashPos>
+												<Point x="11906" y="10318"/>
+											</slashPos>
+										</TransitionGE>
+										<StateGE display="embeddedTextual" presentable="!ed/40a1/2672/990/54e43017d0a">
+											<position>
+												<Point x="9155" y="11562"/>
+											</position>
+											<size>
+												<Size width="4022" height="2037"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/42c4/2672/990/54e4311d45b1">
+											<positions>
+												<Point x="9155" y="12753"/>
+												<Point x="8043" y="12118"/>
+												<Point x="7303" y="12171"/>
+												<Point x="6006" y="12832"/>
+											</positions>
+											<labelSize>
+												<Size width="3493" height="1905"/>
+											</labelSize>
+											<labelPos>
+												<Point x="5928" y="13282"/>
+											</labelPos>
+											<slashPos>
+												<Point x="8625" y="13282"/>
+											</slashPos>
+										</TransitionGE>
+										<StateGE display="embeddedTextual" presentable="!ed/416c/2672/990/54e430442968">
+											<position>
+												<Point x="1984" y="11562"/>
+											</position>
+											<size>
+												<Size width="4022" height="2037"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/42c5/2672/990/54e431224dc4">
+											<positions>
+												<Point x="1984" y="12250"/>
+												<Point x="1508" y="11086"/>
+												<Point x="1482" y="10239"/>
+												<Point x="1984" y="9102"/>
+											</positions>
+											<labelSize>
+												<Size width="3889" height="953"/>
+											</labelSize>
+											<labelPos>
+												<Point x="2328" y="10345"/>
+											</labelPos>
+											<slashPos>
+												<Point x="4021" y="10345"/>
+											</slashPos>
+										</TransitionGE>
+										<StateGE display="embeddedTextual" presentable="!ed/4204/2672/990/54e430566205">
+											<position>
+												<Point x="1984" y="7911"/>
+											</position>
+											<size>
+												<Size width="4022" height="2037"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/42c9/2672/990/54e4312826f3">
+											<positions>
+												<Point x="5609" y="7911"/>
+												<Point x="6535" y="5927"/>
+												<Point x="7197" y="5398"/>
+												<Point x="9155" y="5398"/>
+											</positions>
+											<labelSize>
+												<Size width="3149" height="1905"/>
+											</labelSize>
+											<labelPos>
+												<Point x="5850" y="7461"/>
+											</labelPos>
+											<slashPos>
+												<Point x="8202" y="7461"/>
+											</slashPos>
+										</TransitionGE>
+										<StateGE presentable="!ed/4806/2672/990/54e432491cda">
+											<position>
+												<Point x="15505" y="1138"/>
+											</position>
+											<size>
+												<Size width="13176" height="11192"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/48b7/2672/990/54e433201513">
+											<positions>
+												<Point x="15505" y="10319"/>
+												<Point x="14605" y="10901"/>
+												<Point x="14261" y="9604"/>
+												<Point x="13917" y="9446"/>
+											</positions>
+											<labelSize>
+												<Size width="2408" height="1270"/>
+											</labelSize>
+											<labelPos>
+												<Point x="13892" y="11347"/>
+											</labelPos>
+											<slashPos>
+												<Point x="15505" y="11351"/>
+											</slashPos>
+										</TransitionGE>
+										<StateMachineGE presentable="!ed/4807/2672/990/54e4324921e">
+											<position>
+												<Point x="15716" y="1905"/>
+											</position>
+											<size>
+												<Size width="12859" height="10239"/>
+											</size>
+										</StateMachineGE>
+										<StateGE display="embeddedTextual" presentable="!ed/481a/2672/990/54e43249d1d">
+											<position>
+												<Point x="23786" y="2196"/>
+											</position>
+											<size>
+												<Size width="4021" height="2037"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/481e/2672/990/54e4324956fe">
+											<positions>
+												<Point x="27807" y="3704"/>
+												<Point x="28284" y="4763"/>
+												<Point x="28046" y="6271"/>
+												<Point x="27807" y="6747"/>
+											</positions>
+											<labelSize>
+												<Size width="2805" height="1905"/>
+											</labelSize>
+											<labelPos>
+												<Point x="24741" y="4787"/>
+											</labelPos>
+											<slashPos>
+												<Point x="26749" y="4788"/>
+											</slashPos>
+										</TransitionGE>
+										<StateGE display="embeddedTextual" presentable="!ed/481f/2672/990/54e43249546e">
+											<position>
+												<Point x="23786" y="5847"/>
+											</position>
+											<size>
+												<Size width="4021" height="2037"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/4823/2672/990/54e4324972a2">
+											<positions>
+												<Point x="27807" y="7329"/>
+												<Point x="28125" y="8520"/>
+												<Point x="27887" y="9975"/>
+												<Point x="27728" y="10345"/>
+											</positions>
+											<labelSize>
+												<Size width="2725" height="1905"/>
+											</labelSize>
+											<labelPos>
+												<Point x="24609" y="8253"/>
+											</labelPos>
+											<slashPos>
+												<Point x="26538" y="8254"/>
+											</slashPos>
+										</TransitionGE>
+										<StateGE display="embeddedTextual" presentable="!ed/4824/2672/990/54e432494075">
+											<position>
+												<Point x="23786" y="9499"/>
+											</position>
+											<size>
+												<Size width="4022" height="2037"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/4828/2672/990/54e43249193a">
+											<positions>
+												<Point x="23786" y="10689"/>
+												<Point x="22675" y="10054"/>
+												<Point x="21934" y="10107"/>
+												<Point x="20638" y="10769"/>
+											</positions>
+											<labelSize>
+												<Size width="3493" height="1905"/>
+											</labelSize>
+											<labelPos>
+												<Point x="20560" y="11217"/>
+											</labelPos>
+											<slashPos>
+												<Point x="23257" y="11217"/>
+											</slashPos>
+										</TransitionGE>
+										<StateGE display="embeddedTextual" presentable="!ed/4829/2672/990/54e4324919f5">
+											<position>
+												<Point x="16616" y="9499"/>
+											</position>
+											<size>
+												<Size width="4022" height="2037"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/482d/2672/990/54e432492e91">
+											<positions>
+												<Point x="16616" y="10186"/>
+												<Point x="16140" y="9022"/>
+												<Point x="16113" y="8176"/>
+												<Point x="16616" y="7038"/>
+											</positions>
+											<labelSize>
+												<Size width="3889" height="953"/>
+											</labelSize>
+											<labelPos>
+												<Point x="16960" y="8280"/>
+											</labelPos>
+											<slashPos>
+												<Point x="18653" y="8280"/>
+											</slashPos>
+										</TransitionGE>
+										<StateGE display="embeddedTextual" presentable="!ed/4830/2672/990/54e43249e15">
+											<position>
+												<Point x="16616" y="5847"/>
+											</position>
+											<size>
+												<Size width="4022" height="2037"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/4834/2672/990/54e4324941ee">
+											<positions>
+												<Point x="20241" y="5847"/>
+												<Point x="21167" y="3863"/>
+												<Point x="21828" y="3334"/>
+												<Point x="23786" y="3334"/>
+											</positions>
+											<labelSize>
+												<Size width="3149" height="1905"/>
+											</labelSize>
+											<labelPos>
+												<Point x="20482" y="5396"/>
+											</labelPos>
+											<slashPos>
+												<Point x="22834" y="5396"/>
+											</slashPos>
+										</TransitionGE>
+										<TransitionGE presentable="!ed/4a0d/2672/990/54e434437cd0">
+											<positions>
+												<Point x="16351" y="14764"/>
+												<Point x="14843" y="15187"/>
+												<Point x="12039" y="15161"/>
+												<Point x="11007" y="14764"/>
+											</positions>
+											<labelSize>
+												<Size width="4921" height="2223"/>
+											</labelSize>
+											<labelPos>
+												<Point x="11537" y="15345"/>
+											</labelPos>
+											<slashPos>
+												<Point x="15664" y="15345"/>
+											</slashPos>
+										</TransitionGE>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/3bfb/6F75/1760/54e37ac552c4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3bfc/6F75/1760/54e37ac5318b" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3bfd/6F75/1760/54e37ac51633" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3bfe/6F75/1760/54e37ac56a35" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>
