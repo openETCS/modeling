@@ -6,6 +6,7 @@
 # - 26.08.15, J. Kastner: add addPkt15
 # - 27.08.15, J. Kastner: correct actual packet length in addPkt15, addPkt21
 # - 01.09.15, J. Kastner: add addPkt41
+# - 03.09.15, J. Kastner: change addPkt signature; add addPkt27v1
 
 source "[file dirname [info script]]/util.tcl"
 
@@ -17,6 +18,8 @@ namespace eval ::msg {
   variable DIM_MaxElementsPacket015 [expr $DIM_N_ITER * 4 + 15 + 1 + 6]
   variable DIM_MaxElementsPacket021 [expr ($DIM_N_ITER+1) * 3 + 4 + 1]
   variable DIM_MaxElementsPacket041 [expr ($DIM_N_ITER+1) * 3 + 6]
+  variable DIM_MaxElementsPacket027v1_body 6
+  variable DIM_MaxElementsPacket027v1_sections [expr $DIM_N_ITER * 2 + 4]
 
 
   ############################### INTERNAL VARS ###############################
@@ -60,6 +63,7 @@ namespace eval ::msg {
   #   vars: list of radio header variable values; every entry must have the format name=value)
   proc setRadioMsg args {
     variable in
+    resetPkts
     SSM::set "$in.source" msrc_Euroradio
     SSM::set "$in.valid" true
     set lst [list]
@@ -112,7 +116,7 @@ namespace eval ::msg {
 
   
   ################################## PACKETS ##################################
-  proc addPkt {nid_packet args} {
+  proc addPkt {packetId args} {
     variable in
     variable nextPktPos
     variable nextPktStart
@@ -122,7 +126,7 @@ namespace eval ::msg {
     set addr $nextPktStart
 
     set hdr "$in.packets.PacketHeaders\[$nextPktPos\]"
-    msg::setPacketHeader "$hdr" true $nid_packet $nextPktStart $end
+    msg::setPacketHeader "$hdr" true $packetId $nextPktStart $end
     foreach d $args {
       SSM::set "$in.packets.PacketData\[$addr\]" $d
       incr addr
@@ -134,7 +138,11 @@ namespace eval ::msg {
   proc resetPkts {} {
     variable in
     variable DIM_MaxRMessages
+    variable nextPktPos 
+    variable nextPktStart
 
+    set nextPktPos 0
+    set nextPktStart 0
     for {set i 0} {$i < $DIM_MaxRMessages} {incr i} {
       msg::setPacketHeader "$in.packets.PacketHeaders\[$i\]"
     }
@@ -184,8 +192,9 @@ namespace eval ::msg {
     }
 
     set elems [lrange $elems 0 [expr 23 + $lastSec]]
-    util::log "Packet003v1: $elems"
-    eval addPkt 3 $elems
+    set nid_packet [calcPacketId 3 16]
+    #util::log "Packet003v1: $elems"
+    eval addPkt $nid_packet $elems
   }
 
 
@@ -240,8 +249,9 @@ namespace eval ::msg {
     }
 
     set elems [lrange $elems 0 [expr 21 + 4*$lastSec]]
-    util::log "Packet15: $elems"
-    eval addPkt 15 $elems
+    set packetId [calcPacketId 15]
+    #util::log "Packet15: $elems"
+    eval addPkt $packetId $elems
   }
  
 
@@ -276,13 +286,62 @@ namespace eval ::msg {
     }
 
     set elems [lrange $elems 0 [expr 4 + 3*($lastSec+1)]]
-    util::log "Packet21: $elems"
-    eval addPkt 21 $elems
+    set packetId [calcPacketId 21]
+    #util::log "Packet21: $elems"
+    eval addPkt $packetId $elems
   }
     
 
-  proc addPkt27 {args} {
+  proc addPkt27v1 {args} {
+    variable DIM_MaxElementsPacket027v1_body
+    variable DIM_MaxElementsPacket027v1_sections
+    set body [util::lrepeat $DIM_MaxElementsPacket027v1_body 0]
+    lset body 0 27
+    lset body 5 [calcPacketId 27 16 0 100]
+    set sections ""
+    set sid 0
+    foreach arg $args {
+      set t [split $arg =]
+      set k [lindex $t 0]
+      set v [lindex $t 1]
+      switch -glob $k {
+        q_dir      { lset body 1 $v }
+        q_scale    { lset body 3 $v }
+        n_iter     { lset body 4 $v }
+        sections:* {
+          set sections [split [lindex [split $arg :] 1] |]
+        }
+      }
+    }
+
+    # write body packet
+    set packetId [calcPacketId 27 16 0 0]
+    #util::log "Packet27v1: $body"
+    eval addPkt $packetId $body 
+
+    # write section packets
+    set packetId [calcPacketId 27 16 0 100]
+    foreach s $sections {
+      set data [util::lrepeat $DIM_MaxElementsPacket027v1_sections 0]
+      set n_iter 0
+      foreach arg [split $s ,] {
+      #util::log $arg
+        set t [split $arg =]
+        set k [lindex $t 0]
+        set v [lindex $t 1]
+        switch $k {
+          d_static { lset data 0 $v }
+          v_static { lset data 1 $v }
+          q_static { lset data 2 $v }
+          n_iter   { lset data 3 $v; set n_iter $v }
+        }
+      }
+      set data [lrange $data 0 [expr 4 + 2*($n_iter+1)]]
+      eval addPkt $packetId $data
+      incr packetId
+    }
   }
+
 
   proc addPkt41 {args} {
     variable DIM_MaxElementsPacket041
@@ -317,17 +376,17 @@ namespace eval ::msg {
  
     set elems [lrange $elems 0 [expr 4 + 3*($lastSec+1)]]
     util::log "Packet41: $elems"
-    eval addPkt 41 $elems
+    eval addPkt 41 32 $elems
   }
 
-  proc setPacketHeader {target {valid false} {nid_packet 0} {startAddress 0} {endAddress 0}} {
+  proc setPacketHeader {target {valid false} {packetId 0} {startAddress 0} {endAddress 0}} {
     SSM::set "$target.valid" $valid
-    SSM::set "$target.nid_packet" [calcPacketId $nid_packet]
+    SSM::set "$target.nid_packet" $packetId
     SSM::set "$target.startAddress" $startAddress
     SSM::set "$target.endAddress" $endAddress
   }
 
-  proc calcPacketId {nid_packet {q_dir 0} {m_version 32} {id 0}} {
+  proc calcPacketId {nid_packet {m_version 32} {q_dir 0} {id 0}} {
     expr $nid_packet*1000000 + $q_dir*100000 + $m_version*1000 + $id
   }
 
