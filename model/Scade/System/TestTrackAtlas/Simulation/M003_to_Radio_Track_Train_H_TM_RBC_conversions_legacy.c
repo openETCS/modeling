@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-02T17:34:33
+** Generation date: 2015-08-28T11:32:44
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -62,6 +62,6 @@ void M003_to_Radio_Track_Train_H_TM_RBC_conversions_legacy(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** M003_to_Radio_Track_Train_H_TM_RBC_conversions_legacy.c
-** Generation date: 2015-09-02T17:34:33
+** Generation date: 2015-08-28T11:32:44
 *************************************************************$ */
 

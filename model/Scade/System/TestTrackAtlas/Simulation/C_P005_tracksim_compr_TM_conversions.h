@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-02T17:34:33
+** Generation date: 2015-08-28T11:32:44
 *************************************************************$ */
 #ifndef _C_P005_tracksim_compr_TM_conversions_H_
 #define _C_P005_tracksim_compr_TM_conversions_H_
@@ -75,8 +75,8 @@ typedef struct {
   array_int_5 /* TM_conversions::C_P005_tracksim_compr::_L381 */ _L381;
   array_int_500 /* TM_conversions::C_P005_tracksim_compr::_L383 */ _L383;
   array_int_236 /* TM_conversions::C_P005_tracksim_compr::_L384 */ _L384;
-  array__11181 /* TM_conversions::C_P005_tracksim_compr::_L386 */ _L386;
-  array__10753 /* TM_conversions::C_P005_tracksim_compr::_L385 */ _L385;
+  array__10836 /* TM_conversions::C_P005_tracksim_compr::_L386 */ _L386;
+  array__10406 /* TM_conversions::C_P005_tracksim_compr::_L385 */ _L385;
   kcg_int /* TM_conversions::C_P005_tracksim_compr::_L387 */ _L387;
   nid_packet_meta_TM /* TM_conversions::C_P005_tracksim_compr::_L388 */ _L388;
 } outC_C_P005_tracksim_compr_TM_conversions;
@@ -93,6 +93,6 @@ extern void C_P005_tracksim_compr_reset_TM_conversions(
 #endif /* _C_P005_tracksim_compr_TM_conversions_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P005_tracksim_compr_TM_conversions.h
-** Generation date: 2015-09-02T17:34:33
+** Generation date: 2015-08-28T11:32:44
 *************************************************************$ */
 

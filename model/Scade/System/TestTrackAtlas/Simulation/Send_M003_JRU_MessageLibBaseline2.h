@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-02T17:34:33
+** Generation date: 2015-08-28T11:32:44
 *************************************************************$ */
 #ifndef _Send_M003_JRU_MessageLibBaseline2_H_
 #define _Send_M003_JRU_MessageLibBaseline2_H_
@@ -38,6 +38,6 @@ extern void Send_M003_JRU_reset_MessageLibBaseline2(
 #endif /* _Send_M003_JRU_MessageLibBaseline2_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Send_M003_JRU_MessageLibBaseline2.h
-** Generation date: 2015-09-02T17:34:33
+** Generation date: 2015-08-28T11:32:44
 *************************************************************$ */
 

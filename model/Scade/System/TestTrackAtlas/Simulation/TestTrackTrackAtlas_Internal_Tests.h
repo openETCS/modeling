@@ -1,15 +1,15 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-02T17:34:33
+** Generation date: 2015-08-28T11:32:44
 *************************************************************$ */
 #ifndef _TestTrackTrackAtlas_Internal_Tests_H_
 #define _TestTrackTrackAtlas_Internal_Tests_H_
 
 #include "kcg_types.h"
-#include "Send_RBC_LRBG_354_D_00275_3_M003_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.h"
-#include "Send_RBC_LRBG_351_D_00054_9_M003_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.h"
-#include "Send_RBC_LRBG_362_D_00238_9_M003_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.h"
-#include "Send_RBC_LRBG_364_D_00091_1_M003_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.h"
+#include "Send_RBC_LRBG_351_D_00054_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.h"
+#include "Send_RBC_LRBG_354_D_00275_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.h"
+#include "Send_RBC_LRBG_362_D_00238_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.h"
+#include "Send_RBC_LRBG_364_D_00091_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC.h"
 #include "RBC_close_RadioLib.h"
 #include "RBC_init_RadioLib.h"
 
@@ -24,11 +24,11 @@ typedef struct {
   /* -----------------  no initialization variables  ----------------- */
   /* -----------------------  no local memory  ----------------------- */
   /* ---------------------  sub nodes' contexts  --------------------- */
-  outC_RBC_close_RadioLib /* 1 */ _3_Context_1;
-  outC_Send_RBC_LRBG_364_D_00091_1_M003_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC /* 1 */ _2_Context_1;
-  outC_Send_RBC_LRBG_362_D_00238_9_M003_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC /* 1 */ Context_1;
-  outC_Send_RBC_LRBG_351_D_00054_9_M003_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC /* 2 */ Context_2;
-  outC_Send_RBC_LRBG_354_D_00275_3_M003_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC /* 3 */ _1_Context_3;
+  outC_RBC_close_RadioLib /* 1 */ _4_Context_1;
+  outC_Send_RBC_LRBG_364_D_00091_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC /* 1 */ _3_Context_1;
+  outC_Send_RBC_LRBG_362_D_00238_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC /* 1 */ _2_Context_1;
+  outC_Send_RBC_LRBG_354_D_00275_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC /* 1 */ _1_Context_1;
+  outC_Send_RBC_LRBG_351_D_00054_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC /* 1 */ Context_1;
   outC_RBC_init_RadioLib /* 3 */ Context_3;
   /* ----------------- no clocks of observable data ------------------ */
   /* -------------------- (-debug) no assertions  -------------------- */
@@ -61,6 +61,6 @@ extern void TestTrackTrackAtlas_reset_Internal_Tests(
 #endif /* _TestTrackTrackAtlas_Internal_Tests_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** TestTrackTrackAtlas_Internal_Tests.h
-** Generation date: 2015-09-02T17:34:33
+** Generation date: 2015-08-28T11:32:44
 *************************************************************$ */
 
