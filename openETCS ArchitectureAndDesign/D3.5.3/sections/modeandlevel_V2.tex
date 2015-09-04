@@ -9,11 +9,12 @@
 \toprule
 Component name			& Mode\_and\_Level \\
 \midrule
-Link to SCADE model		& {\footnotesize \url{???}} \\
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/ManageLevelsAndModes}} \\
 \midrule
-SCADE designer			& ??? \\
+SCADE designer			& Marielle Petit-Doche and  Matthias Güdemann, Systerel \\
 \midrule
-Description				& ??? \\
+Description				& Modes and levels define the status of the ETCS
+regarding on-board functional status and track infrastructure. \\
 \midrule
 Input documents	& 
 Subset-026, Chapter 4 \newline
@@ -21,9 +22,9 @@ Subset-026, Chapter 5 \\
 \midrule
 Safety integrity level		& 4 \\
 \midrule
-Time constraints		& [If applicable description of time constraints, otherwise n/a] \\
+Time constraints		&  n/a \\
 \midrule
-API requirements 		& [If applicable description of API requirements, otherwise n/a] \\
+API requirements 		&  n/a \\
 \bottomrule
 \end{longtable}
 
@@ -41,7 +42,89 @@ An overview of the interface of component Mode\_and\_Level is shown in Figure~\r
 
 \subsubsection{Inputs}\label{s:mode_and_level_inputs}
 
-\paragraph{[Input 1 name]}
+\paragraph{[Inputs from  TIU]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& Data\_From\_TIU \\
+\midrule
+Description				& Set of data providing by TIU \\
+\midrule
+Source					& input\_from\_TIU\_API\_Pkg::manageTIU\_input \\ 
+\midrule
+Type					& TIU\_Types\_Pkg::Message\_Train\_Interface\_to\_EVC\_T \\
+Valid range of values	& It is a complex type  \\
+\bottomrule
+\end{longtable}
+
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& Cab\_In \\
+\midrule
+Description				& Identification of the cabine where the EVC is implemented \\
+\midrule
+Source					& ??? \\ 
+\midrule
+Type					& TIU\_Types\_Pkg::cab\_ID\_T \\
+\midrule
+Valid range of values	& [CabUndefined, CabA, CabB] \\
+\bottomrule
+\end{longtable}
+
+\paragraph{[Inputs from DMI]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& Data\_From\_DMI \\
+\midrule
+Description				& Set of data transmitted from DMI  (driver acknowledgements and requests to  switch modes and level) \\
+\midrule
+Source					& manage\_DMI\_Input\_Pkg::manageDMI\_Input \\ 
+\midrule
+Type					& DMI\_Types\_Pkg::DMI\_To\_Modes\_T \\
+\midrule
+Valid range of values	& It is a complex type : \\
+& \begin{itemize}
+\item valid :  bool,  flag to inform of the freshness of the information
+\item DriverAck : DMI\_DriverAck\_T, indicate which mode is acknoledged
+\item DriverRequest : DMI\_DriverRequest\_T, table of boolean values for all the driver request related to  mode changes.
+\item LevelAck : bool, indication of Level  change acknowledgement
+\end{itemize} \\
+\bottomrule
+\end{longtable}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& driver\_level\_transition\_in \\
+\midrule
+Description				& Request of level transition given by the driver for example at start of mission \\
+\midrule
+Source					& manage\_DMI\_Input\_Pkg::manageDMI\_Input \\ 
+\midrule
+Type					& Level\_And\_Modes\_Types\_Pkg::T\_LevelTransition \\
+\midrule
+Valid range of values	& It is a complex type \\
+\bottomrule
+\end{longtable}
+
+
+
+\paragraph{[Input from Track]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& Data\_From\_Track\_Packets \\
+\midrule
+Description				& Packets received from trackside contaigning information for modes and levels switches \\
+\midrule
+Source					& ???? \\ 
+\midrule
+Type					& Level\_And\_Mode\_Types\_Pkg::T\_Data\_From\_Track\_Packet \\
+\midrule
+Valid range of values	& It is a complex type containing the information of packets : 12, 15, 21, 27, 41, 46, 63, 80, 135, 137, 138 and 139 \\
+\bottomrule
+\end{longtable}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
@@ -60,6 +143,51 @@ Behaviour when value is at boundary	& [Description of components behaviour when 
 Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+\bottomrule
+\end{longtable}
+
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& [Name of the input] \\
+\midrule
+Description				& [Brief description of the input] \\
+\midrule
+Source					& [Name of the source component] \\ 
+\midrule
+Type					& [Type of the input] \\
+\midrule
+Valid range of values	& [Complete list of valid values] \\
+\midrule
+Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+\midrule
+Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+\bottomrule
+\end{longtable}
+
+\paragraph{[Input from Speed and Supervision function]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& Data\_From\_speed\_and\_Supervision \\
+\midrule
+Description				& Data provided by the speed and supervision function \\
+\midrule
+Source					& Speed and Supervision function \\ 
+\midrule
+Type					& Level\_And\_Mode\_Types\_Pkg::T\_Data\_From\_Speed\_Supervision \\
+\midrule
+Valid range of values	& It is a complex type \\
+& \begin{itemize}
+\item \emph{Estim\_front\_End\_overpass\_SR\_Dist : bool}: the train overpass the SR distance with its estimated front end (from SR to trip mode condition 42) 
+\item \emph{Estim\_Front\_End\_Rear\_SSP : bool}: estimated front end is rear of the start location of either SSP or gradient profile stored on-board (from FS, LS, OS to trip mode condition 69)
+\item \emph{Override\_Function\_Active}: boolean to indicate the state of the activation function 	  	
+\item \emph{EOA\_Antenna\_Overpass : bool}: the train overpasses the  EOA  with min safe antenna position Level 1 (from FS, LS, OS to trip mode condition 12)
+\item \emph{EOA\_Front\_End : bool} the train overpasses the  EOA  with min safe front end, Level 2 or 3 (from FS, LS, OS to trip mode condition 16)
+\item \emph{Train\_Speed\_Under\_Overide\_Limit : bool} supervision when override function is active (to SR mode condition 37)
+\end{itemize}\\
 \bottomrule
 \end{longtable}
 
@@ -85,7 +213,6 @@ Behaviour for values out of valid range	& [Description of components behaviour w
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
 \bottomrule
 \end{longtable}
-
 
 \subsubsection{Outputs}\label{s:mode_and_level_outputs}
 
