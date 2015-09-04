@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 #ifndef _GP_Normalize_Profile_loop_TA_Gradient_H_
 #define _GP_Normalize_Profile_loop_TA_Gradient_H_
@@ -37,16 +37,10 @@ typedef struct {
   Gradient_section_t_TrackAtlasTypes /* TA_Gradient::GP_Normalize_Profile_loop::_L13 */ _L13;
   kcg_int /* TA_Gradient::GP_Normalize_Profile_loop::_L16 */ _L16;
   kcg_int /* TA_Gradient::GP_Normalize_Profile_loop::_L17 */ _L17;
-  G_internal_Type_Obu_BasicTypes_Pkg /* TA_Gradient::GP_Normalize_Profile_loop::_L19 */ _L19;
-  kcg_bool /* TA_Gradient::GP_Normalize_Profile_loop::_L18 */ _L18;
   L_internal_Type_Obu_BasicTypes_Pkg /* TA_Gradient::GP_Normalize_Profile_loop::_L20 */ _L20;
-  kcg_int /* TA_Gradient::GP_Normalize_Profile_loop::_L21 */ _L21;
-  kcg_bool /* TA_Gradient::GP_Normalize_Profile_loop::_L22 */ _L22;
-  kcg_bool /* TA_Gradient::GP_Normalize_Profile_loop::_L23 */ _L23;
   kcg_int /* TA_Gradient::GP_Normalize_Profile_loop::_L24 */ _L24;
   L_internal_Type_Obu_BasicTypes_Pkg /* TA_Gradient::GP_Normalize_Profile_loop::_L25 */ _L25;
   kcg_int /* TA_Gradient::GP_Normalize_Profile_loop::_L26 */ _L26;
-  L_internal_Type_Obu_BasicTypes_Pkg /* TA_Gradient::GP_Normalize_Profile_loop::_L27 */ _L27;
   Gradient_section_t_TrackAtlasTypes /* TA_Gradient::GP_Normalize_Profile_loop::_L34 */ _L34;
   kcg_int /* TA_Gradient::GP_Normalize_Profile_loop::_L33 */ _L33;
   GradientProfile_t_TrackAtlasTypes /* TA_Gradient::GP_Normalize_Profile_loop::_L32 */ _L32;
@@ -72,6 +66,6 @@ extern void GP_Normalize_Profile_loop_reset_TA_Gradient(
 #endif /* _GP_Normalize_Profile_loop_TA_Gradient_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** GP_Normalize_Profile_loop_TA_Gradient.h
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 

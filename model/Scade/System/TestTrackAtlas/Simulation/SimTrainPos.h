@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 #ifndef _SimTrainPos_H_
 #define _SimTrainPos_H_
@@ -44,6 +44,6 @@ extern void SimTrainPos_reset(outC_SimTrainPos *outC);
 #endif /* _SimTrainPos_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SimTrainPos.h
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 

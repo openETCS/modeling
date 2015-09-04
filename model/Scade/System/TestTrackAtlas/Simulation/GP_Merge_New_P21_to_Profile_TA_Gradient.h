@@ -1,13 +1,13 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 #ifndef _GP_Merge_New_P21_to_Profile_TA_Gradient_H_
 #define _GP_Merge_New_P21_to_Profile_TA_Gradient_H_
 
 #include "kcg_types.h"
-#include "GP_Merge_New_P21_to_Profile_loop_TA_Gradient.h"
 #include "FindStartOfNewGradientProfileAbs_TA_Lib_internal.h"
+#include "GP_Merge_New_P21_to_Profile_loop_TA_Gradient.h"
 
 /* =====================  no input structure  ====================== */
 
@@ -30,7 +30,7 @@ typedef struct {
   array_int_50 /* TA_Gradient::GP_Merge_New_P21_to_Profile::_L9 */ _L9;
   GradientProfile_t_TrackAtlasTypes /* TA_Gradient::GP_Merge_New_P21_to_Profile::_L14 */ _L14;
   GradientProfile_t_TrackAtlasTypes /* TA_Gradient::GP_Merge_New_P21_to_Profile::_L45 */ _L45;
-  array__11132 /* TA_Gradient::GP_Merge_New_P21_to_Profile::_L47 */ _L47;
+  array__24147 /* TA_Gradient::GP_Merge_New_P21_to_Profile::_L47 */ _L47;
   kcg_bool /* TA_Gradient::GP_Merge_New_P21_to_Profile::_L148 */ _L148;
 } outC_GP_Merge_New_P21_to_Profile_TA_Gradient;
 
@@ -47,6 +47,6 @@ extern void GP_Merge_New_P21_to_Profile_reset_TA_Gradient(
 #endif /* _GP_Merge_New_P21_to_Profile_TA_Gradient_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** GP_Merge_New_P21_to_Profile_TA_Gradient.h
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 

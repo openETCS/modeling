@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 #ifndef _C_header_to_M038_TM_RBC_conversions_H_
 #define _C_header_to_M038_TM_RBC_conversions_H_
@@ -63,6 +63,6 @@ extern void C_header_to_M038_reset_TM_RBC_conversions(
 #endif /* _C_header_to_M038_TM_RBC_conversions_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_header_to_M038_TM_RBC_conversions.h
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 

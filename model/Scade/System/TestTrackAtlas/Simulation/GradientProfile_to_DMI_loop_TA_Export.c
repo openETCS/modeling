@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -24,20 +24,36 @@ void GradientProfile_to_DMI_loop_TA_Export(
   outC->_L5 = outC->_L1.Gradient;
   outC->_L4 = outC->_L1.Loc_LRBG;
   outC->_L3 = outC->_L1.Loc_Absolute;
-  outC->_L13 = outC->_L4 + outC->_L6;
-  noname = outC->_L3;
+  kcg_copy_GradientProfile_for_DMI_section_t_TrackAtlasTypes(
+    &outC->_L19,
+    (GradientProfile_for_DMI_section_t_TrackAtlasTypes *)
+      &DEFAULT_section_to_DMI_TA_Export);
+  outC->_L14 = 255;
+  outC->_L17 = outC->_L5 == outC->_L14;
   outC->_L2 = outC->_L1.valid;
+  outC->_L13 = outC->_L4 + outC->_L6;
   outC->_L12.valid = outC->_L2;
   outC->_L12.begin_section = outC->_L4;
   outC->_L12.end_section = outC->_L13;
   outC->_L12.gradient = outC->_L5;
+  if (outC->_L17) {
+    kcg_copy_GradientProfile_for_DMI_section_t_TrackAtlasTypes(
+      &outC->_L18,
+      &outC->_L19);
+  }
+  else {
+    kcg_copy_GradientProfile_for_DMI_section_t_TrackAtlasTypes(
+      &outC->_L18,
+      &outC->_L12);
+  }
+  noname = outC->_L3;
   kcg_copy_GradientProfile_for_DMI_section_t_TrackAtlasTypes(
     &outC->Gradiient_section_for_DMI_out,
-    &outC->_L12);
+    &outC->_L18);
 }
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** GradientProfile_to_DMI_loop_TA_Export.c
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 
