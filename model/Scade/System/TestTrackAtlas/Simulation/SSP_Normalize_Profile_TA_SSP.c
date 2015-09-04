@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -20,12 +20,18 @@ void SSP_Normalize_Profile_reset_TA_SSP(outC_SSP_Normalize_Profile_TA_SSP *outC)
 void SSP_Normalize_Profile_TA_SSP(
   /* TA_SSP::SSP_Normalize_Profile::ProfileIn */StaticSpeedProfile_t_TrackAtlasTypes *ProfileIn,
   /* TA_SSP::SSP_Normalize_Profile::pos_BG */L_internal_Type_Obu_BasicTypes_Pkg pos_BG,
+  /* TA_SSP::SSP_Normalize_Profile::train_length */L_internal_Type_Obu_BasicTypes_Pkg train_length,
   outC_SSP_Normalize_Profile_TA_SSP *outC)
 {
+  kcg_int i2;
   kcg_int i1;
   StaticSpeedProfile_t_TrackAtlasTypes tmp;
   kcg_int i;
   
+  outC->_L5 = train_length;
+  for (i2 = 0; i2 < 50; i2++) {
+    outC->_L6[i2] = outC->_L5;
+  }
   outC->_L2 = pos_BG;
   for (i1 = 0; i1 < 50; i1++) {
     outC->_L4[i1] = outC->_L2;
@@ -39,6 +45,7 @@ void SSP_Normalize_Profile_TA_SSP(
       i,
       &tmp,
       outC->_L4[i],
+      outC->_L6[i],
       &outC->Context_1[i]);
     kcg_copy_StaticSpeedProfile_t_TrackAtlasTypes(
       &outC->_L3,
@@ -51,6 +58,6 @@ void SSP_Normalize_Profile_TA_SSP(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SSP_Normalize_Profile_TA_SSP.c
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

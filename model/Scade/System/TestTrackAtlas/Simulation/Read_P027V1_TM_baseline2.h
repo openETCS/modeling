@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 #ifndef _Read_P027V1_TM_baseline2_H_
 #define _Read_P027V1_TM_baseline2_H_
@@ -103,9 +103,9 @@ typedef struct {
   CompressedPackets_T_Common_Types_Pkg /* TM_baseline2::Read_P027V1::_L169 */ _L169;
   array_int_33 /* TM_baseline2::Read_P027V1::_L170 */ _L170;
   array_int_33 /* TM_baseline2::Read_P027V1::_L171 */ _L171;
-  array__24084 /* TM_baseline2::Read_P027V1::_L172 */ _L172;
+  array__11515 /* TM_baseline2::Read_P027V1::_L172 */ _L172;
   P027V1_OBU_T_TM_baseline2 /* TM_baseline2::Read_P027V1::_L178 */ _L178;
-  array__23924 /* TM_baseline2::Read_P027V1::_L182 */ _L182;
+  array__11490 /* TM_baseline2::Read_P027V1::_L182 */ _L182;
   kcg_int /* TM_baseline2::Read_P027V1::_L184 */ _L184;
   kcg_bool /* TM_baseline2::Read_P027V1::_L185 */ _L185;
   kcg_bool /* TM_baseline2::Read_P027V1::_L186 */ _L186;
@@ -122,6 +122,6 @@ extern void Read_P027V1_reset_TM_baseline2(outC_Read_P027V1_TM_baseline2 *outC);
 #endif /* _Read_P027V1_TM_baseline2_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Read_P027V1_TM_baseline2.h
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

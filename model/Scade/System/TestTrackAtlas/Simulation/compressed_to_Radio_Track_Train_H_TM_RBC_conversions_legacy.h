@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 #ifndef _compressed_to_Radio_Track_Train_H_TM_RBC_conversions_legacy_H_
 #define _compressed_to_Radio_Track_Train_H_TM_RBC_conversions_legacy_H_
@@ -210,6 +210,6 @@ extern void compressed_to_Radio_Track_Train_H_reset_TM_RBC_conversions_legacy(
 #endif /* _compressed_to_Radio_Track_Train_H_TM_RBC_conversions_legacy_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** compressed_to_Radio_Track_Train_H_TM_RBC_conversions_legacy.h
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

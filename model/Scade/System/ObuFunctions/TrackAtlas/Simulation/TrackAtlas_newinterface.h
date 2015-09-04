@@ -1,18 +1,18 @@
-#ifndef MRSP_TO_MRSP_TO_DMI_TA_EXPORT_INTERFACE
-#define MRSP_TO_MRSP_TO_DMI_TA_EXPORT_INTERFACE
+#ifndef TRAINLENGTH_CORRECTION_TA_LIB_INTERNAL_INTERFACE
+#define TRAINLENGTH_CORRECTION_TA_LIB_INTERNAL_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "MRSP_to_MRSP_to_DMI_TA_Export.h"
+#include "TrainLength_Correction_TA_Lib_internal.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_MRSP_to_MRSP_to_DMI_TA_Export inputs_ctx;
-extern outC_MRSP_to_MRSP_to_DMI_TA_Export outputs_ctx;
+extern inC_TrainLength_Correction_TA_Lib_internal inputs_ctx;
+extern outC_TrainLength_Correction_TA_Lib_internal outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*MRSP_TO_MRSP_TO_DMI_TA_EXPORT_INTERFACE */
+#endif /*TRAINLENGTH_CORRECTION_TA_LIB_INTERNAL_INTERFACE */

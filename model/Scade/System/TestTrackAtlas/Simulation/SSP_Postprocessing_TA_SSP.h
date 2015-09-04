@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 #ifndef _SSP_Postprocessing_TA_SSP_H_
 #define _SSP_Postprocessing_TA_SSP_H_
@@ -32,6 +32,7 @@ typedef struct {
   StaticSpeedProfile_t_TrackAtlasTypes /* TA_SSP::SSP_Postprocessing::_L1 */ _L1;
   StaticSpeedProfile_t_TrackAtlasTypes /* TA_SSP::SSP_Postprocessing::_L8 */ _L8;
   kcg_bool /* TA_SSP::SSP_Postprocessing::_L9 */ _L9;
+  L_internal_Type_Obu_BasicTypes_Pkg /* TA_SSP::SSP_Postprocessing::_L10 */ _L10;
 } outC_SSP_Postprocessing_TA_SSP;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -41,6 +42,7 @@ extern void SSP_Postprocessing_TA_SSP(
   /* TA_SSP::SSP_Postprocessing::pos_LRBG */L_internal_Type_Obu_BasicTypes_Pkg pos_LRBG,
   /* TA_SSP::SSP_Postprocessing::pos_prvLRBG */L_internal_Type_Obu_BasicTypes_Pkg pos_prvLRBG,
   /* TA_SSP::SSP_Postprocessing::there_is_prvLRBG */kcg_bool there_is_prvLRBG,
+  /* TA_SSP::SSP_Postprocessing::train_length */L_internal_Type_Obu_BasicTypes_Pkg train_length,
   outC_SSP_Postprocessing_TA_SSP *outC);
 
 extern void SSP_Postprocessing_reset_TA_SSP(
@@ -49,6 +51,6 @@ extern void SSP_Postprocessing_reset_TA_SSP(
 #endif /* _SSP_Postprocessing_TA_SSP_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SSP_Postprocessing_TA_SSP.h
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

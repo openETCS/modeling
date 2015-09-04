@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 #ifndef _SSP_Position_SSP_with_BGs_TA_SSP_H_
 #define _SSP_Position_SSP_with_BGs_TA_SSP_H_
@@ -46,6 +46,7 @@ typedef struct {
   kcg_bool /* TA_SSP::SSP_Position_SSP_with_BGs::_L28 */ _L28;
   StaticSpeedProfile_t_TrackAtlasTypes /* TA_SSP::SSP_Position_SSP_with_BGs::_L29 */ _L29;
   StaticSpeedProfile_t_TrackAtlasTypes /* TA_SSP::SSP_Position_SSP_with_BGs::_L30 */ _L30;
+  L_internal_Type_Obu_BasicTypes_Pkg /* TA_SSP::SSP_Position_SSP_with_BGs::_L33 */ _L33;
 } outC_SSP_Position_SSP_with_BGs_TA_SSP;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -55,6 +56,7 @@ extern void SSP_Position_SSP_with_BGs_TA_SSP(
   /* TA_SSP::SSP_Position_SSP_with_BGs::pos_LRBG */L_internal_Type_Obu_BasicTypes_Pkg pos_LRBG,
   /* TA_SSP::SSP_Position_SSP_with_BGs::pos_prvLRBG */L_internal_Type_Obu_BasicTypes_Pkg pos_prvLRBG,
   /* TA_SSP::SSP_Position_SSP_with_BGs::there_is_prvLRBG */kcg_bool there_is_prvLRBG,
+  /* TA_SSP::SSP_Position_SSP_with_BGs::train_length */L_internal_Type_Obu_BasicTypes_Pkg train_length,
   /* TA_SSP::SSP_Position_SSP_with_BGs::LastProfile */StaticSpeedProfile_t_TrackAtlasTypes *LastProfile,
   outC_SSP_Position_SSP_with_BGs_TA_SSP *outC);
 
@@ -64,6 +66,6 @@ extern void SSP_Position_SSP_with_BGs_reset_TA_SSP(
 #endif /* _SSP_Position_SSP_with_BGs_TA_SSP_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SSP_Position_SSP_with_BGs_TA_SSP.h
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

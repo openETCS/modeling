@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 #ifndef _RECV_LookupPacketLoop_TM_lib_internal_H_
 #define _RECV_LookupPacketLoop_TM_lib_internal_H_
@@ -51,6 +51,6 @@ extern void RECV_LookupPacketLoop_reset_TM_lib_internal(
 #endif /* _RECV_LookupPacketLoop_TM_lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** RECV_LookupPacketLoop_TM_lib_internal.h
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

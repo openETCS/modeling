@@ -1,13 +1,13 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 #ifndef _SSP_Merge_New_P27V1_to_Profile_TA_SSP_H_
 #define _SSP_Merge_New_P27V1_to_Profile_TA_SSP_H_
 
 #include "kcg_types.h"
-#include "FindStartOfNewSpeedProfileAbs_TA_Lib_internal.h"
 #include "SSP_Merge_New_P27V1_to_Profile_loop_TA_SSP.h"
+#include "FindStartOfNewSpeedProfileAbs_TA_Lib_internal.h"
 
 /* =====================  no input structure  ====================== */
 
@@ -30,7 +30,7 @@ typedef struct {
   array_int_50 /* TA_SSP::SSP_Merge_New_P27V1_to_Profile::_L9 */ _L9;
   StaticSpeedProfile_t_TrackAtlasTypes /* TA_SSP::SSP_Merge_New_P27V1_to_Profile::_L14 */ _L14;
   StaticSpeedProfile_t_TrackAtlasTypes /* TA_SSP::SSP_Merge_New_P27V1_to_Profile::_L45 */ _L45;
-  array__24099 /* TA_SSP::SSP_Merge_New_P27V1_to_Profile::_L47 */ _L47;
+  array__11530 /* TA_SSP::SSP_Merge_New_P27V1_to_Profile::_L47 */ _L47;
   kcg_bool /* TA_SSP::SSP_Merge_New_P27V1_to_Profile::_L148 */ _L148;
 } outC_SSP_Merge_New_P27V1_to_Profile_TA_SSP;
 
@@ -47,6 +47,6 @@ extern void SSP_Merge_New_P27V1_to_Profile_reset_TA_SSP(
 #endif /* _SSP_Merge_New_P27V1_to_Profile_TA_SSP_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SSP_Merge_New_P27V1_to_Profile_TA_SSP.h
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

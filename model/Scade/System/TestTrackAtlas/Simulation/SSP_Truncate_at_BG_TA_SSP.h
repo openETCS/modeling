@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 #ifndef _SSP_Truncate_at_BG_TA_SSP_H_
 #define _SSP_Truncate_at_BG_TA_SSP_H_
@@ -26,7 +26,7 @@ typedef struct {
   /* ------------------- (-debug) local variables -------------------- */
   StaticSpeedProfile_t_TrackAtlasTypes /* TA_SSP::SSP_Truncate_at_BG::_L1 */ _L1;
   kcg_int /* TA_SSP::SSP_Truncate_at_BG::_L8 */ _L8;
-  array__24099 /* TA_SSP::SSP_Truncate_at_BG::_L6 */ _L6;
+  array__11530 /* TA_SSP::SSP_Truncate_at_BG::_L6 */ _L6;
   kcg_int /* TA_SSP::SSP_Truncate_at_BG::_L5 */ _L5;
   kcg_int /* TA_SSP::SSP_Truncate_at_BG::_L4 */ _L4;
   kcg_int /* TA_SSP::SSP_Truncate_at_BG::_L10 */ _L10;
@@ -49,6 +49,6 @@ extern void SSP_Truncate_at_BG_reset_TA_SSP(
 #endif /* _SSP_Truncate_at_BG_TA_SSP_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SSP_Truncate_at_BG_TA_SSP.h
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

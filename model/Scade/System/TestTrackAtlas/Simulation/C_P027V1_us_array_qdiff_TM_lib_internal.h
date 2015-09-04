@@ -1,14 +1,14 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 #ifndef _C_P027V1_us_array_qdiff_TM_lib_internal_H_
 #define _C_P027V1_us_array_qdiff_TM_lib_internal_H_
 
 #include "kcg_types.h"
+#include "C_P027V1_extract_el_section_TM_lib_internal.h"
 #include "CAST_Int_to_NC_DIFF_TM_conversions.h"
 #include "CAST_Int_to_V_DIFF_TM_conversions.h"
-#include "C_P027V1_extract_el_section_TM_lib_internal.h"
 
 /* =====================  no input structure  ====================== */
 
@@ -56,6 +56,6 @@ extern void C_P027V1_us_array_qdiff_reset_TM_lib_internal(
 #endif /* _C_P027V1_us_array_qdiff_TM_lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P027V1_us_array_qdiff_TM_lib_internal.h
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

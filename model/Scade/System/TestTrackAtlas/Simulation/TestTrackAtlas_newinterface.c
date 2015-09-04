@@ -1,7 +1,7 @@
 #include "TestTrackAtlas_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "3c6b5c79e8fbef02ab909d2ebad15e4b";
+const char* _SCSIM_CheckSum = "9680bf806c68487455f50863d179c443";
 const char* _SCSIM_SmuTypesCheckSum = "f79c40cc4a28a84eb05b013596813063";
 
 /*******************************
@@ -17,11 +17,11 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-inC_TestTrackAtlas inputs_ctx;
-static inC_TestTrackAtlas inputs_ctx_restore;
-static inC_TestTrackAtlas inputs_ctx_execute;
-outC_TestTrackAtlas outputs_ctx;
-static outC_TestTrackAtlas outputs_ctx_restore;
+inC_TestSpeedProfile inputs_ctx;
+static inC_TestSpeedProfile inputs_ctx_restore;
+static inC_TestSpeedProfile inputs_ctx_execute;
+outC_TestSpeedProfile outputs_ctx;
+static outC_TestSpeedProfile outputs_ctx_restore;
 
 /* separate_io: inputs instanciation */
 
@@ -65,7 +65,7 @@ int SimReset(void) {
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
 #ifndef KCG_NO_EXTERN_CALL_TO_RESET
-	TestTrackAtlas_reset(&outputs_ctx);
+	TestSpeedProfile_reset(&outputs_ctx);
 	nRet=1;
 #else /* KCG_NO_EXTERN_CALL_TO_RESET */
 	nRet=0;
@@ -88,7 +88,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	TestTrackAtlas(&inputs_ctx_execute, &outputs_ctx);
+	TestSpeedProfile(&inputs_ctx_execute, &outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -104,12 +104,12 @@ int SimStop(void) {
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(inC_TestTrackAtlas);
+	nSize += sizeof(inC_TestSpeedProfile);
 
 /* separate_io: add (not in ctx) inputs size */
 
 /* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_TestTrackAtlas);
+	nSize += sizeof(outC_TestSpeedProfile);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -118,14 +118,14 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &inputs_ctx, sizeof(inC_TestTrackAtlas));
-	pCurrent += sizeof(inC_TestTrackAtlas);
+	memcpy(pCurrent, &inputs_ctx, sizeof(inC_TestSpeedProfile));
+	pCurrent += sizeof(inC_TestSpeedProfile);
 
 	/* separate_io: dump (not in ctx) inputs */
 
 	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_TestTrackAtlas));
-	pCurrent += sizeof(outC_TestTrackAtlas);
+	memcpy(pCurrent, &outputs_ctx, sizeof(outC_TestSpeedProfile));
+	pCurrent += sizeof(outC_TestSpeedProfile);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -133,14 +133,14 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&inputs_ctx, pCurrent, sizeof(inC_TestTrackAtlas));
-	pCurrent += sizeof(inC_TestTrackAtlas);
+	memcpy(&inputs_ctx, pCurrent, sizeof(inC_TestSpeedProfile));
+	pCurrent += sizeof(inC_TestSpeedProfile);
 
 	/* separate_io: restore (not in ctx) inputs */
 
 	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_TestTrackAtlas));
-	pCurrent += sizeof(outC_TestTrackAtlas);
+	memcpy(&outputs_ctx, pCurrent, sizeof(outC_TestSpeedProfile));
+	pCurrent += sizeof(outC_TestSpeedProfile);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */

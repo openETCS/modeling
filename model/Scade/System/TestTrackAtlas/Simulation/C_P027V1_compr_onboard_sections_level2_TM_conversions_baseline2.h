@@ -1,15 +1,15 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 #ifndef _C_P027V1_compr_onboard_sections_level2_TM_conversions_baseline2_H_
 #define _C_P027V1_compr_onboard_sections_level2_TM_conversions_baseline2_H_
 
 #include "kcg_types.h"
+#include "C_P027V1_us_array_qdiff_TM_lib_internal.h"
 #include "CAST_Int_to_D_STATIC_TM_conversions.h"
 #include "CAST_Int_to_Q_FRONT_TM_conversions.h"
 #include "CAST_Int_to_V_STATIC_TM_conversions.h"
-#include "C_P027V1_us_array_qdiff_TM_lib_internal.h"
 
 /* =====================  no input structure  ====================== */
 
@@ -40,7 +40,7 @@ typedef struct {
   array_int_32 /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::_L5 */ _L5_1;
   array_int_64_32 /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::_L6 */ _L6_1;
   kcg_int /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::_L7 */ _L7_1;
-  array__23912 /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::_L9 */ _L9_1;
+  array__11478 /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::_L9 */ _L9_1;
   kcg_bool /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::_L11 */ _L11_1;
   P027V1_OBU_sectionlist_enum_qdiff_T_TM_baseline2 /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::sections */ sections_1;
   P027V1_sections_array_flat_qdiff_T_TM_baseline2 /* TM_lib_internal::C_P027V1_unflatten_sections_qdiff::flat */ flat_1;
@@ -78,6 +78,6 @@ extern void C_P027V1_compr_onboard_sections_level2_reset_TM_conversions_baseline
 #endif /* _C_P027V1_compr_onboard_sections_level2_TM_conversions_baseline2_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P027V1_compr_onboard_sections_level2_TM_conversions_baseline2.h
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

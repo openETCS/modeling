@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 #ifndef _CAST_Int_to_V_STATIC_TM_conversions_H_
 #define _CAST_Int_to_V_STATIC_TM_conversions_H_
@@ -44,6 +44,6 @@ extern void CAST_Int_to_V_STATIC_reset_TM_conversions(
 #endif /* _CAST_Int_to_V_STATIC_TM_conversions_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** CAST_Int_to_V_STATIC_TM_conversions.h
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

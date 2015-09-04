@@ -1,49 +1,65 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--$*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:09:24
+** Generation date: 2015-09-04T15:52:43
 *************************************************************$-->
-<Model date="2015-09-04T14:09:24" commandLine="s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt">
-  <Package scadeName="TA_Export">
-    <Constant scadeName="DEFAULT_MRSP_section" scadeType="TrackAtlasTypes::MRSP_section_t"
-        targetName="DEFAULT_MRSP_section_TA_Export" targetType="MRSP_section_t_TrackAtlasTypes"/>
-    <RootNode scadeName="MRSP_to_MRSP_to_DMI" headerFile="MRSP_to_MRSP_to_DMI_TA_Export.h"
-        targetCycleFct="MRSP_to_MRSP_to_DMI_TA_Export" targetInitFct="MRSP_to_MRSP_to_DMI_reset_TA_Export">
+<Model date="2015-09-04T15:52:43" commandLine="s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt">
+  <Package scadeName="TA_Lib_internal">
+    <RootNode scadeName="TrainLength_Correction" headerFile="TrainLength_Correction_TA_Lib_internal.h"
+        targetCycleFct="TrainLength_Correction_TA_Lib_internal"
+        targetInitFct="TrainLength_Correction_reset_TA_Lib_internal">
+      <Input scadeName="Static_Speed_Profile" scadeType="TrackAtlasTypes::StaticSpeedProfile_t"
+          targetName="Static_Speed_Profile" targetType="StaticSpeedProfile_t_TrackAtlasTypes" inCtx="true"/>
+      <Input scadeName="train_length" scadeType="Obu_BasicTypes_Pkg::L_internal_Type" targetName="train_length"
+          targetType="L_internal_Type_Obu_BasicTypes_Pkg" inCtx="true"/>
       <Input scadeName="i" scadeType="int" targetName="i" targetType="kcg_int" inCtx="true"/>
-      <Input scadeName="MRSP_in" scadeType="TrackAtlasTypes::MRSP_section_t" targetName="MRSP_in"
-          targetType="MRSP_section_t_TrackAtlasTypes" inCtx="true"/>
-      <Output scadeName="cont" scadeType="bool" targetName="cont" targetType="kcg_bool" inCtx="true"/>
-      <Output scadeName="MRSP_to_DMI" scadeType="TrackAtlasTypes::MRSP_section_t" targetName="MRSP_to_DMI"
-          targetType="MRSP_section_t_TrackAtlasTypes" inCtx="true"/>
-      <Local scadeName="_L5" scadeType="TrackAtlasTypes::MRSP_section_t" targetName="_L5"
-          targetType="MRSP_section_t_TrackAtlasTypes" inCtx="true"/>
-      <Local scadeName="_L420" scadeType="Obu_BasicTypes_Pkg::V_internal_Type" targetName="_L420"
+      <Input scadeName="v_static" scadeType="Obu_BasicTypes_Pkg::V_internal_Type" targetName="v_static"
           targetType="V_internal_Type_Obu_BasicTypes_Pkg" inCtx="true"/>
-      <Local scadeName="_L429" scadeType="int" targetName="_L429" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L430" scadeType="bool" targetName="_L430" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L431" scadeType="bool" targetName="_L431" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L432" scadeType="bool" targetName="_L432" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L433" scadeType="bool" targetName="_L433" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L434" scadeType="TrackAtlasTypes::MRSP_section_t" targetName="_L434"
-          targetType="MRSP_section_t_TrackAtlasTypes" inCtx="true"/>
-      <Local scadeName="_L435" scadeType="TrackAtlasTypes::MRSP_section_t" targetName="_L435"
-          targetType="MRSP_section_t_TrackAtlasTypes" inCtx="true"/>
-      <Local scadeName="_L444" scadeType="int" targetName="_L444" targetType="kcg_int" inCtx="true"/>
-      <NodeInstance scadeName="=" instName="1"/>
-      <NodeInstance scadeName="not" instName="1"/>
-      <NodeInstance scadeName="or" instName="1"/>
-      <OutCtxType targetName="outC_MRSP_to_MRSP_to_DMI_TA_Export"/>
-      <InCtxType targetName="inC_MRSP_to_MRSP_to_DMI_TA_Export"/>
+      <Input scadeName="distance" scadeType="Obu_BasicTypes_Pkg::L_internal_Type" targetName="distance"
+          targetType="L_internal_Type_Obu_BasicTypes_Pkg" inCtx="true"/>
+      <Output scadeName="corrected_distance" scadeType="Obu_BasicTypes_Pkg::L_internal_Type"
+          targetName="corrected_distance" targetType="L_internal_Type_Obu_BasicTypes_Pkg" inCtx="true"/>
+      <Local scadeName="_L1" scadeType="TrackAtlasTypes::StaticSpeedProfile_t" targetName="_L1"
+          targetType="StaticSpeedProfile_t_TrackAtlasTypes" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="Obu_BasicTypes_Pkg::L_internal_Type" targetName="_L2"
+          targetType="L_internal_Type_Obu_BasicTypes_Pkg" inCtx="true"/>
+      <Local scadeName="_L3" scadeType="int" targetName="_L3" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="Obu_BasicTypes_Pkg::L_internal_Type" targetName="_L4"
+          targetType="L_internal_Type_Obu_BasicTypes_Pkg" inCtx="true"/>
+      <Local scadeName="_L5" scadeType="TrackAtlasTypes::StaticSpeedSection_t" targetName="_L5"
+          targetType="StaticSpeedSection_t_TrackAtlasTypes" inCtx="true"/>
+      <Local scadeName="_L6" scadeType="int" targetName="_L6" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L7" scadeType="int" targetName="_L7" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L9" scadeType="Obu_BasicTypes_Pkg::V_internal_Type" targetName="_L9"
+          targetType="V_internal_Type_Obu_BasicTypes_Pkg" inCtx="true"/>
+      <Local scadeName="_L10" scadeType="Obu_BasicTypes_Pkg::V_internal_Type" targetName="_L10"
+          targetType="V_internal_Type_Obu_BasicTypes_Pkg" inCtx="true"/>
+      <Local scadeName="_L11" scadeType="bool" targetName="_L11" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L12" scadeType="int" targetName="_L12" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L13" scadeType="int" targetName="_L13" targetType="kcg_int" inCtx="true"/>
+      <NodeInstance scadeName="-" instName="1"/>
+      <NodeInstance scadeName="&gt;" instName="1"/>
+      <NodeInstance scadeName="+" instName="1"/>
+      <OutCtxType targetName="outC_TrainLength_Correction_TA_Lib_internal"/>
+      <InCtxType targetName="inC_TrainLength_Correction_TA_Lib_internal"/>
     </RootNode>
   </Package>
+  <Package scadeName="TA_SSP">
+    <Constant scadeName="DEFAULT_SSP_section" scadeType="TrackAtlasTypes::StaticSpeedSection_t"
+        targetName="DEFAULT_SSP_section_TA_SSP" targetType="StaticSpeedSection_t_TrackAtlasTypes"/>
+  </Package>
   <Package scadeName="TrackAtlasTypes">
-    <NamedType scadeName="MRSP_section_t" targetName="MRSP_section_t_TrackAtlasTypes" refType="struct__129"/>
+    <Constant scadeName="DIM_GP" scadeType="int" targetName="DIM_GP_TrackAtlasTypes" targetType="kcg_int"
+        macroDef="true"/>
+    <NamedType scadeName="StaticSpeedSection_t" targetName="StaticSpeedSection_t_TrackAtlasTypes"
+        refType="struct__136"/>
+    <NamedType scadeName="StaticSpeedProfile_t" targetName="StaticSpeedProfile_t_TrackAtlasTypes" refType="array__144"/>
   </Package>
   <Package scadeName="Obu_BasicTypes_Pkg">
     <NamedType scadeName="L_internal_Type" targetName="L_internal_Type_Obu_BasicTypes_Pkg" refType="kcg_int"/>
     <NamedType scadeName="V_internal_Type" targetName="V_internal_Type_Obu_BasicTypes_Pkg" refType="kcg_int"/>
   </Package>
-  <Option name="root_node_name" value="TA_Export::MRSP_to_MRSP_to_DMI"/>
+  <Option name="root_node_name" value="TA_Lib_internal::TrainLength_Correction"/>
   <Option name="target" value="C"/>
   <Option name="target_dir" value="C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation"/>
   <Option name="exp" value="#off#"/>
@@ -73,16 +89,20 @@
   <PredefType scadeName="bool" targetName="kcg_bool"/>
   <PredefType scadeName="char" targetName="kcg_char"/>
   <PredefType scadeName="int" targetName="kcg_int"/>
-  <StructType targetName="struct__129" targetCopyFct="kcg_copy_struct__129" targetCompFct="kcg_comp_struct__129">
+  <StructType targetName="struct__136" targetCopyFct="kcg_copy_struct__136" targetCompFct="kcg_comp_struct__136">
     <Field scadeName="valid" scadeType="bool" targetName="valid" targetType="kcg_bool"/>
-    <Field scadeName="Loc_Abs" scadeType="Obu_BasicTypes_Pkg::L_internal_Type" targetName="Loc_Abs"
+    <Field scadeName="d_static_abs" scadeType="Obu_BasicTypes_Pkg::L_internal_Type" targetName="d_static_abs"
         targetType="kcg_int"/>
-    <Field scadeName="Loc_LRBG" scadeType="Obu_BasicTypes_Pkg::L_internal_Type" targetName="Loc_LRBG"
+    <Field scadeName="d_static_LRBG" scadeType="Obu_BasicTypes_Pkg::L_internal_Type" targetName="d_static_LRBG"
         targetType="kcg_int"/>
-    <Field scadeName="MRS" scadeType="Obu_BasicTypes_Pkg::V_internal_Type" targetName="MRS" targetType="kcg_int"/>
+    <Field scadeName="q_train_length_corr" scadeType="bool" targetName="q_train_length_corr" targetType="kcg_bool"/>
+    <Field scadeName="v_static" scadeType="Obu_BasicTypes_Pkg::V_internal_Type" targetName="v_static"
+        targetType="kcg_int"/>
   </StructType>
+  <ArrayType targetName="array__144" cellType="struct__136" size="50" targetCopyFct="kcg_copy_array__144"
+      targetCompFct="kcg_comp_array__144"/>
 </Model>
 <!--$*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_trace.xml
-** Generation date: 2015-09-04T14:09:24
+** Generation date: 2015-09-04T15:52:43
 *************************************************************$-->

@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -25,11 +25,13 @@ void SSP_Position_SSP_with_BGs_TA_SSP(
   /* TA_SSP::SSP_Position_SSP_with_BGs::pos_LRBG */L_internal_Type_Obu_BasicTypes_Pkg pos_LRBG,
   /* TA_SSP::SSP_Position_SSP_with_BGs::pos_prvLRBG */L_internal_Type_Obu_BasicTypes_Pkg pos_prvLRBG,
   /* TA_SSP::SSP_Position_SSP_with_BGs::there_is_prvLRBG */kcg_bool there_is_prvLRBG,
+  /* TA_SSP::SSP_Position_SSP_with_BGs::train_length */L_internal_Type_Obu_BasicTypes_Pkg train_length,
   /* TA_SSP::SSP_Position_SSP_with_BGs::LastProfile */StaticSpeedProfile_t_TrackAtlasTypes *LastProfile,
   outC_SSP_Position_SSP_with_BGs_TA_SSP *outC)
 {
   kcg_bool noname;
   
+  outC->_L33 = train_length;
   kcg_copy_StaticSpeedProfile_t_TrackAtlasTypes(&outC->_L4, ProfileIn);
   kcg_copy_StaticSpeedProfile_t_TrackAtlasTypes(&outC->_L5, LastProfile);
   /* 1 */
@@ -41,7 +43,12 @@ void SSP_Position_SSP_with_BGs_TA_SSP(
     &outC->_L6,
     &outC->Context_1.SpeedProfile_out);
   outC->_L8 = pos_prvLRBG;
-  /* 2 */ SSP_Normalize_Profile_TA_SSP(&outC->_L6, outC->_L8, &outC->Context_2);
+  /* 2 */
+  SSP_Normalize_Profile_TA_SSP(
+    &outC->_L6,
+    outC->_L8,
+    outC->_L33,
+    &outC->Context_2);
   kcg_copy_StaticSpeedProfile_t_TrackAtlasTypes(
     &outC->_L18,
     &outC->Context_2.ProfileNormalized_LRBG);
@@ -55,7 +62,11 @@ void SSP_Position_SSP_with_BGs_TA_SSP(
     &outC->_2_Context_2.Profile_out);
   outC->_L9 = pos_LRBG;
   /* 1 */
-  SSP_Normalize_Profile_TA_SSP(&outC->_L6, outC->_L9, &outC->_3_Context_1);
+  SSP_Normalize_Profile_TA_SSP(
+    &outC->_L6,
+    outC->_L9,
+    outC->_L33,
+    &outC->_3_Context_1);
   kcg_copy_StaticSpeedProfile_t_TrackAtlasTypes(
     &outC->_L16,
     &outC->_3_Context_1.ProfileNormalized_LRBG);
@@ -79,6 +90,6 @@ void SSP_Position_SSP_with_BGs_TA_SSP(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SSP_Position_SSP_with_BGs_TA_SSP.c
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

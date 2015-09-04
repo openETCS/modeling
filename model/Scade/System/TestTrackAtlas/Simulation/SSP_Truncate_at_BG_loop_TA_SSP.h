@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 #ifndef _SSP_Truncate_at_BG_loop_TA_SSP_H_
 #define _SSP_Truncate_at_BG_loop_TA_SSP_H_
@@ -47,6 +47,6 @@ extern void SSP_Truncate_at_BG_loop_reset_TA_SSP(
 #endif /* _SSP_Truncate_at_BG_loop_TA_SSP_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SSP_Truncate_at_BG_loop_TA_SSP.h
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

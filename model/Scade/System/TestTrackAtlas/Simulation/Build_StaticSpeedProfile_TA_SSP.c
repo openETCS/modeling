@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -31,7 +31,6 @@ void Build_StaticSpeedProfile_TA_SSP(
   StaticSpeedProfile_t_TrackAtlasTypes tmp3;
   StaticSpeedProfile_t_TrackAtlasTypes tmp4;
   kcg_bool tmp5;
-  L_internal_Type_Obu_BasicTypes_Pkg noname;
   
   kcg_copy_ReceivedMessage_T_Common_Types_Pkg(&outC->_L1, MessageIn);
   kcg_copy_CompressedPackets_T_Common_Types_Pkg(
@@ -89,6 +88,7 @@ void Build_StaticSpeedProfile_TA_SSP(
     kcg_copy_StaticSpeedProfile_t_TrackAtlasTypes(&outC->_L237, &tmp2);
   }
   outC->_L209 = outC->_L42.prvLRBG.valid;
+  outC->_L243 = train_length;
   if (outC->tmp) {
     /* 1 */
     SSP_Postprocessing_TA_SSP(
@@ -96,12 +96,14 @@ void Build_StaticSpeedProfile_TA_SSP(
       outC->_L193,
       outC->_L194,
       outC->_L209,
+      outC->_L243,
       &outC->_3_Context_1);
     tmp5 = outC->_3_Context_1.available;
     kcg_copy_StaticSpeedProfile_t_TrackAtlasTypes(
       &tmp4,
       &outC->_3_Context_1.SSP);
     kcg_copy_StaticSpeedProfile_t_TrackAtlasTypes(&outC->_L242, &tmp4);
+    outC->_L241 = tmp5;
   }
   else {
     if (outC->init) {
@@ -114,13 +116,6 @@ void Build_StaticSpeedProfile_TA_SSP(
       kcg_copy_StaticSpeedProfile_t_TrackAtlasTypes(&tmp1, &outC->_L242);
     }
     kcg_copy_StaticSpeedProfile_t_TrackAtlasTypes(&outC->_L242, &tmp1);
-  }
-  outC->_L243 = train_length;
-  noname = outC->_L243;
-  if (outC->tmp) {
-    outC->_L241 = tmp5;
-  }
-  else {
     if (outC->init) {
       tmp = kcg_false;
     }
@@ -137,6 +132,6 @@ void Build_StaticSpeedProfile_TA_SSP(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Build_StaticSpeedProfile_TA_SSP.c
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

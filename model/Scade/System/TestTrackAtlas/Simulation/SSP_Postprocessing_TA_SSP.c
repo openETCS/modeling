@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -19,8 +19,10 @@ void SSP_Postprocessing_TA_SSP(
   /* TA_SSP::SSP_Postprocessing::pos_LRBG */L_internal_Type_Obu_BasicTypes_Pkg pos_LRBG,
   /* TA_SSP::SSP_Postprocessing::pos_prvLRBG */L_internal_Type_Obu_BasicTypes_Pkg pos_prvLRBG,
   /* TA_SSP::SSP_Postprocessing::there_is_prvLRBG */kcg_bool there_is_prvLRBG,
+  /* TA_SSP::SSP_Postprocessing::train_length */L_internal_Type_Obu_BasicTypes_Pkg train_length,
   outC_SSP_Postprocessing_TA_SSP *outC)
 {
+  outC->_L10 = train_length;
   outC->_L9 = there_is_prvLRBG;
   kcg_copy_StaticSpeedProfile_t_TrackAtlasTypes(&outC->_L8, Profile_in);
   if (outC->init) {
@@ -40,6 +42,7 @@ void SSP_Postprocessing_TA_SSP(
     outC->_L7,
     outC->_L6,
     outC->_L9,
+    outC->_L10,
     &outC->_L1,
     &outC->Context_1);
   kcg_copy_StaticSpeedProfile_t_TrackAtlasTypes(
@@ -56,6 +59,6 @@ void SSP_Postprocessing_TA_SSP(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SSP_Postprocessing_TA_SSP.c
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 

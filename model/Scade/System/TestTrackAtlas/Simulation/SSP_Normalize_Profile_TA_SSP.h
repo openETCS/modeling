@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 #ifndef _SSP_Normalize_Profile_TA_SSP_H_
 #define _SSP_Normalize_Profile_TA_SSP_H_
@@ -26,6 +26,8 @@ typedef struct {
   L_internal_Type_Obu_BasicTypes_Pkg /* TA_SSP::SSP_Normalize_Profile::_L2 */ _L2;
   StaticSpeedProfile_t_TrackAtlasTypes /* TA_SSP::SSP_Normalize_Profile::_L3 */ _L3;
   array_int_50 /* TA_SSP::SSP_Normalize_Profile::_L4 */ _L4;
+  L_internal_Type_Obu_BasicTypes_Pkg /* TA_SSP::SSP_Normalize_Profile::_L5 */ _L5;
+  array_int_50 /* TA_SSP::SSP_Normalize_Profile::_L6 */ _L6;
 } outC_SSP_Normalize_Profile_TA_SSP;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -33,6 +35,7 @@ typedef struct {
 extern void SSP_Normalize_Profile_TA_SSP(
   /* TA_SSP::SSP_Normalize_Profile::ProfileIn */StaticSpeedProfile_t_TrackAtlasTypes *ProfileIn,
   /* TA_SSP::SSP_Normalize_Profile::pos_BG */L_internal_Type_Obu_BasicTypes_Pkg pos_BG,
+  /* TA_SSP::SSP_Normalize_Profile::train_length */L_internal_Type_Obu_BasicTypes_Pkg train_length,
   outC_SSP_Normalize_Profile_TA_SSP *outC);
 
 extern void SSP_Normalize_Profile_reset_TA_SSP(
@@ -41,6 +44,6 @@ extern void SSP_Normalize_Profile_reset_TA_SSP(
 #endif /* _SSP_Normalize_Profile_TA_SSP_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SSP_Normalize_Profile_TA_SSP.h
-** Generation date: 2015-09-04T14:44:59
+** Generation date: 2015-09-04T16:21:02
 *************************************************************$ */
 
