@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 #ifndef _GP_Convert_P21_to_DistanceProfile_TA_Gradient_H_
 #define _GP_Convert_P21_to_DistanceProfile_TA_Gradient_H_
@@ -26,8 +26,8 @@ typedef struct {
   P021_OBU_sectionlist_enum_T_TM /* TA_Gradient::GP_Convert_P21_to_DistanceProfile::_L71 */ _L71;
   Q_SCALE /* TA_Gradient::GP_Convert_P21_to_DistanceProfile::_L65 */ _L65;
   P021_OBU_T_TM /* TA_Gradient::GP_Convert_P21_to_DistanceProfile::_L63 */ _L63;
-  array__11126 /* TA_Gradient::GP_Convert_P21_to_DistanceProfile::_L74 */ _L74;
-  array__11129 /* TA_Gradient::GP_Convert_P21_to_DistanceProfile::_L76 */ _L76;
+  array__24141 /* TA_Gradient::GP_Convert_P21_to_DistanceProfile::_L74 */ _L74;
+  array__24144 /* TA_Gradient::GP_Convert_P21_to_DistanceProfile::_L76 */ _L76;
   GradientProfile_t_TrackAtlasTypes /* TA_Gradient::GP_Convert_P21_to_DistanceProfile::_L77 */ _L77;
   GradientProfile_t_TrackAtlasTypes /* TA_Gradient::GP_Convert_P21_to_DistanceProfile::_L83 */ _L83;
 } outC_GP_Convert_P21_to_DistanceProfile_TA_Gradient;
@@ -44,6 +44,6 @@ extern void GP_Convert_P21_to_DistanceProfile_reset_TA_Gradient(
 #endif /* _GP_Convert_P21_to_DistanceProfile_TA_Gradient_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** GP_Convert_P21_to_DistanceProfile_TA_Gradient.h
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 

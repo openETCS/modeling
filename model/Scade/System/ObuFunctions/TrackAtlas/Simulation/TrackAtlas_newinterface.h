@@ -1,18 +1,18 @@
-#ifndef FINDSTARTOFNEWSPEEDPROFILE_TA_LIB_INTERNAL_INTERFACE
-#define FINDSTARTOFNEWSPEEDPROFILE_TA_LIB_INTERNAL_INTERFACE
+#ifndef MRSP_TO_MRSP_TO_DMI_TA_EXPORT_INTERFACE
+#define MRSP_TO_MRSP_TO_DMI_TA_EXPORT_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "FindStartOfNewSpeedProfile_TA_Lib_internal.h"
+#include "MRSP_to_MRSP_to_DMI_TA_Export.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_FindStartOfNewSpeedProfile_TA_Lib_internal inputs_ctx;
-extern outC_FindStartOfNewSpeedProfile_TA_Lib_internal outputs_ctx;
+extern inC_MRSP_to_MRSP_to_DMI_TA_Export inputs_ctx;
+extern outC_MRSP_to_MRSP_to_DMI_TA_Export outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*FINDSTARTOFNEWSPEEDPROFILE_TA_LIB_INTERNAL_INTERFACE */
+#endif /*MRSP_TO_MRSP_TO_DMI_TA_EXPORT_INTERFACE */

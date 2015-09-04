@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 #ifndef _MoveGPSectionsAbsolute_TA_Lib_internal_H_
 #define _MoveGPSectionsAbsolute_TA_Lib_internal_H_
@@ -50,6 +50,6 @@ extern void MoveGPSectionsAbsolute_reset_TA_Lib_internal(
 #endif /* _MoveGPSectionsAbsolute_TA_Lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** MoveGPSectionsAbsolute_TA_Lib_internal.h
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 

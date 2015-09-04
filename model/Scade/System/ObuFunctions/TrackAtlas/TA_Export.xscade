@@ -5487,6 +5487,45 @@
 						<ed:Constant oid="!ed/6f9c7/6847/1218/55e9708381e"/>
 					</pragmas>
 				</Constant>
+				<Constant name="DEFAULT_MRSP_section">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- {valid : false, Loc_Abs : 0, Loc_LRBG : 0, MRS : 0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="valid">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Loc_Abs">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Loc_LRBG">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="MRS">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/6fd7f/6847/1218/55e9880335d"/>
+					</pragmas>
+				</Constant>
 				<Type name="level">
 					<definition>
 						<NamedType>
@@ -5499,476 +5538,6 @@
 						<ed:Type oid="!ed/1b8414/5079/F14/55a368f01cd4"/>
 					</pragmas>
 				</Type>
-				<Operator kind="function" name="MRSP_to_DMI">
-					<inputs>
-						<Variable name="MRSP">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="TrackAtlasTypes::MRSP_Profile_t"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/38741b/4EDE/5F8/559097c459ab"/>
-							</pragmas>
-						</Variable>
-					</inputs>
-					<outputs>
-						<Variable name="MRSP_for_DMI">
-							<type>
-								<NamedType>
-									<type>
-										<NullRef/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/387428/4EDE/5F8/559098045ae2"/>
-							</pragmas>
-						</Variable>
-					</outputs>
-					<locals>
-						<Variable name="_L1">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="TrackAtlasTypes::MRSP_Profile_t"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/38742a/4EDE/5F8/5590980e75d1"/>
-							</pragmas>
-						</Variable>
-						<Variable name="_L2">
-							<type>
-								<Table>
-									<type>
-										<NamedType>
-											<type>
-												<NullRef/>
-											</type>
-										</NamedType>
-									</type>
-									<size>
-										<IdExpression>
-											<path>
-												<ConstVarRef name="TrackAtlasTypes::MRSPMaxSections"/>
-											</path>
-										</IdExpression>
-									</size>
-								</Table>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/38743b/4EDE/5F8/5590982924a0"/>
-							</pragmas>
-						</Variable>
-					</locals>
-					<data>
-						<!-- _L1 = MRSP; -->
-						<Equation>
-							<lefts>
-								<VariableRef name="_L1"/>
-							</lefts>
-							<right>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="MRSP"/>
-									</path>
-								</IdExpression>
-							</right>
-							<pragmas>
-								<ed:Equation oid="!ed/387429/4EDE/5F8/5590980e2ffc"/>
-							</pragmas>
-						</Equation>
-						<!-- MRSP_for_DMI = _L2; -->
-						<Equation>
-							<lefts>
-								<VariableRef name="MRSP_for_DMI"/>
-							</lefts>
-							<right>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="_L2"/>
-									</path>
-								</IdExpression>
-							</right>
-							<pragmas>
-								<ed:Equation oid="!ed/38742b/4EDE/5F8/5590980e2c38"/>
-							</pragmas>
-						</Equation>
-						<!-- _L2 = (map MRSP_to_DMI_loop <<TrackAtlasTypes::MRSPMaxSections>>)(_L1); -->
-						<Equation>
-							<lefts>
-								<VariableRef name="_L2"/>
-							</lefts>
-							<right>
-								<!-- (map MRSP_to_DMI_loop <<TrackAtlasTypes::MRSPMaxSections>>)(_L1) -->
-								<CallExpression>
-									<operator>
-										<IteratorOp name="1" iterator="map">
-											<operator>
-												<OpCall name="1">
-													<operator>
-														<OperatorRef name="MRSP_to_DMI_loop"/>
-													</operator>
-												</OpCall>
-											</operator>
-											<size>
-												<IdExpression>
-													<path>
-														<ConstVarRef name="TrackAtlasTypes::MRSPMaxSections"/>
-													</path>
-												</IdExpression>
-											</size>
-										</IteratorOp>
-									</operator>
-									<callParameters>
-										<IdExpression>
-											<path>
-												<ConstVarRef name="_L1"/>
-											</path>
-										</IdExpression>
-									</callParameters>
-								</CallExpression>
-							</right>
-							<pragmas>
-								<ed:Equation oid="!ed/387430/4EDE/5F8/5590981330a1"/>
-							</pragmas>
-						</Equation>
-					</data>
-					<pragmas>
-						<ed:Operator oid="!ed/387413/4EDE/5F8/559097872b06" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-							<diagrams>
-								<NetDiagram name="diagram_MRSP_to_DMI_1" landscape="true" format="A4 (210 297)" oid="!ed/387414/4EDE/5F8/559097875a34">
-									<presentationElements>
-										<EquationGE presentable="!ed/387429/4EDE/5F8/5590980e2ffc">
-											<position>
-												<Point x="5345" y="7355"/>
-											</position>
-											<size>
-												<Size width="264" height="503"/>
-											</size>
-										</EquationGE>
-										<EquationGE presentable="!ed/38742b/4EDE/5F8/5590980e2c38">
-											<position>
-												<Point x="20955" y="7355"/>
-											</position>
-											<size>
-												<Size width="317" height="503"/>
-											</size>
-										</EquationGE>
-										<EquationGE presentable="!ed/387430/4EDE/5F8/5590981330a1">
-											<position>
-												<Point x="11562" y="6165"/>
-											</position>
-											<size>
-												<Size width="5043" height="2927"/>
-											</size>
-										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/387429/4EDE/5F8/5590980e2ffc" dstEquation="!ed/387430/4EDE/5F8/5590981330a1">
-											<positions>
-												<Point x="5609" y="7620"/>
-												<Point x="8573" y="7620"/>
-												<Point x="8573" y="7620"/>
-												<Point x="11562" y="7620"/>
-											</positions>
-										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/387430/4EDE/5F8/5590981330a1" dstEquation="!ed/38742b/4EDE/5F8/5590980e2c38">
-											<positions>
-												<Point x="16616" y="7620"/>
-												<Point x="18812" y="7620"/>
-												<Point x="18812" y="7620"/>
-												<Point x="21008" y="7620"/>
-											</positions>
-										</Edge>
-									</presentationElements>
-								</NetDiagram>
-							</diagrams>
-						</ed:Operator>
-					</pragmas>
-				</Operator>
-				<Operator kind="function" name="MRSP_to_DMI_loop">
-					<inputs>
-						<Variable name="MRSP">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/387427/4EDE/5F8/559097d66ffc"/>
-							</pragmas>
-						</Variable>
-					</inputs>
-					<outputs>
-						<Variable name="MRSP_for_DMI">
-							<type>
-								<NamedType>
-									<type>
-										<NullRef/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/38743a/4EDE/5F8/559098291887"/>
-							</pragmas>
-						</Variable>
-					</outputs>
-					<locals>
-						<Variable name="_L1">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/3874c1/4EDE/5F8/55909a2b5066"/>
-							</pragmas>
-						</Variable>
-						<Variable name="_L5">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/3874d8/4EDE/5F8/55909a417c7b"/>
-							</pragmas>
-						</Variable>
-						<Variable name="_L4">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/3874d7/4EDE/5F8/55909a417141"/>
-							</pragmas>
-						</Variable>
-						<Variable name="_L3">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/3874d6/4EDE/5F8/55909a415898"/>
-							</pragmas>
-						</Variable>
-						<Variable name="_L2">
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="bool"/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/3874d5/4EDE/5F8/55909a414334"/>
-							</pragmas>
-						</Variable>
-						<Variable name="_L10">
-							<type>
-								<NamedType>
-									<type>
-										<NullRef/>
-									</type>
-								</NamedType>
-							</type>
-							<pragmas>
-								<ed:Variable oid="!ed/3874de/4EDE/5F8/55909a4b5064"/>
-							</pragmas>
-						</Variable>
-					</locals>
-					<data>
-						<!-- _L1 = MRSP; -->
-						<Equation>
-							<lefts>
-								<VariableRef name="_L1"/>
-							</lefts>
-							<right>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="MRSP"/>
-									</path>
-								</IdExpression>
-							</right>
-							<pragmas>
-								<ed:Equation oid="!ed/3874c0/4EDE/5F8/55909a2b1648"/>
-							</pragmas>
-						</Equation>
-						<!-- MRSP_for_DMI = _L10; -->
-						<Equation>
-							<lefts>
-								<VariableRef name="MRSP_for_DMI"/>
-							</lefts>
-							<right>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="_L10"/>
-									</path>
-								</IdExpression>
-							</right>
-							<pragmas>
-								<ed:Equation oid="!ed/3874cf/4EDE/5F8/55909a381000"/>
-							</pragmas>
-						</Equation>
-						<!-- _L2, _L3, _L4, _L5 = (flatten TrackAtlasTypes::MRSP_section_t)(_L1); -->
-						<Equation>
-							<lefts>
-								<VariableRef name="_L2"/>
-								<VariableRef name="_L3"/>
-								<VariableRef name="_L4"/>
-								<VariableRef name="_L5"/>
-							</lefts>
-							<right>
-								<!-- (flatten TrackAtlasTypes::MRSP_section_t)(_L1) -->
-								<CallExpression>
-									<operator>
-										<FlattenOp>
-											<type>
-												<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
-											</type>
-										</FlattenOp>
-									</operator>
-									<callParameters>
-										<IdExpression>
-											<path>
-												<ConstVarRef name="_L1"/>
-											</path>
-										</IdExpression>
-									</callParameters>
-								</CallExpression>
-							</right>
-							<pragmas>
-								<ed:Equation oid="!ed/3874d4/4EDE/5F8/55909a415561"/>
-							</pragmas>
-						</Equation>
-						<!-- _L10 = (make _null)(); -->
-						<Equation>
-							<lefts>
-								<VariableRef name="_L10"/>
-							</lefts>
-							<right>
-								<!-- (make _null)() -->
-								<CallExpression>
-									<operator>
-										<MakeOp>
-											<type>
-												<NullRef/>
-											</type>
-										</MakeOp>
-									</operator>
-								</CallExpression>
-							</right>
-							<pragmas>
-								<ed:Equation oid="!ed/3874dd/4EDE/5F8/55909a4b5ee8"/>
-							</pragmas>
-						</Equation>
-						<!-- _ = _L3; -->
-						<Equation>
-							<lefts>
-								<VariableRef name="_"/>
-							</lefts>
-							<right>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="_L3"/>
-									</path>
-								</IdExpression>
-							</right>
-							<pragmas>
-								<ed:Equation oid="!ed/3874e2/4EDE/5F8/55909a5818ad"/>
-							</pragmas>
-						</Equation>
-					</data>
-					<pragmas>
-						<ed:Operator oid="!ed/387425/4EDE/5F8/559097d6661a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-							<diagrams>
-								<NetDiagram name="diagram_MRSP_to_DMI_loop_1" landscape="true" format="A4 (210 297)" oid="!ed/387426/4EDE/5F8/559097d61170">
-									<presentationElements>
-										<EquationGE presentable="!ed/3874c0/4EDE/5F8/55909a2b1648">
-											<position>
-												<Point x="4260" y="6588"/>
-											</position>
-											<size>
-												<Size width="264" height="503"/>
-											</size>
-										</EquationGE>
-										<EquationGE presentable="!ed/3874cf/4EDE/5F8/55909a381000">
-											<position>
-												<Point x="20055" y="6668"/>
-											</position>
-											<size>
-												<Size width="317" height="502"/>
-											</size>
-										</EquationGE>
-										<EquationGE presentable="!ed/3874d4/4EDE/5F8/55909a415561">
-											<position>
-												<Point x="5786" y="3749"/>
-											</position>
-											<size>
-												<Size width="1286" height="6181"/>
-											</size>
-										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3874c0/4EDE/5F8/55909a2b1648" dstEquation="!ed/3874d4/4EDE/5F8/55909a415561">
-											<positions>
-												<Point x="4524" y="6853"/>
-												<Point x="5159" y="6853"/>
-												<Point x="5159" y="6853"/>
-												<Point x="5794" y="6853"/>
-											</positions>
-										</Edge>
-										<EquationGE presentable="!ed/3874dd/4EDE/5F8/55909a4b5ee8">
-											<position>
-												<Point x="17507" y="3961"/>
-											</position>
-											<size>
-												<Size width="1286" height="5942"/>
-											</size>
-										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3874dd/4EDE/5F8/55909a4b5ee8" dstEquation="!ed/3874cf/4EDE/5F8/55909a381000">
-											<positions>
-												<Point x="18785" y="6932"/>
-												<Point x="19447" y="6932"/>
-												<Point x="19447" y="6932"/>
-												<Point x="20108" y="6932"/>
-											</positions>
-										</Edge>
-										<EquationGE presentable="!ed/3874e2/4EDE/5F8/55909a5818ad">
-											<position>
-												<Point x="8361" y="5900"/>
-											</position>
-											<size>
-												<Size width="503" height="503"/>
-											</size>
-										</EquationGE>
-										<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/3874d4/4EDE/5F8/55909a415561" dstEquation="!ed/3874e2/4EDE/5F8/55909a5818ad">
-											<positions>
-												<Point x="7064" y="6218"/>
-												<Point x="7832" y="6218"/>
-												<Point x="7832" y="6165"/>
-												<Point x="8625" y="6165"/>
-											</positions>
-										</Edge>
-									</presentationElements>
-								</NetDiagram>
-							</diagrams>
-						</ed:Operator>
-					</pragmas>
-				</Operator>
 				<Operator kind="function" name="GradientProfile_to_DMI">
 					<inputs>
 						<Variable name="Gradient_Profile_in">
@@ -11041,6 +10610,1095 @@
 						</ed:Operator>
 					</pragmas>
 				</Operator>
+				<Operator kind="function" name="MRSP_to_DMI_loop">
+					<inputs>
+						<Variable name="MRSP">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/387427/4EDE/5F8/559097d66ffc"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="MRSP_for_DMI">
+							<type>
+								<NamedType>
+									<type>
+										<NullRef/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/38743a/4EDE/5F8/559098291887"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3874c1/4EDE/5F8/55909a2b5066"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L5">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3874d8/4EDE/5F8/55909a417c7b"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L4">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3874d7/4EDE/5F8/55909a417141"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L3">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3874d6/4EDE/5F8/55909a415898"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L2">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3874d5/4EDE/5F8/55909a414334"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L10">
+							<type>
+								<NamedType>
+									<type>
+										<NullRef/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3874de/4EDE/5F8/55909a4b5064"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L1 = MRSP; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="MRSP"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3874c0/4EDE/5F8/55909a2b1648"/>
+							</pragmas>
+						</Equation>
+						<!-- MRSP_for_DMI = _L10; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="MRSP_for_DMI"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L10"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3874cf/4EDE/5F8/55909a381000"/>
+							</pragmas>
+						</Equation>
+						<!-- _L2, _L3, _L4, _L5 = (flatten TrackAtlasTypes::MRSP_section_t)(_L1); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L2"/>
+								<VariableRef name="_L3"/>
+								<VariableRef name="_L4"/>
+								<VariableRef name="_L5"/>
+							</lefts>
+							<right>
+								<!-- (flatten TrackAtlasTypes::MRSP_section_t)(_L1) -->
+								<CallExpression>
+									<operator>
+										<FlattenOp>
+											<type>
+												<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+											</type>
+										</FlattenOp>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3874d4/4EDE/5F8/55909a415561"/>
+							</pragmas>
+						</Equation>
+						<!-- _L10 = (make _null)(); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L10"/>
+							</lefts>
+							<right>
+								<!-- (make _null)() -->
+								<CallExpression>
+									<operator>
+										<MakeOp>
+											<type>
+												<NullRef/>
+											</type>
+										</MakeOp>
+									</operator>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3874dd/4EDE/5F8/55909a4b5ee8"/>
+							</pragmas>
+						</Equation>
+						<!-- _ = _L3; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L3"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3874e2/4EDE/5F8/55909a5818ad"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/387425/4EDE/5F8/559097d6661a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_MRSP_to_DMI_loop_1" landscape="true" format="A4 (210 297)" oid="!ed/387426/4EDE/5F8/559097d61170">
+									<presentationElements>
+										<EquationGE presentable="!ed/3874c0/4EDE/5F8/55909a2b1648">
+											<position>
+												<Point x="4260" y="6588"/>
+											</position>
+											<size>
+												<Size width="264" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3874cf/4EDE/5F8/55909a381000">
+											<position>
+												<Point x="20055" y="6668"/>
+											</position>
+											<size>
+												<Size width="317" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3874d4/4EDE/5F8/55909a415561">
+											<position>
+												<Point x="5786" y="3749"/>
+											</position>
+											<size>
+												<Size width="1286" height="6181"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3874c0/4EDE/5F8/55909a2b1648" dstEquation="!ed/3874d4/4EDE/5F8/55909a415561">
+											<positions>
+												<Point x="4524" y="6853"/>
+												<Point x="5159" y="6853"/>
+												<Point x="5159" y="6853"/>
+												<Point x="5794" y="6853"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/3874dd/4EDE/5F8/55909a4b5ee8">
+											<position>
+												<Point x="17507" y="3961"/>
+											</position>
+											<size>
+												<Size width="1286" height="5942"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3874dd/4EDE/5F8/55909a4b5ee8" dstEquation="!ed/3874cf/4EDE/5F8/55909a381000">
+											<positions>
+												<Point x="18785" y="6932"/>
+												<Point x="19447" y="6932"/>
+												<Point x="19447" y="6932"/>
+												<Point x="20108" y="6932"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/3874e2/4EDE/5F8/55909a5818ad">
+											<position>
+												<Point x="8361" y="5900"/>
+											</position>
+											<size>
+												<Size width="503" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/3874d4/4EDE/5F8/55909a415561" dstEquation="!ed/3874e2/4EDE/5F8/55909a5818ad">
+											<positions>
+												<Point x="7064" y="6218"/>
+												<Point x="7832" y="6218"/>
+												<Point x="7832" y="6165"/>
+												<Point x="8625" y="6165"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="function" name="MRSP_to_MRSP_to_DMI">
+					<inputs>
+						<Variable name="i">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/6fcdd/6847/1218/55e98613761c"/>
+							</pragmas>
+						</Variable>
+						<Variable name="MRSP_in">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/6fb26/6847/1218/55e983ea5663"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="cont">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/6fcba/6847/1218/55e985692dbb"/>
+							</pragmas>
+						</Variable>
+						<Variable name="MRSP_to_DMI">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/6fb24/6847/1218/55e983ea175d"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L5">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/6fb1a/6847/1218/55e983ea365b"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L420">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/6fd1f/6847/1218/55e9871f3402"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L429">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/6fd38/6847/1218/55e987467c99"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L430">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/6fd4c/6847/1218/55e987547aba"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L431">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/6fd58/6847/1218/55e9879c1489"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L444">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/6fdbb/6847/1218/55e9898d30fd"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L446">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/6fde8/6847/1218/55e9915754f5"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L447">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/6fdf6/6847/1218/55e9918513a7"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L448">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/6fe0c/6847/1218/55e9919d2d66"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L5 = MRSP_in; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L5"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="MRSP_in"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6fb0d/6847/1218/55e983ea3899"/>
+							</pragmas>
+						</Equation>
+						<!-- MRSP_to_DMI = _L448; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="MRSP_to_DMI"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L448"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6fb0f/6847/1218/55e983ea196e"/>
+							</pragmas>
+						</Equation>
+						<!-- _L420 = _L5.MRS; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L420"/>
+							</lefts>
+							<right>
+								<!-- _L5.MRS -->
+								<PrjOp name="1">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L5"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="MRS"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6fd1e/6847/1218/55e9871f17c4"/>
+							</pragmas>
+						</Equation>
+						<!-- _L429 = 635; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L429"/>
+							</lefts>
+							<right>
+								<ConstValue value="635"/>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6fd37/6847/1218/55e987461099"/>
+							</pragmas>
+						</Equation>
+						<!-- _L430 = _L429 = _L420; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L430"/>
+							</lefts>
+							<right>
+								<!-- _L429 = _L420 -->
+								<BinaryOp name="1" operator="=">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L429"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L420"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6fd4b/6847/1218/55e987547b26"/>
+							</pragmas>
+						</Equation>
+						<!-- _L431 = _L5.valid; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L431"/>
+							</lefts>
+							<right>
+								<!-- _L5.valid -->
+								<PrjOp name="2">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L5"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="valid"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6fd57/6847/1218/55e9879c762c"/>
+							</pragmas>
+						</Equation>
+						<!-- cont = _L431; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="cont"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L431"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6fd9b/6847/1218/55e988cc74dc"/>
+							</pragmas>
+						</Equation>
+						<!-- _L444 = i; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L444"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="i"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6fdba/6847/1218/55e9898d3bd4"/>
+							</pragmas>
+						</Equation>
+						<!-- _ = _L444; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L444"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6fdc0/6847/1218/55e989912acc"/>
+							</pragmas>
+						</Equation>
+						<!-- _L446 = if _L430 then (_L447) else (_L420); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L446"/>
+							</lefts>
+							<right>
+								<!-- if _L430 then (_L447) else (_L420) -->
+								<IfThenElseOp name="2">
+									<if>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L430"/>
+											</path>
+										</IdExpression>
+									</if>
+									<then>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L447"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</then>
+									<else>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L420"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</else>
+								</IfThenElseOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6fde7/6847/1218/55e99157269a"/>
+							</pragmas>
+						</Equation>
+						<!-- _L447 = 0; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L447"/>
+							</lefts>
+							<right>
+								<ConstValue value="0"/>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6fdf5/6847/1218/55e991852f9d"/>
+							</pragmas>
+						</Equation>
+						<!-- _L448 = (_L5 with .MRS = _L446); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L448"/>
+							</lefts>
+							<right>
+								<!-- (_L5 with .MRS = _L446) -->
+								<ChgIthOp name="2">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L5"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="MRS"/>
+									</with>
+									<value>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L446"/>
+											</path>
+										</IdExpression>
+									</value>
+								</ChgIthOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6fe0b/6847/1218/55e9919d7289"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/6fb0a/6847/1218/55e983ea787c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_MRSP_to_MRSP_to_DMI_1" landscape="true" format="A4 (210 297)" oid="!ed/6fb16/6847/1218/55e983ea6708">
+									<presentationElements>
+										<EquationGE presentable="!ed/6fb0d/6847/1218/55e983ea3899">
+											<position>
+												<Point x="2910" y="4604"/>
+											</position>
+											<size>
+												<Size width="318" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/6fb0f/6847/1218/55e983ea196e">
+											<position>
+												<Point x="22437" y="4763"/>
+											</position>
+											<size>
+												<Size width="318" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/6fd1e/6847/1218/55e9871f17c4">
+											<position>
+												<Point x="7117" y="7435"/>
+											</position>
+											<size>
+												<Size width="953" height="953"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6fb0d/6847/1218/55e983ea3899" dstEquation="!ed/6fd1e/6847/1218/55e9871f17c4">
+											<positions>
+												<Point x="3228" y="4868"/>
+												<Point x="5159" y="4868"/>
+												<Point x="5159" y="7911"/>
+												<Point x="7117" y="7911"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/6fd37/6847/1218/55e987461099">
+											<position>
+												<Point x="7858" y="6429"/>
+											</position>
+											<size>
+												<Size width="212" height="318"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/6fd4b/6847/1218/55e987547b26">
+											<position>
+												<Point x="9975" y="6853"/>
+											</position>
+											<size>
+												<Size width="1006" height="662"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/6fd1e/6847/1218/55e9871f17c4" dstEquation="!ed/6fd4b/6847/1218/55e987547b26">
+											<positions>
+												<Point x="8070" y="7911"/>
+												<Point x="9022" y="7911"/>
+												<Point x="9022" y="7303"/>
+												<Point x="9975" y="7303"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/6fd57/6847/1218/55e9879c762c">
+											<position>
+												<Point x="7117" y="2566"/>
+											</position>
+											<size>
+												<Size width="953" height="953"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/6fd9b/6847/1218/55e988cc74dc">
+											<position>
+												<Point x="22437" y="2778"/>
+											</position>
+											<size>
+												<Size width="317" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6fd57/6847/1218/55e9879c762c" dstEquation="!ed/6fd9b/6847/1218/55e988cc74dc">
+											<positions>
+												<Point x="8070" y="3043"/>
+												<Point x="15266" y="3043"/>
+												<Point x="15266" y="3043"/>
+												<Point x="22490" y="3043"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6fb0d/6847/1218/55e983ea3899" dstEquation="!ed/6fd57/6847/1218/55e9879c762c">
+											<positions>
+												<Point x="3228" y="4868"/>
+												<Point x="5159" y="4868"/>
+												<Point x="5159" y="3043"/>
+												<Point x="7117" y="3043"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/6fdba/6847/1218/55e9898d3bd4">
+											<position>
+												<Point x="1931" y="953"/>
+											</position>
+											<size>
+												<Size width="264" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/6fdc0/6847/1218/55e989912acc">
+											<position>
+												<Point x="3122" y="953"/>
+											</position>
+											<size>
+												<Size width="503" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6fdba/6847/1218/55e9898d3bd4" dstEquation="!ed/6fdc0/6847/1218/55e989912acc">
+											<positions>
+												<Point x="2196" y="1217"/>
+												<Point x="2778" y="1217"/>
+												<Point x="2778" y="1217"/>
+												<Point x="3387" y="1217"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6fd37/6847/1218/55e987461099" dstEquation="!ed/6fd4b/6847/1218/55e987547b26">
+											<positions>
+												<Point x="8070" y="6588"/>
+												<Point x="9022" y="6588"/>
+												<Point x="9022" y="7064"/>
+												<Point x="9975" y="7064"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/6fde7/6847/1218/55e99157269a">
+											<position>
+												<Point x="13256" y="8414"/>
+											</position>
+											<size>
+												<Size width="1005" height="926"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6fd4b/6847/1218/55e987547b26" dstEquation="!ed/6fde7/6847/1218/55e99157269a">
+											<positions>
+												<Point x="10980" y="7197"/>
+												<Point x="13758" y="7197"/>
+												<Point x="13758" y="8414"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/6fd1e/6847/1218/55e9871f17c4" dstEquation="!ed/6fde7/6847/1218/55e99157269a">
+											<positions>
+												<Point x="8070" y="7911"/>
+												<Point x="8625" y="7911"/>
+												<Point x="8625" y="9022"/>
+												<Point x="13256" y="9022"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/6fdf5/6847/1218/55e991852f9d">
+											<position>
+												<Point x="11906" y="8361"/>
+											</position>
+											<size>
+												<Size width="212" height="317"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/6fe0b/6847/1218/55e9919d7289">
+											<position>
+												<Point x="18971" y="4551"/>
+											</position>
+											<size>
+												<Size width="952" height="952"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6fe0b/6847/1218/55e9919d7289" dstEquation="!ed/6fb0f/6847/1218/55e983ea196e">
+											<positions>
+												<Point x="19923" y="5027"/>
+												<Point x="21193" y="5027"/>
+												<Point x="21193" y="5027"/>
+												<Point x="22490" y="5027"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6fb0d/6847/1218/55e983ea3899" dstEquation="!ed/6fe0b/6847/1218/55e9919d7289">
+											<positions>
+												<Point x="3228" y="4868"/>
+												<Point x="11086" y="4868"/>
+												<Point x="11086" y="4868"/>
+												<Point x="18971" y="4868"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/6fde7/6847/1218/55e99157269a" dstEquation="!ed/6fe0b/6847/1218/55e9919d7289">
+											<positions>
+												<Point x="14261" y="8890"/>
+												<Point x="16616" y="8890"/>
+												<Point x="16616" y="5186"/>
+												<Point x="18971" y="5186"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/6fdf5/6847/1218/55e991852f9d" dstEquation="!ed/6fde7/6847/1218/55e99157269a">
+											<positions>
+												<Point x="12118" y="8520"/>
+												<Point x="12674" y="8520"/>
+												<Point x="12674" y="8731"/>
+												<Point x="13256" y="8731"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="function" name="MRSP_to_DMI">
+					<inputs>
+						<Variable name="MRSP">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::MRSP_Profile_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/38741b/4EDE/5F8/559097c459ab"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="MRSP_for_DMI">
+							<type>
+								<NamedType>
+									<type>
+										<NullRef/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/387428/4EDE/5F8/559098045ae2"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::MRSP_Profile_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/38742a/4EDE/5F8/5590980e75d1"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L2">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<NullRef/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="TrackAtlasTypes::MRSPMaxSections"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/38743b/4EDE/5F8/5590982924a0"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L1 = MRSP; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="MRSP"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/387429/4EDE/5F8/5590980e2ffc"/>
+							</pragmas>
+						</Equation>
+						<!-- MRSP_for_DMI = _L2; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="MRSP_for_DMI"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L2"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/38742b/4EDE/5F8/5590980e2c38"/>
+							</pragmas>
+						</Equation>
+						<!-- _L2 = (map MRSP_to_DMI_loop <<TrackAtlasTypes::MRSPMaxSections>>)(_L1); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L2"/>
+							</lefts>
+							<right>
+								<!-- (map MRSP_to_DMI_loop <<TrackAtlasTypes::MRSPMaxSections>>)(_L1) -->
+								<CallExpression>
+									<operator>
+										<IteratorOp name="1" iterator="map">
+											<operator>
+												<OpCall name="1">
+													<operator>
+														<OperatorRef name="MRSP_to_DMI_loop"/>
+													</operator>
+												</OpCall>
+											</operator>
+											<size>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="TrackAtlasTypes::MRSPMaxSections"/>
+													</path>
+												</IdExpression>
+											</size>
+										</IteratorOp>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/387430/4EDE/5F8/5590981330a1"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/387413/4EDE/5F8/559097872b06" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_MRSP_to_DMI_1" landscape="true" format="A4 (210 297)" oid="!ed/387414/4EDE/5F8/559097875a34">
+									<presentationElements>
+										<EquationGE presentable="!ed/387429/4EDE/5F8/5590980e2ffc">
+											<position>
+												<Point x="5345" y="7355"/>
+											</position>
+											<size>
+												<Size width="264" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/38742b/4EDE/5F8/5590980e2c38">
+											<position>
+												<Point x="20955" y="7355"/>
+											</position>
+											<size>
+												<Size width="317" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/387430/4EDE/5F8/5590981330a1">
+											<position>
+												<Point x="11562" y="6165"/>
+											</position>
+											<size>
+												<Size width="5043" height="2927"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/387429/4EDE/5F8/5590980e2ffc" dstEquation="!ed/387430/4EDE/5F8/5590981330a1">
+											<positions>
+												<Point x="5609" y="7620"/>
+												<Point x="8573" y="7620"/>
+												<Point x="8573" y="7620"/>
+												<Point x="11562" y="7620"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/387430/4EDE/5F8/5590981330a1" dstEquation="!ed/38742b/4EDE/5F8/5590980e2c38">
+											<positions>
+												<Point x="16616" y="7620"/>
+												<Point x="18812" y="7620"/>
+												<Point x="18812" y="7620"/>
+												<Point x="21008" y="7620"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
 				<Operator kind="function" name="SSP_to_MRSP">
 					<inputs>
 						<Variable name="i">
@@ -11567,8 +12225,8 @@
 										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/6f6a2/6847/1218/55e88f497247" dstEquation="!ed/6f6f5/6847/1218/55e88f9069dc">
 											<positions>
 												<Point x="29792" y="6562"/>
-												<Point x="30956" y="6562"/>
-												<Point x="30956" y="5080"/>
+												<Point x="30983" y="6562"/>
+												<Point x="30983" y="5106"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/6f715/6847/1218/55e88fed5c61">
@@ -11590,8 +12248,8 @@
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/6f721/6847/1218/55e88ff53262" dstEquation="!ed/6f715/6847/1218/55e88fed5c61">
 											<positions>
 												<Point x="4683" y="12383"/>
-												<Point x="5424" y="12383"/>
-												<Point x="5424" y="11668"/>
+												<Point x="5450" y="12383"/>
+												<Point x="5450" y="11695"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6f6ae/6847/1218/55e88f4b5220" dstEquation="!ed/6f715/6847/1218/55e88fed5c61">
@@ -11612,10 +12270,10 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6f6f5/6847/1218/55e88f9069dc" dstEquation="!ed/6f6be/6847/1218/55e88f5045d9">
 											<positions>
-												<Point x="33285" y="4604"/>
-												<Point x="35692" y="4604"/>
-												<Point x="35692" y="4604"/>
-												<Point x="38126" y="4604"/>
+												<Point x="33311" y="4630"/>
+												<Point x="35692" y="4630"/>
+												<Point x="35692" y="4630"/>
+												<Point x="38126" y="4630"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6f6b4/6847/1218/55e88f4d6f04" dstEquation="!ed/6f6f5/6847/1218/55e88f9069dc">
@@ -11628,15 +12286,15 @@
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6f715/6847/1218/55e88fed5c61" dstEquation="!ed/6f73c/6847/1218/55e891113808">
 											<positions>
-												<Point x="8096" y="11192"/>
-												<Point x="9260" y="11192"/>
-												<Point x="9260" y="11192"/>
-												<Point x="10451" y="11192"/>
+												<Point x="8123" y="11218"/>
+												<Point x="9260" y="11218"/>
+												<Point x="9260" y="11218"/>
+												<Point x="10451" y="11218"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6f73c/6847/1218/55e891113808" dstEquation="!ed/6f6b9/6847/1218/55e88f4e586d">
 											<positions>
-												<Point x="14605" y="8705"/>
+												<Point x="14631" y="8705"/>
 												<Point x="19473" y="8705"/>
 												<Point x="19473" y="5847"/>
 												<Point x="22648" y="5847"/>
@@ -11652,15 +12310,15 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/6f7d1/6847/1218/55e891e45349" dstEquation="!ed/6f6f5/6847/1218/55e88f9069dc">
 											<positions>
-												<Point x="26776" y="11165"/>
-												<Point x="27702" y="11165"/>
-												<Point x="27702" y="4763"/>
-												<Point x="28628" y="4763"/>
+												<Point x="26802" y="11192"/>
+												<Point x="27702" y="11192"/>
+												<Point x="27702" y="4789"/>
+												<Point x="28628" y="4789"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6f73c/6847/1218/55e891113808" dstEquation="!ed/6f7d1/6847/1218/55e891e45349">
 											<positions>
-												<Point x="14605" y="8705"/>
+												<Point x="14631" y="8705"/>
 												<Point x="18600" y="8705"/>
 												<Point x="18600" y="8705"/>
 												<Point x="22622" y="8705"/>
@@ -11668,15 +12326,15 @@
 										</Edge>
 										<Edge leftVarIndex="5" rightExprIndex="4" srcEquation="!ed/6f73c/6847/1218/55e891113808" dstEquation="!ed/6f7d1/6847/1218/55e891e45349">
 											<positions>
-												<Point x="14605" y="13679"/>
-												<Point x="18600" y="13679"/>
+												<Point x="14631" y="13705"/>
+												<Point x="18600" y="13705"/>
 												<Point x="18600" y="13653"/>
 												<Point x="22622" y="13653"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="2" rightExprIndex="2" srcEquation="!ed/6f73c/6847/1218/55e891113808" dstEquation="!ed/6f7d1/6847/1218/55e891e45349">
 											<positions>
-												<Point x="14605" y="9948"/>
+												<Point x="14631" y="9948"/>
 												<Point x="18600" y="9948"/>
 												<Point x="18600" y="10345"/>
 												<Point x="22622" y="10345"/>
@@ -11684,10 +12342,10 @@
 										</Edge>
 										<Edge leftVarIndex="3" rightExprIndex="3" srcEquation="!ed/6f73c/6847/1218/55e891113808" dstEquation="!ed/6f7d1/6847/1218/55e891e45349">
 											<positions>
-												<Point x="14605" y="11192"/>
-												<Point x="18600" y="11192"/>
-												<Point x="18600" y="11986"/>
-												<Point x="22622" y="11986"/>
+												<Point x="14631" y="11218"/>
+												<Point x="18600" y="11218"/>
+												<Point x="18600" y="12012"/>
+												<Point x="22622" y="12012"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/6f7d7/6847/1218/55e892905411">
@@ -11700,10 +12358,10 @@
 										</EquationGE>
 										<Edge leftVarIndex="4" rightExprIndex="1" srcEquation="!ed/6f73c/6847/1218/55e891113808" dstEquation="!ed/6f7d7/6847/1218/55e892905411">
 											<positions>
-												<Point x="14605" y="12435"/>
-												<Point x="15425" y="12435"/>
-												<Point x="15425" y="12435"/>
-												<Point x="16245" y="12435"/>
+												<Point x="14631" y="12462"/>
+												<Point x="15425" y="12462"/>
+												<Point x="15425" y="12462"/>
+												<Point x="16245" y="12462"/>
 											</positions>
 										</Edge>
 									</presentationElements>

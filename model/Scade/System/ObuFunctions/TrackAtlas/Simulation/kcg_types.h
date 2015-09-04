@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-03T16:20:45
+** Generation date: 2015-09-04T14:09:24
 *************************************************************$ */
 #ifndef _KCG_TYPES_H_
 #define _KCG_TYPES_H_
@@ -49,77 +49,37 @@ typedef unsigned char kcg_char;
 #define kcg_assign_array kcg_assign
 #endif /* kcg_assign_array */
 
-/* D_STATIC */
-typedef kcg_int D_STATIC;
+/* Obu_BasicTypes_Pkg::L_internal_Type */
+typedef kcg_int L_internal_Type_Obu_BasicTypes_Pkg;
 
-/* TA_MRSP::SSP_t_section_t */
-typedef kcg_int SSP_t_section_t_TA_MRSP;
-
-/* TA_MRSP::SSP_s_section_t */
-typedef kcg_int SSP_s_section_t_TA_MRSP;
+/* Obu_BasicTypes_Pkg::V_internal_Type */
+typedef kcg_int V_internal_Type_Obu_BasicTypes_Pkg;
 
 typedef struct {
-  SSP_t_section_t_TA_MRSP target;
-  SSP_s_section_t_TA_MRSP speed;
-} struct__176;
+  kcg_bool valid;
+  L_internal_Type_Obu_BasicTypes_Pkg Loc_Abs;
+  L_internal_Type_Obu_BasicTypes_Pkg Loc_LRBG;
+  V_internal_Type_Obu_BasicTypes_Pkg MRS;
+} struct__129;
 
-/* TA_MRSP::SSP_section_t */
-typedef struct__176 SSP_section_t_TA_MRSP;
+/* TrackAtlasTypes::MRSP_section_t */
+typedef struct__129 MRSP_section_t_TrackAtlasTypes;
 
-typedef SSP_section_t_TA_MRSP array__181[33];
+#ifndef kcg_copy_struct__129
+#define kcg_copy_struct__129(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__129)))
+#endif /* kcg_copy_struct__129 */
 
-/* TA_MRSP::SSP_cat_t */
-typedef array__181 SSP_cat_t_TA_MRSP;
+#ifndef kcg_comp_struct__129
+extern kcg_bool kcg_comp_struct__129(struct__129 *kcg_c1, struct__129 *kcg_c2);
+#endif /* kcg_comp_struct__129 */
 
-typedef SSP_cat_t_TA_MRSP array__184[33];
+#define kcg_comp_MRSP_section_t_TrackAtlasTypes kcg_comp_struct__129
 
-typedef SSP_t_section_t_TA_MRSP array_int_33[33];
-
-#ifndef kcg_copy_struct__176
-#define kcg_copy_struct__176(kcg_C1, kcg_C2) (kcg_assign_struct((kcg_C1), (kcg_C2), sizeof (struct__176)))
-#endif /* kcg_copy_struct__176 */
-
-#ifndef kcg_copy_array__181
-#define kcg_copy_array__181(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array__181)))
-#endif /* kcg_copy_array__181 */
-
-#ifndef kcg_copy_array__184
-#define kcg_copy_array__184(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array__184)))
-#endif /* kcg_copy_array__184 */
-
-#ifndef kcg_copy_array_int_33
-#define kcg_copy_array_int_33(kcg_C1, kcg_C2) (kcg_assign_array((kcg_C1), (kcg_C2), sizeof (array_int_33)))
-#endif /* kcg_copy_array_int_33 */
-
-#ifndef kcg_comp_struct__176
-extern kcg_bool kcg_comp_struct__176(struct__176 *kcg_c1, struct__176 *kcg_c2);
-#endif /* kcg_comp_struct__176 */
-
-#ifndef kcg_comp_array__181
-extern kcg_bool kcg_comp_array__181(array__181 *kcg_c1, array__181 *kcg_c2);
-#endif /* kcg_comp_array__181 */
-
-#ifndef kcg_comp_array__184
-extern kcg_bool kcg_comp_array__184(array__184 *kcg_c1, array__184 *kcg_c2);
-#endif /* kcg_comp_array__184 */
-
-#ifndef kcg_comp_array_int_33
-extern kcg_bool kcg_comp_array_int_33(
-  array_int_33 *kcg_c1,
-  array_int_33 *kcg_c2);
-#endif /* kcg_comp_array_int_33 */
-
-#define kcg_comp_SSP_cat_t_TA_MRSP kcg_comp_array__181
-
-#define kcg_copy_SSP_cat_t_TA_MRSP kcg_copy_array__181
-
-#define kcg_comp_SSP_section_t_TA_MRSP kcg_comp_struct__176
-
-#define kcg_copy_SSP_section_t_TA_MRSP kcg_copy_struct__176
+#define kcg_copy_MRSP_section_t_TrackAtlasTypes kcg_copy_struct__129
 
 #endif /* _KCG_TYPES_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_types.h
-** Generation date: 2015-09-03T16:20:45
+** Generation date: 2015-09-04T14:09:24
 *************************************************************$ */
 

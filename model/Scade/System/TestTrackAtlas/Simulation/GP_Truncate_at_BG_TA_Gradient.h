@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 #ifndef _GP_Truncate_at_BG_TA_Gradient_H_
 #define _GP_Truncate_at_BG_TA_Gradient_H_
@@ -26,7 +26,7 @@ typedef struct {
   /* ------------------- (-debug) local variables -------------------- */
   GradientProfile_t_TrackAtlasTypes /* TA_Gradient::GP_Truncate_at_BG::_L1 */ _L1;
   kcg_int /* TA_Gradient::GP_Truncate_at_BG::_L8 */ _L8;
-  array__11132 /* TA_Gradient::GP_Truncate_at_BG::_L6 */ _L6;
+  array__24147 /* TA_Gradient::GP_Truncate_at_BG::_L6 */ _L6;
   kcg_int /* TA_Gradient::GP_Truncate_at_BG::_L5 */ _L5;
   kcg_int /* TA_Gradient::GP_Truncate_at_BG::_L4 */ _L4;
   kcg_int /* TA_Gradient::GP_Truncate_at_BG::_L10 */ _L10;
@@ -49,6 +49,6 @@ extern void GP_Truncate_at_BG_reset_TA_Gradient(
 #endif /* _GP_Truncate_at_BG_TA_Gradient_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** GP_Truncate_at_BG_TA_Gradient.h
-** Generation date: 2015-09-04T11:57:30
+** Generation date: 2015-09-04T14:44:59
 *************************************************************$ */
 
