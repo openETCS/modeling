@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-28T11:32:44
+** Generation date: 2015-09-04T10:01:35
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -120,11 +120,11 @@ void C_P027V1_tracksim_compr_body_TM_conversions_baseline2(
   for (i1 = 0; i1 < 1; i1++) {
     kcg_copy_P027V1_section_int_T_TM_baseline2(&outC->_L386[i1], &outC->_L394);
   }
-  kcg_copy_array__10803(&outC->_L385[0], &outC->_L386);
+  kcg_copy_array__24090(&outC->_L385[0], &outC->_L386);
   kcg_copy_P027V1_trackside_sectionlist_T_TM_baseline2(
     &outC->_L385[1],
     &outC->_L367);
-  kcg_copy__2_P027V1_OBU_sectionlist_int_T_TM_baseline2(
+  kcg_copy_P027V1_OBU_sectionlist_int_T_TM_baseline2(
     &outC->P027V1_sections,
     &outC->_L385);
   outC->_L391 = outC->n_iter_k;
@@ -185,6 +185,6 @@ void C_P027V1_tracksim_compr_body_TM_conversions_baseline2(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P027V1_tracksim_compr_body_TM_conversions_baseline2.c
-** Generation date: 2015-08-28T11:32:44
+** Generation date: 2015-09-04T10:01:35
 *************************************************************$ */
 

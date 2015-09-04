@@ -1,10 +1,10 @@
 /* TestTrackAtlas_newmapping.h */
 
-#include "TestGradientProfile.h"
+#include "TestTrackAtlas.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_TestGradientProfile inputs_ctx;
-extern outC_TestGradientProfile outputs_ctx;
+extern inC_TestTrackAtlas inputs_ctx;
+extern outC_TestTrackAtlas outputs_ctx;
 

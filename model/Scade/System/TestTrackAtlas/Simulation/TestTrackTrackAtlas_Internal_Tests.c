@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-28T11:32:44
+** Generation date: 2015-09-04T10:01:35
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -10,19 +10,19 @@
 void TestTrackTrackAtlas_reset_Internal_Tests(
   outC_TestTrackTrackAtlas_Internal_Tests *outC)
 {
-  /* 1 */ RBC_close_reset_RadioLib(&outC->_4_Context_1);
+  /* 1 */ RBC_close_reset_RadioLib(&outC->_3_Context_1);
   /* 1 */
-  Send_RBC_LRBG_364_D_00091_reset_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
-    &outC->_3_Context_1);
-  /* 1 */
-  Send_RBC_LRBG_362_D_00238_reset_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
+  Send_RBC_LRBG_364_D_00091_1_M003_reset_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
     &outC->_2_Context_1);
   /* 1 */
-  Send_RBC_LRBG_354_D_00275_reset_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
-    &outC->_1_Context_1);
-  /* 1 */
-  Send_RBC_LRBG_351_D_00054_reset_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
+  Send_RBC_LRBG_362_D_00238_9_M003_reset_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
     &outC->Context_1);
+  /* 2 */
+  Send_RBC_LRBG_351_D_00054_9_M003_reset_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
+    &outC->Context_2);
+  /* 3 */
+  Send_RBC_LRBG_354_D_00275_3_M003_reset_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
+    &outC->_1_Context_3);
   /* 3 */ RBC_init_reset_RadioLib(&outC->Context_3);
 }
 
@@ -46,43 +46,41 @@ void TestTrackTrackAtlas_Internal_Tests(
     outC->_L19,
     &outC->Context_3);
   kcg_copy_R_data_internal_T_InfraLib(&outC->_L18, &outC->Context_3.R_data_out);
-  /* 1 */
-  Send_RBC_LRBG_351_D_00054_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
+  /* 3 */
+  Send_RBC_LRBG_354_D_00275_3_M003_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
     &outC->_L18,
     1,
-    &outC->Context_1);
-  kcg_copy_R_data_internal_T_InfraLib(&outC->_L1, &outC->Context_1.R_data_out);
-  /* 1 */
-  Send_RBC_LRBG_354_D_00275_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
+    &outC->_1_Context_3);
+  kcg_copy_R_data_internal_T_InfraLib(
+    &outC->_L1,
+    &outC->_1_Context_3.R_data_out);
+  /* 2 */
+  Send_RBC_LRBG_351_D_00054_9_M003_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
     &outC->_L1,
     2,
-    &outC->_1_Context_1);
-  kcg_copy_R_data_internal_T_InfraLib(
-    &outC->_L2,
-    &outC->_1_Context_1.R_data_out);
+    &outC->Context_2);
+  kcg_copy_R_data_internal_T_InfraLib(&outC->_L2, &outC->Context_2.R_data_out);
   /* 1 */
-  Send_RBC_LRBG_362_D_00238_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
+  Send_RBC_LRBG_362_D_00238_9_M003_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
     &outC->_L2,
     3,
-    &outC->_2_Context_1);
-  kcg_copy_R_data_internal_T_InfraLib(
-    &outC->_L3,
-    &outC->_2_Context_1.R_data_out);
+    &outC->Context_1);
+  kcg_copy_R_data_internal_T_InfraLib(&outC->_L3, &outC->Context_1.R_data_out);
   /* 1 */
-  Send_RBC_LRBG_364_D_00091_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
+  Send_RBC_LRBG_364_D_00091_1_M003_AmsterdamUtrechtL2_Sheet06_Bijlmer_RBC(
     &outC->_L3,
     4,
-    &outC->_3_Context_1);
+    &outC->_2_Context_1);
   kcg_copy_R_data_internal_T_InfraLib(
     &outC->_L4,
-    &outC->_3_Context_1.R_data_out);
-  /* 1 */ RBC_close_RadioLib(&outC->_L4, &outC->_4_Context_1);
+    &outC->_2_Context_1.R_data_out);
+  /* 1 */ RBC_close_RadioLib(&outC->_L4, &outC->_3_Context_1);
   kcg_copy_M_TrackTrain_Radio_T_TM_radio_messages(
     &outC->_L5,
-    &outC->_4_Context_1.Message_out);
+    &outC->_3_Context_1.Message_out);
   kcg_copy_CompressedPackets_T_Common_Types_Pkg(
     &outC->_L6,
-    &outC->_4_Context_1.Packets_out);
+    &outC->_3_Context_1.Packets_out);
   kcg_copy_M_TrackTrain_Radio_T_TM_radio_messages(
     &outC->Message_out,
     &outC->_L5);
@@ -91,6 +89,6 @@ void TestTrackTrackAtlas_Internal_Tests(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** TestTrackTrackAtlas_Internal_Tests.c
-** Generation date: 2015-08-28T11:32:44
+** Generation date: 2015-09-04T10:01:35
 *************************************************************$ */
 

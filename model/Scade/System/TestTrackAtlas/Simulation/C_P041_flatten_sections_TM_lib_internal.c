@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-08-28T11:32:44
+** Generation date: 2015-09-04T10:01:35
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -66,6 +66,6 @@ void C_P041_flatten_sections_TM_lib_internal(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P041_flatten_sections_TM_lib_internal.c
-** Generation date: 2015-08-28T11:32:44
+** Generation date: 2015-09-04T10:01:35
 *************************************************************$ */
 
