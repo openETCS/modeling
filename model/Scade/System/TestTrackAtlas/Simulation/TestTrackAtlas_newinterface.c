@@ -1,7 +1,7 @@
 #include "TestTrackAtlas_newinterface.h"
 const int  rt_version = Srtv62;
 
-const char* _SCSIM_CheckSum = "cb6ecc1e9823b33cbf8d5c93d7a9ba00";
+const char* _SCSIM_CheckSum = "6b81023da378b6ac8b0a827871cb0219";
 const char* _SCSIM_SmuTypesCheckSum = "f79c40cc4a28a84eb05b013596813063";
 
 /*******************************
@@ -17,11 +17,11 @@ int notvalid(void * pHandle) {
 /*******************************
  * Simulation context
  *******************************/
-inC_TestTrackAtlas inputs_ctx;
-static inC_TestTrackAtlas inputs_ctx_restore;
-static inC_TestTrackAtlas inputs_ctx_execute;
-outC_TestTrackAtlas outputs_ctx;
-static outC_TestTrackAtlas outputs_ctx_restore;
+inC_TestGradientProfile_with_DMI_IF inputs_ctx;
+static inC_TestGradientProfile_with_DMI_IF inputs_ctx_restore;
+static inC_TestGradientProfile_with_DMI_IF inputs_ctx_execute;
+outC_TestGradientProfile_with_DMI_IF outputs_ctx;
+static outC_TestGradientProfile_with_DMI_IF outputs_ctx_restore;
 
 /* separate_io: inputs instanciation */
 
@@ -29,7 +29,6 @@ static outC_TestTrackAtlas outputs_ctx_restore;
 
 static void _SCSIM_RestoreInterface(void) {
 	inputs_ctx.Trigger_in = inputs_ctx_restore.Trigger_in;
-	inputs_ctx.reset = inputs_ctx_restore.reset;
 	outputs_ctx = outputs_ctx_restore;
 
 	/* separate_io: outputs restore */
@@ -38,7 +37,6 @@ static void _SCSIM_RestoreInterface(void) {
 static void _SCSIM_ExecuteInterface(void) {
 	pSimulator->m_pfnAcquireValueMutex(pSimulator);
 	inputs_ctx_execute.Trigger_in = inputs_ctx.Trigger_in;
-	inputs_ctx_execute.reset = inputs_ctx.reset;
 	pSimulator->m_pfnReleaseValueMutex(pSimulator);
 }
 
@@ -65,7 +63,7 @@ int SimReset(void) {
 	BeforeSimInit();
 #endif /* EXTENDED_SIM */
 #ifndef KCG_NO_EXTERN_CALL_TO_RESET
-	TestTrackAtlas_reset(&outputs_ctx);
+	TestGradientProfile_with_DMI_IF_reset(&outputs_ctx);
 	nRet=1;
 #else /* KCG_NO_EXTERN_CALL_TO_RESET */
 	nRet=0;
@@ -88,7 +86,7 @@ int SimStep(void) {
 		BeforeSimStep();
 #endif /* EXTENDED_SIM */
 	_SCSIM_ExecuteInterface();
-	TestTrackAtlas(&inputs_ctx_execute, &outputs_ctx);
+	TestGradientProfile_with_DMI_IF(&inputs_ctx_execute, &outputs_ctx);
 #ifdef EXTENDED_SIM
 	AfterSimStep();
 #endif /* EXTENDED_SIM */
@@ -104,12 +102,12 @@ int SimStop(void) {
 
 int SsmGetDumpSize(void) {
 	int nSize = 0;
-	nSize += sizeof(inC_TestTrackAtlas);
+	nSize += sizeof(inC_TestGradientProfile_with_DMI_IF);
 
 /* separate_io: add (not in ctx) inputs size */
 
 /* separate_io: add (not in ctx) outputs size */
-	nSize += sizeof(outC_TestTrackAtlas);
+	nSize += sizeof(outC_TestGradientProfile_with_DMI_IF);
 #ifdef EXTENDED_SIM
 	nSize += ExtendedGetDumpSize();
 #endif /* EXTENDED_SIM */
@@ -118,14 +116,14 @@ int SsmGetDumpSize(void) {
 
 void SsmGatherDumpData(char * pData) {
 	char* pCurrent = pData;
-	memcpy(pCurrent, &inputs_ctx, sizeof(inC_TestTrackAtlas));
-	pCurrent += sizeof(inC_TestTrackAtlas);
+	memcpy(pCurrent, &inputs_ctx, sizeof(inC_TestGradientProfile_with_DMI_IF));
+	pCurrent += sizeof(inC_TestGradientProfile_with_DMI_IF);
 
 	/* separate_io: dump (not in ctx) inputs */
 
 	/* separate_io: dump (not in ctx) outputs */
-	memcpy(pCurrent, &outputs_ctx, sizeof(outC_TestTrackAtlas));
-	pCurrent += sizeof(outC_TestTrackAtlas);
+	memcpy(pCurrent, &outputs_ctx, sizeof(outC_TestGradientProfile_with_DMI_IF));
+	pCurrent += sizeof(outC_TestGradientProfile_with_DMI_IF);
 #ifdef EXTENDED_SIM
 	ExtendedGatherDumpData(pCurrent);
 #endif /* EXTENDED_SIM */
@@ -133,14 +131,14 @@ void SsmGatherDumpData(char * pData) {
 
 void SsmRestoreDumpData(const char * pData) {
 	const char* pCurrent = pData;
-	memcpy(&inputs_ctx, pCurrent, sizeof(inC_TestTrackAtlas));
-	pCurrent += sizeof(inC_TestTrackAtlas);
+	memcpy(&inputs_ctx, pCurrent, sizeof(inC_TestGradientProfile_with_DMI_IF));
+	pCurrent += sizeof(inC_TestGradientProfile_with_DMI_IF);
 
 	/* separate_io: restore (not in ctx) inputs */
 
 	/* separate_io: restore (not in ctx) outputs */
-	memcpy(&outputs_ctx, pCurrent, sizeof(outC_TestTrackAtlas));
-	pCurrent += sizeof(outC_TestTrackAtlas);
+	memcpy(&outputs_ctx, pCurrent, sizeof(outC_TestGradientProfile_with_DMI_IF));
+	pCurrent += sizeof(outC_TestGradientProfile_with_DMI_IF);
 #ifdef EXTENDED_SIM
 	ExtendedRestoreDumpData(pCurrent);
 #endif /* EXTENDED_SIM */

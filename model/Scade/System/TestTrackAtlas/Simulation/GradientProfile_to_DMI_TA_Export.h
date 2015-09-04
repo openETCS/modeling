@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 #ifndef _GradientProfile_to_DMI_TA_Export_H_
 #define _GradientProfile_to_DMI_TA_Export_H_
@@ -23,7 +23,7 @@ typedef struct {
   /* -------------------- (-debug) no assertions  -------------------- */
   /* ------------------- (-debug) local variables -------------------- */
   GradientProfile_t_TrackAtlasTypes /* TA_Export::GradientProfile_to_DMI::_L1 */ _L1;
-  array__23542 /* TA_Export::GradientProfile_to_DMI::_L2 */ _L2;
+  array__10503 /* TA_Export::GradientProfile_to_DMI::_L2 */ _L2;
 } outC_GradientProfile_to_DMI_TA_Export;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -38,6 +38,6 @@ extern void GradientProfile_to_DMI_reset_TA_Export(
 #endif /* _GradientProfile_to_DMI_TA_Export_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** GradientProfile_to_DMI_TA_Export.h
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 

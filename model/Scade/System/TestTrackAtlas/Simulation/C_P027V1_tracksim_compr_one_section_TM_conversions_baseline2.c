@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -81,6 +81,6 @@ void C_P027V1_tracksim_compr_one_section_TM_conversions_baseline2(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** C_P027V1_tracksim_compr_one_section_TM_conversions_baseline2.c
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 

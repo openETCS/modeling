@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 #ifndef _TestTrackTrackAtlasLegacy_Internal_Tests_H_
 #define _TestTrackTrackAtlasLegacy_Internal_Tests_H_
@@ -51,6 +51,6 @@ extern void TestTrackTrackAtlasLegacy_reset_Internal_Tests(
 #endif /* _TestTrackTrackAtlasLegacy_Internal_Tests_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** TestTrackTrackAtlasLegacy_Internal_Tests.h
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 

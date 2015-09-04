@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 #ifndef _GP_Normalize_Profile_loop_TA_Gradient_H_
 #define _GP_Normalize_Profile_loop_TA_Gradient_H_
@@ -53,6 +53,9 @@ typedef struct {
   L_internal_Type_Obu_BasicTypes_Pkg /* TA_Gradient::GP_Normalize_Profile_loop::_L31 */ _L31;
   GradientProfile_t_TrackAtlasTypes /* TA_Gradient::GP_Normalize_Profile_loop::_L30 */ _L30;
   Gradient_section_t_TrackAtlasTypes /* TA_Gradient::GP_Normalize_Profile_loop::_L12 */ _L12;
+  kcg_int /* TA_Gradient::GP_Normalize_Profile_loop::_L35 */ _L35;
+  kcg_bool /* TA_Gradient::GP_Normalize_Profile_loop::_L36 */ _L36;
+  kcg_int /* TA_Gradient::GP_Normalize_Profile_loop::_L37 */ _L37;
 } outC_GP_Normalize_Profile_loop_TA_Gradient;
 
 /* ===========  node initialization and cycle functions  =========== */
@@ -69,6 +72,6 @@ extern void GP_Normalize_Profile_loop_reset_TA_Gradient(
 #endif /* _GP_Normalize_Profile_loop_TA_Gradient_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** GP_Normalize_Profile_loop_TA_Gradient.h
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 

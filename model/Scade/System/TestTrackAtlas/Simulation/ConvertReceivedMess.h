@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 #ifndef _ConvertReceivedMess_H_
 #define _ConvertReceivedMess_H_
@@ -44,6 +44,6 @@ extern void ConvertReceivedMess_reset(outC_ConvertReceivedMess *outC);
 #endif /* _ConvertReceivedMess_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** ConvertReceivedMess.h
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 

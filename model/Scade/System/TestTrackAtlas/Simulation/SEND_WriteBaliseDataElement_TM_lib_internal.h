@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 #ifndef _SEND_WriteBaliseDataElement_TM_lib_internal_H_
 #define _SEND_WriteBaliseDataElement_TM_lib_internal_H_
@@ -52,6 +52,6 @@ extern void SEND_WriteBaliseDataElement_reset_TM_lib_internal(
 #endif /* _SEND_WriteBaliseDataElement_TM_lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** SEND_WriteBaliseDataElement_TM_lib_internal.h
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 

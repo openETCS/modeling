@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 #ifndef _Send_P065_MessageLibBaseline2_H_
 #define _Send_P065_MessageLibBaseline2_H_
@@ -44,6 +44,6 @@ extern void Send_P065_reset_MessageLibBaseline2(
 #endif /* _Send_P065_MessageLibBaseline2_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Send_P065_MessageLibBaseline2.h
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 

@@ -1,10 +1,10 @@
 /* TestTrackAtlas_newmapping.h */
 
-#include "TestTrackAtlas.h"
+#include "TestGradientProfile_with_DMI_IF.h"
 
 /*******************************
 * Simulation context
 *******************************/
-extern inC_TestTrackAtlas inputs_ctx;
-extern outC_TestTrackAtlas outputs_ctx;
+extern inC_TestGradientProfile_with_DMI_IF inputs_ctx;
+extern outC_TestGradientProfile_with_DMI_IF outputs_ctx;
 

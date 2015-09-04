@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -12,7 +12,7 @@ void GP_Merge_New_P21_to_Profile_reset_TA_Gradient(
 {
   kcg_int i;
   
-  for (i = 0; i < 33; i++) {
+  for (i = 0; i < 50; i++) {
     /* 1 */
     GP_Merge_New_P21_to_Profile_loop_reset_TA_Gradient(&outC->_1_Context_1[i]);
   }
@@ -37,7 +37,7 @@ void GP_Merge_New_P21_to_Profile_TA_Gradient(
     Last_GradientProfile_in);
   outC->_L148 = outC->_L45[0].valid;
   kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L5, new_GP);
-  for (i2 = 0; i2 < 33; i2++) {
+  for (i2 = 0; i2 < 50; i2++) {
     kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L47[i2], &outC->_L5);
   }
   outC->tmp = outC->_L148;
@@ -53,11 +53,11 @@ void GP_Merge_New_P21_to_Profile_TA_Gradient(
   else {
     outC->_L1 = 0;
   }
-  for (i1 = 0; i1 < 33; i1++) {
+  for (i1 = 0; i1 < 50; i1++) {
     outC->_L9[i1] = outC->_L1;
   }
   kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L14, &outC->_L45);
-  for (i = 0; i < 33; i++) {
+  for (i = 0; i < 50; i++) {
     kcg_copy_GradientProfile_t_TrackAtlasTypes(&tmp, &outC->_L14);
     /* 1 */
     GP_Merge_New_P21_to_Profile_loop_TA_Gradient(
@@ -77,6 +77,6 @@ void GP_Merge_New_P21_to_Profile_TA_Gradient(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** GP_Merge_New_P21_to_Profile_TA_Gradient.c
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 

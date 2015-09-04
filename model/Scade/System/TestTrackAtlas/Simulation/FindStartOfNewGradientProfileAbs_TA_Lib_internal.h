@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 #ifndef _FindStartOfNewGradientProfileAbs_TA_Lib_internal_H_
 #define _FindStartOfNewGradientProfileAbs_TA_Lib_internal_H_
@@ -27,7 +27,7 @@ typedef struct {
   GradientProfile_t_TrackAtlasTypes /* TA_Lib_internal::FindStartOfNewGradientProfileAbs::_L93 */ _L93;
   kcg_int /* TA_Lib_internal::FindStartOfNewGradientProfileAbs::_L94 */ _L94;
   kcg_bool /* TA_Lib_internal::FindStartOfNewGradientProfileAbs::_L96 */ _L96;
-  array__24063 /* TA_Lib_internal::FindStartOfNewGradientProfileAbs::_L98 */ _L98;
+  array__11132 /* TA_Lib_internal::FindStartOfNewGradientProfileAbs::_L98 */ _L98;
   kcg_int /* TA_Lib_internal::FindStartOfNewGradientProfileAbs::_L99 */ _L99;
   kcg_int /* TA_Lib_internal::FindStartOfNewGradientProfileAbs::_L100 */ _L100;
   array_int_50 /* TA_Lib_internal::FindStartOfNewGradientProfileAbs::_L198 */ _L198;
@@ -46,6 +46,6 @@ extern void FindStartOfNewGradientProfileAbs_reset_TA_Lib_internal(
 #endif /* _FindStartOfNewGradientProfileAbs_TA_Lib_internal_H_ */
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** FindStartOfNewGradientProfileAbs_TA_Lib_internal.h
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 

@@ -1,6 +1,6 @@
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/TestTrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 
 #include "kcg_consts.h"
@@ -19,7 +19,25 @@ void GP_Normalize_Profile_loop_TA_Gradient(
   /* TA_Gradient::GP_Normalize_Profile_loop::pos_BG */L_internal_Type_Obu_BasicTypes_Pkg pos_BG,
   outC_GP_Normalize_Profile_loop_TA_Gradient *outC)
 {
-  kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L30, ProfileIn);
+  L_internal_Type_Obu_BasicTypes_Pkg noname;
+  kcg_bool _1_noname;
+  
+  outC->_L37 = 0;
+  kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L14, ProfileIn);
+  outC->_L15 = i;
+  outC->_L17 = 1;
+  outC->_L16 = outC->_L15 + outC->_L17;
+  if ((0 <= outC->_L16) & (outC->_L16 < 50)) {
+    kcg_copy_Gradient_section_t_TrackAtlasTypes(
+      &outC->_L13,
+      &outC->_L14[outC->_L16]);
+  }
+  else {
+    kcg_copy_Gradient_section_t_TrackAtlasTypes(
+      &outC->_L13,
+      (Gradient_section_t_TrackAtlasTypes *) &DEFAULT_GP_Section_TA_Gradient);
+  }
+  outC->_L20 = outC->_L13.Loc_Absolute;
   kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L2, ProfileIn);
   outC->_L1 = i;
   if ((0 <= outC->_L1) & (outC->_L1 < 50)) {
@@ -32,8 +50,21 @@ void GP_Normalize_Profile_loop_TA_Gradient(
       &outC->_L4,
       (Gradient_section_t_TrackAtlasTypes *) &DEFAULT_GP_Section_TA_Gradient);
   }
-  outC->_L5 = outC->_L4.valid;
   outC->Loc_Section_Abs = outC->_L4.Loc_Absolute;
+  outC->_L25 = outC->Loc_Section_Abs;
+  outC->_L26 = outC->_L20 - outC->_L25;
+  outC->_L36 = outC->_L26 > outC->_L37;
+  outC->_L18 = outC->_L13.valid;
+  outC->_L21 = 255;
+  outC->_L19 = outC->_L13.Gradient;
+  outC->_L22 = outC->_L21 != outC->_L19;
+  outC->_L23 = outC->_L18 & outC->_L22;
+  _1_noname = outC->_L23;
+  outC->_L35 = 0;
+  outC->_L27 = outC->_L13.L_Gradient;
+  noname = outC->_L27;
+  kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L30, ProfileIn);
+  outC->_L5 = outC->_L4.valid;
   outC->_L3 = pos_BG;
   outC->_L9 = outC->Loc_Section_Abs - outC->_L3;
   outC->_L11 = 0;
@@ -53,34 +84,11 @@ void GP_Normalize_Profile_loop_TA_Gradient(
   kcg_copy_Gradient_section_t_TrackAtlasTypes(
     &outC->_L12,
     &outC->Ga_section_at_LRBG);
-  kcg_copy_GradientProfile_t_TrackAtlasTypes(&outC->_L14, ProfileIn);
-  outC->_L15 = i;
-  outC->_L17 = 1;
-  outC->_L16 = outC->_L15 + outC->_L17;
-  if ((0 <= outC->_L16) & (outC->_L16 < 50)) {
-    kcg_copy_Gradient_section_t_TrackAtlasTypes(
-      &outC->_L13,
-      &outC->_L14[outC->_L16]);
-  }
-  else {
-    kcg_copy_Gradient_section_t_TrackAtlasTypes(
-      &outC->_L13,
-      (Gradient_section_t_TrackAtlasTypes *) &DEFAULT_GP_Section_TA_Gradient);
-  }
-  outC->_L18 = outC->_L13.valid;
-  outC->_L21 = 255;
-  outC->_L19 = outC->_L13.Gradient;
-  outC->_L22 = outC->_L21 != outC->_L19;
-  outC->_L23 = outC->_L18 & outC->_L22;
-  outC->_L20 = outC->_L13.Loc_Absolute;
-  outC->_L25 = outC->Loc_Section_Abs;
-  outC->_L26 = outC->_L20 - outC->_L25;
-  outC->_L27 = outC->_L13.L_Gradient;
-  if (outC->_L23) {
+  if (outC->_L36) {
     outC->_L24 = outC->_L26;
   }
   else {
-    outC->_L24 = outC->_L27;
+    outC->_L24 = outC->_L35;
   }
   outC->L_Gradient = outC->_L24;
   outC->_L31 = outC->L_Gradient;
@@ -102,6 +110,6 @@ void GP_Normalize_Profile_loop_TA_Gradient(
 
 /* $*************** KCG Version 6.1.3 (build i6) ****************
 ** GP_Normalize_Profile_loop_TA_Gradient.c
-** Generation date: 2015-09-04T10:01:35
+** Generation date: 2015-09-04T11:57:30
 *************************************************************$ */
 
