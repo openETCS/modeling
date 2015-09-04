@@ -68,6 +68,20 @@ namespace eval ::rbc {
 	util::assign "$trainMsg.packets.p0." valid=true
     eval util::assign "$trainMsg.packets.p0.packet0." $args  
   }
+  
+  # check the properties of the track message packets
+  # - use colon for accessing array elements
+  # example:
+  # rbc::checkTrackMsgPackets PacketData:0=57 PacketData:1=2
+  proc checkTrackMsgPackets {args} {
+    variable trackMsg
+	foreach val $args {
+      set a [split $val =]
+	  set v [split [lindex $a 0] :]
+	  # call with tcl access of array elements - quoted square brackets: Array\[elementNumber\]
+	  util::check "$trackMsg.Messages." "[lindex $v 0]\[[lindex $v 1]\]=[lindex $a 1]"
+    }
+  }
 
   ############################ SESSION MANAGEMENT #############################
   

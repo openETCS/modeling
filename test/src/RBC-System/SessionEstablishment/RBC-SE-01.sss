@@ -82,8 +82,16 @@ rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAI
 set t_train [rbc::executeSimulationStep $t_train]
 
 # (09) -----------------------------------------------------------
-# Check Track Message 24 (RBC to OBU)
+# Check Track Message 24, Packet 57 and Packet 58 (RBC to OBU)
+# P57: NID_PACKET=57 Q_DIR=2 L_PACKET=49 T_MAR=15 T_TIMEOUTRQST=1023 T_CYCRQST=30
+# P58: NID_PACKET=58 Q_DIR=2 L_PACKET=56 Q_SCALE=2 T_CYCLOC=6 D_CYCLOC=32767 M_LOC=1 N_ITER=0
+#      D_LOC(0)=0 Q_LGTLOC(0)=0
 rbc::checkTrackMsgHeader nid_message=24 m_ack=1
+rbc::checkTrackMsgPackets PacketData:0=57 PacketData:1=2 PacketData:2=49 PacketData:3=15 \
+                          PacketData:4=1023 PacketData:5=30 
+rbc::checkTrackMsgPackets PacketData:6=58 PacketData:7=2 PacketData:8=56 PacketData:9=1 \
+                          PacketData:10=6 PacketData:11=32767 PacketData:12=1 PacketData:13=0 \
+						  PacketData:14=0 PacketData:15=0
 set t_train [rbc::executeSimulationStep $t_train]
 
 # (10) -----------------------------------------------------------

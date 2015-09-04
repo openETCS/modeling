@@ -1,18 +1,18 @@
-#ifndef EVAL_Q_GDIR_TA_LIB_INTERNAL_INTERFACE
-#define EVAL_Q_GDIR_TA_LIB_INTERNAL_INTERFACE
+#ifndef FINDSTARTOFNEWSPEEDPROFILE_TA_LIB_INTERNAL_INTERFACE
+#define FINDSTARTOFNEWSPEEDPROFILE_TA_LIB_INTERNAL_INTERFACE
 
 
 #include "NewSmuTypes.h"
 #include "kcg_types.h"
-#include "EVAL_Q_GDIR_TA_Lib_internal.h"
+#include "FindStartOfNewSpeedProfile_TA_Lib_internal.h"
 
 extern SimSimulator * pSimulator;
 
 /*******************************
  * Simulation context
  *******************************/
-extern inC_EVAL_Q_GDIR_TA_Lib_internal inputs_ctx;
-extern outC_EVAL_Q_GDIR_TA_Lib_internal outputs_ctx;
+extern inC_FindStartOfNewSpeedProfile_TA_Lib_internal inputs_ctx;
+extern outC_FindStartOfNewSpeedProfile_TA_Lib_internal outputs_ctx;
 
 /* separate_io: inputs declaration */
 
@@ -42,4 +42,4 @@ extern int GraphicalInputsConnected;
 #define SIM_ERROR   3
 extern void SsmOutputMessage(int level, const char* str);
 
-#endif /*EVAL_Q_GDIR_TA_LIB_INTERNAL_INTERFACE */
+#endif /*FINDSTARTOFNEWSPEEDPROFILE_TA_LIB_INTERNAL_INTERFACE */

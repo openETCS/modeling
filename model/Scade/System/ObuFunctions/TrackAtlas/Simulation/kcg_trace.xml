@@ -1,47 +1,92 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--$*************** KCG Version 6.1.3 (build i6) ****************
 ** Command: s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt
-** Generation date: 2015-09-02T13:44:15
+** Generation date: 2015-09-03T16:20:45
 *************************************************************$-->
-<Model date="2015-09-02T13:44:15" commandLine="s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt">
-  <EnumType scadeName="Q_GDIR" targetName="Q_GDIR">
-    <EnumVal scadeName="Q_GDIR_downhill" targetName="Q_GDIR_downhill"/>
-    <EnumVal scadeName="Q_GDIR_uphill" targetName="Q_GDIR_uphill"/>
-  </EnumType>
-  <NamedType scadeName="G_A" targetName="G_A" refType="kcg_int"/>
+<Model date="2015-09-03T16:20:45" commandLine="s2c613 -config C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation\kcg_s2c_config.txt">
+  <NamedType scadeName="D_STATIC" targetName="D_STATIC" refType="kcg_int"/>
   <Package scadeName="TA_Lib_internal">
-    <RootNode scadeName="EVAL_Q_GDIR" headerFile="EVAL_Q_GDIR_TA_Lib_internal.h"
-        targetCycleFct="EVAL_Q_GDIR_TA_Lib_internal" targetInitFct="EVAL_Q_GDIR_reset_TA_Lib_internal">
-      <Input scadeName="q_gdir" scadeType="Q_GDIR" targetName="q_gdir" targetType="Q_GDIR" inCtx="true"/>
-      <Input scadeName="g_a" scadeType="G_A" targetName="g_a" targetType="G_A" inCtx="true"/>
-      <Output scadeName="gradient" scadeType="Obu_BasicTypes_Pkg::G_internal_Type" targetName="gradient"
-          targetType="G_internal_Type_Obu_BasicTypes_Pkg" inCtx="true"/>
-      <Local scadeName="_L1" scadeType="Q_GDIR" targetName="_L1" targetType="Q_GDIR" inCtx="true"/>
-      <Local scadeName="_L2" scadeType="G_A" targetName="_L2" targetType="G_A" inCtx="true"/>
-      <Local scadeName="_L3" scadeType="Q_GDIR" targetName="_L3" targetType="Q_GDIR" inCtx="true"/>
-      <Local scadeName="_L4" scadeType="bool" targetName="_L4" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L5" scadeType="int" targetName="_L5" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L6" scadeType="int" targetName="_L6" targetType="kcg_int" inCtx="true"/>
+    <RootNode scadeName="FindStartOfNewSpeedProfile" headerFile="FindStartOfNewSpeedProfile_TA_Lib_internal.h"
+        targetCycleFct="FindStartOfNewSpeedProfile_TA_Lib_internal"
+        targetInitFct="FindStartOfNewSpeedProfile_reset_TA_Lib_internal">
+      <Input scadeName="Profile_in" scadeType="TA_MRSP::SSP_cat_t" targetName="Profile_in"
+          targetType="SSP_cat_t_TA_MRSP" inCtx="true"/>
+      <Input scadeName="New_Profile" scadeType="TA_MRSP::SSP_cat_t" targetName="New_Profile"
+          targetType="SSP_cat_t_TA_MRSP" inCtx="true"/>
+      <Output scadeName="relevant_section" scadeType="int" targetName="relevant_section" targetType="kcg_int"
+          inCtx="true"/>
+      <Local scadeName="_L1" scadeType="TA_MRSP::SSP_cat_t" targetName="_L1" targetType="SSP_cat_t_TA_MRSP"
+          inCtx="true"/>
+      <Local scadeName="_L2" scadeType="TA_MRSP::SSP_t_section_t" targetName="_L2" targetType="SSP_t_section_t_TA_MRSP"
+          inCtx="true"/>
+      <Local scadeName="_L93" scadeType="TA_MRSP::SSP_cat_t" targetName="_L93" targetType="SSP_cat_t_TA_MRSP"
+          inCtx="true"/>
+      <Local scadeName="_L94" scadeType="int" targetName="_L94" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L96" scadeType="bool" targetName="_L96" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L98" scadeType="TA_MRSP::SSP_cat_t^(TA_MRSP::DIM_maxSSP_individual_sections)" targetName="_L98"
+          targetType="array__184" inCtx="true"/>
+      <Local scadeName="_L99" scadeType="int" targetName="_L99" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L100" scadeType="int" targetName="_L100" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L167" scadeType="TA_MRSP::SSP_t_section_t^(TA_MRSP::DIM_maxSSP_individual_sections)"
+          targetName="_L167" targetType="array_int_33" inCtx="true"/>
+      <Iterator iteratorKind="foldwi" scadeSize="33" targetSize="33">
+        <NodeInstance scadeName="TA_Lib_internal::FindStartOfNewSpeedProfile_LOOP" instName="1"
+            refName="FindStartOfNewSpeedProfil_TA_Lib_internal">
+          <OutCtxVar targetName="Context_1"/>
+        </NodeInstance>
+      </Iterator>
+      <OutCtxType targetName="outC_FindStartOfNewSpeedProfile_TA_Lib_internal"/>
+      <InCtxType targetName="inC_FindStartOfNewSpeedProfile_TA_Lib_internal"/>
+    </RootNode>
+    <NoExpNode scadeName="FindStartOfNewSpeedProfile_LOOP" headerFile="FindStartOfNewSpeedProfil_TA_Lib_internal.h"
+        targetCycleFct="FindStartOfNewSpeedProfil_TA_Lib_internal"
+        targetInitFct="FindStartOfNewSpeedProfil_reset_TA_Lib_internal">
+      <Input scadeName="i" scadeType="int" targetName="i" targetType="kcg_int"/>
+      <Input scadeName="Acc" scadeType="int" targetName="Acc" targetType="kcg_int"/>
+      <Input scadeName="distance_in" scadeType="D_STATIC" targetName="distance_in" targetType="D_STATIC"/>
+      <Input scadeName="Profile_in" scadeType="TA_MRSP::SSP_cat_t" targetName="Profile_in"
+          targetType="SSP_cat_t_TA_MRSP"/>
+      <Output scadeName="cont" scadeType="bool" targetName="cont" targetType="kcg_bool" inCtx="true"/>
+      <Output scadeName="relevant_section" scadeType="int" targetName="relevant_section" targetType="kcg_int"
+          inCtx="true"/>
+      <Local scadeName="_L1" scadeType="D_STATIC" targetName="_L1" targetType="D_STATIC" inCtx="true"/>
+      <Local scadeName="_L2" scadeType="TA_MRSP::SSP_cat_t" targetName="_L2" targetType="SSP_cat_t_TA_MRSP"
+          inCtx="true"/>
+      <Local scadeName="_L3" scadeType="int" targetName="_L3" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L4" scadeType="TA_MRSP::SSP_section_t" targetName="_L4" targetType="SSP_section_t_TA_MRSP"
+          inCtx="true"/>
+      <Local scadeName="_L5" scadeType="TA_MRSP::SSP_t_section_t" targetName="_L5" targetType="SSP_t_section_t_TA_MRSP"
+          inCtx="true"/>
+      <Local scadeName="_L6" scadeType="bool" targetName="_L6" targetType="kcg_bool" inCtx="true"/>
       <Local scadeName="_L7" scadeType="int" targetName="_L7" targetType="kcg_int" inCtx="true"/>
       <Local scadeName="_L8" scadeType="int" targetName="_L8" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L10" scadeType="bool" targetName="_L10" targetType="kcg_bool" inCtx="true"/>
-      <Local scadeName="_L11" scadeType="int" targetName="_L11" targetType="kcg_int" inCtx="true"/>
-      <Local scadeName="_L13" scadeType="int" targetName="_L13" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L12" scadeType="int" targetName="_L12" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L13" scadeType="bool" targetName="_L13" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L14" scadeType="int" targetName="_L14" targetType="kcg_int" inCtx="true"/>
+      <Local scadeName="_L15" scadeType="bool" targetName="_L15" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L16" scadeType="bool" targetName="_L16" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L17" scadeType="bool" targetName="_L17" targetType="kcg_bool" inCtx="true"/>
+      <Local scadeName="_L18" scadeType="bool" targetName="_L18" targetType="kcg_bool" inCtx="true"/>
+      <NodeInstance scadeName="&lt;" instName="1"/>
+      <NodeInstance scadeName="&gt;" instName="1"/>
       <NodeInstance scadeName="=" instName="1"/>
-      <NodeInstance scadeName="*" instName="1"/>
-      <NodeInstance scadeName="=" instName="4"/>
-      <OutCtxType targetName="outC_EVAL_Q_GDIR_TA_Lib_internal"/>
-      <InCtxType targetName="inC_EVAL_Q_GDIR_TA_Lib_internal"/>
-    </RootNode>
+      <NodeInstance scadeName="and" instName="1"/>
+      <NodeInstance scadeName="not" instName="1"/>
+      <NodeInstance scadeName="and" instName="2"/>
+      <OutCtxType targetName="outC_FindStartOfNewSpeedProfil_TA_Lib_internal"/>
+    </NoExpNode>
   </Package>
-  <Package scadeName="TM_conversions">
-    <Constant scadeName="ENUM_Q_GDIR_uphill" scadeType="Q_GDIR" targetName="ENUM_Q_GDIR_uphill_TM_conversions"
-        targetType="Q_GDIR" macroDef="true"/>
+  <Package scadeName="TA_MRSP">
+    <Constant scadeName="DIM_maxSSP_individual_sections" scadeType="int"
+        targetName="DIM_maxSSP_individual_sections_TA_MRSP" targetType="kcg_int" macroDef="true"/>
+    <Constant scadeName="DEFAULT_SSP_section" scadeType="TA_MRSP::SSP_section_t"
+        targetName="DEFAULT_SSP_section_TA_MRSP" targetType="SSP_section_t_TA_MRSP"/>
+    <NamedType scadeName="SSP_section_t" targetName="SSP_section_t_TA_MRSP" refType="struct__176"/>
+    <NamedType scadeName="SSP_t_section_t" targetName="SSP_t_section_t_TA_MRSP" refType="kcg_int"/>
+    <NamedType scadeName="SSP_s_section_t" targetName="SSP_s_section_t_TA_MRSP" refType="kcg_int"/>
+    <NamedType scadeName="SSP_cat_t" targetName="SSP_cat_t_TA_MRSP" refType="array__181"/>
   </Package>
-  <Package scadeName="Obu_BasicTypes_Pkg">
-    <NamedType scadeName="G_internal_Type" targetName="G_internal_Type_Obu_BasicTypes_Pkg" refType="kcg_int"/>
-  </Package>
-  <Option name="root_node_name" value="TA_Lib_internal::EVAL_Q_GDIR"/>
+  <Option name="root_node_name" value="TA_Lib_internal::FindStartOfNewSpeedProfile"/>
   <Option name="target" value="C"/>
   <Option name="target_dir" value="C:/GITHUB/modeling/model/Scade/System/ObuFunctions/TrackAtlas/Simulation"/>
   <Option name="exp" value="#off#"/>
@@ -71,8 +116,18 @@
   <PredefType scadeName="bool" targetName="kcg_bool"/>
   <PredefType scadeName="char" targetName="kcg_char"/>
   <PredefType scadeName="int" targetName="kcg_int"/>
+  <StructType targetName="struct__176" targetCopyFct="kcg_copy_struct__176" targetCompFct="kcg_comp_struct__176">
+    <Field scadeName="target" scadeType="TA_MRSP::SSP_t_section_t" targetName="target" targetType="kcg_int"/>
+    <Field scadeName="speed" scadeType="TA_MRSP::SSP_s_section_t" targetName="speed" targetType="kcg_int"/>
+  </StructType>
+  <ArrayType targetName="array__181" cellType="struct__176" size="33" targetCopyFct="kcg_copy_array__181"
+      targetCompFct="kcg_comp_array__181"/>
+  <ArrayType targetName="array__184" cellType="array__181" size="33" targetCopyFct="kcg_copy_array__184"
+      targetCompFct="kcg_comp_array__184"/>
+  <ArrayType targetName="array_int_33" cellType="kcg_int" size="33" targetCopyFct="kcg_copy_array_int_33"
+      targetCompFct="kcg_comp_array_int_33"/>
 </Model>
 <!--$*************** KCG Version 6.1.3 (build i6) ****************
 ** kcg_trace.xml
-** Generation date: 2015-09-02T13:44:15
+** Generation date: 2015-09-03T16:20:45
 *************************************************************$-->
