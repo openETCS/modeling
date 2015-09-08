@@ -1334,30 +1334,6 @@
 										<ed:Field oid="!ed/777c0/3EAE/758/54cba79f3e10"/>
 									</pragmas>
 								</Field>
-								<Field name="Error_BG_System_Version">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="bool"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/777c1/3EAE/758/54cba79fe5"/>
-									</pragmas>
-								</Field>
-								<Field name="Linking_Reaction_To_Trip">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="bool"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/777c2/3EAE/758/54cba79f6f25"/>
-									</pragmas>
-								</Field>
 								<Field name="RBC_Ack_TR_EB_Revocked">
 									<type>
 										<NamedType>
@@ -1392,18 +1368,6 @@
 									</type>
 									<pragmas>
 										<ed:Field oid="!ed/777c5/3EAE/758/54cba79f3024"/>
-									</pragmas>
-								</Field>
-								<Field name="T_NVCONTACT_Overpass">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="bool"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/1282b5/12E6/10C4/54e603d14c78"/>
 									</pragmas>
 								</Field>
 								<Field name="Emergency_Stop_Message_Received">
@@ -1721,16 +1685,18 @@
 										<ed:Field oid="!ed/128262/12E6/10C4/54e5fe5e2eeb"/>
 									</pragmas>
 								</Field>
-								<Field name="Linked_BG_In_Wrong_Direction">
+								<Field name="PositionErrors">
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="bool"/>
+												<TypeRef name="TrainPosition_Types_Pck::positionErrors_T"/>
 											</type>
 										</NamedType>
 									</type>
 									<pragmas>
-										<ed:Field oid="!ed/128265/12E6/10C4/54e5fe5e54ec"/>
+										<ed:Field oid="!ed/128265/12E6/10C4/54e5fe5e54ec" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>To compute condition 66, provided by  position_errors_T</comment>
+										</ed:Field>
 									</pragmas>
 								</Field>
 								<Field name="Train_Position">
@@ -2042,7 +2008,7 @@
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="bool"/>
+												<TypeRef name="Packet_Types_Pkg::P12_Level1MovementAuthorities_T"/>
 											</type>
 										</NamedType>
 									</type>
@@ -2054,7 +2020,7 @@
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="bool"/>
+												<TypeRef name="Packet_Types_Pkg::P135_StopShuntingOnDeskOpening_T"/>
 											</type>
 										</NamedType>
 									</type>
@@ -2162,7 +2128,7 @@
 									<type>
 										<NamedType>
 											<type>
-												<TypeRef name="bool"/>
+												<TypeRef name="Packet_Types_Pkg::P63_ListofBalisesinSRAuthority_T"/>
 											</type>
 										</NamedType>
 									</type>
@@ -2267,18 +2233,6 @@
 										<ed:Field oid="!ed/b64ca/14CD/990/5527d8be71e7"/>
 									</pragmas>
 								</Field>
-								<Field name="T_NVCONTACT_Overpass">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="bool"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/b64ce/14CD/990/5527d8be377e"/>
-									</pragmas>
-								</Field>
 							</fields>
 						</Struct>
 					</definition>
@@ -2311,7 +2265,7 @@
 					<definition>
 						<Struct>
 							<fields>
-								<Field name="valid">
+								<Field name="compatibleModeAndLevel">
 									<type>
 										<NamedType>
 											<type>
@@ -2335,6 +2289,18 @@
 										<ed:Field oid="!ed/aa5ad/28BE/FE4/552d06f4211"/>
 									</pragmas>
 								</Field>
+								<Field name="newLevel">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/5598b0/6700/D8C/55e9b90c5491"/>
+									</pragmas>
+								</Field>
 								<Field name="Mode">
 									<type>
 										<NamedType>
@@ -2345,6 +2311,18 @@
 									</type>
 									<pragmas>
 										<ed:Field oid="!ed/aa5ae/28BE/FE4/552d06f57131"/>
+									</pragmas>
+								</Field>
+								<Field name="newMode">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/5598b9/6700/D8C/55e9b9181a4e"/>
 									</pragmas>
 								</Field>
 							</fields>
@@ -2461,6 +2439,102 @@
 						<ed:Type oid="!ed/1da4a/67D/B2C/55d460046269" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 							<comment>Input Data From  TrackSide needed for Level Mangement</comment>
 						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="T_Data_From_STM">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="Interface_To_National_System">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1391d7/30AD/1348/55e8485944b8"/>
+									</pragmas>
+								</Field>
+								<Field name="National_trip_Order">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1391e0/30AD/1348/55e84879674"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1391d6/30AD/1348/55e847d531"/>
+					</pragmas>
+				</Type>
+				<Type name="T_Data_From_F2_functions">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="Common_Errors">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Common_Types_Pkg::MSG_Errors_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1391eb/30AD/1348/55e854fd2f8b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>To computeLinking_Reaction_To_Trip (Condition 17),  T_NV_contact_error (Condition 41), Error_BG_System_Version (Condition 65)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="Failure_Occured">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1391f1/30AD/1348/55e85527fba"/>
+									</pragmas>
+								</Field>
+								<Field name="Continue_Shunting_Active">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1391fb/30AD/1348/55e855f67fe8"/>
+									</pragmas>
+								</Field>
+								<Field name="Stop_Shunting_Stored">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/139204/30AD/1348/55e856294e9"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1391ea/30AD/1348/55e85496792e"/>
 					</pragmas>
 				</Type>
 			</declarations>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="SDM_GradientAcceleration_types">
+			<declarations>
+				<Constant name="GradientMaxSectionsTrainlengthCompensated">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- TrackAtlasTypes::GradientMaxSections * 2 -->
+						<NAryOp operator="*">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="2"/>
+							</operands>
+						</NAryOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/aeab/2AB5/2E0C/555c88d87441" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>doubles the length of untouched gradient profile, since every pass of a section of rearend or frontend could create a new section</comment>
+						</ed:Constant>
+					</pragmas>
+				</Constant>
+				<Type name="A_gradient_t">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="A_gradient_element_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="GradientMaxSectionsTrainlengthCompensated"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/b161/5E9A/FC8/5548b4c821e6"/>
+					</pragmas>
+				</Type>
+				<Type name="A_gradient_element_t">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="position">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="SDM_Types_Pkg::L_internal_real_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/b17c/5E9A/FC8/5548b51be7a"/>
+									</pragmas>
+								</Field>
+								<Field name="gradient_acceleration">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="SDM_Types_Pkg::A_internal_real_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/b186/5E9A/FC8/5548b5317d9d"/>
+									</pragmas>
+								</Field>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/b190/5E9A/FC8/5548b5471579"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/b173/5E9A/FC8/5548b4fc21ca"/>
+					</pragmas>
+				</Type>
+				<Type name="Gradient_real_t">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/b1aa/5E9A/FC8/5548de365ebb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Gradient in Promille</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="GradientProfile_real_compensated_t">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Gradient_section_real_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="GradientMaxSectionsTrainlengthCompensated"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/17045/B13/2D80/555c816f1b53"/>
+					</pragmas>
+				</Type>
+				<Type name="Gradient_section_real_t">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="location">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="SDM_Types_Pkg::L_internal_real_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/17058/B13/2D80/555c81f91529"/>
+									</pragmas>
+								</Field>
+								<Field name="gradient">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Gradient_real_t"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/17063/B13/2D80/555c822a7ca8"/>
+									</pragmas>
+								</Field>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1706d/B13/2D80/555c8252345c"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/17046/B13/2D80/555c81b476f8"/>
+					</pragmas>
+				</Type>
+				<Type name="GradientProfile_real_t">
+					<definition>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Gradient_section_real_t"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/17076/B13/2D80/555c825d75ce"/>
+					</pragmas>
+				</Type>
+				<Operator name="Transform_Gradient_in_ToGradient_real" href="Transform_Gradient_in_ToGradient_real.xscade"/>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/b15d/5E9A/FC8/5548b2ff1bad" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/b15e/5E9A/FC8/5548b2ff4f90" blockKind="constants" columnsSize="0, 150, 150, 335, 336"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/b15f/5E9A/FC8/5548b2ff4cb3" blockKind="types" columnsSize="0, 293, 150, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/b160/5E9A/FC8/5548b2ff6499" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>
