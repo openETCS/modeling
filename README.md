@@ -1,3 +1,7 @@
+modeling
+=========
+
+WP3 repository for modeling results and activities.
 Scade version to be used in the project: V16.1b  
 
 [![Stories in Ready](https://badge.waffle.io/openetcs/modeling.png?label=ready&title=Backlog)](https://waffle.io/openetcs/modeling)
@@ -8,22 +12,16 @@ Throughput graph
 
 [![Throughput Graph](https://graphs.waffle.io/openetcs/modeling/throughput.svg)](https://waffle.io/openetcs/modeling/metrics)
 
-modeling
-=========
-
-WP3 location for modelling results and activities.
+Sprint Backlog:
+===============
+* [waffle.io sprint backlog board](https://waffle.io/openetcs/modeling?label=Sprint-Backlog)
+* [Sprint backlog process](https://github.com/openETCS/modeling/wiki/WP3-Scrum-Process)
 
 Releases
 ========
 please, find more information in the [openETCS Releases plan](https://github.com/openETCS/modeling/wiki/openETCS-Release-Plan)
 
-You find C-Code produced from our models in this [location](https://github.com/openETCS/srcAndBinary).
-
-
-Sprint Backlog:
-===============
-* [waffle.io sprint backlog board](https://waffle.io/openetcs/modeling?label=Sprint-Backlog)
-* [Sprint backlog process](https://github.com/openETCS/modeling/wiki/WP3-Scrum-Process)
+Please find C-Code produced from our models in this [location](https://github.com/openETCS/srcAndBinary).
 
 Repository Structure:
 =====================
