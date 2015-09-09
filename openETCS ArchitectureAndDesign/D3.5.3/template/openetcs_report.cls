@@ -74,7 +74,9 @@ openETCS project based on ERDC class v1.1]
 \renewcommand{\IsNonPublic}[1]{#1}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
 \ProcessOptions\relax
-\LoadClass[11pt,twoside]{report}
+%temporary fix tu make todonotes on the margin appear on the right side
+\LoadClass[11pt,oneside]{report}
+%\LoadClass[11pt,twoside]{report}
 \RequirePackage{graphicx,color,caption,longtable}
 \RequirePackage{dcolumn}
 \RequirePackage{natbib}
