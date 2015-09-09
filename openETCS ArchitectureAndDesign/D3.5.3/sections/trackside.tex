@@ -3,6 +3,7 @@
 
 \section{ETCS Messaging: TrackMessages}
 
+\todo[inline]{section needs to be completed}
 \subsection{Component Requirements}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
@@ -14,13 +15,12 @@ Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/
 SCADE designer			& Jakob G\"artner, LEA Railergy \newline
 Mairamou Haman Adji, LEA Railergy\\
 \midrule
-Description				& TrackMessages is a library containing functionality to:\newline
+Description				& TrackMessages is a library containing functionality to:
 \begin{itemize}
 \item Transport TrainToTrack and TrackToTrain messages and packets using a compressed format which is conceptually close to the ETCS language as defined in Subset-026
 \item Compress trackside information and decompress it in the onboard unit, taking into account different baseline versions and providing transparent translation.
-\item Compress trainside information and decompress it in the trackside simulation models, taking into account different baseline versions and providing transparent translation. \newline
+\item Compress trainside information and decompress it in the trackside simulation models, taking into account different baseline versions and providing transparent translation.
 \end{itemize}
-
 As TrackMessages is a library with various components supporting all packets and messages defined in Subset-026, we have selected one exemplary function to document the concept. As only the packet/ message- related functionality is specific, this approach will allow a first understanding of the concept and the related interfaces. For a full discussion of the library, refer to the [specifc chapter? document?]\newline
 The function Read\_P005 extracts a packet 5 (Gradient Profile) from the compressed packets data flow, if present. It translates the integer- coded compressed data with the help of the metadata in the header section of the CompressedPackets\_T formatted data flow. After performing variable-level translation and exception detection, a baseline-3 conformal packet 5 is available for use within the relevant OBU functions.
 \\
@@ -68,15 +68,12 @@ Source					& Manage\_TrackSideInformation\_Integration \\
 \midrule
 Type					& Common\_Types\_Pkg::CompressedPackets\_T \\
 \midrule
-Valid range of values 	& n/a\newline
-The consistency of the metadata is checked at the input side.\newline
-The ranges of the transported variables are checked at the conversion step (from integer format to SRS- conformal format)
+Valid range of values 	& The consistency of the metadata is checked at the input side. The ranges of the transported variables are checked at the conversion step (from integer format to SRS-conform format)
  \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& n/a \newline \newline
-The content of this input is not checked, as any issues will be found at conversion level. If the metadata are not matching the search criteria the packet will be considered as non existent and will therefore be ignored. 
+Behaviour for values out of valid range	& The content of this input is not checked, as any issues will be found at conversion level. If the metadata are not matching the search criteria the packet will be considered as non existent and will therefore be ignored. 
  \\
 \bottomrule
 \end{longtable}
@@ -92,14 +89,19 @@ The content of this input is not checked, as any issues will be found at convers
 \toprule
 Output name				& received \\
 \midrule
-Description				& Flag to indicate reception of a packet 5 from trackside in the current cycle \\
+Description				& Flag to indicate reception of a packet 5 from trackside in the current cycle. \\
 \midrule
-Destination				& Any calling component\\ 
+Destination				& Any calling component.
+\todo[inline]{components should be listed here}\\ 
 \midrule
 Type					& bool \\
 \midrule
 Valid range of values	&
-[true | false]
+\todo[inline]{to be checked}
+\begin{description}
+\item[true] Packet 5 has been received  in the current cycle.
+\item[false] Packet 5 has not been received in the current cycle.
+\end{description}
  \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
@@ -123,17 +125,17 @@ Destination				& Any calling operator\\
 \midrule
 Type					& TM::P005\_OBU\_T\\
 \midrule
-Valid range of values	& TM::P005\_OBU\_T is a complex data type. Values are given for each element.\newline Format is: Type Name: range/ list of values
+Valid range of values	& TM::P005\_OBU\_T is a complex data type. Values are given for each element. Format is: Type Name: range/list of values
 \begin{itemize}
 \item bool valid: [true | false]
 \item q\_dir Q\_DIR:\newline  [Q\_DIR\_Both\_directions |\newline Q\_DIR\_Nominal |\newline Q\_DIR\_Reverse]
 \item l\_packet L\_PACKET: (0-8191)
 \item q\_scale Q\_SCALE: \newline[ENUM\_Q\_SCALE\_10cm |\newline ENUM\_Q\_SCALE\_1m |\newline ENUM\_Q\_SCALE\_10m]
-\item n\_iter N\_ITER: (0-33)\newline \emph{(Remark: start section from the original packet is integrated into the list of sections)}
+\item n\_iter N\_ITER: (0-33) \emph{(Remark: start section from the original packet is integrated into the list of sections)}
 \end{itemize}
 The structured element sections is an array of type P005\_section\_enum\_T. For each element, the valid range of values is as follows:
 \begin{itemize}
-\item bool valid: [true | false]\newline \emph{(Remark: Check for consistency with the value of n\_iter)}
+\item bool valid: [true | false] \emph{(Remark: Check for consistency with the value of n\_iter)}
 \item d\_link D\_LINK: (0-32767)
 \item q\_newcountry Q\_NEWCOUNTRY:\newline [TM\_conversions::ENUM\_Q\_NEWCOUNTRY\_same |\newline TM\_conversions::ENUM\_Q\_NEWCOUNTRY\_not\_same]
 \item nid\_c NID\_C: (0-1023)
@@ -152,8 +154,7 @@ The structured element sections is an array of type P005\_section\_enum\_T. For 
 Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& The component is prepared for the upcoming error/exception handling concept. An error flag is, at the moment, raised internally if any of the compressed input values is out of range. A hierarchical error processing is foreseen.\newline
-
-\emph{The types that have been defined in the package S026\_7 do not provide any default/ invalid value. The following fields are therefore set to an arbitrary value upon reception of an out-of-range value from track side, and the internal error flag is raised:}
+The types that have been defined in the package S026\_7 do not provide any default/ invalid value. The following fields are therefore set to an arbitrary value upon reception of an out-of-range value from track side, and the internal error flag is raised:
 \begin{itemize}
 \item q\_dir Q\_DIR:\newline  set to: Q\_DIR\_Both\_directions
 \item q\_scale Q\_SCALE: \newline set to: ENUM\_Q\_SCALE\_10cm 
