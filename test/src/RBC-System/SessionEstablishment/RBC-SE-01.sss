@@ -19,7 +19,9 @@ source ../../lib/util.tcl
 # t_train will increase automatically by using following syntax for run simulation steps:
 # - set t_train [rbc::executeSimulationStep $t_train] --> means 1 step
 # - set t_train [rbc::executeSimulationStep $t_train 5] --> means 5 steps
-set t_train 0.2
+set t_train 0.0
+set t_train_msg8 0.0
+set t_train_msg24 0.0
 
 # (01) -----------------------------------------------------------
 # Initialization
@@ -62,9 +64,10 @@ set t_train [rbc::executeSimulationStep $t_train]
 # (06) -----------------------------------------------------------
 # Send Train Message 129 including (empty) Packet 0 (OBU to RBC)
 rbc::setTrainMsgHeader nid_message=129 t_train=$t_train nid_engine=50001
-rbc::setTrainMsgPacket0 NID_PACKET=0 NID_LRBG=353
+rbc::setTrainMsgPacket0 NID_LRBG=353
 # Check Track Message 8 (RBC to OBU)
 rbc::checkTrackMsgHeader nid_message=8 m_ack=1
+set t_train_msg8 $t_train
 # Check Session Management
 rbc::checkTrainData nid_engine=50001
 # cycle
@@ -77,7 +80,7 @@ set t_train [rbc::executeSimulationStep $t_train]
 
 # (08) -----------------------------------------------------------
 # Send Train Message 146 (OBU to RBC)
-rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=1.0
+rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=$t_train_msg8
 # cycle
 set t_train [rbc::executeSimulationStep $t_train]
 
@@ -92,6 +95,7 @@ rbc::checkTrackMsgPackets PacketData:0=57 PacketData:1=2 PacketData:2=49 PacketD
 rbc::checkTrackMsgPackets PacketData:6=58 PacketData:7=2 PacketData:8=56 PacketData:9=1 \
                           PacketData:10=6 PacketData:11=32767 PacketData:12=1 PacketData:13=0 \
 						  PacketData:14=0 PacketData:15=0
+set t_train_msg24 $t_train
 set t_train [rbc::executeSimulationStep $t_train]
 
 # (10) -----------------------------------------------------------
@@ -101,7 +105,7 @@ set t_train [rbc::executeSimulationStep $t_train]
 
 # (11) -----------------------------------------------------------
 # Send Train Message 146 (OBU to RBC)
-rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=1.6
+rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=$t_train_msg24
 set t_train [rbc::executeSimulationStep $t_train]
 
 # (12) -----------------------------------------------------------

@@ -19,7 +19,7 @@ namespace eval ::rbc {
   ################################# SIMULATION #################################
   
   proc executeSimulationStep {t_train {n_steps 1}} {
-	SSM::cycle
+	SSM::cycle $n_steps
 	expr {$t_train + 0.2*$n_steps}
   }
   
@@ -66,7 +66,16 @@ namespace eval ::rbc {
   proc setTrainMsgPacket0 {args} {
     variable trainMsg
 	util::assign "$trainMsg.packets.p0." valid=true
+	util::assign "$trainMsg.packets.p0.packet0." NID_PACKET=0
     eval util::assign "$trainMsg.packets.p0.packet0." $args  
+  }
+  
+  # sets the properties of the train message packet 1
+  proc setTrainMsgPacket1 {args} {
+    variable trainMsg
+	util::assign "$trainMsg.packets.p1." valid=true
+	util::assign "$trainMsg.packets.p1.packet1." NID_PACKET=1
+    eval util::assign "$trainMsg.packets.p1.packet1." $args  
   }
   
   # check the properties of the track message packets
@@ -123,7 +132,9 @@ namespace eval ::rbc {
 
     # (06) Send Train Message 129 including Packet 0 (OBU to RBC)
     rbc::setTrainMsgHeader nid_message=129 t_train=$t_train nid_engine=50001
-    rbc::setTrainMsgPacket0 NID_PACKET=0 NID_LRBG=353 L_PACKET=8190
+    rbc::setTrainMsgPacket0 NID_LRBG=353 L_PACKET=8190
+	# RBC sends message 8 in this cycle -> store time for acknowledgement
+	set t_train_msg8 $t_train
     set t_train [rbc::executeSimulationStep $t_train]
 
     # (07) empty cycle
@@ -131,16 +142,21 @@ namespace eval ::rbc {
     set t_train [rbc::executeSimulationStep $t_train]
 
     # (08) Send Train Message 146 (OBU to RBC)
-    rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=1.0
-    # cycle
+    rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=$t_train_msg8
+    set t_train [rbc::executeSimulationStep $t_train]
+	
+	# (10) empty cycles
+    rbc::resetMessages
+	# RBC sends message 24 in this cycle -> store time for acknowledgement
+	set t_train_msg24 $t_train
+    set t_train [rbc::executeSimulationStep $t_train]
+	
+    # (11) empty cycles
+    rbc::resetMessages
     set t_train [rbc::executeSimulationStep $t_train]
 
-    # (09) 2 empty cycles
-    rbc::resetMessages
-    set t_train [rbc::executeSimulationStep $t_train 2]
-
-    # (10) Send Train Message 146 (OBU to RBC)
-    rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=1.6
+    # (12) Send Train Message 146 (OBU to RBC)
+    rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=$t_train_msg24
     set t_train [rbc::executeSimulationStep $t_train 2]
     
 	# return the actually train time

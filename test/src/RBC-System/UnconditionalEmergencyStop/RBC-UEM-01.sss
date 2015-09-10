@@ -20,7 +20,7 @@ source ../../lib/util.tcl
 # t_train will increase automatically by using following syntax for run simulation steps:
 # - set t_train [rbc::executeSimulationStep $t_train] --> means 1 step
 # - set t_train [rbc::executeSimulationStep $t_train 5] --> means 5 steps
-set t_train 0.2
+set t_train 0.0
 
 # (01) -----------------------------------------------------------
 # Establishment of radio connection (RBC <-> OBU)
@@ -42,7 +42,7 @@ set t_train [rbc::executeSimulationStep $t_train]
 # Send Train Message 147 and empty packet 0 (OBU to RBC)
 rbc::setTrainMsgHeader nid_message=147 t_train=$t_train nid_engine=50001 xNID_EM=123\
                        xQ_EMERGENCYSTOP=Q_EMERGENCYSTOP_Unconditional_Emergency_Stop_accepted
-rbc::setTrainMsgPacket0 NID_PACKET=0
+rbc::setTrainMsgPacket0
 set t_train [rbc::executeSimulationStep $t_train]
 
 # (05) -----------------------------------------------------------

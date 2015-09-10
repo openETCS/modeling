@@ -1,0 +1,125 @@
+# @Title: Trip and Post Trip
+# @Project: $MROOT/RBC-System/RBC-System.etp
+# @Node: RBC_Internal_Test_Pkg__RBC_Wrapper
+# @Config: Simulation
+
+# Author: Alexander Pinnau
+# Created: 04.09.2015
+# Last changed: 04.09.2015
+# Test description:
+# ! there are variants of this test case:  !
+# ! 1) reporting level change via Packet 0 !
+# ! 2) reporting level change via Packet 1 !
+#
+# - Establishment of radio connection (RBC <-> OBU)
+# - [...]
+# - OBU reports mode change to RBC (Trip)
+# - [...]
+# - [not relevant for this test case] Train performs stop -> waits for standstill -> waits for driver acknowledgement
+# - [...]
+# - OBU reports mode change to RBC (Post Trip)
+# - RBC acknowledges the level change
+
+# imports
+source ../../lib/rbc.tcl
+source ../../lib/util.tcl
+
+# ------------------------ variables -----------------------------
+# t_train will increase automatically by using following syntax for run simulation steps:
+# - set t_train [rbc::executeSimulationStep $t_train] --> means 1 step
+# - set t_train [rbc::executeSimulationStep $t_train 5] --> means 5 steps
+set t_train 0.0
+set t_train_msg6 0.0
+
+# ----------------------------------------------------------------
+# ------------ reporting mode change via packet 0 ----------------
+# ----------------------------------------------------------------
+
+# (01) -----------------------------------------------------------
+# Establishment of radio connection (RBC <-> OBU)
+set t_train [rbc::establishRadioSession $t_train]
+
+# (02) -----------------------------------------------------------
+# empty cycles
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (03) -----------------------------------------------------------
+# Reporting mode change to trip (OBU -> RBC)
+# - using Packet 0
+rbc::setTrainMsgHeader nid_message=136 t_train=$t_train nid_engine=50001
+rbc::setTrainMsgPacket0 mode=M_MODE_Trip
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (04) -----------------------------------------------------------
+# empty cycles
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train 2]
+
+# (05) -----------------------------------------------------------
+# Reporting mode change to post trip (OBU -> RBC)
+# - using Packet 0
+# Check Track Message 6 with acknowledgement request (RBC -> OBU)
+rbc::setTrainMsgHeader nid_message=136 t_train=$t_train nid_engine=50001
+rbc::setTrainMsgPacket0 mode=M_MODE_Post_Trip
+rbc::checkTrackMsgHeader nid_message=6 m_ack=1
+# store actual t_train [RBC will create message 6 in this cycle]
+set t_train_msg6 $t_train
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (06) -----------------------------------------------------------
+# empty cycle
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (07) -----------------------------------------------------------
+# Send acknowledgement for message 6 - Train Message 146 (OBU -> RBC)
+rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=$t_train_msg6
+set t_train [rbc::executeSimulationStep $t_train]
+
+# ----------------------------------------------------------------
+# ------------ reporting mode change via packet 1 ----------------
+# ----------------------------------------------------------------
+
+# (08) -----------------------------------------------------------
+# empty cycle
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (09) -----------------------------------------------------------
+# Reporting mode change to trip (OBU -> RBC)
+# - using Packet 1
+rbc::setTrainMsgHeader nid_message=136 t_train=$t_train nid_engine=50001
+rbc::setTrainMsgPacket1 mode=M_MODE_Trip
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (10) -----------------------------------------------------------
+# empty cycles
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train 2]
+
+# (11) -----------------------------------------------------------
+# Reporting mode change to post trip (OBU -> RBC)
+# - using Packet 1
+# Check Track Message 6 with acknowledgement request (RBC -> OBU)
+rbc::setTrainMsgHeader nid_message=136 t_train=$t_train nid_engine=50001
+rbc::setTrainMsgPacket1 mode=M_MODE_Post_Trip
+rbc::checkTrackMsgHeader nid_message=6 m_ack=1
+# store actual t_train [RBC will create message 6 in this cycle]
+set t_train_msg6 $t_train
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (12) -----------------------------------------------------------
+# empty cycle
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (13) -----------------------------------------------------------
+# Send acknowledgement for message 6 - Train Message 146 (OBU -> RBC)
+rbc::setTrainMsgHeader nid_message=146 t_train=$t_train nid_engine=50001 xT_TRAIN=$t_train_msg6
+set t_train [rbc::executeSimulationStep $t_train]
+
+# (14) -----------------------------------------------------------
+# empty cycle
+rbc::resetMessages
+set t_train [rbc::executeSimulationStep $t_train]
