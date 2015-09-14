@@ -11,7 +11,15 @@ Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/
 \midrule
 SCADE designer			& Stefan Karg, LEA Railergy \\
 \midrule
-Description				& The component ``CheckEuroradioMessage'' performs several checks on the received radio message. These checks include checking of the message sequence, completeness of messages. Invalid messages are marked as invalid in the message header. \\
+Description				& The component ``CheckEuroradioMessage'' performs consistency and timing checks on the received radio message. These checks are:
+\begin{itemize}
+ \item checking the message sequence
+ \item check if the message violates timing constraints (T\_NVCONTACT)
+ \item check if all mandatory elements are included
+ \item check if no elements are included, which are forbidden for the given message id
+\end{itemize}
+
+Messages, which violate one or more of these criteria are marked as invalid in the message header and the component signals the reason for the invalidation via different flags as described in the SCADE model. \\
 \midrule
 Input documents	& 
   Subset-026, Chapter 3.16\newline
