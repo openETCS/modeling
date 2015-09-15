@@ -7,12 +7,6 @@
     <availablePage>
       <emfPageIdentifier href="SpeedSupervision.notation#_QcgVsD9VEeW_T7ZOA_rORw"/>
     </availablePage>
-    <availablePage>
-      <emfPageIdentifier href="SpeedSupervision.notation#_8HFicD9ZEeW_T7ZOA_rORw"/>
-    </availablePage>
-    <availablePage>
-      <emfPageIdentifier href="SpeedSupervision.notation#_9NLn0D9ZEeW_T7ZOA_rORw"/>
-    </availablePage>
   </pageList>
   <sashModel xmi:id="_jAJ8oz0cEeWZybBbVBO0ug" currentSelection="_jAJ8pD0cEeWZybBbVBO0ug">
     <windows xmi:id="_jAJ8pT0cEeWZybBbVBO0ug">
