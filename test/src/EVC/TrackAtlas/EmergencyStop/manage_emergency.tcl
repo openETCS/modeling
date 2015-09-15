@@ -2,7 +2,7 @@
 #
 # History:
 # - 24.08.15, J. Kastner: initial version
-source ../../lib/msg.tcl
+source "[file dirname [info script]]/../../../lib/msg.tcl"
 
 set eut TA_EmergencyStop::Manage_EmergencyStop
 msg::input "$eut/messageIn"

@@ -1,8 +1,9 @@
 # contains common utility procedures for testing TrackAtlas/GradientProfile
-source ../../lib/msg.tcl
-source ../../lib/train.tcl
-source ../../lib/util.tcl
-source ../../lib/const.tcl
+set basedir "[file dirname [info script]]"
+source "$basedir/../../../lib/msg.tcl"
+source "$basedir/../../../lib/train.tcl"
+source "$basedir/../../../lib/util.tcl"
+source "$basedir/../../../lib/const.tcl"
 
 proc checkOutput {args} {
   foreach arg $args {

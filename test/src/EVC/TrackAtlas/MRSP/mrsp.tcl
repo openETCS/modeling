@@ -1,8 +1,9 @@
 # contains common utility procedures for testing TrackAtlas/Build_MRSP
-source ../../lib/msg.tcl
-source ../../lib/train.tcl
-source ../../lib/util.tcl
-source ../../lib/const.tcl
+set basedir "[file dirname [info script]]"
+source "$basedir/../../../lib/msg.tcl"
+source "$basedir/../../../lib/train.tcl"
+source "$basedir/../../../lib/util.tcl"
+source "$basedir/../../../lib/const.tcl"
 
 set eut "TA_MRSP::Build_MRSP"
 msg::input "$eut/MessageIn"

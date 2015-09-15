@@ -1,7 +1,8 @@
 # Common utility functions for testing of SpeedSupervision_Integration
-source ../../lib/util.tcl
-source ../../lib/train.tcl
-source ../../lib/ma.tcl
+set basedir "[file dirname [info script]]"
+source "$basedir/../../../lib/util.tcl"
+source "$basedir/../../../lib/train.tcl"
+source "$basedir/../../../lib/ma.tcl"
 
 set eut "SpeedSupervision_Integration_Pkg::SpeedSupervision_Integration"
 ma::input "$eut/dataFromTrackAtlas.MA"

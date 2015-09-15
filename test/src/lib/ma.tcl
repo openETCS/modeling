@@ -3,8 +3,9 @@
 # History:
 # - 01.09.15, J. Kastner: initial version
 
-source "[file dirname [info script]]/util.tcl"
-source "[file dirname [info script]]/msg.tcl"
+set basedir "[file dirname [info script]]"
+source "$basedir/util.tcl"
+source "$basedir/msg.tcl"
 
 namespace eval ::ma {
   ############################### INTERNAL VARS ###############################
