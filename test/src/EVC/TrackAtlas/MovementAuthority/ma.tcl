@@ -1,8 +1,9 @@
 # contains common utility procedures for testing of TrackAtlas/MovementAuthority
-source ../../lib/msg.tcl
-source ../../lib/train.tcl
-source ../../lib/util.tcl
-source ../../lib/const.tcl
+set basedir "[file dirname [info script]]"
+source "$basedir/../../../lib/msg.tcl"
+source "$basedir/../../../lib/train.tcl"
+source "$basedir/../../../lib/util.tcl"
+source "$basedir/../../../lib/const.tcl"
 
 proc checkMA {flag args} {
   util::check "$::eut/" "new_MA=$flag"

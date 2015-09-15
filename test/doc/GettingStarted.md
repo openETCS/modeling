@@ -30,4 +30,4 @@ To execute the entire test suite, change to `$ROOT/test/` and run `tools/stest -
 
 
 ### Interactive Mode (SCADE Simulator)
-It is also possible to use the test scenarios interactively with the SCADE Simulator. However, **for this to work, you must start SCADE in the directory where the test script is located**! The easiest way to so is to open a terminal, change to the directory in which the test script is located, and run `SCADE.exe`. 
+It is also possible to use the test scenarios interactively with the SCADE Simulator. ~~However, **for this to work, you must start SCADE in the directory where the test script is located**! The easiest way to so is to open a terminal, change to the directory in which the test script is located, and run `SCADE.exe`.~~ 
