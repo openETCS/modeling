@@ -5,7 +5,7 @@
 			<type>
 				<NamedType>
 					<type>
-						<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track"/>
+						<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track_To_Mode"/>
 					</type>
 				</NamedType>
 			</type>
@@ -153,7 +153,7 @@
 			<type>
 				<NamedType>
 					<type>
-						<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track"/>
+						<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track_To_Mode"/>
 					</type>
 				</NamedType>
 			</type>
@@ -177,7 +177,7 @@
 			<type>
 				<NamedType>
 					<type>
-						<TypeRef name="Level_And_Mode_Types_Pkg::T_Mode_Profile"/>
+						<TypeRef name="Level_And_Mode_Types_Pkg::T_Mode_Profile_Table"/>
 					</type>
 				</NamedType>
 			</type>
@@ -293,6 +293,18 @@
 				<ed:Variable oid="!ed/4e5658/564/D24/55e874f37e0e"/>
 			</pragmas>
 		</Variable>
+		<Variable name="_L39">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Level_And_Mode_Types_Pkg::T_Mode_Profile"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/32af56/1CC4/BD0/55f80ba72e49"/>
+			</pragmas>
+		</Variable>
 	</locals>
 	<data>
 		<!-- _L1 = Data_From_Track; -->
@@ -327,7 +339,7 @@
 				<ed:Equation oid="!ed/776fd/2524/DB4/54cba90335da"/>
 			</pragmas>
 		</Equation>
-		<!-- Mode_Profile_On_Board = _L37; -->
+		<!-- Mode_Profile_On_Board = _L39; -->
 		<Equation>
 			<lefts>
 				<VariableRef name="Mode_Profile_On_Board"/>
@@ -335,7 +347,7 @@
 			<right>
 				<IdExpression>
 					<path>
-						<ConstVarRef name="_L37"/>
+						<ConstVarRef name="_L39"/>
 					</path>
 				</IdExpression>
 			</right>
@@ -503,12 +515,12 @@
 				<VariableRef name="_L28"/>
 			</lefts>
 			<right>
-				<!-- (flatten Level_And_Mode_Types_Pkg::T_Data_From_Track)(_L1) -->
+				<!-- (flatten Level_And_Mode_Types_Pkg::T_Data_From_Track_To_Mode)(_L1) -->
 				<CallExpression>
 					<operator>
 						<FlattenOp name="3">
 							<type>
-								<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track"/>
+								<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track_To_Mode"/>
 							</type>
 						</FlattenOp>
 					</operator>
@@ -523,6 +535,30 @@
 			</right>
 			<pragmas>
 				<ed:Equation oid="!ed/4e5653/564/D24/55e874db132d"/>
+			</pragmas>
+		</Equation>
+		<!-- _L39 = _L37[1]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L39"/>
+			</lefts>
+			<right>
+				<!-- _L37[1] -->
+				<PrjOp name="1">
+					<flow>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L37"/>
+							</path>
+						</IdExpression>
+					</flow>
+					<with>
+						<ConstValue value="1"/>
+					</with>
+				</PrjOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/32af55/1CC4/BD0/55f80ba76307"/>
 			</pragmas>
 		</Equation>
 	</data>
@@ -549,7 +585,7 @@
 						</EquationGE>
 						<EquationGE presentable="!ed/776fe/2524/DB4/54cba903180f">
 							<position>
-								<Point x="19473" y="5874"/>
+								<Point x="22278" y="5953"/>
 							</position>
 							<size>
 								<Size width="317" height="502"/>
@@ -651,14 +687,6 @@
 								<Point x="19526" y="5054"/>
 							</positions>
 						</Edge>
-						<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/4e5653/564/D24/55e874db132d" dstEquation="!ed/776fe/2524/DB4/54cba903180f">
-							<positions>
-								<Point x="16087" y="6138"/>
-								<Point x="17806" y="6138"/>
-								<Point x="17806" y="6138"/>
-								<Point x="19526" y="6138"/>
-							</positions>
-						</Edge>
 						<Edge leftVarIndex="3" rightExprIndex="1" srcEquation="!ed/4e5653/564/D24/55e874db132d" dstEquation="!ed/776ff/2524/DB4/54cba9036574">
 							<positions>
 								<Point x="16087" y="7197"/>
@@ -729,6 +757,30 @@
 								<Point x="17806" y="15796"/>
 								<Point x="17806" y="15796"/>
 								<Point x="19526" y="15796"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/32af55/1CC4/BD0/55f80ba76307">
+							<position>
+								<Point x="18627" y="5636"/>
+							</position>
+							<size>
+								<Size width="952" height="952"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/4e5653/564/D24/55e874db132d" dstEquation="!ed/32af55/1CC4/BD0/55f80ba76307">
+							<positions>
+								<Point x="16087" y="6138"/>
+								<Point x="17357" y="6138"/>
+								<Point x="17357" y="6112"/>
+								<Point x="18627" y="6112"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/32af55/1CC4/BD0/55f80ba76307" dstEquation="!ed/776fe/2524/DB4/54cba903180f">
+							<positions>
+								<Point x="19579" y="6112"/>
+								<Point x="20955" y="6112"/>
+								<Point x="20955" y="6218"/>
+								<Point x="22331" y="6218"/>
 							</positions>
 						</Edge>
 					</presentationElements>
