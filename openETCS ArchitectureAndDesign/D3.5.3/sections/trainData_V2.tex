@@ -11,33 +11,31 @@ Component name			& trainData \\
 \midrule
 Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/blob/master/model/Scade/System/ObuFunctions/manageData/trainData/trainData.etp}} \\
 \midrule
-SCADE designer			& Bernd Hekele (DB) \\
+SCADE designer			& Bernd Hekele, DB Netz AG \\
 \midrule
 Description				& Implementation of the train data with the corresponding interfaces to track, driver and RBC.\newline
-Data first is received from the train (TIU).\\
-& 
+Data first is received from the train (TIU).
+ 
 Second step: train data is sent to the driver (DMI).
-The part relevant for driver interface is confirmed by the driver and sent back to the evc.\\
-& 
-Data received via this interface is merged with the data received via TIU.\newline
-Message Flow:\\
-& 
-sending Message 129 (Validated Train Data)\\
-& 
-receiving Message 8 (Acknowledment of Train Data) is processed as apart of the validation procedure with the RBC.\\
-& 
-sending Message 146 (Acknolwedement) in the context of this message flow. T\_TRAIN parameter of the messages is used to confirm the association of the messages.\\
-&
-trainData uses a dedicated state for controlling the receiption of the acknowledgement.\\
+The part relevant for driver interface is confirmed by the driver and sent back to the EVC.
+
+Data received via this interface is merged with the data received via TIU.
+Message Flow:
+\begin{itemize}
+\item sending Message 129 (Validated Train Data)
+\item receiving Message 8 (Acknowledment of Train Data) is processed as apart of the validation procedure with the RBC.
+\item sending Message 146 (Acknolwedement) in the context of this message flow. T\_TRAIN parameter of the messages is used to confirm the association of the messages.
+\end{itemize}
+
+The trainData component uses a dedicated state for controlling the reception of the acknowledgement.\\
 \midrule
 Input documents	& Subset-026, Chapter 3.18.3\\
 \midrule
-Safety integrity level		& 4 \\
+Safety integrity level	& 4 \\
 \midrule
-Time constraints		& n/a
-\\
+Time constraints		& n/a \\
 \midrule
-API requirements 		& Train Data needs systemtime for stamping messages, access to input from the track messages and access to the output of RBC messages\\
+API requirements 		& Train Data needs systemtime for stamping messages, access to input from the track messages and access to the output of RBC messages.\\
 \bottomrule
 \end{longtable}
 
@@ -118,7 +116,7 @@ Type					& DMI\_Messages\_Bothways\_Pkg::DMI\_Train\_Data\_T \\
 \midrule
 Valid range of values	& Input with valid information is indicated with the valid flag. \\
 \midrule
-Behaviour when value is at boundary	& not applicable.\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
 Behaviour for values out of valid range	& when valid flag indicates false the data to be used is assumed to be default values. The component is not used when valid flag is false.\\
 \midrule
@@ -165,9 +163,11 @@ Valid range of values	& Input with valid information is indicated with the valid
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& when valid flag indicates false the data to be used is assumed to be default values. The component is not used when valid flag is false.\\
+Behaviour for values out of valid range	& 
+When valid flag indicates false the data to be used is assumed to be default values. The component is not used when valid flag is false.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & no checking on individual values is done in this part of the openETCS EVC. We assume - if necessary - appropriate checks are part of the interface layer (e.g., CRC checks) This type of checks is not in the scope of the openETCS project.\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & 
+No checking on individual values is done in this part of the openETCS EVC. We assume - if necessary - appropriate checks are part of the interface layer (e.g., CRC checks) This type of checks is not in the scope of the openETCS project.\\
 
 \bottomrule
 \end{longtable}
@@ -184,7 +184,7 @@ Source					& Derived from train time.\\
 \midrule
 Type					& T\_TRAIN\\
 \midrule
-Valid range of values	& Positive Non-Zero Real\\
+Valid range of values	& Positive non-zero real\\
 \midrule
 Behaviour when value is at boundary	& Parameter is not used for computation or addressing. No impact in this model.\\
 \midrule
@@ -202,18 +202,16 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Communic
 \toprule
 Input name				& eventsForTrainData\\
 \midrule
-Description				& Timestamp for messaging to the RBC.\\
-&
-Information of the EVC relevant for train data handling according to section 3.18.3\\
-&
-In the current state of the iomplementation the following events are evaluated:\\
-&
-- train stand-still\\
-&
-- communication Session established\\
-&
-The MoRC ready input is used to indicae the evc:morc function is ready with acknolwdgment odf the communication session.\\
+Description				& Timestamp for messaging to the RBC.
 
+Information of the EVC relevant for train data handling according to Section 3.18.3
+
+In the current state of implementation the following events are evaluated:
+\begin{itemize}
+\item train stand-still
+\item communication Session established
+\end{itemize}
+The MoRC ready input is used to indicate the evc:morc function is ready with acknowledgment of the communication session.\\
 \midrule
 Source					& EVC model.\\ 
 \midrule
