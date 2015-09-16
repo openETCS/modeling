@@ -35,7 +35,8 @@ Safety integrity level	& 4 \\
 \midrule
 Time constraints		& n/a \\
 \midrule
-API requirements 		& Cf.~interface description of parent component. \\
+API requirements 		& Cf.~interface description of parent component.
+\todo[inline]{To be updated since there is no parent component anymore.} \\
 \bottomrule
 \end{longtable}
 
@@ -57,18 +58,14 @@ An overview of the interface of component calculateTrainPosition is shown in Fig
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
 Input name				& currentOdometry \\
-
 \midrule
-Description				& currentOdometry is the actual odometry information as known by the whole EVC model and provided by the models external interface.
-  \\
+Description				& currentOdometry is the actual odometry information as known by the whole EVC model and provided by the models external interface. \\
 \midrule
 Source					& External model interface input \\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::odometry\_T \\  
 \midrule
-Valid range of values	& Obu\_BasicTypes\_Pkg::odometry\_T is a complex data type. \\
-\midrule
-Valid range of values	& Obu\_BasicTypes\_Pkg::odometry\_T is a complex data type. Values are given for each element.\newline Format is: Type Name: range/ list of values
+Valid range of values	& Obu\_BasicTypes\_Pkg::odometry\_T is a complex data type. Values are given for each element. Format is: Type Name: range / list of values
 \begin{itemize}
 \item bool valid: [true | false]. Must be permanently set to "true".
 \item timestamp: (0 - 2147483647). Current time in ms, must be monotonically increasing.
@@ -80,7 +77,7 @@ Valid range of values	& Obu\_BasicTypes\_Pkg::odometry\_T is a complex data type
   \end{itemize}
 \item speed: Obu\_BasicTypes\_Pkg::OdometrySpeeds\_T: not used by calculateTrainPosition
 \item acceleration: Obu\_BasicTypes\_Pkg::A\_internal\_Type: not used by calculateTrainPosition
-\item motionState: \newline [noMotion | Motion]
+\item motionState: [noMotion | Motion]
 \item motionDirection: Obu\_BasicTypes\_Pkg::odoMotionDirection\_T \newline [ unknownDirection | cabAFirst | cabBFirst ]
 \end{itemize}
 \emph{calculateTrainPosition requires consistent value sets of currentOdometry. calculateTrainPosition itself does not check.}\\
@@ -88,6 +85,9 @@ Valid range of values	& Obu\_BasicTypes\_Pkg::odometry\_T is a complex data type
 Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. In all other cases, calculateTrainPosition does not have the knowledge for out-of-range checks. \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & 
+\todo[inline]{To be completed}\\
 \bottomrule
 \end{longtable}
 
@@ -101,30 +101,34 @@ Input name				& msgFromTrack \\
 \midrule
 Description				& With msgFromTrack calculateTrainPosition receives datagrams from balise groups and RBC. \\
 \midrule
-Source					& Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration/ \\ 
+Source					& Manage\_TrackSideInformation\_Integration\_Pkg::\newline Manage\_TrackSideInformation\_Integration/ \\ 
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\  
 \midrule
-Valid range of values	& Common\_Types\_Pkg::ReceivedMessage\_T is a complex data type. Values are given for each element.\newline Format is: Type Name: range/ list of values
+Valid range of values	& Common\_Types\_Pkg::ReceivedMessage\_T is a complex data type. Values are given for each element. Format is: Type Name: range / list of values
 \begin{itemize}
-\item bool valid: [true | false]. "true" flags a datagram as received and to be evaluated by calculateTrainPosition. Must be set for exactly 1 clock for each received datagram and stay unset otherwise
-\item source: Common\_Types\_Pkg::MsgSource\_T: Designates the source of the datagram: \newline ( msrc\_undefined | msrc\_Euroradio | msrc\_Eurobalise | msrc\_RadioInfillUnit | msrc\_OBU ) 
+	\item bool valid: [true | false]. "true" flags a datagram as received and to be evaluated by calculateTrainPosition. Must be set for exactly 1 clock for each received datagram and stay unset otherwise.
 
-\item radioMetaData: Common\_Types\_Pkg::radioMetaData\_T: not used by calculateTrainPosition
+	\item source: Common\_Types\_Pkg::MsgSource\_T: Designates the source of the datagram: \newline ( msrc\_undefined | msrc\_Euroradio | msrc\_Eurobalise | msrc\_RadioInfillUnit | msrc\_OBU ) 
 
-\item BG\_Common\_Header: BG\_Types\_Pkg::BG\_Header\_T: Header information received from balise groups, refer to Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration
+	\item radioMetaData: Common\_Types\_Pkg::radioMetaData\_T: not used by calculateTrainPosition.
 
-\item Radio\_Common\_Header: Radio\_Types\_Pkg::Radio\_TrackTrain\_Header\_T: Header information received from RBC via radio, refer to Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration
+	\item BG\_Common\_Header: BG\_Types\_Pkg::BG\_Header\_T: Header information received from balise groups, refer to Manage\_TrackSideInformation\_Integration\_Pkg::\newline Manage\_TrackSideInformation\_Integration
 
-\item packets: Common\_Types\_Types\_Pkg::CompressedPackets\_T: datagram packets, refer to Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration. calculatesTrainPosition extracts packet 5 (linking information), if available.
+	\item Radio\_Common\_Header: Radio\_Types\_Pkg::Radio\_TrackTrain\_Header\_T: Header information received from RBC via radio, refer to Manage\_TrackSideInformation\_Integration\_Pkg::\newline Manage\_TrackSideInformation\_Integration
 
-\item sendingRBC: Common\_Types\_Types\_Pkg::RBC\_Id\_T: designates the origin RBC and the mobile modem channel used onboard, if received via radio. Refer to Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration for more detailed information.
+	\item packets: Common\_Types\_Types\_Pkg::CompressedPackets\_T: datagram packets, refer to Manage\_TrackSideInformation\_Integration\_Pkg::\newline Manage\_TrackSideInformation\_Integration. calculatesTrainPosition extracts packet 5 (linking information), if available.
+
+	\item sendingRBC: Common\_Types\_Types\_Pkg::RBC\_Id\_T: designates the origin RBC and the mobile modem channel used onboard, if received via radio. Refer to Manage\_TrackSideInformation\_Integration\_Pkg::\newline Manage\_TrackSideInformation\_Integration for more detailed information.
 \end{itemize}  
 \emph{calculateTrainPosition expects the received information to be consistent and validated before applied to. It does not check, if the information is appropriate due to current EVC mode, level, train or balise orientation. Received balise group or linking information already known by calculateTrainPosition overrides former data.} \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. In all other cases, calculateTrainPosition does not have the knowledge for out-of-range checks. \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & 
+\todo[inline]{To be completed}\\
 \bottomrule
 \end{longtable}
 
@@ -141,7 +145,7 @@ Source					& EVC\_Support\_Pkg::maintainTrainProperties \\
 \midrule
 Type					& TrainPosition\_Types\_Pck::trainProperties\_T \\  
 \midrule
-Valid range of values	& TrainPosition\_Types\_Pck::trainProperties\_T is a complex data type. Values are given for each element.\newline Format is: Type Name: range/ list of values
+Valid range of values	& TrainPosition\_Types\_Pck::trainProperties\_T is a complex data type. Values are given for each element. Format is: Type Name: range / list of values.
 \begin{itemize}
 \item nid\_engine:: NID\_ENGINE as defined by subset 026-7. 
 \item nid\_operational: NID\_OPERATIONAL as defined by subset 026-7. 
@@ -156,6 +160,9 @@ Valid range of values	& TrainPosition\_Types\_Pck::trainProperties\_T is a compl
 Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. In all other cases, calculateTrainPosition does not have the knowledge for out-of-range checks. \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & 
+\todo[inline]{To be completed}\\
 \bottomrule
 \end{longtable}
 
@@ -189,6 +196,9 @@ Valid range of values	& [ false | true ] \\
 Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & 
+\todo[inline]{To be completed}\\
 \bottomrule
 \end{longtable}
 
@@ -207,7 +217,7 @@ Destination				& Any drain component which needs the current train position or  
 \midrule
 Type					& TrainPosition\_Types\_Pck::trainPosition\_T \\  
 \midrule
-Valid range of values	& TrainPosition\_Types\_Pck::trainPosition\_T is a complex data type. Values are given for each element.\newline Format is: Type Name: range/ list of values
+Valid range of values	& TrainPosition\_Types\_Pck::trainPosition\_T is a complex data type. Values are given for each element. Format is: Type Name: range / list of values.
 \begin{itemize}
 \item valid: bool: [true | false]. Always true, except for exceptional circumstances.
 \item timestamp: Obu\_BasicTypes\_Pkg::T\_internal\_Type: latest time in ms. 
@@ -222,9 +232,9 @@ Valid range of values	& TrainPosition\_Types\_Pck::trainPosition\_T is a complex
 \item nominalOrReverseToLRBG: Q\_DLRBG: Orientation of the train in relation to the direction of the LRBG, see subset 026-7.
 \item trainOrientationToLRBG: Q\_DIRLRBG: Orientation of the train in relation to the direction of the LRBG, see subset 026-7.
 \item trainRunningDirectionToLRBG: Q\_DIRTRAIN: Direction of train movement in relation to the LRBG orientation, see subset 026-7.
-\item linkingIsUsedOnboard: bool: Designates, if at least one announced linked BG is ahead
+\item linkingIsUsedOnboard: bool: Designates, if at least one announced linked BG is ahead.
 \end{itemize} 
-\emph{calculateTrainPosition provides the train position to whom it concerns and recalculates it with every clock cycle} \\
+\emph{calculateTrainPosition provides the train position to whom it concerns and recalculates it in every clock cycle.} \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
@@ -243,20 +253,20 @@ Output name				& BGs \\
 \midrule
 Description				& A list of all linked and unlinked balise groups - known to calculateTrainPosition - in the order they are arranged on the track.   \\
 \midrule
-Destination				& Any subsequent component which needs the current collection of balises groups \\ 
+Destination				& Any subsequent component which needs the current collection of balises groups. \\ 
 \midrule
 Type					& array of TrainPosition\_Types\_Pck::positionedBG\_T \\  
 \midrule
-Valid range of values	& TrainPosition\_Types\_Pck::positionedBG\_T is a complex data type. Values are given for each array element.\newline Format is: Type Name: range/ list of values
+Valid range of values	& TrainPosition\_Types\_Pck::positionedBG\_T is a complex data type. Values are given for each array element. Format is: Type Name: range / list of values.
 \begin{itemize}
-\item valid: bool: [true | false]. "true" for every existing balise group.
-\item nid\_c: NID\_C: refer to subset 026-7. 
-\item nid\_bg: NID\_BG: refer to subset 026-7. 
-\item q\_link: Q\_LINK: refer to subset 026-7. 
-\item location: Obu\_BasicTypes\_Pkg::LocWithInAcc\_T: The best known location (with inaccuracies) calculated from linking and from passing information.
-\item seqNoOnTrack: int: Sequence number, specifies the order of the BG passed or expected to be passed
-\item infoFromLinking: TrainPosition\_Types\_Pck::infoFromLinking\_T: Describes a linked BG as announced from the linking BG. Mainly, this information is taken from the linking packet.
-\item infoFromPassing: BG\_Types\_Pkg::passedBG\_T: If the balise group has been passed already, this is the relevant information received from the BG.
+	\item valid: bool: [true | false]. "true" for every existing balise group.
+	\item nid\_c: NID\_C: refer to subset 026-7. 
+	\item nid\_bg: NID\_BG: refer to subset 026-7. 
+	\item q\_link: Q\_LINK: refer to subset 026-7. 
+	\item location: Obu\_BasicTypes\_Pkg::LocWithInAcc\_T: The best known location (with inaccuracies) calculated from linking and from passing information.
+	\item seqNoOnTrack: int: Sequence number, specifies the order of the BG passed or expected to be passed.
+	\item infoFromLinking: TrainPosition\_Types\_Pck::infoFromLinking\_T: Describes a linked BG as announced from the linking BG. Mainly, this information is taken from the linking packet.
+	\item infoFromPassing: BG\_Types\_Pkg::passedBG\_T: If the balise group has been passed already, this is the relevant information received from the BG.
 \end{itemize} 
 \emph{calculateTrainPosition provides the list of balise groups to whom it concerns.}\\
 \midrule
@@ -281,7 +291,7 @@ Destination				& Error handlers and components which need to know of common and 
 \midrule
 Type					& TrainPosition\_Types\_Pck::positionErrors\_T \\  
 \midrule
-Valid range of values	& TrainPosition\_Types\_Pck::positionErrors\_T is a complex data type. Values are given for each array element.\newline Format is: Type Name: range/ list of values
+Valid range of values	& TrainPosition\_Types\_Pck::positionErrors\_T is a complex data type. Values are given for each array element. Format is: Type Name: range / list of values.
 \begin{itemize}
 \item outOfMemSpace: bool: Memory overrun: a passed or announced BG could not be stored.
 \item passedBG\_foundNotWhereExpected: bool: The currently passed linked BG location does not match its expectation window.
