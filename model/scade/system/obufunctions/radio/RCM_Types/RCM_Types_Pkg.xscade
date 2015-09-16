@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="RCM_Types_Pkg">
+			<declarations>
+				<Constant name="cNoP45_RadioNetworkRegistration">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Packet_Types_Pkg::P45_RadioNetworkRegistration_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- {valid : false, q_dir : Q_DIR_Reverse, nid_mn : 0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="valid">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="q_dir">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="Q_DIR_Reverse"/>
+											</path>
+										</IdExpression>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="nid_mn">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/278130/6916/1B04/55cb2ed96a15"/>
+					</pragmas>
+				</Constant>
+				<Constant name="cNoConnectionContext">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileConnectionContext_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- {valid : false, mobileDeviceNo : 0, status : mcs_disconnected, nid_radio : 0, set... -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="valid">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="mobileDeviceNo">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="status">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="mcs_disconnected"/>
+											</path>
+										</IdExpression>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="nid_radio">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="settingUpConnectionHasFailed">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="connectionLost">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="isInRadioHole">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1a053a/83B/27FC/55d5e115724b"/>
+					</pragmas>
+				</Constant>
+				<Constant name="cNoMobileRegistrationContext">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="mobileRegistrationContext_T"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<!-- {valid : false, mobileDeviceNo : 0, healthStatus : mhs_nok, status : mrs_unregist... -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="valid">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="mobileDeviceNo">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="healthStatus">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="mhs_nok"/>
+											</path>
+										</IdExpression>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="status">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="mrs_unregistered"/>
+											</path>
+										</IdExpression>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="nid_mn">
+									<flow>
+										<ConstValue value="0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/1a054d/83B/27FC/55d5e1911abb"/>
+					</pragmas>
+				</Constant>
+				<Type name="mobileRegistrationContext_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bd39/54F5/1D9C/55c9aabd5b5"/>
+									</pragmas>
+								</Field>
+								<Field name="mobileDeviceNo">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bdbb/54F5/1D9C/55c9c5c63a11" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Ordinal number (ID) of the mobile devices onboard, starting with 0. </comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="healthStatus">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="mobileHealthStatus_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bd50/54F5/1D9C/55c9ab7571ff"/>
+									</pragmas>
+								</Field>
+								<Field name="status">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="mobileRegistrationStatus_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bd43/54F5/1D9C/55c9aad51969"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_mn">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_MN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bd42/54F5/1D9C/55c9aad45245"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13bd38/54F5/1D9C/55c9aa9e260"/>
+					</pragmas>
+				</Type>
+				<Type name="mobileHealthStatus_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="mhs_nok">
+									<pragmas>
+										<ed:Value oid="!ed/13bd52/54F5/1D9C/55c9aba7da9"/>
+									</pragmas>
+								</Value>
+								<Value name="mhs_ok">
+									<pragmas>
+										<ed:Value oid="!ed/13bd53/54F5/1D9C/55c9abc5f6a"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13bd51/54F5/1D9C/55c9ab945ae4"/>
+					</pragmas>
+				</Type>
+				<Type name="mobileRegistrationStatus_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="mrs_unregistered">
+									<pragmas>
+										<ed:Value oid="!ed/13bd5e/54F5/1D9C/55c9ac0c7a26"/>
+									</pragmas>
+								</Value>
+								<Value name="mrs_registering">
+									<pragmas>
+										<ed:Value oid="!ed/13bd5f/54F5/1D9C/55c9ac2043c3"/>
+									</pragmas>
+								</Value>
+								<Value name="mrs_registered">
+									<pragmas>
+										<ed:Value oid="!ed/13bd60/54F5/1D9C/55c9ac2111f5"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13bd5d/54F5/1D9C/55c9abf19d"/>
+					</pragmas>
+				</Type>
+				<Type name="mobileConnectionStatus_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="mcs_disconnected">
+									<pragmas>
+										<ed:Value oid="!ed/13bd62/54F5/1D9C/55c9accb752b"/>
+									</pragmas>
+								</Value>
+								<Value name="mcs_connecting">
+									<pragmas>
+										<ed:Value oid="!ed/13bd63/54F5/1D9C/55c9acfd6ea0"/>
+									</pragmas>
+								</Value>
+								<Value name="mcs_connected">
+									<pragmas>
+										<ed:Value oid="!ed/13bd64/54F5/1D9C/55c9acfe72d8"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13bd61/54F5/1D9C/55c9ac927d33"/>
+					</pragmas>
+				</Type>
+				<Type name="mobileRegistrationCmd_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bd78/54F5/1D9C/55c9aefc2662"/>
+									</pragmas>
+								</Field>
+								<Field name="mobileDeviceNo">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bdd5/54F5/1D9C/55c9c6454c47" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Ordinal number (ID) of the mobile devices onboard, starting with 0. </comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="action">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="mobileRegistrationAction_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bd81/54F5/1D9C/55c9af063965"/>
+									</pragmas>
+								</Field>
+								<Field name="network_id">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_MN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bd82/54F5/1D9C/55c9af063fdc"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13bd77/54F5/1D9C/55c9aee7289d"/>
+					</pragmas>
+				</Type>
+				<Type name="mobileRegistrationAction_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="mra_nop">
+									<pragmas>
+										<ed:Value oid="!ed/13bd96/54F5/1D9C/55c9afd07bf5"/>
+									</pragmas>
+								</Value>
+								<Value name="mra_register">
+									<pragmas>
+										<ed:Value oid="!ed/13bd97/54F5/1D9C/55c9b07c6d23"/>
+									</pragmas>
+								</Value>
+								<Value name="mra_unregister">
+									<pragmas>
+										<ed:Value oid="!ed/13bd98/54F5/1D9C/55c9b07d3ee6"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13bd95/54F5/1D9C/55c9afc97416"/>
+					</pragmas>
+				</Type>
+				<Type name="mobileConnectionCmd_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bd9a/54F5/1D9C/55c9b0fa1164"/>
+									</pragmas>
+								</Field>
+								<Field name="mobileDeviceNo">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bdc4/54F5/1D9C/55c9c6056697" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Ordinal number (ID) of the mobile devices onboard, starting with 0. </comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="action">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="mobileConnetionAction_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bda3/54F5/1D9C/55c9c3ee3a24"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_radio">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_RADIO"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bda4/54F5/1D9C/55c9c3ee78a4"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13bd99/54F5/1D9C/55c9b0d85aab"/>
+					</pragmas>
+				</Type>
+				<Type name="mobileConnetionAction_T">
+					<definition>
+						<Enum>
+							<values>
+								<Value name="mca_nop">
+									<pragmas>
+										<ed:Value oid="!ed/13bdb8/54F5/1D9C/55c9c4af164c"/>
+									</pragmas>
+								</Value>
+								<Value name="mca_connect">
+									<pragmas>
+										<ed:Value oid="!ed/13bdb9/54F5/1D9C/55c9c4c5507b"/>
+									</pragmas>
+								</Value>
+								<Value name="mca_disconnect">
+									<pragmas>
+										<ed:Value oid="!ed/13bdba/54F5/1D9C/55c9c4c665ec"/>
+									</pragmas>
+								</Value>
+								<Value name="mca_expectRadioHole">
+									<pragmas>
+										<ed:Value oid="!ed/13be17/54F5/1D9C/55c9c9e422c2"/>
+									</pragmas>
+								</Value>
+								<Value name="mca_unexpectRadioHole">
+									<pragmas>
+										<ed:Value oid="!ed/13be18/54F5/1D9C/55c9c9f32db"/>
+									</pragmas>
+								</Value>
+							</values>
+						</Enum>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13bdb7/54F5/1D9C/55c9c48e7c8"/>
+					</pragmas>
+				</Type>
+				<Type name="mobileConnectionContext_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bdee/54F5/1D9C/55c9c84733b7"/>
+									</pragmas>
+								</Field>
+								<Field name="mobileDeviceNo">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bdef/54F5/1D9C/55c9c8476491" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Ordinal number (ID) of the mobile devices onboard, starting with 0. </comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="status">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="mobileConnectionStatus_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bdf1/54F5/1D9C/55c9c8475a8b"/>
+									</pragmas>
+								</Field>
+								<Field name="nid_radio">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_RADIO"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bdf2/54F5/1D9C/55c9c847677f"/>
+									</pragmas>
+								</Field>
+								<Field name="settingUpConnectionHasFailed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13be06/54F5/1D9C/55c9c915680c"/>
+									</pragmas>
+								</Field>
+								<Field name="connectionLost">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13bdf3/54F5/1D9C/55c9c8474187"/>
+									</pragmas>
+								</Field>
+								<Field name="isInRadioHole">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/13be19/54F5/1D9C/55c9ca462856"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/13bded/54F5/1D9C/55c9c8477b"/>
+					</pragmas>
+				</Type>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/13bd34/54F5/1D9C/55c9aa456eb5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/13bd35/54F5/1D9C/55c9aa453c33" blockKind="constants" columnsSize="0, 292, 465, 150, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/13bd36/54F5/1D9C/55c9aa4528ad" blockKind="types" columnsSize="0, 219, 408, 815"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/13bd37/54F5/1D9C/55c9aa4531d0" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>
