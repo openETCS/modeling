@@ -21,7 +21,7 @@ The integration node ``SpeedSupervision\_Integration'' takes as input (1) moveme
 
 Based on this information a speed profile is calculated. Speed restrictions create target speeds (targets) that have to be followed. For each such target braking curves are generated to supervise at which location of the track the train must apply the brake. In case of no target restrictions the train may accelerate to the supervised maximum speed of the speed profile. These calculations lead to commands being sent to the driver and the brake system.
 
-The functionality is modeled using eight operators, as shown in Figure~\ref{f:ssv}, which are explained below.
+The functionality is modeled using eight subcomponents, as shown in Figure~\ref{f:ssv}, which are explained in Section~\ref{s:SDM_subcomponents}.
 
 The current status of the analysis of ``SDM'' and a functional breakdown can be found in a separate document, \verb+SpeedSupervision_analysis.pdf+.\\
 \midrule
@@ -64,14 +64,15 @@ Source					& Track Atlas Data
 \midrule
 Type					& P3\_NationalValues\_T \\
 \midrule
-Valid range of values	& P3\_NationalValues\_T is a complex data type \\
+Valid range of values	& P3\_NationalValues\_T is a complex data type
+\todo[inline]{To be completed} \\
 \midrule
-Behaviour when value is at boundary	& as specified in SRS
+Behaviour when value is at boundary	& As specified in SRS.
 \todo[inline]{To be completed, explicitly describe behaviour} \\
 \midrule
-Behaviour for values out of valid range	& currently not checked \\
+Behaviour for values out of valid range	& Currently not checked. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & not checked; node must not be called without reasonable National Value \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Not checked; node must not be called without reasonable National Value. \\
 \bottomrule
 \end{longtable}
 
@@ -84,18 +85,19 @@ Input name				& TrainPosition \\
 \midrule
 Description				& This input is the current train position. \\
 \midrule
-Source					& Manage Track Data \\ 
+Source					& Manage Track Data
+\todo[inline]{Exact name of SCADE component shall be used} \\ 
 \midrule
 Type					& trainPosition\_T \\
 \midrule
 Valid range of values	& complex data type 
 \todo[inline]{To be completed}\\
 \midrule
-Behaviour when value is at boundary	& not checked, may overflow \\
+Behaviour when value is at boundary	& Not checked, may overflow. \\
 \midrule
-Behaviour for values out of valid range	& currently not checked \\
+Behaviour for values out of valid range	& Currently not checked. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & not checked; node must not be called without reasonable position data \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Not checked; node must not be called without reasonable position data. \\
 \bottomrule
 \end{longtable}
 
@@ -117,11 +119,11 @@ Valid range of values	& complex data type \\
  & - acceleration: Obu\_BasicTypes\_Pkg::A\_internal\_Type. No valid range defined, neither checked. \\
  & - motionState: [noMotion | Motion] (enum type) \\
 \midrule
-Behaviour when value is at boundary	& possible overflow not evaluated \\
+Behaviour when value is at boundary	& Possible overflow not evaluated. \\
 \midrule
-Behaviour for values out of valid range	& not checked \\
+Behaviour for values out of valid range	& Not checked. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & not handled, valid data is expected for valid function \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Not handled, valid data is expected for valid function. \\
 \bottomrule
 \end{longtable}
 
@@ -134,11 +136,12 @@ Input name				& m\_level \\
 \midrule
 Description				& This input is the current level of the train. (will be removed in next release!)\\
 \midrule
-Source					& Mode and Level \\ 
+Source					& Mode and Level
+\todo[inline]{Exact name of SCADE component shall be used} \\ 
 \midrule
 Type					& M\_LEVEL \\
 \midrule
-Valid range of values	& enum type, valid range is ensured at compile time \\
+Valid range of values	& Enum type, valid range is ensured at compile time. \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
@@ -157,7 +160,8 @@ Input name				& trainProps \\
 \midrule
 Description				& This input is a set of train related properties. \\
 \midrule
-Source					& Database \\ 
+Source					& Database
+\todo[inline]{Exact name of SCADE component shall be used} \\ 
 \midrule
 Type					& trainProperties\_T \\
 \midrule
@@ -194,7 +198,7 @@ Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & at least one valid entry is expected (the maximum vehicle speed), else a trip shall be commanded. \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & At least one valid entry is expected (the maximum vehicle speed), else a trip shall be commanded. \\
 \bottomrule
 \end{longtable}
 
@@ -218,7 +222,7 @@ Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & on .valid = false, brake/trip should be commanded. \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & On .valid = false, brake/trip should be commanded. \\
 \bottomrule
 \end{longtable}
 
@@ -243,9 +247,11 @@ Valid range of values	&
 \end{description}
 \todo[inline]{To be completed} \\
 \midrule
-Behaviour when value is at boundary	& limited range, check at compile time \\
+Behaviour when value is at boundary	& Limited range, check at compile time. 
+\todo[inline]{How can can this be checked at compile time?} \\
 \midrule
-Behaviour for values out of valid range	& limited range, check at compile time \\
+Behaviour for values out of valid range	& Limited range, check at compile time.
+\todo[inline]{How can can this be checked at compile time?} \\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
@@ -272,9 +278,11 @@ Valid range of values	&
 \end{description}
 \todo[inline]{To be completed} \\
 \midrule
-Behaviour when value is at boundary	& limited range, check at compile time \\
+Behaviour when value is at boundary	& Limited range, check at compile time.
+\todo[inline]{How can can this be checked at compile time?} \\
 \midrule
-Behaviour for values out of valid range	& limited range, check at compile time \\
+Behaviour for values out of valid range	& Limited range, check at compile time.
+\todo[inline]{How can can this be checked at compile time?} \\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
@@ -291,17 +299,19 @@ Output name				& sdmToDMI \\
 \midrule
 Description				& This output contains information about different speeds and positions, on the one hand and the current supervision status, on the other hand. This information shall be displayed to the driver. \\
 \midrule
-Destination				& DMI \\ 
+Destination				& DMI
+\todo[inline]{should this be ManageDMIOutput?} \\ 
 \midrule
 Type					& speedSupervisionForDMI\_T \\
 \midrule
-Valid range of values	& n/a \\
+Valid range of values	& 
+\todo[inline]{to be completed} \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & valid can be false \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Valid can be false. \\
 \bottomrule
 \end{longtable}
 
@@ -319,7 +329,7 @@ Destination				& [Name of the destination component(s)]
 \midrule
 Type					& Target\_T \\
 \midrule
-Valid range of values	& n/a \\
+Valid range of values	& \todo[inline]{To be completed} \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
@@ -343,13 +353,13 @@ Destination				& [Name of the destination component(s)]
 \midrule
 Type					& SDM\_Commands\_T \\
 \midrule
-Valid range of values	& n/a \\
+Valid range of values	& \todo[inline]{To be completed} \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & overall .valid is always set, individual speeds have their corresponding valid flag. \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Overall .valid is always set, individual speeds have their corresponding valid flag. \\
 \bottomrule
 \end{longtable}
 
@@ -366,7 +376,12 @@ Destination				& [Name of the destination component(s)]
 \midrule
 Type					& Brake\_command\_T (enum)\\
 \midrule
-Valid range of values	& brake\_signal\_command\_not\_defined, apply\_brake, release\_brake \\
+Valid range of values	& 
+\begin{itemize}
+\item brake\_signal\_command\_not\_defined
+\item apply\_brake
+\item release\_brake
+\end{itemize} \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
@@ -385,11 +400,17 @@ Output name				& EOA\_overpassed \\
 \midrule
 Description				& This output is true if the end of authority has been overpassed and false otherwise. \\
 \midrule
-Destination				& [Name of the destination component(s)] \\ 
+Destination				& [Name of the destination component(s)]
+\todo[inline]{To be completed} \\ 
 \midrule
 Type					& bool \\
 \midrule
-Valid range of values	& [false, true] \\
+Valid range of values	& 
+\begin{description}
+\item[true] ???
+\item[false] ???
+\end{description}
+\todo[inline]{To be completed} \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
@@ -408,11 +429,17 @@ Output name				& Target\_Speed\_Reached \\
 \midrule
 Description				& This output is true if the current speed is greater than or equal the target speed and false otherwise. \\
 \midrule
-Destination				& [Name of the destination component(s)] \\ 
+Destination				& [Name of the destination component(s)]
+\todo[inline]{To be completed} \\ 
 \midrule
 Type					& bool \\
 \midrule
-Valid range of values	& [false/true] \\
+Valid range of values	&
+\begin{description}
+\item[true] ???
+\item[false] ???
+\end{description}
+\todo[inline]{To be completed} \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
