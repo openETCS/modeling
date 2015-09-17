@@ -13,17 +13,17 @@ Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/
 \midrule
 SCADE designer			& Uwe Steinke, Siemens AG \\
 \midrule
-Description				& The main purpose of the function is to calculate the locations of linked and unlinked balise groups (BGs) and the current train position while the train is running along the track. In detail, the calculateTrainPosition function provides a couple of essential subfunctions for the onboard unit. These are mainly
+Description				& The main purpose of the function is to calculate the locations of linked and unlinked balise groups (BGs) and the current train position while the train is running along the track. In detail, the calculateTrainPosition function provides a couple of essential subfunctions for the onboard unit. These are mainly:
 \begin{itemize}
-\item creating and maintaining an obu internal coordinate system for all types of location based data
-\item storing all linked and unlinked balise groups resulting from over passing or from announcements (linking information) from the track
-\item calculating and maintaining the locations of all stored balise groups during the train trip, based on odometry and linking information
-\item permanently calculating the current train position based on odometry and passed balise group information
-\item providing the last recently passed linked balise group as the LRBG
-\item providing additional position attribute information
-\item deleting stored balise groups, when appropriate
-\item detecting linking consistency errors
-\item determining, if linking is used on board
+\item Creating and maintaining an obu internal coordinate system for all types of location based data.
+\item Storing all linked and unlinked balise groups resulting from over passing or from announcements (linking information) from the track.
+\item Calculating and maintaining the locations of all stored balise groups during the train trip, based on odometry and linking information.
+\item Permanently calculating the current train position based on odometry and passed balise group information.
+\item Providing the last recently passed linked balise group as the LRBG.
+\item Providing additional position attribute information.
+\item Deleting stored balise groups, when appropriate.
+\item Detecting linking consistency errors.
+\item Determining, if linking is used on board.
 \end{itemize}
 The calculation algorithms for locations and positions are implemented as specified in 
 {\footnotesize\url{https://github.com/openETCS/SRS-Analysis/blob/master/System%20Analysis/WorkingRepository/Group4/SUBSET_26_3-6/DetermineTrainLocationProcedures.pdf}} \\
@@ -65,7 +65,7 @@ Source					& External model interface input \\
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::odometry\_T \\  
 \midrule
-Valid range of values	& Obu\_BasicTypes\_Pkg::odometry\_T is a complex data type. Values are given for each element. Format is: Type Name: range / list of values
+Valid range of values	& Obu\_BasicTypes\_Pkg::odometry\_T is a complex data type. Values are given for each element. Format is: Type Name: range / list of values.
 \begin{itemize}
 \item bool valid: [true | false]. Must be permanently set to "true".
 \item timestamp: (0 - 2147483647). Current time in ms, must be monotonically increasing.
@@ -105,7 +105,7 @@ Source					& Manage\_TrackSideInformation\_Integration\_Pkg::\newline Manage\_Tr
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\  
 \midrule
-Valid range of values	& Common\_Types\_Pkg::ReceivedMessage\_T is a complex data type. Values are given for each element. Format is: Type Name: range / list of values
+Valid range of values	& Common\_Types\_Pkg::ReceivedMessage\_T is a complex data type. Values are given for each element. Format is: Type Name: range / list of values.
 \begin{itemize}
 	\item bool valid: [true | false]. "true" flags a datagram as received and to be evaluated by calculateTrainPosition. Must be set for exactly 1 clock for each received datagram and stay unset otherwise.
 
@@ -213,7 +213,7 @@ Output name				& trainPosition \\
 \midrule
 Description				& Provides the current train position and LRBG with its attributes. All distance and location computations of the OBU must be based on this information.   \\
 \midrule
-Destination				& Any drain component which needs the current train position or  LRBG \\ 
+Destination				& Any drain component which needs the current train position or  LRBG. \\ 
 \midrule
 Type					& TrainPosition\_Types\_Pck::trainPosition\_T \\  
 \midrule
@@ -222,7 +222,7 @@ Valid range of values	& TrainPosition\_Types\_Pck::trainPosition\_T is a complex
 \item valid: bool: [true | false]. Always true, except for exceptional circumstances.
 \item timestamp: Obu\_BasicTypes\_Pkg::T\_internal\_Type: latest time in ms. 
 \item trainPositionIsUnknown: bool: true, if the train position is evaluated as "unknonwn" (refer to subset-026, 3.6.3.1.3.1). 
-\item noCoordinateSystemHasBeenAssigned: bool: refer to subset 026, 3.4.2, 3.6.3.1.4
+\item noCoordinateSystemHasBeenAssigned: bool: refer to subset 026, 3.4.2, 3.6.3.1.4.
 \item trainPosition: Obu\_BasicTypes\_Pkg::LocWithInAcc\_T: The calculated train position with uncertainties
 \item estimatedFrontEndPosition: Obu\_BasicTypes\_Pkg::Location\_T: Train front end position in cm.
 \item minSafeFrontEndPosition: Obu\_BasicTypes\_Pkg::Location\_T: Train front end position in cm.
@@ -315,6 +315,7 @@ Behaviour when value is errorneous, absent or unwanted & n/a \\
 
 \subsection{Subcomponents}\label{s:calculateTrainPosition_subcomponents}
 
+\todo[inline]{calculateTrainPosition subcomponents need to be documented}
 \subsubsection{msg\_2\_passedBG}
 \input{sections/msg_2_passedBG}
 
