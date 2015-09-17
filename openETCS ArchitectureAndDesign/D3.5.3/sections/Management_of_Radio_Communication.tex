@@ -11,12 +11,8 @@ Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/
 \midrule
 SCADE designer			& Uwe Steinke, Siemens \\
 \midrule
-Description				& The management of radio communication \textit{MoRC} implements the onboard management part of a single communication session with the track, i.e. a single RBC. It controls the establishing, maintaining and termination process of a radio communication session and steers the underlying communication safety layer and the mobile device. Those and the data transfer itself are not part of the function. 
-
-The kernel function of the \textit{MoRC} component is \emph{managementOfRadioCommunication} (figure ???). The implementation is kept close to the prose of Subset-026, chap. 3.5. Since chap. 3.5 rarely refers to terms, variable types, packets and messages of the ETCS language as specified in Subset-026, chap. 7 and 8, \emph{managementOfRadioCommunication} does neither. 
-
-To be capable of being integrated with other OBU software components, \emph{MoRC} had to be wrapped with a transformer between the ETCS and the "chap. 3.5" language. This is the purpose of the main function of \emph{MoRC}, \emph{MoRC\_Main}. 
-
+Description				& 
+\todo[inline]{to be checked}
 The function \emph{managementOfRadioCommunication} implements the session states establishing, maintaining and termination as described in Subset-026, chap. 3.5. A SCADE state machine reflects this state model (Figure ???) accurately. Within each of the states, the activities needed as long as the state is active, are performed. When there is no communication session (state \emph{NoSession}) currently, the state machine waits for events that initiate a session (subfunction \emph{initiate\_a\_Session}). When the appropriate conditions are fulfilled, the state machine moves to the \textit{Establishing} state. Here in, it runs through the sequence required fore establishing a session (subfunction \emph{establish\_a\_Session}. Dependent on the results, the state machine changes over to the \emph{Maintaining} or \emph{Terminating} state. While in \emph{Maintaining}, the communication connection is monitored. When an event triggering the session termination occurs, the state machine switches to the state \emph{Terminating} with the subfunction \emph{terminating\_a\_CommunicationSession} and performs the session termination sequence. 
 
 In parallel to the main state machine, \emph{managementOfRadioCommunication} monitors all the time whether the session has to be terminated (subfunction \emph{initiateTerminatingASession}) or if the session has the be terminated and subsequently established (subfunction \emph{terminateAndEstablishSession}). \emph{registeringToTheRadioNetwork} is responsible for connection to the radio network. \emph{safeRadioConnectionIndication} controls the radio connection indication for the driver.\\
