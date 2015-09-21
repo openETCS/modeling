@@ -13,17 +13,17 @@ Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/
 \midrule
 SCADE designer			& Uwe Steinke, Siemens AG \\
 \midrule
-Description				& The main purpose of the function is to calculate the locations of linked and unlinked balise groups (BGs) and the current train position while the train is running along the track. In detail, the calculateTrainPosition function provides a couple of essential subfunctions for the onboard unit. These are mainly
+Description				& The main purpose of the function is to calculate the locations of linked and unlinked balise groups (BGs) and the current train position while the train is running along the track. In detail, the calculateTrainPosition function provides a couple of essential subfunctions for the onboard unit. These are mainly:
 \begin{itemize}
-\item creating and maintaining an obu internal coordinate system for all types of location based data
-\item storing all linked and unlinked balise groups resulting from over passing or from announcements (linking information) from the track
-\item calculating and maintaining the locations of all stored balise groups during the train trip, based on odometry and linking information
-\item permanently calculating the current train position based on odometry and passed balise group information
-\item providing the last recently passed linked balise group as the LRBG
-\item providing additional position attribute information
-\item deleting stored balise groups, when appropriate
-\item detecting linking consistency errors
-\item determining, if linking is used on board
+\item Creating and maintaining an obu internal coordinate system for all types of location based data.
+\item Storing all linked and unlinked balise groups resulting from over passing or from announcements (linking information) from the track.
+\item Calculating and maintaining the locations of all stored balise groups during the train trip, based on odometry and linking information.
+\item Permanently calculating the current train position based on odometry and passed balise group information.
+\item Providing the last recently passed linked balise group as the LRBG.
+\item Providing additional position attribute information.
+\item Deleting stored balise groups, when appropriate.
+\item Detecting linking consistency errors.
+\item Determining, if linking is used on board.
 \end{itemize}
 The calculation algorithms for locations and positions are implemented as specified in 
 {\footnotesize\url{https://github.com/openETCS/SRS-Analysis/blob/master/System%20Analysis/WorkingRepository/Group4/SUBSET_26_3-6/DetermineTrainLocationProcedures.pdf}} \\
@@ -33,10 +33,10 @@ Subset-026, Chapter 3.6 \\
 \midrule
 Safety integrity level	& 4 \\
 \midrule
-Time constraints		& n/a \\
+Time constraints		& All events at the calculateTrainPosion inputs must be applied strictly in the correct chronological order. \\
 \midrule
-API requirements 		& Cf.~interface description of parent component.
-\todo[inline]{To be updated since there is no parent component anymore.} \\
+API requirements 		& The currentOdometry input as well as the odometry stamps within msgFromTrack  must be fed with odometry values strictly adhering to {\footnotesize\url{https://github.com/openETCS/SRS-Analysis/blob/master/System%20Analysis/WorkingRepository/Group4/SUBSET_26_3-6/DetermineTrainLocationProcedures.pdf}}, chapt. 3.
+ \\
 \bottomrule
 \end{longtable}
 
@@ -45,11 +45,14 @@ API requirements 		& Cf.~interface description of parent component.
 
 An overview of the interface of component calculateTrainPosition is shown in Figure~\ref{f:calculateTrainPosition_interface}. The inputs and outputs are described in detail in Section~\ref{s:calculateTrainPosition_inputs} respectively \ref{s:calculateTrainPosition_outputs}. Subcomponents are described in Section~\ref{s:calculateTrainPosition_subcomponents}.
 
+
 \begin{figure}
-\center
-\missingfigure{[Put SysML diagram of component here]}
-\caption{calculateTrainPosition SysML diagram}\label{f:calculateTrainPosition_interface}
+	\centering
+		\includegraphics{./images/calculateTrainPosition_if.png}
+	\caption{calculateTrainPosition SysML diagram}
+	\label{fig:calculateTrainPosition_interface}
 \end{figure}
+
 
 \subsubsection{Inputs}\label{s:calculateTrainPosition_inputs}
 
@@ -65,7 +68,7 @@ Source					& External model interface input \\
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::odometry\_T \\  
 \midrule
-Valid range of values	& Obu\_BasicTypes\_Pkg::odometry\_T is a complex data type. Values are given for each element. Format is: Type Name: range / list of values
+Valid range of values	& Obu\_BasicTypes\_Pkg::odometry\_T is a complex data type. Values are given for each element. Format is: Type Name: range / list of values.
 \begin{itemize}
 \item bool valid: [true | false]. Must be permanently set to "true".
 \item timestamp: (0 - 2147483647). Current time in ms, must be monotonically increasing.
@@ -80,14 +83,13 @@ Valid range of values	& Obu\_BasicTypes\_Pkg::odometry\_T is a complex data type
 \item motionState: [noMotion | Motion]
 \item motionDirection: Obu\_BasicTypes\_Pkg::odoMotionDirection\_T \newline [ unknownDirection | cabAFirst | cabBFirst ]
 \end{itemize}
-\emph{calculateTrainPosition requires consistent value sets of currentOdometry. calculateTrainPosition itself does not check.}\\
+\emph{calculateTrainPosition requires consistent value sets of currentOdometry. calculateTrainPosition itself does not check.  }\\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. In all other cases, calculateTrainPosition does not have the knowledge for out-of-range checks. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Leads to misbehaviour. \\
 \bottomrule
 \end{longtable}
 
@@ -105,7 +107,7 @@ Source					& Manage\_TrackSideInformation\_Integration\_Pkg::\newline Manage\_Tr
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\  
 \midrule
-Valid range of values	& Common\_Types\_Pkg::ReceivedMessage\_T is a complex data type. Values are given for each element. Format is: Type Name: range / list of values
+Valid range of values	& Common\_Types\_Pkg::ReceivedMessage\_T is a complex data type. Values are given for each element. Format is: Type Name: range / list of values.
 \begin{itemize}
 	\item bool valid: [true | false]. "true" flags a datagram as received and to be evaluated by calculateTrainPosition. Must be set for exactly 1 clock for each received datagram and stay unset otherwise.
 
@@ -121,14 +123,14 @@ Valid range of values	& Common\_Types\_Pkg::ReceivedMessage\_T is a complex data
 
 	\item sendingRBC: Common\_Types\_Types\_Pkg::RBC\_Id\_T: designates the origin RBC and the mobile modem channel used onboard, if received via radio. Refer to Manage\_TrackSideInformation\_Integration\_Pkg::\newline Manage\_TrackSideInformation\_Integration for more detailed information.
 \end{itemize}  
-\emph{calculateTrainPosition expects the received information to be consistent and validated before applied to. It does not check, if the information is appropriate due to current EVC mode, level, train or balise orientation. Received balise group or linking information already known by calculateTrainPosition overrides former data.} \\
+\emph{calculateTrainPosition expects the received information to be consistent and validated before applied to. It does not check, if the information is appropriate due to current EVC mode, level, train or balise orientation. Received balise group or linking information already known by calculateTrainPosition overrides former data. All messages must be applied in the correct chronological order} \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. In all other cases, calculateTrainPosition does not have the knowledge for out-of-range checks. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Causes misbehaviour.
+\\
 \bottomrule
 \end{longtable}
 
@@ -161,8 +163,8 @@ Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. In all other cases, calculateTrainPosition does not have the knowledge for out-of-range checks. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Causes misbehaviour.
+\\
 \bottomrule
 \end{longtable}
 
@@ -187,7 +189,7 @@ Input name				& reset \\
 \midrule
 Description				& Resets and keeps calculateTrainPosition at its initial state and deletes all internally stored data.  \\
 \midrule
-Source					& \todo[inline]{needs to be updated} whom it may concern/ \\ 
+Source					& To whom it may concern/ \\ 
 \midrule
 Type					& bool \\  
 \midrule
@@ -197,8 +199,8 @@ Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Causes misbehaviour.
+\\
 \bottomrule
 \end{longtable}
 
@@ -213,7 +215,7 @@ Output name				& trainPosition \\
 \midrule
 Description				& Provides the current train position and LRBG with its attributes. All distance and location computations of the OBU must be based on this information.   \\
 \midrule
-Destination				& Any drain component which needs the current train position or  LRBG \\ 
+Destination				& Any drain component which needs the current train position or  LRBG. \\ 
 \midrule
 Type					& TrainPosition\_Types\_Pck::trainPosition\_T \\  
 \midrule
@@ -222,7 +224,7 @@ Valid range of values	& TrainPosition\_Types\_Pck::trainPosition\_T is a complex
 \item valid: bool: [true | false]. Always true, except for exceptional circumstances.
 \item timestamp: Obu\_BasicTypes\_Pkg::T\_internal\_Type: latest time in ms. 
 \item trainPositionIsUnknown: bool: true, if the train position is evaluated as "unknonwn" (refer to subset-026, 3.6.3.1.3.1). 
-\item noCoordinateSystemHasBeenAssigned: bool: refer to subset 026, 3.4.2, 3.6.3.1.4
+\item noCoordinateSystemHasBeenAssigned: bool: refer to subset 026, 3.4.2, 3.6.3.1.4.
 \item trainPosition: Obu\_BasicTypes\_Pkg::LocWithInAcc\_T: The calculated train position with uncertainties
 \item estimatedFrontEndPosition: Obu\_BasicTypes\_Pkg::Location\_T: Train front end position in cm.
 \item minSafeFrontEndPosition: Obu\_BasicTypes\_Pkg::Location\_T: Train front end position in cm.
@@ -324,7 +326,7 @@ Behaviour when value is errorneous, absent or unwanted & n/a \\
 \subsubsection{delDispensableBGs}
 \input{sections/delDispensableBGs}
 
-\subsubsection{addAnnounceBGs}
+\subsubsection{addAnnouncedBGs}
 \input{sections/addAnnounceBGs}
 
 \subsubsection{calculateTrainpositionInfo}

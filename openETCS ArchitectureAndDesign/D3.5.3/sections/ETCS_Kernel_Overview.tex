@@ -1,45 +1,45 @@
-%set the master document for easy compilation
-%!TEX root = ../D3_5_3.tex
+\section{ETCS Kernel Overview}\label{s:ETCS_Kernel_Overview}
 
-\section{F2.4: TrackAtlas}
-\todo[inline]{Section needs to be completed}
-
-\subsection{Component Requirements}
-
-\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
-\toprule
-Component name			& TrackAtlas \\
-\midrule
-Link to SCADE model		& {\footnotesize \url{???}} \\
-\midrule
-SCADE designer			& Jakob G\"artner, LEA \\
-\midrule
-Description				& ??? \\
-\midrule
-Input documents	& 
-Subset-026, Chapter ???\\
-\midrule
-Safety integrity level	& 4 \\
-\midrule
-Time constraints		& [If applicable description of time constraints, otherwise n/a] \\
-\midrule
-API requirements 		& [If applicable description of API requirements, otherwise n/a] \\
-\bottomrule
-\end{longtable}
-
-
-\subsection{Interface}
-
-An overview of the interface of component TrackAtlas is shown in Figure~\ref{f:manage_track_data_interface}. The inputs and outputs are described in detail in Section~\ref{s:manage_track_data_inputs} respectively \ref{s:manage_track_data_outputs}. Subcomponents are described in Section~\ref{s:manage_track_data_subcomponents}.
-
+The ETCS Kernel module consists of the 13 subcomponents F1.1 to F1.13 as depicted in Figure~\ref{f:ETCS_Kernel}. 
 \begin{figure}
 \center
 \missingfigure{[Put SysML diagram of component here]}
-\caption{TrackAtlas component SysML diagram}\label{f:manage_track_data_interface}
+\caption{F2: ETCS Kernel SysML diagram}\label{f:ETCS_Kernel}
 \end{figure}
+In the following we briefly describe the functionality of these subcomponents (for a more detailed description we refer to Sections~\ref{s:F2.1} to \ref{s:F2.13})
+\begin{description}
+\item[F2.1: Manage\_TrackSideInformation\_Integration] This component is responsible for receiving Eurobalise telegrams and Euroradio messages from the API and performs several consistency checks on the inputs.
+\todo[inline]{to be checked}
+\item[F2.2: Manage\_ETCS\_Procedures] This component describes the Start of Mission procedure of the train until the current status will change to another mode, level or other procedure.
+\todo[inline]{descriptions needs to be improved}
+\item[F2.3: trainData] Implementation of the train data with the corresponding interfaces to track, driver and RBC.
+\todo[inline]{descriptions needs to be improved}
+\item[F2.4: TrackAtlas] t.b.d.
+\todo[inline]{to be completed}
+\item[F2.5: Mode\_and\_Level] Defines the status of the ETCS
+regarding on-board functional status and track infrastructure.
+\todo[inline]{descriptions needs to be improved}
+\item[F2.6: calculateTrainPosition] The purpose of this component is to calculate the locations of linked and unlinked balise groups (BGs) and the current train position while the train is running along the track.
+\item[F2.7: SpeedSupervision\_Integration] This component monitors the speed of the train and the train location to ensure that the speed remains within the given speed and distance limits.
+\todo[inline]{to be checked}
+\item[F2.8: Provide\_Position\_Report] The component builds a position report for the RBC, i.e., message 132, and provides it as an output.
+\todo[inline]{to be checked}
+\item[F2.9: Manage\_Radio\_Communication] This component implements the onboard management of a single communication session with the track, i.e.~a single RBC. It controls the establishment, maintenance and termination process of a radio communication session and steers the underlying communication safety layer as well as the mobile device. Those and the data transfer itself are not part of this component.
+\item[F2.10: ManageDMIInput] t.b.d.
+\todo[inline]{to be completed}
+\item[F2.11: ManageDMIOutput] t.b.d.
+\todo[inline]{to be completed}
+\item[F2.12: ManageTIUInput] t.b.d.
+\todo[inline]{to be completed}
+\item[F2.13: ManageTIUOutput] t.b.d.
+\todo[inline]{to be completed}
+\end{description}
 
 
-\subsubsection{Inputs}\label{s:manage_track_data_inputs}
+\subsection{External Interfaces}
+This section gives a detailed overview of the external inputs and outputs of module F2: ETCS Kernel.
+
+\subsubsection{External Inputs}
 
 \paragraph{[Input 1 name]}
 
@@ -62,7 +62,6 @@ Behaviour for values out of valid range	& [Description of components behaviour w
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
 \bottomrule
 \end{longtable}
-
 
 \paragraph{[Input 2 name]}
 
@@ -87,7 +86,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \end{longtable}
 
 
-\subsubsection{Outputs}\label{s:manage_track_data_outputs}
+\subsubsection{External Outputs}
 
 \paragraph{[Output 1 name]}
 
@@ -133,14 +132,3 @@ Behaviour for values out of valid range	& [Description of components behaviour w
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
 \bottomrule
 \end{longtable}
-
-
-\subsection{Subcomponents}\label{s:manage_track_data_subcomponents}
-
-\subsubsection{TrackAtlasETCS}
-%\input{sections\???}
-
-\subsubsection{Speed\_NTC}
-%\input{sections\???}
-
-

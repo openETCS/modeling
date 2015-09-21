@@ -1,0 +1,204 @@
+#!/usr/bin/perl -w
+#-----------------------------------------------------------------------------
+# This script generates a simple test spec document from a set of annotated
+# SCADE test scenarios (.sss).
+#
+# Project: openETCS / WP3
+#-----------------------------------------------------------------------------
+# History:
+# - 15.09.15, J. Kastner: initial version
+#-----------------------------------------------------------------------------
+use strict;
+use warnings FATAL => 'all';
+use File::Basename;
+
+my $SCRIPTDIR = dirname($0);
+require "$SCRIPTDIR/lib.pl";
+
+my @seccomands = ("section","subsection","subsubsection");
+my (@tests);
+
+# find scenarios to be included in report
+if($ARGV[0]) {
+  @tests = findTests($ARGV[0]);
+}
+else {
+  @tests = findTests(".");
+}
+
+writeTestSpecLatex(@tests);
+
+
+sub readTestSteps {
+  my ($file) = @_;
+
+  my (@steps,$in,$tag,$data);
+
+  my $curstep = {};
+
+  open($in, "<", $file)
+    or die "Couldn't open test script '$file'";
+
+  while(<$in>) {
+    if( my @t = /^#\s*@(\d+)(.*)/ ) {
+      if($tag) { $$curstep{$tag} = $data; $tag = ""; }
+      if($$curstep{id}) {
+        push @steps, $curstep;
+        $curstep = {};
+      }
+      $$curstep{id} = $t[0];
+      $$curstep{title} = $t[1];
+    }
+    elsif( @t = /^#\s*@(\w+)(.*)/ ) {
+      if(! $$curstep{id}) { next; }
+      if($tag) { $$curstep{$tag} = $data; }
+      ($tag,$data) = @t;
+      $data =~ s/^\s+//;
+      $data =~ s/\s+$//;
+    }
+    elsif(/^[^#]/) {
+      if($$curstep{id}) {
+        $$curstep{$tag} = $data;
+        push @steps, $curstep;
+        $curstep = {};
+      }
+      $tag = "";
+    }
+    elsif ($tag) {
+      my ($t) = /^#(.*)/;
+      if(!($t||"")) { next; }
+      $t = trim($t);
+      $data = $data . "\n" . $t ;
+    }
+  }
+  if($tag) { $$curstep{$tag} = $data; }
+  if($$curstep{id}) {
+    push @steps, $curstep;
+  }
+
+  return @steps;
+}
+
+
+sub groupTestCases {
+  my (@testcases) = @_;
+
+  my %groups;
+  foreach my $t (@testcases) {
+    my %test = %{$t};
+    my @a = reverse(split /\//, $test{grou});
+    my $level = \%groups;
+    while( my $g = pop @a ) {
+      $g = trim($g);
+      if(! $$level{$g}) {
+        my %n = ();
+        $$level{$g} = \%n;
+      }
+      $level = $$level{$g};
+    }
+    if(!$$level{_data}) {
+      my @n = ($t);
+      $$level{_data} = \@n;
+    }
+    else {
+      push @{$$level{_data}}, $t;
+    }
+  }
+
+  return \%groups;
+}
+
+sub writeTestSpecLatex {
+  my (@testcases,$out) = @_;
+
+  my ($lastfh);
+
+  if($out) {
+    $lastfh = select;
+    select $out;
+  }
+  else {
+    $lastfh = select;
+  }
+
+
+  my $groups = groupTestCases(@testcases);
+
+  writeTestSectionsLatex($groups,0);
+
+  select $lastfh;
+}
+
+
+sub writeTestSectionsLatex {
+  my ($groups,$level) = @_;
+
+  foreach my $k (sort keys %$groups) {
+    if($k eq "_data") {
+      foreach my $tc (@{$$groups{_data}}) {
+        writeTestCaseLatex(%$tc);
+      }
+    } else {
+      my $title = formatLatex($k);
+      print "\\$seccomands[$level]\{$title\}\n";
+      writeTestSectionsLatex($groups->{$k},$level+1);
+      print "\n";
+    }
+  }
+}
+
+
+
+
+sub writeTestCaseLatex {
+  my (%tc) = @_;
+
+  my $id = formatLatex($tc{id});
+  my $title = formatLatex($tc{titl});
+
+  print "\\paragraph{$id}\n";
+  print "\\begin{description}\n";
+  print "\\item[Title:] $title\n";
+  if($tc{node}) {
+    print "\\item[Node:] " . formatLatex($tc{node}) . "\n";
+  }
+  if($tc{desc}) {
+    print "\\item[Description:] " . formatLatex($tc{desc}) ."\n";
+  }
+  print "\\end{description}\n";
+
+  my $rows = "";
+  foreach my $step (readTestSteps($tc{sfile})) {
+    $rows = $rows . "\\hline\\multicolumn{2}{|l|}{\\bfseries{Step $$step{id} ". formatLatex($$step{title}) . "}}\\\\\\hline\n";
+    $rows = $rows . "Input & " . formatLatex($$step{in}) ."\\\\\\hline\n";
+    $rows = $rows . "Output & " . formatLatex($$step{out}) ."\\\\\\hline\n";
+  }
+
+  my $tab = <<"END_TAB";
+\\begin{tabular}{|l|p{12cm}|}
+$rows
+\\end{tabular}
+END_TAB
+
+  print $tab;
+}
+
+
+sub formatLatex {
+  my ($text) = @_;
+
+  if(!$text) { return ""; }
+
+  # substitute _
+  $text =~ s/_/\\_/g;
+  # substitute \n
+  $text =~ s/\n[\s\n]*\n/\\newline/g;
+#  $text =~ s/\n/ /g;
+  $text =~ s/\n-\s*([^\n]+)/\\item $1/g;
+  $text =~ s/\\item(.+)/\\begin{enumeration}\\item$1\\end{enumeration}/g;
+  # substitute $
+  $text =~ s/\$/\\\$/g;
+
+
+  return $text;
+}

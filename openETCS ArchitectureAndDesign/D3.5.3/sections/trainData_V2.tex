@@ -13,7 +13,10 @@ Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/
 \midrule
 SCADE designer			& Bernd Hekele, DB Netz AG \\
 \midrule
-Description				& Implementation of the train data with the corresponding interfaces to track, driver and RBC.\newline
+Description				& Implementation of the train data with the corresponding interfaces to track, driver and RBC.
+
+\todo[inline]{descriptions needs to be improved to be more comprehensive}
+
 Data first is received from the train (TIU).
  
 Second step: train data is sent to the driver (DMI).
@@ -59,16 +62,16 @@ An overview of the interface of component trainData is shown in Figure~\ref{f:tr
 \toprule
 Input name				& reset \\
 \midrule
-Description				& triggers the reset of the train data and the train data status data\\
+Description				& Triggers the reset of the train data and the train data status data.\\
 \midrule
-Source					& persistant data status management\\ 
+Source					& Persistant data status management.\\ 
 \midrule
 Type					& bool \\
 \midrule
 Valid range of values	& 
 \begin{description}
-\item[true] perform reset of train data and train data status
-\item[false] no reset of data in this cycle
+\item[true] Perform reset of train data and train data status.
+\item[false] No reset of data in this cycle.
 \end{description}
 \\
 \midrule
@@ -86,19 +89,20 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \toprule
 Input name				& trainDatafromTIU \\
 \midrule
-Description				& train data received via TIU. The availability of data is indicated with the valid flag. This data is expected to be received in the first place. In the current implementation it is not supported to change data after a mission has been started.\\
+Description				& Train data received via TIU. The availability of data is indicated with the valid flag. This data is expected to be received in the first place. In the current implementation it is not supported to change data after a mission has been started.\\
 \midrule
 Source					& Train Interface Unit (TIU) \\ 
 \midrule
 Type					& TIU\_Types\_Pkg::trainData\_T \\
 \midrule
-Valid range of values	& Input with valid information is indicated with the valid flag. \\
+Valid range of values	& Input with valid information is indicated with the valid flag. 
+\todo[inline]{Looking at this input this seems to be a complex structure. Consider describing the structure instead of refering to the valid flag only.}\\
 \midrule
-Behaviour when value is at boundary	& not applicable.\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& when valid flag indicates false the data to be used is assumed to be default values. The component is not used when valid flag is false.\\
+Behaviour for values out of valid range	& When valid flag indicates false the data to be used is assumed to be default values. The component is not used when valid flag is false.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & information is only expected at Start of Mission Procedure. Once the information is successfully received it is not considered any more. Change of train data by train during mission is not supported by this version of the openETCS.\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Information is only expected at Start of Mission Procedure. Once the information is successfully received it is not considered any more. Change of train data by train during mission is not supported by this version of the openETCS OBU model.\\
 \bottomrule
 \end{longtable}
 
@@ -108,19 +112,20 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & informat
 \toprule
 Input name				& trainDatafromDriver \\
 \midrule
-Description				& train data received via DMI from the driver. The availability of data is indicated with the valid flag. This data is expected to be received in the first place. In the current implementation it is not supported to change data after a mission has been started.\\
+Description				& Train data received via DMI from the driver. The availability of data is indicated with the valid flag. This data is expected to be received in the first place. In the current implementation it is not supported to change data after a mission has been started.\\
 \midrule
 Source					& Driver Machine Interface (DMI) \\ 
 \midrule
 Type					& DMI\_Messages\_Bothways\_Pkg::DMI\_Train\_Data\_T \\
 \midrule
-Valid range of values	& Input with valid information is indicated with the valid flag. \\
+Valid range of values	& Input with valid information is indicated with the valid flag. 
+\todo[inline]{Looking at this input this seems to be a complex structure. Consider describing the structure instead of refering to the valid flag only.}\\
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& when valid flag indicates false the data to be used is assumed to be default values. The component is not used when valid flag is false.\\
+Behaviour for values out of valid range	& When valid flag indicates false the data to be used is assumed to be default values. The component is not used when valid flag is false.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & no checks on individual values is done in this part of the openETCS EVC. We assume - if necessary - appropriate checks are part of the interface layer (e.g., CRC checks) This type of checks is not in the scope of the openETCS project.\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & No checks on individual values is done in this part of the openETCS EVC. We assume - if necessary - appropriate checks are part of the interface layer (e.g., CRC checks) This type of checks is not in the scope of the openETCS project.\\
 \bottomrule
 
 \end{longtable}
@@ -131,7 +136,8 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & no check
 \toprule
 Input name				& trainDataAckfromDriver \\
 \midrule
-Description				& During start of mission the driver has to validate the train data. The confirmation is visible  based on this input. Presence of the input is indicated with the valid flag. \\
+Description				& During start of mission the driver has to validate the train data. The confirmation is visible  based on this input. Presence of the input is indicated with the valid flag. 
+\todo[inline]{Looking at this input this seems to be a complex structure. Consider describing the structure instead of refering to the valid flag only.}\\
 \midrule
 Source					& Driver Machine Interface (DMI) \\ 
 \midrule
@@ -139,7 +145,7 @@ Type					& DMI\_Messages\_DMI\_to\_EVC\_Pkg::DMI\_Train\_Data\_Ack\_T \\
 \midrule
 Valid range of values	& Input with valid information is indicated with the valid flag. In addition, the ack parameter has to be evaluated in order to recognise the decision of the driver.\\
 \midrule
-Behaviour when value is at boundary	& not applicable.\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
 Behaviour for values out of valid range	& when valid flag indicates false the data to be used is assumed to be default values. The component is not used when valid flag is false.\\
 \midrule
@@ -159,7 +165,8 @@ Source					& Radio Transmission Module (RTM)\\
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
-Valid range of values	& Input with valid information is indicated with the valid flag.\\
+Valid range of values	& Input with valid information is indicated with the valid flag.
+\todo[inline]{Looking at this input this seems to be a complex structure. Consider describing the structure instead of refering to the valid flag only.}\\
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
@@ -202,11 +209,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Communic
 \toprule
 Input name				& eventsForTrainData\\
 \midrule
-Description				& Timestamp for messaging to the RBC.
-
-Information of the EVC relevant for train data handling according to Section 3.18.3
-
-In the current state of implementation the following events are evaluated:
+Description				& Timestamp for messaging to the RBC. Information of the EVC relevant for train data handling according to Section 3.18.3. In the current state of implementation the following events are evaluated:
 \begin{itemize}
 \item train stand-still
 \item communication Session established
@@ -217,7 +220,7 @@ Source					& EVC model.\\
 \midrule
 Type					& trainData\_Types\_pkg::trainData\_Events\_T\\
 \midrule
-Valid range of values	& Structure of a set of bool. Each component may be true or false\\
+Valid range of values	& Structure of a set of bool. Each component may be true or false.\\
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
@@ -276,7 +279,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \end{longtable}
 
 
-\subsection{Subcomponents}\label{s:manage_track_data_subcomponents}
+\subsection{Subcomponents}\label{s:traindata_subcomponents}
 \todo[inline]{section needs to be completed}
 %\subsubsection{Calculate\_Train\_Position}
 %\input{sections/Calculate_Train_Position_V2.tex}
