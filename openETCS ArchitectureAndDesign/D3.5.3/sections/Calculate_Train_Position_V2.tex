@@ -33,10 +33,10 @@ Subset-026, Chapter 3.6 \\
 \midrule
 Safety integrity level	& 4 \\
 \midrule
-Time constraints		& n/a \\
+Time constraints		& All events at the calculateTrainPosion inputs must be applied strictly in the correct chronological order. \\
 \midrule
-API requirements 		& Cf.~interface description of parent component.
-\todo[inline]{To be updated since there is no parent component anymore.} \\
+API requirements 		& The currentOdometry input as well as the odometry stamps within msgFromTrack  must be fed with odometry values strictly adhering to {\footnotesize\url{https://github.com/openETCS/SRS-Analysis/blob/master/System%20Analysis/WorkingRepository/Group4/SUBSET_26_3-6/DetermineTrainLocationProcedures.pdf}}, chapt. 3.
+ \\
 \bottomrule
 \end{longtable}
 
@@ -45,11 +45,14 @@ API requirements 		& Cf.~interface description of parent component.
 
 An overview of the interface of component calculateTrainPosition is shown in Figure~\ref{f:calculateTrainPosition_interface}. The inputs and outputs are described in detail in Section~\ref{s:calculateTrainPosition_inputs} respectively \ref{s:calculateTrainPosition_outputs}. Subcomponents are described in Section~\ref{s:calculateTrainPosition_subcomponents}.
 
+
 \begin{figure}
-\center
-\missingfigure{[Put SysML diagram of component here]}
-\caption{calculateTrainPosition SysML diagram}\label{f:calculateTrainPosition_interface}
+	\centering
+		\includegraphics{./images/calculateTrainPosition_if.png}
+	\caption{calculateTrainPosition SysML diagram}
+	\label{fig:calculateTrainPosition_interface}
 \end{figure}
+
 
 \subsubsection{Inputs}\label{s:calculateTrainPosition_inputs}
 
@@ -80,14 +83,13 @@ Valid range of values	& Obu\_BasicTypes\_Pkg::odometry\_T is a complex data type
 \item motionState: [noMotion | Motion]
 \item motionDirection: Obu\_BasicTypes\_Pkg::odoMotionDirection\_T \newline [ unknownDirection | cabAFirst | cabBFirst ]
 \end{itemize}
-\emph{calculateTrainPosition requires consistent value sets of currentOdometry. calculateTrainPosition itself does not check.}\\
+\emph{calculateTrainPosition requires consistent value sets of currentOdometry. calculateTrainPosition itself does not check.  }\\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. In all other cases, calculateTrainPosition does not have the knowledge for out-of-range checks. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Leads to misbehaviour. \\
 \bottomrule
 \end{longtable}
 
@@ -121,14 +123,14 @@ Valid range of values	& Common\_Types\_Pkg::ReceivedMessage\_T is a complex data
 
 	\item sendingRBC: Common\_Types\_Types\_Pkg::RBC\_Id\_T: designates the origin RBC and the mobile modem channel used onboard, if received via radio. Refer to Manage\_TrackSideInformation\_Integration\_Pkg::\newline Manage\_TrackSideInformation\_Integration for more detailed information.
 \end{itemize}  
-\emph{calculateTrainPosition expects the received information to be consistent and validated before applied to. It does not check, if the information is appropriate due to current EVC mode, level, train or balise orientation. Received balise group or linking information already known by calculateTrainPosition overrides former data.} \\
+\emph{calculateTrainPosition expects the received information to be consistent and validated before applied to. It does not check, if the information is appropriate due to current EVC mode, level, train or balise orientation. Received balise group or linking information already known by calculateTrainPosition overrides former data. All messages must be applied in the correct chronological order} \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. In all other cases, calculateTrainPosition does not have the knowledge for out-of-range checks. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Causes misbehaviour.
+\\
 \bottomrule
 \end{longtable}
 
@@ -161,8 +163,8 @@ Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. In all other cases, calculateTrainPosition does not have the knowledge for out-of-range checks. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Causes misbehaviour.
+\\
 \bottomrule
 \end{longtable}
 
@@ -187,7 +189,7 @@ Input name				& reset \\
 \midrule
 Description				& Resets and keeps calculateTrainPosition at its initial state and deletes all internally stored data.  \\
 \midrule
-Source					& \todo[inline]{needs to be updated} whom it may concern/ \\ 
+Source					& To whom it may concern/ \\ 
 \midrule
 Type					& bool \\  
 \midrule
@@ -197,8 +199,8 @@ Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& Enumerated values out of range prohibit code generation. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Causes misbehaviour.
+\\
 \bottomrule
 \end{longtable}
 
@@ -315,7 +317,6 @@ Behaviour when value is errorneous, absent or unwanted & n/a \\
 
 \subsection{Subcomponents}\label{s:calculateTrainPosition_subcomponents}
 
-\todo[inline]{calculateTrainPosition subcomponents need to be documented}
 \subsubsection{msg\_2\_passedBG}
 \input{sections/msg_2_passedBG}
 
@@ -325,7 +326,7 @@ Behaviour when value is errorneous, absent or unwanted & n/a \\
 \subsubsection{delDispensableBGs}
 \input{sections/delDispensableBGs}
 
-\subsubsection{addAnnounceBGs}
+\subsubsection{addAnnouncedBGs}
 \input{sections/addAnnounceBGs}
 
 \subsubsection{calculateTrainpositionInfo}
