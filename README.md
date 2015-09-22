@@ -4,7 +4,7 @@ modeling
 WP3 repository for modeling results and activities.
 Scade version to be used in the project: V16.1b  
 
-[![Stories in Ready](https://badge.waffle.io/openetcs/modeling.png?label=ready&title=Backlog)](https://waffle.io/openetcs/modeling)
+[![Stories in Backlog](https://badge.waffle.io/openetcs/modeling.png?label=backlog&title=Backlog)](https://waffle.io/openetcs/modeling)
 [![Stories in Ready](https://badge.waffle.io/openETCS/modeling.png?label=ready&title=Ready)](https://waffle.io/openETCS/modeling)
 [![Stories in "In Progress"](https://badge.waffle.io/openETCS/modeling.png?label=In Progress&title=In Progress)](https://waffle.io/openETCS/modeling)
 
