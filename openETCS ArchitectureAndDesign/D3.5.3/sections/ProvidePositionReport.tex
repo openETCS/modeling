@@ -9,8 +9,7 @@
 \toprule
 Component name			& Provide\_Position\_Report \\
 \midrule
-Link to SCADE model		& {\footnotesize \url{???}}
-\todo[inline]{Link has to be provided.} \\
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/blob/master/model/Scade/System/ObuFunctions/ManageLocationRelatedInformation/TrainPosition/ProvidePositionReport/ProvidePositionReport_Pkg.xscade}}\\
 \midrule
 SCADE designer			& Christian Stahl, TWT GmbH \\
 \midrule
@@ -18,20 +17,19 @@ Description				& The component builds a position report for the RBC, i.e., messa
 \begin{enumerate}
 \item at least one of the triggers of the position report parameters (packet 58) holds or 
 \item one of the events enabling the sending of the report occurs.
-As the core position report (i.e., packet 0 or 1) is added to other packets, the
-component also provides in every clock cycle this core position report. At most one of the two packets is valid.
-\end{enumerate} \\
+\end{enumerate} 
+As the core position report (i.e., packet 0 or 1) is included in other packets, the
+component also provides this core position report at every clock cycle. At most one of the two packets is valid.\\
 \midrule
 Input documents	& 
 Subset-026, Chapter 3.6.5 \\
 \midrule
 Safety integrity level		& 4 \\
 \midrule
-Time constraints		& [If applicable description of time constraints, otherwise n/a]
-\todo[inline]{To be completed.} \\
+Time constraints		& n/a
+\\
 \midrule
-API requirements 		& [If applicable description of API requirements, otherwise n/a] 
-\todo[inline]{To be completed.} \\
+API requirements 		& n/a \\
 \bottomrule
 \end{longtable}
 
@@ -49,107 +47,544 @@ An overview of the interface of component Provide\_Position\_Report is shown in 
 
 \subsubsection{Inputs}\label{s:provide_position_report_inputs}
 
-\todo[inline]{section has to be completed}
-
-\paragraph{[Input 1 name]}
+\paragraph{inMessage}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Input name				& [Name of the input] \\
+Input name				& inMessage \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& input message from the bus 
+(to extract Packet 58, the position report parameters) \\
 \midrule
-Source					& [Name of the source component] \\ 
+Source					& Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration \\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& as defined in SCADE \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & if valid=false, then input is ignored \\
 \bottomrule
 \end{longtable}
 
 
-\paragraph{[Input 2 name]}
+\paragraph{systemTime}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Input name				& [Name of the input] \\
+Input name				& systemTime \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& the system time \\
 \midrule
-Source					& [Name of the source component] \\ 
+Source					& API \\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& SystemTime\_T, i.e., Obu\_BasicTypes\_Pkg::T\_internal\_Type \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& [0; maximum positive int value of target platform] \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& assumed to be valid \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& assumed to be valid \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & assumed to be valid \\
+\bottomrule
+\end{longtable}
+
+\paragraph{rbcComm}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& rbcComm \\
+\midrule
+Description				& variables modeling stati regarding the RBC communication \\
+\midrule
+Source					& MoRC\_Pck::MoRC\_Main \\ 
+\midrule
+Type					& RBC\_Communication\_T \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{trackInfo}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& trackInfo \\
+\midrule
+Description				& location based events \\
+\midrule
+Source					& EVC; currently a constant \\ 
+\midrule
+Type					& LocationBasedEvents\_T \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{trainProps}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& trainProps \\
+\midrule
+Description				& the train properties \\
+\midrule
+Source					& EVC\_Support\_Pkg::maintainTrainProperties \\ 
+\midrule
+Type					& TrainPosition\_Types\_Pck::trainProperties\_T \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{train2trackStatus}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& train2trackStatus \\
+\midrule
+Description				& train to track status information \\
+\midrule
+Source					& EVC \\ 
+\midrule
+Type					& BG\_Types\_Pkg::TrainToTrackStatus\_T \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{prvDirTrain}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& prvDirTrain \\
+\midrule
+Description				& train direction of the last clock cycle \\
+\midrule
+Source					& CalculateTrainPosition\_Pkg::calculateTrainPosition \\ 
+\midrule
+Type					& Q\_DIRTRAIN \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{modeLevelStatus}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& modeLevelStatus \\
+\midrule
+Description				& information referring to mode and level status \\
+\midrule
+Source					& ManageLevelAndMode \\ 
+\midrule
+Type					& ModeLevel2PositionReport\_T \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{odometry}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& odometry \\
+\midrule
+Description				& odometry information\\
+\midrule
+Source					& API \\ 
+\midrule
+Type					& Obu\_BasicTypes\_Pkg::odometry\_T \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{posBGs}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& posBGs \\
+\midrule
+Description				& positioned balise groups used for current train position \\
+\midrule
+Source					& CalculateTrainPosition\_Pkg::calculateTrainPosition \\ 
+\midrule
+Type					& TrainPosition\_Types\_Pck::positionedBGs\_T \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{trainPos}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& trainPos \\
+\midrule
+Description				& current train position \\
+\midrule
+Source					& CalculateTrainPosition\_Pkg::calculateTrainPosition \\ 
+\midrule
+Type					& TrainPosition\_Types\_Pck::trainPosition\_T \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{t\_train}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& t\_train \\
+\midrule
+Description				& current timestamp \\
+\midrule
+Source					& EVC \\ 
+\midrule
+Type					& T\_TRAIN \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{BG\_LinkingConsistencyError}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& BG\_LinkingConsistencyError \\
+\midrule
+Description				& true if respective error has occurred; otherwise false \\
+\midrule
+Source					& CalculateTrainPosition\_Pkg::calculateTrainPosition \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{LinkedBG\_MessageConsistencyError}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& LinkedBG\_MessageConsistencyError \\
+\midrule
+Description				& true if respective error has occurred; otherwise false \\
+\midrule
+Source					& Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{UnlinkedBG\_MessageConsistencyError}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& UnlinkedBG\_MessageConsistencyError \\
+\midrule
+Description				& true if respective error has occurred; otherwise false \\
+\midrule
+Source					& Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{RadioMessageConsistencyError}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& RadioMessageConsistencyError \\
+\midrule
+Description				& true if respective error has occurred; otherwise false \\
+\midrule
+Source					& Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{RadioSequenceError}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& RadioSequenceError \\
+\midrule
+Description				& true if respective error has occurred; otherwise false \\
+\midrule
+Source					& Manage\_TrackSideInformation\_Integration\_Pkg::Manage\_TrackSideInformation\_Integration \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{RadioSafeRadioConnectionError}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& RadioSafeRadioConnectionError \\
+\midrule
+Description				& true if respective error has occurred; otherwise false \\
+\midrule
+Source					& none; currently a constant \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{SafetyCriticalFailure}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& SafetyCriticalFailure \\
+\midrule
+Description				& true if respective error has occurred; otherwise false \\
+\midrule
+Source					& EVC; currently a constant \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{DoubleLinkingError}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& DoubleLinkingError \\
+\midrule
+Description				& true if respective error has occurred; otherwise false \\
+\midrule
+Source					& CalculateTrainPosition\_Pkg::calculateTrainPosition \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{DoubleRepositioningError}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& DoubleRepositioningError \\
+\midrule
+Description				& true if respective error has occurred; otherwise false \\
+\midrule
+Source					& CalculateTrainPosition\_Pkg::calculateTrainPosition \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
 \end{longtable}
 
 
 \subsubsection{Outputs}\label{s:provide_position_report_outputs}
 
-\todo[inline]{section has to be completed}
-
-\paragraph{[Output 1 name]}
+\paragraph{packet0}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& [Name of the output] \\
+Output name				& packet0 \\
 \midrule
-Description				& [Brief description of the output] \\
+Description				& packet 0 -- position report based on a single balise -- is provided every clock cycle \\
 \midrule
-Destination				& [Name of the destination component(s)] \\ 
+Destination				& TrackAtlas::TrackAtlas/\\ 
 \midrule
-Type					& [Type of the output] \\
+Type					& Packet\_TrainTypes\_Pkg::PT0\_PositionReport\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& as defined in SCADE \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
 \end{longtable}
 
 
-\paragraph{[Output 2 name]}
+\paragraph{packet1}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& [Name of the output] \\
+Output name				& packet1 \\
 \midrule
-Description				& [Brief description of the output] \\
+Description				& packet 1 -- position report based on two balise groups -- is provided every 
+clock cycle \\
 \midrule
-Destination				& [Name of the destination component(s)] \\ 
+Destination				& TrackAtlas::TrackAtlas \\ 
 \midrule
-Type					& [Type of the output] \\
+Type					& Packet\_TrainTypes\_Pkg::PT1\_PositionReport\_2BG\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& as defined in SCADE \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+\paragraph{posRep}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& posRep \\
+\midrule
+Description				& position report to be send to the RBC (i.e. message 136) \\
+\midrule
+Destination				& radioOutput\_Pkg::collectRadioMessages \\ 
+\midrule
+Type					& Radio\_Types\_Pkg::Radio\_TrainTrack\_Message\_T \\
+\midrule
+Valid range of values	& as defined in SCADE \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
 \end{longtable}
 
 
 \subsection{Subcomponents}\label{s:provide_position_report_subcomponents}
 
-\todo[inline]{section has to be completed}
 
 \subsubsection{ReceiveReportParameters}
 \input{sections/ReceiveReportParameters.tex}
