@@ -5,26 +5,31 @@
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Component name			& Management\_of\_Radio\_Communication \\
+Component name			& MoRC\_Main\_v2 (Management\_of\_Radio\_Communication) \\
 \midrule
 Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/Radio/MoRC}} \\
 \midrule
 SCADE designer			& Uwe Steinke, Siemens \\
 \midrule
 Description				& 
-\todo[inline]{to be checked}
-The function \emph{managementOfRadioCommunication} implements the session states establishing, maintaining and termination as described in Subset-026, chap. 3.5. A SCADE state machine reflects this state model (Figure ???) accurately. Within each of the states, the activities needed as long as the state is active, are performed. When there is no communication session (state \emph{NoSession}) currently, the state machine waits for events that initiate a session (subfunction \emph{initiate\_a\_Session}). When the appropriate conditions are fulfilled, the state machine moves to the \textit{Establishing} state. Here in, it runs through the sequence required fore establishing a session (subfunction \emph{establish\_a\_Session}. Dependent on the results, the state machine changes over to the \emph{Maintaining} or \emph{Terminating} state. While in \emph{Maintaining}, the communication connection is monitored. When an event triggering the session termination occurs, the state machine switches to the state \emph{Terminating} with the subfunction \emph{terminating\_a\_CommunicationSession} and performs the session termination sequence. 
+The function \emph{MoRC\_Main\_v2} implements the session states establishing, maintaining and terminating as described in Subset-026, chap. 3.5. A SCADE state machine reflects this state model  accurately. Within each of the states, the activities needed as long as the state is active, are performed. \newline
 
-In parallel to the main state machine, \emph{managementOfRadioCommunication} monitors all the time whether the session has to be terminated (subfunction \emph{initiateTerminatingASession}) or if the session has the be terminated and subsequently established (subfunction \emph{terminateAndEstablishSession}). \emph{registeringToTheRadioNetwork} is responsible for connection to the radio network. \emph{safeRadioConnectionIndication} controls the radio connection indication for the driver.\\
+\emph{MoRC\_Main\_v2} is related to exactly one of the radio mobile modems onboard, monitors its status and controls the processes of registration to the radio network, connecting to one RBC and establishing a radio session with the RBC. \emph{MoRC\_Main\_v2} communicates with its mobile modem directly via the API.  \newline
+
+As the OBU is required to manage up to two RBCs,  two instances of \emph{MoRC\_Main\_v2} are used.  \newline
+
+In addition, \emph{MoRC\_Main\_v2} generates the radio connection indication for the driver.
+
+\\
 \midrule
 Input documents	& 
 Subset-026, Chapter 3.5 \\
 \midrule
 Safety integrity level		& 4 \\
 \midrule
-Time constraints		& [If applicable description of time constraints, otherwise n/a] \\
+Time constraints		& Implements several time delays, therefore appropriate clocking required \\
 \midrule
-API requirements 		& [If applicable description of API requirements, otherwise n/a] \\
+API requirements 		& Interfaces to the OBUs mobile modem hardware via API \\
 \bottomrule
 \end{longtable}
 

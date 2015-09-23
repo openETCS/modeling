@@ -2,41 +2,54 @@
 %!TEX root = ../D3_5_3.tex
 
 \section{F2.9: Manage\_Radio\_Communication and RBC\_Handover}
-\todo[inline]{section has to be completed. The level of this component in final architecture has been fixed.}
+
 \subsection{Component Requirements}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
 Component name			& MoRC\_HO \\
 \midrule
-Link to SCADE model		& {\footnotesize \url{???}} \\
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/Radio/MoRC_HO}} \\
 \midrule
 SCADE designer			& Uwe Steinke, Siemens AG \\
 \midrule
 Description				&  
-\todo[inline]{to be checked}
-The management of radio communication MoRC implements the onboard management part of a single communication session with the track, i.e. a single RBC. It controls the establishing, maintaining and termination process of a radio communication session and steers the underlying communication safety layer and the mobile device. Those and the data transfer itself are not part of the function. 
 
-The kernel function of the MoRC component is \emph{managementOfRadioCommunication} (figure ???). The implementation is kept close to the prose of Subset-026, chap. 3.5. Since chap. 3.5 rarely refers to terms, variable types, packets and messages of the ETCS language as specified in Subset-026, chap. 7 and 8, \emph{managementOfRadioCommunication} does neither. 
+The \emph{MoRC\_HO} component implements the handover process between two different RBCs and the session management (\emph{MoRC} = management of radio communication) with each of them. 
 
-To be capable of being integrated with other OBU software components, \emph{MoRC} had to be wrapped with a transformer between the ETCS and the "chap. 3.5" language. This is the purpose of the main function of \emph{MoRC}, \emph{MoRC\_Main}.  \\
+MoRC\_HO comprises
+
+\begin{itemize}
+	\item the \emph{processHandingOver} subcomponent performing the handover process from the handing over RBC to the accepting RBC,
+	\item two instances of \emph{MoRC\_Main\_v2} representing the session management with up to two RBCs in parallel
+	\item a \emph{mobileDataRouter\_out} subcomponent for routing the OBUs output data stream to both RBCs and switching over from the handing over RBC to the accepting RBC. 
+\end{itemize}
+
+\emph{processHandingOver} consumes the relevant messages received from track and controls the registration with the radio network, the session termination with the handing over RBC and the session establishment with the accepting RBC. To achieve this, it controls up to two instances of \emph{MoRC\_Main\_v2}. Additionally, it monitors the current train position and performs the handing over at the ordered track location. The number of MoRC instances used is configurable and depends on the number of mobile modems (1 or 2 ) available on board.
+\subparagraph{}
+The management of radio communication \emph{MoRC\_Main\_v2} implements the onboard management part of a single communication session with the track, i.e. a single RBC. It controls the establishing, maintaining and termination process of a radio communication session and steers the underlying communication safety layer and the mobile device. Those and the data transfer itself are not part of the function. 
+\subparagraph{}
+\emph{MoRC\_HO} requests position reports to be sent to the appropriate RBC and cooperates with the InformationFilter component for input data stream filtering and buffering as required by the handover process. 
+
+\\
 \midrule
 Input documents	& 
-Subset-026, Chapter 4 \newline
-Subset-026, Chapter 5 \\
+Subset-026, Chapter 3.5 \newline
+Subset-026, Chapter 3.15 \newline
+Subset-026, Chapter 5.15 \\
 \midrule
 Safety integrity level	& 4 \\
 \midrule
-Time constraints		& [If applicable description of time constraints, otherwise n/a] \\
+Time constraints		& Function activation has to facilitate the internally implemented time delays  \\
 \midrule
-API requirements 		& [If applicable description of API requirements, otherwise n/a] \\
+API requirements 		& Interfaces with the OBUs mobile modems via API\\
 \bottomrule
 \end{longtable}
 
 
 \subsection{Interface}
 
-An overview of the interface of component Manage\_Radio\_Communication is shown in Figure~\ref{f:manage_radio_communication_interface}. The inputs and outputs are described in detail in Section~\ref{s:manage_radio_communication_inputs} respectively \ref{s:manage_radio_communication_outputs}. Sub components are described in Section~\ref{s:manage_radio_communication_subcomponents}.
+An overview of the interface of component MoRC\_HO is shown in Figure~\ref{f:manage_radio_communication_interface}. The inputs and outputs are described in detail in Section~\ref{s:manage_radio_communication_inputs} respectively \ref{s:manage_radio_communication_outputs}. Sub components are described in Section~\ref{s:manage_radio_communication_subcomponents}.
 
 \begin{figure}
 \center
@@ -47,106 +60,879 @@ An overview of the interface of component Manage\_Radio\_Communication is shown 
 
 \subsubsection{Inputs}\label{s:manage_radio_communication_inputs}
 
-\paragraph{[Input 1 name]}
+\paragraph{[mode]}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Input name				& [Name of the input] \\
+Input name				& mode \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& Current onboard operating mode \\
 \midrule
-Source					& [Name of the source component] \\ 
+Source					& ??? \\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& M\_MODE \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& Defined by M\_MODE enumerations \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& Code generation fails \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
 \bottomrule
 \end{longtable}
 
 
-\paragraph{[Input 2 name]}
+\paragraph{[level]}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Input name				& [Name of the input] \\
+Input name				& level \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& Current Operating Level \\
 \midrule
-Source					& [Name of the source component] \\ 
+Source					& ??? \\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& M\_LEVEL \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& Defined by M\_LEVEL enumerations \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	&  Code generation fails \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
 \bottomrule
+\end{longtable}
+
+\paragraph{[eventsAndPhases]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& eventsAndPhases \\
+	\midrule
+	Description				& Collection of input events and OBU operating phases \\
+	\midrule
+	Source					& Collection of source components responsible for the information \\ 
+	\midrule
+	Type					& RCM\_Session\_Types\_Pkg::obuEventsAndPhases\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Code generation fails \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[atPowerUpRadioNetworkID]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& atPowerUpRadioNetworkID \\
+	\midrule
+	Description				& Radio network ID to be used at power up \\
+	\midrule
+	Source					& ??? \\ 
+	\midrule
+	Type					& Packet\_Types\_Pkg::P45\_RadioNetworkRegistration\_T \\
+	\midrule
+	Valid range of values	& Ref. to NID\_MN (Identity of Radio Network)  \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& OBU registers to unwanted radio network \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & OBU registers to unwanted radio network  \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[newRadioNetworkIDFromDriver]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& newRadioNetworkIDFromDriver \\
+	\midrule
+	Description				& Radio network ID entered by the driver \\
+	\midrule
+	Source					& ??? \\ 
+	\midrule
+	Type					& Packet\_Types\_Pkg::P45\_RadioNetworkRegistration\_T \\
+	\midrule
+	Valid range of values	& Ref. to NID\_MN (Identity of Radio Network)  \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& OBU registers to unwanted radio network \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & OBU registers to unwanted radio network  \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[mobileRegistrationContext\_1]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& mobileRegistrationContext\_1 \\
+	\midrule
+	Description				& Current registration status information from mobile modem 1 \\
+	\midrule
+	Source					& API \\ 
+	\midrule
+	Type					& RCM\_Types\_Pkg::mobileRegistrationContext\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Misbehaviour \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[mobileRegistrationContext\_2]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& mobileRegistrationContext\_2 \\
+	\midrule
+	Description				& Current registration status information from mobile modem 2 \\
+	\midrule
+	Source					& API \\ 
+	\midrule
+	Type					& RCM\_Types\_Pkg::mobileRegistrationContext\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Misbehaviour \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[mobileConnectionContext\_1]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& mobileConnectionContext\_2 \\
+	\midrule
+	Description				& Current connection status information from mobile modem 1 \\
+	\midrule
+	Source					& API \\ 
+	\midrule
+	Type					& RCM\_Types\_Pkg::mobileConnectionContext\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Misbehaviour \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[mobileConnectionContext\_2]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& mobileConnectionContext\_2 \\
+	\midrule
+	Description				& Current connection status information from mobile modem 2 \\
+	\midrule
+	Source					& API \\ 
+	\midrule
+	Type					& RCM\_Types\_Pkg::mobileConnectionContext\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Misbehaviour \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[dataFromTrack\_in]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& [dataFromTrack\_in] \\
+	\midrule
+	Description				& Messages received from track \\
+	\midrule
+	Source					&  Manage\_TrackSideInformation\_Integration \\ 
+	\midrule
+	Type					& RCM\_MsgTypes\_Pkg::msgFromTrack\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Misbehaviour \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[dataToRBC\_in]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& dataToRBC\_in \\
+	\midrule
+	Description				& Messages to be routed to the supervising RBC \\
+	\midrule
+	Source					& All components transmitting messages to the RBC \\ 
+	\midrule
+	Type					& RCM\_MsgTypes\_Pkg::msgToTrack\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Confused RBC communication\\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Confused RBC communication \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[positionReport\_in]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& positionReport\_in \\
+	\midrule
+	Description				& Current positon report to be transmitted to the handing over and/or accepting RBC under control of \emph{MoRC\_HO}\\
+	\midrule
+	Source					& providePositionReport \\ 
+	\midrule
+	Type					& RCM\_MsgTypes\_Pkg::msgToTrack\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& RBC receives faulty position report \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & RBC receives faulty position report \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[trainData\_in]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& trainData\_in \\
+	\midrule
+	Description				& Validated train data (packet 11) to be transmitted to the handing over and/or accepting RBC under control of \emph{MoRC\_HO} \\
+	\midrule
+	Source					& ??? \\ 
+	\midrule
+	Type					& RCM\_MsgTypes\_Pkg::msgToTrack\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& RBC receives faulty train data \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & RBC receives faulty train data \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[trainPosition]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& trainPosition \\
+	\midrule
+	Description				& Current train position \\
+	\midrule
+	Source					& calculateTrainPosition \\ 
+	\midrule
+	Type					& TrainPosition\_Types\_Pck::trainPosition\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& RBC handover is performed at an unwanted location \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & RBC handover is performed at an unwanted location \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[BGs]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& BGs \\
+	\midrule
+	Description				& Collection of currently known balise groups \\
+	\midrule
+	Source					& calculateTrainPosition \\ 
+	\midrule
+	Type					& TrainPosition\_Types\_Pck::positionedBGs\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& RBC handover is performed at an unwanted location \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & RBC handover is performed at an unwanted location \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[t\_train]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& t\_train \\
+	\midrule
+	Description				& Time, according to trainborne clock, at which messages are to be sent \\
+	\midrule
+	Source					& ??? \\ 
+	\midrule
+	Type					& T\_TRAIN \\
+	\midrule
+	Valid range of values	& Refer to Subset 016-7. \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Faulty time information in messages sent to the RBC \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Faulty time information in messages sent to the RBC \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[reset]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& reset \\
+	\midrule
+	Description				& Initializes the component and deletes the internal storage \\
+	\midrule
+	Source					& The OBUs system start controller \\ 
+	\midrule
+	Type					& bool \\
+	\midrule
+	Valid range of values	& true | false \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Code generation fails \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[sessionManagementAbility]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& sessionManagementAbility \\
+	\midrule
+	Description				& Configurable ability to manage one or two sessions and mobile modems onboard \\
+	\midrule
+	Source					& The OBUs configuration manager \\ 
+	\midrule
+	Type					& Handover\_Pkg::abilityToHandleCommunicationSessions \\
+	\midrule
+	Valid range of values	& isAbleToManageOneSession | isAbleToManageTwoSessions \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Code generation fails \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[trainProperties]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& trainProperties \\
+	\midrule
+	Description				& Train parameters used to calculate the handover location and to generate messages to the RBC \\
+	\midrule
+	Source					& The OBUs configuration manager \\ 
+	\midrule
+	Type					& TrainPosition\_Types\_Pck::trainProperties\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Faulty parametrization \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[configData]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Input name				& configData \\
+	\midrule
+	Description				& Session management configuration parameters \\
+	\midrule
+	Source					& The OBUs configuration manager \\ 
+	\midrule
+	Type					& RCM\_Session\_Types\_Pkg::morc\_configData\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Misbehaviour \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
+	\bottomrule
 \end{longtable}
 
 
 \subsubsection{Outputs}\label{s:manage_radio_communication_outputs}
 
-\paragraph{[Output 1 name]}
+\paragraph{[radioStatus\_1]}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& [Name of the output] \\
+Output name				& radioStatus\_1 \\
 \midrule
-Description				& [Brief description of the output] \\
+Description				& Radio registration, connection and session status for radio link 1 \\
 \midrule
-Destination				& [Name of the destination component(s)] \\ 
+Destination				& All components which need to know the radio status \\ 
 \midrule
-Type					& [Type of the output] \\
+Type					& RCM\_Session\_Types\_Pkg::morcStatus\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n/a \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
 \end{longtable}
 
-
-\paragraph{[Output 2 name]}
+\paragraph{[radioStatus\_2]}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
-\toprule
-Output name				& [Name of the output] \\
-\midrule
-Description				& [Brief description of the output] \\
-\midrule
-Destination				& [Name of the destination component(s)] \\ 
-\midrule
-Type					& [Type of the output] \\
-\midrule
-Valid range of values	& [Complete list of valid values] \\
-\midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
-\midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
-\midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
-\bottomrule
+	\toprule
+	Output name				& radioStatus\_2 \\
+	\midrule
+	Description				& Radio registration, connection and session status for radio link 2 \\
+	\midrule
+	Destination				& All components which need to know the radio status \\ 
+	\midrule
+	Type					& RCM\_Session\_Types\_Pkg::morcStatus\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& n/a \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+	\bottomrule
 \end{longtable}
+
+\paragraph{[mobileConnectionCmd\_1]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& mobileConnectionCmd\_1 \\
+	\midrule
+	Description				& Commands to mobile 1 for radio connection control  \\
+	\midrule
+	Destination				& API to radio mobile 1 \\ 
+	\midrule
+	Type					& RCM\_Types\_Pkg::mobileConnectionCmd\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& n/a \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[mobileConnectionCmd\_2]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& mobileConnectionCmd\_2 \\
+	\midrule
+	Description				& Commands to mobile 2 for radio connection control  \\
+	\midrule
+	Destination				& API to radio mobile 2 \\ 
+	\midrule
+	Type					& RCM\_Types\_Pkg::mobileConnectionCmd\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& n/a \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[mobileRegistrationCmd\_1]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& mobileRegistrationCmd\_1 \\
+	\midrule
+	Description				& Commands to mobile 1 for radio registration control  \\
+	\midrule
+	Destination				& API to radio mobile 1 \\ 
+	\midrule
+	Type					& RCM\_Types\_Pkg::mobileRegistrationCmd\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& n/a \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[mobileRegistrationCmd\_2]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& mobileRegistrationCmd\_2 \\
+	\midrule
+	Description				& Commands to mobile 2 for radio registration control  \\
+	\midrule
+	Destination				& API to radio mobile 2 \\ 
+	\midrule
+	Type					& RCM\_Types\_Pkg::mobileRegistrationCmd\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& n/a \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[safeRadioIndication]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& safeRadioIndication \\
+	\midrule
+	Description				& Safe radio indication for DMI  \\
+	\midrule
+	Destination				& DIM via DMI interface \\ 
+	\midrule
+	Type					& RCM\_Session\_Types\_Pkg::safeRadioConnectionIndication\_T \\
+	\midrule
+	Valid range of values	& srci\_noConnection | srci\_connectionLost\_setupFailed | srci\_connectionUp \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& n/a \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[supervisingRBC]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& supervisingRBC \\
+	\midrule
+	Description				& Designates the current supervising RBC for the InformationFilter to support input message filtering and buffering there \\
+	\midrule
+	Destination				& InformationFilter \\ 
+	\midrule
+	Type					& Handover\_Pkg::connection\_ids\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& n/a \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[bufferInformationFromAcceptingRBC]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& bufferInformationFromAcceptingRBC \\
+	\midrule
+	Description				& Informs the InfomationFilter to buffer messages received from the accepting RBC \\
+	\midrule
+	Destination				& InformationFilter \\ 
+	\midrule
+	Type					& bool \\
+	\midrule
+	Valid range of values	& true | false \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Code generation fails \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[trainPassesA\_RBC\_RBC\_border\_WithItsFrontEnd]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& trainPassesA\_RBC\_RBC\_border\_WithItsFrontEnd \\
+	\midrule
+	Description				& Indicates that the train front passes a RBC/RBC border \\
+	\midrule
+	Destination				& To whom it may concern \\ 
+	\midrule
+	Type					& bool \\
+	\midrule
+	Valid range of values	& true | false \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Code generation fails \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[msgToRBC\_1]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& msgToRBC\_1 \\
+	\midrule
+	Description				& Radio message to be transmitted to RBC via mobile modem 1, if session established \\
+	\midrule
+	Destination				& API: interface to mobile modem 1 \\ 
+	\midrule
+	Type					& RCM\_MsgTypes\_Pkg::msgToTrack\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& n/a \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[msgToRBC\_2]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& msgToRBC\_2 \\
+	\midrule
+	Description				& Radio message to be transmitted to RBC via mobile modem 2, if session established \\
+	\midrule
+	Destination				& API: interface to mobile modem 2 \\ 
+	\midrule
+	Type					& RCM\_MsgTypes\_Pkg::msgToTrack\_T \\
+	\midrule
+	Valid range of values	& n/a \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& n/a \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[triggerPositionReport]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& triggerPositionReport \\
+	\midrule
+	Description				& Triggers the providePositionReport function to provide a position report at positionReport\_in input \\
+	\midrule
+	Destination				& providePositionReport \\ 
+	\midrule
+	Type					& bool \\
+	\midrule
+	Valid range of values	& true | false \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Code generation fails \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Causes a mistimed position report  \\
+	\bottomrule
+\end{longtable}
+
+
+\paragraph{[triggerTrainData]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& triggerTrainData \\
+	\midrule
+	Description				& Triggers the provideTrainData function to provide a train data set (packet 11) at trainData\_in input \\
+	\midrule
+	Destination				& provideTrainData ??? \\ 
+	\midrule
+	Type					& bool \\
+	\midrule
+	Valid range of values	& true | false \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Code generation fails \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Causes a mistimed train data set transmission to the RBC \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[rejectOrderToContactRBC\_or\_RIU]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& rejectOrderToContactRBC\_or\_RIU \\
+	\midrule
+	Description				& Informs the OBU that the order to contact an RBC has to be rejected \\
+	\midrule
+	Destination				& ??? \\ 
+	\midrule
+	Type					& bool \\
+	\midrule
+	Valid range of values	& true | false \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Code generation fails \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[infomDriverNoCompatibleVersionSupported]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& infomDriverNoCompatibleVersionSupported \\
+	\midrule
+	Description				& Informs the driver that no compatible version is supported \\
+	\midrule
+	Destination				& DMI via DMI interface and API \\ 
+	\midrule
+	Type					& bool \\
+	\midrule
+	Valid range of values	& true | false \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Code generation fails \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misinformed train driver \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[memorizeTheLastRadioNetworkID]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& memorizeTheLastRadioNetworkID \\
+	\midrule
+	Description				& Triggers the storage of the last radio network ID \\
+	\midrule
+	Destination				& External storage via API \\ 
+	\midrule
+	Type					& bool \\
+	\midrule
+	Valid range of values	& true | false \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Code generation fails \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Corrupted stored last radio network ID \\
+	\bottomrule
+\end{longtable}
+
+
+\paragraph{[lastReceivedRadioNetworkID]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& lastReceivedRadioNetworkID \\
+	\midrule
+	Description				& Provides the last received radio network ID \\
+	\midrule
+	Destination				& External storage via API \\ 
+	\midrule
+	Type					& Packet\_Types\_Pkg::P45\_RadioNetworkRegistration\_T \\
+	\midrule
+	Valid range of values	& Refer to subset 026-7, packet 45 \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& Code generation fails \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Corrupted stored last radio network ID \\
+	\bottomrule
+\end{longtable}
+
+\paragraph{[ready]}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+	\toprule
+	Output name				& ready \\
+	\midrule
+	Description				& When false, indicates that MoRC\_HO has not finished the current operation and needs at least one more clock before the next input event can be consumed \\
+	\midrule
+	Destination				& All components providing inputs for MoRC\_HO \\ 
+	\midrule
+	Type					& bool \\
+	\midrule
+	Valid range of values	& true | false \\
+	\midrule
+	Behaviour when value is at boundary	& n/a \\
+	\midrule
+	Behaviour for values out of valid range	& n/a \\
+	\midrule
+	Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehaviour \\
+	\bottomrule
+\end{longtable}
+
 
 
 \subsection{Subcomponents}\label{s:manage_radio_communication_subcomponents}
 
-\todo[inline]{Maybe more subcomponents have to be added. Please check this.}
+\subsubsection{RBC\_Handover}
+\input{sections/RBC_Handover.tex}
 
 \subsubsection{Management\_of\_Radio\_Communication}
 \input{sections/Management_of_Radio_Communication.tex}
 
-\subsubsection{genMSGToRBC}
-\input{sections/genMSGToRBC.tex}
+\subsubsection{mobileDataRouter}
+\input{sections/mobileDataRouter.tex}
