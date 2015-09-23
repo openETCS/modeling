@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="RBC_Trigger_Pkg">
+			<declarations>
+				<Operator kind="node" name="UtrechtAmsterdam_Story_001_common">
+					<inputs>
+						<Variable name="inNID_LRBG">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_LRBG"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/449001/3B5A/61C/560266866ed6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>NID of last relevant balise group</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+						<Variable name="inDistToLRBG">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/44900b/3B5A/61C/5602669f146b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Distance to last relevant balise group [m]</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+						<Variable name="inClock">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Clock_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/448ff7/3B5A/61C/5602666b5357" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>RBC internal system time</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="outTriggerId">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/449031/3B5A/61C/5602673b4595" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>Trigger ID for message library</comment>
+								</ed:Variable>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="T_TRAIN"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/44901d/3B5A/61C/560266d95542"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L4">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/449027/3B5A/61C/56026722f7e"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L5">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="NID_LRBG"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/449033/3B5A/61C/5602675d6b2e"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L6">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/449035/3B5A/61C/5602675d3d2f"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L7">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Clock_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/449037/3B5A/61C/5602675d900"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L1 = RBC_Time_Pkg::Clock__GetSeconds(_L7); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<!-- RBC_Time_Pkg::Clock__GetSeconds(_L7) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="RBC_Time_Pkg::Clock__GetSeconds"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L7"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/44901c/3B5A/61C/560266d96742"/>
+							</pragmas>
+						</Equation>
+						<!-- _L4 = RBC_Scenario_Pkg::UtrechtAmsterdamScenarioStory00AWrapper__TriggerRadioTrac... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L4"/>
+							</lefts>
+							<right>
+								<!-- RBC_Scenario_Pkg::UtrechtAmsterdamScenarioStory00AWrapper__TriggerRadioTrackTrain... -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="RBC_Scenario_Pkg::UtrechtAmsterdamScenarioStory00AWrapper__TriggerRadioTrackTrainMessages"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L5"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L6"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/449026/3B5A/61C/5602672214e7"/>
+							</pragmas>
+						</Equation>
+						<!-- _L5 = inNID_LRBG; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L5"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="inNID_LRBG"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/449032/3B5A/61C/5602675d5635"/>
+							</pragmas>
+						</Equation>
+						<!-- _L6 = inDistToLRBG; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L6"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="inDistToLRBG"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/449034/3B5A/61C/5602675d6b11"/>
+							</pragmas>
+						</Equation>
+						<!-- _L7 = inClock; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L7"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="inClock"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/449036/3B5A/61C/5602675d66f3"/>
+							</pragmas>
+						</Equation>
+						<!-- outTriggerId = _L4; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="outTriggerId"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L4"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/44903c/3B5A/61C/560267736867"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/448ff5/3B5A/61C/5602660b675b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_UtrechtAmsterdam_Story_001_common_1" landscape="true" format="A4 (210 297)" zoomCoeff="-1" oid="!ed/448ff6/3B5A/61C/5602660b3978">
+									<presentationElements>
+										<EquationGE presentable="!ed/44901c/3B5A/61C/560266d96742">
+											<position>
+												<Point x="5001" y="4630"/>
+											</position>
+											<size>
+												<Size width="5334" height="1736"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/449026/3B5A/61C/5602672214e7">
+											<position>
+												<Point x="12171" y="2275"/>
+											</position>
+											<size>
+												<Size width="9488" height="4329"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/449032/3B5A/61C/5602675d5635">
+											<position>
+												<Point x="3413" y="3096"/>
+											</position>
+											<size>
+												<Size width="265" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/449034/3B5A/61C/5602675d6b11">
+											<position>
+												<Point x="3413" y="4180"/>
+											</position>
+											<size>
+												<Size width="265" height="503"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/449036/3B5A/61C/5602675d66f3">
+											<position>
+												<Point x="3413" y="5239"/>
+											</position>
+											<size>
+												<Size width="265" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/449032/3B5A/61C/5602675d5635" dstEquation="!ed/449026/3B5A/61C/5602672214e7">
+											<positions>
+												<Point x="3678" y="3360"/>
+												<Point x="7911" y="3360"/>
+												<Point x="7911" y="3360"/>
+												<Point x="12171" y="3360"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/449034/3B5A/61C/5602675d6b11" dstEquation="!ed/449026/3B5A/61C/5602672214e7">
+											<positions>
+												<Point x="3678" y="4445"/>
+												<Point x="7911" y="4445"/>
+												<Point x="7911" y="4445"/>
+												<Point x="12171" y="4445"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/449036/3B5A/61C/5602675d66f3" dstEquation="!ed/44901c/3B5A/61C/560266d96742">
+											<positions>
+												<Point x="3678" y="5503"/>
+												<Point x="4339" y="5503"/>
+												<Point x="4339" y="5503"/>
+												<Point x="5001" y="5503"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/44901c/3B5A/61C/560266d96742" dstEquation="!ed/449026/3B5A/61C/5602672214e7">
+											<positions>
+												<Point x="10319" y="5503"/>
+												<Point x="11245" y="5503"/>
+												<Point x="11245" y="5503"/>
+												<Point x="12171" y="5503"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/44903c/3B5A/61C/560267736867">
+											<position>
+												<Point x="23389" y="4180"/>
+											</position>
+											<size>
+												<Size width="318" height="502"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/449026/3B5A/61C/5602672214e7" dstEquation="!ed/44903c/3B5A/61C/560267736867">
+											<positions>
+												<Point x="21643" y="4445"/>
+												<Point x="22543" y="4445"/>
+												<Point x="22543" y="4445"/>
+												<Point x="23442" y="4445"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/448ff1/3B5A/61C/560265f8322c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/448ff2/3B5A/61C/560265f83250" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/448ff3/3B5A/61C/560265f843af" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/448ff4/3B5A/61C/560265f82c1e" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>
