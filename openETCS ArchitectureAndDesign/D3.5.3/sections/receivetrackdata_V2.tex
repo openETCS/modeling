@@ -15,7 +15,9 @@ SCADE designer			& Bernd Hekele, DB Netz AG \\
 \midrule
 Description				& The block ``Manage\_TrackSideInformation\_Integration'' is responsible for receiving Eurobalise telegrams and Euroradio messages from the API and performs several consistency checks on the inputs.\newline
 
-The block collects the telegrams of balises in order to build balise group messages. Euroradio messages are always delivered as a whole message. On each message, a consistency check is performed, before the data is validated according to the driving direction of the train. In general, messages not designated for the current driving direction of the train are not forwarded to the further processing. After applying consistency checks, the data direction is validated. Finally, the received message is handled in the information filter. The information filter may, depending on level, mode and announced level transitions and radio handover scenarios, let information pass immediately, store information and , \\
+The block collects the telegrams of balises in order to build balise group messages. Euroradio messages are always delivered as a whole message. On each message, a consistency check is performed, before the data is validated according to the driving direction of the train. In general, messages not designated for the current driving direction of the train are not forwarded to the further processing. After applying consistency checks, the data direction is validated. Finally, the received message is handled in the information filter. The information filter may, depending on level, mode and announced level transitions and radio handover scenarios, let information pass immediately, store information for a later transfer or reject information.
+
+Information in this sense is packets in the context of messages.\\
 
  \\
 \midrule
@@ -49,7 +51,7 @@ An overview of the interface of component Manage\_TrackSideInformation\_Integrat
 \toprule
 Input name				& fullChecks \\
 \midrule
-Description				& Indicates, if all checks on the message should be performed. \\
+Description				& Indicates, if all checks on the message should be performed. This parameter is for testing purposes only and has to be replaced by a constant in real operation.\\
 \midrule
 Source					& This item is only relevant in verification phases. In a real system checks are always activated. \\ 
 \midrule
@@ -65,34 +67,70 @@ Behaviour when value is at boundary	& n/a \\
 \midrule
 Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)]
-\todo[inline]{To be completed} \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
 
 
-\paragraph{Receive\_trackSide\_Message}
+\paragraph{API\_trackSide\_Message}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
 Input name				& API\_trackSide\_Message \\
 \midrule
-Description				& Track side message received from the API. The API performs preprocessing of RTM and BTM messages and deliveres a maximum of a single message per cycle. The structure of this message is defined in the API [BTM] and [EURORADIO] sections.\\
+Description				& Track side message received from the API. The API performs preprocessing of RTM and BTM messages and deliveres a maximum of a single message per cycle. The structure of this message is defined in the API [BTM] and [EURORADIO] sections. The input consists of the following main componenets:
+\begin{description}
+\item[valid](bool): indicates the information has been refreshed in the cycle.
+\begin{description}
+\item[true]: information is updated in this cycle
+\item[false]: information is unchanged.
+\end{description}
+\item[systemTimeMsgReceived](Obu\_BasicTypes\_Pkg::T\_internal\_Type): Timestamp when the system (i.e., the train) has received the message. The parameter is set either by RTM or by BTM modules.
+\item[msg\_type](Common\_Types\_Pkg::MsgSource\_T): source of this information. 
+\begin{description}
+\item[msrc\_undefined]: indicates the information is not defined. This input is expected when valid flag is false.
+\item[msrc\_Euroradio]: indicates the information is a euroradio message.
+\item[msrc\_Eurobalise]: indicates the information is a balise telegram.
+\end{description}
+Other values of this enumeration are not expected in this model.
+\item[btm\_msg](API\_Msg\_Pkg::API\_TelegramHeader\_T): telegram header with some additional information provided by the btm-module. The header looks like:
+\begin{description}
+\item[present](bool): telegram information has been received via btm and the information of this telegram is present. 
+\item[checkResult](bool): the telegram is checked after reception at the btm. Typical checks are checksum-tests or checks at conversion of the types from bit-layout to the presentation in the evc. If checkResult is false the information may not be used. The information is evaluated in the checkBGConsistency component of this model.
+\item[api\_bad\_balise\_received](bool): the telegram reception was disturbed. Again, the information related to this telegram may not be used in the evc.
+\item[api\_header](API\_Msg\_Pkg::API\_TelegramHeader\_T) header of the telegram similar to subset 26 section 8.4.2.1. The information in the telegram is not packed on bit-boundaries.
+\item[centerOfBalisePosition](BG\_Types\_Pkg::centerOfBalisePosition\_T): Location of the balise as determined by the antenna of the train. The information is extended with inaccuracies of the measurement given by the btm.
+\end{description}
+
+\item[rtm\_msg](API\_Msg\_Pkg::API\_RadioMsgHeader\_T): radio message header with some additional information added by the rtm module. The informtion looks like:
+\begin{description}
+\item[present](bool): radio message has been received via rtm and the information of this message is present. 
+\item[apiConsistencyError](bool): the message is checked after reception at the btm. Typical checks are checksum-tests or checks at conversion of the types from bit-layout to the presentation in the evc. If apiConsistencyError is false the information may not be used. The information is evaluated in the checkRadioMessage component of this model.
+\item[Radio\_Common\_Header](Radio\_Types\_Pkg::Radio\_TrackTrain\_Header\_T): header of the radio-message as defined in subset 26 section 8.4.4.6.1. In the SRS, depending on the concrete message, some optional variables are defined. In our implementation all optional variables are foreseen. In order to indicate the availability of variables the component radioMetadata is used (see below).
+\item[radioMetadata](Common\_Types\_Pkg::RadioMetadata\_T): metadata for optional variables in the common radio message header. For each optional component a presence indicator of type bool is in the list.  
+\item[sendingRBC\_Id](Common\_Types\_Pkg::RBC\_Id\_T): identifies the RBC as it is known at the RTM. Information is added to the interface in the RTM.
+\begin{description}
+\item[packets](Common\_Types\_Pkg::CompressedPackets\_T): Packets as received as a part of the telegram or radio message. The structure is set-up and can be accessed by library routines of the trackMessages component of the system. In the manage\_trackside\_Messages component packets my be changed to being absent (e.g., by the function validateDataDirection or by the Information filter.). If packets have to be treated only this valid indicator is changed. No other parts of the packets are accessed.
+
+\end{description}
+\end{description}
+
+\end{description}
+
+
+\\
 \midrule
 Source					& API \\ 
 \midrule
 Type					& API\_Msg\_Pkg::API\_TrackSideInput\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values]
-\todo[inline]{To be completed} \\
+Valid range of values	& Access to the information has to be guarded by the valid flag and similar flags deeper in the structure of thi interface. Checks on individual vlaues of components of messages, telegrams and packets is part of the decoding function. We assume information is valid in this part of the system.\\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary]
-\todo[inline]{To be completed} \\
+Behaviour when value is at boundary	& n/a (structure)\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] 
-\todo[inline]{To be completed}\\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &n/a\\
 \bottomrule
 \end{longtable}
 
@@ -103,24 +141,20 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Input name				& ActualOdometry \\
 \midrule
-Description				& Provided by the external odometry module of the train. It contains relative location information with inaccuracies. \\
+Description				& Provided by the external odometry module of the train. It contains relative location information with inaccuracies. In this model only information related to the position of the train is used (odo-component). A valid flag of the odometer input indicates the hardware is working and the parameter may be used.\\
 \midrule
 Source					& Odometer \\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::odometry\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values]
-\todo[inline]{To be completed} \\
+Valid range of values	& from the odo component the nominal position is used. No plausibility checks on the component are done. Any integer value is allowed. \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& boundary value may lead to jump of the calculation in negative ranges. This may result in the train not being able to complete the reading of a balise group. In consequence, this results in a balise group error and in a service brake reaction of the train.\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] 
-\todo[inline]{To be completed}\\
+Behaviour for values out of valid range	& same as description at boundary.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}
-\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & same as description at boundary.\\
+
 \bottomrule
 \end{longtable}
 
@@ -130,7 +164,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Input name				& reset \\
 \midrule
-Description				& To delete all data stored in the module (e.g.~collected balise telegrams, which do not yet form a complete message), a reset input can be used. If the input is set to true, all data kept in the module is deleted and no input is accepted. \\
+Description				& To delete all data stored in the module (e.g.~collected balise telegrams, which do not yet form a complete message), a reset input can be used. If the input is set to true, all data kept in the module is deleted and no input is accepted. The reset option is to be used when the evc is started or in system error scenarios.\\
 \midrule
 Source					& Environment \\ 
 \midrule
@@ -142,42 +176,33 @@ Valid range of values	&
 \item[false] No action. Data at input is accepted.
 \end{description} \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary]
-\todo[inline]{To be completed} \\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range]
-\todo[inline]{To be completed} \\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}
-\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
-
+\newpage
 \paragraph{trainPosition}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
 Input name				& trainPosition \\
 \midrule
-Description				& Contains the current position of the train. \\
+Description				& Contains the current position of the train. This input is used for validation of the direction of packets and for checks of balise groups. Most important information in this input is the LRBG and the prevLRBG component. This identifies the last two balise group passed by the train.\\
 \midrule
 Source					& CalculateTrainPosition \\ 
 \midrule
 Type					& TrainPosition\_Types\_Pck::trainPosition\_T \\
 \midrule
-Valid range of values	&
-\todo[inline]{To be completed} \\
+Valid range of values	& a valid flag is used in this input to indicate data is provided correctly.\\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] 
-\todo[inline]{To be completed}\\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}
-\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
 
@@ -187,24 +212,19 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Input name				& modeAndLevel \\
 \midrule
-Description				& Provides the current level and mode of the EVC. \\
+Description				& Provides the current level and mode of the EVC. Mode and Level are used by the information filter.\\
 \midrule
 Source					& ModeAndLevel \\ 
 \midrule
 Type					& BG\_Types\_Pkg::ModeAndLevelStatus\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] 
-\todo[inline]{To be completed}\\
+Valid range of values	& n/a\\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] 
-\todo[inline]{To be completed}\\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}
-\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
 
@@ -215,23 +235,41 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Input name				& tNvContact \\
 \midrule
-Description				& For monitoring the safe radio connection, this national value is needed as an input. \\
+Description				& For monitoring the safe radio connection, this national value is needed as an input. This parameter is used in the radioCheck component of this model. \\
 \midrule
-Source					& Database \\ 
+Source					& Radio Management\\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::T\_internal\_Type \\
 \midrule
-Valid range of values	& [Complete list of valid values]
-\todo[inline]{To be completed} \\
+Valid range of values	& pos integer \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary]
-\todo[inline]{To be completed} \\
+Behaviour when value is at boundary	& when boundary is reached the input will jump to 0.\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range]
-\todo[inline]{To be completed} \\
+Behaviour for values out of valid range	& if negative this parameter will result in a radio message sequence error. Connection to the rbc will be closed.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed} \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see above \\
+\bottomrule
+\end{longtable}
+
+\paragraph{intrainVersion}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& M\_VERSION \\
+\midrule
+Description				& For monitoring the safe radio connection, this national value is needed as an input. This parameter is used in the radioCheck component of this model. \\
+\midrule
+Source					& EVC Version Management\\ 
+\midrule
+Type					& M\_VERSION \\
+\midrule
+Valid range of values	& enumerated values\\
+\midrule
+Behaviour when value is at boundary	& value check will reject radio message resp. balise telegram. In the consequence train will stop resp. session rejected. \\
+\midrule
+Behaviour for values out of valid range	& value check will reject radio message resp. balise telegram. In the consequence train will stop resp. session rejected.\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see above \\
 \bottomrule
 \end{longtable}
 
@@ -247,21 +285,17 @@ In situations like level-changes or announced radio holes, not the timestamp of 
 
 For performing this check, the timestamp of the last relevant event is provided to the model as an {T\_internal\_Type}-type. \\
 \midrule
-Source					& Database \\ 
+Source					& Radio Management \\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::T\_internal\_Type \\
 \midrule
-Valid range of values	& [Complete list of valid values]
-\todo[inline]{To be completed} \\
+Valid range of values	& pos integer\\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& value will jump to 0. This may result in calculations of durations with negative reult. In a consequence, train will react in loss of the communication session.\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range]
-\todo[inline]{To be completed} \\
+Behaviour for values out of valid range	& see above\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed} \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see above\\
 \bottomrule
 \end{longtable}
 
@@ -272,7 +306,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Input name				& connectionStatus \\
 \midrule
-Description				& Status information about the radio connection. The information is needed to perform the timing check, which depends on the connection state. \\
+Description				& Status information about the radio connection. The information is needed to perform the timing check, which depends on the connection state in the radioCheck model. \\
 \midrule
 Source					& ManageRadioCommunication \\ 
 \midrule
@@ -285,14 +319,11 @@ Valid range of values	&
 \item[CONNECTION\_ESTABLISHED] The connection to the RBC is established.
 \end{description} \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] 
-\todo[inline]{To be completed}\\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
 
@@ -303,24 +334,20 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Input name				& inSupervisingRbcId \\
 \midrule
-Description				& For the subcomponent InformationFilter, the information which radio messages are sent by the supervising RBC is needed. To recognize these messages, the identifier of the supervising RBC is needed. \\
+Description				& For the subcomponent InformationFilter, the information which radio messages are sent by the supervising RBC is needed. To recognize these messages, the identifier of the supervising RBC is needed. The input is used in the InformationFilter \\
 \midrule
-Source					& Database
-\todo[inline]{consider using the exact component name in the SCADE model} \\ 
+Source					& ManageRadioCommunication\\ 
 \midrule
 Type					& int \\
 \midrule
-Valid range of values	& [Complete list of valid values] \todo[inline]{To be completed}
+Valid range of values	& 0, 1, 2
  \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range]
-\todo[inline]{To be completed} \\
+Behaviour for values out of valid range	&  is iterpreted as no valid radio connection.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed} \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &is iterpreted as no valid radio connection.\\
 \bottomrule
 \end{longtable}
 
