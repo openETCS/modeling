@@ -52,6 +52,18 @@
     <availablePage>
       <emfPageIdentifier href="openETCS_EVC.notation#_gGfEMEvrEeW5INCKn-fcDw"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_rTJWoGH0EeWI45Hl0Vzetg"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_Gs9_wGH7EeW-aZat0dbY1Q"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_14n8jmH-EeW-aZat0dbY1Q"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_-cWbIGH_EeW-aZat0dbY1Q"/>
+    </availablePage>
   </pageList>
   <sashModel xmi:id="_rJvpUx5kEeWg95oxeH6B_w" currentSelection="_rJvpVB5kEeWg95oxeH6B_w">
     <windows xmi:id="_rJvpVR5kEeWg95oxeH6B_w">
