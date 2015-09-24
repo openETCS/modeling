@@ -406,21 +406,102 @@ Input name				& inActiveCab \\
 \midrule
 Description				& Indicates the cab is active. Used by InformationFilter \\
 \midrule
-Source					& trackAtlas\\ 
+Source					& TIU\\ 
 \midrule
-Type					& Q\_NVLOCACC \\
+Type					& bool\\
 \midrule
-Valid range of values	& 0 .. 63\\
+Valid range of values	& true, false\\
 \midrule
-Behaviour when value is at boundary	& no impact\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& will result in wrong calculation of inaccuracy of the train.\\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see above\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
 
+\paragraph{inTrainDataValid}
 
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& inTrainDataValid \\
+\midrule
+Description				& Indicates train data have been validated by the RBC. Used by InformationFilter \\
+\midrule
+Source					& trainData\\ 
+\midrule
+Type					& bool\\
+\midrule
+Valid range of values	& true, false\\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+\bottomrule
+\end{longtable}
+
+\paragraph{inFilterEvents}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& inFilterEvents \\
+\midrule
+Description				& A set of events needed for controlling the Information Filter. The following components are defined:
+\begin{description}
+\item[pendingL1Transition](bool): Indication if an announced LEVEL 1 transition is present. Used for Level Filter exception [1]. The information is indicating the status.
+Note: this indication can be evaluated based on information available in the InformationFilter. The input is not used from outside the main component Manage\_TrackSide\_Information.
+\item[pendingL2L3Transition](bool): Indication if an announced LEVEL 2 or Level 3 transition is present. Used for Level Filter exception [2]. The information is indicating the status.
+Note: this indication can be evaluated based on information available in the InformationFilter. The input is not used from outside the main component Manage\_TrackSide\_Information.
+\item[pendingAckOfTrainDataFromRBC](bool): Indicate if the acknowledgement of train data is pending. Used for Level Filter exception [3].
+\item[emergencyStopAccepted](bool): Indicate if the train performs an emergency brake. Used for Level Filter exception [5].
+\item[lastAckTextMessageId](int): The ID of the last acknowleged text message ID. Used for Level Filter exception [12]. The SRS requires text messages to restrict from double sending to the DMI when handled in the filter. This function is currently not implemented. 
+\item[pendingNTCTransition](bool): Indication if an announced LEVEL NTC transition is present. Used for Level Filter exception [6,7].
+\item[SPPAndGradientOnBoard](bool): Speed Profile and Gradient Profile received and available on board. This information may be part of the actual incoming message.
+\item[MACoverNotFullLength](bool): MA does not cover full length of the trip. Information from trackAtlas.
+\end{description}
+
+\\
+\midrule
+Source					& evc database\\ 
+\midrule
+Type					& Common\_Types\_Pkg::filterRelatedEvents\_T\\
+\midrule
+Valid range of values	& true, false\\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+\bottomrule
+\end{longtable}
+
+\paragraph{transitionPositionPassed}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& transitionPositionPassed \\
+\midrule
+Description				& The position of the requested level transition has been passed.
+This information is used by information filter to clean data after level management reactions.
+
+\\
+\midrule
+Source					& Levels Management\\ 
+\midrule
+Type					&bool\\
+\midrule
+Valid range of values	& true, false\\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+\bottomrule
+\end{longtable}
 \subsubsection{Outputs}\label{s:Manage_Trackside_outputs}
 
 \paragraph{outputMessage}
@@ -429,7 +510,33 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see abov
 \toprule
 Output name				& outputMessage \\
 \midrule
-Description				& Combines both balise and radio messages to one common datatype. This datatype contains all variables and packets, which are possible for the given scenario. \\
+Description				& Combines both balise and radio messages to one common datatype. This datatype contains all variables and packets, which are possible for the given scenario. In each cycle at most one valid message is put to the output. The InformationFilter might take the last processed one or a message from stack - depending on the information stored and on the status of the evc. The component consists of the following building blocks:
+\begin{description}
+\begin{description}
+\item[true]: the information is valid, a new message is now visible at the output. The valid flag (and the message as such) will only be present for one cycle.
+\item[false]: no valid message is available.
+\end{description}
+\item[source](Common\_Types\_Pkg::MsgSource\_T): source of this information. 
+\begin{description}
+\item[msrc\_undefined]: indicates the information is not defined. This input is expected when valid flag is false.
+\item[msrc\_Euroradio]: indicates the information is a euroradio message.
+\item[msrc\_Eurobalise]: indicates the information is a balise telegram.
+\end{description}
+Other values of this enumeration are not expected in this model.
+\item[radioMetadata](Common\_Types\_Pkg::RadioMetadata\_T): metadata for optional variables in the common radio message header. For each optional component a presence indicator of type bool is in the list.  
+\item[BG_Common_Header](BG\_Types\_Pkg::BG_Header\_T/): balise group message header with some additional information. This header collects information from the balise telegram headers together with the location and orientation of the balise group related to the driving direction.
+\item[Radio\_Common\_Header](API\_Msg\_Pkg::API\_RadioMsgHeader\_T): radio message header with some additional information added by the rtm module. The informtion looks like:
+\begin{description}
+\item[present](bool): radio message has been received via rtm and the information of this message is present. 
+\item[apiConsistencyError](bool): the message is checked after reception at the btm. Typical checks are checksum-tests or checks at conversion of the types from bit-layout to the presentation in the evc. If apiConsistencyError is false the information may not be used. The information is evaluated in the checkRadioMessage component of this model.
+\item[Radio\_Common\_Header](Radio\_Types\_Pkg::Radio\_TrackTrain\_Header\_T): header of the radio-message as defined in subset 26 section 8.4.4.6.1. In the SRS, depending on the concrete message, some optional variables are defined. In our implementation all optional variables are foreseen. In order to indicate the availability of variables the component radioMetadata is used (see below).
+\item[radioMetadata](Common\_Types\_Pkg::RadioMetadata\_T): metadata for optional variables in the common radio message header. For each optional component a presence indicator of type bool is in the list.  
+\item[sendingRBC\_Id](Common\_Types\_Pkg::RBC\_Id\_T): identifies the RBC as it is known at the RTM. Information is added to the interface in the RTM.
+\begin{description}
+\item[packets](Common\_Types\_Pkg::CompressedPackets\_T): Packets as received as a part of the telegram or radio message. The structure is set-up and can be accessed by library routines of the trackMessages component of the system. In the manage\_trackside\_Messages component packets my be changed to being absent (e.g., by the function validateDataDirection or by the Information filter.). If packets have to be treated only this valid indicator is changed. No other parts of the packets are accessed.
+
+\end{description}
+\\
 \midrule
 Destination				& [Name of the destination component(s)]
 \todo[inline]{To be completed} \\ 
