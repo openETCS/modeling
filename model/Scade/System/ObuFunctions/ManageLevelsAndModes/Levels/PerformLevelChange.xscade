@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="node" name="PerformLevelChange">
+	<inputs>
+		<Variable name="train_standstill">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b9582/2690/99C/5605187c7253"/>
+			</pragmas>
+		</Variable>
+		<Variable name="driver_level_transition">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Level_And_Mode_Types_Pkg::T_LevelTransition"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b9589/2690/99C/5605187c6bfb"/>
+			</pragmas>
+		</Variable>
+		<Variable name="levelAck">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b958f/2690/99C/5605187c55b"/>
+			</pragmas>
+		</Variable>
+		<Variable name="currentDistance">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b9595/2690/99C/5605187c6f7e"/>
+			</pragmas>
+		</Variable>
+		<Variable name="ERTMS_capabilities">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Level_And_Mode_Types_Pkg::T_ERTMS_capabilities"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b959c/2690/99C/5605187c4be6"/>
+			</pragmas>
+		</Variable>
+		<Variable name="outStartOfMissionEnded">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b95a2/2690/99C/5605187ce14" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Indicate the phase of the mission start is completed.</comment>
+					<comment>This information is needed to control the flow of acknowledments dor level changes.</comment>
+				</ed:Variable>
+			</pragmas>
+		</Variable>
+		<Variable name="Data_From_Track_to_Level">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Level_And_Mode_Types_Pkg::T_Data_From_Track_To_Level"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b95a9/2690/99C/5605187c1034"/>
+			</pragmas>
+		</Variable>
+		<Variable name="selected_level_transition">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Level_And_Mode_Types_Pkg::T_LevelTransition"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b95dd/2690/99C/560518906e4b"/>
+			</pragmas>
+		</Variable>
+		<Variable name="IsAvailableForUse">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b95f3/2690/99C/560518905a8f"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="next_level">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="M_LEVEL"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b95b0/2690/99C/5605187c7241"/>
+			</pragmas>
+		</Variable>
+		<Variable name="TripTrain">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b95b6/2690/99C/5605187c5adf"/>
+			</pragmas>
+		</Variable>
+		<Variable name="previous_level">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="M_LEVEL"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b95bd/2690/99C/5605187c2835"/>
+			</pragmas>
+		</Variable>
+		<Variable name="needsAckFromDriver">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b95c3/2690/99C/5605187c2a8b"/>
+			</pragmas>
+		</Variable>
+		<Variable name="announced_level">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Level_And_Mode_Types_Pkg::T_LevelTransition"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b95ca/2690/99C/5605187c3600"/>
+			</pragmas>
+		</Variable>
+		<Variable name="announce_driver_selection">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b95d0/2690/99C/5605187c367f"/>
+			</pragmas>
+		</Variable>
+		<Variable name="service_brake">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/5b95d6/2690/99C/5605187c4979"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<pragmas>
+		<ed:Operator oid="!ed/5b957b/2690/99C/560518542839" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="diagram_PerformLevelChange_1" landscape="true" format="A4 (210 297)" oid="!ed/5b957c/2690/99C/56051854359d"/>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>
