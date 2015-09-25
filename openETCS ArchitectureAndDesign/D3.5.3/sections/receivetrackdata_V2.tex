@@ -406,21 +406,102 @@ Input name				& inActiveCab \\
 \midrule
 Description				& Indicates the cab is active. Used by InformationFilter \\
 \midrule
-Source					& trackAtlas\\ 
+Source					& TIU\\ 
 \midrule
-Type					& Q\_NVLOCACC \\
+Type					& bool\\
 \midrule
-Valid range of values	& 0 .. 63\\
+Valid range of values	& true, false\\
 \midrule
-Behaviour when value is at boundary	& no impact\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& will result in wrong calculation of inaccuracy of the train.\\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see above\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
 
+\paragraph{inTrainDataValid}
 
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& inTrainDataValid \\
+\midrule
+Description				& Indicates train data have been validated by the RBC. Used by InformationFilter \\
+\midrule
+Source					& trainData\\ 
+\midrule
+Type					& bool\\
+\midrule
+Valid range of values	& true, false\\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+\bottomrule
+\end{longtable}
+
+\paragraph{inFilterEvents}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& inFilterEvents \\
+\midrule
+Description				& A set of events needed for controlling the Information Filter. The following components are defined:
+\begin{description}
+\item[pendingL1Transition](bool): Indication if an announced LEVEL 1 transition is present. Used for Level Filter exception [1]. The information is indicating the status.
+Note: this indication can be evaluated based on information available in the InformationFilter. The input is not used from outside the main component Manage\_TrackSide\_Information.
+\item[pendingL2L3Transition](bool): Indication if an announced LEVEL 2 or Level 3 transition is present. Used for Level Filter exception [2]. The information is indicating the status.
+Note: this indication can be evaluated based on information available in the InformationFilter. The input is not used from outside the main component Manage\_TrackSide\_Information.
+\item[pendingAckOfTrainDataFromRBC](bool): Indicate if the acknowledgement of train data is pending. Used for Level Filter exception [3].
+\item[emergencyStopAccepted](bool): Indicate if the train performs an emergency brake. Used for Level Filter exception [5].
+\item[lastAckTextMessageId](int): The ID of the last acknowleged text message ID. Used for Level Filter exception [12]. The SRS requires text messages to restrict from double sending to the DMI when handled in the filter. This function is currently not implemented. 
+\item[pendingNTCTransition](bool): Indication if an announced LEVEL NTC transition is present. Used for Level Filter exception [6,7].
+\item[SPPAndGradientOnBoard](bool): Speed Profile and Gradient Profile received and available on board. This information may be part of the actual incoming message.
+\item[MACoverNotFullLength](bool): MA does not cover full length of the trip. Information from trackAtlas.
+\end{description}
+
+\\
+\midrule
+Source					& evc database\\ 
+\midrule
+Type					& Common\_Types\_Pkg::filterRelatedEvents\_T\\
+\midrule
+Valid range of values	& true, false\\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+\bottomrule
+\end{longtable}
+
+\paragraph{transitionPositionPassed}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& transitionPositionPassed \\
+\midrule
+Description				& The position of the requested level transition has been passed.
+This information is used by information filter to clean data after level management reactions.
+
+\\
+\midrule
+Source					& Levels Management\\ 
+\midrule
+Type					&bool\\
+\midrule
+Valid range of values	& true, false\\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+\bottomrule
+\end{longtable}
 \subsubsection{Outputs}\label{s:Manage_Trackside_outputs}
 
 \paragraph{outputMessage}
@@ -429,24 +510,42 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see abov
 \toprule
 Output name				& outputMessage \\
 \midrule
-Description				& Combines both balise and radio messages to one common datatype. This datatype contains all variables and packets, which are possible for the given scenario. \\
+Description				& Combines both balise and radio messages to one common datatype. This datatype contains all variables and packets, which are possible for the given scenario. In each cycle at most one valid message is put to the output. The InformationFilter might take the last processed one or a message from stack - depending on the information stored and on the status of the evc. The component consists of the following building blocks:
+
+\begin{description}
+\item[valid]: Information about the status of this message.
+\begin{description}
+\item[true]: the information is valid, a new message is now visible at the output. The valid flag (and the message as such) will only be present for one cycle.
+\item[false]: no valid message is available.
+\end{description}
+\item[source](Common\_Types\_Pkg::MsgSource\_T): source of this information. 
+\begin{description}
+\item[msrc\_undefined]: indicates the information is not defined. This input is expected when valid flag is false.
+\item[msrc\_Euroradio]: indicates the information is a euroradio message.
+\item[msrc\_Eurobalise]: indicates the information is a balise telegram.
+\end{description}
+Other values of this enumeration are not expected in this model.
+\item[radioMetadata](Common\_Types\_Pkg::RadioMetadata\_T): metadata for optional variables in the common radio message header. For each optional component a presence indicator of type bool is in the list.  
+
+\item[BG\_Common\_Header](BG\_Types\_Pkg::BG\_Header\_T): balise group message header with some additional information. This header collects information from the balise telegram headers together with the location and orientation of the balise group related to the driving direction.
+
+\item[Radio\_Common\_Header](Radio\_Types\_Pkg::Radio\_TrackTrain\_Header\_T): radio message header with some additional information added by the rtm module. Variables of messages which are not present in all messages are available in the header, but controlled by the radio-metadata.
+\item[packets](Common\_Types\_Pkg::CompressedPackets\_T): Packets as received as a part of the telegram or radio message. The structure is set-up and can be accessed by library routines of the trackMessages component of the system. In the manage\_trackside\_Messages component packets my be changed to being absent (e.g., by the function validateDataDirection or by the Information filter.). If packets have to be treated only this valid indicator is changed. No other parts of the packets are changed.
+
+\end{description}
+\\
 \midrule
-Destination				& [Name of the destination component(s)]
-\todo[inline]{To be completed} \\ 
+Destination				& (nearly) all functions \\ 
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] 
-\todo[inline]{To be completed}\\
+Valid range of values	& n/a\\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] 
-\todo[inline]{To be completed}\\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
 
@@ -459,22 +558,17 @@ Output name				& ApplyServiceBrake \\
 \midrule
 Description				&  Indicates if the balise group the train just passed could not be processed correctly. The check results in the request for a service break. \\
 \midrule
-Destination				& [Name of the destination component(s)]
-\todo[inline]{To be completed} \\ 
+Destination				& SpeedAndDistanceMonitoring\\ 
 \midrule
 Type					& bool \\
 \midrule
-Valid range of values	& [Complete list of valid values] 
-\todo[inline]{To be completed}\\
+Valid range of values	& true, false\\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] 
-\todo[inline]{To be completed}\\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
 
@@ -491,230 +585,117 @@ Destination				& DMI \\
 \midrule
 Type					& bool \\
 \midrule
-Valid range of values	& \begin{description}
-\item[true] ???
-\item[false] ???
-\end{description} 
-\todo[inline]{To be completed}\\
+Valid range of values	& true, false\\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] 
-\todo[inline]{To be completed}\\
+Behaviour for values out of valid range	&  n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &  n/a\\
 \bottomrule
 \end{longtable}
 
 
-\paragraph{errorLinkedBG}
+\paragraph{outCheckErrors}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& errorLinkedBG \\
+Output name				& outCheckErrors \\
 \midrule
-Description				& [Brief description of the output] 
-\todo[inline]{To be completed}\\
+Description				& Error flags for errors reported at the check procedures at messages. The following errors are reported:
+\begin{description}
+\item[linkedBGError](bool) Reported by checkBGConsistency. Error in a linked BGH - Message has been detected.
+\item[unlinkedBGError](bool) Reported by checkBGConsistency. Error in an unlinked BGH - Message has been detected.
+\item[BG\_versionIncompatible](bool) Reported by checkBGConsistency. Version of received Balises is not compliant with the train. Balises cannot be used.
+\item[radioSequenceError](bool) Reported by checkEuroRadioMessage. The sequence of messages in the input channel is not correct. This check is based in t\_train of the incoming radio messages.
+\item[tNvContactError](bool) Reported by checkEuroRadioMessage. The time for receiving the next radio message has been exceeded. This indicates lost radio messages.
+\item[otherTimingError](bool) Reported by checkEuroRadioMessage. Other timing errors.
+\item[radioMessageConsistencyError](bool) Reported by checkEuroRadioMessage. Inconsistencies in the contents of radio messages have been detected.
+\item[nid\_c](NID\_C) Reported by checkBGConsistency. If known id of the erroneous balise group.
+\item[nid\_errorbg](NID\_ERRORBG) Reported by checkBGConsistency. If known id of the erroneous balise group.
+\end{description}
+\\
 \midrule
-Destination				& [Name of the destination component(s)] 
-\todo[inline]{To be completed}\\ 
+Destination				& JRU\\ 
 \midrule
-Type					& [Type of the output] 
-\todo[inline]{To be completed}\\
+Type					& Common\_Types\_Pkg::MSG\_Errors\_T\\
 \midrule
 Valid range of values	& \begin{description}
-\item[true] An error in a linked balise group was detected.
-\item[false] No error in a linked balise group was detected.
+\item[true] An error in the respective parameter has been detected.
+\item[false] No error has been detected.
 \end{description} \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] 
-\todo[inline]{To be completed}\\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \todo[inline]{To be completed}\\
-\bottomrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \end{longtable}
 
 
-\paragraph{errorUnlinkedBG}
+\paragraph{forLevelManagement}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
 Output name				& errorUnlinkedBG \\
 \midrule
-Description				& [Brief description of the output]
-\todo[inline]{To be completed} \\
+Description				& The informationFilter component has to provide information to the evc-components according to the actaul level and radio state. In order to trigger the level change level management needs to know about avaialblity of track profiles and other components in order to select the correct mode and level. This output provides information relevant to trigger level transitions. The data will be accumulated in the informationFilter until the position for the level change has been reached. The output structure consists of the following components:
+\begin{description}
+\item[P41](Packet\_Types\_Pkg::P41\_LevelTransistionOrders\_T): packet 41 (level transition order). 
+\item[P46](Packet\_Types\_Pkg::P46\_LevelTransistionOrders\_T): packet 46 (conditional level transition order). 
+\item[LRBG](NID\_LRBG): Reference LRBG for the level transition order.
+\item[referenceLocation](Obu\_BasicTypes\_Pkg::L\_internal\_Type): location of the reference LRBG. This location has to be used as reference for calculating the level transition position. 
+\item[P12\_received](bool): Packet 12 (Level 1 Movement Authority) has been received at the infomation filter in the context of this level transition. 
+\item[P15\_received](bool): Packet 15 (Level 2/3 Movement Authority) has been received at the infomation filter in the context of this level transition. 
+\item[P21\_received](bool): Packet 21 Gradient Profile) has been received at the infomation filter in the context of this level transition. 
+\item[P27\_received](bool): Packet 27 (International Static Speed Profile) has been received at the infomation filter in the context of this level transition. 
+\end{description}
+
+\\
 \midrule
-Destination				& [Name of the destination component(s)] 
-\todo[inline]{To be completed}\\ 
+Destination				& Level Management\\ 
 \midrule
-Type					& bool \\
+Type					& Level\_And\_Mode\_Types\_Pkg::T\_Data\_From\_TrackForLevelChange\\
 \midrule
 Valid range of values	& \begin{description}
 \item[true] An error in a unlinked balise group was detected.
 \item[false] No error in a unlinked balise group was detected.
 \end{description} \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] 
-\todo[inline]{To be completed}\\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}\\
-\bottomrule
-\end{longtable}
-
-\paragraph{passedBG}
-
-\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
-\toprule
-Output name				& passedBG \\
-\midrule
-Description				& Provides the received balise group message in a special format needed by the component CalculateTrainPosition. \\
-\midrule
-Destination				& [Name of the destination component(s)]
-\todo[inline]{To be completed} \\ 
-\midrule
-Type					& BG\_Types\_Pkg::passedBG\_T \\
-\midrule
-Valid range of values	& [Complete list of valid values] 
-\todo[inline]{To be completed}\\
-\midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] 
-\todo[inline]{To be completed}\\
-\midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] 
-\todo[inline]{To be completed}\\
-\midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
 
 
-\paragraph{outPositionParams}
+\paragraph{outputMessageForRadioAck}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& outPositionParams \\
+Output name				& outputMessageForRadioAck \\
 \midrule
-Description				& Provides the parameters for the position report in a special format needed by the component ProvidePositionReport. \\
+Description				& Even if an imcoming radio message is rejected or kept for some time in the informationFilter backlog some information needs to be made available for the maintaining the communication session with the RBC, e.g., the timestamp of the received message and acknowledgment of message reception based on the ack flag. No other information of this message is to be used in the evc. This concept might be improved when radio management functions are re-arranged.
+\\
 \midrule
-Destination				& [Name of the destination component(s)]
-\todo[inline]{To be completed} \\ 
+Destination				& Radio Management\\ 
 \midrule
-Type					& Common\_Types\_Pkg::PositionReportParameter\_T 
-\todo[inline]{To be completed}\\
-\midrule
-Valid range of values	& [Complete list of valid values] 
-\todo[inline]{To be completed}\\
-\midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] 
-\todo[inline]{To be completed}\\
-\midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] 
-\todo[inline]{To be completed}\\
-\midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}\\
-\bottomrule
-\end{longtable}
-
-
-\paragraph{outRadioManagement}
-
-\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
-\toprule
-Output name				& outRadioManagement \\
-\midrule
-Description				& Provides the messages for radio session management in a special format needed by the component ManagementOfRadioCommunication. \\
-\midrule
-Destination				& [Name of the destination component(s)] 
-\todo[inline]{To be completed}\\ 
-\midrule
-Type					& Common\_Types\_Pkg::radioManagementMessage\_T \\
-\midrule
-Valid range of values	& [Complete list of valid values] 
-\todo[inline]{To be completed}\\
-\midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] 
-\todo[inline]{To be completed}\\
-\midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] 
-\todo[inline]{To be completed}\\
-\midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}\\
-\bottomrule
-\end{longtable}
-
-
-\paragraph{radioSequenceError}
-
-\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
-\toprule
-Output name				& radioSequenceError \\
-\midrule
-Description				& [Brief description of the output] 
-\todo[inline]{To be completed}\\
-\midrule
-Destination				& [Name of the destination component(s)] 
-\todo[inline]{To be completed}\\ 
-\midrule
-Type					& bool \\
+Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
 Valid range of values	& \begin{description}
-\item[true] A sequence error or a timeout has been detected in the radio message.
-\item[false] No error in the radio message sequence was detected.
+\item[true] An error in a unlinked balise group was detected.
+\item[false] No error in a unlinked balise group was detected.
 \end{description} \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range]
-\todo[inline]{To be completed} \\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
-
-
-\paragraph{radioMessageConsistencyError}
-
-\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
-\toprule
-Output name				& radioMessageConsistencyError \\
-\midrule
-Description				& [Brief description of the output]
-\todo[inline]{To be completed} \\
-\midrule
-Destination				& [Name of the destination component(s)] 
-\todo[inline]{To be completed}\\ 
-\midrule
-Type					& bool \\
-\midrule
-Valid range of values	& \begin{description}
-\item[true] A consistency error has been detected in the radio message.
-\item[false] No consistency error in the radio message was detected.
-\end{description} \\
-\midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] 
-\todo[inline]{To be completed}\\
-\midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] 
-\todo[inline]{To be completed}\\
-\midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}\\
-\bottomrule
-\end{longtable}
-
 
 % Description of sub components
 \subsection{Subcomponents}\label{s:receivetrackdata_subcomponents}
