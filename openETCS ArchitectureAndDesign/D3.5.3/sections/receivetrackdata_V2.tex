@@ -511,7 +511,9 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 Output name				& outputMessage \\
 \midrule
 Description				& Combines both balise and radio messages to one common datatype. This datatype contains all variables and packets, which are possible for the given scenario. In each cycle at most one valid message is put to the output. The InformationFilter might take the last processed one or a message from stack - depending on the information stored and on the status of the evc. The component consists of the following building blocks:
+
 \begin{description}
+\item[valid]: Information about the status of this message.
 \begin{description}
 \item[true]: the information is valid, a new message is now visible at the output. The valid flag (and the message as such) will only be present for one cycle.
 \item[false]: no valid message is available.
@@ -524,36 +526,26 @@ Description				& Combines both balise and radio messages to one common datatype.
 \end{description}
 Other values of this enumeration are not expected in this model.
 \item[radioMetadata](Common\_Types\_Pkg::RadioMetadata\_T): metadata for optional variables in the common radio message header. For each optional component a presence indicator of type bool is in the list.  
-\item[BG_Common_Header](BG\_Types\_Pkg::BG_Header\_T/): balise group message header with some additional information. This header collects information from the balise telegram headers together with the location and orientation of the balise group related to the driving direction.
-\item[Radio\_Common\_Header](API\_Msg\_Pkg::API\_RadioMsgHeader\_T): radio message header with some additional information added by the rtm module. The informtion looks like:
-\begin{description}
-\item[present](bool): radio message has been received via rtm and the information of this message is present. 
-\item[apiConsistencyError](bool): the message is checked after reception at the btm. Typical checks are checksum-tests or checks at conversion of the types from bit-layout to the presentation in the evc. If apiConsistencyError is false the information may not be used. The information is evaluated in the checkRadioMessage component of this model.
-\item[Radio\_Common\_Header](Radio\_Types\_Pkg::Radio\_TrackTrain\_Header\_T): header of the radio-message as defined in subset 26 section 8.4.4.6.1. In the SRS, depending on the concrete message, some optional variables are defined. In our implementation all optional variables are foreseen. In order to indicate the availability of variables the component radioMetadata is used (see below).
-\item[radioMetadata](Common\_Types\_Pkg::RadioMetadata\_T): metadata for optional variables in the common radio message header. For each optional component a presence indicator of type bool is in the list.  
-\item[sendingRBC\_Id](Common\_Types\_Pkg::RBC\_Id\_T): identifies the RBC as it is known at the RTM. Information is added to the interface in the RTM.
-\begin{description}
-\item[packets](Common\_Types\_Pkg::CompressedPackets\_T): Packets as received as a part of the telegram or radio message. The structure is set-up and can be accessed by library routines of the trackMessages component of the system. In the manage\_trackside\_Messages component packets my be changed to being absent (e.g., by the function validateDataDirection or by the Information filter.). If packets have to be treated only this valid indicator is changed. No other parts of the packets are accessed.
+
+\item[BG\_Common\_Header](BG\_Types\_Pkg::BG\_Header\_T): balise group message header with some additional information. This header collects information from the balise telegram headers together with the location and orientation of the balise group related to the driving direction.
+
+\item[Radio\_Common\_Header](Radio\_Types\_Pkg::Radio\_TrackTrain\_Header\_T): radio message header with some additional information added by the rtm module. Variables of messages which are not present in all messages are available in the header, but controlled by the radio-metadata.
+\item[packets](Common\_Types\_Pkg::CompressedPackets\_T): Packets as received as a part of the telegram or radio message. The structure is set-up and can be accessed by library routines of the trackMessages component of the system. In the manage\_trackside\_Messages component packets my be changed to being absent (e.g., by the function validateDataDirection or by the Information filter.). If packets have to be treated only this valid indicator is changed. No other parts of the packets are changed.
 
 \end{description}
 \\
 \midrule
-Destination				& [Name of the destination component(s)]
-\todo[inline]{To be completed} \\ 
+Destination				& (nearly) all functions \\ 
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] 
-\todo[inline]{To be completed}\\
+Valid range of values	& n/a\\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] 
-\todo[inline]{To be completed}\\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
 
@@ -566,22 +558,17 @@ Output name				& ApplyServiceBrake \\
 \midrule
 Description				&  Indicates if the balise group the train just passed could not be processed correctly. The check results in the request for a service break. \\
 \midrule
-Destination				& [Name of the destination component(s)]
-\todo[inline]{To be completed} \\ 
+Destination				& SpeedAndDistanceMonitoring\\ 
 \midrule
 Type					& bool \\
 \midrule
-Valid range of values	& [Complete list of valid values] 
-\todo[inline]{To be completed}\\
+Valid range of values	& true, false\\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] 
-\todo[inline]{To be completed}\\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
 
@@ -598,38 +585,39 @@ Destination				& DMI \\
 \midrule
 Type					& bool \\
 \midrule
-Valid range of values	& \begin{description}
-\item[true] ???
-\item[false] ???
-\end{description} 
-\todo[inline]{To be completed}\\
+Valid range of values	& true, false\\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] 
-\todo[inline]{To be completed}\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] 
-\todo[inline]{To be completed}\\
+Behaviour for values out of valid range	&  n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] 
-\todo[inline]{To be completed}\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &  n/a\\
 \bottomrule
 \end{longtable}
 
 
-\paragraph{errorLinkedBG}
+\paragraph{outCheckErrors}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& errorLinkedBG \\
+Output name				& outCheckErrors \\
 \midrule
-Description				& [Brief description of the output] 
-\todo[inline]{To be completed}\\
+Description				& Error flags for errors reported at the check procedures at messages. The following errors are reported:
+\begin{description}
+\item[linkedBGError](bool) Reported by checkBGConsistency. Error in a linked BGH - Message has been detected.
+\item[unlinkedBGError](bool) Reported by checkBGConsistency. Error in an unlinked BGH - Message has been detected.
+\item[BG\_versionIncompatible](bool) Reported by checkBGConsistency. Version of received Balises is not compliant with the train. Balises cannot be used.
+\item[radioSequenceError](bool) Reported by checkEuroRadioMessage. The sequence of messages in the input channel is not correct. This check is based in t\_train of the incoming radio messages.
+\item[tNvContactError](bool) Reported by checkEuroRadioMessage. The time for receiving the next radio message has been exceeded. This indicates lost radio messages.
+\item[otherTimingError](bool) Reported by checkEuroRadioMessage. Other timing errors.
+\item[radioMessageConsistencyError](bool) Reported by checkEuroRadioMessage. radioSequenceError
+\end{description}
+\\
 \midrule
 Destination				& [Name of the destination component(s)] 
 \todo[inline]{To be completed}\\ 
 \midrule
-Type					& [Type of the output] 
-\todo[inline]{To be completed}\\
+Type					& Common\_Types\_Pkg::MSG\_Errors\_T\\
 \midrule
 Valid range of values	& \begin{description}
 \item[true] An error in a linked balise group was detected.
