@@ -140,7 +140,7 @@
 						<ed:Variable oid="!ed/1778dc/4664/660/54f05062672d"/>
 					</pragmas>
 				</Variable>
-				<Variable name="announced_level">
+				<Variable name="announced_level_transition">
 					<type>
 						<NamedType>
 							<type>
@@ -454,90 +454,6 @@
 						<ed:Variable oid="!ed/1564b9/2272/C04/5604236e452c"/>
 					</pragmas>
 				</Variable>
-				<Variable name="_L55">
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="bool"/>
-							</type>
-						</NamedType>
-					</type>
-					<pragmas>
-						<ed:Variable oid="!ed/5b95fd/2690/99C/560518b72902"/>
-					</pragmas>
-				</Variable>
-				<Variable name="_L54">
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="bool"/>
-							</type>
-						</NamedType>
-					</type>
-					<pragmas>
-						<ed:Variable oid="!ed/5b95fc/2690/99C/560518b765c1"/>
-					</pragmas>
-				</Variable>
-				<Variable name="_L53">
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="Level_And_Mode_Types_Pkg::T_LevelTransition"/>
-							</type>
-						</NamedType>
-					</type>
-					<pragmas>
-						<ed:Variable oid="!ed/5b95fb/2690/99C/560518b72f46"/>
-					</pragmas>
-				</Variable>
-				<Variable name="_L52">
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="bool"/>
-							</type>
-						</NamedType>
-					</type>
-					<pragmas>
-						<ed:Variable oid="!ed/5b95fa/2690/99C/560518b71961"/>
-					</pragmas>
-				</Variable>
-				<Variable name="_L51">
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="M_LEVEL"/>
-							</type>
-						</NamedType>
-					</type>
-					<pragmas>
-						<ed:Variable oid="!ed/5b95f9/2690/99C/560518b73ec"/>
-					</pragmas>
-				</Variable>
-				<Variable name="_L50">
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="bool"/>
-							</type>
-						</NamedType>
-					</type>
-					<pragmas>
-						<ed:Variable oid="!ed/5b95f8/2690/99C/560518b762b1"/>
-					</pragmas>
-				</Variable>
-				<Variable name="_L49">
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="M_LEVEL"/>
-							</type>
-						</NamedType>
-					</type>
-					<pragmas>
-						<ed:Variable oid="!ed/5b95f7/2690/99C/560518b74267"/>
-					</pragmas>
-				</Variable>
 			</locals>
 			<data>
 				<!-- _L18 = driver_level_transition; -->
@@ -702,10 +618,10 @@
 						</ed:Equation>
 					</pragmas>
 				</Equation>
-				<!-- announced_level = _L35; -->
+				<!-- announced_level_transition = _L35; -->
 				<Equation>
 					<lefts>
-						<VariableRef name="announced_level"/>
+						<VariableRef name="announced_level_transition"/>
 					</lefts>
 					<right>
 						<IdExpression>
@@ -1153,85 +1069,70 @@
 						<ed:Equation oid="!ed/1564b8/2272/C04/5604236e6a18"/>
 					</pragmas>
 				</Equation>
-				<!-- _L49, _L50, _L51, _L52, _L53, _L54, _L55 = LevelChange::PerformLevelChange(_null,... -->
-				<Equation>
-					<lefts>
-						<VariableRef name="_L49"/>
-						<VariableRef name="_L50"/>
-						<VariableRef name="_L51"/>
-						<VariableRef name="_L52"/>
-						<VariableRef name="_L53"/>
-						<VariableRef name="_L54"/>
-						<VariableRef name="_L55"/>
-					</lefts>
-					<right>
-						<!-- LevelChange::PerformLevelChange(_null, _null, _null, _null, _null, _null, _null, ... -->
-						<CallExpression>
-							<operator>
-								<OpCall name="1">
-									<operator>
-										<OperatorRef name="LevelChange::PerformLevelChange"/>
-									</operator>
-								</OpCall>
-							</operator>
-							<callParameters>
-								<IdExpression>
-									<path>
-										<NullRef/>
-									</path>
-								</IdExpression>
-								<IdExpression>
-									<path>
-										<NullRef/>
-									</path>
-								</IdExpression>
-								<IdExpression>
-									<path>
-										<NullRef/>
-									</path>
-								</IdExpression>
-								<IdExpression>
-									<path>
-										<NullRef/>
-									</path>
-								</IdExpression>
-								<IdExpression>
-									<path>
-										<NullRef/>
-									</path>
-								</IdExpression>
-								<IdExpression>
-									<path>
-										<NullRef/>
-									</path>
-								</IdExpression>
-								<IdExpression>
-									<path>
-										<NullRef/>
-									</path>
-								</IdExpression>
-								<IdExpression>
-									<path>
-										<NullRef/>
-									</path>
-								</IdExpression>
-								<IdExpression>
-									<path>
-										<NullRef/>
-									</path>
-								</IdExpression>
-							</callParameters>
-						</CallExpression>
-					</right>
-					<pragmas>
-						<ed:Equation oid="!ed/5b95f6/2690/99C/560518b770ef"/>
-					</pragmas>
-				</Equation>
 			</data>
 			<pragmas>
 				<ed:Operator oid="!ed/1778b2/4664/660/54f050622d86" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-					<comment>takes input from track, of train capabilities and of the current position</comment>
-					<comment>calculates from an input set of transition orders which one must be execeuted</comment>
+					<comment>This function is in charge to compute at each cycle, the Level to apply according data receivec from trackside, driver and train position.</comment>
+					<comment></comment>
+					<comment>&quot;5.10 Level Transitions&quot;</comment>
+					<comment>&quot;5.10.1 General requirements&quot;</comment>
+					<comment>&quot;5.10.1.1 Every level transition border to levels 2, 3, or NTC shall be announced to the</comment>
+					<comment>ERTMS/ETCS on-board equipment via balise group or via the RBC.&quot;</comment>
+					<comment>This is an input of the node &quot;Data_from_track_to_Level&quot; provided at each cycle.</comment>
+					<comment></comment>
+					<comment>&quot;5.10.1.2 A level transition announcement to the ERTMS/ETCS on-board equipment shall</comment>
+					<comment>consist of an order to execute the level transition at a further location corresponding to</comment>
+					<comment>the border.&quot;</comment>
+					<comment>See definition of the type &quot;T_Level_Transition&quot;.</comment>
+					<comment></comment>
+					<comment>&quot;5.10.1.3 When the ERTMS/ETCS on-board equipment receives a level transition</comment>
+					<comment>announcement, and if this announcement will result in a change of the on-board level,</comment>
+					<comment>it shall immediately inform the driver about the announced level transition.&quot;</comment>
+					<comment>Computation of the output &quot;announced_level&quot;.</comment>
+					<comment></comment>
+					<comment></comment>
+					<comment>&quot;5.10.1.4 At the level transition border a balise group shall be placed with an immediate level</comment>
+					<comment>transition order or a conditional level transition order.&quot;</comment>
+					<comment>Trackside requirement.</comment>
+					<comment></comment>
+					<comment>&quot;5.10.1.7 As soon as the announcement of the level transition has been received, some data</comment>
+					<comment>(mainly movement authority and track description data) from the transmission media of</comment>
+					<comment>the new level shall be accepted, but shall not be used until the level transition is</comment>
+					<comment>effective.&quot;</comment>
+					<comment>Output  &quot;announced_level&quot; produced, then selection of data is out of the scope of this function.</comment>
+					<comment></comment>
+					<comment>&quot;5.10.1.8 When the onboard has performed the level transition, further data (mainly movement</comment>
+					<comment>authority and track description data) received from the transmission media of the level</comment>
+					<comment>being left shall be rejected.&quot;</comment>
+					<comment>Output  &quot;announced_level&quot; produced, then selection of data is out of the scope of this function.</comment>
+					<comment></comment>
+					<comment>&quot;5.10.2.5 When the onboard has selected the level it will switch to, it shall carry out the level</comment>
+					<comment>transition as if it has received a level transition order to this level only i.e. it shall ignore</comment>
+					<comment>the requirements related to transitions to the other levels.&quot;</comment>
+					<comment>Core of this function and computation of output &quot;announced_level&quot;.</comment>
+					<comment></comment>
+					<comment>&quot;5.10.2.6 The ERTMS/ETCS on-board equipment shall inform the driver about the selected level</comment>
+					<comment>transition only.&quot;</comment>
+					<comment>Computation  of the output &quot;announced_level&quot;.</comment>
+					<comment></comment>
+					<comment>&quot;5.10.2.8 The ERTMS/ETCS on-board equipment shall store the table of priority of trackside</comment>
+					<comment>supported ERTMS/ETCS levels.&quot;</comment>
+					<comment>Storage and memorisation is out of the scope of this function.</comment>
+					<comment></comment>
+					<comment>&quot;5.10.3.14.4 In the same way as for a level transition order, the ERTMS/ETCS on-board equipment</comment>
+					<comment>shall store the table of ERTMS/ETCS levels supported by trackside.&quot;</comment>
+					<comment>Storage and memorisation is out of the scope of this function.</comment>
+					<comment></comment>
+					<comment>Requirement of §5.10  out of the scope of this function (trackside or other functions) :</comment>
+					<comment>-------------------------------------------------------------------------------------------------------------------------------------</comment>
+					<comment>5.10.2.1, 5.10.2.2, 5.10.2.3</comment>
+					<comment>5.10.3.1.2, 5.10.3.1.3, 5.10.3.1.4, 5.10.3.1.6</comment>
+					<comment>5.10.3.2.2, 5.10.3.2.4, 5.10.3.2.6,</comment>
+					<comment>5.10.3.3.1,</comment>
+					<comment>5.10.3.3.2,</comment>
+					<comment>5.10.3.4.2, 5.10.3.5.1, 5.10.3.5.2, 5.10.3.6.15.10.3.6.4, 5.10.3.7.2</comment>
+					<comment>5.10.3.7.4, 5.10.3.7.6, 5.10.3.8.2, 5.10.3.9.1, 5.10.3.10.1</comment>
+					<comment>5.10.3.12.2, 5.10.3.13.3</comment>
 					<diagrams>
 						<NetDiagram name="diagram_ManageLevels_1" landscape="true" format="A4 (210 297)" oid="!ed/1778c6/4664/660/54f0506267df">
 							<presentationElements>
@@ -1698,14 +1599,6 @@
 										<Point x="6562" y="9366"/>
 									</positions>
 								</Edge>
-								<EquationGE presentable="!ed/5b95f6/2690/99C/560518b770ef">
-									<position>
-										<Point x="6157" y="15893"/>
-									</position>
-									<size>
-										<Size width="4434" height="5493"/>
-									</size>
-								</EquationGE>
 							</presentationElements>
 						</NetDiagram>
 					</diagrams>

@@ -515,50 +515,28 @@
 	</data>
 	<pragmas>
 		<ed:Operator oid="!ed/211c11/29CA/D5C/5600028350e6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-			<comment>5.10.1 General requirements</comment>
-			<comment>5.10.1.1 Every level transition border to levels 2, 3, or NTC shall be announced to the</comment>
-			<comment>ERTMS/ETCS on-board equipment via balise group or via the RBC.</comment>
-			<comment>5.10.1.2 A level transition announcement to the ERTMS/ETCS on-board equipment shall</comment>
-			<comment>consist of an order to execute the level transition at a further location corresponding to</comment>
-			<comment>the border.</comment>
-			<comment>5.10.1.3 When the ERTMS/ETCS on-board equipment receives a level transition</comment>
-			<comment>announcement, and if this announcement will result in a change of the on-board level,</comment>
-			<comment>it shall immediately inform the driver about the announced level transition.</comment>
-			<comment>5.10.1.3.1 Note: In a mixed level area the actual level of the on-board equipment may remain</comment>
-			<comment>unchanged even though a level transition boundary is passed.</comment>
-			<comment>5.10.1.4</comment>
-			<comment>At the level transition border a balise group shall be placed with an immediate level</comment>
-			<comment>transition order or a conditional level transition order.</comment>
-			<comment>5.10.1.4.1 Note: Balise groups are read in all levels and level transition orders and conditional</comment>
-			<comment>level transition orders from balises are accepted independent of the level of operation.</comment>
-			<comment>Also sleeping units read balise groups.</comment>
-			<comment>5.10.1.5 If the message from the border balise group is not received, the level transition shall</comment>
-			<comment>still be executed when the estimated front end passes the location given in the</comment>
-			<comment>announcement.</comment>
-			<comment>5.10.1.6 The on-board equipment shall manage only one level transition order at a time.</comment>
-			<comment>Therefore a new level transition order shall replace a previously received order, i.e. if a</comment>
-			<comment>new order to switch to a different level or to the same level but at a different location is</comment>
-			<comment>received, before the action from the first order has been performed, only the last order</comment>
-			<comment>shall be executed.</comment>
-			<comment>5.10.1.6.1 In Shunting and Passive Shunting modes only one set of Level Transition Information</comment>
-			<comment>shall be stored at a time. Therefore a set of Level Transition Information received shall</comment>
-			<comment>replace any Level Transition Information already stored on-board.</comment>
-			<comment>5.10.1.7</comment>
-			<comment>As soon as the announcement of the level transition has been received, some data</comment>
-			<comment>(mainly movement authority and track description data) from the transmission media of</comment>
-			<comment>the new level shall be accepted, but shall not be used until the level transition is</comment>
-			<comment>effective.</comment>
-			<comment>5.10.1.7.1 Note: for the exhaustive list of accepted/rejected information, please refer to SRS</comment>
-			<comment>chapter 4.8.</comment>
-			<comment>5.10.1.7.2 Note: if only track description has been received from the new media without any</comment>
-			<comment>movement authority, this track description still replaces the one previously received</comment>
-			<comment>from the current media when the transition is performed.</comment>
-			<comment>5.10.1.8</comment>
-			<comment>When the onboard has performed the level transition, further data (mainly movement</comment>
-			<comment>authority and track description data) received from the transmission media of the level</comment>
-			<comment>being left shall be rejected.</comment>
-			<comment>5.10.1.8.1 Note: for the exhaustive list of accepted/rejected information, please refer to SRS</comment>
-			<comment>chapter 4.8.</comment>
+			<comment>&quot;5.10.2.4 When receiving the information about all ERTMS/ETCS levels that are supported by</comment>
+			<comment>trackside, the ERTMS/ETCS on-board equipment shall select from the table the level</comment>
+			<comment>with the highest priority, which is available for use by the onboard equipment.&quot;</comment>
+			<comment>Loop on the table of transition until one available for use is found.</comment>
+			<comment></comment>
+			<comment></comment>
+			<comment>&quot;5.10.2.4.1 The on-board equipment shall consider an ERTMS/ETCS level as “Available for use”</comment>
+			<comment>as follows:</comment>
+			<comment>a) Level 2 or 3: the level is configured on-board and at least one Mobile Terminal is</comment>
+			<comment>available on-board, i.e. the ETCS onboard has detected at least one Mobile</comment>
+			<comment>Terminal in working condition, independently whether it is registered to a network or</comment>
+			<comment>not.</comment>
+			<comment>b) Level NTC: the concerned National System is available on-board (if an STM is</comment>
+			<comment>used, refer to SUBSET-035 for further details).</comment>
+			<comment>c) Level 0 or 1: always.&quot;</comment>
+			<comment>To compute the stop condition of the loop.</comment>
+			<comment></comment>
+			<comment>&quot;5.10.2.7 If none of the ordered level(s) is available for use by the ERTMS/ETCS on-board</comment>
+			<comment>equipment, it shall nevertheless make the transition, to the ordered level with the</comment>
+			<comment>lowest priority.&quot;</comment>
+			<comment>Lowest priority transition selected until one available for use is found.</comment>
+			<comment></comment>
 			<diagrams>
 				<NetDiagram name="diagram_SelectNormalTransition_1" landscape="true" format="A4 (210 297)" oid="!ed/211c12/29CA/D5C/560002836988">
 					<presentationElements>
