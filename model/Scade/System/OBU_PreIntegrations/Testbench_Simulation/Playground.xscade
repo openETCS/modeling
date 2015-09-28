@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Package xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" name="Playground">
+<Package xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" xmlns:SMP="unknown_address" name="Playground">
 	<declarations>
 		<Operator kind="node" name="Test_Movement_Simulation">
 			<inputs>
@@ -830,6 +830,295 @@
 										<Point x="21775" y="12197"/>
 										<Point x="21775" y="12197"/>
 										<Point x="23283" y="12197"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
+		<Operator kind="node" name="TestScriptedTrack">
+			<inputs>
+				<Variable name="actualTrainPos">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/58b8dc/43F7/16C0/5608eeb0754b"/>
+						<SMP:Pragma>
+							set varSmpUnit {}&#xA;set varSmpType {}&#xA;set varSmpInfo {}
+						</SMP:Pragma>
+					</pragmas>
+				</Variable>
+				<Variable name="radioTrainPos">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/58b8e2/43F7/16C0/5608eeb04d1d"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="baliseMessage">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TM::CompressedBaliseMessage"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/58b8e9/43F7/16C0/5608eeb06a06"/>
+					</pragmas>
+				</Variable>
+				<Variable name="radioMessage">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TM::CompressedRadioMessage"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/58b8f0/43F7/16C0/5608eeb067d"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<locals>
+				<Variable name="_L2">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TM::CompressedRadioMessage"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/58b8f3/43F7/16C0/5608eec16d1d"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L1">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TM::CompressedBaliseMessage"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/58b8f2/43F7/16C0/5608eec1646e"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L3">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/58b8f9/43F7/16C0/5608eedb7d5c"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L4">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/58b8fb/43F7/16C0/5608eedb47b6"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- _L1, _L2 = EnvSim::ScriptedTrack(_L3, _L4); -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L1"/>
+						<VariableRef name="_L2"/>
+					</lefts>
+					<right>
+						<!-- EnvSim::ScriptedTrack(_L3, _L4) -->
+						<CallExpression>
+							<operator>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="EnvSim::ScriptedTrack"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<callParameters>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L3"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L4"/>
+									</path>
+								</IdExpression>
+							</callParameters>
+						</CallExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/58b8f1/43F7/16C0/5608eec13699"/>
+					</pragmas>
+				</Equation>
+				<!-- _L3 = actualTrainPos; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L3"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="actualTrainPos"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/58b8f8/43F7/16C0/5608eedb20f7"/>
+					</pragmas>
+				</Equation>
+				<!-- _L4 = radioTrainPos; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L4"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="radioTrainPos"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/58b8fa/43F7/16C0/5608eedb6151"/>
+					</pragmas>
+				</Equation>
+				<!-- baliseMessage = _L1; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="baliseMessage"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/58b900/43F7/16C0/5608eeea3821"/>
+					</pragmas>
+				</Equation>
+				<!-- radioMessage = _L2; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="radioMessage"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L2"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/58b901/43F7/16C0/5608eeeadfc"/>
+					</pragmas>
+				</Equation>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/58b8d5/43F7/16C0/5608ee7eaaa" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<NetDiagram name="diagram_TestScriptedTrack_1" landscape="true" format="A4 (210 297)" oid="!ed/58b8d6/43F7/16C0/5608ee7e1fc9">
+							<presentationElements>
+								<EquationGE presentable="!ed/58b8f1/43F7/16C0/5608eec13699">
+									<position>
+										<Point x="5847" y="2937"/>
+									</position>
+									<size>
+										<Size width="3535" height="2794"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/58b8f8/43F7/16C0/5608eedb20f7">
+									<position>
+										<Point x="4128" y="3598"/>
+									</position>
+									<size>
+										<Size width="264" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/58b8fa/43F7/16C0/5608eedb6151">
+									<position>
+										<Point x="4101" y="4524"/>
+									</position>
+									<size>
+										<Size width="264" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/58b8f8/43F7/16C0/5608eedb20f7" dstEquation="!ed/58b8f1/43F7/16C0/5608eec13699">
+									<positions>
+										<Point x="4392" y="3863"/>
+										<Point x="5106" y="3863"/>
+										<Point x="5106" y="3863"/>
+										<Point x="5847" y="3863"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/58b8fa/43F7/16C0/5608eedb6151" dstEquation="!ed/58b8f1/43F7/16C0/5608eec13699">
+									<positions>
+										<Point x="4366" y="4789"/>
+										<Point x="5106" y="4789"/>
+										<Point x="5106" y="4789"/>
+										<Point x="5847" y="4789"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/58b900/43F7/16C0/5608eeea3821">
+									<position>
+										<Point x="11509" y="3545"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/58b901/43F7/16C0/5608eeeadfc">
+									<position>
+										<Point x="11509" y="4577"/>
+									</position>
+									<size>
+										<Size width="318" height="503"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/58b8f1/43F7/16C0/5608eec13699" dstEquation="!ed/58b900/43F7/16C0/5608eeea3821">
+									<positions>
+										<Point x="9366" y="3863"/>
+										<Point x="10451" y="3863"/>
+										<Point x="10451" y="3810"/>
+										<Point x="11562" y="3810"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/58b8f1/43F7/16C0/5608eec13699" dstEquation="!ed/58b901/43F7/16C0/5608eeeadfc">
+									<positions>
+										<Point x="9366" y="4789"/>
+										<Point x="10451" y="4789"/>
+										<Point x="10451" y="4842"/>
+										<Point x="11562" y="4842"/>
 									</positions>
 								</Edge>
 							</presentationElements>
