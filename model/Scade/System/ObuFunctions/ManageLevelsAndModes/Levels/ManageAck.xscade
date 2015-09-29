@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="node" name="ManageAck">
+	<inputs>
+		<Variable name="selected_level_transition">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Level_And_Mode_Types_Pkg::T_LevelTransition"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2dae3b/13AD/FF8/560aa06936b8"/>
+			</pragmas>
+		</Variable>
+		<Variable name="last_level">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="M_LEVEL"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2dae49/13AD/FF8/560aa06941a4"/>
+			</pragmas>
+		</Variable>
+		<Variable name="new_level">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="M_LEVEL"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2dae50/13AD/FF8/560aa0693729"/>
+			</pragmas>
+		</Variable>
+		<Variable name="trainPosition">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TrainPosition_Types_Pck::trainPosition_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2dae57/13AD/FF8/560aa06943eb"/>
+			</pragmas>
+		</Variable>
+		<Variable name="levelAck">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2dae83/13AD/FF8/560aa1e76b7f"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="needsAckFromDriver">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2dae5d/13AD/FF8/560aa0695297"/>
+			</pragmas>
+		</Variable>
+		<Variable name="service_brake">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2dae63/13AD/FF8/560aa0696f22"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<pragmas>
+		<ed:Operator oid="!ed/2dae33/13AD/FF8/560aa056633c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<comment>5.10.4 Acknowledgement of the level transition</comment>
+			<comment>5.10.4.1 If defined so for the level transition (see table below), the driver shall be requested to</comment>
+			<comment>acknowledge the transition</comment>
+			<comment>a) when the max safe front end of the train has passed a trackside defined location in</comment>
+			<comment>rear of the level transition border</comment>
+			<comment>b) upon receipt of the order to switch to the new level immediately</comment>
+			<comment>5.10.4.1.1 Exception: An ERTMS/ETCS on-board equipment in NL mode shall not require an</comment>
+			<comment>acknowledgement from the driver.</comment>
+			<comment>5.10.4.2 If the driver has not yet acknowledged within the driver acknowledgement time (refer to</comment>
+			<comment>Appendix A3.1) after the level transition, a service brake command shall be initiated.</comment>
+			<comment>5.10.4.3 The driver shall then acknowledge the level transition in order to release the service</comment>
+			<comment>brake command.</comment>
+			<comment>5.10.4.4 For the following transitions marked as “YES”, the level transition announcement shall</comment>
+			<comment>define the location from where an acknowledgement is required:</comment>
+			<comment>Coming from    |    Acknowledgement when entering</comment>
+			<comment>                       |  L 0  |   L 1  |    L 2  |    L 3  |    L NTC</comment>
+			<comment>L 0                  | -       |   No  |   No    |   No   |    Yes</comment>
+			<comment>L 1                  | Yes  |    -     |    No  |    No   |    Yes</comment>
+			<comment>L 2                  | Yes  |   No  |    -      |    No   |    Yes</comment>
+			<comment>L 3                  | Yes  |   No  |    No  |    -       |   Yes</comment>
+			<comment>L NTC             | Yes  |  Yes  |  Yes  |    Yes  |    Yes</comment>
+			<diagrams>
+				<NetDiagram name="diagram_ManageAck_1" landscape="true" format="A4 (210 297)" oid="!ed/2dae34/13AD/FF8/560aa0561a5d"/>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>
