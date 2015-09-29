@@ -322,70 +322,144 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \end{longtable}
 
 \subsubsection{Outputs}\label{s:traindata_outputs}
-\todo[inline]{section needs to be completed}
-\paragraph{[Output 1 name]}
+
+\paragraph{actualTrainData}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& [Name of the output] \\
+Output name				& actualTrainData \\
 \midrule
-Description				& [Brief description of the output] \\
+Description				& Actual train data of the evc. Train data received via DMI from the driver. The availability of data is indicated with the valid flag. The data is expected as a mandatory parameter during start of mission. In the current implementation it is not supported to change data after a mission has been started. The structure consists of the following components:
+\begin{description}
+\item[valid](bool): valid indicator for this component. Valid indicates the data are updated after start-up of the system. The actual status of trainData is stored in the updatedStatus information. 
+\item[acknowledgedByDriver](bool): Indicates this component has been validated by the driver.
+\todo[inline]{redundant information to status. Needs cleaning}
+\item[trainCtategory](NC\_TRAIN): Train category used for the static speed profile calculation.
+\item[cantDeficientcy](NC\_CDTRAIN): Cant deficiency train category
+\item[trainLength](Obu\_BasicTypes\_Pkg::L\_internal\_Type): Length of the train [cm].
+\item[brakePercentage](int): brake percentage. range from 0 to 300.
+\item[maxTrainSpeed](Obu\_BasicTypes\_Pkg::V\_internal\_Type): maximum speed of the train in km/h.
+\todo[inline]{needs to be changed to cm/sec}
+\item[loadingGauge](M\_LOADINGGAUGE): loading gauge category according to 3.18.3.2
+\item[axleLoadCategory](M\_AXLELOADCAT): axle load category according to 3.18.3.2
+\item[airTightSystem](M\_AIRTIGHT): airtight system presence according to 3.18.3.2
+\item[axleNumber]int): axle number according to 3.18.3.2
+\item[numberNationalSystems](int): The number of national systems available in the train.
+\item[nationalSystems](Packet\_TrainTypes\_Pkg::aNID\_NTC\_T): National Systems available in the train. The elements 0 .. numberNationalSystems - 1 are carrying the relevant data.
+\item[numberTractionSystems](int): The number of traction systems available in the train.
+\item[tractionSystems](Packet\_TrainTypes\_Pkg::aTractionIdentity\_T): Traction Systems available in the train. The elements 0 .. numberTractionSystems - 1 are carrying the relevant data.
+\end{description} \\
+
+
 \midrule
-Destination				& [Name of the destination component(s)] \\ 
+Destination				& evc \\ 
 \midrule
-Type					& [Type of the output] \\
+Type					& TIU\_Types\_Pkg::trainData\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n/a \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n/a \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &n/a \\
 \bottomrule
 \end{longtable}
 
-
-\paragraph{[Output 2 name]}
+\paragraph{trainDataToRBC}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& [Name of the output] \\
+Output name				& trainDataToRBC \\
 \midrule
-Description				& [Brief description of the output] \\
+Description				& Messages for communicating with the RBC. Messages 129 (Validated Train Data) and 146 (Acknowledgement) are sent by this function. The presence of the message is indicated by a valid flag.\\
 \midrule
-Destination				& [Name of the destination component(s)] \\ 
+Destination				& Radio Output \\ 
 \midrule
-Type					& [Type of the output] \\
+Type					& Radio\_Types\_Pkg::Radio\_TrainTrack\_Message\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& indicated by valid flag. \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n/a \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
 
+\paragraph{triggerFromTrainData}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& triggerFromTrainData \\
+\midrule
+Description				& For a full implementation of ETCS trainDAta has additional tasks described in the standard but not implemented in openETCS. For those extensions the triggers are pre-defined. \\
+\midrule
+Destination				& evc \\ 
+\midrule
+Type					& trainData\_Types\_pkg::trainData\_Trigger\_T
+ \\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+\bottomrule
+\end{longtable}
+
+\paragraph{updatedStatus}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& updatedStatus \\
+\midrule
+Description				& Detailed definition of the trainData status. The following components are defined:
+\begin{description}
+\item[valid](bool): Data is initialised based on data received from the TIU.
+\item[validatedByDriver](bool): Data has been validated by the Driver.
+\item[validatedbyRBC](bool): Data has been validated by the RBC.
+\item[waitingForRBCResponse](bool): 3.18.3.4.1 Train is waiting for ack to validation command.
+\item[driverIsModificationTrainData](bool):3.18.3.3.1 Driver is Modifying / Revalidating train data.
+\item[timeStampValidateToRBC](T\_TRAIN): 8.7.4 This label is used in communication with the RBC to identify the communication entity. Train data is acknowledged.
+\end{description} 
+\\
+\midrule
+Destination				& evc \\ 
+\midrule
+Type					& trainData\_Types\_pkg::trainDataStatus\_T \\
+\midrule
+Valid range of values	& indicated by valid flag. \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+\bottomrule
+\end{longtable}
 
 \subsection{Subcomponents}\label{s:traindata_subcomponents}
 
 \todo[inline]{section needs to be completed}
 
+\subsubsection{trainDataStorage}
+\input{sections/trainDataStorage.tex}
+
 \subsubsection{checkRadioMessages}
 \input{sections/checkRadioMessages.tex}
 
-\subsubsection{checkAcknowledgementGeneral}
-\input{sections/checkAcknowledgementGeneral.tex}
-
-\subsubsection{trainDataStorage}
-\input{sections/checkAcknowledgementGeneral.tex}
+\subsubsection{sendValidTrainDataRBC}
+\input{sections/sendValidTrainDataRBC.tex}
 
 \subsubsection{sendAcknowledgementRBC}
 \input{sections/sendAcknowledgementRBC.tex}
 
-\subsubsection{sendValidTrainDataRBC}
-\input{sections/sendValidTrainDataRBC.tex}
+\subsubsection{checkAcknowledgementGeneral}
+\input{sections/checkAcknowledgementGeneral.tex}
+
 
 
