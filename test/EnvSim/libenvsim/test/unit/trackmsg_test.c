@@ -90,17 +90,17 @@ START_TEST(test_es_exec_tracksim_cycle) {
     es_write_next_balise_message(&out);
     ck_assert_int_eq(0, out.Header.nid_bg);
 
-    es_exec_tracksim_cycle(&sim,0.5);
+    es_exec_tracksim_cycle(&sim,0.5,0.0);
     es_write_next_balise_message(&out);
     ck_assert_int_eq(0, out.Header.nid_bg);
 
-    es_exec_tracksim_cycle(&sim,1.5);
+    es_exec_tracksim_cycle(&sim,1.5,0.0);
     es_write_next_balise_message(&out);
     ck_assert_int_eq(1, out.Header.nid_bg);
     es_write_next_balise_message(&out);
     ck_assert_int_eq(0, out.Header.nid_bg);
 
-    es_exec_tracksim_cycle(&sim,3.5);
+    es_exec_tracksim_cycle(&sim,3.5,0.0);
     es_write_next_balise_message(&out);
     ck_assert_int_eq(2, out.Header.nid_bg);
     es_write_next_balise_message(&out);
@@ -108,16 +108,16 @@ START_TEST(test_es_exec_tracksim_cycle) {
     es_write_next_balise_message(&out);
     ck_assert_int_eq(0, out.Header.nid_bg);
 
-    es_exec_tracksim_cycle(&sim,5.5);
+    es_exec_tracksim_cycle(&sim,5.5,0.0);
     es_write_next_balise_message(&out);
     ck_assert_int_eq(4, out.Header.nid_bg);
-    es_exec_tracksim_cycle(&sim,6.0);
+    es_exec_tracksim_cycle(&sim,6.0,0.0);
     es_write_next_balise_message(&out);
     ck_assert_int_eq(1, out.Header.nid_bg);
-    es_exec_tracksim_cycle(&sim,6.5);
+    es_exec_tracksim_cycle(&sim,6.5,0.0);
     es_write_next_balise_message(&out);
     ck_assert_int_eq(2, out.Header.nid_bg);
-    es_exec_tracksim_cycle(&sim,7.5);
+    es_exec_tracksim_cycle(&sim,7.5,0.0);
     es_write_next_balise_message(&out);
     ck_assert_int_eq(0, out.Header.nid_bg);
 

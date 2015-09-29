@@ -9,7 +9,15 @@
 #define LIBENVSIM_EXTENSION_H
 #ifdef WITH_TCL_EXTENSION
 
+#ifdef WINDOWS
+
+#include "../include/tcl.h"
+
+#else
+
 #include <tcl.h>
+
+#endif
 
 
 #endif

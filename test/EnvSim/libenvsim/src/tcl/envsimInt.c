@@ -6,6 +6,7 @@
 // - 23.09.15, J. Kastner: initial version
 
 #ifdef WITH_TCL_EXTENSION
+
 #include "envsimInt.h"
 #include "track.h"
 
@@ -69,6 +70,9 @@ int envsim_track_info_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_Obj
 
 //-------------------------- extension interface ----------------------------
 int Envsim_Init(Tcl_Interp *interp) {
+  if( !Tcl_InitStubs(interp, "8.4", 0) ) {
+    return TCL_ERROR;
+  }
   Tcl_CreateObjCommand(interp, "track::balise", envsim_track_balise_cmd, NULL, NULL);
   Tcl_CreateObjCommand(interp, "track::radio", envsim_track_radio_cmd, NULL, NULL);
   Tcl_CreateObjCommand(interp, "track::add", envsim_track_add_cmd, NULL, NULL);
