@@ -73,6 +73,15 @@
     <availablePage>
       <emfPageIdentifier href="openETCS_EVC.notation#_KfxjoGaIEeWucbW7hVNeag"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_nGKnIGdKEeWuAcnYQmw5JA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_zGUCcGdOEeWuAcnYQmw5JA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_S1RukGdPEeWuAcnYQmw5JA"/>
+    </availablePage>
   </pageList>
   <sashModel xmi:id="_rJvpUx5kEeWg95oxeH6B_w" currentSelection="_rJvpVB5kEeWg95oxeH6B_w">
     <windows xmi:id="_rJvpVR5kEeWg95oxeH6B_w">
