@@ -15,21 +15,21 @@ void impPASPgetRelavantBreakingValues_PASP(
 	(*FilteredDistances[0]) = (*Distances[0]);
 	(*filteredSpeeds[0]) = (kcg_real)4.0;
 
-	for (i = 0; i <= 8; i++) {
+	for (i = 0; i <= 7; i++) {
 		kcg_int speedLevel1 = utilGetSpeedLevel((*Speeds)[i+1], CPS);
 		kcg_int speedLevel2 = utilGetSpeedLevel((*Speeds)[i], CPS);
 		if (speedLevel1 < speedLevel2) { // Next speedLevel is in a new speed area
 			lastIndex++;;
-			(*FilteredDistances)[lastIndex] = (*Distances)[i+1];
+			(*FilteredDistances)[lastIndex] = (*Distances)[i+2];
 			(*filteredSpeeds)[lastIndex] = (kcg_real)speedLevel1;
-		} else if (speedLevel1 >= speedLevel2) { //new speed level is the same as last one
-			(*FilteredDistances)[lastIndex] = (*Distances)[i+1]; //just copy the new max distance for the speed level into the existing entry
 		} else if (speedLevel1 == 0) {
 			for (j = i+1; j <= 8; j++) {
-				(*FilteredDistances)[j] = (*Distances)[i];
+				(*FilteredDistances)[j] = (*Distances)[i+1];
 				(*filteredSpeeds)[lastIndex] = 0;
 			}
 			break;
+		} else if (speedLevel1 >= speedLevel2) { //new speed level is the same as last one
+			(*FilteredDistances)[lastIndex] = (*Distances)[i+2]; //just copy the new max distance for the speed level into the existing entry
 		} else {
 			(*FilteredDistances[i+1]) = 1337.0;
 		}
