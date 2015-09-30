@@ -102,7 +102,7 @@ es_Status es_tcl_track_radio_get(char* subcmd, void (*appendResult)(char*, es_Cl
     snprintf(es_msg_buf, ES_MSG_BUF_SIZE,
              "{nid_message %d} {d_emergencystop %d} {d_ref %d} {d_sr %d} {m_ack %d} {m_version %d} "
              "{nid_em %d} {nid_lrbg %d} {q_dir %d} {q_scale %d} {radioDevice %d} {receivedSystemTime %d} "
-             "{t_sh_rqst %d} {t_train %d} {t_train_reference}",
+             "{t_sh_rqst %d} {t_train %d} {t_train_reference %d}",
              rm->Header.nid_message,
              rm->Header.d_emergencystop,
              rm->Header.d_ref,

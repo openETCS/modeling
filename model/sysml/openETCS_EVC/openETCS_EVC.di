@@ -70,6 +70,57 @@
     <availablePage>
       <emfPageIdentifier href="openETCS_EVC.notation#_bC6rQGXXEeWX_fEceFD3BQ"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_KfxjoGaIEeWucbW7hVNeag"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_nGKnIGdKEeWuAcnYQmw5JA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_zGUCcGdOEeWuAcnYQmw5JA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_S1RukGdPEeWuAcnYQmw5JA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_33r1AGd1EeWo8vMBnCjgHA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_5axi8Gd2EeWo8vMBnCjgHA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_6TTtcGd2EeWo8vMBnCjgHA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_639SoGd2EeWo8vMBnCjgHA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_7NuHQGd2EeWo8vMBnCjgHA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_7VuMsGd2EeWo8vMBnCjgHA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_7Z13sGd2EeWo8vMBnCjgHA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_7faUMGd2EeWo8vMBnCjgHA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_7jXAEGd2EeWo8vMBnCjgHA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_7nU6EGd2EeWo8vMBnCjgHA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_744kIGd2EeWo8vMBnCjgHA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_8BDBoGd2EeWo8vMBnCjgHA"/>
+    </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_8JSXoGd2EeWo8vMBnCjgHA"/>
+    </availablePage>
   </pageList>
   <sashModel xmi:id="_rJvpUx5kEeWg95oxeH6B_w" currentSelection="_rJvpVB5kEeWg95oxeH6B_w">
     <windows xmi:id="_rJvpVR5kEeWg95oxeH6B_w">
