@@ -9,6 +9,7 @@
 
 #include "envsimInt.h"
 #include "track.h"
+#include "pkts.h"
 
 void envsim_append_result(char* res, char* clientData) {
   Tcl_AppendResult((Tcl_Interp*)clientData, res, NULL);
@@ -68,6 +69,59 @@ int envsim_track_info_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_Obj
   return TCL_OK;
 }
 
+int envsim_pkts_target_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_Obj *const *objv) {
+  if(objc!=2) {
+    Tcl_WrongNumArgs(interp,1,objv,"balisebuf|radiobuf");
+    return TCL_ERROR;
+  }
+  if(es_tcl_pkts_set_target(Tcl_GetString(objv[1]))) {
+    Tcl_AddErrorInfo(interp,es_msg_buf);
+    return TCL_ERROR;
+  }
+  return TCL_OK;
+}
+
+int envsim_pkts_get_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_Obj *const *objv) {
+  if(objc<2) {
+    Tcl_WrongNumArgs(interp,1,objv,"headers|data");
+    return TCL_ERROR;
+  }
+
+  char *subcmd = Tcl_GetString(objv[1]);
+
+  if(!strcmp("headers",subcmd)) {
+    if(objc!=2) {
+      Tcl_WrongNumArgs(interp,1,objv,"");
+      return TCL_ERROR;
+    }
+    if(es_tcl_pkts_get_headers(envsim_append_result,(es_ClientData)interp)) {
+      Tcl_AddErrorInfo(interp,es_msg_buf);
+      return TCL_ERROR;
+    }
+    return TCL_OK;
+  }
+
+  if(!strcmp("data",subcmd)) {
+    if(objc!=3) {
+      Tcl_WrongNumArgs(interp,1,objv,"data index");
+      return TCL_ERROR;
+    }
+    int index = 0;
+    if(Tcl_GetIntFromObj(interp,objv[2],&index)) {
+      return TCL_ERROR;
+    }
+    if(es_tcl_pkts_get_data(index,envsim_append_result,(es_ClientData)interp)) {
+      Tcl_AddErrorInfo(interp,es_msg_buf);
+      return TCL_ERROR;
+    }
+    return TCL_OK;
+  }
+
+  snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid subcommand: %s",subcmd);
+  Tcl_AddErrorInfo(interp,es_msg_buf);
+  return TCL_ERROR;
+}
+
 //-------------------------- extension interface ----------------------------
 int Envsim_Init(Tcl_Interp *interp) {
   if( !Tcl_InitStubs(interp, "8.4", 0) ) {
@@ -77,6 +131,8 @@ int Envsim_Init(Tcl_Interp *interp) {
   Tcl_CreateObjCommand(interp, "track::radio", envsim_track_radio_cmd, NULL, NULL);
   Tcl_CreateObjCommand(interp, "track::add", envsim_track_add_cmd, NULL, NULL);
   Tcl_CreateObjCommand(interp, "track::info", envsim_track_info_cmd, NULL, NULL);
+  Tcl_CreateObjCommand(interp, "pkts::target", envsim_pkts_target_cmd, NULL, NULL);
+  Tcl_CreateObjCommand(interp, "pkts::get", envsim_pkts_get_cmd, NULL, NULL);
   return TCL_OK;
 }
 

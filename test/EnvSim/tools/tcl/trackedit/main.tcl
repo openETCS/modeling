@@ -18,7 +18,7 @@ if $isWin {
   error "platform not supported"
 }
 
-foreach s {view.tcl ctrl.tcl model.tcl} {
+foreach s {view.tcl ctrl.tcl model.tcl ../lib/packets.tcl} {
   source "$scriptpath/$s"
 }
 

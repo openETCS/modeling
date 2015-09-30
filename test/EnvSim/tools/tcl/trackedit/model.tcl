@@ -43,19 +43,26 @@ proc model::getMessage {id} {
 
 proc model::getBaliseMessage {id} {
   track::balise load $id
+  pkts::target balisebuf
   dict set msg type b
+
   foreach h [track::balise get header] {
     dict set msg header [lindex $h 0] [lindex $h 1]
   }
+
+  dict set msg packetinfo "[pkts::get headers]"
   return $msg
 }
 
 
 proc model::getRadioMessage {id} {
   track::radio load $id
+  pkts::target radiobuf
   dict set msg type r
   foreach h [track::radio get header] {
     dict set msg header [lindex $h 0] [lindex $h 1]
   }
+
+  dict set msg packetinfo "[pkts::get headers]"
   return $msg
 }

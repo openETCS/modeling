@@ -8,6 +8,7 @@
 namespace eval ::ctrl {
   variable tree .c.nav.tree
   variable headersTable .c.d.n.headers.tree
+  variable packetTable .c.d.n.packets.tree
 }
 
 
@@ -48,6 +49,8 @@ proc ctrl::showBaliseData {msg pos} {
   dict for {k v} [dict get $msg header] {
     $headersTable insert {} end -id $k -text $k -values $v
   }
+
+  updatePacketTable [dict get $msg packetinfo]
 }
 
 
@@ -61,10 +64,44 @@ proc ctrl::showRadioData {msg pos} {
   dict for {k v} [dict get $msg header] {
     $headersTable insert {} end -id $k -text $k -values $v
   }
+
+  updatePacketTable [dict get $msg packetinfo]
 }
 
+proc ctrl::updatePacketTable {data} {
+  variable packetTable
+
+  $packetTable delete [$packetTable children {}]
+  foreach pkt $data {
+    set index [lindex $pkt 1]
+    set nid_packet [lindex $pkt 3]
+    switch [lindex $pkt 9] {
+      0 {set q_dir R}
+      1 {set q_dir N}
+      2 {set q_dir B}
+      default {set q_dir X}
+    }
+    set name [list [pkts::packetName $nid_packet]]
+
+    $packetTable insert {} end -id $index -text $index -values "$nid_packet $q_dir $name"
+  }
+}
 
 proc ctrl::onTreeSelect {} {
   variable tree
   showData [$tree focus]
+}
+
+
+proc ctrl::onPacketTreeSelect {} {
+  variable packetTable
+
+  set data [pkts::get data [$packetTable focus]]
+  switch [lindex $data 0] {
+    42 { view::showP042 [pkts::readP042 "$data"] }
+    45 { view::showP045 [pkts::readP045 "$data"] }
+    57 { view::showP057 [pkts::readP057 "$data"] }
+    default { view::showPNotSupported }
+  }
+  puts "$data"
 }
