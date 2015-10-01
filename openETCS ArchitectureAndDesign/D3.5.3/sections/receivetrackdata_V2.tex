@@ -125,8 +125,8 @@ Other values of this enumeration are not expected in this model.
 \end{description}
 \\
 \midrule
-Source					& API 
-\todo[inline]{Proposal: Use input name of F2 here for consitency and traceablity.}\\ 
+Source					& API\_fromTrack 
+\\ 
 \midrule
 Type					& API\_Msg\_Pkg::API\_TrackSideInput\_T \\
 \midrule
@@ -149,8 +149,7 @@ Input name				& ActualOdometry \\
 \midrule
 Description				& Odometry data provided by the external odometry module of the train. It contains relative location information with inaccuracies. In this model only information related to the position of the train is used (odo-component). A valid flag of the odometer input indicates the hardware is working and the parameter may be used.\\
 \midrule
-Source					& Odometer 
-\todo[inline]{Proposal: Use input name of F2 here for consitency and traceablity.}\\ 
+Source					& API\_Odometery \\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::odometry\_T \\
 \midrule
@@ -173,8 +172,8 @@ Input name				& reset \\
 \midrule
 Description				& The reset input is used to delete all data stored in the module (e.g.~collected balise telegrams, which do not yet form a complete message). If the input is set to true, all data kept in the module is deleted and no input is accepted. The reset option is to be used when the EVC is started or in system error scenarios.\\
 \midrule
-Source					& Environment
-\todo[inline]{Proposal: Use input name of F2 here for consitency and traceablity.}\\ \midrule
+Source					& function not yet defined
+\\ \midrule
 Type					& bool \\
 \midrule
 Valid range of values	& 
@@ -266,8 +265,8 @@ Input name				& M\_VERSION \\
 \midrule
 Description				& For monitoring the safe radio connection, this national value is needed as an input. This parameter is used in the radioCheck component of this model. \\
 \midrule
-Source					& EVC Version Management
-\todo[inline]{Proposal: Use input name of F2 here for consitency and traceablity.}\\ 
+Source					& EVC Configuration
+\todo[inline]{Proposal: Function not yet visible in the document. Implemented in the evc main model.}\\ 
 \midrule
 Type					& M\_VERSION \\
 \midrule
@@ -293,8 +292,8 @@ In situations like level changes or announced radio holes, not the timestamp of 
 
 For performing this check, the timestamp of the last relevant event is provided to the model as an {T\_internal\_Type}-type. \\
 \midrule
-Source					& Radio Management
-\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity.}\\ 
+Source					& collectRadioMessages
+\todo[inline]{Proposal: Function not yet visible in the document. Implemented in the evc main model. Covers functions distributed in the evc model}\\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::T\_internal\_Type \\
 \midrule
@@ -459,8 +458,8 @@ Input name				& inFilterEvents \\
 \midrule
 Description				& A set of events needed for controlling the InformationFilter. For details see valid range of values row in this table.\\
 \midrule
-Source					& evc database
-\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity.}\\  
+Source					& ModeAndLevels, MoRC
+\\  
 \midrule
 Type					& Common\_Types\_Pkg::filterRelatedEvents\_T\\
 \midrule
@@ -495,8 +494,7 @@ Input name				& transitionPositionPassed \\
 Description				& The position of the requested level transition has been passed. This information is used by InformationFilter subcomponent to clean data after level management reactions.
 \\
 \midrule
-Source					& Levels Management
-\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity.}\\ 
+Source					& ModeAndLevels\\ 
 \midrule
 Type					&bool\\
 \midrule
@@ -544,7 +542,7 @@ Other values of this enumeration are not expected in this model.
 \\
 \midrule
 Destination				& (nearly) all functions
-\todo[inline]{Proposal: List all the exact SCADE component name here for consitency and traceablity.}\\ 
+\todo[inline]{Proposal: This is not reasonable in all cases. This output is similasr to Lib functions.}\\ 
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
@@ -567,8 +565,7 @@ Output name				& ApplyServiceBrake \\
 \midrule
 Description				&  Indicates if the balise group the train just passed could not be processed correctly. The check results in the request for a service break. \\
 \midrule
-Destination				& SpeedAndDistanceMonitoring
-\todo[inline]{Check if this is the exact SCADE component name}\\ 
+Destination				& SpeedSupervision\_Integration\\ 
 \midrule
 Type					& bool \\
 \midrule
@@ -591,8 +588,8 @@ Output name				& BadBaliseMessageToDMI \\
 \midrule
 Description				& Information to be passed to the DMI to indicate the reception of a ``bad balise'' to the driver. \\
 \midrule
-Destination				& DMI
-\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity.} \\
+Destination				& manage\_DMI\_Output\_Pkg
+\\
 \midrule
 Type					& bool \\
 \midrule
@@ -616,7 +613,7 @@ Output name				& outCheckErrors \\
 Description				& Error flags for errors reported at the check procedures at messages. For details see valid range of values row of this table.\\
 \midrule
 Destination				& JRU
-\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity.}\\ 
+\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity. This error Information is actually soemthing which is needed for tracebaility in testing and for the JRU}\\ 
 \midrule
 Type					& Common\_Types\_Pkg::MSG\_Errors\_T\\
 \midrule
@@ -663,8 +660,8 @@ Description				& The InformationFilter component has to provide information to t
 
 \\
 \midrule
-Destination				& Level Management
-\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity.}\\ 
+Destination				& ModesAndLevels
+\\ 
 \midrule
 Type					& Level\_And\_Mode\_Types\_Pkg::T\_Data\_From\_TrackForLevelChange\\
 \midrule
@@ -691,8 +688,8 @@ Output name				& outputMessageForRadioAck \\
 Description				& Even if an imcoming radio message is rejected or kept for some time in the InformationFilter buffer some information needs to be made available for maintaining the communication session with the RBC, e.g., the timestamp of the received message and acknowledgment of message reception based on the ACK flag. No other information of this message is to be used in the EVC. This concept might be improved when radio management functions are rearranged.
 \\
 \midrule
-Destination				& Radio Management
-\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity.}\\ 
+Destination				& collectRadioMessages
+\todo[inline]{Proposal: I just made a design decision. I will collect all pending radio related management functions in this block. I propose also to change the name of the function. Lets discuss}\\ 
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
