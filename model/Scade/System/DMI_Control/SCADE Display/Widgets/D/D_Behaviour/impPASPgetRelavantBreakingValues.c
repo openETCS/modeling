@@ -13,16 +13,16 @@ void impPASPgetRelavantBreakingValues_PASP(
 	kcg_int lastIndex = 0;
 	kcg_real maxSSPDist = 0.0;
 
-	(*FilteredDistances[0]) = (*Distances[1]);
-	(*filteredSpeeds[0]) = (kcg_real)4.0;
+	(*FilteredDistances)[0] = (*Distances)[1];
+	(*filteredSpeeds)[0] = (kcg_real)4.0;
 
 
 	for(i = 0; i <= 9; i++)
 	{
 		// Search for end of SSP (indicated as -1.0 for the speed value)
-		if((*Speeds[i]) == -1.0)
+		if((*Speeds)[i] < 0.0)
 		{
-			maxSSPDist = (*Distances[i]); 
+			maxSSPDist = (*Distances)[i]; 
 			break;
 		}
 	}
@@ -31,7 +31,7 @@ void impPASPgetRelavantBreakingValues_PASP(
 		// calculate speed levels for pair of speeds in input array
 		kcg_int speedLevel1 = utilGetSpeedLevel((*Speeds)[i+1], CPS);
 		kcg_int speedLevel2 = utilGetSpeedLevel((*Speeds)[i], CPS);
-		if ((*Speeds[i+1]) == -1.0){
+		if ((*Speeds)[i+1] < 0.0){
 			(*FilteredDistances)[lastIndex] = maxSSPDist;
 			(*filteredSpeeds)[lastIndex] = speedLevel2;
 			break;
@@ -50,7 +50,7 @@ void impPASPgetRelavantBreakingValues_PASP(
 			(*FilteredDistances)[lastIndex] = (*Distances)[i+2]; //just copy the new max distance for the speed level into the existing entry
 			(*filteredSpeeds)[lastIndex] = speedLevel2;
 		} else {
-			(*FilteredDistances[i+1]) = 1337.0;
+			(*FilteredDistances)[i+1] = 1337.0;
 		}
 	}
 } 
