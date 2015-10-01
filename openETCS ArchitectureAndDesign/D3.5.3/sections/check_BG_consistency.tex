@@ -12,21 +12,9 @@ Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/
 SCADE designer			& Peyman Farhangi, DB Netz AG \\
 \midrule
 Description				& The function "Receive\_TrackSide\_Msg" collects the telegrams in an
-array. If one or more telegrams are received multiple times, either
-whole the array or single telegram should be deleted.(e.g.if the train
-moves back.) The balises in a group are to be expected in a certain
-distance from each other. The function "Receive\_TrackSide\_Msg"
-checks if the telegrams has been received in due time and at the right
-expected location.
+array. If one or more telegrams are received multiple times, either the whole the array or single telegram should be deleted.(e.g.if the train moves back.) The balises in a group are to be expected in a certain distance from each other. The function "Receive\_TrackSide\_Msg" checks if the telegrams has been received in due time and at the right expected location.
 
-The function "CheckBGConsistency" verifies the
-completeness and correctness of the received telegrams from balise
-groups and composes the balise message from the received telegram
-array (input from "Receive\_TrackSide\_Msg"). A balise message is
-built from at least one telegram and a maximum of 8 telegrams. When
-linking information is used on-board, only balise groups marked
-as linked and included in the linking information and balise groups
-marked as unlinked shall be taken into account.
+The function "CheckBGConsistency" verifies the completeness and correctness of the received telegrams from balise groups and composes the balise message from the received telegram array (input from "Receive\_TrackSide\_Msg"). A balise message is built from at least one telegram and a maximum of 8 telegrams. When linking information is used on-board, only balise groups marked as linked and included in the linking information and balise groups marked as unlinked shall be taken into account.
 
 \begin{itemize}
 \item A message is still complete and correct, if a telegram is missing (or not decoded or incompletely decoded), and this telegram is duplicated within the balise group and the duplicating one is correctly read.
@@ -34,13 +22,8 @@ marked as unlinked shall be taken into account.
 \item A message is not correct, if a message counters (M\_MCOUNT) equals 254 (that means: The telegram never fits any message of the group). A message counter can  equal 255 (that means: The telegram fits with all telegrams of the same balise group) and all other values must be the same.
 \end{itemize}
 
-The orientation of the BG and the running direction of the train are
-calculated in this block.When linking information is used on-board,
-the check, if the message of linked balise group has been received
-in due time and at the expected location, will be performed in
-"Calculate Train Position". The checks on the validity of the data in
-the packets and the validity with respect to the direction of motion
-will be performed in other modules, e.g. "Validate Data Direction".\\
+The orientation of the BG and the running direction of the train are calculated in this block.When linking information is used on-board, the check, if the message of linked balise group has been received in due time and at the expected location, will be performed in "Calculate Train Position". The checks on the validity of the data in the packets and the validity with respect to the direction of motion
+will be performed in other modules, e.g. "ValidateDataDirection".\\
 \midrule
 Input documents	& 
 Subset-026, Chapter 7 and 8: Definition of the Balise Telegram\newline
@@ -48,7 +31,7 @@ Subset-026, Chapter 3.4.1-3, 3.16.2: Handling of Balise Telegrams\newline
 Subset-026, Chapter 3.16.2: Check of the balise group\newline
 Subset-026, Chapter 4.5.2: Active Functions Table\\
 \midrule
-Safety integrity level		& 4 \\
+Safety integrity level	& 4 \\
 \midrule
 Time constraints		& n/a \\
 \midrule

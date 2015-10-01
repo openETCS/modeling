@@ -13,21 +13,18 @@ Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/
 \midrule
 SCADE designer			& Bernd Hekele, DB Netz AG \\
 \midrule
-Description				& The block ``Manage\_TrackSideInformation\_Integration'' is responsible for receiving Eurobalise telegrams and Euroradio messages from the API and performs several consistency checks on the inputs.\newline
+Description				& The functional block ``Manage\_TrackSideInformation\_Integration'' is responsible for receiving Eurobalise telegrams and Euroradio messages from the API and performs several consistency checks on the inputs.
 
-The block collects the telegrams of balises in order to build balise group messages. Euroradio messages are always delivered as a whole message. On each message, a consistency check is performed, before the data is validated according to the driving direction of the train. In general, messages not designated for the current driving direction of the train are not forwarded to the further processing. After applying consistency checks, the data direction is validated. Finally, the received message is handled in the information filter. The information filter may, depending on level, mode and announced level transitions and radio handover scenarios, let information pass immediately, store information for a later transfer or reject information.
-
-Information in this sense is packets in the context of messages.\\
-
- \\
+The block collects the telegrams of balises in order to build balise group messages. Euroradio messages are always delivered as a whole message. On each message, a consistency check is performed, before the data is validated according to the driving direction of the train. In general, messages not designated for the current driving direction of the train are not forwarded for further processing. After applying consistency checks, the data direction is validated. Finally, the received message is handled in the InformationFilter subcomponent. The InformationFilter may, depending on level, mode and announced level transitions and radio handover scenarios, let information pass immediately, reject information, or buffer information for some cycles until certain conditions apply and the information will be passed. Information in this sense is packets in the context of messages.\\
 \midrule
 Input documents			& See subcomponents.\\
 \midrule
 Safety integrity level	& 4 \\
 \midrule
-Time constraints		& The component has to be able to receive balise telegrams and radio messages according to the ETCS \cite{subset-41} performance requirements). In highspeed traffic, a group of 8 balises must be read in about 250 msec. In addition, 1 message per sec. on the radio interface is to be expected.\\
+Time constraints		& The component has to be able to receive balise telegrams and radio messages according to the ETCS performance requirements, c.f. \cite{subset-41}. In highspeed traffic, a group of 8 balises must be read in about 250 msec. In addition, 1 message per sec. on the radio interface is to be expected.\\
 \midrule
-API requirements 		& Interfaces to this unit are defined in the API sections [BTM], [EURORADIO], [ODO].In these sections, also a detailed definition of the concepts implemented on those interfaces is documented.  \\
+API requirements 		& Interfaces to this unit are defined in the API sections [BTM], [EURORADIO], [ODO]. In these sections, also a detailed definition of the concepts implemented on those interfaces is documented.
+\todo[inline]{reference sections correctly once these are completed}  \\
 \bottomrule
 \end{longtable}
 
@@ -36,7 +33,7 @@ API requirements 		& Interfaces to this unit are defined in the API sections [BT
 
 An overview of the interface of component Manage\_TrackSideInformation\_Integration is shown in Figure~\ref{f:receiveAndCheckConsistencyArch}. The inputs and outputs are described in detail in Section~\ref{s:Manage_Trackside_inputs} respectively \ref{s:Manage_Trackside_outputs}. Subcomponents are described in Section~\ref{s:receivetrackdata_subcomponents}.
 
-\begin{figure}
+\begin{figure}[H]
 \center
 \includegraphics[width=\textwidth]{./images/Figure_1_IBD_Manage_TrackSideInformation_Integration_1.png}
 \caption{Manage\_TrackSideInformation\_Integration component SysML diagram.}\label{f:receiveAndCheckConsistencyArch}
@@ -78,53 +75,62 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \toprule
 Input name				& API\_trackSide\_Message \\
 \midrule
-Description				& Track side message received from the API. The API performs preprocessing of RTM and BTM messages and deliveres a maximum of a single message per cycle. The structure of this message is defined in the API [BTM] and [EURORADIO] sections. The input consists of the following main componenets:
+Description				& Track side message received from the API. The API performs preprocessing of RTM and BTM messages and delivers a maximum of a single message per cycle. The structure of this message is defined in the API [BTM] and [EURORADIO] sections. The input consists of the following main components:\\
+&
 \begin{description}
-\item[valid](bool): indicates the information has been refreshed in the cycle.
+\item[valid](bool) Indicates the information has been refreshed in the cycle.
 \begin{description}
-\item[true]: information is updated in this cycle
-\item[false]: information is unchanged.
+\item[true]: Information is updated in this cycle.
+\item[false]: Information is unchanged.
 \end{description}
-\item[systemTimeMsgReceived](Obu\_BasicTypes\_Pkg::T\_internal\_Type): Timestamp when the system (i.e., the train) has received the message. The parameter is set either by RTM or by BTM modules.
-\item[msg\_type](Common\_Types\_Pkg::MsgSource\_T): source of this information. 
+\end{description}\\
+&
 \begin{description}
-\item[msrc\_undefined]: indicates the information is not defined. This input is expected when valid flag is false.
-\item[msrc\_Euroradio]: indicates the information is a euroradio message.
-\item[msrc\_Eurobalise]: indicates the information is a balise telegram.
+\item[systemTimeMsgReceived](Obu\_BasicTypes\_Pkg::T\_internal\_Type): Timestamp when the system (i.e. the train) has received the message. The parameter is set either by RTM or by BTM modules.
+\end{description}\\
+&
+\begin{description}
+\item[msg\_type](Common\_Types\_Pkg::MsgSource\_T) source of this information. 
+\begin{description}
+\item[msrc\_undefined] indicates the information is not defined. This input is expected when valid flag is false.
+\item[msrc\_Euroradio] indicates the information is a euroradio message.
+\item[msrc\_Eurobalise] indicates the information is a balise telegram.
 \end{description}
 Other values of this enumeration are not expected in this model.
-\item[btm\_msg](API\_Msg\_Pkg::API\_TelegramHeader\_T): telegram header with some additional information provided by the btm-module. The header looks like:
+\end{description}\\
+&
 \begin{description}
-\item[present](bool): telegram information has been received via btm and the information of this telegram is present. 
-\item[checkResult](bool): the telegram is checked after reception at the btm. Typical checks are checksum-tests or checks at conversion of the types from bit-layout to the presentation in the evc. If checkResult is false the information may not be used. The information is evaluated in the checkBGConsistency component of this model.
-\item[api\_bad\_balise\_received](bool): the telegram reception was disturbed. Again, the information related to this telegram may not be used in the evc.
-\item[api\_header](API\_Msg\_Pkg::API\_TelegramHeader\_T) header of the telegram similar to subset 26 section 8.4.2.1. The information in the telegram is not packed on bit-boundaries.
-\item[centerOfBalisePosition](BG\_Types\_Pkg::centerOfBalisePosition\_T): Location of the balise as determined by the antenna of the train. The information is extended with inaccuracies of the measurement given by the btm.
-\end{description}
-
-\item[rtm\_msg](API\_Msg\_Pkg::API\_RadioMsgHeader\_T): radio message header with some additional information added by the rtm module. The informtion looks like:
+\item[btm\_msg](API\_Msg\_Pkg::API\_TelegramHeader\_T) Telegram header with some additional information provided by the btm-module. The header is structured as follows:
 \begin{description}
-\item[present](bool): radio message has been received via rtm and the information of this message is present. 
-\item[apiConsistencyError](bool): the message is checked after reception at the btm. Typical checks are checksum-tests or checks at conversion of the types from bit-layout to the presentation in the evc. If apiConsistencyError is false the information may not be used. The information is evaluated in the checkRadioMessage component of this model.
-\item[Radio\_Common\_Header](Radio\_Types\_Pkg::Radio\_TrackTrain\_Header\_T): header of the radio-message as defined in subset 26 section 8.4.4.6.1. In the SRS, depending on the concrete message, some optional variables are defined. In our implementation all optional variables are foreseen. In order to indicate the availability of variables the component radioMetadata is used (see below).
-\item[radioMetadata](Common\_Types\_Pkg::RadioMetadata\_T): metadata for optional variables in the common radio message header. For each optional component a presence indicator of type bool is in the list.  
-\item[sendingRBC\_Id](Common\_Types\_Pkg::RBC\_Id\_T): identifies the RBC as it is known at the RTM. Information is added to the interface in the RTM.
+\item[present](bool) Telegram information has been received via btm and the information of this telegram is present. 
+\item[checkResult](bool) The telegram is checked after reception at the btm. Typical checks are checksum-tests or checks at conversion of the types from bit-layout to the presentation in the evc. If checkResult is false the information may not be used. The information is evaluated in the checkBGConsistency component of this model.
+\item[api\_bad\_balise\_received](bool) The telegram reception was disturbed. Again, the information related to this telegram may not be used in the EVC.
+\item[api\_header](API\_Msg\_Pkg::API\_TelegramHeader\_T) Header of the telegram similar to subset 26 section 8.4.2.1. The information in the telegram is not packed on bit-boundaries.
+\item[centerOfBalisePosition](BG\_Types\_Pkg::centerOfBalisePosition\_T) Location of the balise as determined by the antenna of the train. The information is extended with inaccuracies of the measurement given by the BTM.
+\end{description}
+\end{description}\\
+&
 \begin{description}
-\item[packets](Common\_Types\_Pkg::CompressedPackets\_T): Packets as received as a part of the telegram or radio message. The structure is set-up and can be accessed by library routines of the trackMessages component of the system. In the manage\_trackside\_Messages component packets my be changed to being absent (e.g., by the function validateDataDirection or by the Information filter.). If packets have to be treated only this valid indicator is changed. No other parts of the packets are accessed.
-
+\item[rtm\_msg](API\_Msg\_Pkg::API\_RadioMsgHeader\_T) Radio message header with some additional information added by the RTM module. The information is structured as follows:
+\begin{description}
+\item[present](bool) Radio message has been received via rtm and the information of this message is present. 
+\item[apiConsistencyError](bool) The message is checked after reception at the btm. Typical checks are checksum-tests or checks at conversion of the types from bit-layout to the presentation in the evc. If apiConsistencyError is false the information may not be used. The information is evaluated in the checkRadioMessage component of this model.
+\item[Radio\_Common\_Header](Radio\_Types\_Pkg::\newline Radio\_TrackTrain\_Header\_T) Header of the radio-message as defined in subset 26 section 8.4.4.6.1. In the SRS, depending on the concrete message, some optional variables are defined. In our implementation all optional variables are foreseen. In order to indicate the availability of variables the component radioMetadata is used (see below).
+\item[radioMetadata](Common\_Types\_Pkg::RadioMetadata\_T) Metadata for optional variables in the common radio message header. For each optional component a presence indicator of type bool is in the list.  
+\item[sendingRBC\_Id](Common\_Types\_Pkg::RBC\_Id\_T) Identifies the RBC as it is known at the RTM. Information is added to the interface in the RTM.
+\begin{description}
+\item[packets](Common\_Types\_Pkg::CompressedPackets\_T) Packets as received as a part of the telegram or radio message. The structure is set-up and can be accessed by library routines of the trackMessages component of the system. In the manage\_trackside\_Messages component packets my be changed to being absent (e.g., by the function validateDataDirection or by the InformationFilter.). If packets have to be treated only this valid indicator is changed. No other parts of the packets are accessed.
 \end{description}
 \end{description}
-
 \end{description}
-
-
 \\
 \midrule
-Source					& API \\ 
+Source					& API 
+\todo[inline]{Proposal: Use input name of F2 here for consitency and traceablity.}\\ 
 \midrule
 Type					& API\_Msg\_Pkg::API\_TrackSideInput\_T \\
 \midrule
-Valid range of values	& Access to the information has to be guarded by the valid flag and similar flags deeper in the structure of thi interface. Checks on individual vlaues of components of messages, telegrams and packets is part of the decoding function. We assume information is valid in this part of the system.\\
+Valid range of values	& Access to the information has to be guarded by the valid flag and similar flags deeper in the structure of the interface. Checks on individual values of message components, telegrams and packets are part of the decoding function. We assume information to be valid in this part of the system.\\
 \midrule
 Behaviour when value is at boundary	& n/a (structure)\\
 \midrule
@@ -141,19 +147,20 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &n/a\\
 \toprule
 Input name				& ActualOdometry \\
 \midrule
-Description				& Provided by the external odometry module of the train. It contains relative location information with inaccuracies. In this model only information related to the position of the train is used (odo-component). A valid flag of the odometer input indicates the hardware is working and the parameter may be used.\\
+Description				& Odometry data provided by the external odometry module of the train. It contains relative location information with inaccuracies. In this model only information related to the position of the train is used (odo-component). A valid flag of the odometer input indicates the hardware is working and the parameter may be used.\\
 \midrule
-Source					& Odometer \\ 
+Source					& Odometer 
+\todo[inline]{Proposal: Use input name of F2 here for consitency and traceablity.}\\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::odometry\_T \\
 \midrule
-Valid range of values	& from the odo component the nominal position is used. No plausibility checks on the component are done. Any integer value is allowed. \\
+Valid range of values	& From the ODO component the nominal position is used. No plausibility checks on the component are done. Any integer value is allowed. \\
 \midrule
-Behaviour when value is at boundary	& boundary value may lead to jump of the calculation in negative ranges. This may result in the train not being able to complete the reading of a balise group. In consequence, this results in a balise group error and in a service brake reaction of the train.\\
+Behaviour when value is at boundary	& Boundary value may lead to jump of the calculation in negative ranges. As a result the train may not being able to complete the reading of a balise group. In consequence, this results in a balise group error and in a service brake reaction of the train.\\
 \midrule
-Behaviour for values out of valid range	& same as description at boundary.\\
+Behaviour for values out of valid range	& Same as description at boundary.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & same as description at boundary.\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Same as description at boundary.\\
 
 \bottomrule
 \end{longtable}
@@ -164,10 +171,10 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & same as 
 \toprule
 Input name				& reset \\
 \midrule
-Description				& To delete all data stored in the module (e.g.~collected balise telegrams, which do not yet form a complete message), a reset input can be used. If the input is set to true, all data kept in the module is deleted and no input is accepted. The reset option is to be used when the evc is started or in system error scenarios.\\
+Description				& The reset input is used to delete all data stored in the module (e.g.~collected balise telegrams, which do not yet form a complete message). If the input is set to true, all data kept in the module is deleted and no input is accepted. The reset option is to be used when the EVC is started or in system error scenarios.\\
 \midrule
-Source					& Environment \\ 
-\midrule
+Source					& Environment
+\todo[inline]{Proposal: Use input name of F2 here for consitency and traceablity.}\\ \midrule
 Type					& bool \\
 \midrule
 Valid range of values	& 
@@ -196,7 +203,7 @@ Source					& CalculateTrainPosition \\
 \midrule
 Type					& TrainPosition\_Types\_Pck::trainPosition\_T \\
 \midrule
-Valid range of values	& a valid flag is used in this input to indicate data is provided correctly.\\
+Valid range of values	& A valid flag is used in this input to indicate data is provided correctly.\\
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
@@ -212,7 +219,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \toprule
 Input name				& modeAndLevel \\
 \midrule
-Description				& Provides the current level and mode of the EVC. Mode and Level are used by the information filter.\\
+Description				& Provides the current level and mode of the EVC. Mode and Level are used by the InformationFilter subcomponent.\\
 \midrule
 Source					& ModeAndLevel \\ 
 \midrule
@@ -241,13 +248,13 @@ Source					& Radio Management\\
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::T\_internal\_Type \\
 \midrule
-Valid range of values	& pos integer \\
+Valid range of values	& Positive integer. \\
 \midrule
-Behaviour when value is at boundary	& when boundary is reached the input will jump to 0.\\
+Behaviour when value is at boundary	& When boundary is reached the input will jump to 0.\\
 \midrule
 Behaviour for values out of valid range	& if negative this parameter will result in a radio message sequence error. Connection to the rbc will be closed.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see above \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & See above.\\
 \bottomrule
 \end{longtable}
 
@@ -259,17 +266,18 @@ Input name				& M\_VERSION \\
 \midrule
 Description				& For monitoring the safe radio connection, this national value is needed as an input. This parameter is used in the radioCheck component of this model. \\
 \midrule
-Source					& EVC Version Management\\ 
+Source					& EVC Version Management
+\todo[inline]{Proposal: Use input name of F2 here for consitency and traceablity.}\\ 
 \midrule
 Type					& M\_VERSION \\
 \midrule
-Valid range of values	& enumerated values\\
+Valid range of values	& Enumerated values.\\
 \midrule
-Behaviour when value is at boundary	& value check will reject radio message resp. balise telegram. In the consequence train will stop resp. session rejected. \\
+Behaviour when value is at boundary	& Value check will reject radio message resp. balise telegram. In the consequence train will stop resp. session rejected. \\
 \midrule
-Behaviour for values out of valid range	& value check will reject radio message resp. balise telegram. In the consequence train will stop resp. session rejected.\\
+Behaviour for values out of valid range	& Value check will reject radio message resp. balise telegram. In the consequence train will stop resp. session rejected.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see above \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & See above. \\
 \bottomrule
 \end{longtable}
 
@@ -281,21 +289,22 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see abov
 Input name				& lastRelevantEventTimestamp \\
 \midrule
 Description				& For monitoring the safe radio connection, it is necessary that the time between two packets is less than the value of {T\_NVCONTACT}.\newline
-In situations like level-changes or announced radio holes, not the timestamp of the last message is relevant for comparison, but the timestamp of the last relevant event. This can for example be the timestamp of the level change or the timestamp of the moment, when the train was passing the end of the radiohole.
+In situations like level changes or announced radio holes, not the timestamp of the last message is relevant for comparison, but the timestamp of the last relevant event. This can for example be the timestamp of the level change or the timestamp of the moment, when the train was passing the end of the radiohole.
 
 For performing this check, the timestamp of the last relevant event is provided to the model as an {T\_internal\_Type}-type. \\
 \midrule
-Source					& Radio Management \\ 
+Source					& Radio Management
+\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity.}\\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::T\_internal\_Type \\
 \midrule
-Valid range of values	& pos integer\\
+Valid range of values	& Positive integer.\\
 \midrule
-Behaviour when value is at boundary	& value will jump to 0. This may result in calculations of durations with negative reult. In a consequence, train will react in loss of the communication session.\\
+Behaviour when value is at boundary	& Value will jump to 0. This may result in calculations of durations with negative result. As a consequence, the train will react with the loss of the communication session.\\
 \midrule
-Behaviour for values out of valid range	& see above\\
+Behaviour for values out of valid range	& See above.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see above\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & See above.\\
 \bottomrule
 \end{longtable}
 
@@ -306,7 +315,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see abov
 \toprule
 Input name				& connectionStatus \\
 \midrule
-Description				& Status information about the radio connection. The information is needed to perform the timing check, which depends on the connection state in the radioCheck model. \\
+Description				& Status information about the radio connection. The information is needed to perform the timing check, which depends on the connection state in the radioCheck component. \\
 \midrule
 Source					& ManageRadioCommunication \\ 
 \midrule
@@ -334,7 +343,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \toprule
 Input name				& inSupervisingRbcId \\
 \midrule
-Description				& For the subcomponent InformationFilter, the information which radio messages are sent by the supervising RBC is needed. To recognize these messages, the identifier of the supervising RBC is needed. The input is used in the InformationFilter \\
+Description				& For the InformationFilter subcomponent, the information which radio messages are sent by the supervising RBC is needed. To recognize these messages, the identifier of the supervising RBC is needed. \\
 \midrule
 Source					& ManageRadioCommunication\\ 
 \midrule
@@ -345,9 +354,9 @@ Valid range of values	& 0, 1, 2
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	&  is iterpreted as no valid radio connection.\\
+Behaviour for values out of valid range	&  Is interpreted as no valid radio connection.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &is iterpreted as no valid radio connection.\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Is interpreted as no valid radio connection.\\
 \bottomrule
 \end{longtable}
 
@@ -358,13 +367,13 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &is iterpr
 \toprule
 Input name				& inAnnouncedBGs \\
 \midrule
-Description				& Provides information about balise groups as known in the evc. This information is generated by Calculate Train Position based on the linking information received from trackside and on the balise groups passed by the train.\\
+Description				& Provides information about balise groups as known in the EVC. This information is generated by the CalculateTrainPosition component based on the linking information received from track side and on the balise groups passed by the train.\\
 \midrule
 Source					& CalculateTrainPosition \\ 
 \midrule
 Type					& TrainPosition\_Types\_Pck::positionedBGs\_T \\
 \midrule
-Valid range of values	& each balise group netry is identified by an valid flag. \\
+Valid range of values	& Each balise group netry is identified by an valid flag. \\
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
@@ -381,19 +390,19 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \toprule
 Input name				& q\_nvlocacc \\
 \midrule
-Description				& The national value determines the location accuracy. Needed as input for checkBGConsistency  \\
+Description				& This national value determines the location accuracy. Needed as input for checkBGConsistency.  \\
 \midrule
 Source					& trackAtlas\\ 
 \midrule
 Type					& Q\_NVLOCACC \\
 \midrule
-Valid range of values	& 0 .. 63\\
+Valid range of values	& 0 \ldots 63\\
 \midrule
-Behaviour when value is at boundary	& no impact\\
+Behaviour when value is at boundary	& No impact.\\
 \midrule
-Behaviour for values out of valid range	& will result in wrong calculation of inaccuracy of the train.\\
+Behaviour for values out of valid range	& Will result in wrong calculation of inaccuracy of the train.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see above\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & See above.\\
 \bottomrule
 \end{longtable}
 
@@ -404,7 +413,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see abov
 \toprule
 Input name				& inActiveCab \\
 \midrule
-Description				& Indicates the cab is active. Used by InformationFilter \\
+Description				& Indicates the cab is active. Used by InformationFilter. \\
 \midrule
 Source					& TIU\\ 
 \midrule
@@ -426,7 +435,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \toprule
 Input name				& inTrainDataValid \\
 \midrule
-Description				& Indicates train data have been validated by the RBC. Used by InformationFilter \\
+Description				& Indicates train data have been validated by the RBC. Used by InformationFilter. \\
 \midrule
 Source					& trainData\\ 
 \midrule
@@ -448,27 +457,26 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \toprule
 Input name				& inFilterEvents \\
 \midrule
-Description				& A set of events needed for controlling the Information Filter. The following components are defined:
-\begin{description}
-\item[pendingL1Transition](bool): Indication if an announced LEVEL 1 transition is present. Used for Level Filter exception [1]. The information is indicating the status.
-Note: this indication can be evaluated based on information available in the InformationFilter. The input is not used from outside the main component Manage\_TrackSide\_Information.
-\item[pendingL2L3Transition](bool): Indication if an announced LEVEL 2 or Level 3 transition is present. Used for Level Filter exception [2]. The information is indicating the status.
-Note: this indication can be evaluated based on information available in the InformationFilter. The input is not used from outside the main component Manage\_TrackSide\_Information.
-\item[pendingAckOfTrainDataFromRBC](bool): Indicate if the acknowledgement of train data is pending. Used for Level Filter exception [3].
-\item[emergencyStopAccepted](bool): Indicate if the train performs an emergency brake. Used for Level Filter exception [5].
-\item[lastAckTextMessageId](int): The ID of the last acknowleged text message ID. Used for Level Filter exception [12]. The SRS requires text messages to restrict from double sending to the DMI when handled in the filter. This function is currently not implemented. 
-\item[pendingNTCTransition](bool): Indication if an announced LEVEL NTC transition is present. Used for Level Filter exception [6,7].
-\item[SPPAndGradientOnBoard](bool): Speed Profile and Gradient Profile received and available on board. This information may be part of the actual incoming message.
-\item[MACoverNotFullLength](bool): MA does not cover full length of the trip. Information from trackAtlas.
-\end{description}
-
-\\
+Description				& A set of events needed for controlling the InformationFilter. For details see valid range of values row in this table.\\
 \midrule
-Source					& evc database\\ 
+Source					& evc database
+\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity.}\\  
 \midrule
 Type					& Common\_Types\_Pkg::filterRelatedEvents\_T\\
 \midrule
-Valid range of values	& true, false\\
+Valid range of values	& This input is a complex structure consisting out of the following components:
+\begin{description}
+\item[pendingL1Transition](bool) Indicates if an announced LEVEL 1 transition is present. Used for Level filter exception [1]. The information is indicating the status.
+Note: this indication can be evaluated based on information available in the InformationFilter. The input is not used from outside the main component Manage\_TrackSide\_Information.
+\item[pendingL2L3Transition](bool) Indicates if an announced LEVEL 2 or Level 3 transition is present. Used for Level Filter exception [2]. The information is indicating the status.
+Note: this indication can be evaluated based on information available in the InformationFilter. The input is not used from outside the main component Manage\_TrackSide\_Information.
+\item[pendingAckOfTrainDataFromRBC](bool) Indicates if the acknowledgement of train data is pending. Used for Level filter exception [3].
+\item[emergencyStopAccepted](bool): Indicate if the train performs an emergency brake. Used for Level filter exception [5].
+\item[lastAckTextMessageId](int) The ID of the last acknowledged text message ID. Used for Level filter exception [12]. The SRS requires text messages to restrict from double sending to the DMI when handled in the filter. This function is currently not implemented. 
+\item[pendingNTCTransition](bool) Indication if an announced LEVEL NTC transition is present. Used for Level filter exception [6,7].
+\item[SPPAndGradientOnBoard](bool) Speed Profile and Gradient Profile received and available on board. This information may be part of the actual incoming message.
+\item[MACoverNotFullLength](bool) MA does not cover full length of the trip. Information from trackAtlas.
+\end{description}\\
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
@@ -484,12 +492,11 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \toprule
 Input name				& transitionPositionPassed \\
 \midrule
-Description				& The position of the requested level transition has been passed.
-This information is used by information filter to clean data after level management reactions.
-
+Description				& The position of the requested level transition has been passed. This information is used by InformationFilter subcomponent to clean data after level management reactions.
 \\
 \midrule
-Source					& Levels Management\\ 
+Source					& Levels Management
+\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity.}\\ 
 \midrule
 Type					&bool\\
 \midrule
@@ -510,32 +517,34 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \toprule
 Output name				& outputMessage \\
 \midrule
-Description				& Combines both balise and radio messages to one common datatype. This datatype contains all variables and packets, which are possible for the given scenario. In each cycle at most one valid message is put to the output. The InformationFilter might take the last processed one or a message from stack - depending on the information stored and on the status of the evc. The component consists of the following building blocks:
-
+Description				& Combines both balise and radio messages to one common datatype. This datatype contains all variables and packets, which are possible for the given scenario. In each cycle at most one valid message is put to the output. The InformationFilter might take the last processed one or a message from stack - depending on the information stored and on the status of the evc. The component consists of the following building blocks:\\
+&
 \begin{description}
-\item[valid]: Information about the status of this message.
+\item[valid] Information about the status of this message.
 \begin{description}
-\item[true]: the information is valid, a new message is now visible at the output. The valid flag (and the message as such) will only be present for one cycle.
-\item[false]: no valid message is available.
+\item[true] The information is valid, a new message is now visible at the output. The valid flag (and the message as such) will only be present for one cycle.
+\item[false] No valid message is available.
 \end{description}
-\item[source](Common\_Types\_Pkg::MsgSource\_T): source of this information. 
+\end{description}\\
+&
 \begin{description}
-\item[msrc\_undefined]: indicates the information is not defined. This input is expected when valid flag is false.
-\item[msrc\_Euroradio]: indicates the information is a euroradio message.
-\item[msrc\_Eurobalise]: indicates the information is a balise telegram.
+\item[source](Common\_Types\_Pkg::MsgSource\_T) Source of this information. 
+\begin{description}
+\item[msrc\_undefined] Indicates the information is not defined. This input is expected when valid flag is false.
+\item[msrc\_Euroradio] Indicates the information is a euroradio message.
+\item[msrc\_Eurobalise] Indicates the information is a balise telegram.
 \end{description}
 Other values of this enumeration are not expected in this model.
-\item[radioMetadata](Common\_Types\_Pkg::RadioMetadata\_T): metadata for optional variables in the common radio message header. For each optional component a presence indicator of type bool is in the list.  
+\item[radioMetadata](Common\_Types\_Pkg::RadioMetadata\_T) Metadata for optional variables in the common radio message header. For each optional component a presence indicator of type bool is in the list.  
+\item[BG\_Common\_Header](BG\_Types\_Pkg::BG\_Header\_T) Balise group message header with some additional information. This header collects information from the balise telegram headers together with the location and orientation of the balise group related to the driving direction.
 
-\item[BG\_Common\_Header](BG\_Types\_Pkg::BG\_Header\_T): balise group message header with some additional information. This header collects information from the balise telegram headers together with the location and orientation of the balise group related to the driving direction.
-
-\item[Radio\_Common\_Header](Radio\_Types\_Pkg::Radio\_TrackTrain\_Header\_T): radio message header with some additional information added by the rtm module. Variables of messages which are not present in all messages are available in the header, but controlled by the radio-metadata.
-\item[packets](Common\_Types\_Pkg::CompressedPackets\_T): Packets as received as a part of the telegram or radio message. The structure is set-up and can be accessed by library routines of the trackMessages component of the system. In the manage\_trackside\_Messages component packets my be changed to being absent (e.g., by the function validateDataDirection or by the Information filter.). If packets have to be treated only this valid indicator is changed. No other parts of the packets are changed.
-
+\item[Radio\_Common\_Header](Radio\_Types\_Pkg::\newline Radio\_TrackTrain\_Header\_T) Radio message header with some additional information added by the RTM module. Variables of messages which are not present in all messages are available in the header, but controlled by the radio metadata.
+\item[packets](Common\_Types\_Pkg::CompressedPackets\_T) Packets as received as a part of the telegram or radio message. The structure is set-up and can be accessed by library routines of the trackMessages component of the system. In the manage\_trackside\_Messages component packets my be changed to being absent (e.g., by the function validateDataDirection or by the InformationFilter.). If packets have to be treated only this valid indicator is changed. No other parts of the packets are changed.
 \end{description}
 \\
 \midrule
-Destination				& (nearly) all functions \\ 
+Destination				& (nearly) all functions
+\todo[inline]{Proposal: List all the exact SCADE component name here for consitency and traceablity.}\\ 
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
@@ -558,7 +567,8 @@ Output name				& ApplyServiceBrake \\
 \midrule
 Description				&  Indicates if the balise group the train just passed could not be processed correctly. The check results in the request for a service break. \\
 \midrule
-Destination				& SpeedAndDistanceMonitoring\\ 
+Destination				& SpeedAndDistanceMonitoring
+\todo[inline]{Check if this is the exact SCADE component name}\\ 
 \midrule
 Type					& bool \\
 \midrule
@@ -581,7 +591,8 @@ Output name				& BadBaliseMessageToDMI \\
 \midrule
 Description				& Information to be passed to the DMI to indicate the reception of a ``bad balise'' to the driver. \\
 \midrule
-Destination				& DMI \\ 
+Destination				& DMI
+\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity.} \\
 \midrule
 Type					& bool \\
 \midrule
@@ -602,7 +613,14 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &  n/a\\
 \toprule
 Output name				& outCheckErrors \\
 \midrule
-Description				& Error flags for errors reported at the check procedures at messages. The following errors are reported:
+Description				& Error flags for errors reported at the check procedures at messages. For details see valid range of values row of this table.\\
+\midrule
+Destination				& JRU
+\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity.}\\ 
+\midrule
+Type					& Common\_Types\_Pkg::MSG\_Errors\_T\\
+\midrule
+Valid range of values	& This output is a complex structure mainly consisting out of boolean values. The boolean variables are set true if an error in the particular parameter has been detected and false otherwise.
 \begin{description}
 \item[linkedBGError](bool) Reported by checkBGConsistency. Error in a linked BGH - Message has been detected.
 \item[unlinkedBGError](bool) Reported by checkBGConsistency. Error in an unlinked BGH - Message has been detected.
@@ -616,20 +634,12 @@ Description				& Error flags for errors reported at the check procedures at mess
 \end{description}
 \\
 \midrule
-Destination				& JRU\\ 
-\midrule
-Type					& Common\_Types\_Pkg::MSG\_Errors\_T\\
-\midrule
-Valid range of values	& \begin{description}
-\item[true] An error in the respective parameter has been detected.
-\item[false] No error has been detected.
-\end{description} \\
-\midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
 Behaviour for values out of valid range	& n/a\\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+\bottomrule
 \end{longtable}
 
 
@@ -639,21 +649,22 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \toprule
 Output name				& errorUnlinkedBG \\
 \midrule
-Description				& The informationFilter component has to provide information to the evc-components according to the actaul level and radio state. In order to trigger the level change level management needs to know about avaialblity of track profiles and other components in order to select the correct mode and level. This output provides information relevant to trigger level transitions. The data will be accumulated in the informationFilter until the position for the level change has been reached. The output structure consists of the following components:
+Description				& The InformationFilter component has to provide information to the EVC components according to the actual level and radio state. In order to trigger the level change level management needs to know about avaialblity of track profiles and other components in order to select the correct mode and level. This output provides information relevant to trigger level transitions. The data will be accumulated in the InformationFilter until the position for the level change has been reached. The output structure consists of the following components:
 \begin{description}
-\item[P41](Packet\_Types\_Pkg::P41\_LevelTransistionOrders\_T): packet 41 (level transition order). 
-\item[P46](Packet\_Types\_Pkg::P46\_LevelTransistionOrders\_T): packet 46 (conditional level transition order). 
-\item[LRBG](NID\_LRBG): Reference LRBG for the level transition order.
-\item[referenceLocation](Obu\_BasicTypes\_Pkg::L\_internal\_Type): location of the reference LRBG. This location has to be used as reference for calculating the level transition position. 
-\item[P12\_received](bool): Packet 12 (Level 1 Movement Authority) has been received at the infomation filter in the context of this level transition. 
-\item[P15\_received](bool): Packet 15 (Level 2/3 Movement Authority) has been received at the infomation filter in the context of this level transition. 
-\item[P21\_received](bool): Packet 21 Gradient Profile) has been received at the infomation filter in the context of this level transition. 
-\item[P27\_received](bool): Packet 27 (International Static Speed Profile) has been received at the infomation filter in the context of this level transition. 
+\item[P41](Packet\_Types\_Pkg::P41\_LevelTransistionOrders\_T) Packet 41 (level transition order). 
+\item[P46](Packet\_Types\_Pkg::P46\_LevelTransistionOrders\_T) Packet 46 (conditional level transition order). 
+\item[LRBG](NID\_LRBG) Reference LRBG for the level transition order..
+\item[referenceLocation](Obu\_BasicTypes\_Pkg::L\_internal\_Type) Location of the reference LRBG. This location has to be used as reference for calculating the level transition position. 
+\item[P12\_received](bool) Packet 12 (Level 1 Movement Authority) has been received at the InfomationFilter subcomponent in the context of this level transition. 
+\item[P15\_received](bool) Packet 15 (Level 2/3 Movement Authority) has been received at the InfomationFilter subcomponent in the context of this level transition. 
+\item[P21\_received](bool) Packet 21 Gradient Profile) has been received at the InfomationFilter subcomponent in the context of this level transition. 
+\item[P27\_received](bool) Packet 27 (International Static Speed Profile) has been received at the InfomationFilter subcomponent in the context of this level transition. 
 \end{description}
 
 \\
 \midrule
-Destination				& Level Management\\ 
+Destination				& Level Management
+\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity.}\\ 
 \midrule
 Type					& Level\_And\_Mode\_Types\_Pkg::T\_Data\_From\_TrackForLevelChange\\
 \midrule
@@ -677,10 +688,11 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \toprule
 Output name				& outputMessageForRadioAck \\
 \midrule
-Description				& Even if an imcoming radio message is rejected or kept for some time in the informationFilter backlog some information needs to be made available for the maintaining the communication session with the RBC, e.g., the timestamp of the received message and acknowledgment of message reception based on the ack flag. No other information of this message is to be used in the evc. This concept might be improved when radio management functions are re-arranged.
+Description				& Even if an imcoming radio message is rejected or kept for some time in the InformationFilter buffer some information needs to be made available for maintaining the communication session with the RBC, e.g., the timestamp of the received message and acknowledgment of message reception based on the ACK flag. No other information of this message is to be used in the EVC. This concept might be improved when radio management functions are rearranged.
 \\
 \midrule
-Destination				& Radio Management\\ 
+Destination				& Radio Management
+\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity.}\\ 
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
