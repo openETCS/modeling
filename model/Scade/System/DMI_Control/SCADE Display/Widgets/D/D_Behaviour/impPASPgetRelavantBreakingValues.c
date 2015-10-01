@@ -11,15 +11,33 @@ void impPASPgetRelavantBreakingValues_PASP(
 	kcg_int i;
 	kcg_int j;
 	kcg_int lastIndex = 0;
+	kcg_real maxSSPDist = 0.0;
 
-	(*FilteredDistances[0]) = (*Distances[0]);
+	(*FilteredDistances[0]) = (*Distances[1]);
 	(*filteredSpeeds[0]) = (kcg_real)4.0;
 
-	for (i = 0; i <= 7; i++) {
+
+	for(i = 0; i <= 9; i++)
+	{
+		// Search for end of SSP (indicated as -1.0 for the speed value)
+		if((*Speeds[i]) == -1.0)
+		{
+			maxSSPDist = (*Distances[i]); 
+			break;
+		}
+	}
+	
+	for (i = 0; i <= 8; i++) {
+		// calculate speed levels for pair of speeds in input array
 		kcg_int speedLevel1 = utilGetSpeedLevel((*Speeds)[i+1], CPS);
 		kcg_int speedLevel2 = utilGetSpeedLevel((*Speeds)[i], CPS);
-		if (speedLevel1 < speedLevel2) { // Next speedLevel is in a new speed area
-			lastIndex++;;
+		if ((*Speeds[i+1]) == -1.0){
+			(*FilteredDistances)[lastIndex] = maxSSPDist;
+			(*filteredSpeeds)[lastIndex] = speedLevel2;
+			break;
+		} else if (speedLevel1 < speedLevel2) { // Next speedLevel is in a new speed area
+			lastIndex++;
+			
 			(*FilteredDistances)[lastIndex] = (*Distances)[i+2];
 			(*filteredSpeeds)[lastIndex] = (kcg_real)speedLevel1;
 		} else if (speedLevel1 == 0) {
@@ -30,6 +48,7 @@ void impPASPgetRelavantBreakingValues_PASP(
 			break;
 		} else if (speedLevel1 >= speedLevel2) { //new speed level is the same as last one
 			(*FilteredDistances)[lastIndex] = (*Distances)[i+2]; //just copy the new max distance for the speed level into the existing entry
+			(*filteredSpeeds)[lastIndex] = speedLevel2;
 		} else {
 			(*FilteredDistances[i+1]) = 1337.0;
 		}
@@ -39,6 +58,11 @@ void impPASPgetRelavantBreakingValues_PASP(
 kcg_int utilGetSpeedLevel (kcg_real value1, kcg_real referenceValue) {
 	if ((int)referenceValue == 0) {
 		return 4;
+	}
+
+	if(value1 == -1.0)
+	{
+		return 0;
 	}
 	kcg_real value1Percent = (value1/referenceValue);
 	
