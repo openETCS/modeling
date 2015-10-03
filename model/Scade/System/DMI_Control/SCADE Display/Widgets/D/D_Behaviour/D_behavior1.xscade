@@ -121,6 +121,25 @@
 						<ed:Variable oid="!ed/48ba/E4E/138C/55719f8250a9"/>
 					</pragmas>
 				</Variable>
+				<Variable name="GradientValueValid">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="32"/>
+							</size>
+						</Table>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/5204b/1D26/780/560fb46f53ca"/>
+					</pragmas>
+				</Variable>
 			</inputs>
 			<outputs>
 				<Variable name="Scale">
@@ -823,29 +842,6 @@
 						<ed:Variable oid="!ed/4874/E4E/138C/55719f824aa3"/>
 					</pragmas>
 				</Variable>
-				<Variable name="_L132">
-					<type>
-						<Table>
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="bool"/>
-									</type>
-								</NamedType>
-							</type>
-							<size>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="numberOfObjects"/>
-									</path>
-								</IdExpression>
-							</size>
-						</Table>
-					</type>
-					<pragmas>
-						<ed:Variable oid="!ed/4875/E4E/138C/55719f826e58"/>
-					</pragmas>
-				</Variable>
 				<Variable name="_L131">
 					<type>
 						<Table>
@@ -1539,6 +1535,56 @@
 					</type>
 					<pragmas>
 						<ed:Variable oid="!ed/48a0/E4E/138C/55719f823f6f"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L207">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="32"/>
+							</size>
+						</Table>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/5204d/1D26/780/560fb47eef1"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L208">
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<!-- (11 - 0) + 1 -->
+								<NAryOp operator="+">
+									<operands>
+										<!-- (11 - 0) -->
+										<BinaryOp operator="-">
+											<operands>
+												<ConstValue value="11"/>
+												<ConstValue value="0"/>
+											</operands>
+										</BinaryOp>
+										<ConstValue value="1"/>
+									</operands>
+								</NAryOp>
+							</size>
+						</Table>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/52055/1D26/780/560fb51f55fd"/>
 					</pragmas>
 				</Variable>
 			</locals>
@@ -2256,34 +2302,6 @@
 						<ed:Equation oid="!ed/482e/E4E/138C/55719f82424a"/>
 					</pragmas>
 				</Equation>
-				<!-- _L132 = true ^ numberOfObjects; -->
-				<Equation>
-					<lefts>
-						<VariableRef name="_L132"/>
-					</lefts>
-					<right>
-						<!-- true ^ numberOfObjects -->
-						<ScalarToVectorOp name="5">
-							<flow>
-								<ListExpression>
-									<items>
-										<ConstValue value="true"/>
-									</items>
-								</ListExpression>
-							</flow>
-							<size>
-								<IdExpression>
-									<path>
-										<ConstVarRef name="numberOfObjects"/>
-									</path>
-								</IdExpression>
-							</size>
-						</ScalarToVectorOp>
-					</right>
-					<pragmas>
-						<ed:Equation oid="!ed/482f/E4E/138C/55719f82dc6"/>
-					</pragmas>
-				</Equation>
 				<!-- _L133 = (map ComputeDistDisplay <<numberOfObjects>>)(_L129, _L131, _L136, _L127, ... -->
 				<Equation>
 					<lefts>
@@ -2418,7 +2436,7 @@
 						<ed:Equation oid="!ed/4832/E4E/138C/55719f821c30"/>
 					</pragmas>
 				</Equation>
-				<!-- GradientVisible = _L132; -->
+				<!-- GradientVisible = _L208; -->
 				<Equation>
 					<lefts>
 						<VariableRef name="GradientVisible"/>
@@ -2426,7 +2444,7 @@
 					<right>
 						<IdExpression>
 							<path>
-								<ConstVarRef name="_L132"/>
+								<ConstVarRef name="_L208"/>
 							</path>
 						</IdExpression>
 					</right>
@@ -3298,6 +3316,49 @@
 						<ed:Equation oid="!ed/485a/E4E/138C/55719f8267c0"/>
 					</pragmas>
 				</Equation>
+				<!-- _L207 = GradientValueValid; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L207"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="GradientValueValid"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/5204c/1D26/780/560fb47e1439"/>
+					</pragmas>
+				</Equation>
+				<!-- _L208 = _L207[0 .. 11]; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L208"/>
+					</lefts>
+					<right>
+						<!-- _L207[0 .. 11] -->
+						<SliceOp name="1">
+							<array>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L207"/>
+									</path>
+								</IdExpression>
+							</array>
+							<fromIndex>
+								<ConstValue value="0"/>
+							</fromIndex>
+							<toIndex>
+								<ConstValue value="11"/>
+							</toIndex>
+						</SliceOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/52054/1D26/780/560fb51f633b"/>
+					</pragmas>
+				</Equation>
 			</data>
 			<pragmas>
 				<ed:Operator oid="!ed/480a/E4E/138C/55719f827253" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
@@ -3760,14 +3821,6 @@
 										<Size width="254" height="508"/>
 									</size>
 								</EquationGE>
-								<EquationGE kind="OBJ_LIT" presentable="!ed/482f/E4E/138C/55719f82dc6">
-									<position>
-										<Point x="19854" y="14563"/>
-									</position>
-									<size>
-										<Size width="169" height="318"/>
-									</size>
-								</EquationGE>
 								<EquationGE presentable="!ed/4830/E4E/138C/55719f8250a5">
 									<position>
 										<Point x="17780" y="8424"/>
@@ -3856,14 +3909,6 @@
 										<Point x="17780" y="18098"/>
 									</positions>
 								</Edge>
-								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/482f/E4E/138C/55719f82dc6" dstEquation="!ed/4833/E4E/138C/55719f8228d0">
-									<positions>
-										<Point x="20029" y="14711"/>
-										<Point x="21987" y="14711"/>
-										<Point x="21987" y="14711"/>
-										<Point x="23998" y="14711"/>
-									</positions>
-								</Edge>
 								<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/4829/E4E/138C/55719f82678" dstEquation="!ed/4830/E4E/138C/55719f8250a5">
 									<positions>
 										<Point x="16166" y="12091"/>
@@ -3918,6 +3963,38 @@
 										<Point x="16986" y="9340"/>
 										<Point x="16986" y="9340"/>
 										<Point x="17780" y="9340"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/5204c/1D26/780/560fb47e1439">
+									<position>
+										<Point x="9551" y="14340"/>
+									</position>
+									<size>
+										<Size width="265" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/52054/1D26/780/560fb51f633b">
+									<position>
+										<Point x="11642" y="13785"/>
+									</position>
+									<size>
+										<Size width="2424" height="1789"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5204c/1D26/780/560fb47e1439" dstEquation="!ed/52054/1D26/780/560fb51f633b">
+									<positions>
+										<Point x="9816" y="14605"/>
+										<Point x="10795" y="14605"/>
+										<Point x="10795" y="14684"/>
+										<Point x="11642" y="14684"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/52054/1D26/780/560fb51f633b" dstEquation="!ed/4833/E4E/138C/55719f8228d0">
+									<positions>
+										<Point x="14076" y="14684"/>
+										<Point x="18362" y="14684"/>
+										<Point x="18362" y="14684"/>
+										<Point x="23998" y="14684"/>
 									</positions>
 								</Edge>
 							</presentationElements>
