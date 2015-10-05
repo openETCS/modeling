@@ -8,7 +8,9 @@
 namespace eval ::ctrl {
   variable tree .c.nav.tree
   variable headersTable .c.d.n.headers.tree
-  variable packetTable .c.d.n.packets.tree
+  variable packetInfoTable .c.d.n.packets.tree
+  variable packetDataTable .c.d.n.packets.data
+  variable packetDataLabel .c.d.n.packets.l
 }
 
 
@@ -68,10 +70,11 @@ proc ctrl::showRadioData {msg pos} {
   updatePacketTable [dict get $msg packetinfo]
 }
 
-proc ctrl::updatePacketTable {data} {
-  variable packetTable
 
-  $packetTable delete [$packetTable children {}]
+proc ctrl::updatePacketTable {data} {
+  variable packetInfoTable
+
+  $packetInfoTable delete [$packetInfoTable children {}]
   foreach pkt $data {
     set index [lindex $pkt 1]
     set nid_packet [lindex $pkt 3]
@@ -81,27 +84,77 @@ proc ctrl::updatePacketTable {data} {
       2 {set q_dir B}
       default {set q_dir X}
     }
+    set m_version [lindex $pkt 11]
+    set subindex [lindex $pkt 13]
     set name [list [pkts::packetName $nid_packet]]
 
-    $packetTable insert {} end -id $index -text $index -values "$nid_packet $q_dir $name"
+    if {$subindex==0} {
+      $packetInfoTable insert {} end -id $index -text $index -values "$nid_packet $q_dir $m_version $name"
+    }
   }
 }
 
 proc ctrl::onTreeSelect {} {
   variable tree
+  variable packetDataTable
+  variable packetDataLabel
+
   showData [$tree focus]
+  $packetDataLabel configure -text "No packet selected"
+  $packetDataTable delete [$packetDataTable children {}]
 }
 
 
 proc ctrl::onPacketTreeSelect {} {
-  variable packetTable
+  variable packetInfoTable
 
-  set data [pkts::get data [$packetTable focus]]
-  switch [lindex $data 0] {
-    42 { view::showP042 [pkts::readP042 "$data"] }
-    45 { view::showP045 [pkts::readP045 "$data"] }
-    57 { view::showP057 [pkts::readP057 "$data"] }
-    default { view::showPNotSupported }
+  set itemid [$packetInfoTable focus]
+  set mversion [lindex [$packetInfoTable item $itemid -values] 2]
+  set data [pkts::get data $itemid]
+  switch [lindex $data 0]:$mversion {
+     3:16 { showPacket [pkts::readP003v1 "$data"] }
+     5:32 { showPacket [pkts::readP005 "$data"] }
+    15:32 { showPacket [pkts::readP015 "$data"] }
+    21:32 { showPacket [pkts::readP021 "$data"] }
+    27:16 { 
+      set npackets [expr [lindex $data 4] + 1]
+      set data [concat $data [pkts::get data [expr $itemid + 1] $npackets]]
+      showPacket [pkts::readP027v1 "$data"]
+    }
+    41:32 { showPacket [pkts::readP041 "$data"] }
+    42:32 { showPacket [pkts::readP042 "$data"] }
+    45:32 { showPacket [pkts::readP045 "$data"] }
+    46:32 { showPacket [pkts::readP046 "$data"] }
+    57:32 { showPacket [pkts::readP057 "$data"] }
+    58:32 { showPacket [pkts::readP058 "$data"] }
+    137:32 { showPacket [pkts::readP137 "$data"] }
+    default { setPacketNotSupported }
   }
-  puts "$data"
+  #puts "$data"
 }
+
+proc ctrl::setPacketNotSupported {} {
+  variable packetDataTable
+  variable packetDataLabel
+
+  $packetDataLabel configure -text "Packet not supported"
+  $packetDataTable delete [$packetDataTable children {}]
+}
+
+proc ctrl::setPacketDataValues {data keys} {
+  variable packetDataTable
+  variable packetDataLabel
+  variable packetInfoTable
+
+  $packetDataLabel configure -text "Values for selected packet:"
+  $packetDataTable delete [$packetDataTable children {}]
+  foreach k $keys {
+    $packetDataTable insert {} end -id $k -text $k -values [dict get $data $k]
+  }
+}
+
+proc ctrl::showPacket {data} {
+  setPacketDataValues $data [dict keys $data]
+}
+
+

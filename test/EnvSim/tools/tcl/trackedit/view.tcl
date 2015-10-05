@@ -4,8 +4,8 @@
 # 
 # History:
 # - 24.09.15, J. Kastner: initial version
+# - 30.09.15, J. Kastner: implement display of packet information
 package require Tk
-#package require BWidget
 
 namespace eval ::view {
   set idValue ""
@@ -25,17 +25,14 @@ proc view::addLabelField {path label var col row {value ""}} {
   }
 }
 
-proc view:setValue {path value} {
-  ${path}_v delete 0 end
-  ${path}_v insert 0 "$value"
-}
 
 proc view::init {} {
   variable tabPackets
   variable packetFrame
+  variable packetdata
   option add *tearOff 0
 
-  wm title . "openETCS TrackEditor"
+  wm title . "openETCS TrackViewer"
 
   grid [ttk::frame .c -padding 10] -sticky nwes
 
@@ -94,21 +91,31 @@ proc view::init {} {
   set tabPackets $notebook.packets
   ttk::frame $tabPackets
   $notebook add $tabPackets -text Packets
-  grid [ttk::treeview $tabPackets.tree -columns {nid_packet q_dir name}] -column 0 -row 0 -sticky we
+  grid [ttk::treeview $tabPackets.tree -columns {nid_packet q_dir m_version name}] -column 0 -row 0 -sticky we
   grid columnconfigure $tabPackets 0 -weight 1
   set packetinfo $tabPackets.tree
   $packetinfo heading #0 -text #
   $packetinfo column #0 -width 30 -stretch false
   $packetinfo heading #1 -text Id
   $packetinfo column #1 -width 30 -stretch false
-  $packetinfo heading #2 -text Dir
+  $packetinfo heading #2 -text Dir.
   $packetinfo column #2 -width 30 -stretch false
-  $packetinfo heading #3 -text Name
-  $packetinfo column #3
+  $packetinfo heading #3 -text Ver.
+  $packetinfo column #3 -width 30 -stretch false
+  $packetinfo heading #4 -text Name
+  #$packetinfo column #3
   bind $packetinfo <<TreeviewSelect>> ctrl::onPacketTreeSelect
+  grid [ttk::scrollbar $tabPackets.tree_sb -command "$packetinfo yview"] -column 1 -row 0 -sticky ns
+  $packetinfo configure -yscrollcommand "$tabPackets.tree_sb set"
   
-  set packetFrame $tabPackets.f
-  grid [ttk::frame $packetFrame] -column 0 -row 1
+  grid [ttk::label $tabPackets.l -text "No packet selected" -font TkCaptionFont] -column 0 -row 1 -sticky w
+
+  grid [ttk::treeview $tabPackets.data -columns value] -column 0 -row 2 -sticky we
+  set dataTree $tabPackets.data
+  $dataTree heading #0 -text Variable
+  $dataTree heading #1 -text Value
+  grid [ttk::scrollbar $tabPackets.data_sb -command "$dataTree yview"] -column 1 -row 2 -sticky ns
+  $dataTree configure -yscrollcommand "$tabPackets.data_sb set"
 }
 
 
@@ -124,67 +131,3 @@ proc view::openTrackDialog {} {
 }
 
 
-proc view::clearPacketFrame {} {
-  variable packetFrame
-
-  grid forget $packetFrame
-  destroy $packetFrame
-  grid [ttk::frame $packetFrame] -column 0 -row 1
-}
-
-proc view::showPNotSupported {} {
-  variable packetData
-  variable packetFrame
-
-  set packetData {}
-  clearPacketFrame
-
-  grid [ttk::label $packetFrame.l -text {Packet currently not supported}]
-}
-
-proc view::addValues {path data col row names} {
-  foreach name $names {
-    set ::pkt_${name} [dict get $data $name]
-    view::addLabelField $path.$name $name ::pkt_$name $col $row
-    incr row
-  }
-}
-
-
-proc view::showP042 {data} {
-  variable packetFrame
-  variable packetData
-
-  set packetData $data
-  clearPacketFrame
-
-  addValues $packetFrame $data 0 0 "q_dir q_rbc nid_c nid_rbc nid_radio q_sleepsession"
-}
-
-proc view::showP045 {data} {
-  variable packetFrame
-  variable packetData
-
-  set packetData $data
-  clearPacketFrame
-
-  addValues $packetFrame $data 0 0 "q_dir nid_mn"
-}
-
-proc view::showP046 {data} {
-  variable packetFrame
-  variable packetData
-
-  set packetData $data
-  clearPacketFrame
-}
-
-proc view::showP057 {data} {
-  variable packetFrame
-  variable packetData
-
-  set packetData $data
-  clearPacketFrame
-
-  addValues $packetFrame $data 0 0 "q_dir t_mar t_timeoutrqst t_cycrqst"
-}

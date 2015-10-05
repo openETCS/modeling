@@ -38,8 +38,10 @@ es_Status es_tcl_pkts_get_headers(es_AppendResult appendResult, es_ClientData da
     MetadataElement_T_Common_Types_Pkg *hd = &es_tcl_pkts_target->PacketHeaders[i];
     if( ! hd->valid ) { break; }
     int nid_packet = hd->nid_packet / 1000000;
-    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"{index %d nid_packet %d start %d  end %d q_dir %d} ",
-             i,nid_packet,hd->startAddress, hd->endAddress, hd->q_dir);
+    int m_version = (hd->nid_packet % 100000) / 1000;
+    int subindex = hd->nid_packet % 1000;
+    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"{index %d nid_packet %d start %d  end %d q_dir %d m_version %d subindex %d} ",
+             i,nid_packet,hd->startAddress, hd->endAddress, hd->q_dir, m_version, subindex);
     appendResult(es_msg_buf,data);
   }
 
@@ -47,32 +49,28 @@ es_Status es_tcl_pkts_get_headers(es_AppendResult appendResult, es_ClientData da
 }
 
 
-es_Status es_tcl_pkts_get_data(int index, es_AppendResult appendResult, es_ClientData data) {
+es_Status es_tcl_pkts_get_data(int index, int npackets, es_AppendResult appendResult, es_ClientData data) {
   CHECK_PKTS_TARGET;
-  if(index<0||index>=MAX_NUM_PACKETS) {
-    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"Invalid index: %d",index);
+  int lastindex = index + npackets - 1;
+  if(index<0||lastindex>=MAX_NUM_PACKETS) {
+    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"Invalid index/npackets: %d / %d",index,npackets);
     return ES_TCL_ERROR;
   }
 
+
   MetadataElement_T_Common_Types_Pkg *hd = &es_tcl_pkts_target->PacketHeaders[index];
+  int spos = hd->startAddress;
+  int epos = es_tcl_pkts_target->PacketHeaders[lastindex].endAddress;
   int i;
   char* buf = es_msg_buf;
   int max = ES_MSG_BUF_SIZE;
-//  max -= snprintf(buf,max,"{");
-//  buf += 1;
-  for(i=hd->startAddress; (i<=hd->endAddress && max>0); i++) {
+  for(i=spos; (i<=epos && max>0); i++) {
     int n = snprintf(buf, max, "%d ", es_tcl_pkts_target->PacketData[i]);
     max -= n;
     buf += n;
   }
-//  snprintf(buf,max,"}");
+
   appendResult(es_msg_buf,data);
   return ES_OK;
 }
-//es_Status es_tcl_pkts_gethead(char *subcmd, es_AppendResult appendResult, es_ClientData data) {
-//  if(!strcmp("headers",subcmd)) {
-//    return es_tcl_pkts_get_headers(appendResult,data);
-//  }
-//  snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid subcommand for pkts::get: %d")
-//  return ES_OK;
-//}
+

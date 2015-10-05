@@ -102,15 +102,19 @@ int envsim_pkts_get_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_Obj *
   }
 
   if(!strcmp("data",subcmd)) {
-    if(objc!=3) {
-      Tcl_WrongNumArgs(interp,1,objv,"data index");
+    if(objc<3||objc>4) {
+      Tcl_WrongNumArgs(interp,1,objv,"data index [npackets]");
       return TCL_ERROR;
     }
     int index = 0;
+    int npackets = 1;
     if(Tcl_GetIntFromObj(interp,objv[2],&index)) {
       return TCL_ERROR;
     }
-    if(es_tcl_pkts_get_data(index,envsim_append_result,(es_ClientData)interp)) {
+    if(objc==4 && Tcl_GetIntFromObj(interp,objv[3],&npackets)) {
+      return TCL_ERROR;
+    }
+    if(es_tcl_pkts_get_data(index,npackets,envsim_append_result,(es_ClientData)interp)) {
       Tcl_AddErrorInfo(interp,es_msg_buf);
       return TCL_ERROR;
     }

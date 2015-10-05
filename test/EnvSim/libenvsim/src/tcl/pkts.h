@@ -24,7 +24,9 @@ es_Status es_tcl_pkts_get_headers(es_AppendResult appendResult, es_ClientData da
 
 // Command pkts::get data index
 //
-// Writes the data array for the packet at the specified index using the provided appendResult function
-es_Status es_tcl_pkts_get_data(int index, es_AppendResult appendResult, es_ClientData data);
+// Writes the data array for the packet(s) at the specified index using the provided appendResult function.
+// If npackets>1, the packet data of the following (npackets-1) packets is concatenated to the data
+// of the packet at the specified index.
+es_Status es_tcl_pkts_get_data(int index, int npackets, es_AppendResult appendResult, es_ClientData data);
 
 #endif //LIBENVSIM_PKTS_H
