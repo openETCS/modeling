@@ -10,11 +10,18 @@ namespace eval ::rbc {
 
 
   ############################### INTERNAL VARS ###############################
+  # RBC_Wrapper
   variable rbc RBC_Internal_Test_Pkg::RBC_Wrapper
   variable trainMsg "$rbc/inRadioTrainTrackMsg"
   variable triggeredTrackMsg "$rbc/inTriggeredRadioTrackTrainMessage"
   variable trackMsg "$rbc/outRadioTrackTrainMessage"
   variable sessionMgt "$rbc/outSessionManagement"
+  # Test_TryPutDiagMsg
+  variable tpdm RBC_Internal_Test_Pkg::Unit_Test_Pkg::Test_TryPutDiagMsg
+  variable tpdm_inDataBus "$tpdm/inDataBus"
+  variable tpdm_diagMsg "$tpdm/inDiagMsg"
+  variable tpdm_success "$tpdm/outSuccess"
+  variable tpdm_outDataBus "$tpdm/outDataBus"
 
   ################################# SIMULATION #################################
   
@@ -163,6 +170,74 @@ namespace eval ::rbc {
 	return $t_train
   }
 
+  ########################## DIAGNOSTIC MESSAGES ############################
+  
+  # operator: Test_TryPutDiagMsg
+  # sets the properties of a incoming diagnostic message
+  proc setDiagMsg {args} {
+    variable tpdm_diagMsg
+	util::assign "$tpdm_diagMsg." valid=true
+    eval util::assign "$tpdm_diagMsg." $args  
+  }
+  
+  # operator: Test_TryPutDiagMsg
+  # resets the incoming diagnostic message
+  proc resetDiagMsg {args} {
+    variable tpdm_diagMsg
+	SSM::set $tpdm_diagMsg {(false, RBC_Diagnostic_Pkg::DIAG_MSG_TYPE_information, RBC_Diagnostic_Pkg::DIAG_MSG_SRC_Process_Unconditional_Emergency_Message, RBC_Diagnostic_Pkg::DIAG_MSG_Failure_during_session_establishment)}
+  }
+  
+  # operator: Test_TryPutDiagMsg
+  # sets the valid state of a given range of diagnostic messages
+  # - first and second parameter defines the range (index starts at 0)
+  # - state: set state on true or false?
+  # example:
+  # rbc::setDiagMsgValidState 0 15 true
+  proc setDiagMsgValidState {start end state} {
+    variable tpdm_inDataBus
+	for {set i $start} {$i <= $end} {incr i} {
+		util::assign "$tpdm_inDataBus.diagnostic\[$i\]." valid=$state
+	}
+  }
+  
+  # operator: Test_TryPutDiagMsg
+  # check the success of the put operator
+  # state: check for true or false
+  # example:
+  # rbc::checkPutSuccess true
+  proc checkPutSuccess {state args} {
+    variable tpdm_success
+	# check if diagnostic message is valid
+	util::check "$tpdm_success" =$state
+  }
+  
+  # operator: Test_TryPutDiagMsg
+  # check the properties of the diagnostic messages on the RBC data bus and if its valid
+  # - first parameter refers to the message number (index starts at 0)
+  # example:
+  # rbc::checkDiagMsg 0
+  proc checkDiagMsg {num args} {
+    variable tpdm_outDataBus
+	# check if diagnostic message is valid
+	util::check "$tpdm_outDataBus.diagnostic\[$num\]." valid=true
+	# check the properties
+	foreach val $args {
+	  util::check "$tpdm_outDataBus.diagnostic\[$num\]." $val
+    }
+  }
+  
+  # operator: Test_TryPutDiagMsg
+  # check the valid state of a given range of diagnostic messages
+  # - first and second parameter defines the range (index starts at 0)
+  # - state: check for true or false?
+  # example:
+  # rbc::checkDiagMsgValidState 0 15 false
+  proc checkDiagMsgValidState {start end state} {
+    variable tpdm_outDataBus
+	for {set i $start} {$i <= $end} {incr i} {
+		util::check "$tpdm_outDataBus.diagnostic\[$i\]." valid=$state
+	}
+  }
   
 }
 
