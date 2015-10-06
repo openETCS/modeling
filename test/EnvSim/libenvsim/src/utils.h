@@ -21,7 +21,11 @@ extern char es_msg_buf[];
 
 typedef enum {
   ES_OK,
-  ES_TCL_ERROR
+  ES_TCL_ERROR,
+  // indicates that the request operation is not supported (by the current configuration)
+  ES_NOT_SUPPORTED,
+  // indicates an error in the TCP stack
+  ES_TCP_ERROR
 } es_Status;
 
 typedef char* es_ClientData;

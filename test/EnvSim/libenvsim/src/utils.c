@@ -74,6 +74,7 @@ es_ListEntry* es_list_filter(es_ListEntry *list, bool (*f)(char*)) {
 
 es_ListEntry* es_list_remove_head(es_ListEntry *list, char **data) {
   if(list==NULL) {
+    *data = NULL;
     return NULL;
   }
 

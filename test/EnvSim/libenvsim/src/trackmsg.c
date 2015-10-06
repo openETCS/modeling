@@ -167,3 +167,4 @@ void es_exec_tracksim_cycle(es_TrackSimState *state, es_TriggerPos newBPos, es_T
   es_trigger_balise_msgs(state,newBPos);
   es_trigger_radio_msgs(state,newRPos);
 }
+

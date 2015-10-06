@@ -12,6 +12,11 @@
 
 #include "utils.h"
 #include "tcl/interp.h"
+
+#ifndef NO_TRACKMSG
 #include "trackmsg.h"
+#endif // NO_TRACKMSG
+
+#include "tcp.h"
 
 #endif //ENGINE_ENVSIM_H

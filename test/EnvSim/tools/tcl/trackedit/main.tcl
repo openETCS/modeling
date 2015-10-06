@@ -13,7 +13,7 @@ set extprefix "$scriptpath/../../../libenvsim/dist"
 if $isWin {
   load "$extprefix/win32/envsim.dll"
 } elseif $isOSX {
-  load "$extprefix/osx/envsim.dylib"
+  load "$extprefix/darwin/envsim.dylib"
 } else {
   error "platform not supported"
 }

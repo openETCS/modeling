@@ -10,6 +10,7 @@ set(COMMON_SOURCE_FILES
   src/utils.c src/utils.h
   src/logging.c src/logging.h
   src/trackmsg.c src/trackmsg.h
+  src/tcp.h src/tcp_win.c
   src/tcl/track.c src/tcl/track.h
   src/tcl/pkts.c src/tcl/pkts.h
 )
@@ -26,10 +27,6 @@ set(EXTENVSIM_SOURCE_FILES ${COMMON_SOURCE_FILES}
 
 add_library(envsim STATIC ${LIBENVSIM_SOURCE_FILES})
 
-IF(WIN32 OR CYGWIN OR MINGW OR MSYS)
-  add_definitions(-DWINDOWS)
-ENDIF(WIN32 OR CYGWIN OR MINGW OR MSYS)
-
 
 IF(WITH_TCL_EXTENSION)
   add_definitions(-DWITH_TCL_EXTENSION -DUSE_TCL_STUBS -DUSE_TK_STUBS)
@@ -41,6 +38,15 @@ IF(WITH_TCL_EXTENSION)
   ENDIF(TCLSTUB)
   set_target_properties(envsimext PROPERTIES PREFIX "" OUTPUT_NAME envsim)
 ENDIF(WITH_TCL_EXTENSION)
+
+
+IF(WIN32 OR CYGWIN OR MINGW OR MSYS)
+  add_definitions(-DWINDOWS)
+  target_link_libraries(envsim ws2_e32)
+  IF(WITH_TCL_EXTENSION)
+    target_link_libraries(envsimext ws2_32)
+  ENDIF(WITH_TCL_EXTENSION)
+ENDIF(WIN32 OR CYGWIN OR MINGW OR MSYS)
 
 
 IF(ENABLE_SCADE)
