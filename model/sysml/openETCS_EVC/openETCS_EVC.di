@@ -47,9 +47,6 @@
       <emfPageIdentifier href="openETCS_EVC.notation#__R5AIDbKEeWOTu031a_nSQ"/>
     </availablePage>
     <availablePage>
-      <emfPageIdentifier href="openETCS_EVC.notation#_fPrcYEcnEeW3GN1GLXFTrQ"/>
-    </availablePage>
-    <availablePage>
       <emfPageIdentifier href="openETCS_EVC.notation#_gGfEMEvrEeW5INCKn-fcDw"/>
     </availablePage>
     <availablePage>
