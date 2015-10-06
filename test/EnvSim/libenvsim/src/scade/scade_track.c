@@ -11,6 +11,7 @@
 #include "../tcl/interp.h"
 #include "../logging.h"
 #include "ScriptedTrack_EnvSim.h"
+#include "scade_common.h"
 
 es_TrackSimState es_scripted_tracksim_state = {
   .messages = &es_tracksim_track,
@@ -25,18 +26,10 @@ void es_scripted_tracksim_init(outC_ScriptedTrack_EnvSim *out) {
   es_log_init(NULL);
 
   LOG_INFO(scade_track,"Initializing ScriptedTrack");
-  char *cfgfile = getenv("OPENETCS_ENVSIM_CONFIG");
-  if(cfgfile==NULL) {
-    LOG_WARN(scade_track,"Environment variable OPENETCS_ENVSIM_CONFIG not defined; using 'envsim.cfg'\n");
-    cfgfile = "envsim.cfg";
-  }
-
-  es_Interp *interp = es_get_interp();
-  // load configuration
-  snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"config::parse \"%s\"",cfgfile);
-  es_eval_tcl(interp,es_msg_buf);
+  es_scade_load_config();
 
   // load track, if defined in configuration
+  es_Interp *interp = es_get_interp();
   es_eval_tcl(interp,
      "set trackfile [config::get track];"
      "if {$trackfile eq {}} {log warn scade_track {no track loaded!}} {source $trackfile; log info scade_track {track successfully loaded}}");

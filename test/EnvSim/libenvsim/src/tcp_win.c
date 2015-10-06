@@ -224,6 +224,7 @@ es_Status es_tcp_process_out(es_TCPContext *ctx) {
        }
       }
       else {
+        LOG_TRACE(tcp_win,"sending message");
         rc = send(stream->socket,msg->data,msg->len,0);
       }
       if( rc != msg->len ) {
@@ -289,7 +290,7 @@ es_Status es_tcp_receive(es_TCPContext *ctx) {
           continue;
         }
         if( FD_ISSET(stream->client,&fdSet) ) {
-          int rc = recv(stream->client,buf,TCP_MSG_SIZE,0);
+          rc = recv(stream->client,buf,TCP_MSG_SIZE,0);
           if(rc==0 || rc==SOCKET_ERROR) {
             LOG_INFO(tcp_win,"connection closed by client @port %d",stream->port);
             closesocket(stream->client);
@@ -297,7 +298,13 @@ es_Status es_tcp_receive(es_TCPContext *ctx) {
           } 
           else {
             char *data = malloc(rc);
-            memcpy(data,buf,rc);
+            int len = rc;
+            if(len>TCP_MSG_SIZE) {
+              LOG_WARN(tcp_win,"received message too long (%d bytes); truncating to %d bytes",len,TCP_MSG_SIZE);
+              len = TCP_MSG_SIZE;
+            }
+            memcpy(data,buf,len);
+
             es_TCPMessage *msg = MALLOC(es_TCPMessage);
             msg->len = rc;
             msg->data = data;
@@ -311,6 +318,49 @@ es_Status es_tcp_receive(es_TCPContext *ctx) {
         }
       }
 
+    }
+    /* CLIENT STREAMS */
+    else {
+      if(stream->socket==INVALID_SOCKET) {
+        continue;
+      }
+      FD_SET fdSet;
+      FD_ZERO(&fdSet);
+
+      FD_SET(stream->socket,&fdSet);
+      int rc = select(0,&fdSet,NULL,NULL,&timeout);
+      if( rc == SOCKET_ERROR ) {
+        LOG_ERROR(tcp_win,"error while executing select on client socket for %s:%d; error code: %d",stream->addr,stream->port,WSAGetLastError());
+        stream->socket = INVALID_SOCKET;
+        continue;
+      } 
+      if( FD_ISSET(stream->socket,&fdSet) ) {
+        rc = recv(stream->socket,buf,TCP_MSG_SIZE,0);
+        if(rc==0 || rc==SOCKET_ERROR) {
+          LOG_INFO(tcp_win,"connection closed by server %s:%d",stream->addr,stream->port);
+          closesocket(stream->socket);
+          stream->socket = INVALID_SOCKET;
+        }
+        else {
+          char *data = malloc(rc);
+          int len = rc;
+          if(len>TCP_MSG_SIZE) {
+            LOG_WARN(tcp_win,"received message too long (%d bytes); truncating to %d bytes",len,TCP_MSG_SIZE);
+            len = TCP_MSG_SIZE;
+          }
+          memcpy(data,buf,len);
+
+          es_TCPMessage *msg = MALLOC(es_TCPMessage);
+          msg->len = rc;
+          msg->data = data;
+          if(stream->in==NULL) {
+            stream->in = es_list_append(stream->in,(char*)msg);
+          }
+          else {
+            stream->in = es_list_append(stream->in,(char*)msg);
+          }
+        }
+      }
     }
 
     next = next->tail;
@@ -336,6 +386,15 @@ es_Status es_tcp_run(es_TCPContext *ctx) {
   thread = CreateThread(NULL,0,es_tcp_process,ctx,0,&id);
   if(thread == NULL) {
     TCPERROR("could not create TCP handler thread; error code: %d",GetLastError());
+  }
+  return ES_OK;
+}
+
+
+es_Status es_tcp_free_msg(es_TCPMessage *msg) {
+  if(msg!=NULL) {
+    free(msg->data);
+    free(msg);
   }
   return ES_OK;
 }

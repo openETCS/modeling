@@ -36,6 +36,10 @@ void es_log_exit() {
 }
 
 void es_log_init(char *logfile) {
+  if(es_log_write!=NULL) {
+    return;
+  }
+
   char *logto = logfile==NULL ? getenv("OPENETCS_ENVSIM_LOGFILE") : logfile;
   if(logto==NULL) {
     es_log_write = printf;

@@ -67,6 +67,8 @@ es_Status es_tcp_send(es_TCPStream *stream, const char *data, int len);
 
 es_Status es_tcp_read(es_TCPStream *stream, es_TCPMessage **msg);
 
+es_Status es_tcp_free_msg(es_TCPMessage *msg);
+
 // processes all pending outgoing TCP messages and handles incoming TCP messages
 // for the specified TCP context.
 //es_Status es_tcp_process(es_TCPContext *ctx);

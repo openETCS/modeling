@@ -17,8 +17,9 @@ set(COMMON_SOURCE_FILES
 
 set(LIBENVSIM_SOURCE_FILES ${COMMON_SOURCE_FILES}
   src/tcl/interp.c src/tcl/interp.h
+  src/scade/scade_common.c src/scade/scade_common.h
   src/scade/ScriptedTrack_EnvSim.c src/scade/ScriptedTrack_EnvSim.h src/scade/scade_track.c
-  src/scade/DMIAdapter_EnvSim.c src/scade/DMIAdapter_EnvSim.h
+  src/scade/RemoteDMI_EnvSim.c src/scade/RemoteDMI_EnvSim.h src/scade/scade_dmi.c
 )
 
 set(EXTENVSIM_SOURCE_FILES ${COMMON_SOURCE_FILES}

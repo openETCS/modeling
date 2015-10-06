@@ -5,27 +5,34 @@
 
 #include "kcg_consts.h"
 #include "kcg_sensors.h"
-#include "DMIAdapter_EnvSim.h"
+#include "RemoteDMI_EnvSim.h"
 
-void DMIAdapter_init_EnvSim(outC_DMIAdapter_EnvSim *outC)
+extern void es_remote_dmi_init(outC_RemoteDMI_EnvSim *out);
+int RemoteDMI_initialized_EnvSim = 0;
+
+void RemoteDMI_init_EnvSim(outC_RemoteDMI_EnvSim *outC)
 {
-  /* The body of this function must be provided */
+  es_remote_dmi_init(outC);
+  RemoteDMI_initialized_EnvSim = 1;
 }
 
 
 #ifndef KCG_NO_EXTERN_CALL_TO_RESET
-void DMIAdapter_reset_EnvSim(outC_DMIAdapter_EnvSim *outC)
+void RemoteDMI_reset_EnvSim(outC_RemoteDMI_EnvSim *outC)
 {
   /* The body of this function must be provided */
 }
 #endif /* KCG_NO_EXTERN_CALL_TO_RESET */
 
 /* EnvSim::DMIAdapter */
-void DMIAdapter_EnvSim(
+void RemoteDMI_EnvSim(
   /* EnvSim::DMIAdapter::evcToDMI */ EVC_to_DMI_Message_T_API_DMI_Pkg *evcToDMI,
-  outC_DMIAdapter_EnvSim *outC)
+  outC_RemoteDMI_EnvSim *outC)
 {
-  /* The body of this function must be provided */
+  if(! RemoteDMI_initialized_EnvSim) {
+    RemoteDMI_init_EnvSim(outC);
+  }
+
 }
 
 /* $**************** KCG Version 6.4 (build i21) ****************
