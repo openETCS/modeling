@@ -24,6 +24,7 @@ typedef struct {
   bool shutdown;
 #ifdef WINDOWS
   HANDLE mutex;
+  HANDLE thread;
 #endif
 } es_TCPContext;
 
@@ -75,4 +76,6 @@ es_Status es_tcp_free_msg(es_TCPMessage *msg);
 //es_Status es_tcp_send_msg(const char *addr)
 
 es_Status es_tcp_run(es_TCPContext *ctx);
+
+es_Status es_tcp_stop(es_TCPContext *ctx);
 #endif //LIBENVSIM_TCP_H

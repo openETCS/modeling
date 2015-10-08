@@ -34,4 +34,24 @@ es_Status es_scade_load_config() {
   return rc;
 }
 
+es_TCPContext *scade_common_tcp_ctx = NULL;
+
+void es_scade_shutdown_tcp() {
+  es_tcp_stop(scade_common_tcp_ctx);
+}
+
+es_TCPContext* es_scade_get_tcp() {
+
+  if(scade_common_tcp_ctx==NULL) {
+    LOG_TRACE(scade_common,"Initializing TCP client context for SCADE operators");
+    if( es_tcp_init(&scade_common_tcp_ctx) ) {
+      scade_common_tcp_ctx = NULL;
+    }
+    atexit(es_scade_shutdown_tcp);
+    LOG_TRACE(scade_common,"Starting TCP client thread for SCADE operators");
+    es_tcp_run(scade_common_tcp_ctx);
+  }
+
+  return scade_common_tcp_ctx;
+}
 #endif

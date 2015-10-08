@@ -42,6 +42,7 @@ es_Status es_tcp_init(es_TCPContext **ctx) {
   es_TCPContext *c = MALLOC(es_TCPContext);
   c->nextid = 1;
   c->streams = NULL;
+  c->thread = NULL;
   c->mutex = CreateMutex(NULL,FALSE,NULL);
   c->shutdown = FALSE;
   if(c->mutex==NULL) {
@@ -217,6 +218,7 @@ es_Status es_tcp_process_out(es_TCPContext *ctx) {
       int rc = 0;
       if(stream->type==TCP_SERVER) {
        if(stream->client != INVALID_SOCKET) {
+         LOG_TRACE(tcp_win,"sending message to client (len=%d)",msg->len);
          rc = send(stream->client,msg->data,msg->len,0);
        }
        else {
@@ -224,7 +226,7 @@ es_Status es_tcp_process_out(es_TCPContext *ctx) {
        }
       }
       else {
-        LOG_TRACE(tcp_win,"sending message");
+        LOG_TRACE(tcp_win,"sending message to %s:%d (len=%d)",stream->addr,stream->port,msg->len);
         rc = send(stream->socket,msg->data,msg->len,0);
       }
       if( rc != msg->len ) {
@@ -372,24 +374,57 @@ DWORD WINAPI es_tcp_process(LPVOID param) {
   es_TCPContext *ctx = (es_TCPContext*)param;
   while( !ctx->shutdown ) {
     int rc = 0;
-    TCP_SYNC(ctx, es_tcp_process_out(ctx), &rc);
     TCP_SYNC(ctx, es_tcp_receive(ctx), &rc);
+    TCP_SYNC(ctx, es_tcp_process_out(ctx), &rc);
     Sleep( 10 );
+  }
+  // cleanup
+  es_ListEntry *next = ctx->streams;
+  while( next != NULL ) {
+    es_TCPStream *s = (es_TCPStream*) next->data;
+    if(s != NULL ) {
+      if( s->socket != INVALID_SOCKET ) {
+        closesocket( s->socket );
+      }
+      if( s->client != INVALID_SOCKET ) {
+        closesocket( s->client );
+      }
+    }
+    next = next->tail;
   }
   return ES_OK;
 }
 
 es_Status es_tcp_run(es_TCPContext *ctx) {
-  HANDLE thread = NULL;
+  if(ctx == NULL) {
+    TCPERROR("cannot start thread for TCPContext NULL");
+  }
+  if(ctx->thread != NULL) {
+    LOG_WARN(tcp_win,"handler thread already started");
+    return;
+  }
   DWORD id;
-  LOG_INFO(tcp_win,"starting TCP handler thread");
-  thread = CreateThread(NULL,0,es_tcp_process,ctx,0,&id);
-  if(thread == NULL) {
+  LOG_TRACE(tcp_win,"starting TCP handler thread");
+  ctx->thread = CreateThread(NULL,0,es_tcp_process,ctx,0,&id);
+  if(ctx->thread == NULL) {
     TCPERROR("could not create TCP handler thread; error code: %d",GetLastError());
   }
   return ES_OK;
 }
 
+
+es_Status es_tcp_stop(es_TCPContext *ctx) {
+  LOG_TRACE(tcp_win,"Stopping TCP handler thread");
+  if(ctx == NULL || ctx->thread == NULL) {
+    return ES_OK;
+  }
+
+  ctx->shutdown = TRUE;
+  Sleep( 100 );
+  //TerminateThread(ctx->thread,0);
+
+  return ES_OK;
+}
 
 es_Status es_tcp_free_msg(es_TCPMessage *msg) {
   if(msg!=NULL) {
