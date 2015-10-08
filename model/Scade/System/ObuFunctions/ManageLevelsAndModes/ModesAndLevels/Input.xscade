@@ -147,6 +147,18 @@
 						<ed:Variable oid="!ed/22199/6F5F/1680/55d47fc830e0"/>
 					</pragmas>
 				</Variable>
+				<Variable name="MemorizedLevelIn">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="M_LEVEL"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3cdec6/302B/AA4/56162f655c02"/>
+					</pragmas>
+				</Variable>
 			</inputs>
 			<outputs>
 				<Variable name="train_standstill">
@@ -219,6 +231,18 @@
 					</type>
 					<pragmas>
 						<ed:Variable oid="!ed/4bbe73/1CC4/BD0/55f811932b36"/>
+					</pragmas>
+				</Variable>
+				<Variable name="MemorizedLevel">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="M_LEVEL"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3cdecd/302B/AA4/56162f777961"/>
 					</pragmas>
 				</Variable>
 				<Variable name="Cab">
@@ -569,6 +593,18 @@
 					</type>
 					<pragmas>
 						<ed:Variable oid="!ed/404862/1CC4/BD0/55f80d1b7190"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L101">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="M_LEVEL"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3cdec8/302B/AA4/56162f74562a"/>
 					</pragmas>
 				</Variable>
 			</locals>
@@ -1121,6 +1157,38 @@
 						<ed:Equation oid="!ed/4bbe76/1CC4/BD0/55f8119543b9"/>
 					</pragmas>
 				</Equation>
+				<!-- _L101 = MemorizedLevelIn; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L101"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="MemorizedLevelIn"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3cdec7/302B/AA4/56162f747fa5"/>
+					</pragmas>
+				</Equation>
+				<!-- MemorizedLevel = _L101; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="MemorizedLevel"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L101"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3cdee1/302B/AA4/56162f9c456"/>
+					</pragmas>
+				</Equation>
 			</data>
 			<pragmas>
 				<ed:Operator oid="!ed/18d992/7155/9A8/552781939b5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
@@ -1533,6 +1601,30 @@
 										<Point x="41381" y="10663"/>
 										<Point x="41381" y="11192"/>
 										<Point x="44371" y="11192"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/3cdec7/302B/AA4/56162f747fa5">
+									<position>
+										<Point x="37650" y="29501"/>
+									</position>
+									<size>
+										<Size width="265" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/3cdee1/302B/AA4/56162f9c456">
+									<position>
+										<Point x="41513" y="29501"/>
+									</position>
+									<size>
+										<Size width="318" height="502"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3cdec7/302B/AA4/56162f747fa5" dstEquation="!ed/3cdee1/302B/AA4/56162f9c456">
+									<positions>
+										<Point x="37915" y="29766"/>
+										<Point x="39740" y="29766"/>
+										<Point x="39740" y="29766"/>
+										<Point x="41566" y="29766"/>
 									</positions>
 								</Edge>
 							</presentationElements>
