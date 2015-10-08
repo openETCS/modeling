@@ -1,0 +1,149 @@
+# @Title: Operator Test: RBC_Diagnostic_Pkg::DiagController
+# @Project: $MROOT/RBC-System/RBC-System.etp
+# @Node: RBC_Internal_Test_Pkg__Unit_Test_Pkg__Test_DiagController
+# @Config: Simulation
+
+# Author: Alexander Pinnau
+# Created: 08.10.2015
+# Last changed: 08.10.2015
+# Test description:
+# - unit test of the operator: RBC_Diagnostic_Pkg::DiagController
+
+# imports
+source ../../lib/rbc.tcl
+source ../../lib/util.tcl
+
+# set variables for RBC library (rbc.tcl)
+rbc::setInDataBus "RBC_Internal_Test_Pkg::Unit_Test_Pkg::Test_DiagController/inDataBus"
+rbc::setOutDataBus "RBC_Internal_Test_Pkg::Unit_Test_Pkg::Test_DiagController/outDataBus"
+rbc::setOutStorage "RBC_Internal_Test_Pkg::Unit_Test_Pkg::Test_DiagController/outStorage"
+
+# Config ---------------------------------------------------------
+variable STORAGE_MIN_IDX 0
+variable STORAGE_MAX_IDX 31
+variable MSG_BUS_MIN_IDX 0
+variable MSG_BUS_MAX_IDX 15
+
+# (01) -----------------------------------------------------------
+# - reset all incoming diagnostic messages
+# - outgoing diagnostic message data bus has to be empty (in every cycle)
+# - check if storage is completely empty
+for {set i $MSG_BUS_MIN_IDX} {$i <= $MSG_BUS_MAX_IDX} {incr i} {
+	rbc::resetDiagMsgOnDataBus $i
+	rbc::checkDiagMsg $i valid=false count=0 timestamp=0.0 diagType=DIAG_MSG_TYPE_Empty diagSrc=DIAG_MSG_SRC_Empty diagText=DIAG_MSG_Empty
+}
+for {set i $STORAGE_MIN_IDX} {$i <= $STORAGE_MAX_IDX} {incr i} {
+	rbc::checkDiagMsgStorage $i valid=false count=0 timestamp=0.0 diagType=DIAG_MSG_TYPE_Empty diagSrc=DIAG_MSG_SRC_Empty diagText=DIAG_MSG_Empty
+}
+SSM::cycle
+
+# (02) -----------------------------------------------------------
+# - set a new diagnostic message on data bus
+# - check if storage has the new entry and the rest is empty
+# - outgoing diagnostic message data bus has to be empty (in every cycle)
+rbc::setDiagMsgOnDataBus 	0 timestamp=15.0 \
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+rbc::checkDiagMsgStorage 	0 valid=true count=1 timestamp=15.0\
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+for {set i [expr $STORAGE_MIN_IDX + 1]} {$i <= $STORAGE_MAX_IDX} {incr i} {
+	rbc::checkDiagMsgStorage $i valid=false count=0 timestamp=0.0 diagType=DIAG_MSG_TYPE_Empty diagSrc=DIAG_MSG_SRC_Empty diagText=DIAG_MSG_Empty
+}
+for {set i $MSG_BUS_MIN_IDX} {$i <= $MSG_BUS_MAX_IDX} {incr i} {
+	rbc::checkDiagMsg $i valid=false count=0 timestamp=0.0 diagType=DIAG_MSG_TYPE_Empty diagSrc=DIAG_MSG_SRC_Empty diagText=DIAG_MSG_Empty
+}
+SSM::cycle
+
+# (03) -----------------------------------------------------------
+# - set the last diagnostic message again with newer timestamp
+# - check if storage has updated the entry (counter and timestamp) and the rest is empty
+# - outgoing diagnostic message data bus has to be empty (in every cycle)
+rbc::setDiagMsgOnDataBus 	0 timestamp=20.0 \
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+rbc::checkDiagMsgStorage 	0 valid=true count=2 timestamp=20.0\
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+for {set i [expr $STORAGE_MIN_IDX + 1]} {$i <= $STORAGE_MAX_IDX} {incr i} {
+	rbc::checkDiagMsgStorage $i valid=false count=0 timestamp=0.0 diagType=DIAG_MSG_TYPE_Empty diagSrc=DIAG_MSG_SRC_Empty diagText=DIAG_MSG_Empty
+}
+for {set i $MSG_BUS_MIN_IDX} {$i <= $MSG_BUS_MAX_IDX} {incr i} {
+	rbc::checkDiagMsg $i valid=false count=0 timestamp=0.0 diagType=DIAG_MSG_TYPE_Empty diagSrc=DIAG_MSG_SRC_Empty diagText=DIAG_MSG_Empty
+}
+SSM::cycle
+
+# (04) -----------------------------------------------------------
+# - set the last diagnostic message again with older timestamp
+# - check if storage has updated the entry (counter and timestamp) and the rest is empty
+# - outgoing diagnostic message data bus has to be empty (in every cycle)
+rbc::setDiagMsgOnDataBus 	0 timestamp=10.0 \
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+rbc::checkDiagMsgStorage 	0 valid=true count=3 timestamp=20.0\
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+for {set i [expr $STORAGE_MIN_IDX + 1]} {$i <= $STORAGE_MAX_IDX} {incr i} {
+	rbc::checkDiagMsgStorage $i valid=false count=0 timestamp=0.0 diagType=DIAG_MSG_TYPE_Empty diagSrc=DIAG_MSG_SRC_Empty diagText=DIAG_MSG_Empty
+}
+for {set i $MSG_BUS_MIN_IDX} {$i <= $MSG_BUS_MAX_IDX} {incr i} {
+	rbc::checkDiagMsg $i valid=false count=0 timestamp=0.0 diagType=DIAG_MSG_TYPE_Empty diagSrc=DIAG_MSG_SRC_Empty diagText=DIAG_MSG_Empty
+}
+SSM::cycle
+
+# (05) -----------------------------------------------------------
+# - set the last diagnostic message again with newer timestamp
+# - set a second new diagnostic message
+# - check if storage has updated the first entry (counter and timestamp) and stored the second entry and the rest is empty
+# - outgoing diagnostic message data bus has to be empty (in every cycle)
+rbc::setDiagMsgOnDataBus 	0 timestamp=30.0 \
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+rbc::setDiagMsgOnDataBus 	1 timestamp=30.0 \
+							diagType=DIAG_MSG_TYPE_error \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+rbc::checkDiagMsgStorage 	0 valid=true count=4 timestamp=30.0\
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+rbc::checkDiagMsgStorage 	1 valid=true count=1 timestamp=30.0\
+							diagType=DIAG_MSG_TYPE_error \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+for {set i [expr $STORAGE_MIN_IDX + 2]} {$i <= $STORAGE_MAX_IDX} {incr i} {
+	rbc::checkDiagMsgStorage $i valid=false count=0 timestamp=0.0 diagType=DIAG_MSG_TYPE_Empty diagSrc=DIAG_MSG_SRC_Empty diagText=DIAG_MSG_Empty
+}
+for {set i $MSG_BUS_MIN_IDX} {$i <= $MSG_BUS_MAX_IDX} {incr i} {
+	rbc::checkDiagMsg $i valid=false count=0 timestamp=0.0 diagType=DIAG_MSG_TYPE_Empty diagSrc=DIAG_MSG_SRC_Empty diagText=DIAG_MSG_Empty
+}
+SSM::cycle
+
+# (06) -----------------------------------------------------------
+# - reset the incoming messages
+# - check if storage doesn't change
+# - outgoing diagnostic message data bus has to be empty (in every cycle)
+rbc::resetDiagMsgOnDataBus  0
+rbc::resetDiagMsgOnDataBus  1
+rbc::checkDiagMsgStorage 	0 valid=true count=4 timestamp=30.0\
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+rbc::checkDiagMsgStorage 	1 valid=true count=1 timestamp=30.0\
+							diagType=DIAG_MSG_TYPE_error \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+for {set i [expr $STORAGE_MIN_IDX + 2]} {$i <= $STORAGE_MAX_IDX} {incr i} {
+	rbc::checkDiagMsgStorage $i valid=false count=0 timestamp=0.0 diagType=DIAG_MSG_TYPE_Empty diagSrc=DIAG_MSG_SRC_Empty diagText=DIAG_MSG_Empty
+}
+for {set i $MSG_BUS_MIN_IDX} {$i <= $MSG_BUS_MAX_IDX} {incr i} {
+	rbc::checkDiagMsg $i valid=false count=0 timestamp=0.0 diagType=DIAG_MSG_TYPE_Empty diagSrc=DIAG_MSG_SRC_Empty diagText=DIAG_MSG_Empty
+}
+SSM::cycle

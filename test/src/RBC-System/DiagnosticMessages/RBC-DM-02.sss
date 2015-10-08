@@ -1,0 +1,108 @@
+# @Title: Operator Test: RBC_Diagnostic_Pkg::TryStoreDiagMsg
+# @Project: $MROOT/RBC-System/RBC-System.etp
+# @Node: RBC_Internal_Test_Pkg__Unit_Test_Pkg__Test_TryStoreDiagMsg
+# @Config: Simulation
+
+# Author: Alexander Pinnau
+# Created: 05.10.2015
+# Last changed: 05.10.2015
+# Test description:
+# - unit test of the operator: RBC_Diagnostic_Pkg::Sub_Components_Pkg::TryStoreDiagMsg
+
+# imports
+source ../../lib/rbc.tcl
+source ../../lib/util.tcl
+
+# set variables for RBC library (rbc.tcl)
+rbc::setInStorage "RBC_Internal_Test_Pkg::Unit_Test_Pkg::Test_TryStoreDiagMsg/inStorage"
+rbc::setOutStorage "RBC_Internal_Test_Pkg::Unit_Test_Pkg::Test_TryStoreDiagMsg/outStorage"
+
+# Config ---------------------------------------------------------
+variable STORAGE_MIN_IDX 0
+variable STORAGE_MAX_IDX 31
+
+# (01) -----------------------------------------------------------
+# - no incoming diagnostic message
+# - all storage elements should be empty (valid=false) and be filled with default values
+rbc::resetDiagMsgArray
+rbc::resetDiagMsgStorage $STORAGE_MIN_IDX $STORAGE_MAX_IDX
+for {set i $STORAGE_MIN_IDX} {$i <= $STORAGE_MAX_IDX} {incr i} {
+	rbc::checkDiagMsgStorage $i valid=false count=0 timestamp=0.0 diagType=DIAG_MSG_TYPE_Empty diagSrc=DIAG_MSG_SRC_Empty diagText=DIAG_MSG_Empty
+}
+SSM::cycle
+
+# (02) -----------------------------------------------------------
+# - no incoming diagnostic message
+# - first element of storage has an valid entry
+# - check if this entry is consistent on storage output
+rbc::resetDiagMsgArray
+rbc::setDiagMsgStorage 0 valid=true count=1 timestamp=15.0 \
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+rbc::checkDiagMsgStorage 0 valid=true count=1 timestamp=15.0 \
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+SSM::cycle
+
+# (03) -----------------------------------------------------------
+# - first element of storage has an valid entry
+# - there is the same diagnostic message on input array again (but with newer timestamp)
+# - check if this entry is consistent on storage output (with updated timestamp and incremented count)
+rbc::resetDiagMsgArray
+rbc::setDiagMsgStorage 0 valid=true count=1 timestamp=15.0 \
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+rbc::setDiagMsgArray   0 valid=true count=0 timestamp=20.0 \
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment				
+rbc::checkDiagMsgStorage 0 valid=true count=2 timestamp=20.0 \
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+SSM::cycle
+
+# (04) -----------------------------------------------------------
+# - first element of storage has an valid entry
+# - there is the same diagnostic message on input array again (but with older timestamp)
+# - check if this entry is consistent on storage output (newer timestamp should be held and count will be incremented)
+rbc::resetDiagMsgArray
+rbc::setDiagMsgStorage 0 valid=true count=3 timestamp=27.0 \
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+rbc::setDiagMsgArray   0 valid=true count=0 timestamp=10.0 \
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment				
+rbc::checkDiagMsgStorage 0 valid=true count=4 timestamp=27.0 \
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+SSM::cycle
+
+# (05) -----------------------------------------------------------
+# - first element of storage has an valid entry
+# - there is a new diagnostic message on input array
+# - check if both entries (the old and the new) are consistent on storage output
+rbc::resetDiagMsgArray
+rbc::setDiagMsgStorage 0 valid=true count=1 timestamp=15.0 \
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+rbc::setDiagMsgArray   0 valid=true count=0 timestamp=20.0 \
+							diagType=DIAG_MSG_TYPE_error \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment				
+rbc::checkDiagMsgStorage 0 valid=true count=1 timestamp=15.0 \
+							diagType=DIAG_MSG_TYPE_warning \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+rbc::checkDiagMsgStorage 1 valid=true count=1 timestamp=20.0 \
+							diagType=DIAG_MSG_TYPE_error \
+							diagSrc=DIAG_MSG_SRC_Process_Unconditional_Emergency_Message \
+							diagText=DIAG_MSG_Failure_during_session_establishment
+SSM::cycle
