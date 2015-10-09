@@ -70,11 +70,6 @@ es_Status es_tcp_read(es_TCPStream *stream, es_TCPMessage **msg);
 
 es_Status es_tcp_free_msg(es_TCPMessage *msg);
 
-// processes all pending outgoing TCP messages and handles incoming TCP messages
-// for the specified TCP context.
-//es_Status es_tcp_process(es_TCPContext *ctx);
-//es_Status es_tcp_send_msg(const char *addr)
-
 es_Status es_tcp_run(es_TCPContext *ctx);
 
 es_Status es_tcp_stop(es_TCPContext *ctx);

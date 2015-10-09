@@ -314,7 +314,7 @@ es_Status es_tcp_receive(es_TCPContext *ctx) {
               stream->in = es_list_append(stream->in,(char*)msg);
             }
             else {
-              stream->in = es_list_append(stream->in,(char*)msg);
+              es_list_append(stream->in,(char*)msg);
             }
           }
         }
@@ -359,7 +359,7 @@ es_Status es_tcp_receive(es_TCPContext *ctx) {
             stream->in = es_list_append(stream->in,(char*)msg);
           }
           else {
-            stream->in = es_list_append(stream->in,(char*)msg);
+            es_list_append(stream->in,(char*)msg);
           }
         }
       }
