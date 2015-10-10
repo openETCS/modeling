@@ -10,6 +10,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "logging.h"
+#include "utils.h"
 
 void (*es_log_write)(char*) = NULL;
 FILE *es_logfile = NULL;
@@ -19,12 +20,16 @@ FILE *es_logfile = NULL;
 char es_logmsg[LOG_MSG_SIZE];
 char es_logbuf[LOG_BUF_SIZE];
 
-es_LogLevel es_current_loglevel = ES_LOG_TRACE;
+es_LogLevel es_current_loglevel = ES_LOG_INFO;
 
 void es_log_write_to_file(char *msg) {
   if(es_logfile==NULL) return;
-  fprintf(es_logfile,"%s\n",msg);
+  fprintf(es_logfile,"%s" NEWLINE,msg);
   fflush(es_logfile);
+}
+
+void es_log_write_to_stdout(char *msg) {
+  printf("%s" NEWLINE,msg);
 }
 
 
@@ -35,26 +40,40 @@ void es_log_exit() {
   }
 }
 
+
 void es_log_init(char *logfile) {
   if(es_log_write!=NULL) {
     return;
   }
 
-  char *logto = logfile==NULL ? getenv("OPENETCS_ENVSIM_LOGFILE") : logfile;
-  if(logto==NULL) {
-    es_log_write = printf;
+  if(logfile==NULL) {
+    es_log_write = es_log_write_to_stdout;
     return;
   }
 
-  es_logfile = fopen(logto,"w");
-  if(es_logfile==NULL)
+  char *logdir = getenv("OPENETCS_ENVSIM_LOGDIR");
+  if( logdir==NULL ) {
+    es_log_write = es_log_write_to_stdout;
+    return;
+  }
+
+  char buf[256];
+  if( snprintf(buf,256,"%s/%s",logdir,logfile) >= 256 ) {
+    perror("path to log file too long! writing log messages to stdout");
+    es_log_write = es_log_write_to_stdout;
+    return;
+  }
+
+  es_logfile = fopen(buf,"w");
+  if(es_logfile==NULL) {
     perror("opening logfile");
+  }
   atexit(es_log_exit);
   es_log_write = es_log_write_to_file;
 };
 
 
-void es_log(es_LogLevel lvl, char* msg , ...) {
+void es_log(es_LogLevel lvl, char* src, char* msg , ...) {
   if(es_log_write==NULL) return;
 
   // format log message
@@ -67,7 +86,7 @@ void es_log(es_LogLevel lvl, char* msg , ...) {
   //time(tstamp);
   char *lvlstring = lvl==ES_LOG_TRACE ? "TRACE" : (lvl==ES_LOG_INFO ? "INFO" : (lvl==ES_LOG_WARN ? "WARN" : "ERROR"));
   //snprintf(es_logbuf,LOG_BUF_SIZE,"%s, %s: %s",ctime(tstamp),lvlstring,msgbuf);
-  snprintf(es_logbuf,LOG_BUF_SIZE,"%s: %s",lvlstring,es_logmsg);
+  snprintf(es_logbuf,LOG_BUF_SIZE,"%s, %s, %s: %s",es_timestamp(),src,lvlstring,es_logmsg);
 
   es_log_write(es_logbuf);
 }

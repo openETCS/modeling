@@ -19,6 +19,16 @@
 extern char es_msg_buf[];
 #define ES_ERROR_MSG(msg) snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"%s",msg);
 
+#ifdef WINDOWS
+#define NEWLINE "\r\n"
+#else
+#define NEWLINE "\n"
+#endif
+
+// returns a string with the current timestamp
+const char*es_timestamp();
+
+
 typedef enum {
   ES_OK,
   ES_TCL_ERROR,

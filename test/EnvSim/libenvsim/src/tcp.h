@@ -4,6 +4,7 @@
 //
 // History:
 // - 05.10.15, J. Kastner: initial version
+// - 10.10.15, J. Kastner: add es_MSGID
 
 #ifndef LIBENVSIM_TCP_H
 #define LIBENVSIM_TCP_H
@@ -11,12 +12,20 @@
 // maximum number of bytes per send/receive
 #define TCP_MSG_SIZE 65535
 
+// TCP message IDs
+#define TCPMSG_ANY -1
+#define TCPMSG_EVC2DMI 1000
+#define TCPMSG_DMI2EVC 2000
+
 #include "utils.h"
+#include <stdint.h>
 
 #ifdef WINDOWS
 #include <winsock2.h>
 #include <windows.h>
 #endif // WINDOWS
+
+typedef int32_t es_MSGID;
 
 typedef struct {
   int nextid;
@@ -51,10 +60,14 @@ typedef struct {
 
 
 typedef struct {
-  // message length
+  // message type ID
+  es_MSGID id;
+  // message body length
   int len;
-  // pointer to the message to be sent
+  // pointer to the message body
   char *data;
+  // pointer to raw telegram data
+  char *raw;
 } es_TCPMessage;
 
 
@@ -64,10 +77,26 @@ es_Status es_tcp_connect(es_TCPContext *ctx, const char *addr, const int port, e
 
 es_Status es_tcp_listen(es_TCPContext *ctx, const int port, es_TCPStream **stream);
 
-es_Status es_tcp_send(es_TCPStream *stream, const char *data, int len);
+// Send a message via the specified TCPStream.
+//
+// @param stream TCPStream
+// @param id Message type ID
+// @param data pointer to the data array to be sent
+// @param len number of bytes to be sent
+es_Status es_tcp_send(es_TCPStream *stream, es_MSGID id, const char *data, int len);
 
-es_Status es_tcp_read(es_TCPStream *stream, es_TCPMessage **msg);
+// Read the next message with the specified ID from the provided TCPStream.
+//
+// @param stream TCPStream
+// @param id ID of the next message to be read; set to TCPMSG_ANY to read the next message
+//           regardless of its ID
+// @param msg pointer to the variable where the message pointer will be stored;
+//            *msg is set to NULL, if there was no message available.
+es_Status es_tcp_read(es_TCPStream *stream, es_MSGID id, es_TCPMessage **msg);
 
+// Free the message struct at the specified location.
+// Always call this after the message returned by es_tcp_read() has been processed
+// to avaoid a memory leak.
 es_Status es_tcp_free_msg(es_TCPMessage *msg);
 
 es_Status es_tcp_run(es_TCPContext *ctx);

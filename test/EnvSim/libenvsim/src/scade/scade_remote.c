@@ -16,6 +16,7 @@
 #define REMOTE_DMI_PORT1 20001
 #define REMOTE_DMI_PORT2 20002
 
+
 es_TCPStream *es_remote_dmi_conn1 = NULL;
 es_TCPStream *es_remote_dmi_conn2 = NULL;
 es_TCPStream *es_remote_evc_conn1 = NULL;
@@ -24,13 +25,12 @@ const size_t EVC2DMI_STRUCT_SIZE = sizeof(EVC_to_DMI_Message_T_API_DMI_Pkg);
 const size_t DMI2EVC_STRUCT_SIZE = sizeof(DMI_to_EVC_Message_T_API_DMI_Pkg);
 
 void es_remote_dmi_init(outC_RemoteDMI_EnvSim *out) {
-  es_log_init(NULL);
+  es_log_init("envsim_main.log");
 
   LOG_INFO(scade_remote,"Initializing RemoteDMI operator");
   es_scade_load_config();
 
   es_Interp *interp = es_get_interp();
-  es_eval_tcl(interp, "19999");
 
   // connect to DMI server
   es_remote_dmi_conn1 = NULL;
@@ -61,14 +61,14 @@ void es_remote_dmi_init(outC_RemoteDMI_EnvSim *out) {
 
 void es_remote_dmi_cycle(EVC_to_DMI_Message_T_API_DMI_Pkg *evcToDMI, outC_RemoteDMI_EnvSim *outC) {
   // SEND
-  if(es_remote_dmi_conn1 != NULL && evcToDMI->present) {
-    es_tcp_send(es_remote_dmi_conn1,(const char*)evcToDMI,EVC2DMI_STRUCT_SIZE);
+  if(es_remote_dmi_conn1 != NULL && es_remote_dmi_conn1->socket != INVALID_SOCKET && evcToDMI->present) {
+    es_tcp_send(es_remote_dmi_conn1,TCPMSG_EVC2DMI,(const char*)evcToDMI,EVC2DMI_STRUCT_SIZE);
   }
 
   // RECEIVE
   if(es_remote_dmi_conn2 != NULL) {
     es_TCPMessage *msg = NULL;
-    es_tcp_read(es_remote_dmi_conn2,&msg);
+    es_tcp_read(es_remote_dmi_conn2,TCPMSG_DMI2EVC,&msg);
     if( msg != NULL ) {
       if(msg->len != DMI2EVC_STRUCT_SIZE) {
         LOG_ERROR(scade_remote,"Invalid DMI2EVC message: received %d bytes, expected %d bytes",msg->len,DMI2EVC_STRUCT_SIZE);
@@ -78,12 +78,15 @@ void es_remote_dmi_cycle(EVC_to_DMI_Message_T_API_DMI_Pkg *evcToDMI, outC_Remote
       }
       es_tcp_free_msg(msg);
     }
+    else {
+      outC->dmiToEVC.present = false ;
+    }
   }
 }
 
 
 void es_remote_evc_init(outC_RemoteEVC_EnvSim *out) {
-  es_log_init(NULL);
+  es_log_init("envsim_dmi.log");
 
   LOG_INFO(scade_remote,"Initializing RemoteEVC operator");
   es_scade_load_config();
@@ -118,14 +121,14 @@ void es_remote_evc_init(outC_RemoteEVC_EnvSim *out) {
 
 void es_remote_evc_cycle(DMI_to_EVC_Message_T_API_DMI_Pkg *dmiToEVC, outC_RemoteEVC_EnvSim *outC) {
   // SEND
-  if(es_remote_evc_conn2 != NULL && dmiToEVC->present) {
-    es_tcp_send(es_remote_evc_conn2,(const char*)dmiToEVC,DMI2EVC_STRUCT_SIZE);
+  if(es_remote_evc_conn2 != NULL && es_remote_evc_conn2->client != INVALID_SOCKET && dmiToEVC->present) {
+    es_tcp_send(es_remote_evc_conn2,TCPMSG_DMI2EVC,(const char*)dmiToEVC,DMI2EVC_STRUCT_SIZE);
   }
 
   // RECEIVE
   if(es_remote_evc_conn1 != NULL) {
     es_TCPMessage *msg = NULL;
-    es_tcp_read(es_remote_evc_conn1, &msg);
+    es_tcp_read(es_remote_evc_conn1, TCPMSG_EVC2DMI,&msg);
     if (msg != NULL) {
       if (msg->len != EVC2DMI_STRUCT_SIZE) {
         LOG_ERROR(scade_remote, "Invalid EVC2DMI message: received %d bytes, expected %d bytes", msg->len,
@@ -135,6 +138,9 @@ void es_remote_evc_cycle(DMI_to_EVC_Message_T_API_DMI_Pkg *dmiToEVC, outC_Remote
         memcpy(&outC->evcToDMI, msg->data, EVC2DMI_STRUCT_SIZE);
       }
       es_tcp_free_msg(msg);
+    }
+    else {
+      outC->evcToDMI.present = FALSE;
     }
   }
 }

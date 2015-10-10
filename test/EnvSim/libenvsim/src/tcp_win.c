@@ -4,6 +4,7 @@
 //
 // History:
 // - 05.10.15, J. Kastner: initial version
+// - 10.10.15, J. Kastner: implement handling of multiple messages in TCP input buffer;
 
 #ifdef WINDOWS
 #include "tcp.h"
@@ -12,6 +13,9 @@
 #include <stdio.h>
 
 #define TCPERROR(...) LOG_ERROR(tcp_win,__VA_ARGS__);snprintf(es_msg_buf,ES_MSG_BUF_SIZE,__VA_ARGS__);return ES_TCP_ERROR;
+
+// Timeout for winsock select() in usecs
+#define TCP_RECEIVE_TIMEOUT 1000
 
 #define TCP_SYNC(ctx,fn,rc) \
   { DWORD waitResult; \
@@ -158,13 +162,19 @@ es_Status es_tcp_listen(es_TCPContext *ctx, const int port, es_TCPStream **strea
   return rc;
 }
 
-es_Status es_tcp_send_sync(es_TCPStream *stream, const char *data, int len) {
+es_Status es_tcp_send_sync(es_TCPStream *stream, es_MSGID id, const char *data, int len) {
   assert(stream != NULL);
   assert(stream->socket != INVALID_SOCKET);
 
   es_TCPMessage *msg = MALLOC(es_TCPMessage);
+  msg->id = id;
   msg->len = len;
-  msg->data = malloc((size_t)len);
+  char *raw = malloc((size_t)(8+len));
+  msg->raw = raw;
+  *(int*)raw = id;
+  raw += 4;
+  *(int*)raw = len;
+  msg->data = raw += 4;
   memcpy(msg->data,data,(size_t)len);
 
   if(stream->out==NULL) {
@@ -173,34 +183,56 @@ es_Status es_tcp_send_sync(es_TCPStream *stream, const char *data, int len) {
   else {
     es_list_append(stream->out,(char*)msg);
   }
+
   return ES_OK;
 }
 
-es_Status es_tcp_send(es_TCPStream *stream, const char *data, int len) {
+es_Status es_tcp_send(es_TCPStream *stream, es_MSGID id, const char *data, int len) {
   int rc = 0;
   if(stream==NULL) {
     TCPERROR("cannot send message via stream NULL");
   }
-  TCP_SYNC(stream->ctx, es_tcp_send_sync(stream,data,len), &rc);
+
+  TCP_SYNC(stream->ctx, es_tcp_send_sync(stream,id,data,len), &rc);
   return rc;
 }
 
-es_Status es_tcp_read_sync(es_TCPStream *stream, es_TCPMessage **msg) {
+es_Status es_tcp_read_sync(es_TCPStream *stream, es_MSGID id, es_TCPMessage **msg) {
   if(stream->in==NULL) {
     *msg = NULL;
   }
-  else {
+  else if (id<0) {
     stream->in = es_list_remove_head(stream->in,(char**)msg);
+  }
+  else {
+    es_ListEntry *next = stream->in;
+    es_ListEntry *prev = NULL;
+    while( next != NULL ) {
+      es_TCPMessage *m = (es_TCPMessage*) next->data;
+      if( m->id == id ) {
+        if( prev != NULL ) {
+          prev->tail = next->tail;
+        }
+        else {
+          stream->in = next->tail;
+        }
+        *msg = m;
+        free(next);
+        break;
+      }
+      prev = next;
+      next = next->tail;
+    }
   }
   return ES_OK;
 }
 
-es_Status es_tcp_read(es_TCPStream *stream, es_TCPMessage **msg) {
+es_Status es_tcp_read(es_TCPStream *stream, es_MSGID id, es_TCPMessage **msg) {
   int rc = 0;
   if(stream==NULL) {
     TCPERROR("cannot read message from stream NULL");
   }
-  TCP_SYNC(stream->ctx, es_tcp_read_sync(stream,msg), &rc);
+  TCP_SYNC(stream->ctx, es_tcp_read_sync(stream,id,msg), &rc);
   return rc;
 }
 
@@ -216,21 +248,22 @@ es_Status es_tcp_process_out(es_TCPContext *ctx) {
     nextmsg = es_list_remove_head(stream->out,(char**)&msg);
     while(msg != NULL) {
       int rc = 0;
+      int rawlen = msg->len + 8;
       if(stream->type==TCP_SERVER) {
        if(stream->client != INVALID_SOCKET) {
-         LOG_TRACE(tcp_win,"sending message to client (len=%d)",msg->len);
-         rc = send(stream->client,msg->data,msg->len,0);
+         LOG_TRACE(tcp_win,"sending message %d (data: %d bytes)",msg->id,msg->len);
+         rc = send(stream->client,msg->raw,rawlen,0);
        }
        else {
          LOG_WARN(tcp_win,"no client connected to port %d; discarding message",stream->port);
        }
       }
       else {
-        LOG_TRACE(tcp_win,"sending message to %s:%d (len=%d)",stream->addr,stream->port,msg->len);
-        rc = send(stream->socket,msg->data,msg->len,0);
+        LOG_TRACE(tcp_win,"sending message %d to %s:%d (data: %d)",msg->id,stream->addr,stream->port,msg->len);
+        rc = send(stream->socket,msg->raw,rawlen,0);
       }
-      if( rc != msg->len ) {
-        LOG_ERROR(tcp_win,"could not send message to %s:%d; error code: %d",stream->addr,stream->port,GetLastError());
+      if( rc != rawlen ) {
+        LOG_ERROR(tcp_win,"could not send message %d; error code: %d",msg->id,GetLastError());
         err++;
       }
 
@@ -251,8 +284,46 @@ es_Status es_tcp_process_out(es_TCPContext *ctx) {
   return ES_OK;
 }
 
+es_Status es_tcp_process_msgstream(es_TCPStream *stream, char* data, int len) {
+  if(len>TCP_MSG_SIZE) {
+    TCPERROR("received telegram too long (%d bytes); discarding telegram!",len);
+  }
+  
+  int pos = 0;
+  char *next = data;
+  while(pos <= len - 8) {
+    int id = *((int32_t*)next);
+    next += 4;
+    int dlen = *((int32_t*)next);
+    next += 4;
+    if( dlen > len - 8 ) {
+      TCPERROR("received incomplete message: expected %d bytes, got %d\n",dlen,len-8);
+    }
+    es_TCPMessage *msg = MALLOC(es_TCPMessage);
+    msg->id = id;
+    msg->raw = NULL;
+    msg->data = malloc(dlen);
+    msg->len = dlen;
+    LOG_TRACE(tcp_win,"received message %d (data: %d bytes)",id,dlen);
+    memcpy(msg->data,next,dlen);
+
+    if(stream->in==NULL) {
+      stream->in = es_list_append(stream->in,(char*)msg);
+    }
+    else {
+      es_list_append(stream->in,(char*)msg);
+    }
+
+    pos += 8+dlen;
+    next += dlen;
+  }
+
+  return ES_OK;
+}
+
+
 es_Status es_tcp_receive(es_TCPContext *ctx) {
-  static TIMEVAL timeout = { .tv_sec = 0, .tv_usec = 1000 };
+  static TIMEVAL timeout = { .tv_sec = 0, .tv_usec = TCP_RECEIVE_TIMEOUT };
   char buf[TCP_MSG_SIZE];
 
   es_ListEntry *next = ctx->streams;
@@ -299,23 +370,7 @@ es_Status es_tcp_receive(es_TCPContext *ctx) {
             stream->client = INVALID_SOCKET;
           } 
           else {
-            char *data = malloc(rc);
-            int len = rc;
-            if(len>TCP_MSG_SIZE) {
-              LOG_WARN(tcp_win,"received message too long (%d bytes); truncating to %d bytes",len,TCP_MSG_SIZE);
-              len = TCP_MSG_SIZE;
-            }
-            memcpy(data,buf,len);
-
-            es_TCPMessage *msg = MALLOC(es_TCPMessage);
-            msg->len = rc;
-            msg->data = data;
-            if(stream->in==NULL) {
-              stream->in = es_list_append(stream->in,(char*)msg);
-            }
-            else {
-              es_list_append(stream->in,(char*)msg);
-            }
+            es_tcp_process_msgstream(stream,buf,rc);
           }
         }
       }
@@ -344,23 +399,7 @@ es_Status es_tcp_receive(es_TCPContext *ctx) {
           stream->socket = INVALID_SOCKET;
         }
         else {
-          char *data = malloc(rc);
-          int len = rc;
-          if(len>TCP_MSG_SIZE) {
-            LOG_WARN(tcp_win,"received message too long (%d bytes); truncating to %d bytes",len,TCP_MSG_SIZE);
-            len = TCP_MSG_SIZE;
-          }
-          memcpy(data,buf,len);
-
-          es_TCPMessage *msg = MALLOC(es_TCPMessage);
-          msg->len = rc;
-          msg->data = data;
-          if(stream->in==NULL) {
-            stream->in = es_list_append(stream->in,(char*)msg);
-          }
-          else {
-            es_list_append(stream->in,(char*)msg);
-          }
+          es_tcp_process_msgstream(stream,buf,rc);
         }
       }
     }
@@ -376,7 +415,7 @@ DWORD WINAPI es_tcp_process(LPVOID param) {
     int rc = 0;
     TCP_SYNC(ctx, es_tcp_receive(ctx), &rc);
     TCP_SYNC(ctx, es_tcp_process_out(ctx), &rc);
-    Sleep( 10 );
+    //Sleep( 10 );
   }
   // cleanup
   es_ListEntry *next = ctx->streams;
@@ -428,7 +467,7 @@ es_Status es_tcp_stop(es_TCPContext *ctx) {
 
 es_Status es_tcp_free_msg(es_TCPMessage *msg) {
   if(msg!=NULL) {
-    free(msg->data);
+    free(msg->raw);
     free(msg);
   }
   return ES_OK;
