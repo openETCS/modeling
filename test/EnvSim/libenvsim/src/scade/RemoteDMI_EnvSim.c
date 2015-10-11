@@ -8,7 +8,7 @@
 #include "RemoteDMI_EnvSim.h"
 
 extern void es_remote_dmi_init(outC_RemoteDMI_EnvSim *out);
-extern void es_remote_dmi_cycle(EVC_to_DMI_Message_T_API_DMI_Pkg *evcToDMI, outC_RemoteDMI_EnvSim *outC);
+extern void es_remote_dmi_cycle(EVC_to_DMI_Message_T_API_DMI_Pkg *evcToDMI, TIU_Input_msg_API_TIU_Pkg *tiuToDMI, outC_RemoteDMI_EnvSim *outC);
 int RemoteDMI_initialized_EnvSim = 0;
 
 void RemoteDMI_init_EnvSim(outC_RemoteDMI_EnvSim *outC)
@@ -27,13 +27,14 @@ void RemoteDMI_reset_EnvSim(outC_RemoteDMI_EnvSim *outC)
 
 /* EnvSim::DMIAdapter */
 void RemoteDMI_EnvSim(
-  /* EnvSim::DMIAdapter::evcToDMI */ EVC_to_DMI_Message_T_API_DMI_Pkg *evcToDMI,
+/* EnvSim::RemoteDMI::evcToDMI */ EVC_to_DMI_Message_T_API_DMI_Pkg *evcToDMI,
+/* EnvSim::RemoteDMI::tiuToDMI */ TIU_Input_msg_API_TIU_Pkg *tiuToDMI,
   outC_RemoteDMI_EnvSim *outC)
 {
   if(! RemoteDMI_initialized_EnvSim) {
     RemoteDMI_init_EnvSim(outC);
   }
-  es_remote_dmi_cycle(evcToDMI,outC);
+  es_remote_dmi_cycle(evcToDMI,tiuToDMI,outC);
 }
 
 /* $**************** KCG Version 6.4 (build i21) ****************

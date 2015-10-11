@@ -4,6 +4,7 @@
 //
 // History:
 // - 22.09.15, J. Kastner: initial version
+// - 10.10.15, J. Kastner: add es_timestamp()
 
 #include <stdlib.h>
 #include <stdio.h>

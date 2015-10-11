@@ -15,6 +15,7 @@
 // TCP message IDs
 #define TCPMSG_ANY -1
 #define TCPMSG_EVC2DMI 1000
+#define TCPMSG_TIU2DMI 1001
 #define TCPMSG_DMI2EVC 2000
 
 #include "utils.h"

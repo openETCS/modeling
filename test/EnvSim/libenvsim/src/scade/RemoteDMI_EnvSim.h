@@ -1,6 +1,6 @@
 /* $**************** KCG Version 6.4 (build i21) ****************
-** Command: kcg64.exe -config S:/modeling/test/EnvSim/Scade/SimulationJK/config.txt
-** Generation date: 2015-09-28T11:34:05
+** Command: kcg64.exe -config S:/modeling/test/EnvSim/Scade/Simulation/config.txt
+** Generation date: 2015-10-11T11:19:19
 *************************************************************$ */
 #ifndef _RemoteDMI_EnvSim_H_
 #define _RemoteDMI_EnvSim_H_
@@ -22,6 +22,7 @@ typedef struct {
 /* EnvSim::RemoteDMI */
 extern void RemoteDMI_EnvSim(
   /* EnvSim::RemoteDMI::evcToDMI */ EVC_to_DMI_Message_T_API_DMI_Pkg *evcToDMI,
+  /* EnvSim::RemoteDMI::tiuToDMI */ TIU_Input_msg_API_TIU_Pkg *tiuToDMI,
   outC_RemoteDMI_EnvSim *outC);
 
 #ifndef KCG_NO_EXTERN_CALL_TO_RESET
@@ -32,7 +33,7 @@ extern void RemoteDMI_init_EnvSim(outC_RemoteDMI_EnvSim *outC);
 
 #endif /* _RemoteDMI_EnvSim_H_ */
 /* $**************** KCG Version 6.4 (build i21) ****************
-** DMIAdapter_EnvSim.dh
-** Generation date: 2015-09-28T11:34:05
+** RemoteDMI_EnvSim.dh
+** Generation date: 2015-10-11T11:19:19
 *************************************************************$ */
 

@@ -22,6 +22,7 @@ es_TCPStream *es_remote_dmi_conn2 = NULL;
 es_TCPStream *es_remote_evc_conn1 = NULL;
 es_TCPStream *es_remote_evc_conn2 = NULL;
 const size_t EVC2DMI_STRUCT_SIZE = sizeof(EVC_to_DMI_Message_T_API_DMI_Pkg);
+const size_t TIU2DMI_STRUCT_SIZE = sizeof(TIU_Input_msg_API_TIU_Pkg);
 const size_t DMI2EVC_STRUCT_SIZE = sizeof(DMI_to_EVC_Message_T_API_DMI_Pkg);
 
 void es_remote_dmi_init(outC_RemoteDMI_EnvSim *out) {
@@ -59,10 +60,16 @@ void es_remote_dmi_init(outC_RemoteDMI_EnvSim *out) {
 }
 
 
-void es_remote_dmi_cycle(EVC_to_DMI_Message_T_API_DMI_Pkg *evcToDMI, outC_RemoteDMI_EnvSim *outC) {
+void es_remote_dmi_cycle(EVC_to_DMI_Message_T_API_DMI_Pkg *evcToDMI, TIU_Input_msg_API_TIU_Pkg *tiuToDMI, outC_RemoteDMI_EnvSim *outC) {
   // SEND
-  if(es_remote_dmi_conn1 != NULL && es_remote_dmi_conn1->socket != INVALID_SOCKET && evcToDMI->present) {
-    es_tcp_send(es_remote_dmi_conn1,TCPMSG_EVC2DMI,(const char*)evcToDMI,EVC2DMI_STRUCT_SIZE);
+  if(es_remote_dmi_conn1 != NULL && es_remote_dmi_conn1->socket != INVALID_SOCKET) {
+    if(evcToDMI->present) {
+      es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVC2DMI, (const char *) evcToDMI, EVC2DMI_STRUCT_SIZE);
+    }
+    if(tiuToDMI->valid) {
+//      LOG_INFO(scade_remote,"sending TIU2DMI; openDesk: %d",tiuToDMI->info.train_status.m_cab_st);
+      es_tcp_send(es_remote_dmi_conn1, TCPMSG_TIU2DMI, (const char*) tiuToDMI, TIU2DMI_STRUCT_SIZE);
+    }
   }
 
   // RECEIVE
@@ -140,8 +147,26 @@ void es_remote_evc_cycle(DMI_to_EVC_Message_T_API_DMI_Pkg *dmiToEVC, outC_Remote
       es_tcp_free_msg(msg);
     }
     else {
-      outC->evcToDMI.present = FALSE;
+      outC->evcToDMI.present = false;
     }
+
+    msg = NULL;
+    es_tcp_read(es_remote_evc_conn1, TCPMSG_TIU2DMI, &msg);
+    if( msg != NULL ) {
+      if (msg->len != TIU2DMI_STRUCT_SIZE) {
+        LOG_ERROR(scade_remote, "Invalid TIU2DMI message: received %d bytes, expected %d bytes", msg->len,
+                  TIU2DMI_STRUCT_SIZE);
+      }
+      else {
+        memcpy(&outC->tiuToDMI, msg->data, TIU2DMI_STRUCT_SIZE);
+//        LOG_TRACE(scade_remote,"received TIU2DMI; desk open: %d",outC->tiuToDMI.info.train_status.m_cab_st);
+      }
+      es_tcp_free_msg(msg);
+    }
+    else {
+      outC->tiuToDMI.valid = false;
+    }
+
   }
 }
 
