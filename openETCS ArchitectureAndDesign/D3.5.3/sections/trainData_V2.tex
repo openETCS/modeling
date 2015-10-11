@@ -17,12 +17,11 @@ Description				& Implementation of the train data with the corresponding interfa
 
 This component provides the storage of train data and the procedures necessary for updating data and controlling interfaces for validating train data at the DMI and to the RBC. 
 
-The scope of train data is defined in section 3.18.3 of the SRS. Train data are qualifying some safety relevant properties of the train like the length of the train, maximal speed and brake behaviour. 
+The scope of train data is defined in Section 3.18.3 of the SRS. Train data are qualifying some safety relevant properties of the train like the length of the train, maximal speed and brake behaviour. 
 
-During startup of the EVC a first definition of the train data is received from the train interface unit (TIU). During Start of Mission the data is updated resp. validated by the driver via action on the Driver Machine Interface (DMI).  The driver may change some of the data. He has to confirm the set of data before being able to push the start button.
+During startup of the EVC a first definition of the train data is received from the train interface unit (TIU). During Start of Mission the data is updated respectively validated by the driver via the Driver Machine Interface (DMI).  The driver may also change some of the data and has to confirm the set of data before being able to push the start button.
  
-When setting up a radio session to an RBC the evc has to send the actual train data to the RBC for vaildation:
-Message Flow:
+When setting up a radio session to an RBC the EVC has to send the actual train data to the RBC for validation. here, the message flow is as follows:
 \begin{itemize}
 \item sending Message 129 (Validated Train Data)
 \item receiving Message 8 (Acknowledment of Train Data) is processed as apart of the validation procedure with the RBC.
@@ -37,7 +36,7 @@ Safety integrity level	& 4 \\
 \midrule
 Time constraints		& n/a \\
 \midrule
-API requirements 		& Train Data needs systemtime for stamping messages, access to input from the track messages and access to the output of RBC messages.\\
+API requirements 		& Train Data needs system time for stamping messages, access to input from the track messages and access to the output of RBC messages.\\
 \bottomrule
 \end{longtable}
 
@@ -63,7 +62,8 @@ Input name				& reset \\
 \midrule
 Description				& Triggers the reset of the train data and the train data status data.\\
 \midrule
-Source					& Persistant data status management.\\ 
+Source					& Persistent data status management.
+\todo[inline]{Can't we reference a component of the model or input of F2 here?}\\ 
 \midrule
 Type					& bool \\
 \midrule
@@ -88,24 +88,25 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \toprule
 Input name				& trainDatafromTIU \\
 \midrule
-Description				& Train data received via TIU. The availability of data is indicated with the valid flag. This data is expected to be received in the first place. In the current implementation it is not supported to change data after a mission has been started.  The structure covers the following compontents:
+Description				& Train data received via TIU. The availability of data is indicated with the valid flag. This data is expected to be received in the first place. In the current implementation it is not supported to change data after a mission has been started.  The structure covers the following components:
 \begin{description}
 \item[valid](bool): valid indicator for this component. In this structure valid means the data has been received from train. Addition states like validated by driver or validated by RBC are maintained in the status structure for train data.
-\item[other components]:  Other components are defined according to section 3.18.3.2 of subset 26. 
+\item[other components]:  Other components are defined according to Section 3.18.3.2 of Subset-026. 
 \end{description} \\
 \midrule
-Source					& Train Interface Unit (TIU) \\ 
+Source					& Train Interface Unit (TIU)
+\todo[inline]{Can't we reference a component of the model or input of F2 here?}\\ 
 \midrule
 Type					& TIU\_Types\_Pkg::trainData\_T \\
 \midrule
-Valid range of values	& Input with valid information is indicated with the valid flag. 
+Valid range of values	& Input with valid information is indicated with the valid flag set to true. 
 \\
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
 Behaviour for values out of valid range	& When valid flag indicates false the data to be used is assumed to be default values. The component is not used when valid flag is false.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Information is only expected at Start of Mission Procedure. Once the information is successfully received it is not considered any more. Change of train data by train during mission is not supported by this version of the openETCS OBU model.\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Information is only expected during the Start of Mission Procedure. Once the information is successfully received it is not considered any more. Change of train data by train during mission is not supported by this version of the openETCS OBU model.\\
 \bottomrule
 \end{longtable}
 
@@ -123,15 +124,17 @@ Description				& Train data received via DMI from the driver. The availability o
 Thanks to NC\_TRAIN, the train knows the SSP it must obey. Each bit represents one category. A train can belong to various categories.
 \item[l\_train](Obu\_BasicTypes\_Pkg::L\_internal\_Type): Length of the train [cm].
 \item[m\_brakeperct](int): brake percentage. range from 0 to 300.
+\todo[inline]{If this is a percentage, then the range would probably be 0\ldots 100. Maybe we should replace percentage here?}
 \item[v\_maxtrain](Obu\_BasicTypes\_Pkg::V\_internal\_Type): maximum speed of the train in km/h.
 \todo[inline]{needs to be changed to cm/sec}
-\item[m\_axleLoad](M\_AXLELOADCAT): axle load category according to 3.18.3.2
-\item[m\_airTight](M\_AIRTIGHT): airtight system presence according to 3.18.3.2
-\item[m\_loadingGauge](M\_LOADINGGAUGE): loading gauge category according to 3.18.3.2
+\item[m\_axleLoad](M\_AXLELOADCAT): axle load category according to Subset-026, Section 3.18.3.2.
+\item[m\_airTight](M\_AIRTIGHT): airtight system presence according to Subset-026, Section 3.18.3.2.
+\item[m\_loadingGauge](M\_LOADINGGAUGE): loading gauge category according to Subset-026, Section 3.18.3.2.
 \end{description} \\
 
 \midrule
-Source					& Driver Machine Interface (DMI) \\ 
+Source				& Driver Machine Interface (DMI) 
+\todo[inline]{Can't we reference a component of the model or input of F2 here?}\\ 
 \midrule
 Type					& DMI\_Messages\_Bothways\_Pkg::DMI\_Train\_Data\_T \\
 \midrule
@@ -158,9 +161,9 @@ Description				& During start of mission the driver has to validate the train da
 \item[systemTime](Obu\_BasicTypes\_Pkg::T\_internal\_Type): timestamp set by the DMI. The component is not used by trainData.
 \item[acknowledged](bool): Result of the driver's acknoledgment.
 \end{description} \\
-\\
 \midrule
-Source					& Driver Machine Interface (DMI) \\ 
+Source					& Driver Machine Interface (DMI) 
+\todo[inline]{Can't we reference a component of the model or input of F2 here?}\\ 
 \midrule
 Type					& DMI\_Messages\_DMI\_to\_EVC\_Pkg::DMI\_Train\_Data\_Ack\_T \\
 \midrule
@@ -168,9 +171,10 @@ Valid range of values	& Input with valid information is indicated with the valid
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& when valid flag indicates false the data to be used is assumed to be default values. The component is not used when valid flag is false.\\
+Behaviour for values out of valid range	& When valid flag is false the component will not be used and default values will be used instead.
+\todo[inline]{This description was ambiguous. I tried to be more precise. Please check if this is still correct.}\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & no checking on individual values is done in this part of the openETCS EVC. We assume - if necessary - appropriate checks are part of the interface layer (e.g., CRC checks) This type of checks is not in the scope of the openETCS project.\\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & No checking on individual values is done in this part of the openETCS EVC. We assume - if necessary - appropriate checks are part of the interface layer (e.g., CRC checks) This type of checks is not in the scope of the openETCS project.\\
 
 \bottomrule
 \end{longtable}
@@ -182,7 +186,8 @@ Input name				& trackMessages \\
 \midrule
 Description				& Information carries the message received from RBC. Information is only used when the valid flag is true and the message source is Radio. Other information is not relevant. Information is evaluated as long as the validation procedure is not completed and a valdiation request with the RBC is pending. \\
 \midrule
-Source					& Radio Transmission Module (RTM)\\ 
+Source					& Radio Transmission Module (RTM)
+\todo[inline]{Can't we reference a component of the model or input of F2 here?}\\ 
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
@@ -207,11 +212,12 @@ Input name				& timeStamp \\
 \midrule
 Description				& Timestamp for messaging to the RBC.\\
 \midrule
-Source					& Derived from train time.\\ 
+Source					& Derived from train time.
+\todo[inline]{Should we reference the corresponding input of F2 here?}\\ 
 \midrule
-Type					& T\_TRAIN\\
+Type						& T\_TRAIN\\
 \midrule
-Valid range of values	& Positive non-zero real\\
+Valid range of values			& Positive non-zero real\\
 \midrule
 Behaviour when value is at boundary	& Parameter is not used for computation or addressing. No impact in this model.\\
 \midrule
@@ -236,9 +242,10 @@ Description				& Timestamp for messaging to the RBC. Information of the EVC rele
 \end{itemize}
 The MoRC ready input is used to indicate the evc:morc function is ready with acknowledgment of the communication session.\\
 \midrule
-Source					& EVC model.\\ 
+Source					& EVC model.
+\todo[inline]{Can't we reference a component of the model or input of F2 here?}\\ 
 \midrule
-Type					& trainData\_Types\_pkg::trainData\_Events\_T\\
+Type						& trainData\_Types\_pkg::trainData\_Events\_T\\
 \midrule
 Valid range of values	& Structure of a set of bool. Each component may be true or false.\\
 \midrule
@@ -257,9 +264,11 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \toprule
 Input name				& nidEngine\\
 \midrule
-Description				& Id of the engine. This id is used in communication with the RBC in order to uniquely identify the engine.\\
+Description				& ID of the engine. This ID is used in communication with the RBC in order to uniquely identify the engine.\\
 \midrule
-Source					& Configuration\\ 
+Source					& Configuration
+\todo[inline]{Can't we reference a component of the model or input of F2 here?}\\ 
+\\ 
 \midrule
 Type					& NID\_ENGINE\\
 \midrule
@@ -282,7 +291,8 @@ Input name				& p0\_positionReport\\
 Description				& Actual Position Report (packet 0) for communication with the RBC.
 \\
 \midrule
-Source					& EVC model.\\ 
+Source					& EVC model.
+\todo[inline]{Can't we reference a component of the model or input of F2 here?}\\ 
 \midrule
 Type					& Packet\_TrainTypes\_Pkg::PT0\_PositionReport\_T\\
 \midrule
@@ -293,7 +303,6 @@ Behaviour when value is at boundary	& n/a\\
 Behaviour for values out of valid range	& n/a\\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
-
 \bottomrule
 \end{longtable}
 
@@ -306,9 +315,10 @@ Input name				& p1\_positionReport\\
 Description				& Actual Position Report (packet 1) for communication with the RBC.
 \\
 \midrule
-Source					& EVC model.\\ 
+Source					& EVC model.
+\todo[inline]{Can't we reference a component of the model or input of F2 here?}\\  
 \midrule
-Type					& Packet\_TrainTypes\_Pkg::PT1\_PositionReport\_2BG\_T\\
+Type						& Packet\_TrainTypes\_Pkg::PT1\_PositionReport\_2BG\_T\\
 \midrule
 Valid range of values	& This packet is administered by a valid flag.\\
 \midrule
@@ -317,7 +327,6 @@ Behaviour when value is at boundary	& n/a\\
 Behaviour for values out of valid range	& n/a\\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
-
 \bottomrule
 \end{longtable}
 
@@ -341,22 +350,24 @@ Description				& Actual train data of the evc. Train data received via DMI from 
 \item[maxTrainSpeed](Obu\_BasicTypes\_Pkg::V\_internal\_Type): maximum speed of the train in km/h.
 \todo[inline]{needs to be changed to cm/sec}
 \item[loadingGauge](M\_LOADINGGAUGE): loading gauge category according to 3.18.3.2
-\item[axleLoadCategory](M\_AXLELOADCAT): axle load category according to 3.18.3.2
-\item[airTightSystem](M\_AIRTIGHT): airtight system presence according to 3.18.3.2
-\item[axleNumber]int): axle number according to 3.18.3.2
+\item[axleLoadCategory](M\_AXLELOADCAT): axle load category according to Subset-026, Section 3.18.3.2.
+\item[airTightSystem](M\_AIRTIGHT): airtight system presence according to Subset-026, Section 3.18.3.2.
+\item[axleNumber]int): axle number according to Subset-026, Section 3.18.3.2.
 \item[numberNationalSystems](int): The number of national systems available in the train.
 \item[nationalSystems](Packet\_TrainTypes\_Pkg::aNID\_NTC\_T): National Systems available in the train. The elements 0 .. numberNationalSystems - 1 are carrying the relevant data.
 \item[numberTractionSystems](int): The number of traction systems available in the train.
-\item[tractionSystems](Packet\_TrainTypes\_Pkg::aTractionIdentity\_T): Traction Systems available in the train. The elements 0 .. numberTractionSystems - 1 are carrying the relevant data.
+\item[tractionSystems](Packet\_TrainTypes\_Pkg::aTractionIdentity\_T): Traction Systems available in the train. The elements 0 \ldots numberTractionSystems - 1 are carrying the relevant data.
 \end{description} \\
 
 
 \midrule
-Destination				& evc \\ 
+Destination				& ???  
+\todo[inline]{we have to reference a component of the model or input of F2 here}\\ 
+\\ 
 \midrule
-Type					& TIU\_Types\_Pkg::trainData\_T \\
+Type						& TIU\_Types\_Pkg::trainData\_T \\
 \midrule
-Valid range of values	& n/a \\
+Valid range of values			& n/a \\
 \midrule
 Behaviour when value is at boundary	& n/a \\
 \midrule
@@ -374,7 +385,9 @@ Output name				& trainDataToRBC \\
 \midrule
 Description				& Messages for communicating with the RBC. Messages 129 (Validated Train Data) and 146 (Acknowledgement) are sent by this function. The presence of the message is indicated by a valid flag.\\
 \midrule
-Destination				& Radio Output \\ 
+Destination				& Radio Output 
+\todo[inline]{Can't we reference a component of the model or input of F2 here?}\\ 
+\\ 
 \midrule
 Type					& Radio\_Types\_Pkg::Radio\_TrainTrack\_Message\_T \\
 \midrule
@@ -428,7 +441,8 @@ Description				& Detailed definition of the trainData status. The following comp
 \end{description} 
 \\
 \midrule
-Destination				& evc \\ 
+Destination				& evc
+\todo[inline]{Can't we reference a component of the model or input of F2 here?}\\  
 \midrule
 Type					& trainData\_Types\_pkg::trainDataStatus\_T \\
 \midrule

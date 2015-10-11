@@ -2,18 +2,18 @@
 %!TEX root = ../D3_5_3.tex
 
 \paragraph{Component Requirements}
-
 \todo[inline]{Information filter component description needs to be checked, i.e. is the description still up to date? Should more documentation provided for this component in the ADD (please check with Bernd Hekele)?}
+
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Component name			& CheckEuroradioMessage \\
+Component name			& InformationFilter \\
 \midrule
 Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/ManageLocationRelatedInformation/BaliseGroup/InformationFilter}} \\
 \midrule
 SCADE designer			& Christian Stahl, TWT\newline
 Alexander Stante, FhG \\
 \midrule
-Description				& The filter receives track information (balise and radio) and filters them depending of the mode, level and source of the message. Only messages that pass the filter are valid and should be considered by other ETCS subsystems. Figure~\ref{fig:InformationFilterHighLevel} shows the high\-level decomposition of the functionality. The filter is consists of four  components: FirstFilter, SecondFilter, ThirdFilter and TransitionBuffer.
+Description				& The filter receives track information (balise and radio) and filters them depending of the mode, level and source of the message. Only messages that pass the filter are valid and should be considered by other ETCS subsystems. The filter  consists of four subcomponents: FirstFilter, SecondFilter, ThirdFilter and TransitionBuffer.
 
 \begin{description}
 \item[FirstFilter] This filter performs filtering of messages
@@ -33,7 +33,7 @@ rejected while other may be stored in the TransitionBuffer. The buffer
 is used to store messages that are received from non supervising RBCs,
 but will be reevaluated after a RBC transition.
 
-\item[ThirdFilter] The last filter is functionally very similiar
+\item[ThirdFilter] The last filter is functionally very similar
 the the FirstFilter, however it filters depending on the mode. It also
 contains a decision table with rows for every packet but the columns
 are modes.
@@ -56,12 +56,6 @@ API requirements 		& n/a \\
 \bottomrule
 \end{longtable}
 
-\begin{figure}
-\centering
-\includegraphics [width=\textwidth]{images/informationfilter-high-level-rot.png}
-\caption{High level overview of the InformationFilter components.}
-\label{fig:InformationFilterHighLevel}
-\end{figure}
 
 \paragraph{Interface}
 
