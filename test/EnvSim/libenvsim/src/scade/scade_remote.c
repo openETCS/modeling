@@ -4,6 +4,7 @@
 //
 // History:
 // - 06.10.15, J. Kastner: initial version
+// - 11.10.15, J. Kastner: add support for RemoteGUI
 
 #ifdef WITH_SCADE
 #include "RemoteDMI_EnvSim.h"
@@ -11,19 +12,24 @@
 #include "scade_common.h"
 #include "../logging.h"
 #include "../tcp.h"
+#include "RemoteGUI_EnvSim.h"
 
 #define REMOTE_DMI_ADDR "127.0.0.1"
 #define REMOTE_DMI_PORT1 20001
 #define REMOTE_DMI_PORT2 20002
+#define REMOTE_GUI_ADDR "127.0.0.1"
+#define REMOTE_GUI_PORT 20003
 
 
 es_TCPStream *es_remote_dmi_conn1 = NULL;
 es_TCPStream *es_remote_dmi_conn2 = NULL;
 es_TCPStream *es_remote_evc_conn1 = NULL;
 es_TCPStream *es_remote_evc_conn2 = NULL;
+es_TCPStream *es_remote_gui_conn = NULL;
 const size_t EVC2DMI_STRUCT_SIZE = sizeof(EVC_to_DMI_Message_T_API_DMI_Pkg);
 const size_t TIU2DMI_STRUCT_SIZE = sizeof(TIU_Input_msg_API_TIU_Pkg);
 const size_t DMI2EVC_STRUCT_SIZE = sizeof(DMI_to_EVC_Message_T_API_DMI_Pkg);
+const size_t EVC2GUI_STRUCT_SIZE = sizeof(EVC_to_GUI_EnvSim);
 
 void es_remote_dmi_init(outC_RemoteDMI_EnvSim *out) {
   es_log_init("envsim_main.log");
@@ -170,4 +176,38 @@ void es_remote_evc_cycle(DMI_to_EVC_Message_T_API_DMI_Pkg *dmiToEVC, outC_Remote
   }
 }
 
+
+extern void es_remote_gui_init(outC_RemoteGUI_EnvSim *out) {
+  es_log_init("envsim_main.log");
+
+  LOG_INFO(scade_remote,"Initializing RemoteGUI operator");
+  es_scade_load_config();
+
+  es_Interp *interp = es_get_interp();
+
+  // connect to GUI server
+  es_remote_gui_conn = NULL;
+  es_TCPContext *ctx = es_scade_get_tcp();
+  if( ctx == NULL ) {
+    LOG_ERROR(scade_remote,"could not initialize TCPContext for RemoteGUI");
+    return;
+  }
+  if( es_tcp_connect(ctx,REMOTE_GUI_ADDR,REMOTE_GUI_PORT,&es_remote_gui_conn) ) {
+    LOG_ERROR(scade_remote,"could not connect to RemoteGUI server @ %s:%d",REMOTE_GUI_ADDR,REMOTE_GUI_PORT);
+    es_remote_gui_conn = NULL;
+    return;
+  }
+
+  LOG_INFO(scade_remote,"connected to RemoteGUI server @ %s:%d",REMOTE_GUI_ADDR,REMOTE_GUI_PORT);
+
+
+}
+
+
+extern void es_remote_gui_cycle(EVC_to_GUI_EnvSim *evcToGUI, outC_RemoteGUI_EnvSim *outC) {
+  // SEND
+  if(es_remote_gui_conn != NULL && es_remote_gui_conn->client != INVALID_SOCKET) {
+    es_tcp_send(es_remote_gui_conn,TCPMSG_EVC2GUI,(const char*)evcToGUI,EVC2GUI_STRUCT_SIZE);
+  }
+}
 #endif

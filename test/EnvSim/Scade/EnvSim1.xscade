@@ -5643,6 +5643,149 @@
 								<ed:Constant oid="!ed/41139/6874/7FC/561a28f157"/>
 							</pragmas>
 						</Constant>
+						<Constant name="cEMPTY_EVC2GUI">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="EVC_to_GUI"/>
+									</type>
+								</NamedType>
+							</type>
+							<value>
+								<!-- {emergencyBrake : false, serviceBrake : false, tractionCutOff : false, currentPos... -->
+								<DataStructOp>
+									<data>
+										<LabelledExpression label="emergencyBrake">
+											<flow>
+												<ConstValue value="false"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="serviceBrake">
+											<flow>
+												<ConstValue value="false"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="tractionCutOff">
+											<flow>
+												<ConstValue value="false"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="currentPositionInCm">
+											<flow>
+												<ConstValue value="0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="currentPositionInM">
+											<flow>
+												<ConstValue value="0.0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="currentVelocityInKmH">
+											<flow>
+												<ConstValue value="0.0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="afbActive">
+											<flow>
+												<ConstValue value="false"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="trainPositionDeltaMax">
+											<flow>
+												<ConstValue value="0.0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="trainPositionNominal">
+											<flow>
+												<ConstValue value="0.0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="trainPositionDeltaMin">
+											<flow>
+												<ConstValue value="0.0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="timestamp">
+											<flow>
+												<ConstValue value="0"/>
+											</flow>
+										</LabelledExpression>
+									</data>
+								</DataStructOp>
+							</value>
+							<pragmas>
+								<ed:Constant oid="!ed/2541e1/626B/13B8/561a981723df"/>
+							</pragmas>
+						</Constant>
+						<Constant name="cEMPTY_GUI2EVC">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="GUI_to_EVC"/>
+									</type>
+								</NamedType>
+							</type>
+							<value>
+								<!-- {reset : false, targetSpeed : 0.0, traction : 0.0, brake : 0.0, initialPosition :... -->
+								<DataStructOp>
+									<data>
+										<LabelledExpression label="reset">
+											<flow>
+												<ConstValue value="false"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="targetSpeed">
+											<flow>
+												<ConstValue value="0.0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="traction">
+											<flow>
+												<ConstValue value="0.0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="brake">
+											<flow>
+												<ConstValue value="0.0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="initialPosition">
+											<flow>
+												<ConstValue value="0.0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="initialVelocity">
+											<flow>
+												<ConstValue value="0.0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="mode">
+											<flow>
+												<ConstValue value="0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="level">
+											<flow>
+												<ConstValue value="0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="mobileHWStatus">
+											<flow>
+												<ConstValue value="0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="openDesk">
+											<flow>
+												<ConstValue value="false"/>
+											</flow>
+										</LabelledExpression>
+									</data>
+								</DataStructOp>
+							</value>
+							<pragmas>
+								<ed:Constant oid="!ed/4a8429/626B/13B8/561a9db83c88"/>
+							</pragmas>
+						</Constant>
 						<Operator kind="node" visibility="private" name="GenAll">
 							<locals>
 								<Variable name="_L1">
@@ -5751,6 +5894,30 @@
 									</type>
 									<pragmas>
 										<ed:Variable oid="!ed/41144/6874/7FC/561a29128cc"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L11">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="GUI_to_EVC"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2541d7/626B/13B8/561a980328f0"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L12">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="EVC_to_GUI"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/2541ec/626B/13B8/561a982b659f"/>
 									</pragmas>
 								</Variable>
 							</locals>
@@ -5991,6 +6158,66 @@
 										<ed:Equation oid="!ed/41156/6874/7FC/561a296e7754"/>
 									</pragmas>
 								</Equation>
+								<!-- _L11 = RemoteGUI(_L12); -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L11"/>
+									</lefts>
+									<right>
+										<!-- RemoteGUI(_L12) -->
+										<CallExpression>
+											<operator>
+												<OpCall name="1">
+													<operator>
+														<OperatorRef name="RemoteGUI"/>
+													</operator>
+												</OpCall>
+											</operator>
+											<callParameters>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L12"/>
+													</path>
+												</IdExpression>
+											</callParameters>
+										</CallExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2541d6/626B/13B8/561a9803659f"/>
+									</pragmas>
+								</Equation>
+								<!-- _ = _L11; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L11"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2541dc/626B/13B8/561a980959fd"/>
+									</pragmas>
+								</Equation>
+								<!-- _L12 = cEMPTY_EVC2GUI; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L12"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="cEMPTY_EVC2GUI"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/2541eb/626B/13B8/561a982b3220"/>
+									</pragmas>
+								</Equation>
 							</data>
 							<pragmas>
 								<ed:Operator oid="!ed/93e068/43F7/16C0/560906a47ba0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
@@ -6073,8 +6300,8 @@
 													<positions>
 														<Point x="9472" y="3704"/>
 														<Point x="10451" y="3704"/>
-														<Point x="10451" y="3731"/>
-														<Point x="11430" y="3731"/>
+														<Point x="10451" y="3704"/>
+														<Point x="11430" y="3704"/>
 													</positions>
 												</Edge>
 												<EquationGE kind="OBJ_LIT" presentable="!ed/93e109/43F7/16C0/56090b3b4229">
@@ -6153,8 +6380,8 @@
 													<positions>
 														<Point x="9499" y="4207"/>
 														<Point x="10530" y="4207"/>
-														<Point x="10530" y="4180"/>
-														<Point x="11430" y="4180"/>
+														<Point x="10530" y="4207"/>
+														<Point x="11430" y="4207"/>
 													</positions>
 												</Edge>
 												<EquationGE presentable="!ed/41156/6874/7FC/561a296e7754">
@@ -6171,6 +6398,46 @@
 														<Point x="14023" y="2170"/>
 														<Point x="14023" y="2328"/>
 														<Point x="14817" y="2328"/>
+													</positions>
+												</Edge>
+												<EquationGE presentable="!ed/2541d6/626B/13B8/561a9803659f">
+													<position>
+														<Point x="11298" y="8361"/>
+													</position>
+													<size>
+														<Size width="1772" height="1402"/>
+													</size>
+												</EquationGE>
+												<EquationGE presentable="!ed/2541dc/626B/13B8/561a980959fd">
+													<position>
+														<Point x="14420" y="8837"/>
+													</position>
+													<size>
+														<Size width="503" height="503"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2541d6/626B/13B8/561a9803659f" dstEquation="!ed/2541dc/626B/13B8/561a980959fd">
+													<positions>
+														<Point x="13070" y="9075"/>
+														<Point x="13838" y="9075"/>
+														<Point x="13838" y="9102"/>
+														<Point x="14684" y="9102"/>
+													</positions>
+												</Edge>
+												<EquationGE kind="OBJ_LIT" presentable="!ed/2541eb/626B/13B8/561a982b3220">
+													<position>
+														<Point x="9340" y="8916"/>
+													</position>
+													<size>
+														<Size width="212" height="317"/>
+													</size>
+												</EquationGE>
+												<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2541eb/626B/13B8/561a982b3220" dstEquation="!ed/2541d6/626B/13B8/561a9803659f">
+													<positions>
+														<Point x="9551" y="9075"/>
+														<Point x="10425" y="9075"/>
+														<Point x="10425" y="9075"/>
+														<Point x="11298" y="9075"/>
 													</positions>
 												</Edge>
 											</presentationElements>
@@ -6913,6 +7180,286 @@
 						</ed:Package>
 					</pragmas>
 				</Package>
+				<Type name="GUI_to_EVC">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="reset">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/411e8/626B/13B8/561a8b28306f"/>
+									</pragmas>
+								</Field>
+								<Field name="targetSpeed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="real"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/411e9/626B/13B8/561a8b283389" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Unit: m/s</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="traction">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="real"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/411ea/626B/13B8/561a8b286659" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Percentage: 0-100</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="brake">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="real"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/411eb/626B/13B8/561a8b281fb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Percentage: 0-300</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="initialPosition">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="real"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/411ec/626B/13B8/561a8b281991"/>
+									</pragmas>
+								</Field>
+								<Field name="initialVelocity">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="real"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/411ed/626B/13B8/561a8b283f51"/>
+									</pragmas>
+								</Field>
+								<Field name="mode">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/411ee/626B/13B8/561a8b2844bc"/>
+									</pragmas>
+								</Field>
+								<Field name="level">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/411ef/626B/13B8/561a8b285be5"/>
+									</pragmas>
+								</Field>
+								<Field name="mobileHWStatus">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/411f0/626B/13B8/561a8b283dd8"/>
+									</pragmas>
+								</Field>
+								<Field name="openDesk">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/411f1/626B/13B8/561a8b288a8"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/411e7/626B/13B8/561a8b281876"/>
+					</pragmas>
+				</Type>
+				<Type name="EVC_to_GUI">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="emergencyBrake">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4120d/626B/13B8/561a8c891e3f"/>
+									</pragmas>
+								</Field>
+								<Field name="serviceBrake">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/41204/626B/13B8/561a8c897b3e"/>
+									</pragmas>
+								</Field>
+								<Field name="tractionCutOff">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/41205/626B/13B8/561a8c89665b"/>
+									</pragmas>
+								</Field>
+								<Field name="currentPositionInCm">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/41206/626B/13B8/561a8c894ae7"/>
+									</pragmas>
+								</Field>
+								<Field name="currentPositionInM">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="real"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/41207/626B/13B8/561a8c893906"/>
+									</pragmas>
+								</Field>
+								<Field name="currentVelocityInKmH">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="real"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/41208/626B/13B8/561a8c893313"/>
+									</pragmas>
+								</Field>
+								<Field name="afbActive">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4120e/626B/13B8/561a8c891891"/>
+									</pragmas>
+								</Field>
+								<Field name="trainPositionDeltaMax">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="real"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/41209/626B/13B8/561a8c89709f"/>
+									</pragmas>
+								</Field>
+								<Field name="trainPositionNominal">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="real"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4120c/626B/13B8/561a8c892e85"/>
+									</pragmas>
+								</Field>
+								<Field name="trainPositionDeltaMin">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="real"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4120a/626B/13B8/561a8c89a12"/>
+									</pragmas>
+								</Field>
+								<Field name="timestamp">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/4120b/626B/13B8/561a8c897e8"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/41203/626B/13B8/561a8c892606"/>
+					</pragmas>
+				</Type>
 				<Operator kind="node" external="imported" name="ScriptedTrack">
 					<inputs>
 						<Variable name="actualTrainPos">
@@ -7063,12 +7610,45 @@
 						<ed:Operator oid="!ed/3f2c1/1C49/E54/5615f09661dc"/>
 					</pragmas>
 				</Operator>
+				<Operator kind="node" external="imported" name="RemoteGUI">
+					<inputs>
+						<Variable name="evcToGUI">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="EVC_to_GUI"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2541c2/626B/13B8/561a978f70f1"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="guiToEVC">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="GUI_to_EVC"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2541cc/626B/13B8/561a97a8b9e"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<pragmas>
+						<ed:Operator oid="!ed/2541c0/626B/13B8/561a977a1fd3"/>
+					</pragmas>
+				</Operator>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/5ef9b5/5971/E40/55f9862e5454" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 					<diagrams>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/5ef9b6/5971/E40/55f9862e32bf" blockKind="constants"/>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/5ef9b7/5971/E40/55f9862e1dec" blockKind="types"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/5ef9b7/5971/E40/55f9862e1dec" blockKind="types" columnsSize="0, 223, 150, 300"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/5ef9b8/5971/E40/55f9862e5a07" blockKind="sensors"/>
 					</diagrams>
 				</ed:Package>

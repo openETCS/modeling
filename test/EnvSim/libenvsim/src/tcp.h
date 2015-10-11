@@ -16,7 +16,9 @@
 #define TCPMSG_ANY -1
 #define TCPMSG_EVC2DMI 1000
 #define TCPMSG_TIU2DMI 1001
+#define TCPMSG_EVC2GUI 1002
 #define TCPMSG_DMI2EVC 2000
+#define TCPMSG_GUI2EVC 2001
 
 #include "utils.h"
 #include <stdint.h>
