@@ -1,0 +1,916 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Package name="TM_transitional">
+			<declarations>
+				<Type name="Radio_TrackTrain_Header_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="radioDevice">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5088/7327/F60/561787a427d6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Identifier of the radio device (assuming 2 devices are installed for RBC-RBC-Handover)</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="receivedSystemTime">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Obu_BasicTypes_Pkg::T_internal_Type"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5089/7327/F60/561787a4bfd" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Timestamp when the message has been received in the system</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_message">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_MESSAGE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c508a/7327/F60/561787a43942" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Message Identifier / From: General header</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="t_train">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="TM_S026_7::T_TRAIN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c508b/7327/F60/561787a42bb4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Time, according to trainborne clock, at which message is sent / From: General header</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="m_ack">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_ACK"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c508c/7327/F60/561787a4f52" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Indicates whether the telegram must be acknowledged or not / From: General header</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_lrbg">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_LRBG"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c508d/7327/F60/561787a4768b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Identity of last relevant balise group / From: General header</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="t_train_reference">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="TM_S026_7::T_TRAIN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c508e/7327/F60/561787a41d5" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>8.7.4: Reference to received train data message</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_em">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_EM"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c508f/7327/F60/561787a4778b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>8.7.6: Message 15: Conditional Emergency Stop</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="q_scale">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_SCALE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5090/7327/F60/561787a45b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Qualifier for the distance scale / From: Message 33: MA with Shifted Location Reference</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="d_sr">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_SR"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5091/7327/F60/561787a45601"/>
+									</pragmas>
+								</Field>
+								<Field name="t_sh_rqst">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="TM_S026_7::T_TRAIN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5092/7327/F60/561787a43af9"/>
+									</pragmas>
+								</Field>
+								<Field name="d_ref">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_REF"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5093/7327/F60/561787a477c9"/>
+									</pragmas>
+								</Field>
+								<Field name="q_dir">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_DIR"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5094/7327/F60/561787a465e5"/>
+									</pragmas>
+								</Field>
+								<Field name="d_emergencystop">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="D_EMERGENCYSTOP"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5095/7327/F60/561787a436d8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>8.7.6: Distance between LRBG and the position reference to the emergency stop.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="m_version">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_VERSION"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5096/7327/F60/561787a41759" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>8.7.12: Version of the ERTMS/ETCS system.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1c5087/7327/F60/561787a4eba" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Original in Radio_Types_Pkg</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="Movement_Authority">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="NID_MESSAGE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c525a/7327/F60/561794a05063"/>
+									</pragmas>
+								</Field>
+								<Field name="L_MESSAGE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c525b/7327/F60/561794a07a56"/>
+									</pragmas>
+								</Field>
+								<Field name="T_TRAIN">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c525c/7327/F60/561794a011b4"/>
+									</pragmas>
+								</Field>
+								<Field name="M_ACK">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c525d/7327/F60/561794a02564"/>
+									</pragmas>
+								</Field>
+								<Field name="NID_LRBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c525e/7327/F60/561794a050a8"/>
+									</pragmas>
+								</Field>
+								<Field name="PADDING13">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c525f/7327/F60/561794a0cf"/>
+									</pragmas>
+								</Field>
+								<Field name="Movement_Authority_OptionalPackets">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5260/7327/F60/561794a06bb3"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1c5259/7327/F60/561794a04799" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Radio Message Number = 3, orginal in S026_8 </comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="Acknowledgement_of_Train_Data">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="NID_MESSAGE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c527e/7327/F60/561795372966"/>
+									</pragmas>
+								</Field>
+								<Field name="L_MESSAGE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c527f/7327/F60/5617953720f7"/>
+									</pragmas>
+								</Field>
+								<Field name="T_TRAIN0">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5280/7327/F60/561795373614"/>
+									</pragmas>
+								</Field>
+								<Field name="M_ACK">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5281/7327/F60/5617953767c2"/>
+									</pragmas>
+								</Field>
+								<Field name="NID_LRBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5282/7327/F60/561795371258"/>
+									</pragmas>
+								</Field>
+								<Field name="T_TRAIN1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5283/7327/F60/561795375ba4"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1c527d/7327/F60/5617953756e1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Radio Message Number = 8, orginal in S026_8  </comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="Conditional_Emergency_Stop">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="NID_MESSAGE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52b5/7327/F60/561795b852fd"/>
+									</pragmas>
+								</Field>
+								<Field name="L_MESSAGE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52b6/7327/F60/561795b86f0"/>
+									</pragmas>
+								</Field>
+								<Field name="T_TRAIN">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52b7/7327/F60/561795b82241"/>
+									</pragmas>
+								</Field>
+								<Field name="M_ACK">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52b8/7327/F60/561795b83603"/>
+									</pragmas>
+								</Field>
+								<Field name="NID_LRBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52b9/7327/F60/561795b8680d"/>
+									</pragmas>
+								</Field>
+								<Field name="NID_EM">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52ba/7327/F60/561795b86eab"/>
+									</pragmas>
+								</Field>
+								<Field name="Q_SCALE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52bb/7327/F60/561795b8168f"/>
+									</pragmas>
+								</Field>
+								<Field name="D_REF">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52bc/7327/F60/561795b875db"/>
+									</pragmas>
+								</Field>
+								<Field name="Q_DIR">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52bd/7327/F60/561795b8747d"/>
+									</pragmas>
+								</Field>
+								<Field name="D_EMERGENCYSTOP">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52be/7327/F60/561795b87ebd"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1c52b4/7327/F60/561795b83454" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Radio Message Number = 15 , original in S026_8</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="General_message">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="NID_MESSAGE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52dd/7327/F60/5617963c32ab"/>
+									</pragmas>
+								</Field>
+								<Field name="L_MESSAGE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52de/7327/F60/5617963c4525"/>
+									</pragmas>
+								</Field>
+								<Field name="T_TRAIN">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52df/7327/F60/5617963c1661"/>
+									</pragmas>
+								</Field>
+								<Field name="M_ACK">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52e0/7327/F60/5617963c79de"/>
+									</pragmas>
+								</Field>
+								<Field name="NID_LRBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52e1/7327/F60/5617963c3647"/>
+									</pragmas>
+								</Field>
+								<Field name="PADDING15">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52e2/7327/F60/5617963c471e"/>
+									</pragmas>
+								</Field>
+								<Field name="General_message_OptionalPackets">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c52e3/7327/F60/5617963c1251"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1c52dc/7327/F60/5617963c6b05" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Radio Message Number = 24, orginal in S026_8 </comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="RBC_or_RIU_System_Version">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="NID_MESSAGE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5301/7327/F60/5617968b3abc"/>
+									</pragmas>
+								</Field>
+								<Field name="L_MESSAGE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5302/7327/F60/5617968b445b"/>
+									</pragmas>
+								</Field>
+								<Field name="T_TRAIN">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5303/7327/F60/5617968bcc3"/>
+									</pragmas>
+								</Field>
+								<Field name="M_ACK">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5304/7327/F60/5617968bbf0"/>
+									</pragmas>
+								</Field>
+								<Field name="NID_LRBG">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5305/7327/F60/5617968b2cae"/>
+									</pragmas>
+								</Field>
+								<Field name="M_VERSION">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/1c5306/7327/F60/5617968b3951"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/1c5300/7327/F60/5617968b7689" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Radio Message Number = 32, orginal in S026_8</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="Radio_TrainTrack_Header_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="present">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3f4db/2407/DE4/5617a0321e54" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Indicates whether the header is present in the interface.</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_message">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_MESSAGE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3f4dc/2407/DE4/5617a0325c59" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Message Identifier / From: General header</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="t_train">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="TM_S026_7::T_TRAIN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3f4dd/2407/DE4/5617a03216fc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Time, according to trainborne clock, at which message is sent / From: General header</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="nid_engine">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_ENGINE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3f4de/2407/DE4/5617a032272e" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Identity of the train</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="xQ_MARQSTREASON">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_MARQSTREASON"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3f4df/2407/DE4/5617a0321bb7" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Only relevant for some messages</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="xT_TRAIN">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="TM_S026_7::T_TRAIN"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3f4e0/2407/DE4/5617a0325e6d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Only relevant for some messages: Time stamp contained in the message that is acknowledged</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="xNID_EM">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_EM"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3f4e1/2407/DE4/5617a032464c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Only relevant for some messages: Emergency message identity</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="xQ_EMERGENCYSTOP">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Q_EMERGENCYSTOP"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3f4e2/2407/DE4/5617a032bda" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Only relevant for some messages: Qualifier for emergency stop management</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="xNID_TEXTMESSAGE">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="NID_TEXTMESSAGE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3f4e3/2407/DE4/5617a0325c1f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Only relevant for some messages: Text message identifier</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3f4da/2407/DE4/5617a03264a4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>8.4.4.7: Standard format of rdio message train to track</comment>
+						</ed:Type>
+					</pragmas>
+				</Type>
+				<Type name="Radio_TrainTrack_Message_T">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="present">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3f501/2407/DE4/5617a1639c4"/>
+									</pragmas>
+								</Field>
+								<Field name="header">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Radio_TrainTrack_Header_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3f502/2407/DE4/5617a1632eea"/>
+									</pragmas>
+								</Field>
+								<Field name="packets">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="Common_Types_Pkg::outPackets_T"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/3f503/2407/DE4/5617a1632c84"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/3f500/2407/DE4/5617a1634070"/>
+					</pragmas>
+				</Type>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/1c5061/7327/F60/561787864fba" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1c5062/7327/F60/561787864e8e" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1c5063/7327/F60/5617878647cb" blockKind="types" columnsSize="0, 285, 150, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1c5064/7327/F60/561787862e97" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>
