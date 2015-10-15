@@ -11,6 +11,7 @@ set(COMMON_SOURCE_FILES
   src/logging.c src/logging.h
   src/trackmsg.c src/trackmsg.h
   src/tcp.h src/tcp_win.c
+  src/stcp.h src/stcp.c
   src/tcl/track.c src/tcl/track.h
   src/tcl/pkts.c src/tcl/pkts.h
 )

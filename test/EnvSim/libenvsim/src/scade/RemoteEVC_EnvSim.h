@@ -16,6 +16,7 @@ typedef struct {
   /* ---------------------------  outputs  --------------------------- */
   EVC_to_DMI_Message_T_API_DMI_Pkg /* EnvSim::RemoteEVC::evcToDMI */ evcToDMI;
   TIU_Input_msg_API_TIU_Pkg /* EnvSim::RemoteEVC::tiuToDMI */ tiuToDMI;
+  kcg_bool /* EnvSim::RemoteEVC::run */ run;
   /* -------------  insert eventual inits and memories  -------------- */
 } outC_RemoteEVC_EnvSim;
 

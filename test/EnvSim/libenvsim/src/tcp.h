@@ -12,8 +12,14 @@
 // maximum number of bytes per send/receive
 #define TCP_MSG_SIZE 65535
 
+// maximum number of pending messages
+// (currently we only WARN when we reach this limit)
+#define TCP_MAX_PENDING_MSGS 100
+
 // TCP message IDs
 #define TCPMSG_ANY -1
+#define TCPMSG_STOP    1
+#define TCPMSG_RUN     2
 #define TCPMSG_EVC2DMI 1000
 #define TCPMSG_TIU2DMI 1001
 #define TCPMSG_EVC2GUI 1002
@@ -22,6 +28,7 @@
 
 #include "utils.h"
 #include <stdint.h>
+#include <stdbool.h>
 
 #ifdef WINDOWS
 #include <winsock2.h>
@@ -31,7 +38,6 @@
 typedef int32_t es_MSGID;
 
 typedef struct {
-  int nextid;
   es_ListEntry *streams;
   bool shutdown;
 #ifdef WINDOWS
@@ -47,14 +53,23 @@ typedef enum {
 
 typedef struct {
   es_TCPContext *ctx;
-  int id;
+  char *name;
   char *addr;
   int port;
   es_TCPStream_Type type;
   // list with pending outgoing TCP messages
   es_ListEntry *out;
+  // number of unprocessed outgoing messages
+  int nout;
   // list with unprocessed incoming TCP messages
   es_ListEntry *in;
+  // number of unprocessed incoming messages
+  int nin;
+  // messages are only sent iff run == true;
+  // this property is set by TCPMSG_RUN and TCPMSG_STOP messages
+  bool run;
+  // called after each send cycle
+  void (*afterSend)(void);
 #ifdef WINDOWS
   SOCKET socket;
   SOCKET client;
@@ -76,9 +91,10 @@ typedef struct {
 
 es_Status es_tcp_init(es_TCPContext **ctx);
 
-es_Status es_tcp_connect(es_TCPContext *ctx, const char *addr, const int port, es_TCPStream **stream);
+es_Status es_tcp_connect(es_TCPContext *ctx, const char *addr, const int port,
+                         const char *name, es_TCPStream **stream);
 
-es_Status es_tcp_listen(es_TCPContext *ctx, const int port, es_TCPStream **stream);
+es_Status es_tcp_listen(es_TCPContext *ctx, const int port, const char *name, es_TCPStream **stream);
 
 // Send a message via the specified TCPStream.
 //

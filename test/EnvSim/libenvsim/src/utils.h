@@ -35,7 +35,8 @@ typedef enum {
   // indicates that the request operation is not supported (by the current configuration)
   ES_NOT_SUPPORTED,
   // indicates an error in the TCP stack
-  ES_TCP_ERROR
+  ES_TCP_ERROR,
+  ES_TCP_NO_CONN
 } es_Status;
 
 typedef char* es_ClientData;

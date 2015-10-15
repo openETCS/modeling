@@ -17,6 +17,7 @@
 // Timeout for winsock select() in usecs
 #define TCP_RECEIVE_TIMEOUT 1000
 
+
 #define TCP_SYNC(ctx,fn,rc) \
   { DWORD waitResult; \
     waitResult = WaitForSingleObject(ctx->mutex,INFINITE);\
@@ -44,7 +45,6 @@ es_Status es_tcp_init(es_TCPContext **ctx) {
   }
 
   es_TCPContext *c = MALLOC(es_TCPContext);
-  c->nextid = 1;
   c->streams = NULL;
   c->thread = NULL;
   c->mutex = CreateMutex(NULL,FALSE,NULL);
@@ -57,7 +57,8 @@ es_Status es_tcp_init(es_TCPContext **ctx) {
   return ES_OK; 
 }
 
-es_Status es_tcp_connect_sync(es_TCPContext *ctx, const char *addr, const int port, es_TCPStream **stream) {
+es_Status es_tcp_connect_sync(es_TCPContext *ctx, const char *addr, const int port,
+                              const char *name, es_TCPStream **stream) {
   LOG_TRACE(tcp_win,"Initializing TCP connection to %s:%d",addr,port);
   
   es_TCPStream *conn = MALLOC(es_TCPStream);
@@ -82,14 +83,17 @@ es_Status es_tcp_connect_sync(es_TCPContext *ctx, const char *addr, const int po
   }
 
   conn->type = TCP_CLIENT;
-  conn->id = ctx->nextid;
+  conn->name = (char*)name;
   conn->addr = (char*)addr;
   conn->port = port;
   conn->ctx = ctx;
   conn->out = NULL;
+  conn->nout = 0;
   conn->in = NULL;
+  conn->nin = 0;
+  conn->run = true;
+  conn->afterSend = NULL;
 
-  ctx->nextid += 1;
   if(ctx->streams==NULL) {
     ctx->streams = es_list_append(ctx->streams,(char*)conn);
   }
@@ -102,24 +106,29 @@ es_Status es_tcp_connect_sync(es_TCPContext *ctx, const char *addr, const int po
   return ES_OK;
 }
 
-es_Status es_tcp_connect(es_TCPContext *ctx, const char *addr, const int port, es_TCPStream **stream) {
+es_Status es_tcp_connect(es_TCPContext *ctx, const char *addr, const int port, const char* name, es_TCPStream **stream) {
   int rc = 0;
-  TCP_SYNC(ctx, es_tcp_connect_sync(ctx,addr,port,stream), &rc);
+  TCP_SYNC(ctx, es_tcp_connect_sync(ctx,addr,port,name,stream), &rc);
   return rc;
 }
 
 
-es_Status es_tcp_listen_sync(es_TCPContext *ctx, const int port, es_TCPStream **stream) {
+es_Status es_tcp_listen_sync(es_TCPContext *ctx, const int port, const char *name, es_TCPStream **stream) {
   LOG_TRACE(tcp_win,"Initializing server socket on port %d",port);
 
   es_TCPStream *conn = MALLOC(es_TCPStream);
 
   conn->type = TCP_SERVER;
+  conn->name = (char*)name;
   conn->port = port;
   conn->socket = socket(AF_INET,SOCK_STREAM,IPPROTO_TCP);
   conn->client = INVALID_SOCKET;
   conn->out = NULL;
+  conn->nout = 0;
   conn->in = NULL;
+  conn->nin = 0;
+  conn->run = true;
+  conn->afterSend = NULL;
   if(conn->socket==INVALID_SOCKET) {
     TCPERROR("could not create winsocket; error code: %d",WSAGetLastError());
   }
@@ -136,11 +145,10 @@ es_Status es_tcp_listen_sync(es_TCPContext *ctx, const int port, es_TCPStream **
 
   rc = listen(conn->socket,10);
   if( rc == SOCKET_ERROR ) {
-    TCPERROR("cannot listen to TCP socket ∆port %d; error code: %d",port,WSAGetLastError());
+    TCPERROR("cannot listen to TCP socket @port %d; error code: %d",port,WSAGetLastError());
   }
 
   conn->ctx = ctx;
-  ctx->nextid += 1;
   if(ctx->streams==NULL) {
     ctx->streams = es_list_append(ctx->streams,(char*)conn);
   }
@@ -156,9 +164,9 @@ es_Status es_tcp_listen_sync(es_TCPContext *ctx, const int port, es_TCPStream **
 }
 
 
-es_Status es_tcp_listen(es_TCPContext *ctx, const int port, es_TCPStream **stream) {
+es_Status es_tcp_listen(es_TCPContext *ctx, const int port, const char *name, es_TCPStream **stream) {
   int rc = 0;
-  TCP_SYNC(ctx, es_tcp_listen_sync(ctx,port,stream), &rc);
+  TCP_SYNC(ctx, es_tcp_listen_sync(ctx,port,name,stream), &rc);
   return rc;
 }
 
@@ -182,6 +190,7 @@ es_Status es_tcp_send_sync(es_TCPStream *stream, es_MSGID id, const char *data, 
   }
   else {
     es_list_append(stream->out,(char*)msg);
+    stream->nout += 1;
   }
 
   return ES_OK;
@@ -203,6 +212,7 @@ es_Status es_tcp_read_sync(es_TCPStream *stream, es_MSGID id, es_TCPMessage **ms
   }
   else if (id<0) {
     stream->in = es_list_remove_head(stream->in,(char**)msg);
+    stream->nin -= 1;
   }
   else {
     es_ListEntry *next = stream->in;
@@ -218,6 +228,7 @@ es_Status es_tcp_read_sync(es_TCPStream *stream, es_MSGID id, es_TCPMessage **ms
         }
         *msg = m;
         free(next);
+        stream->nin -= 1;
         break;
       }
       prev = next;
@@ -271,9 +282,17 @@ es_Status es_tcp_process_out(es_TCPContext *ctx) {
       free(msg);
 
       nextmsg = es_list_remove_head(nextmsg,(char**)&msg);
+      stream->nout -= 1;
     }
     stream->out = nextmsg;
 
+    if( stream->afterSend != NULL ) {
+      stream->afterSend();
+    }
+
+    if( stream->nout > TCP_MAX_PENDING_MSGS ) {
+      LOG_WARN(tcp_win,"%d pending messages on output stream '%s'",stream->nout, stream->name);
+    }
     next = next->tail;
   }
 
@@ -297,23 +316,34 @@ es_Status es_tcp_process_msgstream(es_TCPStream *stream, char* data, int len) {
     int dlen = *((int32_t*)next);
     next += 4;
     if( dlen > len - 8 ) {
-      TCPERROR("received incomplete message: expected %d bytes, got %d\n",dlen,len-8);
+      TCPERROR("received incomplete message: expected %d bytes, got %d",dlen,len-8);
     }
-    es_TCPMessage *msg = MALLOC(es_TCPMessage);
-    msg->id = id;
-    msg->raw = NULL;
-    msg->data = malloc(dlen);
-    msg->len = dlen;
-    LOG_TRACE(tcp_win,"received message %d (data: %d bytes)",id,dlen);
-    memcpy(msg->data,next,dlen);
 
-    if(stream->in==NULL) {
-      stream->in = es_list_append(stream->in,(char*)msg);
+    if( id == TCPMSG_RUN ) {
+      LOG_INFO(scade_remote,"STARTING %s",stream->name);
+      stream->run = true;
+    }
+    else if( id == TCPMSG_STOP ) {
+      LOG_INFO(scade_remote,"STOPPING %s",stream->name);
+      stream->run = false;
     }
     else {
-      es_list_append(stream->in,(char*)msg);
-    }
+      es_TCPMessage *msg = MALLOC(es_TCPMessage);
+      msg->id = id;
+      msg->raw = NULL;
+      msg->data = malloc(dlen);
+      msg->len = dlen;
+      LOG_TRACE(tcp_win,"received message %d (data: %d bytes)",id,dlen);
+      memcpy(msg->data,next,dlen);
 
+      if(stream->in==NULL) {
+        stream->in = es_list_append(stream->in,(char*)msg);
+      }
+      else {
+        es_list_append(stream->in,(char*)msg);
+      }
+      stream->nin += 1;
+    }
     pos += 8+dlen;
     next += dlen;
   }
@@ -403,7 +433,10 @@ es_Status es_tcp_receive(es_TCPContext *ctx) {
         }
       }
     }
-
+    
+    if( stream->nin > TCP_MAX_PENDING_MSGS ) {
+      LOG_WARN(tcp_win,"%d pending messages on input stream '%s'!",stream->nin,stream->name);
+    }
     next = next->tail;
   }
   return ES_OK;
