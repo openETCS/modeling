@@ -1,101 +1,135 @@
 \section{ETCS Kernel Overview}\label{s:ETCS_Kernel_Overview}
 
-The ETCS Kernel module consists of the 13 functional components, i.e. F1.1 to F1.13 as depicted in Figures~\ref{f:f2.1_overview} to \ref{f:f2.13_overview}. Note that due to the complexity of the Kernel module the SysML diagram has been splitted into 13 figures. Each of the figures shows one of the subcomponents F2.1 to F2.13 and its connections to the other components in F2 and the inputs respectively outputs of F2. In the following we briefly describe the functionality of these components.
+The ETCS Kernel module consists of the 13 functional components, i.e. F2.1 to F2.13 as depicted in Figures~\ref{f:f2.1_overview} to \ref{f:f2.13_overview}. Note that due to the complexity of the Kernel module the SysML diagram has been splitted into 13 figures. Each of the figures shows one of the subcomponents F2.1 to F2.13 and its connections to the other components in F2 and the inputs respectively outputs of F2. In the following we briefly describe the functionality of these components.
 \begin{description}
 \item[F2.1: Manage\_TrackSideInformation\_Integration] This component is responsible for receiving Eurobalise telegrams and Euroradio messages from the API and performs several consistency checks on the inputs. The corresponding SysML diagram is shown in Figure~\ref{f:f2.1_overview}. For further details we refer to Section~\ref{s:F2.1}.
+
+\item[F2.2: Manage\_ETCS\_Procedures] This component describes the Start of Mission procedure of the train until the current status will change to another mode, level or other procedure. The corresponding SysML diagram is shown in Figure~\ref{f:f2.2_overview}. For further details we refer to Section~\ref{s:F2.2}.
+
+\item[F2.3: trainData] Implementation of the train data with the corresponding interfaces to track, driver and RBC. The corresponding SysML diagram is shown in Figure~\ref{f:f2.3_overview}. For further details we refer to Section~\ref{s:F2.3}.
+\todo[inline]{descriptions needs to be improved}
+
+\item[F2.4: TrackAtlas] t.b.d.  The corresponding SysML diagram is shown in Figure~\ref{f:f2.4_overview}. For further details we refer to Section~\ref{s:F2.4}.
+\todo[inline]{to be completed}
+
+\item[F2.5: Mode\_and\_Level] Defines the status of the ETCS regarding on-board functional status and track infrastructure. The corresponding SysML diagram is shown in Figure~\ref{f:f2.5_overview}. For further details we refer to Section~\ref{s:F2.5}.
+\todo[inline]{descriptions needs to be improved}
+
+\item[F2.6: calculateTrainPosition] The purpose of this component is to calculate the locations of linked and unlinked balise groups and the current train position while the train is running along the track. The corresponding SysML diagram is shown in Figure~\ref{f:f2.6_overview}. For further details we refer to Section~\ref{s:F2.6}.
+
+
+\item[F2.7: SpeedSupervision\_Integration] This component monitors the current speed of the train and its location to ensure that the speed remains within the given speed and distance limits. The corresponding SysML diagram is shown in Figure~\ref{f:f2.7_overview}. For further details we refer to Section~\ref{s:F2.7}.
+
+
+\item[F2.8: Provide\_Position\_Report] The component builds a position report for the RBC, i.e., message 132, and provides it as an output. The corresponding SysML diagram is shown in Figure~\ref{f:f2.8_overview}. For further details we refer to Section~\ref{s:F2.8}.
+
+
+\item[F2.9: Manage\_Radio\_Communication] This component implements the onboard management of a single communication session with the track, i.e.~a single RBC. It controls the establishment, maintenance and termination process of a radio communication session and steers the underlying communication safety layer as well as the mobile device. Those and the data transfer itself are not part of this component. The corresponding SysML diagram is shown in Figure~\ref{f:f2.9_overview}. For further details we refer to Section~\ref{s:F2.9}.
+
+
+\item[F2.10: ManageDMIInput] This component handles messages respectively data coming from the Driver Machine Interface (DMI) to the ETCS OBU. The corresponding SysML diagram is shown in Figure~\ref{f:f2.10_overview}. For further details we refer to Section~\ref{s:F2.10}.
+
+
+\item[F2.11: ManageDMIOutput] This component handles messages respectively data being send from the ETCS OBU to the DMI. The corresponding SysML diagram is shown in Figure~\ref{f:f2.11_overview}. For further details we refer to Section~\ref{s:F2.11}.
+
+
+\item[F2.12: ManageTIUInput] This component handles messages respectively data coming from the Train Interface Unit (TIU) to the ETCS OBU. The corresponding SysML diagram is shown in Figure~\ref{f:f2.12_overview}. For further details we refer to Section~\ref{s:F2.12}.
+
+
+\item[F2.13: ManageTIUOutput] This component handles messages respectively data being send from the ETCS OBU to the TIU. The corresponding SysML diagram is shown in Figure~\ref{f:f2.13_overview}. For further details we refer to Section~\ref{s:F2.13}.
+\end{description}
+
 \begin{figure}
 \center
 \includegraphics[width=\textwidth]{F2_F2_1.pdf}
 \caption{F2: ETCS Kernel SysML diagram with focus on F2.1 Manage\_TrackSideInformation\_Integration component.}\label{f:f2.1_overview}
 \end{figure}
 
-\item[F2.2: Manage\_ETCS\_Procedures] This component describes the Start of Mission procedure of the train until the current status will change to another mode, level or other procedure. The corresponding SysML diagram is shown in Figure~\ref{f:f2.2_overview}. For further details we refer to Section~\ref{s:F2.2}.
 \begin{figure}
 \center
 \includegraphics[width=\textwidth]{F2_F2_2.pdf}
 \caption{F2: ETCS Kernel SysML diagram with focus on F2.2 Manage\_ETCS\_Procedures component.}\label{f:f2.2_overview}
 \end{figure}
 
-\item[F2.3: trainData] Implementation of the train data with the corresponding interfaces to track, driver and RBC. The corresponding SysML diagram is shown in Figure~\ref{f:f2.3_overview}. For further details we refer to Section~\ref{s:F2.3}.
-\todo[inline]{descriptions needs to be improved}
 \begin{figure}
 \center
 \includegraphics[width=\textwidth]{F2_F2_3.pdf}
 \caption{F2: ETCS Kernel SysML diagram with focus on F2.3 trainData component.}\label{f:f2.3_overview}
 \end{figure}
 
-\item[F2.4: TrackAtlas] t.b.d.  The corresponding SysML diagram is shown in Figure~\ref{f:f2.4_overview}. For further details we refer to Section~\ref{s:F2.4}.
-\todo[inline]{to be completed}
 \begin{figure}
 \center
 \missingfigure{[Put SysML diagram of component here]}
 \caption{F2: ETCS Kernel SysML diagram with focus on F2.4 TrackAtlas component.}\label{f:f2.4_overview}
 \end{figure}
 
-\item[F2.5: Mode\_and\_Level] Defines the status of the ETCS regarding on-board functional status and track infrastructure. The corresponding SysML diagram is shown in Figure~\ref{f:f2.5_overview}. For further details we refer to Section~\ref{s:F2.5}.
-\todo[inline]{descriptions needs to be improved}
 \begin{figure}
 \center
-\missingfigure{[Put SysML diagram of component here]}
+\includegraphics[width=\textwidth]{F2_F2_5.pdf}
 \caption{F2: ETCS Kernel SysML diagram with focus on F2.5 Mode\_and\_Level component.}\label{f:f2.5_overview}
 \end{figure}
 
-\item[F2.6: calculateTrainPosition] The purpose of this component is to calculate the locations of linked and unlinked balise groups and the current train position while the train is running along the track. The corresponding SysML diagram is shown in Figure~\ref{f:f2.6_overview}. For further details we refer to Section~\ref{s:F2.6}.
 \begin{figure}
 \center
 \includegraphics[width=\textwidth]{F2_F2_6.pdf}
 \caption{F2: ETCS Kernel SysML diagram with focus on F2.6 calculateTrainPosition component.}\label{f:f2.6_overview}
 \end{figure}
 
-\item[F2.7: SpeedSupervision\_Integration] This component monitors the current speed of the train and its location to ensure that the speed remains within the given speed and distance limits. The corresponding SysML diagram is shown in Figure~\ref{f:f2.7_overview}. For further details we refer to Section~\ref{s:F2.7}.
 \begin{figure}
 \center
 \includegraphics[width=\textwidth]{F2_F2_7.pdf}
 \caption{F2: ETCS Kernel SysML diagram with focus on F2.7 SpeedSupervision\_Integration component.}\label{f:f2.7_overview}
 \end{figure}
 
-\item[F2.8: Provide\_Position\_Report] The component builds a position report for the RBC, i.e., message 132, and provides it as an output. The corresponding SysML diagram is shown in Figure~\ref{f:f2.8_overview}. For further details we refer to Section~\ref{s:F2.8}.
 \begin{figure}
 \center
-\missingfigure{[Put SysML diagram of component here]}
+\includegraphics[width=\textwidth]{F2_F2_8.pdf}
 \caption{F2: ETCS Kernel SysML diagram with focus on F2.8 Provide\_Position\_Report component.}\label{f:f2.8_overview}
 \end{figure}
 
-\item[F2.9: Manage\_Radio\_Communication] This component implements the onboard management of a single communication session with the track, i.e.~a single RBC. It controls the establishment, maintenance and termination process of a radio communication session and steers the underlying communication safety layer as well as the mobile device. Those and the data transfer itself are not part of this component. The corresponding SysML diagram is shown in Figure~\ref{f:f2.9_overview}. For further details we refer to Section~\ref{s:F2.9}.
 \begin{figure}
 \center
-\missingfigure{[Put SysML diagram of component here]}
+\includegraphics[width=\textwidth]{F2_F2_9.pdf}
 \caption{F2: ETCS Kernel SysML diagram with focus on F2.9 Manage\_Radio\_Communication component.}\label{f:f2.9_overview}
 \end{figure}
 
-\item[F2.10: ManageDMIInput] This component handles messages respectively data coming from the Driver Machine Interface (DMI) to the ETCS OBU. The corresponding SysML diagram is shown in Figure~\ref{f:f2.10_overview}. For further details we refer to Section~\ref{s:F2.10}.
 \begin{figure}
 \center
 \includegraphics[width=\textwidth]{F2_F2_10.pdf}
 \caption{F2: ETCS Kernel SysML diagram with focus on F2.10 ManageDMIInput component.}\label{f:f2.10_overview}
 \end{figure}
 
-\item[F2.11: ManageDMIOutput] This component handles messages respectively data being send from the ETCS OBU to the DMI. The corresponding SysML diagram is shown in Figure~\ref{f:f2.11_overview}. For further details we refer to Section~\ref{s:F2.11}.
 \begin{figure}
 \center
 \includegraphics[width=\textwidth]{F2_F2_11.pdf}
 \caption{F2: ETCS Kernel SysML diagram with focus on F2.11 ManageDMIOutput component.}\label{f:f2.11_overview}
 \end{figure}
 
-\item[F2.12: ManageTIUInput] This component handles messages respectively data coming from the Train Interface Unit (TIU) to the ETCS OBU. The corresponding SysML diagram is shown in Figure~\ref{f:f2.12_overview}. For further details we refer to Section~\ref{s:F2.12}.
 \begin{figure}
 \center
 \includegraphics[width=\textwidth]{F2_F2_12.pdf}
 \caption{F2: ETCS Kernel SysML diagram with focus on F2.12 ManageTIUInput component.}\label{f:f2.12_overview}
 \end{figure}
 
-\item[F2.13: ManageTIUOutput] This component handles messages respectively data being send from the ETCS OBU to the TIU. The corresponding SysML diagram is shown in Figure~\ref{f:f2.13_overview}. For further details we refer to Section~\ref{s:F2.13}.
 \begin{figure}
 \center
 \includegraphics[width=\textwidth]{F2_F2_13.pdf}
 \caption{F2: ETCS Kernel SysML diagram with focus on F2.13 ManageTIUOutput component.}\label{f:f2.13_overview}
 \end{figure}
-\end{description}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \subsection{External Interfaces}
