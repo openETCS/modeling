@@ -21,7 +21,9 @@ set(LIBENVSIM_SOURCE_FILES ${COMMON_SOURCE_FILES}
   src/scade/scade_common.c src/scade/scade_common.h
   src/scade/ScriptedTrack_EnvSim.c src/scade/ScriptedTrack_EnvSim.h src/scade/scade_track.c
   src/scade/RemoteDMI_EnvSim.c src/scade/RemoteDMI_EnvSim.h
+  src/scade/RemoteDMIBus_EnvSim.c src/scade/RemoteDMIBus_EnvSim.h
   src/scade/RemoteEVC_EnvSim.c src/scade/RemoteEVC_EnvSim.h
+  src/scade/RemoteEVCBus_EnvSim.c src/scade/RemoteEVCBus_EnvSim.h
   src/scade/RemoteGUI_EnvSim.c src/scade/RemoteGUI_EnvSim.h
   src/scade/scade_remote.c
 )
