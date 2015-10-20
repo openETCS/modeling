@@ -13,11 +13,11 @@ The system architecture of the openETCS OBU is adopted from the system structure
 
 \section{Top Level Architecture and External Interfaces}
 
-Figure~\ref{f:top_level} shows the top level architecture with external interfaces E1, E2,$\ldots$, E9. The external interfaces are used for the communication between the openETCS OBU (dashed red line) and systems out of the scope of the openETCS project and the ETCS Onboard Unit System. In the following we give  brief overview of the interfaces:
+Figure~\ref{f:top_level} shows the top level architecture with external interfaces E1, E2,$\ldots$, E10. The external interfaces are used for the communication between the openETCS OBU (dashed red line) and systems out of the scope of the openETCS project and the ETCS Onboard Unit System. In the following we give  brief overview of the interfaces:
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{ETCS_system.pdf}
-\caption{Top level architecture with external interfaces E1 to E9.}
+\caption{Top level architecture with external interfaces E1 to E10.}
 \label{f:top_level}
 \end{figure}
 
@@ -25,45 +25,63 @@ Figure~\ref{f:top_level} shows the top level architecture with external interfac
 \begin{description}
 \item[E1:] In- and out flow between the Interlocking and the Eurobalise. Only relevant for controlled Eurobalises.
 
-\item[E2:] In- and out-flow between the Interlocking and Radio Block Center.
+\item[E2:] Input and output interface between the Interlocking and Radio Block Center (RBC).
 
-\item[E3:] Input flow from the Eurobalise to the ERTMS Track module.
+\item[E3:] Input interface from the Eurobalise to the ERTMS Track module.
 
-\item[E4:] Input flow from the RBC to the ERTMS Track module.
+\item[E4:] Input interface from the RBC to the ERTMS Track module.
 
 \item[E5:] This interface is used for the interaction between the driver and the display (Driver Machine Interface, DMI).
 
 \item[E6:] This interface is a compound structure and combines the interfaces E3 and E4 to send track side messages from Eurobalises or RBC to the ETCS OBU.
 
-\item[E7:] In- and out-flow between RBC and ETCS OBU. This interface is used for the management of radio communication, e.g.~session management, and sending radio messages from the ETCS OBU to the RBC. Note that the ETCS OBU receives radio messages via interface E6.
+\item[E7:] Input and output interface between RBC and ETCS OBU. This interface is used for the management of radio communication, e.g.~session management, and sending radio messages from the ETCS OBU to the RBC. Note that the ETCS OBU receives radio messages via interface E6.
 
-\item[E8:] Input interface to the odometry subsystem of the ETCS OBU. Used for sending information to the train if there is any movement outside the ETCS System, e.g.~"cold movement".
+\item[E8:] Input interface to the odometry subsystem of the ETCS OBU. Used for sending information to the train if there is any movement outside the ETCS system, e.g.~"cold movement".
 
 \item[E9:] Input interface to the ETCS OBU to set configuration data such as fixed values, system values, national values and train configuration.
 
-\item[E10:] In- and Out flow between the ETCS OBU and the train. This interface is used for the interaction between the train and the ETCS OBU such as brake control, traction control, door control, etc.
+\item[E10:] Input and output interface between the ETCS OBU and the train. This interface is used for the interaction between the train and the ETCS OBU such as brake control, traction control, door control, etc.
 \end{description}
 
 
 \section{Functional breakdown of the ETCS OBU}
 
-Figure \ref{f:ETCS_OBU_decomposition} depicts the functional breakdown of the ETCS OBU block shown in Figure~\ref{f:top_level}.\todo[fancyline]{Figure is incomplete and erroneous... F2 is not connected, F2 exists twice}\todo[fancyline]{Should this block be described using the new component description template? Section needs to be completed} The internal interfaces
+Figure \ref{f:ETCS_OBU_decomposition} depicts the functional breakdown of the ETCS OBU block shown in Figure~\ref{f:top_level}. The ETCS OBU consits out of 7 functional modules. These are:
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{images/F2_ETCS_Kernel.pdf}
-\caption{ETCS OBU system architecture view with internal interfaces.}
+\caption{ETCS OBU system architecture view with internal interfaces I1 to I8.}
 \label{f:ETCS_OBU_decomposition}
 \end{figure}
+\todo[inline]{Component descriptions need to be completed}
 \begin{description}
-\item[I1:] In flow from the Balise Transmission Module (BTM or Antenna) to the "F2 ETCS Kernel" trough Runtime API in. Transmitted data are information from the Eurobalise.
+\item[F1 Receive Information from Trackside] This module is responsible for receiving RBC and BTM messages and passing these to the F2 ETCS Kernel module. A detailed description is given in Chapter~\ref{s:F1}.
+\item[F2 ETCS Kernel] This module represents core component of the openETCS OBU. A detailed description is given in Chapter~\ref{s:F2}.
+\item[F3 Measure Train Movement] This module provides odometry data to the F2 ETCS Kernel module.
+\item[F4 Manage Radio Communication]
+\item[F5 Manage JRU] This component manages the juridical date. Note that this component is not included in the functional scope of the openETCS OBU respectively project currently.
+\item[F6 DMI Controller]
+\item[F7 Manage TIU]
+\end{description}
 
-\item[I2:] In flow from the Odometrie (ODO) to the "F2 ETCS Kernel" trough Runtime API in. Transmitted data are information from the movement of the train.
+These components are interacting via the internal interfaces I1 to I8. In the following we give a brief description of the interfaces.
+\begin{description}
+\item[I1:] Input interface that allows the F2 ETCS Kernel module to receive information from the Balise Transmission Module as well as the Radio Block Center.
 
-\item[I3:] In- and Out flow between the DMI Controller and the "F2 ETCS Kernel" trough Runtime API in and out. Transmitted data are information of driver action and display. See description in figure of "External Interface E5".
+\item[I2:] Input interface from the Odometry (ODO) to the F2 ETCS Kernel module.
 
-\item[I4:] Out flow from "F2 ETCS Kernel" to the JRU manager trough Runtime API out. Transmitted data are all necessary information for a juridical recorder unit "black box".
+\item[I3:] Output interface between the F4 Manage Radio Communication module and the F2 ETCS Kernel module. This interface is used for radio session management and sending radio messages from the OBU to the track side.
 
-\item[I5:] In- and Out flow between the Euroradio and "F2 ETCS Kernel" trough Runtime API in and out. Transmitted data are radio track information (RBC) and information to the track (RBC). 
+\item[I4:] Input interface between the F4 Manage Radio Communication module and the F2 ETCS Kernel module.
+
+\item[I5:] Input interface between the F6 DMI Controller module and the F2 ETCS Kernel module.
+
+\item[I6:] Output interface between the F6 DMI Controller module and the F2 ETCS Kernel module.
+
+\item[I7:] Input interface between the F7 Manage TIU module and the F2 ETCS Kernel module.
+
+\item[I8:] Output interface between the F7 Manage TIU module and the F2 ETCS Kernel module.
 \end{description}
 
 
