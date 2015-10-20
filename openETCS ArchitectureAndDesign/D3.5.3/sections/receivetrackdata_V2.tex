@@ -125,7 +125,7 @@ Other values of this enumeration are not expected in this model.
 \end{description}
 \\
 \midrule
-Source					& API\_fromTrack 
+Source					& F2 input API\_fromTrack 
 \\ 
 \midrule
 Type					& API\_Msg\_Pkg::API\_TrackSideInput\_T \\
@@ -147,9 +147,9 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &n/a\\
 \toprule
 Input name				& ActualOdometry \\
 \midrule
-Description				& Odometry data provided by the external odometry module of the train. It contains relative location information with inaccuracies. In this model only information related to the position of the train is used (odo-component). A valid flag of the odometer input indicates the hardware is working and the parameter may be used.\\
+Description				& Odometry data provided by the external odometry module of the train. It contains relative location information with inaccuracies. In this model only information related to the position of the train is used (ODO component). A valid flag of the odometer input indicates the hardware is working and the parameter may be used.\\
 \midrule
-Source					& API\_Odometery \\ 
+Source					& F2 input API\_Odometery \\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::odometry\_T \\
 \midrule
@@ -172,7 +172,7 @@ Input name				& reset \\
 \midrule
 Description				& The reset input is used to delete all data stored in the module (e.g.~collected balise telegrams, which do not yet form a complete message). If the input is set to true, all data kept in the module is deleted and no input is accepted. The reset option is to be used when the EVC is started or in system error scenarios.\\
 \midrule
-Source					& function not yet defined
+Source					& F2 input EVC\_reset
 \\ \midrule
 Type					& bool \\
 \midrule
@@ -198,7 +198,7 @@ Input name				& trainPosition \\
 \midrule
 Description				& Contains the current position of the train. This input is used for validation of the direction of packets and for checks of balise groups. Most important information in this input is the LRBG and the prevLRBG component. This identifies the last two balise group passed by the train.\\
 \midrule
-Source					& CalculateTrainPosition \\ 
+Source					& F2.6 calculateTrainPosition \\ 
 \midrule
 Type					& TrainPosition\_Types\_Pck::trainPosition\_T \\
 \midrule
@@ -220,7 +220,7 @@ Input name				& modeAndLevel \\
 \midrule
 Description				& Provides the current level and mode of the EVC. Mode and Level are used by the InformationFilter subcomponent.\\
 \midrule
-Source					& ModeAndLevel \\ 
+Source					& F2.5 ManageLevelAndMode \\ 
 \midrule
 Type					& BG\_Types\_Pkg::ModeAndLevelStatus\_T \\
 \midrule
@@ -243,7 +243,7 @@ Input name				& tNvContact \\
 \midrule
 Description				& For monitoring the safe radio connection, this national value is needed as an input. This parameter is used in the radioCheck component of this model. \\
 \midrule
-Source					& Radio Management\\ 
+Source					& F2 input API\_persistentData\\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::T\_internal\_Type \\
 \midrule
@@ -261,12 +261,11 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & See abov
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Input name				& M\_VERSION \\
+Input name				& intrainVersion \\
 \midrule
 Description				& For monitoring the safe radio connection, this national value is needed as an input. This parameter is used in the radioCheck component of this model. \\
 \midrule
-Source					& EVC Configuration
-\todo[inline]{Proposal: Function not yet visible in the document. Implemented in the evc main model.}\\ 
+Source					& F2 input API\_persistentData\\ 
 \midrule
 Type					& M\_VERSION \\
 \midrule
@@ -292,8 +291,7 @@ In situations like level changes or announced radio holes, not the timestamp of 
 
 For performing this check, the timestamp of the last relevant event is provided to the model as an {T\_internal\_Type}-type. \\
 \midrule
-Source					& collectRadioMessages
-\todo[inline]{Function not yet visible in the document. Implemented in the EVC main model. Covers functions distributed in the EVC model}\\ 
+Source					& F2.1 Manage\_TracksideInformation\_Integration\\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::T\_internal\_Type \\
 \midrule
@@ -316,7 +314,7 @@ Input name				& connectionStatus \\
 \midrule
 Description				& Status information about the radio connection. The information is needed to perform the timing check, which depends on the connection state in the radioCheck component. \\
 \midrule
-Source					& ManageRadioCommunication \\ 
+Source					& F2.9 MoRC\_Main \\ 
 \midrule
 Type					& Radio\_Types\_Pkg::sessionStatus\_Type \\
 \midrule
@@ -344,7 +342,7 @@ Input name				& inSupervisingRbcId \\
 \midrule
 Description				& For the InformationFilter subcomponent, the information which radio messages are sent by the supervising RBC is needed. To recognize these messages, the identifier of the supervising RBC is needed. \\
 \midrule
-Source					& ManageRadioCommunication\\ 
+Source					& F2.9 MoRC\_Main\\ 
 \midrule
 Type					& int \\
 \midrule
@@ -368,7 +366,7 @@ Input name				& inAnnouncedBGs \\
 \midrule
 Description				& Provides information about balise groups as known in the EVC. This information is generated by the CalculateTrainPosition component based on the linking information received from track side and on the balise groups passed by the train.\\
 \midrule
-Source					& CalculateTrainPosition \\ 
+Source					& F2.6 calculateTrainPosition \\ 
 \midrule
 Type					& TrainPosition\_Types\_Pck::positionedBGs\_T \\
 \midrule
@@ -391,7 +389,7 @@ Input name				& q\_nvlocacc \\
 \midrule
 Description				& This national value determines the location accuracy. Needed as input for checkBGConsistency.  \\
 \midrule
-Source					& trackAtlas\\ 
+Source					& F2 input API\_persistentData\\ 
 \midrule
 Type					& Q\_NVLOCACC \\
 \midrule
@@ -414,12 +412,15 @@ Input name				& inActiveCab \\
 \midrule
 Description				& Indicates the cab is active. This input is used by the InformationFilter subcomponent. \\
 \midrule
-Source					& TIU\\ 
+Source					& F2.12 manageTIU\_input\\ 
 \midrule
 Type					& bool\\
 \midrule
-Valid range of values	& true, false
-\todo[inline]{In a safety critical system the exact meaning of true and false should be described to avoid any missinterpretion.}\\
+Valid range of values	& 
+\begin{description}
+\item[true] Cab is active.
+\item[false] Cab is inactive.
+\end{description}\\
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
@@ -437,12 +438,15 @@ Input name			& inTrainDataValid \\
 \midrule
 Description			& Indicates train data have been validated by the RBC. This input is used by the InformationFilter subcomponent. \\
 \midrule
-Source				& trainData\\ 
+Source				& F2.3 trainData\\ 
 \midrule
-Type					& bool \\
+Type				& bool \\
 \midrule
-Valid range of values		& true, false
-\todo[inline]{In a safety critical system the exact meaning of true and false should be described to avoid any missinterpretion.}\\
+Valid range of values		& 
+\begin{description}
+\item[true] Train data has been validated.
+\item[false] Train data has not been validated.
+\end{description}\\
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
@@ -460,7 +464,8 @@ Input name			& inFilterEvents \\
 \midrule
 Description			& A set of events needed for controlling the InformationFilter subcomponent. For details see valid range of values row in this table.\\
 \midrule
-Source				& ModeAndLevels, MoRC
+Source				& F2.3 trainData
+%ModeAndLevels, MoRC
 \\  
 \midrule
 Type					& Common\_Types\_Pkg::filterRelatedEvents\_T\\
@@ -496,12 +501,15 @@ Input name				& transitionPositionPassed \\
 Description				& The position of the requested level transition has been passed. This information is used by InformationFilter subcomponent to clean data after level management reactions.
 \\
 \midrule
-Source					& ModeAndLevels\\ 
+Source					& F2.5 ManageLevelAndMode\\ 
 \midrule
-Type					&bool\\
+Type					& bool\\
 \midrule
-Valid range of values	& true, false
-\todo[inline]{In a safety critical system the exact meaning of true and false should be described to avoid any missinterpretion.}\\
+Valid range of values	& 
+\begin{description}
+\item[true] The position of the requested level transition has been passed.
+\item[false] The position of the requested level transition has not been passed.
+\end{description}\\
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
@@ -510,6 +518,9 @@ Behaviour for values out of valid range	& n/a\\
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
+
+
+
 \subsubsection{Outputs}\label{s:Manage_Trackside_outputs}
 
 \paragraph{outputMessage}
@@ -544,8 +555,11 @@ Other values of this enumeration are not expected in this model.
 \end{description}
 \\
 \midrule
-Destination				& (nearly) all functions
-\todo[inline]{Proposal: This is not reasonable in all cases. This output is similar to Lib functions.}\\ 
+Destination				& F2.4 TrackAtlas\newline
+F2.6 calculateTrainPosition\newline
+F2.8 ProvidePositionReport\newline
+F2.9 MoRC\_Main
+\\ 
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
@@ -568,12 +582,15 @@ Output name				& ApplyServiceBrake \\
 \midrule
 Description				&  Indicates if the balise group the train just passed could not be processed correctly. The check results in the request for a service break. \\
 \midrule
-Destination				& SpeedSupervision\_Integration\\ 
+Destination				& F2.7 SpeedSupervision\_Integration\\ 
 \midrule
-Type						& bool \\
+Type					& bool \\
 \midrule
-Valid range of values	& true, false
-\todo[inline]{In a safety critical system the exact meaning of true and false should be described to avoid any missinterpretion.}\\
+Valid range of values	& 
+\begin{description}
+\item[true] Request for service break.
+\item[false] No request for service break.
+\end{description}\\
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
@@ -592,13 +609,16 @@ Output name				& BadBaliseMessageToDMI \\
 \midrule
 Description				& Information to be passed to the DMI to indicate the reception of a ``bad balise'' to the driver. \\
 \midrule
-Destination				& manage\_DMI\_Output\_Pkg
+Destination				& F2.11 manageDMI\_output
 \\
 \midrule
-Type						& bool \\
+Type					& bool \\
 \midrule
-Valid range of values	& true, false
-\todo[inline]{In a safety critical system the exact meaning of true and false should be described to avoid any missinterpretion.}\\
+Valid range of values	& 
+\begin{description}
+\item[true] Reception of ``bad balise'' should be indicated to the driver.
+\item[false] Reception of ``bad balise'' should not be indicated to the driver.
+\end{description}\\
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
@@ -617,8 +637,8 @@ Output name				& outCheckErrors \\
 \midrule
 Description				& Error flags for errors found during the message check procedures. For details see valid range of values row of this table.\\
 \midrule
-Destination				& JRU
-\todo[inline]{Proposal: Use input name of F2 or the exact SCADE component name here for consitency and traceablity. This error Information is actually soemthing which is needed for tracebaility in testing and for the JRU}\\ 
+Destination				& F2.5 ManageModeAndLevel\newline
+F2.8 ProvidePositionReport\\ 
 \midrule
 Type					& Common\_Types\_Pkg::MSG\_Errors\_T\\
 \midrule
@@ -649,7 +669,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& errorUnlinkedBG \\
+Output name				& forLevelManagement \\
 \midrule
 Description				& The InformationFilter subcomponent has to provide information to the EVC components according to the actual level and radio state. In order to trigger the level change level management needs to know about avaialblity of track profiles and other components in order to select the correct mode and level. This output provides information relevant to trigger level transitions. The data will be accumulated in the InformationFilter until the position for the level change has been reached. The output structure consists of the following components:
 \begin{description}
@@ -665,7 +685,7 @@ Description				& The InformationFilter subcomponent has to provide information t
 
 \\
 \midrule
-Destination				& ModesAndLevels
+Destination				& F2.5 ModesAndLevels
 \\ 
 \midrule
 Type					& Level\_And\_Mode\_Types\_Pkg::T\_Data\_From\_TrackForLevelChange\\
@@ -693,8 +713,7 @@ Output name				& outputMessageForRadioAck \\
 Description				& Even if an imcoming radio message is rejected or kept for some time in the buffer of the InformationFilter subcomponent, some information needs to be made available for maintaining the communication session with the RBC, e.g., the timestamp of the received message and acknowledgment of message reception based on the ACK flag. No other information of this message is to be used in the EVC. This concept might be improved when radio management functions are rearranged.
 \\
 \midrule
-Destination				& collectRadioMessages
-\todo[inline]{Proposal: I just made a design decision. I will collect all pending radio related management functions in this block. I propose also to change the name of the function. Lets discuss}\\ 
+Destination				& F2.3 trainData\\ 
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
