@@ -65,12 +65,12 @@ Input name				& Data\_From\_DMI \\
 \midrule
 Description				& Set of data transmitted from DMI  (driver acknowledgements and requests to  switch modes and level) \\
 \midrule
-Source					& manage\_DMI\_Input\_Pkg::manageDMI\_Input \\ 
+Source					& F2.10 manageDMI\_Input \\ 
 \midrule
 Type					& DMI\_Types\_Pkg::DMI\_To\_Modes\_T \\
 \midrule
-Valid range of values	& It is a complex type : \\
-& \begin{itemize}
+Valid range of values	& It is a complex type : 
+\begin{itemize}
 \item valid :  bool,  flag to inform of the freshness of the information
 \item DriverAck : DMI\_DriverAck\_T, indicate which mode is acknoledged
 \item DriverRequest : DMI\_DriverRequest\_T, table of boolean values for all the driver request related to  mode changes.
@@ -93,12 +93,13 @@ Input name				& Data\_From\_Localisation \\
 \midrule
 Description				& Set of data on position and speed of the train \\
 \midrule
-Source					& ???? \todo[inline]{to be completed} \\ 
+Source					& F2.6 calculateTrainPosition\newline
+F2 input API\_Odometry \\ 
 \midrule
 Type					& Level\_And\_Mode\_Types\_Pkg::T\_Data\_From\_Localisation \\
 \midrule
-Valid range of values	& It is a complex type : \\
-& \begin{itemize}
+Valid range of values	& It is a complex type: 
+\begin{itemize}
 \item BG\_In\_List\_Expected\_BG\_In\_SR : bool,
 \item  BG\_In\_List\_Expected\_BG\_In\_SH : bool, 
 \item PositionErrors : TrainPosition\_Types\_Pck::positionErrors\_T,
@@ -123,11 +124,11 @@ Input name				& Data\_From\_TIU \\
 \midrule
 Description				& Set of data providing by TIU \\
 \midrule
-Source					& input\_from\_TIU\_API\_Pkg::manageTIU\_input \\ 
+Source					& F2.12 manageTIU\_input \\ 
 \midrule
 Type					& TIU\_Types\_Pkg::Message\_Train\_Interface\_to\_EVC\_T \\
 \midrule
-Valid range of values	& It is a complex type defined in the TIU package \\
+Valid range of values	& It is a complex type defined in the TIU package. \\
 \midrule
 Behaviour when value is at boundary	& n/a \\ 
 \midrule
@@ -146,8 +147,7 @@ Input name				& Data\_From\_Track\_Messages \\
 \midrule
 Description				& Messages received from trackside contaigning information for modes and levels switches \\
 \midrule
-Source					& ???? 
-\todo[inline]{to be completed}\\ 
+Source					& F2.4 TrackAtlas \\ 
 \midrule
 Type					& Level\_And\_Mode\_Types\_Pkg::T\_Data\_From\_Track\_Messages \\
 \midrule
@@ -168,14 +168,13 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \toprule
 Input name				& Data\_From\_Track\_Packets \\
 \midrule
-Description				& Packets received from trackside contaigning information for modes and levels switches \\
+Description				& Packets received from trackside contaigning information for modes and levels switches. \\
 \midrule
-Source					& ???? 
-\todo[inline]{to be completed}\\ 
+Source					& F2.1 Manage\_TrackSideInformation\_Integration\\ 
 \midrule
 Type					& Level\_And\_Mode\_Types\_Pkg::T\_Data\_From\_Track\_Packet \\
 \midrule
-Valid range of values	& It is a complex type containing the information of packets : 12, 15, 21, 27, 41, 46, 63, 80, 135, 137, 138 and 139 \\
+Valid range of values	& It is a complex type containing the information of packets : 12, 15, 21, 27, 41, 46, 63, 80, 135, 137, 138, and 139. \\
 \midrule
 Behaviour when value is at boundary	& n/a \\ 
 \midrule
@@ -197,12 +196,11 @@ Input name				& Data\_From\_speed\_and\_Supervision \\
 \midrule
 Description				& Data provided by the speed and supervision function \\
 \midrule
-Source					& Speed and Supervision function
-\todo[inline]{Please use exact component name from SCADE model.} \\ 
+Source					& F2.7 SpeedSupervision\_Integraton \\ 
 \midrule
 Type					& Level\_And\_Mode\_Types\_Pkg::T\_Data\_From\_Speed\_Supervision \\
 \midrule
-Valid range of values	& Input type a complex type
+Valid range of values	& Input type is a complex type:
 \begin{itemize}
 \item \emph{Estim\_front\_End\_overpass\_SR\_Dist : bool}: the train overpass the SR distance with its estimated front end (from SR to trip mode condition 42) 
 \item \emph{Estim\_Front\_End\_Rear\_SSP : bool}: estimated front end is rear of the start location of either SSP or gradient profile stored on-board (from FS, LS, OS to trip mode condition 69)
@@ -230,12 +228,12 @@ Input name				& driver\_level\_transition\_in \\
 \midrule
 Description				& Request of level transition given by the driver for example at start of mission \\
 \midrule
-Source					& manage\_DMI\_Input\_Pkg::manageDMI\_Input \\ 
+Source					& F2.10 manageDMI\_Input \\ 
 \midrule
 Type					& Level\_And\_Modes\_Types\_Pkg::T\_LevelTransition \\
 \midrule
-Valid range of values	& It is a complex type:  \\
-& \begin{itemize}
+Valid range of values	& It is a complex type:  
+\begin{itemize}
 \item is\_set : bool,
 \item transition : Level\_And\_Mode\_Types\_Pkg::T\_LevelTansitionInfo, 
 \item LRBG : NID\_LRBG, 
@@ -257,9 +255,9 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \toprule
 Input name				& Cab\_In \\
 \midrule
-Description				& Identification of the cabine where the EVC is implemented \\
+Description				& Identification of the cabine where the EVC is implemented. \\
 \midrule
-Source					& TIU \\ 
+Source					& F2.12 manageTIU\_input \\ 
 \midrule
 Type					& TIU\_Types\_Pkg::cab\_ID\_T \\
 \midrule
@@ -282,13 +280,12 @@ Input name				& ERTMS\_Capabilities \\
 \midrule
 Description				& Identification of the capabilities of the train in regards of ERTMS levels\\
 \midrule
-Source					& ??? 
-\todo[inline]{to be completed}\\ 
+Source					& F2 input API\_persistentData \\ 
 \midrule
 Type					& T\_ERTMS\_Capabilities \\
 \midrule
-Valid range of values	& It is a complex type:  \\
-& \begin{itemize}
+Valid range of values	& It is a complex type: 
+\begin{itemize}
 \item NTC : bool,
 \item L0 : bool, 
 \item L1 : bool, 
@@ -315,8 +312,7 @@ Input name				& Data\_From\_Track\_MASSPGradient \\
 \midrule
 Description				& Information that some packets have been received from trackside c \\
 \midrule
-Source					& ???? 
-\todo[inline]{to be completed}\\ 
+Source					& F2.1 Manage\_TrackSideInformation\_Integration\\ 
 \midrule
 Type					& Level\_And\_Mode\_Types\_Pkg::T\_Data\_From\_Track\_MASSPGradient \\
 \midrule
@@ -338,15 +334,14 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \toprule
 Input name				& Data\_From\_F2\_Functions \\
 \midrule
-Description				& Information received from other F2 functions \\
+Description				& Information received from other F2 functions. \\
 \midrule
-Source					& ???? 
-\todo[inline]{to be completed}\\ 
+Source					& F2.1 Manage\_TrackSideInformation\_Integration\\ 
 \midrule
 Type					& Level\_And\_Mode\_Types\_Pkg::T\_Data\_From\_F2\_Functions \\
 \midrule
-Valid range of values	& It is a complex type : \\
-& \begin{itemize}
+Valid range of values	& It is a complex type:
+\begin{itemize}
 \item Common\_Errors : Common\_Types\_Pkg::MSG\_Errors\_T, 
 \item Failure\_Occured : bool,, 
 \item Continue\_Shunting\_Active : bool, 
@@ -369,15 +364,14 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \toprule
 Input name				& Data\_From\_STM \\
 \midrule
-Description				& Information concerning STM embedded systems \\
+Description				& Information concerning STM embedded systems. \\
 \midrule
-Source					& ???? 
-\todo[inline]{to be completed}\\ 
+Source					& F2 input API\_persistentData\\ 
 \midrule
 Type					& Level\_And\_Mode\_Types\_Pkg::T\_Data\_From\_STM \\
 \midrule
-Valid range of values	& It is a complex type : \\
-& \begin{itemize}
+Valid range of values	& It is a complex type:
+\begin{itemize}
 \item Interface\_to\_National\_System : bool,, 
 \item  National\_Trip\_Order : bool
 \end{itemize} \\
@@ -408,14 +402,19 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \toprule
 Output name				& Compatible\_Mode\_And\_Level \\
 \midrule
-Description				& Structure containing mode and lavel information  \\
+Description				& Structure containing mode and level information.  \\
 \midrule
-Destination				& all the components  \\ 
+Destination				& F2.1 Manage\_TrackSideInformation\_Integration\newline
+F2.4 TrackAtlas\newline
+F2.8 ProvidePositionReport\newline
+F2.9 MoRC\_Main\newline
+F2.11 manageDMI\_output\newline 
+F2.13 manageTIU\_output \\ 
 \midrule
 Type					& Level\_And\_Mode\_Types\_Pkg::T\_Mode\_Level \\
 \midrule
-Valid range of values	& It is a complex type : \\
-& \begin{itemize}
+Valid range of values	& It is a complex type: 
+\begin{itemize}
 \item CompatibleModeAndLevel : bool,
 \item level : M\_LEVEL,
 \item newLevel : bool,
@@ -431,19 +430,19 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \bottomrule
 \end{longtable}
 
-\paragraph{Data\_To\_DMI}
+\paragraph{Data\_To\_DMI\_Ack}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& Data\_To\_DMI \\
+Output name				& Data\_To\_DMI\_Ack \\
 \midrule
-Description				& Data information to provide to the driver  \\
+Description				& Data information to provided to the driver.  \\
 \midrule
-Destination				& all the components  \\ 
+Destination				& F2.11 manageDMI\_output  \\ 
 \midrule
 Type					& DMI\_Types\_Pkg::DMI\_ModesToDMI\_T \\
 \midrule
-Valid range of values	& It is a complex type defined in the DMI package \\
+Valid range of values	& It is a complex type defined in the DMI package. \\
 \midrule
 Behaviour when value is at boundary	& n/a \\ 
 \midrule
@@ -459,14 +458,14 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \toprule
 Output name				& Data\_To\_BG\_Management \\
 \midrule
-Description				& Set of data concerning BG management \\
+Description				& Set of data concerning BG management. \\
 \midrule
-Destination				& all the components  \\ 
+Destination				& This output is currently not used in the model.  \\ 
 \midrule
 Type					& Level\_And\_Mode\_Types\_Pkg::T\_Data\_To\_BG\_Management \\
 \midrule
-Valid range of values	& It is a complex type : \\
-& \begin{itemize}
+Valid range of values	& It is a complex type:
+\begin{itemize}
 \item EoM\_Procedure\_req : bool,
 \item  Clean\_BG\_List\_SH\_Area : bool, 
 \item MA\_Req : bool,
@@ -484,19 +483,23 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \end{longtable}
 
 
-\paragraph{Sevice\_Brake\_Command}
+\paragraph{Service\_Brake\_Command}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& Sevice\_Brake\_Command \\
+Output name				& Service\_Brake\_Command \\
 \midrule
-Description				& Command of the Service brake \\
+Description				& Command for the service brake. \\
 \midrule
-Destination				& all the components \\ 
+Destination				& F2.7 SpeedSupervision\_Integration \\ 
 \midrule
 Type					& bool \\
 \midrule
-Valid range of values	&  \\
+Valid range of values	&  
+\begin{description}
+\item[true] Service brake shall be applied.
+\item[false] Service brake shall not be applied.
+\end{description}\\
 \midrule
 Behaviour when value is at boundary	& n/a \\ 
 \midrule
@@ -512,13 +515,17 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \toprule
 Output name				& EB\_Requested \\
 \midrule
-Description				& Command of the Emergency brake \\
+Description				& Command of the emergency brake \\
 \midrule
-Destination				& all the components \\ 
+Destination				& F2.7 SpeedSupervision\_Integration \\ 
 \midrule
 Type					& bool \\
 \midrule
-Valid range of values	&  \\
+Valid range of values	&  
+\begin{description}
+\item[true] Emergency brake shall be applied.
+\item[false] Emergency brake shall not be applied.
+\end{description}\\
 \midrule
 Behaviour when value is at boundary	& n/a \\ 
 \midrule
@@ -530,20 +537,20 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 
 
 
-\paragraph{announcedLevelTransition}
+\paragraph{announcedLevel}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Input name				& announcedLevelTransition \\
+Input name				& announcedLevel \\
 \midrule
-Description				& Level transition selected for an immediate or future switch \\
+Description				& Level transition selected for an immediate or future transition. \\
 \midrule
-Destination				& all the components \\ 
+Destination				& F2.7 SpeedSupervision\_Integration \\ 
 \midrule
 Type					& Level\_And\_Modes\_Types\_Pkg::T\_LevelTransition \\
 \midrule
-Valid range of values	& It is a complex type:  \\
-& \begin{itemize}
+Valid range of values	& It is a complex type:  
+\begin{itemize}
 \item is\_set : bool,
 \item transition : Level\_And\_Mode\_Types\_Pkg::T\_LevelTansitionInfo, 
 \item LRBG : NID\_LRBG, 
@@ -559,27 +566,6 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 \end{longtable}
 
 
-\paragraph{isAvailableForUse}
-
-\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
-\toprule
-Output name				& isAvailableForUse \\
-\midrule
-Description				& the output announcedLevelTransition is available for use, ie. correspond to ERTMS capabilities of the train \\
-\midrule
-Destination				& all the components \\ 
-\midrule
-Type					& bool \\
-\midrule
-Valid range of values	&  \\
-\midrule
-Behaviour when value is at boundary	& n/a \\ 
-\midrule
-Behaviour for values out of valid range	& n/a \\ 
-\midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
-\bottomrule
-\end{longtable}
 
 
 
