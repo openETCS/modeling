@@ -64,7 +64,7 @@ Input name				& currentOdometry \\
 \midrule
 Description				& currentOdometry is the actual odometry information as known by the whole EVC model and provided by the models external interface. \\
 \midrule
-Source					& External model interface input \\ 
+Source					& F2 input API\_Odometry \\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::odometry\_T \\  
 \midrule
@@ -103,7 +103,7 @@ Input name				& msgFromTrack \\
 \midrule
 Description				& With msgFromTrack calculateTrainPosition receives datagrams from balise groups and RBC. \\
 \midrule
-Source					& Manage\_TrackSideInformation\_Integration\_Pkg::\newline Manage\_TrackSideInformation\_Integration/ \\ 
+Source					& F2.1 Manage\_TrackSideInformation\_Integration \\ 
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\  
 \midrule
@@ -143,7 +143,8 @@ Input name				& trainProperties \\
 \midrule
 Description				& Supplies calculateTrainPosition with train specific properties required for position calculation.   \\
 \midrule
-Source					& EVC\_Support\_Pkg::maintainTrainProperties \\ 
+Source					& F2.3 trainData\newline
+F2.10 manageDMI\_input \\ 
 \midrule
 Type					& TrainPosition\_Types\_Pck::trainProperties\_T \\  
 \midrule
@@ -189,7 +190,7 @@ Input name				& reset \\
 \midrule
 Description				& Resets and keeps calculateTrainPosition at its initial state and deletes all internally stored data.  \\
 \midrule
-Source					& To whom it may concern/ \\ 
+Source					& F2 input EVC\_reset \\ 
 \midrule
 Type					& bool \\  
 \midrule
@@ -215,7 +216,14 @@ Output name				& trainPosition \\
 \midrule
 Description				& Provides the current train position and LRBG with its attributes. All distance and location computations of the OBU must be based on this information.   \\
 \midrule
-Destination				& Any drain component which needs the current train position or  LRBG. \\ 
+Destination				& F2.1 Manage\_TracksideInformation\_Integration\newline
+F2.2 Manage\_ETCS\_Procedures\newline
+F2.4 TrackAtlas\newline
+F2.5 ManageLevelAndMode\newline
+F2.7 PeedSupervision\_Integration\newline
+F2.8 ProvidePositionReport\newline
+F2.11 manageDMI\_Output
+\\ 
 \midrule
 Type					& TrainPosition\_Types\_Pck::trainPosition\_T \\  
 \midrule
@@ -255,7 +263,8 @@ Output name				& BGs \\
 \midrule
 Description				& A list of all linked and unlinked balise groups - known to calculateTrainPosition - in the order they are arranged on the track.   \\
 \midrule
-Destination				& Any subsequent component which needs the current collection of balises groups. \\ 
+Destination				& F2.1 Manage\_TracksideInformation\_Integration\newline
+F2.8 ProvidePositionReport \\ 
 \midrule
 Type					& array of TrainPosition\_Types\_Pck::positionedBG\_T \\  
 \midrule
@@ -289,7 +298,8 @@ Output name				& errors \\
 \midrule
 Description				& Provides a collection of error flags, raised by calculateTrainPosition.   \\
 \midrule
-Destination				& Error handlers and components which need to know of common and linking consistency errors.  \\ 
+Destination				& F2.5 ManageLevelAndMode\newline
+F2.8 ProvidePositionReport \\ 
 \midrule
 Type					& TrainPosition\_Types\_Pck::positionErrors\_T \\  
 \midrule
