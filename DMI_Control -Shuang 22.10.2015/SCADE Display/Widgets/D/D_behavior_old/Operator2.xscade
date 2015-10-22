@@ -1,0 +1,1360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Operator kind="node" name="ZoomLevel">
+			<inputs>
+				<Variable name="ZoomIn">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3bf6/5822/13CC/53259c454553"/>
+					</pragmas>
+				</Variable>
+				<Variable name="ZoomOut">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3bf7/5822/13CC/53259c4f39df"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="Scale">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="tScale"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3bf8/5822/13CC/53259c532e52"/>
+					</pragmas>
+				</Variable>
+				<Variable name="zoomlevel">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="int32"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/4211/708C/1AB4/54db3e46665e"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<data>
+				<StateMachine name="SM1">
+					<states>
+						<State name="Zoom1">
+							<unless>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="Zoom2"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="ZoomIn"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<pragmas>
+										<ed:Transition oid="!ed/3c42/5822/13CC/53259cc8532b"/>
+									</pragmas>
+								</Transition>
+							</unless>
+							<locals>
+								<Variable name="_L1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="tScale"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/7c40/5822/13CC/53259f6ebce"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/4234/708C/1AB4/54db3e637076"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<!-- Scale = _L1; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="Scale"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/7c35/5822/13CC/53259f62b4a"/>
+									</pragmas>
+								</Equation>
+								<!-- _L1 = Scales[5]; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L1"/>
+									</lefts>
+									<right>
+										<!-- Scales[5] -->
+										<PrjOp name="12">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="Scales"/>
+													</path>
+												</IdExpression>
+											</flow>
+											<with>
+												<ConstValue value="5"/>
+											</with>
+										</PrjOp>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/7c3f/5822/13CC/53259f6e14e8"/>
+									</pragmas>
+								</Equation>
+								<!-- zoomlevel = _L2; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="zoomlevel"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/422b/708C/1AB4/54db3e5b4ff0"/>
+									</pragmas>
+								</Equation>
+								<!-- _L2 = 5; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L2"/>
+									</lefts>
+									<right>
+										<ConstValue value="5"/>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/4233/708C/1AB4/54db3e63134"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<pragmas>
+								<ed:State oid="!ed/3c08/5822/13CC/53259c7e33c5"/>
+							</pragmas>
+						</State>
+						<State name="Zoom2">
+							<unless>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="Zoom3"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="ZoomIn"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<pragmas>
+										<ed:Transition oid="!ed/3c44/5822/13CC/53259ccd18b3"/>
+									</pragmas>
+								</Transition>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="Zoom1"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="ZoomOut"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<pragmas>
+										<ed:Transition oid="!ed/3c4c/5822/13CC/53259ce27b22"/>
+									</pragmas>
+								</Transition>
+							</unless>
+							<locals>
+								<Variable name="_L1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="tScale"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/7e25/5822/13CC/53259f911e98"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/425e/708C/1AB4/54db3e8c7ef4"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<!-- _L1 = Scales[4]; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L1"/>
+									</lefts>
+									<right>
+										<!-- Scales[4] -->
+										<PrjOp name="13">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="Scales"/>
+													</path>
+												</IdExpression>
+											</flow>
+											<with>
+												<ConstValue value="4"/>
+											</with>
+										</PrjOp>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/7e24/5822/13CC/53259f912a9d"/>
+									</pragmas>
+								</Equation>
+								<!-- Scale = _L1; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="Scale"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/7e26/5822/13CC/53259f9168b6"/>
+									</pragmas>
+								</Equation>
+								<!-- zoomlevel = _L2; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="zoomlevel"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/425c/708C/1AB4/54db3e8c7385"/>
+									</pragmas>
+								</Equation>
+								<!-- _L2 = 4; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L2"/>
+									</lefts>
+									<right>
+										<ConstValue value="4"/>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/425d/708C/1AB4/54db3e8c60ae"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<pragmas>
+								<ed:State oid="!ed/3c14/5822/13CC/53259c8541d6"/>
+							</pragmas>
+						</State>
+						<State name="Zoom4">
+							<unless>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="Zoom3"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="ZoomOut"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<pragmas>
+										<ed:Transition oid="!ed/3c4a/5822/13CC/53259cd93c6"/>
+									</pragmas>
+								</Transition>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="Zoom5"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="ZoomIn"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<pragmas>
+										<ed:Transition oid="!ed/17a87/5822/13CC/5325a574152c"/>
+									</pragmas>
+								</Transition>
+							</unless>
+							<locals>
+								<Variable name="_L1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="tScale"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/81d3/5822/13CC/53259f985d86"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/428f/708C/1AB4/54db3e9e58ff"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<!-- _L1 = Scales[2]; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L1"/>
+									</lefts>
+									<right>
+										<!-- Scales[2] -->
+										<PrjOp name="15">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="Scales"/>
+													</path>
+												</IdExpression>
+											</flow>
+											<with>
+												<ConstValue value="2"/>
+											</with>
+										</PrjOp>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/81d2/5822/13CC/53259f9819d"/>
+									</pragmas>
+								</Equation>
+								<!-- Scale = _L1; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="Scale"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/81d4/5822/13CC/53259f98473e"/>
+									</pragmas>
+								</Equation>
+								<!-- zoomlevel = _L2; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="zoomlevel"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/428d/708C/1AB4/54db3e9e420"/>
+									</pragmas>
+								</Equation>
+								<!-- _L2 = 2; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L2"/>
+									</lefts>
+									<right>
+										<ConstValue value="2"/>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/428e/708C/1AB4/54db3e9e471c"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<pragmas>
+								<ed:State oid="!ed/3c1c/5822/13CC/53259c87f58"/>
+							</pragmas>
+						</State>
+						<State initial="true" name="Zoom3">
+							<unless>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="Zoom4"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="ZoomIn"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<pragmas>
+										<ed:Transition oid="!ed/3c46/5822/13CC/53259cd391d"/>
+									</pragmas>
+								</Transition>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="Zoom2"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="ZoomOut"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<pragmas>
+										<ed:Transition oid="!ed/3c4b/5822/13CC/53259cde3169"/>
+									</pragmas>
+								</Transition>
+							</unless>
+							<locals>
+								<Variable name="_L1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="tScale"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/7ffb/5822/13CC/53259f954647"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/427d/708C/1AB4/54db3e947133"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<!-- _L1 = Scales[3]; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L1"/>
+									</lefts>
+									<right>
+										<!-- Scales[3] -->
+										<PrjOp name="14">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="Scales"/>
+													</path>
+												</IdExpression>
+											</flow>
+											<with>
+												<ConstValue value="3"/>
+											</with>
+										</PrjOp>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/7ffa/5822/13CC/53259f9516d5"/>
+									</pragmas>
+								</Equation>
+								<!-- Scale = _L1; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="Scale"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/7ffc/5822/13CC/53259f95763"/>
+									</pragmas>
+								</Equation>
+								<!-- zoomlevel = _L2; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="zoomlevel"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/427b/708C/1AB4/54db3e941385"/>
+									</pragmas>
+								</Equation>
+								<!-- _L2 = 3; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L2"/>
+									</lefts>
+									<right>
+										<ConstValue value="3"/>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/427c/708C/1AB4/54db3e944d91"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<pragmas>
+								<ed:State oid="!ed/3c1b/5822/13CC/53259c874cb4"/>
+							</pragmas>
+						</State>
+						<State name="Zoom6">
+							<unless>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="Zoom5"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="ZoomOut"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<pragmas>
+										<ed:Transition oid="!ed/17a7d/5822/13CC/5325a56b6d83"/>
+									</pragmas>
+								</Transition>
+							</unless>
+							<locals>
+								<Variable name="_L1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="tScale"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/17a7c/5822/13CC/5325a56b1f03"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/42b3/708C/1AB4/54db3ea82fc"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<!-- _L1 = Scales[0]; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L1"/>
+									</lefts>
+									<right>
+										<!-- Scales[0] -->
+										<PrjOp name="17">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="Scales"/>
+													</path>
+												</IdExpression>
+											</flow>
+											<with>
+												<ConstValue value="0"/>
+											</with>
+										</PrjOp>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/17a7a/5822/13CC/5325a56b42e3"/>
+									</pragmas>
+								</Equation>
+								<!-- Scale = _L1; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="Scale"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/17a7b/5822/13CC/5325a56b53b2"/>
+									</pragmas>
+								</Equation>
+								<!-- _L2 = 0; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L2"/>
+									</lefts>
+									<right>
+										<ConstValue value="0"/>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/42b2/708C/1AB4/54db3ea85c8a"/>
+									</pragmas>
+								</Equation>
+								<!-- zoomlevel = _L2; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="zoomlevel"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/42b4/708C/1AB4/54db3ea819d3"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<pragmas>
+								<ed:State oid="!ed/17a79/5822/13CC/5325a56b1cbf"/>
+							</pragmas>
+						</State>
+						<State name="Zoom5">
+							<unless>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="Zoom6"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="ZoomIn"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<pragmas>
+										<ed:Transition oid="!ed/17a77/5822/13CC/5325a56b2c74"/>
+									</pragmas>
+								</Transition>
+								<Transition kind="restart">
+									<target>
+										<StateRef name="Zoom4"/>
+									</target>
+									<condition>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="ZoomOut"/>
+											</path>
+										</IdExpression>
+									</condition>
+									<pragmas>
+										<ed:Transition oid="!ed/17a98/5822/13CC/5325a5815c3"/>
+									</pragmas>
+								</Transition>
+							</unless>
+							<locals>
+								<Variable name="_L1">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="tScale"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/17a76/5822/13CC/5325a56b68a3"/>
+									</pragmas>
+								</Variable>
+								<Variable name="_L2">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Variable oid="!ed/42b1/708C/1AB4/54db3ea84ff7"/>
+									</pragmas>
+								</Variable>
+							</locals>
+							<data>
+								<!-- _L1 = Scales[1]; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L1"/>
+									</lefts>
+									<right>
+										<!-- Scales[1] -->
+										<PrjOp name="16">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="Scales"/>
+													</path>
+												</IdExpression>
+											</flow>
+											<with>
+												<ConstValue value="1"/>
+											</with>
+										</PrjOp>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/17a74/5822/13CC/5325a56b3105"/>
+									</pragmas>
+								</Equation>
+								<!-- Scale = _L1; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="Scale"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/17a75/5822/13CC/5325a56b2e3e"/>
+									</pragmas>
+								</Equation>
+								<!-- zoomlevel = _L2; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="zoomlevel"/>
+									</lefts>
+									<right>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/42af/708C/1AB4/54db3ea8c19"/>
+									</pragmas>
+								</Equation>
+								<!-- _L2 = 1; -->
+								<Equation>
+									<lefts>
+										<VariableRef name="_L2"/>
+									</lefts>
+									<right>
+										<ConstValue value="1"/>
+									</right>
+									<pragmas>
+										<ed:Equation oid="!ed/42b0/708C/1AB4/54db3ea86c92"/>
+									</pragmas>
+								</Equation>
+							</data>
+							<pragmas>
+								<ed:State oid="!ed/17a73/5822/13CC/5325a56b75ff"/>
+							</pragmas>
+						</State>
+					</states>
+					<pragmas>
+						<ed:StateMachine oid="!ed/3c02/5822/13CC/53259c767064"/>
+					</pragmas>
+				</StateMachine>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/3bf4/5822/13CC/53259c265b27" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<NetDiagram name="diagram_ZoomLevel_1" landscape="true" format="A4 (210 297)" oid="!ed/3bf5/5822/13CC/53259c26846">
+							<presentationElements>
+								<StateMachineGE presentable="!ed/3c02/5822/13CC/53259c767064">
+									<position>
+										<Point x="2805" y="1323"/>
+									</position>
+									<size>
+										<Size width="13229" height="19420"/>
+									</size>
+								</StateMachineGE>
+								<StateGE presentable="!ed/3c08/5822/13CC/53259c7e33c5">
+									<position>
+										<Point x="6720" y="2064"/>
+									</position>
+									<size>
+										<Size width="4842" height="2513"/>
+									</size>
+								</StateGE>
+								<StateGE presentable="!ed/3c14/5822/13CC/53259c8541d6">
+									<position>
+										<Point x="6720" y="5212"/>
+									</position>
+									<size>
+										<Size width="4842" height="2513"/>
+									</size>
+								</StateGE>
+								<StateGE presentable="!ed/3c1c/5822/13CC/53259c87f58">
+									<position>
+										<Point x="6720" y="11509"/>
+									</position>
+									<size>
+										<Size width="4842" height="2513"/>
+									</size>
+								</StateGE>
+								<StateGE presentable="!ed/3c1b/5822/13CC/53259c874cb4">
+									<position>
+										<Point x="6720" y="8361"/>
+									</position>
+									<size>
+										<Size width="4841" height="2514"/>
+									</size>
+								</StateGE>
+								<TransitionGE presentable="!ed/3c42/5822/13CC/53259cc8532b">
+									<positions>
+										<Point x="11562" y="3334"/>
+										<Point x="13309" y="4842"/>
+										<Point x="12435" y="5609"/>
+										<Point x="11562" y="6403"/>
+									</positions>
+									<labelSize>
+										<Size width="1799" height="635"/>
+									</labelSize>
+									<labelPos>
+										<Point x="13044" y="5450"/>
+									</labelPos>
+									<slashPos>
+										<Point x="14055" y="5440"/>
+									</slashPos>
+								</TransitionGE>
+								<TransitionGE presentable="!ed/3c44/5822/13CC/53259ccd18b3">
+									<positions>
+										<Point x="11562" y="6668"/>
+										<Point x="13123" y="8043"/>
+										<Point x="12356" y="8864"/>
+										<Point x="11561" y="9684"/>
+									</positions>
+									<labelSize>
+										<Size width="1884" height="635"/>
+									</labelSize>
+									<labelPos>
+										<Point x="12779" y="8758"/>
+									</labelPos>
+									<slashPos>
+										<Point x="13864" y="8763"/>
+									</slashPos>
+								</TransitionGE>
+								<TransitionGE presentable="!ed/3c46/5822/13CC/53259cd391d">
+									<positions>
+										<Point x="11561" y="9895"/>
+										<Point x="12938" y="11245"/>
+										<Point x="12250" y="12012"/>
+										<Point x="11562" y="12779"/>
+									</positions>
+									<labelSize>
+										<Size width="1842" height="635"/>
+									</labelSize>
+									<labelPos>
+										<Point x="12621" y="11906"/>
+									</labelPos>
+									<slashPos>
+										<Point x="13674" y="11896"/>
+									</slashPos>
+								</TransitionGE>
+								<TransitionGE presentable="!ed/3c4a/5822/13CC/53259cd93c6">
+									<positions>
+										<Point x="6720" y="12568"/>
+										<Point x="5503" y="11404"/>
+										<Point x="6112" y="10583"/>
+										<Point x="6720" y="9737"/>
+									</positions>
+									<labelSize>
+										<Size width="1842" height="635"/>
+									</labelSize>
+									<labelPos>
+										<Point x="3651" y="10186"/>
+									</labelPos>
+									<slashPos>
+										<Point x="4720" y="10181"/>
+									</slashPos>
+								</TransitionGE>
+								<TransitionGE presentable="!ed/3c4b/5822/13CC/53259cde3169">
+									<positions>
+										<Point x="6720" y="9499"/>
+										<Point x="5477" y="8176"/>
+										<Point x="6085" y="7355"/>
+										<Point x="6720" y="6535"/>
+									</positions>
+									<labelSize>
+										<Size width="1926" height="635"/>
+									</labelSize>
+									<labelPos>
+										<Point x="3545" y="7064"/>
+									</labelPos>
+									<slashPos>
+										<Point x="4678" y="7070"/>
+									</slashPos>
+								</TransitionGE>
+								<TransitionGE presentable="!ed/3c4c/5822/13CC/53259ce27b22">
+									<positions>
+										<Point x="6720" y="6376"/>
+										<Point x="5556" y="5106"/>
+										<Point x="6138" y="4286"/>
+										<Point x="6720" y="3440"/>
+									</positions>
+									<labelSize>
+										<Size width="2117" height="318"/>
+									</labelSize>
+									<labelPos>
+										<Point x="3440" y="3942"/>
+									</labelPos>
+									<slashPos>
+										<Point x="4763" y="3937"/>
+									</slashPos>
+								</TransitionGE>
+								<EquationGE presentable="!ed/7c35/5822/13CC/53259f62b4a">
+									<position>
+										<Point x="9673" y="2794"/>
+									</position>
+									<size>
+										<Size width="317" height="502"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/7c3f/5822/13CC/53259f6e14e8">
+									<position>
+										<Point x="8636" y="2900"/>
+									</position>
+									<size>
+										<Size width="170" height="318"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7c3f/5822/13CC/53259f6e14e8" dstEquation="!ed/7c35/5822/13CC/53259f62b4a">
+									<positions>
+										<Point x="8805" y="3069"/>
+										<Point x="9250" y="3069"/>
+										<Point x="9250" y="3069"/>
+										<Point x="9716" y="3069"/>
+									</positions>
+								</Edge>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/7e24/5822/13CC/53259f912a9d">
+									<position>
+										<Point x="8678" y="5990"/>
+									</position>
+									<size>
+										<Size width="170" height="318"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/7e26/5822/13CC/53259f9168b6">
+									<position>
+										<Point x="9716" y="5884"/>
+									</position>
+									<size>
+										<Size width="318" height="502"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7e24/5822/13CC/53259f912a9d" dstEquation="!ed/7e26/5822/13CC/53259f9168b6">
+									<positions>
+										<Point x="8848" y="6160"/>
+										<Point x="9292" y="6160"/>
+										<Point x="9292" y="6160"/>
+										<Point x="9758" y="6160"/>
+									</positions>
+								</Edge>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/7ffa/5822/13CC/53259f9516d5">
+									<position>
+										<Point x="8678" y="9271"/>
+									</position>
+									<size>
+										<Size width="170" height="317"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/7ffc/5822/13CC/53259f95763">
+									<position>
+										<Point x="9716" y="9144"/>
+									</position>
+									<size>
+										<Size width="317" height="502"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/7ffa/5822/13CC/53259f9516d5" dstEquation="!ed/7ffc/5822/13CC/53259f95763">
+									<positions>
+										<Point x="8848" y="9440"/>
+										<Point x="9292" y="9440"/>
+										<Point x="9292" y="9398"/>
+										<Point x="9758" y="9398"/>
+									</positions>
+								</Edge>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/81d2/5822/13CC/53259f9819d">
+									<position>
+										<Point x="8784" y="12637"/>
+									</position>
+									<size>
+										<Size width="170" height="317"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/81d4/5822/13CC/53259f98473e">
+									<position>
+										<Point x="9816" y="12541"/>
+									</position>
+									<size>
+										<Size width="318" height="502"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/81d2/5822/13CC/53259f9819d" dstEquation="!ed/81d4/5822/13CC/53259f98473e">
+									<positions>
+										<Point x="8954" y="12806"/>
+										<Point x="9398" y="12806"/>
+										<Point x="9398" y="12806"/>
+										<Point x="9864" y="12806"/>
+									</positions>
+								</Edge>
+								<StateGE presentable="!ed/17a79/5822/13CC/5325a56b1cbf">
+									<position>
+										<Point x="6720" y="17754"/>
+									</position>
+									<size>
+										<Size width="4842" height="2514"/>
+									</size>
+								</StateGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/17a7a/5822/13CC/5325a56b42e3">
+									<position>
+										<Point x="8784" y="18902"/>
+									</position>
+									<size>
+										<Size width="170" height="317"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/17a7b/5822/13CC/5325a56b53b2">
+									<position>
+										<Point x="9816" y="18786"/>
+									</position>
+									<size>
+										<Size width="318" height="502"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/17a7a/5822/13CC/5325a56b42e3" dstEquation="!ed/17a7b/5822/13CC/5325a56b53b2">
+									<positions>
+										<Point x="8954" y="19071"/>
+										<Point x="9398" y="19071"/>
+										<Point x="9398" y="19071"/>
+										<Point x="9864" y="19071"/>
+									</positions>
+								</Edge>
+								<StateGE presentable="!ed/17a73/5822/13CC/5325a56b75ff">
+									<position>
+										<Point x="6720" y="14605"/>
+									</position>
+									<size>
+										<Size width="4842" height="2514"/>
+									</size>
+								</StateGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/17a74/5822/13CC/5325a56b3105">
+									<position>
+										<Point x="8784" y="15812"/>
+									</position>
+									<size>
+										<Size width="170" height="317"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/17a75/5822/13CC/5325a56b2e3e">
+									<position>
+										<Point x="9816" y="15716"/>
+									</position>
+									<size>
+										<Size width="317" height="502"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/17a74/5822/13CC/5325a56b3105" dstEquation="!ed/17a75/5822/13CC/5325a56b2e3e">
+									<positions>
+										<Point x="8954" y="15981"/>
+										<Point x="9398" y="15981"/>
+										<Point x="9398" y="15981"/>
+										<Point x="9864" y="15981"/>
+									</positions>
+								</Edge>
+								<TransitionGE presentable="!ed/17a7d/5822/13CC/5325a56b6d83">
+									<positions>
+										<Point x="6720" y="18813"/>
+										<Point x="5503" y="17649"/>
+										<Point x="6112" y="16828"/>
+										<Point x="6720" y="15982"/>
+									</positions>
+									<labelSize>
+										<Size width="1842" height="635"/>
+									</labelSize>
+									<labelPos>
+										<Point x="3651" y="16431"/>
+									</labelPos>
+									<slashPos>
+										<Point x="4720" y="16425"/>
+									</slashPos>
+								</TransitionGE>
+								<TransitionGE presentable="!ed/17a77/5822/13CC/5325a56b2c74">
+									<positions>
+										<Point x="11561" y="16139"/>
+										<Point x="12938" y="17489"/>
+										<Point x="12250" y="18256"/>
+										<Point x="11562" y="19023"/>
+									</positions>
+									<labelSize>
+										<Size width="1842" height="635"/>
+									</labelSize>
+									<labelPos>
+										<Point x="12621" y="18150"/>
+									</labelPos>
+									<slashPos>
+										<Point x="13674" y="18140"/>
+									</slashPos>
+								</TransitionGE>
+								<TransitionGE presentable="!ed/17a87/5822/13CC/5325a574152c">
+									<positions>
+										<Point x="11562" y="13097"/>
+										<Point x="13070" y="14314"/>
+										<Point x="12330" y="15028"/>
+										<Point x="11562" y="15769"/>
+									</positions>
+									<labelSize>
+										<Size width="1842" height="635"/>
+									</labelSize>
+									<labelPos>
+										<Point x="12753" y="15028"/>
+									</labelPos>
+									<slashPos>
+										<Point x="13801" y="15028"/>
+									</slashPos>
+								</TransitionGE>
+								<TransitionGE presentable="!ed/17a98/5822/13CC/5325a5815c3">
+									<positions>
+										<Point x="6720" y="15769"/>
+										<Point x="5636" y="14473"/>
+										<Point x="6165" y="13758"/>
+										<Point x="6720" y="13044"/>
+									</positions>
+									<labelSize>
+										<Size width="1884" height="635"/>
+									</labelSize>
+									<labelPos>
+										<Point x="3757" y="13441"/>
+									</labelPos>
+									<slashPos>
+										<Point x="4847" y="13441"/>
+									</slashPos>
+								</TransitionGE>
+								<EquationGE presentable="!ed/422b/708C/1AB4/54db3e5b4ff0">
+									<position>
+										<Point x="9631" y="3641"/>
+									</position>
+									<size>
+										<Size width="339" height="508"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/4233/708C/1AB4/54db3e63134">
+									<position>
+										<Point x="8467" y="3725"/>
+									</position>
+									<size>
+										<Size width="169" height="317"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/4233/708C/1AB4/54db3e63134" dstEquation="!ed/422b/708C/1AB4/54db3e5b4ff0">
+									<positions>
+										<Point x="8636" y="3895"/>
+										<Point x="9144" y="3895"/>
+										<Point x="9144" y="3895"/>
+										<Point x="9673" y="3895"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/425c/708C/1AB4/54db3e8c7385">
+									<position>
+										<Point x="9208" y="6837"/>
+									</position>
+									<size>
+										<Size width="338" height="508"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/425d/708C/1AB4/54db3e8c60ae">
+									<position>
+										<Point x="8043" y="6922"/>
+									</position>
+									<size>
+										<Size width="170" height="317"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/425d/708C/1AB4/54db3e8c60ae" dstEquation="!ed/425c/708C/1AB4/54db3e8c7385">
+									<positions>
+										<Point x="8213" y="7091"/>
+										<Point x="8721" y="7091"/>
+										<Point x="8721" y="7091"/>
+										<Point x="9250" y="7091"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/427b/708C/1AB4/54db3e941385">
+									<position>
+										<Point x="9102" y="9885"/>
+									</position>
+									<size>
+										<Size width="339" height="508"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/427c/708C/1AB4/54db3e944d91">
+									<position>
+										<Point x="7938" y="9970"/>
+									</position>
+									<size>
+										<Size width="170" height="318"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/427c/708C/1AB4/54db3e944d91" dstEquation="!ed/427b/708C/1AB4/54db3e941385">
+									<positions>
+										<Point x="8107" y="10139"/>
+										<Point x="8615" y="10139"/>
+										<Point x="8615" y="10139"/>
+										<Point x="9144" y="10139"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/428d/708C/1AB4/54db3e9e420">
+									<position>
+										<Point x="9081" y="13293"/>
+									</position>
+									<size>
+										<Size width="339" height="508"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/428e/708C/1AB4/54db3e9e471c">
+									<position>
+										<Point x="7916" y="13377"/>
+									</position>
+									<size>
+										<Size width="169" height="318"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/428e/708C/1AB4/54db3e9e471c" dstEquation="!ed/428d/708C/1AB4/54db3e9e420">
+									<positions>
+										<Point x="8086" y="13547"/>
+										<Point x="8594" y="13547"/>
+										<Point x="8594" y="13547"/>
+										<Point x="9123" y="13547"/>
+									</positions>
+								</Edge>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/42b2/708C/1AB4/54db3ea85c8a">
+									<position>
+										<Point x="8001" y="19770"/>
+									</position>
+									<size>
+										<Size width="169" height="317"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/42b4/708C/1AB4/54db3ea819d3">
+									<position>
+										<Point x="9165" y="19685"/>
+									</position>
+									<size>
+										<Size width="339" height="508"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/42b2/708C/1AB4/54db3ea85c8a" dstEquation="!ed/42b4/708C/1AB4/54db3ea819d3">
+									<positions>
+										<Point x="8170" y="19939"/>
+										<Point x="8678" y="19939"/>
+										<Point x="8678" y="19939"/>
+										<Point x="9208" y="19939"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/42af/708C/1AB4/54db3ea8c19">
+									<position>
+										<Point x="9186" y="16277"/>
+									</position>
+									<size>
+										<Size width="339" height="508"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/42b0/708C/1AB4/54db3ea86c92">
+									<position>
+										<Point x="8022" y="16362"/>
+									</position>
+									<size>
+										<Size width="170" height="317"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/42b0/708C/1AB4/54db3ea86c92" dstEquation="!ed/42af/708C/1AB4/54db3ea8c19">
+									<positions>
+										<Point x="8192" y="16531"/>
+										<Point x="8700" y="16531"/>
+										<Point x="8700" y="16531"/>
+										<Point x="9229" y="16531"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>
