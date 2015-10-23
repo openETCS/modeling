@@ -12,7 +12,7 @@ Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/
 SCADE designer			& Peyman Farhangi, DB Netz AG \\
 \midrule
 Description				& The function "Receive\_TrackSide\_Msg" collects the telegrams in an
-array. If one or more telegrams are received multiple times, either the whole the array or single telegram should be deleted.(e.g.if the train moves back.) The balises in a group are to be expected in a certain distance from each other. The function "Receive\_TrackSide\_Msg" checks if the telegrams has been received in due time and at the right expected location.
+array. If one or more telegrams are received multiple times, either the whole array or single telegram should be deleted.(e.g.if the train moves back.) The balises in a group are to be expected in a certain distance from each other. The function "Receive\_TrackSide\_Msg" checks if the telegrams has been received in due time and at the right expected location.
 \\
 &
 The function "CheckBGConsistency" verifies the completeness and correctness of the received telegrams from balise groups and composes the balise message from the received telegram array (input from "Receive\_TrackSide\_Msg"). A balise message is built from at least one telegram and a maximum of 8 telegrams. When linking information is used on-board, only balise groups marked as linked and included in the linking information and balise groups marked as unlinked shall be taken into account.
@@ -20,7 +20,9 @@ The function "CheckBGConsistency" verifies the completeness and correctness of t
 &
 \begin{itemize}
 \item A message is still complete and correct, if a telegram is missing (or not decoded or incompletely decoded), and this telegram is duplicated within the balise group and the duplicating one is correctly read.
-\item In case of multiple balises, the order of the balises must be either ascending (nominal) or descending (reverse).
+
+\item In case of multiple telegrams, the order of N\_PIG of telegrams must be either ascending (nominal) or descending (reverse). And the all telegrams must have the same NID\_BG and NID\_C.
+
 \item A message is not correct, if a message counters (M\_MCOUNT) equals 254 (that means: The telegram never fits any message of the group). A message counter can  equal 255 (that means: The telegram fits with all telegrams of the same balise group) and all other values must be the same.
 \end{itemize}
 
