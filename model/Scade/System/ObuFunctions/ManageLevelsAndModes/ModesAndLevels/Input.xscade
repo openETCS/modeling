@@ -135,21 +135,6 @@
 						<ed:Variable oid="!ed/aa32c/412F/9CC/552bef1a5d30"/>
 					</pragmas>
 				</Variable>
-				<Variable name="startOfMissionEnded">
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="bool"/>
-							</type>
-						</NamedType>
-					</type>
-					<pragmas>
-						<ed:Variable oid="!ed/220d9/4A65/A8/55cb6fc74cc0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-							<comment>Indicate the phase of the mission start is completed.</comment>
-							<comment>This information is needed to control the flow of acknowledments dor level changes.</comment>
-						</ed:Variable>
-					</pragmas>
-				</Variable>
 				<Variable name="Data_From_Track_MASSPGradient">
 					<type>
 						<NamedType>
@@ -160,6 +145,18 @@
 					</type>
 					<pragmas>
 						<ed:Variable oid="!ed/22199/6F5F/1680/55d47fc830e0"/>
+					</pragmas>
+				</Variable>
+				<Variable name="MemorizedLevelIn">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="M_LEVEL"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3cdec6/302B/AA4/56162f655c02"/>
 					</pragmas>
 				</Variable>
 			</inputs>
@@ -200,11 +197,11 @@
 						<ed:Variable oid="!ed/b5998/14CD/990/5527ae99181d"/>
 					</pragmas>
 				</Variable>
-				<Variable name="currentDistance">
+				<Variable name="trainPosition">
 					<type>
 						<NamedType>
 							<type>
-								<TypeRef name="int"/>
+								<TypeRef name="TrainPosition_Types_Pck::trainPosition_T"/>
 							</type>
 						</NamedType>
 					</type>
@@ -224,21 +221,6 @@
 						<ed:Variable oid="!ed/b59b1/14CD/990/5527ae99bf7"/>
 					</pragmas>
 				</Variable>
-				<Variable name="outStartOfMissionEnded">
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="bool"/>
-							</type>
-						</NamedType>
-					</type>
-					<pragmas>
-						<ed:Variable oid="!ed/220ea/2B19/1478/55cc61803a32" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-							<comment>Indicate the phase of the mission start is completed.</comment>
-							<comment>This information is needed to control the flow of acknowledments dor level changes.</comment>
-						</ed:Variable>
-					</pragmas>
-				</Variable>
 				<Variable name="Data_From_Track_to_Level">
 					<type>
 						<NamedType>
@@ -249,6 +231,18 @@
 					</type>
 					<pragmas>
 						<ed:Variable oid="!ed/4bbe73/1CC4/BD0/55f811932b36"/>
+					</pragmas>
+				</Variable>
+				<Variable name="MemorizedLevel">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="M_LEVEL"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3cdecd/302B/AA4/56162f777961"/>
 					</pragmas>
 				</Variable>
 				<Variable name="Cab">
@@ -413,7 +407,7 @@
 					<type>
 						<NamedType>
 							<type>
-								<TypeRef name="int"/>
+								<TypeRef name="TrainPosition_Types_Pck::trainPosition_T"/>
 							</type>
 						</NamedType>
 					</type>
@@ -553,18 +547,6 @@
 						<ed:Variable oid="!ed/aa333/412F/9CC/552bef40159"/>
 					</pragmas>
 				</Variable>
-				<Variable name="_L93">
-					<type>
-						<NamedType>
-							<type>
-								<TypeRef name="bool"/>
-							</type>
-						</NamedType>
-					</type>
-					<pragmas>
-						<ed:Variable oid="!ed/220f4/2B19/1478/55cc624364cb"/>
-					</pragmas>
-				</Variable>
 				<Variable name="_L95">
 					<type>
 						<NamedType>
@@ -611,6 +593,18 @@
 					</type>
 					<pragmas>
 						<ed:Variable oid="!ed/404862/1CC4/BD0/55f80d1b7190"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L101">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="M_LEVEL"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3cdec8/302B/AA4/56162f74562a"/>
 					</pragmas>
 				</Variable>
 			</locals>
@@ -795,10 +789,10 @@
 						<ed:Equation oid="!ed/b5b79/14CD/990/5527b3f55210"/>
 					</pragmas>
 				</Equation>
-				<!-- currentDistance = _L66; -->
+				<!-- trainPosition = _L66; -->
 				<Equation>
 					<lefts>
-						<VariableRef name="currentDistance"/>
+						<VariableRef name="trainPosition"/>
 					</lefts>
 					<right>
 						<IdExpression>
@@ -1067,38 +1061,6 @@
 						<ed:Equation oid="!ed/aa332/412F/9CC/552bef405664"/>
 					</pragmas>
 				</Equation>
-				<!-- outStartOfMissionEnded = _L93; -->
-				<Equation>
-					<lefts>
-						<VariableRef name="outStartOfMissionEnded"/>
-					</lefts>
-					<right>
-						<IdExpression>
-							<path>
-								<ConstVarRef name="_L93"/>
-							</path>
-						</IdExpression>
-					</right>
-					<pragmas>
-						<ed:Equation oid="!ed/220ee/2B19/1478/55cc623925dc"/>
-					</pragmas>
-				</Equation>
-				<!-- _L93 = startOfMissionEnded; -->
-				<Equation>
-					<lefts>
-						<VariableRef name="_L93"/>
-					</lefts>
-					<right>
-						<IdExpression>
-							<path>
-								<ConstVarRef name="startOfMissionEnded"/>
-							</path>
-						</IdExpression>
-					</right>
-					<pragmas>
-						<ed:Equation oid="!ed/220f3/2B19/1478/55cc62438fb"/>
-					</pragmas>
-				</Equation>
 				<!-- _L95 = Data_From_Track_MASSPGradient; -->
 				<Equation>
 					<lefts>
@@ -1193,6 +1155,38 @@
 					</right>
 					<pragmas>
 						<ed:Equation oid="!ed/4bbe76/1CC4/BD0/55f8119543b9"/>
+					</pragmas>
+				</Equation>
+				<!-- _L101 = MemorizedLevelIn; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L101"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="MemorizedLevelIn"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3cdec7/302B/AA4/56162f747fa5"/>
+					</pragmas>
+				</Equation>
+				<!-- MemorizedLevel = _L101; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="MemorizedLevel"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L101"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3cdee1/302B/AA4/56162f9c456"/>
 					</pragmas>
 				</Equation>
 			</data>
@@ -1505,30 +1499,6 @@
 										<Point x="41196" y="20823"/>
 									</positions>
 								</Edge>
-								<EquationGE presentable="!ed/220ee/2B19/1478/55cc623925dc">
-									<position>
-										<Point x="41143" y="21828"/>
-									</position>
-									<size>
-										<Size width="317" height="503"/>
-									</size>
-								</EquationGE>
-								<EquationGE presentable="!ed/220f3/2B19/1478/55cc62438fb">
-									<position>
-										<Point x="37968" y="21828"/>
-									</position>
-									<size>
-										<Size width="265" height="503"/>
-									</size>
-								</EquationGE>
-								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/220f3/2B19/1478/55cc62438fb" dstEquation="!ed/220ee/2B19/1478/55cc623925dc">
-									<positions>
-										<Point x="38232" y="22093"/>
-										<Point x="39873" y="22093"/>
-										<Point x="39873" y="22093"/>
-										<Point x="41196" y="22093"/>
-									</positions>
-								</Edge>
 								<EquationGE presentable="!ed/2231d/3179/1398/55d4834c5065">
 									<position>
 										<Point x="26591" y="11298"/>
@@ -1597,24 +1567,24 @@
 									<positions>
 										<Point x="26855" y="11562"/>
 										<Point x="28760" y="11562"/>
-										<Point x="28760" y="11562"/>
-										<Point x="30692" y="11562"/>
+										<Point x="28760" y="9948"/>
+										<Point x="30692" y="9948"/>
 									</positions>
 								</Edge>
 								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/aa311/412F/9CC/552beedc467b" dstEquation="!ed/b5ae4/14CD/990/5527b38153b7">
 									<positions>
 										<Point x="26855" y="8890"/>
 										<Point x="28760" y="8890"/>
-										<Point x="28760" y="8890"/>
-										<Point x="30692" y="8890"/>
+										<Point x="28760" y="7832"/>
+										<Point x="30692" y="7832"/>
 									</positions>
 								</Edge>
 								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/aa313/412F/9CC/552beedc2b0" dstEquation="!ed/b5ae4/14CD/990/5527b38153b7">
 									<positions>
 										<Point x="26855" y="6218"/>
 										<Point x="28760" y="6218"/>
-										<Point x="28760" y="6218"/>
-										<Point x="30692" y="6218"/>
+										<Point x="28760" y="5689"/>
+										<Point x="30692" y="5689"/>
 									</positions>
 								</Edge>
 								<EquationGE presentable="!ed/4bbe76/1CC4/BD0/55f8119543b9">
@@ -1631,6 +1601,30 @@
 										<Point x="41381" y="10663"/>
 										<Point x="41381" y="11192"/>
 										<Point x="44371" y="11192"/>
+									</positions>
+								</Edge>
+								<EquationGE presentable="!ed/3cdec7/302B/AA4/56162f747fa5">
+									<position>
+										<Point x="37650" y="29501"/>
+									</position>
+									<size>
+										<Size width="265" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/3cdee1/302B/AA4/56162f9c456">
+									<position>
+										<Point x="41513" y="29501"/>
+									</position>
+									<size>
+										<Size width="318" height="502"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3cdec7/302B/AA4/56162f747fa5" dstEquation="!ed/3cdee1/302B/AA4/56162f9c456">
+									<positions>
+										<Point x="37915" y="29766"/>
+										<Point x="39740" y="29766"/>
+										<Point x="39740" y="29766"/>
+										<Point x="41566" y="29766"/>
 									</positions>
 								</Edge>
 							</presentationElements>

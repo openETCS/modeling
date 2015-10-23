@@ -9,7 +9,6 @@
 #define ENGINE_TRACKMSG_H
 
 #include "utils.h"
-//#include "kcg_types.h"
 #include "scade/ScriptedTrack_EnvSim.h"
 
 #define MAX_NUM_PACKETS 30
@@ -80,3 +79,4 @@ void es_add_triggered_radio_message(es_TrackMessages *track, es_TriggerPos pos, 
 void es_exec_tracksim_cycle(es_TrackSimState *state, es_TriggerPos newBPos, es_TriggerPos newRPos);
 
 #endif //ENGINE_TRACKMSG_H
+

@@ -1,0 +1,59 @@
+# @Title: Operator Test: RBC_Diagnostic_Pkg::TryPutDiagMsg
+# @Project: $MROOT/RBC-System/RBC-System.etp
+# @Node: RBC_Internal_Test_Pkg__Unit_Test_Pkg__Test_TryPutDiagMsg
+# @Config: Simulation
+
+# Author: Alexander Pinnau
+# Created: 02.10.2015
+# Last changed: 02.10.2015
+# Test description:
+# - unit test of the operator: RBC_Diagnostic_Pkg::TryPutDiagMsg
+
+# imports
+source ../../lib/rbc.tcl
+source ../../lib/util.tcl
+
+# set variables for RBC library (rbc.tcl)
+rbc::setInDataBus "RBC_Internal_Test_Pkg::Unit_Test_Pkg::Test_TryPutDiagMsg/inDataBus"
+rbc::setOutDataBus "RBC_Internal_Test_Pkg::Unit_Test_Pkg::Test_TryPutDiagMsg/outDataBus"
+
+# (01) -----------------------------------------------------------
+# - reset incoming diagnostic message
+# - all buffer elements should be empty (valid=false)
+rbc::resetDiagMsg
+rbc::checkDiagMsgValidState 0 15 false
+SSM::cycle
+
+# (02) -----------------------------------------------------------
+# - set a new diagnostic message
+# - first buffer element should be set
+# - remaining element should be empty
+# - operation should be successful
+rbc::setDiagMsg
+rbc::checkDiagMsg 0
+rbc::checkDiagMsgValidState 1 15 false
+rbc::checkPutSuccess true
+SSM::cycle
+
+# (03) -----------------------------------------------------------
+# - set a full diagnostic message buffer
+# - set a new diagnostic message
+# - all buffer elements should be set
+# - operation must NOT be successful
+rbc::setDiagMsgValidState 0 15 true
+rbc::setDiagMsg
+rbc::checkDiagMsgValidState 0 15 true
+rbc::checkPutSuccess false
+SSM::cycle
+
+# (04) -----------------------------------------------------------
+# - in diagnostic message buffer is only the last slot free
+# - set a new diagnostic message
+# - all buffer elements should be set
+# - operation should be successful
+rbc::setDiagMsgValidState 0 0 false
+rbc::setDiagMsgValidState 1 15 true
+rbc::setDiagMsg
+rbc::checkDiagMsgValidState 0 15 true
+rbc::checkPutSuccess true
+SSM::cycle

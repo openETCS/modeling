@@ -21,8 +21,12 @@
  %style=longheader, % table style
  %nonumberlist % no page number
  %]{glossaries}
-
-
+ 
+% make lists more compact with enumitem package (spacings below are set globally)
+\usepackage{enumitem}
+\setlist[description]{itemsep=1ex,topsep=1ex,partopsep=0.0ex,parsep=0.0ex}
+\setlist[itemize]{itemsep=1ex,topsep=1ex,partopsep=0.0ex,parsep=0.0ex}
+\setlist[enumerate]{itemsep=1ex,topsep=1ex,partopsep=0.0ex,parsep=0.0ex}
 
 \graphicspath{{./template/}{.}{./images/}}
 
@@ -71,8 +75,8 @@
 \techassessorname{Jan Welte}
 \techassessoraffil{Technische Universität Braunschweig}
 
-\qualityassessorname{Izaskun de la Torre}
-\qualityassessoraffil{SQS}
+\qualityassessorname{Marc Behrens}
+\qualityassessoraffil{DLR}
 
 \approvalname{Klaus-R\"udiger Hase}
 \approvalaffil{DB Netz AG}
@@ -80,7 +84,7 @@
 
 %define a list of authors and their affiliation here
 
-\author{Peter Mahlmann, Bernd Hekele, Baseliyos Jacob, Peyman Farhang}
+\author{Peter Mahlmann, Bernd Hekele, Baseliyos Jacob, Peyman Farhangi}
 \affiliation{DB Netz AG}
 
 \author{Uwe Steinke}
@@ -92,26 +96,26 @@
 \author{Jakob G\"artner, Mairamou Haman Adji, Stefan Karg}
 \affiliation{LEA Railergy}
 
-\author{Jos Holtzer, Jan Welvaarts, Vincent Nuhaan}
-\affiliation{Nederlandss Spoorwegen}
+%\author{Jos Holtzer, Jan Welvaarts, Vincent Nuhaan}
+%\affiliation{Nederlandss Spoorwegen}
 
-\author{Thorsten Schulz, Benjamin Beichler}
+\author{Thorsten Schulz}
 \affiliation{University of Rostock}
 
-\author{Marielle Petit-Doche, Matthias G\"udemann}
+\author{Marielle Petit-Doche}
 \affiliation{Systerel}
 
-\author{Veronique Gontier}
-\affiliation{All4Tec}
+%\author{Veronique Gontier}
+%\affiliation{All4Tec}
 
-\author{Christian Giraud, Fausto Cochetti}
-\affiliation{Alstom}
+%\author{Christian Giraud, Fausto Cochetti}
+%\affiliation{Alstom}
 
 \author{Alexander Stante}
 \affiliation{Fraunhofer ESK}
 
-\author{David Mentre}
-\affiliation{MERCE}
+%\author{David Mentre}
+%\affiliation{MERCE}
 
 
 
@@ -170,7 +174,12 @@ Version & Sections & Modification / Description & Author & Date \\\midrule}
 % The actual document starts below this line
 %=============================
 
+
 \mainmatter
+
+\setlength{\topsep}{0.5ex}
+\setlength{\itemsep}{0ex}
+\setlength{\parsep}{0ex}
 
 \input{sections/introduction.tex}
 
@@ -178,7 +187,7 @@ Version & Sections & Modification / Description & Author & Date \\\midrule}
 
 %\input{sections/functional_breakdown}
 
-\chapter{System Architecture}\todo[fancyline]{has to be completed}
+\chapter{System Architecture}
 \input{sections/system_architecture.tex}
 
 
@@ -194,12 +203,12 @@ Version & Sections & Modification / Description & Author & Date \\\midrule}
 \input{sections/general_design_decisions.tex}
 
 
-\chapter{F1: Receive Information from Trackside}
+\chapter{F1: Receive Information from Trackside}\label{s:F1}
 
 \input{sections/trackside.tex}
 
 
-\chapter{F2: ETCS Kernel}
+\chapter{F2: ETCS Kernel}\label{s:F2}
 
 In this chapter we describe the main components of the openETCS OBU model. Section~\ref{s:ETCS_Kernel_Overview} gives an overview of the external interfaces of this functional block and gives a brief overview of its components and their interaction. The following Sections~\ref{s:F2.1} to \ref{s:F2.13} give a detailed description for each of the components in F2: ETCS Kernel.
 
@@ -243,6 +252,9 @@ This component is not part of the openETCS OBU currently and therefore no detail
 
 \chapter{F6: DMI Controller}
 \input{sections/DMI_V2.tex}
+
+\chapter{F7: Manage TIU}
+This component is not part of the openETCS OBU currently and therefore no detailed description is provided here.
 
 
 \bibliographystyle{unsrt}

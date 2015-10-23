@@ -36,7 +36,6 @@ void es_write_next_balise_message(CompressedBaliseMessage_TM *target) {
     target->Header.m_dup=0;
     target->Header.m_mcount=0;
     target->Header.m_version=0;
-    target->Header.m_version=0;
     target->Header.nid_c=0;
     target->Header.q_link=0;
     target->Header.q_media=0;
@@ -168,3 +167,4 @@ void es_exec_tracksim_cycle(es_TrackSimState *state, es_TriggerPos newBPos, es_T
   es_trigger_balise_msgs(state,newBPos);
   es_trigger_radio_msgs(state,newRPos);
 }
+

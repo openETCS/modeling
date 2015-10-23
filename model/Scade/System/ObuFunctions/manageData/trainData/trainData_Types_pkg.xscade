@@ -105,7 +105,7 @@
 						</NamedType>
 					</type>
 					<value>
-						<!-- {valid : false, validatedByDriver : false, validatedbyRBC : false, watingForRBCRe... -->
+						<!-- {valid : false, validatedByDriver : false, RBCsystemVersionOnboard : false, valid... -->
 						<DataStructOp>
 							<data>
 								<LabelledExpression label="valid">
@@ -118,12 +118,17 @@
 										<ConstValue value="false"/>
 									</flow>
 								</LabelledExpression>
+								<LabelledExpression label="RBCsystemVersionOnboard">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
 								<LabelledExpression label="validatedbyRBC">
 									<flow>
 										<ConstValue value="false"/>
 									</flow>
 								</LabelledExpression>
-								<LabelledExpression label="watingForRBCResponse">
+								<LabelledExpression label="waitingForRBCResponse">
 									<flow>
 										<ConstValue value="false"/>
 									</flow>
@@ -135,7 +140,7 @@
 								</LabelledExpression>
 								<LabelledExpression label="timeStampValidateToRBC">
 									<flow>
-										<ConstValue value="0.0"/>
+										<ConstValue value="0"/>
 									</flow>
 								</LabelledExpression>
 							</data>
@@ -239,9 +244,11 @@
 								</LabelledExpression>
 								<LabelledExpression label="nationSystems">
 									<flow>
-										<!-- [0, 0, 0] -->
+										<!-- [0, 0, 0, 0, 0] -->
 										<DataArrayOp>
 											<data>
+												<ConstValue value="0"/>
+												<ConstValue value="0"/>
 												<ConstValue value="0"/>
 												<ConstValue value="0"/>
 												<ConstValue value="0"/>
@@ -259,6 +266,25 @@
 										<!-- [{m_voltage : M_VOLTAGE_Line_not_fitted_with_any_traction_system, nid_ctraction :... -->
 										<DataArrayOp>
 											<data>
+												<!-- {m_voltage : M_VOLTAGE_Line_not_fitted_with_any_traction_system, nid_ctraction : ... -->
+												<DataStructOp>
+													<data>
+														<LabelledExpression label="m_voltage">
+															<flow>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="M_VOLTAGE_Line_not_fitted_with_any_traction_system"/>
+																	</path>
+																</IdExpression>
+															</flow>
+														</LabelledExpression>
+														<LabelledExpression label="nid_ctraction">
+															<flow>
+																<ConstValue value="0"/>
+															</flow>
+														</LabelledExpression>
+													</data>
+												</DataStructOp>
 												<!-- {m_voltage : M_VOLTAGE_Line_not_fitted_with_any_traction_system, nid_ctraction : ... -->
 												<DataStructOp>
 													<data>
@@ -539,6 +565,20 @@
 										</ed:Field>
 									</pragmas>
 								</Field>
+								<Field name="RBCsystemVersionOnboard">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/5f1f8/465F/2A8/562521dd7957" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Msg 32 has been received onboard. This is prerequisit for communicating with the RBC</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
 								<Field name="validatedbyRBC">
 									<type>
 										<NamedType>
@@ -553,7 +593,7 @@
 										</ed:Field>
 									</pragmas>
 								</Field>
-								<Field name="watingForRBCResponse">
+								<Field name="waitingForRBCResponse">
 									<type>
 										<NamedType>
 											<type>
@@ -591,7 +631,7 @@
 									</type>
 									<pragmas>
 										<ed:Field oid="!ed/1f4fa/54D3/1728/55a3a09f5ee0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
-											<comment>8.7.4 Train data is acknowledged.</comment>
+											<comment>8.7.4 This label is used in communication with the RBC to identify the communication entity. Train data is acknowledged.</comment>
 										</ed:Field>
 									</pragmas>
 								</Field>
@@ -663,7 +703,7 @@
 			<pragmas>
 				<ed:Package oid="!ed/1ecc3/22F4/EA8/55a2259e230f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 					<diagrams>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1ecc4/22F4/EA8/55a2259e22e1" blockKind="constants" columnsSize="0, 296, 150, 150, 300"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1ecc4/22F4/EA8/55a2259e22e1" blockKind="constants" columnsSize="0, 296, 287, 150, 300"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1ecc5/22F4/EA8/55a2259e3508" blockKind="types" columnsSize="0, 298, 200, 431"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/1ecc6/22F4/EA8/55a2259e68b2" blockKind="sensors"/>
 					</diagrams>

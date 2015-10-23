@@ -71,7 +71,7 @@
 								</LabelledExpression>
 								<LabelledExpression label="transition">
 									<flow>
-										<!-- {level : M_LEVEL_Level_0, position : 0, transitionType : M_TransitionType_Immedia... -->
+										<!-- {level : M_LEVEL_Level_0, position : 0, transitionType : M_TransitionType_Normal,... -->
 										<DataStructOp>
 											<data>
 												<LabelledExpression label="level">
@@ -92,7 +92,7 @@
 													<flow>
 														<IdExpression>
 															<path>
-																<ConstVarRef name="M_TransitionType_Immediate"/>
+																<ConstVarRef name="M_TransitionType_Normal"/>
 															</path>
 														</IdExpression>
 													</flow>
@@ -639,6 +639,30 @@
 										<ed:Field oid="!ed/777d3/3EAE/758/54cba79f40f8"/>
 									</pragmas>
 								</Field>
+								<Field name="Connection_to_RBC_req">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/346bd1/3A61/C18/560d226f3f7f"/>
+									</pragmas>
+								</Field>
+								<Field name="Position_Repport_Needed">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/346bda/3A61/C18/560d228f13a8"/>
+									</pragmas>
+								</Field>
 							</fields>
 						</Struct>
 					</definition>
@@ -1005,11 +1029,6 @@
 					<definition>
 						<Enum>
 							<values>
-								<Value name="M_TransitionType_Immediate">
-									<pragmas>
-										<ed:Value oid="!ed/1770ad/4664/660/54f05009652b"/>
-									</pragmas>
-								</Value>
 								<Value name="M_TransitionType_Conditional">
 									<pragmas>
 										<ed:Value oid="!ed/1770ae/4664/660/54f0500944d4"/>
@@ -1030,25 +1049,6 @@
 					</definition>
 					<pragmas>
 						<ed:Type oid="!ed/1770ac/4664/660/54f0500926db"/>
-					</pragmas>
-				</Type>
-				<Type name="T_TransitionConditions">
-					<definition>
-						<Table>
-							<type>
-								<NamedType>
-									<type>
-										<TypeRef name="bool"/>
-									</type>
-								</NamedType>
-							</type>
-							<size>
-								<ConstValue value="20"/>
-							</size>
-						</Table>
-					</definition>
-					<pragmas>
-						<ed:Type oid="!ed/1770a2/4664/660/54f05009ee9"/>
 					</pragmas>
 				</Type>
 				<Type name="T_LevelTransition_PriorityTable">
@@ -1989,7 +1989,7 @@
 										<ed:Field oid="!ed/137ad4/5E5A/928/55f6f746292f"/>
 									</pragmas>
 								</Field>
-								<Field name="receivedL2L3MA">
+								<Field name="receivedL2L3MA_track">
 									<type>
 										<NamedType>
 											<type>
@@ -2001,7 +2001,7 @@
 										<ed:Field oid="!ed/137b2b/5E5A/928/55f6f7fc3cd0"/>
 									</pragmas>
 								</Field>
-								<Field name="receivedL1MA">
+								<Field name="receivedL1MA_track">
 									<type>
 										<NamedType>
 											<type>
@@ -2013,18 +2013,6 @@
 										<ed:Field oid="!ed/137b2c/5E5A/928/55f6f7fd7c5b"/>
 									</pragmas>
 								</Field>
-								<Field name="receivedTargetSpeed">
-									<type>
-										<NamedType>
-											<type>
-												<TypeRef name="bool"/>
-											</type>
-										</NamedType>
-									</type>
-									<pragmas>
-										<ed:Field oid="!ed/137b2d/5E5A/928/55f6f7fe4905"/>
-									</pragmas>
-								</Field>
 							</fields>
 						</Struct>
 					</definition>
@@ -2034,11 +2022,113 @@
 						</ed:Type>
 					</pragmas>
 				</Type>
+				<Type name="T_AnnouncedLevel">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="LevelTransition">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="T_LevelTransition"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/18cccd/643B/120C/5617c8fc4e38" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>announced level transition</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="IsAvailableForUse">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/18cce3/643B/120C/5617c93a600f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Indicates is the future transition is available for use or if it is one with low priority §5.10.2.7</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/18cccc/643B/120C/5617c8d85220"/>
+					</pragmas>
+				</Type>
+				<Type name="T_AcknoledgementRequest">
+					<definition>
+						<Struct>
+							<fields>
+								<Field name="valid">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/18ccf3/643B/120C/5617c9e57764" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>This information is valid</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="whichMode">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="M_MODE"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/18ccfa/643B/120C/5617c9ec2418" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+											<comment>Mode to acknowledge</comment>
+										</ed:Field>
+									</pragmas>
+								</Field>
+								<Field name="SH_Req_RefusedByRBC">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/18cd00/643B/120C/5617c9f43268"/>
+									</pragmas>
+								</Field>
+								<Field name="LevelNeedsAck">
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<pragmas>
+										<ed:Field oid="!ed/18cd06/643B/120C/5617c9fb7034"/>
+									</pragmas>
+								</Field>
+							</fields>
+						</Struct>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/18ccec/643B/120C/5617c99e5223"/>
+					</pragmas>
+				</Type>
 			</declarations>
 			<pragmas>
 				<ed:Package oid="!ed/3a4db/471B/12D0/54be4f2b6afc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 					<diagrams>
-						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a4dc/471B/12D0/54be4f2b4f4e" blockKind="constants"/>
+						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a4dc/471B/12D0/54be4f2b4f4e" blockKind="constants" columnsSize="0, 150, 150, 150, 300"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a4dd/471B/12D0/54be4f2b7f6" blockKind="types" columnsSize="0, 312, 370, 300"/>
 						<TreeDiagram landscape="false" format="A4 (210 297)" oid="!ed/3a4de/471B/12D0/54be4f2b78d3" blockKind="sensors"/>
 					</diagrams>

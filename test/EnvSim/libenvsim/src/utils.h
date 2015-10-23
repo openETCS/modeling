@@ -14,18 +14,34 @@
 #define MALLOC(type) ((type*) malloc(sizeof(type)));
 #define CALLOC(type) ((type*) calloc(1,sizeof(type)));
 
-#define ES_MSG_BUF_SIZE 1024
+#define ES_MSG_BUF_SIZE 2048
 
 extern char es_msg_buf[];
 #define ES_ERROR_MSG(msg) snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"%s",msg);
 
+#ifdef WINDOWS
+#define NEWLINE "\r\n"
+#else
+#define NEWLINE "\n"
+#endif
+
+// returns a string with the current timestamp
+const char*es_timestamp();
+
+
 typedef enum {
   ES_OK,
-  ES_TCL_ERROR
+  ES_TCL_ERROR,
+  // indicates that the request operation is not supported (by the current configuration)
+  ES_NOT_SUPPORTED,
+  // indicates an error in the TCP stack
+  ES_TCP_ERROR,
+  ES_TCP_NO_CONN
 } es_Status;
 
-//typedef void *es_AppendResult(char* res, char* clientData);
 typedef char* es_ClientData;
+// callback function for appending a string to a Tcl interpreter result
+typedef void (*es_AppendResult)(char*, es_ClientData);
 
 
 // Elements of a singly linked list

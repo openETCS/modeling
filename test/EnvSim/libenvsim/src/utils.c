@@ -4,13 +4,27 @@
 //
 // History:
 // - 22.09.15, J. Kastner: initial version
+// - 10.10.15, J. Kastner: add es_timestamp()
 
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
+#include <time.h>
 #include "utils.h"
 
 char es_msg_buf[ES_MSG_BUF_SIZE];
+char es_tstamp_buf[50];
+
+const char* es_timestamp() {
+  time_t now;
+  struct tm *localnow;
+  time( &now );
+  localnow = localtime( &now );
+
+  strftime(es_tstamp_buf,50,"%d.%m.%y %H:%M:%S",localnow);
+  return es_tstamp_buf;
+}
+
 
 es_ListEntry* es_list_append(es_ListEntry *list, char *data) {
   es_ListEntry *tail = list;
@@ -74,6 +88,7 @@ es_ListEntry* es_list_filter(es_ListEntry *list, bool (*f)(char*)) {
 
 es_ListEntry* es_list_remove_head(es_ListEntry *list, char **data) {
   if(list==NULL) {
+    *data = NULL;
     return NULL;
   }
 
