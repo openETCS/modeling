@@ -8,14 +8,6 @@
 #ifndef LIBENVSIM_STCP_H
 #define LIBENVSIM_STCP_H
 
-#ifdef WINDOWS
-#include <winsock2.h>
-#include <windows.h>
-#else
-#define SOCKET int
-#define INVALID_SOCKET 1
-#endif
-
 #include <stdbool.h>
 #include "utils.h"
 #include "tcp.h"

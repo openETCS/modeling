@@ -7,9 +7,14 @@
 #include "kcg_sensors.h"
 #include "RemoteEVCBus_EnvSim.h"
 
+extern void es_remote_evcbus_init(outC_RemoteEVCBus_EnvSim *out);
+extern void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC_RemoteEVCBus_EnvSim *outC);
+kcg_bool RemoteEVCBus_Initialized_EnvSim = kcg_false;
+
 void RemoteEVCBus_init_EnvSim(outC_RemoteEVCBus_EnvSim *outC)
 {
-  /* The body of this function must be provided */
+  es_remote_evcbus_init(outC);
+  RemoteEVCBus_Initialized_EnvSim = kcg_true;
 }
 
 
@@ -25,7 +30,10 @@ void RemoteEVCBus_EnvSim(
   /* EnvSim::RemoteEVCBus::dmiToEVC */ DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC,
   outC_RemoteEVCBus_EnvSim *outC)
 {
-  /* The body of this function must be provided */
+  if( !RemoteEVCBus_Initialized_EnvSim ) {
+    RemoteEVCBus_init_EnvSim(outC);
+  }
+  es_remote_evcbus_cycle(dmiToEVC,outC);
 }
 
 /* $**************** KCG Version 6.4 (build i21) ****************

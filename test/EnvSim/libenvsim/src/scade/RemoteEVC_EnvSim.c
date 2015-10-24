@@ -9,12 +9,12 @@
 
 extern void es_remote_evc_init(outC_RemoteEVC_EnvSim *out);
 extern void es_remote_evc_cycle(DMI_to_EVC_Message_T_API_DMI_Pkg *dmiToEVC, outC_RemoteEVC_EnvSim *outC);
-int RemoteEVC_Initialized_EnvSim = 0;
+kcg_bool RemoteEVC_Initialized_EnvSim = kcg_false;
 
 void RemoteEVC_init_EnvSim(outC_RemoteEVC_EnvSim *outC)
 {
   es_remote_evc_init(outC);
-  RemoteEVC_Initialized_EnvSim = 1;
+  RemoteEVC_Initialized_EnvSim = kcg_true;
 }
 
 

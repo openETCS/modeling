@@ -9,12 +9,12 @@
 
 extern void es_remote_dmi_init(outC_RemoteDMI_EnvSim *out);
 extern void es_remote_dmi_cycle(EVC_to_DMI_Message_T_API_DMI_Pkg *evcToDMI, TIU_Input_msg_API_TIU_Pkg *tiuToDMI, outC_RemoteDMI_EnvSim *outC);
-int RemoteDMI_initialized_EnvSim = 0;
+kcg_bool RemoteDMI_initialized_EnvSim = kcg_false;
 
 void RemoteDMI_init_EnvSim(outC_RemoteDMI_EnvSim *outC)
 {
   es_remote_dmi_init(outC);
-  RemoteDMI_initialized_EnvSim = 1;
+  RemoteDMI_initialized_EnvSim = kcg_true;
 }
 
 
