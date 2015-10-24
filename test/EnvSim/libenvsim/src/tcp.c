@@ -265,6 +265,7 @@ es_Status es_tcp_read_sync(es_TCPStream *stream, es_MSGID id, es_TCPMessage **ms
   else {
     es_ListEntry *next = stream->in;
     es_ListEntry *prev = NULL;
+    *msg = NULL;
     while( next != NULL ) {
       es_TCPMessage *m = (es_TCPMessage*) next->data;
       if( m->id == id ) {
@@ -289,6 +290,7 @@ es_Status es_tcp_read_sync(es_TCPStream *stream, es_MSGID id, es_TCPMessage **ms
 es_Status es_tcp_read(es_TCPStream *stream, es_MSGID id, es_TCPMessage **msg) {
   int rc = 0;
   if(stream==NULL) {
+    *msg = NULL;
     TCPERROR("cannot read message from stream NULL");
   }
   TCP_SYNC(stream->ctx, es_tcp_read_sync(stream,id,msg), &rc, "es_tcp_read");

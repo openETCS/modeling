@@ -26,6 +26,8 @@
 // send TIU data only in cycles which are a multiple of this value
 #define SEND_TIUDATA_DIVIDER 2
 
+#define SEND_GUIDATA_DIVIDER 10
+
 
 typedef es_TCPStream STREAM;
 
@@ -407,25 +409,20 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
 
     msg = NULL;
     es_tcp_read(es_remote_evc_conn1, TCPMSG_TIU2DMI, &msg);
-    if( msg != NULL ) {
-      if (msg->len != TIU2DMI_STRUCT_SIZE) {
-        LOG_ERROR(scade_remote, "Invalid TIU2DMI message: received %d bytes, expected %d bytes", msg->len,
-                  TIU2DMI_STRUCT_SIZE);
-      }
-      else {
-        memcpy(&outC->tiuToDMI, msg->data, TIU2DMI_STRUCT_SIZE);
-//        LOG_TRACE(scade_remote,"received TIU2DMI; desk open: %d",outC->tiuToDMI.info.train_status.m_cab_st);
-      }
-      es_tcp_free_msg(msg);
+  while( msg != NULL ) {
+    if (msg->len != TIU2DMI_STRUCT_SIZE) {
+      LOG_ERROR(scade_remote, "Invalid TIU2DMI message: received %d bytes, expected %d bytes", msg->len,
+                TIU2DMI_STRUCT_SIZE);
     }
     else {
-      run = false;
-    //  outC->tiuToDMI.valid = false;
+      memcpy(&outC->tiuToDMI, msg->data, TIU2DMI_STRUCT_SIZE);
+//        LOG_TRACE(scade_remote,"received TIU2DMI; desk open: %d",outC->tiuToDMI.info.train_status.m_cab_st);
     }
+    es_tcp_free_msg(msg);
+    msg = NULL;
+    es_tcp_read(es_remote_evc_conn1, TCPMSG_TIU2DMI, &msg);
+  }
 
-  //}
-
-  //outC->run = run;
   outC->run = true;
 }
 
@@ -457,8 +454,10 @@ extern void es_remote_gui_init(outC_RemoteGUI_EnvSim *out) {
 
 
 extern void es_remote_gui_cycle(EVC_to_GUI_EnvSim *evcToGUI, outC_RemoteGUI_EnvSim *outC) {
+  static int cycle = 0;
+
   // SEND
-  if(es_remote_gui_conn != NULL && es_remote_gui_conn->client != INVALID_SOCKET) {
+  if( cycle % SEND_GUIDATA_DIVIDER==0 && es_remote_gui_conn != NULL && es_remote_gui_conn->client != INVALID_SOCKET) {
     es_tcp_send(es_remote_gui_conn,TCPMSG_EVC2GUI,(const char*)evcToGUI,EVC2GUI_STRUCT_SIZE);
   }
 
@@ -476,7 +475,14 @@ extern void es_remote_gui_cycle(EVC_to_GUI_EnvSim *evcToGUI, outC_RemoteGUI_EnvS
       }
       es_tcp_free_msg(msg);
     }
+//    msg = NULL;
+//    es_tcp_read(es_remote_gui_conn, TCPMSG_ANY, &msg);
+//    if( msg != NULL ) {
+//      LOG_INFO(tcp,"received MSG %d",msg->id);
+//      es_tcp_free_msg(msg);
+//    }
   }
 
+  cycle++;
 }
 #endif
