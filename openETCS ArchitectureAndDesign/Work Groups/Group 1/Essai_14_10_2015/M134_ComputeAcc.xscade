@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Operator kind="function" name="M134_ComputeAcc">
+			<inputs>
+				<Variable name="Gradient_i">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/82e7/10BE/1CCC/55815f093c05"/>
+					</pragmas>
+				</Variable>
+			</inputs>
+			<outputs>
+				<Variable name="Asafe_Gravit_i">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/82ea/10BE/1CCC/55815f096ece"/>
+					</pragmas>
+				</Variable>
+			</outputs>
+			<locals>
+				<Variable name="_L1">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/82e9/10BE/1CCC/55815f092ac5"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L2">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3cb7/7A9B/28C0/5579512b7a1b"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L3">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3ce0/7A9B/28C0/55795d5242b3"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L4">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3d0e/7A9B/28C0/55795e7c2fcb"/>
+					</pragmas>
+				</Variable>
+				<Variable name="_L5">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="real"/>
+							</type>
+						</NamedType>
+					</type>
+					<pragmas>
+						<ed:Variable oid="!ed/3d17/7A9B/28C0/55795efc68c8"/>
+					</pragmas>
+				</Variable>
+			</locals>
+			<data>
+				<!-- Asafe_Gravit_i = _L4; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="Asafe_Gravit_i"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/82ec/10BE/1CCC/55815f09356c"/>
+					</pragmas>
+				</Equation>
+				<!-- _L1 = Gradient_i; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L1"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Gradient_i"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/82e8/10BE/1CCC/55815f096013" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<comment>Cet opérateur calcule l'accélération due à la pesanteur.</comment>
+							<comment></comment>
+							<comment>pente x 9,81 m/s² / coefficient de masse tournante alpha</comment>
+						</ed:Equation>
+					</pragmas>
+				</Equation>
+				<!-- _L2 = _L1 * _L3; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L2"/>
+					</lefts>
+					<right>
+						<!-- _L1 * _L3 -->
+						<NAryOp name="1" operator="*">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L3"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</NAryOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3cb6/7A9B/28C0/5579512b7e1d"/>
+					</pragmas>
+				</Equation>
+				<!-- _L3 = 9.81; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L3"/>
+					</lefts>
+					<right>
+						<ConstValue value="9.81"/>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3cdf/7A9B/28C0/55795d52122"/>
+					</pragmas>
+				</Equation>
+				<!-- _L4 = _L2 / _L5; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L4"/>
+					</lefts>
+					<right>
+						<!-- _L2 / _L5 -->
+						<BinaryOp name="1" operator="/">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L2"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L5"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</BinaryOp>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3d0d/7A9B/28C0/55795e7c3fad"/>
+					</pragmas>
+				</Equation>
+				<!-- _L5 = Alpha; -->
+				<Equation>
+					<lefts>
+						<VariableRef name="_L5"/>
+					</lefts>
+					<right>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Alpha"/>
+							</path>
+						</IdExpression>
+					</right>
+					<pragmas>
+						<ed:Equation oid="!ed/3d16/7A9B/28C0/55795efc24d5"/>
+					</pragmas>
+				</Equation>
+			</data>
+			<pragmas>
+				<ed:Operator oid="!ed/82e5/10BE/1CCC/55815f09f8c" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Cet opérateur calcule l'accélération due à la gravité pour chaque step</comment>
+					<comment></comment>
+					<comment>Décélération = pente x 9,81 m/s²  /  Alpha (coeff de masse tournante &gt; 1).</comment>
+					<comment></comment>
+					<comment>NB : gradient &gt; 0 =&gt; montée =&gt; décéleration =&gt; Asafe &gt; 0</comment>
+					<diagrams>
+						<NetDiagram name="diagram_M134_ComputeAcc_1" landscape="true" format="A4 (210 297)" oid="!ed/82e6/10BE/1CCC/55815f096fa4">
+							<presentationElements>
+								<EquationGE presentable="!ed/82ec/10BE/1CCC/55815f09356c">
+									<position>
+										<Point x="11404" y="1561"/>
+									</position>
+									<size>
+										<Size width="317" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/82e8/10BE/1CCC/55815f096013">
+									<position>
+										<Point x="2725" y="1296"/>
+									</position>
+									<size>
+										<Size width="264" height="503"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/3cb6/7A9B/28C0/5579512b7e1d">
+									<position>
+										<Point x="6350" y="1349"/>
+									</position>
+									<size>
+										<Size width="1005" height="662"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/3cdf/7A9B/28C0/55795d52122">
+									<position>
+										<Point x="5054" y="2249"/>
+									</position>
+									<size>
+										<Size width="212" height="317"/>
+									</size>
+								</EquationGE>
+								<EquationGE presentable="!ed/3d0d/7A9B/28C0/55795e7c3fad">
+									<position>
+										<Point x="8625" y="1482"/>
+									</position>
+									<size>
+										<Size width="1006" height="662"/>
+									</size>
+								</EquationGE>
+								<EquationGE kind="OBJ_LIT" presentable="!ed/3d16/7A9B/28C0/55795efc24d5">
+									<position>
+										<Point x="7858" y="2487"/>
+									</position>
+									<size>
+										<Size width="212" height="318"/>
+									</size>
+								</EquationGE>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/3d16/7A9B/28C0/55795efc24d5" dstEquation="!ed/3d0d/7A9B/28C0/55795e7c3fad">
+									<positions>
+										<Point x="8070" y="2646"/>
+										<Point x="8334" y="2646"/>
+										<Point x="8334" y="1931"/>
+										<Point x="8625" y="1931"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/3cdf/7A9B/28C0/55795d52122" dstEquation="!ed/3cb6/7A9B/28C0/5579512b7e1d">
+									<positions>
+										<Point x="5265" y="2408"/>
+										<Point x="5609" y="2408"/>
+										<Point x="5609" y="1799"/>
+										<Point x="6350" y="1799"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3cb6/7A9B/28C0/5579512b7e1d" dstEquation="!ed/3d0d/7A9B/28C0/55795e7c3fad">
+									<positions>
+										<Point x="7355" y="1693"/>
+										<Point x="7990" y="1693"/>
+										<Point x="7990" y="1693"/>
+										<Point x="8625" y="1693"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/82e8/10BE/1CCC/55815f096013" dstEquation="!ed/3cb6/7A9B/28C0/5579512b7e1d">
+									<positions>
+										<Point x="2990" y="1561"/>
+										<Point x="4657" y="1561"/>
+										<Point x="4657" y="1561"/>
+										<Point x="6350" y="1561"/>
+									</positions>
+								</Edge>
+								<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3d0d/7A9B/28C0/55795e7c3fad" dstEquation="!ed/82ec/10BE/1CCC/55815f09356c">
+									<positions>
+										<Point x="9631" y="1826"/>
+										<Point x="10530" y="1826"/>
+										<Point x="10530" y="1826"/>
+										<Point x="11456" y="1826"/>
+									</positions>
+								</Edge>
+							</presentationElements>
+						</NetDiagram>
+					</diagrams>
+				</ed:Operator>
+			</pragmas>
+		</Operator>
+	</declarations>
+</File>
