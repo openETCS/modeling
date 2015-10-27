@@ -7,7 +7,7 @@ TARGET = win32
 INCLUDES = -I. -I include/ -I $(SCADESRCDIR) 
 ifeq ($(TARGET),win32)
 CC = i686-w64-mingw32-gcc.exe
-CFLAGS = $(INCLUDES) -O3
+CFLAGS = $(INCLUDES) -O3 -DWINDOWS
 LDFLAGS = -L $(LIBENVSIMDIR)/dist/$(TARGET) -lenvsim -ljim -lwsock32
 else
 CFLAGS = $(INCLUDES) -O3 -m64
@@ -18,7 +18,7 @@ testbench: main.o libtestbench.a
 	$(CC) $^ -o $@ $(LDFLAGS)
 
 main.o: main.c
-	$(CC) $(INCLUDES) -include $(SCADESRCDIR)/ROOT_Simulation_Testbench_EnvSim.h -c main.c
+	$(CC) $(CFLAGS) -include $(SCADESRCDIR)/ROOT_Simulation_Testbench_EnvSim.h -c main.c
 
 libtestbench.a: $(SCADEOBJS)
 	ar ru $@ $^
