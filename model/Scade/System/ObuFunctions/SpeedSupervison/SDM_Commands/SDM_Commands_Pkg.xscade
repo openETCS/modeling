@@ -35983,7 +35983,7 @@
 						</ed:Operator>
 					</pragmas>
 				</Operator>
-				<Operator kind="node" name="CalcDriverOutput">
+				<Operator kind="function" name="CalcDriverOutput">
 					<inputs>
 						<Variable name="sdmType">
 							<type>
@@ -36085,9 +36085,6 @@
 							<default>
 								<ConstValue value="false"/>
 							</default>
-							<last>
-								<ConstValue value="false"/>
-							</last>
 							<pragmas>
 								<ed:Variable oid="!ed/ab710/50A/1450/54ee45c551a8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 									<comment>true if v_est is valid</comment>
@@ -36122,9 +36119,6 @@
 							<default>
 								<ConstValue value="false"/>
 							</default>
-							<last>
-								<ConstValue value="false"/>
-							</last>
 							<pragmas>
 								<ed:Variable oid="!ed/ab711/50A/1450/54ee45c656ce" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 									<comment>true if v_permitted is valid</comment>
@@ -36159,9 +36153,6 @@
 							<default>
 								<ConstValue value="false"/>
 							</default>
-							<last>
-								<ConstValue value="false"/>
-							</last>
 							<pragmas>
 								<ed:Variable oid="!ed/208e5/1F54/19FC/54ef7d2518f9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 									<comment>true if v_release is valid</comment>
@@ -36196,9 +36187,6 @@
 							<default>
 								<ConstValue value="false"/>
 							</default>
-							<last>
-								<ConstValue value="false"/>
-							</last>
 							<pragmas>
 								<ed:Variable oid="!ed/208e6/1F54/19FC/54ef7d251bbc" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 									<comment>true if v_mrdt is valid</comment>
@@ -36233,9 +36221,6 @@
 							<default>
 								<ConstValue value="false"/>
 							</default>
-							<last>
-								<ConstValue value="false"/>
-							</last>
 							<pragmas>
 								<ed:Variable oid="!ed/20818/1F54/19FC/54ef7aeb4796" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 									<comment>true if v_floi is valid</comment>
@@ -36270,9 +36255,6 @@
 							<default>
 								<ConstValue value="false"/>
 							</default>
-							<last>
-								<ConstValue value="false"/>
-							</last>
 							<pragmas>
 								<ed:Variable oid="!ed/208e7/1F54/19FC/54ef7d26104a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
 									<comment>true if distance to target is valif</comment>
@@ -40040,6 +40022,18 @@
 								<ed:Variable oid="!ed/66fb53/349C/1B68/56210f9377c4"/>
 							</pragmas>
 						</Variable>
+						<Variable name="_L238">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TrainPosition_Types_Pck::trainPosition_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/17c7da/3D8/13A4/562f418a5285"/>
+							</pragmas>
+						</Variable>
 					</locals>
 					<data>
 						<!-- _L11, _L7, _L6, _L5, _L1, _L4, _L2, _L3, _L9, _L8, _L10 = CmdTrainSupervisionStat... -->
@@ -40653,13 +40647,13 @@
 								<ed:Equation oid="!ed/6f747/93A/F04/55e6f3d3e4b"/>
 							</pragmas>
 						</Equation>
-						<!-- _L225 = CalcDMI_output(_L63, _L226); -->
+						<!-- _L225 = CalcDMI_output(_L63, _L226, _L238); -->
 						<Equation>
 							<lefts>
 								<VariableRef name="_L225"/>
 							</lefts>
 							<right>
-								<!-- CalcDMI_output(_L63, _L226) -->
+								<!-- CalcDMI_output(_L63, _L226, _L238) -->
 								<CallExpression>
 									<operator>
 										<OpCall name="1">
@@ -40677,6 +40671,11 @@
 										<IdExpression>
 											<path>
 												<ConstVarRef name="_L226"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L238"/>
 											</path>
 										</IdExpression>
 									</callParameters>
@@ -40823,6 +40822,22 @@
 							</right>
 							<pragmas>
 								<ed:Equation oid="!ed/66fb52/349C/1B68/56210f9323ca"/>
+							</pragmas>
+						</Equation>
+						<!-- _L238 = trainLocations; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L238"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="trainLocations"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/17c7d9/3D8/13A4/562f418a5f11"/>
 							</pragmas>
 						</Equation>
 					</data>
@@ -41373,23 +41388,23 @@
 										</EquationGE>
 										<EquationGE presentable="!ed/6f8c6/93A/F04/55e6f3eb4ae4">
 											<position>
-												<Point x="28866" y="10107"/>
+												<Point x="28858" y="9782"/>
 											</position>
 											<size>
-												<Size width="4329" height="1418"/>
+												<Size width="4355" height="2079"/>
 											</size>
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/9e194/13A8/2380/54f05ef122b5" dstEquation="!ed/6f8c6/93A/F04/55e6f3eb4ae4">
 											<positions>
 												<Point x="26379" y="8096"/>
 												<Point x="27040" y="8096"/>
-												<Point x="27040" y="10583"/>
-												<Point x="28866" y="10583"/>
+												<Point x="27040" y="10319"/>
+												<Point x="28866" y="10319"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/6f8d3/93A/F04/55e6f412771c">
 											<position>
-												<Point x="28390" y="10769"/>
+												<Point x="28205" y="10557"/>
 											</position>
 											<size>
 												<Size width="264" height="503"/>
@@ -41397,10 +41412,10 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/6f8d3/93A/F04/55e6f412771c" dstEquation="!ed/6f8c6/93A/F04/55e6f3eb4ae4">
 											<positions>
-												<Point x="28654" y="11033"/>
-												<Point x="28734" y="11033"/>
-												<Point x="28734" y="11033"/>
-												<Point x="28866" y="11033"/>
+												<Point x="28469" y="10821"/>
+												<Point x="28734" y="10821"/>
+												<Point x="28734" y="10821"/>
+												<Point x="28866" y="10821"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6f8c6/93A/F04/55e6f3eb4ae4" dstEquation="!ed/6f747/93A/F04/55e6f3d3e4b">
@@ -41513,6 +41528,22 @@
 												<Point x="7064" y="18494"/>
 												<Point x="7064" y="14605"/>
 												<Point x="7514" y="14605"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/17c7d9/3D8/13A4/562f418a5f11">
+											<position>
+												<Point x="28205" y="11086"/>
+											</position>
+											<size>
+												<Size width="265" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/17c7d9/3D8/13A4/562f418a5f11" dstEquation="!ed/6f8c6/93A/F04/55e6f3eb4ae4">
+											<positions>
+												<Point x="28469" y="11351"/>
+												<Point x="28654" y="11351"/>
+												<Point x="28654" y="11351"/>
+												<Point x="28866" y="11351"/>
 											</positions>
 										</Edge>
 									</presentationElements>
