@@ -13,6 +13,7 @@
 #define GET_TRIGGERED_RM(list_entry) (list_entry==NULL ? NULL : (es_TriggeredRadioMessage*)list_entry->data);
 
 es_TrackMessages es_tracksim_track = {
+  .title = NULL,
   .bmsgs = NULL,
   .rmsgs = NULL
 };
@@ -159,6 +160,27 @@ void es_trigger_radio_msgs(es_TrackSimState *state, es_TriggerPos newRPos) {
   }
   state->prevRmsg = prev;
   state->prevRPos = newRPos;
+}
+
+void es_track_clear(es_TrackMessages *track) {
+  if(track->title != NULL) {
+    free(track->title);
+    track->title = NULL;
+  }
+  while(track->bmsgs != NULL) {
+    es_TriggeredBaliseMessage *bm;
+    track->bmsgs = es_list_remove_head(track->bmsgs, (char**)&bm);
+    if(bm != NULL) {
+      free(bm);
+    }
+  }
+  while(track->rmsgs != NULL) {
+    es_TriggeredRadioMessage *rm;
+    track->rmsgs = es_list_remove_head(track->rmsgs, (char**)&rm);
+    if (rm != NULL) {
+      free(rm);
+    }
+  }
 }
 
 void es_exec_tracksim_cycle(es_TrackSimState *state, es_TriggerPos newBPos, es_TriggerPos newRPos) {

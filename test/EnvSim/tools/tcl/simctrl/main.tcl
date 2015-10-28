@@ -18,7 +18,7 @@ if $isWin {
   #error "platform not supported"
 }
 
-foreach s {../lib/ui.tcl comm.tcl model.tcl view.tcl} {
+foreach s {../lib/ui.tcl comm.tcl model.tcl view.tcl ctrl.tcl} {
   source "$scriptpath/$s"
 }
 

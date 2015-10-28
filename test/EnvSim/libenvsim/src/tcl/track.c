@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include "track.h"
 #include "../trackmsg.h"
+#include "../logging.h"
 
 const size_t es_tcl_track_bmsize = sizeof(CompressedBaliseMessage_TM);
 const size_t es_tcl_track_rmsize = sizeof(CompressedRadioMessage_TM);
@@ -179,5 +180,15 @@ es_Status es_tcl_track_info(void (*appendResult)(char* res, es_ClientData data),
     next = next->tail;
     i++;
   }
+  return ES_OK;
+}
+
+es_Status es_tcl_track_title(char *title) {
+  es_tracksim_track.title = title;
+  return ES_OK;
+}
+
+es_Status es_tcl_track_clear() {
+  es_track_clear(&es_tracksim_track);
   return ES_OK;
 }

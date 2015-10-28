@@ -58,7 +58,7 @@ ENDIF(WIN32 OR CYGWIN OR MINGW OR MSYS)
 
 
 IF(ENABLE_SCADE)
-  add_definitions(-DWITH_JIM -DWITH_SCADE)
+  target_compile_definitions(envsim PUBLIC -DWITH_JIM -DWITH_SCADE)
   link_directories(${JIMTCL})
   target_link_libraries(envsim jim)
 ENDIF(ENABLE_SCADE)

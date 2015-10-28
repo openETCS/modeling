@@ -24,10 +24,10 @@ es_Interp* es_init_interp();
 // Destroys the specified Tcl interpreter instance
 void es_free_interp(es_Interp *interp);
 
-// Evaluates the specified Tcl script file in the provided interpreter instance.
+// Evaluates the specified Tcl script in the provided interpreter instance.
 //
 // @param interp Tcl interpreter instance
-// @param script Path to the script to be evaluated
+// @param script Tcl script to be evaluated
 es_Status es_eval_tcl(es_Interp *interp, const char *script);
 
 // Returns the result of the last evaluation for the specified interpreter instance.

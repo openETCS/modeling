@@ -23,4 +23,10 @@ es_Status es_tcl_track_add(char* subcmd, double pos);
 // handle subcommands for command "track::info"
 es_Status es_tcl_track_info(void (*appendResult)(char* res, es_ClientData data), es_ClientData data);
 
+// handle command "track::title"
+es_Status es_tcl_track_title(char *title);
+
+ // handle command "track::clear"
+es_Status es_tcl_track_clear();
+
 #endif //LIBENVSIM_TRACK_H

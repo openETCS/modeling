@@ -15,7 +15,7 @@
 #include "track.h"
 #include "../logging.h"
 
-#define ERROR(interp,...) snprintf(es_msg_buf,ES_MSG_BUF_SIZE,__VA_ARGS__); return es_jim_error(interp,es_msg_buf);
+#define RCERROR(interp,...) snprintf(es_msg_buf,ES_MSG_BUF_SIZE,__VA_ARGS__); return es_jim_error(interp,es_msg_buf);
 #define WRONG_ARGS(interp,i,argv,msg) Jim_WrongNumArgs(interp,i,argv,msg);return JIM_ERR;
 
 #define GetString(argv) (char*)Jim_GetString(argv,NULL);
@@ -46,27 +46,44 @@ int es_jim_track_cmd(Jim_Interp *interp, int argc, Jim_Obj *const *argv) {
   char *arg = GetString(argv[2]);
   if(!strcmp("track::balise",cmd)) {
     if(es_tcl_track_balise(subcmd,arg,es_jim_append_result,NULL)) {
-      ERROR(interp,es_msg_buf);
+      RCERROR(interp,es_msg_buf);
     }
     return JIM_OK;
   }
   if(!strcmp("track::radio",cmd)) {
     if(!strcmp("raw",subcmd)) {
       if(es_tcl_track_radio(subcmd,arg,es_jim_append_result,NULL)) {
-        ERROR(interp,es_msg_buf);
+        RCERROR(interp,es_msg_buf);
       }
       return JIM_OK;
     }
-    ERROR(interp,"invalid subcommand for track::radio: %s",subcmd);
+    RCERROR(interp,"invalid subcommand for track::radio: %s",subcmd);
   }
   if(!strcmp("track::add",cmd)) {
     if(es_tcl_track_add(subcmd,atof(arg))) {
-      ERROR(interp,es_msg_buf);
+      RCERROR(interp,es_msg_buf);
     }
     return JIM_OK;
   }
 
-  ERROR(interp,"invalid track command: %s",cmd);
+  RCERROR(interp,"invalid track command: %s",cmd);
+}
+
+int es_jim_track_title(Jim_Interp *interp, int argc, Jim_Obj *const *argv) {
+  if(argc!=2) {
+    WRONG_ARGS(interp,1,argv,"title");
+  }
+  char *title = GetString(argv[1]);
+  char *buf = malloc(strlen(title));
+  strcpy(buf,title);
+  return es_tcl_track_title(buf);
+}
+
+int es_jim_track_clear(Jim_Interp *interp, int argc, Jim_Obj *const *argv) {
+  if(argc!=1) {
+    WRONG_ARGS(interp,0,argv,"");
+  }
+  return es_tcl_track_clear();
 }
 
 int es_jim_log_cmd(Jim_Interp *interp, int argc, Jim_Obj *const *argv) {
@@ -88,7 +105,7 @@ int es_jim_log_cmd(Jim_Interp *interp, int argc, Jim_Obj *const *argv) {
     LOG_ERROR(src,msg);
     return JIM_OK;
   }
-  ERROR(interp,"Invalid log level: %s",lvl);
+  RCERROR(interp,"Invalid log level: %s",lvl);
 }
 
 
@@ -97,6 +114,8 @@ void es_jim_register_commands(es_Interp *interp) {
   Jim_CreateCommand(interp,"track::balise",es_jim_track_cmd,NULL,NULL);
   Jim_CreateCommand(interp,"track::radio",es_jim_track_cmd,NULL,NULL);
   Jim_CreateCommand(interp,"track::add",es_jim_track_cmd,NULL,NULL);
+  Jim_CreateCommand(interp,"track::title",es_jim_track_title,NULL,NULL);
+  Jim_CreateCommand(interp,"track::clear",es_jim_track_clear,NULL,NULL);
 }
 
 
