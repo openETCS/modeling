@@ -59,7 +59,7 @@ Input name				& NationalValues \\
 \midrule
 Description				& This input is packet 3 or 203 of \cite[Chapt.~8]{subset-026}, describing the national values.  \\
 \midrule
-Source					& TrackAtlas; current release, hard wired constant: cP3NationalValuesUtrechtAmsterdam \\
+Source					& F2.4 TrackAtlas; current release, hard wired constant: cP3NationalValuesUtrechtAmsterdam \\
 \midrule
 Type					& P3\_NationalValues\_T \\
 \midrule
@@ -82,12 +82,12 @@ Input name				& TrainPosition \\
 \midrule
 Description				& This input is the current train position. \\
 \midrule
-Source					& calculateTrainPosition \\
+Source					& F2.6 calculateTrainPosition \\
 \midrule
 Type					& trainPosition\_T \\
 \midrule
 Valid range of values	& trainPosition\_T is a complex data type. Value valid must not be false for proper function and it may not be properly checked in current release. Furthermore, reversing (decreasing positions, reverse flag set) is currently NOT supported and leads to undefined behaviour. No brake will be thrown in this occasion.
-\todo[inline]{To be completed}\\
+\\
 \midrule
 Behaviour when value is at boundary	& Not checked, may overflow. \\
 \midrule
@@ -106,7 +106,7 @@ Input name				& odometry \\
 \midrule
 Description				& This input is the odometry data. \\
 \midrule
-Source					& API\_Odometry \\ 
+Source					& F2 input API\_Odometry \\ 
 \midrule
 Type					& odometry\_T \\
 \midrule
@@ -133,7 +133,8 @@ Input name				& trainProps \\
 \midrule
 Description				& This input is a set of train related properties. \\
 \midrule
-Source					& maintainTrainProperties \\ 
+Source					& F2.3 trainData\newline
+F2.10 manageDMI\_input \\ 
 \midrule
 Type					& trainProperties\_T \\
 \midrule
@@ -156,7 +157,8 @@ Input name				& trainData \\
 \midrule
 Description				& This input is a set of train related inputs from the TIU. \\
 \midrule
-Source					& manageTrainData \\ 
+Source					&  F2.3 trainData\newline
+F2.10 manageDMI\_input \\ 
 \midrule
 Type					& trainData\_T \\
 \midrule
@@ -178,7 +180,7 @@ Input name				& dataFromTrackAtlas \\
 \midrule
 Description				& This input is a set of track related input data, containing the MRSP, the Gradient Profile and the Movement Authority. And its associated update flags to opimize data handling.\\
 \midrule
-Source					& TrackAtlas \\ 
+Source					& F2.4 TrackAtlas \\ 
 \midrule
 Type					& DataForSupervision\_nextGen\_t \\
 \midrule
@@ -208,12 +210,9 @@ Output name				& sdmToDMI \\
 \midrule
 Description				& This output contains information about different speeds and positions and the current supervision status. This information shall be displayed to the driver. \\
 \midrule
-Destination				& 
-\begin{itemize}
-\item TrackAtlas (\ref{s:manage_track_data_inputs})
-\item manageDMI\_output (\ref{f:ManageDMIOutput})
-\item ROOT\_integration 
-\end{itemize} \\
+Destination				& F2.4 TrackAtlas\newline
+F2.11 manageDMI\_output
+\\
 \midrule
 Type					& speedSupervisionForDMI\_T (complex)\\
 \midrule
@@ -306,12 +305,7 @@ Output name				& brakeCmd \\
 \midrule
 Description				& This output is the brake command, indicating whether performing the service brake and/or the emergency brake have been commanded. \\
 \midrule
-Destination				& 
-\begin{itemize}
-\item TIU\_OutputIntegration (\ref{f:manageTIUOutput})
-\item manageDMI\_output (\ref{f:ManageDMIOutput})
-\item ROOT\_integration 
-\end{itemize} \\
+Destination				& F2.11 manageDMI\_output\\
 \midrule
 Type					& Brake\_command\_T (complex)\\
 \midrule
