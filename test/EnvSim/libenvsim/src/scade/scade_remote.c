@@ -13,6 +13,7 @@
 #include "scade_common.h"
 #include "../logging.h"
 #include "../tcp.h"
+#include "../rcontrol.h"
 #include "RemoteGUI_EnvSim.h"
 #include "RemoteDMIBus_EnvSim.h"
 #include "RemoteEVCBus_EnvSim.h"
@@ -429,6 +430,7 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
 
 
 extern void es_remote_gui_init(outC_RemoteGUI_EnvSim *out) {
+  //es_current_loglevel = ES_LOG_TRACE;
   es_log_init("envsim_main.log");
 
   LOG_INFO(scade_remote,"Initializing RemoteGUI operator");
@@ -465,23 +467,25 @@ extern void es_remote_gui_cycle(EVC_to_GUI_EnvSim *evcToGUI, outC_RemoteGUI_EnvS
   // RECEIVE
   if(es_remote_gui_conn != NULL) {
     es_TCPMessage *msg = NULL;
-    es_tcp_read(es_remote_gui_conn, TCPMSG_GUI2EVC, &msg);
-    if( msg != NULL ) {
-      if (msg->len != GUI2EVC_STRUCT_SIZE) {
-        LOG_ERROR(scade_remote, "Invalid GUI2EVC message: received %d bytes, expected %d bytes", msg->len,
-                  GUI2EVC_STRUCT_SIZE);
+    es_tcp_read(es_remote_gui_conn,TCPMSG_ANY,&msg);
+
+    while( msg != NULL ) {
+      if( msg->id == TCPMSG_GUI2EVC ) {
+        if (msg->len != GUI2EVC_STRUCT_SIZE) {
+          LOG_ERROR(scade_remote, "Invalid GUI2EVC message: received %d bytes, expected %d bytes", msg->len,
+                    GUI2EVC_STRUCT_SIZE);
+        }
+        else {
+          memcpy(&outC->guiToEVC, msg->data, GUI2EVC_STRUCT_SIZE);
+        }
       }
       else {
-        memcpy(&outC->guiToEVC, msg->data, GUI2EVC_STRUCT_SIZE);
+        es_rcontrol_handle_msg(msg,es_remote_gui_conn);
       }
       es_tcp_free_msg(msg);
+      es_tcp_read(es_remote_gui_conn,TCPMSG_ANY,&msg);
     }
-//    msg = NULL;
-//    es_tcp_read(es_remote_gui_conn, TCPMSG_ANY, &msg);
-//    if( msg != NULL ) {
-//      LOG_INFO(tcp,"received MSG %d",msg->id);
-//      es_tcp_free_msg(msg);
-//    }
+
   }
 
   cycle++;

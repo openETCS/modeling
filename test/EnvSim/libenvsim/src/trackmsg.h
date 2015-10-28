@@ -26,6 +26,8 @@ typedef struct {
 } es_TriggeredRadioMessage;
 
 typedef struct {
+  // title of the loaded track, or NULL
+  char *title;
   // linked list with balise messages
   // (in ascending order w.r.t. triggerpos)
   es_ListEntry *bmsgs;
@@ -75,6 +77,9 @@ void es_write_next_radio_message(CompressedRadioMessage_TM *target);
 
 // Adds a new radio message to the provided track at the specified trigger position.
 void es_add_triggered_radio_message(es_TrackMessages *track, es_TriggerPos pos, CompressedRadioMessage_TM *tmsg);
+
+// Clears all messages from the specified track instance
+void es_track_clear(es_TrackMessages *track);
 
 void es_exec_tracksim_cycle(es_TrackSimState *state, es_TriggerPos newBPos, es_TriggerPos newRPos);
 
