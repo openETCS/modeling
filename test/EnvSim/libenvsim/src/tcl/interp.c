@@ -4,6 +4,7 @@
 //
 // History:
 // - 22.09.15, J. Kastner: initial version
+// - 28.10.15, J. Kastner: add es_tcl_last_result()
 
 #ifdef WITH_JIM
 
@@ -148,5 +149,8 @@ es_Status es_eval_tcl(es_Interp *interp, const char *script) {
   return error;
 }
 
+const char* es_tcl_last_result(es_Interp *interp) {
+  return Jim_GetString(Jim_GetResult(interp), NULL);
+}
 
 #endif

@@ -10,8 +10,9 @@ set(COMMON_SOURCE_FILES
   src/utils.c src/utils.h
   src/logging.c src/logging.h
   src/trackmsg.c src/trackmsg.h
-  src/tcp.h src/tcp.c
+  src/tcp.h src/tcp.c src/msgids.h
   src/stcp.h src/stcp.c
+  src/rcontrol.h src/rcontrol.c
   src/tcl/track.c src/tcl/track.h
   src/tcl/pkts.c src/tcl/pkts.h
 )

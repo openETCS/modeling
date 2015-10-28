@@ -16,21 +16,10 @@
 // (currently we only WARN when we reach this limit)
 #define TCP_MAX_PENDING_MSGS 100
 
-// TCP message IDs
-#define TCPMSG_ANY        -1
-#define TCPMSG_STOP        1
-#define TCPMSG_RUN         2
-#define TCPMSG_EVC2DMI_BUS 1000
-#define TCPMSG_EVC2DMI     1001
-#define TCPMSG_TIU2DMI     1002
-#define TCPMSG_EVC2GUI     1003
-#define TCPMSG_DMI2EVC_BUS 2000
-#define TCPMSG_DMI2EVC     2001
-#define TCPMSG_GUI2EVC     2002
-
 #include "utils.h"
 #include <stdint.h>
 #include <stdbool.h>
+#include "msgids.h"
 
 #ifdef WINDOWS
 

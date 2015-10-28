@@ -36,7 +36,10 @@ typedef enum {
   ES_NOT_SUPPORTED,
   // indicates an error in the TCP stack
   ES_TCP_ERROR,
-  ES_TCP_NO_CONN
+  // the TCPStream is not connected yet (or anymore)
+  ES_TCP_NO_CONN,
+  // the command is invalid / not supported (used by es_rcontrol_handle_msg)
+  ES_INVALID_CMD
 } es_Status;
 
 typedef char* es_ClientData;

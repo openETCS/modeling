@@ -24,7 +24,7 @@
 #define REMOTE_GUI_PORT 20003
 
 // send TIU data only in cycles which are a multiple of this value
-#define SEND_TIUDATA_DIVIDER 2
+#define SEND_TIUDATA_DIVIDER 5
 
 #define SEND_GUIDATA_DIVIDER 10
 
@@ -341,6 +341,7 @@ void es_remote_evc_cycle(DMI_to_EVC_Message_T_API_DMI_Pkg *dmiToEVC, outC_Remote
 
 void es_remote_evcbus_init(outC_RemoteEVCBus_EnvSim *out) {
   es_log_init("envsim_dmi.log");
+//  es_current_loglevel = ES_LOG_TRACE;
 
   LOG_INFO(scade_remote,"Initializing RemoteEVCBus operator");
   es_scade_load_config();
