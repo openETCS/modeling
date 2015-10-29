@@ -106,6 +106,9 @@
     <availablePage>
       <emfPageIdentifier href="openETCS_EVC.notation#_b-WNAH4mEeWWi6yiJEoilA"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="openETCS_EVC.notation#_0W3akH4nEeWWi6yiJEoilA"/>
+    </availablePage>
   </pageList>
   <sashModel xmi:id="_rJvpUx5kEeWg95oxeH6B_w" currentSelection="_rJvpVB5kEeWg95oxeH6B_w">
     <windows xmi:id="_rJvpVR5kEeWg95oxeH6B_w">
