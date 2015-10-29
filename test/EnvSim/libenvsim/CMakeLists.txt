@@ -26,7 +26,8 @@ set(LIBENVSIM_SOURCE_FILES ${COMMON_SOURCE_FILES}
   src/scade/RemoteEVC_EnvSim.c src/scade/RemoteEVC_EnvSim.h
   src/scade/RemoteEVCBus_EnvSim.c src/scade/RemoteEVCBus_EnvSim.h
   src/scade/RemoteGUI_EnvSim.c src/scade/RemoteGUI_EnvSim.h
-  src/scade/scade_remote.c
+  src/scade/ProbeTracksideInput_EnvSim.c src/scade/ProbeTracksideInput_EnvSim.h
+  src/scade/scade_remote.c src/scade/scade_probe.c
 )
 
 set(EXTENVSIM_SOURCE_FILES ${COMMON_SOURCE_FILES}

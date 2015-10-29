@@ -4,6 +4,7 @@
 //
 // History:
 // - 23.09.15, J. Kastner: initial version
+// - 28.10.15, J. Kastner: add track_clear() and track_title()
 
 #include <stdio.h>
 #include "track.h"

@@ -45,6 +45,7 @@
 #define TCPMSG_EVC2GUI     1003
 // Response to TCPMSG_TB_GETCONF (current config of EnvSim)
 #define TCPMSG_ES_CONF     3000
+#define TCPMSG_ES_EVT      3001
 
 
 /***** GUI -> EVC/EnvSim *****/
@@ -54,5 +55,8 @@
 #define TCPMSG_ES_GETCONF  4000
 // request to load and execute the specified TCL script (body: file path)
 #define TCPMSG_ES_RUNTCL   4001
+// request to send events (track messages, train messages), or not.
+// body: 0/1 (single byte)
+#define TCPMSG_ES_SENDEVTS 4002
 
 #endif //LIBENVSIM_MSGIDS_H

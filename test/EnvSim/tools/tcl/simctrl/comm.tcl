@@ -10,13 +10,14 @@ namespace eval ::comm {
   variable conn
   variable sent false
 
-  set TCPMSG_OK         1
-  set TCPMSG_ERROR      2
+  set TCPMSG_OK          1
+  set TCPMSG_ERROR       2
 
-  set TCPMSG_EVC2GUI    1003
-  set TCPMSG_GUI2EVC    2003
-  set TCPMSG_ES_GETCONF 4000
-  set TCPMSG_ES_RUNTCL  4001
+  set TCPMSG_EVC2GUI     1003
+  set TCPMSG_GUI2EVC     2003
+  set TCPMSG_ES_GETCONF  4000
+  set TCPMSG_ES_RUNTCL   4001
+  set TCPMSG_ES_SENDEVTS 4002
 }
 
 proc comm::onConnect {channel addr port} {
@@ -26,6 +27,7 @@ proc comm::onConnect {channel addr port} {
   set conn $channel
   set model::connected 1
   sendRUNTCL "S:/modeling/test/EnvSim/track/AmsterdamUtrecht.trk"
+  sendSENDEVTS 1
   sendGETCONF
 }
 
@@ -102,6 +104,10 @@ proc comm::sendRUNTCL {path} {
 
 proc comm::sendGETCONF {} {
   sendStringMsg $comm::TCPMSG_ES_GETCONF {}
+}
+
+proc comm::sendSENDEVTS {flag} {
+  sendStringMsg $comm::TCPMSG_ES_SENDEVTS [binary format b1 $flag]
 }
 
 proc comm::sendStringMsg {msgid msg} {

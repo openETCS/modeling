@@ -4,6 +4,7 @@
 //
 // History:
 // - 23.09.15, J. Kastner: initial version
+// - 29.10.15, J. Kastner: add track_title_cmd() and track_clear_cmd()
 
 #ifdef WITH_TCL_EXTENSION
 
@@ -66,6 +67,26 @@ int envsim_track_info_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_Obj
     Tcl_AddErrorInfo(interp,es_msg_buf);
     return TCL_ERROR;
   }
+  return TCL_OK;
+}
+
+int envsim_track_title_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_Obj *const *objv) {
+  if(objc!=2) {
+    Tcl_WrongNumArgs(interp,1,objv,"title");
+    return TCL_ERROR;
+  }
+  char *title = Tcl_GetString(objv[1]);
+  char *buf = malloc(strlen(title));
+  strcpy(buf,title);
+  if(es_tcl_track_title(buf)) {
+    Tcl_AddErrorInfo(interp,es_msg_buf);
+    return TCL_ERROR;
+  }
+  return TCL_OK;
+}
+
+int envsim_track_clear_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_Obj *const *objv) {
+  es_tcl_track_clear();
   return TCL_OK;
 }
 
@@ -136,6 +157,8 @@ int Envsim_Init(Tcl_Interp *interp) {
   Tcl_CreateObjCommand(interp, "track::radio", envsim_track_radio_cmd, NULL, NULL);
   Tcl_CreateObjCommand(interp, "track::add", envsim_track_add_cmd, NULL, NULL);
   Tcl_CreateObjCommand(interp, "track::info", envsim_track_info_cmd, NULL, NULL);
+  Tcl_CreateObjCommand(interp, "track::title", envsim_track_title_cmd, NULL, NULL);
+  Tcl_CreateObjCommand(interp, "track::clear", envsim_track_clear_cmd, NULL, NULL);
   Tcl_CreateObjCommand(interp, "pkts::target", envsim_pkts_target_cmd, NULL, NULL);
   Tcl_CreateObjCommand(interp, "pkts::get", envsim_pkts_get_cmd, NULL, NULL);
   return TCL_OK;

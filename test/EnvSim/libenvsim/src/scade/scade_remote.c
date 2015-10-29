@@ -6,6 +6,7 @@
 // - 06.10.15, J. Kastner: initial version
 // - 11.10.15, J. Kastner: add support for RemoteGUI
 // - 20.10.15, J. Kastner: add support for new EVC-DMI-Bus
+// - 28.10.15, J. Kastner: extend remote_gui_cycle() for new SimCtrl features
 
 #ifdef WITH_SCADE
 #include "RemoteDMI_EnvSim.h"
@@ -44,6 +45,8 @@ const size_t DMI2EVC_STRUCT_SIZE = sizeof(DMI_to_EVC_Message_T_API_DMI_Pkg);
 const size_t DMI2EVC_BUSMSG_SIZE = 311*sizeof(int32_t);
 const size_t EVC2GUI_STRUCT_SIZE = sizeof(EVC_to_GUI_EnvSim);
 const size_t GUI2EVC_STRUCT_SIZE = sizeof(GUI_to_EVC_EnvSim);
+
+
 
 void es_remote_flow_control() {
   static bool run = true;
@@ -430,7 +433,6 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
 
 
 extern void es_remote_gui_init(outC_RemoteGUI_EnvSim *out) {
-  //es_current_loglevel = ES_LOG_TRACE;
   es_log_init("envsim_main.log");
 
   LOG_INFO(scade_remote,"Initializing RemoteGUI operator");

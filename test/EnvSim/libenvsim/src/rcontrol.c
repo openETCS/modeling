@@ -19,6 +19,9 @@
 
 #define STRLCPY(dst,src,len) strncpy(dst,src,len-1);dst[len-1] = '\0';
 
+// if true, send events (track messages, train messages) to the GUI
+bool es_rcontrol_send_events = false;
+
 es_Status es_rcontrol_send_ok(es_TCPStream *responseStream, int msgid) {
   char buf[256];
 
@@ -59,8 +62,9 @@ es_Status es_rcontrol_run_tcl(es_TCPMessage *msg, es_TCPStream *responseStream) 
 
 es_Status es_rcontrol_getconf(es_TCPStream *responseStream) {
   char buf[500];
-  int len = snprintf(buf,500,"track {%s}",
-                     es_tracksim_track.title==NULL ? "" : es_tracksim_track.title
+  int len = snprintf(buf,500,"track {%s} sendevts %d",
+                     es_tracksim_track.title==NULL ? "" : es_tracksim_track.title,
+                     es_rcontrol_send_events
   );
 
   return es_tcp_send(responseStream,TCPMSG_ES_CONF,buf,len);
@@ -80,6 +84,9 @@ es_Status es_rcontrol_handle_msg(es_TCPMessage *msg, es_TCPStream *responseStrea
 #endif // WITH_JIM
     case TCPMSG_ES_GETCONF:
       return es_rcontrol_getconf(responseStream);
+    case TCPMSG_ES_SENDEVTS:
+      es_rcontrol_send_events = (bool)msg->data[0];
+      return es_rcontrol_send_ok(responseStream,TCPMSG_ES_SENDEVTS);
     default:
       RCERROR("unsupported rcontrol command: %d",msg->id);
   }
