@@ -1,6 +1,6 @@
 /* $**************** KCG Version 6.4 (build i21) ****************
 ** Command: kcg64.exe -config S:/modeling/test/EnvSim/Scade/Simulation/config.txt
-** Generation date: 2015-10-28T16:19:59
+** Generation date: 2015-10-29T10:25:05
 *************************************************************$ */
 #ifndef _ProbeTracksideInput_EnvSim_H_
 #define _ProbeTracksideInput_EnvSim_H_
@@ -20,7 +20,8 @@ typedef struct {
 /* ===========  node initialization and cycle functions  =========== */
 /* EnvSim::ProbeTracksideInput */
 extern void ProbeTracksideInput_EnvSim(
-  /* EnvSim::ProbeTracksideInput::in */ API_TrackSideInput_T_API_Msg_Pkg *in,
+  /* EnvSim::ProbeTracksideInput::baliseMessage */ CompressedBaliseMessage_TM *baliseMessage,
+  /* EnvSim::ProbeTracksideInput::radioMessage */ CompressedRadioMessage_TM *radioMessage,
   outC_ProbeTracksideInput_EnvSim *outC);
 
 #ifndef KCG_NO_EXTERN_CALL_TO_RESET
@@ -34,6 +35,6 @@ extern void ProbeTracksideInput_init_EnvSim(
 #endif /* _ProbeTracksideInput_EnvSim_H_ */
 /* $**************** KCG Version 6.4 (build i21) ****************
 ** ProbeTracksideInput_EnvSim.dh
-** Generation date: 2015-10-28T16:19:59
+** Generation date: 2015-10-29T10:25:05
 *************************************************************$ */
 

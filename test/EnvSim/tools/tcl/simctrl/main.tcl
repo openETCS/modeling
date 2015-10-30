@@ -6,6 +6,8 @@
 # - 24.10.15, J. Kastner: initial version
 set scriptpath "[file dirname [info script]]"
 
+lappend auto_path "$scriptpath/../contrib/"
+
 set isOSX [expr {"Darwin" eq $::tcl_platform(os)}]
 set isWin [expr {"windows" eq $::tcl_platform(platform)}]
 
@@ -18,7 +20,7 @@ if $isWin {
   #error "platform not supported"
 }
 
-foreach s {../lib/ui.tcl comm.tcl model.tcl view.tcl ctrl.tcl} {
+foreach s {../lib/ui.tcl ../lib/msgs.tcl comm.tcl model.tcl view.tcl ctrl.tcl evts.tcl} {
   source "$scriptpath/$s"
 }
 

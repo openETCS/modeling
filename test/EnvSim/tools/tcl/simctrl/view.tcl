@@ -75,5 +75,10 @@ proc view::init {} {
   addLabelField .c.info.pos "Position (m):" model::currentPos 0 0 true 6
   addLabelField .c.info.vel "Velocity (km/h):" model::currentVel 0 1 true 4
 
+
+  ### TABS ###
+  grid [ttk::notebook .c.n] -column 0 -row 4 -columnspan 5 -sticky we
+  evts::initView .c.n.evts
+  .c.n add .c.n.evts -text Events
 }
 

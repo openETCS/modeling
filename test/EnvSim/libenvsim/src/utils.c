@@ -159,7 +159,7 @@ char es_bytevalue(char hex) {
 }
 
 
-void es_bytes_to_hex(size_t nbytes, char* bytes, char* hexbuf) {
+int es_bytes_to_hex(size_t nbytes, char* bytes, char* hexbuf) {
   int i,j = 0;
   for(i=0; i<nbytes; i++,j+=2) {
     // write high nibble
@@ -168,6 +168,7 @@ void es_bytes_to_hex(size_t nbytes, char* bytes, char* hexbuf) {
     hexbuf[j+1] = es_hexvalue( bytes[i] & 0x0f );
   }
   hexbuf[j] = '\0';
+  return j;
 }
 
 
