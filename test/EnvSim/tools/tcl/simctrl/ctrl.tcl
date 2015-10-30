@@ -9,7 +9,6 @@ namespace eval ::ctrl {
 }
 
 proc ctrl::error {msg} {
-  puts "ERROR: $msg"
 }
 
 proc ctrl::displayRemoteConfig {data} {
@@ -25,4 +24,17 @@ proc ctrl::displayRemoteConfig {data} {
       sendevts {  }
     }
   }
+}
+
+proc ctrl::log {id msg {type info}} {
+  .c.n.log.area configure -state normal
+  .c.n.log.area insert end "\[$id\] $msg\n" $type
+  .c.n.log.area configure -state disabled
+  .c.n.log.area see end
+}
+
+proc ctrl::clearLog {} {
+  .c.n.log.area configure -state normal
+  .c.n.log.area delete 1.0 end
+  .c.n.log.area configure -state disabled
 }

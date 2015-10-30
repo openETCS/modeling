@@ -45,8 +45,12 @@
 #define TCPMSG_EVC2GUI     1003
 // Response to TCPMSG_TB_GETCONF (current config of EnvSim)
 #define TCPMSG_ES_CONF     3000
-// Event: triggered baise message (body: TM::CompressedBaliseMessage)
+// Event: triggered balise message (body: TM::CompressedBaliseMessage)
 #define TCPMSG_ES_EVT_BMSG 3001
+// Event: triggered radio message (body: TM::CompressedRadioMessage)
+#define TCPMSG_ES_EVT_RMSG 3002
+// Event: radio message from train
+#define TCPMSG_ES_EVT_TMSG 3003
 
 
 /***** GUI -> EVC/EnvSim *****/

@@ -9,7 +9,11 @@
 #include "ProbeTracksideInput_EnvSim.h"
 
 extern void es_scade_probe_trackside_init(outC_ProbeTracksideInput_EnvSim *outC);
-extern void es_scade_probe_trackside_cycle(CompressedBaliseMessage_TM*, CompressedRadioMessage_TM*, outC_ProbeTracksideInput_EnvSim*);
+extern void es_scade_probe_trackside_cycle(double,
+                                           CompressedBaliseMessage_TM*,
+                                           CompressedRadioMessage_TM*,
+                                           M_TrainTrack_Message_T_TM_radio_messages*,
+                                           outC_ProbeTracksideInput_EnvSim*);
 
 int ProbeTracksideInput_initialized_EnvSim = 0;
 
@@ -29,14 +33,16 @@ void ProbeTracksideInput_reset_EnvSim(outC_ProbeTracksideInput_EnvSim *outC)
 
 /* EnvSim::ProbeTracksideInput */
 void ProbeTracksideInput_EnvSim(
+  kcg_real currentPosition,
   CompressedBaliseMessage_TM *baliseMessage,
   CompressedRadioMessage_TM *radioMessage,
+  M_TrainTrack_Message_T_TM_radio_messages *trainMessage,
   outC_ProbeTracksideInput_EnvSim *outC)
 {
   if(!ProbeTracksideInput_initialized_EnvSim) {
     ProbeTracksideInput_init_EnvSim(outC);
   }
-  es_scade_probe_trackside_cycle(baliseMessage,radioMessage,outC);
+  es_scade_probe_trackside_cycle(currentPosition,baliseMessage,radioMessage,trainMessage,outC);
 }
 
 /* $**************** KCG Version 6.4 (build i21) ****************

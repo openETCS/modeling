@@ -10,6 +10,8 @@ namespace eval ::comm {
   variable conn
   variable sent false
 
+  set SERVERPORT         20003
+
   set TCPMSG_OK          1
   set TCPMSG_ERROR       2
 
@@ -20,24 +22,28 @@ namespace eval ::comm {
   set TCPMSG_ES_SENDEVTS 4002
 }
 
-proc comm::onConnect {channel addr port} {
+proc comm::handleConnect {channel addr port} {
   variable conn
   fconfigure $channel -translation binary -buffering none
   fileevent $channel readable "comm::readMsg $channel"
   set conn $channel
   set model::connected 1
-  sendRUNTCL "S:/modeling/test/EnvSim/track/AmsterdamUtrecht.trk"
+  ctrl::log simctrl "Connected to EnvSim/EVC @$addr:$port"
   sendSENDEVTS 1
-  sendGETCONF
+  cfg::execOnConnect
+  #sendRUNTCL "S:/modeling/test/EnvSim/track/AmsterdamUtrecht.trk"
+  #sendSENDEVTS 1
+  #sendGETCONF
 }
 
 
-proc comm::onDisconnect {channel} {
+proc comm::handleDisconnect {channel} {
   variable conn
   puts closing
   close $channel
   unset conn
   set model::connected 0
+  ctrl::log simctrl "Disconnected from EnvSim/EVC"
 }
 
 proc comm::readMsg {channel} {
@@ -51,10 +57,11 @@ proc comm::readMsg {channel} {
       1003 { readMsgEVC2GUI $channel $len }
       3000 { ctrl::displayRemoteConfig [read $channel $len] }
       3001 { evts::handleBaliseMessage [read $channel $len] }
+      3002 { evts::handleRadioMessage [read $channel $len] }
       default { error "ERROR: received invalid message id=$id, len=$len" }
     }
   } else {
-    onDisconnect $channel
+    handleDisconnect $channel
   }
 }
 
@@ -118,5 +125,7 @@ proc comm::sendStringMsg {msgid msg} {
 
 proc comm::listen {} {
   variable server
-  set server [socket -server comm::onConnect 20003]
+
+  ctrl::log simctrl "Listening for EnvSim/EVC on port $comm::SERVERPORT"
+  set server [socket -server comm::handleConnect $comm::SERVERPORT]
 }

@@ -4,6 +4,7 @@
 //
 // History:
 // - 28.10.15, J. Kastner: initial version
+// - 30.10.15, J. Kastner: add handling of train messages to trackside_cycle()
 
 #include "../tcp.h"
 #include "ProbeTracksideInput_EnvSim.h"
@@ -12,6 +13,7 @@
 
 const size_t PROBE_TRACKSIDE_BMSG_SIZE = sizeof(CompressedBaliseMessage_TM);
 const size_t PROBE_TRACKSIDE_RMSG_SIZE = sizeof(CompressedRadioMessage_TM);
+const size_t PROBE_TRACKSIDE_TMSG_SIZE = sizeof(M_TrainTrack_Message_T_TM_radio_messages);
 
 
 // If not NULL, send all events (track messages, train messages) to this stream
@@ -21,17 +23,32 @@ void es_scade_probe_trackside_init(outC_ProbeTracksideInput_EnvSim *outC) {
 
 }
 
-void es_scade_probe_trackside_cycle(CompressedBaliseMessage_TM* bm,
+void es_scade_probe_trackside_cycle(double currentPosition,
+                                    CompressedBaliseMessage_TM* bm,
                                     CompressedRadioMessage_TM* rm,
+                                    M_TrainTrack_Message_T_TM_radio_messages *tm,
                                     outC_ProbeTracksideInput_EnvSim* out) {
   //static char hexdata[10000];
   if(scade_probe_evtstream != NULL && scade_probe_evtstream->client != INVALID_SOCKET) {
     if(bm->Header.nid_c > 0) {
-//      int len = es_bytes_to_hex(PROBE_TRACKSIDE_BMSG_SIZE,(char*)bm,hexdata);
-//      es_tcp_send(scade_probe_evtstream,TCPMSG_ES_EVT_BMSG,hexdata,len);
-      es_tcp_send(scade_probe_evtstream,TCPMSG_ES_EVT_BMSG,(char*)bm,PROBE_TRACKSIDE_BMSG_SIZE);
+      LOG_INFO(scade_probe,"Sending BM");
+      int len = 8 + PROBE_TRACKSIDE_BMSG_SIZE;
+      char buf[len];
+      memcpy(buf,&currentPosition,8);
+      memcpy(buf+8,bm,PROBE_TRACKSIDE_BMSG_SIZE);
+      es_tcp_send(scade_probe_evtstream,TCPMSG_ES_EVT_BMSG,buf,len);
     }
-    //es_tcp_send(scade_probe_evtstream,TCPMSG_ES_EVT,)
+    if(rm->Header.nid_message > 0) {
+      LOG_INFO(scade_probe,"Sending RM");
+      int len = 8 + PROBE_TRACKSIDE_RMSG_SIZE;
+      char buf[len];
+      memcpy(buf,&currentPosition,8);
+      memcpy(buf+8,rm,PROBE_TRACKSIDE_RMSG_SIZE);
+      es_tcp_send(scade_probe_evtstream,TCPMSG_ES_EVT_RMSG,buf,len);
+    }
+    if(tm->Message.valid || tm->Message.nid_message > 0) {
+      LOG_INFO(scade_probe,"Sending TRAINMSG %d %d",tm->Message.valid,tm->Message.nid_message);
+    }
   }
 }
 

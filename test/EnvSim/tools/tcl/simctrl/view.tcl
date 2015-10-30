@@ -38,11 +38,12 @@ proc view::init {} {
   menu .menubar
   set m .menubar
   # File
-  #menu $m.file
-  #$m add cascade -menu $m.file -label File
-  #$m.file add command -label "Open Track" -command "view::openTrackDialog"
+  menu $m.file
+  $m add cascade -menu $m.file -label File
+  $m.file add command -label "Load Configuration" -command "cfg::loadDialog"
 
-  #. configure -menu .menubar
+  . configure -menu .menubar
+
   
   ### TRACKINFO ###
   grid [ttk::frame .c.track] -column 0 -row 0 -columnspan 5 -sticky w
@@ -78,7 +79,20 @@ proc view::init {} {
 
   ### TABS ###
   grid [ttk::notebook .c.n] -column 0 -row 4 -columnspan 5 -sticky we
+  # Messages
   evts::initView .c.n.evts
-  .c.n add .c.n.evts -text Events
+  .c.n add .c.n.evts -text " Messages "
+  # SDM
+  sdm::initView .c.n.sdm
+  .c.n add .c.n.sdm -text " SDM "
+  # Log
+  ttk::frame .c.n.log
+  grid [ttk::frame .c.n.log.btns -padding 3] -column 0 -row 0 -columnspan 2 -sticky w
+  grid [ttk::button .c.n.log.btns.clear -text Clear -command ctrl::clearLog] -column 0 -row 0 -sticky w
+  grid rowconfigure .c.n.log 0 -weight 0
+  grid [tk::text .c.n.log.area -state disabled -height 10] -column 0 -row 1 -sticky ns
+  grid [ttk::scrollbar .c.n.log.sb -command ".c.n.log.area yview"] -column 1 -row 1 -sticky ns
+  grid rowconfigure .c.n.log 1 -weight 1 
+  .c.n add .c.n.log -text " Log " -sticky nwes
 }
 
