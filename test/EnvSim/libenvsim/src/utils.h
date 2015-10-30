@@ -86,7 +86,9 @@ int es_list_size(es_ListEntry *list);
 // Encodes nbytes from the specified bytes buffer as a HEX string
 // and writes the result into the specified hexbuf. The size of hexbuf
 // must be at least 2*nbytes+1.
-void es_bytes_to_hex(size_t nbytes, char* bytes, char* hexbuf);
+//
+// Returns the number of chars written to the hexbuf
+int es_bytes_to_hex(size_t nbytes, char* bytes, char* hexbuf);
 
 // Decodes nbytes from the specified HEX string into the provided buffer
 void es_hex_to_bytes(size_t nbytes, char* hex, char* bytesbuf);

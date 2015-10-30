@@ -45,7 +45,8 @@
 #define TCPMSG_EVC2GUI     1003
 // Response to TCPMSG_TB_GETCONF (current config of EnvSim)
 #define TCPMSG_ES_CONF     3000
-#define TCPMSG_ES_EVT      3001
+// Event: triggered baise message (body: TM::CompressedBaliseMessage)
+#define TCPMSG_ES_EVT_BMSG 3001
 
 
 /***** GUI -> EVC/EnvSim *****/

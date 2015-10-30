@@ -19,6 +19,10 @@
 
 #define STRLCPY(dst,src,len) strncpy(dst,src,len-1);dst[len-1] = '\0';
 
+#ifdef WITH_SCADE
+extern es_TCPStream *scade_probe_evtstream;
+#endif // WITH_SCADE
+
 // if true, send events (track messages, train messages) to the GUI
 bool es_rcontrol_send_events = false;
 
@@ -84,9 +88,19 @@ es_Status es_rcontrol_handle_msg(es_TCPMessage *msg, es_TCPStream *responseStrea
 #endif // WITH_JIM
     case TCPMSG_ES_GETCONF:
       return es_rcontrol_getconf(responseStream);
+#ifdef WITH_SCADE
     case TCPMSG_ES_SENDEVTS:
       es_rcontrol_send_events = (bool)msg->data[0];
+      if(es_rcontrol_send_events) {
+        LOG_INFO(rcontrol,"Sending events to %s",responseStream->name);
+        scade_probe_evtstream = responseStream;
+      }
+      else {
+        LOG_INFO(rcontrol,"Disabling sending of events");
+        scade_probe_evtstream = NULL;
+      }
       return es_rcontrol_send_ok(responseStream,TCPMSG_ES_SENDEVTS);
+#endif // WITH_SCADE
     default:
       RCERROR("unsupported rcontrol command: %d",msg->id);
   }

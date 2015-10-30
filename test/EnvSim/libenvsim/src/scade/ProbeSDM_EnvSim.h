@@ -1,6 +1,6 @@
 /* $**************** KCG Version 6.4 (build i21) ****************
 ** Command: kcg64.exe -config S:/modeling/test/EnvSim/Scade/Simulation/config.txt
-** Generation date: 2015-10-29T09:08:52
+** Generation date: 2015-10-30T08:12:50
 *************************************************************$ */
 #ifndef _ProbeSDM_EnvSim_H_
 #define _ProbeSDM_EnvSim_H_
@@ -13,7 +13,8 @@
 
 /* ========================  context type  ========================= */
 typedef struct {
-  /* --------------------- no memorised outputs  --------------------- */
+  /* ---------------------------  outputs  --------------------------- */
+  kcg_bool /* EnvSim::ProbeSDM::dummyOut */ dummyOut;
   /* -------------  insert eventual inits and memories  -------------- */
 } outC_ProbeSDM_EnvSim;
 
@@ -34,6 +35,6 @@ extern void ProbeSDM_init_EnvSim(outC_ProbeSDM_EnvSim *outC);
 #endif /* _ProbeSDM_EnvSim_H_ */
 /* $**************** KCG Version 6.4 (build i21) ****************
 ** ProbeSDM_EnvSim.dh
-** Generation date: 2015-10-29T09:08:52
+** Generation date: 2015-10-30T08:12:50
 *************************************************************$ */
 
