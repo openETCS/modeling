@@ -26,6 +26,25 @@ proc ctrl::displayRemoteConfig {data} {
   }
 }
 
+# Called when state of menu item "Remote->Send Events" changes
+proc ctrl::remoteSendEvents {args} {
+  comm::sendSENDEVTS $cfg::remoteSendEvents
+}
+
+# Called for menu item "Remote->Load Track File"
+proc ctrl::loadRemoteTrackFile {} {
+  set types {
+    {"Track Files" .trk}
+  }
+
+  set file [tk_getOpenFile -filetypes $types]
+
+  if {$file != ""} {
+    cfg::loadRemoteTrackFile "$file"
+  }
+
+}
+
 proc ctrl::log {id msg {type info}} {
   .c.n.log.area configure -state normal
   .c.n.log.area insert end "\[$id\] $msg\n" $type

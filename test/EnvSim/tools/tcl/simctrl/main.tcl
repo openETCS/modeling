@@ -4,6 +4,7 @@
 # 
 # History:
 # - 24.10.15, J. Kastner: initial version
+# - 30.10.15, J. Kastner: parse command line for config script to be loaded
 set scriptpath "[file dirname [info script]]"
 
 lappend auto_path "$scriptpath/../contrib/"
@@ -32,6 +33,8 @@ foreach s {
   ctrl.tcl
   evts.tcl
   sdm.tcl
+  macro.tcl
+  trackview.tcl
 } {
   source "$scriptpath/$s"
 }

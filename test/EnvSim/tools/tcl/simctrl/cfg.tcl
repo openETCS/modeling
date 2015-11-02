@@ -7,6 +7,10 @@
 
 namespace eval ::cfg {
   variable connectScript
+
+  # value of menu checkbox "Remote -> Send Events"
+  # If true, the remote is requested to send events (track&train) messages
+  set remoteSendEvents 1
 }
 
 proc cfg::load {file} {

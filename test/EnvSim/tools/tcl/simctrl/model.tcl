@@ -17,6 +17,7 @@ namespace eval ::model {
   set currentVel     0
   # sim controls (UI -> SIM)
   set openDesk       0
+  set afb            0
   set traction       0.0
   set brake          0.0
 }

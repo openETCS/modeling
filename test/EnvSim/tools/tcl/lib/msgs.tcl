@@ -26,3 +26,9 @@ proc msgs::parseBinBaliseMsg {data} {
   }
   return $msg
 }
+
+proc msgs::parseBinBaliseHdr {data {offset 0}} {
+  binary scan $data x${offset}iiiiiiiiii q_updown m_version q_media n_pig n_total m_dup m_count nid_c nid_bg q_link
+  return [dict create q_updown $q_updown m_version $m_version q_media $q_media n_pig $n_pig\
+    n_total $n_total m_dup $m_dup m_count $m_count nid_c $nid_c nid_bg $nid_bg q_link $q_link]
+}
