@@ -19,8 +19,10 @@ int ProbeTracksideInput_initialized_EnvSim = 0;
 
 void ProbeTracksideInput_init_EnvSim(outC_ProbeTracksideInput_EnvSim *outC)
 {
+#ifdef WITH_SCADE
   es_scade_probe_trackside_init(outC);
   ProbeTracksideInput_initialized_EnvSim = 1;
+#endif // WITH_SCADE
 }
 
 
@@ -39,10 +41,12 @@ void ProbeTracksideInput_EnvSim(
   M_TrainTrack_Message_T_TM_radio_messages *trainMessage,
   outC_ProbeTracksideInput_EnvSim *outC)
 {
+#ifdef WITH_SCADE
   if(!ProbeTracksideInput_initialized_EnvSim) {
     ProbeTracksideInput_init_EnvSim(outC);
   }
   es_scade_probe_trackside_cycle(currentPosition,baliseMessage,radioMessage,trainMessage,outC);
+#endif // WITH_SCADE
 }
 
 /* $**************** KCG Version 6.4 (build i21) ****************
