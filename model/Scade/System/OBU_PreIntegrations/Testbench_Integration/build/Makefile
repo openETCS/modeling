@@ -12,18 +12,18 @@ TCYCLE = 10000
 ifeq ($(TARGET),win32)
 CC = i686-w64-mingw32-gcc.exe
 CFLAGS = $(INCLUDES) -O3 -DWINDOWS
-LDFLAGS = -L $(LIBENVSIMDIR)/dist/$(TARGET) -lenvsim -ljim -lwsock32
+LDFLAGS = -L $(LIBENVSIMDIR)/dist/$(TARGET) -ljim -lwsock32
 else
 CFLAGS = $(INCLUDES) -O3 -m64
-LDFLAGS = -L $(LIBENVSIMDIR)/dist/$(TARGET) -lenvsim -ljim
+LDFLAGS = -L $(LIBENVSIMDIR)/dist/$(TARGET) -ljim
 endif
 
 
-testbench: main.o libtestbench.a
-	$(CC) $^ -o $@ $(LDFLAGS)
+testbench: main.o libtestbench.a $(LIBENVSIMDIR)/dist/$(TARGET)/libenvsim.a
+	$(CC) $^ -g -o $@ $(LDFLAGS)
 
 main.o: main.c
-	$(CC) $(CFLAGS) -include $(SCADESRCDIR)/$(ROOTNODE)_Testbench_EnvSim.h\
+	$(CC) $(CFLAGS) -g -include $(SCADESRCDIR)/$(ROOTNODE)_Testbench_EnvSim.h\
 	 	-DROOT_CONTEXT=outC_$(ROOTNODE)_Testbench_EnvSim -DROOT_RESET=$(ROOTNODE)_reset_Testbench_EnvSim\
 	 	-DROOT_CYCLE=$(ROOTNODE)_Testbench_EnvSim -DTCYCLE=$(TCYCLE)\
 	 	-c main.c

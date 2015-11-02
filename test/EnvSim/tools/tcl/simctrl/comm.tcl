@@ -29,11 +29,9 @@ proc comm::handleConnect {channel addr port} {
   set conn $channel
   set model::connected 1
   ctrl::log simctrl "Connected to EnvSim/EVC @$addr:$port"
-  sendSENDEVTS 1
   cfg::execOnConnect
-  #sendRUNTCL "S:/modeling/test/EnvSim/track/AmsterdamUtrecht.trk"
-  #sendSENDEVTS 1
-  #sendGETCONF
+
+  sendSENDEVTS $cfg::remoteSendEvents
 }
 
 
@@ -115,12 +113,14 @@ proc comm::sendGETCONF {} {
 }
 
 proc comm::sendSENDEVTS {flag} {
-  sendStringMsg $comm::TCPMSG_ES_SENDEVTS [binary format b1 $flag]
+  sendStringMsg $comm::TCPMSG_ES_SENDEVTS [binary format b $flag]
 }
 
 proc comm::sendStringMsg {msgid msg} {
   variable conn
-  puts -nonewline $conn [binary format iia* $msgid [string bytelength $msg] $msg]
+  if {[info exists conn]} {
+    puts -nonewline $conn [binary format iia* $msgid [string length $msg] $msg]
+  }
 }
 
 proc comm::listen {} {
