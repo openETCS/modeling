@@ -46,6 +46,8 @@ When this command is not working, then you should follow the instructions to set
 
 Now that you have created the `Test_Text.txt` file open the windows command line and type in the following command:
 
+`cd ..`
+`cd tools`
 `python main_issue_tracker.py USERNAME PASSWORD`
 
 to generate the `report.md` file.
