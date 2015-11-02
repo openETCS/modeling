@@ -14392,11 +14392,11 @@
 								<ed:Variable oid="!ed/44d7/535E/F60/548046d422b7"/>
 							</pragmas>
 						</Variable>
-						<Variable name="connectionStatus">
+						<Variable name="radioStatus">
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="Radio_Types_Pkg::sessionStatus_Type"/>
+										<TypeRef name="RCM_Session_Types_Pkg::morcStatus_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -15892,7 +15892,7 @@
 															<type>
 																<NamedType>
 																	<type>
-																		<TypeRef name="Radio_Types_Pkg::sessionStatus_Type"/>
+																		<TypeRef name="RCM_Session_Types_Pkg::morcStatus_T"/>
 																	</type>
 																</NamedType>
 															</type>
@@ -15916,7 +15916,7 @@
 															<type>
 																<NamedType>
 																	<type>
-																		<TypeRef name="Radio_Types_Pkg::sessionStatus_Type"/>
+																		<TypeRef name="RCM_Types_Pkg::mobileConnectionStatus_T"/>
 																	</type>
 																</NamedType>
 															</type>
@@ -15924,9 +15924,33 @@
 																<ed:Variable oid="!ed/50c415/3C5B/1F6C/55a3c75c3ef7"/>
 															</pragmas>
 														</Variable>
+														<Variable name="_L10">
+															<type>
+																<NamedType>
+																	<type>
+																		<TypeRef name="RCM_Types_Pkg::mobileConnectionStatus_T"/>
+																	</type>
+																</NamedType>
+															</type>
+															<pragmas>
+																<ed:Variable oid="!ed/8a9ea/61E9/2040/56362c726c8d"/>
+															</pragmas>
+														</Variable>
+														<Variable name="_L9">
+															<type>
+																<NamedType>
+																	<type>
+																		<TypeRef name="RCM_Types_Pkg::mobileConnectionContext_T"/>
+																	</type>
+																</NamedType>
+															</type>
+															<pragmas>
+																<ed:Variable oid="!ed/8a9e8/61E9/2040/56362c725311"/>
+															</pragmas>
+														</Variable>
 													</locals>
 													<data>
-														<!-- _L6 = cRadioSessionConnecting1; -->
+														<!-- _L6 = RCM_Types_Pkg::mcs_connected; -->
 														<Equation>
 															<lefts>
 																<VariableRef name="_L6"/>
@@ -15934,7 +15958,7 @@
 															<right>
 																<IdExpression>
 																	<path>
-																		<ConstVarRef name="cRadioSessionConnecting1"/>
+																		<ConstVarRef name="RCM_Types_Pkg::mcs_connected"/>
 																	</path>
 																</IdExpression>
 															</right>
@@ -15958,18 +15982,18 @@
 																<ed:Equation oid="!ed/50c416/3C5B/1F6C/55a3c75c3d4e"/>
 															</pragmas>
 														</Equation>
-														<!-- _L7 = _L8 = _L6; -->
+														<!-- _L7 = _L10 = _L6; -->
 														<Equation>
 															<lefts>
 																<VariableRef name="_L7"/>
 															</lefts>
 															<right>
-																<!-- _L8 = _L6 -->
+																<!-- _L10 = _L6 -->
 																<BinaryOp name="11" operator="=">
 																	<operands>
 																		<IdExpression>
 																			<path>
-																				<ConstVarRef name="_L8"/>
+																				<ConstVarRef name="_L10"/>
 																			</path>
 																		</IdExpression>
 																		<IdExpression>
@@ -15986,7 +16010,7 @@
 																</ed:Equation>
 															</pragmas>
 														</Equation>
-														<!-- _L8 = connectionStatus; -->
+														<!-- _L8 = radioStatus; -->
 														<Equation>
 															<lefts>
 																<VariableRef name="_L8"/>
@@ -15994,7 +16018,7 @@
 															<right>
 																<IdExpression>
 																	<path>
-																		<ConstVarRef name="connectionStatus"/>
+																		<ConstVarRef name="radioStatus"/>
 																	</path>
 																</IdExpression>
 															</right>
@@ -16331,6 +16355,54 @@
 																<ed:IfBlock oid="!ed/50c3fb/3C5B/1F6C/55a3c75c6422"/>
 															</pragmas>
 														</IfBlock>
+														<!-- _L9 = _L8.connection; -->
+														<Equation>
+															<lefts>
+																<VariableRef name="_L9"/>
+															</lefts>
+															<right>
+																<!-- _L8.connection -->
+																<PrjOp name="8">
+																	<flow>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="_L8"/>
+																			</path>
+																		</IdExpression>
+																	</flow>
+																	<with>
+																		<Label name="connection"/>
+																	</with>
+																</PrjOp>
+															</right>
+															<pragmas>
+																<ed:Equation oid="!ed/8a9e7/61E9/2040/56362c724049"/>
+															</pragmas>
+														</Equation>
+														<!-- _L10 = _L9.status; -->
+														<Equation>
+															<lefts>
+																<VariableRef name="_L10"/>
+															</lefts>
+															<right>
+																<!-- _L9.status -->
+																<PrjOp name="7">
+																	<flow>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="_L9"/>
+																			</path>
+																		</IdExpression>
+																	</flow>
+																	<with>
+																		<Label name="status"/>
+																	</with>
+																</PrjOp>
+															</right>
+															<pragmas>
+																<ed:Equation oid="!ed/8a9e9/61E9/2040/56362c723e26"/>
+															</pragmas>
+														</Equation>
 													</data>
 													<pragmas>
 														<ed:Action oid="!ed/23d849/3A9B/3150/54e7a4981cce"/>
@@ -16359,7 +16431,7 @@
 															<type>
 																<NamedType>
 																	<type>
-																		<TypeRef name="Radio_Types_Pkg::sessionStatus_Type"/>
+																		<TypeRef name="RCM_Session_Types_Pkg::morcStatus_T"/>
 																	</type>
 																</NamedType>
 															</type>
@@ -16383,7 +16455,7 @@
 															<type>
 																<NamedType>
 																	<type>
-																		<TypeRef name="Radio_Types_Pkg::sessionStatus_Type"/>
+																		<TypeRef name="RCM_Types_Pkg::mobileConnectionStatus_T"/>
 																	</type>
 																</NamedType>
 															</type>
@@ -16391,9 +16463,33 @@
 																<ed:Variable oid="!ed/6dfe/1F6F/F2C/5481e5a77efe"/>
 															</pragmas>
 														</Variable>
+														<Variable name="_L6">
+															<type>
+																<NamedType>
+																	<type>
+																		<TypeRef name="RCM_Types_Pkg::mobileConnectionContext_T"/>
+																	</type>
+																</NamedType>
+															</type>
+															<pragmas>
+																<ed:Variable oid="!ed/8a9a6/61E9/2040/56362bdba2"/>
+															</pragmas>
+														</Variable>
+														<Variable name="_L7">
+															<type>
+																<NamedType>
+																	<type>
+																		<TypeRef name="RCM_Types_Pkg::mobileConnectionStatus_T"/>
+																	</type>
+																</NamedType>
+															</type>
+															<pragmas>
+																<ed:Variable oid="!ed/8a9ba/61E9/2040/56362bf93664"/>
+															</pragmas>
+														</Variable>
 													</locals>
 													<data>
-														<!-- _L1 = connectionStatus; -->
+														<!-- _L1 = radioStatus; -->
 														<Equation>
 															<lefts>
 																<VariableRef name="_L1"/>
@@ -16401,7 +16497,7 @@
 															<right>
 																<IdExpression>
 																	<path>
-																		<ConstVarRef name="connectionStatus"/>
+																		<ConstVarRef name="radioStatus"/>
 																	</path>
 																</IdExpression>
 															</right>
@@ -16409,18 +16505,18 @@
 																<ed:Equation oid="!ed/6dc3/1F6F/F2C/5481e48c7b5f"/>
 															</pragmas>
 														</Equation>
-														<!-- _L3 = _L1 = _L5; -->
+														<!-- _L3 = _L7 = _L5; -->
 														<Equation>
 															<lefts>
 																<VariableRef name="_L3"/>
 															</lefts>
 															<right>
-																<!-- _L1 = _L5 -->
+																<!-- _L7 = _L5 -->
 																<BinaryOp name="1" operator="=">
 																	<operands>
 																		<IdExpression>
 																			<path>
-																				<ConstVarRef name="_L1"/>
+																				<ConstVarRef name="_L7"/>
 																			</path>
 																		</IdExpression>
 																		<IdExpression>
@@ -16437,7 +16533,7 @@
 																</ed:Equation>
 															</pragmas>
 														</Equation>
-														<!-- _L5 = cRadioSessionConnecting1; -->
+														<!-- _L5 = RCM_Types_Pkg::mcs_connected; -->
 														<Equation>
 															<lefts>
 																<VariableRef name="_L5"/>
@@ -16445,7 +16541,7 @@
 															<right>
 																<IdExpression>
 																	<path>
-																		<ConstVarRef name="cRadioSessionConnecting1"/>
+																		<ConstVarRef name="RCM_Types_Pkg::mcs_connected"/>
 																	</path>
 																</IdExpression>
 															</right>
@@ -16798,6 +16894,54 @@
 																<ed:Equation oid="!ed/23da9b/3A9B/3150/54e7abb1119f"/>
 															</pragmas>
 														</Equation>
+														<!-- _L6 = _L1.connection; -->
+														<Equation>
+															<lefts>
+																<VariableRef name="_L6"/>
+															</lefts>
+															<right>
+																<!-- _L1.connection -->
+																<PrjOp name="5">
+																	<flow>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="_L1"/>
+																			</path>
+																		</IdExpression>
+																	</flow>
+																	<with>
+																		<Label name="connection"/>
+																	</with>
+																</PrjOp>
+															</right>
+															<pragmas>
+																<ed:Equation oid="!ed/8a9a5/61E9/2040/56362bdba02"/>
+															</pragmas>
+														</Equation>
+														<!-- _L7 = _L6.status; -->
+														<Equation>
+															<lefts>
+																<VariableRef name="_L7"/>
+															</lefts>
+															<right>
+																<!-- _L6.status -->
+																<PrjOp name="6">
+																	<flow>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="_L6"/>
+																			</path>
+																		</IdExpression>
+																	</flow>
+																	<with>
+																		<Label name="status"/>
+																	</with>
+																</PrjOp>
+															</right>
+															<pragmas>
+																<ed:Equation oid="!ed/8a9b9/61E9/2040/56362bf95efd"/>
+															</pragmas>
+														</Equation>
 													</data>
 													<pragmas>
 														<ed:Action oid="!ed/5bba/3309/938/5481cb135c8e"/>
@@ -16920,7 +17064,7 @@
 										</IfNodeGE>
 										<EquationGE presentable="!ed/6dc3/1F6F/F2C/5481e48c7b5f">
 											<position>
-												<Point x="8848" y="29189"/>
+												<Point x="5292" y="28787"/>
 											</position>
 											<size>
 												<Size width="265" height="503"/>
@@ -17054,14 +17198,6 @@
 												<Size width="30861" height="11007"/>
 											</size>
 										</ActionGE>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6dc3/1F6F/F2C/5481e48c7b5f" dstEquation="!ed/6dcf/1F6F/F2C/5481e4c43f37">
-											<positions>
-												<Point x="9102" y="29448"/>
-												<Point x="10054" y="29448"/>
-												<Point x="10054" y="30215"/>
-												<Point x="10980" y="30215"/>
-											</positions>
-										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/6dfd/1F6F/F2C/5481e5a77090" dstEquation="!ed/6dcf/1F6F/F2C/5481e4c43f37">
 											<positions>
 												<Point x="9128" y="30903"/>
@@ -17323,7 +17459,7 @@
 												<Size width="5165" height="3323"/>
 											</size>
 										</ActionGE>
-										<IfNodeGE labelWidth="1402" presentable="!ed/23da93/3A9B/3150/54e7aba66378">
+										<IfNodeGE labelWidth="1058" presentable="!ed/23da93/3A9B/3150/54e7aba66378">
 											<position>
 												<Point x="20616" y="29210"/>
 											</position>
@@ -17776,7 +17912,7 @@
 										</Edge>
 										<EquationGE kind="OBJ_LIT" presentable="!ed/50c414/3C5B/1F6C/55a3c75c1e57">
 											<position>
-												<Point x="7133" y="20849"/>
+												<Point x="9499" y="20664"/>
 											</position>
 											<size>
 												<Size width="169" height="318"/>
@@ -17784,7 +17920,7 @@
 										</EquationGE>
 										<EquationGE presentable="!ed/50c416/3C5B/1F6C/55a3c75c3d4e">
 											<position>
-												<Point x="11959" y="20172"/>
+												<Point x="11959" y="20214"/>
 											</position>
 											<size>
 												<Size width="360" height="508"/>
@@ -17792,7 +17928,7 @@
 										</EquationGE>
 										<EquationGE presentable="!ed/50c417/3C5B/1F6C/55a3c75c6756">
 											<position>
-												<Point x="9165" y="20087"/>
+												<Point x="10372" y="20135"/>
 											</position>
 											<size>
 												<Size width="1016" height="656"/>
@@ -17800,34 +17936,18 @@
 										</EquationGE>
 										<EquationGE presentable="!ed/50c419/3C5B/1F6C/55a3c75c57e8">
 											<position>
-												<Point x="7027" y="19262"/>
+												<Point x="5556" y="18865"/>
 											</position>
 											<size>
 												<Size width="276" height="508"/>
 											</size>
 										</EquationGE>
-										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/50c419/3C5B/1F6C/55a3c75c57e8" dstEquation="!ed/50c417/3C5B/1F6C/55a3c75c6756">
-											<positions>
-												<Point x="7303" y="19526"/>
-												<Point x="8229" y="19526"/>
-												<Point x="8229" y="20294"/>
-												<Point x="9155" y="20294"/>
-											</positions>
-										</Edge>
-										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/50c414/3C5B/1F6C/55a3c75c1e57" dstEquation="!ed/50c417/3C5B/1F6C/55a3c75c6756">
-											<positions>
-												<Point x="7303" y="21008"/>
-												<Point x="8281" y="21008"/>
-												<Point x="8281" y="20532"/>
-												<Point x="9155" y="20532"/>
-											</positions>
-										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/50c417/3C5B/1F6C/55a3c75c6756" dstEquation="!ed/50c416/3C5B/1F6C/55a3c75c3d4e">
 											<positions>
-												<Point x="10186" y="20426"/>
-												<Point x="11060" y="20426"/>
-												<Point x="11060" y="20426"/>
-												<Point x="11959" y="20426"/>
+												<Point x="11377" y="20479"/>
+												<Point x="11668" y="20479"/>
+												<Point x="11668" y="20479"/>
+												<Point x="11959" y="20479"/>
 											</positions>
 										</Edge>
 										<IfBlockGE presentable="!ed/50c3fb/3C5B/1F6C/55a3c75c6422">
@@ -17838,7 +17958,7 @@
 												<Size width="7557" height="8064"/>
 											</size>
 										</IfBlockGE>
-										<IfNodeGE labelWidth="1058" presentable="!ed/50c3fc/3C5B/1F6C/55a3c75c38dc">
+										<IfNodeGE labelWidth="873" presentable="!ed/50c3fc/3C5B/1F6C/55a3c75c38dc">
 											<position>
 												<Point x="18795" y="19283"/>
 											</position>
@@ -18065,6 +18185,94 @@
 												<Point x="16589" y="12330"/>
 												<Point x="16589" y="11748"/>
 												<Point x="17939" y="11748"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/8a9a5/61E9/2040/56362bdba02">
+											<position>
+												<Point x="6535" y="28575"/>
+											</position>
+											<size>
+												<Size width="953" height="953"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/6dc3/1F6F/F2C/5481e48c7b5f" dstEquation="!ed/8a9a5/61E9/2040/56362bdba02">
+											<positions>
+												<Point x="5556" y="29051"/>
+												<Point x="6033" y="29051"/>
+												<Point x="6033" y="29051"/>
+												<Point x="6535" y="29051"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/8a9b9/61E9/2040/56362bf95efd">
+											<position>
+												<Point x="8281" y="28575"/>
+											</position>
+											<size>
+												<Size width="953" height="952"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/8a9a5/61E9/2040/56362bdba02" dstEquation="!ed/8a9b9/61E9/2040/56362bf95efd">
+											<positions>
+												<Point x="7488" y="29051"/>
+												<Point x="7885" y="29051"/>
+												<Point x="7885" y="29051"/>
+												<Point x="8281" y="29051"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/8a9b9/61E9/2040/56362bf95efd" dstEquation="!ed/6dcf/1F6F/F2C/5481e4c43f37">
+											<positions>
+												<Point x="9234" y="29051"/>
+												<Point x="10107" y="29051"/>
+												<Point x="10107" y="30215"/>
+												<Point x="10980" y="30215"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/8a9e7/61E9/2040/56362c724049">
+											<position>
+												<Point x="6615" y="18600"/>
+											</position>
+											<size>
+												<Size width="952" height="953"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/8a9e9/61E9/2040/56362c723e26">
+											<position>
+												<Point x="8361" y="18600"/>
+											</position>
+											<size>
+												<Size width="952" height="953"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/50c419/3C5B/1F6C/55a3c75c57e8" dstEquation="!ed/8a9e7/61E9/2040/56362c724049">
+											<positions>
+												<Point x="5821" y="19129"/>
+												<Point x="6218" y="19129"/>
+												<Point x="6218" y="19076"/>
+												<Point x="6615" y="19076"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/8a9e7/61E9/2040/56362c724049" dstEquation="!ed/8a9e9/61E9/2040/56362c723e26">
+											<positions>
+												<Point x="7567" y="19076"/>
+												<Point x="7964" y="19076"/>
+												<Point x="7964" y="19076"/>
+												<Point x="8361" y="19076"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/50c414/3C5B/1F6C/55a3c75c1e57" dstEquation="!ed/50c417/3C5B/1F6C/55a3c75c6756">
+											<positions>
+												<Point x="9657" y="20823"/>
+												<Point x="10001" y="20823"/>
+												<Point x="10001" y="20585"/>
+												<Point x="10372" y="20585"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/8a9e9/61E9/2040/56362c723e26" dstEquation="!ed/50c417/3C5B/1F6C/55a3c75c6756">
+											<positions>
+												<Point x="9313" y="19076"/>
+												<Point x="9843" y="19076"/>
+												<Point x="9843" y="20346"/>
+												<Point x="10372" y="20346"/>
 											</positions>
 										</Edge>
 									</presentationElements>
@@ -25934,11 +26142,11 @@
 								</ed:Variable>
 							</pragmas>
 						</Variable>
-						<Variable name="connectionStatus">
+						<Variable name="radioStatus">
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="Radio_Types_Pkg::sessionStatus_Type"/>
+										<TypeRef name="RCM_Session_Types_Pkg::morcStatus_T"/>
 									</type>
 								</NamedType>
 							</type>
@@ -26233,7 +26441,7 @@
 													<type>
 														<NamedType>
 															<type>
-																<TypeRef name="Radio_Types_Pkg::sessionStatus_Type"/>
+																<TypeRef name="RCM_Session_Types_Pkg::morcStatus_T"/>
 															</type>
 														</NamedType>
 													</type>
@@ -26529,7 +26737,7 @@
 														<ed:Equation oid="!ed/31984/63A8/2E40/54f9dab62ee5"/>
 													</pragmas>
 												</Equation>
-												<!-- _L67 = connectionStatus; -->
+												<!-- _L67 = radioStatus; -->
 												<Equation>
 													<lefts>
 														<VariableRef name="_L67"/>
@@ -26537,7 +26745,7 @@
 													<right>
 														<IdExpression>
 															<path>
-																<ConstVarRef name="connectionStatus"/>
+																<ConstVarRef name="radioStatus"/>
 															</path>
 														</IdExpression>
 													</right>
