@@ -19,8 +19,8 @@ libtrackconv.a: $(SCADEOBJS)
 clean:
 	rm -f $(SCADESRCDIR)/*.o
 	rm -f *.o
-	rm -f libtestbench.a
-	rm -f testbench
+	rm -f libtrackconv.a
+	rm -f trackconv
 
 distclean: clean
 	rm -rf $(SCADESRCDIR)

@@ -70,6 +70,31 @@ proc pkts::packetName {nid_packet} {
 
 }
 
+proc pkts::binToIntList {offset nint data} {
+  binary scan "$data" x${offset}i${nint} lst
+  return $lst
+}
+
+proc pkts::readBinPkt {nid offset nint data} {
+  set lst [binToIntList $offset $nint "$data"]
+  switch -glob [expr $nid / 1000] {
+     3?16 { return [readP003v1 "$lst"] }
+     5?32 { return [readP005 "$lst"] }
+    15?32 { return [readP015 "$lst"] }
+    21?32 { return [readP021 "$lst"] }
+    27?16 { return [readP027 "$lst"] }
+    41?32 { return [readP041 "$lst"] }
+    42?32 { return [readP042 "$lst"] }
+    45?32 { return [readP045 "$lst"] }
+    46?32 { return [readP046 "$lst"] }
+    57?32 { return [readP057 "$lst"] }
+    58?32 { return [readP058 "$lst"] }
+   137?32 { return [readP137 "$lst"] }
+   255??? { }
+    default { error "unexpected nid: $nid" }
+  }
+}
+
 
 proc pkts::readP003v1 {data} {
   set niter [lindex $data 5]
