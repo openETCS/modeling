@@ -10,20 +10,40 @@
 \toprule
 Component name			& TrackAtlas \\
 \midrule
-Link to SCADE model		& {\footnotesize \url{???}} \\
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/
+System/ObuFunctions/TrackAtlas}} \\
 \midrule
-SCADE designer			& Jakob G\"artner, LEA \\
+SCADE designer			& Jakob G\"artner, LEA Railergy \\
 \midrule
-Description				& ??? \\
+Description				& TrackAtlas collects, processes, stores and distributes the information received from trackside or built from onboard data which are the basis for train supervision, driver machine interface, mode and level and other processes in the EVC. 
+Essential information provided to train and speed supervision includes:
+
+\begin{itemize}
+\item Gradient Profile
+\item Most Restrictive Speed Profile
+\item Movement Authority
+\end{itemize}
+
+In a more abstract sense, TrackAtlas maintains all the information the EVC needs in order to fulfil its essential tasks. 
+This functional block relies on some onboard functions for \emph{preprocessing of the information received from track} such as 
+
+\begin{itemize}
+\item ReceiveTrackside Information for reception of the information
+\item Information Filter for selection of the relevant information
+\item CalculateTrainPosition for referencing the information to the correct coordinate system
+\end{itemize}
+
+At the output side, information is being reformatted for the different components requiring access to the data maintained by TrackAtlas.
+ \\
 \midrule
 Input documents	& 
-Subset-026, Chapter ???\\
+Subset-026, Chapter 3\\
 \midrule
 Safety integrity level	& 4 \\
 \midrule
-Time constraints		& [If applicable description of time constraints, otherwise n/a] \\
+Time constraints		& TrackAtlas assumes to be cyclically called in a 50ms cycle, changing the scheduling will require adaptation of some parameters \\
 \midrule
-API requirements 		& [If applicable description of API requirements, otherwise n/a] \\
+API requirements 		& TrackAtlas relies on the Track to Train and Train to Track communication libraries provided in the TrackMessages package \\
 \bottomrule
 \end{longtable}
 
@@ -41,96 +61,641 @@ An overview of the interface of component TrackAtlas is shown in Figure~\ref{f:m
 
 \subsubsection{Inputs}\label{s:manage_track_data_inputs}
 
-\paragraph{[Input 1 name]}
+\paragraph{MessageIn}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Input name				& [Name of the input] \\
+Input name				& MessageIn \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& Track to train message (as defined in Subset 026, chapter 8) with containing packets (as defined in Subset 026, chapter 7) \\
 \midrule
-Source					& [Name of the source component] \\ 
+Source					& Information Filter\\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& valid combinations of Messages and Packets as implemented in the package TrackMessages \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& not applicable\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& invalid messages/ packets are ignored \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & the messages are only seen as valid if they are present \\
 \bottomrule
 \end{longtable}
 
 
-\paragraph{[Input 2 name]}
+\paragraph{ModeAndLevel\_in}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Input name				& [Name of the input] \\
+Input name				& ModeAndLevel\_in \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& Status data on mode and level\\
 \midrule
-Source					& [Name of the source component] \\ 
+Source					& Mode and Level management \\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& Level\_And\_Mode\_Types\_Pkg::T\_Mode\_Level \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n/a, as this is a type based on enumerations which can not reach invalid state in SCADE \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& n/a\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
+\end{longtable}
+
+\paragraph{TrainData\_in}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& TrainData\_in\\
+\midrule
+Description				& Data received from TIU\\
+\midrule
+Source					& TIU \\ 
+\midrule
+Type					& TrackAtlasTypes::FromTIU\_tl \\
+\midrule
+Valid range of values	& n/a\\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+\midrule
+Remark & This input is unused at the moment\\
+
+\bottomrule
+\end{longtable}
+
+\paragraph{TrainPositionIn}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& TrainPositionIn\\
+\midrule
+Description				& Structured Information about all aspects of the current state of the train with respect to the coordinate system, balise positioning and integrity information and the train position\\
+\midrule
+Source					& CalculateTrainPosition \\ 
+\midrule
+Type					& TrainPosition\_Types\_Pck::trainPosition\_T \\
+\midrule
+Valid range of values	& as defined by CalculateTrainPosition \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+\bottomrule
+\end{longtable}
+
+\paragraph{train\_length}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& train\_length\\
+\midrule
+Description				& Train length\\
+\midrule
+Source					& TIU \\ 
+\midrule
+Type					& Obu\_BasicTypes\_Pkg::L\_internal\_Type\\
+\midrule
+Valid range of values	& not checked at the moment \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+\midrule
+Remark & This input shall be removed as soon as the input \emph{TrainData\_in} will be defined and used\\
+\bottomrule
+
+
+\end{longtable}
+
+\paragraph{SystemTime}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& SystemTime\\
+\midrule
+Description				& Reference time of the EVC\\
+\midrule
+Source					& API \\ 
+\midrule
+Type					& Obu\_BasicTypes\_Pkg::T\_internal\_Type\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+
+\bottomrule
+
+\end{longtable}
+
+\paragraph{preindicationLocation}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& preindicationLocation\\
+\midrule
+Description				& Preindication location for speed or target supervision \\
+\midrule
+Source					& SDM \\ 
+\midrule
+Type					& Obu\_BasicTypes\_Pkg::L\_internal\_Type\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+
+\bottomrule
+
+
+\end{longtable}
+
+\paragraph{odometry}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& odometry\\
+\midrule
+Description				& Odometry Data  \\
+\midrule
+Source					& API \\ 
+\midrule
+Type					& Obu\_BasicTypes\_Pkg::odometry\_T\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+
+\bottomrule
+
+
+\end{longtable}
+
+\paragraph{fromDriverToMA\_R}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& fromDriverToMA\_R\\
+\midrule
+Description				& Data sent from DMI to MA Request function  \\
+\midrule
+Source					& DMI interface \\ 
+\midrule
+Type					& MA\_Request::Driver2MAR\_T\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+
+\bottomrule
+
+
+\end{longtable}
+
+\paragraph{trainProps}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& trainProps\\
+\midrule
+Description				& Train Characteristics as provided by CalculateTrainPosition  \\
+\midrule
+Source					& CalculateTrainPosition \\ 
+\midrule
+Type					& TrainPosition\_Types\_Pck::trainProperties\_T\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+
+\bottomrule
+
+
+\end{longtable}
+
+\paragraph{packet0}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& packet0\\
+\midrule
+Description				& Train Position Report packet 0  \\
+\midrule
+Source					& TrainPositionReport \\ 
+\midrule
+Type					& Packet\_TrainTypes\_Pkg::PT0\_PositionReport\_T\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+
+\bottomrule
+
+
+\end{longtable}
+
+\paragraph{packet1}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& packet1\\
+\midrule
+Description				& Train Position Report based on two balise groups (Packet 1)  \\
+\midrule
+Source					& TrainPositionReport \\ 
+\midrule
+Type					& Packet\_TrainTypes\_Pkg::PT1\_PositionReport\_2BG\_T\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+
+\bottomrule
+
+
+\end{longtable}
+
+
+\paragraph{t\_train}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& t\_train\\
+\midrule
+Description				& Time reference of the EVC  \\
+\midrule
+Source					& API\\ 
+\midrule
+Type					& T\_TRAIN\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+
+\bottomrule
+
+
+\end{longtable}
+
+
+\paragraph{bus\_in}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& bus\_in\\
+\midrule
+Description				& Train to track message bus  \\
+\midrule
+Source					& Train to track message bus on EVC level\\ 
+\midrule
+Type					& TM\_TrainTrack\_Bus::M\_TrainTrackMessageBus\_t\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+
+\bottomrule
+
+
+\end{longtable}
+
+
+
+
+\paragraph{P203V1\_onboard}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& P203V1\_onboard\\
+\midrule
+Description				& Default values for track to train packet 203 as stored onboard. In case of a baseline 2 track, these data are used to build a baseline 3- conformal packet 3. \\
+\midrule
+Source					& TIU\\ 
+\midrule
+Type					& TM\_baseline2::P203V1\_OBU\_T\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+
+\bottomrule
+
+
+\end{longtable}
+
+\paragraph{PermanentDataP003}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& PermanentDataP003\\
+\midrule
+Description				& Default values for track to train packet 3 (baseline 2) as stored onboard. In case of a baseline 2 track, these data are used to build a baseline 3- conformal packet 3. \\
+\midrule
+Source					& TIU\\ 
+\midrule
+Type					& TM\_baseline2::P003\_permanent\_data\_T\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+
+\bottomrule
+
+
 \end{longtable}
 
 
 \subsubsection{Outputs}\label{s:manage_track_data_outputs}
 
-\paragraph{[Output 1 name]}
+\paragraph{NV\_raw\_out}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& [Name of the output] \\
+Output name				& NV\_raw\_out \\
 \midrule
-Description				& [Brief description of the output] \\
+Description				& National values as received from the track (in case of a baseline 3 trackside, or national values as calculated by TrackAtlas (in case of reception of a baseline 2 trackside) \\
 \midrule
-Destination				& [Name of the destination component(s)] \\ 
+Destination				& Various recipients: SDM, Mode and Levels\\ 
 \midrule
-Type					& [Type of the output] \\
+Type					& TM::P003\_OBU\_T \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n/a \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n/a  \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n/a  \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
 \bottomrule
 \end{longtable}
 
 
-\paragraph{[Output 2 name]}
+\paragraph{To\_ModeAndLevel}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& [Name of the output] \\
+Output name				& To\_ModeAndLevel \\
 \midrule
-Description				& [Brief description of the output] \\
+Description				& Aggregated status information concerning the data maintained by TrackAtlas, for usage by Mode and Levels Management Module \\
 \midrule
-Destination				& [Name of the destination component(s)] \\ 
+Destination				& Mode and Levels \\ 
 \midrule
-Type					& [Type of the output] \\
+Type					& TrackAtlasTypes::DataForModeAndLevel\_t\\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n/a \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n/a  \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n/a  \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
+\\
+\bottomrule
+\end{longtable}
+
+\paragraph{to\_DMI}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& to\_DMI \\
+\midrule
+Description				& Aggregated information concerning Movement Authority (MA information, Gradient Profile Information, MRSP information; formatted for use by DMI \\
+\midrule
+Destination				& DMI interface  \\ 
+\midrule
+Type					& TrackAtlasTypes::DataForDMI\_t\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a  \\
+\midrule
+Behaviour for values out of valid range	& n/a  \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
+\\
+\bottomrule
+\end{longtable}
+
+\paragraph{MRSP}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& MRSP \\
+\midrule
+Description				& Aggregated information concerning Movement Authority (MA information, Gradient Profile Information, MRSP information; formatted for use by SDM \\
+\midrule
+Destination				& SDM  \\ 
+\midrule
+Type					& TrackAtlasTypes::DataForSupervision\_nextGen\_t\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a  \\
+\midrule
+Behaviour for values out of valid range	& n/a  \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
+\\
+\bottomrule
+\end{longtable}
+
+\paragraph{to\_Supervision}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& to\_Supervision \\
+\midrule
+Description				& Most restrictive speed profile \\
+\midrule
+Destination				& EVC, for various usage  \\ 
+\midrule
+Type					& TrackAtlasTypes::MRSP\_Profile\_t\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a  \\
+\midrule
+Behaviour for values out of valid range	& n/a  \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
+\\
+\bottomrule
+\end{longtable}
+
+\paragraph{MA\_onboard\_out}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& MA\_onboard\_out \\
+\midrule
+Description				& Movement authority information extracted from Packet 15 or 16, normalised to train coordinate system\\
+\midrule
+Destination				& EVC, for various usage  \\ 
+\midrule
+Type					& TrackAtlasTypes::MovementAuthority\_t\\
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a  \\
+\midrule
+Behaviour for values out of valid range	& n/a  \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
+\\
+\bottomrule
+\end{longtable}
+
+\paragraph{bus\_out}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& bus\_out \\
+\midrule
+Description				& Train to track message bus containing train to track messages with optional packets \\
+\midrule
+Destination				& EVC level train to track message bus  \\ 
+\midrule
+Type					& TM\_TrainTrack\_Bus::M\_TrainTrackMessageBus\_t\\
+
+
+\midrule
+Valid range of values	& n/a \\
+\midrule
+Behaviour when value is at boundary	& n/a  \\
+\midrule
+Behaviour for values out of valid range	& n/a  \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
+\\
+\bottomrule
+\end{longtable}
+
+\paragraph{ces\_accepted}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& ces\_accepted \\
+\midrule
+Description				& Flag to indicate that a conditional emergency stop has been accepted in the current cycle \\
+\midrule
+Destination				& SDM  \\ 
+\midrule
+Type					& bool\\
+
+
+\midrule
+Valid range of values	& true/ false \\
+\midrule
+Behaviour when value is at boundary	& n/a  \\
+\midrule
+Behaviour for values out of valid range	& n/a  \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
+\\
+\bottomrule
+\end{longtable}
+
+\paragraph{ces\_revoked}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& ces\_revoked \\
+\midrule
+Description				& Flag to indicate that a conditional emergency stop has been revoked in the current cycle \\
+\midrule
+Destination				& SDM  \\ 
+\midrule
+Type					& bool\\
+
+
+\midrule
+Valid range of values	& true/ false \\
+\midrule
+Behaviour when value is at boundary	& n/a  \\
+\midrule
+Behaviour for values out of valid range	& n/a  \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
+\\
+\bottomrule
+\end{longtable}
+
+\paragraph{trip\_train}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& trip\_train \\
+\midrule
+Description				& Flag to indicate that the train must be tripped \\
+\midrule
+Destination				& SDM , Mode and Level\\ 
+\midrule
+Type					& bool\\
+
+
+\midrule
+Valid range of values	& true/ false \\
+\midrule
+Behaviour when value is at boundary	& n/a  \\
+\midrule
+Behaviour for values out of valid range	& n/a  \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
+\\
 \bottomrule
 \end{longtable}
 
