@@ -6,14 +6,11 @@ The ETCS Kernel module consists of the 13 functional components, i.e. F2.1 to F2
 
 \item[F2.2: Manage\_ETCS\_Procedures] This component describes the Start of Mission procedure of the train until the current status will change to another mode, level or other procedure. The corresponding SysML diagram is shown in Figure~\ref{f:f2.2_overview}. For further details we refer to Section~\ref{s:F2.2}.
 
-\item[F2.3: trainData] Implementation of the train data with the corresponding interfaces to track, driver and RBC. The corresponding SysML diagram is shown in Figure~\ref{f:f2.3_overview}. For further details we refer to Section~\ref{s:F2.3}.
-\todo[inline]{descriptions needs to be improved}
+\item[F2.3: trainData] Implementation of the train data with the corresponding interfaces to  driver and RBC. The corresponding SysML diagram is shown in Figure~\ref{f:f2.3_overview}. For further details we refer to Section~\ref{s:F2.3}.
 
-\item[F2.4: TrackAtlas] t.b.d.  The corresponding SysML diagram is shown in Figure~\ref{f:f2.4_overview}. For further details we refer to Section~\ref{s:F2.4}.
-\todo[inline]{to be completed}
+\item[F2.4: TrackAtlas] Implementation of the track database as a function of the evc.  The corresponding SysML diagram is shown in Figure~\ref{f:f2.4_overview}. For further details we refer to Section~\ref{s:F2.4}.
 
-\item[F2.5: ManageLevelAndMode] Defines the status of the ETCS regarding on-board functional status and track infrastructure. The corresponding SysML diagram is shown in Figure~\ref{f:f2.5_overview}. For further details we refer to Section~\ref{s:F2.5}.
-\todo[inline]{descriptions needs to be improved}
+\item[F2.5: ManageLevelAndMode] Defines the behaviour of Modes and Levels transitions. The corresponding SysML diagram is shown in Figure~\ref{f:f2.5_overview}. For further details we refer to Section~\ref{s:F2.5}.
 
 \item[F2.6: calculateTrainPosition] The purpose of this component is to calculate the locations of linked and unlinked balise groups and the current train position while the train is running along the track. The corresponding SysML diagram is shown in Figure~\ref{f:f2.6_overview}. For further details we refer to Section~\ref{s:F2.6}.
 
@@ -145,17 +142,22 @@ Input name				& EVC\_reset \\
 \midrule
 Description				&  The reset input is used to delete all data stored in the connected components inside F2 (e.g.~collected balise telegrams). If the input is set to true, all data kept in the components is deleted and no input is accepted. The reset option is to be used when the EVC is started or in system error scenarios. \\
 \midrule
-Source					& [Name of the source component] \\ 
+Source					& System Startup and Recovery\\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& bool \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	&
+\begin{description}
+\item [true]: evc needs to be reset. All stored data of subcomponents get reset by there functions. evc needs to restart with a start of mission procedure.
+\item [false]: no reset of the unit.
+\end{description}
+\\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& not applicable \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& not applicable \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &not applicable \\
 \bottomrule
 \end{longtable}
 
@@ -167,17 +169,17 @@ Input name				& API\_Odometry \\
 \midrule
 Description				& Odometry data provided by the external odometry module of the train. \\
 \midrule
-Source					& API \\ 
+Source					& Odometer Unit\\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& structure \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n.a. \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n.a. \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& n.a. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &n.a. \\
 \bottomrule
 \end{longtable}
 
@@ -187,19 +189,19 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Input name				& API\_SystemTime \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& System time as defined by the runtime system. \\
 \midrule
-Source					& API \\ 
+Source					& evc operating system  \\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& int \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& positive range of int\\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& reset of the time. \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& may result in loss of rbc messages dur to sequencing errors and finally to the loss of an active radio connection. As a result train may go into standstill caused by emergency brake \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & see above \\
 \bottomrule
 \end{longtable}
 
@@ -209,19 +211,19 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Input name				& API\_fromTrack \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& Messages and Telegrams from trackside. \\
 \midrule
-Source					& API respectively F1 Receive Information from Trackside\\ 
+Source					& BTM resp. RTM\\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& structure \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n.a. \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n.a. \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& n.a. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n.a. \\
 \bottomrule
 \end{longtable}
 
@@ -231,19 +233,19 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Input name				& API\_fromDMI \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& Input message from DMI \\
 \midrule
 Source					& API respectively F6 DMI Controller\\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& structure \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n.a. \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n.a. \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& n.a. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n.a. \\
 \bottomrule
 \end{longtable}
 
@@ -253,19 +255,19 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Input name				& API\_fromTIU \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& Input message from the TIU \\
 \midrule
 Source					& API respectively F7 Manage TIU Interface \\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& structure \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n.a. \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n.a. \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& n.a. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n.a. \\
 \bottomrule
 \end{longtable}
 
@@ -275,19 +277,19 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Input name				& API\_mobileHWStatus \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& Actual status of the connected radio module. This implementation is based on a single radio module. The upgrade to a system with 2 mobiles is in preparation.\\
 \midrule
-Source					& [Name of the source component] \\ 
+Source					& RTM \\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& structure \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n.a. \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n.a. \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& n.a. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n.a. \\
 \bottomrule
 \end{longtable}
 
@@ -297,19 +299,19 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Input name				& API\_persistentData \\
 \midrule
-Description				& [Brief description of the input] \\
+Description				& Storage of data which need to be loaded in order to be able to start the start of mission procedure. The data has to be saved as a part of the end of mission procedure. \\
 \midrule
-Source					& [Name of the source component] \\ 
+Source					& evc-Storage \\ 
 \midrule
-Type					& [Type of the input] \\
+Type					& structure \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n.a. \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when input value is at boundary] \\
+Behaviour when value is at boundary	& n.a. \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when input value is out of valid range] \\
+Behaviour for values out of valid range	& n.a. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &n.a. \\
 \bottomrule
 \end{longtable}
 
@@ -323,19 +325,19 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Output name				& resetOut \\
 \midrule
-Description				& [Brief description of the output] \\
+Description				& Indicator for the succesful execution of the reset function for the evc. \\
 \midrule
-Destination				& [Name of the destination component(s)] \\ 
+Destination				& System Startup and Recovery \\ 
 \midrule
-Type					& [Type of the output] \\
+Type					& bool \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& true: ok, false: not ok \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n.a. \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n.a. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n.a. \\
 \bottomrule
 \end{longtable}
 
@@ -346,19 +348,19 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Output name				& API\_toEuroradio \\
 \midrule
-Description				& [Brief description of the output] \\
+Description				& Radio Messages to be sent to the RBC. The output is dedicated to a sending RTM module. In addition to the messages, commands for controlling the Radio module are implemented in this interface  \\
 \midrule
-Destination				& [Name of the destination component(s)] \\ 
+Destination				& Radio Module (RTM) \\ 
 \midrule
-Type					& [Type of the output] \\
+Type					& structure \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n.a. \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n.a. \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n.a. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &n.a. \\
 \bottomrule
 \end{longtable}
 
@@ -369,19 +371,19 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Output name				& API\_toDMI \\
 \midrule
-Description				& [Brief description of the output] \\
+Description				& Messages to be sent to the DMI \\
 \midrule
 Destination				& API respectively F6DMI Controller \\ 
 \midrule
-Type					& [Type of the output] \\
+Type					& structure\\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n.a. \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n.a. \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n.a.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n.a.\\
 \bottomrule
 \end{longtable}
 
@@ -391,18 +393,18 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Descrip
 \toprule
 Output name				& API\_toTIU \\
 \midrule
-Description				& [Brief description of the output] \\
+Description				& Interface to the train Interface Unit (TIU) including Brake Interface Unit (BIU) \\
 \midrule
 Destination				& API respectively F7 Manage TIU Interface \\ 
 \midrule
-Type					& [Type of the output] \\
+Type					& structure \\
 \midrule
-Valid range of values	& [Complete list of valid values] \\
+Valid range of values	& n.a. \\
 \midrule
-Behaviour when value is at boundary	& [Description of components behaviour when output value is at boundary] \\
+Behaviour when value is at boundary	& n.a. \\
 \midrule
-Behaviour for values out of valid range	& [Description of components behaviour when output value is out of valid range] \\
+Behaviour for values out of valid range	& n.a.\\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & [Description of components behaviour when value is erroneous, absent or unwanted (i.e. spurious)] \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n.a. \\
 \bottomrule
 \end{longtable}
