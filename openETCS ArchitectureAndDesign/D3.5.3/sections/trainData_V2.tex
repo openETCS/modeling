@@ -319,6 +319,29 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \bottomrule
 \end{longtable}
 
+\paragraph{inMessageBus}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& inMessageBus\\
+\midrule
+Description				& The trainData function makes use of communication to the RBC. The input parameter gives access to the communication channel to the RBC.
+\\
+\midrule
+Source					& evc-model\\  
+\midrule
+Type					& TM\_TrainTrack\_Bus::M\_TrainTrackMessageBus\_t\\
+\midrule
+Valid range of values	& This component is administered by a valid flag.\\
+\midrule
+Behaviour when value is at boundary	& n/a\\
+\midrule
+Behaviour for values out of valid range	& n/a\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
+\bottomrule
+\end{longtable}
+
 \subsubsection{Outputs}\label{s:traindata_outputs}
 
 \paragraph{actualTrainData}
@@ -331,13 +354,11 @@ Description				& Actual train data of the evc. Train data received via DMI from 
 \begin{description}
 \item[valid](bool): valid indicator for this component. Valid indicates the data are updated after start-up of the system. The actual status of trainData is stored in the updatedStatus information. 
 \item[acknowledgedByDriver](bool): Indicates this component has been validated by the driver.
-\todo[inline]{redundant information to status. Needs cleaning}
 \item[trainCtategory](NC\_TRAIN): Train category used for the static speed profile calculation.
 \item[cantDeficientcy](NC\_CDTRAIN): Cant deficiency train category
 \item[trainLength](Obu\_BasicTypes\_Pkg::L\_internal\_Type): Length of the train [cm].
 \item[brakePercentage](int): brake percentage. range from 0 to 300.
 \item[maxTrainSpeed](Obu\_BasicTypes\_Pkg::V\_internal\_Type): maximum speed of the train in km/h.
-\todo[inline]{needs to be changed to cm/sec}
 \item[loadingGauge](M\_LOADINGGAUGE): loading gauge category according to 3.18.3.2
 \item[axleLoadCategory](M\_AXLELOADCAT): axle load category according to Subset-026, Section 3.18.3.2.
 \item[airTightSystem](M\_AIRTIGHT): airtight system presence according to Subset-026, Section 3.18.3.2.
@@ -369,18 +390,23 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) &n/a \\
 \bottomrule
 \end{longtable}
 
-\paragraph{trainDataToRBC}
+\paragraph{outMessageBus}
 
 \begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
 \toprule
-Output name				& trainDataToRBC \\
+Output name				& outMessageBus\\
 \midrule
 Description				& Messages for communicating with the RBC. Messages 129 (Validated Train Data) and 146 (Acknowledgement) are sent by this function. The presence of the message is indicated by a valid flag.\\
 \midrule
-Destination				& F2 output API\_toEuroradio\\ 
+Destination				& F2 The bus collects outgoing messages to an output to RTM\\ 
 \\ 
 \midrule
-Type					& Radio\_Types\_Pkg::Radio\_TrainTrack\_Message\_T \\
+Description				& The trainData function makes use of communication to the RBC. The input parameter gives access to the communication channel to the RBC.
+\\
+\midrule
+Source					& evc-model\\  
+\midrule
+Type					& TM\_TrainTrack\_Bus::M\_TrainTrackMessageBus\_t\\
 \midrule
 Valid range of values	& indicated by valid flag. \\
 \midrule
