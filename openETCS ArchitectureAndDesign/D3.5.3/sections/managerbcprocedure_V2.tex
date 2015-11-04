@@ -67,7 +67,7 @@ Input name				& mode \\
 \midrule
 Description				& Current onboard operating mode \\
 \midrule
-Source					& ??? \\ 
+Source					& F2.5 ManageLevelAndMode \\ 
 \midrule
 Type					& M\_MODE \\
 \midrule
@@ -90,7 +90,7 @@ Input name				& level \\
 \midrule
 Description				& Current Operating Level \\
 \midrule
-Source					& ??? \\ 
+Source					& F2.5 ManageLevelAndMode \\ 
 \midrule
 Type					& M\_LEVEL \\
 \midrule
@@ -112,7 +112,8 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehav
 	\midrule
 	Description				& Collection of input events and OBU operating phases \\
 	\midrule
-	Source					& Collection of source components responsible for the information \\ 
+	Source					& F2.5 ManageLevelAndMode\newline
+	F2.2 Manage\_ETCS\_Procedures \\ 
 	\midrule
 	Type					& RCM\_Session\_Types\_Pkg::obuEventsAndPhases\_T \\
 	\midrule
@@ -134,7 +135,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehav
 	\midrule
 	Description				& Radio network ID to be used at power up \\
 	\midrule
-	Source					& ??? \\ 
+	Source					& Input is a constant currently. \\ 
 	\midrule
 	Type					& Packet\_Types\_Pkg::P45\_RadioNetworkRegistration\_T \\
 	\midrule
@@ -156,7 +157,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehav
 	\midrule
 	Description				& Radio network ID entered by the driver \\
 	\midrule
-	Source					& ??? \\ 
+	Source					& Input is a constant currently. \\ 
 	\midrule
 	Type					& Packet\_Types\_Pkg::P45\_RadioNetworkRegistration\_T \\
 	\midrule
@@ -178,7 +179,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehav
 	\midrule
 	Description				& Current registration status information from mobile modem 1 \\
 	\midrule
-	Source					& API \\ 
+	Source					& F2 input API\_mobileHWStatus \\ 
 	\midrule
 	Type					& RCM\_Types\_Pkg::mobileRegistrationContext\_T \\
 	\midrule
@@ -200,7 +201,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehav
 	\midrule
 	Description				& Current registration status information from mobile modem 2 \\
 	\midrule
-	Source					& API \\ 
+	Source					& F2 input API\_mobileHWStatus \\ 
 	\midrule
 	Type					& RCM\_Types\_Pkg::mobileRegistrationContext\_T \\
 	\midrule
@@ -222,7 +223,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehav
 	\midrule
 	Description				& Current connection status information from mobile modem 1 \\
 	\midrule
-	Source					& API \\ 
+	Source					& F2 input API\_mobileHWStatus \\ 
 	\midrule
 	Type					& RCM\_Types\_Pkg::mobileConnectionContext\_T \\
 	\midrule
@@ -244,7 +245,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehav
 	\midrule
 	Description				& Current connection status information from mobile modem 2 \\
 	\midrule
-	Source					& API \\ 
+	Source					& F2 input API\_mobileHWStatus \\ 
 	\midrule
 	Type					& RCM\_Types\_Pkg::mobileConnectionContext\_T \\
 	\midrule
@@ -266,7 +267,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehav
 	\midrule
 	Description				& Messages received from track \\
 	\midrule
-	Source					&  Manage\_TrackSideInformation\_Integration \\ 
+	Source					& F2.1 Manage\_TrackSideInformation\_Integration \\ 
 	\midrule
 	Type					& RCM\_MsgTypes\_Pkg::msgFromTrack\_T \\
 	\midrule
@@ -376,7 +377,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehav
 	\midrule
 	Description				& Collection of currently known balise groups \\
 	\midrule
-	Source					& calculateTrainPosition \\ 
+	Source					& F2.6 calculateTrainPosition \\ 
 	\midrule
 	Type					& TrainPosition\_Types\_Pck::positionedBGs\_T \\
 	\midrule
@@ -398,7 +399,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehav
 	\midrule
 	Description				& Time, according to trainborne clock, at which messages are to be sent \\
 	\midrule
-	Source					& ??? \\ 
+	Source					& F2 input API\_SystemTime \\ 
 	\midrule
 	Type					& T\_TRAIN \\
 	\midrule
@@ -420,7 +421,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehav
 	\midrule
 	Description				& Initializes the component and deletes the internal storage \\
 	\midrule
-	Source					& The OBUs system start controller \\ 
+	Source					& F2 input EVC\_reset \\ 
 	\midrule
 	Type					& bool \\
 	\midrule
@@ -464,7 +465,8 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Misbehav
 	\midrule
 	Description				& Train parameters used to calculate the handover location and to generate messages to the RBC \\
 	\midrule
-	Source					& The OBUs configuration manager \\ 
+	Source					& F2.3 trainData\newline
+	F2.10 manageDMI\_Input \\ 
 	\midrule
 	Type					& TrainPosition\_Types\_Pck::trainProperties\_T \\
 	\midrule
@@ -511,7 +513,12 @@ Output name				& radioStatus\_1 \\
 \midrule
 Description				& Radio registration, connection and session status for radio link 1 \\
 \midrule
-Destination				& All components which need to know the radio status \\ 
+Destination				& 
+F2.1 Manage\_TrackSideInformation\_Integration\newline
+F2.2 Manage\_ETCS\_Procedures\newline
+F2.3 trainData\newline
+F2.8ProvidePositionReport\newline
+F2.11 manageDMI\_Output \\ 
 \midrule
 Type					& RCM\_Session\_Types\_Pkg::morcStatus\_T \\
 \midrule
@@ -533,7 +540,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 	\midrule
 	Description				& Radio registration, connection and session status for radio link 2 \\
 	\midrule
-	Destination				& All components which need to know the radio status \\ 
+	Destination				& Output is currently not used in the model. \\ 
 	\midrule
 	Type					& RCM\_Session\_Types\_Pkg::morcStatus\_T \\
 	\midrule
@@ -665,7 +672,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 	\midrule
 	Description				& Designates the current supervising RBC for the InformationFilter to support input message filtering and buffering there \\
 	\midrule
-	Destination				& InformationFilter \\ 
+	Destination				& F2.1 Manage\_TrackSideInformation\_Integragion \\ 
 	\midrule
 	Type					& Handover\_Pkg::connection\_ids\_T \\
 	\midrule
@@ -775,7 +782,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 	\midrule
 	Description				& Triggers the providePositionReport function to provide a position report at positionReport\_in input. \\
 	\midrule
-	Destination				& providePositionReport \\ 
+	Destination				& Output is currently not used in the model. \\ 
 	\midrule
 	Type					& bool \\
 	\midrule
@@ -798,7 +805,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 	\midrule
 	Description				& Triggers the provideTrainData function to provide a train data set (packet 11) at trainData\_in input \\
 	\midrule
-	Destination				& provideTrainData ??? \\ 
+	Destination				& Output is currently not used in the model. \\ 
 	\midrule
 	Type					& bool \\
 	\midrule
@@ -820,7 +827,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 	\midrule
 	Description				& Informs the OBU that the order to contact an RBC has to be rejected \\
 	\midrule
-	Destination				& ??? \\ 
+	Destination				& Output is currently not used in the model. \\ 
 	\midrule
 	Type					& bool \\
 	\midrule
@@ -909,7 +916,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
 	\midrule
 	Description				& When false, indicates that MoRC\_HO has not finished the current operation and needs at least one more clock before the next input event can be consumed. \\
 	\midrule
-	Destination				& All components providing inputs for MoRC\_HO \\ 
+	Destination				& F2.3 trainData \\ 
 	\midrule
 	Type					& bool \\
 	\midrule
