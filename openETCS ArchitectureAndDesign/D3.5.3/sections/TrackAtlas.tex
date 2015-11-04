@@ -2,7 +2,6 @@
 %!TEX root = ../D3_5_3.tex
 
 \section{F2.4: TrackAtlas}\label{s:F2.4}
-\todo[inline]{Section needs to be completed}
 
 \subsection{Component Requirements}
 
@@ -69,17 +68,17 @@ Input name				& MessageIn \\
 \midrule
 Description				& Track to train message (as defined in Subset 026, chapter 8) with containing packets (as defined in Subset 026, chapter 7) \\
 \midrule
-Source					& Information Filter\\ 
+Source					& F2.1 Manage\_TracksideInformation\_Integration\\ 
 \midrule
 Type					& Common\_Types\_Pkg::ReceivedMessage\_T \\
 \midrule
 Valid range of values	& valid combinations of Messages and Packets as implemented in the package TrackMessages \\
 \midrule
-Behaviour when value is at boundary	& not applicable\\
+Behaviour when value is at boundary	& n/a\\
 \midrule
-Behaviour for values out of valid range	& invalid messages/ packets are ignored \\
+Behaviour for values out of valid range	& Invalid messages/ packets are ignored. \\
 \midrule
-Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & the messages are only seen as valid if they are present \\
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & The messages are only seen as valid if they are present. \\
 \bottomrule
 \end{longtable}
 
@@ -92,7 +91,7 @@ Input name				& ModeAndLevel\_in \\
 \midrule
 Description				& Status data on mode and level\\
 \midrule
-Source					& Mode and Level management \\ 
+Source					& F2.5 ManageModeAndLevel \\ 
 \midrule
 Type					& Level\_And\_Mode\_Types\_Pkg::T\_Mode\_Level \\
 \midrule
@@ -114,7 +113,7 @@ Input name				& TrainData\_in\\
 \midrule
 Description				& Data received from TIU\\
 \midrule
-Source					& TIU \\ 
+Source					& F2.3 trainData \\ 
 \midrule
 Type					& TrackAtlasTypes::FromTIU\_tl \\
 \midrule
@@ -139,7 +138,7 @@ Input name				& TrainPositionIn\\
 \midrule
 Description				& Structured Information about all aspects of the current state of the train with respect to the coordinate system, balise positioning and integrity information and the train position\\
 \midrule
-Source					& CalculateTrainPosition \\ 
+Source					& F2.6 calculateTrainPosition \\ 
 \midrule
 Type					& TrainPosition\_Types\_Pck::trainPosition\_T \\
 \midrule
@@ -187,7 +186,7 @@ Input name				& SystemTime\\
 \midrule
 Description				& Reference time of the EVC\\
 \midrule
-Source					& API \\ 
+Source					& F2 input API\_SystemTime \\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::T\_internal\_Type\\
 \midrule
@@ -211,7 +210,7 @@ Input name				& preindicationLocation\\
 \midrule
 Description				& Preindication location for speed or target supervision \\
 \midrule
-Source					& SDM \\ 
+Source					& F2.7 SpeedSupervision\_Integration \\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::L\_internal\_Type\\
 \midrule
@@ -236,7 +235,7 @@ Input name				& odometry\\
 \midrule
 Description				& Odometry Data  \\
 \midrule
-Source					& API \\ 
+Source					& F2 input API\_Odometry \\ 
 \midrule
 Type					& Obu\_BasicTypes\_Pkg::odometry\_T\\
 \midrule
@@ -286,7 +285,8 @@ Input name				& trainProps\\
 \midrule
 Description				& Train Characteristics as provided by CalculateTrainPosition  \\
 \midrule
-Source					& CalculateTrainPosition \\ 
+Source					& F2.3 trainData\newline
+F2.10 manageDMI\_Input \\ 
 \midrule
 Type					& TrainPosition\_Types\_Pck::trainProperties\_T\\
 \midrule
@@ -311,7 +311,7 @@ Input name				& packet0\\
 \midrule
 Description				& Train Position Report packet 0  \\
 \midrule
-Source					& TrainPositionReport \\ 
+Source					& F2.8 ProvidePositionReport \\ 
 \midrule
 Type					& Packet\_TrainTypes\_Pkg::PT0\_PositionReport\_T\\
 \midrule
@@ -336,7 +336,7 @@ Input name				& packet1\\
 \midrule
 Description				& Train Position Report based on two balise groups (Packet 1)  \\
 \midrule
-Source					& TrainPositionReport \\ 
+Source					& F2.8 ProvidePositionReport \\ 
 \midrule
 Type					& Packet\_TrainTypes\_Pkg::PT1\_PositionReport\_2BG\_T\\
 \midrule
@@ -362,7 +362,7 @@ Input name				& t\_train\\
 \midrule
 Description				& Time reference of the EVC  \\
 \midrule
-Source					& API\\ 
+Source					& F2 input API\_SystemTime\\ 
 \midrule
 Type					& T\_TRAIN\\
 \midrule
@@ -388,7 +388,7 @@ Input name				& bus\_in\\
 \midrule
 Description				& Train to track message bus  \\
 \midrule
-Source					& Train to track message bus on EVC level\\ 
+Source					& F2.3 trainData\\ 
 \midrule
 Type					& TM\_TrainTrack\_Bus::M\_TrainTrackMessageBus\_t\\
 \midrule
@@ -416,7 +416,7 @@ Input name				& P203V1\_onboard\\
 \midrule
 Description				& Default values for track to train packet 203 as stored onboard. In case of a baseline 2 track, these data are used to build a baseline 3- conformal packet 3. \\
 \midrule
-Source					& TIU\\ 
+Source					& F2 input API\_persistentData\\ 
 \midrule
 Type					& TM\_baseline2::P203V1\_OBU\_T\\
 \midrule
@@ -441,7 +441,7 @@ Input name				& PermanentDataP003\\
 \midrule
 Description				& Default values for track to train packet 3 (baseline 2) as stored onboard. In case of a baseline 2 track, these data are used to build a baseline 3- conformal packet 3. \\
 \midrule
-Source					& TIU\\ 
+Source					& F2 input API\_persistentData\\ 
 \midrule
 Type					& TM\_baseline2::P003\_permanent\_data\_T\\
 \midrule
@@ -492,7 +492,7 @@ Output name				& To\_ModeAndLevel \\
 \midrule
 Description				& Aggregated status information concerning the data maintained by TrackAtlas, for usage by Mode and Levels Management Module \\
 \midrule
-Destination				& Mode and Levels \\ 
+Destination				& F2.5 ManageLevelAndMode \\ 
 \midrule
 Type					& TrackAtlasTypes::DataForModeAndLevel\_t\\
 \midrule
@@ -503,7 +503,6 @@ Behaviour when value is at boundary	& n/a  \\
 Behaviour for values out of valid range	& n/a  \\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
-\\
 \bottomrule
 \end{longtable}
 
@@ -515,7 +514,7 @@ Output name				& to\_DMI \\
 \midrule
 Description				& Aggregated information concerning Movement Authority (MA information, Gradient Profile Information, MRSP information; formatted for use by DMI \\
 \midrule
-Destination				& DMI interface  \\ 
+Destination				& F2.11 manageDMI\_Output  \\ 
 \midrule
 Type					& TrackAtlasTypes::DataForDMI\_t\\
 \midrule
@@ -526,7 +525,6 @@ Behaviour when value is at boundary	& n/a  \\
 Behaviour for values out of valid range	& n/a  \\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
-\\
 \bottomrule
 \end{longtable}
 
@@ -536,9 +534,9 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
 \toprule
 Output name				& MRSP \\
 \midrule
-Description				& Aggregated information concerning Movement Authority (MA information, Gradient Profile Information, MRSP information; formatted for use by SDM \\
+Description				& Aggregated information concerning Movement Authority (MA information, Gradient Profile Information, MRSP information; formatted for use by SDM. \\
 \midrule
-Destination				& SDM  \\ 
+Destination				& Output is currently not used in the model.  \\ 
 \midrule
 Type					& TrackAtlasTypes::DataForSupervision\_nextGen\_t\\
 \midrule
@@ -549,7 +547,6 @@ Behaviour when value is at boundary	& n/a  \\
 Behaviour for values out of valid range	& n/a  \\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
-\\
 \bottomrule
 \end{longtable}
 
@@ -561,7 +558,7 @@ Output name				& to\_Supervision \\
 \midrule
 Description				& Most restrictive speed profile \\
 \midrule
-Destination				& EVC, for various usage  \\ 
+Destination				&F2.7 SpeedSupervision\_Integration  \\ 
 \midrule
 Type					& TrackAtlasTypes::MRSP\_Profile\_t\\
 \midrule
@@ -572,7 +569,6 @@ Behaviour when value is at boundary	& n/a  \\
 Behaviour for values out of valid range	& n/a  \\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
-\\
 \bottomrule
 \end{longtable}
 
@@ -584,7 +580,7 @@ Output name				& MA\_onboard\_out \\
 \midrule
 Description				& Movement authority information extracted from Packet 15 or 16, normalised to train coordinate system\\
 \midrule
-Destination				& EVC, for various usage  \\ 
+Destination				& Output is currently not used in the model.  \\ 
 \midrule
 Type					& TrackAtlasTypes::MovementAuthority\_t\\
 \midrule
@@ -595,7 +591,6 @@ Behaviour when value is at boundary	& n/a  \\
 Behaviour for values out of valid range	& n/a  \\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
-\\
 \bottomrule
 \end{longtable}
 
@@ -607,11 +602,9 @@ Output name				& bus\_out \\
 \midrule
 Description				& Train to track message bus containing train to track messages with optional packets \\
 \midrule
-Destination				& EVC level train to track message bus  \\ 
+Destination				& F2.8 ProvidePositionReport  \\ 
 \midrule
 Type					& TM\_TrainTrack\_Bus::M\_TrainTrackMessageBus\_t\\
-
-
 \midrule
 Valid range of values	& n/a \\
 \midrule
@@ -620,7 +613,6 @@ Behaviour when value is at boundary	& n/a  \\
 Behaviour for values out of valid range	& n/a  \\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
-\\
 \bottomrule
 \end{longtable}
 
@@ -632,11 +624,9 @@ Output name				& ces\_accepted \\
 \midrule
 Description				& Flag to indicate that a conditional emergency stop has been accepted in the current cycle \\
 \midrule
-Destination				& SDM  \\ 
+Destination				& Output is currently not used in the model.  \\ 
 \midrule
 Type					& bool\\
-
-
 \midrule
 Valid range of values	& true/ false \\
 \midrule
@@ -645,7 +635,6 @@ Behaviour when value is at boundary	& n/a  \\
 Behaviour for values out of valid range	& n/a  \\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
-\\
 \bottomrule
 \end{longtable}
 
@@ -657,11 +646,9 @@ Output name				& ces\_revoked \\
 \midrule
 Description				& Flag to indicate that a conditional emergency stop has been revoked in the current cycle \\
 \midrule
-Destination				& SDM  \\ 
+Destination				& Output is currently not used in the model.  \\ 
 \midrule
 Type					& bool\\
-
-
 \midrule
 Valid range of values	& true/ false \\
 \midrule
@@ -670,7 +657,6 @@ Behaviour when value is at boundary	& n/a  \\
 Behaviour for values out of valid range	& n/a  \\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
-\\
 \bottomrule
 \end{longtable}
 
@@ -682,11 +668,9 @@ Output name				& trip\_train \\
 \midrule
 Description				& Flag to indicate that the train must be tripped \\
 \midrule
-Destination				& SDM , Mode and Level\\ 
+Destination				& Output is currently not used in the model.\\ 
 \midrule
 Type					& bool\\
-
-
 \midrule
 Valid range of values	& true/ false \\
 \midrule
@@ -695,7 +679,6 @@ Behaviour when value is at boundary	& n/a  \\
 Behaviour for values out of valid range	& n/a  \\
 \midrule
 Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a  \\
-\\
 \bottomrule
 \end{longtable}
 

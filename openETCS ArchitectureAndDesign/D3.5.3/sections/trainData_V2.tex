@@ -235,7 +235,7 @@ Description				& Timestamp for messaging to the RBC. Information of the EVC rele
 \end{itemize}
 The MoRC ready input is used to indicate the evc:morc function is ready with acknowledgment of the communication session.\\
 \midrule
-Source					& F2.9 MoRC\\ 
+Source					& F2.9 MoRC\_HO\\ 
 \midrule
 Type						& trainData\_Types\_pkg::trainData\_Events\_T\\
 \midrule
@@ -259,7 +259,6 @@ Input name				& nidEngine\\
 Description				& ID of the engine. This ID is used in communication with the RBC in order to uniquely identify the engine.\\
 \midrule
 Source					& F2 input API\_persistentData\\ 
-\\ 
 \midrule
 Type					& NID\_ENGINE\\
 \midrule
@@ -328,7 +327,7 @@ Input name				& inMessageBus\\
 Description				& The trainData function makes use of communication to the RBC. The input parameter gives access to the communication channel to the RBC.
 \\
 \midrule
-Source					& evc-model\\  
+Source					& This component is the starting point of the message bus. Here, the message bus is feed with a constant.\\  
 \midrule
 Type					& TM\_TrainTrack\_Bus::M\_TrainTrackMessageBus\_t\\
 \midrule
@@ -375,6 +374,7 @@ Destination				& F2.4 TrackAtlas\newline
 F2.6 calculateTrainPosition\newline
 F2.7 SpeedSupervision\_Integration\newline
 F2.8 ProvidePositionReport\newline
+F2.9 MoRC\_HO\newline
 F2.11 manageDMI\_Output 
 \\ 
 \midrule
@@ -398,17 +398,11 @@ Output name				& outMessageBus\\
 \midrule
 Description				& Messages for communicating with the RBC. Messages 129 (Validated Train Data) and 146 (Acknowledgement) are sent by this function. The presence of the message is indicated by a valid flag.\\
 \midrule
-Destination				& F2 The bus collects outgoing messages to an output to RTM\\ 
-\\ 
-\midrule
-Description				& The trainData function makes use of communication to the RBC. The input parameter gives access to the communication channel to the RBC.
-\\
-\midrule
-Source					& evc-model\\  
+Destination				& F2.4 TrackAtlas. The bus collects outgoing messages to an output to RTM\\ 
 \midrule
 Type					& TM\_TrainTrack\_Bus::M\_TrainTrackMessageBus\_t\\
 \midrule
-Valid range of values	& indicated by valid flag. \\
+Valid range of values	& Indicated by valid flag. \\
 \midrule
 Behaviour when value is at boundary	& n/a\\
 \midrule
@@ -424,7 +418,7 @@ Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a\\
 \toprule
 Output name				& triggerFromTrainData \\
 \midrule
-Description				& For a full implementation of ETCS trainDAta has additional tasks described in the standard but not implemented in openETCS. For those extensions the triggers are pre-defined. \\
+Description				& For a full implementation of ETCS trainData has additional tasks described in the standard but not implemented in openETCS. For those extensions the triggers are pre-defined. \\
 \midrule
 Destination				& evc \\ 
 \midrule
