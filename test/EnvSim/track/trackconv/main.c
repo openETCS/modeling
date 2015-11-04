@@ -4,7 +4,7 @@
 
 #define STARTPOS 0.0
 //#define STARTPOS 33000.0
-//#define ENDPOS   33000.0
+//#define ENDPOS   3000.0
 #define ENDPOS   40000.0
 #define DELTAPOS 0.1
 
@@ -27,9 +27,11 @@ int calcTriggerId(double curPos, int lrbg, double lrbgPos) {
 int main() {
   double pos = STARTPOS;
   int last_nid_bg = 0;
+  int last_n_pig = 0;
   double last_bg_pos = 0.0;
 
   int *cur_nid_bg = &outC.BaliseMessage.Header.nid_bg;
+  int *cur_n_pig = &outC.BaliseMessage.Header.n_pig;
   int *cur_nid_message = &outC.Compressed_Radio_Message_out.Header.nid_message;
 
   while(pos<=ENDPOS) {
@@ -38,8 +40,9 @@ int main() {
     TriggerMessages(&inC, &outC);
 
     // write balise message
-    if(*cur_nid_bg!=0 && *cur_nid_bg!=last_nid_bg) {
+    if(*cur_nid_bg!=0 && (*cur_nid_bg!=last_nid_bg || *cur_n_pig!=last_n_pig)) {
       last_nid_bg = *cur_nid_bg;
+      last_n_pig = *cur_n_pig;
       last_bg_pos = pos;
       es_bytes_to_hex(bmsize,(char*)&outC.BaliseMessage,hexbuf);
       printf("track::balise raw %s\n",hexbuf);
