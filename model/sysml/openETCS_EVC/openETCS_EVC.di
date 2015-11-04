@@ -86,9 +86,6 @@
       <emfPageIdentifier href="openETCS_EVC.notation#_7faUMGd2EeWo8vMBnCjgHA"/>
     </availablePage>
     <availablePage>
-      <emfPageIdentifier href="openETCS_EVC.notation#_7jXAEGd2EeWo8vMBnCjgHA"/>
-    </availablePage>
-    <availablePage>
       <emfPageIdentifier href="openETCS_EVC.notation#_7nU6EGd2EeWo8vMBnCjgHA"/>
     </availablePage>
     <availablePage>
