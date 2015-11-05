@@ -13,6 +13,7 @@ namespace eval ::ui {
   image create photo led_grey -file "$libpath/icons/led_grey.gif"
   image create photo balise -file "$libpath/icons/balise.gif"
   image create photo rmsg -file "$libpath/icons/rmsg.gif"
+  image create photo tmsg -file "$libpath/icons/tmsg.gif"
 }
 
 proc ui::led {path label color var} {

@@ -62,9 +62,10 @@ es_Status es_tcl_track_balise_get(char* subcmd, void (*appendResult)(char*, es_C
 
   if(!strcmp("header",subcmd)) {
     snprintf(es_msg_buf, ES_MSG_BUF_SIZE,
-             "{nid_bg %d} {n_total %d} {m_dup %d} {m_mcount %d} {m_version %d} "
+             "{nid_bg %d} {n_pig %d} {n_total %d} {m_dup %d} {m_mcount %d} {m_version %d} "
              "{nid_c %d} {q_link %d} {q_media %d} {q_updown %d}",
              bm->Header.nid_bg,
+             bm->Header.n_pig,
              bm->Header.n_total,
              bm->Header.m_dup,
              bm->Header.m_mcount,
@@ -164,7 +165,7 @@ es_Status es_tcl_track_info(void (*appendResult)(char* res, es_ClientData data),
   int i = 0;
   while(next!=NULL) {
     es_TriggeredBaliseMessage *bm = (es_TriggeredBaliseMessage*)next->data;
-    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"{b %d %d %.1f} ",i,bm->msg.Header.nid_bg,bm->triggerpos);
+    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"{b %d %d %d %.1f} ",i,bm->msg.Header.nid_bg,bm->msg.Header.n_pig,bm->triggerpos);
     appendResult(es_msg_buf,data);
 
     next = next->tail;

@@ -77,24 +77,60 @@ proc pkts::binToIntList {offset nint data} {
 
 proc pkts::readBinPkt {nid offset nint data} {
   set lst [binToIntList $offset $nint "$data"]
+  set subindex [expr $nid % 1000]
   switch -glob [expr $nid / 1000] {
      3?16 { return [readP003v1 "$lst"] }
      5?32 { return [readP005 "$lst"] }
     15?32 { return [readP015 "$lst"] }
     21?32 { return [readP021 "$lst"] }
-    27?16 { return [readP027 "$lst"] }
+    27?16 {
+      if {$subindex > 0} {return {}}
+      set niter [lindex "$lst" 4]
+      set seclst [binToIntList [expr $offset + 4*$nint] [expr 4*$niter] "$data"]
+      set lst [concat "$lst" "$seclst"]
+      return [readP027v1 "$lst"]
+    }
     41?32 { return [readP041 "$lst"] }
     42?32 { return [readP042 "$lst"] }
     45?32 { return [readP045 "$lst"] }
     46?32 { return [readP046 "$lst"] }
     57?32 { return [readP057 "$lst"] }
     58?32 { return [readP058 "$lst"] }
+    65?32 { return [readP065 "$lst"] }
    137?32 { return [readP137 "$lst"] }
    255??? { }
-    default { error "unexpected nid: $nid" }
+   default { error "unexpected nid: $nid" }
   }
 }
 
+proc pkts::readBinTrainPkts {offset data} {
+  binary scan "$data" x${offset}i nid
+  set pkts {}
+  while {$nid > 0 && $nid < 999} {
+    switch $nid {
+      998 { 
+        set lst [binToIntList $offset 17 "$data"]
+        lappend pkts [readTrainP000 "$lst"]
+        incr offset 17
+      }
+        1 {
+          set lst [binToIntList $offset 17 "$data"]
+          lappend pkts [readTrainP001 "$lst"]
+          incr offset 17
+        }
+        3 {
+          set lst [binToIntList $offset 8 "$data"]
+          lappend pkts [readTrainP003 "$lst"]
+          incr offset 8
+        }
+       11 { incr offset 25 }
+       default { error "invalid nid: $nid" }
+    }
+    binary scan "$data" x${offset}i nid
+  }
+
+  return $pkts
+}
 
 proc pkts::readP003v1 {data} {
   set niter [lindex $data 5]
@@ -337,6 +373,20 @@ proc pkts::readP058 {data} {
   return $d
 }
 
+proc pkts::readP065 {data} {
+  return [dict create\
+    nid_packet [lindex $data 0]\
+    q_dir      [lindex $data 1]\
+    q_scale    [lindex $data 3]\
+    nid_tsr    [lindex $data 4]\
+    d_tsr      [lindex $data 5]\
+    l_tsr      [lindex $data 6]\
+    q_front    [lindex $data 7]\
+    v_tsr      [lindex $data 8]\
+    ]
+}
+
+
 proc pkts::readP137 {data} {
   return [dict create\
     nid_packet [lindex $data 0]\
@@ -344,3 +394,57 @@ proc pkts::readP137 {data} {
     q_srstop   [lindex $data 3]\
   ]
 }
+
+proc pkts::readTrainP000 {data} {
+  return [dict create\
+    nid_packet 0\
+    q_scale    [lindex $data 2]\
+    nid_lrbg   [lindex $data 3]\
+    d_lrbg     [lindex $data 4]\
+    q_dir_lrbg [lindex $data 5]\
+    q_drl_lrbg [lindex $data 6]\
+    l_doubtover [lindex $data 7]\
+    l_doubtunder [lindex $data 8]\
+    q_length   [lindex $data 9]\
+    l_trainint [lindex $data 10]\
+    v_train    [lindex $data 11]\
+    q_dirtrain [lindex $data 12]\
+    m_mode     [lindex $data 13]\
+    m_level    [lindex $data 14]\
+    nid_ntc    [lindex $data 15]\
+    ]
+}
+
+proc pkts::readTrainP001 {data} {
+  return [dict create\
+    nid_packet 1\
+    q_scale    [lindex $data 2]\
+    nid_lrbg   [lindex $data 3]\
+    nid_prvlrbg [lindex $data 4]\
+    d_lrbg     [lindex $data 5]\
+    q_dir_lrbg [lindex $data 6]\
+    q_drl_lrbg [lindex $data 7]\
+    l_doubtover [lindex $data 8]\
+    l_doubtunder [lindex $data 9]\
+    q_length   [lindex $data 10]\
+    l_trainint [lindex $data 11]\
+    v_train    [lindex $data 12]\
+    q_dirtrain [lindex $data 13]\
+    m_mode     [lindex $data 14]\
+    m_level    [lindex $data 15]\
+    nid_ntc    [lindex $data 16]\
+    ]
+}
+
+proc pkts::readTrainP003 {data} {
+  set niter [lindex $data 2]
+  set d [dict create\
+    nid_packet 3\
+    n_iter  $niter\
+    ]
+  for {set i 0; set os 3} {$i<=$niter} {incr i; incr os} {
+    dict append d "nid_radio($i)" [lindex "$data" $os]
+  }
+  return $d
+}
+

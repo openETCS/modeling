@@ -28,10 +28,13 @@ void es_scade_probe_trackside_cycle(double currentPosition,
                                     CompressedRadioMessage_TM* rm,
                                     M_TrainTrack_Message_T_TM_radio_messages *tm,
                                     outC_ProbeTracksideInput_EnvSim* out) {
+  static int last_nid_bg = 0;
+  static int last_n_pig = 0;
   //static char hexdata[10000];
   if(scade_probe_evtstream != NULL && scade_probe_evtstream->client != INVALID_SOCKET) {
-    if(bm->Header.nid_c > 0) {
-      LOG_INFO(scade_probe,"Sending BM");
+    if(bm->Header.nid_c > 0 && !(bm->Header.nid_bg==last_nid_bg && bm->Header.n_pig==last_n_pig)) {
+      last_nid_bg = bm->Header.nid_bg;
+      last_n_pig = bm->Header.n_pig;
       int len = 8 + PROBE_TRACKSIDE_BMSG_SIZE;
       char buf[len];
       memcpy(buf,&currentPosition,8);
@@ -39,7 +42,6 @@ void es_scade_probe_trackside_cycle(double currentPosition,
       es_tcp_send(scade_probe_evtstream,TCPMSG_ES_EVT_BMSG,buf,len);
     }
     if(rm->Header.nid_message > 0) {
-      LOG_INFO(scade_probe,"Sending RM");
       int len = 8 + PROBE_TRACKSIDE_RMSG_SIZE;
       char buf[len];
       memcpy(buf,&currentPosition,8);
@@ -47,7 +49,11 @@ void es_scade_probe_trackside_cycle(double currentPosition,
       es_tcp_send(scade_probe_evtstream,TCPMSG_ES_EVT_RMSG,buf,len);
     }
     if(tm->Message.valid || tm->Message.nid_message > 0) {
-      LOG_INFO(scade_probe,"Sending TRAINMSG %d %d",tm->Message.valid,tm->Message.nid_message);
+      int len = 8 + PROBE_TRACKSIDE_TMSG_SIZE;
+      char buf[len];
+      memcpy(buf,&currentPosition,8);
+      memcpy(buf+8,tm,PROBE_TRACKSIDE_TMSG_SIZE);
+      es_tcp_send(scade_probe_evtstream,TCPMSG_ES_EVT_TMSG,buf,len);
     }
   }
 }

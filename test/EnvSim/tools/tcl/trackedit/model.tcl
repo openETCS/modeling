@@ -22,7 +22,7 @@ proc model::compMsgInfo {a b} {
 proc model::getMessageList {} {
   foreach msg [track::info] {
     switch [lindex $msg 0] {
-      b { set rec [list b[lindex $msg 1] "BG [lindex $msg 2]" [lindex $msg 3]] }
+      b { set rec [list b[lindex $msg 1] "BG [lindex $msg 2].[lindex $msg 3]" [lindex $msg 4]] }
       r { set rec [list r[lindex $msg 1] "MSG [format %02i [lindex $msg 2]]" [lindex $msg 3]] }
       default { error "Invalid track message type: [lindex $msg 0]" }
     }

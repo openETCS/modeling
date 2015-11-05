@@ -44,7 +44,7 @@ proc ctrl::showData {id} {
 proc ctrl::showBaliseData {msg pos} {
   variable headersTable
 
-  set view::idValue "BG [dict get $msg header nid_bg]"
+  set view::idValue "BG [dict get $msg header nid_bg].[dict get $msg header n_pig]"
   set view::posValue $pos
   # update headers table
   $headersTable delete [$headersTable children {}]
@@ -88,7 +88,7 @@ proc ctrl::updatePacketTable {data} {
     set subindex [lindex $pkt 13]
     set name [list [pkts::packetName $nid_packet]]
 
-    if {$subindex==0} {
+    if {$subindex==0 || $subindex==255} {
       $packetInfoTable insert {} end -id $index -text $index -values "$nid_packet $q_dir $m_version $name"
     }
   }
@@ -127,6 +127,7 @@ proc ctrl::onPacketTreeSelect {} {
     46:32 { showPacket [pkts::readP046 "$data"] }
     57:32 { showPacket [pkts::readP057 "$data"] }
     58:32 { showPacket [pkts::readP058 "$data"] }
+    65:32 { showPacket [pkts::readP065 "$data"] }
     137:32 { showPacket [pkts::readP137 "$data"] }
     default { setPacketNotSupported }
   }

@@ -56,6 +56,7 @@ proc comm::readMsg {channel} {
       3000 { ctrl::displayRemoteConfig [read $channel $len] }
       3001 { evts::handleBaliseMessage [read $channel $len] }
       3002 { evts::handleRadioMessage [read $channel $len] }
+      3003 { evts::handleTrainMessage [read $channel $len] }
       default { error "ERROR: received invalid message id=$id, len=$len" }
     }
   } else {
