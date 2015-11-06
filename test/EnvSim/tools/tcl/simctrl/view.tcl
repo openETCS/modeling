@@ -7,6 +7,7 @@
 package require Tk
 
 namespace eval ::view {
+  set logactive 1
 }
 
 proc view::addLabelField {path label var col row {rdly false} {width 10}} {
@@ -47,6 +48,13 @@ proc view::init {} {
   $m add cascade -menu $m.remote -label Remote
   $m.remote add command -label "Load Track File" -command "ctrl::loadRemoteTrackFile"
   $m.remote add checkbutton -label "Send Events" -variable cfg::remoteSendEvents -command ctrl::remoteSendEvents -onvalue 1 -offvalue 0
+
+  # View
+  menu $m.view
+  $m add cascade -menu $m.view -label View
+  $m.view add checkbutton -label "SDM" -variable sdm::active -command ctrl::showSDM -onvalue 1 -offvalue 0
+  $m.view add checkbutton -label "Commands" -variable macro::active -command ctrl::showCommands -onvalue 1 -offvalue 0
+  $m.view add checkbutton -label "Log" -variable view::logactive -command ctrl::showLog -onvalue 1 -offvalue 0
 
   . configure -menu .menubar
 

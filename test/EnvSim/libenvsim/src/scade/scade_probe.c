@@ -14,6 +14,7 @@
 const size_t PROBE_TRACKSIDE_BMSG_SIZE = sizeof(CompressedBaliseMessage_TM);
 const size_t PROBE_TRACKSIDE_RMSG_SIZE = sizeof(CompressedRadioMessage_TM);
 const size_t PROBE_TRACKSIDE_TMSG_SIZE = sizeof(M_TrainTrack_Message_T_TM_radio_messages);
+const size_t PROBE_SDM_TARGET_SIZE = sizeof(Target_T_TargetManagement_types);
 
 
 // If not NULL, send all events (track messages, train messages) to this stream
@@ -68,5 +69,16 @@ void es_scade_probe_sdm_cycle(TargetCollection_T_TargetManagement_types *targetC
                               CurveCollection_T_CalcBrakingCurves_types *curveCollection,
                               Target_T_TargetManagement_types *target,
                               outC_ProbeSDM_EnvSim *outC) {
+  static Target_real_T_TargetManagement_types last_target;
 
+  if( scade_probe_evtstream==NULL || scade_probe_evtstream->client == INVALID_SOCKET ) {
+    return;
+  }
+
+  if(target->valid) {
+    if( memcmp(&last_target,target,PROBE_SDM_TARGET_SIZE) ) {
+      memcpy(&last_target,target,PROBE_SDM_TARGET_SIZE);
+      es_tcp_send(scade_probe_evtstream,TCPMSG_ES_EVT_TGT,(char*)target,PROBE_SDM_TARGET_SIZE);
+    }
+  }
 }

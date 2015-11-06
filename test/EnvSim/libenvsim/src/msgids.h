@@ -51,6 +51,8 @@
 #define TCPMSG_ES_EVT_RMSG 3002
 // Event: radio message from train
 #define TCPMSG_ES_EVT_TMSG 3003
+// Event: SDM target (body: TargetManagement_types::Target_T)
+#define TCPMSG_ES_EVT_TGT  3004
 
 
 /***** GUI -> EVC/EnvSim *****/

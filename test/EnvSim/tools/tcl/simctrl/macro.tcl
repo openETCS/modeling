@@ -6,6 +6,7 @@
 # - 01.11.15, J. Kastner: initial version
 
 namespace eval ::macro {
+  set active 1
 }
 
 proc macro::initView {path} {

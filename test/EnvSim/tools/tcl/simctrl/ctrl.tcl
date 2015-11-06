@@ -57,3 +57,30 @@ proc ctrl::clearLog {} {
   .c.n.log.area delete 1.0 end
   .c.n.log.area configure -state disabled
 }
+
+# show or hide SDM tab
+proc ctrl::showSDM {} {
+  if $sdm::active {
+    .c.n add .c.n.sdm
+  } else {
+    .c.n hide .c.n.sdm
+  }
+}
+
+# show or hide Commands tab
+proc ctrl::showCommands {} {
+  if $macro::active {
+    .c.n add .c.n.macros
+  } else {
+    .c.n hide .c.n.macros
+  }
+}
+
+# show or hide Log tab
+proc ctrl::showLog {} {
+  if $view::logactive {
+    .c.n add .c.n.log
+  } else {
+    .c.n hide .c.n.log
+  }
+}

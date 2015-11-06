@@ -21,6 +21,9 @@ FILE *es_logfile = NULL;
 char es_logmsg[LOG_MSG_SIZE];
 char es_logbuf[LOG_BUF_SIZE];
 
+extern const char *ES_VERSION;
+extern const char *ES_BUILDDATE;
+
 es_LogLevel es_current_loglevel = ES_LOG_INFO;
 
 void es_log_write_to_file(char *msg) {
@@ -73,7 +76,8 @@ void es_log_init(char *logfile) {
 
 finish:
   atexit(es_log_exit);
-  es_log_write("*** openETCS libenvsim V" PROJECT_VERSION " (" PROJECT_BUILD ") ***");
+  snprintf(buf,256,"*** openETCS libenvsim V%s (%s) ***",ES_VERSION,ES_BUILDDATE);
+  es_log_write(buf);
 };
 
 

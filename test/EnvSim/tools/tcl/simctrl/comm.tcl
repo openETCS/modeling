@@ -53,10 +53,11 @@ proc comm::readMsg {channel} {
       1    { read $channel $len }
       2    { handleErrorMsg $channel $len }
       1003 { readMsgEVC2GUI $channel $len }
-      3000 { ctrl::displayRemoteConfig [read $channel $len] }
-      3001 { evts::handleBaliseMessage [read $channel $len] }
-      3002 { evts::handleRadioMessage [read $channel $len] }
-      3003 { evts::handleTrainMessage [read $channel $len] }
+      3000 { ctrl::displayRemoteConfig "[read $channel $len]" }
+      3001 { evts::handleBaliseMessage "[read $channel $len]" }
+      3002 { evts::handleRadioMessage "[read $channel $len]" }
+      3003 { evts::handleTrainMessage "[read $channel $len]" }
+      3004 { sdm::handleTargetMessage "[read $channel $len]" }
       default { error "ERROR: received invalid message id=$id, len=$len" }
     }
   } else {

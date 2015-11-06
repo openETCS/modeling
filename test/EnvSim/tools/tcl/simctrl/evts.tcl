@@ -12,6 +12,7 @@ namespace eval ::evts {
 
   set autoscroll 1
   set logMsg24 0
+  set logMsg132 0
   set logMsg136 0
 }
 
@@ -25,7 +26,8 @@ proc evts::initView {path} {
   grid [ttk::button $path.btns.clear -text Clear -command evts::clear] -column 0 -row 0 -sticky w
   grid [ttk::checkbutton $path.btns.scroll -text Autoscroll -variable evts::autoscroll -onvalue 1 -offvalue 0] -column 1 -row 0
   grid [ttk::checkbutton $path.btns.log24 -text Msg24 -variable evts::logMsg24 -onvalue 1 -offvalue 0] -column 2 -row 0
-  grid [ttk::checkbutton $path.btns.log136 -text Msg136 -variable evts::logMsg136 -onvalue 1 -offvalue 0] -column 3 -row 0
+  grid [ttk::checkbutton $path.btns.log132 -text Msg132 -variable evts::logMsg132 -onvalue 1 -offvalue 0] -column 3 -row 0
+  grid [ttk::checkbutton $path.btns.log136 -text Msg136 -variable evts::logMsg136 -onvalue 1 -offvalue 0] -column 4 -row 0
 
   grid [ttk::treeview $path.tree -columns {Position data type} -displaycolumns Position] -column 0 -row 1
   set tree $path.tree
@@ -70,6 +72,7 @@ proc evts::handleTrainMessage {data} {
   variable tree
 
   binary scan "$data" dx4i pos nid_message
+  if { $nid_message == 132 && !$evts::logMsg132 } return
   if { $nid_message == 136 && !$evts::logMsg136 } return
 
   set id [$tree insert {} end -text "MSG $nid_message" -values [list [format %.1f $pos] "$data" T] -image tmsg]
