@@ -8,3 +8,6 @@ make
 
 cp libenvsim.a ../../dist/win32/
 cp envsim.dll ../../dist/win32
+
+VERSION=$(cat ../../CMakeLists.txt | grep project | cut -d' ' -f 3)
+echo -e "$VERSION\n$(date)" > ../../dist/win32/VERSION

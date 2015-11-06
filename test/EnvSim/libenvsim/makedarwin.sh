@@ -7,3 +7,6 @@ make
 
 cp libenvsim.a ../../dist/darwin/
 cp envsim.dylib ../../dist/darwin/
+
+VERSION=$(cat ../../CMakeLists.txt | grep project | cut -d' ' -f 3)
+echo -e "$VERSION\n$(date)" > ../../dist/darwin/VERSION

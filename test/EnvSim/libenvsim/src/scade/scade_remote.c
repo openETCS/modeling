@@ -46,6 +46,25 @@ const size_t DMI2EVC_BUSMSG_SIZE = 311*sizeof(int32_t);
 const size_t EVC2GUI_STRUCT_SIZE = sizeof(EVC_to_GUI_EnvSim);
 const size_t GUI2EVC_STRUCT_SIZE = sizeof(GUI_to_EVC_EnvSim);
 
+char *es_remote_dmi_addr = NULL;
+int es_remote_dmi_port1 = 0;
+int es_remote_dmi_port2 = 0;
+
+void es_remote_addr_init() {
+  static int initialized = 0;
+  if(initialized) {
+    return;
+  }
+  initialized = 1;
+  es_remote_dmi_addr = getenv("ENVSIM_REMOTE_DMI_ADDR");
+  if( es_remote_dmi_addr== NULL ) {
+    es_remote_dmi_addr = REMOTE_DMI_ADDR;
+  }
+  char *tmp = getenv("ENVSIM_REMOTE_DMI_PORT1");
+  es_remote_dmi_port1 = tmp==NULL ? REMOTE_DMI_PORT1 : atoi(tmp);
+  tmp = getenv("ENVSIM_REMOTE_DMI_PORT2");
+  es_remote_dmi_port2 = tmp==NULL ? REMOTE_DMI_PORT2 : atoi(tmp);
+}
 
 
 void es_remote_flow_control() {
@@ -80,11 +99,12 @@ void es_remote_flow_control() {
 
 void es_remote_dmi_init(outC_RemoteDMI_EnvSim *out) {
   es_log_init("envsim_main.log");
+  es_remote_addr_init();
 
   LOG_INFO(scade_remote,"Initializing RemoteDMI operator");
-  es_scade_load_config();
+//  es_scade_load_config();
 
-  es_Interp *interp = es_get_interp();
+//  es_Interp *interp = es_get_interp();
 
 
   // connect to DMI server
@@ -94,17 +114,19 @@ void es_remote_dmi_init(outC_RemoteDMI_EnvSim *out) {
     LOG_ERROR(scade_remote,"could not initialize TCPContext for RemoteDMI");
     return;
   }
-  if( es_tcp_connect(ctx,REMOTE_DMI_ADDR,REMOTE_DMI_PORT1,"dmi_conn1",&es_remote_dmi_conn1) ) {
-    LOG_ERROR(scade_remote,"could not connect to RemoteDMI server @ %s:%d",REMOTE_DMI_ADDR,REMOTE_DMI_PORT1);
+
+  if( es_tcp_connect(ctx,es_remote_dmi_addr,es_remote_dmi_port1,"dmi_conn1",&es_remote_dmi_conn1) ) {
+    LOG_ERROR(scade_remote,"could not connect to RemoteDMI server @ %s:%d",es_remote_dmi_addr,es_remote_dmi_port1);
     es_remote_dmi_conn1 = NULL;
     return;
   }
 
-  LOG_INFO(scade_remote,"connected to RemoteDMI server @ %s:%d for EVC2DMI messages",REMOTE_DMI_ADDR,REMOTE_DMI_PORT1);
+  LOG_INFO(scade_remote,"connected to RemoteDMI server @ %s:%d for EVC2DMI messages",es_remote_dmi_addr,es_remote_dmi_port1);
 
   es_remote_dmi_conn2 = NULL;
-  if( es_tcp_connect(ctx,REMOTE_DMI_ADDR,REMOTE_DMI_PORT2,"dmi_conn2",&es_remote_dmi_conn2) ) {
-    LOG_ERROR(scade_remote,"could not connect to RemoteDMI server @ %s:%d",REMOTE_DMI_ADDR,REMOTE_DMI_PORT2);
+
+  if( es_tcp_connect(ctx,es_remote_dmi_addr,es_remote_dmi_port2,"dmi_conn2",&es_remote_dmi_conn2) ) {
+    LOG_ERROR(scade_remote,"could not connect to RemoteDMI server @ %s:%d",es_remote_dmi_addr,es_remote_dmi_port2);
     es_remote_dmi_conn2 = NULL;
     return;
   }
@@ -112,7 +134,7 @@ void es_remote_dmi_init(outC_RemoteDMI_EnvSim *out) {
     es_remote_dmi_conn2->afterSend = es_remote_flow_control;
   }
 
-  LOG_INFO(scade_remote,"connected to RemoteDMI server @ %s:%d for DMI2EVC messages",REMOTE_DMI_ADDR,REMOTE_DMI_PORT2);
+  LOG_INFO(scade_remote,"connected to RemoteDMI server @ %s:%d for DMI2EVC messages",es_remote_dmi_addr,es_remote_dmi_port2);
 
 }
 
@@ -169,11 +191,12 @@ void es_remote_dmi_cycle(EVC_to_DMI_Message_T_API_DMI_Pkg *evcToDMI, TIU_Input_m
 
 void es_remote_dmibus_init(outC_RemoteDMIBus_EnvSim *out) {
   es_log_init("envsim_main.log");
+  es_remote_addr_init();
 
   LOG_INFO(scade_remote,"Initializing RemoteDMIBus operator");
-  es_scade_load_config();
+//  es_scade_load_config();
 
-  es_Interp *interp = es_get_interp();
+//  es_Interp *interp = es_get_interp();
 
 
   // connect to DMI server
@@ -183,17 +206,17 @@ void es_remote_dmibus_init(outC_RemoteDMIBus_EnvSim *out) {
     LOG_ERROR(scade_remote,"could not initialize TCPContext for RemoteDMI");
     return;
   }
-  if( es_tcp_connect(ctx,REMOTE_DMI_ADDR,REMOTE_DMI_PORT1,"dmi_conn1",&es_remote_dmi_conn1) ) {
-    LOG_ERROR(scade_remote,"could not connect to RemoteDMI server @ %s:%d",REMOTE_DMI_ADDR,REMOTE_DMI_PORT1);
+  if( es_tcp_connect(ctx,es_remote_dmi_addr,es_remote_dmi_port1,"dmi_conn1",&es_remote_dmi_conn1) ) {
+    LOG_ERROR(scade_remote,"could not connect to RemoteDMI server @ %s:%d",es_remote_dmi_addr,es_remote_dmi_port1);
     es_remote_dmi_conn1 = NULL;
     return;
   }
 
-  LOG_INFO(scade_remote,"connected to RemoteDMI server @ %s:%d for EVC2DMI messages",REMOTE_DMI_ADDR,REMOTE_DMI_PORT1);
+  LOG_INFO(scade_remote,"connected to RemoteDMI server @ %s:%d for EVC2DMI messages",es_remote_dmi_addr,es_remote_dmi_port1);
 
   es_remote_dmi_conn2 = NULL;
-  if( es_tcp_connect(ctx,REMOTE_DMI_ADDR,REMOTE_DMI_PORT2,"dmi_conn2",&es_remote_dmi_conn2) ) {
-    LOG_ERROR(scade_remote,"could not connect to RemoteDMI server @ %s:%d",REMOTE_DMI_ADDR,REMOTE_DMI_PORT2);
+  if( es_tcp_connect(ctx,es_remote_dmi_addr,es_remote_dmi_port2,"dmi_conn2",&es_remote_dmi_conn2) ) {
+    LOG_ERROR(scade_remote,"could not connect to RemoteDMI server @ %s:%d",es_remote_dmi_addr,es_remote_dmi_port2);
     es_remote_dmi_conn2 = NULL;
     return;
   }
@@ -201,7 +224,7 @@ void es_remote_dmibus_init(outC_RemoteDMIBus_EnvSim *out) {
     es_remote_dmi_conn2->afterSend = es_remote_flow_control;
   }
 
-  LOG_INFO(scade_remote,"connected to RemoteDMI server @ %s:%d for DMI2EVC messages",REMOTE_DMI_ADDR,REMOTE_DMI_PORT2);
+  LOG_INFO(scade_remote,"connected to RemoteDMI server @ %s:%d for DMI2EVC messages",es_remote_dmi_addr,es_remote_dmi_port2);
 
 }
 
@@ -242,11 +265,12 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
 
 void es_remote_evc_init(outC_RemoteEVC_EnvSim *out) {
   es_log_init("envsim_dmi.log");
+  es_remote_addr_init();
 
   LOG_INFO(scade_remote,"Initializing RemoteEVC operator");
-  es_scade_load_config();
+//  es_scade_load_config();
 
-  es_Interp *interp = es_get_interp();
+//  es_Interp *interp = es_get_interp();
 
   // listen for EVC connections
   es_remote_evc_conn1 = NULL;
@@ -257,21 +281,21 @@ void es_remote_evc_init(outC_RemoteEVC_EnvSim *out) {
     return;
   }
 
-  if( es_tcp_listen(ctx,REMOTE_DMI_PORT1,"evc_conn1",&es_remote_evc_conn1) ) {
-    LOG_ERROR(scade_remote,"could not start RemoteEVC server on port %d",REMOTE_DMI_PORT1);
+  if( es_tcp_listen(ctx,es_remote_dmi_port1,"evc_conn1",&es_remote_evc_conn1) ) {
+    LOG_ERROR(scade_remote,"could not start RemoteEVC server on port %d",es_remote_dmi_port1);
     es_remote_evc_conn1 = NULL;
     return;
   }
 
-  LOG_INFO(scade_remote,"started RemoteEVC server for EVC2DMI messages on port %d",REMOTE_DMI_PORT1);
+  LOG_INFO(scade_remote,"started RemoteEVC server for EVC2DMI messages on port %d",es_remote_dmi_port1);
 
-  if( es_tcp_listen(ctx,REMOTE_DMI_PORT2,"evc_conn2",&es_remote_evc_conn2) ) {
-    LOG_ERROR(scade_remote,"could not start RemoteEVC server on port %d",REMOTE_DMI_PORT2);
+  if( es_tcp_listen(ctx,es_remote_dmi_port2,"evc_conn2",&es_remote_evc_conn2) ) {
+    LOG_ERROR(scade_remote,"could not start RemoteEVC server on port %d",es_remote_dmi_port2);
     es_remote_evc_conn2 = NULL;
     return;
   }
 
-  LOG_INFO(scade_remote,"started RemoteEVC server for EVC2DMI messages on port %d",REMOTE_DMI_PORT2);
+  LOG_INFO(scade_remote,"started RemoteEVC server for EVC2DMI messages on port %d",es_remote_dmi_port2);
 }
 
 void es_remote_evc_cycle(DMI_to_EVC_Message_T_API_DMI_Pkg *dmiToEVC, outC_RemoteEVC_EnvSim *outC) {
@@ -345,12 +369,12 @@ void es_remote_evc_cycle(DMI_to_EVC_Message_T_API_DMI_Pkg *dmiToEVC, outC_Remote
 
 void es_remote_evcbus_init(outC_RemoteEVCBus_EnvSim *out) {
   es_log_init("envsim_dmi.log");
-//  es_current_loglevel = ES_LOG_TRACE;
+  es_remote_addr_init();
 
   LOG_INFO(scade_remote,"Initializing RemoteEVCBus operator");
-  es_scade_load_config();
+//  es_scade_load_config();
 
-  es_Interp *interp = es_get_interp();
+//  es_Interp *interp = es_get_interp();
 
   // listen for EVC connections
   es_remote_evc_conn1 = NULL;
@@ -361,21 +385,21 @@ void es_remote_evcbus_init(outC_RemoteEVCBus_EnvSim *out) {
     return;
   }
 
-  if( es_tcp_listen(ctx,REMOTE_DMI_PORT1,"evc_conn1",&es_remote_evc_conn1) ) {
-    LOG_ERROR(scade_remote,"could not start RemoteEVC server on port %d",REMOTE_DMI_PORT1);
+  if( es_tcp_listen(ctx,es_remote_dmi_port1,"evc_conn1",&es_remote_evc_conn1) ) {
+    LOG_ERROR(scade_remote,"could not start RemoteEVC server on port %d",es_remote_dmi_port1);
     es_remote_evc_conn1 = NULL;
     return;
   }
 
-  LOG_INFO(scade_remote,"started RemoteEVC server for EVC2DMI messages on port %d",REMOTE_DMI_PORT1);
+  LOG_INFO(scade_remote,"started RemoteEVC server for EVC2DMI messages on port %d",es_remote_dmi_port1);
 
-  if( es_tcp_listen(ctx,REMOTE_DMI_PORT2,"evc_conn2",&es_remote_evc_conn2) ) {
-    LOG_ERROR(scade_remote,"could not start RemoteEVC server on port %d",REMOTE_DMI_PORT2);
+  if( es_tcp_listen(ctx,es_remote_dmi_port2,"evc_conn2",&es_remote_evc_conn2) ) {
+    LOG_ERROR(scade_remote,"could not start RemoteEVC server on port %d",es_remote_dmi_port2);
     es_remote_evc_conn2 = NULL;
     return;
   }
 
-  LOG_INFO(scade_remote,"started RemoteEVC server for EVC2DMI messages on port %d",REMOTE_DMI_PORT2);
+  LOG_INFO(scade_remote,"started RemoteEVC server for EVC2DMI messages on port %d",es_remote_dmi_port2);
 }
 
 void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC_RemoteEVCBus_EnvSim *outC) {
@@ -434,11 +458,12 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
 
 extern void es_remote_gui_init(outC_RemoteGUI_EnvSim *out) {
   es_log_init("envsim_main.log");
+  es_remote_addr_init();
 
   LOG_INFO(scade_remote,"Initializing RemoteGUI operator");
-  es_scade_load_config();
+//  es_scade_load_config();
 
-  es_Interp *interp = es_get_interp();
+//  es_Interp *interp = es_get_interp();
 
   // connect to GUI server
   es_remote_gui_conn = NULL;
