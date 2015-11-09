@@ -53,6 +53,7 @@ proc view::init {} {
   menu $m.view
   $m add cascade -menu $m.view -label View
   $m.view add checkbutton -label "SDM" -variable sdm::active -command ctrl::showSDM -onvalue 1 -offvalue 0
+  $m.view add checkbutton -label "SDM Plot" -variable sdm::plotactive -command ctrl::showSDMPlot -onvalue 1 -offvalue 0
   $m.view add checkbutton -label "Commands" -variable macro::active -command ctrl::showCommands -onvalue 1 -offvalue 0
   $m.view add checkbutton -label "Log" -variable view::logactive -command ctrl::showLog -onvalue 1 -offvalue 0
 
@@ -108,6 +109,9 @@ proc view::init {} {
   # SDM
   sdm::initView .c.n.sdm
   .c.n add .c.n.sdm -text " SDM "
+  # SDM Plot
+  sdm::initPlot .c.n.sdmplot
+  .c.n add .c.n.sdmplot -text " SDM Plot "
   # Macros
   macro::initView .c.n.macros
   .c.n add .c.n.macros -text " Commands "

@@ -79,6 +79,8 @@ int es_tcp_recvmsg(SOCKET sock, char *buf, size_t bufsize) {
   int nleft = len - rc;
   *p += rc;
   while(nleft>0) {
+    LOG_INFO(tcp,"waiting for %n more bytes",nleft);
+
     rc = recv(sock,p,nleft,0);
     if(rc < 0) {
       return rc;

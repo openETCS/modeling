@@ -422,6 +422,7 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
     es_TCPMessage *msg = NULL;
     es_tcp_read(es_remote_evc_conn1, TCPMSG_EVC2DMI_BUS,&msg);
     if (msg != NULL) {
+      LOG_INFO(scade_remote,"received message")
       run = true;
       if (msg->len != EVC2DMI_BUSMSG_SIZE) {
         LOG_ERROR(scade_remote, "Invalid EVC2DMI message: received %d bytes, expected %d bytes", msg->len,
