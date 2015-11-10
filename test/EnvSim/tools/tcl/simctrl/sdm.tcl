@@ -12,6 +12,8 @@ namespace eval ::sdm {
   set targetType -
   set targetDistance 0
   set targetSpeed 0
+
+  set plotactive 1
 }
 
 proc sdm::initView {path} {
@@ -68,4 +70,11 @@ proc sdm::logClear {} {
   $area configure -state normal
   $area delete 1.0 end
   $area configure -state disabled
+}
+
+proc sdm::initPlot {path} {
+
+  ttk::frame $path -padding 5
+  canvas $path.c -background white
+  pack $path.c -fill both
 }

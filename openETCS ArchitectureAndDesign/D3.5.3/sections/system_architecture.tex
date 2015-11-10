@@ -23,25 +23,25 @@ Figure~\ref{f:top_level} shows the top level architecture with external interfac
 
 %\todo[inline]{Descriptions should be improved}
 \begin{description}
-\item[E1:] In- and out flow between the Interlocking and the Eurobalise. Only relevant for controlled Eurobalises.
+\item[E1] Input and output interface between the Interlocking and the Eurobalise. Only relevant for controlled Eurobalises.
 
-\item[E2:] Input and output interface between the Interlocking and Radio Block Center (RBC).
+\item[E2] Input and output interface between the Interlocking and Radio Block Center (RBC).
 
-\item[E3:] Input interface from the Eurobalise to the ERTMS Track module.
+\item[E3] Input interface from the Eurobalise to the ERTMS Track module.
 
-\item[E4:] Input interface from the RBC to the ERTMS Track module.
+\item[E4] Input interface from the RBC to the ERTMS Track module.
 
-\item[E5:] This interface is used for the interaction between the driver and the display (Driver Machine Interface, DMI).
+\item[E5]  Input and output interface between the Driver and the ETCS OBU. This interface is used for the interaction between the driver and the display (Driver Machine Interface, DMI).
 
-\item[E6:] This interface is a compound structure and combines the interfaces E3 and E4 to send track side messages from Eurobalises or RBC to the ETCS OBU.
+\item[E6] This input interface from ERTMS Track module to the ETCS OBU is a compound structure and combines the interfaces E3 and E4 to send track side messages from Eurobalises or RBC to the ETCS OBU.
 
-\item[E7:] Input and output interface between RBC and ETCS OBU. This interface is used for the management of radio communication, e.g.~session management, and sending radio messages from the ETCS OBU to the RBC. Note that the ETCS OBU receives radio messages via interface E6.
+\item[E7] Input and output interface between RBC and ETCS OBU. This interface is used for the management of radio communication, e.g.~session management, and sending radio messages from the ETCS OBU to the RBC. Note that the ETCS OBU receives radio messages via interface E6.
 
-\item[E8:] Input interface to the odometry subsystem of the ETCS OBU. Used for sending information to the train if there is any movement outside the ETCS system, e.g.~"cold movement".
+\item[E8] Input interface to the odometry subsystem of the ETCS OBU. Used for sending information to the train if there is any movement outside the ETCS system, e.g.~"cold movement".
 
-\item[E9:] Input interface to the ETCS OBU to set configuration data such as fixed values, system values, national values and train configuration.
+\item[E9] Input interface to the ETCS OBU to set configuration data such as fixed values, system values, national values and train configuration.
 
-\item[E10:] Input and output interface between the ETCS OBU and the train. This interface is used for the interaction between the train and the ETCS OBU such as brake control, traction control, door control, etc.
+\item[E10] Input and output interface between the ETCS OBU and the train. This interface is used for the interaction between the train and the ETCS OBU such as brake control, traction control, door control, etc.
 
 \end{description}
 
@@ -52,7 +52,7 @@ Figure \ref{f:ETCS_OBU_decomposition} depicts the functional breakdown of the ET
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{images/F2_ETCS_Kernel.pdf}
-\caption{ETCS OBU system architecture view with internal interfaces I1 to I9.}
+\caption{ETCS OBU system architecture view with internal interfaces I1 to I10.}
 \label{f:ETCS_OBU_decomposition}
 \end{figure}
 %\todo[inline]{Component descriptions need to be completed}
@@ -67,24 +67,25 @@ Figure \ref{f:ETCS_OBU_decomposition} depicts the functional breakdown of the ET
 \item[F8 Persistent Data] This module provides persistent data about the train to the ETCS Kernel.
 \end{description}
 
-These components are interacting via the internal interfaces I1 to I8. In the following we give a brief description of the interfaces.
+These components are interacting via the internal interfaces I1 to I10. In the following we give a brief description of the interfaces.
 \begin{description}
-\item[I1:] Input interface that allows the F2 ETCS Kernel module to receive information from the Balise Transmission Module as well as the Radio Block Center.
+\item[I1] Input interface that allows the F2 ETCS Kernel module to receive information from the Balise Transmission Module as well as the Radio Block Center.
 
-\item[I2:] Input interface from the Odometry (ODO) to the F2 ETCS Kernel module.
+\item[I2] Input interface from the Odometry (ODO) to the F2 ETCS Kernel module.
 
-\item[I3:] Output interface between the F4 Radio Communication controller module and the F2 ETCS Kernel module. This interface is used for radio session management and sending radio messages from the OBU to the track side.
+\item[I3] Output interface between the F4 Radio Communication controller module and the F2 ETCS Kernel module. This interface is used for radio session management and sending radio messages from the OBU to the track side.
 
-\item[I4:] Input interface between the F4 Radio Communication Controller module and the F2 ETCS Kernel module.
+\item[I4] Input interface between the F4 Radio Communication Controller module and the F2 ETCS Kernel module.
 
-\item[I5:] Input interface between the F6 DMI Controller module and the F2 ETCS Kernel module.
+\item[I5] Input interface between the F6 DMI Controller module and the F2 ETCS Kernel module.
 
-\item[I6:] Output interface between the F6 DMI Controller module and the F2 ETCS Kernel module.
+\item[I6] Output interface between the F6 DMI Controller module and the F2 ETCS Kernel module.
 
-\item[I7:] Input interface between the F7 TIU Controller module and the F2 ETCS Kernel module.
+\item[I7] Input interface between the F7 TIU Controller module and the F2 ETCS Kernel module.
 
-\item[I8:] Output interface between the F7 TIU Controller module and the F2 ETCS Kernel module.
-\item[I9:] Input and output interface to the persistent storage of the OBU. In this storage data is made available for initialising the EVC with appropriate train status information.
+\item[I8] Output interface between the F7 TIU Controller module and the F2 ETCS Kernel module.
+\item[I9] Input interface from the persistent storage of the OBU to the ETCS Kernel. This persistent storage provides data for initializing the EVC with appropriate train status information.
+\item[I10]  Output interface from the ETCS Kernel to the persistent storage of the OBU. This persistent storage provides data for initializing the EVC with appropriate train status information.
 
 \end{description}
 

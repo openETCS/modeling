@@ -11,7 +11,8 @@ namespace eval ::ctrl {
 proc ctrl::error {msg} {
 }
 
-proc ctrl::displayRemoteConfig {data} {
+proc ctrl::handleRemoteConfig {data} {
+  ctrl::log remote "config: $data"
   foreach {k v} $data {
     switch $k {
       track {
@@ -22,6 +23,7 @@ proc ctrl::displayRemoteConfig {data} {
         }
       }
       sendevts {  }
+      scripttrack { showTrack $v }
     }
   }
 }
@@ -67,6 +69,15 @@ proc ctrl::showSDM {} {
   }
 }
 
+# show or hide SDM Plot tab
+proc ctrl::showSDMPlot {} {
+  if $sdm::plotactive {
+    .c.n add .c.n.sdmplot
+  } else {
+    .c.n hide .c.n.sdmplot
+  }
+}
+
 # show or hide Commands tab
 proc ctrl::showCommands {} {
   if $macro::active {
@@ -82,5 +93,14 @@ proc ctrl::showLog {} {
     .c.n add .c.n.log
   } else {
     .c.n hide .c.n.log
+  }
+}
+
+# show or hide track info
+proc ctrl::showTrack {visible} {
+  if $visible {
+    grid .c.track
+  } else {
+    grid remove .c.track
   }
 }

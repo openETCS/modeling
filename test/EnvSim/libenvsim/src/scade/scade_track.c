@@ -21,9 +21,13 @@ es_TrackSimState es_scripted_tracksim_state = {
   .prevRPos = 0.0
 };
 
+bool es_scripted_tracksim_active = false;
+
 
 void es_scripted_tracksim_init(outC_ScriptedTrack_EnvSim *out) {
   es_log_init(NULL);
+
+  es_scripted_tracksim_active = true;
 
   LOG_INFO(scade_track,"Initializing ScriptedTrack");
   es_scade_load_config();

@@ -6,6 +6,7 @@
 // - 05.10.15, J. Kastner: initial version
 // - 10.10.15, J. Kastner: implement handling of multiple messages in TCP input buffer;
 // - 05.11.15, J. Kastner: improve handling of incoming messages (es_tcp_recvmsg())
+// - 10.11.15, J. Kastner: make read algorithm in recvmsg() selectable via env variable ENVSIM_TCP_READMODE
 
 #include "tcp.h"
 #include "logging.h"
@@ -17,6 +18,7 @@
 // Timeout for winsock select() in usecs
 #define TCP_RECEIVE_TIMEOUT 1000
 
+bool es_tcp_rdmode_wait = false;
 
 #ifdef WINDOWS
 #define TCP_SYNC(ctx,fn,rc,lbl) \
@@ -54,8 +56,10 @@
 #endif
 
 int es_tcp_recvmsg(SOCKET sock, char *buf, size_t bufsize) {
-//  return recv(sock,buf,TCP_MSG_SIZE,MSG_WAITALL);
-//  return recv(sock,buf,bufsize,0);
+  if( !es_tcp_rdmode_wait ) {
+    return recv(sock,buf,bufsize,0);
+  }
+
   // read message length
   char *p = buf;
   int rc = recv(sock,p,8,0);
@@ -79,6 +83,8 @@ int es_tcp_recvmsg(SOCKET sock, char *buf, size_t bufsize) {
   int nleft = len - rc;
   *p += rc;
   while(nleft>0) {
+    LOG_INFO(tcp,"waiting for %n more bytes",nleft);
+
     rc = recv(sock,p,nleft,0);
     if(rc < 0) {
       return rc;
@@ -92,6 +98,17 @@ int es_tcp_recvmsg(SOCKET sock, char *buf, size_t bufsize) {
 
 es_Status es_tcp_init(es_TCPContext **ctx) {
   LOG_INFO(tcp,"initializing new TCP context");
+  char *rdmd = getenv("ENVSIM_TCP_READMODE");
+  if( rdmd != NULL && !strcmp("1",rdmd) ) {
+    LOG_INFO(tcp,"using ENVSIM_TCP_READMODE=1");
+    es_tcp_rdmode_wait = true;
+  }
+  else {
+    LOG_INFO(tcp,"using ENVSIM_TCP_READMODE=0");
+    es_tcp_rdmode_wait = false;
+  }
+
+
 #ifdef WINDOWS
   WSADATA wsa;
   int res = WSAStartup(MAKEWORD(2,0),&wsa);
@@ -101,7 +118,7 @@ es_Status es_tcp_init(es_TCPContext **ctx) {
 #endif
   es_TCPContext *c = MALLOC(es_TCPContext);
   c->streams = NULL;
-  c->thread = NULL;
+  c->thread = 0;
 #ifdef WINDOWS
   c->mutex = CreateMutex(NULL,FALSE,NULL);
   if(c->mutex==NULL) {
@@ -612,7 +629,7 @@ es_Status es_tcp_run(es_TCPContext *ctx) {
   if(ctx == NULL) {
     TCPERROR("cannot start thread for TCPContext NULL");
   }
-  if(ctx->thread != NULL) {
+  if(ctx->thread != 0) {
     LOG_WARN(tcp,"handler thread already started");
     return ES_OK;
   }
@@ -639,7 +656,7 @@ es_Status es_tcp_run(es_TCPContext *ctx) {
 
 es_Status es_tcp_stop(es_TCPContext *ctx) {
   LOG_TRACE(tcp,"Stopping TCP handler thread");
-  if(ctx == NULL || ctx->thread == NULL) {
+  if(ctx == NULL || ctx->thread == 0) {
     return ES_OK;
   }
 
