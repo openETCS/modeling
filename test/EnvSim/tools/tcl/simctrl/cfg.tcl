@@ -46,5 +46,6 @@ proc cfg::loadRemoteTrackFile {path} {
   ctrl::log simctrl "Loading remote track file '$path'"
   comm::sendRUNTCL "$path"
   comm::sendGETCONF
+  comm::sendGETBINF
 }
 

@@ -20,6 +20,7 @@ namespace eval ::comm {
   set TCPMSG_ES_GETCONF  4000
   set TCPMSG_ES_RUNTCL   4001
   set TCPMSG_ES_SENDEVTS 4002
+  set TCPMSG_ES_GETBINF  4003
 }
 
 proc comm::handleConnect {channel addr port} {
@@ -53,11 +54,12 @@ proc comm::readMsg {channel} {
       1    { read $channel $len }
       2    { handleErrorMsg $channel $len }
       1003 { readMsgEVC2GUI $channel $len }
-      3000 { ctrl::displayRemoteConfig "[read $channel $len]" }
+      3000 { ctrl::handleRemoteConfig "[read $channel $len]" }
       3001 { evts::handleBaliseMessage "[read $channel $len]" }
       3002 { evts::handleRadioMessage "[read $channel $len]" }
       3003 { evts::handleTrainMessage "[read $channel $len]" }
       3004 { sdm::handleTargetMessage "[read $channel $len]" }
+      3005 { read $channel $len  }
       default { error "ERROR: received invalid message id=$id, len=$len" }
     }
   } else {
@@ -116,6 +118,10 @@ proc comm::sendGETCONF {} {
 
 proc comm::sendSENDEVTS {flag} {
   sendStringMsg $comm::TCPMSG_ES_SENDEVTS [binary format b $flag]
+}
+
+proc comm::sendGETBINF {} {
+  sendStringMsg $comm::TCPMSG_ES_GETBINF {}
 }
 
 proc comm::sendStringMsg {msgid msg} {

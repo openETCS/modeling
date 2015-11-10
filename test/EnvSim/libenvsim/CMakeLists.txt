@@ -1,10 +1,13 @@
 cmake_minimum_required(VERSION 3.3)
-project(libenvsim VERSION 0.2.1 LANGUAGES C)
+project(libenvsim VERSION 0.3 LANGUAGES C)
 
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-include_directories(../Scade/Simulation/ ../Scade/include ../Scade/ ${JIMTCL})
+include_directories(../../../model/Scade/EnvSim/Simulation/
+  ../../../model/Scade/EnvSim/include
+  ../../../model/Scade/EnvSim/
+  ${JIMTCL})
 
 set(COMMON_SOURCE_FILES
   src/utils.c src/utils.h
