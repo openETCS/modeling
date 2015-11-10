@@ -69,5 +69,8 @@
 #define TCPMSG_ES_SENDEVTS 4002
 // request to send the balise positions for the current track
 #define TCPMSG_ES_GETBINF  4003
+// request to send the contained radio message to the EVC
+// (body: TM::CompressedRadioMessage)
+#define TCPMSG_ES_SENDRMSG 4004
 
 #endif //LIBENVSIM_MSGIDS_H

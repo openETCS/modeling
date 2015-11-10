@@ -7,6 +7,8 @@
 // - 11.10.15, J. Kastner: add support for RemoteGUI
 // - 20.10.15, J. Kastner: add support for new EVC-DMI-Bus
 // - 28.10.15, J. Kastner: extend remote_gui_cycle() for new SimCtrl features
+// - 10.11.15, J. Kastner: read remote GUI addr/port from env variables ENVSIM_REMOTE_GUI_ADDR/_PORT;
+//                         correct bug in dmibus_cycle() (present not set to false when no msg arrviced in this cycle)
 
 #ifdef WITH_SCADE
 #include "RemoteDMI_EnvSim.h"
@@ -49,6 +51,8 @@ const size_t GUI2EVC_STRUCT_SIZE = sizeof(GUI_to_EVC_EnvSim);
 char *es_remote_dmi_addr = NULL;
 int es_remote_dmi_port1 = 0;
 int es_remote_dmi_port2 = 0;
+char *es_remote_gui_addr = NULL;
+int es_remote_gui_port = 0;
 
 void es_remote_addr_init() {
   static int initialized = 0;
@@ -57,13 +61,20 @@ void es_remote_addr_init() {
   }
   initialized = 1;
   es_remote_dmi_addr = getenv("ENVSIM_REMOTE_DMI_ADDR");
-  if( es_remote_dmi_addr== NULL ) {
+  if( es_remote_dmi_addr == NULL ) {
     es_remote_dmi_addr = REMOTE_DMI_ADDR;
   }
   char *tmp = getenv("ENVSIM_REMOTE_DMI_PORT1");
   es_remote_dmi_port1 = tmp==NULL ? REMOTE_DMI_PORT1 : atoi(tmp);
   tmp = getenv("ENVSIM_REMOTE_DMI_PORT2");
   es_remote_dmi_port2 = tmp==NULL ? REMOTE_DMI_PORT2 : atoi(tmp);
+
+  es_remote_gui_addr = getenv("ENVSIM_REMOTE_GUI_ADDR");
+  if( es_remote_gui_addr == NULL ) {
+    es_remote_gui_addr = REMOTE_GUI_ADDR;
+  }
+  tmp = getenv("ENVSIM_REMOTE_GUI_PORT");
+  es_remote_gui_port =  tmp==NULL ? REMOTE_GUI_PORT : atoi(tmp);
 }
 
 
@@ -237,6 +248,9 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
   if(es_remote_dmi_conn1 != NULL && es_remote_dmi_conn1->socket != INVALID_SOCKET) {
     int send = in[0];
     if(send) {
+      //if( in[40] ) {
+//        LOG_INFO(scade_remote,"TEXTMSG @cycle=%d",cycle);
+//      }
       es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVC2DMI_BUS, (const char *) evcToDMI, EVC2DMI_BUSMSG_SIZE);
     }
     if(tiuToDMI->valid && cycle % SEND_TIUDATA_DIVIDER == 0) {
@@ -433,6 +447,9 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
       }
       es_tcp_free_msg(msg);
     }
+    else {
+      outC->evcToDMI[0] = 0;
+    }
     //else {
     //  outC->evcToDMI.present = false;
     //}
@@ -462,9 +479,6 @@ extern void es_remote_gui_init(outC_RemoteGUI_EnvSim *out) {
   es_remote_addr_init();
 
   LOG_INFO(scade_remote,"Initializing RemoteGUI operator");
-//  es_scade_load_config();
-
-//  es_Interp *interp = es_get_interp();
 
   // connect to GUI server
   es_remote_gui_conn = NULL;
@@ -473,13 +487,13 @@ extern void es_remote_gui_init(outC_RemoteGUI_EnvSim *out) {
     LOG_ERROR(scade_remote,"could not initialize TCPContext for RemoteGUI");
     return;
   }
-  if( es_tcp_connect(ctx,REMOTE_GUI_ADDR,REMOTE_GUI_PORT,"gui_conn",&es_remote_gui_conn) ) {
-    LOG_ERROR(scade_remote,"could not connect to RemoteGUI server @ %s:%d",REMOTE_GUI_ADDR,REMOTE_GUI_PORT);
+  if( es_tcp_connect(ctx,es_remote_gui_addr,es_remote_gui_port,"gui_conn",&es_remote_gui_conn) ) {
+    LOG_ERROR(scade_remote,"could not connect to RemoteGUI server @ %s:%d",es_remote_gui_addr,es_remote_gui_port);
     es_remote_gui_conn = NULL;
     return;
   }
 
-  LOG_INFO(scade_remote,"connected to RemoteGUI server @ %s:%d",REMOTE_GUI_ADDR,REMOTE_GUI_PORT);
+  LOG_INFO(scade_remote,"connected to RemoteGUI server @ %s:%d",es_remote_gui_addr,es_remote_gui_port);
 
 }
 

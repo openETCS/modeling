@@ -4,6 +4,7 @@
 //
 // History:
 // - 27.10.15, J. Kastner: initial version
+// - 10.11.15, J. Kastner: add support for TCPMSG_ES_SENDRMSG
 
 #include "rcontrol.h"
 #include "tcp.h"
@@ -30,6 +31,7 @@ extern es_TCPStream *scade_probe_evtstream;
 extern bool es_scripted_tracksim_active;
 #endif // WITH_SCADE
 extern const char *ES_VERSION;
+const size_t es_rcontrol_rmsize = sizeof(CompressedRadioMessage_TM);
 
 // if true, send events (track messages, train messages) to the GUI
 bool es_rcontrol_send_events = false;
@@ -108,11 +110,21 @@ es_Status es_rcontrol_get_balise_info(es_TCPStream *responseStream) {
   return es_tcp_send(responseStream,TCPMSG_ES_BINF,buf,len);
 }
 
+es_Status es_rcontrol_send_rmsg(es_TCPMessage *msg, es_TCPStream *responseStream) {
+  if( msg->len != es_rcontrol_rmsize ) {
+    RCERROR(responseStream,"Received invalid TCPMSG_ES_SENDRMSG: expected %d bytes, got %d",es_rcontrol_rmsize,msg->len);
+  }
+  CompressedRadioMessage_TM *rmsg = (CompressedRadioMessage_TM*)msg->data;
+  es_queue_radio_message(rmsg);
+  LOG_TRACE(rcontrol,"queued radio message %d",rmsg->Header.nid_message);
+
+  return ES_OK;
+}
+
 es_Status es_rcontrol_handle_msg(es_TCPMessage *msg, es_TCPStream *responseStream) {
   if(msg==NULL) {
     RCERROR(responseStream,"invalid rcontrol command: NULL");
   }
-
   LOG_TRACE(rcontrol,"received command ID %d",msg->id);
 
   switch(msg->id) {
@@ -137,6 +149,8 @@ es_Status es_rcontrol_handle_msg(es_TCPMessage *msg, es_TCPStream *responseStrea
 #endif // WITH_SCADE
     case TCPMSG_ES_GETBINF:
       return es_rcontrol_get_balise_info(responseStream);
+    case TCPMSG_ES_SENDRMSG:
+      return es_rcontrol_send_rmsg(msg,responseStream);
     default:
       RCERROR(responseStream,"unsupported rcontrol command: %d",msg->id);
   }

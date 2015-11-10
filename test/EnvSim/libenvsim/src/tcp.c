@@ -6,6 +6,7 @@
 // - 05.10.15, J. Kastner: initial version
 // - 10.10.15, J. Kastner: implement handling of multiple messages in TCP input buffer;
 // - 05.11.15, J. Kastner: improve handling of incoming messages (es_tcp_recvmsg())
+// - 10.11.15, J. Kastner: make read algorithm in recvmsg() selectable via env variable ENVSIM_TCP_READMODE
 
 #include "tcp.h"
 #include "logging.h"
