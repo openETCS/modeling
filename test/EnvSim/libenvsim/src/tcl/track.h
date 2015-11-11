@@ -16,7 +16,7 @@
 es_Status es_tcl_track_balise(char* subcmd, char* arg, void (*appendResult)(char*,es_ClientData), es_ClientData data);
 
 // handle subcommands for command "track::radio"
-es_Status es_tcl_track_radio(char* subcmd, char* arg, void (*appendResult)(char*,es_ClientData), es_ClientData data);
+es_Status es_tcl_track_radio(char* subcmd, char* arg1, char* arg2, void (*appendResult)(char*,es_ClientData), es_ClientData data);
 
 // handle subcommands for command "track::add"
 es_Status es_tcl_track_add(char* subcmd, double pos);
@@ -24,8 +24,11 @@ es_Status es_tcl_track_add(char* subcmd, double pos);
 // handle subcommands for command "track::info"
 es_Status es_tcl_track_info(void (*appendResult)(char* res, es_ClientData data), es_ClientData data);
 
-// handle command "track::title"
-es_Status es_tcl_track_title(char *title);
+// handle command "track::title TITLE"
+es_Status es_tcl_track_title_set(char *title);
+
+// handle command "track
+es_Status es_tcl_track_title_get(void (*appendResult)(char* res, es_ClientData data), es_ClientData data);
 
  // handle command "track::clear"
 es_Status es_tcl_track_clear();

@@ -55,6 +55,8 @@
 #define TCPMSG_ES_EVT_TGT  3004
 // String with balise positions and names
 #define TCPMSG_ES_BINF     3005
+// Event: Braking Curves Data (body: string list)
+#define TCPMSG_ES_EVT_BC   3006
 
 
 /***** GUI -> EVC/EnvSim *****/

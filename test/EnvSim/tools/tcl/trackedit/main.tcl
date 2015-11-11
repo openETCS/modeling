@@ -4,7 +4,9 @@
 # 
 # History:
 # - 24.09.15, J. Kastner: initial version
+# - 11.11.15, J. Kastner: add version info
 set scriptpath "[file dirname [info script]]"
+set VERSION "0.2 (11.11.15)"
 
 set isOSX [expr {"Darwin" eq $::tcl_platform(os)}]
 set isWin [expr {"windows" eq $::tcl_platform(platform)}]
@@ -18,7 +20,13 @@ if $isWin {
   error "platform not supported"
 }
 
-foreach s {view.tcl ctrl.tcl model.tcl ../lib/packets.tcl} {
+foreach s {
+  view.tcl
+  ctrl.tcl
+  model.tcl
+  ../lib/packets.tcl
+  ../lib/ui.tcl
+} {
   source "$scriptpath/$s"
 }
 

@@ -16,17 +16,18 @@ namespace eval ::ctrl {
 
 proc ctrl::openTrack {filename} {
   source $filename
+  set model::title [track::title]
   loadTree
 }
 
 
 proc ctrl::loadTree {} {
   variable tree
+  $tree delete [$tree children {}]
   foreach msg [model::getMessageList] {
-    $tree insert {} end -id [lindex $msg 0] -text [lindex $msg 1] -values [lindex $msg 2]
+    $tree insert {} end -id [lindex $msg 0] -text [lindex $msg 1] -values [lindex $msg 2] -image [lindex $msg 3]
   }
 }
-
 
 proc ctrl::showData {id} {
   variable tree

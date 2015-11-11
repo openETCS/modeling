@@ -5,11 +5,37 @@
 // History:
 // - 23.09.15, J. Kastner: initial version
 // - 28.10.15, J. Kastner: add track_clear() and track_title()
+// - 11.11.15, J. Kastner: add track::radio subcommands
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "track.h"
 #include "../trackmsg.h"
 #include "../logging.h"
+
+#ifdef WINDOWS
+char* mystrsep(char** stringp, const char* delim)
+{
+  char* start = *stringp;
+  char* p;
+
+  p = (start != NULL) ? strpbrk(start, delim) : NULL;
+
+  if (p == NULL)
+  {
+    *stringp = NULL;
+  }
+  else
+  {
+    *p = '\0';
+    *stringp = p + 1;
+  }
+
+  return start;
+}
+#else
+#define mystrsep strsep
+#endif // WINDOWS
 
 const size_t es_tcl_track_bmsize = sizeof(CompressedBaliseMessage_TM);
 const size_t es_tcl_track_rmsize = sizeof(CompressedRadioMessage_TM);
@@ -97,11 +123,11 @@ es_Status es_tcl_track_balise(char* subcmd, char* arg, void (*appendResult)(char
 }
 
 
-// retrieve data values from the balise message buffer
+// retrieve data values from the radio message buffer
 es_Status es_tcl_track_radio_get(char* subcmd, void (*appendResult)(char*, es_ClientData), es_ClientData data) {
   CompressedRadioMessage_TM *rm = &es_tcl_track_radio_buf;
 
-  if(!strcmp("header",subcmd)) {
+  if(subcmd != NULL && !strcmp("header",subcmd)) {
     snprintf(es_msg_buf, ES_MSG_BUF_SIZE,
              "{nid_message %d} {d_emergencystop %d} {d_ref %d} {d_sr %d} {m_ack %d} {m_version %d} "
              "{nid_em %d} {nid_lrbg %d} {q_dir %d} {q_scale %d} {radioDevice %d} {receivedSystemTime %d} "
@@ -129,16 +155,102 @@ es_Status es_tcl_track_radio_get(char* subcmd, void (*appendResult)(char*, es_Cl
   return ES_TCL_ERROR;
 }
 
+// set data values in the radio message buffer
+es_Status es_tcl_track_radio_set(char* subcmd, char* arg, void (*appendResult)(char*, es_ClientData), es_ClientData data) {
+  CompressedRadioMessage_TM *rm = &es_tcl_track_radio_buf;
 
-es_Status es_tcl_track_radio(char* subcmd, char* arg, void (*appendResult)(char*,es_ClientData), es_ClientData data) {
+  // header
+  if( subcmd != NULL && !strcmp("header",subcmd) ) {
+    if(arg==NULL) {
+      snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid sub command 'set header': missing argument");
+      return ES_TCL_ERROR;
+    }
+    char *varname, *next;
+    next = arg;
+    while((varname = mystrsep(&next," ")) != NULL) {
+      char *v = mystrsep(&next," ");
+      if( v == NULL ) {
+        snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"missing value for variable %s",varname);
+        return ES_TCL_ERROR;
+      }
+      int value = atoi(v);
+      if( !strcmp("nid_message",varname) ) {
+        rm->Header.nid_message = value;
+      }
+      else if( !strcmp("d_emergencystop",varname) ) {
+        rm->Header.d_emergencystop = value;
+      }
+      else if( !strcmp("d_ref",varname) ) {
+        rm->Header.d_ref = value;
+      }
+      else if( !strcmp("d_sr",varname) ) {
+        rm->Header.d_sr = value;
+      }
+      else if( !strcmp("m_ack",varname) ) {
+        rm->Header.m_ack = value;
+      }
+      else if( !strcmp("m_version",varname) ) {
+        rm->Header.m_version = value;
+      }
+      else if( !strcmp("nid_em",varname) ) {
+        rm->Header.nid_em = value;
+      }
+      else if( !strcmp("nid_lrbg",varname) ) {
+        rm->Header.nid_lrbg = value;
+      }
+      else if( !strcmp("q_dir",varname) ) {
+        rm->Header.q_dir = value;
+      }
+      else if( !strcmp("q_scale",varname) ) {
+        rm->Header.q_scale = value;
+      }
+      else if( !strcmp("radioDevice",varname) ) {
+        rm->Header.radioDevice = value;
+      }
+      else if( !strcmp("receivedSystemTime",varname) ) {
+        rm->Header.receivedSystemTime = value;
+      }
+      else if( !strcmp("t_sh_rqst",varname) ) {
+        rm->Header.t_sh_rqst = value;
+      }
+      else if( !strcmp("t_train",varname) ) {
+        rm->Header.t_train = value;
+      }
+      else if( !strcmp("t_train_reference",varname) ) {
+        rm->Header.t_train_reference = value;
+      }
+      else {
+        snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid radio header variable: %s",varname);
+        return ES_TCL_ERROR;
+      }
+    }
+    return ES_OK;
+  }
+
+  snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid sub command '%s': expected 'header'",subcmd);
+  return ES_TCL_ERROR;
+}
+
+
+es_Status es_tcl_track_radio(char* subcmd, char* arg1, char* arg2, void (*appendResult)(char*,es_ClientData), es_ClientData data) {
   if(!strcmp("load",subcmd)) {
-    return es_tcl_track_radio_load_index(atoi(arg));
+    return es_tcl_track_radio_load_index(atoi(arg1));
   }
   if(!strcmp("raw",subcmd)) {
-    return es_tcl_track_radio_load_raw(arg);
+    return es_tcl_track_radio_load_raw(arg1);
   }
   if(!strcmp("get",subcmd)) {
-    return es_tcl_track_radio_get(arg,appendResult,data);
+    return es_tcl_track_radio_get(arg1,appendResult,data);
+  }
+  if(!strcmp("set",subcmd)) {
+    return es_tcl_track_radio_set(arg1,arg2,appendResult,data);
+  }
+  if(!strcmp("clear",subcmd)) {
+    memset(&es_tcl_track_radio_buf,0,es_tcl_track_rmsize);
+    return ES_OK;
+  }
+  if(!strcmp("header",subcmd)) {
+    return ES_OK;
   }
   snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid sub command for 'track::radio': %s",subcmd);
   return ES_TCL_ERROR;
@@ -185,8 +297,15 @@ es_Status es_tcl_track_info(void (*appendResult)(char* res, es_ClientData data),
   return ES_OK;
 }
 
-es_Status es_tcl_track_title(char *title) {
+es_Status es_tcl_track_title_set(char *title) {
   es_tracksim_track.title = title;
+  return ES_OK;
+}
+
+es_Status es_tcl_track_title_get(void (*appendResult)(char* res, es_ClientData data), es_ClientData data) {
+  if( es_tracksim_track.title != NULL ) {
+    appendResult(es_tracksim_track.title,data);
+  }
   return ES_OK;
 }
 

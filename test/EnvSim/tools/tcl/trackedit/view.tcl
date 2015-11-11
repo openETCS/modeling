@@ -16,15 +16,6 @@ namespace eval ::view {
   variable packetData
 }
 
-proc view::addLabelField {path label var col row {value ""}} {
-  grid [ttk::label ${path}_l -text $label] -column $col -row $row -sticky e
-  if {$value != ""} {
-    grid [ttk::entry ${path}_v -text "$value"] -column [expr $col + 1] -row $row
-  } else {
-    grid [ttk::entry ${path}_v -textvariable $var] -column [expr $col + 1] -row $row
-  }
-}
-
 
 proc view::init {} {
   variable tabPackets
@@ -35,6 +26,7 @@ proc view::init {} {
   wm title . "openETCS TrackViewer"
 
   grid [ttk::frame .c -padding 10] -sticky nwes
+  grid rowconfigure .c 1 -minsize 5 -weight 0
 
 
   ### MENU ###
@@ -51,27 +43,32 @@ proc view::init {} {
 
   . configure -menu .menubar
 
+  ### HEAD FRAME ###
+  grid [ttk::frame .c.head] -column 0 -columnspan 2 -sticky we
+  ui::addLabelField .c.head.title Track: model::title 0 0 true 40
+
+
   ### TREE VIEW ###
-  grid [ttk::frame .c.nav -padding "0 0 5 0"] -column 0 -row 0 -sticky ns 
+  grid [ttk::frame .c.nav -padding "0 0 5 0"] -column 0 -row 2 -sticky ns 
   grid rowconfigure .c.nav 0 -weight 1
   grid [ttk::treeview .c.nav.tree -columns Position -height 20] -column 0 -row 0 -sticky ns
   set tree .c.nav.tree
   grid [ttk::scrollbar .c.nav.sb -command "$tree yview"] -column 1 -row 0 -sticky ns
   $tree configure -yscrollcommand ".c.nav.sb set"
-  $tree column  #0 -width 100
+  $tree column  #0 -width 110
   $tree heading #0 -text ID
-  $tree column  #1 -width 100
+  $tree column  #1 -width 110
   $tree heading #1 -text Position
   bind $tree <<TreeviewSelect>> ctrl::onTreeSelect
 
 
   ### DATA PANEL ###
-  grid [ttk::frame .c.d] -column 1 -row 0 -sticky nwes
+  grid [ttk::frame .c.d] -column 1 -row 2 -sticky nwes
   grid columnconfigure .c.d 2 -minsize 20
   # message ID
-  addLabelField .c.d.id ID: view::idValue 0 0
+  ui::addLabelField .c.d.id ID: view::idValue 0 0 true
   # position
-  addLabelField .c.d.pos Position: view::posValue 3 0
+  ui::addLabelField .c.d.pos Position: view::posValue 3 0 true
   # notebook with "Header" and "Packets"
   grid [ttk::notebook .c.d.n] -column 0 -columnspan 5 -row 1 -sticky wens
   grid rowconfigure .c.d 1 -weight 1

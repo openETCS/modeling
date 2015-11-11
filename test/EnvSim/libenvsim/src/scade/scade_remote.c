@@ -28,7 +28,7 @@
 #define REMOTE_GUI_PORT 20003
 
 // send TIU data only in cycles which are a multiple of this value
-#define SEND_TIUDATA_DIVIDER 5
+#define SEND_TIUDATA_DIVIDER 1
 
 #define SEND_GUIDATA_DIVIDER 10
 
@@ -53,8 +53,9 @@ int es_remote_dmi_port1 = 0;
 int es_remote_dmi_port2 = 0;
 char *es_remote_gui_addr = NULL;
 int es_remote_gui_port = 0;
+int es_remote_tiudata_divider = SEND_TIUDATA_DIVIDER;
 
-void es_remote_addr_init() {
+void es_remote_init() {
   static int initialized = 0;
   if(initialized) {
     return;
@@ -75,6 +76,12 @@ void es_remote_addr_init() {
   }
   tmp = getenv("ENVSIM_REMOTE_GUI_PORT");
   es_remote_gui_port =  tmp==NULL ? REMOTE_GUI_PORT : atoi(tmp);
+
+  tmp = getenv("ENVSIM_SEND_TIUDATA_DIVIDER");
+  if( tmp != NULL ) {
+    es_remote_tiudata_divider = atoi(tmp);
+  }
+
 }
 
 
@@ -110,7 +117,7 @@ void es_remote_flow_control() {
 
 void es_remote_dmi_init(outC_RemoteDMI_EnvSim *out) {
   es_log_init("envsim_main.log");
-  es_remote_addr_init();
+  es_remote_init();
 
   LOG_INFO(scade_remote,"Initializing RemoteDMI operator");
 //  es_scade_load_config();
@@ -202,9 +209,10 @@ void es_remote_dmi_cycle(EVC_to_DMI_Message_T_API_DMI_Pkg *evcToDMI, TIU_Input_m
 
 void es_remote_dmibus_init(outC_RemoteDMIBus_EnvSim *out) {
   es_log_init("envsim_main.log");
-  es_remote_addr_init();
+  es_remote_init();
 
   LOG_INFO(scade_remote,"Initializing RemoteDMIBus operator");
+  LOG_INFO(scade_remote,"sending TIU data every %d cycles",es_remote_tiudata_divider);
 //  es_scade_load_config();
 
 //  es_Interp *interp = es_get_interp();
@@ -247,14 +255,14 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
   // SEND
   if(es_remote_dmi_conn1 != NULL && es_remote_dmi_conn1->socket != INVALID_SOCKET) {
     int send = in[0];
+    if(tiuToDMI->valid && cycle % es_remote_tiudata_divider == 0) {
+      es_tcp_send(es_remote_dmi_conn1, TCPMSG_TIU2DMI, (const char*) tiuToDMI, TIU2DMI_STRUCT_SIZE);
+    }
     if(send) {
       //if( in[40] ) {
 //        LOG_INFO(scade_remote,"TEXTMSG @cycle=%d",cycle);
 //      }
       es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVC2DMI_BUS, (const char *) evcToDMI, EVC2DMI_BUSMSG_SIZE);
-    }
-    if(tiuToDMI->valid && cycle % SEND_TIUDATA_DIVIDER == 0) {
-      es_tcp_send(es_remote_dmi_conn1, TCPMSG_TIU2DMI, (const char*) tiuToDMI, TIU2DMI_STRUCT_SIZE);
     }
   }
   // RECEIVE
@@ -279,7 +287,7 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
 
 void es_remote_evc_init(outC_RemoteEVC_EnvSim *out) {
   es_log_init("envsim_dmi.log");
-  es_remote_addr_init();
+  es_remote_init();
 
   LOG_INFO(scade_remote,"Initializing RemoteEVC operator");
 //  es_scade_load_config();
@@ -383,7 +391,7 @@ void es_remote_evc_cycle(DMI_to_EVC_Message_T_API_DMI_Pkg *dmiToEVC, outC_Remote
 
 void es_remote_evcbus_init(outC_RemoteEVCBus_EnvSim *out) {
   es_log_init("envsim_dmi.log");
-  es_remote_addr_init();
+  es_remote_init();
 
   LOG_INFO(scade_remote,"Initializing RemoteEVCBus operator");
 //  es_scade_load_config();
@@ -476,7 +484,7 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
 
 extern void es_remote_gui_init(outC_RemoteGUI_EnvSim *out) {
   es_log_init("envsim_main.log");
-  es_remote_addr_init();
+  es_remote_init();
 
   LOG_INFO(scade_remote,"Initializing RemoteGUI operator");
 

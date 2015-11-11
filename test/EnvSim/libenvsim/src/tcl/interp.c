@@ -52,7 +52,7 @@ int es_jim_track_cmd(Jim_Interp *interp, int argc, Jim_Obj *const *argv) {
   }
   if(!strcmp("track::radio",cmd)) {
     if(!strcmp("raw",subcmd)) {
-      if(es_tcl_track_radio(subcmd,arg,es_jim_append_result,NULL)) {
+      if(es_tcl_track_radio(subcmd,arg,NULL,es_jim_append_result,NULL)) {
         RCERROR(interp,es_msg_buf);
       }
       return JIM_OK;
@@ -76,7 +76,7 @@ int es_jim_track_title(Jim_Interp *interp, int argc, Jim_Obj *const *argv) {
   char *title = GetString(argv[1]);
   char *buf = malloc(strlen(title));
   strcpy(buf,title);
-  return es_tcl_track_title(buf);
+  return es_tcl_track_title_set(buf);
 }
 
 int es_jim_track_clear(Jim_Interp *interp, int argc, Jim_Obj *const *argv) {

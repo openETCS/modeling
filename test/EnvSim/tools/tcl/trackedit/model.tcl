@@ -5,7 +5,10 @@
 # History:
 # - 24.09.15, J. Kastner: initial version
 
-namespace eval ::model {}
+namespace eval ::model {
+  # current track title
+  set title "no track loaded"
+}
 
 proc model::compMsgInfo {a b} {
   set a2 [lindex $a 2]
@@ -22,8 +25,8 @@ proc model::compMsgInfo {a b} {
 proc model::getMessageList {} {
   foreach msg [track::info] {
     switch [lindex $msg 0] {
-      b { set rec [list b[lindex $msg 1] "BG [lindex $msg 2].[lindex $msg 3]" [lindex $msg 4]] }
-      r { set rec [list r[lindex $msg 1] "MSG [format %02i [lindex $msg 2]]" [lindex $msg 3]] }
+      b { set rec [list b[lindex $msg 1] "BG [lindex $msg 2].[lindex $msg 3]" [lindex $msg 4] balise] }
+      r { set rec [list r[lindex $msg 1] "MSG [format %02i [lindex $msg 2]]" [lindex $msg 3] rmsg] }
       default { error "Invalid track message type: [lindex $msg 0]" }
     }
     lappend data $rec

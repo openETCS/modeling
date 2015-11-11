@@ -31,3 +31,14 @@ proc ui::updateLED {path color var args} {
   }
   $path configure -image led_$newcolor
 }
+
+proc ui::addLabelField {path label var col row {rdly false} {width 10}} {
+  grid [ttk::label ${path}_l -text $label] -column $col -row $row -sticky e
+  if {$rdly} {
+    grid [ttk::label ${path}_v -textvariable $var -width $width] -column [expr $col + 1] -row $row -sticky w
+  } else {
+    grid [ttk::entry ${path}_v -textvariable $var] -column [expr $col + 1] -row $row -sticky w
+  }
+}
+
+

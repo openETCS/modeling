@@ -6,6 +6,7 @@
 // - 28.10.15, J. Kastner: initial version
 // - 30.10.15, J. Kastner: add handling of train messages to trackside_cycle()
 
+#include <stdio.h>
 #include "../tcp.h"
 #include "ProbeTracksideInput_EnvSim.h"
 #include "ProbeSDM_EnvSim.h"
@@ -64,6 +65,28 @@ void es_scade_probe_sdm_init(outC_ProbeSDM_EnvSim *outC) {
 
 }
 
+void es_scade_probe_curves(CurveCollection_T_CalcBrakingCurves_types *curves) {
+  static int cycle = 0;
+  if(curves->EOA_SBD_curve.valid && cycle % 10 == 0) {
+    char buf[1000];
+    char *p = buf;
+    int rest = 1000;
+    int len = 0;
+    int i;
+    for(i=0; i<10; i++) {
+      float d = curves->EOA_SBD_curve.distances[i];
+      float a = curves->EOA_SBD_curve.accelerations[i];
+      float v = curves->EOA_SBD_curve.speeds[i];
+      int n = snprintf(p,rest,"{%f %f %f}",d,a,v);
+      p += n;
+      rest -= n;
+      len += n;
+    }
+    es_tcp_send(scade_probe_evtstream,TCPMSG_ES_EVT_BC,buf,len);
+  }
+
+  cycle++;
+}
 
 void es_scade_probe_sdm_cycle(TargetCollection_T_TargetManagement_types *targetCollection,
                               CurveCollection_T_CalcBrakingCurves_types *curveCollection,
@@ -81,4 +104,7 @@ void es_scade_probe_sdm_cycle(TargetCollection_T_TargetManagement_types *targetC
       es_tcp_send(scade_probe_evtstream,TCPMSG_ES_EVT_TGT,(char*)target,PROBE_SDM_TARGET_SIZE);
     }
   }
+
+  es_scade_probe_curves(curveCollection);
+
 }

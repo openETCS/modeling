@@ -32,14 +32,28 @@ int envsim_track_balise_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_O
 
 
 int envsim_track_radio_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_Obj *const *objv) {
-  if(objc!=3) {
-    Tcl_WrongNumArgs(interp,1,objv,"raw {arg}");
+  if(objc == 2) {
+    if(es_tcl_track_radio(Tcl_GetString(objv[1]), NULL, NULL, envsim_append_result,(es_ClientData)interp)) {
+      Tcl_AddErrorInfo(interp,es_msg_buf);
+      return TCL_ERROR;
+    };
+  }
+  else if (objc == 3) {
+    if(es_tcl_track_radio(Tcl_GetString(objv[1]), Tcl_GetString(objv[2]), NULL, envsim_append_result,(es_ClientData)interp)) {
+      Tcl_AddErrorInfo(interp,es_msg_buf);
+      return TCL_ERROR;
+    };
+  }
+  else if(objc == 4) {
+    if(es_tcl_track_radio(Tcl_GetString(objv[1]), Tcl_GetString(objv[2]), Tcl_GetString(objv[3]), envsim_append_result,(es_ClientData)interp)) {
+      Tcl_AddErrorInfo(interp,es_msg_buf);
+      return TCL_ERROR;
+    };
+  }
+  else {
+    Tcl_WrongNumArgs(interp,1,objv,"");
     return TCL_ERROR;
   }
-  if(es_tcl_track_radio(Tcl_GetString(objv[1]), Tcl_GetString(objv[2]),envsim_append_result,(es_ClientData)interp)) {
-    Tcl_AddErrorInfo(interp,es_msg_buf);
-    return TCL_ERROR;
-  };
   return TCL_OK;
 }
 
@@ -71,15 +85,20 @@ int envsim_track_info_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_Obj
 }
 
 int envsim_track_title_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_Obj *const *objv) {
-  if(objc!=2) {
-    Tcl_WrongNumArgs(interp,1,objv,"title");
-    return TCL_ERROR;
+  if(objc==2) {
+    char *title = Tcl_GetString(objv[1]);
+    char *buf = malloc(strlen(title));
+    strcpy(buf,title);
+    if(es_tcl_track_title_set(buf)) {
+      Tcl_AddErrorInfo(interp,es_msg_buf);
+      return TCL_ERROR;
+    }
   }
-  char *title = Tcl_GetString(objv[1]);
-  char *buf = malloc(strlen(title));
-  strcpy(buf,title);
-  if(es_tcl_track_title(buf)) {
-    Tcl_AddErrorInfo(interp,es_msg_buf);
+  else if(objc==1) {
+    return es_tcl_track_title_get(envsim_append_result,(es_ClientData)interp);
+  }
+  else {
+    Tcl_WrongNumArgs(interp,1,objv," {} | title");
     return TCL_ERROR;
   }
   return TCL_OK;
