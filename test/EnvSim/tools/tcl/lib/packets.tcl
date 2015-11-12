@@ -105,6 +105,10 @@ proc pkts::readBinPkt {nid offset nint data} {
 
 proc pkts::readBinTrainPkts {offset data} {
   binary scan "$data" x${offset}i nid
+
+  binary scan "$data" x${offset}i34 tmp
+  puts "ints:$tmp"
+
   set pkts {}
   while {$nid > 0 && $nid < 999} {
     switch $nid {
