@@ -18,7 +18,7 @@
 // Timeout for winsock select() in usecs
 #define TCP_RECEIVE_TIMEOUT 1000
 
-bool es_tcp_rdmode_wait = true;
+bool es_tcp_rdmode_wait = false;
 
 #ifdef WINDOWS
 #define TCP_SYNC(ctx,fn,rc,lbl) \
@@ -82,8 +82,9 @@ int es_tcp_recvmsg(SOCKET sock, char *buf, size_t bufsize) {
 
   int nleft = len - rc;
   *p += rc;
+  int cycle = 1;
   while(nleft>0) {
-    LOG_INFO(tcp,"waiting for %n more bytes",nleft);
+    LOG_INFO(tcp,"waiting for %d more bytes (loop: %d)",nleft,cycle);
 
     rc = recv(sock,p,nleft,0);
     if(rc < 0) {
@@ -91,6 +92,7 @@ int es_tcp_recvmsg(SOCKET sock, char *buf, size_t bufsize) {
     }
     nleft -= rc;
     p += rc;
+    cycle++;
   }
   return len+8;
 
@@ -104,8 +106,8 @@ es_Status es_tcp_init(es_TCPContext **ctx) {
     es_tcp_rdmode_wait = true;
   }
   else {
-    LOG_INFO(tcp,"using ENVSIM_TCP_READMODE=1");
-    es_tcp_rdmode_wait = true;
+    LOG_INFO(tcp,"using ENVSIM_TCP_READMODE=0");
+    es_tcp_rdmode_wait = false;
   }
 
 
@@ -404,7 +406,7 @@ es_Status es_tcp_process_out(es_TCPContext *ctx) {
       stream->afterSend();
     }
 
-    if( stream->nout > TCP_MAX_PENDING_MSGS ) {
+    if( stream->nout > TCP_MAX_PENDING_MSGS && stream->nout % 50 == 0) {
       LOG_WARN(tcp,"%d pending messages on output stream '%s'",stream->nout, stream->name);
     }
     next = next->tail;
