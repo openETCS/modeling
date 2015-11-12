@@ -4,6 +4,7 @@
 //
 // History:
 // - 27.10.15, J. Kastner: initial version (extracted from tcp.h)
+// - 12.11.15, J. Kastner: redefine 1001, delete 2001
 
 #ifndef LIBENVSIM_MSGIDS_H
 #define LIBENVSIM_MSGIDS_H
@@ -27,8 +28,8 @@
 /***** EVC -> DMI *****/
 // SCADE data type: API_DMI_Pkg::EVC_to_DMI_Message_int_T
 #define TCPMSG_EVC2DMI_BUS 1000
-// SCADE data type: API_DMI_Pkg::EVC_to_DMI_Message_T
-#define TCPMSG_EVC2DMI     1001
+// Concatenation of EVC_to_DMI_Message_int_T and TIU_Input_msg
+#define TCPMSG_EVCTIU2DMI  1001
 // SCADE data type: API_TIU_Pkg::TIU_Input_msg
 #define TCPMSG_TIU2DMI     1002
 
@@ -36,8 +37,6 @@
 /***** DMI -> EVC *****/
 // SCADE data type: API_DMI_Pkg::DMI_to_EVC_Message_int_T
 #define TCPMSG_DMI2EVC_BUS 2000
-// SCADE data type: API_DMI_Pkg::DMI_to_EVC_Message_T
-#define TCPMSG_DMI2EVC     2001
 
 
 /***** EVC/EnvSim -> GUI *****/

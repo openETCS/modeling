@@ -18,7 +18,7 @@
 // Timeout for winsock select() in usecs
 #define TCP_RECEIVE_TIMEOUT 1000
 
-bool es_tcp_rdmode_wait = false;
+bool es_tcp_rdmode_wait = true;
 
 #ifdef WINDOWS
 #define TCP_SYNC(ctx,fn,rc,lbl) \
@@ -67,7 +67,6 @@ int es_tcp_recvmsg(SOCKET sock, char *buf, size_t bufsize) {
     return rc;
   }
 
-//  int mid = *((int32_t*)buf);
   p += 4;
   int len = *((int32_t*)p);
   p += 4;
@@ -101,13 +100,13 @@ int es_tcp_recvmsg(SOCKET sock, char *buf, size_t bufsize) {
 es_Status es_tcp_init(es_TCPContext **ctx) {
   LOG_INFO(tcp,"initializing new TCP context");
   char *rdmd = getenv("ENVSIM_TCP_READMODE");
-  if( rdmd != NULL && !strcmp("1",rdmd) ) {
-    LOG_INFO(tcp,"using ENVSIM_TCP_READMODE=1");
-    es_tcp_rdmode_wait = true;
-  }
-  else {
+  if( rdmd != NULL && !strcmp("0",rdmd) ) {
     LOG_INFO(tcp,"using ENVSIM_TCP_READMODE=0");
     es_tcp_rdmode_wait = false;
+  }
+  else {
+    LOG_INFO(tcp,"using ENVSIM_TCP_READMODE=1");
+    es_tcp_rdmode_wait = true;
   }
 
 

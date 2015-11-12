@@ -38,13 +38,13 @@ STREAM *es_remote_dmi_conn2 = NULL;
 STREAM *es_remote_evc_conn1 = NULL;
 STREAM *es_remote_evc_conn2 = NULL;
 STREAM *es_remote_gui_conn = NULL;
-const size_t EVC2DMI_STRUCT_SIZE = sizeof(EVC_to_DMI_Message_T_API_DMI_Pkg);
 const size_t EVC2DMI_BUSMSG_SIZE = 999*sizeof(int32_t);
 const size_t TIU2DMI_STRUCT_SIZE = sizeof(TIU_Input_msg_API_TIU_Pkg);
 const size_t DMI2EVC_STRUCT_SIZE = sizeof(DMI_to_EVC_Message_T_API_DMI_Pkg);
 const size_t DMI2EVC_BUSMSG_SIZE = 311*sizeof(int32_t);
 const size_t EVC2GUI_STRUCT_SIZE = sizeof(EVC_to_GUI_EnvSim);
 const size_t GUI2EVC_STRUCT_SIZE = sizeof(GUI_to_EVC_EnvSim);
+const size_t EVCTIU_MSG_SIZE = sizeof(EVC_to_DMI_Message_T_API_DMI_Pkg) + sizeof(TIU_Input_msg_API_TIU_Pkg);
 
 char *es_remote_dmi_addr = NULL;
 int es_remote_dmi_port1 = 0;
@@ -108,95 +108,6 @@ void es_remote_flow_control() {
   }
 }
 
-void es_remote_dmi_init(outC_RemoteDMI_EnvSim *out) {
-  es_log_init("envsim_main.log");
-  es_remote_init();
-
-  LOG_INFO(scade_remote,"Initializing RemoteDMI operator");
-
-
-  // connect to DMI server
-  es_remote_dmi_conn1 = NULL;
-  es_TCPContext *ctx = es_scade_get_tcp();
-  if( ctx == NULL ) {
-    LOG_ERROR(scade_remote,"could not initialize TCPContext for RemoteDMI");
-    return;
-  }
-
-  if( es_tcp_connect(ctx,es_remote_dmi_addr,es_remote_dmi_port1,"dmi_conn1",&es_remote_dmi_conn1) ) {
-    LOG_ERROR(scade_remote,"could not connect to RemoteDMI server @ %s:%d",es_remote_dmi_addr,es_remote_dmi_port1);
-    es_remote_dmi_conn1 = NULL;
-    return;
-  }
-
-  LOG_INFO(scade_remote,"connected to RemoteDMI server @ %s:%d for EVC2DMI messages",es_remote_dmi_addr,es_remote_dmi_port1);
-
-  es_remote_dmi_conn2 = NULL;
-
-  if( es_tcp_connect(ctx,es_remote_dmi_addr,es_remote_dmi_port2,"dmi_conn2",&es_remote_dmi_conn2) ) {
-    LOG_ERROR(scade_remote,"could not connect to RemoteDMI server @ %s:%d",es_remote_dmi_addr,es_remote_dmi_port2);
-    es_remote_dmi_conn2 = NULL;
-    return;
-  }
-  else {
-    es_remote_dmi_conn2->afterSend = es_remote_flow_control;
-  }
-
-  LOG_INFO(scade_remote,"connected to RemoteDMI server @ %s:%d for DMI2EVC messages",es_remote_dmi_addr,es_remote_dmi_port2);
-
-}
-
-
-void es_remote_dmi_cycle(EVC_to_DMI_Message_T_API_DMI_Pkg *evcToDMI, TIU_Input_msg_API_TIU_Pkg *tiuToDMI, outC_RemoteDMI_EnvSim *outC) {
-
-  // SEND
-  if(es_remote_dmi_conn1 != NULL && es_remote_dmi_conn1->socket != INVALID_SOCKET) {
-    bool send = evcToDMI->trainRunningNumber.valid ||
-                evcToDMI->adhesionFactor.valid ||
-                evcToDMI->displayControl.valid ||
-                evcToDMI->driverIdentifier.valid ||
-                evcToDMI->dynamic.valid ||
-                evcToDMI->entry_request.valid ||
-                evcToDMI->evc_coded_train_data.valid ||
-                evcToDMI->EVC_levelData.valid ||
-                evcToDMI->EVC_radioNetData.valid ||
-                evcToDMI->iconRequest.valid ||
-                evcToDMI->identifierRequest.valid ||
-                evcToDMI->menu_request.valid ||
-                evcToDMI->systemVersion.valid ||
-                evcToDMI->textMessage.valid ||
-                evcToDMI->trackDescription.valid ||
-                evcToDMI->trainData.valid;
-    if(send) {
-      es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVC2DMI, (const char *) evcToDMI, EVC2DMI_STRUCT_SIZE);
-    }
-    send = tiuToDMI->valid;
-    if(send) {
-//      LOG_INFO(scade_remote,"sending TIU2DMI; openDesk: %d",tiuToDMI->info.train_status.m_cab_st);
-      es_tcp_send(es_remote_dmi_conn1, TCPMSG_TIU2DMI, (const char*) tiuToDMI, TIU2DMI_STRUCT_SIZE);
-    }
-  }
-
-  // RECEIVE
-  if(es_remote_dmi_conn2 != NULL) {
-    es_TCPMessage *msg = NULL;
-    es_tcp_read(es_remote_dmi_conn2,TCPMSG_DMI2EVC,&msg);
-    if( msg != NULL ) {
-      if(msg->len != DMI2EVC_STRUCT_SIZE) {
-        LOG_ERROR(scade_remote,"Invalid DMI2EVC message: received %d bytes, expected %d bytes",msg->len,DMI2EVC_STRUCT_SIZE);
-      }
-      else {
-        memcpy(&outC->dmiToEVC,msg->data,DMI2EVC_STRUCT_SIZE);
-      }
-      es_tcp_free_msg(msg);
-    }
-    else {
-      outC->dmiToEVC.present = false;
-    }
-  }
-}
-
-
 void es_remote_dmibus_init(outC_RemoteDMIBus_EnvSim *out) {
   es_log_init("envsim_main.log");
   es_remote_init();
@@ -241,11 +152,17 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
   // SEND
   if(es_remote_dmi_conn1 != NULL && es_remote_dmi_conn1->socket != INVALID_SOCKET) {
     int send = in[0];
-    if(send) {
-      es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVC2DMI_BUS, (const char *) evcToDMI, EVC2DMI_BUSMSG_SIZE);
+    if(send && tiuToDMI->valid) {
+      char buf[EVCTIU_MSG_SIZE];
+      memcpy(buf,evcToDMI,EVC2DMI_BUSMSG_SIZE);
+      memcpy(buf+EVC2DMI_BUSMSG_SIZE,tiuToDMI,TIU2DMI_STRUCT_SIZE);
+      es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVCTIU2DMI, (const char*) buf, EVCTIU_MSG_SIZE);
     }
-    if(tiuToDMI->valid) {
+    else if(tiuToDMI->valid) {
       es_tcp_send(es_remote_dmi_conn1, TCPMSG_TIU2DMI, (const char*) tiuToDMI, TIU2DMI_STRUCT_SIZE);
+    }
+    else if(send) {
+      es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVC2DMI_BUS, (const char *) evcToDMI, EVC2DMI_BUSMSG_SIZE);
     }
   }
   // RECEIVE
@@ -268,118 +185,11 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
 }
 
 
-void es_remote_evc_init(outC_RemoteEVC_EnvSim *out) {
-  es_log_init("envsim_dmi.log");
-  es_remote_init();
-
-  LOG_INFO(scade_remote,"Initializing RemoteEVC operator");
-//  es_scade_load_config();
-
-//  es_Interp *interp = es_get_interp();
-
-  // listen for EVC connections
-  es_remote_evc_conn1 = NULL;
-  es_remote_evc_conn2 = NULL;
-  es_TCPContext *ctx = es_scade_get_tcp();
-  if( ctx == NULL ) {
-    LOG_ERROR(scade_remote,"could not initialize TCPContext for RemoteEVC");
-    return;
-  }
-
-  if( es_tcp_listen(ctx,es_remote_dmi_port1,"evc_conn1",&es_remote_evc_conn1) ) {
-    LOG_ERROR(scade_remote,"could not start RemoteEVC server on port %d",es_remote_dmi_port1);
-    es_remote_evc_conn1 = NULL;
-    return;
-  }
-
-  LOG_INFO(scade_remote,"started RemoteEVC server for EVC2DMI messages on port %d",es_remote_dmi_port1);
-
-  if( es_tcp_listen(ctx,es_remote_dmi_port2,"evc_conn2",&es_remote_evc_conn2) ) {
-    LOG_ERROR(scade_remote,"could not start RemoteEVC server on port %d",es_remote_dmi_port2);
-    es_remote_evc_conn2 = NULL;
-    return;
-  }
-
-  LOG_INFO(scade_remote,"started RemoteEVC server for EVC2DMI messages on port %d",es_remote_dmi_port2);
-}
-
-void es_remote_evc_cycle(DMI_to_EVC_Message_T_API_DMI_Pkg *dmiToEVC, outC_RemoteEVC_EnvSim *outC) {
-  static bool run = true;
-
-  bool send = dmiToEVC->trainData.valid ||
-              dmiToEVC->adhesionFactor.valid ||
-              dmiToEVC->driverIdentifier.valid ||
-              dmiToEVC->driverRequest.valid ||
-              dmiToEVC->iconAck.valid ||
-              dmiToEVC->identifier.valid ||
-              dmiToEVC->radioNetData.valid ||
-              dmiToEVC->selectedLevel.valid ||
-              dmiToEVC->status.valid ||
-              dmiToEVC->trainDataAck.valid ||
-              dmiToEVC->textMessageAck.valid ||
-              dmiToEVC->trainRunningNumber.valid;
-  // SEND
-  if( send && es_remote_evc_conn2 != NULL && es_remote_evc_conn2->client != INVALID_SOCKET && dmiToEVC->present) {
-    es_tcp_send(es_remote_evc_conn2,TCPMSG_DMI2EVC,(const char*)dmiToEVC,DMI2EVC_STRUCT_SIZE);
-  }
-
-  // RECEIVE
-  if(es_remote_evc_conn1 == NULL) {
-    return;
-  }
-  //run = es_remote_evc_conn1->run;
-  //LOG_INFO(scade_remote,"status: %d",run);
-  //if( run ) {
-    es_TCPMessage *msg = NULL;
-    es_tcp_read(es_remote_evc_conn1, TCPMSG_EVC2DMI,&msg);
-    if (msg != NULL) {
-      run = true;
-      if (msg->len != EVC2DMI_STRUCT_SIZE) {
-        LOG_ERROR(scade_remote, "Invalid EVC2DMI message: received %d bytes, expected %d bytes", msg->len,
-                  EVC2DMI_STRUCT_SIZE);
-      }
-      else {
-        memcpy(&outC->evcToDMI, msg->data, EVC2DMI_STRUCT_SIZE);
-      }
-      es_tcp_free_msg(msg);
-    }
-    //else {
-    //  outC->evcToDMI.present = false;
-    //}
-
-    msg = NULL;
-    es_tcp_read(es_remote_evc_conn1, TCPMSG_TIU2DMI, &msg);
-    if( msg != NULL ) {
-      if (msg->len != TIU2DMI_STRUCT_SIZE) {
-        LOG_ERROR(scade_remote, "Invalid TIU2DMI message: received %d bytes, expected %d bytes", msg->len,
-                  TIU2DMI_STRUCT_SIZE);
-      }
-      else {
-        memcpy(&outC->tiuToDMI, msg->data, TIU2DMI_STRUCT_SIZE);
-//        LOG_TRACE(scade_remote,"received TIU2DMI; desk open: %d",outC->tiuToDMI.info.train_status.m_cab_st);
-      }
-      es_tcp_free_msg(msg);
-    }
-    else {
-      run = false;
-    //  outC->tiuToDMI.valid = false;
-    }
-
-  //}
-
-  //outC->run = run;
-  outC->run = true;
-}
-
-
 void es_remote_evcbus_init(outC_RemoteEVCBus_EnvSim *out) {
   es_log_init("envsim_dmi.log");
   es_remote_init();
 
   LOG_INFO(scade_remote,"Initializing RemoteEVCBus operator");
-//  es_scade_load_config();
-
-//  es_Interp *interp = es_get_interp();
 
   // listen for EVC connections
   es_remote_evc_conn1 = NULL;
@@ -418,10 +228,49 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
   }
 
   // RECEIVE
+  outC->evcToDMI[0] = 0;
+  outC->tiuToDMI.valid = false;
   if(es_remote_evc_conn1 == NULL) {
     return;
   }
+
   es_TCPMessage *msg = NULL;
+  es_tcp_read(es_remote_evc_conn1, TCPMSG_ANY, &msg);
+  if( msg != NULL ) {
+    if( msg->id == TCPMSG_EVCTIU2DMI ) {
+      if( msg->len != EVCTIU_MSG_SIZE ) {
+        LOG_ERROR(scade_remote, "Invalid EVCTIU2DMI message: received %d bytes, expected %d bytes",
+                  msg->len, EVCTIU_MSG_SIZE);
+      }
+      else {
+        memcpy(&outC->evcToDMI,msg->data,EVC2DMI_BUSMSG_SIZE);
+        memcpy(&outC->tiuToDMI,msg->data+EVC2DMI_BUSMSG_SIZE,TIU2DMI_STRUCT_SIZE);
+      }
+    }
+    else if( msg->id == TCPMSG_EVC2DMI_BUS ) {
+      if (msg->len != EVC2DMI_BUSMSG_SIZE) {
+        LOG_ERROR(scade_remote, "Invalid EVC2DMI message: received %d bytes, expected %d bytes", msg->len,
+                  EVC2DMI_BUSMSG_SIZE);
+      }
+      else {
+        memcpy(&outC->evcToDMI, msg->data, EVC2DMI_BUSMSG_SIZE);
+      }
+    }
+    else if( msg->id == TCPMSG_TIU2DMI ) {
+      if (msg->len != TIU2DMI_STRUCT_SIZE) {
+        LOG_ERROR(scade_remote, "Invalid TIU2DMI message: received %d bytes, expected %d bytes", msg->len,
+                  TIU2DMI_STRUCT_SIZE);
+      }
+      else {
+        memcpy(&outC->tiuToDMI, msg->data, TIU2DMI_STRUCT_SIZE);
+      }
+    }
+    else {
+      LOG_ERROR(scade_remote, "Unsupported message: %d",msg->id);
+    }
+    es_tcp_free_msg(msg);
+  }
+  /*
   es_tcp_read(es_remote_evc_conn1, TCPMSG_EVC2DMI_BUS,&msg);
   if (msg != NULL) {
     run = true;
@@ -456,7 +305,7 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
   else {
     outC->tiuToDMI.valid = 0;
   }
-
+*/
   outC->run = true;
 }
 
