@@ -18,7 +18,7 @@
 // Timeout for winsock select() in usecs
 #define TCP_RECEIVE_TIMEOUT 1000
 
-bool es_tcp_rdmode_wait = false;
+bool es_tcp_rdmode_wait = true;
 
 #ifdef WINDOWS
 #define TCP_SYNC(ctx,fn,rc,lbl) \
@@ -104,8 +104,8 @@ es_Status es_tcp_init(es_TCPContext **ctx) {
     es_tcp_rdmode_wait = true;
   }
   else {
-    LOG_INFO(tcp,"using ENVSIM_TCP_READMODE=0");
-    es_tcp_rdmode_wait = false;
+    LOG_INFO(tcp,"using ENVSIM_TCP_READMODE=1");
+    es_tcp_rdmode_wait = true;
   }
 
 

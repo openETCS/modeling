@@ -9,6 +9,7 @@
 // - 28.10.15, J. Kastner: extend remote_gui_cycle() for new SimCtrl features
 // - 10.11.15, J. Kastner: read remote GUI addr/port from env variables ENVSIM_REMOTE_GUI_ADDR/_PORT;
 //                         correct bug in dmibus_cycle() (present not set to false when no msg arrviced in this cycle)
+// - 12.11.15, J. Kastner: use valid flag for TIU data and remove TIU send data divider
 
 #ifdef WITH_SCADE
 #include "RemoteDMI_EnvSim.h"
@@ -26,9 +27,6 @@
 #define REMOTE_DMI_PORT2 20002
 #define REMOTE_GUI_ADDR "127.0.0.1"
 #define REMOTE_GUI_PORT 20003
-
-// send TIU data only in cycles which are a multiple of this value
-#define SEND_TIUDATA_DIVIDER 1
 
 #define SEND_GUIDATA_DIVIDER 10
 
@@ -53,7 +51,6 @@ int es_remote_dmi_port1 = 0;
 int es_remote_dmi_port2 = 0;
 char *es_remote_gui_addr = NULL;
 int es_remote_gui_port = 0;
-int es_remote_tiudata_divider = SEND_TIUDATA_DIVIDER;
 
 void es_remote_init() {
   static int initialized = 0;
@@ -77,10 +74,6 @@ void es_remote_init() {
   tmp = getenv("ENVSIM_REMOTE_GUI_PORT");
   es_remote_gui_port =  tmp==NULL ? REMOTE_GUI_PORT : atoi(tmp);
 
-  tmp = getenv("ENVSIM_SEND_TIUDATA_DIVIDER");
-  if( tmp != NULL ) {
-    es_remote_tiudata_divider = atoi(tmp);
-  }
 
 }
 
@@ -120,9 +113,6 @@ void es_remote_dmi_init(outC_RemoteDMI_EnvSim *out) {
   es_remote_init();
 
   LOG_INFO(scade_remote,"Initializing RemoteDMI operator");
-//  es_scade_load_config();
-
-//  es_Interp *interp = es_get_interp();
 
 
   // connect to DMI server
@@ -212,10 +202,6 @@ void es_remote_dmibus_init(outC_RemoteDMIBus_EnvSim *out) {
   es_remote_init();
 
   LOG_INFO(scade_remote,"Initializing RemoteDMIBus operator");
-  LOG_INFO(scade_remote,"sending TIU data every %d cycles",es_remote_tiudata_divider);
-//  es_scade_load_config();
-
-//  es_Interp *interp = es_get_interp();
 
 
   // connect to DMI server
@@ -255,14 +241,11 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
   // SEND
   if(es_remote_dmi_conn1 != NULL && es_remote_dmi_conn1->socket != INVALID_SOCKET) {
     int send = in[0];
-    if(tiuToDMI->valid && cycle % es_remote_tiudata_divider == 0) {
-      es_tcp_send(es_remote_dmi_conn1, TCPMSG_TIU2DMI, (const char*) tiuToDMI, TIU2DMI_STRUCT_SIZE);
-    }
     if(send) {
-      //if( in[40] ) {
-//        LOG_INFO(scade_remote,"TEXTMSG @cycle=%d",cycle);
-//      }
       es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVC2DMI_BUS, (const char *) evcToDMI, EVC2DMI_BUSMSG_SIZE);
+    }
+    if(tiuToDMI->valid) {
+      es_tcp_send(es_remote_dmi_conn1, TCPMSG_TIU2DMI, (const char*) tiuToDMI, TIU2DMI_STRUCT_SIZE);
     }
   }
   // RECEIVE
@@ -438,33 +421,26 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
   if(es_remote_evc_conn1 == NULL) {
     return;
   }
-  //run = es_remote_evc_conn1->run;
-  //LOG_INFO(scade_remote,"status: %d",run);
-  //if( run ) {
-    es_TCPMessage *msg = NULL;
-    es_tcp_read(es_remote_evc_conn1, TCPMSG_EVC2DMI_BUS,&msg);
-    if (msg != NULL) {
-      LOG_INFO(scade_remote,"received message")
-      run = true;
-      if (msg->len != EVC2DMI_BUSMSG_SIZE) {
-        LOG_ERROR(scade_remote, "Invalid EVC2DMI message: received %d bytes, expected %d bytes", msg->len,
-                  EVC2DMI_BUSMSG_SIZE);
-      }
-      else {
-        memcpy(&outC->evcToDMI, msg->data, EVC2DMI_BUSMSG_SIZE);
-      }
-      es_tcp_free_msg(msg);
+  es_TCPMessage *msg = NULL;
+  es_tcp_read(es_remote_evc_conn1, TCPMSG_EVC2DMI_BUS,&msg);
+  if (msg != NULL) {
+    run = true;
+    if (msg->len != EVC2DMI_BUSMSG_SIZE) {
+      LOG_ERROR(scade_remote, "Invalid EVC2DMI message: received %d bytes, expected %d bytes", msg->len,
+                EVC2DMI_BUSMSG_SIZE);
     }
     else {
-      outC->evcToDMI[0] = 0;
+      memcpy(&outC->evcToDMI, msg->data, EVC2DMI_BUSMSG_SIZE);
     }
-    //else {
-    //  outC->evcToDMI.present = false;
-    //}
+    es_tcp_free_msg(msg);
+  }
+  else {
+    outC->evcToDMI[0] = 0;
+  }
 
-    msg = NULL;
-    es_tcp_read(es_remote_evc_conn1, TCPMSG_TIU2DMI, &msg);
-  while( msg != NULL ) {
+  msg = NULL;
+  es_tcp_read(es_remote_evc_conn1, TCPMSG_TIU2DMI, &msg);
+  if( msg != NULL ) {
     if (msg->len != TIU2DMI_STRUCT_SIZE) {
       LOG_ERROR(scade_remote, "Invalid TIU2DMI message: received %d bytes, expected %d bytes", msg->len,
                 TIU2DMI_STRUCT_SIZE);
@@ -474,8 +450,11 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
 //        LOG_TRACE(scade_remote,"received TIU2DMI; desk open: %d",outC->tiuToDMI.info.train_status.m_cab_st);
     }
     es_tcp_free_msg(msg);
-    msg = NULL;
-    es_tcp_read(es_remote_evc_conn1, TCPMSG_TIU2DMI, &msg);
+    //msg = NULL;
+    //es_tcp_read(es_remote_evc_conn1, TCPMSG_TIU2DMI, &msg);
+  }
+  else {
+    outC->tiuToDMI.valid = 0;
   }
 
   outC->run = true;
