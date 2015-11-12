@@ -43,7 +43,7 @@
 /***** EVC/EnvSim -> GUI *****/
 // SCADE data type: EnvSim::EVC_to_GUI
 #define TCPMSG_EVC2GUI     1003
-// Response to TCPMSG_TB_GETCONF (current config of EnvSim)
+// Response to TCPMSG_GETCONF (current config of EnvSim)
 #define TCPMSG_ES_CONF     3000
 // Event: triggered balise message (body: TM::CompressedBaliseMessage)
 #define TCPMSG_ES_EVT_BMSG 3001
