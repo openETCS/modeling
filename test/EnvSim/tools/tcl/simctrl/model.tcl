@@ -23,5 +23,6 @@ namespace eval ::model {
 }
 
 proc model::ctrlsChanged {args} {
+  puts CHANGED
   comm::sendCtrlMsg $model::openDesk $model::traction $model::brake
 }

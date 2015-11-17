@@ -14,6 +14,7 @@ namespace eval ::comm {
 
   set TCPMSG_OK          1
   set TCPMSG_ERROR       2
+  set TCPMSG_ABORT       5
 
   set TCPMSG_EVC2GUI     1003
   set TCPMSG_GUI2EVC     2003
@@ -60,7 +61,8 @@ proc comm::readMsg {channel} {
       3002 { evts::handleRadioMessage "[read $channel $len]" }
       3003 { evts::handleTrainMessage "[read $channel $len]" }
       3004 { sdm::handleTargetMessage "[read $channel $len]" }
-      3005 { read $channel $len  }
+      #3005 { trackview::readBalisePosition "[read $channel $len]" }
+      3005 { read $channel $len }
       3006 { read $channel $len }
       default { error "ERROR: received invalid message id=$id, len=$len" }
     }
@@ -126,8 +128,12 @@ proc comm::sendGETBINF {} {
   sendStringMsg $comm::TCPMSG_ES_GETBINF {}
 }
 
-proc comm::sendRMSG {} {
-  sendStringMsg $comm::TCPMSG_ES_SENDRMSG {}
+proc comm::sendRMSG {bytes} {
+  sendStringMsg $comm::TCPMSG_ES_SENDRMSG "$bytes"
+}
+
+proc comm::sendABORT {} {
+  sendStringMsg $comm::TCPMSG_ABORT {}
 }
 
 proc comm::sendStringMsg {msgid msg} {

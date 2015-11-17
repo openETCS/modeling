@@ -64,8 +64,8 @@ proc view::init {} {
   grid [ttk::frame .c.track] -column 0 -row 0 -columnspan 5 -sticky we
   addLabelField .c.track.loaded "Track:" model::loadedTrack 0 0 true 30
   #grid [trackview::init .c.track.view] -column 0 -row 1 -columnspan 2 -sticky we
-  #grid columnconfigure .c.track 0 -weight 0
-  #grid columnconfigure .c.track 1 -weight 1
+  grid columnconfigure .c.track 0 -weight 0
+  grid columnconfigure .c.track 1 -weight 1
   
 
   ### SIMULATION CONTROLS ###
