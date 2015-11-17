@@ -176,9 +176,9 @@ es_Status es_tcl_track_radio_set(char* subcmd, char* arg, void (*appendResult)(c
 
     char *varname, *next;
     next = arg;
-    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"NEXT: |%s|",arg);
-    appendResult(es_msg_buf,data);
-    /*while((varname = mystrsep(&next," ")) != NULL) {
+    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"NEXT: |%s|", arg);
+    //appendResult(es_msg_buf,data);
+/*    while((varname = mystrsep(&next," ")) != NULL) {
       char *v = mystrsep(&next," ");
       if( v == NULL ) {
         snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"missing value for variable %s",varname);

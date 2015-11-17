@@ -668,7 +668,12 @@ es_Status es_tcp_stop(es_TCPContext *ctx) {
 
 es_Status es_tcp_free_msg(es_TCPMessage *msg) {
   if(msg!=NULL) {
-    FREE(msg->raw);
+    if(msg->raw == NULL) {
+      FREE(msg->data);
+    }
+    else {
+      FREE(msg->raw);
+    }
     FREE(msg);
   }
   return ES_OK;

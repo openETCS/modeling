@@ -67,7 +67,7 @@ void es_scade_probe_sdm_init(outC_ProbeSDM_EnvSim *outC) {
 
 void es_scade_probe_curves(CurveCollection_T_CalcBrakingCurves_types *curves) {
   static int cycle = 0;
-  if(curves->EOA_SBD_curve.valid && cycle % 10 == 0) {
+  if(curves->EOA_SBD_curve.valid[0] && cycle % 10 == 0) {
     char buf[1000];
     char *p = buf;
     int rest = 1000;
