@@ -44,7 +44,7 @@ const size_t DMI2EVC_STRUCT_SIZE = sizeof(DMI_to_EVC_Message_T_API_DMI_Pkg);
 const size_t DMI2EVC_BUSMSG_SIZE = 311*sizeof(int32_t);
 const size_t EVC2GUI_STRUCT_SIZE = sizeof(EVC_to_GUI_EnvSim);
 const size_t GUI2EVC_STRUCT_SIZE = sizeof(GUI_to_EVC_EnvSim);
-const size_t EVCTIU_MSG_SIZE = sizeof(EVC_to_DMI_Message_T_API_DMI_Pkg) + sizeof(TIU_Input_msg_API_TIU_Pkg);
+const size_t EVCTIU_MSG_SIZE = 999*sizeof(int32_t) + sizeof(TIU_Input_msg_API_TIU_Pkg);
 
 char *es_remote_dmi_addr = NULL;
 int es_remote_dmi_port1 = 0;

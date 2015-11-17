@@ -13,6 +13,7 @@
 
 #define MALLOC(type) ((type*) malloc(sizeof(type)));
 #define CALLOC(type) ((type*) calloc(1,sizeof(type)));
+#define FREE(ptr) free(ptr);
 
 #define ES_MSG_BUF_SIZE 2048
 

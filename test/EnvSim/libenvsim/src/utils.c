@@ -12,6 +12,8 @@
 #include <time.h>
 #include "utils.h"
 
+int mcnt = 0;
+
 char es_msg_buf[ES_MSG_BUF_SIZE];
 char es_tstamp_buf[50];
 
@@ -69,7 +71,7 @@ es_ListEntry* es_list_filter(es_ListEntry *list, bool (*f)(char*)) {
     if(! f(next->data)) {
       if(prev!=NULL) {
         prev->tail = next->tail;
-        free(next);
+        FREE(next);
         next = prev->tail;
       }
       else {
@@ -94,7 +96,7 @@ es_ListEntry* es_list_remove_head(es_ListEntry *list, char **data) {
 
   *data = list->data;
   es_ListEntry *nhead = list->tail;
-  free(list);
+  FREE(list);
   return nhead;
 }
 

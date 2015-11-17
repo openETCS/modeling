@@ -23,6 +23,8 @@
 #define TCPMSG_STOP        3
 // can be used for flow/execution control
 #define TCPMSG_RUN         4
+// commands the recipient to exit immediately
+#define TCPMSG_ABORT       5
 
 
 /***** EVC -> DMI *****/
@@ -71,7 +73,7 @@
 // request to send the balise positions for the current track
 #define TCPMSG_ES_GETBINF  4003
 // request to send the contained radio message to the EVC
-// (body: TM::CompressedRadioMessage)
+// (body: TM::CompressedRadioMessage as hex string)
 #define TCPMSG_ES_SENDRMSG 4004
 
 #endif //LIBENVSIM_MSGIDS_H

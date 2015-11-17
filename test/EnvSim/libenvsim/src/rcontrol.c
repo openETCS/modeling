@@ -111,12 +111,14 @@ es_Status es_rcontrol_get_balise_info(es_TCPStream *responseStream) {
 }
 
 es_Status es_rcontrol_send_rmsg(es_TCPMessage *msg, es_TCPStream *responseStream) {
-  if( msg->len != es_rcontrol_rmsize ) {
+  if( msg->len != es_rcontrol_rmsize*2 ) {
     RCERROR(responseStream,"Received invalid TCPMSG_ES_SENDRMSG: expected %d bytes, got %d",es_rcontrol_rmsize,msg->len);
   }
-  CompressedRadioMessage_TM *rmsg = (CompressedRadioMessage_TM*)msg->data;
-  es_queue_radio_message(rmsg);
-  LOG_TRACE(rcontrol,"queued radio message %d",rmsg->Header.nid_message);
+
+  CompressedRadioMessage_TM rmsg;
+  es_hex_to_bytes(es_rcontrol_rmsize,msg->data,(char*)&rmsg);
+  es_queue_radio_message(&rmsg);
+  LOG_TRACE(rcontrol,"queued radio message %d",rmsg.Header.nid_message);
 
   return ES_OK;
 }
@@ -151,6 +153,8 @@ es_Status es_rcontrol_handle_msg(es_TCPMessage *msg, es_TCPStream *responseStrea
       return es_rcontrol_get_balise_info(responseStream);
     case TCPMSG_ES_SENDRMSG:
       return es_rcontrol_send_rmsg(msg,responseStream);
+    case TCPMSG_ABORT:
+      exit(1);
     default:
       RCERROR(responseStream,"unsupported rcontrol command: %d",msg->id);
   }

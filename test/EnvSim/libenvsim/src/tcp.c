@@ -338,7 +338,7 @@ es_Status es_tcp_read_sync(es_TCPStream *stream, es_MSGID id, es_TCPMessage **ms
           stream->in = next->tail;
         }
         *msg = m;
-        free(next);
+        FREE(next);
         stream->nin -= 1;
         break;
       }
@@ -668,8 +668,8 @@ es_Status es_tcp_stop(es_TCPContext *ctx) {
 
 es_Status es_tcp_free_msg(es_TCPMessage *msg) {
   if(msg!=NULL) {
-    free(msg->raw);
-    free(msg);
+    FREE(msg->raw);
+    FREE(msg);
   }
   return ES_OK;
 }
