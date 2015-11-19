@@ -37,6 +37,7 @@ set(LIBENVSIM_SOURCE_FILES ${COMMON_SOURCE_FILES}
   src/scade/RemoteGUI_EnvSim.c src/scade/RemoteGUI_EnvSim.h
   src/scade/ProbeTracksideInput_EnvSim.c src/scade/ProbeTracksideInput_EnvSim.h
   src/scade/ProbeSDM_EnvSim.c src/scade/ProbeSDM_EnvSim.h
+  src/scade/ProbeEVC_EnvSim.c src/scade/ProbeEVC_EnvSim.h
   src/scade/scade_remote.c src/scade/scade_probe.c
 )
 

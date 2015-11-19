@@ -10,6 +10,7 @@
 #include "../tcp.h"
 #include "ProbeTracksideInput_EnvSim.h"
 #include "ProbeSDM_EnvSim.h"
+#include "ProbeEVC_EnvSim.h"
 #include "../logging.h"
 
 const size_t PROBE_TRACKSIDE_BMSG_SIZE = sizeof(CompressedBaliseMessage_TM);
@@ -106,5 +107,18 @@ void es_scade_probe_sdm_cycle(TargetCollection_T_TargetManagement_types *targetC
   }
 
   es_scade_probe_curves(curveCollection);
+
+}
+
+
+void es_scade_probe_evc_init(outC_ProbeEVC_EnvSim *outC) {
+
+}
+
+
+void es_scade_probe_evc_cycle(MSG_Errors_T_Common_Types_Pkg *msgErrors,
+                                     positionErrors_T_TrainPosition_Types_Pck *posErrors,
+                                     morcStatus_T_RCM_Session_Types_Pkg *morcStatus,
+                                     outC_ProbeEVC_EnvSim *outC) {
 
 }

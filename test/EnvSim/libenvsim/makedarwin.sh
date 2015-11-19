@@ -1,5 +1,5 @@
 #!/bin/bash
-CFLAGS="-g "
+CFLAGS=""
 
 mkdir -p build/darwin
 cd build/darwin
