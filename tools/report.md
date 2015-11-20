@@ -1,7 +1,8 @@
-These are the weekly results of the **issue tracker**
+# These are the weekly results of the **issue tracker**
 ============
 
-The following issues are open for the current week:
+## Open Issues
+### The following issues are open for the current week:
 
 [Not MA after ~26934m?](https://github.com/openETCS/modeling/issues/924) and the Labels are: bug 
 
@@ -26,7 +27,7 @@ The following issues are open for the current week:
 
 
 
-Open issues of the second week:
+### Open issues of the second week:
 
 [Linking consistency errors on track](https://github.com/openETCS/modeling/issues/911) and the Labels are: bug bug in Integration 
 
@@ -38,14 +39,15 @@ Open issues of the second week:
 
 
 
-Open issues of the third week:
+### Open issues of the third week:
 
 [TSR information](https://github.com/openETCS/modeling/issues/891) and the Labels are: 
 
 [US 14 Correction](https://github.com/openETCS/modeling/issues/880) and the Labels are: 
 
+## Closed Issues
 
-The following issues have been closed for the current week:
+### The following issues have been closed for the current week:
 
 [clarification on MAs_t](https://github.com/openETCS/modeling/issues/154) and the Labels are: question 
 
@@ -86,7 +88,7 @@ The following issues have been closed for the current week:
 
 
 
-Closed issues of the second week:
+### Closed issues of the second week:
 
 [MRSP in level NTC](https://github.com/openETCS/modeling/issues/661) and the Labels are: bug 
 
