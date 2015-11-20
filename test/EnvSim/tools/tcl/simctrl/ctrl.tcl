@@ -48,16 +48,16 @@ proc ctrl::loadRemoteTrackFile {} {
 }
 
 proc ctrl::log {id msg {type info}} {
-  .c.n.log.area configure -state normal
-  .c.n.log.area insert end "\[$id\] $msg\n" $type
-  .c.n.log.area configure -state disabled
-  .c.n.log.area see end
+  .c.n.syslog.area configure -state normal
+  .c.n.syslog.area insert end "\[$id\] $msg\n" $type
+  .c.n.syslog.area configure -state disabled
+  .c.n.syslog.area see end
 }
 
 proc ctrl::clearLog {} {
-  .c.n.log.area configure -state normal
-  .c.n.log.area delete 1.0 end
-  .c.n.log.area configure -state disabled
+  .c.n.syslog.area configure -state normal
+  .c.n.syslog.area delete 1.0 end
+  .c.n.syslog.area configure -state disabled
 }
 
 # show or hide SDM tab
@@ -69,12 +69,12 @@ proc ctrl::showSDM {} {
   }
 }
 
-# show or hide SDM Plot tab
-proc ctrl::showSDMPlot {} {
-  if $sdm::plotactive {
-    .c.n add .c.n.sdmplot
+# show or hide Event Log tab
+proc ctrl::showEventLog {} {
+  if $evts::showLogTab {
+    .c.n add .c.n.evtlog
   } else {
-    .c.n hide .c.n.sdmplot
+    .c.n hide .c.n.evtlog
   }
 }
 
@@ -90,9 +90,9 @@ proc ctrl::showCommands {} {
 # show or hide Log tab
 proc ctrl::showLog {} {
   if $view::logactive {
-    .c.n add .c.n.log
+    .c.n add .c.n.syslog
   } else {
-    .c.n hide .c.n.log
+    .c.n hide .c.n.syslog
   }
 }
 

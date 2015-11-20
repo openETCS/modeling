@@ -1,6 +1,6 @@
 #     Project: openETCS / EnvSim
 #      Module: simctrl / evts.tcl
-# Description: Logs/visualizes events sent by the EnvSim (track&train messages)
+# Description: Logs/visualizes events sent by the EnvSim (track&train messages, EVC probe data)
 # 
 # History:
 # - 29.10.15, J. Kastner: initial version
@@ -8,22 +8,28 @@ package require Tk
 
 namespace eval ::evts {
   variable tree
-  variable area
+  variable msgArea
+  variable logArea
 
   set autoscroll 1
   set logMsg24 0
   set logMsg132 0
   set logMsg136 0
+
+  set showLogTab 1
+  set logERR 1
+  set logRTM 1
+  set logSDM 1
 }
 
-proc evts::initView {path} {
+proc evts::initMsgView {path} {
   variable tree
-  variable area
+  variable msgArea
 
   ttk::frame $path -padding 5
 
   grid [ttk::frame $path.btns -padding 3] -column 0 -row 0 -columnspan 5 -sticky w
-  grid [ttk::button $path.btns.clear -text Clear -command evts::clear] -column 0 -row 0 -sticky w
+  grid [ttk::button $path.btns.clear -text Clear -command evts::clearMsgs] -column 0 -row 0 -sticky w
   grid [ttk::checkbutton $path.btns.scroll -text Autoscroll -variable evts::autoscroll -onvalue 1 -offvalue 0] -column 1 -row 0
   grid [ttk::checkbutton $path.btns.log24 -text Msg24 -variable evts::logMsg24 -onvalue 1 -offvalue 0] -column 2 -row 0
   grid [ttk::checkbutton $path.btns.log132 -text Msg132 -variable evts::logMsg132 -onvalue 1 -offvalue 0] -column 3 -row 0
@@ -39,15 +45,15 @@ proc evts::initView {path} {
   $tree heading #1 -text "Position (m)"
   bind $tree <<TreeviewSelect>> evts::displayEvent
 
-  grid [tk::text $path.area -state disabled -height 10 -width 40] -column 3 -row 1 -sticky wesn
-  set area $path.area
-  grid [ttk::scrollbar $path.asb -command "$path.area yview"] -column 4 -row 1 -sticky ns
-  $area configure -yscrollcommand "$path.asb set"
+  grid [tk::text $path.msgArea -state disabled -height 10 -width 40] -column 3 -row 1 -sticky wesn
+  set msgArea $path.msgArea
+  grid [ttk::scrollbar $path.asb -command "$path.msgArea yview"] -column 4 -row 1 -sticky ns
+  $msgArea configure -yscrollcommand "$path.asb set"
 
   grid columnconfigure $path 2 -minsize 5 -weight 0
   grid columnconfigure $path 3 -weight 1
 
-  $area tag configure title -font "TkFixedFont 10 bold"
+  $msgArea tag configure title -font "TkFixedFont 10 bold"
 }
 
 proc evts::handleBaliseMessage {data} {
@@ -81,10 +87,10 @@ proc evts::handleTrainMessage {data} {
 
 proc evts::displayEvent {args} {
   variable tree
-  variable area
+  variable msgArea
 
-  $area configure -state normal
-  $area delete 1.0 end
+  $msgArea configure -state normal
+  $msgArea delete 1.0 end
 
   set values [$tree item [$tree focus] -values]
   set data [lindex $values 1]
@@ -103,22 +109,22 @@ proc evts::displayEvent {args} {
     }
   }
 
-  $area configure -state disabled
+  $msgArea configure -state disabled
 }
 
 proc evts::displayBaliseData {pos msg} {
-  variable area
+  variable msgArea
 
-  $area insert end "BG [dict get $msg nid_bg] @$pos m\n" title
-  $area insert end "  q_updown: [dict get $msg q_updown]\n"
-  $area insert end "   q_media: [dict get $msg q_media]\n"
-  $area insert end "     n_pig: [dict get $msg n_pig]\n"
-  $area insert end "   n_total: [dict get $msg n_total]\n"
-  $area insert end "     m_dup: [dict get $msg m_dup]\n"
-  $area insert end "   m_count: [dict get $msg m_count]\n"
-  $area insert end "     nid_c: [dict get $msg nid_c]\n"
-  $area insert end "    nid_bg: [dict get $msg nid_bg]\n"
-  $area insert end "    q_link: [dict get $msg q_link]\n\n"
+  $msgArea insert end "BG [dict get $msg nid_bg] @$pos m\n" title
+  $msgArea insert end "  q_updown: [dict get $msg q_updown]\n"
+  $msgArea insert end "   q_media: [dict get $msg q_media]\n"
+  $msgArea insert end "     n_pig: [dict get $msg n_pig]\n"
+  $msgArea insert end "   n_total: [dict get $msg n_total]\n"
+  $msgArea insert end "     m_dup: [dict get $msg m_dup]\n"
+  $msgArea insert end "   m_count: [dict get $msg m_count]\n"
+  $msgArea insert end "     nid_c: [dict get $msg nid_c]\n"
+  $msgArea insert end "    nid_bg: [dict get $msg nid_bg]\n"
+  $msgArea insert end "    q_link: [dict get $msg q_link]\n\n"
 
   if [dict exists $msg packets] {
     displayPackets [dict get $msg packets]
@@ -126,16 +132,16 @@ proc evts::displayBaliseData {pos msg} {
 }
 
 proc evts::displayRadioData {pos msg} {
-  variable area
+  variable msgArea
 
-  $area insert end "MSG [dict get $msg nid_message] @$pos m\n" title
+  $msgArea insert end "MSG [dict get $msg nid_message] @$pos m\n" title
 
   dict for {k v} $msg {
     if {$k != {packets}} {
-      $area insert end "  [format %15s $k]: $v\n"
+      $msgArea insert end "  [format %15s $k]: $v\n"
     }
   }
-  $area insert end "\n"
+  $msgArea insert end "\n"
 
   if [dict exists $msg packets] {
     displayPackets [dict get $msg packets]
@@ -143,16 +149,16 @@ proc evts::displayRadioData {pos msg} {
 }
 
 proc evts::displayTrainData {pos msg} {
-  variable area
+  variable msgArea
 
-  $area insert end "MSG [dict get $msg nid_message] @$pos m\n" title
+  $msgArea insert end "MSG [dict get $msg nid_message] @$pos m\n" title
 
   dict for {k v} $msg {
     if {$k != {packets}} {
-      $area insert end "  [format %15s $k]: $v\n"
+      $msgArea insert end "  [format %15s $k]: $v\n"
     }
   }
-  $area insert end "\n"
+  $msgArea insert end "\n"
 
   if [dict exists $msg packets] {
     displayPackets [dict get $msg packets]
@@ -160,22 +166,84 @@ proc evts::displayTrainData {pos msg} {
 }
 
 proc evts::displayPackets {pkts} {
-  variable area
+  variable msgArea
   
   set i 0
 
   foreach pkt $pkts {
-    $area insert end "$i) Pkt[format %03d [dict get $pkt nid_packet]]\n" subtitle
+    $msgArea insert end "$i) Pkt[format %03d [dict get $pkt nid_packet]]\n" subtitle
     incr i
     dict for {k v} $pkt {
-      $area insert end "  [format %15s $k]: $v\n"
+      $msgArea insert end "  [format %15s $k]: $v\n"
     }
-    $area insert end "\n"
+    $msgArea insert end "\n"
   }
 }
 
-proc evts::clear {} {
+proc evts::clearMsgs {} {
   variable tree
 
   $tree delete [$tree children {}]
+}
+
+
+proc evts::initLogView {path} {
+  variable logArea
+
+  ttk::frame $path -padding 5
+  # Buttons
+  grid [ttk::frame $path.btn -padding 3] -column 0 -row 0 -columnspan 2 -sticky we
+  grid [ttk::button $path.btn.clear -text Clear -command evts::clearLog] -column 0
+  grid [ttk::checkbutton $path.btn.logERR -text ERR -variable evts::logERR -onvalue 1 -offvalue 0] -column 1 -row 0
+  grid [ttk::checkbutton $path.btn.logRTM -text RTM -variable evts::logRTM -onvalue 1 -offvalue 0] -column 2 -row 0
+  grid [ttk::checkbutton $path.btn.logSDM -text SDM -variable evts::logSDM -onvalue 1 -offvalue 0] -column 3 -row 0
+  # Log area
+  grid [tk::text $path.text -height 10 -state disabled -wrap none] -column 0 -row 1 -sticky wesn
+  set logArea $path.text
+  grid [ttk::scrollbar $path.ysb -command "$logArea yview"] -column 1 -row 1 -sticky ns
+  $logArea configure -yscrollcommand "$path.ysb set"
+  grid [ttk::scrollbar $path.xsb -orient horizontal -command "$logArea xview"] -column 0 -row 2 -sticky we
+  $logArea configure -xscrollcommand "$path.xsb set"
+
+  grid columnconfigure $path 0 -weight 1
+  grid rowconfigure $path 0 -weight 0
+  grid rowconfigure $path 1 -weight 1
+
+  $logArea tag configure error -foreground red
+}
+
+proc evts::logRTM {msg} {
+  if $evts::logRTM {
+    logEvent RTM "$msg"
+  }
+}
+
+proc evts::logSDM {msg} {
+  if $evts::logSDM {
+    logEvent SDM "$msg"
+  }
+}
+
+proc evts::logERR {msg} {
+  if $evts::logERR {
+    logEvent ERR "$msg" error
+  }
+}
+
+proc evts::logEvent {src msg {tag ""}} {
+  variable logArea
+
+  $logArea configure -state normal
+  $logArea insert end "\[~ [format "% 5s" $model::currentPos]m $src\] $msg\n" $tag
+  $logArea configure -state disabled
+  $logArea see end
+
+}
+
+proc evts::clearLog {} {
+  variable logArea
+
+  $logArea configure -state normal
+  $logArea delete 1.0 end
+  $logArea configure -state disabled
 }

@@ -13,7 +13,6 @@ namespace eval ::sdm {
   set targetDistance 0
   set targetSpeed 0
 
-  set plotactive 1
 }
 
 proc sdm::initView {path} {
@@ -29,13 +28,13 @@ proc sdm::initView {path} {
   view::addLabelField $path.i.speed "Speed (km/h):" sdm::targetSpeed 6 0 true
 
   # Log area
-  grid [ttk::labelframe $path.log -text Log] -column 0 -row 2 -sticky wes
-  grid [ttk::frame $path.log.btn -padding 3] -column 0 -row 0 -columnspan 2 -sticky we
-  grid [ttk::button $path.log.btn.clear -text Clear -command sdm::logClear] -column 0
-  grid [tk::text $path.log.text -height 10 -state disabled] -column 0 -row 1 -sticky wesn
-  set area $path.log.text
-  grid [ttk::scrollbar $path.log.sb -command "$area yview"] -column 1 -row 1 -sticky ns
-  $area configure -yscrollcommand "$path.log.sb set"
+  #grid [ttk::labelframe $path.log -text Log] -column 0 -row 2 -sticky wes
+  #grid [ttk::frame $path.log.btn -padding 3] -column 0 -row 0 -columnspan 2 -sticky we
+  #grid [ttk::button $path.log.btn.clear -text Clear -command sdm::logClear] -column 0
+  #grid [tk::text $path.log.text -height 10 -state disabled] -column 0 -row 1 -sticky wesn
+  #set area $path.log.text
+  #grid [ttk::scrollbar $path.log.sb -command "$area yview"] -column 1 -row 1 -sticky ns
+  #$area configure -yscrollcommand "$path.log.sb set"
 }
 
 proc sdm::targetTypeString {value} {
@@ -58,11 +57,13 @@ proc sdm::handleTargetMessage {data} {
 }
 
 proc sdm::logTarget {} {
-  variable area
-  $area configure -state normal
-  $area insert end "\[~ [format "% 5s" $model::currentPos]m\] Target type: $sdm::targetType  Distance: $sdm::targetDistance  Speed: $sdm::targetSpeed\n"
-  $area configure -state disabled
-  $area see end
+  #variable area
+  #$area configure -state normal
+  #$area insert end "\[~ [format "% 5s" $model::currentPos]m\] Target type: $sdm::targetType  Distance: $sdm::targetDistance  Speed: $sdm::targetSpeed\n"
+  #$area configure -state disabled
+  #$area see end
+
+  evts::logSDM "Target type: $sdm::targetType  Distance: $sdm::targetDistance  Speed: $sdm::targetSpeed"
 }
 
 proc sdm::logClear {} {

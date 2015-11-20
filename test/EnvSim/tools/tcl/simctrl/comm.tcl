@@ -63,7 +63,9 @@ proc comm::readMsg {channel} {
       3004 { sdm::handleTargetMessage "[read $channel $len]" }
       #3005 { trackview::readBalisePosition "[read $channel $len]" }
       3005 { read $channel $len }
-      3006 { read $channel $len }
+      3006 { puts [read $channel $len] }
+      3007 { evts::logRTM "[read $channel $len]" }
+      3008 { evts::logERR "[read $channel $len]" }
       default { error "ERROR: received invalid message id=$id, len=$len" }
     }
   } else {
@@ -108,6 +110,7 @@ proc comm::sendCtrlMsg {openDesk traction brake} {
   variable conn
   if {[info exists conn]} {
     puts -nonewline $conn [binary format iix16ddx28i $comm::TCPMSG_GUI2EVC 64 $traction $brake $openDesk]
+    #flush $conn
   } else {
   }
 }

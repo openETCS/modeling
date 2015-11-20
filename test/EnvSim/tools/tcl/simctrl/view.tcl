@@ -4,6 +4,7 @@
 # 
 # History:
 # - 25.10.15, J. Kastner: initial version
+# - 19.11.15, J. Kastner: rename Log -> Syslog; add tab "EVC Log"; correct resize handling
 package require Tk
 
 namespace eval ::view {
@@ -30,9 +31,15 @@ proc view::init {} {
   wm title . "openETCS SimCtrl"
 
   grid [ttk::frame .c -padding 10] -sticky nwes
+  grid columnconfigure . 0 -weight 1
+  grid rowconfigure . 0 -weight 1
+  grid columnconfigure .c 0 -weight 1
   grid columnconfigure .c 1 -minsize 10 -weight 0
+  grid columnconfigure .c 2 -weight 1
   grid columnconfigure .c 3 -minsize 10 -weight 0
+  grid columnconfigure .c 4 -weight 1
   grid rowconfigure .c 1 -minsize 10 -weight 0
+  grid rowconfigure .c 4 -weight 1
 
 
   ### MENU ###
@@ -52,10 +59,10 @@ proc view::init {} {
   # View
   menu $m.view
   $m add cascade -menu $m.view -label View
+  $m.view add checkbutton -label "Event Log" -variable evts::showLogTab -command ctrl::showEventLog -onvalue 1 -offvalue 0
   $m.view add checkbutton -label "SDM" -variable sdm::active -command ctrl::showSDM -onvalue 1 -offvalue 0
-  $m.view add checkbutton -label "SDM Plot" -variable sdm::plotactive -command ctrl::showSDMPlot -onvalue 1 -offvalue 0
   $m.view add checkbutton -label "Commands" -variable macro::active -command ctrl::showCommands -onvalue 1 -offvalue 0
-  $m.view add checkbutton -label "Log" -variable view::logactive -command ctrl::showLog -onvalue 1 -offvalue 0
+  $m.view add checkbutton -label "Syslog" -variable view::logactive -command ctrl::showLog -onvalue 1 -offvalue 0
 
   . configure -menu .menubar
 
@@ -102,28 +109,28 @@ proc view::init {} {
 
 
   ### TABS ###
-  grid [ttk::notebook .c.n] -column 0 -row 4 -columnspan 5 -sticky we
+  grid [ttk::notebook .c.n] -column 0 -row 4 -columnspan 5 -sticky wesn
   # Messages
-  evts::initView .c.n.evts
-  .c.n add .c.n.evts -text " Messages "
+  evts::initMsgView .c.n.msgs
+  .c.n add .c.n.msgs -text " Messages "
+  # Event Log
+  evts::initLogView .c.n.evtlog
+  .c.n add .c.n.evtlog -text " Event Log "
   # SDM
   sdm::initView .c.n.sdm
   .c.n add .c.n.sdm -text " SDM "
-  # SDM Plot
-  sdm::initPlot .c.n.sdmplot
-  .c.n add .c.n.sdmplot -text " SDM Plot "
   # Macros
   macro::initView .c.n.macros
   .c.n add .c.n.macros -text " Commands "
-  # Log
-  ttk::frame .c.n.log
-  grid [ttk::frame .c.n.log.btns -padding 3] -column 0 -row 0 -columnspan 2 -sticky w
-  grid [ttk::button .c.n.log.btns.clear -text Clear -command ctrl::clearLog] -column 0 -row 0 -sticky w
-  grid rowconfigure .c.n.log 0 -weight 0
-  grid [tk::text .c.n.log.area -state disabled -height 10] -column 0 -row 1 -sticky ns
-  grid [ttk::scrollbar .c.n.log.sb -command ".c.n.log.area yview"] -column 1 -row 1 -sticky ns
-  .c.n.log.area configure -yscrollcommand ".c.n.log.sb set"
-  grid rowconfigure .c.n.log 1 -weight 1 
-  .c.n add .c.n.log -text " Log " -sticky nwes
+  # Syslog
+  ttk::frame .c.n.syslog
+  grid [ttk::frame .c.n.syslog.btns -padding 3] -column 0 -row 0 -columnspan 2 -sticky w
+  grid [ttk::button .c.n.syslog.btns.clear -text Clear -command ctrl::clearLog] -column 0 -row 0 -sticky w
+  grid rowconfigure .c.n.syslog 0 -weight 0
+  grid [tk::text .c.n.syslog.area -state disabled -height 10] -column 0 -row 1 -sticky ns
+  grid [ttk::scrollbar .c.n.syslog.sb -command ".c.n.syslog.area yview"] -column 1 -row 1 -sticky ns
+  .c.n.syslog.area configure -yscrollcommand ".c.n.syslog.sb set"
+  grid rowconfigure .c.n.syslog 1 -weight 1 
+  .c.n add .c.n.syslog -text " Syslog " -sticky nwes
 }
 
