@@ -1,0 +1,1 @@
+"C:\Program Files\Esterel Technologies\SCADE R16.1\SCADE LifeCycle\Rapid Prototyper\bin\ScadeRPConsole.exe" batch generate "D:\MD\model\Scade\System\OBU_PreIntegrations\DebugPanel\MainScreen.etp" -conf "Co-simulation" -source "MainScreen.rgfx" -outdir "D:/MD/model/Scade/System/OBU_PreIntegrations/Testbench_Integration/SimuIntegrationBH" -prefix SDY1_MainScreen
