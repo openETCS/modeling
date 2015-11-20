@@ -1,1 +1,0 @@
-"C:\Program Files\Esterel Technologies\SCADE R16.1\SCADE Display\bin\ScadeDisplayConsole.exe" batch generate "D:\MD\model\Scade\System\DMI_Control\SCADE Display\DMI.etp" -conf "Co-simulation" -source "DMI.sgfx" -outdir "D:/MD/model/Scade/System/OBU_PreIntegrations/Testbench_Integration/SimuIntegrationBH" -prefix SDY2_DMI
