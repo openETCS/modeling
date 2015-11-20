@@ -58,6 +58,10 @@
 #define TCPMSG_ES_BINF     3005
 // Event: Braking Curves Data (body: string list)
 #define TCPMSG_ES_EVT_BC   3006
+// Event: MORC status (body: string)
+#define TCPMSG_ES_EVT_MORC 3007
+// Event: error message (body: string)
+#define TCPMSG_ES_EVT_ERR  3008
 
 
 /***** GUI -> EVC/EnvSim *****/

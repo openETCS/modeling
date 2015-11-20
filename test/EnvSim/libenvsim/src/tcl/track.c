@@ -159,7 +159,14 @@ es_Status es_tcl_track_radio_get(char* subcmd, void (*appendResult)(char*, es_Cl
     appendResult(buf,data);
     return ES_OK;
   }
-  snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid sub command '%s': expected 'header' | 'bytes'",subcmd);
+  /*else if(subcmd != NULL && !strcmp("bytes",subcmd) ) {
+    char buf[es_tcl_track_rmsize+1];
+    memcpy(buf,&es_tcl_track_radio_buf,es_tcl_track_rmsize);
+    buf[es_tcl_track_rmsize] = 0;
+    appendResult(buf,data);
+    return ES_OK;
+  }*/
+  snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid sub command '%s': expected 'header' | 'raw'",subcmd);
   return ES_TCL_ERROR;
 }
 
@@ -175,10 +182,10 @@ es_Status es_tcl_track_radio_set(char* subcmd, char* arg, void (*appendResult)(c
     }
 
     char *varname, *next;
+    arg = strdup(arg);
     next = arg;
-    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"NEXT: |%s|", arg);
     appendResult(es_msg_buf,data);
-/*    while((varname = mystrsep(&next," ")) != NULL) {
+    while((varname = mystrsep(&next," ")) != NULL) {
       char *v = mystrsep(&next," ");
       if( v == NULL ) {
         snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"missing value for variable %s",varname);
@@ -232,9 +239,11 @@ es_Status es_tcl_track_radio_set(char* subcmd, char* arg, void (*appendResult)(c
       }
       else {
         snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid radio header variable: %s",varname);
+        free(arg);
         return ES_TCL_ERROR;
       }
-    }*/
+    }
+    free(arg);
     return ES_OK;
   }
 
