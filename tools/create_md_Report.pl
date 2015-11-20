@@ -59,6 +59,39 @@ sub write_report {
 	$textfile="Week_3.txt";
 	$fh=appened_reports($fh, $textfile);
 	
+	#adding closed issues
+	print $fh "\n";
+	print $fh "The following issues have been closed for the current week:\n";
+	print $fh "\n";
+	
+	$textfile="Week_1_closed_issues.txt";
+	$fh=appened_reports($fh, $textfile);
+	
+	print $fh "\n";
+	print $fh "\n";
+	
+	print $fh "\n";
+	print $fh "\n";
+	print $fh "\n";
+	print $fh "\n";
+	print $fh "\n";
+	print $fh "Closed issues of the second week:\n";
+	print $fh "\n";
+	
+	$textfile="Week_2_closed_issues.txt";
+	$fh=appened_reports($fh, $textfile);
+	
+	
+	print $fh "\n";
+	print $fh "\n";
+	print $fh "Closed issues of the third week:\n";
+	print $fh "\n";
+	
+	$textfile="Week_3_closed_issues.txt";
+	$fh=appened_reports($fh, $textfile);
+	
+	#stop adding closed issues
+	
 	
 	print $fh "\n";
 	print $fh "\n";
@@ -76,6 +109,9 @@ sub write_report {
 	unlink 'Week_1.txt';
 	unlink 'Week_2.txt';
 	unlink 'Week_3.txt';
+	unlink 'Week_1_closed_issues.txt';
+	unlink 'Week_2_closed_issues.txt';
+	unlink 'Week_3_closed_issues.txt';
 	unlink '../test/TestReport_Text.txt';
 }
 
