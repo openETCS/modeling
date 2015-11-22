@@ -30,6 +30,7 @@ proc comm::handleConnect {channel addr port} {
   fconfigure $channel -translation binary -buffering none
   fileevent $channel readable "comm::readMsg $channel"
   set conn $channel
+  ctrl::reset
   set model::connected 1
   ctrl::log simctrl "Connected to EnvSim/EVC @$addr:$port"
   cfg::execOnConnect
@@ -85,8 +86,11 @@ proc comm::readMsgEVC2GUI {channel len} {
     set data [read $channel 64]
     binary scan "$data" cccx5ddcx7dddi eb sb tco curpos curvel afb dmax nom dmin tstamp
     #puts "$eb $sb $tco $curpos $curvel $afb $tstamp"
+    if {$afb != $model::afb } {
+      set model::afb $afb
+    }
     if {$eb != $model::ebActive} {
-    set model::ebActive $eb
+      set model::ebActive $eb
     }
     if {$sb != $model::sbActive} {
       set model::sbActive $sb
@@ -106,10 +110,10 @@ proc comm::readMsgEVC2GUI {channel len} {
 }
 
 
-proc comm::sendCtrlMsg {openDesk traction brake} {
+proc comm::sendCtrlMsg {openDesk traction brake target} {
   variable conn
   if {[info exists conn]} {
-    puts -nonewline $conn [binary format iix16ddx28i $comm::TCPMSG_GUI2EVC 64 $traction $brake $openDesk]
+    puts -nonewline $conn [binary format iix8dddx28i $comm::TCPMSG_GUI2EVC 64 $target $traction $brake $openDesk]
     #flush $conn
   } else {
   }

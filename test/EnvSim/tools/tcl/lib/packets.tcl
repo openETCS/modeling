@@ -5,6 +5,9 @@
 # History:
 # - 29.09.15, J. Kastner: initial version
 
+source "[file dirname [info script]]/enum.tcl"
+source "[file dirname [info script]]/conv.tcl"
+
 namespace eval ::pkts {}
 
 # Returns the display name for the specified packet ID.
@@ -70,6 +73,7 @@ proc pkts::packetName {nid_packet} {
 
 }
 
+
 proc pkts::binToIntList {offset nint data} {
   binary scan "$data" x${offset}i${nint} lst
   return $lst
@@ -111,20 +115,22 @@ proc pkts::readBinTrainPkts {offset data} {
       998 { 
         set lst [binToIntList $offset 17 "$data"]
         lappend pkts [readTrainP000 "$lst"]
-        incr offset 17
+        incr offset 68; # 17*4
       }
-        1 {
-          set lst [binToIntList $offset 17 "$data"]
-          lappend pkts [readTrainP001 "$lst"]
-          incr offset 17
-        }
-        3 {
-          set lst [binToIntList $offset 8 "$data"]
-          lappend pkts [readTrainP003 "$lst"]
-          incr offset 8
-        }
-       11 { incr offset 25 }
-       default { error "invalid nid: $nid" }
+      1 {
+        set lst [binToIntList $offset 17 "$data"]
+        lappend pkts [readTrainP001 "$lst"]
+        incr offset 68; # 17*4
+      }
+      3 {
+        set lst [binToIntList $offset 8 "$data"]
+        lappend pkts [readTrainP003 "$lst"]
+        incr offset 32; # 8*4
+      }
+      11 { incr offset 100; # 25*4 }
+      default {
+        error "invalid nid: $nid (offset: $offset)"
+      }
     }
     binary scan "$data" x${offset}i nid
   }
@@ -401,8 +407,8 @@ proc pkts::readTrainP000 {data} {
     q_scale    [lindex $data 2]\
     nid_lrbg   [lindex $data 3]\
     d_lrbg     [lindex $data 4]\
-    q_dir_lrbg [lindex $data 5]\
-    q_drl_lrbg [lindex $data 6]\
+    q_dirlrbg [lindex $data 5]\
+    q_drllrbg [lindex $data 6]\
     l_doubtover [lindex $data 7]\
     l_doubtunder [lindex $data 8]\
     q_length   [lindex $data 9]\
@@ -422,8 +428,8 @@ proc pkts::readTrainP001 {data} {
     nid_lrbg   [lindex $data 3]\
     nid_prvlrbg [lindex $data 4]\
     d_lrbg     [lindex $data 5]\
-    q_dir_lrbg [lindex $data 6]\
-    q_drl_lrbg [lindex $data 7]\
+    q_dirlrbg  [lindex $data 6]\
+    q_dlrbg    [lindex $data 7]\
     l_doubtover [lindex $data 8]\
     l_doubtunder [lindex $data 9]\
     q_length   [lindex $data 10]\

@@ -5,6 +5,7 @@
 # History:
 # - 25.10.15, J. Kastner: initial version
 # - 19.11.15, J. Kastner: rename Log -> Syslog; add tab "EVC Log"; correct resize handling
+# - 21.11.15, J. Kastner: improve layout
 package require Tk
 
 namespace eval ::view {
@@ -59,6 +60,7 @@ proc view::init {} {
   # View
   menu $m.view
   $m add cascade -menu $m.view -label View
+  $m.view add checkbutton -label "Messages" -variable evts::showMsgTab -command ctrl::showMsgLog -onvalue 1 -offvalue 0
   $m.view add checkbutton -label "Event Log" -variable evts::showLogTab -command ctrl::showEventLog -onvalue 1 -offvalue 0
   $m.view add checkbutton -label "SDM" -variable sdm::active -command ctrl::showSDM -onvalue 1 -offvalue 0
   $m.view add checkbutton -label "Commands" -variable macro::active -command ctrl::showCommands -onvalue 1 -offvalue 0
@@ -78,20 +80,20 @@ proc view::init {} {
   ### SIMULATION CONTROLS ###
   grid [ttk::frame .c.ctrl] -column 0 -row 2 -sticky n 
   grid [ttk::checkbutton .c.ctrl.openDesk -text "Open Desk" -variable model::openDesk -command model::ctrlsChanged] -row 0 -column 0
-  grid [ttk::checkbutton .c.ctrl.afb -text "AFB" -variable model::afb -command model::ctrlsChanged] -row 0 -column 1 
+  grid [ui::led .c.ctrl.afb AFB green model::afb] -row 0 -column 1
   grid [ttk::frame .c.ctrl.s -padding 5] -row 1 -column 0 -columnspan 2
   # Traction
   grid [ttk::frame .c.ctrl.s.traction] -column 0 -row 0
-  grid [ttk::scale .c.ctrl.s.traction.scale -from 100 -to 0 -orient vertical -variable model::traction -command model::ctrlsChanged]
-  grid [ttk::label .c.ctrl.s.traction.name -text Traction]
+  grid [ui::slider .c.ctrl.s.traction.scale -from 100 -to 0 -orient vertical -variable model::traction -command model::ctrlsChanged]
+  grid [ttk::label .c.ctrl.s.traction.name -text Traction] 
   # Brake
-  grid [ttk::frame .c.ctrl.s.brake] -column 1 -row 0
-  grid [ttk::scale .c.ctrl.s.brake.scale -from 300 -to 0 -orient vertical -variable model::brake -command model::ctrlsChanged]
-  grid [ttk::label .c.ctrl.s.brake.name -text Brake]
+  grid [ttk::frame .c.ctrl.s.brake -padding 5] -column 1 -row 0
+  grid [ui::slider .c.ctrl.s.brake.scale -from 300 -to 0 -orient vertical -variable model::brake -command model::ctrlsChanged]
+  grid [ttk::label .c.ctrl.s.brake.name -text Brake] -sticky e
   # Target Speed
-  grid [ttk::frame .c.ctrl.s.target] -column 2 -row 0
-  grid [ttk::scale .c.ctrl.s.target.scale -from 300 -to 0 -orient vertical -variable model::target -command model::ctrlsChanged]
-  grid [ttk::label .c.ctrl.s.target.name -text "Target Speed"]
+  grid [ttk::frame .c.ctrl.s.target -padding 5] -column 2 -row 0
+  grid [ui::slider .c.ctrl.s.target.scale -from 300 -to 0 -orient vertical -variable model::target -command model::ctrlsChanged]
+  grid [ttk::label .c.ctrl.s.target.name -text "Target Speed" -anchor center]
 
 
 
@@ -102,10 +104,13 @@ proc view::init {} {
   grid [ui::led .c.state.eb "Emergency Brake" red model::ebActive] -sticky w
   grid [ui::led .c.state.sb "Service Brake" red model::sbActive] -sticky w
   grid [ui::led .c.state.tco "Traction Cut Off" red model::tcoActive] -sticky w
-  # velocity & position
+  # velocity, position, and position report data
   grid [ttk::frame .c.info] -column 4 -row 2 -sticky n
   addLabelField .c.info.pos "Position (m):" model::currentPos 0 0 true 6
   addLabelField .c.info.vel "Velocity (km/h):" model::currentVel 0 1 true 4
+  addLabelField .c.info.lrbg "LRBG:" model::lrbg 0 2 true 4
+  addLabelField .c.info.mode "Mode:" model::mode 0 3 true 4
+  addLabelField .c.info.level "Level:" model::level 0 4 true 4
 
 
   ### TABS ###
@@ -127,10 +132,13 @@ proc view::init {} {
   grid [ttk::frame .c.n.syslog.btns -padding 3] -column 0 -row 0 -columnspan 2 -sticky w
   grid [ttk::button .c.n.syslog.btns.clear -text Clear -command ctrl::clearLog] -column 0 -row 0 -sticky w
   grid rowconfigure .c.n.syslog 0 -weight 0
-  grid [tk::text .c.n.syslog.area -state disabled -height 10] -column 0 -row 1 -sticky ns
-  grid [ttk::scrollbar .c.n.syslog.sb -command ".c.n.syslog.area yview"] -column 1 -row 1 -sticky ns
-  .c.n.syslog.area configure -yscrollcommand ".c.n.syslog.sb set"
+  grid [tk::text .c.n.syslog.area -state disabled -wrap none -height 10] -column 0 -row 1 -sticky wesn
+  grid [ttk::scrollbar .c.n.syslog.ysb -command ".c.n.syslog.area yview"] -column 1 -row 1 -sticky ns
+  .c.n.syslog.area configure -yscrollcommand ".c.n.syslog.ysb set"
+  grid [ttk::scrollbar .c.n.syslog.xsb -command ".c.n.syslog.area xview" -orient horizontal] -column 0 -row 2 -sticky we
+  .c.n.syslog.area configure -xscrollcommand ".c.n.syslog.xsb set"
   grid rowconfigure .c.n.syslog 1 -weight 1 
   .c.n add .c.n.syslog -text " Syslog " -sticky nwes
+  grid columnconfigure .c.n.syslog 0 -weight 1
 }
 

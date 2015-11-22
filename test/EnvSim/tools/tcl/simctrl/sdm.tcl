@@ -51,7 +51,7 @@ proc sdm::handleTargetMessage {data} {
   binary scan "$data" iii type distance speed
   set sdm::targetType [targetTypeString $type]
   set sdm::targetDistance [format "%.1f" [expr 0.01 * $distance]]
-  set sdm::targetSpeed [expr 5*$speed]
+  set sdm::targetSpeed $speed
 
   if $sdm::active { logTarget }
 }

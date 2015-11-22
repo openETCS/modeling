@@ -4,6 +4,7 @@
 # 
 # History:
 # - 24.10.15, J. Kastner: initial version
+# - 21.11.15, J. Kastner: add ui::slider
 package require Tk
 
 namespace eval ::ui {
@@ -14,6 +15,8 @@ namespace eval ::ui {
   image create photo balise -file "$libpath/icons/balise.gif"
   image create photo rmsg -file "$libpath/icons/rmsg.gif"
   image create photo tmsg -file "$libpath/icons/tmsg.gif"
+
+  variable isOSX [expr {"Darwin" eq $::tcl_platform(os)}]
 }
 
 proc ui::led {path label color var} {
@@ -41,4 +44,11 @@ proc ui::addLabelField {path label var col row {rdly false} {width 10}} {
   }
 }
 
-
+proc ui::slider {path args} {
+  variable isOSX
+  if $isOSX {
+    eval scale $path -background systemDialogBackgroundActive $args
+  } else {
+    eval scale $path $args
+  }
+}

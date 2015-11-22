@@ -41,6 +41,11 @@ proc view::init {} {
   $m add cascade -menu $m.file -label File
   $m.file add command -label "Open Track" -command "view::openTrackDialog"
 
+  # Tools
+  #menu $m.tools
+  #$m add cascade -menu $m.tools -label Tools
+  #$m.tools add command -label "Check linking" -command "link::check"
+
   . configure -menu .menubar
 
   ### HEAD FRAME ###

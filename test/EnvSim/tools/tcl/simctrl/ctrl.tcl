@@ -8,8 +8,12 @@
 namespace eval ::ctrl {
 }
 
-proc ctrl::error {msg} {
+# reset UI controls / indicators
+proc ctrl::reset {} {
+  model::reset
 }
+
+
 
 proc ctrl::handleRemoteConfig {data} {
   ctrl::log remote "config: $data"
@@ -54,10 +58,23 @@ proc ctrl::log {id msg {type info}} {
   .c.n.syslog.area see end
 }
 
+proc ctrl::error {id msg} {
+  log "$id" "$msg" error
+}
+
 proc ctrl::clearLog {} {
   .c.n.syslog.area configure -state normal
   .c.n.syslog.area delete 1.0 end
   .c.n.syslog.area configure -state disabled
+}
+
+# show or hide Messages tab
+proc ctrl::showMsgLog {} {
+  if $evts::showMsgTab {
+    .c.n add .c.n.msgs
+  } else {
+    .c.n hide .c.n.msgs
+  }
 }
 
 # show or hide SDM tab
@@ -87,7 +104,7 @@ proc ctrl::showCommands {} {
   }
 }
 
-# show or hide Log tab
+# show or hide Syslog tab
 proc ctrl::showLog {} {
   if $view::logactive {
     .c.n add .c.n.syslog
