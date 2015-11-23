@@ -16,6 +16,7 @@ namespace eval ::model {
   set currentPos     0
   set currentVel     0
   set afb            0
+  set tstamp         0
   # sim controls (UI -> SIM)
   set openDesk       0
   set traction       0.0
@@ -40,6 +41,7 @@ proc model::reset {} {
   set model::currentPos     0
   set model::currentVel     0
   set model::afb            0
+  set model::tstamp         0
   # sim controls (UI -> SIM)
   set model::openDesk       0
   set model::traction       0.0

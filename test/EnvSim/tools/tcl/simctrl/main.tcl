@@ -33,6 +33,7 @@ foreach s {
   ctrl.tcl
   evts.tcl
   sdm.tcl
+  plot.tcl
   macro.tcl
   trackview.tcl
 } {

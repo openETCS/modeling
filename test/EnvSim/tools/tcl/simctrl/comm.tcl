@@ -106,6 +106,8 @@ proc comm::readMsgEVC2GUI {channel len} {
     if {$curvel != $model::currentVel} {
       set model::currentVel $curvel
     }
+    set model::tstamp $tstamp
+    plot::updatePosPlot $tstamp [expr $nom/100] $dmax $dmin
   }
 }
 

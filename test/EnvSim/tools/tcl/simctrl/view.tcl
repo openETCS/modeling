@@ -30,6 +30,7 @@ proc view::init {} {
   }
 
   wm title . "openETCS SimCtrl"
+  wm minsize . 700 550
 
   grid [ttk::frame .c -padding 10] -sticky nwes
   grid columnconfigure . 0 -weight 1
@@ -63,6 +64,7 @@ proc view::init {} {
   $m.view add checkbutton -label "Messages" -variable evts::showMsgTab -command ctrl::showMsgLog -onvalue 1 -offvalue 0
   $m.view add checkbutton -label "Event Log" -variable evts::showLogTab -command ctrl::showEventLog -onvalue 1 -offvalue 0
   $m.view add checkbutton -label "SDM" -variable sdm::active -command ctrl::showSDM -onvalue 1 -offvalue 0
+  $m.view add checkbutton -label "Plots" -variable plot::active -command ctrl::showPlots -onvalue 1 -offvalue 0
   $m.view add checkbutton -label "Commands" -variable macro::active -command ctrl::showCommands -onvalue 1 -offvalue 0
   $m.view add checkbutton -label "Syslog" -variable view::logactive -command ctrl::showLog -onvalue 1 -offvalue 0
 
@@ -124,6 +126,9 @@ proc view::init {} {
   # SDM
   sdm::initView .c.n.sdm
   .c.n add .c.n.sdm -text " SDM "
+  # Plots
+  plot::initView .c.n.plot
+  .c.n add .c.n.plot -text " Plots "
   # Macros
   macro::initView .c.n.macros
   .c.n add .c.n.macros -text " Commands "

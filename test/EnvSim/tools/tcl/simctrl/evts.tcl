@@ -23,9 +23,13 @@ namespace eval ::evts {
   set autoscrollLog 1
   set logERR 1
   set logPOS 0
+  set logRBC 1
   set logRTM 1
   set logSDM 1
   set logTRK 1
+
+  set lastMA {}
+  variable pendingMARequest 0
 }
 
 proc evts::initMsgView {path} {
@@ -41,7 +45,7 @@ proc evts::initMsgView {path} {
   grid [ttk::checkbutton $path.btns.log132 -text Msg132 -variable evts::logMsg132 -onvalue 1 -offvalue 0] -column 3 -row 0
   grid [ttk::checkbutton $path.btns.log136 -text Msg136 -variable evts::logMsg136 -onvalue 1 -offvalue 0] -column 4 -row 0
 
-  grid [ttk::treeview $path.tree -columns {Position data type} -displaycolumns Position] -column 0 -row 1
+  grid [ttk::treeview $path.tree -columns {Position data type} -displaycolumns Position] -column 0 -row 1 -sticky ns
   set tree $path.tree
   grid [ttk::scrollbar $path.sb -command "$tree yview"] -column 1 -row 1 -sticky ns
   $tree configure -yscrollcommand "$path.sb set"
@@ -58,6 +62,7 @@ proc evts::initMsgView {path} {
 
   grid columnconfigure $path 2 -minsize 5 -weight 0
   grid columnconfigure $path 3 -weight 1
+  grid rowconfigure $path 1 -weight 1
 
   $msgArea tag configure title -font "TkFixedFont 10 bold"
 }
@@ -76,6 +81,9 @@ proc evts::handleRadioMessage {data} {
 
   binary scan "$data" dx8i pos nid_message
   if { $nid_message == 24 && !$evts::logMsg24 } return
+  if { $nid_message == 3 } {
+    handleMsg3 "$data"
+  }
 
   set id [$tree insert {} end -text "MSG $nid_message" -values [list [format %.1f $pos] "$data" R] -image rmsg]
   if $evts::autoscrollMsgs { $tree see $id }
@@ -86,7 +94,10 @@ proc evts::handleTrainMessage {data} {
   variable tree
 
   binary scan "$data" dx4i pos nid_message
-  if { $nid_message == 132 && !$evts::logMsg132 } return
+  if { $nid_message == 132 } {
+    handleMsg132 "$data"
+    if { !$evts::logMsg132 } return
+  }
   if { $nid_message == 136 } {
     handlePosReport "$data"
     if { !$evts::logMsg136 } return
@@ -115,7 +126,35 @@ proc evts::handlePosReport {data} {
     }
   }
 
-  logPOS "lrbg: $model::lrbg   d_lrbg: ${d_lrbg}m   q_dirlrbg: $q_dirlrbg   v_train: $v_train kph   q_dirtrain: $q_dirtrain   m_mode: $model::mode   m_level: $model::level   l_doubtover: $l_doubtover   l_doubtunder: $l_doubtunder: $l_doubtunder"
+  logPOS "lrbg: $model::lrbg   d_lrbg: ${d_lrbg}m   q_dirlrbg: $q_dirlrbg   v_train: $v_train kph   q_dirtrain: $q_dirtrain   m_mode: $model::mode   m_level: $model::level   l_doubtover: ${l_doubtover}m   l_doubtunder: ${l_doubtunder}m"
+}
+
+proc evts::handleMsg3 {data} {
+  variable pendingMARequest
+
+  set pendingMARequest 0
+
+  set evts::lastMA "$data"
+  set msg [msgs::parseBinRadioMsg "$data" 8]
+  set nid_lrbg [dict get $msg nid_lrbg]
+  set pkt15 [lindex [dict get $msg packets] 0]
+  foreach {k v} "$pkt15" {
+    switch $k {
+      q_scale { set q_scale $v }
+      l_endsection { set l_endsection [conv::lengthInM $q_scale $v] }
+      v_loa { set v_loa [conv::velocityInKmH $v] }
+    }
+  }
+  logRBC "Sending Msg3 (MA) with nid_lrbg: $nid_lrbg   l_endsection: ${l_endsection}m   v_loa: $v_loa kph"
+}
+
+proc evts::handleMsg132 {data} {
+  variable pendingMARequest
+
+  if {! $pendingMARequest} {
+    logRBC "Received Msg132 (MA Request)"
+  }
+  set pendingMARequest 1
 }
 
 proc evts::displayEvent {args} {
@@ -229,10 +268,11 @@ proc evts::initLogView {path} {
   grid [ttk::button $path.btn.clear -text Clear -command evts::clearLog] -column 0
   grid [ttk::checkbutton $path.btn.logERR -text ERR -variable evts::logERR -onvalue 1 -offvalue 0] -column 1 -row 0
   grid [ttk::checkbutton $path.btn.logPOS -text POS -variable evts::logPOS -onvalue 1 -offvalue 0] -column 2 -row 0
-  grid [ttk::checkbutton $path.btn.logRTM -text RTM -variable evts::logRTM -onvalue 1 -offvalue 0] -column 3 -row 0
-  grid [ttk::checkbutton $path.btn.logSDM -text SDM -variable evts::logSDM -onvalue 1 -offvalue 0] -column 4 -row 0
-  grid [ttk::checkbutton $path.btn.logTRK -text TRK -variable evts::logTRK -onvalue 1 -offvalue 0] -column 5 -row 0
-  grid [ttk::checkbutton $path.btn.autoscroll -text Autoscroll -variable evts::autoscrollLog -onvalue 1 -offvalue 0] -column 6 -row 0
+  grid [ttk::checkbutton $path.btn.logRBC -text RBC -variable evts::logRBC -onvalue 1 -offvalue 0] -column 3 -row 0
+  grid [ttk::checkbutton $path.btn.logRTM -text RTM -variable evts::logRTM -onvalue 1 -offvalue 0] -column 4 -row 0
+  grid [ttk::checkbutton $path.btn.logSDM -text SDM -variable evts::logSDM -onvalue 1 -offvalue 0] -column 5 -row 0
+  grid [ttk::checkbutton $path.btn.logTRK -text TRK -variable evts::logTRK -onvalue 1 -offvalue 0] -column 6 -row 0
+  grid [ttk::checkbutton $path.btn.autoscroll -text Autoscroll -variable evts::autoscrollLog -onvalue 1 -offvalue 0] -column 7 -row 0
   # Log area
   grid [tk::text $path.text -height 10 -state disabled -wrap none] -column 0 -row 1 -sticky wesn
   set logArea $path.text
@@ -275,6 +315,12 @@ proc evts::logERR {msg} {
 proc evts::logPOS {msg} {
   if $evts::logPOS {
     logEvent POS "$msg"
+  }
+}
+
+proc evts::logRBC {msg} {
+  if $evts::logRBC {
+    logEvent RBC "$msg"
   }
 }
 

@@ -121,3 +121,12 @@ proc ctrl::showTrack {visible} {
     grid remove .c.track
   }
 }
+
+# show or hide plots
+proc ctrl::showPlots {} {
+  if $plot::active {
+    .c.n add .c.n.plot
+  } else {
+    .c.n hide .c.n.plot
+  }
+}
