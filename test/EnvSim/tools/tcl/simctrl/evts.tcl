@@ -6,6 +6,7 @@
 # - 29.10.15, J. Kastner: initial version
 # - 20.11.15, J. Kastner: add event log tab (ERR,RTM,SDM)
 # - 21.11.15, J. Kastner: add logging of POS and TRK events
+# - 22.11.15, J. Kastner: implement log+message export
 package require Tk
 
 namespace eval ::evts {
@@ -40,10 +41,11 @@ proc evts::initMsgView {path} {
 
   grid [ttk::frame $path.btns -padding 3] -column 0 -row 0 -columnspan 5 -sticky w
   grid [ttk::button $path.btns.clear -text Clear -command evts::clearMsgs] -column 0 -row 0 -sticky w
-  grid [ttk::checkbutton $path.btns.scroll -text Autoscroll -variable evts::autoscrollMsgs -onvalue 1 -offvalue 0] -column 1 -row 0
-  grid [ttk::checkbutton $path.btns.log24 -text Msg24 -variable evts::logMsg24 -onvalue 1 -offvalue 0] -column 2 -row 0
-  grid [ttk::checkbutton $path.btns.log132 -text Msg132 -variable evts::logMsg132 -onvalue 1 -offvalue 0] -column 3 -row 0
-  grid [ttk::checkbutton $path.btns.log136 -text Msg136 -variable evts::logMsg136 -onvalue 1 -offvalue 0] -column 4 -row 0
+  grid [ttk::button $path.btns.save -text Save -command evts::saveMsgsDialog] -column 1 -row 0 -sticky w
+  grid [ttk::checkbutton $path.btns.scroll -text Autoscroll -variable evts::autoscrollMsgs -onvalue 1 -offvalue 0] -column 2 -row 0
+  grid [ttk::checkbutton $path.btns.log24 -text Msg24 -variable evts::logMsg24 -onvalue 1 -offvalue 0] -column 3 -row 0
+  grid [ttk::checkbutton $path.btns.log132 -text Msg132 -variable evts::logMsg132 -onvalue 1 -offvalue 0] -column 4 -row 0
+  grid [ttk::checkbutton $path.btns.log136 -text Msg136 -variable evts::logMsg136 -onvalue 1 -offvalue 0] -column 5 -row 0
 
   grid [ttk::treeview $path.tree -columns {Position data type} -displaycolumns Position] -column 0 -row 1 -sticky ns
   set tree $path.tree
@@ -72,7 +74,8 @@ proc evts::handleBaliseMessage {data} {
 
   binary scan "$data" dx12ix16i pos n_pig nid_bg
   logTRK "passed balise $nid_bg.$n_pig"
-  set id [$tree insert {} end -text "BG $nid_bg.$n_pig" -values [list [format %.1f $pos] "$data" B] -image balise]
+  set id [appendEvent "BG $nid_bg.$n_pig" $pos B "$data"]
+  #set id [$tree insert {} end -text "BG $nid_bg.$n_pig" -values [list [format %.1f $pos] "$data" B] -image balise]
   if $evts::autoscrollMsgs { $tree see $id }
 }
 
@@ -85,7 +88,8 @@ proc evts::handleRadioMessage {data} {
     handleMsg3 "$data"
   }
 
-  set id [$tree insert {} end -text "MSG $nid_message" -values [list [format %.1f $pos] "$data" R] -image rmsg]
+  set id [appendEvent "MSG $nid_message" $pos R "$data"]
+  #set id [$tree insert {} end -text "MSG $nid_message" -values [list [format %.1f $pos] "$data" R] -image rmsg]
   if $evts::autoscrollMsgs { $tree see $id }
 }
 
@@ -101,6 +105,9 @@ proc evts::handleTrainMessage {data} {
   if { $nid_message == 136 } {
     handlePosReport "$data"
     if { !$evts::logMsg136 } return
+  }
+  if { $nid_message == 147 } {
+    handleMsg147 "$data"
   }
 
   set id [$tree insert {} end -text "MSG $nid_message" -values [list [format %.1f $pos] "$data" T] -image tmsg]
@@ -156,6 +163,25 @@ proc evts::handleMsg132 {data} {
   }
   set pendingMARequest 1
 }
+
+proc evts::handleMsg147 {data} {
+  logRBC "Received Msg147 (ES acknowledged) with nid_em"
+}
+
+
+# Appends a message to the messages tree and returns the ID of the newly create item
+proc evts::appendEvent {label pos type data} {
+  variable tree
+
+  switch $type {
+    B {set img balise }
+    R {set img rmsg }
+    T {set img tmsg }
+    default { error "invalid type: $type" }
+  }
+  return [$tree insert {} end -text "$label" -values [list [format %.1f $pos] "$data" $type] -image $img]
+}
+
 
 proc evts::displayEvent {args} {
   variable tree
@@ -265,25 +291,26 @@ proc evts::initLogView {path} {
   ttk::frame $path -padding 5
   # Buttons
   grid [ttk::frame $path.btn -padding 3] -column 0 -row 0 -columnspan 2 -sticky we
-  grid [ttk::button $path.btn.clear -text Clear -command evts::clearLog] -column 0
-  grid [ttk::checkbutton $path.btn.logERR -text ERR -variable evts::logERR -onvalue 1 -offvalue 0] -column 1 -row 0
-  grid [ttk::checkbutton $path.btn.logPOS -text POS -variable evts::logPOS -onvalue 1 -offvalue 0] -column 2 -row 0
-  grid [ttk::checkbutton $path.btn.logRBC -text RBC -variable evts::logRBC -onvalue 1 -offvalue 0] -column 3 -row 0
-  grid [ttk::checkbutton $path.btn.logRTM -text RTM -variable evts::logRTM -onvalue 1 -offvalue 0] -column 4 -row 0
-  grid [ttk::checkbutton $path.btn.logSDM -text SDM -variable evts::logSDM -onvalue 1 -offvalue 0] -column 5 -row 0
-  grid [ttk::checkbutton $path.btn.logTRK -text TRK -variable evts::logTRK -onvalue 1 -offvalue 0] -column 6 -row 0
-  grid [ttk::checkbutton $path.btn.autoscroll -text Autoscroll -variable evts::autoscrollLog -onvalue 1 -offvalue 0] -column 7 -row 0
+  grid [ttk::button $path.btn.clear -text Clear -command evts::clearLog] -column 0 -row 0
+  grid [ttk::button $path.btn.save -text Save -command evts::saveLogDialog] -column 1 -row 0
+  grid [ttk::checkbutton $path.btn.autoscroll -text Autoscroll -variable evts::autoscrollLog -onvalue 1 -offvalue 1] -column 2 -row 0
+  grid [ttk::frame $path.flag -padding 3] -column 0 -row 1 -columnspan 2 -sticky we
+  grid [ttk::checkbutton $path.flag.logERR -text ERR -variable evts::logERR -onvalue 1 -offvalue 0] -column 1 -row 1
+  grid [ttk::checkbutton $path.flag.logPOS -text POS -variable evts::logPOS -onvalue 1 -offvalue 0] -column 2 -row 1
+  grid [ttk::checkbutton $path.flag.logRBC -text RBC -variable evts::logRBC -onvalue 1 -offvalue 0] -column 3 -row 1
+  grid [ttk::checkbutton $path.flag.logRTM -text RTM -variable evts::logRTM -onvalue 1 -offvalue 0] -column 4 -row 1
+  grid [ttk::checkbutton $path.flag.logSDM -text SDM -variable evts::logSDM -onvalue 1 -offvalue 0] -column 5 -row 1
+  grid [ttk::checkbutton $path.flag.logTRK -text TRK -variable evts::logTRK -onvalue 1 -offvalue 0] -column 6 -row 1
   # Log area
-  grid [tk::text $path.text -height 10 -state disabled -wrap none] -column 0 -row 1 -sticky wesn
+  grid [tk::text $path.text -height 10 -state disabled -wrap none] -column 0 -row 2 -sticky wesn
   set logArea $path.text
-  grid [ttk::scrollbar $path.ysb -command "$logArea yview"] -column 1 -row 1 -sticky ns
+  grid [ttk::scrollbar $path.ysb -command "$logArea yview"] -column 1 -row 2 -sticky ns
   $logArea configure -yscrollcommand "$path.ysb set"
-  grid [ttk::scrollbar $path.xsb -orient horizontal -command "$logArea xview"] -column 0 -row 2 -sticky we
+  grid [ttk::scrollbar $path.xsb -orient horizontal -command "$logArea xview"] -column 0 -row 3 -sticky we
   $logArea configure -xscrollcommand "$path.xsb set"
 
   grid columnconfigure $path 0 -weight 1
-  grid rowconfigure $path 0 -weight 0
-  grid rowconfigure $path 1 -weight 1
+  grid rowconfigure $path 2 -weight 1
 
   $logArea tag configure error -foreground red
 }
@@ -340,4 +367,77 @@ proc evts::clearLog {} {
   $logArea configure -state normal
   $logArea delete 1.0 end
   $logArea configure -state disabled
+}
+
+
+proc evts::saveLogDialog {} {
+  set types {
+    {"Log Files" .log}
+  }
+
+  set file [tk_getSaveFile -filetypes $types]
+
+  if {$file != ""} {
+    evts::saveLog "$file"
+  }
+
+}
+
+proc evts::saveLog {path} {
+  variable logArea
+
+  if {! [string match "*.log" $path]} {
+    set path "$path.log"
+  }
+
+  set f [open $path w]
+  puts $f [$logArea get 1.0 end]
+  close $f
+}
+
+
+proc evts::saveMsgsDialog {} {
+  set types {
+    {"Track Log Files" .trk}
+  }
+
+  set file [tk_getSaveFile -filetypes $types]
+
+  if {$file != ""} {
+    evts::saveMsgs "$file"
+  }
+
+}
+
+
+proc evts::saveMsgs {path {includeLog false}} {
+  variable tree
+
+  if {! [string match "*.trk" $path]} {
+    set path "$path.trk"
+  }
+
+  set fd [open "$path" w]
+
+  foreach id [$tree children {}] {
+    set values [$tree item $id -values]
+    set data "[lindex $values 1]"
+    set bytes [util::bytes2hex "$data" 8]
+    switch [lindex $values 2] {
+      B {
+        puts $fd "track::balise raw $bytes"
+        puts $fd "track::add balise [lindex $values 0]"
+      }
+      R {
+        puts $fd "track::radio raw $bytes"
+        puts $fd "track::add radio [lindex $values 0]"
+      }
+      T {
+        puts $fd "track::train raw $bytes"
+        puts $fd "track::add train [lindex $values 0]"
+      }
+    }
+  }
+
+  close $fd
 }

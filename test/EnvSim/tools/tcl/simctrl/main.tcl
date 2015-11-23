@@ -24,6 +24,7 @@ if $isWin {
 
 # load modules
 foreach s {
+  ../lib/util.tcl
   ../lib/ui.tcl
   ../lib/msgs.tcl
   cfg.tcl
