@@ -6,6 +6,7 @@
 // - 23.09.15, J. Kastner: initial version
 // - 28.10.15, J. Kastner: add track_clear() and track_title()
 // - 11.11.15, J. Kastner: add track::radio subcommands
+// - 24.11.15, J. Kastner: add track::train subcommands
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,11 +40,14 @@ char* mystrsep(char** stringp, const char* delim)
 
 const size_t es_tcl_track_bmsize = sizeof(CompressedBaliseMessage_TM);
 const size_t es_tcl_track_rmsize = sizeof(CompressedRadioMessage_TM);
+const size_t es_tcl_track_tmsize = sizeof(M_TrainTrack_Message_T_TM_radio_messages);
 
-// static buffer reading/writing of balise messages
+// static buffer for reading/writing of balise messages
 CompressedBaliseMessage_TM es_tcl_track_balise_buf;
-// static buffer reading/writing of radio messages
+// static buffer for reading/writing of RBC radio messages
 CompressedRadioMessage_TM es_tcl_track_radio_buf;
+// static buffer for reading/writing of train radio messages
+M_TrainTrack_Message_T_TM_radio_messages es_tcl_track_train_buf;
 
 
 es_Status es_tcl_track_balise_load_raw(char* hexdata) {
@@ -122,6 +126,34 @@ es_Status es_tcl_track_balise(char* subcmd, char* arg, void (*appendResult)(char
   return ES_TCL_ERROR;
 }
 
+es_Status es_tcl_track_train_load_raw(char *hexdata) {
+  es_hex_to_bytes(es_tcl_track_tmsize,hexdata,(char*)&es_tcl_track_train_buf);
+  return ES_OK;
+}
+
+es_Status es_tcl_track_train_load_index(int i) {
+  es_ListEntry *e = es_list_get(es_tracksim_track.tmsgs,i);
+
+  if(e==NULL) {
+    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid train message index=%d",i);
+    return ES_TCL_ERROR;
+  }
+
+  es_tcl_track_train_buf = ((es_TriggeredTrainMessage*)e->data)->msg;
+  return ES_OK;
+}
+
+
+es_Status es_tcl_track_train(char* subcmd, char* arg, void (*appendResult)(char*,es_ClientData), es_ClientData data) {
+  if(!strcmp("raw",subcmd)) {
+    return es_tcl_track_train_load_raw(arg);
+  }
+  if(!strcmp("load",subcmd)) {
+    return es_tcl_track_train_load_index(atoi(arg));
+  }
+  snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid sub command for 'track::train': %s",subcmd);
+  return ES_TCL_ERROR;
+}
 
 // retrieve data values from the radio message buffer
 es_Status es_tcl_track_radio_get(char* subcmd, void (*appendResult)(char*, es_ClientData), es_ClientData data) {
@@ -286,6 +318,10 @@ es_Status es_tcl_track_add(char* subcmd, double pos) {
     es_add_triggered_radio_message(&es_tracksim_track,pos,&es_tcl_track_radio_buf);
     return ES_OK;
   }
+  if(!strcmp("train",subcmd)) {
+    es_add_triggered_train_message(&es_tracksim_track,pos,&es_tcl_track_train_buf);
+    return ES_OK;
+  }
   snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid sub command for 'track::add': %s",subcmd);
   return ES_TCL_ERROR;
 }
@@ -303,7 +339,7 @@ es_Status es_tcl_track_info(void (*appendResult)(char* res, es_ClientData data),
     next = next->tail;
     i++;
   }
-  // radio messages
+  // RBC radio messages
   next = es_tracksim_track.rmsgs;
   i = 0;
   while(next!=NULL) {
@@ -314,6 +350,18 @@ es_Status es_tcl_track_info(void (*appendResult)(char* res, es_ClientData data),
     next = next->tail;
     i++;
   }
+  // train radio messages
+  next = es_tracksim_track.tmsgs;
+  i = 0;
+  while(next!=NULL) {
+    es_TriggeredTrainMessage *tm = (es_TriggeredTrainMessage*)next->data;
+    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"{t %d %d %.1f} ",i,tm->msg.Message.nid_message,tm->triggerpos);
+    appendResult(es_msg_buf,data);
+
+    next = next->tail;
+    i++;
+  }
+
   return ES_OK;
 }
 

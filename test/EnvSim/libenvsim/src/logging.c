@@ -10,6 +10,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "logging.h"
 #include "utils.h"
 
@@ -46,6 +47,8 @@ void es_log_exit() {
 
 
 void es_log_init(char *logfile) {
+  char* lvl;
+
   if(es_log_write!=NULL) {
     return;
   }
@@ -75,6 +78,18 @@ void es_log_init(char *logfile) {
   es_log_write = es_log_write_to_file;
 
 finish:
+  lvl = getenv("ENVSIM_LOGLEVEL");
+  if( lvl!=NULL ) {
+    if( !strcmp("INFO",lvl) ) {
+      es_current_loglevel = ES_LOG_INFO;
+    }
+    else if( !strcmp("TRACE",lvl) ) {
+      es_current_loglevel = ES_LOG_TRACE;
+    }
+    else if( !strcmp("WARN",lvl) ) {
+      es_current_loglevel = ES_LOG_WARN;
+    }
+  }
   atexit(es_log_exit);
   snprintf(buf,256,"*** openETCS libenvsim V%s (%s) ***",ES_VERSION,ES_BUILDDATE);
   es_log_write(buf);

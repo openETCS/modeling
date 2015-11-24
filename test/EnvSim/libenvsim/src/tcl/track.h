@@ -18,6 +18,9 @@ es_Status es_tcl_track_balise(char* subcmd, char* arg, void (*appendResult)(char
 // handle subcommands for command "track::radio"
 es_Status es_tcl_track_radio(char* subcmd, char* arg1, char* arg2, void (*appendResult)(char*,es_ClientData), es_ClientData data);
 
+// handle subcommands for command "track::train"
+es_Status es_tcl_track_train(char* subcmd, char* arg, void (*appendResult)(char*,es_ClientData), es_ClientData data);
+
 // handle subcommands for command "track::add"
 es_Status es_tcl_track_add(char* subcmd, double pos);
 

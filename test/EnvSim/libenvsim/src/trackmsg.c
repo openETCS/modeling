@@ -3,7 +3,7 @@
 // Description: Representation + triggering of trackside messages (balise telegrams and radio messages)
 //
 // History:
-// - 22.09.15, kastner:
+// - 22.09.15, J. Kastner: initial version
 
 #include <stdio.h>
 #include "trackmsg.h"
@@ -11,11 +11,13 @@
 
 #define GET_TRIGGERED_BM(list_entry) (list_entry==NULL ? NULL : (es_TriggeredBaliseMessage*)list_entry->data);
 #define GET_TRIGGERED_RM(list_entry) (list_entry==NULL ? NULL : (es_TriggeredRadioMessage*)list_entry->data);
+#define GET_TRIGGERED_TM(list_entry) (list_entry==NULL ? NULL : (es_TrainMessage*)list_entry->data);
 
 es_TrackMessages es_tracksim_track = {
   .title = NULL,
   .bmsgs = NULL,
-  .rmsgs = NULL
+  .rmsgs = NULL,
+  .tmsgs = NULL
 };
 
 static es_ListEntry *es_baliseMsgBuffer = NULL;
@@ -125,7 +127,6 @@ void es_add_triggered_radio_message(es_TrackMessages *track, es_TriggerPos pos, 
 }
 
 
-
 void es_trigger_balise_msgs(es_TrackSimState *state, es_TriggerPos newBPos) {
   es_ListEntry *next = state->prevBmsg==NULL ? state->messages->bmsgs : state->prevBmsg->tail;
   es_ListEntry *prev = state->prevBmsg;
@@ -161,6 +162,15 @@ void es_trigger_radio_msgs(es_TrackSimState *state, es_TriggerPos newRPos) {
   state->prevRmsg = prev;
   state->prevRPos = newRPos;
 }
+
+
+void es_add_triggered_train_message(es_TrackMessages *track, es_TriggerPos pos, M_TrainTrack_Message_T_TM_radio_messages *tmsg) {
+  es_TriggeredTrainMessage *ttm = MALLOC(es_TriggeredTrainMessage);
+  ttm->triggerpos = pos;
+  ttm->msg = *tmsg;
+  track->tmsgs = es_list_insert(track->tmsgs,(char*)ttm,es_cmp_trm);
+}
+
 
 void es_track_clear(es_TrackMessages *track) {
   if(track->title != NULL) {

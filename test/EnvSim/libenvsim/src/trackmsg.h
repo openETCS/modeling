@@ -4,6 +4,7 @@
 //
 // History:
 // - 22.09.15, J. Kastner: initial version
+// - 24.11.15, J. Kastner: add handling of train radio messages (es_TriggeredTrainMessage)
 
 #ifndef ENGINE_TRACKMSG_H
 #define ENGINE_TRACKMSG_H
@@ -26,13 +27,20 @@ typedef struct {
 } es_TriggeredRadioMessage;
 
 typedef struct {
+  es_TriggerPos triggerpos;
+  M_TrainTrack_Message_T_TM_radio_messages msg;
+} es_TriggeredTrainMessage;
+
+typedef struct {
   // title of the loaded track, or NULL
   char *title;
   // linked list with balise messages
   // (in ascending order w.r.t. triggerpos)
   es_ListEntry *bmsgs;
-  // linked list with radio messages
+  // linked list with RBC radio messages
   es_ListEntry *rmsgs;
+  // linked list with train radio messages
+  es_ListEntry *tmsgs;
 } es_TrackMessages;
 
 
@@ -75,8 +83,11 @@ void es_queue_radio_message(CompressedRadioMessage_TM *msg);
 // in the radio message buffer.
 void es_write_next_radio_message(CompressedRadioMessage_TM *target);
 
-// Adds a new radio message to the provided track at the specified trigger position.
-void es_add_triggered_radio_message(es_TrackMessages *track, es_TriggerPos pos, CompressedRadioMessage_TM *tmsg);
+// Adds a new RBC radio message to the provided track at the specified trigger position.
+void es_add_triggered_radio_message(es_TrackMessages *track, es_TriggerPos pos, CompressedRadioMessage_TM *rmsg);
+
+// Adds a new train radio message to the provided track at the specified trigger position.
+void es_add_triggered_train_message(es_TrackMessages *track, es_TriggerPos pos, M_TrainTrack_Message_T_TM_radio_messages *tmsg);
 
 // Clears all messages from the specified track instance
 void es_track_clear(es_TrackMessages *track);

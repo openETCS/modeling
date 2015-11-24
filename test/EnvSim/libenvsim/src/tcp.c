@@ -83,7 +83,7 @@ int es_tcp_recvmsg(SOCKET sock, char *buf, size_t bufsize) {
   *p += rc;
   int cycle = 1;
   while(nleft>0) {
-    LOG_INFO(tcp,"waiting for %d more bytes (loop: %d)",nleft,cycle);
+    LOG_TRACE(tcp,"waiting for %d more bytes (loop: %d)",nleft,cycle);
 
     rc = recv(sock,p,nleft,0);
     if(rc < 0) {
@@ -279,8 +279,8 @@ es_Status es_tcp_listen(es_TCPContext *ctx, const int port, const char *name, es
 }
 
 es_Status es_tcp_send_sync(es_TCPStream *stream, es_MSGID id, const char *data, int len) {
-  assert(stream != NULL);
-  if( stream->socket == INVALID_SOCKET ) {
+  //assert(stream != NULL);
+  if( stream == NULL || stream->socket == INVALID_SOCKET ) {
     return ES_TCP_NO_CONN;
   }
 
@@ -405,7 +405,7 @@ es_Status es_tcp_process_out(es_TCPContext *ctx) {
       stream->afterSend();
     }
 
-    if( stream->nout > TCP_MAX_PENDING_MSGS && stream->nout % 50 == 0) {
+    if( stream->nout > TCP_MAX_PENDING_MSGS ) {
       LOG_WARN(tcp,"%d pending messages on output stream '%s'",stream->nout, stream->name);
     }
     next = next->tail;

@@ -151,15 +151,15 @@ void es_scade_probe_evc_cycle(MSG_Errors_T_Common_Types_Pkg *msgErrors,
       msgErrors->radioSequenceError ||
       msgErrors->tNvContactError ||
       msgErrors->unlinkedBGError) {
-    printf("MSG Error: incompatible: %d  link: %d  timing: %d  consistency: %d  sequence: %d  contact: %d  unlinked: %d\n",
-       msgErrors->BG_versionIncompatible ,
-      msgErrors->linkedBGError ,
-      msgErrors->otherTimingError ,
-      msgErrors->radioMessageConsistencyError ,
-      msgErrors->radioSequenceError ,
-      msgErrors->tNvContactError ,
-      msgErrors->unlinkedBGError
-    );
+//    printf("MSG Error: incompatible: %d  link: %d  timing: %d  consistency: %d  sequence: %d  contact: %d  unlinked: %d\n",
+//       msgErrors->BG_versionIncompatible ,
+//      msgErrors->linkedBGError ,
+//      msgErrors->otherTimingError ,
+//      msgErrors->radioMessageConsistencyError ,
+//      msgErrors->radioSequenceError ,
+//      msgErrors->tNvContactError ,
+//      msgErrors->unlinkedBGError
+//    );
   }
 
   if( posErrors->linkedBGMissed ) {
