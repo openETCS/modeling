@@ -37,6 +37,7 @@ proc ctrl::showData {id} {
   switch [dict get $msg type] {
     b { showBaliseData $msg $pos }
     r { showRadioData $msg $pos }
+    t { showTrainData $msg $pos }
     default { error "invalid message type" }
   }
 }
@@ -69,6 +70,18 @@ proc ctrl::showRadioData {msg pos} {
   }
 
   updatePacketTable [dict get $msg packetinfo]
+}
+
+
+proc ctrl::showTrainData {msg pos} {
+  variable headersTable
+  variable packetInfoTable
+
+  set view::idValue "MSG [dict get $msg nid_message]"
+  set view::posValue $pos
+
+  $headersTable delete [$headersTable children {}]
+  $packetInfoTable delete [$packetInfoTable children {}]
 }
 
 

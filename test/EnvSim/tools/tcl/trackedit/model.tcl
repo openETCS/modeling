@@ -27,6 +27,7 @@ proc model::getMessageList {} {
     switch [lindex $msg 0] {
       b { set rec [list b[lindex $msg 1] "BG [lindex $msg 2].[lindex $msg 3]" [lindex $msg 4] balise] }
       r { set rec [list r[lindex $msg 1] "MSG [format %02i [lindex $msg 2]]" [lindex $msg 3] rmsg] }
+      t { set rec [list t[lindex $msg 1] "MSG [format %02i [lindex $msg 2]]" [lindex $msg 3] tmsg] }
       default { error "Invalid track message type: [lindex $msg 0]" }
     }
     lappend data $rec
@@ -39,6 +40,7 @@ proc model::getMessage {id} {
   switch -regexp -matchvar i -- $id {
     b(\\d+) { return [getBaliseMessage [lindex $i 1]] }
     r(\\d+) { return [getRadioMessage [lindex $i 1]] }
+    t(\\d+) { return [getTrainMessage [lindex $i 1]] }
     default { error "invalid message index $id" }
   }
 }
@@ -69,3 +71,15 @@ proc model::getRadioMessage {id} {
   dict set msg packetinfo "[pkts::get headers]"
   return $msg
 }
+
+
+proc model::getTrainMessage {id} {
+  track::train load $id
+  set data [track::train get bytes]
+
+  set msg [msgs::parseBinTrainMsg $data]
+
+  dict set msg type t
+  puts $msg
+  return $msg
+} 
