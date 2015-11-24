@@ -30,7 +30,7 @@ proc view::init {} {
   }
 
   wm title . "openETCS SimCtrl"
-  wm minsize . 700 550
+  #wm minsize . 700 550
 
   grid [ttk::frame .c -padding 10] -sticky nwes
   grid columnconfigure . 0 -weight 1
