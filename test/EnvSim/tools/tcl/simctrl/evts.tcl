@@ -11,7 +11,6 @@ package require Tk
 
 namespace eval ::evts {
   variable tree
-  variable msgArea
   variable logArea
 
   set showMsgTab 1
@@ -57,16 +56,12 @@ proc evts::initMsgView {path} {
   $tree heading #1 -text "Position (m)"
   bind $tree <<TreeviewSelect>> evts::displayEvent
 
-  grid [tk::text $path.msgArea -state disabled -height 10 -width 40] -column 3 -row 1 -sticky wesn
-  set msgArea $path.msgArea
-  grid [ttk::scrollbar $path.asb -command "$path.msgArea yview"] -column 4 -row 1 -sticky ns
-  $msgArea configure -yscrollcommand "$path.asb set"
+  grid [msgview::init $path.msgView 4 8] -column 3 -row 1 -sticky wesn
 
   grid columnconfigure $path 2 -minsize 5 -weight 0
   grid columnconfigure $path 3 -weight 1
   grid rowconfigure $path 1 -weight 1
 
-  $msgArea tag configure title -font "TkFixedFont 10 bold"
 }
 
 proc evts::handleBaliseMessage {data} {
@@ -187,28 +182,23 @@ proc evts::displayEvent {args} {
   variable tree
   variable msgArea
 
-  $msgArea configure -state normal
-  $msgArea delete 1.0 end
-
   set values [$tree item [$tree focus] -values]
   set data [lindex $values 1]
+
   switch [lindex $values 2] {
     B {
       set msg [msgs::parseBinBaliseMsg "$data" 8]
-      displayBaliseData [lindex $values 0] $msg
     }
     R {
       set msg [msgs::parseBinRadioMsg "$data" 8]
-      displayRadioData [lindex $values 0] $msg
     }
     T {
       set msg [msgs::parseBinTrainMsg "$data" 8]
-      displayTrainData [lindex $values 0] $msg
     }
   }
-
-  $msgArea configure -state disabled
+  msgview::loadMsg $msg [lindex $values 0]
 }
+
 
 proc evts::displayBaliseData {pos msg} {
   variable msgArea

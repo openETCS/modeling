@@ -15,6 +15,10 @@
 
 extern M_TrainTrack_Message_T_TM_radio_messages es_tcl_track_train_buf;
 extern const size_t es_tcl_track_tmsize;
+extern CompressedRadioMessage_TM es_tcl_track_radio_buf;
+extern const size_t es_tcl_track_rmsize;
+extern CompressedBaliseMessage_TM es_tcl_track_balise_buf;
+extern const size_t es_tcl_track_bmsize;
 
 
 void envsim_append_result(char* res, char* clientData) {
@@ -28,7 +32,14 @@ int envsim_track_balise_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_O
     Tcl_WrongNumArgs(interp,1,objv,"raw {arg}");
     return TCL_ERROR;
   }
-  if(es_tcl_track_balise(Tcl_GetString(objv[1]), Tcl_GetString(objv[2]),envsim_append_result,(es_ClientData)interp)) {
+  char *arg1 = Tcl_GetString(objv[1]);
+  char *arg2 = Tcl_GetString(objv[2]);
+  if(! (strcmp("get",arg1) || strcmp("bytes",arg2)) ) {
+    Tcl_Obj *p = Tcl_NewByteArrayObj((const unsigned char*)&es_tcl_track_balise_buf,es_tcl_track_bmsize);
+    Tcl_SetObjResult(interp,p);
+    return TCL_OK;
+  }
+  if(es_tcl_track_balise(arg1, arg2,envsim_append_result,(es_ClientData)interp)) {
     Tcl_AddErrorInfo(interp,es_msg_buf);
     return TCL_ERROR;
   };
@@ -63,7 +74,14 @@ int envsim_track_radio_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_Ob
     };
   }
   else if (objc == 3) {
-    if(es_tcl_track_radio(Tcl_GetString(objv[1]), Tcl_GetString(objv[2]), NULL, envsim_append_result,(es_ClientData)interp)) {
+    char *arg1 = Tcl_GetString(objv[1]);
+    char *arg2 = Tcl_GetString(objv[2]);
+    if(! (strcmp("get",arg1) || strcmp("bytes",arg2)) ) {
+      Tcl_Obj *p = Tcl_NewByteArrayObj((const unsigned char*)&es_tcl_track_radio_buf,es_tcl_track_rmsize);
+      Tcl_SetObjResult(interp,p);
+      return TCL_OK;
+    }
+    if(es_tcl_track_radio(arg1, arg2, NULL, envsim_append_result,(es_ClientData)interp)) {
       Tcl_AddErrorInfo(interp,es_msg_buf);
       return TCL_ERROR;
     };

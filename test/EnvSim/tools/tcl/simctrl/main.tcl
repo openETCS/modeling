@@ -27,6 +27,7 @@ foreach s {
   ../lib/util.tcl
   ../lib/ui.tcl
   ../lib/msgs.tcl
+  ../lib/msgview.tcl
   cfg.tcl
   comm.tcl
   model.tcl

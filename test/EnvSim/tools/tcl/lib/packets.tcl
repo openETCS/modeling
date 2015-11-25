@@ -13,7 +13,21 @@ namespace eval ::pkts {}
 # Returns the display name for the specified packet ID.
 #
 # @param nid_packet packet ID
-proc pkts::packetName {nid_packet} {
+# @param type of the message to which the packet belongs: R (RBC), B (balise), T (train)
+proc pkts::packetName {nid_packet {type R}} {
+  if {$type eq "T"} {
+    switch $nid_packet {
+      0 { return {Position Report} }
+      1 { return {Position Report based on two balise groups} }
+      3 { return {Onboard telephone numbers} }
+      4 { return {Error Reporting} }
+      5 { return {Train running number} }
+      9 { return {Level 2/3 transition information} }
+     11 { return {Validated train data} }
+     44 { return {Application-specific data} }
+     default { return "Unknown packet ID: $nid_packet" }
+    }
+  }
   switch $nid_packet {
     0   { return {Virtual Balise Cover Marker} }
     2   { return {System Version order} }
@@ -128,6 +142,7 @@ proc pkts::readBinTrainPkts {offset data} {
         incr offset 32; # 8*4
       }
       4 { incr offset 12; # 3*4 }
+      5 { incr offset 12; # 3*4 }
       11 { incr offset 100; # 25*4 }
       default {
         error "invalid nid: $nid (offset: $offset)"

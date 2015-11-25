@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.3)
-project(libenvsim VERSION 0.3.5 LANGUAGES C)
+project(libenvsim VERSION 0.3.6 LANGUAGES C)
 
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
@@ -38,6 +38,7 @@ set(LIBENVSIM_SOURCE_FILES ${COMMON_SOURCE_FILES}
   src/scade/ProbeTracksideInput_EnvSim.c src/scade/ProbeTracksideInput_EnvSim.h
   src/scade/ProbeSDM_EnvSim.c src/scade/ProbeSDM_EnvSim.h
   src/scade/ProbeEVC_EnvSim.c src/scade/ProbeEVC_EnvSim.h
+  src/scade/InjectRadioMessage_EnvSim.c src/scade/InjectRadioMessage_EnvSim.h
   src/scade/scade_remote.c src/scade/scade_probe.c
 )
 

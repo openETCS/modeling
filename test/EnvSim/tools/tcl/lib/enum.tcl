@@ -40,6 +40,16 @@ proc enum::levelName {m_level} {
   }
 }
 
+proc enum::dirName {q_dir} {
+  switch $q_dir {
+    0 { return R }
+    1 { return N }
+    2 { return B }
+    default { error "invalid q_dir=$q_dir" }
+  }
+}
+
+
 proc enum::dirlrbgName {q_dirlrbg} {
   switch $q_dirlrbg {
     0 { return R }

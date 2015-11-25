@@ -94,7 +94,7 @@ proc view::init {} {
   grid [ttk::label .c.ctrl.s.brake.name -text Brake] -sticky e
   # Target Speed
   grid [ttk::frame .c.ctrl.s.target -padding 5] -column 2 -row 0
-  grid [ui::slider .c.ctrl.s.target.scale -from 300 -to 0 -orient vertical -variable model::target -command model::ctrlsChanged]
+  grid [ui::slider .c.ctrl.s.target.scale -from 300 -to 0 -resolution 10 -orient vertical -variable model::target -command model::ctrlsChanged]
   grid [ttk::label .c.ctrl.s.target.name -text "Target Speed" -anchor center]
 
 
