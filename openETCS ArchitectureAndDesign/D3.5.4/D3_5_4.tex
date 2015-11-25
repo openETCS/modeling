@@ -1,0 +1,268 @@
+\documentclass[oneside]{template/openetcs_report}
+% Use the option "nocc" if the document is not licensed under Creative Commons
+%\documentclass[nocc]{template/openetcs_article}
+\usepackage{lipsum,url}
+\usepackage{supertabular}
+\usepackage{longtable,tabu,booktabs}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{color, colortbl}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue,filecolor=blue]{hyperref}
+\usepackage{listings}
+\usepackage{makeidx}
+\definecolor{gray}{rgb}{0.8,0.8,0.8}
+\usepackage{lineno}
+\usepackage{float}
+\usepackage[color=green!40,textsize=footnotesize,textwidth=2.8cm]{todonotes}
+%\usepackage{pdflscape}
+%\usepackage[acronym, % list of acronyms
+  %section, % add the glossary to the table of content
+            %description,% acronyms have a user-supplied description,
+ %style=longheader, % table style
+ %nonumberlist % no page number
+ %]{glossaries}
+ 
+% make lists more compact with enumitem package (spacings below are set globally)
+\usepackage{enumitem}
+\setlist[description]{itemsep=1ex,topsep=1ex,partopsep=0.0ex,parsep=0.0ex}
+\setlist[itemize]{itemsep=1ex,topsep=1ex,partopsep=0.0ex,parsep=0.0ex}
+\setlist[enumerate]{itemsep=1ex,topsep=1ex,partopsep=0.0ex,parsep=0.0ex}
+
+\graphicspath{{./template/}{.}{./images/}}
+
+%\renewcommand*{\glspostdescription}{} %Deactivate point at the end of every description
+%\renewcommand*{\glossaryname}{Glossary}
+
+%create glossary
+% \makeglossaries
+ %Glossary terms
+% \loadglsentries{glossary}
+
+\begin{document}
+\frontmatter
+\project{openETCS}
+
+\newcommand{\define}[1]{\index{#1}\emph{#1}}
+
+
+
+%Please do not change anything above this line
+%============================
+
+% The document metadata is defined below
+
+%assign a report number here
+\reportnum{OETCS/WP3/D3.5.4}
+
+%define your workpackage here
+\wp{Work Package 3: ``Modeling''}
+
+%set a title here
+\title{openETCS Architecture and Design Specification}
+
+%set a subtitle here
+\subtitle{Software Component Design and Internal Interface Specification}
+
+%set the date of the report here
+\date{December 2015}
+
+
+%document approval
+%define the name and affiliation of the people involved in the documents approbation here
+\creatorname{Dr. Peter Mahlmann}
+\creatoraffil{DB Netz AG}
+
+\techassessorname{Jan Welte}
+\techassessoraffil{Technische Universität Braunschweig}
+
+\qualityassessorname{Marc Behrens}
+\qualityassessoraffil{DLR}
+
+\approvalname{Dr. Klaus-R\"udiger Hase}
+\approvalaffil{DB Netz AG}
+
+
+%define a list of authors and their affiliation here
+
+\author{Dr. Peter Mahlmann, Bernd Hekele, Baseliyos Jacob, Peyman Farhangi}
+\affiliation{DB Netz AG}
+
+\author{Uwe Steinke}
+\affiliation{Siemens AG}
+
+\author{Dr. Christian Stahl}
+\affiliation{TWT GmbH}
+
+\author{Jakob G\"artner, Mairamou Haman Adji, Stefan Karg}
+\affiliation{LEA Railergy}
+
+%\author{Jos Holtzer, Jan Welvaarts, Vincent Nuhaan}
+%\affiliation{Nederlandss Spoorwegen}
+
+\author{Thorsten Schulz}
+\affiliation{University of Rostock}
+
+\author{Marielle Petit-Doche}
+\affiliation{Systerel}
+
+%\author{Veronique Gontier}
+%\affiliation{All4Tec}
+
+%\author{Christian Giraud, Fausto Cochetti}
+%\affiliation{Alstom}
+
+\author{Alexander Stante}
+\affiliation{Fraunhofer ESK}
+
+%\author{David Mentre}
+%\affiliation{MERCE}
+
+
+
+
+% define the coverart
+\coverart[width=350pt]{openETCS_EUPL}
+
+\newpage
+%define the type of report
+\reporttype{Architecture and Design Specification}
+
+
+\begin{abstract}
+%define an abstract here
+This document describes the architecture and design specification of  the openETCS onboard unit (OBU) model. The functional scope of the openETCS OBU model is to cover the functionality required for running on the ETCS level $2$ Utrecht Amsterdam track. The OBU model is developed iteratively and the system model is documented in D3.5.x and the functional model is documented in D3.5.x, where x denotes the iteration. 
+\end{abstract}
+
+%=============================
+\maketitle
+
+%Modification history
+%if you do not need a modification history table for your document simply comment out the eight lines below
+%=============================
+
+
+\chapter*{Modification History}
+\tablefirsthead{
+\toprule
+%\rowcolor{gray} 
+Version & Sections & Modification / Description & Author & Date \\\midrule}
+\begin{supertabular}{ m{1.2cm}  m{1.5cm}  m{5.0cm}  m{3cm}  m{2.5cm} }
+0.1 & all & Initial release of the document & Peter Mahlmann& 25.11.2015  \\\bottomrule
+
+\end{supertabular}
+
+% list subsubsections in table of contents
+%\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}   
+\setcounter{tocdepth}{3}   
+
+\pdfbookmark{\contentsname}{toc}
+\tableofcontents
+\listoffigures
+%\listoftodos
+\newpage
+%=============================
+
+%Uncomment the next line if you need line numbers for tracebility when the document is in review
+%\linenumbers
+%=============================
+
+
+% The actual document starts below this line
+%=============================
+
+
+\mainmatter
+
+\setlength{\topsep}{0.5ex}
+\setlength{\itemsep}{0ex}
+\setlength{\parsep}{0ex}
+
+\input{sections/introduction.tex}
+
+\part{System Architecture and Functional Breakdown}
+
+%\input{sections/functional_breakdown}
+
+\chapter{System Architecture}
+\input{sections/system_architecture.tex}
+
+
+%\chapter{Software Architecture}
+%t.b.d.\todo[fancyline]{has to be completed}
+
+
+
+\part{Design Description}
+
+\chapter{General Design Decisions}
+
+\input{sections/general_design_decisions.tex}
+
+
+\chapter{F1: Receive Information from Trackside}\label{s:F1}
+
+\input{sections/trackside.tex}
+
+
+\chapter{F2: ETCS Kernel}\label{s:F2}
+
+In this chapter we describe the main components of the openETCS OBU model. Section~\ref{s:ETCS_Kernel_Overview} gives an overview of the external interfaces of this functional block and gives a brief overview of its components and their interaction. The following Sections~\ref{s:F2.1} to \ref{s:F2.13} give a detailed description for each of the components in F2: ETCS Kernel.
+
+\input{sections/ETCS_Kernel_Overview.tex}
+
+\input{sections/receivetrackdata_V2.tex}
+
+\input{sections/manage_etcs_procedures_V2.tex}
+
+\input{sections/trainData_V2.tex}
+
+\input{sections/TrackAtlas.tex}
+
+\input{sections/modeandlevel_V2.tex}
+
+\input{sections/Calculate_Train_Position_V2.tex}
+
+\input{sections/trainsupervision_V2.tex}
+
+\input{sections/ProvidePositionReport.tex}
+
+\input{sections/managerbcprocedure_V2.tex}
+
+\input{sections/ManageDMIInput.tex}
+
+\input{sections/ManageDMIOutput.tex}
+
+\input{sections/ManageTIUInput.tex}
+
+\input{sections/ManageTIUOutput.tex}
+
+
+\chapter{F3: Measure Train Movement}
+This component is not part of the openETCS OBU currently and therefore no detailed description is provided here.
+
+\chapter{F4: Manage Radio Communication}
+This component is not part of the openETCS OBU currently and therefore no detailed description is provided here.
+
+\chapter{F5: Manage JRU}
+This component is not part of the openETCS OBU currently and therefore no detailed description is provided here.
+
+\chapter{F6: DMI Controller}
+This component is not part of the openETCS OBU currently and therefore no detailed description is provided here.
+%\input{sections/DMI_V2.tex}
+
+\chapter{F7: Manage TIU}
+This component is not part of the openETCS OBU currently and therefore no detailed description is provided here.
+
+
+\bibliographystyle{unsrt}
+\bibliography{architecture}
+
+
+%\addcontentsline{toc}{chapter}{Index}
+%\printindex
+%===================================================
+%Do NOT change anything below this line
+
+\end{document}

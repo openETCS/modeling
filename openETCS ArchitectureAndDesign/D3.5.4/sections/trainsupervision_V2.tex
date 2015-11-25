@@ -1,0 +1,427 @@
+%set the master document for easy compilation
+%!TEX root = ../D3_5_3.tex
+
+\section{F2.7: SpeedSupervision\_Integration}\label{s:F2.7}
+
+\subsection{Component Requirements}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Component name			& SpeedSupervision\_Integration\\
+\midrule
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/SpeedSupervison}} \\
+\midrule
+SCADE designer			& Benjamin Beichler, University of Rostock\newline
+Christian Stahl, TWT\newline
+Thorsten Schulz, University of Rostock \\
+\midrule
+Description				& The task of SDM is to monitor the speed of the train and the train location and as such to ensure that the speed remains within the given speed and distance limits. This block is based on \cite[Chapt.~3.13]{subset-026}.
+
+The integration node ``SpeedSupervision\_Integration'' takes as input (1) movement related information such as train speed, train position and acceleration, (2) train related information such as brake information and train length, and (3) track related information such as speed and distance limits and national values.
+
+Based on this information a speed profile is calculated. Speed restrictions create target speeds (targets) that have to be followed. For each such target braking curves are generated to supervise at which location of the track the train must apply the brake. In case of no target restrictions the train may accelerate to the supervised maximum speed of the speed profile. These calculations lead to commands being sent to the driver and the brake system.
+
+The functionality is modeled using eight subcomponents, as shown in Figure~\ref{f:ssv}, which are explained in Section~\ref{s:SDM_subcomponents}.
+
+The current status of the analysis of ``SDM'' and a functional breakdown can be found in a separate document, \verb+SpeedSupervision_analysis.pdf+.\\
+\midrule
+Input documents	& 
+Subset-026, Chapter 3.13: Speed and distance monitoring \\
+\midrule
+Safety integrity level		& 4 \\
+\midrule
+Time constraints		& n/a \\
+\midrule
+API requirements 		& n/a \\
+\bottomrule
+\end{longtable}
+
+
+\subsection{Interface}
+
+An overview of the interface of component SpeedSupervision\_integration is shown in Figure~\ref{f:ssv}. The inputs and outputs are described in detail in Section~\ref{s:SDM_inputs} respectively \ref{s:SDM_outputs}. Sub components are described in Section~\ref{s:SDM_subcomponents}.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.95\textheight, angle=90]{../images/F2_7_SpeedSupervision_Integration.pdf}
+\caption{SpeedSupervision\_Integration component SysML diagram.}\label{f:ssv}
+\end{figure}
+
+
+
+\subsubsection{Inputs}\label{s:SDM_inputs}
+
+\paragraph{National Values}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& NationalValues \\
+\midrule
+Description				& This input is packet 3 or 203 of \cite[Chapt.~8]{subset-026}, describing the national values.  \\
+\midrule
+Source					& F2.4 TrackAtlas; current release, hard wired constant: cP3NationalValuesUtrechtAmsterdam \\
+\midrule
+Type					& P3\_NationalValues\_T \\
+\midrule
+Valid range of values	& P3\_NationalValues\_T is a complex data type, valid ranges are specified in SRS Subset-026-7, no further checks are done here. \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Not checked; node must not be called without reasonable National Value. \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{Train Position}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& TrainPosition \\
+\midrule
+Description				& This input is the current train position. \\
+\midrule
+Source					& F2.6 calculateTrainPosition \\
+\midrule
+Type					& trainPosition\_T \\
+\midrule
+Valid range of values	& trainPosition\_T is a complex data type. Value valid must not be false for proper function and it may not be properly checked in current release. Furthermore, reversing (decreasing positions, reverse flag set) is currently NOT supported and leads to undefined behaviour. No brake will be thrown in this occasion.
+\\
+\midrule
+Behaviour when value is at boundary	& Not checked, may overflow. \\
+\midrule
+Behaviour for values out of valid range	& Currently not checked. \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Not checked; node must not be called without reasonable position data. Valid flag is not checked (bug), as SDM has not yet implemented exception handling on inacceptable input data. \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{Odometry}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& odometry \\
+\midrule
+Description				& This input is the odometry data. \\
+\midrule
+Source					& F2 input API\_Odometry \\ 
+\midrule
+Type					& odometry\_T \\
+\midrule
+Valid range of values	& complex data type \\
+ & used fields are: \\
+ & - acceleration: Obu\_BasicTypes\_Pkg::A\_internal\_Type. No valid range defined, neither checked. \\
+ & - motionState: [noMotion | Motion] (enum type) \\
+ & - motionDirection: is NOT evaluated currently which leads to erroneous behaviour when driving anti-nominal direction.\\
+\midrule
+Behaviour when value is at boundary	& Possible overflow not evaluated. \\
+\midrule
+Behaviour for values out of valid range	& Not checked. \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Not handled, valid data is expected for valid function. Valid flag is not checked (bug), as SDM has not yet implemented exception handling on inacceptable input data.\\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{Train Properties}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& trainProps \\
+\midrule
+Description				& This input is a set of train related properties. \\
+\midrule
+Source					& F2.3 trainData\newline
+F2.10 manageDMI\_input \\ 
+\midrule
+Type					& trainProperties\_T \\
+\midrule
+Valid range of values	& trainProperties\_T is a complex type but referenced only d\_baliseAntenna\_2\_frontend.nominal: Obu\_BasicTypes\_Pkg::L\_internal\_Type No valid range defined, neither checked. \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Value is only evaluated in Level 1. Low values (e.g. invalid-default 0) will lead to early trip, brake and alike. Larger values will lead to late braking, possibly numeric overflow. \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{Train Data}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& trainData \\
+\midrule
+Description				& This input is a set of train related inputs from the TIU. \\
+\midrule
+Source					&  F2.3 trainData\newline
+F2.10 manageDMI\_input \\ 
+\midrule
+Type					& trainData\_T \\
+\midrule
+Valid range of values	& trainData\_T is a complex type. No valid range defined, neither checked. The source is trusted. \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Must be valid for SDM to function. Valid flag is not checked (bug), as SDM has not yet implemented exception handling on inacceptable input data. \\
+\bottomrule
+\end{longtable}
+
+\paragraph{Track Data}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Input name				& dataFromTrackAtlas \\
+\midrule
+Description				& This input is a set of track related input data, containing the MRSP, the Gradient Profile and the Movement Authority. And its associated update flags to opimize data handling.\\
+\midrule
+Source					& F2.4 TrackAtlas \\ 
+\midrule
+Type					& DataForSupervision\_nextGen\_t \\
+\midrule
+Valid range of values	& DataForSupervision\_nextGen\_t is a wrapper the three mentioned complex types. The fresh-flags are seen as an optimization hint. From specification, all three containers must contain valid data for SDM to function. Ranges or sanity are not checked. The source is trusted.
+\begin{description}
+\item[MA] Must always contain a valid Movement Authority, else the brake is commanded.
+\item[GradientProfile] As per SRS, this must always contain a valid description up to the end of the MA.
+\item[MRSP] Must at least a profile for the train's maximum speed, if no other restriction is known.
+\end{description}\\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& If the MA is not valid the brake should be commanded. \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Absence of minimal MRSP is not detected but trusted. Validity of MA is not checked up front.\\
+\bottomrule
+\end{longtable}
+
+
+\subsubsection{Outputs}\label{s:SDM_outputs}
+
+\paragraph{sdmToDMI}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& sdmToDMI \\
+\midrule
+Description				& This output contains information about different speeds and positions and the current supervision status. This information shall be displayed to the driver. \\
+\midrule
+Destination				& F2.4 TrackAtlas\newline
+F2.11 manageDMI\_output
+\\
+\midrule
+Type					& speedSupervisionForDMI\_T (complex)\\
+\midrule
+Valid range of values	& speedSupervisionForDMI\_T is a complex data type. Values are given for each element. Format is: Type Name: range/list of value.
+\begin{itemize}
+\item bool valid: [true, false] true, if internal state of speed monitoring is defined [CSM, TSM, RSM]; false, if it is undefined
+\item V\_internal\_Type targetSpeed, permittedSpeed, releaseSpeed, interventionSpeed: 0 or above, not internally limited; set to cDMIUnknownSpeed (-1) if not defined
+\item L\_internal\_Type location\_brake\_curve\_starting\_point, locationBrakeTarget, distanceIndicationPoint: calculated locations
+\item M\_SupervisionDisplay\_T supervisionDisplay: [supDis\_normal, supDis\_indication, supDis\_overspeed, supDis\_warning, supDis\_intervention]
+\item M\_SUPERVISION\_STATUS sup\_status: [CSM, TSM, RSM, unknown], PIM is not referenced
+\end{itemize}\\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& Location values may not be meaningful in some situations. This is not directly linked to the specific items but maybe accessible from further context such as supervisionDisplay and sup\_status.  \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Valid can be false in case of initialization. All values must be disregarded then. \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{target}\label{p:SDM_target}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& target \\
+\midrule
+Description				& This output is the most restrictive displayed target (MRDT). \\
+\midrule
+Destination				& n/a, null-sink \\ 
+\midrule
+Type					& Target\_T (complex)\\
+\midrule
+Valid range of values	& Target\_T is a complex data type. Values are given for each element. Format is: Type Name: range/list of value.
+\begin{itemize}
+\item bool valid: [true, false] true, if targetType is other than invalid
+\item V\_internal\_Type speed: permitted speed from target location
+\item L\_internal\_Type distance: location of brake target
+\item TargetType\_T targetType:
+\begin{description}
+\item[EoA] End of Authority (speed must be = 0)
+\item[SvL] Supervised Location (speed must be = 0)
+\item[MRSP] Speed Profile, Speed restriction (speed > 0)
+\item[LoA] Limit of Authority (speed > 0)
+\item[invalid] currently no brake target known (e.g. after trip)
+\end{description}
+\end{itemize}\\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& Valid target values of speed and distance are not artificially limited to a sane range and are passed through data from track input.\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & .valid may be false if no target is supervised or known, other values of this output must be ignored then. \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{sdmCommands}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& sdmCommands \\
+\midrule
+Description				& This output gives some intermediate results of operator SDM\_Commands. It is currently used for test purposes only. \\
+\midrule
+Destination				& n/a, null-sink \\ 
+\midrule
+Type					& SDM\_Commands\_T (complex) \\
+\midrule
+Valid range of values	& Containing values are either boolean command-trigger flags, the internal state of the SDM\_commands state-machine or speed/distance types with guarding bool valid flag. For in-depth description see generated documentation.\\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& 
+\begin{itemize}
+\item Bool are always in range.
+\item The internal state SupervisionStatus\_T is Undefined\_Supervision at initialization and renders the output sdmToDMI's valid flag to false.
+\item Speeds estimatedSpeed, permittedSpeed, releaseSpeed, mrdtSpeed, sbiSpeed and distance targetDistance must be ignored and contain invalid values if the corresponding valid-flag is false. Valid-marked outputs are not artificially limited to a sane range and rely on correctly specified algorithms.
+\end{itemize}\\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & Overall .valid is always set, individual speeds have their corresponding valid flag. Values may not have a valid output depending on the situation. \\
+\bottomrule
+\end{longtable}
+
+\paragraph{brakeCmd}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& brakeCmd \\
+\midrule
+Description				& This output is the brake command, indicating whether performing the service brake and/or the emergency brake have been commanded. \\
+\midrule
+Destination				& F2.11 manageDMI\_output\\
+\midrule
+Type					& Brake\_command\_T (complex)\\
+\midrule
+Valid range of values	& Brake\_command\_T is a complex data type. Values are given foreach element. Format is: Type Name: range/list of value
+\begin{itemize}
+\item bool valid: true (constant)
+\item M\_brake\_signal\_command\_T m\_servicebrake\_cm:
+\begin{description}
+\item[brake\_signal\_command\_not\_defined] No change of brake state requested, keep last.
+\item[apply\_brake] service brakes must be applied
+\item[release\_brake] service brakes must be released
+\end{description}
+\item M\_brake\_signal\_command\_T m\_emergencybrake\_cm:
+\begin{description}
+\item[brake\_signal\_command\_not\_defined] No change of brake state requested, keep last.
+\item[apply\_brake] emergency brakes must be applied
+\item[release\_brake] emergency brakes must be released
+\end{description}
+\end{itemize}
+Brake commands are edge triggered and may only be defined in a single cycle. \\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & brakeCmd is constantly valid, but may not contain a command change. \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{EOA\_overpassed}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& EOA\_overpassed \\
+\midrule
+Description				& This output is true if the end of authority has been overpassed and false otherwise. In Level 1 this is compensated by the antenna offset.\\
+\midrule
+Destination				& n/a, null-sink in current release \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	& \begin{description}
+                            \item[true] The train's front end has passed the end of authority
+                            \item[false] The end of authority is ahead of the train.
+                          \end{description}\\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{Target\_Speed\_Reached}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Output name				& Target\_Speed\_Reached \\
+\midrule
+Description				& This output is true if the current speed is greater than or equal the target speed and false otherwise. \\
+\midrule
+Destination				& n/a, null-sink in current release \\ 
+\midrule
+Type					& bool \\
+\midrule
+Valid range of values	&
+\begin{description}
+\item[true] The current speed is greater than or equal to the target speed or target is invalid
+\item[false] The current speed is less than the target speed
+\end{description}
+Value must be ignored, if output target (\ref{p:SDM_target}) is invalid.\\
+\midrule
+Behaviour when value is at boundary	& n/a \\
+\midrule
+Behaviour for values out of valid range	& n/a \\
+\midrule
+Behaviour when value is erroneous, absent or unwanted (i.e. spurious) & n/a \\
+\bottomrule
+\end{longtable}
+
+
+\subsection{Subcomponents}\label{s:SDM_subcomponents}
+
+\subsubsection{SDM\_InputWrapper}
+\input{sections/SDM_InputWrapper.tex}
+
+\subsubsection{TargetManagement}
+\input{sections/TargetManagement.tex}
+
+\subsubsection{AGradient}
+\input{sections/AGradient.tex}
+
+\subsubsection{ABrakeFactory}
+\input{sections/ABrakeFactory.tex}
+
+\subsubsection{addGradient}
+\input{sections/addGradient.tex}
+
+\subsubsection{CalcBrakingCurves\_Integration}
+\input{sections/CalcBrakingCurves_Integration.tex}
+
+\subsubsection{SDMLimitLocations}
+\input{sections/SDMLimitLocations.tex}
+
+%\subsubsection{CalcSpeeds}
+%\input{sections/CalcSpeeds.tex}
+%
+%\subsubsection{ReleaseSpeed\_Selection}
+%\input{sections/ReleaseSpeed_Selection.tex}
+%
+\subsubsection{SDM\_Commands}
+\input{sections/SDM_Commands.tex}
+
+%\subsubsection{SDM\_OutputWrapper}
+%\input{sections/SDM_OutputWrapper.tex}
+%

@@ -1,0 +1,41 @@
+%set the master document for easy compilation
+%!TEX root = ../D3_5_3.tex
+
+\paragraph{Component Requirements}
+
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Component name			& processHandingOver \\
+\midrule
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/Radio/Handover/RBC_Handover}} \\
+\midrule
+SCADE designer			& Uwe Steinke, Siemens \\
+\midrule
+Description				& 
+The function \emph{processHandingOver} implements the process of handing over the OBU from one RBC to a subsequent RBC. This process is based upon orders received from balise and radio. 
+\newline
+\newline
+\emph{processHandingOver} terminates the radio session with the current - the handing over - RBC and establishes a session with the new - the accepting - RBC. Dependent on the availability of one or two mobile modems onboard, \emph{processHandingOver} is able to manage two sessions in parallel or subsequently. For this, it steers two instances of MoRC\_Main\_v2. \newline
+
+\emph{processHandingOver} controls the switchover of the OBUs output data stream to track from the handing over RBC to the accepting RBC and provides the InformationFilter with the supervising RBC information for message buffering and filtering. 
+
+It in addition, \emph{processHandingOver} monitors the current train position and executes the handover, when the train front passes the apppropriate location. 
+
+\\
+\midrule
+Input documents	& 
+Subset-026, Chapter 3.15 \newline
+Subset-026, Chapter 5.15 \\
+\midrule
+Safety integrity level		& 4 \\
+\midrule
+Time constraints		& Implements several time delays, therefore appropriate clocking required \\
+\midrule
+API requirements 		& n/a \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{Interface}
+
+For an overview of the interface of this internal component we refer to the SCADE model (cf.~link above) respectively the SCADE generated documentation.

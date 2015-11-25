@@ -1,0 +1,44 @@
+%set the master document for easy compilation
+%!TEX root = ../D3_5_3.tex
+
+\paragraph{Component Requirements}
+\begin{longtable}{p{.25\textwidth}p{.7\textwidth}}
+\toprule
+Component name			& Receive\_TrackSide\_Msg \\
+\midrule
+Link to SCADE model		& {\footnotesize \url{https://github.com/openETCS/modeling/tree/master/model/Scade/System/ObuFunctions/ManageLocationRelatedInformation/BaliseGroup/Receive_TrackSide_Msg}} \\
+\midrule
+SCADE designer			& Bernd Hekele, DB Netz AG \\
+\midrule
+Description				& This function defines the interface of the OBU model to the openETCS generic API for Eurobalise  and Euroradio messages. On the interface, either a valid telegram/message is provided or a telegram/message is indicated which could not be received correct when passing the balise or receiving the radio message. The function passes a balise telegram without major changes of the information to the next entity for collecting the balise group information. This entity collects telegrams received via the interface into Balise Group Information. In case of a radio message, the message is converted to an internal format for further processing and passed without changing the information contained.
+\begin{itemize}
+\item The decoding of balises is done at the API. Also, packets received via the interface are already transformed into a usable shape.
+\item Only packets used inside the current model are passed via the interface.
+\item Treatment of Packet 5: Linking Information.
+Linking Information is added to the linking array starting from index 0 without gaps. Used elements are marked as valid. Elements are sorted according to the order given by the telegram sequence.
+\item Telegrams received as invalid are passed to the ``Check-Function'' to process errors in communication with the track side according to the requirements and in a single place.
+Telegrams are added to the telegram array starting from index 0 without gaps. Used elements are marked as valid. Elements are stored according to the order given by the telegram sequence.
+\item This function does not process information from the packets. The information is passed to the check without further processing of the values. 
+\end{itemize} \\
+\midrule
+Input documents	&
+  Subset-026, Chapter 7 and 8: Definition of the Balise Telegram\newline
+  Subset-026, Chapter 4.2.2, 4.2.4, 4.2.9: Interface to the BTM\newline
+  Subset-026, Chapter 3.4.1 - 3.4.3, 3.16.2: Handling of Balise Telegrams\newline
+  Subset-026, Chapter 3.16.2: Check of the balise group\newline
+  Subset-026, Chapter 3.4.2: Determining the orientation\newline
+  Subset-026, Chapter 4.5.2: Active Functions Table\newline
+  Subset-026, Chapter 8.4.4: Rules for Euroradio messages \\
+\midrule
+Safety integrity level		& 4 \\
+\midrule
+Time constraints		& n/a \\
+\midrule
+API requirements 		& n/a \\
+\bottomrule
+\end{longtable}
+
+
+\paragraph{Interface}
+
+For an overview of the interface of this internal component we refer to the SCADE model (cf.~link above) respectively the SCADE generated documentation.
