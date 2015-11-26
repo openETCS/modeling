@@ -141,7 +141,11 @@ proc pkts::readBinTrainPkts {offset data} {
         lappend pkts [readTrainP003 "$lst"]
         incr offset 32; # 8*4
       }
-      4 { incr offset 12; # 3*4 }
+      4 { 
+        set lst [binToIntList $offset 3 "$data"]
+        lappend pkts [readTrainP004 "$lst"]
+        incr offset 12; # 3*4
+      }
       5 { incr offset 12; # 3*4 }
       11 { incr offset 100; # 25*4 }
       default {
@@ -470,3 +474,5 @@ proc pkts::readTrainP003 {data} {
   return $d
 }
 
+proc pkts::readTrainP004 {data} {
+}
