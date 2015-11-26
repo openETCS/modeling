@@ -11,6 +11,7 @@
 #include <assert.h>
 #include <time.h>
 #include "utils.h"
+#include "logging.h"
 
 int mcnt = 0;
 
@@ -146,7 +147,10 @@ int es_list_size(es_ListEntry *list) {
 }
 
 char es_hexvalue(char byte) {
-  assert(byte >=0 && byte <16);
+  if( byte <0 || byte >= 16) {
+    LOG_ERROR(util,"invalid byte value for es_hexvalue: %d",byte);
+    return '0';
+  }
   if(byte <10)
     return byte + 48;
   else
@@ -156,7 +160,10 @@ char es_hexvalue(char byte) {
 
 char es_bytevalue(char hex) {
   char b = hex>=65 ? hex - 55 : hex - 0x30;
-  assert(b>=0 && b<16);
+  if(b<0 || b>=16) {
+    LOG_ERROR(util,"invalid hex value for es_bytevalue: %d",hex);
+    return 0;
+  }
   return b;
 }
 
