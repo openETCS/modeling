@@ -115,7 +115,7 @@ This document gives an introduction to the openETCS API.
 \rowcolor{gray} 
 Version & Section & Modification / Description & Author \\\hline}
 \begin{supertabular}{| m{1.2cm} | m{1.5cm} | m{6.6cm} | m{3.7cm} |}
-0.1 & Document & Basic to this work is the documentation provided by David Mentre as a result of the openETCS API Team & David Mentre \\\hline
+0.1 & Document & Basic to this work is the documentation provided by David Mentré as a result of the openETCS API Team & David Mentré \\\hline
 0.2 & Document & Update based on integration results  & Bernd Hekele \\\hline
 
 \end{supertabular}
@@ -265,7 +265,7 @@ The Vendor specific \gls{API} adapter is making the \define{Basic software} part
 \end{figure}
 
 \subsection{Physical Layer: Bitwalker}
-According to the SRS, messages and telegrams of the protocol between track (Balises and RBC) and train are defined on a densely packed and for transport purposes optimised structue. Information is passed in streams of bytes hiding the details. 
+According to the SRS, messages and telegrams of the protocol between track (Balises and RBC) and train are defined on a densely packed and for transport purposes optimised structure. Information is passed in streams of bytes hiding the details. 
 
 This densely packed stream of data is first transformed to a stream of integers with an equivalent definition of the structure of the interfaces.
 
@@ -273,7 +273,7 @@ A major task of this layer is to guarantee errors induced while transporting the
 
 \subsection{Logical Layer: Bytewalker}
 
-In a second step the information provided by the Bitwalker is prepared for the input to the evc. This function is implemented in the evc Scade model by means of the track-messages function.
+In a second step the information provided by the Bitwalker is prepared for the input to the EVC. This function is implemented in the EVC Scade model by means of the track-messages function.
 
 This function is responsible for logical checks on the transferred information.
 
@@ -294,12 +294,12 @@ Figure \ref{fig:apiHighLevel} shows the structure of API with respect of the sof
 \section{Principles for Interfaces (openETCS \gls{API})}
 
 
-Information  is exchanged \define{messages} in an asynchronous way. A message is a set
+Information  is exchanged as \define{messages} in an asynchronous way. A message is a set
 of information corresponding to an event of a particular unit, e.g. a
 balise received from the \gls{BTM}. The possible kind of messages are
 described in chapter \ref{information-flows}.
 
-The information is passed to the executable model as parmeters to the snychronous call of a procedure (Interface to the executable model). Since the availability of input messages to the application is not guaranteed the parts of the interfaces are defined with a "present" flag. In addition, fields of input arraysquite often is of variable size. Implementation in the concrete interface in this use-case is the use of a "size" parameter and a "valid"-flag.
+The information is passed to the executable model as parameters to the synchronous call of a procedure (Interface to the executable model). Since the availability of input messages to the application is not guaranteed, the parts of the interfaces are defined with a "present" flag. In addition, fields of input arrays are quite often of variable size. Implementation in the concrete interface in this use-case is the use of a "size" parameter and a "valid"-flag.
 
 
 \subsection{openETCS Model Runtime System}
@@ -317,12 +317,12 @@ Optional elements are indicated with an valid flag.
 The conversion routines are responsible for checking the data received is valid. If  faults are detected the information is passed to the openETCS executable model for further reaction. 
 \item Model Cycle\\
 
-The version management function is part of the message handling.This implies, conversions from other physical or logical layouts of messages are mapped onto a generic format used in the EVC. Information about the origin version of the message is part of the messages.
+The version management function is part of the message handling. This implies that conversions from other physical or logical layouts of messages are mapped onto a generic format used in the EVC. Information about the origin version of the messages is part of the messages.
  
 The executable model is called in cycles. In the cycle 
 \begin{itemize}
-\item First the received input messages are decoded
-\item The input data is passed to the executable model in a predefined order. \textbf{(Details for the interface to be defined)}.
+\item First the received input messages are decoded;
+\item The input data is passed to the executable model in a predefined order. \textbf{(Details for the interface to be defined)};
 \item Output is encoded according to the \gls{SRS} and passed to the  buffers to the units.
 \end{itemize}
 \end{itemize}
@@ -339,7 +339,7 @@ Unit & Name &  Processing Function & Description \\\hline}
 %\begin{itemize}{| m{1.2cm} | m{1.5cm} | m{1.2cm} | m{3.7cm}  | m{3.7cm} |}
 \begin{supertabular}{| c | c | c  | c |}
 \gls{BTM} & Balise Telegram & Receive Messages & \\\hline
-\gls{DMI} & & \\\hline
+\gls{DMI} & Driver Machine Interface & \\\hline
 EURORADIO & Communication Management & Communication Management & \\\hline
 EURORADIO & Radio Messages & Receive Messages & \\\hline
 \gls{ODO} & Odometer & All Parts & \\\hline
@@ -400,7 +400,7 @@ of the system when the odometer information was collected. Please, see also gene
 \item max (L\_internal\_Type) [cm]
 \end{itemize}
 The type used for length values is a 32 bit integer. 
-Min and max value give the interval where the train is to be expected. The bounderies are determined by the inaccuracy of the positioning system. All values are set to 0 when the train starts.
+Min and max value give the interval where the train is to be expected. The boundaries are determined by the inaccuracy of the positioning system. All values are set to 0 when the train starts.
 \item speed (V\_internal\_Type) [km/h]
 General Speed of the train
 \item acceleration (A\_internal\_Type)[0.01 m/s2],\\
@@ -413,7 +413,7 @@ indicates the direction of the train, i.e., CAB-A first, CAB-B first or unknown.
 \end{itemize}
 
 \subsection{Interfaces to the Train Interfaces (TIU)}
-The following infomration is based on the implementation of the Alstom API. The interface is organised in packets. The packets of the Alstom implementation are listed in the appendix to this document.
+The following information is based on the implementation of the Alstom API. The interface is organised in packets. The packets of the Alstom implementation are listed in the appendix to this document.
 
 The description of interfaces needed for the current scope will be added according to the use.
 
