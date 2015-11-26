@@ -1,0 +1,431 @@
+\documentclass{template/openetcs_report}
+% Use the option "nocc" if the document is not licensed under Creative Commons
+%\documentclass[nocc]{template/openetcs_article}
+\usepackage{lipsum,url}
+\usepackage{supertabular}
+\usepackage{multirow}
+\usepackage{color, colortbl}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{makeidx}
+\definecolor{gray}{rgb}{0.8,0.8,0.8}
+\usepackage[modulo]{lineno}
+\usepackage{float}
+ \usepackage[acronym, % list of acronyms
+  %section, % add the glossary to the table of content
+            %description,% acronyms have a user-supplied description,
+ style=longheader, % table style
+ nonumberlist % no page number
+  ]{glossaries}
+
+\graphicspath{{./template/}{.}{./images/}}
+
+\renewcommand*{\glspostdescription}{} %Deactivate point at the end of every description
+\renewcommand*{\glossaryname}{Glossary}
+
+%create glossary
+ \makeglossaries
+ %Glossary terms
+ \loadglsentries{glossary}
+
+\begin{document}
+\frontmatter
+\project{openETCS}
+
+\newcommand{\define}[1]{\index{#1}\emph{#1}}
+
+
+
+
+
+
+%Please do not change anything above this line
+%============================
+
+%user specified macros
+%\input{sections/macros.tex}
+
+% The document metadata is defined below
+
+%assign a report number here
+\reportnum{OETCS/WP3/D3.5.4-API}
+
+%define your workpackage here
+\wp{Work-Package 3: ``Modeling''}
+
+%set a title here
+\title{openETCS API}
+
+%set a subtitle here
+\subtitle{Extension of the openETCS Architecture and Design Document}
+
+%set the date of the report here
+\date{November 2015}
+
+
+%document approval
+%define the name and affiliation of the people involved in the documents approbation here
+\creatorname{Bernd Hekele}
+\creatoraffil{DB Netz}
+
+\techassessorname{[assessor name]}
+\techassessoraffil{[affiliation]}
+
+\qualityassessorname{Izaskun de la Torre}
+\qualityassessoraffil{SQS}
+
+\approvalname{Klaus-R\"udiger Hase}
+\approvalaffil{DB Netz}
+
+
+%define a list of authors and their affiliation here
+
+\author{Bernd Hekele}
+
+\affiliation{DB Netz AG\\
+  V\"olckerstrasse 5\\
+  D-80959 M\"unchen Freimann, Germany}
+
+\author{David Mentré}
+\affiliation{Mitsubishi Electric R\&D Centre Europe}
+
+% define the coverart
+\coverart[width=350pt]{openETCS_EUPL}
+
+%define the type of report
+\reporttype{Architecture and Functional Specification}
+
+
+\begin{abstract}
+%define an abstract here
+This document gives an introduction to the openETCS API.
+\end{abstract}
+
+%=============================
+\maketitle
+
+%Modification history
+%if you do not need a modification history table for your document simply comment out the eight lines below
+%=============================
+
+
+\chapter*{Modification History}
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Version & Section & Modification / Description & Author \\\hline}
+\begin{supertabular}{| m{1.2cm} | m{1.5cm} | m{6.6cm} | m{3.7cm} |}
+0.1 & Document & Basic to this work is the documentation provided by David Mentre as a result of the openETCS API Team & David Mentre \\\hline
+0.2 & Document & Update based on integration results  & Bernd Hekele \\\hline
+
+\end{supertabular}
+
+% list subsubsections in table of contents
+\setcounter{tocdepth}{3}
+
+
+\tableofcontents
+\listoffiguresandtables
+\newpage
+%=============================
+
+%Uncomment the next line if you need line numbers for tracebility when the document is in review
+%\linenumbers
+%=============================
+
+
+% The actual document starts below this line
+%=============================
+
+\mainmatter
+
+\chapter{Introduction}
+
+The openETCS API is a major output of the openETCS project. It defines the interface to the openETCS EVC as an open document. It is based on one side on the industry based Alstom API definition documented in openETCS Requirements section D2.7.
+
+On the other side it gives an introduction on how to interface to the EVC Scade model as the modelling result of openETCS project. 
+
+\chapter{Input Documents}
+The implementation is based on subset-26 version 3.3.0 \cite{subset-026}. This version  is part  of the TSI \cite{TSI}. 
+
+\textbf{https://github.com/openETCS/modeling/wiki/Input-Documents-Repository}\\
+
+The openETCS Alstom API is documented in the openETCS Requirements repository. It consists of the following parts:
+\cite{alstom-api} API Requirements
+\cite{alstom-api-data-dict} API DataDictionary
+\cite{alstom-api-app-layer} API Application Layer
+
+This document is basede on the openETCS API team work results. The complete set of work results is available in this repository: \url{https://github.com/openETCS/modeling/tree/master/API}
+
+\chapter{Introduction to the Architecture}
+
+\section{Abstract Hardware Architecture}
+
+For proper understanding of openETCS \gls{API} and of constraints imposed on
+both sides of the \gls{API}, we need to define a \define{reference abstract hardware architecture}. This hardware architecture is ``abstract''
+is the sense that the actual vendor specific hardware architecture
+might be totally different of the abstract architecture described in
+this chapter. For example, several units might be grouped together on
+the same processor.
+
+However the actual vendor specific architecture shall fulfil all the
+requirements and constraints of this reference abstract hardware
+architecture and shall not request additional constraints.
+
+\section{Definition of the reference abstract hardware architecture}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{abstract-hardware-architecture.pdf}
+  \caption{Reference abstract hardware architecture}
+  \label{fig:hardware-arch}
+\end{figure}
+
+The reference abstract hardware architecture is shown in figure
+\ref{fig:hardware-arch}.
+
+The reference abstract hardware architecture is made of a bus on which
+are connected \define{units} defining the \gls{OBU}:
+
+\begin{itemize}
+\item \gls{EVC};
+\item \gls{TIU};
+\item \gls{ODO};
+\item \gls{DMI};
+\item \gls{STM};
+\item \gls{BTM};
+\item \gls{LTM}: Not part of this openETCS implementation;
+\item EURORADIO;
+\item \gls{JRU}: Not part of this openETCS implementation;
+\end{itemize}
+
+Elements not being part of this implementation are marked. 
+
+Those units shall working concurrently. They shall exchange
+information with other units through asynchronous message passing.
+
+\section{Reference abstract software architecture}
+\label{software-arch}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{software-architecture.pdf}
+  \caption{Reference abstract software architecture}
+  \label{fig:software-arch}
+\end{figure}
+
+The \define{reference abstract software architecture} is shown in figure
+\ref{fig:software-arch}. This architecture is made of following
+elements:
+\begin{itemize}
+\item \define{openETCS executable model} produced by the
+  \cite{scade-model} Scade Model. It shall contain the program implementing core
+  ETCS functions;
+\item\define{openETCS model run-time system} shall help the execution
+  of the openETCS executable model by providing additional functions
+  like encode/decode messages, proper execution of the model through
+  appropriate scheduling, re-order or prioritize messages, etc. 
+\item \define{Vendor specific \gls{API} adapter} shall make the link between
+  the Vendor specific platform and the openETCS model run-time system.
+  It can buffer message parts, encode/decode messages, route messages
+  to other \gls{EVC} components, etc.
+\item All above three elements shall be included in the \gls{EVC};
+\item \define{Vendor specific platform} shall be all other elements of
+  the system, bus and other units, as shown in figure
+  \ref{fig:hardware-arch}.
+\end{itemize}
+
+We have thus three interfaces:
+\begin{itemize}
+\item \define{model interface}
+ is the interface between openETCS
+  executable model and openETCS model run-time system. 
+\item \define{openETCS \gls{API}}
+ is the interface between openETCS model
+  run-time system and Vendor specific \gls{API} adapter.
+\item \define{Vendor specific \gls{API}}
+ is the interface between Vendor
+  specific \gls{API} adapter and Vendor specific platform. This interface is
+  not publicly described for all vendors. You can find the Alstom imnplementation as an example.
+\end{itemize}
+
+The two blocks openETCS executable model and openETCS model run-time
+system are making the \define{Application software} part. This Application software might be either openETCS reference software or
+vendor specific software.
+
+The Vendor specific \gls{API} adapter is making the \define{Basic software} part.
+
+\section{Interfaces to and from the Track}
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=\linewidth]{OpenETCS-Stack.pdf}
+\caption{openETCS API Highlevel View}
+\label{fig:apiHighLevel}
+\end{figure}
+
+\subsection{Physical Layer: Bitwalker}
+According to the SRS, messages and telegrams of the protocol between track (Balises and RBC) and train are defined on a densely packed and for transport purposes optimised structue. Information is passed in streams of bytes hiding the details. 
+
+This densely packed stream of data is first transformed to a stream of integers with an equivalent definition of the structure of the interfaces.
+
+A major task of this layer is to guarantee errors induced while transporting the data is detected, e.g., by the BTM or RTM modules.
+
+\subsection{Logical Layer: Bytewalker}
+
+In a second step the information provided by the Bitwalker is prepared for the input to the evc. This function is implemented in the evc Scade model by means of the track-messages function.
+
+This function is responsible for logical checks on the transferred information.
+
+
+\section{openETCS \gls{API} Runtime System and Input to the EVC)}
+\label{chp_openETCS_API}
+%Authors: Bernd Hekele (DB)
+
+\begin{figure}[hbtp]
+\centering
+\includegraphics[width=\linewidth]{OpenETCS-Stack.pdf}
+\caption{openETCS API Highlevel View}
+\label{fig:apiHighLevel}
+\end{figure}
+
+Figure \ref{fig:apiHighLevel} shows the structure of API with respect of the software architecture. Input boxes and output boxes not implemented in this stage are marked as red, other interfaces are marked as green. The System covers functions for processing Inputs from other Units, functions for processing Outputs to other functions and a basic runtime system. Inputs are used to feed the input to the executable model before calling it, outputs are used for collecting information provided by the executable model to be passed to the relevant interfaces after the execution cycle has finished.
+
+\section{Principles for Interfaces (openETCS \gls{API})}
+
+
+Information  is exchanged \define{messages} in an asynchronous way. A message is a set
+of information corresponding to an event of a particular unit, e.g. a
+balise received from the \gls{BTM}. The possible kind of messages are
+described in chapter \ref{information-flows}.
+
+The information is passed to the executable model as parmeters to the snychronous call of a procedure (Interface to the executable model). Since the availability of input messages to the application is not guaranteed the parts of the interfaces are defined with a "present" flag. In addition, fields of input arraysquite often is of variable size. Implementation in the concrete interface in this use-case is the use of a "size" parameter and a "valid"-flag.
+
+
+\subsection{openETCS Model Runtime System}
+The openETCS model runtime system also provides:
+
+\begin{itemize}
+\item Input Functions From other Units\\
+In this entity messages from other connected units are received.
+\item Output Functions to other Units\\
+The entity writes messages to other connected units.
+\item Conversation Functions for Messages (Bitwalker)\\
+The conversion function are triggered by Input and Ouput Functions. The main task is to convert input messages from an bit-packed format into logical ETCS messages (the ETCS language) and Output messages from Logical into a bit-packed format. The logical format of the messages is defined for all used types in the openETCS data dictonary. \\
+Variable size elements in the Messages are converted to fixed length arrays with an used elements indicator.\\
+Optional elements are indicated with an valid flag.
+The conversion routines are responsible for checking the data received is valid. If  faults are detected the information is passed to the openETCS executable model for further reaction. 
+\item Model Cycle\\
+
+The version management function is part of the message handling.This implies, conversions from other physical or logical layouts of messages are mapped onto a generic format used in the EVC. Information about the origin version of the message is part of the messages.
+ 
+The executable model is called in cycles. In the cycle 
+\begin{itemize}
+\item First the received input messages are decoded
+\item The input data is passed to the executable model in a predefined order. \textbf{(Details for the interface to be defined)}.
+\item Output is encoded according to the \gls{SRS} and passed to the  buffers to the units.
+\end{itemize}
+\end{itemize}
+
+\subsection{Input Interfaces of the openETCS API to other Units of the OBU}
+Interfaces are defined in the Scade project APITypes (package API\_Msg\_Pkg.xscade).
+
+In the next table we can see the interfaces being used in the openETCS system. Details on the interfaces are defined further down.
+
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+Unit & Name &  Processing Function & Description \\\hline}
+%\begin{itemize}{| m{1.2cm} | m{1.5cm} | m{1.2cm} | m{3.7cm}  | m{3.7cm} |}
+\begin{supertabular}{| c | c | c  | c |}
+\gls{BTM} & Balise Telegram & Receive Messages & \\\hline
+\gls{DMI} & & \\\hline
+EURORADIO & Communication Management & Communication Management & \\\hline
+EURORADIO & Radio Messages & Receive Messages & \\\hline
+\gls{ODO} & Odometer & All Parts & \\\hline
+TIME & Time system of the OBU & All Parts & \\\hline
+Startup \\\hline
+TIU & Train Data & All Parts & \\\hline
+\end{supertabular}
+
+\subsection{Output Interfaces of the openETCS API TO other Units of the OBU}
+
+\tablefirsthead{
+\hline 
+\rowcolor{gray} 
+From Function & Name &  To Unit & Description \\\hline}
+%\begin{supertabular}{| m{1.2cm} | m{1.5cm} | m{1.2cm} | m{3.7cm}  | m{3.7cm} |}
+\begin{supertabular}{| c | c | c | c  | c |}
+ & Radio Output Message & \ EURORADIO & \\\hline
+ & Communication Management  &  EURORADIO  & \\\hline
+ & Driver Information & \gls{DMI} \\\hline
+ & Train Data  & TIU &  
+\\\hline
+\end{supertabular}
+
+
+Information in the following sections gives an more detailed overview of the structure of the interfaces.
+
+\subsection{Interfaces to the DMI}
+
+The interfaces and protocols in the interface to the DMI is based on the protocol defined by ERSA in its DMI implementation. Details are not opensource.
+
+\subsection{Interfaces to the Time System}
+The interface types are defined in the OBU\_Basic\_Types\_Pkg Package. The system time is defined in the basic software.
+
+The system TIME is provided to the executable model at the begin of the cycle. It is not refreshed during the cycle. The time provided to the application is equal to 0 at power-up of the EVC (it is not a “UTC time” nor a “Local
+Time”), then must increase at each cycle (unit = 1 msec), until it reaches its maximum value (i.e current EVC
+limitation = 24 hours)
+
+\begin{itemize}
+\item TIME (T\_internal\_Type, 32-bit INT)\\
+Standardized system time type used for all internal time calculations: in ms. The time is defined as a cyclic counter: When the maximum is exceeded the time starts from 0 again. 
+\end{itemize}
+
+\subsection{Interfaces to the Odometry System}
+The interface types are defined in the OBU\_Basic\_Types\_Pkg Package. 
+The odometer gives the current information of the positing system of the train. In this section the structure of the interfaces are only highlighted. Details, including the internal definitions for distances, locations speed and time are implemented in the package. 
+
+\begin{itemize}
+\item Odometer (odometry\_T)
+\begin{itemize}
+\item valid (bool)\\
+valid flag, i.e., the information is provided by the ODO system and can be used.
+\item timestamp (T\_internal\_Type)\\
+of the system when the odometer information was collected. Please, see also general remarks on the time system. 
+\item Coordinate (odometryLocation\_T)
+\begin{itemize}
+\item nominal (L\_internal\_Type) [cm]
+\item min (L\_internal\_Type) [cm]
+\item max (L\_internal\_Type) [cm]
+\end{itemize}
+The type used for length values is a 32 bit integer. 
+Min and max value give the interval where the train is to be expected. The bounderies are determined by the inaccuracy of the positioning system. All values are set to 0 when the train starts.
+\item speed (V\_internal\_Type) [km/h]
+General Speed of the train
+\item acceleration (A\_internal\_Type)[0.01 m/s2],\\
+Standardized acceleration type for all internal calculations : in 
+\item motionState (Enumeration)\\
+indicates whether the train is in motion or in no motion
+\item motionDirection (Enumeration)\\
+indicates the direction of the train, i.e., CAB-A first, CAB-B first or unknown.
+\end{itemize}
+\end{itemize}
+
+\subsection{Interfaces to the Train Interfaces (TIU)}
+The following infomration is based on the implementation of the Alstom API. The interface is organised in packets. The packets of the Alstom implementation are listed in the appendix to this document.
+
+The description of interfaces needed for the current scope will be added according to the use.
+
+
+\bibliographystyle{unsrt}
+\bibliography{architecture}
+
+
+\newpage
+\addcontentsline{toc}{chapter}{Index}
+\printindex
+%===================================================
+%Do NOT change anything below this line
+
+\end{document}
