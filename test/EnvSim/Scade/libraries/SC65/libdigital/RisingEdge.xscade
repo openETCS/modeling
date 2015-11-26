@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="node" name="RisingEdge">
+	<inputs>
+		<Variable name="RE_Input">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="s4_135/7236A702/11D5/36A6E752/7C93"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="RE_Output">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="s4_136/7236A702/11D5/36A6E753/5ABC"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="s4_168/7236A702/11D5/36A6E8D0/89C"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L6">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="s4_175/7236A702/11D5/36A6E8D0/66AD"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_80B/7EB2/668/3F730CFA/656B"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L8">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_80C/7EB2/668/3F730CFA/1F23"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = RE_Input; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="RE_Input"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_20D69/1409/6CC/3F6884F1/7119"/>
+			</pragmas>
+		</Equation>
+		<!-- RE_Output = _L6; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="RE_Output"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L6"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_20D6D/2808/6CC/3F6884F5/5B37"/>
+			</pragmas>
+		</Equation>
+		<!-- _L3 = fby(_L1; 1; _L1); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<!-- fby(_L1; 1; _L1) -->
+				<FbyOp name="1">
+					<flows>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</flows>
+					<delay>
+						<ConstValue value="1"/>
+					</delay>
+					<values>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</values>
+				</FbyOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_20DA4/6D3E/6CC/3F688528/6D68"/>
+			</pragmas>
+		</Equation>
+		<!-- _L6 = _L8 and _L1; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L6"/>
+			</lefts>
+			<right>
+				<!-- _L8 and _L1 -->
+				<NAryOp name="2" operator="and">
+					<operands>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L8"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</operands>
+				</NAryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_20DB4/390C/6CC/3F688528/6AF"/>
+			</pragmas>
+		</Equation>
+		<!-- _L8 =  not _L3; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L8"/>
+			</lefts>
+			<right>
+				<!--  not _L3 -->
+				<UnaryOp name="3" operator="not">
+					<operand>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L3"/>
+							</path>
+						</IdExpression>
+					</operand>
+				</UnaryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_20DC4/70E3/6CC/3F6885B4/7CF3"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="s4_137/7236A702/11D5/36A6E753/39A9" symbolFile="RisingEdge" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<comment>Detects a rising edge (false to true transition).</comment>
+			<comment>The output is true during the transition clock cycle. The output is initialized to false.</comment>
+			<diagrams>
+				<NetDiagram name="eq_RisingEdge" landscape="false" format="A4 (210 297)" oid="!ed/141E/66E1/608/466FF8B7/2B3">
+					<presentationElements>
+						<EquationGE presentable="win_20D69/1409/6CC/3F6884F1/7119">
+							<position>
+								<Point x="1971" y="3149"/>
+							</position>
+							<size>
+								<Size width="251" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="win_20D6D/2808/6CC/3F6884F5/5B37">
+							<position>
+								<Point x="12171" y="4360"/>
+							</position>
+							<size>
+								<Size width="317" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_20DB4/390C/6CC/3F688528/6AF" dstEquation="win_20D6D/2808/6CC/3F6884F5/5B37">
+							<positions>
+								<Point x="10160" y="4614"/>
+								<Point x="11197" y="4614"/>
+								<Point x="11197" y="4614"/>
+								<Point x="12213" y="4614"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="win_20DA4/6D3E/6CC/3F688528/6D68">
+							<position>
+								<Point x="4702" y="2876"/>
+							</position>
+							<size>
+								<Size width="1021" height="1021"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_20D69/1409/6CC/3F6884F1/7119" dstEquation="win_20DA4/6D3E/6CC/3F688528/6D68">
+							<positions>
+								<Point x="2223" y="3408"/>
+								<Point x="3471" y="3408"/>
+								<Point x="3471" y="3408"/>
+								<Point x="4699" y="3408"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="win_20D69/1409/6CC/3F6884F1/7119" dstEquation="win_20DA4/6D3E/6CC/3F688528/6D68">
+							<positions>
+								<Point x="2223" y="3408"/>
+								<Point x="3704" y="3408"/>
+								<Point x="3704" y="4720"/>
+								<Point x="5376" y="4720"/>
+								<Point x="5376" y="3895"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="win_20DB4/390C/6CC/3F688528/6AF">
+							<position>
+								<Point x="9144" y="4276"/>
+							</position>
+							<size>
+								<Size width="1021" height="677"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_20DC4/70E3/6CC/3F6885B4/7CF3" dstEquation="win_20DB4/390C/6CC/3F688528/6AF">
+							<positions>
+								<Point x="8022" y="3408"/>
+								<Point x="8573" y="3408"/>
+								<Point x="8573" y="4509"/>
+								<Point x="9144" y="4509"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="win_20D69/1409/6CC/3F6884F1/7119" dstEquation="win_20DB4/390C/6CC/3F688528/6AF">
+							<positions>
+								<Point x="2223" y="3408"/>
+								<Point x="3704" y="3408"/>
+								<Point x="3704" y="4720"/>
+								<Point x="9144" y="4720"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="win_20DC4/70E3/6CC/3F6885B4/7CF3">
+							<position>
+								<Point x="7010" y="3073"/>
+							</position>
+							<size>
+								<Size width="1016" height="660"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_20DA4/6D3E/6CC/3F688528/6D68" dstEquation="win_20DC4/70E3/6CC/3F6885B4/7CF3">
+							<positions>
+								<Point x="5715" y="3387"/>
+								<Point x="6350" y="3387"/>
+								<Point x="6350" y="3387"/>
+								<Point x="7006" y="3387"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

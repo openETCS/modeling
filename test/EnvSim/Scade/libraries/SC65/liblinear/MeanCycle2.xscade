@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="node" name="MeanCycle2">
+	<inputs>
+		<Variable name="U">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="s4_35C/8088D392/83E/39C7AA06/3E30"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="MeanOn2Steps">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="s4_361/8088D392/83E/39C7AA30/5872"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<numericTypes>
+		<FloatType>
+			<typeVar>
+				<TypeRef name="'T"/>
+			</typeVar>
+		</FloatType>
+	</numericTypes>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="s4_35E/8088D392/83E/39C7AA07/570D"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L13">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="s4_3AD/8088D392/83E/39C7ACD1/5545"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L14">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="s4_1E2/8088D392/A74/39C8D28D/7BB7"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L8">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="s4_394/8088D392/83E/39C7AB75/20E"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L9">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="s4_398/8088D392/83E/39C7AB7B/6159"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = U; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="U"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="s4_35F/8088D392/83E/39C7AA07/3141"/>
+			</pragmas>
+		</Equation>
+		<!-- MeanOn2Steps = _L8; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="MeanOn2Steps"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L8"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="s4_363/8088D392/83E/39C7AA31/615C"/>
+			</pragmas>
+		</Equation>
+		<!-- _L8 = _L14 / _L9; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L8"/>
+			</lefts>
+			<right>
+				<!-- _L14 / _L9 -->
+				<BinaryOp name="1" operator="/">
+					<operands>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L14"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L9"/>
+							</path>
+						</IdExpression>
+					</operands>
+				</BinaryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="s4_395/8088D392/83E/39C7AB75/7FFD"/>
+			</pragmas>
+		</Equation>
+		<!-- _L9 = (2 : 'T); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L9"/>
+			</lefts>
+			<right>
+				<!-- (2 : 'T) -->
+				<NumericCastOp name="2">
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+					<flow>
+						<ConstValue value="2"/>
+					</flow>
+				</NumericCastOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="s4_399/8088D392/83E/39C7AB7B/BED"/>
+			</pragmas>
+		</Equation>
+		<!-- _L13 = fby(_L1; 1; _L1); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L13"/>
+			</lefts>
+			<right>
+				<!-- fby(_L1; 1; _L1) -->
+				<FbyOp name="2">
+					<flows>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</flows>
+					<delay>
+						<ConstValue value="1"/>
+					</delay>
+					<values>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</values>
+				</FbyOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="s4_3AE/8088D392/83E/39C7ACD1/2152"/>
+			</pragmas>
+		</Equation>
+		<!-- _L14 = _L1 + _L13; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L14"/>
+			</lefts>
+			<right>
+				<!-- _L1 + _L13 -->
+				<NAryOp name="3" operator="+">
+					<operands>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L13"/>
+							</path>
+						</IdExpression>
+					</operands>
+				</NAryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="s4_1E3/8088D392/A74/39C8D28D/4759"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="s4_359/8088D392/83E/39C7A9E7/22C3" symbolFile="MeanCycle2.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<comment>Compute the mean of two iterative values of the input.</comment>
+			<comment>MeanOn2Step (0) =  (U(0) + U(0)) / 2</comment>
+			<comment>MeanOn2Step (k) = (U(k) + U(k -1)) / 2</comment>
+			<diagrams>
+				<NetDiagram name="eq_MeanCycle2" landscape="false" format="A4 (210 297)" oid="!ed/923/7C78/290/468CAB43/7058">
+					<presentationElements>
+						<EquationGE presentable="s4_35F/8088D392/83E/39C7AA07/3141">
+							<position>
+								<Point x="1838" y="582"/>
+							</position>
+							<size>
+								<Size width="251" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="s4_363/8088D392/83E/39C7AA31/615C">
+							<position>
+								<Point x="9039" y="1746"/>
+							</position>
+							<size>
+								<Size width="326" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="s4_395/8088D392/83E/39C7AB75/7FFD" dstEquation="s4_363/8088D392/83E/39C7AA31/615C">
+							<positions>
+								<Point x="7832" y="1990"/>
+								<Point x="8424" y="1990"/>
+								<Point x="8424" y="1990"/>
+								<Point x="9081" y="1990"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="s4_395/8088D392/83E/39C7AB75/7FFD">
+							<position>
+								<Point x="6818" y="1659"/>
+							</position>
+							<size>
+								<Size width="1022" height="677"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="s4_1E3/8088D392/A74/39C8D28D/4759" dstEquation="s4_395/8088D392/83E/39C7AB75/7FFD">
+							<positions>
+								<Point x="6181" y="953"/>
+								<Point x="6562" y="953"/>
+								<Point x="6562" y="1884"/>
+								<Point x="6816" y="1884"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="s4_399/8088D392/83E/39C7AB7B/BED" dstEquation="s4_395/8088D392/83E/39C7AB75/7FFD">
+							<positions>
+								<Point x="6033" y="2096"/>
+								<Point x="6160" y="2096"/>
+								<Point x="6160" y="2096"/>
+								<Point x="6816" y="2096"/>
+							</positions>
+						</Edge>
+						<EquationGE kind="OBJ_LIT" presentable="s4_399/8088D392/83E/39C7AB7B/BED">
+							<position>
+								<Point x="5863" y="1926"/>
+							</position>
+							<size>
+								<Size width="169" height="318"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="s4_3AE/8088D392/83E/39C7ACD1/2152">
+							<position>
+								<Point x="3035" y="1050"/>
+							</position>
+							<size>
+								<Size width="1021" height="1022"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="s4_35F/8088D392/83E/39C7AA07/3141" dstEquation="s4_3AE/8088D392/83E/39C7ACD1/2152">
+							<positions>
+								<Point x="2096" y="826"/>
+								<Point x="2625" y="826"/>
+								<Point x="2625" y="1566"/>
+								<Point x="3027" y="1566"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="s4_35F/8088D392/83E/39C7AA07/3141" dstEquation="s4_3AE/8088D392/83E/39C7ACD1/2152">
+							<positions>
+								<Point x="2096" y="826"/>
+								<Point x="2625" y="826"/>
+								<Point x="2625" y="2434"/>
+								<Point x="3725" y="2434"/>
+								<Point x="3725" y="2074"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="s4_1E3/8088D392/A74/39C8D28D/4759">
+							<position>
+								<Point x="5156" y="610"/>
+							</position>
+							<size>
+								<Size width="1016" height="660"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="s4_35F/8088D392/83E/39C7AA07/3141" dstEquation="s4_1E3/8088D392/A74/39C8D28D/4759">
+							<positions>
+								<Point x="2096" y="826"/>
+								<Point x="3471" y="826"/>
+								<Point x="3471" y="826"/>
+								<Point x="5165" y="826"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="s4_3AE/8088D392/83E/39C7ACD1/2152" dstEquation="s4_1E3/8088D392/A74/39C8D28D/4759">
+							<positions>
+								<Point x="4064" y="1566"/>
+								<Point x="4636" y="1566"/>
+								<Point x="4636" y="1058"/>
+								<Point x="5165" y="1058"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="function" name="TruthTable">
+	<sizeParameters>
+		<SizeParameter name="Ncond">
+			<pragmas>
+				<ed:SizeParameter oid="!ed/7A5/782/F68/466D1E07/4D49"/>
+			</pragmas>
+		</SizeParameter>
+		<SizeParameter name="Nlines">
+			<pragmas>
+				<ed:SizeParameter oid="!ed/7A7/782/F68/466D1E07/4CF"/>
+			</pragmas>
+		</SizeParameter>
+	</sizeParameters>
+	<inputs>
+		<Variable name="Conditions">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Ncond"/>
+							</path>
+						</IdExpression>
+					</size>
+					<pragmas>
+						<ed:Table oid="win_D6/FE0/7EC/45ED702E/165E"/>
+					</pragmas>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_3B68/7BC3/F78/45F580CB/5AC"/>
+			</pragmas>
+		</Variable>
+		<Variable name="ResultValues">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- Nlines + 1 -->
+						<NAryOp operator="+">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Nlines"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="1"/>
+							</operands>
+						</NAryOp>
+					</size>
+					<pragmas>
+						<ed:Table oid="!ed/8B9/782/F68/466D1F46/4C49"/>
+					</pragmas>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_3B69/7BC3/F78/45F580CB/53AE"/>
+			</pragmas>
+		</Variable>
+		<Variable name="Ttable">
+			<type>
+				<Table>
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TruthTableValues"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Ncond"/>
+									</path>
+								</IdExpression>
+							</size>
+							<pragmas>
+								<ed:Table oid="win_719/FE0/7EC/45EFD8E3/1DAA"/>
+							</pragmas>
+						</Table>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Nlines"/>
+							</path>
+						</IdExpression>
+					</size>
+					<pragmas>
+						<ed:Table oid="win_71C/FE0/7EC/45EFD8E3/392B"/>
+					</pragmas>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_3B66/7BC3/F78/45F580CB/2B94" hidden="true"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="Result">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_3B67/7BC3/F78/45F580CB/1CB4"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Ncond"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_3B6A/7BC3/F78/45F580CB/5516"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<Table>
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TruthTableValues"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Ncond"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Nlines"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_3B6B/7BC3/F78/45F580CB/3C07"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L7">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- Nlines + 1 -->
+						<NAryOp operator="+">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Nlines"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="1"/>
+							</operands>
+						</NAryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_3B6C/7BC3/F78/45F580CB/7D67"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L9">
+			<type>
+				<Table>
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Ncond"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Nlines"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_3B6D/7BC3/F78/45F580CB/6FA2"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L12">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_3B70/7BC3/F78/45F580CB/5BC0"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L16">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- Nlines + 1 -->
+						<NAryOp operator="+">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Nlines"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="1"/>
+							</operands>
+						</NAryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_3B72/7BC3/F78/45F580CB/7777"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L17">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_3B73/7BC3/F78/45F580CB/4C23"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L19">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/891/782/F68/466D1E13/60F7"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L18">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int16"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/88F/782/F68/466D1E13/3B92"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L21">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- ((Nlines - 1) - 0) + 1 -->
+						<NAryOp operator="+">
+							<operands>
+								<!-- ((Nlines - 1) - 0) -->
+								<BinaryOp operator="-">
+									<operands>
+										<!-- (Nlines - 1) -->
+										<BinaryOp operator="-">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="Nlines"/>
+													</path>
+												</IdExpression>
+												<ConstValue value="1"/>
+											</operands>
+										</BinaryOp>
+										<ConstValue value="0"/>
+									</operands>
+								</BinaryOp>
+								<ConstValue value="1"/>
+							</operands>
+						</NAryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2BE7/67DC/830/46716212/7AC6"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = Conditions; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="Conditions"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_3B77/7BC3/F78/45F580CB/7AD8"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 = Ttable; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="Ttable"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_3B78/7BC3/F78/45F580CB/44EE"/>
+			</pragmas>
+		</Equation>
+		<!-- Result = _L19; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="Result"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L19"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_3B79/7BC3/F78/45F580CB/11DD"/>
+			</pragmas>
+		</Equation>
+		<!-- _L7 = ResultValues; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L7"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="ResultValues"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_3B7A/7BC3/F78/45F580CB/BA9"/>
+			</pragmas>
+		</Equation>
+		<!-- _L9 = _L1 ^ Nlines; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L9"/>
+			</lefts>
+			<right>
+				<!-- _L1 ^ Nlines -->
+				<ScalarToVectorOp name="1">
+					<flow>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</flow>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Nlines"/>
+							</path>
+						</IdExpression>
+					</size>
+				</ScalarToVectorOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_3B7B/7BC3/F78/45F580CB/15EF"/>
+			</pragmas>
+		</Equation>
+		<!-- _L12 = _L16[Nlines]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L12"/>
+			</lefts>
+			<right>
+				<!-- _L16[Nlines] -->
+				<PrjOp name="3">
+					<flow>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L16"/>
+							</path>
+						</IdExpression>
+					</flow>
+					<with>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Nlines"/>
+							</path>
+						</IdExpression>
+					</with>
+				</PrjOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_3B7D/7BC3/F78/45F580CB/78FE"/>
+			</pragmas>
+		</Equation>
+		<!-- _L16 = ResultValues; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L16"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="ResultValues"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_3B7F/7BC3/F78/45F580CB/1CE7"/>
+			</pragmas>
+		</Equation>
+		<!-- _L17 = true; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L17"/>
+			</lefts>
+			<right>
+				<ConstValue value="true"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_3B81/7BC3/F78/45F580CB/75E7"/>
+			</pragmas>
+		</Equation>
+		<!-- _L18, _L19 = (foldw (TruthTableLine<<Ncond>>) <<Nlines>> if _L17)(_L12, _L9, _L21... -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L18"/>
+				<VariableRef name="_L19"/>
+			</lefts>
+			<right>
+				<!-- (foldw (TruthTableLine<<Ncond>>) <<Nlines>> if _L17)(_L12, _L9, _L21, _L2) -->
+				<CallExpression>
+					<operator>
+						<PartialIteratorOp iterator="foldw">
+							<operator>
+								<OpCall name="4">
+									<operator>
+										<OperatorRef name="TruthTableLine"/>
+									</operator>
+									<instanceParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="Ncond"/>
+											</path>
+										</IdExpression>
+									</instanceParameters>
+								</OpCall>
+							</operator>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Nlines"/>
+									</path>
+								</IdExpression>
+							</size>
+							<if>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L17"/>
+									</path>
+								</IdExpression>
+							</if>
+						</PartialIteratorOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L12"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L9"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L21"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L2"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/88D/782/F68/466D1E13/60B4"/>
+			</pragmas>
+		</Equation>
+		<!-- _ = _L18; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L18"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1149/6CA5/7F0/466FF950/1B2B"/>
+			</pragmas>
+		</Equation>
+		<!-- _L21 = _L7[0 .. (Nlines - 1)]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L21"/>
+			</lefts>
+			<right>
+				<!-- _L7[0 .. (Nlines - 1)] -->
+				<SliceOp name="6">
+					<array>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L7"/>
+							</path>
+						</IdExpression>
+					</array>
+					<fromIndex>
+						<ConstValue value="0"/>
+					</fromIndex>
+					<toIndex>
+						<!-- (Nlines - 1) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Nlines"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="1"/>
+							</operands>
+						</BinaryOp>
+					</toIndex>
+				</SliceOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2BE5/67DC/830/46716212/3D38"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="win_3B65/7BC3/F78/45F580CB/745C" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<comment>Implements a truth table. Outputs the element from ResultValues</comment>
+			<comment>that correspond to the first line of Ttable that matches Conditions.</comment>
+			<comment>ResultValues[Nlines] is produced when no line matches.</comment>
+			<comment>Element 'T' from Ttable matches true, 'F' matches false, 'X' matches both.</comment>
+			<diagrams>
+				<NetDiagram name="diagram_TruthTable_1" landscape="true" format="A4 (210 297)" oid="!ed/86D/782/F68/466D1E07/3EF0">
+					<presentationElements>
+						<EquationGE presentable="win_3B77/7BC3/F78/45F580CB/7AD8">
+							<position>
+								<Point x="2182" y="5186"/>
+							</position>
+							<size>
+								<Size width="251" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="win_3B78/7BC3/F78/45F580CB/44EE">
+							<position>
+								<Point x="2182" y="8520"/>
+							</position>
+							<size>
+								<Size width="251" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="win_3B79/7BC3/F78/45F580CB/11DD">
+							<position>
+								<Point x="18194" y="7408"/>
+							</position>
+							<size>
+								<Size width="326" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="win_3B7A/7BC3/F78/45F580CB/BA9">
+							<position>
+								<Point x="2182" y="6853"/>
+							</position>
+							<size>
+								<Size width="251" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="win_3B7B/7BC3/F78/45F580CB/15EF">
+							<position>
+								<Point x="5072" y="5019"/>
+							</position>
+							<size>
+								<Size width="1947" height="810"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_3B77/7BC3/F78/45F580CB/7AD8" dstEquation="win_3B7B/7BC3/F78/45F580CB/15EF">
+							<positions>
+								<Point x="2434" y="5440"/>
+								<Point x="3450" y="5440"/>
+								<Point x="3450" y="5440"/>
+								<Point x="5080" y="5440"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="win_3B7D/7BC3/F78/45F580CB/78FE">
+							<position>
+								<Point x="5072" y="3246"/>
+							</position>
+							<size>
+								<Size width="1895" height="995"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="win_3B7F/7BC3/F78/45F580CB/1CE7">
+							<position>
+								<Point x="2182" y="3493"/>
+							</position>
+							<size>
+								<Size width="251" height="502"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_3B7F/7BC3/F78/45F580CB/1CE7" dstEquation="win_3B7D/7BC3/F78/45F580CB/78FE">
+							<positions>
+								<Point x="2434" y="3747"/>
+								<Point x="3450" y="3747"/>
+								<Point x="3450" y="3747"/>
+								<Point x="5080" y="3747"/>
+							</positions>
+						</Edge>
+						<EquationGE kind="OBJ_LIT" presentable="win_3B81/7BC3/F78/45F580CB/75E7">
+							<position>
+								<Point x="11721" y="926"/>
+							</position>
+							<size>
+								<Size width="53" height="265"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/88D/782/F68/466D1E13/60B4">
+							<position>
+								<Point x="9570" y="2056"/>
+							</position>
+							<size>
+								<Size width="6181" height="8430"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="win_3B7D/7BC3/F78/45F580CB/78FE" dstEquation="!ed/88D/782/F68/466D1E13/60B4">
+							<positions>
+								<Point x="6964" y="3747"/>
+								<Point x="9208" y="3747"/>
+								<Point x="9208" y="3747"/>
+								<Point x="9567" y="3747"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="win_3B7B/7BC3/F78/45F580CB/15EF" dstEquation="!ed/88D/782/F68/466D1E13/60B4">
+							<positions>
+								<Point x="7027" y="5419"/>
+								<Point x="8319" y="5419"/>
+								<Point x="8319" y="5419"/>
+								<Point x="9567" y="5419"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="win_3B78/7BC3/F78/45F580CB/44EE" dstEquation="!ed/88D/782/F68/466D1E13/60B4">
+							<positions>
+								<Point x="2434" y="8784"/>
+								<Point x="6011" y="8784"/>
+								<Point x="6011" y="8784"/>
+								<Point x="9567" y="8784"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="!ed/88D/782/F68/466D1E13/60B4" dstEquation="win_3B79/7BC3/F78/45F580CB/11DD">
+							<positions>
+								<Point x="15748" y="7662"/>
+								<Point x="16616" y="7662"/>
+								<Point x="16616" y="7662"/>
+								<Point x="18246" y="7662"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_3B81/7BC3/F78/45F580CB/75E7" dstEquation="!ed/88D/782/F68/466D1E13/60B4">
+							<positions>
+								<Point x="11769" y="1080"/>
+								<Point x="12658" y="1080"/>
+								<Point x="12658" y="2053"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/1149/6CA5/7F0/466FF950/1B2B">
+							<position>
+								<Point x="17515" y="4498"/>
+							</position>
+							<size>
+								<Size width="715" height="714"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/88D/782/F68/466D1E13/60B4" dstEquation="!ed/1149/6CA5/7F0/466FF950/1B2B">
+							<positions>
+								<Point x="15748" y="4868"/>
+								<Point x="17124" y="4868"/>
+								<Point x="17124" y="4868"/>
+								<Point x="17865" y="4868"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/2BE5/67DC/830/46716212/3D38">
+							<position>
+								<Point x="5072" y="6712"/>
+							</position>
+							<size>
+								<Size width="1947" height="810"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_3B7A/7BC3/F78/45F580CB/BA9" dstEquation="!ed/2BE5/67DC/830/46716212/3D38">
+							<positions>
+								<Point x="2434" y="7112"/>
+								<Point x="3747" y="7112"/>
+								<Point x="3747" y="7112"/>
+								<Point x="5080" y="7112"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/2BE5/67DC/830/46716212/3D38" dstEquation="!ed/88D/782/F68/466D1E13/60B4">
+							<positions>
+								<Point x="7027" y="7112"/>
+								<Point x="7726" y="7112"/>
+								<Point x="7726" y="7112"/>
+								<Point x="9567" y="7112"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

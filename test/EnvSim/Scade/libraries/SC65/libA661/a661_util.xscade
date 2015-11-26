@@ -1,0 +1,4948 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Package name="a661_util">
+			<declarations>
+				<Operator kind="node" name="ValChanged">
+					<inputs>
+						<Variable name="i">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/cfd9/72E3/B28/4da444923663"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="o">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/cfd8/72E3/B28/4da4449260c9"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<data>
+						<!-- o = (false) -> (i <> pre i); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="o"/>
+							</lefts>
+							<right>
+								<!-- (false) -> (i <> pre i) -->
+								<InitOp name="1">
+									<value>
+										<ListExpression>
+											<items>
+												<ConstValue value="false"/>
+											</items>
+										</ListExpression>
+									</value>
+									<flow>
+										<ListExpression>
+											<items>
+												<!-- i <> pre i -->
+												<BinaryOp operator="&lt;&gt;">
+													<operands>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="i"/>
+															</path>
+														</IdExpression>
+														<!-- pre i -->
+														<PreOp>
+															<flow>
+																<ListExpression>
+																	<items>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="i"/>
+																			</path>
+																		</IdExpression>
+																	</items>
+																</ListExpression>
+															</flow>
+														</PreOp>
+													</operands>
+												</BinaryOp>
+											</items>
+										</ListExpression>
+									</flow>
+								</InitOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/cfd6/72E3/B28/4da444923d43"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/cfd5/72E3/B28/4da444922186" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<TextDiagram name="diagram_ValChanged_1" landscape="true" format="A4 (210 297)" oid="!ed/cfd7/72E3/B28/4da444924eeb">
+									<presentationElements>
+										<FlowTE presentable="!ed/cfd6/72E3/B28/4da444923d43"/>
+									</presentationElements>
+								</TextDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="ValRising">
+					<inputs>
+						<Variable name="i">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/d055/72E3/B28/4da446a059b3"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="o">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/d054/72E3/B28/4da446a06304"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<numericTypes>
+						<NumericType>
+							<typeVar>
+								<TypeRef name="'T"/>
+							</typeVar>
+						</NumericType>
+					</numericTypes>
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/d0ae/72E3/B28/4da449c07c24"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L2">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/d0b4/72E3/B28/4da449c1b2c"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L1 = i; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="i"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/d0ad/72E3/B28/4da449c017d5"/>
+							</pragmas>
+						</Equation>
+						<!-- _L2 = ValChanged(_L1); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L2"/>
+							</lefts>
+							<right>
+								<!-- ValChanged(_L1) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="ValChanged"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/d0b3/72E3/B28/4da449c1605f"/>
+							</pragmas>
+						</Equation>
+						<!-- o = _L2; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="o"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L2"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/d0df/72E3/B28/4da449eb33e9"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/d051/72E3/B28/4da446a07382" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_ValRising_1" landscape="true" format="A4 (210 297)" oid="!ed/d0ac/72E3/B28/4da449a97dce">
+									<presentationElements>
+										<EquationGE presentable="!ed/d0ad/72E3/B28/4da449c017d5">
+											<position>
+												<Point x="3995" y="2223"/>
+											</position>
+											<size>
+												<Size width="265" height="502"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/d0b3/72E3/B28/4da449c1605f">
+											<position>
+												<Point x="5106" y="1773"/>
+											</position>
+											<size>
+												<Size width="1773" height="1402"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d0ad/72E3/B28/4da449c017d5" dstEquation="!ed/d0b3/72E3/B28/4da449c1605f">
+											<positions>
+												<Point x="4255" y="2477"/>
+												<Point x="4678" y="2477"/>
+												<Point x="4678" y="2477"/>
+												<Point x="5101" y="2477"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/d0df/72E3/B28/4da449eb33e9">
+											<position>
+												<Point x="11113" y="2223"/>
+											</position>
+											<size>
+												<Size width="317" height="503"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/d0b3/72E3/B28/4da449c1605f" dstEquation="!ed/d0df/72E3/B28/4da449eb33e9">
+											<positions>
+												<Point x="6879" y="2477"/>
+												<Point x="9017" y="2477"/>
+												<Point x="9017" y="2477"/>
+												<Point x="11155" y="2477"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="SendOnValChanged">
+					<inputs>
+						<Variable name="i">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/22b/16F3/18E4/53ac2cea47c1"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="o">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="bool"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/261/16F3/18E4/53ac2d704983"/>
+											</pragmas>
+										</Field>
+										<Field name="Value">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="'T"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/263/16F3/18E4/53ac2d70565f"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/22c/16F3/18E4/53ac2cec9da"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="send">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/22e/16F3/18E4/53ac2d001821"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- send = (false) -> (i <> pre i); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="send"/>
+							</lefts>
+							<right>
+								<!-- (false) -> (i <> pre i) -->
+								<InitOp>
+									<value>
+										<ListExpression>
+											<items>
+												<ConstValue value="false"/>
+											</items>
+										</ListExpression>
+									</value>
+									<flow>
+										<ListExpression>
+											<items>
+												<!-- i <> pre i -->
+												<BinaryOp operator="&lt;&gt;">
+													<operands>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="i"/>
+															</path>
+														</IdExpression>
+														<!-- pre i -->
+														<PreOp>
+															<flow>
+																<ListExpression>
+																	<items>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="i"/>
+																			</path>
+																		</IdExpression>
+																	</items>
+																</ListExpression>
+															</flow>
+														</PreOp>
+													</operands>
+												</BinaryOp>
+											</items>
+										</ListExpression>
+									</flow>
+								</InitOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/24e/16F3/18E4/53ac2d5b2266"/>
+							</pragmas>
+						</Equation>
+						<!-- o = {Emit : send, Value : i}; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="o"/>
+							</lefts>
+							<right>
+								<!-- {Emit : send, Value : i} -->
+								<DataStructOp>
+									<data>
+										<LabelledExpression label="Emit">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="send"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="Value">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="i"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+									</data>
+								</DataStructOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/24f/16F3/18E4/53ac2d5b51da"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/229/16F3/18E4/53ac2ce07026" symbolFile="SendDelta.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<TextDiagram name="diagram_SendOnValChanged_1" landscape="false" format="A4 (210 297)" oid="!ed/22d/16F3/18E4/53ac2cf52935">
+									<presentationElements>
+										<FlowTE presentable="!ed/24e/16F3/18E4/53ac2d5b2266"/>
+										<FlowTE presentable="!ed/24f/16F3/18E4/53ac2d5b51da"/>
+									</presentationElements>
+								</TextDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="SendAlways">
+					<inputs>
+						<Variable name="i">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1a9/1A56/820/53cf756879a6"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="o">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="bool"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/1a7/1A56/820/53cf7568420e"/>
+											</pragmas>
+										</Field>
+										<Field name="Value">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="'T"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/1a8/1A56/820/53cf75683175"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1a6/1A56/820/53cf756825a1"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="send">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1a5/1A56/820/53cf75682e9b"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- send = true; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="send"/>
+							</lefts>
+							<right>
+								<ConstValue value="true"/>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/217/1A56/820/53cf7b54dbb"/>
+							</pragmas>
+						</Equation>
+						<!-- o = {Emit : send, Value : i}; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="o"/>
+							</lefts>
+							<right>
+								<!-- {Emit : send, Value : i} -->
+								<DataStructOp>
+									<data>
+										<LabelledExpression label="Emit">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="send"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="Value">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="i"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+									</data>
+								</DataStructOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/218/1A56/820/53cf7b546afe"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/1a1/1A56/820/53cf75685dc" symbolFile="SendAlways.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<TextDiagram name="diagram_SendAlways_1" landscape="false" format="A4 (210 297)" oid="!ed/1a4/1A56/820/53cf75682c1f">
+									<presentationElements>
+										<FlowTE presentable="!ed/217/1A56/820/53cf7b54dbb"/>
+										<FlowTE presentable="!ed/218/1A56/820/53cf7b546afe"/>
+									</presentationElements>
+								</TextDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="SendEveryNCycles">
+					<inputs>
+						<Variable name="i">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1ca/1A56/820/53cf75713896"/>
+							</pragmas>
+						</Variable>
+						<Variable name="N">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1f1/1A56/820/53cf7b003abc" hidden="true"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="o">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="bool"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/1c8/1A56/820/53cf75717c9a"/>
+											</pragmas>
+										</Field>
+										<Field name="Value">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="'T"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/1c9/1A56/820/53cf75713bef"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1c7/1A56/820/53cf757141b5"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="send">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1c6/1A56/820/53cf7571694b"/>
+							</pragmas>
+						</Variable>
+						<Variable name="count">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1cc/1A56/820/53cf758f54c8"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- count = ((0 : int32)) -> (if (pre count >= N) then ((0 : int32)) else (pre count ... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="count"/>
+							</lefts>
+							<right>
+								<!-- ((0 : int32)) -> (if (pre count >= N) then ((0 : int32)) else (pre count + (1 : i... -->
+								<InitOp name="3">
+									<value>
+										<ListExpression>
+											<items>
+												<!-- (0 : int32) -->
+												<NumericCastOp name="8">
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+													<flow>
+														<ConstValue value="0"/>
+													</flow>
+												</NumericCastOp>
+											</items>
+										</ListExpression>
+									</value>
+									<flow>
+										<ListExpression>
+											<items>
+												<!-- if (pre count >= N) then ((0 : int32)) else (pre count + (1 : int32)) -->
+												<IfThenElseOp name="3">
+													<if>
+														<!-- pre count >= N -->
+														<BinaryOp name="3" operator="&gt;=">
+															<operands>
+																<!-- pre count -->
+																<PreOp name="5">
+																	<flow>
+																		<ListExpression>
+																			<items>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="count"/>
+																					</path>
+																				</IdExpression>
+																			</items>
+																		</ListExpression>
+																	</flow>
+																</PreOp>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="N"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</if>
+													<then>
+														<ListExpression>
+															<items>
+																<!-- (0 : int32) -->
+																<NumericCastOp name="6">
+																	<type>
+																		<TypeRef name="int32"/>
+																	</type>
+																	<flow>
+																		<ConstValue value="0"/>
+																	</flow>
+																</NumericCastOp>
+															</items>
+														</ListExpression>
+													</then>
+													<else>
+														<ListExpression>
+															<items>
+																<!-- pre count + (1 : int32) -->
+																<NAryOp name="3" operator="+">
+																	<operands>
+																		<!-- pre count -->
+																		<PreOp name="6">
+																			<flow>
+																				<ListExpression>
+																					<items>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="count"/>
+																							</path>
+																						</IdExpression>
+																					</items>
+																				</ListExpression>
+																			</flow>
+																		</PreOp>
+																		<!-- (1 : int32) -->
+																		<NumericCastOp name="7">
+																			<type>
+																				<TypeRef name="int32"/>
+																			</type>
+																			<flow>
+																				<ConstValue value="1"/>
+																			</flow>
+																		</NumericCastOp>
+																	</operands>
+																</NAryOp>
+															</items>
+														</ListExpression>
+													</else>
+												</IfThenElseOp>
+											</items>
+										</ListExpression>
+									</flow>
+								</InitOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5132/796C/1D9C/547f36104f0a"/>
+							</pragmas>
+						</Equation>
+						<!-- send = count = (0 : int32); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="send"/>
+							</lefts>
+							<right>
+								<!-- count = (0 : int32) -->
+								<BinaryOp name="3" operator="=">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="count"/>
+											</path>
+										</IdExpression>
+										<!-- (0 : int32) -->
+										<NumericCastOp name="9">
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+											<flow>
+												<ConstValue value="0"/>
+											</flow>
+										</NumericCastOp>
+									</operands>
+								</BinaryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5133/796C/1D9C/547f361040d0"/>
+							</pragmas>
+						</Equation>
+						<!-- o = {Emit : send, Value : i}; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="o"/>
+							</lefts>
+							<right>
+								<!-- {Emit : send, Value : i} -->
+								<DataStructOp name="3">
+									<data>
+										<LabelledExpression label="Emit">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="send"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="Value">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="i"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+									</data>
+								</DataStructOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5134/796C/1D9C/547f3610396d"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/1c2/1A56/820/53cf75715922" symbolFile="SendNCycles.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<TextDiagram name="diagram_SendEveryNCycles_1" landscape="false" format="A4 (210 297)" oid="!ed/1c5/1A56/820/53cf7571e34">
+									<presentationElements>
+										<FlowTE presentable="!ed/5132/796C/1D9C/547f36104f0a"/>
+										<FlowTE presentable="!ed/5133/796C/1D9C/547f361040d0"/>
+										<FlowTE presentable="!ed/5134/796C/1D9C/547f3610396d"/>
+									</presentationElements>
+								</TextDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="SendStringOnValChanged">
+					<sizeParameters>
+						<SizeParameter name="N">
+							<pragmas>
+								<ed:SizeParameter oid="!ed/696/1A56/820/53d0ee912d3"/>
+							</pragmas>
+						</SizeParameter>
+					</sizeParameters>
+					<inputs>
+						<Variable name="i">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="char"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="N"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/239/1A56/820/53cf7b5e268d"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="o">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="bool"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/58f/543E/16D0/53d8e317536"/>
+											</pragmas>
+										</Field>
+										<Field name="String_size">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/590/543E/16D0/53d8e317547e"/>
+											</pragmas>
+										</Field>
+										<Field name="LabelString">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="char"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/591/543E/16D0/53d8e3173ddf"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/236/1A56/820/53cf7b5e7054"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="send">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/235/1A56/820/53cf7b5e20ab"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- send = (false) -> (i <> pre i); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="send"/>
+							</lefts>
+							<right>
+								<!-- (false) -> (i <> pre i) -->
+								<InitOp>
+									<value>
+										<ListExpression>
+											<items>
+												<ConstValue value="false"/>
+											</items>
+										</ListExpression>
+									</value>
+									<flow>
+										<ListExpression>
+											<items>
+												<!-- i <> pre i -->
+												<BinaryOp operator="&lt;&gt;">
+													<operands>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="i"/>
+															</path>
+														</IdExpression>
+														<!-- pre i -->
+														<PreOp>
+															<flow>
+																<ListExpression>
+																	<items>
+																		<IdExpression>
+																			<path>
+																				<ConstVarRef name="i"/>
+																			</path>
+																		</IdExpression>
+																	</items>
+																</ListExpression>
+															</flow>
+														</PreOp>
+													</operands>
+												</BinaryOp>
+											</items>
+										</ListExpression>
+									</flow>
+								</InitOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6ae/1A56/820/53d0eea777bb"/>
+							</pragmas>
+						</Equation>
+						<!-- o = {Emit : send, String_size : N, LabelString : i}; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="o"/>
+							</lefts>
+							<right>
+								<!-- {Emit : send, String_size : N, LabelString : i} -->
+								<DataStructOp>
+									<data>
+										<LabelledExpression label="Emit">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="send"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="String_size">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="N"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="LabelString">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="i"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+									</data>
+								</DataStructOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6af/1A56/820/53d0eea74c79"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/231/1A56/820/53cf7b5e5396" symbolFile="SendDelta.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<TextDiagram name="diagram_SendStringOnValChanged_1" landscape="false" format="A4 (210 297)" oid="!ed/234/1A56/820/53cf7b5e4f72">
+									<presentationElements>
+										<FlowTE presentable="!ed/6ae/1A56/820/53d0eea777bb"/>
+										<FlowTE presentable="!ed/6af/1A56/820/53d0eea74c79"/>
+									</presentationElements>
+								</TextDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="SendStringAlways">
+					<sizeParameters>
+						<SizeParameter name="N">
+							<pragmas>
+								<ed:SizeParameter oid="!ed/677/1A56/820/53d0ee774811"/>
+							</pragmas>
+						</SizeParameter>
+					</sizeParameters>
+					<inputs>
+						<Variable name="i">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="char"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="N"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2bc/1A56/820/53cface85842"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="o">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="bool"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/ef4/1A56/820/53d228aa699c"/>
+											</pragmas>
+										</Field>
+										<Field name="String_size">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/ef5/1A56/820/53d228aa4908"/>
+											</pragmas>
+										</Field>
+										<Field name="LabelString">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="char"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/ef6/1A56/820/53d228aa782c"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2b8/1A56/820/53cface857d"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="send">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2b5/1A56/820/53cface8393c"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- send = true; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="send"/>
+							</lefts>
+							<right>
+								<ConstValue value="true"/>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/689/1A56/820/53d0ee8a1639"/>
+							</pragmas>
+						</Equation>
+						<!-- o = {Emit : send, String_size : N, LabelString : i}; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="o"/>
+							</lefts>
+							<right>
+								<!-- {Emit : send, String_size : N, LabelString : i} -->
+								<DataStructOp>
+									<data>
+										<LabelledExpression label="Emit">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="send"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="String_size">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="N"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="LabelString">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="i"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+									</data>
+								</DataStructOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/68a/1A56/820/53d0ee8a651"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/2b0/1A56/820/53cface83643" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<TextDiagram name="diagram_SendStringOnValChanged1_1" landscape="false" format="A4 (210 297)" oid="!ed/2b4/1A56/820/53cface826f6">
+									<presentationElements>
+										<FlowTE presentable="!ed/689/1A56/820/53d0ee8a1639"/>
+										<FlowTE presentable="!ed/68a/1A56/820/53d0ee8a651"/>
+									</presentationElements>
+								</TextDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="SendStringEveryNCycles">
+					<sizeParameters>
+						<SizeParameter name="M">
+							<pragmas>
+								<ed:SizeParameter oid="!ed/690/1A56/820/53d0ee8f158e"/>
+							</pragmas>
+						</SizeParameter>
+					</sizeParameters>
+					<inputs>
+						<Variable name="i">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="char"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="M"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/306/1A56/820/53cfb1743822"/>
+							</pragmas>
+						</Variable>
+						<Variable name="N">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/30c/1A56/820/53cfb18736ad" hidden="true"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="o">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="bool"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/5b2/543E/16D0/53d926e411ba"/>
+											</pragmas>
+										</Field>
+										<Field name="String_size">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/5b3/543E/16D0/53d926e43e25"/>
+											</pragmas>
+										</Field>
+										<Field name="LabelString">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="char"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="M"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/5b4/543E/16D0/53d926e47965"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/302/1A56/820/53cfb1744777"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="send">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/300/1A56/820/53cfb174f79"/>
+							</pragmas>
+						</Variable>
+						<Variable name="count">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/312/1A56/820/53cfb18b11a6"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- count = (0) -> (if (pre count >= N) then (0) else (pre count + 1)); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="count"/>
+							</lefts>
+							<right>
+								<!-- (0) -> (if (pre count >= N) then (0) else (pre count + 1)) -->
+								<InitOp>
+									<value>
+										<ListExpression>
+											<items>
+												<ConstValue value="0"/>
+											</items>
+										</ListExpression>
+									</value>
+									<flow>
+										<ListExpression>
+											<items>
+												<!-- if (pre count >= N) then (0) else (pre count + 1) -->
+												<IfThenElseOp>
+													<if>
+														<!-- pre count >= N -->
+														<BinaryOp operator="&gt;=">
+															<operands>
+																<!-- pre count -->
+																<PreOp>
+																	<flow>
+																		<ListExpression>
+																			<items>
+																				<IdExpression>
+																					<path>
+																						<ConstVarRef name="count"/>
+																					</path>
+																				</IdExpression>
+																			</items>
+																		</ListExpression>
+																	</flow>
+																</PreOp>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="N"/>
+																	</path>
+																</IdExpression>
+															</operands>
+														</BinaryOp>
+													</if>
+													<then>
+														<ListExpression>
+															<items>
+																<ConstValue value="0"/>
+															</items>
+														</ListExpression>
+													</then>
+													<else>
+														<ListExpression>
+															<items>
+																<!-- pre count + 1 -->
+																<NAryOp operator="+">
+																	<operands>
+																		<!-- pre count -->
+																		<PreOp>
+																			<flow>
+																				<ListExpression>
+																					<items>
+																						<IdExpression>
+																							<path>
+																								<ConstVarRef name="count"/>
+																							</path>
+																						</IdExpression>
+																					</items>
+																				</ListExpression>
+																			</flow>
+																		</PreOp>
+																		<ConstValue value="1"/>
+																	</operands>
+																</NAryOp>
+															</items>
+														</ListExpression>
+													</else>
+												</IfThenElseOp>
+											</items>
+										</ListExpression>
+									</flow>
+								</InitOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6b9/1A56/820/53d0eebd65eb"/>
+							</pragmas>
+						</Equation>
+						<!-- send = count = 0; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="send"/>
+							</lefts>
+							<right>
+								<!-- count = 0 -->
+								<BinaryOp operator="=">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="count"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="0"/>
+									</operands>
+								</BinaryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6ba/1A56/820/53d0eebd4b9b"/>
+							</pragmas>
+						</Equation>
+						<!-- o = {Emit : send, String_size : M, LabelString : i}; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="o"/>
+							</lefts>
+							<right>
+								<!-- {Emit : send, String_size : M, LabelString : i} -->
+								<DataStructOp>
+									<data>
+										<LabelledExpression label="Emit">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="send"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="String_size">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="M"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="LabelString">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="i"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+									</data>
+								</DataStructOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/6bb/1A56/820/53d0eebd62c2"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/2fb/1A56/820/53cfb1742e48" symbolFile="SendNCycles.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<TextDiagram name="diagram_SendStringOnValChanged1_1" landscape="false" format="A4 (210 297)" oid="!ed/2ff/1A56/820/53cfb1747a74">
+									<presentationElements>
+										<FlowTE presentable="!ed/6b9/1A56/820/53d0eebd65eb"/>
+										<FlowTE presentable="!ed/6ba/1A56/820/53d0eebd4b9b"/>
+										<FlowTE presentable="!ed/6bb/1A56/820/53d0eebd62c2"/>
+									</presentationElements>
+								</TextDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="SendUpdatedList">
+					<sizeParameters>
+						<SizeParameter name="N">
+							<pragmas>
+								<ed:SizeParameter oid="!ed/32f/1A56/820/53cfc02150b3"/>
+							</pragmas>
+						</SizeParameter>
+					</sizeParameters>
+					<inputs>
+						<Variable name="i">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="'T"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="N"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/323/1A56/820/53cfbffa7393"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="o">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/92a/1A56/820/53d108cd3ab9"/>
+											</pragmas>
+										</Field>
+										<Field name="EntryIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/92b/1A56/820/53d108cd54c7"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="'T"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/92d/1A56/820/53d108cd5401"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/324/1A56/820/53cfbffc289c"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="acc">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/a0d/1A56/820/53d11076b93"/>
+											</pragmas>
+										</Field>
+										<Field name="NumberOfItems">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/a0e/1A56/820/53d110765f6"/>
+											</pragmas>
+										</Field>
+										<Field name="EntryIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/a0f/1A56/820/53d110764059"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="'T"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/a11/1A56/820/53d110762456"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/8cb/1A56/820/53d10846ca6"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L1">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/513d/796C/1D9C/547f365d7ca3"/>
+											</pragmas>
+										</Field>
+										<Field name="NumberOfItems">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/513e/796C/1D9C/547f365de9b"/>
+											</pragmas>
+										</Field>
+										<Field name="EntryIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/513f/796C/1D9C/547f365d1747"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="'T"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/5141/796C/1D9C/547f365d188c"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5d6/1A56/820/53d0cdbc599e"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L2">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/9e4/1A56/820/53d1091c5055"/>
+											</pragmas>
+										</Field>
+										<Field name="NumberOfItems">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/9e5/1A56/820/53d1091c679d"/>
+											</pragmas>
+										</Field>
+										<Field name="EntryIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/9e6/1A56/820/53d1091c33cd"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="'T"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/9e7/1A56/820/53d1091c6d8f"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5e5/1A56/820/53d0cdf07fa"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L3">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="'T"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="N"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/616/1A56/820/53d0ce365f96"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L4">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/917/1A56/820/53d108b9c67"/>
+											</pragmas>
+										</Field>
+										<Field name="EntryIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/91c/1A56/820/53d108b91558"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="'T"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/921/1A56/820/53d108b92bcb"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/8e3/1A56/820/53d1085b6efa"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L1 = (foldi (InsertIfChanged<<N>>) <<N>>)(_L2, _L3); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<!-- (foldi (InsertIfChanged<<N>>) <<N>>)(_L2, _L3) -->
+								<CallExpression>
+									<operator>
+										<IteratorOp iterator="foldi">
+											<operator>
+												<OpCall name="1">
+													<operator>
+														<OperatorRef name="InsertIfChanged"/>
+													</operator>
+													<instanceParameters>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</instanceParameters>
+												</OpCall>
+											</operator>
+											<size>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="N"/>
+													</path>
+												</IdExpression>
+											</size>
+										</IteratorOp>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L3"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5d1/1A56/820/53d0cdbc6830"/>
+							</pragmas>
+						</Equation>
+						<!-- _L2 = {Emit : false ^ N, NumberOfItems : 0, EntryIndex : ( - 1) ^ N, Element : i}... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L2"/>
+							</lefts>
+							<right>
+								<!-- {Emit : false ^ N, NumberOfItems : 0, EntryIndex : ( - 1) ^ N, Element : i} -->
+								<DataStructOp name="5">
+									<data>
+										<LabelledExpression label="Emit">
+											<flow>
+												<!-- false ^ N -->
+												<ScalarToVectorOp name="5">
+													<flow>
+														<ListExpression>
+															<items>
+																<ConstValue value="false"/>
+															</items>
+														</ListExpression>
+													</flow>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</ScalarToVectorOp>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="NumberOfItems">
+											<flow>
+												<ConstValue value="0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="EntryIndex">
+											<flow>
+												<!-- ( - 1) ^ N -->
+												<ScalarToVectorOp name="6">
+													<flow>
+														<ListExpression>
+															<items>
+																<!-- ( - 1) -->
+																<UnaryOp operator="-">
+																	<operand>
+																		<ConstValue value="1"/>
+																	</operand>
+																</UnaryOp>
+															</items>
+														</ListExpression>
+													</flow>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</ScalarToVectorOp>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="Element">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="i"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+									</data>
+								</DataStructOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5e4/1A56/820/53d0cdf0621"/>
+							</pragmas>
+						</Equation>
+						<!-- _L3 = i; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L3"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="i"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/615/1A56/820/53d0ce365bb3"/>
+							</pragmas>
+						</Equation>
+						<!-- o = _L4; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="o"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L4"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/61f/1A56/820/53d0ce3e65c8"/>
+							</pragmas>
+						</Equation>
+						<!-- acc = _L1; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="acc"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/8cc/1A56/820/53d1084614dc"/>
+							</pragmas>
+						</Equation>
+						<!-- _L4 = {Emit : acc.Emit, EntryIndex : acc.EntryIndex, Element : acc.Element}; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L4"/>
+							</lefts>
+							<right>
+								<!-- {Emit : acc.Emit, EntryIndex : acc.EntryIndex, Element : acc.Element} -->
+								<DataStructOp name="6">
+									<data>
+										<LabelledExpression label="Emit">
+											<flow>
+												<!-- acc.Emit -->
+												<PrjOp name="7">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="acc"/>
+															</path>
+														</IdExpression>
+													</flow>
+													<with>
+														<Label name="Emit"/>
+													</with>
+												</PrjOp>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="EntryIndex">
+											<flow>
+												<!-- acc.EntryIndex -->
+												<PrjOp name="8">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="acc"/>
+															</path>
+														</IdExpression>
+													</flow>
+													<with>
+														<Label name="EntryIndex"/>
+													</with>
+												</PrjOp>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="Element">
+											<flow>
+												<!-- acc.Element -->
+												<PrjOp name="9">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="acc"/>
+															</path>
+														</IdExpression>
+													</flow>
+													<with>
+														<Label name="Element"/>
+													</with>
+												</PrjOp>
+											</flow>
+										</LabelledExpression>
+									</data>
+								</DataStructOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/8e2/1A56/820/53d1085b2727"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/321/1A56/820/53cfbfe8652e" symbolFile="SendDelta.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_SendUpdatedListElements_1" landscape="true" format="A4 (210 297)" oid="!ed/322/1A56/820/53cfbfe873da">
+									<presentationElements>
+										<EquationGE presentable="!ed/5d1/1A56/820/53d0cdbc6830">
+											<position>
+												<Point x="11578" y="2328"/>
+											</position>
+											<size>
+												<Size width="9901" height="5625"/>
+											</size>
+										</EquationGE>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/5e4/1A56/820/53d0cdf0621">
+											<position>
+												<Point x="9927" y="4995"/>
+											</position>
+											<size>
+												<Size width="170" height="296"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/615/1A56/820/53d0ce365bb3">
+											<position>
+												<Point x="9631" y="6308"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/615/1A56/820/53d0ce365bb3" dstEquation="!ed/5d1/1A56/820/53d0cdbc6830">
+											<positions>
+												<Point x="9885" y="6562"/>
+												<Point x="10732" y="6562"/>
+												<Point x="10732" y="6562"/>
+												<Point x="11578" y="6562"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/61f/1A56/820/53d0ce3e65c8">
+											<position>
+												<Point x="25188" y="9694"/>
+											</position>
+											<size>
+												<Size width="339" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5e4/1A56/820/53d0cdf0621" dstEquation="!ed/5d1/1A56/820/53d0cdbc6830">
+											<positions>
+												<Point x="10097" y="5165"/>
+												<Point x="10837" y="5165"/>
+												<Point x="10837" y="5165"/>
+												<Point x="11578" y="5165"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/8cc/1A56/820/53d1084614dc">
+											<position>
+												<Point x="23495" y="4890"/>
+											</position>
+											<size>
+												<Size width="360" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5d1/1A56/820/53d0cdbc6830" dstEquation="!ed/8cc/1A56/820/53d1084614dc">
+											<positions>
+												<Point x="21484" y="5144"/>
+												<Point x="22479" y="5144"/>
+												<Point x="22479" y="5144"/>
+												<Point x="23495" y="5144"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/8e2/1A56/820/53d1085b2727">
+											<position>
+												<Point x="20087" y="9800"/>
+											</position>
+											<size>
+												<Size width="170" height="296"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/8e2/1A56/820/53d1085b2727" dstEquation="!ed/61f/1A56/820/53d0ce3e65c8">
+											<positions>
+												<Point x="20257" y="9970"/>
+												<Point x="22733" y="9970"/>
+												<Point x="22733" y="9970"/>
+												<Point x="25231" y="9970"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" visibility="private" name="InsertIfChanged">
+					<sizeParameters>
+						<SizeParameter name="N">
+							<pragmas>
+								<ed:SizeParameter oid="!ed/3cc/1A56/820/53d0c8e953ce"/>
+							</pragmas>
+						</SizeParameter>
+					</sizeParameters>
+					<inputs>
+						<Variable name="index">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3f7/1A56/820/53d0c90c299a"/>
+							</pragmas>
+						</Variable>
+						<Variable name="acc">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/957/1A56/820/53d108fe7a9e"/>
+											</pragmas>
+										</Field>
+										<Field name="NumberOfItems">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/958/1A56/820/53d108fe5110"/>
+											</pragmas>
+										</Field>
+										<Field name="EntryIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/959/1A56/820/53d108fe3558"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="'T"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/95b/1A56/820/53d108fe17b9"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3b4/1A56/820/53d0c8a62987"/>
+							</pragmas>
+						</Variable>
+						<Variable name="elnt">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3b6/1A56/820/53d0c8af738a"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="acc_out">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/942/1A56/820/53d108f95a6e"/>
+											</pragmas>
+										</Field>
+										<Field name="NumberOfItems">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/943/1A56/820/53d108f944ff"/>
+											</pragmas>
+										</Field>
+										<Field name="EntryIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/944/1A56/820/53d108f9fa1"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="'T"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/946/1A56/820/53d108f966d0"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3b5/1A56/820/53d0c8ad6d64"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="_L1">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3e9/1A56/820/53d0c8fe6617"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L2">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/3f9/1A56/820/53d0c91512a9"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L3">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/9ac/1A56/820/53d108fe1757"/>
+											</pragmas>
+										</Field>
+										<Field name="NumberOfItems">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/9ad/1A56/820/53d108fe66b3"/>
+											</pragmas>
+										</Field>
+										<Field name="EntryIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/9ae/1A56/820/53d108fe53fa"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="'T"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/9af/1A56/820/53d108fe6780"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/408/1A56/820/53d0c92979c6"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L4">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/416/1A56/820/53d0c93779ac"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L5">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/420/1A56/820/53d0c93a344"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L6">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/432/1A56/820/53d0c95262eb"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L7">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/932/1A56/820/53d108eae1e"/>
+											</pragmas>
+										</Field>
+										<Field name="NumberOfItems">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/933/1A56/820/53d108ea4646"/>
+											</pragmas>
+										</Field>
+										<Field name="EntryIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/934/1A56/820/53d108ea1c5"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="'T"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/935/1A56/820/53d108ea2fd0"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/43c/1A56/820/53d0c96d14f6"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L8">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="'T"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="N"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/44a/1A56/820/53d0cb504c34"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L9">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="'T"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="N"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/46c/1A56/820/53d0cb5d1e33"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L11">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/92e/1A56/820/53d108ea4a00"/>
+											</pragmas>
+										</Field>
+										<Field name="NumberOfItems">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/92f/1A56/820/53d108ea4fd8"/>
+											</pragmas>
+										</Field>
+										<Field name="EntryIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/930/1A56/820/53d108ea2a27"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="'T"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="N"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/931/1A56/820/53d108ea7125"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/484/1A56/820/53d0cbe22a40"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L12">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/491/1A56/820/53d0cc301312"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L13">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/497/1A56/820/53d0cc391f13"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L14">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="N"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/4da/1A56/820/53d0cc6d34b8"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L15">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="int32"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="N"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/4e0/1A56/820/53d0cc72e2a"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L16">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/502/1A56/820/53d0cd2b1ceb"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L17">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="N"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/52d/1A56/820/53d0cd5d14e4"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L18">
+							<type>
+								<Table>
+									<type>
+										<NamedType>
+											<type>
+												<TypeRef name="bool"/>
+											</type>
+										</NamedType>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="N"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/537/1A56/820/53d0cd641daf"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L19">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/5b4/1A56/820/53d0cd9829f9"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L1 = elnt; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="elnt"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3e8/1A56/820/53d0c8fe40e6"/>
+							</pragmas>
+						</Equation>
+						<!-- _L2 = index; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L2"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="index"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3f8/1A56/820/53d0c915b73"/>
+							</pragmas>
+						</Equation>
+						<!-- acc_out = _L7; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="acc_out"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L7"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/3fe/1A56/820/53d0c924479a"/>
+							</pragmas>
+						</Equation>
+						<!-- _L3 = acc; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L3"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="acc"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/403/1A56/820/53d0c929286e"/>
+							</pragmas>
+						</Equation>
+						<!-- _L4 = (false) -> (_L6); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L4"/>
+							</lefts>
+							<right>
+								<!-- (false) -> (_L6) -->
+								<InitOp name="1">
+									<value>
+										<ListExpression>
+											<items>
+												<ConstValue value="false"/>
+											</items>
+										</ListExpression>
+									</value>
+									<flow>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L6"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</flow>
+								</InitOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/415/1A56/820/53d0c937680a"/>
+							</pragmas>
+						</Equation>
+						<!-- _L5 = pre _L1; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L5"/>
+							</lefts>
+							<right>
+								<!-- pre _L1 -->
+								<PreOp name="1">
+									<flow>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L1"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</flow>
+								</PreOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/41f/1A56/820/53d0c93a1e40"/>
+							</pragmas>
+						</Equation>
+						<!-- _L6 = _L5 <> _L1; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L6"/>
+							</lefts>
+							<right>
+								<!-- _L5 <> _L1 -->
+								<BinaryOp name="1" operator="&lt;&gt;">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L5"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L1"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/431/1A56/820/53d0c95219b6"/>
+							</pragmas>
+						</Equation>
+						<!-- _L7 = if _L4 then (_L11) else (_L3); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L7"/>
+							</lefts>
+							<right>
+								<!-- if _L4 then (_L11) else (_L3) -->
+								<IfThenElseOp name="1">
+									<if>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L4"/>
+											</path>
+										</IdExpression>
+									</if>
+									<then>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L11"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</then>
+									<else>
+										<ListExpression>
+											<items>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L3"/>
+													</path>
+												</IdExpression>
+											</items>
+										</ListExpression>
+									</else>
+								</IfThenElseOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/43b/1A56/820/53d0c96d48d9"/>
+							</pragmas>
+						</Equation>
+						<!-- _L8 = acc.Element; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L8"/>
+							</lefts>
+							<right>
+								<!-- acc.Element -->
+								<PrjOp name="1">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="acc"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="Element"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/449/1A56/820/53d0cb505c7c"/>
+							</pragmas>
+						</Equation>
+						<!-- _L9 = (_L8 with [_L16] = _L12); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L9"/>
+							</lefts>
+							<right>
+								<!-- (_L8 with [_L16] = _L12) -->
+								<ChgIthOp name="1">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L8"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L16"/>
+											</path>
+										</IdExpression>
+									</with>
+									<value>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L12"/>
+											</path>
+										</IdExpression>
+									</value>
+								</ChgIthOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/46b/1A56/820/53d0cb5d6ab9"/>
+							</pragmas>
+						</Equation>
+						<!-- _L11 = {Emit : _L17, NumberOfItems : _L13, EntryIndex : _L14, Element : _L9}; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L11"/>
+							</lefts>
+							<right>
+								<!-- {Emit : _L17, NumberOfItems : _L13, EntryIndex : _L14, Element : _L9} -->
+								<DataStructOp name="1">
+									<data>
+										<LabelledExpression label="Emit">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L17"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="NumberOfItems">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L13"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="EntryIndex">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L14"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="Element">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L9"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+									</data>
+								</DataStructOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/483/1A56/820/53d0cbe282d"/>
+							</pragmas>
+						</Equation>
+						<!-- _L12 = elnt; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L12"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="elnt"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/490/1A56/820/53d0cc304435"/>
+							</pragmas>
+						</Equation>
+						<!-- _L13 = acc.NumberOfItems + 1; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L13"/>
+							</lefts>
+							<right>
+								<!-- acc.NumberOfItems + 1 -->
+								<NAryOp name="3" operator="+">
+									<operands>
+										<!-- acc.NumberOfItems -->
+										<PrjOp name="3">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="acc"/>
+													</path>
+												</IdExpression>
+											</flow>
+											<with>
+												<Label name="NumberOfItems"/>
+											</with>
+										</PrjOp>
+										<ConstValue value="1"/>
+									</operands>
+								</NAryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/496/1A56/820/53d0cc393870"/>
+							</pragmas>
+						</Equation>
+						<!-- _L14 = (_L15 with [_L16] = _L2); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L14"/>
+							</lefts>
+							<right>
+								<!-- (_L15 with [_L16] = _L2) -->
+								<ChgIthOp name="2">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L15"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L16"/>
+											</path>
+										</IdExpression>
+									</with>
+									<value>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+									</value>
+								</ChgIthOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/4d9/1A56/820/53d0cc6d27be"/>
+							</pragmas>
+						</Equation>
+						<!-- _L15 = acc.EntryIndex; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L15"/>
+							</lefts>
+							<right>
+								<!-- acc.EntryIndex -->
+								<PrjOp name="7">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="acc"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="EntryIndex"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/4df/1A56/820/53d0cc7256e6"/>
+							</pragmas>
+						</Equation>
+						<!-- _L16 = acc.NumberOfItems; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L16"/>
+							</lefts>
+							<right>
+								<!-- acc.NumberOfItems -->
+								<PrjOp name="5">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="acc"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="NumberOfItems"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/501/1A56/820/53d0cd2b173a"/>
+							</pragmas>
+						</Equation>
+						<!-- _L17 = (_L18 with [_L16] = _L19); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L17"/>
+							</lefts>
+							<right>
+								<!-- (_L18 with [_L16] = _L19) -->
+								<ChgIthOp name="3">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L18"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L16"/>
+											</path>
+										</IdExpression>
+									</with>
+									<value>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L19"/>
+											</path>
+										</IdExpression>
+									</value>
+								</ChgIthOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/52c/1A56/820/53d0cd5d58d1"/>
+							</pragmas>
+						</Equation>
+						<!-- _L18 = acc.Emit; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L18"/>
+							</lefts>
+							<right>
+								<!-- acc.Emit -->
+								<PrjOp name="6">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="acc"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="Emit"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/536/1A56/820/53d0cd6415c2"/>
+							</pragmas>
+						</Equation>
+						<!-- _L19 = true; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L19"/>
+							</lefts>
+							<right>
+								<ConstValue value="true"/>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/5b3/1A56/820/53d0cd986ae8"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/3b2/1A56/820/53d0c89c61" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_InsertIfChanged_1" landscape="true" format="A4 (210 297)" oid="!ed/3b3/1A56/820/53d0c89c7184">
+									<presentationElements>
+										<EquationGE presentable="!ed/3e8/1A56/820/53d0c8fe40e6">
+											<position>
+												<Point x="2519" y="1736"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3f8/1A56/820/53d0c915b73">
+											<position>
+												<Point x="2963" y="6075"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/3fe/1A56/820/53d0c924479a">
+											<position>
+												<Point x="16341" y="8149"/>
+											</position>
+											<size>
+												<Size width="338" height="508"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/403/1A56/820/53d0c929286e">
+											<position>
+												<Point x="4297" y="8297"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/415/1A56/820/53d0c937680a">
+											<position>
+												<Point x="8784" y="1376"/>
+											</position>
+											<size>
+												<Size width="1016" height="1016"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/41f/1A56/820/53d0c93a1e40">
+											<position>
+												<Point x="4106" y="1101"/>
+											</position>
+											<size>
+												<Size width="1016" height="657"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/431/1A56/820/53d0c95219b6">
+											<position>
+												<Point x="5906" y="1545"/>
+											</position>
+											<size>
+												<Size width="1016" height="656"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/41f/1A56/820/53d0c93a1e40" dstEquation="!ed/431/1A56/820/53d0c95219b6">
+											<positions>
+												<Point x="5122" y="1439"/>
+												<Point x="5503" y="1439"/>
+												<Point x="5503" y="1757"/>
+												<Point x="5906" y="1757"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/3e8/1A56/820/53d0c8fe40e6" dstEquation="!ed/431/1A56/820/53d0c95219b6">
+											<positions>
+												<Point x="2773" y="1990"/>
+												<Point x="4339" y="1990"/>
+												<Point x="4339" y="1990"/>
+												<Point x="5906" y="1990"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3e8/1A56/820/53d0c8fe40e6" dstEquation="!ed/41f/1A56/820/53d0c93a1e40">
+											<positions>
+												<Point x="2773" y="1990"/>
+												<Point x="3429" y="1990"/>
+												<Point x="3429" y="1439"/>
+												<Point x="4106" y="1439"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/431/1A56/820/53d0c95219b6" dstEquation="!ed/415/1A56/820/53d0c937680a">
+											<positions>
+												<Point x="6922" y="1884"/>
+												<Point x="7853" y="1884"/>
+												<Point x="7853" y="1884"/>
+												<Point x="8784" y="1884"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/43b/1A56/820/53d0c96d48d9">
+											<position>
+												<Point x="13907" y="7938"/>
+											</position>
+											<size>
+												<Size width="1016" height="911"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/415/1A56/820/53d0c937680a" dstEquation="!ed/43b/1A56/820/53d0c96d48d9">
+											<positions>
+												<Point x="9800" y="1884"/>
+												<Point x="14415" y="1884"/>
+												<Point x="14415" y="7938"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/43b/1A56/820/53d0c96d48d9" dstEquation="!ed/3fe/1A56/820/53d0c924479a">
+											<positions>
+												<Point x="14923" y="8403"/>
+												<Point x="15642" y="8403"/>
+												<Point x="15642" y="8403"/>
+												<Point x="16383" y="8403"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/403/1A56/820/53d0c929286e" dstEquation="!ed/43b/1A56/820/53d0c96d48d9">
+											<positions>
+												<Point x="4551" y="8551"/>
+												<Point x="9229" y="8551"/>
+												<Point x="9229" y="8551"/>
+												<Point x="13907" y="8551"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/449/1A56/820/53d0cb505c7c">
+											<position>
+												<Point x="7027" y="6371"/>
+											</position>
+											<size>
+												<Size width="169" height="296"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/46b/1A56/820/53d0cb5d6ab9">
+											<position>
+												<Point x="8276" y="6202"/>
+											</position>
+											<size>
+												<Size width="974" height="974"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/483/1A56/820/53d0cbe282d">
+											<position>
+												<Point x="11049" y="4233"/>
+											</position>
+											<size>
+												<Size width="1837" height="3064"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/46b/1A56/820/53d0cb5d6ab9" dstEquation="!ed/483/1A56/820/53d0cbe282d">
+											<positions>
+												<Point x="9250" y="6689"/>
+												<Point x="10139" y="6689"/>
+												<Point x="10139" y="6689"/>
+												<Point x="11049" y="6689"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/449/1A56/820/53d0cb505c7c" dstEquation="!ed/46b/1A56/820/53d0cb5d6ab9">
+											<positions>
+												<Point x="7197" y="6541"/>
+												<Point x="7726" y="6541"/>
+												<Point x="7726" y="6541"/>
+												<Point x="8276" y="6541"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/490/1A56/820/53d0cc304435">
+											<position>
+												<Point x="5503" y="6604"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/490/1A56/820/53d0cc304435" dstEquation="!ed/46b/1A56/820/53d0cb5d6ab9">
+											<positions>
+												<Point x="5757" y="6858"/>
+												<Point x="7006" y="6858"/>
+												<Point x="7006" y="6858"/>
+												<Point x="8276" y="6858"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/496/1A56/820/53d0cc393870">
+											<position>
+												<Point x="9398" y="5313"/>
+											</position>
+											<size>
+												<Size width="170" height="296"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/496/1A56/820/53d0cc393870" dstEquation="!ed/483/1A56/820/53d0cbe282d">
+											<positions>
+												<Point x="9567" y="5482"/>
+												<Point x="10308" y="5482"/>
+												<Point x="10308" y="5482"/>
+												<Point x="11049" y="5482"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/4d9/1A56/820/53d0cc6d27be">
+											<position>
+												<Point x="3831" y="5588"/>
+											</position>
+											<size>
+												<Size width="974" height="974"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/3f8/1A56/820/53d0c915b73" dstEquation="!ed/4d9/1A56/820/53d0cc6d27be">
+											<positions>
+												<Point x="3217" y="6329"/>
+												<Point x="3514" y="6329"/>
+												<Point x="3514" y="6244"/>
+												<Point x="3831" y="6244"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/4df/1A56/820/53d0cc7256e6">
+											<position>
+												<Point x="2836" y="5757"/>
+											</position>
+											<size>
+												<Size width="170" height="296"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/4df/1A56/820/53d0cc7256e6" dstEquation="!ed/4d9/1A56/820/53d0cc6d27be">
+											<positions>
+												<Point x="3006" y="5927"/>
+												<Point x="3408" y="5927"/>
+												<Point x="3408" y="5927"/>
+												<Point x="3831" y="5927"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/4d9/1A56/820/53d0cc6d27be" dstEquation="!ed/483/1A56/820/53d0cbe282d">
+											<positions>
+												<Point x="4805" y="6075"/>
+												<Point x="7916" y="6075"/>
+												<Point x="7916" y="6075"/>
+												<Point x="11049" y="6075"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/501/1A56/820/53d0cd2b173a">
+											<position>
+												<Point x="3662" y="7747"/>
+											</position>
+											<size>
+												<Size width="169" height="296"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/501/1A56/820/53d0cd2b173a" dstEquation="!ed/4d9/1A56/820/53d0cc6d27be">
+											<positions>
+												<Point x="3831" y="7916"/>
+												<Point x="4318" y="7916"/>
+												<Point x="4318" y="6562"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/501/1A56/820/53d0cd2b173a" dstEquation="!ed/46b/1A56/820/53d0cb5d6ab9">
+											<positions>
+												<Point x="3831" y="7916"/>
+												<Point x="8763" y="7916"/>
+												<Point x="8763" y="7176"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/52c/1A56/820/53d0cd5d58d1">
+											<position>
+												<Point x="5884" y="4360"/>
+											</position>
+											<size>
+												<Size width="974" height="973"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/52c/1A56/820/53d0cd5d58d1" dstEquation="!ed/483/1A56/820/53d0cbe282d">
+											<positions>
+												<Point x="6858" y="4847"/>
+												<Point x="8954" y="4847"/>
+												<Point x="8954" y="4847"/>
+												<Point x="11049" y="4847"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/536/1A56/820/53d0cd6415c2">
+											<position>
+												<Point x="4233" y="4530"/>
+											</position>
+											<size>
+												<Size width="170" height="296"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/536/1A56/820/53d0cd6415c2" dstEquation="!ed/52c/1A56/820/53d0cd5d58d1">
+											<positions>
+												<Point x="4403" y="4699"/>
+												<Point x="5144" y="4699"/>
+												<Point x="5144" y="4699"/>
+												<Point x="5884" y="4699"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/5b3/1A56/820/53d0cd986ae8">
+											<position>
+												<Point x="4678" y="4890"/>
+											</position>
+											<size>
+												<Size width="169" height="297"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/5b3/1A56/820/53d0cd986ae8" dstEquation="!ed/52c/1A56/820/53d0cd5d58d1">
+											<positions>
+												<Point x="4847" y="5059"/>
+												<Point x="5355" y="5059"/>
+												<Point x="5355" y="5017"/>
+												<Point x="5884" y="5017"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/501/1A56/820/53d0cd2b173a" dstEquation="!ed/52c/1A56/820/53d0cd5d58d1">
+											<positions>
+												<Point x="3831" y="7916"/>
+												<Point x="6371" y="7916"/>
+												<Point x="6371" y="5334"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/483/1A56/820/53d0cbe282d" dstEquation="!ed/43b/1A56/820/53d0c96d48d9">
+											<positions>
+												<Point x="12891" y="5779"/>
+												<Point x="13399" y="5779"/>
+												<Point x="13399" y="8234"/>
+												<Point x="13907" y="8234"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="SendUpdatedStringList">
+					<sizeParameters>
+						<SizeParameter name="ListSize">
+							<pragmas>
+								<ed:SizeParameter oid="!ed/c61/1A56/820/53d110962bf3"/>
+							</pragmas>
+						</SizeParameter>
+						<SizeParameter name="StringSize">
+							<pragmas>
+								<ed:SizeParameter oid="!ed/c9e/1A56/820/53d110ee451c"/>
+							</pragmas>
+						</SizeParameter>
+					</sizeParameters>
+					<inputs>
+						<Variable name="i">
+							<type>
+								<Table>
+									<type>
+										<Table>
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="char"/>
+													</type>
+												</NamedType>
+											</type>
+											<size>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="StringSize"/>
+													</path>
+												</IdExpression>
+											</size>
+										</Table>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="ListSize"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/c66/1A56/820/53d110967c5c"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="o">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/e59/1A56/820/53d11ce63588"/>
+											</pragmas>
+										</Field>
+										<Field name="StringIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/e5a/1A56/820/53d11ce66c6"/>
+											</pragmas>
+										</Field>
+										<Field name="StringSize">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/e5b/1A56/820/53d11ce613fd"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<Table>
+															<type>
+																<NamedType>
+																	<type>
+																		<TypeRef name="char"/>
+																	</type>
+																</NamedType>
+															</type>
+															<size>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="StringSize"/>
+																	</path>
+																</IdExpression>
+															</size>
+														</Table>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/e5c/1A56/820/53d11ce6562f"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/c62/1A56/820/53d110961c89"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="acc">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/e7d/1A56/820/53d11d144b45"/>
+											</pragmas>
+										</Field>
+										<Field name="NumberOfItems">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/e7e/1A56/820/53d11d1430e3"/>
+											</pragmas>
+										</Field>
+										<Field name="EntryIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/e7f/1A56/820/53d11d146508"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<Table>
+															<type>
+																<NamedType>
+																	<type>
+																		<TypeRef name="char"/>
+																	</type>
+																</NamedType>
+															</type>
+															<size>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="StringSize"/>
+																	</path>
+																</IdExpression>
+															</size>
+														</Table>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/e80/1A56/820/53d11d1440c9"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/c5c/1A56/820/53d110964baf"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L1">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/514a/796C/1D9C/547f36723be7"/>
+											</pragmas>
+										</Field>
+										<Field name="NumberOfItems">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/514b/796C/1D9C/547f36722dd1"/>
+											</pragmas>
+										</Field>
+										<Field name="EntryIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/514c/796C/1D9C/547f367215a5"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<Table>
+															<type>
+																<NamedType>
+																	<type>
+																		<TypeRef name="char"/>
+																	</type>
+																</NamedType>
+															</type>
+															<size>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="StringSize"/>
+																	</path>
+																</IdExpression>
+															</size>
+														</Table>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/514d/796C/1D9C/547f36727d22"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/c4d/1A56/820/53d1109638d5"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L2">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/dbe/1A56/820/53d11ca730de"/>
+											</pragmas>
+										</Field>
+										<Field name="NumberOfItems">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="int32"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/dbf/1A56/820/53d11ca7143b"/>
+											</pragmas>
+										</Field>
+										<Field name="EntryIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/dc0/1A56/820/53d11ca71128"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<Table>
+															<type>
+																<NamedType>
+																	<type>
+																		<TypeRef name="char"/>
+																	</type>
+																</NamedType>
+															</type>
+															<size>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="StringSize"/>
+																	</path>
+																</IdExpression>
+															</size>
+														</Table>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/dc1/1A56/820/53d11ca74249"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/c52/1A56/820/53d110967325"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L3">
+							<type>
+								<Table>
+									<type>
+										<Table>
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="char"/>
+													</type>
+												</NamedType>
+											</type>
+											<size>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="StringSize"/>
+													</path>
+												</IdExpression>
+											</size>
+										</Table>
+									</type>
+									<size>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="ListSize"/>
+											</path>
+										</IdExpression>
+									</size>
+								</Table>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/c57/1A56/820/53d110965bdb"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L4">
+							<type>
+								<Struct>
+									<fields>
+										<Field name="Emit">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="bool"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/e65/1A56/820/53d11cf66a3e"/>
+											</pragmas>
+										</Field>
+										<Field name="StringIndex">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/e66/1A56/820/53d11cf67297"/>
+											</pragmas>
+										</Field>
+										<Field name="StringSize">
+											<type>
+												<Table>
+													<type>
+														<NamedType>
+															<type>
+																<TypeRef name="int32"/>
+															</type>
+														</NamedType>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/e67/1A56/820/53d11cf64690"/>
+											</pragmas>
+										</Field>
+										<Field name="Element">
+											<type>
+												<Table>
+													<type>
+														<Table>
+															<type>
+																<NamedType>
+																	<type>
+																		<TypeRef name="char"/>
+																	</type>
+																</NamedType>
+															</type>
+															<size>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="StringSize"/>
+																	</path>
+																</IdExpression>
+															</size>
+														</Table>
+													</type>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</Table>
+											</type>
+											<pragmas>
+												<ed:Field oid="!ed/e68/1A56/820/53d11cf620c5"/>
+											</pragmas>
+										</Field>
+									</fields>
+								</Struct>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/c58/1A56/820/53d110963a8e"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<!-- _L1 = (foldi (InsertIfChanged<<ListSize>>) <<ListSize>>)(_L2, _L3); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L1"/>
+							</lefts>
+							<right>
+								<!-- (foldi (InsertIfChanged<<ListSize>>) <<ListSize>>)(_L2, _L3) -->
+								<CallExpression>
+									<operator>
+										<IteratorOp iterator="foldi">
+											<operator>
+												<OpCall name="1">
+													<operator>
+														<OperatorRef name="InsertIfChanged"/>
+													</operator>
+													<instanceParameters>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</instanceParameters>
+												</OpCall>
+											</operator>
+											<size>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="ListSize"/>
+													</path>
+												</IdExpression>
+											</size>
+										</IteratorOp>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L3"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/c46/1A56/820/53d110964a34"/>
+							</pragmas>
+						</Equation>
+						<!-- _L2 = {Emit : false ^ ListSize, NumberOfItems : 0, EntryIndex : ( - 1) ^ ListSize... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L2"/>
+							</lefts>
+							<right>
+								<!-- {Emit : false ^ ListSize, NumberOfItems : 0, EntryIndex : ( - 1) ^ ListSize, Elem... -->
+								<DataStructOp name="1">
+									<data>
+										<LabelledExpression label="Emit">
+											<flow>
+												<!-- false ^ ListSize -->
+												<ScalarToVectorOp name="5">
+													<flow>
+														<ListExpression>
+															<items>
+																<ConstValue value="false"/>
+															</items>
+														</ListExpression>
+													</flow>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</ScalarToVectorOp>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="NumberOfItems">
+											<flow>
+												<ConstValue value="0"/>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="EntryIndex">
+											<flow>
+												<!-- ( - 1) ^ ListSize -->
+												<ScalarToVectorOp name="6">
+													<flow>
+														<ListExpression>
+															<items>
+																<!-- ( - 1) -->
+																<UnaryOp operator="-">
+																	<operand>
+																		<ConstValue value="1"/>
+																	</operand>
+																</UnaryOp>
+															</items>
+														</ListExpression>
+													</flow>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</ScalarToVectorOp>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="Element">
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="i"/>
+													</path>
+												</IdExpression>
+											</flow>
+										</LabelledExpression>
+									</data>
+								</DataStructOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/c47/1A56/820/53d110965dee"/>
+							</pragmas>
+						</Equation>
+						<!-- _L3 = i; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L3"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="i"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/c48/1A56/820/53d11096469"/>
+							</pragmas>
+						</Equation>
+						<!-- o = _L4; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="o"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L4"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/c49/1A56/820/53d1109642ed"/>
+							</pragmas>
+						</Equation>
+						<!-- acc = _L1; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="acc"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L1"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/c4a/1A56/820/53d110962cb2"/>
+							</pragmas>
+						</Equation>
+						<!-- _L4 = {Emit : acc.Emit, StringIndex : acc.EntryIndex, StringSize : StringSize ^ L... -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L4"/>
+							</lefts>
+							<right>
+								<!-- {Emit : acc.Emit, StringIndex : acc.EntryIndex, StringSize : StringSize ^ ListSiz... -->
+								<DataStructOp name="4">
+									<data>
+										<LabelledExpression label="Emit">
+											<flow>
+												<!-- acc.Emit -->
+												<PrjOp name="4">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="acc"/>
+															</path>
+														</IdExpression>
+													</flow>
+													<with>
+														<Label name="Emit"/>
+													</with>
+												</PrjOp>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="StringIndex">
+											<flow>
+												<!-- acc.EntryIndex -->
+												<PrjOp name="5">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="acc"/>
+															</path>
+														</IdExpression>
+													</flow>
+													<with>
+														<Label name="EntryIndex"/>
+													</with>
+												</PrjOp>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="StringSize">
+											<flow>
+												<!-- StringSize ^ ListSize -->
+												<ScalarToVectorOp name="2">
+													<flow>
+														<ListExpression>
+															<items>
+																<IdExpression>
+																	<path>
+																		<ConstVarRef name="StringSize"/>
+																	</path>
+																</IdExpression>
+															</items>
+														</ListExpression>
+													</flow>
+													<size>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="ListSize"/>
+															</path>
+														</IdExpression>
+													</size>
+												</ScalarToVectorOp>
+											</flow>
+										</LabelledExpression>
+										<LabelledExpression label="Element">
+											<flow>
+												<!-- acc.Element -->
+												<PrjOp name="6">
+													<flow>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="acc"/>
+															</path>
+														</IdExpression>
+													</flow>
+													<with>
+														<Label name="Element"/>
+													</with>
+												</PrjOp>
+											</flow>
+										</LabelledExpression>
+									</data>
+								</DataStructOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/c4b/1A56/820/53d11096de1"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/c45/1A56/820/53d110962855" symbolFile="SendDelta.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_SendUpdatedList1Elements_1" landscape="true" format="A4 (210 297)" oid="!ed/c4c/1A56/820/53d11096238c">
+									<presentationElements>
+										<EquationGE presentable="!ed/c46/1A56/820/53d110964a34">
+											<position>
+												<Point x="11578" y="2328"/>
+											</position>
+											<size>
+												<Size width="9901" height="5625"/>
+											</size>
+										</EquationGE>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/c47/1A56/820/53d110965dee">
+											<position>
+												<Point x="9927" y="4995"/>
+											</position>
+											<size>
+												<Size width="170" height="296"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/c48/1A56/820/53d11096469">
+											<position>
+												<Point x="9631" y="6308"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/c48/1A56/820/53d11096469" dstEquation="!ed/c46/1A56/820/53d110964a34">
+											<positions>
+												<Point x="9885" y="6562"/>
+												<Point x="10732" y="6562"/>
+												<Point x="10732" y="6562"/>
+												<Point x="11578" y="6562"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/c49/1A56/820/53d1109642ed">
+											<position>
+												<Point x="25188" y="9694"/>
+											</position>
+											<size>
+												<Size width="339" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/c47/1A56/820/53d110965dee" dstEquation="!ed/c46/1A56/820/53d110964a34">
+											<positions>
+												<Point x="10097" y="5165"/>
+												<Point x="10837" y="5165"/>
+												<Point x="10837" y="5165"/>
+												<Point x="11578" y="5165"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/c4a/1A56/820/53d110962cb2">
+											<position>
+												<Point x="23495" y="4890"/>
+											</position>
+											<size>
+												<Size width="360" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/c46/1A56/820/53d110964a34" dstEquation="!ed/c4a/1A56/820/53d110962cb2">
+											<positions>
+												<Point x="21484" y="5144"/>
+												<Point x="22479" y="5144"/>
+												<Point x="22479" y="5144"/>
+												<Point x="23495" y="5144"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/c4b/1A56/820/53d11096de1">
+											<position>
+												<Point x="20087" y="9800"/>
+											</position>
+											<size>
+												<Size width="170" height="296"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/c4b/1A56/820/53d11096de1" dstEquation="!ed/c49/1A56/820/53d1109642ed">
+											<positions>
+												<Point x="20257" y="9970"/>
+												<Point x="22733" y="9970"/>
+												<Point x="22733" y="9970"/>
+												<Point x="25231" y="9970"/>
+											</positions>
+										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+			</declarations>
+			<pragmas>
+				<ed:Package oid="!ed/9/3316/1628/4d0923c53ad9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<diagrams>
+						<TreeDiagram landscape="true" format="A4 (210 297)" oid="!ed/a/3316/1628/4d0923c56dab" blockKind="constants"/>
+						<TreeDiagram landscape="true" format="A4 (210 297)" oid="!ed/b/3316/1628/4d0923c55ae2" blockKind="types"/>
+						<TreeDiagram landscape="true" format="A4 (210 297)" oid="!ed/c/3316/1628/4d0923c56e65" blockKind="sensors"/>
+					</diagrams>
+				</ed:Package>
+			</pragmas>
+		</Package>
+	</declarations>
+</File>

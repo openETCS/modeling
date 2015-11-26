@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="function" name="Polynomial">
+	<sizeParameters>
+		<SizeParameter name="N">
+			<pragmas>
+				<ed:SizeParameter oid="!ed/32a7/2A43/720/4989a6347de2"/>
+			</pragmas>
+		</SizeParameter>
+	</sizeParameters>
+	<inputs>
+		<Variable name="X">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/32a8/2A43/720/4989a63b2de7"/>
+			</pragmas>
+		</Variable>
+		<Variable name="C">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="N"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/32a9/2A43/720/4989a63d4baf" hidden="true"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="Y">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/32aa/2A43/720/4989a6401efe"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<numericTypes>
+		<NumericType>
+			<typeVar>
+				<TypeRef name="'T"/>
+			</typeVar>
+		</NumericType>
+	</numericTypes>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/32c4/2A43/720/4989a67011e3"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/327f/5D1E/16A8/4989a6f35dbe"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3285/5D1E/16A8/4989a6fd64b2"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="N"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/328b/5D1E/16A8/4989a70374a6"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L5">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="N"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/32a1/5D1E/16A8/4989a7376cc6"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = (fold PolynomialStep <<N>>)(_L2, _L4, _L5); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<!-- (fold PolynomialStep <<N>>)(_L2, _L4, _L5) -->
+				<CallExpression>
+					<operator>
+						<IteratorOp iterator="fold">
+							<operator>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="PolynomialStep"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="N"/>
+									</path>
+								</IdExpression>
+							</size>
+						</IteratorOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L2"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L5"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/32c3/2A43/720/4989a6702708"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 = (0 : 'T); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<!-- (0 : 'T) -->
+				<NumericCastOp>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+					<flow>
+						<ConstValue value="0"/>
+					</flow>
+				</NumericCastOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/327e/5D1E/16A8/4989a6f3258c"/>
+			</pragmas>
+		</Equation>
+		<!-- _L3 = X; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="X"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/3284/5D1E/16A8/4989a6fd510b"/>
+			</pragmas>
+		</Equation>
+		<!-- _L4 = _L3 ^ N; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L4"/>
+			</lefts>
+			<right>
+				<!-- _L3 ^ N -->
+				<ScalarToVectorOp name="1">
+					<flow>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L3"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</flow>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="N"/>
+							</path>
+						</IdExpression>
+					</size>
+				</ScalarToVectorOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/328a/5D1E/16A8/4989a7037149"/>
+			</pragmas>
+		</Equation>
+		<!-- _L5 = C; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L5"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="C"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/32a0/5D1E/16A8/4989a737166a"/>
+			</pragmas>
+		</Equation>
+		<!-- Y = _L1; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="Y"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L1"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/32a6/5D1E/16A8/4989a74114f9"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/3264/2A43/720/4989a45a70e7" symbolFile="Polynomial.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<comment>Perform evaluation of polynomial coefficients on input values.</comment>
+			<diagrams>
+				<NetDiagram name="Polynomial" landscape="true" format="A4 (210 297)" oid="!ed/3265/2A43/720/4989a45a2217">
+					<presentationElements>
+						<EquationGE presentable="!ed/32c3/2A43/720/4989a6702708">
+							<position>
+								<Point x="6376" y="582"/>
+							</position>
+							<size>
+								<Size width="2450" height="1815"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/327e/5D1E/16A8/4989a6f3258c">
+							<position>
+								<Point x="290" y="714"/>
+							</position>
+							<size>
+								<Size width="1138" height="317"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/327e/5D1E/16A8/4989a6f3258c" dstEquation="!ed/32c3/2A43/720/4989a6702708">
+							<positions>
+								<Point x="1429" y="873"/>
+								<Point x="1931" y="873"/>
+								<Point x="1931" y="873"/>
+								<Point x="6376" y="873"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/3284/5D1E/16A8/4989a6fd510b">
+							<position>
+								<Point x="1085" y="2037"/>
+							</position>
+							<size>
+								<Size width="264" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/328a/5D1E/16A8/4989a7037149">
+							<position>
+								<Point x="2858" y="1799"/>
+							</position>
+							<size>
+								<Size width="969" height="995"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3284/5D1E/16A8/4989a6fd510b" dstEquation="!ed/328a/5D1E/16A8/4989a7037149">
+							<positions>
+								<Point x="1349" y="2302"/>
+								<Point x="2064" y="2302"/>
+								<Point x="2064" y="2302"/>
+								<Point x="2858" y="2302"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/328a/5D1E/16A8/4989a7037149" dstEquation="!ed/32c3/2A43/720/4989a6702708">
+							<positions>
+								<Point x="3836" y="2302"/>
+								<Point x="5821" y="2302"/>
+								<Point x="5821" y="1482"/>
+								<Point x="6376" y="1482"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/32a0/5D1E/16A8/4989a737166a">
+							<position>
+								<Point x="1085" y="3360"/>
+							</position>
+							<size>
+								<Size width="265" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/32a0/5D1E/16A8/4989a737166a" dstEquation="!ed/32c3/2A43/720/4989a6702708">
+							<positions>
+								<Point x="1349" y="3625"/>
+								<Point x="6138" y="3625"/>
+								<Point x="6138" y="2117"/>
+								<Point x="6376" y="2117"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/32a6/5D1E/16A8/4989a74114f9">
+							<position>
+								<Point x="10689" y="1217"/>
+							</position>
+							<size>
+								<Size width="344" height="502"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/32c3/2A43/720/4989a6702708" dstEquation="!ed/32a6/5D1E/16A8/4989a74114f9">
+							<positions>
+								<Point x="8837" y="1482"/>
+								<Point x="10742" y="1482"/>
+								<Point x="10742" y="1482"/>
+								<Point x="10742" y="1482"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+		<kcg:Pragma>
+			expand
+		</kcg:Pragma>
+	</pragmas>
+</Operator>

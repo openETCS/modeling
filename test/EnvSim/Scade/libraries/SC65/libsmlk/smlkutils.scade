@@ -1,0 +1,14 @@
+package smlkutils
+
+   function imported ScalarToBool(In1: 'T) returns (Out1: bool);
+   
+   function #pragma kcg expand #end BoolToBool(In1: bool) returns (Out1: bool) specialize ScalarToBool
+      Out1 = In1;
+
+   function #pragma kcg expand #end IntToBool(In1: int32) returns (Out1: bool) specialize ScalarToBool
+      Out1 = In1 <> 0;
+
+   function #pragma kcg expand #end RealToBool(In1: float64) returns (Out1: bool) specialize ScalarToBool
+      Out1 = In1 <> 0.0;
+
+end;

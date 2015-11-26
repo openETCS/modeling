@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="function" name="Celsius2Fahrenheit">
+	<inputs>
+		<Variable name="Celsius">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3911/373/804/4992cb7f2ba0"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="Fahrenheit">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3912/373/804/4992cb7f12be"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<numericTypes>
+		<FloatType>
+			<typeVar>
+				<TypeRef name="'T"/>
+			</typeVar>
+		</FloatType>
+	</numericTypes>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3924/373/804/4992cb9d42a2"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/392b/373/804/4992cba75b54"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3931/373/804/4992cba97b1f"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3937/373/804/4992cbb123fb"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L5">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/394d/373/804/4992cbe472d5"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = Celsius; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="Celsius"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/3923/373/804/4992cb9d44d"/>
+			</pragmas>
+		</Equation>
+		<!-- Fahrenheit = _L3; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="Fahrenheit"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L3"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/3925/373/804/4992cb9d1801"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 = _L1 * _L4; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<!-- _L1 * _L4 -->
+				<NAryOp name="1" operator="*">
+					<operands>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+					</operands>
+				</NAryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/392a/373/804/4992cba7181e"/>
+			</pragmas>
+		</Equation>
+		<!-- _L3 = _L2 + _L5; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<!-- _L2 + _L5 -->
+				<NAryOp name="1" operator="+">
+					<operands>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L2"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L5"/>
+							</path>
+						</IdExpression>
+					</operands>
+				</NAryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/3930/373/804/4992cba954c6"/>
+			</pragmas>
+		</Equation>
+		<!-- _L4 = ((9.0 / 5.0) : 'T); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L4"/>
+			</lefts>
+			<right>
+				<!-- ((9.0 / 5.0) : 'T) -->
+				<NumericCastOp name="1">
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+					<flow>
+						<!-- 9.0 / 5.0 -->
+						<BinaryOp name="2" operator="/">
+							<operands>
+								<ConstValue value="9.0"/>
+								<ConstValue value="5.0"/>
+							</operands>
+						</BinaryOp>
+					</flow>
+				</NumericCastOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/3936/373/804/4992cbb150e5"/>
+			</pragmas>
+		</Equation>
+		<!-- _L5 = (32.0 : 'T); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L5"/>
+			</lefts>
+			<right>
+				<!-- (32.0 : 'T) -->
+				<NumericCastOp name="2">
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+					<flow>
+						<ConstValue value="32.0"/>
+					</flow>
+				</NumericCastOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/394c/373/804/4992cbe46475"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/390f/373/804/4992cb6bef9" symbolFile="Celsius2Fahrenheit.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<comment>Conversion from degrees Celsius to degrees Fahrenheit.</comment>
+			<diagrams>
+				<NetDiagram name="Celsius2Fahrenheit" landscape="true" format="A4 (210 297)" oid="!ed/3910/373/804/4992cb6b129e">
+					<presentationElements>
+						<EquationGE presentable="!ed/3923/373/804/4992cb9d44d">
+							<position>
+								<Point x="1799" y="550"/>
+							</position>
+							<size>
+								<Size width="264" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/3925/373/804/4992cb9d1801">
+							<position>
+								<Point x="8594" y="826"/>
+							</position>
+							<size>
+								<Size width="344" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/392a/373/804/4992cba7181e">
+							<position>
+								<Point x="3577" y="614"/>
+							</position>
+							<size>
+								<Size width="1006" height="662"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/3930/373/804/4992cba954c6">
+							<position>
+								<Point x="6096" y="741"/>
+							</position>
+							<size>
+								<Size width="1005" height="661"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/3936/373/804/4992cbb150e5">
+							<position>
+								<Point x="1905" y="1397"/>
+							</position>
+							<size>
+								<Size width="169" height="318"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3923/373/804/4992cb9d44d" dstEquation="!ed/392a/373/804/4992cba7181e">
+							<positions>
+								<Point x="2053" y="804"/>
+								<Point x="2794" y="804"/>
+								<Point x="2794" y="804"/>
+								<Point x="3577" y="804"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/392a/373/804/4992cba7181e" dstEquation="!ed/3930/373/804/4992cba954c6">
+							<positions>
+								<Point x="4572" y="953"/>
+								<Point x="5313" y="953"/>
+								<Point x="5313" y="953"/>
+								<Point x="6096" y="953"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/3930/373/804/4992cba954c6" dstEquation="!ed/3925/373/804/4992cb9d1801">
+							<positions>
+								<Point x="7091" y="1080"/>
+								<Point x="7853" y="1080"/>
+								<Point x="7853" y="1080"/>
+								<Point x="8636" y="1080"/>
+							</positions>
+						</Edge>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/394c/373/804/4992cbe46475">
+							<position>
+								<Point x="1863" y="2074"/>
+							</position>
+							<size>
+								<Size width="170" height="318"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/3936/373/804/4992cbb150e5" dstEquation="!ed/392a/373/804/4992cba7181e">
+							<positions>
+								<Point x="2074" y="1566"/>
+								<Point x="3366" y="1566"/>
+								<Point x="3366" y="1058"/>
+								<Point x="3577" y="1058"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/394c/373/804/4992cbe46475" dstEquation="!ed/3930/373/804/4992cba954c6">
+							<positions>
+								<Point x="2032" y="2244"/>
+								<Point x="5842" y="2244"/>
+								<Point x="5842" y="1185"/>
+								<Point x="6096" y="1185"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+		<kcg:Pragma>
+			expand
+		</kcg:Pragma>
+	</pragmas>
+</Operator>

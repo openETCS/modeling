@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="node" name="RateLimiterDynamic">
+	<inputs>
+		<Variable name="Rising">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2f2d/1C6B/850/4981ae00132b"/>
+			</pragmas>
+		</Variable>
+		<Variable name="Input">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2f2e/1C6B/850/4981ae016494"/>
+			</pragmas>
+		</Variable>
+		<Variable name="Falling">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2f2f/1C6B/850/4981ae032048"/>
+			</pragmas>
+		</Variable>
+		<Variable name="deltaT">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2f30/1C6B/850/4981ae05228e" hidden="true"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="Output">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2f31/1C6B/850/4981ae076c08"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<numericTypes>
+		<FloatType>
+			<typeVar>
+				<TypeRef name="'T"/>
+			</typeVar>
+		</FloatType>
+	</numericTypes>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2f28/1C6B/850/4981ad766eb0"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2f5b/1C6B/850/4981ae83619c"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2f61/1C6B/850/4981ae87574c"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2f67/1C6B/850/4981ae8a285"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L5">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/2f6d/1C6B/850/4981ae8c49fe"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = pwlinear::RateLimiter(_L5, _L2, _L3, _L4); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<!-- pwlinear::RateLimiter(_L5, _L2, _L3, _L4) -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="pwlinear::RateLimiter"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L5"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L2"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L3"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2f27/1C6B/850/4981ad761dc5"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 = Rising; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="Rising"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2f5a/1C6B/850/4981ae8331f7"/>
+			</pragmas>
+		</Equation>
+		<!-- _L3 = Falling; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="Falling"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2f60/1C6B/850/4981ae87765e"/>
+			</pragmas>
+		</Equation>
+		<!-- _L4 = deltaT; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L4"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="deltaT"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2f66/1C6B/850/4981ae8a6ef2"/>
+			</pragmas>
+		</Equation>
+		<!-- _L5 = Input; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L5"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="Input"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2f6c/1C6B/850/4981ae8c2021"/>
+			</pragmas>
+		</Equation>
+		<!-- Output = _L1; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="Output"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L1"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/2f72/1C6B/850/4981ae8f7497"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/2f25/1C6B/850/4981ad1f454" symbolFile="RateLimiterDynamic.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<comment>It limits the first derivative of the signal passing through. The output changes no faster than the specified limit.</comment>
+			<comment>Let's call Rate the derivative ((Input-pre(Output))/DeltaT.</comment>
+			<comment>    If Rate &gt; Rising, then Output equals (Rising* DeltaT + pre(Output))</comment>
+			<comment>    If Rate &lt; Falling, then Output equals (Falling* DeltaT + pre(Output))</comment>
+			<comment>    Otherwise, Output=Input</comment>
+			<diagrams>
+				<NetDiagram name="RateLimiterDynamic" landscape="true" format="A4 (210 297)" oid="!ed/2f26/1C6B/850/4981ad1f185b">
+					<presentationElements>
+						<EquationGE presentable="!ed/2f27/1C6B/850/4981ad761dc5">
+							<position>
+								<Point x="4260" y="979"/>
+							</position>
+							<size>
+								<Size width="4302" height="2503"/>
+							</size>
+						</EquationGE>
+						<EquationGE rotation="90" presentable="!ed/2f5a/1C6B/850/4981ae8331f7">
+							<position>
+								<Point x="4815" y="4842"/>
+							</position>
+							<size>
+								<Size width="265" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE rotation="90" presentable="!ed/2f60/1C6B/850/4981ae87765e">
+							<position>
+								<Point x="6191" y="5609"/>
+							</position>
+							<size>
+								<Size width="265" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE rotation="90" presentable="!ed/2f66/1C6B/850/4981ae8a6ef2">
+							<position>
+								<Point x="7699" y="6376"/>
+							</position>
+							<size>
+								<Size width="264" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/2f6c/1C6B/850/4981ae8c2021">
+							<position>
+								<Point x="1217" y="1931"/>
+							</position>
+							<size>
+								<Size width="264" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/2f72/1C6B/850/4981ae8f7497">
+							<position>
+								<Point x="11324" y="1931"/>
+							</position>
+							<size>
+								<Size width="344" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2f6c/1C6B/850/4981ae8c2021" dstEquation="!ed/2f27/1C6B/850/4981ad761dc5">
+							<positions>
+								<Point x="1482" y="2180"/>
+								<Point x="3090" y="2180"/>
+								<Point x="3090" y="2180"/>
+								<Point x="4255" y="2180"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/2f5a/1C6B/850/4981ae8331f7" dstEquation="!ed/2f27/1C6B/850/4981ad761dc5">
+							<positions>
+								<Point x="4953" y="4974"/>
+								<Point x="4953" y="4551"/>
+								<Point x="4953" y="4551"/>
+								<Point x="4953" y="3493"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/2f60/1C6B/850/4981ae87765e" dstEquation="!ed/2f27/1C6B/850/4981ad761dc5">
+							<positions>
+								<Point x="6329" y="5736"/>
+								<Point x="6329" y="4530"/>
+								<Point x="6329" y="4530"/>
+								<Point x="6329" y="3493"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/2f66/1C6B/850/4981ae8a6ef2" dstEquation="!ed/2f27/1C6B/850/4981ad761dc5">
+							<positions>
+								<Point x="7832" y="6498"/>
+								<Point x="7832" y="4995"/>
+								<Point x="7832" y="4995"/>
+								<Point x="7832" y="3493"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/2f27/1C6B/850/4981ad761dc5" dstEquation="!ed/2f72/1C6B/850/4981ae8f7497">
+							<positions>
+								<Point x="8573" y="2201"/>
+								<Point x="9970" y="2201"/>
+								<Point x="9970" y="2180"/>
+								<Point x="11367" y="2180"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+		<kcg:Pragma>
+			expand
+		</kcg:Pragma>
+	</pragmas>
+</Operator>

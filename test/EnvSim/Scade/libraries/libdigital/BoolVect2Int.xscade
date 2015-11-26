@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="function" name="BoolVect2Int">
+	<sizeParameters>
+		<SizeParameter name="Nbool">
+			<pragmas>
+				<ed:SizeParameter oid="!ed/1695/66E1/608/466FF8B7/7465"/>
+			</pragmas>
+		</SizeParameter>
+	</sizeParameters>
+	<inputs>
+		<Variable name="BV">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Nbool"/>
+							</path>
+						</IdExpression>
+					</size>
+					<pragmas>
+						<ed:Table oid="win_47B/FE0/7EC/45EF011C/756A"/>
+					</pragmas>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_10BB/7BC3/F78/45F55C30/5AEC"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="Out">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_10BA/7BC3/F78/45F55C30/1052"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_10BC/7BC3/F78/45F55C30/215A"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_10BD/7BC3/F78/45F55C30/6A91"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Nbool"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_10BE/7BC3/F78/45F55C30/4BD5"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L2 = ( fold BoolVect2IntElt<<Nbool>>)(_L3, _L4); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<!-- ( fold BoolVect2IntElt<<Nbool>>)(_L3, _L4) -->
+				<CallExpression>
+					<operator>
+						<IteratorOp iterator="fold">
+							<operator>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="BoolVect2IntElt"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Nbool"/>
+									</path>
+								</IdExpression>
+							</size>
+						</IteratorOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L3"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_10C0/7BC3/F78/45F55C30/1FA9"/>
+			</pragmas>
+		</Equation>
+		<!-- _L3 = 0; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<ConstValue value="0"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_10C1/7BC3/F78/45F55C30/6C73"/>
+			</pragmas>
+		</Equation>
+		<!-- _L4 = BV; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L4"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="BV"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_10C2/7BC3/F78/45F55C30/2202"/>
+			</pragmas>
+		</Equation>
+		<!-- Out = _L2; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="Out"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L2"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_10C3/7BC3/F78/45F55C30/6D41"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="win_10B9/7BC3/F78/45F55C30/6E00" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+			<comment>Outputs the integer value computed from </comment>
+			<comment>a vector of Booleans BV interpreted as its Boolean representation.</comment>
+			<comment>BV[0] is the highest bit, i.e. BoolVect2int([true,false])=2.</comment>
+			<diagrams>
+				<NetDiagram name="diagram_BoolVect2Int_1" landscape="true" format="A4 (210 297)" oid="!ed/16C2/66E1/608/466FF8B7/161C">
+					<presentationElements>
+						<EquationGE presentable="win_10C0/7BC3/F78/45F55C30/1FA9">
+							<position>
+								<Point x="4516" y="1209"/>
+							</position>
+							<size>
+								<Size width="3668" height="2979"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="win_10C1/7BC3/F78/45F55C30/6C73">
+							<position>
+								<Point x="3016" y="2064"/>
+							</position>
+							<size>
+								<Size width="53" height="264"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_10C1/7BC3/F78/45F55C30/6C73" dstEquation="win_10C0/7BC3/F78/45F55C30/1FA9">
+							<positions>
+								<Point x="3069" y="2196"/>
+								<Point x="3625" y="2196"/>
+								<Point x="3625" y="2196"/>
+								<Point x="4524" y="2196"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="win_10C2/7BC3/F78/45F55C30/2202">
+							<position>
+								<Point x="2805" y="2937"/>
+							</position>
+							<size>
+								<Size width="264" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="win_10C2/7BC3/F78/45F55C30/2202" dstEquation="win_10C0/7BC3/F78/45F55C30/1FA9">
+							<positions>
+								<Point x="3069" y="3201"/>
+								<Point x="3149" y="3201"/>
+								<Point x="3149" y="3201"/>
+								<Point x="4524" y="3201"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="win_10C3/7BC3/F78/45F55C30/6D41">
+							<position>
+								<Point x="10478" y="2434"/>
+							</position>
+							<size>
+								<Size width="317" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_10C0/7BC3/F78/45F55C30/1FA9" dstEquation="win_10C3/7BC3/F78/45F55C30/6D41">
+							<positions>
+								<Point x="8176" y="2699"/>
+								<Point x="9340" y="2699"/>
+								<Point x="9340" y="2699"/>
+								<Point x="10530" y="2699"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

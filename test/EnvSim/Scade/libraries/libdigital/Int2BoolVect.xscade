@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="function" name="Int2BoolVect">
+	<sizeParameters>
+		<SizeParameter name="Nbool">
+			<pragmas>
+				<ed:SizeParameter oid="!ed/16C5/66E1/608/466FF8B7/1B89"/>
+			</pragmas>
+		</SizeParameter>
+	</sizeParameters>
+	<inputs>
+		<Variable name="In">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_10FF/7BC3/F78/45F55C33/26A"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="BV">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Nbool"/>
+							</path>
+						</IdExpression>
+					</size>
+					<pragmas>
+						<ed:Table oid="win_5FF/FE0/7EC/45EFC914/6591"/>
+					</pragmas>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_10FE/7BC3/F78/45F55C33/43B9"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="Acc">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/23ed/6FBC/228/4a608e651684"/>
+				<kcg:Pragma>
+					keep
+				</kcg:Pragma>
+			</pragmas>
+		</Variable>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1100/7BC3/F78/45F55C33/5A10"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Nbool"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1102/7BC3/F78/45F55C33/5E59"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L5">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="bool"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Nbool"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1103/7BC3/F78/45F55C33/26"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = In; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="In"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_1106/7BC3/F78/45F55C33/32A9"/>
+			</pragmas>
+		</Equation>
+		<!-- BV = _L5; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="BV"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L5"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_1107/7BC3/F78/45F55C33/4694"/>
+			</pragmas>
+		</Equation>
+		<!-- Acc, _L4 = ( mapfold Int2BoolVectElt<<Nbool>>)(_L1); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="Acc"/>
+				<VariableRef name="_L4"/>
+			</lefts>
+			<right>
+				<!-- ( mapfold Int2BoolVectElt<<Nbool>>)(_L1) -->
+				<CallExpression>
+					<operator>
+						<IteratorOp iterator="mapfold">
+							<operator>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="Int2BoolVectElt"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Nbool"/>
+									</path>
+								</IdExpression>
+							</size>
+						</IteratorOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_1108/7BC3/F78/45F55C33/7719"/>
+			</pragmas>
+		</Equation>
+		<!-- _L5 = reverse _L4; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L5"/>
+			</lefts>
+			<right>
+				<!-- reverse _L4 -->
+				<UnaryOp name="3" operator="reverse">
+					<operand>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+					</operand>
+				</UnaryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_110A/7BC3/F78/45F55C33/50C5"/>
+			</pragmas>
+		</Equation>
+		<!-- _ = Acc; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="Acc"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1A05/66E1/608/466FF8C3/7BDA"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="win_10FD/7BC3/F78/45F55C33/185F" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+			<comment>Outputs a vector of booleans BV that is the boolean representation </comment>
+			<comment>of the integer input, modulo 2^Nbool.</comment>
+			<comment>BV[0] is the highest bit, i.e. (Int2BoolVect&lt;&lt;2&gt;&gt;)([true,false])=2.</comment>
+			<diagrams>
+				<NetDiagram name="diagram_Int2BoolVect_1" landscape="true" format="A4 (210 297)" oid="!ed/16FB/66E1/608/466FF8B7/1E1E">
+					<presentationElements>
+						<EquationGE presentable="win_1106/7BC3/F78/45F55C33/32A9">
+							<position>
+								<Point x="1309" y="2672"/>
+							</position>
+							<size>
+								<Size width="251" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="win_1107/7BC3/F78/45F55C33/4694">
+							<position>
+								<Point x="10442" y="3228"/>
+							</position>
+							<size>
+								<Size width="326" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="win_1108/7BC3/F78/45F55C33/7719">
+							<position>
+								<Point x="3125" y="1199"/>
+							</position>
+							<size>
+								<Size width="3741" height="3423"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_1106/7BC3/F78/45F55C33/32A9" dstEquation="win_1108/7BC3/F78/45F55C33/7719">
+							<positions>
+								<Point x="1566" y="2921"/>
+								<Point x="2540" y="2921"/>
+								<Point x="2540" y="2921"/>
+								<Point x="3133" y="2921"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="win_110A/7BC3/F78/45F55C33/50C5">
+							<position>
+								<Point x="7993" y="3061"/>
+							</position>
+							<size>
+								<Size width="820" height="821"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="2" rightExprIndex="1" srcEquation="win_1108/7BC3/F78/45F55C33/7719" dstEquation="win_110A/7BC3/F78/45F55C33/50C5">
+							<positions>
+								<Point x="6858" y="3471"/>
+								<Point x="7430" y="3471"/>
+								<Point x="7430" y="3471"/>
+								<Point x="8001" y="3471"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_110A/7BC3/F78/45F55C33/50C5" dstEquation="win_1107/7BC3/F78/45F55C33/4694">
+							<positions>
+								<Point x="8805" y="3471"/>
+								<Point x="9250" y="3471"/>
+								<Point x="9250" y="3471"/>
+								<Point x="10478" y="3471"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/1A05/66E1/608/466FF8C3/7BDA">
+							<position>
+								<Point x="9234" y="1958"/>
+							</position>
+							<size>
+								<Size width="714" height="714"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_1108/7BC3/F78/45F55C33/7719" dstEquation="!ed/1A05/66E1/608/466FF8C3/7BDA">
+							<positions>
+								<Point x="6858" y="2350"/>
+								<Point x="8234" y="2350"/>
+								<Point x="8234" y="2350"/>
+								<Point x="9589" y="2350"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

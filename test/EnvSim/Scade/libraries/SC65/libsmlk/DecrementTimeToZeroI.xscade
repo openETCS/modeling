@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="function" name="DecrementTimeToZeroI">
+	<inputs>
+		<Variable name="Input">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3860/3185/178/499186447a7"/>
+			</pragmas>
+		</Variable>
+		<Variable name="Ts">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3861/3185/178/499186487b21" hidden="true"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="Output">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3862/3185/178/499186493f62"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<numericTypes>
+		<IntegerType>
+			<typeVar>
+				<TypeRef name="'T"/>
+			</typeVar>
+		</IntegerType>
+	</numericTypes>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/387e/3185/178/4991872e4a64"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L9">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/392e/3185/178/499189bb163d"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L10">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/393c/3185/178/499189e439ac"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L12">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/394c/3185/178/49918f452d84"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = Input; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="Input"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/387d/3185/178/4991872e5f24"/>
+			</pragmas>
+		</Equation>
+		<!-- Output = _L12; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="Output"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L12"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/3881/3185/178/4991872e22fd"/>
+			</pragmas>
+		</Equation>
+		<!-- _L9 = DecrementTimeToZeroR(_L10, Ts); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L9"/>
+			</lefts>
+			<right>
+				<!-- DecrementTimeToZeroR(_L10, Ts) -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="DecrementTimeToZeroR"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L10"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Ts"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/392d/3185/178/499189bbc0f"/>
+			</pragmas>
+		</Equation>
+		<!-- _L10 = (_L1 : float64); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L10"/>
+			</lefts>
+			<right>
+				<!-- (_L1 : float64) -->
+				<NumericCastOp name="1">
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+					<flow>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</flow>
+				</NumericCastOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/393b/3185/178/499189e4297a"/>
+			</pragmas>
+		</Equation>
+		<!-- _L12 = math::Round(_L9); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L12"/>
+			</lefts>
+			<right>
+				<!-- math::Round(_L9) -->
+				<CallExpression>
+					<operator>
+						<OpCall name="1">
+							<operator>
+								<OperatorRef name="math::Round"/>
+							</operator>
+						</OpCall>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L9"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/394b/3185/178/49918f454803"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/385e/3185/178/4991862b6731" symbolFile="DecrementTimeToZeroI.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<comment>Decrease real-world value of signal by sample time, but only to zero.</comment>
+			<diagrams>
+				<NetDiagram name="DecrementTimeToZeroI" landscape="true" format="A4 (210 297)" oid="!ed/385f/3185/178/4991862b6157">
+					<presentationElements>
+						<EquationGE presentable="!ed/387d/3185/178/4991872e5f24">
+							<position>
+								<Point x="1217" y="900"/>
+							</position>
+							<size>
+								<Size width="265" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/3881/3185/178/4991872e22fd">
+							<position>
+								<Point x="12594" y="900"/>
+							</position>
+							<size>
+								<Size width="344" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/392d/3185/178/499189bbc0f">
+							<position>
+								<Point x="5768" y="476"/>
+							</position>
+							<size>
+								<Size width="1773" height="1402"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/393b/3185/178/499189e4297a">
+							<position>
+								<Point x="3122" y="820"/>
+							</position>
+							<size>
+								<Size width="1006" height="662"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/394b/3185/178/49918f454803">
+							<position>
+								<Point x="9186" y="466"/>
+							</position>
+							<size>
+								<Size width="1772" height="1402"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/387d/3185/178/4991872e5f24" dstEquation="!ed/393b/3185/178/499189e4297a">
+							<positions>
+								<Point x="1482" y="1164"/>
+								<Point x="2307" y="1164"/>
+								<Point x="2307" y="1164"/>
+								<Point x="3112" y="1164"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/393b/3185/178/499189e4297a" dstEquation="!ed/392d/3185/178/499189bbc0f">
+							<positions>
+								<Point x="4128" y="1164"/>
+								<Point x="4953" y="1164"/>
+								<Point x="4953" y="1164"/>
+								<Point x="5779" y="1164"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/392d/3185/178/499189bbc0f" dstEquation="!ed/394b/3185/178/49918f454803">
+							<positions>
+								<Point x="7535" y="1164"/>
+								<Point x="8361" y="1164"/>
+								<Point x="8361" y="1164"/>
+								<Point x="9186" y="1164"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/394b/3185/178/49918f454803" dstEquation="!ed/3881/3185/178/4991872e22fd">
+							<positions>
+								<Point x="10943" y="1164"/>
+								<Point x="11790" y="1164"/>
+								<Point x="11790" y="1164"/>
+								<Point x="12637" y="1164"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

@@ -1,0 +1,1225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="function" name="Lut2DNearest">
+	<sizeParameters>
+		<SizeParameter name="Xs">
+			<pragmas>
+				<ed:SizeParameter oid="!ed/8D0C/135/31C/4666BF3A/39C7"/>
+			</pragmas>
+		</SizeParameter>
+		<SizeParameter name="Ys">
+			<pragmas>
+				<ed:SizeParameter oid="!ed/8D0E/135/31C/4666BF3E/2D01"/>
+			</pragmas>
+		</SizeParameter>
+	</sizeParameters>
+	<inputs>
+		<Variable name="InX">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1717/3C4/F9C/4603DEBF/4C39"/>
+			</pragmas>
+		</Variable>
+		<Variable name="InY">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1718/3C4/F9C/4603DEBF/6DC2"/>
+			</pragmas>
+		</Variable>
+		<Variable name="X">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Xs"/>
+							</path>
+						</IdExpression>
+					</size>
+					<pragmas>
+						<ed:Table oid="win_102C2/78AA/69C/4602A57C/1C1E"/>
+					</pragmas>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1713/3C4/F9C/4603DEBF/176D" hidden="true"/>
+			</pragmas>
+		</Variable>
+		<Variable name="Y">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Ys"/>
+							</path>
+						</IdExpression>
+					</size>
+					<pragmas>
+						<ed:Table oid="win_102CA/78AA/69C/4602A580/58D3"/>
+					</pragmas>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1714/3C4/F9C/4603DEBF/612D" hidden="true"/>
+			</pragmas>
+		</Variable>
+		<Variable name="Z">
+			<type>
+				<Table>
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Ys"/>
+									</path>
+								</IdExpression>
+							</size>
+							<pragmas>
+								<ed:Table oid="win_102D3/78AA/69C/4602A591/4E7A"/>
+							</pragmas>
+						</Table>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Xs"/>
+							</path>
+						</IdExpression>
+					</size>
+					<pragmas>
+						<ed:Table oid="win_102D6/78AA/69C/4602A591/1391"/>
+					</pragmas>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1715/3C4/F9C/4603DEBF/5C87" hidden="true"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="OutZ">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1716/3C4/F9C/4603DEBF/6D58"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<numericTypes>
+		<FloatType>
+			<typeVar>
+				<TypeRef name="'T"/>
+			</typeVar>
+		</FloatType>
+	</numericTypes>
+	<locals>
+		<Variable name="i">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1724/3C4/F9C/4603DEBF/35BA"/>
+			</pragmas>
+		</Variable>
+		<Variable name="j">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1725/3C4/F9C/4603DEBF/1F4C"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1719/3C4/F9C/4603DEBF/3815"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L6">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_171A/3C4/F9C/4603DEBF/5004"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L11">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_171B/3C4/F9C/4603DEBF/586F"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L13">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_171D/3C4/F9C/4603DEBF/74A1"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L14">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- ((Xs - 2) - 0) + 1 -->
+						<NAryOp operator="+">
+							<operands>
+								<!-- ((Xs - 2) - 0) -->
+								<BinaryOp operator="-">
+									<operands>
+										<!-- (Xs - 2) -->
+										<BinaryOp operator="-">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="Xs"/>
+													</path>
+												</IdExpression>
+												<ConstValue value="2"/>
+											</operands>
+										</BinaryOp>
+										<ConstValue value="0"/>
+									</operands>
+								</BinaryOp>
+								<ConstValue value="1"/>
+							</operands>
+						</NAryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_171E/3C4/F9C/4603DEBF/303F"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L15">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_171F/3C4/F9C/4603DEBF/5E65"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L18">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- ((Ys - 1) - 1) + 1 -->
+						<NAryOp operator="+">
+							<operands>
+								<!-- ((Ys - 1) - 1) -->
+								<BinaryOp operator="-">
+									<operands>
+										<!-- (Ys - 1) -->
+										<BinaryOp operator="-">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="Ys"/>
+													</path>
+												</IdExpression>
+												<ConstValue value="1"/>
+											</operands>
+										</BinaryOp>
+										<ConstValue value="1"/>
+									</operands>
+								</BinaryOp>
+								<ConstValue value="1"/>
+							</operands>
+						</NAryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1721/3C4/F9C/4603DEBF/60E9"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L17">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int32"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1722/3C4/F9C/4603DEBF/5B57"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L20">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1723/3C4/F9C/4603DEBF/987"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L21">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- ((Xs - 1) - 1) + 1 -->
+						<NAryOp operator="+">
+							<operands>
+								<!-- ((Xs - 1) - 1) -->
+								<BinaryOp operator="-">
+									<operands>
+										<!-- (Xs - 1) -->
+										<BinaryOp operator="-">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="Xs"/>
+													</path>
+												</IdExpression>
+												<ConstValue value="1"/>
+											</operands>
+										</BinaryOp>
+										<ConstValue value="1"/>
+									</operands>
+								</BinaryOp>
+								<ConstValue value="1"/>
+							</operands>
+						</NAryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1760/3C4/F9C/4603DEF2/1CED"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L26">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- ((Ys - 2) - 0) + 1 -->
+						<NAryOp operator="+">
+							<operands>
+								<!-- ((Ys - 2) - 0) -->
+								<BinaryOp operator="-">
+									<operands>
+										<!-- (Ys - 2) -->
+										<BinaryOp operator="-">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="Ys"/>
+													</path>
+												</IdExpression>
+												<ConstValue value="2"/>
+											</operands>
+										</BinaryOp>
+										<ConstValue value="0"/>
+									</operands>
+								</BinaryOp>
+								<ConstValue value="1"/>
+							</operands>
+						</NAryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_17BD/3C4/F9C/4603DF24/6A15"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L27">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- Xs - 1 -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Xs"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="1"/>
+							</operands>
+						</BinaryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_18FA/3C4/F9C/4603EBDF/5D7F"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L28">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- Ys - 1 -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Ys"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="1"/>
+							</operands>
+						</BinaryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="win_1908/3C4/F9C/4603EBE0/A0B"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L2 = InX; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="InX"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_1727/3C4/F9C/4603DEBF/7B4"/>
+			</pragmas>
+		</Equation>
+		<!-- _L6 = InY; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L6"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="InY"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_1728/3C4/F9C/4603DEBF/5F02"/>
+			</pragmas>
+		</Equation>
+		<!-- OutZ = _L20; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="OutZ"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L20"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_1729/3C4/F9C/4603DEBF/A44"/>
+			</pragmas>
+		</Equation>
+		<!-- _L13 = 0; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L13"/>
+			</lefts>
+			<right>
+				<ConstValue value="0"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_172C/3C4/F9C/4603DEBF/21C"/>
+			</pragmas>
+		</Equation>
+		<!-- _L14 = X[0 .. (Xs - 2)]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L14"/>
+			</lefts>
+			<right>
+				<!-- X[0 .. (Xs - 2)] -->
+				<SliceOp>
+					<array>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="X"/>
+							</path>
+						</IdExpression>
+					</array>
+					<fromIndex>
+						<ConstValue value="0"/>
+					</fromIndex>
+					<toIndex>
+						<!-- (Xs - 2) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Xs"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="2"/>
+							</operands>
+						</BinaryOp>
+					</toIndex>
+				</SliceOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_172D/3C4/F9C/4603DEBF/4231"/>
+			</pragmas>
+		</Equation>
+		<!-- _L17 = 0; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L17"/>
+			</lefts>
+			<right>
+				<ConstValue value="0"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_172F/3C4/F9C/4603DEBF/2810"/>
+			</pragmas>
+		</Equation>
+		<!-- _L18 = Y[1 .. (Ys - 1)]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L18"/>
+			</lefts>
+			<right>
+				<!-- Y[1 .. (Ys - 1)] -->
+				<SliceOp>
+					<array>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Y"/>
+							</path>
+						</IdExpression>
+					</array>
+					<fromIndex>
+						<ConstValue value="1"/>
+					</fromIndex>
+					<toIndex>
+						<!-- (Ys - 1) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Ys"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="1"/>
+							</operands>
+						</BinaryOp>
+					</toIndex>
+				</SliceOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_1730/3C4/F9C/4603DEBF/2436"/>
+			</pragmas>
+		</Equation>
+		<!-- i = _L11; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="i"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L11"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_1732/3C4/F9C/4603DEBF/4FE6"/>
+			</pragmas>
+		</Equation>
+		<!-- j = _L15; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="j"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L15"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_1733/3C4/F9C/4603DEBF/644C"/>
+			</pragmas>
+		</Equation>
+		<!-- _L20 = (Z.[i][j] default (0.0 : 'T)); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L20"/>
+			</lefts>
+			<right>
+				<!-- (Z.[i][j] default (0.0 : 'T)) -->
+				<PrjDynOp name="1">
+					<array>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Z"/>
+							</path>
+						</IdExpression>
+					</array>
+					<indexes>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="i"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="j"/>
+							</path>
+						</IdExpression>
+					</indexes>
+					<default>
+						<!-- (0.0 : 'T) -->
+						<NumericCastOp name="1">
+							<type>
+								<TypeRef name="'T"/>
+							</type>
+							<flow>
+								<ConstValue value="0.0"/>
+							</flow>
+						</NumericCastOp>
+					</default>
+				</PrjDynOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_1734/3C4/F9C/4603DEBF/5119"/>
+			</pragmas>
+		</Equation>
+		<!-- _L21 = X[1 .. (Xs - 1)]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L21"/>
+			</lefts>
+			<right>
+				<!-- X[1 .. (Xs - 1)] -->
+				<SliceOp>
+					<array>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="X"/>
+							</path>
+						</IdExpression>
+					</array>
+					<fromIndex>
+						<ConstValue value="1"/>
+					</fromIndex>
+					<toIndex>
+						<!-- (Xs - 1) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Xs"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="1"/>
+							</operands>
+						</BinaryOp>
+					</toIndex>
+				</SliceOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_175D/3C4/F9C/4603DEF2/65B9"/>
+			</pragmas>
+		</Equation>
+		<!-- _L26 = Y[0 .. (Ys - 2)]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L26"/>
+			</lefts>
+			<right>
+				<!-- Y[0 .. (Ys - 2)] -->
+				<SliceOp>
+					<array>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Y"/>
+							</path>
+						</IdExpression>
+					</array>
+					<fromIndex>
+						<ConstValue value="0"/>
+					</fromIndex>
+					<toIndex>
+						<!-- (Ys - 2) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Ys"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="2"/>
+							</operands>
+						</BinaryOp>
+					</toIndex>
+				</SliceOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_17BA/3C4/F9C/4603DF24/1649"/>
+			</pragmas>
+		</Equation>
+		<!-- _L27 = _L2 ^ (Xs - 1); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L27"/>
+			</lefts>
+			<right>
+				<!-- _L2 ^ (Xs - 1) -->
+				<ScalarToVectorOp name="10">
+					<flow>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L2"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</flow>
+					<size>
+						<!-- (Xs - 1) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Xs"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="1"/>
+							</operands>
+						</BinaryOp>
+					</size>
+				</ScalarToVectorOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_18F7/3C4/F9C/4603EBDF/3DBE"/>
+			</pragmas>
+		</Equation>
+		<!-- _L28 = _L6 ^ (Ys - 1); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L28"/>
+			</lefts>
+			<right>
+				<!-- _L6 ^ (Ys - 1) -->
+				<ScalarToVectorOp name="12">
+					<flow>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L6"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</flow>
+					<size>
+						<!-- (Ys - 1) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="Ys"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="1"/>
+							</operands>
+						</BinaryOp>
+					</size>
+				</ScalarToVectorOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_1905/3C4/F9C/4603EBE0/5825"/>
+			</pragmas>
+		</Equation>
+		<!-- _L11 = (foldi SearchNearest <<Xs - 1>>)(_L13, _L27, _L14, _L21); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L11"/>
+			</lefts>
+			<right>
+				<!-- (foldi SearchNearest <<Xs - 1>>)(_L13, _L27, _L14, _L21) -->
+				<CallExpression>
+					<operator>
+						<IteratorOp iterator="foldi">
+							<operator>
+								<OpCall name="14">
+									<operator>
+										<OperatorRef name="SearchNearest"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<size>
+								<!-- Xs - 1 -->
+								<BinaryOp operator="-">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="Xs"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="1"/>
+									</operands>
+								</BinaryOp>
+							</size>
+						</IteratorOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L13"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L27"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L14"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L21"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_1919/3C4/F9C/4603EC57/5584"/>
+			</pragmas>
+		</Equation>
+		<!-- _L15 = (foldi SearchNearest <<Ys - 1>>)(_L17, _L28, _L26, _L18); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L15"/>
+			</lefts>
+			<right>
+				<!-- (foldi SearchNearest <<Ys - 1>>)(_L17, _L28, _L26, _L18) -->
+				<CallExpression>
+					<operator>
+						<IteratorOp iterator="foldi">
+							<operator>
+								<OpCall name="17">
+									<operator>
+										<OperatorRef name="SearchNearest"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<size>
+								<!-- Ys - 1 -->
+								<BinaryOp operator="-">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="Ys"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="1"/>
+									</operands>
+								</BinaryOp>
+							</size>
+						</IteratorOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L17"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L28"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L26"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L18"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="win_191F/3C4/F9C/4603EC6F/487B"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="win_1712/3C4/F9C/4603DEBF/4AEB" symbolFile="Lut2DNearest.ssl" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<comment>Returns corresponding output value to nearest x and y elements</comment>
+			<comment>from &lt;Xs&gt;, &lt;Ys&gt; points set as vector X, Y and &lt;Xs&gt;*&lt;Ys&gt; points set as array Z.</comment>
+			<comment>X and Y values must increase strictly monotonically.</comment>
+			<diagrams>
+				<NetDiagram name="diagram_Lut2DNearest_1" landscape="true" format="A4 (210 297)" oid="!ed/2D81/4A39/35C/465ED2C4/6F9C">
+					<presentationElements>
+						<EquationGE presentable="win_1727/3C4/F9C/4603DEBF/7B4">
+							<position>
+								<Point x="1336" y="2143"/>
+							</position>
+							<size>
+								<Size width="251" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="win_1728/3C4/F9C/4603DEBF/5F02">
+							<position>
+								<Point x="1336" y="7329"/>
+							</position>
+							<size>
+								<Size width="251" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="win_1729/3C4/F9C/4603DEBF/A44">
+							<position>
+								<Point x="15627" y="4763"/>
+							</position>
+							<size>
+								<Size width="326" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="win_172C/3C4/F9C/4603DEBF/21C">
+							<position>
+								<Point x="3069" y="1720"/>
+							</position>
+							<size>
+								<Size width="53" height="264"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="win_172D/3C4/F9C/4603DEBF/4231">
+							<position>
+								<Point x="2942" y="2773"/>
+							</position>
+							<size>
+								<Size width="170" height="317"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="win_172F/3C4/F9C/4603DEBF/2810">
+							<position>
+								<Point x="3069" y="6906"/>
+							</position>
+							<size>
+								<Size width="53" height="264"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="win_1730/3C4/F9C/4603DEBF/2436">
+							<position>
+								<Point x="2942" y="8530"/>
+							</position>
+							<size>
+								<Size width="170" height="318"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="win_1732/3C4/F9C/4603DEBF/4FE6">
+							<position>
+								<Point x="11183" y="2143"/>
+							</position>
+							<size>
+								<Size width="352" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="win_1733/3C4/F9C/4603DEBF/644C">
+							<position>
+								<Point x="11131" y="7329"/>
+							</position>
+							<size>
+								<Size width="351" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="win_1734/3C4/F9C/4603DEBF/5119">
+							<position>
+								<Point x="10499" y="4868"/>
+							</position>
+							<size>
+								<Size width="169" height="318"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_1734/3C4/F9C/4603DEBF/5119" dstEquation="win_1729/3C4/F9C/4603DEBF/A44">
+							<positions>
+								<Point x="10668" y="5038"/>
+								<Point x="12827" y="5038"/>
+								<Point x="12827" y="5038"/>
+								<Point x="15663" y="5038"/>
+							</positions>
+						</Edge>
+						<EquationGE kind="OBJ_LIT" presentable="win_175D/3C4/F9C/4603DEF2/65B9">
+							<position>
+								<Point x="2942" y="3344"/>
+							</position>
+							<size>
+								<Size width="170" height="318"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="win_17BA/3C4/F9C/4603DF24/1649">
+							<position>
+								<Point x="2942" y="7959"/>
+							</position>
+							<size>
+								<Size width="170" height="317"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="win_18F7/3C4/F9C/4603EBDF/3DBE">
+							<position>
+								<Point x="4146" y="1923"/>
+							</position>
+							<size>
+								<Size width="968" height="969"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="win_1905/3C4/F9C/4603EBE0/5825">
+							<position>
+								<Point x="4146" y="7109"/>
+							</position>
+							<size>
+								<Size width="968" height="969"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_1727/3C4/F9C/4603DEBF/7B4" dstEquation="win_18F7/3C4/F9C/4603EBDF/3DBE">
+							<positions>
+								<Point x="1588" y="2392"/>
+								<Point x="3344" y="2392"/>
+								<Point x="3344" y="2392"/>
+								<Point x="4149" y="2392"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_1728/3C4/F9C/4603DEBF/5F02" dstEquation="win_1905/3C4/F9C/4603EBE0/5825">
+							<positions>
+								<Point x="1588" y="7578"/>
+								<Point x="3344" y="7578"/>
+								<Point x="3344" y="7578"/>
+								<Point x="4149" y="7578"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="win_1919/3C4/F9C/4603EC57/5584">
+							<position>
+								<Point x="5919" y="759"/>
+							</position>
+							<size>
+								<Size width="3270" height="3271"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_1919/3C4/F9C/4603EC57/5584" dstEquation="win_1732/3C4/F9C/4603DEBF/4FE6">
+							<positions>
+								<Point x="9186" y="2392"/>
+								<Point x="10097" y="2392"/>
+								<Point x="10097" y="2392"/>
+								<Point x="11176" y="2392"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="win_175D/3C4/F9C/4603DEF2/65B9" dstEquation="win_1919/3C4/F9C/4603EC57/5584">
+							<positions>
+								<Point x="3112" y="3514"/>
+								<Point x="5398" y="3514"/>
+								<Point x="5398" y="3471"/>
+								<Point x="5927" y="3471"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="win_172D/3C4/F9C/4603DEBF/4231" dstEquation="win_1919/3C4/F9C/4603EC57/5584">
+							<positions>
+								<Point x="3112" y="2942"/>
+								<Point x="5398" y="2942"/>
+								<Point x="5398" y="2942"/>
+								<Point x="5927" y="2942"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="win_18F7/3C4/F9C/4603EBDF/3DBE" dstEquation="win_1919/3C4/F9C/4603EC57/5584">
+							<positions>
+								<Point x="5122" y="2413"/>
+								<Point x="5207" y="2413"/>
+								<Point x="5207" y="2392"/>
+								<Point x="5927" y="2392"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_172C/3C4/F9C/4603DEBF/21C" dstEquation="win_1919/3C4/F9C/4603EC57/5584">
+							<positions>
+								<Point x="3112" y="1863"/>
+								<Point x="5715" y="1863"/>
+								<Point x="5715" y="1842"/>
+								<Point x="5927" y="1842"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="win_191F/3C4/F9C/4603EC6F/487B">
+							<position>
+								<Point x="6051" y="5945"/>
+							</position>
+							<size>
+								<Size width="3270" height="3271"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_191F/3C4/F9C/4603EC6F/487B" dstEquation="win_1733/3C4/F9C/4603DEBF/644C">
+							<positions>
+								<Point x="9313" y="7578"/>
+								<Point x="10054" y="7578"/>
+								<Point x="10054" y="7578"/>
+								<Point x="11134" y="7578"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="win_1730/3C4/F9C/4603DEBF/2436" dstEquation="win_191F/3C4/F9C/4603EC6F/487B">
+							<positions>
+								<Point x="3112" y="8700"/>
+								<Point x="5503" y="8700"/>
+								<Point x="5503" y="8657"/>
+								<Point x="6054" y="8657"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="win_17BA/3C4/F9C/4603DF24/1649" dstEquation="win_191F/3C4/F9C/4603EC6F/487B">
+							<positions>
+								<Point x="3112" y="8128"/>
+								<Point x="5503" y="8128"/>
+								<Point x="5503" y="8128"/>
+								<Point x="6054" y="8128"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="win_1905/3C4/F9C/4603EBE0/5825" dstEquation="win_191F/3C4/F9C/4603EC6F/487B">
+							<positions>
+								<Point x="5122" y="7599"/>
+								<Point x="5292" y="7599"/>
+								<Point x="5292" y="7578"/>
+								<Point x="6054" y="7578"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="win_172F/3C4/F9C/4603DEBF/2810" dstEquation="win_191F/3C4/F9C/4603EC6F/487B">
+							<positions>
+								<Point x="3112" y="7049"/>
+								<Point x="5800" y="7049"/>
+								<Point x="5800" y="7027"/>
+								<Point x="6054" y="7027"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="function" name="Det2x2">
+	<inputs>
+		<Variable name="A">
+			<type>
+				<Table>
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="2"/>
+							</size>
+						</Table>
+					</type>
+					<size>
+						<ConstValue value="2"/>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3b1d/7156/3AD8/51d1a1455f"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="Det">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3b1c/7156/3AD8/51d1a1455658"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<numericTypes>
+		<NumericType>
+			<typeVar>
+				<TypeRef name="'T"/>
+			</typeVar>
+		</NumericType>
+	</numericTypes>
+	<data>
+		<!-- Det = A[0][0] * A[1][1] - A[0][1] * A[1][0]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="Det"/>
+			</lefts>
+			<right>
+				<!-- A[0][0] * A[1][1] - A[0][1] * A[1][0] -->
+				<BinaryOp name="1" operator="-">
+					<operands>
+						<!-- A[0][0] * A[1][1] -->
+						<NAryOp operator="*">
+							<operands>
+								<!-- A[0][0] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</with>
+								</PrjOp>
+								<!-- A[1][1] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="1"/>
+										<ConstValue value="1"/>
+									</with>
+								</PrjOp>
+							</operands>
+						</NAryOp>
+						<!-- A[0][1] * A[1][0] -->
+						<NAryOp operator="*">
+							<operands>
+								<!-- A[0][1] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="0"/>
+										<ConstValue value="1"/>
+									</with>
+								</PrjOp>
+								<!-- A[1][0] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="1"/>
+										<ConstValue value="0"/>
+									</with>
+								</PrjOp>
+							</operands>
+						</NAryOp>
+					</operands>
+				</BinaryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/3b1a/7156/3AD8/51d1a1453ad8"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/3b19/7156/3AD8/51d1a145d28" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/4">
+			<comment>Computes the determinant of a square matrix of type 'T^2^2</comment>
+			<diagrams>
+				<TextDiagram name="diagram_Det2x2" landscape="false" format="A4 (210 297)" oid="!ed/3b1b/7156/3AD8/51d1a14530e5">
+					<presentationElements>
+						<FlowTE presentable="!ed/3b1a/7156/3AD8/51d1a1453ad8"/>
+					</presentationElements>
+				</TextDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

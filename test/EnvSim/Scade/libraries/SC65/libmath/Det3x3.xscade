@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="function" name="Det3x3">
+	<inputs>
+		<Variable name="A">
+			<type>
+				<Table>
+					<type>
+						<Table>
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="'T"/>
+									</type>
+								</NamedType>
+							</type>
+							<size>
+								<ConstValue value="3"/>
+							</size>
+						</Table>
+					</type>
+					<size>
+						<ConstValue value="3"/>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3c3d/7156/3AD8/51d1a145457c"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="Det">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3c3c/7156/3AD8/51d1a1454bd7"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<numericTypes>
+		<NumericType>
+			<typeVar>
+				<TypeRef name="'T"/>
+			</typeVar>
+		</NumericType>
+	</numericTypes>
+	<locals>
+		<Variable name="C00">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3c39/7156/3AD8/51d1a14531a2"/>
+			</pragmas>
+		</Variable>
+		<Variable name="C01">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3c3a/7156/3AD8/51d1a14567cb"/>
+			</pragmas>
+		</Variable>
+		<Variable name="C02">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="'T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/3c3b/7156/3AD8/51d1a1454e2"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- Det = A[0][0] * C00 + A[0][1] * C01 + A[0][2] * C02; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="Det"/>
+			</lefts>
+			<right>
+				<!-- A[0][0] * C00 + A[0][1] * C01 + A[0][2] * C02 -->
+				<NAryOp name="1" operator="+">
+					<operands>
+						<!-- A[0][0] * C00 -->
+						<NAryOp operator="*">
+							<operands>
+								<!-- A[0][0] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="0"/>
+										<ConstValue value="0"/>
+									</with>
+								</PrjOp>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="C00"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</NAryOp>
+						<!-- A[0][1] * C01 -->
+						<NAryOp operator="*">
+							<operands>
+								<!-- A[0][1] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="0"/>
+										<ConstValue value="1"/>
+									</with>
+								</PrjOp>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="C01"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</NAryOp>
+						<!-- A[0][2] * C02 -->
+						<NAryOp operator="*">
+							<operands>
+								<!-- A[0][2] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="0"/>
+										<ConstValue value="2"/>
+									</with>
+								</PrjOp>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="C02"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</NAryOp>
+					</operands>
+				</NAryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/3c34/7156/3AD8/51d1a14524ad" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Laplace expansion of the determinant</comment>
+				</ed:Equation>
+			</pragmas>
+		</Equation>
+		<!-- C00 = A[1][1] * A[2][2] - A[1][2] * A[2][1]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="C00"/>
+			</lefts>
+			<right>
+				<!-- A[1][1] * A[2][2] - A[1][2] * A[2][1] -->
+				<BinaryOp name="1" operator="-">
+					<operands>
+						<!-- A[1][1] * A[2][2] -->
+						<NAryOp operator="*">
+							<operands>
+								<!-- A[1][1] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="1"/>
+										<ConstValue value="1"/>
+									</with>
+								</PrjOp>
+								<!-- A[2][2] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="2"/>
+										<ConstValue value="2"/>
+									</with>
+								</PrjOp>
+							</operands>
+						</NAryOp>
+						<!-- A[1][2] * A[2][1] -->
+						<NAryOp operator="*">
+							<operands>
+								<!-- A[1][2] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="1"/>
+										<ConstValue value="2"/>
+									</with>
+								</PrjOp>
+								<!-- A[2][1] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="2"/>
+										<ConstValue value="1"/>
+									</with>
+								</PrjOp>
+							</operands>
+						</NAryOp>
+					</operands>
+				</BinaryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/3c35/7156/3AD8/51d1a145ab6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>computation of the required cofactors</comment>
+				</ed:Equation>
+			</pragmas>
+		</Equation>
+		<!-- C01 =  - A[1][0] * A[2][2] + A[1][2] * A[2][0]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="C01"/>
+			</lefts>
+			<right>
+				<!--  - A[1][0] * A[2][2] + A[1][2] * A[2][0] -->
+				<NAryOp name="2" operator="+">
+					<operands>
+						<!--  - A[1][0] * A[2][2] -->
+						<NAryOp operator="*">
+							<operands>
+								<!--  - A[1][0] -->
+								<UnaryOp operator="-">
+									<operand>
+										<!-- A[1][0] -->
+										<PrjOp>
+											<flow>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="A"/>
+													</path>
+												</IdExpression>
+											</flow>
+											<with>
+												<ConstValue value="1"/>
+												<ConstValue value="0"/>
+											</with>
+										</PrjOp>
+									</operand>
+								</UnaryOp>
+								<!-- A[2][2] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="2"/>
+										<ConstValue value="2"/>
+									</with>
+								</PrjOp>
+							</operands>
+						</NAryOp>
+						<!-- A[1][2] * A[2][0] -->
+						<NAryOp operator="*">
+							<operands>
+								<!-- A[1][2] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="1"/>
+										<ConstValue value="2"/>
+									</with>
+								</PrjOp>
+								<!-- A[2][0] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="2"/>
+										<ConstValue value="0"/>
+									</with>
+								</PrjOp>
+							</operands>
+						</NAryOp>
+					</operands>
+				</NAryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/3c36/7156/3AD8/51d1a1457a09"/>
+			</pragmas>
+		</Equation>
+		<!-- C02 = A[1][0] * A[2][1] - A[1][1] * A[2][0]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="C02"/>
+			</lefts>
+			<right>
+				<!-- A[1][0] * A[2][1] - A[1][1] * A[2][0] -->
+				<BinaryOp name="2" operator="-">
+					<operands>
+						<!-- A[1][0] * A[2][1] -->
+						<NAryOp operator="*">
+							<operands>
+								<!-- A[1][0] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="1"/>
+										<ConstValue value="0"/>
+									</with>
+								</PrjOp>
+								<!-- A[2][1] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="2"/>
+										<ConstValue value="1"/>
+									</with>
+								</PrjOp>
+							</operands>
+						</NAryOp>
+						<!-- A[1][1] * A[2][0] -->
+						<NAryOp operator="*">
+							<operands>
+								<!-- A[1][1] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="1"/>
+										<ConstValue value="1"/>
+									</with>
+								</PrjOp>
+								<!-- A[2][0] -->
+								<PrjOp>
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="A"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<ConstValue value="2"/>
+										<ConstValue value="0"/>
+									</with>
+								</PrjOp>
+							</operands>
+						</NAryOp>
+					</operands>
+				</BinaryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/3c37/7156/3AD8/51d1a1451c78"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/3c33/7156/3AD8/51d1a1456c5b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<comment>Computes the determinant of a square matrix of type 'T^3^3</comment>
+			<diagrams>
+				<TextDiagram name="diagram_Det3x3" landscape="false" format="A4 (210 297)" oid="!ed/3c38/7156/3AD8/51d1a14525e5">
+					<presentationElements>
+						<FlowTE presentable="!ed/3c34/7156/3AD8/51d1a14524ad"/>
+						<FlowTE presentable="!ed/3c35/7156/3AD8/51d1a145ab6"/>
+						<FlowTE presentable="!ed/3c36/7156/3AD8/51d1a1457a09"/>
+						<FlowTE presentable="!ed/3c37/7156/3AD8/51d1a1451c78"/>
+					</presentationElements>
+				</TextDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>

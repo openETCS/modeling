@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3" kind="node" name="Clock">
+	<outputs>
+		<Variable name="Output1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/70a0/117/1288/49abafec4d98"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/70a9/117/1288/49abafef3479"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/70bf/117/1288/49abb002656d"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- Output1 = _L1; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="Output1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L1"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/70a1/117/1288/49abafec6f03"/>
+			</pragmas>
+		</Equation>
+		<!-- _L1 = fby(_L2; 1; true); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<!-- fby(_L2; 1; true) -->
+				<FbyOp name="1">
+					<flows>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L2"/>
+							</path>
+						</IdExpression>
+					</flows>
+					<delay>
+						<ConstValue value="1"/>
+					</delay>
+					<values>
+						<ConstValue value="true"/>
+					</values>
+				</FbyOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/70a8/117/1288/49abafef4ca7"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 =  not _L1; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<!--  not _L1 -->
+				<UnaryOp name="1" operator="not">
+					<operand>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</operand>
+				</UnaryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/70be/117/1288/49abb0025c70"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/709e/117/1288/49abafe554b4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<comment>Boolean output is true at first tick, then toggles at each tick </comment>
+			<diagrams>
+				<NetDiagram name="diagram_Clock_1" landscape="true" format="A4 (210 297)" oid="!ed/709f/117/1288/49abafe56930">
+					<presentationElements>
+						<EquationGE presentable="!ed/70a1/117/1288/49abafec6f03">
+							<position>
+								<Point x="5662" y="1058"/>
+							</position>
+							<size>
+								<Size width="344" height="503"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/70a8/117/1288/49abafef4ca7">
+							<position>
+								<Point x="1852" y="820"/>
+							</position>
+							<size>
+								<Size width="1005" height="1005"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/70a8/117/1288/49abafef4ca7" dstEquation="!ed/70a1/117/1288/49abafec6f03">
+							<positions>
+								<Point x="2858" y="1323"/>
+								<Point x="5186" y="1323"/>
+								<Point x="5186" y="1323"/>
+								<Point x="5715" y="1323"/>
+							</positions>
+						</Edge>
+						<EquationGE rotation="180" presentable="!ed/70be/117/1288/49abb0025c70">
+							<position>
+								<Point x="1826" y="2672"/>
+							</position>
+							<size>
+								<Size width="1006" height="661"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/70a8/117/1288/49abafef4ca7" dstEquation="!ed/70be/117/1288/49abb0025c70">
+							<positions>
+								<Point x="2858" y="1323"/>
+								<Point x="4657" y="1323"/>
+								<Point x="4657" y="3016"/>
+								<Point x="2831" y="3016"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/70be/117/1288/49abb0025c70" dstEquation="!ed/70a8/117/1288/49abafef4ca7">
+							<positions>
+								<Point x="1826" y="2990"/>
+								<Point x="529" y="2990"/>
+								<Point x="529" y="1323"/>
+								<Point x="1852" y="1323"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>
