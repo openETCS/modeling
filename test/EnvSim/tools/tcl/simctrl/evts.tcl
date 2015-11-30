@@ -21,6 +21,7 @@ namespace eval ::evts {
 
   set showLogTab 1
   set autoscrollLog 1
+  set logCMD 1
   set logERR 1
   set logPOS 0
   set logRBC 1
@@ -92,7 +93,7 @@ proc evts::handleRadioMessage {data} {
 proc evts::handleTrainMessage {data} {
   variable tree
 
-  binary scan "$data" dx4i pos nid_message
+  binary scan "$data" dx4ix4i pos nid_message t_train
   if { $nid_message == 132 } {
     handleMsg132 "$data"
     if { !$evts::logMsg132 } return
@@ -104,6 +105,8 @@ proc evts::handleTrainMessage {data} {
   if { $nid_message == 147 } {
     handleMsg147 "$data"
   }
+
+  set model::t_train $t_train
 
   set id [$tree insert {} end -text "MSG $nid_message" -values [list [format %.1f $pos] "$data" T] -image tmsg]
   if $evts::autoscrollMsgs { $tree see $id }
@@ -285,12 +288,13 @@ proc evts::initLogView {path} {
   grid [ttk::button $path.btn.save -text Save -command evts::saveLogDialog] -column 1 -row 0
   grid [ttk::checkbutton $path.btn.autoscroll -text Autoscroll -variable evts::autoscrollLog -onvalue 1 -offvalue 1] -column 2 -row 0
   grid [ttk::frame $path.flag -padding 3] -column 0 -row 1 -columnspan 2 -sticky we
-  grid [ttk::checkbutton $path.flag.logERR -text ERR -variable evts::logERR -onvalue 1 -offvalue 0] -column 1 -row 1
-  grid [ttk::checkbutton $path.flag.logPOS -text POS -variable evts::logPOS -onvalue 1 -offvalue 0] -column 2 -row 1
-  grid [ttk::checkbutton $path.flag.logRBC -text RBC -variable evts::logRBC -onvalue 1 -offvalue 0] -column 3 -row 1
-  grid [ttk::checkbutton $path.flag.logRTM -text RTM -variable evts::logRTM -onvalue 1 -offvalue 0] -column 4 -row 1
-  grid [ttk::checkbutton $path.flag.logSDM -text SDM -variable evts::logSDM -onvalue 1 -offvalue 0] -column 5 -row 1
-  grid [ttk::checkbutton $path.flag.logTRK -text TRK -variable evts::logTRK -onvalue 1 -offvalue 0] -column 6 -row 1
+  grid [ttk::checkbutton $path.flag.logCMD -text CMD -variable evts::logCMD -onvalue 1 -offvalue 0] -column 1 -row 1
+  grid [ttk::checkbutton $path.flag.logERR -text ERR -variable evts::logERR -onvalue 1 -offvalue 0] -column 2 -row 1
+  grid [ttk::checkbutton $path.flag.logPOS -text POS -variable evts::logPOS -onvalue 1 -offvalue 0] -column 3 -row 1
+  grid [ttk::checkbutton $path.flag.logRBC -text RBC -variable evts::logRBC -onvalue 1 -offvalue 0] -column 4 -row 1
+  grid [ttk::checkbutton $path.flag.logRTM -text RTM -variable evts::logRTM -onvalue 1 -offvalue 0] -column 5 -row 1
+  grid [ttk::checkbutton $path.flag.logSDM -text SDM -variable evts::logSDM -onvalue 1 -offvalue 0] -column 6 -row 1
+  grid [ttk::checkbutton $path.flag.logTRK -text TRK -variable evts::logTRK -onvalue 1 -offvalue 0] -column 7 -row 1
   # Log area
   grid [tk::text $path.text -height 10 -state disabled -wrap none] -column 0 -row 2 -sticky wesn
   set logArea $path.text
@@ -338,6 +342,12 @@ proc evts::logPOS {msg} {
 proc evts::logRBC {msg} {
   if $evts::logRBC {
     logEvent RBC "$msg"
+  }
+}
+
+proc evts::logCMD {msg} {
+  if $evts::logCMD {
+    logEvent CMD "$msg"
   }
 }
 

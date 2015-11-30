@@ -191,6 +191,13 @@ void es_track_clear(es_TrackMessages *track) {
       free(rm);
     }
   }
+  while(track->tmsgs != NULL) {
+    es_TriggeredTrainMessage *tm;
+    track->tmsgs = es_list_remove_head(track->tmsgs, (char**)&tm);
+    if (tm != NULL) {
+      free(tm);
+    }
+  }
 }
 
 void es_exec_tracksim_cycle(es_TrackSimState *state, es_TriggerPos newBPos, es_TriggerPos newRPos) {

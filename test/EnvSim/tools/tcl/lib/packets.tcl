@@ -95,6 +95,7 @@ proc pkts::binToIntList {offset nint data} {
 
 proc pkts::readBinPkt {nid offset nint data} {
   set lst [binToIntList $offset $nint "$data"]
+  puts "lst: $lst"
   set subindex [expr $nid % 1000]
   switch -glob [expr $nid / 1000] {
      3?16 { return [readP003v1 "$lst"] }
@@ -318,8 +319,8 @@ proc pkts::readP041 {data} {
     incr npos
     if {$m_leveltr==1} {
       dict append d "nid_ntc($i)" [lindex $data $npos]
+      incr npos
     }
-    incr npos
     dict append d "l_ackleveltr($i)" [lindex $data $npos]
     incr npos
   }
@@ -475,4 +476,198 @@ proc pkts::readTrainP003 {data} {
 }
 
 proc pkts::readTrainP004 {data} {
+}
+
+proc pkts::calcMetaNid {nid_packet q_dir version subindex} {
+  return [expr 1000000*$nid_packet + 100000*$q_dir + 1000*$version + $subindex]
+}
+
+proc pkts::encodePacket {values} {
+  set nid_packet [dict get $values nid_packet]
+  set q_dir [dict get $values q_dir]
+  set version 32
+  set subindex 0
+  switch $nid_packet {
+     3 { set data [encodeP003v1 $values]; set version 16 }
+     5 { set data [encodeP005 $values] }
+    15 { set data [encodeP015 $values] }
+    27 { 
+      set data [encodeP027v1 $values]
+      set version 16
+      lappend lst [list $nid_packet $q_dir $version 0 "[lindex $data 0]"]
+      set sub 101
+      foreach p [lrange $data 1 end] {
+        lappend lst [list $nid_packet $q_dir $version $sub "$p"]
+        incr sub
+      }
+      return $lst
+    }
+    41 { set data [encodeP041 $values] }
+    42 { set data [encodeP042 $values] }
+    45 { set data [encodeP045 $values] }
+    46 { set data [encodeP046 $values] }
+    default { error "unsupported nid_packet=$nid_packet" }
+  }
+  return [list [list $nid_packet $q_dir $version $subindex "$data"]]
+}
+
+proc pkts::encodeP003v1 {values} {
+  lappend pkt [dict get $values nid_packet]
+  lappend pkt [dict get $values q_dir]
+  lappend pkt 0
+  lappend pkt [dict get $values q_scale        ]
+  set n_iter [dict get $values n_iter]
+  lappend pkt $n_iter
+  lappend pkt [dict get $values d_validnv      ]
+  lappend pkt [dict get $values v_nvshunt      ]
+  lappend pkt [dict get $values v_nvstff       ]
+  lappend pkt [dict get $values v_nvonsight    ]
+  lappend pkt [dict get $values v_nvunfit      ]
+  lappend pkt [dict get $values v_nvrel        ]
+  lappend pkt [dict get $values d_nvroll       ]
+  lappend pkt [dict get $values q_nvsrbktrg    ]
+  lappend pkt [dict get $values q_nvemrrls     ]
+  lappend pkt [dict get $values v_nvallowovtrp ]
+  lappend pkt [dict get $values v_nvsupovtrp   ]
+  lappend pkt [dict get $values d_nvovtrp      ]
+  lappend pkt [dict get $values t_nvovtrp      ]
+  lappend pkt [dict get $values d_nvpotrp      ]
+  lappend pkt [dict get $values m_nvcontact    ]
+  lappend pkt [dict get $values t_nvcontact    ]
+  lappend pkt [dict get $values m_nvderun      ]
+  lappend pkt [dict get $values d_nvstff       ]
+  lappend pkt [dict get $values q_nvdriver_adhes ]
+  for {set i 0} {$i<$n_iter} {incr i} {
+    lappend pkt [dict get $values nid_c($i)]
+  }
+
+  return "$pkt"
+}
+
+proc pkts::encodeP005 {values} {
+  lappend pkt [dict get $values nid_packet] 
+  lappend pkt [dict get $values q_dir     ] 
+  lappend pkt 0
+  lappend pkt [dict get $values q_scale   ] 
+  set n_iter [dict get $values n_iter]
+  lappend pkt $n_iter
+
+  for {set i 0} {$i<=$n_iter} {incr i} {
+    lappend pkt [dict get $values d_link($i)]
+    set q_nc [dict get $values q_newcountry($i)]
+    lappend pkt $q_nc
+    if {$q_nc == 1} {
+      lappend pkt [dict get $values nid_c($i)]
+    } else {
+      lappend pkt 0
+    }
+    lappend pkt [dict get $values nid_bg($i)]
+    lappend pkt [dict get $values q_linkorientation($i)]
+    lappend pkt [dict get $values q_linkreaction($i)]
+    lappend pkt [dict get $values q_locacc($i)]
+  }
+
+  return "$pkt"
+}
+
+proc pkts::encodeP015 {values} {
+    lappend pkt [dict get $values nid_packet] 
+    lappend pkt [dict get $values q_dir     ] 
+    lappend pkt 0
+    lappend pkt [dict get $values q_scale   ] 
+    lappend pkt [dict get $values v_loa     ] 
+    lappend pkt [dict get $values t_loa     ] 
+    lappend pkt [dict get $values l_endsection]
+    lappend pkt [dict get $values q_sectiontimer]
+    lappend pkt [dict get $values t_sectiontimer]
+    lappend pkt [dict get $values d_sectiontimerstoploc]
+
+    return "$pkt"
+}
+
+proc pkts::encodeP027v1 {values} {
+  set n_iter_k [dict get $values n_iter_k]
+
+  lappend pkt [dict get $values nid_packet]
+  lappend pkt [dict get $values q_dir]
+  lappend pkt 0
+  lappend pkt [dict get $values q_scale]
+  lappend pkt $n_iter_k
+  lappend pkt 27116100
+
+  lappend pkts "$pkt"
+
+  for {set k 0} {$k<=$n_iter_k} {incr k} {
+    set pkt {}
+    lappend pkt [dict get $values d_static($k)]
+    lappend pkt [dict get $values v_static($k)]
+    lappend pkt [dict get $values q_front($k)]
+    set n_iter [dict get $values n_iter($k)]
+    lappend pkt $n_iter
+
+    lappend pkts "$pkt"
+  }
+
+  return $pkts
+}
+
+
+proc pkts::encodeP041 {values} {
+  lappend pkt [dict get $values nid_packet]
+  lappend pkt [dict get $values q_dir]
+  lappend pkt 0
+  lappend pkt [dict get $values q_scale]
+  lappend pkt [dict get $values d_leveltr]
+  set n_iter [dict get $values n_iter]
+  lappend pkt $n_iter
+  for {set i 0} {$i<=$n_iter} {incr i} {
+    set m_leveltr [dict get $values m_leveltr($i)]
+    lappend pkt $m_leveltr
+    if {$m_leveltr == 1} {
+      lappend pkt [dict get $values nid_ntc($i)]
+    }
+    lappend pkt [dict get $values l_ackleveltr($i)]
+  }
+
+  return "$pkt"
+}
+
+proc pkts::encodeP042 {values} {
+  lappend pkt [dict get $values nid_packet]
+  lappend pkt [dict get $values q_dir]
+  lappend pkt 0
+  lappend pkt [dict get $values q_rbc]
+  lappend pkt [dict get $values nid_c]
+  lappend pkt [dict get $values nid_rbc]
+  lappend pkt [dict get $values nid_radio]
+  lappend pkt [dict get $values q_sleepsession]
+  return "$pkt"
+}
+
+proc pkts::encodeP045 {values} {
+  set pkt {}
+  lappend pkt [dict get $values nid_packet]
+  lappend pkt [dict get $values q_dir]
+  lappend pkt 0
+  lappend pkt [dict get $values nid_nm]
+
+  return "$pkt"
+}
+
+proc pkts::encodeP046 {values} {
+  set pkt {}
+  lappend pkt [dict get $values nid_packet]
+  lappend pkt [dict get $values q_dir]
+  lappend pkt 0
+  set n_iter [dict get $values n_iter]
+  lappend pkt $n_iter
+  for {set i 0} {$i <= $n_iter} {incr i} {
+    set m_leveltr [dict get $values m_leveltr($i)]
+    lappend pkt $m_leveltr
+    if {$m_leveltr == 1} {
+      lappend pkt [dict get $values nid_ntc($i)]
+    }
+  }
+
+  return "$pkt"
 }

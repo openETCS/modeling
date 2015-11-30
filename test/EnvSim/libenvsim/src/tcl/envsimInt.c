@@ -28,18 +28,24 @@ void envsim_append_result(char* res, char* clientData) {
 
 //----------------------------- track commands ------------------------------
 int envsim_track_balise_cmd(ClientData data, Tcl_Interp *interp, int objc, Tcl_Obj *const *objv) {
-  if(objc!=3) {
-    Tcl_WrongNumArgs(interp,1,objv,"raw {arg}");
+  if(objc<2 || objc > 4) {
+    Tcl_WrongNumArgs(interp,1,objv,"");
     return TCL_ERROR;
   }
   char *arg1 = Tcl_GetString(objv[1]);
-  char *arg2 = Tcl_GetString(objv[2]);
+  char *arg2 = NULL;
+  if(objc>=3)
+    arg2 = Tcl_GetString(objv[2]);
+  char *arg3 = NULL;
+  if(objc==4)
+    arg3 = Tcl_GetString(objv[3]);
+
   if(! (strcmp("get",arg1) || strcmp("bytes",arg2)) ) {
     Tcl_Obj *p = Tcl_NewByteArrayObj((const unsigned char*)&es_tcl_track_balise_buf,es_tcl_track_bmsize);
     Tcl_SetObjResult(interp,p);
     return TCL_OK;
   }
-  if(es_tcl_track_balise(arg1, arg2,envsim_append_result,(es_ClientData)interp)) {
+  if(es_tcl_track_balise(arg1, arg2, arg3, envsim_append_result,(es_ClientData)interp)) {
     Tcl_AddErrorInfo(interp,es_msg_buf);
     return TCL_ERROR;
   };

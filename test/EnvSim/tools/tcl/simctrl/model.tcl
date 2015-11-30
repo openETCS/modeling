@@ -26,6 +26,7 @@ namespace eval ::model {
   set lrbg           "n/a"
   set mode           "n/a"
   set level          "n/a"
+  set t_train        0
 }
 
 

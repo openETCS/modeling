@@ -7,6 +7,7 @@
 
 namespace eval ::cfg {
   variable connectScript
+  variable commandScript
 
   # value of menu checkbox "Remote -> Send Events"
   # If true, the remote is requested to send events (track&train) messages
@@ -41,6 +42,12 @@ proc cfg::execOnConnect {} {
     eval "$connectScript"
   }
 }
+
+
+proc cfg::commands {script} {
+  macro::defineCommands "$script"
+}
+
 
 proc cfg::loadRemoteTrackFile {path} {
   ctrl::log simctrl "Loading remote track file '$path'"

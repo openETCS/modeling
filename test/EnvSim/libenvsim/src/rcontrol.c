@@ -123,6 +123,7 @@ es_Status es_rcontrol_send_rmsg(es_TCPMessage *msg, es_TCPStream *responseStream
   return ES_OK;
 }
 
+
 es_Status es_rcontrol_handle_msg(es_TCPMessage *msg, es_TCPStream *responseStream) {
   if(msg==NULL) {
     RCERROR(responseStream,"invalid rcontrol command: NULL");

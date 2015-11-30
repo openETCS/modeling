@@ -41,7 +41,6 @@ proc comm::handleConnect {channel addr port} {
 
 proc comm::handleDisconnect {channel} {
   variable conn
-  puts closing
   close $channel
   unset conn
   set model::connected 0

@@ -51,3 +51,11 @@ proc ctrl::onTreeSelect {} {
 }
 
 
+proc ctrl::showConsole {} {
+  if $::isWin {
+    console show
+  } else { 
+    package require tkcon
+    tkcon show
+  }
+}

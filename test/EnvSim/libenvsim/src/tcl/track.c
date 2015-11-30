@@ -64,6 +64,7 @@ es_Status es_tcl_track_balise_load_index(int i) {
   }
 
   es_tcl_track_balise_buf = ((es_TriggeredBaliseMessage*)e->data)->msg;
+
   return ES_OK;
 }
 
@@ -111,16 +112,130 @@ es_Status es_tcl_track_balise_get(char* subcmd, void (*appendResult)(char*, es_C
   return ES_TCL_ERROR;
 }
 
+// set data values in the balise message buffer
+es_Status es_tcl_track_balise_set(char* subcmd, char* arg, void (*appendResult)(char*, es_ClientData), es_ClientData data) {
+  CompressedBaliseMessage_TM *bm = &es_tcl_track_balise_buf;
 
-es_Status es_tcl_track_balise(char* subcmd, char* arg, void (*appendResult)(char*,es_ClientData), es_ClientData data) {
+  // header
+  if( subcmd != NULL && !strcmp("header",subcmd) ) {
+    if (arg == NULL) {
+      snprintf(es_msg_buf, ES_MSG_BUF_SIZE, "invalid sub command 'set header': missing argument");
+      return ES_TCL_ERROR;
+    }
+
+    char *varname, *next;
+    arg = strdup(arg);
+    next = arg;
+    appendResult(es_msg_buf, data);
+    while ((varname = mystrsep(&next, " ")) != NULL) {
+      char *v = mystrsep(&next, " ");
+      if (v == NULL) {
+        snprintf(es_msg_buf, ES_MSG_BUF_SIZE, "missing value for variable %s", varname);
+        return ES_TCL_ERROR;
+      }
+      int value = atoi(v);
+      if (!strcmp("nid_bg", varname)) {
+        bm->Header.nid_bg = value;
+      }
+      else if (!strcmp("n_pig", varname)) {
+        bm->Header.n_pig = value;
+      }
+      else if (!strcmp("n_total", varname)) {
+        bm->Header.n_total = value;
+      }
+      else if (!strcmp("m_dup", varname)) {
+        bm->Header.m_dup = value;
+      }
+      else if (!strcmp("m_mcount", varname)) {
+        bm->Header.m_mcount = value;
+      }
+      else if (!strcmp("m_version", varname)) {
+        bm->Header.m_version = value;
+      }
+      else if (!strcmp("nid_c", varname)) {
+        bm->Header.nid_c = value;
+      }
+      else if (!strcmp("q_link", varname)) {
+        bm->Header.q_link = value;
+      }
+      else if (!strcmp("q_media", varname)) {
+        bm->Header.q_media = value;
+      }
+      else if (!strcmp("q_updown", varname)) {
+        bm->Header.q_updown = value;
+      }
+      else {
+        snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid balise header variable: %s",varname);
+        free(arg);
+        return ES_TCL_ERROR;
+      }
+    }
+    free(arg);
+    return ES_OK;
+  }
+
+  snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid sub command '%s': expected 'header'",subcmd);
+  return ES_TCL_ERROR;
+}
+
+es_Status es_tcl_track_balise_addpkt(char* arg1, char* arg2, void (*appendResult)(char*,es_ClientData), es_ClientData data) {
+  MetadataElement_T_Common_Types_Pkg *hdr = NULL;
+
+  if(arg2==NULL) {
+    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"missing argument: packet data");
+    return ES_TCL_ERROR;
+  }
+
+  int i;
+  int spos = 0;
+  for(i=0; i<MAX_NUM_PACKETS; i++) {
+    hdr = &(es_tcl_track_balise_buf.Messages.PacketHeaders[i]);
+    if( ! hdr->valid )
+      break;
+    spos = hdr->endAddress + 1;
+  }
+
+  if(hdr->valid) {
+    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"cannot add balise packet: maximum number of packets reached");
+    return ES_TCL_ERROR;
+  }
+
+  hdr->nid_packet = atoi(arg1);
+  hdr->q_dir = (hdr->nid_packet / 100000) % 10;
+  hdr->valid = true;
+  hdr->startAddress = spos;
+  size_t len = strlen(arg2) / 2;
+  hdr->endAddress = spos + (len/4) - 1;
+  if(len > 500 ) {
+    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"cannot add balise packet: packet too big (%lu bytes)",len);
+    return ES_TCL_ERROR;
+  }
+  char buf[500];
+  es_hex_to_bytes(len,arg2,buf);
+  memcpy(&es_tcl_track_balise_buf.Messages.PacketData[spos],buf,len);
+
+  return ES_OK;
+}
+
+es_Status es_tcl_track_balise(char* subcmd, char* arg1, char* arg2, void (*appendResult)(char*,es_ClientData), es_ClientData data) {
   if(!strcmp("load",subcmd)) {
-    return es_tcl_track_balise_load_index(atoi(arg));
+    return es_tcl_track_balise_load_index(atoi(arg1));
   }
   if(!strcmp("raw",subcmd)) {
-    return es_tcl_track_balise_load_raw(arg);
+    return es_tcl_track_balise_load_raw(arg1);
   }
   if(!strcmp("get",subcmd)) {
-    return es_tcl_track_balise_get(arg,appendResult,data);
+    return es_tcl_track_balise_get(arg1,appendResult,data);
+  }
+  if(!strcmp("clear",subcmd)) {
+    memset(&es_tcl_track_balise_buf,0,es_tcl_track_bmsize);
+    return ES_OK;
+  }
+  if(!strcmp("addpkt",subcmd)) {
+    return es_tcl_track_balise_addpkt(arg1,arg2,appendResult,data);
+  }
+  if(!strcmp("set",subcmd)) {
+    return es_tcl_track_balise_set(arg1,arg2,appendResult,data);
   }
   snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"invalid sub command for 'track::balise': %s",subcmd);
   return ES_TCL_ERROR;
@@ -284,6 +399,45 @@ es_Status es_tcl_track_radio_set(char* subcmd, char* arg, void (*appendResult)(c
 }
 
 
+es_Status es_tcl_track_radio_addpkt(char* arg1, char* arg2, void (*appendResult)(char*,es_ClientData), es_ClientData data) {
+  MetadataElement_T_Common_Types_Pkg *hdr = NULL;
+
+  if(arg2==NULL) {
+    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"missing argument: packet data");
+    return ES_TCL_ERROR;
+  }
+
+  int i;
+  int spos = 0;
+  for(i=0; i<MAX_NUM_PACKETS; i++) {
+    hdr = &(es_tcl_track_radio_buf.Messages.PacketHeaders[i]);
+    if( ! hdr->valid )
+      break;
+    spos = hdr->endAddress + 1;
+  }
+
+  if(hdr->valid) {
+    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"cannot add radio packet: maximum number of packets reached");
+    return ES_TCL_ERROR;
+  }
+
+  hdr->nid_packet = atoi(arg1);
+  hdr->q_dir = (hdr->nid_packet / 100000) % 10;
+  hdr->valid = true;
+  hdr->startAddress = spos;
+  size_t len = strlen(arg2) / 2;
+  hdr->endAddress = spos + (len/4) - 1;
+  if(len > 500 ) {
+    snprintf(es_msg_buf,ES_MSG_BUF_SIZE,"cannot add radio packet: packet too big (%lu bytes)",len);
+    return ES_TCL_ERROR;
+  }
+  char buf[500];
+  es_hex_to_bytes(len,arg2,buf);
+  memcpy(&es_tcl_track_radio_buf.Messages.PacketData[spos],buf,len);
+
+  return ES_OK;
+}
+
 es_Status es_tcl_track_radio(char* subcmd, char* arg1, char* arg2, void (*appendResult)(char*,es_ClientData), es_ClientData data) {
   if(!strcmp("load",subcmd)) {
     return es_tcl_track_radio_load_index(atoi(arg1));
@@ -300,6 +454,9 @@ es_Status es_tcl_track_radio(char* subcmd, char* arg1, char* arg2, void (*append
   if(!strcmp("clear",subcmd)) {
     memset(&es_tcl_track_radio_buf,0,es_tcl_track_rmsize);
     return ES_OK;
+  }
+  if(!strcmp("addpkt",subcmd)) {
+    return es_tcl_track_radio_addpkt(arg1,arg2,appendResult,data);
   }
   if(!strcmp("header",subcmd)) {
     return ES_OK;

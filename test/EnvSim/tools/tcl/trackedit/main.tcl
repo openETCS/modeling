@@ -24,6 +24,8 @@ foreach s {
   view.tcl
   ctrl.tcl
   model.tcl
+  edit.tcl
+  ../lib/util.tcl
   ../lib/msgs.tcl
   ../lib/packets.tcl
   ../lib/ui.tcl

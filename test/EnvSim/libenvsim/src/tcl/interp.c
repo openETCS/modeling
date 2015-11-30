@@ -40,19 +40,23 @@ int es_jim_track_cmd(Jim_Interp *interp, int argc, Jim_Obj *const *argv) {
   }
   char *subcmd = GetString(argv[1]);
 
-  if(argc!=3) {
+  if(argc > 4) {
     WRONG_ARGS(interp,2,argv,"arg");
   }
-  char *arg = GetString(argv[2]);
+  char *arg1 = GetString(argv[2]);
+  char *arg2 = NULL;
+  if( argc==4 )
+    arg2 = GetString(argv[3]);
+
   if(!strcmp("track::balise",cmd)) {
-    if(es_tcl_track_balise(subcmd,arg,es_jim_append_result,NULL)) {
+    if(es_tcl_track_balise(subcmd,arg1,arg2,es_jim_append_result,NULL)) {
       RCERROR(interp,es_msg_buf);
     }
     return JIM_OK;
   }
   if(!strcmp("track::radio",cmd)) {
     if(!strcmp("raw",subcmd)) {
-      if(es_tcl_track_radio(subcmd,arg,NULL,es_jim_append_result,NULL)) {
+      if(es_tcl_track_radio(subcmd,arg1,arg2,es_jim_append_result,NULL)) {
         RCERROR(interp,es_msg_buf);
       }
       return JIM_OK;
@@ -60,7 +64,7 @@ int es_jim_track_cmd(Jim_Interp *interp, int argc, Jim_Obj *const *argv) {
     RCERROR(interp,"invalid subcommand for track::radio: %s",subcmd);
   }
   if(!strcmp("track::add",cmd)) {
-    if(es_tcl_track_add(subcmd,atof(arg))) {
+    if(es_tcl_track_add(subcmd,atof(arg1))) {
       RCERROR(interp,es_msg_buf);
     }
     return JIM_OK;

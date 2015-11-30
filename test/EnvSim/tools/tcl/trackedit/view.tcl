@@ -32,6 +32,17 @@ proc view::init {} {
   menu $m.file
   $m add cascade -menu $m.file -label File
   $m.file add command -label "Open Track" -command "view::openTrackDialog"
+  $m.file add command -label "Save Track" -command "view::saveTrackDialog"
+
+  # Edit
+  menu $m.edit
+  $m add cascade -menu $m.edit -label Edit
+  $m.edit add checkbutton -label "Editable" -variable edit::active -onvalue 1 -offvalue 0
+
+  # View
+  menu $m.view
+  $m add cascade -menu $m.view -label View
+  $m.view add command -label "Console" -command ctrl::showConsole
 
   # Tools
   #menu $m.tools
@@ -77,3 +88,13 @@ proc view::openTrackDialog {} {
 }
 
 
+proc view::saveTrackDialog {} {
+  set types {
+    {{openETCS Track Files} {.trk}}
+  }
+  set filename [tk_getSaveFile -filetypes $types]
+
+  if {$filename != ""} {
+    model::saveTrack "$filename"
+  }
+}

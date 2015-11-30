@@ -32,7 +32,11 @@ proc model::getMessageList {} {
     }
     lappend data $rec
   }
-  return [lsort -command model::compMsgInfo $data]
+  if [info exists data] {
+    return [lsort -command model::compMsgInfo $data]
+  } else {
+    return {}
+  }
 }
 
 
@@ -83,3 +87,33 @@ proc model::getTrainMessage {id} {
   puts $msg
   return $msg
 } 
+
+
+proc model::saveTrack {file} {
+  if {! [string match "*.trk" $file]} {
+    set file "$file.trk"
+  }
+  set fd [open "$file" w]
+
+  puts $fd "track::clear"
+
+  foreach msg [getMessageList] {
+    set pos [lindex $msg 2]
+    switch -regexp -matchvar tmp -- [lindex $msg 0] {
+      b(\\d+) { 
+        track::balise load [lindex $tmp 1]
+        puts $fd "track::balise raw [util::bytes2hex [track::balise get bytes]]"
+        puts $fd "track::add balise $pos"
+      }
+      r(\\d+) {
+        track::radio load [lindex $tmp 1]
+        puts $fd "track::radio raw [util::bytes2hex [track::radio get bytes]]"
+        puts $fd "track::add radio $pos"
+      }
+      t(\\d+) {
+      }
+    }
+  }
+
+  close $fd
+}
