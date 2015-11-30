@@ -83,7 +83,7 @@ int es_tcp_recvmsg(SOCKET sock, char *buf, size_t bufsize) {
   *p += rc;
   int cycle = 1;
   while(nleft>0) {
-    LOG_TRACE(tcp,"waiting for %d more bytes (loop: %d)",nleft,cycle);
+    LOG_INFO(tcp,"waiting for %d more bytes (loop: %d) ...",nleft,cycle);
 
     rc = recv(sock,p,nleft,0);
     if(rc < 0) {
@@ -93,6 +93,7 @@ int es_tcp_recvmsg(SOCKET sock, char *buf, size_t bufsize) {
     p += rc;
     cycle++;
   }
+  LOG_INFO(tcp,"...done");
   return len+8;
 
 }
