@@ -1,0 +1,1289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/5" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/3">
+	<declarations>
+		<Constant name="VmaxTrain">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4390/2039/D4/562763f237a8"/>
+			</pragmas>
+		</Constant>
+		<Type name="Ty_TDV">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="Type">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="char"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4397/2039/D4/562764311326"/>
+							</pragmas>
+						</Field>
+						<Field name="Distance">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="float64"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/439d/2039/D4/5627644a3c00"/>
+							</pragmas>
+						</Field>
+						<Field name="Value">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="float64"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/439e/2039/D4/5627644d6a97"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/4391/2039/D4/562763fa69cb"/>
+			</pragmas>
+		</Type>
+		<Type name="Ty_TDVAG">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="Type">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="char"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4c49/2039/D4/56278bab2dca"/>
+							</pragmas>
+						</Field>
+						<Field name="Distance">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="float64"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4398/2039/D4/562764371163"/>
+							</pragmas>
+						</Field>
+						<Field name="MaxSpeed">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="float64"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/439f/2039/D4/562764514f0"/>
+							</pragmas>
+						</Field>
+						<Field name="AdhNormal">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="float64"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/43a0/2039/D4/5627645667f8"/>
+							</pragmas>
+						</Field>
+						<Field name="Gradient">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="float64"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/43a1/2039/D4/5627645a7b53"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/4394/2039/D4/562764191783"/>
+			</pragmas>
+		</Type>
+		<Constant name="GdMin">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="float64"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4423/2039/D4/562765284908"/>
+			</pragmas>
+		</Constant>
+		<Constant name="DVAG_Init">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Ty_TDVAG"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- {Type : ' ', Distance : (-1.0), MaxSpeed : VmaxTrain, AdhNormal : 0.0, Gradient :... -->
+				<DataStructOp>
+					<data>
+						<LabelledExpression label="Type">
+							<flow>
+								<ConstValue value="' '"/>
+							</flow>
+						</LabelledExpression>
+						<LabelledExpression label="Distance">
+							<flow>
+								<ConstValue value="-1.0"/>
+							</flow>
+						</LabelledExpression>
+						<LabelledExpression label="MaxSpeed">
+							<flow>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="VmaxTrain"/>
+									</path>
+								</IdExpression>
+							</flow>
+						</LabelledExpression>
+						<LabelledExpression label="AdhNormal">
+							<flow>
+								<ConstValue value="0.0"/>
+							</flow>
+						</LabelledExpression>
+						<LabelledExpression label="Gradient">
+							<flow>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="GdMin"/>
+									</path>
+								</IdExpression>
+							</flow>
+						</LabelledExpression>
+					</data>
+				</DataStructOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/45b0/2039/D4/562767c522c8"/>
+			</pragmas>
+		</Constant>
+		<Constant name="Tab_Adh">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Ty_TDV"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="8"/>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{Type : 'A', Distance : 0.0, Value : 0.0}, {Type : 'A', Distance : 350.0, Value ... -->
+				<DataArrayOp>
+					<data>
+						<!-- {Type : 'A', Distance : 0.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'A'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'A', Distance : 350.0, Value : 1.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'A'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="350.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="1.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'A', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'A'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'A', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'A'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'A', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'A'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'A', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'A'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'A', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'A'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'A', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'A'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4766/2039/D4/562781f17509"/>
+			</pragmas>
+		</Constant>
+		<Constant name="Tab_Gd">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Ty_TDV"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="8"/>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{Type : 'G', Distance : 0.0, Value : 0.001}, {Type : 'G', Distance : 150.0, Valu... -->
+				<DataArrayOp>
+					<data>
+						<!-- {Type : 'G', Distance : 0.0, Value : 0.001} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'G'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.001"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'G', Distance : 150.0, Value : (-0.002)} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'G'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="150.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="-0.002"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'G', Distance : 670.0, Value : 0.003} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'G'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="670.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.003"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'G', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'G'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'G', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'G'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'G', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'G'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'G', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'G'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'G', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'G'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4770/2039/D4/56278229e71"/>
+			</pragmas>
+		</Constant>
+		<Constant name="Tab_SSP">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Ty_TDV"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="8"/>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{Type : 'V', Distance : 0.0, Value : 220.0 / 3.6}, {Type : 'V', Distance : 300.0... -->
+				<DataArrayOp>
+					<data>
+						<!-- {Type : 'V', Distance : 0.0, Value : 220.0 / 3.6} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<!-- 220.0 / 3.6 -->
+										<BinaryOp operator="/">
+											<operands>
+												<ConstValue value="220.0"/>
+												<ConstValue value="3.6"/>
+											</operands>
+										</BinaryOp>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'V', Distance : 300.0, Value : 250.0 / 3.6} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="300.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<!-- 250.0 / 3.6 -->
+										<BinaryOp operator="/">
+											<operands>
+												<ConstValue value="250.0"/>
+												<ConstValue value="3.6"/>
+											</operands>
+										</BinaryOp>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'V', Distance : 450.0, Value : 210.0 / 3.6} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="450.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<!-- 210.0 / 3.6 -->
+										<BinaryOp operator="/">
+											<operands>
+												<ConstValue value="210.0"/>
+												<ConstValue value="3.6"/>
+											</operands>
+										</BinaryOp>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'V', Distance : 610.0, Value : 230.0 / 3.6} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="610.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<!-- 230.0 / 3.6 -->
+										<BinaryOp operator="/">
+											<operands>
+												<ConstValue value="230.0"/>
+												<ConstValue value="3.6"/>
+											</operands>
+										</BinaryOp>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'V', Distance : 820.0, Value : 225.0 / 3.6} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="820.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<!-- 225.0 / 3.6 -->
+										<BinaryOp operator="/">
+											<operands>
+												<ConstValue value="225.0"/>
+												<ConstValue value="3.6"/>
+											</operands>
+										</BinaryOp>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'V', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'V', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'V', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/477a/2039/D4/56278241743e"/>
+			</pragmas>
+		</Constant>
+		<Constant name="Tab_MA">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Ty_TDV"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="2"/>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{Type : 'V', Distance : 800.0, Value : 30 / 3.6}, {Type : 'V', Distance : 840.0,... -->
+				<DataArrayOp>
+					<data>
+						<!-- {Type : 'V', Distance : 800.0, Value : 30 / 3.6} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="800.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<!-- 30 / 3.6 -->
+										<BinaryOp operator="/">
+											<operands>
+												<ConstValue value="30"/>
+												<ConstValue value="3.6"/>
+											</operands>
+										</BinaryOp>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'V', Distance : 840.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="840.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4784/2039/D4/56278264341e"/>
+			</pragmas>
+		</Constant>
+		<Constant name="Tab_TSR1">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Ty_TDV"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="2"/>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{Type : 'V', Distance : 550.0, Value : 50.0 / 3.6}, {Type : 'V', Distance : 700.... -->
+				<DataArrayOp>
+					<data>
+						<!-- {Type : 'V', Distance : 550.0, Value : 50.0 / 3.6} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="550.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<!-- 50.0 / 3.6 -->
+										<BinaryOp operator="/">
+											<operands>
+												<ConstValue value="50.0"/>
+												<ConstValue value="3.6"/>
+											</operands>
+										</BinaryOp>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'V', Distance : 700.0, Value : VmaxTrain} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="700.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="VmaxTrain"/>
+											</path>
+										</IdExpression>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/478e/2039/D4/5627827f208a"/>
+			</pragmas>
+		</Constant>
+		<Constant name="Tab_TSR2">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Ty_TDV"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="2"/>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{Type : 'V', Distance : 99999.0, Value : 0.0}, {Type : 'V', Distance : 99999.0, ... -->
+				<DataArrayOp>
+					<data>
+						<!-- {Type : 'V', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'V', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4798/2039/D4/562782963348"/>
+			</pragmas>
+		</Constant>
+		<Constant name="Tab_TSR3">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Ty_TDV"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="2"/>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{Type : 'V', Distance : 99999.0, Value : 0.0}, {Type : 'V', Distance : 99999.0, ... -->
+				<DataArrayOp>
+					<data>
+						<!-- {Type : 'V', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Type : 'V', Distance : 99999.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Type">
+									<flow>
+										<ConstValue value="'V'"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="99999.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/47d7/2039/D4/562782a448ca"/>
+			</pragmas>
+		</Constant>
+		<Type name="Ty_TDVAGN">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="Type">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="char"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4c40/2039/D4/56278b804025"/>
+							</pragmas>
+						</Field>
+						<Field name="Distance">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="float64"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4bdc/2039/D4/562789bfde"/>
+							</pragmas>
+						</Field>
+						<Field name="MaxSpeed">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="float64"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4be2/2039/D4/562789c34e1a"/>
+							</pragmas>
+						</Field>
+						<Field name="AdhNormal">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="float64"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4be8/2039/D4/562789c8762c"/>
+							</pragmas>
+						</Field>
+						<Field name="Gradient">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="float64"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4bfe/2039/D4/562789da5da7"/>
+							</pragmas>
+						</Field>
+						<Field name="Index">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4bff/2039/D4/562789dd4b8f"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/4bd5/2039/D4/562789a825f"/>
+			</pragmas>
+		</Type>
+		<Type name="Ty_TDVN">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="Type">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="char"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4c77/2039/D4/56278c4b5981"/>
+							</pragmas>
+						</Field>
+						<Field name="Distance">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="float64"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4c78/2039/D4/56278c4b79f0"/>
+							</pragmas>
+						</Field>
+						<Field name="Value">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="float64"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4c79/2039/D4/56278c4b754c"/>
+							</pragmas>
+						</Field>
+						<Field name="Index">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int32"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4c7a/2039/D4/56278c6739b0"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/4c76/2039/D4/56278c4b1e7b"/>
+			</pragmas>
+		</Type>
+		<Type name="Ty_DV">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="D">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="float64"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4e72/2039/D4/56279a583cb2"/>
+							</pragmas>
+						</Field>
+						<Field name="B">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4e7b/2039/D4/56279a656a6f"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/4e71/2039/D4/56279a487b83"/>
+			</pragmas>
+		</Type>
+		<Constant name="TDVN_default">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Ty_TDVN"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- {Type : 'V', Distance : (-1.0), Value : 0.0, Index : 0} -->
+				<DataStructOp>
+					<data>
+						<LabelledExpression label="Type">
+							<flow>
+								<ConstValue value="'V'"/>
+							</flow>
+						</LabelledExpression>
+						<LabelledExpression label="Distance">
+							<flow>
+								<ConstValue value="-1.0"/>
+							</flow>
+						</LabelledExpression>
+						<LabelledExpression label="Value">
+							<flow>
+								<ConstValue value="0.0"/>
+							</flow>
+						</LabelledExpression>
+						<LabelledExpression label="Index">
+							<flow>
+								<ConstValue value="0"/>
+							</flow>
+						</LabelledExpression>
+					</data>
+				</DataStructOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4ad2/6280/F1C/5627a57337a2"/>
+			</pragmas>
+		</Constant>
+	</declarations>
+</File>

@@ -1,0 +1,1657 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<File xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2">
+	<declarations>
+		<Constant name="Gravity">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="9.8"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3cde/7A9B/28C0/55795d0e5f85" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>= 9,81 m/s²</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="Alpha">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="1.08"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3d15/7A9B/28C0/55795ed65bde" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Rotating Mass Coeffficient</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="SB_Type">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="false"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3c99/5A4A/1ADC/557aac1a5206" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>????</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="Reason">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="1.06"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3cbd/13F/1EB8/557e84d126c4" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>= 1,06 = reason of geometric suite for SIZE</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="One">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="1"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3cbe/13F/1EB8/557e8511732f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>= 1</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="Zero">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/3ccf/13F/1EB8/557e8582352" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>= 0</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Type name="TY_SizePos">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="Size">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/7946/10BE/1CCC/55812b531969"/>
+							</pragmas>
+						</Field>
+						<Field name="Pos">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/794f/10BE/1CCC/55812b646a3a"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/7945/10BE/1CCC/55812b41389f"/>
+			</pragmas>
+		</Type>
+		<Constant name="Steps_Nb">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="100"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/7a06/10BE/1CCC/558134916a69" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Number of step max</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="Vmax">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="50.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/7a76/10BE/1CCC/558136ac32d0" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Vmax of train = 180 km/h</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="SSP_Max">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="8"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/7acc/10BE/1CCC/558138516e9d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Max number of SSP</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Type name="TY_DistValue">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="Distance">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/7b0f/10BE/1CCC/558139ee467f"/>
+							</pragmas>
+						</Field>
+						<Field name="Value">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/7b18/10BE/1CCC/558139fc518e"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/7b0e/10BE/1CCC/558139d03cf3"/>
+			</pragmas>
+		</Type>
+		<Constant name="V_ebi_min">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- 110.0 / 3.6 -->
+				<BinaryOp operator="/">
+					<operands>
+						<ConstValue value="110.0"/>
+						<ConstValue value="3.6"/>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/7e4e/10BE/1CCC/5581428924bb" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Vmin related to dV_ebi_min</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="V_ebi_max">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- 210.0 / 3.6 -->
+				<BinaryOp operator="/">
+					<operands>
+						<ConstValue value="210.0"/>
+						<ConstValue value="3.6"/>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/7e6b/10BE/1CCC/558143876998" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Vmax related to dV_ebi_max</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="dV_ebi_max">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- 15.0 / 3.6 -->
+				<BinaryOp operator="/">
+					<operands>
+						<ConstValue value="15.0"/>
+						<ConstValue value="3.6"/>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/7e79/10BE/1CCC/55814392b88" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Maximum of dV for EB curve</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="dV_ebi_min">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- 7.5 / 3.6 -->
+				<BinaryOp operator="/">
+					<operands>
+						<ConstValue value="7.5"/>
+						<ConstValue value="3.6"/>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/7e87/10BE/1CCC/55814394571d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Minimum of dV for EB curve</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="dV_ebi_Slope">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- (dV_ebi_max - dV_ebi_min) / (V_ebi_max - V_ebi_min) -->
+				<BinaryOp operator="/">
+					<operands>
+						<!-- (dV_ebi_max - dV_ebi_min) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="dV_ebi_max"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="dV_ebi_min"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</BinaryOp>
+						<!-- (V_ebi_max - V_ebi_min) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="V_ebi_max"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="V_ebi_min"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</BinaryOp>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/7f76/10BE/1CCC/558144c712fa" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Slope of dV for EB curve</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="Grad_Nb">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="8"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/800e/10BE/1CCC/558158d47510" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Dimension of Vector &quot;Grad&quot;</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Type name="TY_Adh">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="Distance">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/80d6/10BE/1CCC/5581597810a9"/>
+							</pragmas>
+						</Field>
+						<Field name="Adh">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/80df/10BE/1CCC/5581598d42c1"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/80d5/10BE/1CCC/558159692834"/>
+			</pragmas>
+		</Type>
+		<Constant name="Adh_Nb">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="2"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/80f5/10BE/1CCC/558159ad1c66" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Dimension of Vector &quot;Adh&quot;</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Type name="TY_EB_Type">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="EB_normal">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/8197/10BE/1CCC/55815c106d0e"/>
+							</pragmas>
+						</Field>
+						<Field name="EB_reduit">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/81a0/10BE/1CCC/55815c2a7741"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/8195/10BE/1CCC/55815bcd54a5"/>
+			</pragmas>
+		</Type>
+		<Constant name="EB_1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TY_EB_Type"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- {EB_normal : 0.85, EB_reduit : 0.7} -->
+				<DataStructOp>
+					<data>
+						<LabelledExpression label="EB_normal">
+							<flow>
+								<ConstValue value="0.85"/>
+							</flow>
+						</LabelledExpression>
+						<LabelledExpression label="EB_reduit">
+							<flow>
+								<ConstValue value="0.7"/>
+							</flow>
+						</LabelledExpression>
+					</data>
+				</DataStructOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/81a9/10BE/1CCC/55815c3b793d" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Input Variable &quot;Train1&quot; for test</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="EB_2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TY_EB_Type"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- {EB_normal : 0.85, EB_reduit : 0.7} -->
+				<DataStructOp>
+					<data>
+						<LabelledExpression label="EB_normal">
+							<flow>
+								<ConstValue value="0.85"/>
+							</flow>
+						</LabelledExpression>
+						<LabelledExpression label="EB_reduit">
+							<flow>
+								<ConstValue value="0.7"/>
+							</flow>
+						</LabelledExpression>
+					</data>
+				</DataStructOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/81d9/10BE/1CCC/55815c552e88" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Input Variable &quot;Train2&quot; for test</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="EB_3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TY_EB_Type"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- {EB_normal : 0.85, EB_reduit : 0.7} -->
+				<DataStructOp>
+					<data>
+						<LabelledExpression label="EB_normal">
+							<flow>
+								<ConstValue value="0.85"/>
+							</flow>
+						</LabelledExpression>
+						<LabelledExpression label="EB_reduit">
+							<flow>
+								<ConstValue value="0.7"/>
+							</flow>
+						</LabelledExpression>
+					</data>
+				</DataStructOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/81f0/10BE/1CCC/55815c557fd6" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Input Variable &quot;Train3&quot; for test</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="SSP_ForTest">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TY_DistValue"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="SSP_Max"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{Distance : 0.0, Value : 15.0}, {Distance : 6.0, Value : 11.0}, {Distance : (-1.... -->
+				<DataArrayOp>
+					<data>
+						<!-- {Distance : 0.0, Value : 15.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="15.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : 6.0, Value : 11.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="6.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="11.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : (-1.0), Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="-1.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : (-1.0), Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="-1.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : (-1.0), Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="-1.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : (-1.0), Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="-1.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : (-1.0), Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="-1.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : (-1.0), Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="-1.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/410d/571A/288C/55817413202b" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Input Vector &quot;SSP&quot; for test</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="SSP_Nb">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="4"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4154/571A/288C/55817506302a" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>= SSP_Max or SSP dimension</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="TSR1">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TY_DistValue"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="2"/>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{Distance : 11.0, Value : 5.0}, {Distance : 13.0, Value : 20.0}] -->
+				<DataArrayOp>
+					<data>
+						<!-- {Distance : 11.0, Value : 5.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="11.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="5.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : 13.0, Value : 20.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="13.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="20.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4203/571A/288C/55817b665561" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Input Variable &quot;TSR1&quot; for test</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="MA">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TY_DistValue"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="2"/>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{Distance : 211.74, Value : 8.0}, {Distance : 289.34, Value : 0.0}] -->
+				<DataArrayOp>
+					<data>
+						<!-- {Distance : 211.74, Value : 8.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="211.74"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="8.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : 289.34, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="289.34"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/421d/571A/288C/55817b913d34" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Input Vector &quot;MA&quot; for test</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="V0">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="10.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4241/3F55/38C0/558a715c6c3f" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Speed threshold to apply kp0</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="V1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="20.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4257/3F55/38C0/558a71693392" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Speed threshold to apply kp1</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="V2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="30.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4265/3F55/38C0/558a716916fa" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Speed threshold to apply kp2</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="kp0">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="1.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/429a/3F55/38C0/558a71ee50a8" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>EB coeff correction below V0 </comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="kp1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0.9"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/42b0/3F55/38C0/558a720464ad" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>EB coeff correction below V1</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="kp2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0.8"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/42be/3F55/38C0/558a72056a58" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>EB coeff correction below V2</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="kp3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="0.7"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/42cc/3F55/38C0/558a72095149" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>EB coeff correction over V2</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="Grad">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TY_DistValue"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Grad_Nb"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{Distance : 0.0, Value : 0.127}, {Distance : 10.0, Value : 0.12}, {Distance : 20... -->
+				<DataArrayOp>
+					<data>
+						<!-- {Distance : 0.0, Value : 0.127} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.127"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : 10.0, Value : 0.12} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="10.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.12"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : 20.0, Value : 0.127} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="20.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.127"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : 1000.0, Value : 0.127} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="1000.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.127"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : 0.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : 0.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : 0.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : 0.0, Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/44a4/3F55/38C0/558a77081faf" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Input Vector &quot;Grad&quot; for test</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="Adh">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TY_Adh"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="Adh_Nb"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{Distance : 10.0, Adh : false}, {Distance : 15.0, Adh : true}] -->
+				<DataArrayOp>
+					<data>
+						<!-- {Distance : 10.0, Adh : false} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="10.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Adh">
+									<flow>
+										<ConstValue value="false"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : 15.0, Adh : true} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="15.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Adh">
+									<flow>
+										<ConstValue value="true"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/44e6/3F55/38C0/558a78317782" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Input Vector &quot;Adh&quot; for test</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="TSR2">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TY_DistValue"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="2"/>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{Distance : (-1.0), Value : 0.0}, {Distance : (-1.0), Value : 0.0}] -->
+				<DataArrayOp>
+					<data>
+						<!-- {Distance : (-1.0), Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="-1.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : (-1.0), Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="-1.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4610/3F55/38C0/558a93452c11" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Input Variable &quot;TSR2&quot; for test</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="TSR3">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TY_DistValue"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="2"/>
+					</size>
+				</Table>
+			</type>
+			<value>
+				<!-- [{Distance : (-1.0), Value : 0.0}, {Distance : (-1.0), Value : 0.0}] -->
+				<DataArrayOp>
+					<data>
+						<!-- {Distance : (-1.0), Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="-1.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+						<!-- {Distance : (-1.0), Value : 0.0} -->
+						<DataStructOp>
+							<data>
+								<LabelledExpression label="Distance">
+									<flow>
+										<ConstValue value="-1.0"/>
+									</flow>
+								</LabelledExpression>
+								<LabelledExpression label="Value">
+									<flow>
+										<ConstValue value="0.0"/>
+									</flow>
+								</LabelledExpression>
+							</data>
+						</DataStructOp>
+					</data>
+				</DataArrayOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/463f/3F55/38C0/558a93461661" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>Input Variable &quot;TSR3&quot; for test</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="V_NVREL">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<ConstValue value="8.0"/>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/43e7/217D/38B4/558c0e931aa1" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>V_Release = 8 m/s</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="dV_sbi_max">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- 10.0 / 3.6 -->
+				<BinaryOp operator="/">
+					<operands>
+						<ConstValue value="10.0"/>
+						<ConstValue value="3.6"/>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/43e1/3754/3BF8/558d3bdb2193"/>
+			</pragmas>
+		</Constant>
+		<Constant name="dV_sbi_min">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- 5.5 / 3.6 -->
+				<BinaryOp operator="/">
+					<operands>
+						<ConstValue value="5.5"/>
+						<ConstValue value="3.6"/>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/43e2/3754/3BF8/558d3bf84dbd"/>
+			</pragmas>
+		</Constant>
+		<Constant name="dV_sbi_Slope">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- (dV_sbi_max - dV_sbi_min) / (V_sbi_max - V_sbi_min) -->
+				<BinaryOp operator="/">
+					<operands>
+						<!-- (dV_sbi_max - dV_sbi_min) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="dV_sbi_max"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="dV_sbi_min"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</BinaryOp>
+						<!-- (V_sbi_max - V_sbi_min) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="V_sbi_max"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="V_sbi_min"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</BinaryOp>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/43e3/3754/3BF8/558d3c0778ba"/>
+			</pragmas>
+		</Constant>
+		<Constant name="dV_warning_Slope">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- (dV_warning_max - dV_warning_min) / (V_warning_max - V_warning_min) -->
+				<BinaryOp operator="/">
+					<operands>
+						<!-- (dV_warning_max - dV_warning_min) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="dV_warning_max"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="dV_warning_min"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</BinaryOp>
+						<!-- (V_warning_max - V_warning_min) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="V_warning_max"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="V_warning_min"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</BinaryOp>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/43e4/3754/3BF8/558d3c192a42"/>
+			</pragmas>
+		</Constant>
+		<Constant name="dV_warning_max">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- 5.0 / 3.6 -->
+				<BinaryOp operator="/">
+					<operands>
+						<ConstValue value="5.0"/>
+						<ConstValue value="3.6"/>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/43e5/3754/3BF8/558d3c237b62"/>
+			</pragmas>
+		</Constant>
+		<Constant name="dV_warning_min">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- 4.0 / 3.6 -->
+				<BinaryOp operator="/">
+					<operands>
+						<ConstValue value="4.0"/>
+						<ConstValue value="3.6"/>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/43e6/3754/3BF8/558d3c2e1f4d"/>
+			</pragmas>
+		</Constant>
+		<Constant name="V_sbi_max">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- 210.0 / 3.6 -->
+				<BinaryOp operator="/">
+					<operands>
+						<ConstValue value="210.0"/>
+						<ConstValue value="3.6"/>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4427/2505/118C/558d4c6f4246"/>
+			</pragmas>
+		</Constant>
+		<Constant name="V_sbi_min">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- 110.0 / 3.6 -->
+				<BinaryOp operator="/">
+					<operands>
+						<ConstValue value="110.0"/>
+						<ConstValue value="3.6"/>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4438/2505/118C/558d4d2d6808"/>
+			</pragmas>
+		</Constant>
+		<Constant name="V_warning_max">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- 140.0 / 3.6 -->
+				<BinaryOp operator="/">
+					<operands>
+						<ConstValue value="140.0"/>
+						<ConstValue value="3.6"/>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4451/2505/118C/558d4dc86318" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+					<comment>National constant=8km/h</comment>
+				</ed:Constant>
+			</pragmas>
+		</Constant>
+		<Constant name="V_warning_min">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="real"/>
+					</type>
+				</NamedType>
+			</type>
+			<value>
+				<!-- 8.0 / 3.6 -->
+				<BinaryOp operator="/">
+					<operands>
+						<ConstValue value="8.0"/>
+						<ConstValue value="3.6"/>
+					</operands>
+				</BinaryOp>
+			</value>
+			<pragmas>
+				<ed:Constant oid="!ed/4452/2505/118C/558d4dff7ef8"/>
+			</pragmas>
+		</Constant>
+		<Type name="TY_Target">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="Speed">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/45ca/1621/F4C/559ce9e24d6"/>
+							</pragmas>
+						</Field>
+						<Field name="Position">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="real"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/45d3/1621/F4C/559ce9f15dbc"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/45c9/1621/F4C/559ce9d5243f"/>
+			</pragmas>
+		</Type>
+		<Type name="TY_Mode_Target">
+			<definition>
+				<Struct>
+					<fields>
+						<Field name="C_Mode">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/4705/1621/F4C/559cece83cb1"/>
+							</pragmas>
+						</Field>
+						<Field name="Target">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TY_Target"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Field oid="!ed/470e/1621/F4C/559cecf75888"/>
+							</pragmas>
+						</Field>
+					</fields>
+				</Struct>
+			</definition>
+			<pragmas>
+				<ed:Type oid="!ed/4704/1621/F4C/559cecd5435f"/>
+			</pragmas>
+		</Type>
+	</declarations>
+</File>

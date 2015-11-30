@@ -1,0 +1,309 @@
+\documentclass[oneside]{template/openetcs_report}
+% Use the option "nocc" if the document is not licensed under Creative Commons
+%\documentclass[nocc]{template/openetcs_article}
+\usepackage{lipsum,url}
+\usepackage{supertabular}
+\usepackage{longtable,tabu,booktabs}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{color, colortbl}
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue,filecolor=blue]{hyperref}
+\usepackage{listings}
+\usepackage{makeidx}
+\definecolor{gray}{rgb}{0.8,0.8,0.8}
+\usepackage{lineno}
+\usepackage{float}
+\usepackage[color=green!40,textsize=footnotesize,textwidth=2.8cm]{todonotes}
+%\usepackage{pdflscape}
+\usepackage[acronym, % list of acronyms
+ %section, % add the glossary to the table of content
+ %description, % acronyms have a user-supplied description,
+ %style=longheader, % table style
+ %nonumberlist no page number toc
+ ]{glossaries}
+%\usepackage{glossaries}
+ 
+% make lists more compact with enumitem package (spacings below are set globally)
+\usepackage{enumitem}
+\setlist[description]{itemsep=1ex,topsep=1ex,partopsep=0.0ex,parsep=0.0ex}
+\setlist[itemize]{itemsep=1ex,topsep=1ex,partopsep=0.0ex,parsep=0.0ex}
+\setlist[enumerate]{itemsep=1ex,topsep=1ex,partopsep=0.0ex,parsep=0.0ex}
+\graphicspath{{./template/}{.}{./bilder/}{./bilders/}}
+
+%\input{./glossary/glossary_fc2.tex}
+%\renewcommand*{\glossaryname}{Glossary}
+% create glossary
+\renewcommand*{\glspostdescription}{} %Deactivate point at the end of every description
+% \newacronym{123}{123}{1234567890}
+\newcommand*{\myglossaryindent}{0.65cm}        
+\newcommand*{\myglsdescwidth}{10cm}                    
+\newglossarystyle{altlong4colwithindent}
+{
+	\glossarystyle{altlong4col}
+	\renewenvironment{theglossary}
+	{\begin{longtable}[l]{@{\hspace{\myglossaryindent}}lp{\myglsdescwidth}lp{\glspagelistwidth}@{}}}
+	{\end{longtable}}
+}
+\makeglossaries
+\input{./glossary/glossary_fc2.tex}
+%Glossary terms
+%\loadglsentries{./glossary/OpenETCS-Latex-Glossary}
+
+%\makeindex
+
+\begin{document}
+\frontmatter
+\project{openETCS}
+
+\newcommand{\define}[1]{\index{#1}\emph{#1}}
+
+
+
+%Please do not change anything above this line
+%============================
+
+% The document metadata is defined below
+
+%assign a report number here
+\reportnum{OETCS/WP3/D3.7.0}
+
+%define your workpackage here
+\wp{Work Package 3: ``Modeling''}
+
+%set a title here
+\title{openETCS System Architecture requirements specification}
+
+%set a subtitle here
+\subtitle{Hardware Component requirements specification}
+
+%set the date of the report here
+\date{November 2015}
+
+
+%document approval
+%define the name and affiliation of the people involved in the documents approbation here
+\creatorname{Fausto Cochetti}
+\creatoraffil{Alstom}
+
+\techassessorname{Christian Giraud}
+\techassessoraffil{Alstom}
+
+\qualityassessorname{Marc Behrens}
+\qualityassessoraffil{DLR}
+
+\approvalname{Jacques Pore}
+\approvalaffil{Alstom}
+
+
+%define a list of authors and their affiliation here
+
+\author{Christian Giraud, Fausto Cochetti}
+\affiliation{Alstom}
+
+
+% define the coverart
+\coverart[width=350pt]{openETCS_EUPL}
+
+\newpage
+%define the type of report
+\reporttype{Architecture and Design Specification}
+
+
+\begin{abstract}
+%define an abstract here
+
+The aim of this document is to introduce a \emph{physical system perspective} matching with the Open ETCS program. 
+
+The openETCS modeling work-package does not include the development of a specific target architecture to be integrated with the train  on-board system neither does it contemplate the model of such an architecture. The functional model designed in the Scade environment does refer to an \gls{API} to reference system resources and interface management. This approach based on an industrial proven specification \cite{API-req-2}\cite{alstom-api-app-layer}\cite{alstom-api-data-dict} provides a level of abstraction from proprietary architectures. The \gls{API} gives a clear insight on the platform constraints, such as dynamic aspects and timing management, principles of separation of functions and event interrupt concepts, when relevant for the application. 
+
+This document describes a generic hardware decomposition aimed to support the designer with a system perspective on the train-borne subsystem applied for the ERTMS/ETCS functionality. 
+
+The design paradigms for a suitable physical on-board system architecture remain open and need to be integrated with specific design choices. The principles refer to a proven industrial platform and to the openETCS on-board functional model. The concepts are described at a sufficiently high level so that they are easily customizable for a specific as well as for a generic not relating to any specific proprietary system design. 
+
+The hardware abstraction in the software system is obtained by referencing to a generic \gls{API}. The requirements of this \gls{API} are described in a separate document delivered by Alstom \cite{alstom-api}. 
+
+The functional scope of the openETCS OBU model is documented in D3.5.x, where x denotes the iteration. 
+
+\end{abstract}
+
+%=============================
+\maketitle
+
+%Modification history
+%if you do not need a modification history table for your document simply comment out the eight lines below
+%=============================
+
+
+\chapter*{Modification History}
+\tablefirsthead{
+\toprule
+%\rowcolor{gray} 
+Version & Sections & Modification / Description & Author & Date \\\midrule}
+\begin{supertabular}{ m{1.2cm}  m{1.5cm}  m{5.0cm}  m{3cm}  m{2.5cm} }
+0.1 & all & Initial release of the document & Fausto Cochetti& 30.11.2015 \\\midrule
+0.1.l & appendix  & technical compendium  &  & 30.11.2015  \\\bottomrule
+
+\end{supertabular}
+
+% list subsubsections in table of contents
+%\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}   
+\setcounter{tocdepth}{3}   
+
+\pdfbookmark{\contentsname}{toc}
+\tableofcontents
+\listoffigures
+%\listoftodos
+\newpage
+%=============================
+
+%Uncomment the next line if you need line numbers for tracebility when the document is in review
+%\linenumbers
+%=============================
+
+
+% The actual document starts below this line
+%=============================
+
+
+\mainmatter
+
+\setlength{\topsep}{0.5ex}
+\setlength{\itemsep}{0ex}
+\setlength{\parsep}{0ex}
+% \printglossaries
+
+\input{sections/introduction.tex}
+\chapter{Design principles}
+\section{Use of Scade modeling tool}
+
+While the use of the modeling tool provides a strong support for the coherent application of an uniform coding standard, it introduces some limits and constraint on the use of operators and data structures. This issues should be addressed at an early stage of design in order to provide best performing result from the code generator.
+
+A specificity  of the \gls{EVC} system is the coexistence of quite linear complexity as e.g. the one found when  managing level and mode transition, together with high demanding algorithms like the ones found when approaching the braking curves in target supervision. The first type of function can be directly derived from requirements and can be coded without any additional interpretation or design criteria. This applies in the same way to other safety related systems like e.g. Interlocking applications, where functional (safety) rules are assessed and fixed and can be applied according to the specific configuration. The second type of functions need to be accurately analyzed in order to provide best performing results and this implies among others to provide suitable operators and data structures that allow fastest results lowest memory allocation and simplest rules.
+
+
+\section{System Time and Time Stamps}
+Basically a Scade model is based on the cycle number as its main timing source.
+If the model will not be clocked with an equidistant period, a different time source (actual system time) is
+needed as an input. The following rules shall apply for the model in such case:
+
+\begin{itemize}
+\item The model must not rely on a fixed period between the model clocks. Timing functions based on clock cycle counting are not feasible.
+\item In a first phase the model is allowed to use the actual system time for those calculations if this is not deductible form event time stamps.
+\item The Basic Runtime System will keep the actual system time applied to the model as an input unchanged within the same Basic Runtime System cycle.
+\item The actual system time will be strictly monotonic increasing between two subsequent Basic Runtime
+System cycles 
+\item The interval between two subsequent Basic Runtime System cycles should not be critical for the application. Measures done on the partial Scade model indicate that a cycle of 1 ms could be achieved.
+\item Practically, the actual system time could be used in the model for the implementation of time intervals.
+\end{itemize}
+
+\section{Time stamp on the physical System}
+
+In addition to the "cyclic execution" principle, the application must take into account that the various peripheral boards/sub-systems in charge of the input/output treatment are not synchronized and that their performances are not identical, nor constant in time;
+\begin{itemize}
+	\item e.g. time delay due to filtering and smoothing of analog data such as MMU sensors, train digital inputs, ...
+	\item e.g. variable propagation delay on bus systems depending on performance (chained treatments) and arbitration criteria.
+\end{itemize}
+Therefore,
+\begin{itemize}
+	\item The input data present at the interface of the Onboard ETCS/\gls{EVC} will be provided with a variable delay to the application (fluctuation of delay duration, jitter);
+	\item The application output data are provided to the \gls{EVC}/Onboard ETCS interface with a variable delay (non deterministic delay, jitter).
+\end{itemize}
+For each input and for each output data, a $T\_{min}$ (minimum delay of \gls{EVC} input/output treatment) and a $T\_{max}$ (maximum delay of \gls{EVC} input/output treatment) will be defined as shown on the diagrams in figure \ref{fig:timestamp} :
+\begin{figure}[!ht]
+	\begin{tabular}{c}
+		\includegraphics[angle=-0,width=.7\textwidth]{api_2a.png}\\
+		\hline\\
+		\includegraphics[angle=-0,width=.7\textwidth]{api_1a.png}
+	\end{tabular}
+	\caption{\emph{Managing delays with time stamps}}
+	\label {fig:timestamp}
+\end{figure}
+
+Notice that when the input data are time-stamped at the moment they are produced (by the source), the receiving applications may apply a correction in order to manage the delay of transmission of the data; assuming that the clocks of the various calculators are synchronized (e.g. the accuracy of the clock synchronization within
+the Model \gls{EVC} is {1ms}).
+
+\chapter{OB subsystem context}
+\begin{figure}[H]
+	\center
+	\includegraphics[width=0.7\textwidth]{API_sketch_v1.pdf}
+	\caption{OB context diagram}\label{API_sketch}
+\end{figure}
+
+
+\chapter{Elements of the ETCS OB Architecture}
+
+The ERTMS/ETCS OB sub-system comprises at least following equipment’s:
+
+\begin{figure}[H]
+	\center
+	\includegraphics[width=\textwidth]{Arc_over_v1.pdf}
+	\caption{OB architecture Overview}\label{Arc_over}
+\end{figure}
+
+The ETCS cubicle is realized as one mechanical assembly with a standard housing IP20 and will include :
+\begin{itemize} 
+	\item the \gls{EVC} (SIL4 equipment);
+	\item an internal recorder memory for Juridical Data and diagnostic data;
+	\item one GSM-R Data Radio module for GSM-R communication with trackside
+	\item relaying devices (contactors, circuit-breakers, relays);
+	\item fan modules for the cooling function ;
+	\item one accelerometer for the speed and distance measurement; 
+	\item a Cold Movement Detector to detect train movements when ETCS is powered off.
+\end{itemize}
+The \gls{EVC} includes among others the \gls{MMU} providing the odometry function. The odometry implies a complex vital function non mapped on specific Unisig requirements.
+
+Other components installed elsewhere are listed below:
+\begin{itemize}
+\item  The Isolation switch aims to isolate the ETCS OB sub-system from the train braking and traction interfaces when
+ETCS OB is excluded; associated bypass and isolation circuitry is installed to perform the isolation function.
+An Isolation indication must be visible to the driver in case of ETCS OB isolation.
+
+\item Reset button
+A periodical reset of the ETCS OB sub-system is necessary in order to ensure its required level of availability and safety.
+
+\item One ETCS \gls{DMI}  (including display, loudspeaker and associated acknowledgement button) is installed in each cab. Other components (\gls{EVC}, odometry, radio, ...) can be unique for both cabs or can be installed separately for each cab"
+
+
+\item The Eurobalise/Euroloop antenna is installed for Eurobalise and Euroloop reception.
+
+\item A radar device is installed for the speed and distance measurement.
+
+\item Wheel Sensors are installed for the speed and distance measurement.
+
+\item Redundant antennas are installed for GSM-R data communication and GPS signal acquisition.
+\end{itemize}
+
+A redundant network (bus, switch) is used for the communication between \gls{EVC}, \gls{DMI}(s), \gls{TRU}, and the other OB subsystems.
+
+Train Recorder Unit
+The Train Recorder Unit shall record information from the ETCS OB (diagnostic and juridical data) and from the train interfaces. The GPS signal (from a GSM-R/GPS combined antenna) will be received for the data time stamping. 
+The TRU will also compute and record the train speed. 
+The \Gls{TCMS}  will exchange inputs/outputs information with the \Gls{OB} ETCS OB subsystem
+
+The \gls{TCMS} will manage the \gls{TCMS} \gls{DMI}s and the data communication at train level (between the different vehicles in a multiple configuration). As a remark the \gls{TCMS} and voice radio systems are not part of the ERTMS/ETCS system.
+
+Braking electro-valves, train devices The braking and traction devices commanded by the ETC OB (emergency brakes, service brake and traction cut-off) are part of the Rolling Stock sub-system.
+
+%technical compendium on Odo
+%\input{sections/appendix.tex}
+
+%\chapter{Bibliography}
+\bibliographystyle{unsrt}
+\bibliography{architecture}
+
+\clearpage
+%\chapter{Glossary}
+%\addcontentsline{toc}{chapter}{Index}
+%\printindex
+% fill .glo file
+%\glsaddall
+% !!!! use tools glossary (F10)
+\printglossary[type=\acronymtype, title=Acronyms, nonumberlist=true, style=altlong4colwithindent]
+%\printglossary
+%\printglossaries
+%===================================================
+%Do NOT change anything below this line
+
+\end{document}
