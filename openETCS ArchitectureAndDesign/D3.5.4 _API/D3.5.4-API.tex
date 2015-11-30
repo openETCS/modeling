@@ -282,19 +282,18 @@ The conversion routines are responsible for checking the data received is valid.
 
 The version management function is part of the message handling. This implies that conversions from other physical or logical layouts of messages are mapped onto a generic format used in the EVC. Information about the origin version of the messages is part of the messages.
  
-The executable model is called in cycles. In the cycle 
+The executable model is called in cycles. Cycle time is set to 10 msec. In the cycle:
 \begin{itemize}
 \item First the received input messages are decoded;
 \item The input data is passed to the executable model in a predefined order. The order is defined by the generated Scade model.
-\item Output is encoded according to the SRS and passed to the  buffers to the units.
-\item Cycle time is set to 10 msec.
+\item Output of the executable model is encoded according to the SRS and passed to the buffers of the units.
 \end{itemize}
 \end{itemize}
 
 
 \chapter{Definition of the openETCS API}
 
-This section gives a short introduction of the openETCS EVC model interfaces. In addition, it gives an link to the ports of the EVC Scade model and the defining interface types. All descriptions refer to the evc- Scade model which is located in this part of the repository:
+This section gives a short introduction of the openETCS EVC model interfaces. In addition, it gives an link to the ports of the EVC Scade model and the defining interface types. All descriptions refer to the EVC - Scade model which is located in this part of the repository:
 
 \url{https://github.com/openETCS/modeling/blob/master/model/Scade/System/OBU_PreIntegrations/openETCS_EVC/openETCS_EVC.etp}
 
@@ -307,7 +306,7 @@ This section gives a short introduction of the openETCS EVC model interfaces. In
 \label{fig:apiHighLevel}
 \end{figure}
 
-This part describes the interfaces resulting from BTM and RTM modules. In the Basic Software described above the following layers are defined for preparing received messages and telegrams for processing in the evc resp. for preparing messages to the RBC for sending.
+This part describes the interfaces resulting from BTM and RTM modules. In the Basic Software described above the following layers are defined for preparing received messages and telegrams for processing in the EVC resp. for preparing messages to the RBC for sending.
 
 \subsection{Physical Layer: Bitwalker}
 According to the SRS, messages and telegrams of the protocol between track (Balises and RBC) and train are defined on a densely packed and for transport purposes optimised structure. Information is passed in streams of bytes hiding the details. 
@@ -335,11 +334,11 @@ Having passed Bitwalker and Bytewalker the information coming from RTM and BTM i
 Input: API\_fromTrack\\
 Type: API\_Msg\_Pkg::API\_TrackSideInput\_T
 
-Another interface is defined to give the status of the radio mobiles known to the evc:\\
+Another interface is defined to give the status of the radio mobiles known to the EVC:\\
 Input: API\_mobileHWStatus\\
 Type: MoRC\_Pck::mobileHWStatus\_Type\_T
 
-In the output direction information is passed from the evc model to the RTM.
+In the output direction information is passed from the EVC model to the RTM.
 
 Output: API\_toRBC\\
 Type: TM\_radio\_messages::M\_TrainTrack\_Message\_T
@@ -368,7 +367,7 @@ Time”), then must increase at each cycle (unit = 1 msec), until it reaches its
 limitation = 24 hours)
 
 Input: API\_SystemTime\\
-Type: Obu\_BasicTypes_Pkg::T\_internal\_Type
+Type: Obu\_BasicTypes\_Pkg::T\_internal\_Type
 
 \begin{itemize}
 \item TIME (T\_internal\_Type, 32-bit INT)\\
@@ -402,7 +401,7 @@ Min and max value give the interval where the train is to be expected. The bound
 \item speed (V\_internal\_Type) [cm/sec]
 General Speed of the train
 \item acceleration (A\_internal\_Type)[0.01 m/s2],\\
-Standardized acceleration type for all internal calculations : in 
+Standardized acceleration type for all internal calculations
 \item motionState (Enumeration)\\
 indicates whether the train is in motion or in no motion
 \item motionDirection (Enumeration)\\
