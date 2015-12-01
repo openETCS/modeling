@@ -7,8 +7,7 @@ edit::addBG 5 1 900 0 {nid_packet 45 q_dir 1 nid_nm 2114079}
 edit::addBG 10 1 901 1 {nid_packet 42 q_dir 1 q_rbc 1 nid_c 426 nid_rbc 1 nid_radio 500 q_sleepsession 0}
 
 # BG 902 (conditional leveltrans + national values)
-#edit::addBG 15 1 902 1 {nid_packet 46 q_dir 1 n_iter 1 m_leveltr(0) 1 nid_ntc(0) 1 m_leveltr(1) 3} {
-edit::addBG 15 1 902 1 {
+edit::addBG 15 1 902 1 {nid_packet 46 q_dir 1 n_iter 1 m_leveltr(0) 1 nid_ntc(0) 1 m_leveltr(1) 3} {
   nid_packet     3
   q_dir          1
   q_scale        1

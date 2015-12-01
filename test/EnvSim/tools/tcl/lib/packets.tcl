@@ -319,8 +319,8 @@ proc pkts::readP041 {data} {
     incr npos
     if {$m_leveltr==1} {
       dict append d "nid_ntc($i)" [lindex $data $npos]
-      incr npos
     }
+    incr npos
     dict append d "l_ackleveltr($i)" [lindex $data $npos]
     incr npos
   }
@@ -642,6 +642,8 @@ proc pkts::encodeP041 {values} {
     lappend pkt $m_leveltr
     if {$m_leveltr == 1} {
       lappend pkt [dict get $values nid_ntc($i)]
+    } else {
+      lappend pkt 0
     }
     lappend pkt [dict get $values l_ackleveltr($i)]
   }
