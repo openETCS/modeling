@@ -95,7 +95,7 @@ proc pkts::binToIntList {offset nint data} {
 
 proc pkts::readBinPkt {nid offset nint data} {
   set lst [binToIntList $offset $nint "$data"]
-  puts "lst: $lst"
+  #puts "lst: $lst"
   set subindex [expr $nid % 1000]
   switch -glob [expr $nid / 1000] {
      3?16 { return [readP003v1 "$lst"] }
@@ -491,6 +491,7 @@ proc pkts::encodePacket {values} {
      3 { set data [encodeP003v1 $values]; set version 16 }
      5 { set data [encodeP005 $values] }
     15 { set data [encodeP015 $values] }
+    21 { set data [encodeP021 $values] }
     27 { 
       set data [encodeP027v1 $values]
       set version 16
@@ -583,6 +584,22 @@ proc pkts::encodeP015 {values} {
     lappend pkt [dict get $values d_sectiontimerstoploc]
 
     return "$pkt"
+}
+
+proc pkts::encodeP021 {values} {
+  lappend pkt [dict get $values nid_packet]
+  lappend pkt [dict get $values q_dir]
+  lappend pkt 0
+  lappend pkt [dict get $values q_scale]
+  set n_iter [dict get $values n_iter]
+  lappend pkt $n_iter
+  for {set i 0} {$i<=$n_iter} {incr i} {
+    lappend pkt [dict get $values d_gradient($i)]
+    lappend pkt [dict get $values q_gdir($i)]
+    lappend pkt [dict get $values g_a($i)]
+  }
+
+  return "$pkt"
 }
 
 proc pkts::encodeP027v1 {values} {

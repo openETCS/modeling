@@ -153,12 +153,14 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
   if(es_remote_dmi_conn1 != NULL && es_remote_dmi_conn1->socket != INVALID_SOCKET) {
     int send = in[0];
     if(send && tiuToDMI->valid) {
+      LOG_INFO(scade_remote,"cab st: %d",tiuToDMI->info.train_status.m_cab_st);
       char buf[EVCTIU_MSG_SIZE];
       memcpy(buf,evcToDMI,EVC2DMI_BUSMSG_SIZE);
       memcpy(buf+EVC2DMI_BUSMSG_SIZE,tiuToDMI,TIU2DMI_STRUCT_SIZE);
       es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVCTIU2DMI, (const char*) buf, EVCTIU_MSG_SIZE);
     }
     else if(tiuToDMI->valid) {
+      LOG_INFO(scade_remote,"cab st: %d",tiuToDMI->info.train_status.m_cab_st);
       es_tcp_send(es_remote_dmi_conn1, TCPMSG_TIU2DMI, (const char*) tiuToDMI, TIU2DMI_STRUCT_SIZE);
     }
     else if(send) {
@@ -269,6 +271,8 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
       LOG_ERROR(scade_remote, "Unsupported message: %d",msg->id);
     }
     es_tcp_free_msg(msg);
+
+    //LOG_TRACE(scade_remote, "deskOpen: %d",outC->tiuToDMI.info.train_status)
   }
   /*
   es_tcp_read(es_remote_evc_conn1, TCPMSG_EVC2DMI_BUS,&msg);
