@@ -19,7 +19,7 @@ if $isWin {
 } elseif $isOSX {
   load "$extprefix/darwin/envsim.dylib"
 } else {
-  #error "platform not supported"
+  load "$extprefix/elf_x86/envsim.so"
 }
 
 # load modules

@@ -1,6 +1,6 @@
 /* $**************** KCG Version 6.4 (build i21) ****************
 ** Command: kcg64.exe -config S:/modeling/test/EnvSim/Scade/Simulation/config.txt
-** Generation date: 2015-11-25T10:38:38
+** Generation date: 2015-12-01T21:19:49
 *************************************************************$ */
 #ifndef _KCG_CONSTS_H_
 #define _KCG_CONSTS_H_
@@ -124,6 +124,6 @@ extern const morcStatus_T_RCM_Session_Types_Pkg cEMPTY_MORC_STATUS_EnvSim_Intern
 #endif /* _KCG_CONSTS_H_ */
 /* $**************** KCG Version 6.4 (build i21) ****************
 ** kcg_consts.h
-** Generation date: 2015-11-25T10:38:38
+** Generation date: 2015-12-01T21:19:49
 *************************************************************$ */
 

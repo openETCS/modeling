@@ -1,6 +1,6 @@
 /* $**************** KCG Version 6.4 (build i21) ****************
 ** Command: kcg64.exe -config S:/modeling/test/EnvSim/Scade/Simulation/config.txt
-** Generation date: 2015-11-25T10:38:38
+** Generation date: 2015-12-01T21:19:49
 *************************************************************$ */
 #ifndef _KCG_INIT_H_
 #define _KCG_INIT_H_
@@ -19,6 +19,6 @@
 #endif /* _KCG_INIT_H_ */
 /* $**************** KCG Version 6.4 (build i21) ****************
 ** kcg_init.h
-** Generation date: 2015-11-25T10:38:38
+** Generation date: 2015-12-01T21:19:49
 *************************************************************$ */
 

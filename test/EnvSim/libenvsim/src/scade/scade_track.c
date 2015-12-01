@@ -23,7 +23,6 @@ es_TrackSimState es_scripted_tracksim_state = {
 
 bool es_scripted_tracksim_active = false;
 
-
 void es_scripted_tracksim_init(outC_ScriptedTrack_EnvSim *out) {
   es_log_init(NULL);
 
@@ -42,13 +41,16 @@ void es_scripted_tracksim_init(outC_ScriptedTrack_EnvSim *out) {
   es_scripted_tracksim_state.messages = &es_tracksim_track;
   LOG_INFO(scade_track,"loaded %d balise messages and %d radio messages",
            es_list_size(es_tracksim_track.bmsgs),es_list_size(es_tracksim_track.rmsgs));
+
 }
 
 
 void es_scripted_tracksim_cycle(outC_ScriptedTrack_EnvSim *out, double actualPos, double radioPos) {
+
   es_exec_tracksim_cycle(&es_scripted_tracksim_state,actualPos,radioPos);
   es_write_next_balise_message(&out->baliseMessage);
   es_write_next_radio_message(&out->radioMessage);
+
 }
 
 #endif

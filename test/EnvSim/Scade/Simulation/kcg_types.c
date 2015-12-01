@@ -1,6 +1,6 @@
 /* $**************** KCG Version 6.4 (build i21) ****************
 ** Command: kcg64.exe -config S:/modeling/test/EnvSim/Scade/Simulation/config.txt
-** Generation date: 2015-11-25T10:38:38
+** Generation date: 2015-12-01T21:19:49
 *************************************************************$ */
 
 #include "kcg_types.h"
@@ -1984,6 +1984,6 @@ kcg_bool kcg_comp_DMI_Adhesion_Factor_Data_T_DMI_Messages_Bothways_Pkg(
 
 /* $**************** KCG Version 6.4 (build i21) ****************
 ** kcg_types.c
-** Generation date: 2015-11-25T10:38:38
+** Generation date: 2015-12-01T21:19:49
 *************************************************************$ */
 

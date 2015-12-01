@@ -159,7 +159,6 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
       es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVCTIU2DMI, (const char*) buf, EVCTIU_MSG_SIZE);
     }
     else if(tiuToDMI->valid) {
-      LOG_INFO(scade_remote,"cab st: %d",tiuToDMI->info.train_status.m_cab_st);
       es_tcp_send(es_remote_dmi_conn1, TCPMSG_TIU2DMI, (const char*) tiuToDMI, TIU2DMI_STRUCT_SIZE);
     }
     else if(send) {

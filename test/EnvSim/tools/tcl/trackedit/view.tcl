@@ -33,6 +33,7 @@ proc view::init {} {
   $m add cascade -menu $m.file -label File
   $m.file add command -label "Open Track" -command "view::openTrackDialog"
   $m.file add command -label "Save Track" -command "view::saveTrackDialog"
+  $m.file add command -label "Run Script" -command "view::runScriptDialog"
 
   # Edit
   menu $m.edit
@@ -98,3 +99,16 @@ proc view::saveTrackDialog {} {
     model::saveTrack "$filename"
   }
 }
+
+
+proc view::runScriptDialog {} {
+  set types {
+    {{Tcl scripts} {.tcl}}
+  }
+  set filename [tk_getOpenFile -filetypes $types]
+
+  if {$filename != ""} {
+    ctrl::runScript "$filename"
+  }
+}
+

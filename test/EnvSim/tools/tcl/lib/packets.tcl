@@ -95,7 +95,7 @@ proc pkts::binToIntList {offset nint data} {
 
 proc pkts::readBinPkt {nid offset nint data} {
   set lst [binToIntList $offset $nint "$data"]
-  #puts "lst: $lst"
+
   set subindex [expr $nid % 1000]
   switch -glob [expr $nid / 1000] {
      3?16 { return [readP003v1 "$lst"] }
@@ -105,7 +105,7 @@ proc pkts::readBinPkt {nid offset nint data} {
     27?16 {
       if {$subindex > 0} {return {}}
       set niter [lindex "$lst" 4]
-      set seclst [binToIntList [expr $offset + 4*$nint] [expr 4*$niter] "$data"]
+      set seclst [binToIntList [expr $offset + 4*$nint] [expr 4*($niter+1)] "$data"]
       set lst [concat "$lst" "$seclst"]
       return [readP027v1 "$lst"]
     }
@@ -496,7 +496,7 @@ proc pkts::encodePacket {values} {
       set data [encodeP027v1 $values]
       set version 16
       lappend lst [list $nid_packet $q_dir $version 0 "[lindex $data 0]"]
-      set sub 101
+      set sub 100
       foreach p [lrange $data 1 end] {
         lappend lst [list $nid_packet $q_dir $version $sub "$p"]
         incr sub

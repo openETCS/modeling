@@ -1,6 +1,6 @@
 /* $**************** KCG Version 6.4 (build i21) ****************
 ** Command: kcg64.exe -config S:/modeling/test/EnvSim/Scade/Simulation/config.txt
-** Generation date: 2015-11-25T10:38:38
+** Generation date: 2015-12-01T21:19:49
 *************************************************************$ */
 #ifndef _GenAll_EnvSim_Internal_H_
 #define _GenAll_EnvSim_Internal_H_
@@ -92,6 +92,6 @@ extern void GenAll_init_EnvSim_Internal(outC_GenAll_EnvSim_Internal *outC);
 #endif /* _GenAll_EnvSim_Internal_H_ */
 /* $**************** KCG Version 6.4 (build i21) ****************
 ** GenAll_EnvSim_Internal.h
-** Generation date: 2015-11-25T10:38:38
+** Generation date: 2015-12-01T21:19:49
 *************************************************************$ */
 

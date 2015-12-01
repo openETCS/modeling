@@ -13,8 +13,9 @@ namespace eval ::ctrl {
 
 proc ctrl::openTrack {filename} {
   source $filename
-  set model::title [track::title]
-  loadTree
+  ctrl::update
+  #set model::title [track::title]
+  #loadTree
 }
 
 
@@ -24,6 +25,12 @@ proc ctrl::loadTree {} {
   foreach msg [model::getMessageList] {
     $tree insert {} end -id [lindex $msg 0] -text [lindex $msg 1] -values [lindex $msg 2] -image [lindex $msg 3]
   }
+}
+
+
+proc ctrl::update {} {
+  set model::title [track::title]
+  loadTree
 }
 
 
@@ -58,4 +65,8 @@ proc ctrl::showConsole {} {
     package require tkcon
     tkcon show
   }
+}
+
+proc ctrl::runScript {file} {
+  source "$file"
 }

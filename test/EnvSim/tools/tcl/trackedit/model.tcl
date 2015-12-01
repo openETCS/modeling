@@ -115,5 +115,7 @@ proc model::saveTrack {file} {
     }
   }
 
+  puts $fd "track::title \"$model::title\""
+
   close $fd
 }
