@@ -4,6 +4,8 @@
 # 
 # History:
 # - 29.09.15, J. Kastner: initial version
+# - 01.12.15, J. Kastner: solve bug in enc/dec of P027
+# - 02.12.15, J. Kastner: add enc/dec of P080
 
 source "[file dirname [info script]]/enum.tcl"
 source "[file dirname [info script]]/conv.tcl"
@@ -116,6 +118,7 @@ proc pkts::readBinPkt {nid offset nint data} {
     57?32 { return [readP057 "$lst"] }
     58?32 { return [readP058 "$lst"] }
     65?32 { return [readP065 "$lst"] }
+    80?32 { return [readP080 "$lst"] }
    137?32 { return [readP137 "$lst"] }
    255??? { }
    default { error "unexpected nid: $nid" }
@@ -413,6 +416,34 @@ proc pkts::readP065 {data} {
     ]
 }
 
+proc pkts::readP080 {data} {
+  set niter [lindex $data 4]
+  set d [dict create\
+    nid_packet [lindex $data 0]\
+    q_dir      [lindex $data 1]\
+    q_scale    [lindex $data 3]\
+    n_iter     $niter\
+    ]
+
+  set npos 5
+  for {set i 0} {$i<=$niter} {incr i} {
+    dict append d "d_mamode($i)" [lindex $data $npos]
+    incr npos
+    dict append d "m_mamode($i)" [lindex $data $npos]
+    incr npos
+    dict append d "v_mamode($i)" [lindex $data $npos]
+    incr npos
+    dict append d "l_mamode($i)" [lindex $data $npos]
+    incr npos
+    dict append d "l_ackmamode($i)" [lindex $data $npos]
+    incr npos
+    dict append d "q_mamode($i)" [lindex $data $npos]
+    incr npos
+  }
+
+  return $d
+}
+ 
 
 proc pkts::readP137 {data} {
   return [dict create\
@@ -507,6 +538,7 @@ proc pkts::encodePacket {values} {
     42 { set data [encodeP042 $values] }
     45 { set data [encodeP045 $values] }
     46 { set data [encodeP046 $values] }
+    80 { set data [encodeP080 $values] }
     default { error "unsupported nid_packet=$nid_packet" }
   }
   return [list [list $nid_packet $q_dir $version $subindex "$data"]]
@@ -686,6 +718,27 @@ proc pkts::encodeP046 {values} {
     if {$m_leveltr == 1} {
       lappend pkt [dict get $values nid_ntc($i)]
     }
+  }
+
+  return "$pkt"
+}
+
+proc pkts::encodeP080 {values} {
+  lappend pkt [dict get $values nid_packet]
+  lappend pkt [dict get $values q_dir]
+  lappend pkt 0
+  lappend pkt [dict get $values q_scale]
+
+  set n_iter [dict get $values n_iter]
+  lappend pkt $n_iter
+
+  for {set i 0} {$i <= $n_iter} {incr i} {
+    lappend pkt [dict get $values d_mamode($i)]
+    lappend pkt [dict get $values m_mamode($i)]
+    lappend pkt [dict get $values v_mamode($i)]
+    lappend pkt [dict get $values l_mamode($i)]
+    lappend pkt [dict get $values l_ackmamode($i)]
+    lappend pkt [dict get $values q_mamode($i)]
   }
 
   return "$pkt"

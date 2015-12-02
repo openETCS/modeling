@@ -39,7 +39,7 @@ edit::addBG 15 1 902 1 {nid_packet 46 q_dir 1 n_iter 1 m_leveltr(0) 1 nid_ntc(0)
 }
 
 
-# 20m: MSG 3 (Pkt 15, 41, 5, 21, 27)
+# 20m: MSG 3 (Pkt 15, 41, 5, 21, 27), LRBG 902
 edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   nid_packet 15
   q_dir      1
@@ -92,6 +92,12 @@ edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   v_static(1) 60
   q_front(1)  1
   n_iter(1)   0
+} {
+  nid_packet  80
+  q_dir       1
+  q_scale     1
+  n_iter      0
+  d_mamode(0) 985   m_mamode(0) 0   v_mamode(0) 127   l_mamode(0) 1000   l_ackmamode(0) 100   q_mamode(0) 0
 }
 
 
