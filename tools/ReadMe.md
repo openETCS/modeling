@@ -63,4 +63,4 @@ Getting started with ERSA extraction tool
 
 Open your Cygwin terminal and type the following:
 
-`PATH_TO_WISHRUN/wishrun.exe ERSA_extraction.tcl`
+`../test/EnvSim/tools/wishrun.exe ERSA_extraction.tcl`
