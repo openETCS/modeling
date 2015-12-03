@@ -1,13 +1,13 @@
 Presetting
 ============
 
-Fist, download [Cygwin](https://cygwin.com/install.html) and install the package of the perl interpret, so that you can use it in the Cygwin shall.
-Now download perl [here](http://strawberryperl.com/) for the windows command line. Follow the installation wizard to install the interpret.
+Fist, download [Cygwin](https://cygwin.com/install.html) and install the package of the perl interpreter, so that you can use it in the Cygwin shall.
+Now download perl [here](http://strawberryperl.com/) for the windows command line. Follow the installation wizard to install the interpreter.
 
 Before python can be installed the corresponding compiler needs to be setup. Download the compiler on this [side](http://aka.ms/vcpython27).
 Run the installation wizard and follow the instructions.
 
-Second, download the latest [python](https://www.python.org/downloads/windows/) release and follow the installation wizard. Next create a new system variable, e.g. `PYTHON`, and add to her the path of the python interpret (e.g. `C:\Python27\`). Afterwards add this new variable to the system variable `PATH`.
+Second, download the latest [python](https://www.python.org/downloads/windows/) release and follow the installation wizard. Next create a new system variable, e.g. `PYTHON`, and add there the path of the python interpreter (e.g. `C:\Python27\`). Afterwards add this new variable to the system variable `PATH`.
 As next step some packages are needed to be installed:
 Download the [numpy](http://sourceforge.net/projects/numpy/?source=typ_redirect) package, extract the zip file and then open a terminal and navigate to the extracted folder (e.g. `cd C:\Users\USERNAME\Downloads\numpy-1.10.1\numpy-1.10.1`).
 Run the following command in the terminal
@@ -46,11 +46,7 @@ When this command is not working, then you should follow the instructions to set
 
 Now that you have created the `Test_Text.txt` file open the windows command line and type in the following command:
 
-`cd ..`
-
-`cd tools`
-
-`python main_issue_tracker.py USERNAME PASSWORD`
+`cd ../tools && python main_issue_tracker.py USERNAME PASSWORD`
 
 to generate the `report.md` file.
 
@@ -61,3 +57,10 @@ Developing this tool further
 ============
 
 For writing perl and python scripts the [Padre IDE](http://padre.perlide.org/download.html) and the [PyDev plugin](https://www.ics.uci.edu/~pattis/common/handouts/pythoneclipsejava/eclipsepython.html) for eclipse ([Eclipse LUNA](https://eclipse.org/luna/) version) have been used.
+
+Getting started with ERSA extraction tool
+============
+
+Open your Cygwin terminal and type the following:
+
+`wishrun ERSA_extraction.tcl`
