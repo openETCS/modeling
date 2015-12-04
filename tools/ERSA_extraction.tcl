@@ -1,108 +1,60 @@
+#initialization of variables
+set basedir "[file dirname [info script]]"
+source "$basedir/lib/init_values.tcl"
+source "$basedir/lib/function.tcl"
+
 #you should run this code in cygwin
 #example: wish main.tcl
-
-# Declare the auto_path variable to allow tcl to find the files
-cd ".."
-
-set 1_Modelling_ROOT [pwd]
 
 puts "Working\n"
 
 #First step
-
-set delete_dir $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/ERSA_EVC_IP_DMI
-
-#removing directory ERSA_EVC_IP_DMI
-file delete -force -- $delete_dir
+#removing directories
+Removing_Files $delete_ERSA_EVC_IP_DMI
+Removing_Files $delete_KCG_GreenField
+Removing_Files $delete_KCG_Releases
 
 #Second step
-#set Tester "SCADE -code D:/1_Modelling/modeling/model/Scade/System/OBU_PreIntegrations/Demonstrators/Demonstrators.etp -node ERSA_CodeGeneration -all"
-set SCADE "SCADE"
-set CODE "-code"
+#generation of code
+Build_Source_Files $SCADE $CODE $PATH_TO_ETP $ROOT $ROOT_NAME $CONF $CONF_NAME;
+Build_Source_Files $SCADE $CODE $PATH_TO_ETP_openETCS_EVC $ROOT $ROOT_NAME_EVC $CONF $CONF_NAME_EVC;
+Build_Source_Files $SCADE $CODE $PATH_TO_ETP_openETCS_EVC $ROOT $ROOT_NAME_EVC $CONF $CONF_NAME_Releases;
 
-set PATH_TO_ETP $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/Demonstrators.etp
-set ROOT "-root"
-set ROOT_NAME "ERSA_EVC_Testrunner::ROOT_EVC"
-set CONF "-conf"
-set CONF_NAME "ERSA_Testrunner_CodeGeneration"
-
-#generation of ERSA_Testrunner code
-exec $SCADE $CODE $PATH_TO_ETP $ROOT $ROOT_NAME $CONF $CONF_NAME;
 
 #Third step
 #copying of templates RemoteDMIBus_EnvSim.dc RemoteDMIBus_EnvSim.dh
-
-
-set PATH_TO_TEMPLATE_C $1_Modelling_ROOT/test/EnvSim/libenvsim/src/scade/RemoteDMIBus_EnvSim.c
-set PATH_TO_TEMPLATE_H $1_Modelling_ROOT/test/EnvSim/libenvsim/src/scade/RemoteDMIBus_EnvSim.h
-set PATH_TO_ERSA_EVC_Testrunner $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/ERSA_EVC_Testrunner
 #copying files RemoteDMIBus_EnvSim.c RemoteDMIBus_EnvSim.h from PATH_TO_TEMPLATE to PATH_TO_ERSA_EVC_Testrunner
-file copy -force -- $PATH_TO_TEMPLATE_C $PATH_TO_TEMPLATE_H $PATH_TO_ERSA_EVC_Testrunner
+Copying_Files $PATH_TO_TEMPLATE_C $PATH_TO_TEMPLATE_H $PATH_TO_ERSA_EVC_Testrunner
+Copying_Files $PATH_TO_TEMPLATE_C $PATH_TO_TEMPLATE_H $PATH_TO_KCG_GreenField
+Copying_Files $PATH_TO_TEMPLATE_C $PATH_TO_TEMPLATE_H $PATH_TO_KCG_Releases
 
-
-set DEL_RemoteDMIBus_EnvSim_DC $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/ERSA_EVC_Testrunner/RemoteDMIBus_EnvSim.dc
-set DEL_RemoteDMIBus_EnvSim_DH $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/ERSA_EVC_Testrunner/RemoteDMIBus_EnvSim.dh
 #removing of RemoteDMIBus_EnvSim.dc RemoteDMIBus_EnvSim.dh
-file delete -- $DEL_RemoteDMIBus_EnvSim_DC
-file delete -- $DEL_RemoteDMIBus_EnvSim_DH
+delete_DC_and_DH_files $DEL_RemoteDMIBus_EnvSim_DC $DEL_RemoteDMIBus_EnvSim_DH
+delete_DC_and_DH_files $KCG_GreenField_DEL_RemoteDMIBus_EnvSim_DC $KCG_GreenField_DEL_RemoteDMIBus_EnvSim_DH
+delete_DC_and_DH_files $KCG_Releases_DEL_RemoteDMIBus_EnvSim_DC $KCG_Releases_DEL_RemoteDMIBus_EnvSim_DH
 
 
-set RENAME_ProbeEVC_EnvSim_DH $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/ERSA_EVC_Testrunner/ProbeEVC_EnvSim.dh
-set RENAME_ProbeSDM_EnvSim_DH $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/ERSA_EVC_Testrunner/ProbeSDM_EnvSim.dh
-set ProbeEVC_EnvSim_H $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/ERSA_EVC_Testrunner/ProbeEVC_EnvSim.h
-set ProbeSDM_EnvSim_H $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/ERSA_EVC_Testrunner/ProbeSDM_EnvSim.h
-
-
-set RENAME_ProbeEVC_EnvSim_DC $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/ERSA_EVC_Testrunner/ProbeEVC_EnvSim.dc
-set RENAME_ProbeSDM_EnvSim_DC $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/ERSA_EVC_Testrunner/ProbeSDM_EnvSim.dc
-set ProbeEVC_EnvSim_C $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/ERSA_EVC_Testrunner/ProbeEVC_EnvSim.c
-set ProbeSDM_EnvSim_C $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/ERSA_EVC_Testrunner/ProbeSDM_EnvSim.c
 #renaming of ProbeEVC_EnvSim.dh ProbeSDM_EnvSim.dh to ProbeEVC_EnvSim.h ProbeSDM_EnvSim.h
-file rename -force -- $RENAME_ProbeEVC_EnvSim_DH $ProbeEVC_EnvSim_H
-file rename -force -- $RENAME_ProbeSDM_EnvSim_DH $ProbeSDM_EnvSim_H
-
-#renaming of ProbeEVC_EnvSim.dc ProbeSDM_EnvSim.dc to ProbeEVC_EnvSim.c ProbeSDM_EnvSim.c
-file rename -force -- $RENAME_ProbeEVC_EnvSim_DC $ProbeEVC_EnvSim_C
-file rename -force -- $RENAME_ProbeSDM_EnvSim_DC $ProbeSDM_EnvSim_C
-
-#copying content of build directory BUILD_DIR to PATH_TO_ERSA_EVC_Testrunner
-set BUILD_DIR_libraries $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/build/include/libraries
-set BUILD_DIR_Char_to_Int_C $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/build/include/Char_to_Int.c
-set BUILD_DIR_Int_to_Char_C $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/build/include/Int_to_Char.c
-set BUILD_DIR_kcg_assign_C $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/build/include/kcg_assign.h
-set BUILD_DIR_kcg_conv_H $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/build/include/kcg_conv.h
+rename_DC_and_DH_files $RENAME_ProbeEVC_EnvSim_DH $ProbeEVC_EnvSim_H $RENAME_ProbeSDM_EnvSim_DH $ProbeSDM_EnvSim_H $RENAME_ProbeEVC_EnvSim_DC $ProbeEVC_EnvSim_C $RENAME_ProbeSDM_EnvSim_DC $ProbeSDM_EnvSim_C
+rename_DC_and_DH_files $KCG_GreenField_RENAME_ProbeEVC_EnvSim_DH $KCG_GreenField_ProbeEVC_EnvSim_H $KCG_GreenField_RENAME_ProbeSDM_EnvSim_DH $KCG_GreenField_ProbeSDM_EnvSim_H $KCG_GreenField_RENAME_ProbeEVC_EnvSim_DC $KCG_GreenField_ProbeEVC_EnvSim_C $KCG_GreenField_RENAME_ProbeSDM_EnvSim_DC $KCG_GreenField_ProbeSDM_EnvSim_C
+rename_DC_and_DH_files $KCG_Releases_RENAME_ProbeEVC_EnvSim_DH $KCG_Releases_ProbeEVC_EnvSim_H $KCG_Releases_RENAME_ProbeSDM_EnvSim_DH $KCG_Releases_ProbeSDM_EnvSim_H $KCG_Releases_RENAME_ProbeEVC_EnvSim_DC $KCG_Releases_ProbeEVC_EnvSim_C $KCG_Releases_RENAME_ProbeSDM_EnvSim_DC $KCG_Releases_ProbeSDM_EnvSim_C
 
 
 #checking and copying files
-if { [catch {file copy -force -- $BUILD_DIR_libraries $BUILD_DIR_Char_to_Int_C $BUILD_DIR_Int_to_Char_C $BUILD_DIR_kcg_assign_C $BUILD_DIR_kcg_conv_H $PATH_TO_ERSA_EVC_Testrunner} fid] } {
-   puts stderr "Could not copy files\n$fid"
-   puts stderr "You should probably delete the following files: libraries, Char_to_Int.c, Int_to_Char.c, kcg_assign.h, kcg_conv.h \n"
-   exit 1
- }
+checking_and_copying_files "ERSA_EVC_Testrunner" $BUILD_DIR_libraries $BUILD_DIR_Char_to_Int_C $BUILD_DIR_Int_to_Char_C $BUILD_DIR_kcg_assign_C $BUILD_DIR_kcg_conv_H $PATH_TO_ERSA_EVC_Testrunner
+checking_and_copying_files "KCG_GreenField" $BUILD_DIR_libraries $BUILD_DIR_Char_to_Int_C $BUILD_DIR_Int_to_Char_C $BUILD_DIR_kcg_assign_C $BUILD_DIR_kcg_conv_H $PATH_TO_KCG_GreenField
+checking_and_copying_files "KCG-Releases" $BUILD_DIR_libraries $BUILD_DIR_Char_to_Int_C $BUILD_DIR_Int_to_Char_C $BUILD_DIR_kcg_assign_C $BUILD_DIR_kcg_conv_H $PATH_TO_KCG_Releases
 
-
-
-cd "../srcAndBinary"
-
-set 2_srcAndBinary [pwd]
-
-#remove all files in folder DEL_DIR_KCG_ERSA
-set APPENED_srcAndBinary "Green openETCS Non-Vital Demonstrator/Source Code/Source Code ETCS Onboard Unit System/Generated_Code/KCG-ERSA"
-set DEL_DIR_KCG_ERSA $2_srcAndBinary/$APPENED_srcAndBinary
-set MKDIR_KCG_ERSA $2_srcAndBinary/$APPENED_srcAndBinary
-file delete -force -- $DEL_DIR_KCG_ERSA
-file mkdir $MKDIR_KCG_ERSA
+#Deletion and Creation of folders
+Delete_and_Create_Folder $DEL_DIR_KCG_ERSA $MKDIR_KCG_ERSA
+Delete_and_Create_Folder $KCG_GreenField_DEL_DIR_KCG_ERSA $KCG_GreenField_MKDIR_KCG_ERSA
+Delete_and_Create_Folder $KCG_Releases_DEL_DIR_KCG_ERSA $KCG_Releases_MKDIR_KCG_ERSA
 
 #copy all files from PATH_TO_ERSA_EVC_Testrunner to MKDIR_KCG_ERSA
 #gathering all files in PATH_TO_ERSA_EVC_Testrunner
-set gathering_all_files [
-    concat [
-	glob -directory $PATH_TO_ERSA_EVC_Testrunner *]]
+Gathering_and_Copying $PATH_TO_ERSA_EVC_Testrunner $MKDIR_KCG_ERSA
+Gathering_and_Copying $PATH_TO_KCG_GreenField $KCG_GreenField_MKDIR_KCG_ERSA
+Gathering_and_Copying $PATH_TO_KCG_Releases $KCG_Releases_MKDIR_KCG_ERSA
 
-#copying them to MKDIR_KCG_ERSA
-foreach copy_element $gathering_all_files {
-    file copy -force -- $copy_element $MKDIR_KCG_ERSA
-}
 
 puts "Done\n"
-
