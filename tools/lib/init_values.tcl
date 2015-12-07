@@ -1,9 +1,9 @@
 #main root
-cd "../../../modeling"
+cd "../../modeling"
 
 set 1_Modelling_ROOT [pwd]
 
-
+puts $1_Modelling_ROOT
 
 set delete_ERSA_EVC_IP_DMI $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/ERSA_EVC_Testrunner
 set delete_KCG_GreenField $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/openETCS_EVC/KCG_GreenField
@@ -91,6 +91,8 @@ set BUILD_DIR_kcg_conv_H $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegration
 cd "../srcAndBinary"
 
 set 2_srcAndBinary [pwd]
+
+puts $2_srcAndBinary
 
 set APPENED_srcAndBinary "Green openETCS Non-Vital Demonstrator/Source Code/Source Code ETCS Onboard Unit System/Generated_Code/KCG-ERSA"
 set KCG_GreenField_APPENED_srcAndBinary "Green openETCS Non-Vital Demonstrator/Source Code/Source Code ETCS Onboard Unit System/Generated_Code/KCG_GreenField"
