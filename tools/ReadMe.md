@@ -64,3 +64,5 @@ Getting started with ERSA extraction tool
 Open your Cygwin terminal and type the following:
 
 `../test/EnvSim/tools/wishrun.exe ERSA_extraction.tcl`
+
+Note: Bothe clone folders modeling and srcAndBinary must have the same parent folder and their corresponding folder names should not be changed.
