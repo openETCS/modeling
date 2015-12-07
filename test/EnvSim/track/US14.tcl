@@ -54,7 +54,7 @@ edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   nid_packet   41
   q_dir        1
   q_scale      1
-  d_leveltr    80
+  d_leveltr    85
   n_iter       0
   m_leveltr(0) 3
   l_ackleveltr(0) 50
@@ -63,7 +63,7 @@ edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   q_dir      1
   q_scale    1
   n_iter     4
-  d_link(0) 80   q_newcountry(0) 0   nid_bg(0) 903   q_linkorientation(0) 1   q_linkreaction(0) 0   q_locacc(0) 2
+  d_link(0) 85   q_newcountry(0) 0   nid_bg(0) 903   q_linkorientation(0) 1   q_linkreaction(0) 0   q_locacc(0) 2
   d_link(1) 900  q_newcountry(1) 0   nid_bg(1) 904   q_linkorientation(1) 1   q_linkreaction(1) 0   q_locacc(1) 2
   d_link(2) 1000 q_newcountry(2) 0   nid_bg(2) 905   q_linkorientation(2) 1   q_linkreaction(2) 0   q_locacc(2) 2
   d_link(3) 1000 q_newcountry(3) 0   nid_bg(3) 906   q_linkorientation(3) 1   q_linkreaction(3) 0   q_locacc(3) 2
@@ -105,7 +105,7 @@ edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   q_dir       1
   q_scale     1
   n_iter      0
-  d_mamode(0) 100   m_mamode(0) 0   v_mamode(0) 127   l_mamode(0) 500   l_ackmamode(0) 50   q_mamode(0) 0
+  d_mamode(0) 200   m_mamode(0) 0   v_mamode(0) 127   l_mamode(0) 500   l_ackmamode(0) 50   q_mamode(0) 0
 }
 
 # 100m: BG 903 P41
