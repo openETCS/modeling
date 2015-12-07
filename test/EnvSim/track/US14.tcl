@@ -54,7 +54,7 @@ edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   nid_packet   41
   q_dir        1
   q_scale      1
-  d_leveltr    100
+  d_leveltr    80
   n_iter       0
   m_leveltr(0) 3
   l_ackleveltr(0) 50
@@ -63,8 +63,8 @@ edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   q_dir      1
   q_scale    1
   n_iter     4
-  d_link(0) 25   q_newcountry(0) 0   nid_bg(0) 903   q_linkorientation(0) 1   q_linkreaction(0) 0   q_locacc(0) 2
-  d_link(1) 960  q_newcountry(1) 0   nid_bg(1) 904   q_linkorientation(1) 1   q_linkreaction(1) 0   q_locacc(1) 2
+  d_link(0) 80   q_newcountry(0) 0   nid_bg(0) 903   q_linkorientation(0) 1   q_linkreaction(0) 0   q_locacc(0) 2
+  d_link(1) 900  q_newcountry(1) 0   nid_bg(1) 904   q_linkorientation(1) 1   q_linkreaction(1) 0   q_locacc(1) 2
   d_link(2) 1000 q_newcountry(2) 0   nid_bg(2) 905   q_linkorientation(2) 1   q_linkreaction(2) 0   q_locacc(2) 2
   d_link(3) 1000 q_newcountry(3) 0   nid_bg(3) 906   q_linkorientation(3) 1   q_linkreaction(3) 0   q_locacc(3) 2
   d_link(4) 1000 q_newcountry(4) 0   nid_bg(4) 907   q_linkorientation(4) 1   q_linkreaction(4) 0   q_locacc(4) 2
@@ -85,11 +85,11 @@ edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   q_scale     1
   n_iter_k    3
   d_static(0) 0
-  v_static(0) 10
+  v_static(0) 12
   q_front(0)  1
   n_iter(0)   0
   d_static(1) 200
-  v_static(1) 12
+  v_static(1) 10
   q_front(1)  1
   n_iter(1)   0
   d_static(2) 700
@@ -105,13 +105,19 @@ edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   q_dir       1
   q_scale     1
   n_iter      0
-  d_mamode(0) 200   m_mamode(0) 0   v_mamode(0) 127   l_mamode(0) 500   l_ackmamode(0) 100   q_mamode(0) 0
+  d_mamode(0) 100   m_mamode(0) 0   v_mamode(0) 127   l_mamode(0) 500   l_ackmamode(0) 50   q_mamode(0) 0
 }
 
-
-# 40m: BG 903
-edit::addBG 40 1 903 1 
-
+# 100m: BG 903 P41
+edit::addBG 100 1 903 1  {
+  nid_packet   41
+  q_dir        1
+  q_scale      1
+  d_leveltr    0
+  n_iter       0
+  m_leveltr(0) 3
+  l_ackleveltr(0) 50
+}
 # 730m: MSG 3 (Pkt 15, 41, 5, 21, 27), LRBG 903
 edit::addRMSG 730 {nid_message 3 m_ack 1 nid_lrbg 42600903} {
   nid_packet 15
