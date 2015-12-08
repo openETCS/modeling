@@ -1,7 +1,31 @@
-#main root
-cd "../../modeling"
+proc Checking_Directory {} {
+	cd "../../"
 
-set 1_Modelling_ROOT [pwd]
+	set PARENT_DIR [pwd]
+	catch {file exists $PARENT_DIR/modeling} fid
+	catch {file exists $PARENT_DIR/srcAndBinary} fid2
+
+
+	if {$fid==1 && $fid2==1} {
+		puts "Both directories are setup correctly\n"
+		puts "Working\n"
+		set MODEL_ROOT "modeling"
+		set srcAndBinary_ROOT "srcAndBinary"
+		return [list "$PARENT_DIR$MODEL_ROOT" "$PARENT_DIR$srcAndBinary_ROOT"]
+	} else {
+		puts "Both directories 'PARENT_DIR/modeling' and 'PARENT_DIR/srcAndBinary' must have the same parent folder\n"
+		exit
+	}
+}
+
+set List_directories [Checking_Directory]
+
+
+#setting root directories
+set 1_Modelling_ROOT [lindex $List_directories 0]
+set 2_srcAndBinary [lindex $List_directories 1]
+
+
 
 puts $1_Modelling_ROOT
 
@@ -88,15 +112,13 @@ set BUILD_DIR_kcg_assign_C $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrati
 set BUILD_DIR_kcg_conv_H $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/build/include/kcg_conv.h
 
 #part of main root
-cd "../srcAndBinary"
+#cd "../../2_srcAndBinary/srcAndBinary"
 
-set 2_srcAndBinary [pwd]
+#set 2_srcAndBinary [pwd]
 
-puts $2_srcAndBinary
-
-set APPENED_srcAndBinary "Green openETCS Non-Vital Demonstrator/Source Code/Source Code ETCS Onboard Unit System/Generated_Code/KCG-ERSA"
-set KCG_GreenField_APPENED_srcAndBinary "Green openETCS Non-Vital Demonstrator/Source Code/Source Code ETCS Onboard Unit System/Generated_Code/KCG_GreenField"
-set KCG_Releases_APPENED_srcAndBinary "Green openETCS Non-Vital Demonstrator/Source Code/Source Code ETCS Onboard Unit System/Generated_Code/KCG-Releases"
+set APPENED_srcAndBinary "GreenDemonstrator/src/OBU/Generated_Code/KCG-ERSA"
+set KCG_GreenField_APPENED_srcAndBinary "GreenDemonstrator/src/OBU/Generated_Code/KCG_GreenField"
+set KCG_Releases_APPENED_srcAndBinary "GreenDemonstrator/src/OBU/Generated_Code/KCG-Releases"
 
 #deletion and creation of srcAndBinary directories
 set DEL_DIR_KCG_ERSA $2_srcAndBinary/$APPENED_srcAndBinary
