@@ -27,8 +27,8 @@ set 2_srcAndBinary [lindex $List_directories 1]
 
 
 set delete_ERSA_EVC_IP_DMI $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/ERSA_EVC_Testrunner
-set delete_KCG_GreenField $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/openETCS_EVC/KCG_GreenField
-set delete_KCG_Releases $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/openETCS_EVC/KCG-Releases
+set delete_Trackside $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/GreenTrackside
+set delete_Trainside $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/Demonstrators/GreenTrainside
 set delete_KCG_GreenField $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/openETCS_EVC/KCG_GreenField
 set delete_KCG_Releases $1_Modelling_ROOT/model/Scade/System/OBU_PreIntegrations/openETCS_EVC/KCG-Releases
 
