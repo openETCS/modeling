@@ -21,6 +21,7 @@
 #include "RemoteGUI_EnvSim.h"
 #include "RemoteDMIBus_EnvSim.h"
 #include "RemoteEVCBus_EnvSim.h"
+#include <stdint.h>
 
 #define REMOTE_DMI_ADDR "127.0.0.1"
 #define REMOTE_DMI_PORT1 20001
@@ -51,6 +52,7 @@ int es_remote_dmi_port1 = 0;
 int es_remote_dmi_port2 = 0;
 char *es_remote_gui_addr = NULL;
 int es_remote_gui_port = 0;
+
 
 void es_remote_init() {
   static int initialized = 0;
@@ -145,13 +147,13 @@ void es_remote_dmibus_init(outC_RemoteDMIBus_EnvSim *out) {
 }
 
 void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_Input_msg_API_TIU_Pkg *tiuToDMI, outC_RemoteDMIBus_EnvSim *outC) {
-  static int cycle = 0;
 
   int *in = (int*)evcToDMI;
 
   // SEND
   if(es_remote_dmi_conn1 != NULL && es_remote_dmi_conn1->socket != INVALID_SOCKET) {
     int send = in[0];
+
     if(send && tiuToDMI->valid) {
       char buf[EVCTIU_MSG_SIZE];
       memcpy(buf,evcToDMI,EVC2DMI_BUSMSG_SIZE);
@@ -164,6 +166,20 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
     else if(send) {
       es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVC2DMI_BUS, (const char *) evcToDMI, EVC2DMI_BUSMSG_SIZE);
     }
+  /*
+    if( send || tiuToDMI->valid ) {
+      es_remote_evcmsg_id++;
+      char buf[EVCTIU_MSG_SIZE+8];
+      memcpy(buf+8,evcToDMI,EVC2DMI_BUSMSG_SIZE);
+      memcpy(buf+8+EVC2DMI_BUSMSG_SIZE,tiuToDMI,TIU2DMI_STRUCT_SIZE);
+      memcpy(buf,&es_remote_evcmsg_id,4);
+      uint32_t f32 = fletcher32((uint16_t*)(buf+8),EVCTIU_MSG_SIZE/2);
+      LOG_INFO(scade_remote,"sending EVCTIU message %d with F32=%d",es_remote_evcmsg_id,f32);
+      memcpy(buf+4,&f32,4);
+      es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVCTIU2DMI, (const char*) buf, EVCTIU_MSG_SIZE+8);
+
+    }
+    */
   }
   // RECEIVE
   if(es_remote_dmi_conn2 != NULL) {
@@ -171,16 +187,30 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
     es_tcp_read(es_remote_dmi_conn2,TCPMSG_DMI2EVC_BUS,&msg);
     if( msg != NULL ) {
       if(msg->len != DMI2EVC_BUSMSG_SIZE) {
-        LOG_ERROR(scade_remote,"Invalid DMI2EVC message: received %d bytes, expected %d bytes",msg->len,DMI2EVC_STRUCT_SIZE);
+        LOG_ERROR(scade_remote,"Invalid DMI2EVC message: received %d bytes, expected %d bytes",msg->len,DMI2EVC_BUSMSG_SIZE);
       }
       else {
         memcpy(&outC->dmiToEVC,msg->data,DMI2EVC_BUSMSG_SIZE);
+//        uint32_t id = *(uint32_t*)msg->data;
+//        uint32_t received_f32 = *(uint32_t*)(msg->data+4);
+//        if(id > 1) {
+//          if( id != es_remote_last_dmimsg+1 ) {
+//            LOG_ERROR(scade_remote, "Expected DMI2EVC message with SeqID=%d, received SeqID=%d", es_remote_last_dmimsg,
+//                      id);
+//          }
+//        }
+//        es_remote_last_dmimsg = id;
+//        memcpy(&outC->dmiToEVC,msg->data+8,DMI2EVC_BUSMSG_SIZE);
+//
+//        uint32_t f32 = fletcher32((uint16_t*)outC->dmiToEVC,DMI2EVC_BUSMSG_SIZE/2);
+//        LOG_INFO(scade_remote,"received DMI2EVC message %d with F32=%d",id,f32);
+//        if( f32 != received_f32 ) {
+//          LOG_ERROR(scade_remote,"DMI2EVC checksum error (received: %d, computed: %d)",received_f32,f32);
+//        }
       }
       es_tcp_free_msg(msg);
     }
   }
-
-  cycle += 1;
 
 }
 
@@ -224,6 +254,14 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
 
   // SEND
   if( send && es_remote_evc_conn2 != NULL && es_remote_evc_conn2->client != INVALID_SOCKET) {
+//    es_remote_dmimsg_id++;
+//    uint32_t f32 = fletcher32((uint16_t const *)dmiToEVC,DMI2EVC_BUSMSG_SIZE/2);
+//    char buf[DMI2EVC_BUSMSG_SIZE+8];
+//    LOG_INFO(scade_remote,"sending DMI2EVC message %d with F32=%d",es_remote_dmimsg_id,f32);
+//    memcpy(buf,(char*)&es_remote_dmimsg_id,4);
+//    memcpy(buf+4,(char*)&f32,4);
+//    memcpy(buf+8,dmiToEVC,DMI2EVC_BUSMSG_SIZE);
+//    es_tcp_send(es_remote_evc_conn2,TCPMSG_DMI2EVC_BUS,(const char*)buf,DMI2EVC_BUSMSG_SIZE+8);
     es_tcp_send(es_remote_evc_conn2,TCPMSG_DMI2EVC_BUS,(const char*)dmiToEVC,DMI2EVC_BUSMSG_SIZE);
   }
 
@@ -243,8 +281,23 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
                   msg->len, EVCTIU_MSG_SIZE);
       }
       else {
-        memcpy(&outC->evcToDMI,msg->data,EVC2DMI_BUSMSG_SIZE);
-        memcpy(&outC->tiuToDMI,msg->data+EVC2DMI_BUSMSG_SIZE,TIU2DMI_STRUCT_SIZE);
+//        uint32_t id = *(uint32_t*)msg->data;
+//        if( id > 1 ) {
+//          if( id != es_remote_last_evcmsg+1 ) {
+//            LOG_ERROR(scade_remote, "Expected EVC2DMI message with SeqID=%d, received SeqID=%d", es_remote_last_evcmsg,
+//                      id);
+//          }
+//        }
+//        es_remote_last_evcmsg = id;
+//
+//        uint32_t received_f32 = *(uint32_t*)(msg->data+4);
+//        uint32_t f32 = fletcher32((uint16_t*)(msg->data+8),EVCTIU_MSG_SIZE/2);
+//        LOG_INFO(scade_remote,"Received EVC2DMI message %d with F32=%d",id,f32);
+//        if( received_f32 != f32 ) {
+//          LOG_ERROR(scade_remote,"EVC2DMI checksum error (received: %d, computed: %d)",received_f32,f32);
+//        }
+        memcpy(&outC->evcToDMI,msg->data+8,EVC2DMI_BUSMSG_SIZE);
+        memcpy(&outC->tiuToDMI,msg->data+8+EVC2DMI_BUSMSG_SIZE,TIU2DMI_STRUCT_SIZE);
       }
     }
     else if( msg->id == TCPMSG_EVC2DMI_BUS ) {
@@ -274,42 +327,7 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
 
     es_tcp_free_msg(msg);
   }
-  /*
-  es_tcp_read(es_remote_evc_conn1, TCPMSG_EVC2DMI_BUS,&msg);
-  if (msg != NULL) {
-    run = true;
-    if (msg->len != EVC2DMI_BUSMSG_SIZE) {
-      LOG_ERROR(scade_remote, "Invalid EVC2DMI message: received %d bytes, expected %d bytes", msg->len,
-                EVC2DMI_BUSMSG_SIZE);
-    }
-    else {
-      memcpy(&outC->evcToDMI, msg->data, EVC2DMI_BUSMSG_SIZE);
-    }
-    es_tcp_free_msg(msg);
-  }
-  else {
-    outC->evcToDMI[0] = 0;
-  }
 
-  msg = NULL;
-  es_tcp_read(es_remote_evc_conn1, TCPMSG_TIU2DMI, &msg);
-  if( msg != NULL ) {
-    if (msg->len != TIU2DMI_STRUCT_SIZE) {
-      LOG_ERROR(scade_remote, "Invalid TIU2DMI message: received %d bytes, expected %d bytes", msg->len,
-                TIU2DMI_STRUCT_SIZE);
-    }
-    else {
-      memcpy(&outC->tiuToDMI, msg->data, TIU2DMI_STRUCT_SIZE);
-//        LOG_TRACE(scade_remote,"received TIU2DMI; desk open: %d",outC->tiuToDMI.info.train_status.m_cab_st);
-    }
-    es_tcp_free_msg(msg);
-    //msg = NULL;
-    //es_tcp_read(es_remote_evc_conn1, TCPMSG_TIU2DMI, &msg);
-  }
-  else {
-    outC->tiuToDMI.valid = 0;
-  }
-*/
   outC->run = true;
 }
 

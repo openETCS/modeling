@@ -11,7 +11,19 @@
 #include "ProbeTracksideInput_EnvSim.h"
 #include "ProbeSDM_EnvSim.h"
 #include "ProbeEVC_EnvSim.h"
-#include "../logging.h"
+
+typedef struct {
+  kcg_bool valid;
+  kcg_real dist;
+  kcg_real acc;
+  kcg_real speed;
+} es_scade_probe_CurveSeg;
+
+
+typedef struct {
+  es_scade_probe_CurveSeg eoa_sbd[2];
+} es_scade_probe_BrakingCurves;
+
 
 const size_t PROBE_TRACKSIDE_BMSG_SIZE = sizeof(CompressedBaliseMessage_TM);
 const size_t PROBE_TRACKSIDE_RMSG_SIZE = sizeof(CompressedRadioMessage_TM);
@@ -20,6 +32,7 @@ const size_t PROBE_SDM_TARGET_SIZE = sizeof(Target_T_TargetManagement_types);
 const size_t PROBE_EVC_MORC_REG_SIZE = sizeof(mobileRegistrationContext_T_RCM_Types_Pkg);
 const size_t PROBE_EVC_MORC_CON_SIZE = sizeof(mobileConnectionContext_T_RCM_Types_Pkg);
 const size_t PROBE_EVC_MORC_SES_SIZE = sizeof(sessionStatus_T_RCM_Session_Types_Pkg);
+const size_t PROBE_EVT_BC_SIZE = sizeof(es_scade_probe_BrakingCurves);
 
 
 // If not NULL, send all events (track messages, train messages) to this stream
@@ -69,28 +82,37 @@ void es_scade_probe_sdm_init(outC_ProbeSDM_EnvSim *outC) {
 
 }
 
+
 void es_scade_probe_curves(CurveCollection_T_CalcBrakingCurves_types *curves) {
   static int cycle = 0;
+  static es_scade_probe_BrakingCurves data;
 
-  if(curves->EOA_SBD_curve.valid[0] && cycle % 10 == 0) {
+  if( cycle % 10 == 0 ) {
     char buf[4000];
-    char *p = buf;
     int rest = 4000;
-    int len = 0;
-    int i;
-    for(i=0; i<114; i++) {
-      kcg_real d = curves->EOA_SBD_curve.distances[i];
-      kcg_real a = curves->EOA_SBD_curve.accelerations[i];
-      kcg_real v = curves->EOA_SBD_curve.speeds[i];
-      if(a != 0 || d != 0 || v != 0) {
-        int n = snprintf(p,rest,"%d {%e %e %e} ",i,d,a,v);
-        p += n;
-        rest -= n;
-        len += n;
+    char *p = buf;
+    int i, len;
+
+    ParabolaCurve_T_CalcBrakingCurves_types *c = &curves->EOA_SBD_curve;
+
+    len = snprintf(p,rest,"{eoasbd ");
+    rest -= len;
+    p += len;
+
+    kcg_real last_dist = -1;
+    for(i=0; i<10; i++) {
+      if( c->valid[i] ) {
+        len = snprintf(p,rest,"{%f %f %f} ", c->distances[i], c->accelerations[i], c->speeds[i]);
+        rest -= len;
+        p += len;
       }
+
     }
-    es_tcp_send(scade_probe_evtstream,TCPMSG_ES_EVT_BC,buf,len);
+    snprintf(p,rest,"}");
+
+    es_tcp_send(scade_probe_evtstream,TCPMSG_ES_EVT_BC,(char*)buf,strlen(buf));
   }
+
 
   cycle++;
 }
@@ -112,7 +134,7 @@ void es_scade_probe_sdm_cycle(TargetCollection_T_TargetManagement_types *targetC
     }
   }
 
-  //es_scade_probe_curves(curveCollection);
+//  es_scade_probe_curves(curveCollection);
 
 }
 

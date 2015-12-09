@@ -63,7 +63,7 @@ proc comm::readMsg {channel} {
       3004 { sdm::handleTargetMessage "[read $channel $len]" }
       #3005 { trackview::readBalisePosition "[read $channel $len]" }
       3005 { read $channel $len }
-      3006 { puts [read $channel $len] }
+      3006 { sdm::handleBCMessage [read $channel $len] }
       3007 { evts::logRTM "[read $channel $len]" }
       3008 { evts::logERR "[read $channel $len]" }
       default { error "ERROR: received invalid message id=$id, len=$len" }
