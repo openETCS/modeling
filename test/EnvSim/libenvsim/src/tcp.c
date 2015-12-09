@@ -7,6 +7,8 @@
 // - 10.10.15, J. Kastner: implement handling of multiple messages in TCP input buffer;
 // - 05.11.15, J. Kastner: improve handling of incoming messages (es_tcp_recvmsg())
 // - 10.11.15, J. Kastner: make read algorithm in recvmsg() selectable via env variable ENVSIM_TCP_READMODE
+// - 07.12.15, J. Kastner: correct bug in es_tcp_recvmsg for case ENVSIM_TCP_READMODE=0
+// - 08.12.15, J. Kastner: remove algorithm for ENVSIM_TCP_READMODE=1 (ENVSIM_TCP_READMODE no longer used)
 
 #include "tcp.h"
 #include "logging.h"
@@ -56,59 +58,78 @@ bool es_tcp_rdmode_wait = true;
 #endif
 
 int es_tcp_recvmsg(SOCKET sock, char *buf, size_t bufsize) {
-  if( !es_tcp_rdmode_wait ) {
-    return recv(sock,buf,bufsize,0);
-  }
-
-  // read message length
-  char *p = buf;
-  int rc = recv(sock,p,8,0);
-  if(rc<8) {
-    return rc;
-  }
-
-  p += 4;
-  int len = *((int32_t*)p);
-  p += 4;
-  rc = recv(sock,p,len,0);
-  if( len == rc ) {
-    return len+8;
-  }
-  else if(rc>=bufsize-8) {
-    LOG_ERROR(tcp,"could not read TCP message: buffer to small");
-    return -5;
-  }
-
-  int nleft = len - rc;
-  *p += rc;
-  int cycle = 1;
-  while(nleft>0) {
-    LOG_INFO(tcp,"waiting for %d more bytes (loop: %d) ...",nleft,cycle);
-
-    rc = recv(sock,p,nleft,0);
-    if(rc < 0) {
+  /* BLOCKING MODE (ENVSIM_TCP_READMODE=0) */
+//  if( !es_tcp_rdmode_wait ) {
+    int rc = 0;
+    if( (rc = recv(sock,buf,8,MSG_WAITALL)) != 8 ) {
+      if(rc != 0) {
+        LOG_ERROR(tcp, "could not read message header; rc=%d", rc);
+      }
       return rc;
     }
-    nleft -= rc;
-    p += rc;
-    cycle++;
-  }
-  LOG_INFO(tcp,"...done");
-  return len+8;
+    char *p = buf + 4;
+    int len = *((int32_t*)p);
+    p += 4;
+    rc = recv(sock,p,len,MSG_WAITALL);
+    return rc + 8;
+//  }
+
+//  // read message length
+//  char *p = buf;
+//  int nread = 0;
+//  int rc = 0;
+//  while( nread <= 8 ) {
+//    rc = recv(sock,buf+nread,8-nread,0);
+//    if( rc <= 0 ) {
+//      return rc;
+//    }
+//    nread += rc;
+//  }
+//
+//  p += 4;
+//  int len = *((int32_t*)p);
+//  p += 4;
+//  rc = recv(sock,p,len,0);
+//  nread = rc;
+//  if( len == rc ) {
+//    return len+8;
+//  }
+//  else if(rc>=bufsize-8) {
+//    LOG_ERROR(tcp,"could not read TCP message: buffer to small");
+//    return -5;
+//  }
+//
+//  int nleft = len - rc;
+//  *p += rc;
+//  int cycle = 1;
+//  while(nleft>0) {
+//    LOG_INFO(tcp,"waiting for %d more bytes (loop: %d) ...",nleft,cycle);
+//
+//    rc = recv(sock,p,nleft,0);
+//    if(rc < 0) {
+//      return rc;
+//    }
+//    nleft -= rc;
+//    nread += rc;
+//    p += rc;
+//    cycle++;
+//  }
+//  LOG_INFO(tcp,"...done (%d bytes expected, %d bytes read)",len,nread);
+//  return len+8;
 
 }
 
 es_Status es_tcp_init(es_TCPContext **ctx) {
   LOG_INFO(tcp,"initializing new TCP context");
-  char *rdmd = getenv("ENVSIM_TCP_READMODE");
-  if( rdmd != NULL && !strcmp("0",rdmd) ) {
-    LOG_INFO(tcp,"using ENVSIM_TCP_READMODE=0");
-    es_tcp_rdmode_wait = false;
-  }
-  else {
-    LOG_INFO(tcp,"using ENVSIM_TCP_READMODE=1");
-    es_tcp_rdmode_wait = true;
-  }
+//  char *rdmd = getenv("ENVSIM_TCP_READMODE");
+//  if( rdmd != NULL && !strcmp("0",rdmd) ) {
+//    LOG_INFO(tcp,"using ENVSIM_TCP_READMODE=0");
+//    es_tcp_rdmode_wait = false;
+//  }
+//  else {
+//    LOG_INFO(tcp,"using ENVSIM_TCP_READMODE=1");
+//    es_tcp_rdmode_wait = true;
+//  }
 
 
 #ifdef WINDOWS
@@ -376,7 +397,7 @@ es_Status es_tcp_process_out(es_TCPContext *ctx) {
       if(stream->type==TCP_SERVER) {
        if(stream->client != INVALID_SOCKET) {
          LOG_TRACE(tcp,"sending message %d (data: %d bytes)",msg->id,msg->len);
-         rc = send(stream->client,msg->raw,rawlen,0);
+         rc = send(stream->client, msg->raw, rawlen, 0);
        }
        else {
          LOG_WARN(tcp,"no client connected to port %d; discarding message",stream->port);

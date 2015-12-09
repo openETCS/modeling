@@ -15,9 +15,9 @@ namespace eval ::evts {
 
   set showMsgTab 1
   set autoscrollMsgs 1
-  set logMsg24 0
-  set logMsg132 0
-  set logMsg136 0
+  set logMsg24 1
+  set logMsg132 1
+  set logMsg136 1
 
   set showLogTab 1
   set autoscrollLog 1

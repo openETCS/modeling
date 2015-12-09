@@ -10,6 +10,7 @@
 
 #include <stdlib.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 #define MALLOC(type) ((type*) malloc(sizeof(type)));
 #define CALLOC(type) ((type*) calloc(1,sizeof(type)));
@@ -93,5 +94,11 @@ int es_bytes_to_hex(size_t nbytes, char* bytes, char* hexbuf);
 
 // Decodes nbytes from the specified HEX string into the provided buffer
 void es_hex_to_bytes(size_t nbytes, char* hex, char* bytesbuf);
+
+// calculates the Fletcher16-Checksum (code copied from https://en.wikipedia.org/wiki/Fletcher%27s_checksum)
+uint16_t es_fletcher16( char const *data, size_t bytes );
+
+// calculates the Fletcher32-Checksum (code copied from https://en.wikipedia.org/wiki/Fletcher%27s_checksum)
+uint32_t fletcher32( uint16_t const *data, size_t words );
 
 #endif //ENGINE_UTILS_H
