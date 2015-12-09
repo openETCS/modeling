@@ -154,6 +154,15 @@
           <emfPageIdentifier href="openETCS_EVC.notation#_8JSXoGd2EeWo8vMBnCjgHA"/>
         </children>
         <children>
+          <emfPageIdentifier href="openETCS_EVC.notation#_FK4IkB5oEeWg95oxeH6B_w"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="openETCS_EVC.notation#_gGfEMEvrEeW5INCKn-fcDw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="openETCS_EVC.notation#_Gs9_wGH7EeW-aZat0dbY1Q"/>
+        </children>
+        <children>
           <emfPageIdentifier href="openETCS_EVC.notation#_hZRLkDa_EeWOTu031a_nSQ"/>
         </children>
       </children>
