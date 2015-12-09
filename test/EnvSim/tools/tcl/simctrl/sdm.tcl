@@ -4,9 +4,11 @@
 # 
 # History:
 # - 30.10.15, J. Kastner: initial version
+# - 02.12.15, J. Kastner: implement braking curves plot
+package require Plotchart
 
 namespace eval ::sdm {
-  variable area
+  variable bcPlot
 
   set active 1
   set targetType -
@@ -16,10 +18,12 @@ namespace eval ::sdm {
 }
 
 proc sdm::initView {path} {
-  variable area
+  variable bcPlot
 
   ttk::frame $path -padding 5
+  grid columnconfigure $path 0 -weight 1
   grid rowconfigure $path 1 -minsize 10 -weight 0
+  grid rowconfigure $path 2 -weight 1
   
   # Current target
   grid [ttk::frame $path.i] -column 0 -row 0
@@ -27,14 +31,15 @@ proc sdm::initView {path} {
   view::addLabelField $path.i.dist "Distance (m):" sdm::targetDistance 3 0 true
   view::addLabelField $path.i.speed "Speed (km/h):" sdm::targetSpeed 6 0 true
 
-  # Log area
-  #grid [ttk::labelframe $path.log -text Log] -column 0 -row 2 -sticky wes
-  #grid [ttk::frame $path.log.btn -padding 3] -column 0 -row 0 -columnspan 2 -sticky we
-  #grid [ttk::button $path.log.btn.clear -text Clear -command sdm::logClear] -column 0
-  #grid [tk::text $path.log.text -height 10 -state disabled] -column 0 -row 1 -sticky wesn
-  #set area $path.log.text
-  #grid [ttk::scrollbar $path.log.sb -command "$area yview"] -column 1 -row 1 -sticky ns
-  #$area configure -yscrollcommand "$path.log.sb set"
+  # Plot
+  grid [canvas $path.c -background white -width 600 -height 320] -column 0 -row 2 -sticky wesn
+
+  #set posPlot [Plotchart::createStripchart $path.c {0 60 10} {-50 50 20}]
+  set bcPlot [Plotchart::createXYPlot $path.c {0 20000 5000} {0 300 25}]
+#  $posPlot title "Position Accuracy"
+#  $posPlot xtext s
+#  $posPlot ytext m
+
 }
 
 proc sdm::targetTypeString {value} {
@@ -53,16 +58,35 @@ proc sdm::handleTargetMessage {data} {
   set sdm::targetDistance [format "%.1f" [expr 0.01 * $distance]]
   set sdm::targetSpeed $speed
 
-  if $sdm::active { logTarget }
+  logTarget 
+}
+
+proc sdm::handleBCMessage {data} {
+  variable bcPlot
+
+  puts "$data"
+  puts {}
+  #::Plotchart::eraseplot $bcPlot
+  #plotCurve [dict get $data eoasbd]
+}
+
+proc sdm::plotCurve {dist acc speed} {
+  variable bcPlot
+
+  set x [0 5000 10000 15000 20000 25000 30000]
+  foreach x $x {
+    lappend v [calcBCPoint $x $dist $speed $acc]
+  }
+
+  $bcPlot plotlist eoasbd "$x" "$v"
+
+}
+
+proc sdm::calcBCPoint {x x0 v0 a} {
+  return [expr sqrt( v0*v0 + 2*a*(x0-x) )]
 }
 
 proc sdm::logTarget {} {
-  #variable area
-  #$area configure -state normal
-  #$area insert end "\[~ [format "% 5s" $model::currentPos]m\] Target type: $sdm::targetType  Distance: $sdm::targetDistance  Speed: $sdm::targetSpeed\n"
-  #$area configure -state disabled
-  #$area see end
-
   evts::logSDM "Target type: $sdm::targetType  Distance: $sdm::targetDistance  Speed: $sdm::targetSpeed"
 }
 
