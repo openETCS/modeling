@@ -112,7 +112,7 @@ es_Status es_rcontrol_get_balise_info(es_TCPStream *responseStream) {
 
 es_Status es_rcontrol_send_rmsg(es_TCPMessage *msg, es_TCPStream *responseStream) {
   if( msg->len != es_rcontrol_rmsize*2 ) {
-    RCERROR(responseStream,"Received invalid TCPMSG_ES_SENDRMSG: expected %d bytes, got %d",es_rcontrol_rmsize,msg->len);
+    RCERROR(responseStream,"Received invalid TCPMSG_ES_SENDRMSG: expected %zu bytes, got %d",es_rcontrol_rmsize,msg->len);
   }
 
   CompressedRadioMessage_TM rmsg;
