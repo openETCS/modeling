@@ -37,8 +37,6 @@ edit::addBG 15 1 902 1 {nid_packet 46 q_dir 1 n_iter 1 m_leveltr(0) 1 nid_ntc(0)
   n_iter         0
   nid_c(0)       426
 }
-
-
 # 20m: MSG 3 (Pkt 15, 41, 5, 21, 27), LRBG 902
 edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   nid_packet 15
@@ -46,7 +44,7 @@ edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   q_scale    1
   v_loa      0
   t_loa      1023
-  l_endsection 19980
+  l_endsection 4000
   q_sectiontimer 0
   t_sectiontimer 0
   d_sectiontimerstoploc 0
@@ -72,36 +70,30 @@ edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   nid_packet    21
   q_dir         1
   q_scale       1
-  n_iter        1
+  n_iter        2
   d_gradient(0) 0
   q_gdir(0)     0
   g_a(0)        0
-  d_gradient(1) 5000
+  d_gradient(1) 2000
   q_gdir(1)     0
   g_a(1)        -1
+  d_gradient(2) 4000
+  q_gdir(2)     0
+  g_a(2)        2
 } {
   nid_packet  27
   q_dir       1
   q_scale     1
-  n_iter_k    3
+  n_iter_k    1
   d_static(0) 0
-  v_static(0) 20
+  v_static(0) 28
   q_front(0)  1
   n_iter(0)   0
-  d_static(1) 1000
-  v_static(1) 10
+  d_static(1) 4000
+  v_static(1) 0
   q_front(1)  1
   n_iter(1)   0
-  d_static(2) 1000
-  v_static(2) 8
-  q_front(2)  1
-  n_iter(2)   0
-  d_static(3) 3000
-  v_static(3) 0
-  q_front(3)  1
-  n_iter(3)   0
-
-} 
+}
 # 100m: BG 903 P41
 edit::addBG 100 1 903 1  {
   nid_packet   41
@@ -112,60 +104,17 @@ edit::addBG 100 1 903 1  {
   m_leveltr(0) 3
   l_ackleveltr(0) 50
 }
-# 730m: MSG 3 (Pkt 21, 27), LRBG 903
-edit::addRMSG 730 {nid_message 3 m_ack 1 nid_lrbg 42600903} {
-  nid_packet 15
-  q_dir      1
-  q_scale    1
-  v_loa      0
-  t_loa      1023
-  l_endsection 3000
-  q_sectiontimer 0
-  t_sectiontimer 0
-  d_sectiontimerstoploc 0
-} {
-  nid_packet    21
-  q_dir         1
-  q_scale       1
-  n_iter        1
-  d_gradient(0) 0
-  q_gdir(0)     0
-  g_a(0)        1
-  d_gradient(1) 2000
-  q_gdir(1)     0
-  g_a(1)        -1
-} {
-  nid_packet  27
-  q_dir       1
-  q_scale     1
-  n_iter_k    2
-  d_static(0) 0
-  v_static(0) 12
-  q_front(0)  1
-  n_iter(0)   0
-  d_static(1) 2000
-  v_static(1) 10
-  q_front(1)  1
-  n_iter(1)   0
-  d_static(2) 1000
-  v_static(2) 0
-  q_front(2)  1
-  n_iter(2)   0
-
-
-} 
-
 # 1000m: BG 904
 edit::addBG 1000 1 904 1
 
-# 1700m: MSG 3 (Pkt 15, 41, 21, 27), LRBG 904
-edit::addRMSG 1700 {nid_message 3 m_ack 1 nid_lrbg 42600904}  {
+# 1000m: MSG 3 (Pkt 21, 27), LRBG 902
+edit::addRMSG 1000 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   nid_packet 15
   q_dir      1
   q_scale    1
   v_loa      0
   t_loa      1023
-  l_endsection 5000
+  l_endsection 2000
   q_sectiontimer 0
   t_sectiontimer 0
   d_sectiontimerstoploc 0
@@ -176,33 +125,24 @@ edit::addRMSG 1700 {nid_message 3 m_ack 1 nid_lrbg 42600904}  {
   n_iter        1
   d_gradient(0) 0
   q_gdir(0)     0
-  g_a(0)        1
-  d_gradient(1) 3000
+  g_a(0)        0
+  d_gradient(1) 4000
   q_gdir(1)     0
   g_a(1)        -1
 } {
   nid_packet  27
   q_dir       1
   q_scale     1
-  n_iter_k    3
-  d_static(0) 180
-  v_static(0) 10
+  n_iter_k    1
+  d_static(0) 0
+  v_static(0) 28
   q_front(0)  1
   n_iter(0)   0
-  d_static(1) 680
-  v_static(1) 8
+  d_static(1) 1800
+  v_static(1) 0
   q_front(1)  1
   n_iter(1)   0
-  d_static(2) 1180
-  v_static(2) 60
-  q_front(2)  1
-  n_iter(2)   0
-  d_static(3) 5000
-  v_static(3) 127
-  q_front(3)  1
-  n_iter(3)   0
 }
-
 # 2000m: BG 905
 edit::addBG 2000 1 905 1
 
