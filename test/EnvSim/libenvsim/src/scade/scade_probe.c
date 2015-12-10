@@ -86,6 +86,7 @@ void es_scade_probe_sdm_init(outC_ProbeSDM_EnvSim *outC) {
 void es_scade_probe_curves(CurveCollection_T_CalcBrakingCurves_types *curves) {
   static int cycle = 0;
   static es_scade_probe_BrakingCurves data;
+  static uint16_t f16_eoasbd = 0;
 
   if( cycle % 10 == 0 ) {
     char buf[4000];
@@ -95,16 +96,17 @@ void es_scade_probe_curves(CurveCollection_T_CalcBrakingCurves_types *curves) {
 
     ParabolaCurve_T_CalcBrakingCurves_types *c = &curves->EOA_SBD_curve;
 
-    len = snprintf(p,rest,"{eoasbd ");
+    len = snprintf(p,rest,"eoasbd {");
     rest -= len;
     p += len;
 
     kcg_real last_dist = -1;
     for(i=0; i<10; i++) {
-      if( c->valid[i] ) {
-        len = snprintf(p,rest,"{%f %f %f} ", c->distances[i], c->accelerations[i], c->speeds[i]);
+      if( c->valid[i] && c->distances[i] != last_dist ) {
+        len = snprintf(p,rest,"%f %f %f ", c->distances[i], c->accelerations[i], c->speeds[i]);
         rest -= len;
         p += len;
+        last_dist = c->distances[i];
       }
 
     }
@@ -134,7 +136,7 @@ void es_scade_probe_sdm_cycle(TargetCollection_T_TargetManagement_types *targetC
     }
   }
 
-//  es_scade_probe_curves(curveCollection);
+  es_scade_probe_curves(curveCollection);
 
 }
 

@@ -101,4 +101,7 @@ uint16_t es_fletcher16( char const *data, size_t bytes );
 // calculates the Fletcher32-Checksum (code copied from https://en.wikipedia.org/wiki/Fletcher%27s_checksum)
 uint32_t fletcher32( uint16_t const *data, size_t words );
 
+// calculates the Fletcher16-Checksum (code copied from https://en.wikipedia.org/wiki/Fletcher%27s_checksum)
+uint16_t fletcher16( uint8_t const *data, size_t bytes );
+
 #endif //ENGINE_UTILS_H

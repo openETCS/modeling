@@ -153,7 +153,7 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
   // SEND
   if(es_remote_dmi_conn1 != NULL && es_remote_dmi_conn1->socket != INVALID_SOCKET) {
     int send = in[0];
-
+/*
     if(send && tiuToDMI->valid) {
       char buf[EVCTIU_MSG_SIZE];
       memcpy(buf,evcToDMI,EVC2DMI_BUSMSG_SIZE);
@@ -166,20 +166,16 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
     else if(send) {
       es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVC2DMI_BUS, (const char *) evcToDMI, EVC2DMI_BUSMSG_SIZE);
     }
-  /*
-    if( send || tiuToDMI->valid ) {
-      es_remote_evcmsg_id++;
-      char buf[EVCTIU_MSG_SIZE+8];
-      memcpy(buf+8,evcToDMI,EVC2DMI_BUSMSG_SIZE);
-      memcpy(buf+8+EVC2DMI_BUSMSG_SIZE,tiuToDMI,TIU2DMI_STRUCT_SIZE);
-      memcpy(buf,&es_remote_evcmsg_id,4);
-      uint32_t f32 = fletcher32((uint16_t*)(buf+8),EVCTIU_MSG_SIZE/2);
-      LOG_INFO(scade_remote,"sending EVCTIU message %d with F32=%d",es_remote_evcmsg_id,f32);
-      memcpy(buf+4,&f32,4);
-      es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVCTIU2DMI, (const char*) buf, EVCTIU_MSG_SIZE+8);
-
+ */
+    if(send) {
+      es_tcp_send(es_remote_dmi_conn1, TCPMSG_EVC2DMI_BUS, (const char *) evcToDMI, EVC2DMI_BUSMSG_SIZE);
     }
-    */
+    if(tiuToDMI->valid) {
+      uint32_t cabSt = tiuToDMI->info.train_status.m_cab_st;
+//        LOG_INFO(scade_remote,"cabSt: %d",cabSt);
+        es_tcp_send(es_remote_dmi_conn1, TCPMSG_TIUCABSTAT, (const char*)&cabSt, 4);
+    }
+
   }
   // RECEIVE
   if(es_remote_dmi_conn2 != NULL) {
@@ -191,22 +187,7 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
       }
       else {
         memcpy(&outC->dmiToEVC,msg->data,DMI2EVC_BUSMSG_SIZE);
-//        uint32_t id = *(uint32_t*)msg->data;
-//        uint32_t received_f32 = *(uint32_t*)(msg->data+4);
-//        if(id > 1) {
-//          if( id != es_remote_last_dmimsg+1 ) {
-//            LOG_ERROR(scade_remote, "Expected DMI2EVC message with SeqID=%d, received SeqID=%d", es_remote_last_dmimsg,
-//                      id);
-//          }
-//        }
-//        es_remote_last_dmimsg = id;
-//        memcpy(&outC->dmiToEVC,msg->data+8,DMI2EVC_BUSMSG_SIZE);
-//
-//        uint32_t f32 = fletcher32((uint16_t*)outC->dmiToEVC,DMI2EVC_BUSMSG_SIZE/2);
-//        LOG_INFO(scade_remote,"received DMI2EVC message %d with F32=%d",id,f32);
-//        if( f32 != received_f32 ) {
-//          LOG_ERROR(scade_remote,"DMI2EVC checksum error (received: %d, computed: %d)",received_f32,f32);
-//        }
+
       }
       es_tcp_free_msg(msg);
     }
@@ -254,14 +235,6 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
 
   // SEND
   if( send && es_remote_evc_conn2 != NULL && es_remote_evc_conn2->client != INVALID_SOCKET) {
-//    es_remote_dmimsg_id++;
-//    uint32_t f32 = fletcher32((uint16_t const *)dmiToEVC,DMI2EVC_BUSMSG_SIZE/2);
-//    char buf[DMI2EVC_BUSMSG_SIZE+8];
-//    LOG_INFO(scade_remote,"sending DMI2EVC message %d with F32=%d",es_remote_dmimsg_id,f32);
-//    memcpy(buf,(char*)&es_remote_dmimsg_id,4);
-//    memcpy(buf+4,(char*)&f32,4);
-//    memcpy(buf+8,dmiToEVC,DMI2EVC_BUSMSG_SIZE);
-//    es_tcp_send(es_remote_evc_conn2,TCPMSG_DMI2EVC_BUS,(const char*)buf,DMI2EVC_BUSMSG_SIZE+8);
     es_tcp_send(es_remote_evc_conn2,TCPMSG_DMI2EVC_BUS,(const char*)dmiToEVC,DMI2EVC_BUSMSG_SIZE);
   }
 
@@ -281,21 +254,7 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
                   msg->len, EVCTIU_MSG_SIZE);
       }
       else {
-//        uint32_t id = *(uint32_t*)msg->data;
-//        if( id > 1 ) {
-//          if( id != es_remote_last_evcmsg+1 ) {
-//            LOG_ERROR(scade_remote, "Expected EVC2DMI message with SeqID=%d, received SeqID=%d", es_remote_last_evcmsg,
-//                      id);
-//          }
-//        }
-//        es_remote_last_evcmsg = id;
-//
-//        uint32_t received_f32 = *(uint32_t*)(msg->data+4);
-//        uint32_t f32 = fletcher32((uint16_t*)(msg->data+8),EVCTIU_MSG_SIZE/2);
-//        LOG_INFO(scade_remote,"Received EVC2DMI message %d with F32=%d",id,f32);
-//        if( received_f32 != f32 ) {
-//          LOG_ERROR(scade_remote,"EVC2DMI checksum error (received: %d, computed: %d)",received_f32,f32);
-//        }
+
         memcpy(&outC->evcToDMI,msg->data+8,EVC2DMI_BUSMSG_SIZE);
         memcpy(&outC->tiuToDMI,msg->data+8+EVC2DMI_BUSMSG_SIZE,TIU2DMI_STRUCT_SIZE);
       }
@@ -318,11 +277,19 @@ void es_remote_evcbus_cycle(DMI_to_EVC_Message_int_T_API_DMI_Pkg *dmiToEVC, outC
         memcpy(&outC->tiuToDMI, msg->data, TIU2DMI_STRUCT_SIZE);
       }
     }
+    else if( msg->id == TCPMSG_TIUCABSTAT ) {
+      int cabSt = -1;
+      memcpy(&cabSt,msg->data,4);
+//      LOG_INFO(scade_remote,"data: %x    cabSt: %d",*(int*)msg->data,cabSt);
+      outC->tiuToDMI.info.train_status.m_cab_st = cabSt;
+      outC->tiuToDMI.info.train_status.valid = true;
+      outC->tiuToDMI.valid = true;
+    }
     else {
       LOG_ERROR(scade_remote, "Unsupported message: %d",msg->id);
     }
 
-    LOG_TRACE(scade_remote, "TIU->DMI: valid=%d   m_cab_st: %d",outC->tiuToDMI.valid,outC->tiuToDMI.info.train_status);
+    LOG_TRACE(scade_remote, "TIU->DMI: valid=%d   m_cab_st: %d",outC->tiuToDMI.valid,outC->tiuToDMI.info.train_status.m_cab_st);
     LOG_TRACE(scade_remote, "EVC->DMI: valid=%d",outC->evcToDMI[0])
 
     es_tcp_free_msg(msg);
