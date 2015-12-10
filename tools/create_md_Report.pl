@@ -62,7 +62,7 @@ sub write_report {
 
 	#adding closed issues
 	print $fh "\n";
-	print $fh "## Closed Issues\n"
+	print $fh "## Closed Issues\n";
 	print $fh "### The following issues have been closed for the current week:\n";
 	print $fh "\n";
 
