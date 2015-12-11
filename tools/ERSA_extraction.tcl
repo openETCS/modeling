@@ -109,8 +109,107 @@ proc Testing_SCADE_PATH {} {
 	}
 }
 
+proc Select_Code_Generator {CONF_NAME CONF_NAME_EVC CONF_NAME_Releases CONF_NAME_Trackside CONF_NAME_Trainside} {
+	puts "Selection of code generation\n"
+	puts "The following projects can be build:\n"
+	puts "$CONF_NAME $CONF_NAME_EVC $CONF_NAME_Releases $CONF_NAME_Trackside $CONF_NAME_Trainside"
+	puts "How many projects would you like to build?\n";
+	puts -nonewline "Please enter a number:\n"
+  flush stdout
+  set numberProjects [gets stdin]
+
+	for {set i 0} {$i < $numberProjects} {incr i} {
+    puts -nonewline "Please enter the $i projectname\n"
+		flush stdout
+		lappend flatList [gets stdin]
+}
+	puts "Length of the list is: "
+	llength flatList
+
+	puts "For which project would you like to use the Code Generator?\n";
+	puts -nonewline "Please enter now:\n"
+  flush stdout
+  set result [gets stdin]
+	puts $result
+	exit 1
+}
+
+proc make_clean {} {
+	if { [catch {exec make.exe distclean} fid] } {
+   puts "Done cleaning\n"
+ }
+}
+
+proc MOVING_PARTS_EnvSim {PATH_TO MK_DIR} {
+	Removing_Files $MK_DIR
+	puts "Creating folder $MK_DIR\n"
+	file mkdir $MK_DIR
+	Gathering_and_Copying $PATH_TO $MK_DIR
+}
+
+
+proc Starting_make {} {
+	if { [catch {exec make.exe SCADESRCDIR=../Simulation_EnvSim/ ROOTNODE=ROOT_Scripted -j 8} fid] } {
+   puts "Done building\n"
+ }
+}
+
+
+proc Moving_DMI_testbench_EnvSim {} {
+	set BASE [pwd]
+	source "$BASE/modeling/tools/lib/DMI_testbench_EnvSim.tcl"
+
+	#checking if executable exists
+	catch {file exists $PATH_TO_testbench_EXE} fid
+	if {$fid==1} {
+		puts "Removing old testbench executable and building a fresh one\n"
+		cd $PATH_TO_MAKE_PLACE
+		make_clean
+		puts "Starting SCADE to generate Code for testbench.exe\n"
+		Build_Source_Files $SCADE $CODE $PATH_TO_ETP_testbench $ROOT $ROOT_NAME_testbench $CONF $CONF_NAME_testbench
+		puts "Starting make to create testbench.exe\n"
+		Starting_make
+	} else {
+		puts "Starting SCADE to generate Code for testbench.exe\n"
+		Build_Source_Files $SCADE $CODE $PATH_TO_ETP_testbench $ROOT $ROOT_NAME_testbench $CONF $CONF_NAME_testbench
+		puts "Starting make to create testbench.exe\n"
+		cd $PATH_TO_MAKE_PLACE
+		Starting_make
+	}
+
+#checking if folder Zipping_DMI_testbench_EnvSim exists
+	catch {file exists $PATH_TO_folderZIP} folder_id
+	if { $folder_id==1 } {
+   puts "Zipping_DMI_testbench_EnvSim folder is present\n"
+	 Removing_Files $PATH_TO_folderZIP
+	 puts "Creating folder Zipping_DMI_testbench_EnvSim\n"
+	 file mkdir $PATH_TO_folderZIP
+ } else {
+	 puts "Creating folder Zipping_DMI_testbench_EnvSim\n"
+	 file mkdir $PATH_TO_folderZIP
+ }
+
+	puts "Coyping DMI.exe into folder $PATH_TO_folderZIP\n"
+	Gathering_and_Copying $PATH_TO_DMI $PATH_TO_folderZIP
+
+  puts "Coyping testbench.exe into folder $PATH_TO_folderZIP\n"
+	file copy -force -- $PATH_TO_testbench_EXE $PATH_TO_folderZIP
+
+	puts "Coyping all relevant parts of EnvSim to folder $PATH_TO_folderZIP\n"
+	MOVING_PARTS_EnvSim $PATH_TO_EnvSim_directories $MK_DIR_WIN32
+	MOVING_PARTS_EnvSim $PATH_TO_EnvSim_simctrl $MK_DIR_SIMCTRL
+	MOVING_PARTS_EnvSim $PATH_TO_LIB $MK_DIR_LIB
+
+	puts "Done moving DMI.exe, testbench.exe and EnvSim to $PATH_TO_folderZIP\n"
+}
+
 #you should run this code in cygwin
 #example: wish main.tcl
+
+
+
+
+
 
 #checking if SCADE is in PATH
 Testing_SCADE_PATH
@@ -122,6 +221,10 @@ Removing_Files $delete_KCG_GreenField
 Removing_Files $delete_KCG_Releases
 Removing_Files $delete_Trackside
 Removing_Files $delete_Trainside
+
+
+#TODO: add option to select each generator separatly
+#Select_Code_Generator $CONF_NAME $CONF_NAME_EVC $CONF_NAME_Releases $CONF_NAME_Trackside $CONF_NAME_Trainside
 
 #Second step
 #generation of code
@@ -192,5 +295,6 @@ Gathering_and_Copying $PATH_TO_KCG_Releases $KCG_Releases_MKDIR_KCG_ERSA
 #puts "gathering all files to $Trainside_MKDIR_KCG_ERSA\n"
 #Gathering_and_Copying $PATH_TO_Trainside $Trainside_MKDIR_KCG_ERSA
 
+Moving_DMI_testbench_EnvSim
 
 puts "Done\n"
