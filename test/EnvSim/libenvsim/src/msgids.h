@@ -5,6 +5,7 @@
 // History:
 // - 27.10.15, J. Kastner: initial version (extracted from tcp.h)
 // - 12.11.15, J. Kastner: redefine 1001, delete 2001
+// - 10.12.15, J. Kastner: add TCPMSG_TIUCABSTAT
 
 #ifndef LIBENVSIM_MSGIDS_H
 #define LIBENVSIM_MSGIDS_H
@@ -34,6 +35,8 @@
 #define TCPMSG_EVCTIU2DMI  1001
 // SCADE data type: API_TIU_Pkg::TIU_Input_msg
 #define TCPMSG_TIU2DMI     1002
+// SCADE data member m_cab_st in API_TIU_Pkg::TIU_Input_msg::
+#define TCPMSG_TIUCABSTAT  1003
 
 
 /***** DMI -> EVC *****/
