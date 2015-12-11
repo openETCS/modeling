@@ -89,11 +89,11 @@ edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   q_front(0)  1
   n_iter(0)   0
   d_static(1) 1000
-  v_static(1) 20
+  v_static(1) 24
   q_front(1)  1
   n_iter(1)   0
   d_static(2) 2000
-  v_static(2) 8
+  v_static(2) 20
   q_front(2)  1
   n_iter(2)   0
   d_static(3) 3000
