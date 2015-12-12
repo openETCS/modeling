@@ -33,6 +33,30 @@
 								<ed:Variable oid="!ed/14aa9/39F3/D40/54ec9cafdac"/>
 							</pragmas>
 						</Variable>
+						<Variable name="inModeLevel">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Level_And_Mode_Types_Pkg::T_Mode_Level"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1fff5/7D72/EDC/566c40c73032"/>
+							</pragmas>
+						</Variable>
+						<Variable name="inDriverWindowEB">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1fec8/3210/1524/566c72656d7e"/>
+							</pragmas>
+						</Variable>
 					</inputs>
 					<outputs>
 						<Variable name="outTIUStatus">
@@ -61,6 +85,18 @@
 									<comment>Only relavant when indicated with the valid flag. </comment>
 									<comment>Each packet in the </comment>
 								</ed:Variable>
+							</pragmas>
+						</Variable>
+						<Variable name="outRevokeEB">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1ffd1/7D72/EDC/566c3fe02746"/>
 							</pragmas>
 						</Variable>
 					</outputs>
@@ -197,6 +233,54 @@
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/1f2d9/6313/1A20/55a62f0b32fb"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L42">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1ffd8/7D72/EDC/566c40061e5d"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L43">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TIU_Types_Pkg::Brake_pressure_value_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1ffde/7D72/EDC/566c4092703b"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L44">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Level_And_Mode_Types_Pkg::T_Mode_Level"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1fff7/7D72/EDC/566c40cf1a44"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L45">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1ff13/3210/1524/566c73f96f7f"/>
 							</pragmas>
 						</Variable>
 					</locals>
@@ -465,6 +549,116 @@
 								<ed:Equation oid="!ed/1f2d8/6313/1A20/55a62f0b6860"/>
 							</pragmas>
 						</Equation>
+						<!-- outRevokeEB = _L42; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="outRevokeEB"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L42"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1ffd2/7D72/EDC/566c3ff55b1"/>
+							</pragmas>
+						</Equation>
+						<!-- _L42 = detectEvokeBrake(_L43, _L44, _L45); -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L42"/>
+							</lefts>
+							<right>
+								<!-- detectEvokeBrake(_L43, _L44, _L45) -->
+								<CallExpression>
+									<operator>
+										<OpCall name="1">
+											<operator>
+												<OperatorRef name="detectEvokeBrake"/>
+											</operator>
+										</OpCall>
+									</operator>
+									<callParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L43"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L44"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L45"/>
+											</path>
+										</IdExpression>
+									</callParameters>
+								</CallExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1ffd7/7D72/EDC/566c4006403f"/>
+							</pragmas>
+						</Equation>
+						<!-- _L43 = _L37.brake_pressure; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L43"/>
+							</lefts>
+							<right>
+								<!-- _L37.brake_pressure -->
+								<PrjOp name="9">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L37"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="brake_pressure"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1ffdd/7D72/EDC/566c40922491"/>
+							</pragmas>
+						</Equation>
+						<!-- _L44 = inModeLevel; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L44"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="inModeLevel"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1fff6/7D72/EDC/566c40cf1a37"/>
+							</pragmas>
+						</Equation>
+						<!-- _L45 = inDriverWindowEB; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L45"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="inDriverWindowEB"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1ff12/3210/1524/566c73f94ad0"/>
+							</pragmas>
+						</Equation>
 					</data>
 					<pragmas>
 						<ed:Operator oid="!ed/5c0f/2ABF/1248/54b63df66c54" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
@@ -514,10 +708,10 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/28352/31B4/2044/54d785362b3e" dstEquation="!ed/2835f/31B4/2044/54d785ed544e">
 											<positions>
-												<Point x="10980" y="11986"/>
-												<Point x="13229" y="11986"/>
-												<Point x="13229" y="11986"/>
-												<Point x="15505" y="11986"/>
+												<Point x="10964" y="11980"/>
+												<Point x="13229" y="11980"/>
+												<Point x="13229" y="11980"/>
+												<Point x="15494" y="11980"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/2d892/2D10/1434/54ededd24277">
@@ -554,18 +748,18 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1f29c/6313/1A20/55a62d9e2821" dstEquation="!ed/2d892/2D10/1434/54ededd24277">
 											<positions>
-												<Point x="2884" y="9075"/>
-												<Point x="12912" y="9075"/>
-												<Point x="12912" y="9075"/>
-												<Point x="15161" y="9075"/>
+												<Point x="2879" y="9059"/>
+												<Point x="12912" y="9059"/>
+												<Point x="12912" y="9059"/>
+												<Point x="15155" y="9059"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1f29c/6313/1A20/55a62d9e2821" dstEquation="!ed/28352/31B4/2044/54d785362b3e">
 											<positions>
-												<Point x="2884" y="9075"/>
-												<Point x="4471" y="9075"/>
-												<Point x="4471" y="11986"/>
-												<Point x="6085" y="11986"/>
+												<Point x="2879" y="9059"/>
+												<Point x="4466" y="9059"/>
+												<Point x="4466" y="11980"/>
+												<Point x="6075" y="11980"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/1f2af/6313/1A20/55a62eaa1160">
@@ -578,26 +772,26 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1f290/6313/1A20/55a62c0a1485" dstEquation="!ed/ba59/C50/4C4/54b683f65b00">
 											<positions>
-												<Point x="10980" y="6138"/>
-												<Point x="12012" y="6138"/>
-												<Point x="12012" y="6138"/>
-												<Point x="13256" y="6138"/>
+												<Point x="10964" y="6117"/>
+												<Point x="12002" y="6117"/>
+												<Point x="12002" y="6117"/>
+												<Point x="13250" y="6117"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/1f296/6313/1A20/55a62cb25170" dstEquation="!ed/1f290/6313/1A20/55a62c0a1485">
 											<positions>
-												<Point x="2884" y="6932"/>
-												<Point x="4207" y="6932"/>
-												<Point x="4207" y="6932"/>
-												<Point x="6085" y="6932"/>
+												<Point x="2879" y="6922"/>
+												<Point x="4212" y="6922"/>
+												<Point x="4212" y="6922"/>
+												<Point x="6075" y="6922"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/5c66/2ABF/1248/54b642c85032" dstEquation="!ed/1f290/6313/1A20/55a62c0a1485">
 											<positions>
-												<Point x="2884" y="6138"/>
-												<Point x="4392" y="6138"/>
-												<Point x="4392" y="6138"/>
-												<Point x="6085" y="6138"/>
+												<Point x="2879" y="6138"/>
+												<Point x="4382" y="6138"/>
+												<Point x="4382" y="6117"/>
+												<Point x="6075" y="6117"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/1f2b9/6313/1A20/55a62edf1a37">
@@ -611,15 +805,15 @@
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1f2b9/6313/1A20/55a62edf1a37" dstEquation="!ed/1f290/6313/1A20/55a62c0a1485">
 											<positions>
 												<Point x="4974" y="2858"/>
-												<Point x="8546" y="2858"/>
-												<Point x="8546" y="4524"/>
+												<Point x="8530" y="2858"/>
+												<Point x="8530" y="4530"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="5" srcEquation="!ed/1f2af/6313/1A20/55a62eaa1160" dstEquation="!ed/1f290/6313/1A20/55a62c0a1485">
 											<positions>
-												<Point x="5821" y="8229"/>
-												<Point x="8546" y="8229"/>
-												<Point x="8546" y="7726"/>
+												<Point x="5821" y="8213"/>
+												<Point x="8530" y="8213"/>
+												<Point x="8530" y="7705"/>
 											</positions>
 										</Edge>
 										<EquationGE presentable="!ed/1f2d8/6313/1A20/55a62f0b6860">
@@ -632,26 +826,106 @@
 										</EquationGE>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5c25/2ABF/1248/54b641544106" dstEquation="!ed/1f2d8/6313/1A20/55a62f0b6860">
 											<positions>
-												<Point x="2884" y="5345"/>
-												<Point x="3440" y="5345"/>
-												<Point x="3440" y="5345"/>
-												<Point x="4022" y="5345"/>
+												<Point x="2879" y="5334"/>
+												<Point x="3450" y="5334"/>
+												<Point x="3450" y="5334"/>
+												<Point x="4022" y="5334"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1f2d8/6313/1A20/55a62f0b6860" dstEquation="!ed/1f290/6313/1A20/55a62c0a1485">
 											<positions>
-												<Point x="4974" y="5345"/>
-												<Point x="5530" y="5345"/>
-												<Point x="5530" y="5345"/>
-												<Point x="6085" y="5345"/>
+												<Point x="4974" y="5355"/>
+												<Point x="5525" y="5355"/>
+												<Point x="5525" y="5334"/>
+												<Point x="6075" y="5334"/>
 											</positions>
 										</Edge>
 										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/5c25/2ABF/1248/54b641544106" dstEquation="!ed/1f2b9/6313/1A20/55a62edf1a37">
 											<positions>
-												<Point x="2884" y="5345"/>
-												<Point x="3440" y="5345"/>
-												<Point x="3440" y="2858"/>
+												<Point x="2879" y="5334"/>
+												<Point x="3450" y="5334"/>
+												<Point x="3450" y="2858"/>
 												<Point x="4022" y="2858"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/1ffd2/7D72/EDC/566c3ff55b1">
+											<position>
+												<Point x="15452" y="16489"/>
+											</position>
+											<size>
+												<Size width="339" height="508"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/1ffd7/7D72/EDC/566c4006403f">
+											<position>
+												<Point x="6075" y="15134"/>
+											</position>
+											<size>
+												<Size width="4906" height="3212"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1ffd7/7D72/EDC/566c4006403f" dstEquation="!ed/1ffd2/7D72/EDC/566c3ff55b1">
+											<positions>
+												<Point x="10986" y="16743"/>
+												<Point x="13504" y="16743"/>
+												<Point x="13504" y="16743"/>
+												<Point x="15494" y="16743"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/1ffdd/7D72/EDC/566c40922491">
+											<position>
+												<Point x="4191" y="15452"/>
+											</position>
+											<size>
+												<Size width="974" height="974"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1f29c/6313/1A20/55a62d9e2821" dstEquation="!ed/1ffdd/7D72/EDC/566c40922491">
+											<positions>
+												<Point x="2879" y="9059"/>
+												<Point x="3535" y="9059"/>
+												<Point x="3535" y="15939"/>
+												<Point x="4191" y="15939"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1ffdd/7D72/EDC/566c40922491" dstEquation="!ed/1ffd7/7D72/EDC/566c4006403f">
+											<positions>
+												<Point x="5165" y="15939"/>
+												<Point x="5609" y="15939"/>
+												<Point x="5609" y="15939"/>
+												<Point x="6075" y="15939"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/1fff6/7D72/EDC/566c40cf1a37">
+											<position>
+												<Point x="2625" y="16489"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1fff6/7D72/EDC/566c40cf1a37" dstEquation="!ed/1ffd7/7D72/EDC/566c4006403f">
+											<positions>
+												<Point x="2879" y="16743"/>
+												<Point x="4466" y="16743"/>
+												<Point x="4466" y="16743"/>
+												<Point x="6075" y="16743"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/1ff12/3210/1524/566c73f94ad0">
+											<position>
+												<Point x="2625" y="17293"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/1ff12/3210/1524/566c73f94ad0" dstEquation="!ed/1ffd7/7D72/EDC/566c4006403f">
+											<positions>
+												<Point x="2879" y="17547"/>
+												<Point x="4466" y="17547"/>
+												<Point x="4466" y="17547"/>
+												<Point x="6075" y="17547"/>
 											</positions>
 										</Edge>
 									</presentationElements>
@@ -4060,6 +4334,1105 @@
 												<Point x="10134" y="11800"/>
 											</positions>
 										</Edge>
+									</presentationElements>
+								</NetDiagram>
+							</diagrams>
+						</ed:Operator>
+					</pragmas>
+				</Operator>
+				<Operator kind="node" name="detectEvokeBrake">
+					<inputs>
+						<Variable name="brakeController">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TIU_Types_Pkg::Brake_pressure_value_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1fe50/7D72/EDC/566c37fc637d"/>
+							</pragmas>
+						</Variable>
+						<Variable name="ModeLevel">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Level_And_Mode_Types_Pkg::T_Mode_Level"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1fe5a/7D72/EDC/566c38ef185c"/>
+							</pragmas>
+						</Variable>
+						<Variable name="inDriverWindowEB">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1fecf/3210/1524/566c72914a1c"/>
+							</pragmas>
+						</Variable>
+					</inputs>
+					<outputs>
+						<Variable name="EB_RevokedByDriver">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<last>
+								<ConstValue value="false"/>
+							</last>
+							<pragmas>
+								<ed:Variable oid="!ed/1fe64/7D72/EDC/566c39513847"/>
+							</pragmas>
+						</Variable>
+					</outputs>
+					<locals>
+						<Variable name="is_PostTrip">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1fe77/7D72/EDC/566c39de3a3e"/>
+							</pragmas>
+						</Variable>
+						<Variable name="isMax">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1feeb/7D72/EDC/566c3cba319b"/>
+							</pragmas>
+						</Variable>
+						<Variable name="isMin">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1ff40/7D72/EDC/566c3e0d342c"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L2">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="Level_And_Mode_Types_Pkg::T_Mode_Level"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1fe81/7D72/EDC/566c3a13f1d"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L3">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="M_MODE"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1fe87/7D72/EDC/566c3a2429f2"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L4">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1fe9b/7D72/EDC/566c3a505331"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L5">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="M_MODE"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1fea1/7D72/EDC/566c3a633234"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L7">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="TIU_Types_Pkg::Brake_pressure_value_T"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1fef4/7D72/EDC/566c3ce87398"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L8">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1fefa/7D72/EDC/566c3cfa654f"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L9">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1ff0c/7D72/EDC/566c3d55b0e"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L10">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1ff12/7D72/EDC/566c3d664866"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L11">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1ff28/7D72/EDC/566c3de96eed"/>
+							</pragmas>
+						</Variable>
+						<Variable name="_L12">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="int"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/1ff2e/7D72/EDC/566c3dfc4a67"/>
+							</pragmas>
+						</Variable>
+					</locals>
+					<data>
+						<StateMachine name="brake_Management">
+							<states>
+								<State initial="true" name="TrainOperation">
+									<until>
+										<Transition kind="restart">
+											<target>
+												<StateRef name="Wait_forStartWindow"/>
+											</target>
+											<condition>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="is_PostTrip"/>
+													</path>
+												</IdExpression>
+											</condition>
+											<pragmas>
+												<ed:Transition oid="!ed/1fed0/7D72/EDC/566c3b56294d"/>
+											</pragmas>
+										</Transition>
+									</until>
+									<pragmas>
+										<ed:State oid="!ed/1fe72/7D72/EDC/566c39ae5b42"/>
+									</pragmas>
+								</State>
+								<State name="WatchBrakeMax">
+									<until>
+										<Transition kind="restart">
+											<target>
+												<StateRef name="TrainOperation"/>
+											</target>
+											<condition>
+												<!--  not is_PostTrip -->
+												<UnaryOp name="1" operator="not">
+													<operand>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="is_PostTrip"/>
+															</path>
+														</IdExpression>
+													</operand>
+												</UnaryOp>
+											</condition>
+											<pragmas>
+												<ed:Transition oid="!ed/1fee2/7D72/EDC/566c3c6069ae"/>
+											</pragmas>
+										</Transition>
+										<Transition kind="restart">
+											<target>
+												<StateRef name="BrakeMaxDone"/>
+											</target>
+											<condition>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="isMax"/>
+													</path>
+												</IdExpression>
+											</condition>
+											<pragmas>
+												<ed:Transition oid="!ed/1ff55/7D72/EDC/566c3e65255b"/>
+											</pragmas>
+										</Transition>
+									</until>
+									<pragmas>
+										<ed:State oid="!ed/1fec1/7D72/EDC/566c3b183fc4"/>
+									</pragmas>
+								</State>
+								<State name="BrakeMaxDone">
+									<until>
+										<Transition kind="restart">
+											<target>
+												<StateRef name="BrakeMinDone"/>
+											</target>
+											<condition>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="isMin"/>
+													</path>
+												</IdExpression>
+											</condition>
+											<pragmas>
+												<ed:Transition oid="!ed/1ff70/7D72/EDC/566c3ebf4fb"/>
+											</pragmas>
+										</Transition>
+										<Transition kind="restart">
+											<target>
+												<StateRef name="TrainOperation"/>
+											</target>
+											<condition>
+												<!--  not is_PostTrip -->
+												<UnaryOp name="3" operator="not">
+													<operand>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="is_PostTrip"/>
+															</path>
+														</IdExpression>
+													</operand>
+												</UnaryOp>
+											</condition>
+											<pragmas>
+												<ed:Transition oid="!ed/1ff8e/7D72/EDC/566c3f1e3470"/>
+											</pragmas>
+										</Transition>
+									</until>
+									<pragmas>
+										<ed:State oid="!ed/1ff48/7D72/EDC/566c3e404f5d"/>
+									</pragmas>
+								</State>
+								<State name="BrakeMinDone">
+									<locals>
+										<Variable name="_L1">
+											<type>
+												<NamedType>
+													<type>
+														<TypeRef name="bool"/>
+													</type>
+												</NamedType>
+											</type>
+											<pragmas>
+												<ed:Variable oid="!ed/1ffcb/7D72/EDC/566c3f9b783e"/>
+											</pragmas>
+										</Variable>
+									</locals>
+									<data>
+										<!-- _L1 = true; -->
+										<Equation>
+											<lefts>
+												<VariableRef name="_L1"/>
+											</lefts>
+											<right>
+												<ConstValue value="true"/>
+											</right>
+											<pragmas>
+												<ed:Equation oid="!ed/1ffca/7D72/EDC/566c3f9b5e42"/>
+											</pragmas>
+										</Equation>
+										<!-- EB_RevokedByDriver = _L1; -->
+										<Equation>
+											<lefts>
+												<VariableRef name="EB_RevokedByDriver"/>
+											</lefts>
+											<right>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="_L1"/>
+													</path>
+												</IdExpression>
+											</right>
+											<pragmas>
+												<ed:Equation oid="!ed/1ffcc/7D72/EDC/566c3f9b395e"/>
+											</pragmas>
+										</Equation>
+									</data>
+									<until>
+										<Transition kind="restart">
+											<target>
+												<StateRef name="TrainOperation"/>
+											</target>
+											<condition>
+												<!--  not is_PostTrip -->
+												<UnaryOp name="2" operator="not">
+													<operand>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="is_PostTrip"/>
+															</path>
+														</IdExpression>
+													</operand>
+												</UnaryOp>
+											</condition>
+											<pragmas>
+												<ed:Transition oid="!ed/1ff7b/7D72/EDC/566c3ed77a62"/>
+											</pragmas>
+										</Transition>
+									</until>
+									<pragmas>
+										<ed:State oid="!ed/1ff6e/7D72/EDC/566c3ea7837"/>
+									</pragmas>
+								</State>
+								<State name="Wait_forStartWindow">
+									<until>
+										<Transition kind="restart">
+											<target>
+												<StateRef name="WatchBrakeMax"/>
+											</target>
+											<condition>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="inDriverWindowEB"/>
+													</path>
+												</IdExpression>
+											</condition>
+											<pragmas>
+												<ed:Transition oid="!ed/1fef7/3210/1524/566c735769e7"/>
+											</pragmas>
+										</Transition>
+										<Transition kind="restart">
+											<target>
+												<StateRef name="TrainOperation"/>
+											</target>
+											<condition>
+												<!--  not is_PostTrip -->
+												<UnaryOp name="4" operator="not">
+													<operand>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="is_PostTrip"/>
+															</path>
+														</IdExpression>
+													</operand>
+												</UnaryOp>
+											</condition>
+											<pragmas>
+												<ed:Transition oid="!ed/1ff03/3210/1524/566c7395e97"/>
+											</pragmas>
+										</Transition>
+									</until>
+									<pragmas>
+										<ed:State oid="!ed/1fee4/3210/1524/566c73046b48"/>
+									</pragmas>
+								</State>
+							</states>
+							<pragmas>
+								<ed:StateMachine oid="!ed/1fe6d/7D72/EDC/566c39896594"/>
+							</pragmas>
+						</StateMachine>
+						<!-- is_PostTrip = _L4; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="is_PostTrip"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L4"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1fe79/7D72/EDC/566c39ff3897"/>
+							</pragmas>
+						</Equation>
+						<!-- _L2 = ModeLevel; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L2"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="ModeLevel"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1fe80/7D72/EDC/566c3a137c41"/>
+							</pragmas>
+						</Equation>
+						<!-- _L3 = _L2.Mode; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L3"/>
+							</lefts>
+							<right>
+								<!-- _L2.Mode -->
+								<PrjOp name="1">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L2"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="Mode"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1fe86/7D72/EDC/566c3a247143"/>
+							</pragmas>
+						</Equation>
+						<!-- _L4 = _L3 = _L5; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L4"/>
+							</lefts>
+							<right>
+								<!-- _L3 = _L5 -->
+								<BinaryOp name="1" operator="=">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L3"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L5"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1fe9a/7D72/EDC/566c3a503d9f"/>
+							</pragmas>
+						</Equation>
+						<!-- _L5 = M_MODE_Post_Trip; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L5"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="M_MODE_Post_Trip"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1fea0/7D72/EDC/566c3a63366d"/>
+							</pragmas>
+						</Equation>
+						<!-- isMax = _L9; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="isMax"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L9"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1feec/7D72/EDC/566c3cd021f1"/>
+							</pragmas>
+						</Equation>
+						<!-- _L7 = brakeController; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L7"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="brakeController"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1fef3/7D72/EDC/566c3ce83433"/>
+							</pragmas>
+						</Equation>
+						<!-- _L8 = _L7.pressure; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L8"/>
+							</lefts>
+							<right>
+								<!-- _L7.pressure -->
+								<PrjOp name="2">
+									<flow>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L7"/>
+											</path>
+										</IdExpression>
+									</flow>
+									<with>
+										<Label name="pressure"/>
+									</with>
+								</PrjOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1fef9/7D72/EDC/566c3cfa7193"/>
+							</pragmas>
+						</Equation>
+						<!-- _L9 = _L8 >= _L10; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L9"/>
+							</lefts>
+							<right>
+								<!-- _L8 >= _L10 -->
+								<BinaryOp name="1" operator="&gt;=">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L8"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L10"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1ff0b/7D72/EDC/566c3d551728"/>
+							</pragmas>
+						</Equation>
+						<!-- _L10 = 180000; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L10"/>
+							</lefts>
+							<right>
+								<ConstValue value="180000"/>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1ff11/7D72/EDC/566c3d667108"/>
+							</pragmas>
+						</Equation>
+						<!-- _L11 = _L12 = _L8; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L11"/>
+							</lefts>
+							<right>
+								<!-- _L12 = _L8 -->
+								<BinaryOp name="2" operator="=">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L12"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="_L8"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1ff27/7D72/EDC/566c3de93dcc"/>
+							</pragmas>
+						</Equation>
+						<!-- _L12 = 0; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="_L12"/>
+							</lefts>
+							<right>
+								<ConstValue value="0"/>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1ff2d/7D72/EDC/566c3dfc6c5d"/>
+							</pragmas>
+						</Equation>
+						<!-- isMin = _L11; -->
+						<Equation>
+							<lefts>
+								<VariableRef name="isMin"/>
+							</lefts>
+							<right>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L11"/>
+									</path>
+								</IdExpression>
+							</right>
+							<pragmas>
+								<ed:Equation oid="!ed/1ff41/7D72/EDC/566c3e1b4ae5"/>
+							</pragmas>
+						</Equation>
+					</data>
+					<pragmas>
+						<ed:Operator oid="!ed/1fe4e/7D72/EDC/566c371e5a10" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+							<diagrams>
+								<NetDiagram name="diagram_detectEvokeBrake_1" landscape="true" format="A4 (210 297)" oid="!ed/1fe4f/7D72/EDC/566c371e1492">
+									<presentationElements>
+										<StateMachineGE presentable="!ed/1fe6d/7D72/EDC/566c39896594">
+											<position>
+												<Point x="1334" y="1482"/>
+											</position>
+											<size>
+												<Size width="22542" height="14181"/>
+											</size>
+										</StateMachineGE>
+										<StateGE presentable="!ed/1fe72/7D72/EDC/566c39ae5b42">
+											<position>
+												<Point x="3154" y="2667"/>
+											</position>
+											<size>
+												<Size width="3344" height="2836"/>
+											</size>
+										</StateGE>
+										<EquationGE presentable="!ed/1fe79/7D72/EDC/566c39ff3897">
+											<position>
+												<Point x="9864" y="18013"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/1fe80/7D72/EDC/566c3a137c41">
+											<position>
+												<Point x="3937" y="17590"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/1fe86/7D72/EDC/566c3a247143">
+											<position>
+												<Point x="5440" y="17357"/>
+											</position>
+											<size>
+												<Size width="974" height="974"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1fe80/7D72/EDC/566c3a137c41" dstEquation="!ed/1fe86/7D72/EDC/566c3a247143">
+											<positions>
+												<Point x="4191" y="17844"/>
+												<Point x="4805" y="17844"/>
+												<Point x="4805" y="17844"/>
+												<Point x="5440" y="17844"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/1fe9a/7D72/EDC/566c3a503d9f">
+											<position>
+												<Point x="7387" y="17928"/>
+											</position>
+											<size>
+												<Size width="1016" height="656"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1fe86/7D72/EDC/566c3a247143" dstEquation="!ed/1fe9a/7D72/EDC/566c3a503d9f">
+											<positions>
+												<Point x="6414" y="17844"/>
+												<Point x="6900" y="17844"/>
+												<Point x="6900" y="18140"/>
+												<Point x="7387" y="18140"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/1fea0/7D72/EDC/566c3a63366d">
+											<position>
+												<Point x="6308" y="18733"/>
+											</position>
+											<size>
+												<Size width="170" height="317"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1fea0/7D72/EDC/566c3a63366d" dstEquation="!ed/1fe9a/7D72/EDC/566c3a503d9f">
+											<positions>
+												<Point x="6477" y="18902"/>
+												<Point x="6922" y="18902"/>
+												<Point x="6922" y="18373"/>
+												<Point x="7387" y="18373"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1fe9a/7D72/EDC/566c3a503d9f" dstEquation="!ed/1fe79/7D72/EDC/566c39ff3897">
+											<positions>
+												<Point x="8403" y="18267"/>
+												<Point x="9123" y="18267"/>
+												<Point x="9123" y="18267"/>
+												<Point x="9864" y="18267"/>
+											</positions>
+										</Edge>
+										<StateGE presentable="!ed/1fec1/7D72/EDC/566c3b183fc4">
+											<position>
+												<Point x="16320" y="2773"/>
+											</position>
+											<size>
+												<Size width="4995" height="2752"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/1fed0/7D72/EDC/566c3b56294d">
+											<positions>
+												<Point x="6498" y="3810"/>
+												<Point x="8192" y="3450"/>
+												<Point x="8911" y="1799"/>
+												<Point x="10499" y="2074"/>
+											</positions>
+											<labelSize>
+												<Size width="2265" height="953"/>
+											</labelSize>
+											<labelPos>
+												<Point x="7091" y="1863"/>
+											</labelPos>
+											<slashPos>
+												<Point x="8636" y="1863"/>
+											</slashPos>
+										</TransitionGE>
+										<TransitionGE presentable="!ed/1fee2/7D72/EDC/566c3c6069ae">
+											<positions>
+												<Point x="16320" y="4741"/>
+												<Point x="14880" y="5376"/>
+												<Point x="8340" y="5292"/>
+												<Point x="6498" y="4699"/>
+											</positions>
+											<labelSize>
+												<Size width="2498" height="1270"/>
+											</labelSize>
+											<labelPos>
+												<Point x="7112" y="5207"/>
+											</labelPos>
+											<slashPos>
+												<Point x="8890" y="5207"/>
+											</slashPos>
+										</TransitionGE>
+										<EquationGE presentable="!ed/1feec/7D72/EDC/566c3cd021f1">
+											<position>
+												<Point x="9864" y="21717"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/1fef3/7D72/EDC/566c3ce83433">
+											<position>
+												<Point x="4106" y="21421"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/1fef9/7D72/EDC/566c3cfa7193">
+											<position>
+												<Point x="5694" y="21188"/>
+											</position>
+											<size>
+												<Size width="973" height="974"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1fef3/7D72/EDC/566c3ce83433" dstEquation="!ed/1fef9/7D72/EDC/566c3cfa7193">
+											<positions>
+												<Point x="4360" y="21675"/>
+												<Point x="5017" y="21675"/>
+												<Point x="5017" y="21675"/>
+												<Point x="5694" y="21675"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/1ff0b/7D72/EDC/566c3d551728">
+											<position>
+												<Point x="7578" y="21632"/>
+											</position>
+											<size>
+												<Size width="1016" height="656"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1fef9/7D72/EDC/566c3cfa7193" dstEquation="!ed/1ff0b/7D72/EDC/566c3d551728">
+											<positions>
+												<Point x="6668" y="21675"/>
+												<Point x="7112" y="21675"/>
+												<Point x="7112" y="21844"/>
+												<Point x="7578" y="21844"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/1ff11/7D72/EDC/566c3d667108">
+											<position>
+												<Point x="6731" y="22331"/>
+											</position>
+											<size>
+												<Size width="169" height="318"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1ff11/7D72/EDC/566c3d667108" dstEquation="!ed/1ff0b/7D72/EDC/566c3d551728">
+											<positions>
+												<Point x="6900" y="22500"/>
+												<Point x="7239" y="22500"/>
+												<Point x="7239" y="22077"/>
+												<Point x="7578" y="22077"/>
+											</positions>
+										</Edge>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1ff0b/7D72/EDC/566c3d551728" dstEquation="!ed/1feec/7D72/EDC/566c3cd021f1">
+											<positions>
+												<Point x="8594" y="21971"/>
+												<Point x="9419" y="21971"/>
+												<Point x="9419" y="21971"/>
+												<Point x="9864" y="21971"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/1ff27/7D72/EDC/566c3de93dcc">
+											<position>
+												<Point x="7578" y="20045"/>
+											</position>
+											<size>
+												<Size width="1016" height="656"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1fef9/7D72/EDC/566c3cfa7193" dstEquation="!ed/1ff27/7D72/EDC/566c3de93dcc">
+											<positions>
+												<Point x="6668" y="21675"/>
+												<Point x="7112" y="21675"/>
+												<Point x="7112" y="20489"/>
+												<Point x="7578" y="20489"/>
+											</positions>
+										</Edge>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/1ff2d/7D72/EDC/566c3dfc6c5d">
+											<position>
+												<Point x="6435" y="20066"/>
+											</position>
+											<size>
+												<Size width="169" height="318"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1ff2d/7D72/EDC/566c3dfc6c5d" dstEquation="!ed/1ff27/7D72/EDC/566c3de93dcc">
+											<positions>
+												<Point x="6604" y="20235"/>
+												<Point x="7091" y="20235"/>
+												<Point x="7091" y="20235"/>
+												<Point x="7578" y="20235"/>
+											</positions>
+										</Edge>
+										<EquationGE presentable="!ed/1ff41/7D72/EDC/566c3e1b4ae5">
+											<position>
+												<Point x="9864" y="20130"/>
+											</position>
+											<size>
+												<Size width="254" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1ff27/7D72/EDC/566c3de93dcc" dstEquation="!ed/1ff41/7D72/EDC/566c3e1b4ae5">
+											<positions>
+												<Point x="8594" y="20384"/>
+												<Point x="9229" y="20384"/>
+												<Point x="9229" y="20384"/>
+												<Point x="9864" y="20384"/>
+											</positions>
+										</Edge>
+										<StateGE presentable="!ed/1ff48/7D72/EDC/566c3e404f5d">
+											<position>
+												<Point x="12679" y="11578"/>
+											</position>
+											<size>
+												<Size width="4995" height="2751"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/1ff55/7D72/EDC/566c3e65255b">
+											<positions>
+												<Point x="19452" y="5525"/>
+												<Point x="20130" y="6498"/>
+												<Point x="14224" y="10562"/>
+												<Point x="14901" y="11578"/>
+											</positions>
+											<labelSize>
+												<Size width="1482" height="381"/>
+											</labelSize>
+											<labelPos>
+												<Point x="15494" y="6668"/>
+											</labelPos>
+											<slashPos>
+												<Point x="16256" y="6668"/>
+											</slashPos>
+										</TransitionGE>
+										<StateGE presentable="!ed/1ff6e/7D72/EDC/566c3ea7837">
+											<position>
+												<Point x="3514" y="8509"/>
+											</position>
+											<size>
+												<Size width="4995" height="2752"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/1ff70/7D72/EDC/566c3ebf4fb">
+											<positions>
+												<Point x="12679" y="13060"/>
+												<Point x="11705" y="12637"/>
+												<Point x="9525" y="10033"/>
+												<Point x="8509" y="9610"/>
+											</positions>
+											<labelSize>
+												<Size width="1482" height="381"/>
+											</labelSize>
+											<labelPos>
+												<Point x="9250" y="10880"/>
+											</labelPos>
+											<slashPos>
+												<Point x="10012" y="10880"/>
+											</slashPos>
+										</TransitionGE>
+										<TransitionGE presentable="!ed/1ff7b/7D72/EDC/566c3ed77a62">
+											<positions>
+												<Point x="5503" y="8509"/>
+												<Point x="5419" y="7514"/>
+												<Point x="5334" y="6519"/>
+												<Point x="5207" y="5503"/>
+											</positions>
+											<labelSize>
+												<Size width="2413" height="1270"/>
+											</labelSize>
+											<labelPos>
+												<Point x="2541" y="6519"/>
+											</labelPos>
+											<slashPos>
+												<Point x="4233" y="6519"/>
+											</slashPos>
+										</TransitionGE>
+										<TransitionGE presentable="!ed/1ff8e/7D72/EDC/566c3f1e3470">
+											<positions>
+												<Point x="13822" y="11578"/>
+												<Point x="11705" y="10287"/>
+												<Point x="8382" y="6816"/>
+												<Point x="6265" y="5503"/>
+											</positions>
+											<labelSize>
+												<Size width="3895" height="1270"/>
+											</labelSize>
+											<labelPos>
+												<Point x="9377" y="6371"/>
+											</labelPos>
+											<slashPos>
+												<Point x="11345" y="6371"/>
+											</slashPos>
+										</TransitionGE>
+										<EquationGE kind="OBJ_LIT" presentable="!ed/1ffca/7D72/EDC/566c3f9b5e42">
+											<position>
+												<Point x="4128" y="9948"/>
+											</position>
+											<size>
+												<Size width="169" height="318"/>
+											</size>
+										</EquationGE>
+										<EquationGE presentable="!ed/1ffcc/7D72/EDC/566c3f9b395e">
+											<position>
+												<Point x="5228" y="9864"/>
+											</position>
+											<size>
+												<Size width="339" height="508"/>
+											</size>
+										</EquationGE>
+										<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1ffca/7D72/EDC/566c3f9b5e42" dstEquation="!ed/1ffcc/7D72/EDC/566c3f9b395e">
+											<positions>
+												<Point x="4297" y="10118"/>
+												<Point x="4784" y="10118"/>
+												<Point x="4784" y="10118"/>
+												<Point x="5271" y="10118"/>
+											</positions>
+										</Edge>
+										<StateGE presentable="!ed/1fee4/3210/1524/566c73046b48">
+											<position>
+												<Point x="10499" y="1588"/>
+											</position>
+											<size>
+												<Size width="3344" height="1418"/>
+											</size>
+										</StateGE>
+										<TransitionGE presentable="!ed/1fef7/3210/1524/566c735769e7">
+											<positions>
+												<Point x="13843" y="2180"/>
+												<Point x="14923" y="2371"/>
+												<Point x="16002" y="2561"/>
+												<Point x="17103" y="2773"/>
+											</positions>
+											<labelSize>
+												<Size width="2477" height="1270"/>
+											</labelSize>
+											<labelPos>
+												<Point x="14669" y="1376"/>
+											</labelPos>
+											<slashPos>
+												<Point x="16425" y="1376"/>
+											</slashPos>
+										</TransitionGE>
+										<TransitionGE presentable="!ed/1ff03/3210/1524/566c7395e97">
+											<positions>
+												<Point x="10541" y="2921"/>
+												<Point x="9208" y="3387"/>
+												<Point x="7874" y="3852"/>
+												<Point x="6498" y="4318"/>
+											</positions>
+											<labelSize>
+												<Size width="3387" height="318"/>
+											</labelSize>
+											<labelPos>
+												<Point x="7853" y="4022"/>
+											</labelPos>
+											<slashPos>
+												<Point x="10033" y="4022"/>
+											</slashPos>
+										</TransitionGE>
 									</presentationElements>
 								</NetDiagram>
 							</diagrams>
