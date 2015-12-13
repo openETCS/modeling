@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.3)
-project(libenvsim VERSION 0.6.0 LANGUAGES C)
+project(libenvsim VERSION 0.6.1 LANGUAGES C)
 
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
