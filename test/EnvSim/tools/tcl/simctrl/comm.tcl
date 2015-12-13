@@ -107,6 +107,7 @@ proc comm::readMsgEVC2GUI {channel len} {
     }
     set model::tstamp $tstamp
     plot::updatePosPlot $tstamp [expr $nom/100] $dmax $dmin
+    sdm::updateTrainState $curpos $curvel
   }
 }
 

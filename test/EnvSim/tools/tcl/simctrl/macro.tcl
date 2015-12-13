@@ -54,6 +54,7 @@ proc macro::getLRBG {} {
 proc macro::sendMsg16 {nid_em} {
   track::radio clear
   track::radio set header "nid_message 16 nid_em $nid_em m_ack 1 nid_lrbg [getLRBG]"
+  puts [track::radio get raw]
   comm::sendRMSG "[track::radio get raw]"
 }
 
