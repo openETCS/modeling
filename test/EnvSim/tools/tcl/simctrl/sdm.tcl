@@ -119,6 +119,8 @@ proc sdm::drawBCData {} {
   variable bcPlot
   variable bcData
 
+  if {! $sdm::active} { return }
+
   $canv delete all
 
   foreach {xmin xmax dx ymin ymax dy} [computeRanges] {
@@ -145,8 +147,10 @@ proc sdm::drawBCData {} {
       if [info exists last_mrs] {
         $bcPlot plot mrs [expr $loc/100.0] $last_mrs
       }
-      $bcPlot plot mrs [expr $loc/100.0] $mrs 
-      set last_mrs $mrs
+      if {$mrs < 635} {
+        $bcPlot plot mrs [expr $loc/100.0] $mrs 
+        set last_mrs $mrs
+      }
       #puts "loc: $loc   mrs: $mrs"
     }
   }
@@ -177,6 +181,8 @@ proc sdm::computeRanges {} {
 proc sdm::updateTrainState {pos speed} {
   variable canv
   variable bcPlot
+
+  if {! $sdm::active} { return }
 
   $bcPlot plot train $pos $speed
 }
