@@ -181,9 +181,6 @@
           <emfPageIdentifier href="openETCS_EVC.notation#_KfxjoGaIEeWucbW7hVNeag"/>
         </children>
         <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_nGKnIGdKEeWuAcnYQmw5JA"/>
-        </children>
-        <children>
           <emfPageIdentifier href="openETCS_EVC.notation#_zGUCcGdOEeWuAcnYQmw5JA"/>
         </children>
         <children>
