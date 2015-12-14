@@ -113,7 +113,7 @@ proc Testing_SCADE_PATH {} {
 proc Select_Code_Generator {CONF_NAME CONF_NAME_EVC CONF_NAME_Releases CONF_NAME_Trackside CONF_NAME_Trainside} {
 	puts "Selection of code generation\n"
 	puts "The following projects can be build:\n"
-	puts "$CONF_NAME $CONF_NAME_EVC $CONF_NAME_Releases $CONF_NAME_Trackside $CONF_NAME_Trainside"
+	puts "$CONF_NAME $CONF_NAME_EVC $CONF_NAME_Releases $CONF_NAME_Trackside $CONF_NAME_Trainside noCode\n"
 	puts "How many projects would you like to build?\n";
 	puts -nonewline "Please enter a number:\n"
   flush stdout
@@ -209,9 +209,9 @@ proc Moving_DMI_testbench_EnvSim {} {
 	file copy -force -- $PATH_TO_testbench_EXE $PATH_TO_folderZIP
 
 	puts "Coyping all relevant parts of EnvSim to folder $PATH_TO_folderZIP\n"
-	MOVING_PARTS_EnvSim $PATH_TO_EnvSim_directories $MK_DIR_WIN32
-	MOVING_PARTS_EnvSim $PATH_TO_EnvSim_simctrl $MK_DIR_SIMCTRL
-	MOVING_PARTS_EnvSim $PATH_TO_LIB $MK_DIR_LIB
+	MOVING_PARTS_EnvSim $PATH_TO_EnvSim_directories $MK_DIR_ENVSIM
+#	MOVING_PARTS_EnvSim $PATH_TO_EnvSim_simctrl $MK_DIR_SIMCTRL
+#	MOVING_PARTS_EnvSim $PATH_TO_LIB $MK_DIR_LIB
 
 	puts "Done moving DMI.exe, testbench.exe and EnvSim to $PATH_TO_folderZIP\n"
 }
@@ -252,6 +252,7 @@ Removing_Files $delete_Trainside
 #Build_Source_Files $SCADE $CODE $PATH_TO_ETP $ROOT $ROOT_NAME_Trackside $CONF $CONF_NAME_Trackside
 #Build_Source_Files $SCADE $CODE $PATH_TO_ETP $ROOT $ROOT_NAME_Trainside $CONF $CONF_NAME_Trainside
 
+
 for {set i 0} {$i < [llength $List_Code_Generators]} {incr i} {
 	if {[lindex $List_Code_Generators $i]==$CONF_NAME} {
 		Build_Source_Files $SCADE $CODE $PATH_TO_ETP $ROOT $ROOT_NAME $CONF $CONF_NAME;
@@ -263,6 +264,9 @@ for {set i 0} {$i < [llength $List_Code_Generators]} {incr i} {
 		Build_Source_Files $SCADE $CODE $PATH_TO_ETP $ROOT $ROOT_NAME_Trackside $CONF $CONF_NAME_Trackside
 	} elseif {[lindex $List_Code_Generators $i]==$CONF_NAME_Trainside} {
 		Build_Source_Files $SCADE $CODE $PATH_TO_ETP $ROOT $ROOT_NAME_Trainside $CONF $CONF_NAME_Trainside
+	} elseif {[lindex $List_Code_Generators $i]=="noCode"} {
+		puts "No code will be generated!\n"
+		break;
 	} else {
 		puts "Some of your CONF_NAMEs is wrong, building source code is not possible for '[lindex $List_of_CONF_NAMEs $i]'\n"
 	}
@@ -281,6 +285,7 @@ puts "copying templates  RemoteDMIBus_EnvSim.dc RemoteDMIBus_EnvSim.dh\n"
 #Copying_Files $PATH_TO_TEMPLATE_C $PATH_TO_TEMPLATE_H $PATH_TO_Trackside
 #Copying_Files $PATH_TO_TEMPLATE_C $PATH_TO_TEMPLATE_H $PATH_TO_Trainside
 
+puts "Hello"
 
 for {set i 0} {$i < [llength $List_Code_Generators]} {incr i} {
 	if {[lindex $List_Code_Generators $i]==$CONF_NAME} {
@@ -293,6 +298,9 @@ for {set i 0} {$i < [llength $List_Code_Generators]} {incr i} {
 		Copying_Files $PATH_TO_TEMPLATE_C $PATH_TO_TEMPLATE_H $PATH_TO_Trackside
 	} elseif {[lindex $List_Code_Generators $i]==$CONF_NAME_Trainside} {
 		Copying_Files $PATH_TO_TEMPLATE_C $PATH_TO_TEMPLATE_H $PATH_TO_Trainside
+	} elseif {[lindex $List_Code_Generators $i]=="noCode"} {
+		puts "No code will be generated!\n"
+		break;
 	} else {
 		puts "Some of your CONF_NAMEs is wrong, copying of files is not possible for '[lindex $List_of_CONF_NAMEs $i]'\n"
 	}
@@ -324,6 +332,9 @@ for {set i 0} {$i < [llength $List_Code_Generators]} {incr i} {
 		delete_DC_and_DH_files $Trainside_DEL_RemoteDMIBus_EnvSim_DC $Trainside_DEL_RemoteDMIBus_EnvSim_DH
 	} elseif {[lindex $List_Code_Generators $i]==$CONF_NAME_Trainside} {
 		delete_DC_and_DH_files $Trackside_DEL_RemoteDMIBus_EnvSim_DC $Trackside_DEL_RemoteDMIBus_EnvSim_DH
+	} elseif {[lindex $List_Code_Generators $i]=="noCode"} {
+		puts "No code will be generated!\n"
+		break;
 	} else {
 		puts "Some of your CONF_NAMEs is wrong, copying of files is not possible for '[lindex $List_of_CONF_NAMEs $i]'\n"
 	}
@@ -346,6 +357,9 @@ for {set i 0} {$i < [llength $List_Code_Generators]} {incr i} {
 		puts "Renaming process for $CONF_NAME_Trackside has not been implemented yet"
 	} elseif {[lindex $List_Code_Generators $i]==$CONF_NAME_Trainside} {
 		puts "Renaming process for $CONF_NAME_Trainside has not been implemented yet"
+	} elseif {[lindex $List_Code_Generators $i]=="noCode"} {
+		puts "No code will be generated!\n"
+		break;
 	} else {
 		puts "Some of your CONF_NAMEs is wrong, renaming of files is not possible for '[lindex $List_of_CONF_NAMEs $i]'\n"
 	}
@@ -372,6 +386,9 @@ for {set i 0} {$i < [llength $List_Code_Generators]} {incr i} {
 		puts "checking and copying files is not possible yet for $CONF_NAME_Trackside, will be implemented later\n"
 	} elseif {[lindex $List_Code_Generators $i]==$CONF_NAME_Trainside} {
 		puts "checking and copying files is not possible yet for $CONF_NAME_Trainside, will be implemented later\n"
+	} elseif {[lindex $List_Code_Generators $i]=="noCode"} {
+		puts "No code will be generated!\n"
+		break;
 	} else {
 		puts "Some of your CONF_NAMEs is wrong, checking and copying of files is not possible for '[lindex $List_of_CONF_NAMEs $i]'\n"
 	}
@@ -401,6 +418,9 @@ for {set i 0} {$i < [llength $List_Code_Generators]} {incr i} {
 		puts "Deletion and creation of folders is not possible yet for $CONF_NAME_Trackside, will be implemented later\n"
 	} elseif {[lindex $List_Code_Generators $i]==$CONF_NAME_Trainside} {
 		puts "Deletion and creation of folders is not possible yet for $CONF_NAME_Trainside, will be implemented later\n"
+	} elseif {[lindex $List_Code_Generators $i]=="noCode"} {
+		puts "No code will be generated!\n"
+		break;
 	} else {
 		puts "Some of your CONF_NAMEs is wrong, deletion and creation of folders is not possible for '[lindex $List_of_CONF_NAMEs $i]'\n"
 	}
@@ -436,6 +456,9 @@ for {set i 0} {$i < [llength $List_Code_Generators]} {incr i} {
 		puts "Gathering of files is not possible yet for $CONF_NAME_Trackside, will be implemented later\n"
 	} elseif {[lindex $List_Code_Generators $i]==$CONF_NAME_Trainside} {
 		puts "Gathering of files is not possible yet for $CONF_NAME_Trainside, will be implemented later\n"
+	} elseif {[lindex $List_Code_Generators $i]=="noCode"} {
+		puts "No code will be generated!\n"
+		break;
 	} else {
 		puts "Some of your CONF_NAMEs is wrong, deletion and creation of folders is not possible for '[lindex $List_of_CONF_NAMEs $i]'\n"
 	}
