@@ -66,6 +66,7 @@ proc comm::readMsg {channel} {
       3006 { sdm::handleBCMessage [read $channel $len] }
       3007 { evts::logRTM "[read $channel $len]" }
       3008 { evts::logERR "[read $channel $len]" }
+      3009 { sdm::handleModeMessage "[read $channel $len]" }
       default { error "ERROR: received invalid message id=$id, len=$len" }
     }
   } else {

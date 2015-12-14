@@ -110,7 +110,7 @@ proc view::init {} {
   grid [ttk::frame .c.info] -column 4 -row 2 -sticky n
   addLabelField .c.info.pos "Position (m):" model::currentPos 0 0 true 6
   addLabelField .c.info.vel "Velocity (km/h):" model::currentVel 0 1 true 4
-  addLabelField .c.info.lrbg "LRBG:" model::lrbg 0 2 true 4
+  addLabelField .c.info.lrbg "LRBG:" model::lrbg 0 2 true 8
   addLabelField .c.info.mode "Mode:" model::mode 0 3 true 4
   addLabelField .c.info.level "Level:" model::level 0 4 true 4
 

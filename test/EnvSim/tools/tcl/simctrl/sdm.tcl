@@ -15,6 +15,7 @@ namespace eval ::sdm {
   set targetType -
   set targetDistance 0
   set targetSpeed 0
+  set mode "- / -"
 
   variable bcData {}
   variable plotXMax 35000
@@ -30,11 +31,12 @@ proc sdm::initView {path} {
   grid rowconfigure $path 1 -minsize 10 -weight 0
   grid rowconfigure $path 2 -weight 1
   
-  # Current target
-  grid [ttk::frame $path.i] -column 0 -row 0
+  # Current target / mode
+  grid [ttk::frame $path.i] -column 0 -row 0 
   view::addLabelField $path.i.type "Target type:" sdm::targetType 0 0 true
   view::addLabelField $path.i.dist "Distance (m):" sdm::targetDistance 3 0 true
   view::addLabelField $path.i.speed "Speed (km/h):" sdm::targetSpeed 6 0 true
+  view::addLabelField $path.i.mode "Mode: " sdm::mode 9 0 true
 
   # Plot
   grid [canvas $path.c -background white -width 600 -height 320] -column 0 -row 2 -sticky wesn
@@ -73,12 +75,35 @@ proc sdm::createPlot {xmin xmax dx ymin ymax dy} {
 
   $bcPlot dataconfig eoasbd -color red -width 1
   $bcPlot dataconfig svlebd -color brown -width 1
-  $bcPlot dataconfig mrsp -color blue -width 1
+  $bcPlot dataconfig mrspebd -color blue -width 1
+  $bcPlot dataconfig mrs -color green -width 1
 
   $bcPlot legend eoasbd EoA-SBD
   $bcPlot legend svlebd SvL-EBD 15
-  $bcPlot legend mrsp MRSP 15
-  #$bcPlot dataconfig train -color green
+  $bcPlot legend mrspebd MRSP-EBD 15
+  $bcPlot legend mrs MRS 15
+}
+
+proc sdm::handleModeMessage {data} {
+  foreach {t1 sup_status t2 sup_display} "$data" {
+    switch $sup_status {
+      0 { set mode "CSM / " }
+      1 { set mode "PIM / " }
+      2 { set mode "TSM / " }
+      3 { set mode "RSM / "}
+      4 { set mode "- / "}
+      default { error "invalid sup_status: $sup_status" }
+    }
+    switch $sup_display {
+      0 { append mode NoS }
+      1 { append mode IndS }
+      2 { append mode OvS }
+      3 { append mode WaS }
+      4 { append mode IntS }
+      default { error "invalid sup_display: $sup_display" }
+    }
+  }
+  set sdm::mode "$mode"
 }
 
 proc sdm::handleBCMessage {data} {
@@ -110,9 +135,20 @@ proc sdm::drawBCData {} {
     plotCurve svlebd $data
   }
 
-  if [dict exists $bcData mrsp] {
-    set data "[dict get $bcData mrsp]"
-    plotCurve mrsp $data
+  if [dict exists $bcData mrspebd] {
+    set data "[dict get $bcData mrspebd]"
+    plotCurve mrspebd $data
+  }
+
+  if [dict exists $bcData mrs] {
+    foreach {loc mrs} "[dict get $bcData mrs]" {
+      if [info exists last_mrs] {
+        $bcPlot plot mrs [expr $loc/100.0] $last_mrs
+      }
+      $bcPlot plot mrs [expr $loc/100.0] $mrs 
+      set last_mrs $mrs
+      #puts "loc: $loc   mrs: $mrs"
+    }
   }
 }
 
