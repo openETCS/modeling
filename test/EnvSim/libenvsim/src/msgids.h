@@ -65,6 +65,8 @@
 #define TCPMSG_ES_EVT_MORC 3007
 // Event: error message (body: string)
 #define TCPMSG_ES_EVT_ERR  3008
+// Event: change of SDM mode (body: string)
+#define TCPMSG_ES_EVT_SDMM 3009
 
 
 /***** GUI -> EVC/EnvSim *****/

@@ -38,6 +38,7 @@ const size_t PROBE_EVC_MORC_REG_SIZE = sizeof(mobileRegistrationContext_T_RCM_Ty
 const size_t PROBE_EVC_MORC_CON_SIZE = sizeof(mobileConnectionContext_T_RCM_Types_Pkg);
 const size_t PROBE_EVC_MORC_SES_SIZE = sizeof(sessionStatus_T_RCM_Session_Types_Pkg);
 const size_t PROBE_PARABOLACURVE_SIZE = sizeof(ParabolaCurve_T_CalcBrakingCurves_types);
+const size_t PROBE_MRSP_SEC_SIZE = sizeof(MRSP_section_t_TrackAtlasTypes);
 //const size_t PROBE_EVT_BC_SIZE = sizeof(es_scade_probe_BrakingCurves);
 
 
@@ -108,16 +109,19 @@ void es_scade_probe_addcurve(char** buf, ParabolaCurve_T_CalcBrakingCurves_types
   *buf = p;
 }
 
-void es_scade_probe_curves(CurveCollection_T_CalcBrakingCurves_types *curves) {
+void es_scade_probe_curves(CurveCollection_T_CalcBrakingCurves_types *curves,
+                           DataForSupervision_nextGen_t_TrackAtlasTypes *dataFromTA) {
   static uint16_t last_f16 = 0;
 
   ParabolaCurve_T_CalcBrakingCurves_types *eoasbd = &curves->EOA_SBD_curve;
   ParabolaCurve_T_CalcBrakingCurves_types *svlebd = &curves->SvL_LoA_EBD_curve;
 //  ParabolaCurve_T_CalcBrakingCurves_types *gui = &curves->GUI_curve;
-  ParabolaCurve_T_CalcBrakingCurves_types *mrsp = curves->MRSP_EBD_curves;
+  ParabolaCurve_T_CalcBrakingCurves_types *mrspebd = curves->MRSP_EBD_curves;
+  MRSP_section_t_TrackAtlasTypes *mrs = dataFromTA->MRSP;
   uint16_t f16 = fletcher16((uint8_t*)eoasbd, PROBE_PARABOLACURVE_SIZE)
                + fletcher16((uint8_t*)svlebd, PROBE_PARABOLACURVE_SIZE)
-               + fletcher16((uint8_t*)mrsp, MAX_MRSP_SECTIONS * PROBE_PARABOLACURVE_SIZE);
+               + fletcher16((uint8_t*) mrspebd, MAX_MRSP_SECTIONS * PROBE_PARABOLACURVE_SIZE);
+               //+ fletcher16((uint8_t*)mrs, MAX_MRSP_SECTIONS * PROBE_MRSP_SEC_SIZE);
 
   if( f16 != last_f16 ) {
     char buf[4000];
@@ -163,22 +167,46 @@ void es_scade_probe_curves(CurveCollection_T_CalcBrakingCurves_types *curves) {
 //      p += len;
 //    }
 
+    /* MRSP-EBD */
     kcg_bool hasMrsp = false;
     for(i=0; i<MAX_MRSP_SECTIONS; i++) {
-      if(!mrsp[i].valid[0])
+      if(!mrspebd[i].valid[0])
         continue;
 
       if(!hasMrsp) {
-        len = snprintf(p, rest, "mrsp {");
+        len = snprintf(p, rest, "mrspebd {");
         rest -= len;
         p += len;
         hasMrsp = true;
       }
 
-      es_scade_probe_addcurve(&p, &mrsp[i], &rest, &max_dist);
+      es_scade_probe_addcurve(&p, &mrspebd[i], &rest, &max_dist);
     }
 
     if( hasMrsp ) {
+      len = snprintf(p, rest, "} ");
+      rest -= len;
+      p += len;
+    }
+
+    /* MRS */
+    kcg_bool hasMrs = false;
+    for(i=0; i<MAX_MRSP_SECTIONS; i++) {
+      if( !mrs[i].valid )
+        continue;
+
+      if( !hasMrs ) {
+        len = snprintf(p, rest, "mrs {");
+        rest -= len;
+        p += len;
+        hasMrs = true;
+      }
+//printf("i: %d   loc: %d   mrs: %d\n",i,mrs[i].Loc_Abs,mrs[i].MRS);
+      len = snprintf(p, rest, "%d %d ",mrs[i].Loc_Abs,mrs[i].MRS);
+      rest -= len;
+      p += len;
+    }
+    if( hasMrs ) {
       len = snprintf(p, rest, "} ");
       rest -= len;
       p += len;
@@ -195,8 +223,12 @@ void es_scade_probe_curves(CurveCollection_T_CalcBrakingCurves_types *curves) {
 void es_scade_probe_sdm_cycle(TargetCollection_T_TargetManagement_types *targetCollection,
                               CurveCollection_T_CalcBrakingCurves_types *curveCollection,
                               Target_T_TargetManagement_types *target,
+                              DataForSupervision_nextGen_t_TrackAtlasTypes *dataFromTA,
+                              speedSupervisionForDMI_T_DMI_Types_Pkg *sdmToDMI,
                               outC_ProbeSDM_EnvSim *outC) {
   static Target_real_T_TargetManagement_types last_target;
+  static M_SUPERVISION_STATUS_DMI_Types_Pkg last_sup_status = supervision_status_unknown_DMI_Types_Pkg;
+  static M_SupervisionDisplay_T_DMI_Types_Pkg last_sup_display = -1;
 
   if( scade_probe_evtstream==NULL || scade_probe_evtstream->client == INVALID_SOCKET ) {
     return;
@@ -209,7 +241,15 @@ void es_scade_probe_sdm_cycle(TargetCollection_T_TargetManagement_types *targetC
     }
   }
 
-  es_scade_probe_curves(curveCollection);
+  if( sdmToDMI->sup_status != last_sup_status || sdmToDMI->supervisionDisplay != last_sup_display ) {
+    last_sup_status = sdmToDMI->sup_status;
+    last_sup_display = sdmToDMI->supervisionDisplay;
+    char buf[200];
+    snprintf(buf,200,"sup_status %d sup_display %d",last_sup_status,last_sup_display);
+    es_tcp_send(scade_probe_evtstream,TCPMSG_ES_EVT_SDMM,buf,strlen(buf));
+  }
+
+  es_scade_probe_curves(curveCollection,dataFromTA);
 
 }
 
