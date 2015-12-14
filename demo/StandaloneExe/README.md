@@ -7,7 +7,6 @@
 ## Running the demo
 
 1. First unzip the file Standalone.zip 
-2. After unzipping run the file "RunMe.exe". 
-3. The software opens automatically the DMI and two control windows. 
-4. A tutorial on how to use the software can be found here: https://github.com/openETCS/modeling/wiki/HowTo:-Run-Test-Scenario
+2. After unzipping run the *.bat files in the indicated sequence (1_ ... 2_... 3_ ...) and keep the windows open.
+3. A tutorial on how to use the software can be found here: https://github.com/openETCS/modeling/wiki/HowTo:-Run-Test-Scenario
 
