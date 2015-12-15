@@ -10,6 +10,7 @@
 // - 10.11.15, J. Kastner: read remote GUI addr/port from env variables ENVSIM_REMOTE_GUI_ADDR/_PORT;
 //                         correct bug in dmibus_cycle() (present not set to false when no msg arrviced in this cycle)
 // - 12.11.15, J. Kastner: use valid flag for TIU data and remove TIU send data divider
+// - 15.12.15, J. Kastner: correct bug in dmibus_cycle / RECEIVE
 
 #ifdef WITH_SCADE
 #include "RemoteDMI_EnvSim.h"
@@ -178,6 +179,7 @@ void es_remote_dmibus_cycle(EVC_to_DMI_Message_int_T_API_DMI_Pkg *evcToDMI, TIU_
 
   }
   // RECEIVE
+  outC->dmiToEVC[0] = 0;
   if(es_remote_dmi_conn2 != NULL) {
     es_TCPMessage *msg = NULL;
     es_tcp_read(es_remote_dmi_conn2,TCPMSG_DMI2EVC_BUS,&msg);

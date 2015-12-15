@@ -6,6 +6,7 @@
 // - 28.10.15, J. Kastner: initial version
 // - 30.10.15, J. Kastner: add handling of train messages to trackside_cycle()
 // - 13.12.15, J. Kastner: add sending of braking curves data
+// - 14.12.15, J. Kastner: add MRS data to braking curves
 
 #include <stdio.h>
 #include "../tcp.h"
@@ -201,7 +202,7 @@ void es_scade_probe_curves(CurveCollection_T_CalcBrakingCurves_types *curves,
         p += len;
         hasMrs = true;
       }
-//printf("i: %d   loc: %d   mrs: %d\n",i,mrs[i].Loc_Abs,mrs[i].MRS);
+
       len = snprintf(p, rest, "%d %d ",mrs[i].Loc_Abs,mrs[i].MRS);
       rest -= len;
       p += len;
