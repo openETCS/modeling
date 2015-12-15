@@ -156,51 +156,6 @@
         <children>
           <emfPageIdentifier href="openETCS_EVC.notation#_FK4IkB5oEeWg95oxeH6B_w"/>
         </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_gGfEMEvrEeW5INCKn-fcDw"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_Gs9_wGH7EeW-aZat0dbY1Q"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_hZRLkDa_EeWOTu031a_nSQ"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_FK4wTh5oEeWg95oxeH6B_w"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_rTJWoGH0EeWI45Hl0Vzetg"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_14n8jmH-EeW-aZat0dbY1Q"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_-cWbIGH_EeW-aZat0dbY1Q"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_KfxjoGaIEeWucbW7hVNeag"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_zGUCcGdOEeWuAcnYQmw5JA"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_S1RukGdPEeWuAcnYQmw5JA"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_f9hnkHgAEeWbS4SelgodeQ"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_b-WNAH4mEeWWi6yiJEoilA"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_sXQJkH4wEeW6VeK9xNXvIw"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_WR8C0H4xEeW6VeK9xNXvIw"/>
-        </children>
-        <children>
-          <emfPageIdentifier href="openETCS_EVC.notation#_j7cWsH43EeW6VeK9xNXvIw"/>
-        </children>
       </children>
     </windows>
   </sashModel>
