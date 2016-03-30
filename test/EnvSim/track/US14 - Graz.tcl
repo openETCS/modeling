@@ -97,7 +97,7 @@ edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   q_scale     1
   n_iter_k    3
   d_static(0) 0
-  v_static(0) 10
+  v_static(0) 8
   q_front(0)  1
   n_iter(0)   0
   d_static(1) 185
@@ -105,13 +105,17 @@ edit::addRMSG 20 {nid_message 3 m_ack 1 nid_lrbg 42600902} {
   q_front(1)  1
   n_iter(1)   0
   d_static(2) 230
-  v_static(2) 8
+  v_static(2) 12
   q_front(2)  1
   n_iter(2)   0
-  d_static(3) 1000
+  d_static(3) 200
   v_static(3) 16
   q_front(3)  1
   n_iter(3)   0
+  d_static(4) 1000
+  v_static(4) 12
+  q_front(4)  1
+  n_iter(4)   0
 } {
   nid_packet  80
   q_dir       1
@@ -140,8 +144,8 @@ edit::addBG 308 1 905 1
 # 358m: BG 906
 edit::addBG 358 1 906 1  
 
-# 430m: MSG 3 (Pkt 15, 41, 5, 21, 27), LRBG 906
-edit::addRMSG 430 {nid_message 3 m_ack 1 nid_lrbg 42600906} {
+# 380m: MSG 3 (Pkt 15, 41, 5, 21, 27), LRBG 906
+edit::addRMSG 380 {nid_message 3 m_ack 1 nid_lrbg 42600906} {
   nid_packet 15
   q_dir      1
   q_scale    1
@@ -166,23 +170,31 @@ edit::addRMSG 430 {nid_message 3 m_ack 1 nid_lrbg 42600906} {
   nid_packet  27
   q_dir       1
   q_scale     1
-  n_iter_k    3
+  n_iter_k    5
   d_static(0) 180
   v_static(0) 12
   q_front(0)  1
   n_iter(0)   0
-  d_static(1) 680
-  v_static(1) 36
+  d_static(1) 200
+  v_static(1) 16
   q_front(1)  1
   n_iter(1)   0
-  d_static(2) 1180
+  d_static(2) 200
   v_static(2) 20
   q_front(2)  1
   n_iter(2)   0
-  d_static(3) 5000
-  v_static(3) 127
+  d_static(3) 200
+  v_static(3) 14
   q_front(3)  1
   n_iter(3)   0
+  d_static(4) 200
+  v_static(4) 12
+  q_front(4)  1
+  n_iter(4)   0
+  d_static(5) 5000
+  v_static(5) 127
+  q_front(5)  1
+  n_iter(5)   0
 } {
   nid_packet 5
   q_dir      1
@@ -289,7 +301,7 @@ edit::addBG 3043 1 920 1
 # 3096m: BG 921
 edit::addBG 3096 1 921 1
 
-track::title "User Story 14: Mode Change ([clock format [clock seconds] -format {%d.%m.%y %R}])"
+track::title "User Stories 14 und 15: Graz Demo ([clock format [clock seconds] -format {%d.%m.%y %R}])"
 
 ctrl::update
 
