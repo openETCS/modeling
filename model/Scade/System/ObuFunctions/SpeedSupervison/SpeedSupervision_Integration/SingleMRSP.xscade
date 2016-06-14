@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="function" visibility="private" name="SingleMRSP">
+	<inputs>
+		<Variable name="v_mrs">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/12fe5b/135E/850/575fe1835725" hidden="true"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="P">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="TrackAtlasTypes::MRSPMaxSections"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/12fe44/135E/850/575fe1461102"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L9">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/12fe39/135E/850/575fe11e3400"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L8">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/12fe37/135E/850/575fe11e6723"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L7">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- TrackAtlasTypes::MRSPMaxSections - 1 -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="TrackAtlasTypes::MRSPMaxSections"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="1"/>
+							</operands>
+						</BinaryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/12fe35/135E/850/575fe11e77f4"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L6">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- (TrackAtlasTypes::MRSPMaxSections - 1) + 1 -->
+						<NAryOp operator="+">
+							<operands>
+								<!-- (TrackAtlasTypes::MRSPMaxSections - 1) -->
+								<BinaryOp operator="-">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="TrackAtlasTypes::MRSPMaxSections"/>
+											</path>
+										</IdExpression>
+										<ConstValue value="1"/>
+									</operands>
+								</BinaryOp>
+								<ConstValue value="1"/>
+							</operands>
+						</NAryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/12fe33/135E/850/575fe11e104a"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L5">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/12fe31/135E/850/575fe11e5f4f"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="int"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/12fe2f/135E/850/575fe11e5a0c"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/12fe2d/135E/850/575fe11e6237"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/12fe2b/135E/850/575fe11e3b1a"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L1">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<ConstValue value="1"/>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/12fe29/135E/850/575fe11e346d"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L11">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Obu_BasicTypes_Pkg::V_internal_Type"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/12fe5f/135E/850/575fe18d1022"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = _L8 ^ 1; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<!-- _L8 ^ 1 -->
+				<ScalarToVectorOp name="2">
+					<flow>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L8"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</flow>
+					<size>
+						<ConstValue value="1"/>
+					</size>
+				</ScalarToVectorOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/12fe28/135E/850/575fe11e5ded"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 = (make TrackAtlasTypes::MRSP_section_t)(_L3, _L4, _L4, _L4); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<!-- (make TrackAtlasTypes::MRSP_section_t)(_L3, _L4, _L4, _L4) -->
+				<CallExpression>
+					<operator>
+						<MakeOp name="2">
+							<type>
+								<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+							</type>
+						</MakeOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L3"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/12fe2a/135E/850/575fe11e3f87"/>
+			</pragmas>
+		</Equation>
+		<!-- _L3 = false; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<ConstValue value="false"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/12fe2c/135E/850/575fe11e57af"/>
+			</pragmas>
+		</Equation>
+		<!-- _L4 = 0; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L4"/>
+			</lefts>
+			<right>
+				<ConstValue value="0"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/12fe2e/135E/850/575fe11e373a"/>
+			</pragmas>
+		</Equation>
+		<!-- _L5 = true; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L5"/>
+			</lefts>
+			<right>
+				<ConstValue value="true"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/12fe30/135E/850/575fe11e4cf5"/>
+			</pragmas>
+		</Equation>
+		<!-- _L6 = _L1 @ _L7; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L6"/>
+			</lefts>
+			<right>
+				<!-- _L1 @ _L7 -->
+				<NAryOp name="1" operator="@">
+					<operands>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L7"/>
+							</path>
+						</IdExpression>
+					</operands>
+				</NAryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/12fe32/135E/850/575fe11e2f6b"/>
+			</pragmas>
+		</Equation>
+		<!-- _L7 = _L2 ^ (TrackAtlasTypes::MRSPMaxSections - 1); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L7"/>
+			</lefts>
+			<right>
+				<!-- _L2 ^ (TrackAtlasTypes::MRSPMaxSections - 1) -->
+				<ScalarToVectorOp name="1">
+					<flow>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L2"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</flow>
+					<size>
+						<!-- (TrackAtlasTypes::MRSPMaxSections - 1) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="TrackAtlasTypes::MRSPMaxSections"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="1"/>
+							</operands>
+						</BinaryOp>
+					</size>
+				</ScalarToVectorOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/12fe34/135E/850/575fe11e607"/>
+			</pragmas>
+		</Equation>
+		<!-- _L8 = (make TrackAtlasTypes::MRSP_section_t)(_L5, _L9, _L9, _L11); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L8"/>
+			</lefts>
+			<right>
+				<!-- (make TrackAtlasTypes::MRSP_section_t)(_L5, _L9, _L9, _L11) -->
+				<CallExpression>
+					<operator>
+						<MakeOp name="1">
+							<type>
+								<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+							</type>
+						</MakeOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L5"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L9"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L9"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L11"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/12fe36/135E/850/575fe11e1430"/>
+			</pragmas>
+		</Equation>
+		<!-- _L9 = 0; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L9"/>
+			</lefts>
+			<right>
+				<ConstValue value="0"/>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/12fe38/135E/850/575fe11e3e4b"/>
+			</pragmas>
+		</Equation>
+		<!-- P = _L6; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="P"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L6"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/12fe45/135E/850/575fe1461f70"/>
+			</pragmas>
+		</Equation>
+		<!-- _L11 = v_mrs; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L11"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="v_mrs"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/12fe5e/135E/850/575fe18d1469"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/12fdd5/135E/850/575fe11618a9" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="diagram_SingleMRSP_1" landscape="true" format="A4 (210 297)" oid="!ed/12fdd6/135E/850/575fe1167624">
+					<presentationElements>
+						<EquationGE presentable="!ed/12fe28/135E/850/575fe11e5ded">
+							<position>
+								<Point x="4974" y="1535"/>
+							</position>
+							<size>
+								<Size width="3122" height="1403"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/12fe2a/135E/850/575fe11e3f87">
+							<position>
+								<Point x="2328" y="4286"/>
+							</position>
+							<size>
+								<Size width="1958" height="2937"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/12fe2c/135E/850/575fe11e57af">
+							<position>
+								<Point x="1826" y="4710"/>
+							</position>
+							<size>
+								<Size width="212" height="318"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/12fe2e/135E/850/575fe11e373a">
+							<position>
+								<Point x="1826" y="5292"/>
+							</position>
+							<size>
+								<Size width="212" height="317"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/12fe30/135E/850/575fe11e4cf5">
+							<position>
+								<Point x="1826" y="1191"/>
+							</position>
+							<size>
+								<Size width="212" height="318"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/12fe32/135E/850/575fe11e2f6b">
+							<position>
+								<Point x="9499" y="4366"/>
+							</position>
+							<size>
+								<Size width="968" height="969"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/12fe34/135E/850/575fe11e607">
+							<position>
+								<Point x="4974" y="5054"/>
+							</position>
+							<size>
+								<Size width="3122" height="1402"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/12fe36/135E/850/575fe11e1430">
+							<position>
+								<Point x="2328" y="767"/>
+							</position>
+							<size>
+								<Size width="1958" height="2937"/>
+							</size>
+						</EquationGE>
+						<EquationGE kind="OBJ_LIT" presentable="!ed/12fe38/135E/850/575fe11e3e4b">
+							<position>
+								<Point x="1826" y="1773"/>
+							</position>
+							<size>
+								<Size width="212" height="317"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/12fe28/135E/850/575fe11e5ded" dstEquation="!ed/12fe32/135E/850/575fe11e2f6b">
+							<positions>
+								<Point x="8096" y="2249"/>
+								<Point x="8784" y="2249"/>
+								<Point x="8784" y="4683"/>
+								<Point x="9499" y="4683"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/12fe2a/135E/850/575fe11e3f87" dstEquation="!ed/12fe34/135E/850/575fe11e607">
+							<positions>
+								<Point x="4286" y="5768"/>
+								<Point x="4630" y="5768"/>
+								<Point x="4630" y="5768"/>
+								<Point x="4974" y="5768"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/12fe2e/135E/850/575fe11e373a" dstEquation="!ed/12fe2a/135E/850/575fe11e3f87">
+							<positions>
+								<Point x="2037" y="5450"/>
+								<Point x="2170" y="5450"/>
+								<Point x="2170" y="5450"/>
+								<Point x="2328" y="5450"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/12fe2e/135E/850/575fe11e373a" dstEquation="!ed/12fe2a/135E/850/575fe11e3f87">
+							<positions>
+								<Point x="2037" y="5450"/>
+								<Point x="2170" y="5450"/>
+								<Point x="2170" y="6641"/>
+								<Point x="2328" y="6641"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/12fe30/135E/850/575fe11e4cf5" dstEquation="!ed/12fe36/135E/850/575fe11e1430">
+							<positions>
+								<Point x="2037" y="1349"/>
+								<Point x="2170" y="1349"/>
+								<Point x="2170" y="1349"/>
+								<Point x="2328" y="1349"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/12fe34/135E/850/575fe11e607" dstEquation="!ed/12fe32/135E/850/575fe11e2f6b">
+							<positions>
+								<Point x="8096" y="5768"/>
+								<Point x="8784" y="5768"/>
+								<Point x="8784" y="5001"/>
+								<Point x="9499" y="5001"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/12fe36/135E/850/575fe11e1430" dstEquation="!ed/12fe28/135E/850/575fe11e5ded">
+							<positions>
+								<Point x="4286" y="2249"/>
+								<Point x="4630" y="2249"/>
+								<Point x="4630" y="2249"/>
+								<Point x="4974" y="2249"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/12fe2c/135E/850/575fe11e57af" dstEquation="!ed/12fe2a/135E/850/575fe11e3f87">
+							<positions>
+								<Point x="2037" y="4868"/>
+								<Point x="2170" y="4868"/>
+								<Point x="2170" y="4868"/>
+								<Point x="2328" y="4868"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/12fe2e/135E/850/575fe11e373a" dstEquation="!ed/12fe2a/135E/850/575fe11e3f87">
+							<positions>
+								<Point x="2037" y="5450"/>
+								<Point x="2170" y="5450"/>
+								<Point x="2170" y="6059"/>
+								<Point x="2328" y="6059"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/12fe38/135E/850/575fe11e3e4b" dstEquation="!ed/12fe36/135E/850/575fe11e1430">
+							<positions>
+								<Point x="2037" y="1931"/>
+								<Point x="2170" y="1931"/>
+								<Point x="2170" y="1931"/>
+								<Point x="2328" y="1931"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="3" srcEquation="!ed/12fe38/135E/850/575fe11e3e4b" dstEquation="!ed/12fe36/135E/850/575fe11e1430">
+							<positions>
+								<Point x="2037" y="1931"/>
+								<Point x="2170" y="1931"/>
+								<Point x="2170" y="2540"/>
+								<Point x="2328" y="2540"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/12fe45/135E/850/575fe1461f70">
+							<position>
+								<Point x="10901" y="4577"/>
+							</position>
+							<size>
+								<Size width="318" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/12fe32/135E/850/575fe11e2f6b" dstEquation="!ed/12fe45/135E/850/575fe1461f70">
+							<positions>
+								<Point x="10451" y="4842"/>
+								<Point x="10689" y="4842"/>
+								<Point x="10689" y="4842"/>
+								<Point x="10954" y="4842"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/12fe5e/135E/850/575fe18d1469">
+							<position>
+								<Point x="1773" y="2858"/>
+							</position>
+							<size>
+								<Size width="265" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="4" srcEquation="!ed/12fe5e/135E/850/575fe18d1469" dstEquation="!ed/12fe36/135E/850/575fe11e1430">
+							<positions>
+								<Point x="2037" y="3122"/>
+								<Point x="2170" y="3122"/>
+								<Point x="2170" y="3122"/>
+								<Point x="2328" y="3122"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>
