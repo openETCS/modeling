@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="function" name="GradientProfile_to_DMI">
+	<inputs>
+		<Variable name="fresh">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1301d4/135E/850/576030033c28"/>
+			</pragmas>
+		</Variable>
+		<Variable name="Gradient_Profile_in">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TrackAtlasTypes::GradientProfile_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/130100/135E/850/57602e7e106e"/>
+			</pragmas>
+		</Variable>
+		<Variable name="EoA">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1300ff/135E/850/57602e7e7c6a"/>
+			</pragmas>
+		</Variable>
+	</inputs>
+	<outputs>
+		<Variable name="Gradient_Profile_for_DMI_out">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_gradientProfile_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1300fe/135E/850/57602e7e5c57"/>
+			</pragmas>
+		</Variable>
+	</outputs>
+	<locals>
+		<Variable name="_L1">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TrackAtlasTypes::GradientProfile_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1300fa/135E/850/57602e7e3b72"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L2">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TrackAtlasTypes::GradientProfile_for_DMI_section_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="DMI_Types_Pkg::cDMI_maxGradientProfile"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1300fb/135E/850/57602e7e338c"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L3">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1300fc/135E/850/57602e7e5270"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L4">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="Obu_BasicTypes_Pkg::L_internal_Type"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="DMI_Types_Pkg::cDMI_maxGradientProfile"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1300fd/135E/850/57602e7eb98"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L7">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="DMI_Types_Pkg::DMI_gradientProfile_T"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1301ca/135E/850/57602fe57d8f"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L8">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="bool"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/1301d6/135E/850/57603003f36"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L11">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TrackAtlasTypes::Gradient_section_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- ((TrackAtlasTypes::GradientMaxSections - 1) - 0) + 1 -->
+						<NAryOp operator="+">
+							<operands>
+								<!-- ((TrackAtlasTypes::GradientMaxSections - 1) - 0) -->
+								<BinaryOp operator="-">
+									<operands>
+										<!-- (TrackAtlasTypes::GradientMaxSections - 1) -->
+										<BinaryOp operator="-">
+											<operands>
+												<IdExpression>
+													<path>
+														<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
+													</path>
+												</IdExpression>
+												<ConstValue value="1"/>
+											</operands>
+										</BinaryOp>
+										<ConstValue value="0"/>
+									</operands>
+								</BinaryOp>
+								<ConstValue value="1"/>
+							</operands>
+						</NAryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/13022d/135E/850/576031ac7862"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L12">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TrackAtlasTypes::Gradient_section_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- (((TrackAtlasTypes::GradientMaxSections - 1) - 0) + 1) + (DMI_Types_Pkg::cDMI_max... -->
+						<NAryOp operator="+">
+							<operands>
+								<!-- (((TrackAtlasTypes::GradientMaxSections - 1) - 0) + 1) -->
+								<NAryOp operator="+">
+									<operands>
+										<!-- ((TrackAtlasTypes::GradientMaxSections - 1) - 0) -->
+										<BinaryOp operator="-">
+											<operands>
+												<!-- (TrackAtlasTypes::GradientMaxSections - 1) -->
+												<BinaryOp operator="-">
+													<operands>
+														<IdExpression>
+															<path>
+																<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
+															</path>
+														</IdExpression>
+														<ConstValue value="1"/>
+													</operands>
+												</BinaryOp>
+												<ConstValue value="0"/>
+											</operands>
+										</BinaryOp>
+										<ConstValue value="1"/>
+									</operands>
+								</NAryOp>
+								<!-- (DMI_Types_Pkg::cDMI_maxGradientProfile - TrackAtlasTypes::GradientMaxSections) -->
+								<BinaryOp operator="-">
+									<operands>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="DMI_Types_Pkg::cDMI_maxGradientProfile"/>
+											</path>
+										</IdExpression>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
+											</path>
+										</IdExpression>
+									</operands>
+								</BinaryOp>
+							</operands>
+						</NAryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/130239/135E/850/576031b26508"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L13">
+			<type>
+				<NamedType>
+					<type>
+						<TypeRef name="TrackAtlasTypes::Gradient_section_t"/>
+					</type>
+				</NamedType>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/130245/135E/850/576031cb3a8a"/>
+			</pragmas>
+		</Variable>
+		<Variable name="_L14">
+			<type>
+				<Table>
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="TrackAtlasTypes::Gradient_section_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<size>
+						<!-- DMI_Types_Pkg::cDMI_maxGradientProfile - TrackAtlasTypes::GradientMaxSections -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="DMI_Types_Pkg::cDMI_maxGradientProfile"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</BinaryOp>
+					</size>
+				</Table>
+			</type>
+			<pragmas>
+				<ed:Variable oid="!ed/130261/135E/850/5760322c5184"/>
+			</pragmas>
+		</Variable>
+	</locals>
+	<data>
+		<!-- _L1 = Gradient_Profile_in; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L1"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="Gradient_Profile_in"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1300f4/135E/850/57602e7e411c"/>
+			</pragmas>
+		</Equation>
+		<!-- Gradient_Profile_for_DMI_out = _L7; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="Gradient_Profile_for_DMI_out"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="_L7"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1300f5/135E/850/57602e7e4be8"/>
+			</pragmas>
+		</Equation>
+		<!-- _L2 = (map GradientProfile_to_DMI_loop <<DMI_Types_Pkg::cDMI_maxGradientProfile>>... -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L2"/>
+			</lefts>
+			<right>
+				<!-- (map GradientProfile_to_DMI_loop <<DMI_Types_Pkg::cDMI_maxGradientProfile>>)(_L12... -->
+				<CallExpression>
+					<operator>
+						<IteratorOp name="1" iterator="map">
+							<operator>
+								<OpCall name="1">
+									<operator>
+										<OperatorRef name="GradientProfile_to_DMI_loop"/>
+									</operator>
+								</OpCall>
+							</operator>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="DMI_Types_Pkg::cDMI_maxGradientProfile"/>
+									</path>
+								</IdExpression>
+							</size>
+						</IteratorOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L12"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L4"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1300f6/135E/850/57602e7e77ed"/>
+			</pragmas>
+		</Equation>
+		<!-- _L3 = EoA; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L3"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="EoA"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1300f7/135E/850/57602e7ef8c"/>
+			</pragmas>
+		</Equation>
+		<!-- _L4 = _L3 ^ DMI_Types_Pkg::cDMI_maxGradientProfile; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L4"/>
+			</lefts>
+			<right>
+				<!-- _L3 ^ DMI_Types_Pkg::cDMI_maxGradientProfile -->
+				<ScalarToVectorOp name="1">
+					<flow>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L3"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</flow>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="DMI_Types_Pkg::cDMI_maxGradientProfile"/>
+							</path>
+						</IdExpression>
+					</size>
+				</ScalarToVectorOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1300f8/135E/850/57602e7e32d8"/>
+			</pragmas>
+		</Equation>
+		<!-- _L7 = (make DMI_Types_Pkg::DMI_gradientProfile_T)(_L8, _L2); -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L7"/>
+			</lefts>
+			<right>
+				<!-- (make DMI_Types_Pkg::DMI_gradientProfile_T)(_L8, _L2) -->
+				<CallExpression>
+					<operator>
+						<MakeOp name="3">
+							<type>
+								<TypeRef name="DMI_Types_Pkg::DMI_gradientProfile_T"/>
+							</type>
+						</MakeOp>
+					</operator>
+					<callParameters>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L8"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L2"/>
+							</path>
+						</IdExpression>
+					</callParameters>
+				</CallExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1301c9/135E/850/57602fe51305"/>
+			</pragmas>
+		</Equation>
+		<!-- _L8 = fresh; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L8"/>
+			</lefts>
+			<right>
+				<IdExpression>
+					<path>
+						<ConstVarRef name="fresh"/>
+					</path>
+				</IdExpression>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/1301d5/135E/850/576030031f24"/>
+			</pragmas>
+		</Equation>
+		<!-- _L11 = _L1[0 .. (TrackAtlasTypes::GradientMaxSections - 1)]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L11"/>
+			</lefts>
+			<right>
+				<!-- _L1[0 .. (TrackAtlasTypes::GradientMaxSections - 1)] -->
+				<SliceOp name="1">
+					<array>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</array>
+					<fromIndex>
+						<ConstValue value="0"/>
+					</fromIndex>
+					<toIndex>
+						<!-- (TrackAtlasTypes::GradientMaxSections - 1) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="1"/>
+							</operands>
+						</BinaryOp>
+					</toIndex>
+				</SliceOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/13022c/135E/850/576031ac7472"/>
+			</pragmas>
+		</Equation>
+		<!-- _L12 = _L11 @ _L14; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L12"/>
+			</lefts>
+			<right>
+				<!-- _L11 @ _L14 -->
+				<NAryOp name="1" operator="@">
+					<operands>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L11"/>
+							</path>
+						</IdExpression>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L14"/>
+							</path>
+						</IdExpression>
+					</operands>
+				</NAryOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/130238/135E/850/576031b2574b"/>
+			</pragmas>
+		</Equation>
+		<!-- _L13 = _L1[(TrackAtlasTypes::GradientMaxSections - 1)]; -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L13"/>
+			</lefts>
+			<right>
+				<!-- _L1[(TrackAtlasTypes::GradientMaxSections - 1)] -->
+				<PrjOp name="2">
+					<flow>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="_L1"/>
+							</path>
+						</IdExpression>
+					</flow>
+					<with>
+						<!-- (TrackAtlasTypes::GradientMaxSections - 1) -->
+						<BinaryOp name="1" operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
+									</path>
+								</IdExpression>
+								<ConstValue value="1"/>
+							</operands>
+						</BinaryOp>
+					</with>
+				</PrjOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/130244/135E/850/576031cb795"/>
+			</pragmas>
+		</Equation>
+		<!-- _L14 = _L13 ^ (DMI_Types_Pkg::cDMI_maxGradientProfile - TrackAtlasTypes::Gradient... -->
+		<Equation>
+			<lefts>
+				<VariableRef name="_L14"/>
+			</lefts>
+			<right>
+				<!-- _L13 ^ (DMI_Types_Pkg::cDMI_maxGradientProfile - TrackAtlasTypes::GradientMaxSect... -->
+				<ScalarToVectorOp name="3">
+					<flow>
+						<ListExpression>
+							<items>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="_L13"/>
+									</path>
+								</IdExpression>
+							</items>
+						</ListExpression>
+					</flow>
+					<size>
+						<!-- (DMI_Types_Pkg::cDMI_maxGradientProfile - TrackAtlasTypes::GradientMaxSections) -->
+						<BinaryOp operator="-">
+							<operands>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="DMI_Types_Pkg::cDMI_maxGradientProfile"/>
+									</path>
+								</IdExpression>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="TrackAtlasTypes::GradientMaxSections"/>
+									</path>
+								</IdExpression>
+							</operands>
+						</BinaryOp>
+					</size>
+				</ScalarToVectorOp>
+			</right>
+			<pragmas>
+				<ed:Equation oid="!ed/130260/135E/850/5760322c6f43"/>
+			</pragmas>
+		</Equation>
+	</data>
+	<pragmas>
+		<ed:Operator oid="!ed/1300f3/135E/850/57602e7e6291" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+			<diagrams>
+				<NetDiagram name="diagram_GradientProfile_to_DMI_1" landscape="true" format="A4 (210 297)" oid="!ed/1300f9/135E/850/57602e7e12ed">
+					<presentationElements>
+						<EquationGE presentable="!ed/1300f4/135E/850/57602e7e411c">
+							<position>
+								<Point x="4551" y="6006"/>
+							</position>
+							<size>
+								<Size width="265" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/1300f5/135E/850/57602e7e4be8">
+							<position>
+								<Point x="21167" y="5106"/>
+							</position>
+							<size>
+								<Size width="318" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/1300f6/135E/850/57602e7e77ed">
+							<position>
+								<Point x="10972" y="5204"/>
+							</position>
+							<size>
+								<Size width="6366" height="3191"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/1300f7/135E/850/57602e7ef8c">
+							<position>
+								<Point x="4657" y="7064"/>
+							</position>
+							<size>
+								<Size width="264" height="502"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/1300f8/135E/850/57602e7e32d8">
+							<position>
+								<Point x="5741" y="6826"/>
+							</position>
+							<size>
+								<Size width="3349" height="969"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1300f7/135E/850/57602e7ef8c" dstEquation="!ed/1300f8/135E/850/57602e7e32d8">
+							<positions>
+								<Point x="4921" y="7329"/>
+								<Point x="5318" y="7329"/>
+								<Point x="5318" y="7329"/>
+								<Point x="5741" y="7329"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1300f8/135E/850/57602e7e32d8" dstEquation="!ed/1300f6/135E/850/57602e7e77ed">
+							<positions>
+								<Point x="9102" y="7329"/>
+								<Point x="10028" y="7329"/>
+								<Point x="10028" y="7329"/>
+								<Point x="10980" y="7329"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/1301c9/135E/850/57602fe51305">
+							<position>
+								<Point x="18547" y="2355"/>
+							</position>
+							<size>
+								<Size width="2345" height="6049"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/1300f6/135E/850/57602e7e77ed" dstEquation="!ed/1301c9/135E/850/57602fe51305">
+							<positions>
+								<Point x="17330" y="6800"/>
+								<Point x="17939" y="6800"/>
+								<Point x="17939" y="6376"/>
+								<Point x="18547" y="6376"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1301c9/135E/850/57602fe51305" dstEquation="!ed/1300f5/135E/850/57602e7e4be8">
+							<positions>
+								<Point x="20876" y="5371"/>
+								<Point x="21034" y="5371"/>
+								<Point x="21034" y="5371"/>
+								<Point x="21220" y="5371"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/1301d5/135E/850/576030031f24">
+							<position>
+								<Point x="17066" y="4101"/>
+							</position>
+							<size>
+								<Size width="264" height="503"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1301d5/135E/850/576030031f24" dstEquation="!ed/1301c9/135E/850/57602fe51305">
+							<positions>
+								<Point x="17330" y="4366"/>
+								<Point x="17939" y="4366"/>
+								<Point x="17939" y="4366"/>
+								<Point x="18547" y="4366"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/13022c/135E/850/576031ac7472">
+							<position>
+								<Point x="5741" y="4286"/>
+							</position>
+							<size>
+								<Size width="1868" height="969"/>
+							</size>
+						</EquationGE>
+						<EquationGE presentable="!ed/130238/135E/850/576031b2574b">
+							<position>
+								<Point x="9340" y="4445"/>
+							</position>
+							<size>
+								<Size width="953" height="952"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/130238/135E/850/576031b2574b" dstEquation="!ed/1300f6/135E/850/57602e7e77ed">
+							<positions>
+								<Point x="10292" y="4921"/>
+								<Point x="10636" y="4921"/>
+								<Point x="10636" y="6271"/>
+								<Point x="10980" y="6271"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/13022c/135E/850/576031ac7472" dstEquation="!ed/130238/135E/850/576031b2574b">
+							<positions>
+								<Point x="7594" y="4763"/>
+								<Point x="8467" y="4763"/>
+								<Point x="8467" y="4763"/>
+								<Point x="9340" y="4763"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1300f4/135E/850/57602e7e411c" dstEquation="!ed/13022c/135E/850/576031ac7472">
+							<positions>
+								<Point x="4815" y="6271"/>
+								<Point x="5265" y="6271"/>
+								<Point x="5265" y="4763"/>
+								<Point x="5741" y="4763"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/130244/135E/850/576031cb795">
+							<position>
+								<Point x="5741" y="5530"/>
+							</position>
+							<size>
+								<Size width="953" height="952"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1300f4/135E/850/57602e7e411c" dstEquation="!ed/130244/135E/850/576031cb795">
+							<positions>
+								<Point x="4815" y="6271"/>
+								<Point x="5265" y="6271"/>
+								<Point x="5265" y="6006"/>
+								<Point x="5741" y="6006"/>
+							</positions>
+						</Edge>
+						<EquationGE presentable="!ed/130260/135E/850/5760322c6f43">
+							<position>
+								<Point x="8149" y="5530"/>
+							</position>
+							<size>
+								<Size width="953" height="953"/>
+							</size>
+						</EquationGE>
+						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/130244/135E/850/576031cb795" dstEquation="!ed/130260/135E/850/5760322c6f43">
+							<positions>
+								<Point x="6694" y="6006"/>
+								<Point x="7408" y="6006"/>
+								<Point x="7408" y="6006"/>
+								<Point x="8149" y="6006"/>
+							</positions>
+						</Edge>
+						<Edge leftVarIndex="1" rightExprIndex="2" srcEquation="!ed/130260/135E/850/5760322c6f43" dstEquation="!ed/130238/135E/850/576031b2574b">
+							<positions>
+								<Point x="9102" y="6006"/>
+								<Point x="9208" y="6006"/>
+								<Point x="9208" y="5080"/>
+								<Point x="9340" y="5080"/>
+							</positions>
+						</Edge>
+					</presentationElements>
+				</NetDiagram>
+			</diagrams>
+		</ed:Operator>
+	</pragmas>
+</Operator>
