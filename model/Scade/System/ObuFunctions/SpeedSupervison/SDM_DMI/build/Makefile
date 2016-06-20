@@ -1,47 +1,36 @@
-#SCADESRCDIR = ../Simulation
-SCADESRCDIR = ../Simulation_EnvSim
-SCADEFILES = $(wildcard $(SCADESRCDIR)/*.c)
-SCADEOBJS = $(subst .c,.o,$(SCADEFILES)) ../../../DMI_Interfaces/Char_to_Int.o ../../../DMI_Interfaces/Int_to_Char.o
-LIBENVSIMDIR = ../../../../../../test/EnvSim/libenvsim
+#based on the makefile of J. Kastner
+SCADE=C:\Program Files (x86)\Esterel Technologies\SCADE R16.2.1\SCADE\.
+SCADESRCDIR = ../udpDMI
+SCADEFILES = $(wildcard $(SCADESRCDIR)/*.c) $(wildcard sdy/*.c) 
+SCADEOBJS = $(subst .c,.o,$(SCADEFILES)) sdy/SDY1_DMI.a
 TARGET = win32
-ROOTNODE = ROOT_Simulation
-INCLUDES = -I. -I include/ -I $(SCADESRCDIR) -I $(LIBENVSIMDIR)/src/scade
-# cycle duration in us
-TCYCLE = 10000
+ROOTNODE = testDMI
+INCLUDES = -I"." -I"sdy" -I"$(SCADESRCDIR)" -I"$(SCADE)" -I"$(SCADE)\include" -I"..\..\..\..\DMI_Interfaces" -I"..\..\..\..\DMI_Control\SCADE Display\Widgets\D\D_Behaviour" -I"$(SCADE)\libraries\libmathext"
 
 ifeq ($(TARGET),win32)
-CC = i686-w64-mingw32-gcc.exe
-CFLAGS = $(INCLUDES) -O3 -DWINDOWS
-LDFLAGS = -L $(LIBENVSIMDIR)/dist/$(TARGET) -ljim -lwsock32
+#CC = i686-w64-mingw32-gcc.exe
+CC=gcc
+RM=rm
+CFLAGS = $(INCLUDES) -Os -DWINDOWS -ansi -std=c99 -m32
+LDFLAGS = -lws2_32 -lm -m32
 else
-CFLAGS = $(INCLUDES) -O3 -m64
-LDFLAGS = -L $(LIBENVSIMDIR)/dist/$(TARGET) -ljim
+CFLAGS = $(INCLUDES) -Os
+LDFLAGS = 
 endif
 
 
-testbench: main.o libtestbench.a $(LIBENVSIMDIR)/dist/$(TARGET)/libenvsim.a
+udpDMI.exe: udpDMI.o rui.o $(SCADEOBJS)
 	$(CC) $^ -g -o $@ $(LDFLAGS)
 
-main.o: main.c
-	$(CC) $(CFLAGS) -g -include $(SCADESRCDIR)/$(ROOTNODE)_Testbench_EnvSim.h\
-	 	-DROOT_CONTEXT=outC_$(ROOTNODE)_Testbench_EnvSim -DROOT_RESET=$(ROOTNODE)_reset_Testbench_EnvSim\
-	 	-DROOT_CYCLE=$(ROOTNODE)_Testbench_EnvSim -DTCYCLE=$(TCYCLE)\
-	 	-c main.c
-
-libtestbench.a: $(SCADEOBJS)
-	ar ru $@ $^
-	ranlib $@
-
-
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+	
 .PHONY: clean distclean
 
-clean:
-	rm -f $(SCADESRCDIR)/*.o
-	rm -f *.o
-	rm -f libtestbench.a
-	rm -f testbench
-	rm -f ../../../DMI_Interfaces/Int_to_Char.o
-	rm -f ../../../DMI_Interfaces/Char_to_Int.o
+clean: 
+	$(RM) -f $(SCADESRCDIR)/*.o
+	$(RM) -f *.o
+	$(RM) -f sdy/*.o
 
 distclean: clean
-	rm -rf $(SCADESRCDIR)
+	$(RM) -rf $(SCADESRCDIR)
