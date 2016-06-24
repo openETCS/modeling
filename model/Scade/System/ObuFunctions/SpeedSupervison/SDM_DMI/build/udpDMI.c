@@ -16,10 +16,11 @@ typedef struct {
     outC_testDMI SAO_CTX_outC_testDMI;
 
 	bool localhost;
+	uint16_t localport;
+	uint16_t index; /* dst-port */
 	int idlecnt;
 	bool forceExit;
 	long period;
-	bool ping;
 
 } WU_testDMI;
 #define WU_CTX_TYPE_testDMI WU_testDMI
@@ -34,7 +35,6 @@ enum {
 	portTIU = 18120,  // Input from GUI [18120..18122]
 	portDMI = 18376   // Output to DMI (GUI+256)
 };
-uint16_t localports[1] = { 0 };
 
 #include <windows.h>
 #include <time.h>
@@ -45,13 +45,17 @@ void MODEL_init(int argc, char **argv) {
 	CTX_testDMI.idlecnt = 0;
 	CTX_testDMI.period = POLL_TIMEOUT_MS;
 	CTX_testDMI.forceExit = false;
-	CTX_testDMI.ping = true;
-	if (argc > 1 && argv[1][0]=='l') CTX_testDMI.localhost  = true;
-	if (argc > 2 && argv[2][0]=='l') CTX_testDMI.localhost  = true;
-
+	CTX_testDMI.localport = 0;
+	CTX_testDMI.localhost  = (argc > 1 && argv[1][0]=='l') || (argc > 2 && argv[2][0]=='l');
+	CTX_testDMI.index = ((argc > 1) && (argv[1][0] >= '0') && (argv[1][0] <= '9')) ? argv[1][0]-'0' : 0;
+	CTX_testDMI.index = ((argc > 2) && (argv[2][0] >= '0') && (argv[2][0] <= '9')) ? argv[2][0]-'0' : CTX_testDMI.index;
+	CTX_testDMI.index+= portDMI;
+	
 	memset(&CTX_testDMI.SAO_CTX_inC_testDMI, 0, sizeof(CTX_testDMI.SAO_CTX_inC_testDMI));
     testDMI_init(&CTX_testDMI.SAO_CTX_outC_testDMI);
 
+	printf("Providing data sink to remote *:%d \n\r", CTX_testDMI.index);
+	
 	/* Initialize Graphical Panels drawings */
 	SDY1_DMI__init();
 	SDY1_DMI__draw();
@@ -507,18 +511,15 @@ void MODEL_outputs() {
 
 void MODEL_stimulate() {
 	if (!(++CTX_testDMI.idlecnt&63)) {
-		if (RUI_isKnown(0)) {
-			/* huUch, wech? */
-			if (CTX_testDMI.SAO_CTX_inC_testDMI.deskOpen) {
-				printf("Data source fromSDM has timed out.\n\r");
-				CTX_testDMI.SAO_CTX_inC_testDMI.deskOpen = kcg_false;
-			}
+		/* huUch, wech? */
+		if (CTX_testDMI.SAO_CTX_inC_testDMI.deskOpen) {
+			printf("Data source fromSDM has timed out.\n\r");
+			CTX_testDMI.SAO_CTX_inC_testDMI.deskOpen = kcg_false;
 		}
-		CTX_testDMI.ping = true;
 	}
 }
+
 void MODEL_execute() {
-	static char str[1024];
 
 	/* Exit point*/
 	if (SDY1_DMI__cancelled()) {
@@ -528,41 +529,32 @@ void MODEL_execute() {
 
 	MODEL_inputs();
 
-	bool initiation = false;
 	if (RUI_isReadable(0)) {
 		CTX_testDMI.idlecnt = 0;
-		if (CTX_testDMI.SAO_CTX_inC_testDMI.deskOpen == kcg_false) {
-			CTX_testDMI.SAO_CTX_inC_testDMI.deskOpen = kcg_true;
-			initiation = true;
-		}
+		CTX_testDMI.SAO_CTX_inC_testDMI.deskOpen = kcg_true;
+
 		size_t len = RUI_get(0, &CTX_testDMI.SAO_CTX_inC_testDMI.fromSDM, sizeof(CTX_testDMI.SAO_CTX_inC_testDMI.fromSDM));
 		if (len != sizeof(CTX_testDMI.SAO_CTX_inC_testDMI.fromSDM)) {
 			memset(&CTX_testDMI.SAO_CTX_inC_testDMI.fromSDM, 0, sizeof(CTX_testDMI.SAO_CTX_inC_testDMI.fromSDM));
-			RUI_error("fromSDM package length broken!");
-			CTX_testDMI.SAO_CTX_inC_testDMI.deskOpen = kcg_true;
+			if (len) /* don't complain on a 0-, possibly wake-up-packet */
+				RUI_error("fromSDM package length broken!");
 		}
 	}
 	
 	/* Perform SCADE Suite cycle computation */
-	testDMI( &CTX_testDMI.SAO_CTX_inC_testDMI, &CTX_testDMI.SAO_CTX_outC_testDMI	);
+	testDMI( &CTX_testDMI.SAO_CTX_inC_testDMI, &CTX_testDMI.SAO_CTX_outC_testDMI );
 	
-	if (RUI_isReadable(0)) /* reset received package */
-		RUI_fill(0, initiation, "ACKN", 4); /* but only reply on the first package */
-	else if (CTX_testDMI.ping)
-		RUI_fake(0, "PING", 4, portDMI);
-	CTX_testDMI.ping = false;
+	RUI_fill(0, true, "PING", 4);
+
 	MODEL_outputs();
 }
 
 int main(int argc, char **argv){
-
-	const nfds_t nfds = 1;
-	struct pollfd sockets[nfds];
-	rawUdpIn rui[nfds];
+	rawUdpIn rui;
 
 	for(;;) {
 		MODEL_init(argc, argv);
-		RUI_init(sockets, rui, localports, nfds, CTX_testDMI.localhost, 3, CTX_testDMI.period, true, MODEL_stimulate);
+		RUI_init(&rui, &CTX_testDMI.localport, &CTX_testDMI.index, 1, CTX_testDMI.localhost, false, 3, CTX_testDMI.period, true, MODEL_stimulate, 0);
 
 		while (RUI_isRunnable()) if (RUI_poll()) MODEL_execute(); /* while-loop exits on too many failures */
 		
