@@ -182,8 +182,8 @@ ssize_t RUI_get(int i, void *buf, ssize_t len) {
 		} else
 			RUI_error("recv short message");
 
-		rctx.readMask &= ~(1 << i);
 #endif
+		rctx.readMask &= ~(1 << i);
 
 	}
 	return l;
@@ -215,7 +215,7 @@ void RUI_capture(void *arg, struct udp_pcb *pcb, struct pbuf *p, ip_addr_t *addr
 		struct pbuf *old = rctx.rui[r].p;
 		rctx.rui[r].p = p;
 		rctx.rui[r].pport = port;
-		rctx.rui[r].paddr.addr = ntohl(addr->addr);
+		rctx.rui[r].paddr.addr = addr->addr;
 		rctx.rui[r].rxCnt++;
 		rctx.readMask |= 1 << r;
     SYS_ARCH_UNPROTECT(old_level);
@@ -234,7 +234,7 @@ void rui_send(int i, void *buf, ssize_t len) {
 			udp_sendto(rctx.rui[i].fd, p, &bca, rctx.rui[i].initiative);
 		} else
 			udp_sendto(rctx.rui[i].fd, p, &rctx.rui[i].saddr, rctx.rui[i].sport);
-		pbuf_free(p);
+		pbuf_free(p); // release from user-space
 
 #else
 		int flags = 0;
@@ -260,12 +260,12 @@ void RUI_status() {
 	static const char rotc[] = {'-','\\','|','/'};
 	static int tick = 0;
 	tick++;
-	char out[rctx.ruis*2+1+3];
+	char out[16*2+1+3];
 	memset(out, '\'', sizeof(out));
-	out[sizeof(out)-2] = '\r';
-	out[sizeof(out)-1] = 0;
+	out[rctx.ruis*2+2] = '\r';
+	out[rctx.ruis*2+3] = 0;
 	memcpy(out, (tick & (1<<rctx.idleInterval))?"*  ":" * ", 3);
-	for(int i=0;i<rctx.ruis; i++) out[3+i*2] = rotc[rctx.rui[i].rxCnt&3];
+	for(int i=0;i<MIN(rctx.ruis,16); i++) out[3+i*2] = rotc[rctx.rui[i].rxCnt&3];
 
 	if (rctx.puts) {
 		rctx.puts(out);

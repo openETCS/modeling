@@ -60,8 +60,6 @@ struct ip_addr {
 #define MSG_CONFIRM 0
 #endif
 
-#define BUFSIZE 1536           // generally smthg larger than what is expected
-
 typedef void (*rui_timeout)(void);
 typedef void (*rui_puts)(char *);
 
