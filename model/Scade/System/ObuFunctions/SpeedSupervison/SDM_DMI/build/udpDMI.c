@@ -520,6 +520,7 @@ void MODEL_stimulate() {
 }
 
 void MODEL_execute() {
+static int runCnt = 0;
 
 	/* Exit point*/
 	if (SDY1_DMI__cancelled()) {
@@ -544,7 +545,8 @@ void MODEL_execute() {
 	/* Perform SCADE Suite cycle computation */
 	testDMI( &CTX_testDMI.SAO_CTX_inC_testDMI, &CTX_testDMI.SAO_CTX_outC_testDMI );
 	
-	RUI_fill(0, true, "PING", 4);
+	if (!(++runCnt&31)) /* keep ping at a reasonable rate */
+		RUI_fill(0, true, "PING", 4);
 
 	MODEL_outputs();
 }
