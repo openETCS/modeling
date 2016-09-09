@@ -175,8 +175,9 @@ void recvfrom_udp(
 
 		    SYS_ARCH_UNPROTECT(pl.lvl);
 
-			*length = MIN(p->tot_len, sizeof(recv_t));
+			*length = MIN(p->tot_len, sizeof(recv_t_udp)*recvLength_udp);
 			pbuf_copy_partial(p, data, *length, 0);
+			*length /= sizeof(recv_t_udp);
 
 			pbuf_free(p);
 		} else {
@@ -195,11 +196,12 @@ void recvfrom_udp(
 #endif
 		lAddr = sizeof(s_in);
 		errno = 0;
-		*length = recvfrom(fd, (void *)data, sizeof(recv_t_udp), 0, (struct sockaddr *)&s_in, &lAddr);
+		*length = recvfrom(fd, (void *)data, sizeof(recv_t_udp)*recvLength_udp, 0, (struct sockaddr *)&s_in, &lAddr);
 		if (*length >= 0) {
 			ipAddress->addr = ntohl(s_in.sin_addr.s_addr);
 			*udpPort = ntohs(s_in.sin_port);
 			*goOn = kcg_true; /* only false on non-recoverable problems */
+			*length /= sizeof(recv_t_udp);
 		} else {
 			ipAddress->addr = 0;
 			*udpPort = 0;
@@ -228,12 +230,12 @@ kcg_bool sendto_udp(
 
 	
 	if (length < 0) return kcg_true;
-	if (fd == -1 || length > sizeof(send_t_udp) || !udpPort) return kcg_false;
+	if (fd == -1 || !udpPort) return kcg_false;
 	if (!ipAddress->addr)  ipAddress->addr = -1;
 #ifdef _RM57Lx_
-	struct pbuf *p = pbuf_alloc(PBUF_TRANSPORT, length, PBUF_RAM);
+	struct pbuf *p = pbuf_alloc(PBUF_TRANSPORT, length*sizeof(send_t_udp), PBUF_RAM);
 	if (!p) return kcg_false;
-	memcpy(p->payload, data, length);
+	memcpy(p->payload, data, length*sizeof(send_t_udp));
 	err_t ret = udp_sendto((struct udp_pcb *)fd, p, (ip_addr_t *)ipAddress, udpPort);
 	pbuf_free(p); // release from user-space
 	return ret == ERR_OK ? kcg_true : kcg_false;
@@ -241,6 +243,6 @@ kcg_bool sendto_udp(
 	struct sockaddr_in s_in = { .sin_family = AF_INET };
 	s_in.sin_addr.s_addr = htonl(ipAddress->addr);
 	s_in.sin_port =        htons(udpPort);
-	return (sendto(fd, (void *)data, length, 0, (struct sockaddr *) &s_in, sizeof(s_in))>=0) ? kcg_true : kcg_false;
+	return (sendto(fd, (void *)data, length*sizeof(send_t_udp), 0, (struct sockaddr *) &s_in, sizeof(s_in))>=0) ? kcg_true : kcg_false;
 #endif
 }
