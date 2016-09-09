@@ -19,7 +19,7 @@ LDFLAGS =
 endif
 
 
-udpDMI.exe: udpDMI.o rui.o $(SCADEOBJS)
+udpDMI.exe: udpDMI.o bind_recv_send.o $(SCADEOBJS)
 	$(CC) $^ -g -o $@ $(LDFLAGS)
 
 %.o: %.c
