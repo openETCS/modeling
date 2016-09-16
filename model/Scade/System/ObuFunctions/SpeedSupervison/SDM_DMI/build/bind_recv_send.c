@@ -83,7 +83,7 @@ void capture(void *arg, struct udp_pcb *pcb, struct pbuf *p, ip_addr_t *addr, u1
 #define MAX(a,b) (((a)>(b))?(a):(b))
 #define MIN(a,b) (((a)>(b))?(b):(a))
 
-kcg_bool close_udp(/* udp::close::fd */ kcg_int fd) {
+kcg_bool close_udp(/* udp::close::fd */ fd_t_udp fd) {
 #ifdef _RM57Lx_
 	if (fd != 0 && fd != -1) {
 		udp_remove((struct udp_pcb *)fd);
@@ -104,23 +104,24 @@ kcg_bool close_udp(/* udp::close::fd */ kcg_int fd) {
 #endif
 	return kcg_false;
 }
-void bind_udp(
-	/* udp::bind::ipAddress */ IpAddress_udp *ipAddress,
-	/* udp::bind::udpPort */ kcg_int udpPort,
-	/* udp::bind::goOn */ kcg_bool *goOn,
-	/* udp::bind::fd */ kcg_int *fd) {
 
-    *goOn = kcg_false;
+void bind_udp(
+  /* udp::bind::ipAddress */ IpAddress_udp *ipAddress,
+  /* udp::bind::udpPort */ port_t_udp udpPort,
+  /* udp::bind::goOn */ kcg_bool *goOn,
+  /* udp::bind::fd */ fd_t_udp *fd) {
+
+	*goOn = kcg_false;
 #ifdef _RM57Lx_
-    struct udp_pcb *up = udp_new();
+	struct udp_pcb *up = udp_new();
 	if (up) {
 		udp_recv(up, capture, NULL);
 		udp_bind(up, (ip_addr_t*)&ipAddress->addr, udpPort);
 		*goOn = kcg_true;
-		*fd = (_2_int)up;
+		*fd = (fd_t_udp)up;
 	} else {
 		*goOn = kcg_false;
-		*fd = -1;
+		*fd = (fd_t_udp)-1;
 	}
 #else
 #ifdef WINDOWS
@@ -129,13 +130,14 @@ void bind_udp(
 	int iResult = WSAStartup(WINSOCK_VERSION, &wsaData);
 	if (iResult != 0) return;
 #endif
-	fd[0] = socket(AF_INET, SOCK_DGRAM | SOCK_NONBLOCK, 0);
+	*fd = socket(AF_INET, SOCK_DGRAM | SOCK_NONBLOCK, 0);
 	if (*fd < 0) return;
 	int optval = 1;
 #ifdef WINDOWS
 	unsigned long cmd = 1;
 	if (ioctlsocket(fd[0], FIONBIO, &cmd) < 0) return; /* set non-blocking, so select is not needed */
 #endif
+	/* TODO: SO_REUSEADDR should really NOT be set */
 	setsockopt(*fd, SOL_SOCKET, SO_REUSEADDR, (const void *)&optval , sizeof(int));
 	setsockopt(*fd, SOL_SOCKET, SO_BROADCAST, (const void *)&optval , sizeof(int));
 	struct sockaddr_in InAddr = {
@@ -143,8 +145,8 @@ void bind_udp(
 		.sin_port = htons(udpPort),
 		.sin_addr = { .s_addr = htonl(ipAddress->addr) }
 	};
-	if (bind(fd[0], (struct sockaddr *) &InAddr, sizeof(struct sockaddr_in)) < 0) {
-		*fd = -1;
+	if (bind(*fd, (struct sockaddr *) &InAddr, sizeof(struct sockaddr_in)) < 0) {
+		*fd = (fd_t_udp)-1;
 	} else {
 		*goOn = kcg_true;
 	}
@@ -152,20 +154,29 @@ void bind_udp(
 }
 
 void recvfrom_udp(
-	/* udp::recvfrom::fd */ kcg_int fd,
-	/* udp::recvfrom::goOn */ kcg_bool *goOn,
-	/* udp::recvfrom::length */ kcg_int *length,
-	/* udp::recvfrom::data */ recv_t_udp *data,
-	/* udp::recvfrom::ipAddress */ IpAddress_udp *ipAddress,
-	/* udp::recvfrom::udpPort */ kcg_int *udpPort) {
+  /* udp::recvfrom::fd */ fd_t_udp fd,
+  /* udp::recvfrom::latest */ kcg_bool latest,
+  /* udp::recvfrom::goOn */ kcg_bool *goOn,
+  /* udp::recvfrom::length */ length_t_udp *length,
+  /* udp::recvfrom::data */ recv_t_udp *data,
+  /* udp::recvfrom::ipAddress */ IpAddress_udp *ipAddress,
+  /* udp::recvfrom::udpPort */ port_t_udp *udpPort) {
 	
-	if (fd != -1) {
+	ipAddress->addr = 0;
+	*udpPort = 0;
+	*length = (length_t_udp)-1;
+	*goOn = kcg_false;
+	if (fd != (fd_t_udp)-1) {
 #ifdef _RM57Lx_
 		*goOn = kcg_true;
 
 	    SYS_ARCH_PROTECT(pl.lvl);
 
 		if (pl.wr != pl.rd) {
+			if (latest) {
+				pl.rd = pl.wr-1+MAX_PACKS;
+				pl.rd %= MAX_PACKS;
+			}
 			struct pbuf *p = pl.pi[pl.rd].p;
 			pl.pi[pl.rd].p = 0;
 			*udpPort = pl.pi[pl.rd].pport;
@@ -182,51 +193,44 @@ void recvfrom_udp(
 			pbuf_free(p);
 		} else {
 		    SYS_ARCH_UNPROTECT(pl.lvl);
-			ipAddress->addr = 0;
-			*udpPort = 0;
-			*length = -1;
 		}
 
 #else
 		struct sockaddr_in s_in;
+		length_t_udp recvlen = -1;
 #ifdef WINDOWS
 		int lAddr;
 #else
 		socklen_t lAddr;
 #endif
-		lAddr = sizeof(s_in);
-		errno = 0;
-		*length = recvfrom(fd, (void *)data, sizeof(recv_t_udp)*recvLength_udp, 0, (struct sockaddr *)&s_in, &lAddr);
-		if (*length >= 0) {
-			ipAddress->addr = ntohl(s_in.sin_addr.s_addr);
-			*udpPort = ntohs(s_in.sin_port);
-			*goOn = kcg_true; /* only false on non-recoverable problems */
-			*length /= sizeof(recv_t_udp);
-		} else {
-			ipAddress->addr = 0;
-			*udpPort = 0;
+		do {
+			lAddr = sizeof(s_in);
+			errno = 0;
+			recvlen = recvfrom(fd, (void *)data, sizeof(recv_t_udp)*recvLength_udp, 0, (struct sockaddr *)&s_in, &lAddr);
+			if (recvlen >= 0) {
+				ipAddress->addr = ntohl(s_in.sin_addr.s_addr);
+				*udpPort = ntohs(s_in.sin_port);
+				*goOn = kcg_true; /* only false on non-recoverable problems */
+				*length = recvlen / sizeof(recv_t_udp);
+			} else {
 #ifdef WINDOWS
-			int nErr = WSAGetLastError();
-			*goOn = (!nErr  || nErr==WSAEWOULDBLOCK                   ) ? kcg_true : kcg_false;
+				int nErr = WSAGetLastError();
+				*goOn = (!nErr  || nErr==WSAEWOULDBLOCK                   ) ? kcg_true : kcg_false;
 #else
-			*goOn = (!errno || errno == EWOULDBLOCK || errno == EAGAIN) ? kcg_true : kcg_false;
+				*goOn = (!errno || errno == EWOULDBLOCK || errno == EAGAIN) ? kcg_true : kcg_false;
 #endif
-		}
+			}
+		} while (*goOn && (recvlen >= 0) && latest);
 #endif
-	} else {
-		ipAddress->addr = 0;
-		*udpPort = 0;
-		*goOn = kcg_false;
-		*length = -1;
 	}
 }
 
 kcg_bool sendto_udp(
-	/* udp::sendto::length */ kcg_int length,
+	/* udp::sendto::length */ length_t_udp length,
 	/* udp::sendto::data */ send_t_udp *data,
 	/* udp::sendto::ipAddress */ IpAddress_udp *ipAddress,
-	/* udp::sendto::udpPort */ kcg_int udpPort,
-	/* udp::sendto::fd */ kcg_int fd) {
+	/* udp::sendto::udpPort */ port_t_udp udpPort,
+	/* udp::sendto::fd */ fd_t_udp fd) {
 
 	
 	if (length < 0) return kcg_true;

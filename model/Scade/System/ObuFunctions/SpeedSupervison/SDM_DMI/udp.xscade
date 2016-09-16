@@ -55,7 +55,7 @@
 					<type>
 						<NamedType>
 							<type>
-								<TypeRef name="int"/>
+								<TypeRef name="length_t"/>
 							</type>
 						</NamedType>
 					</type>
@@ -70,7 +70,7 @@
 					<type>
 						<NamedType>
 							<type>
-								<TypeRef name="int"/>
+								<TypeRef name="length_t"/>
 							</type>
 						</NamedType>
 					</type>
@@ -79,6 +79,21 @@
 					</value>
 					<pragmas>
 						<ed:Constant oid="!ed/2d4990/47DB/1548/57d2b1117933"/>
+					</pragmas>
+				</Constant>
+				<Constant name="portAny">
+					<type>
+						<NamedType>
+							<type>
+								<TypeRef name="port_t"/>
+							</type>
+						</NamedType>
+					</type>
+					<value>
+						<ConstValue value="0"/>
+					</value>
+					<pragmas>
+						<ed:Constant oid="!ed/2c8d92/157F/1B44/57dbc77366f"/>
 					</pragmas>
 				</Constant>
 				<Type name="IpAddress">
@@ -128,18 +143,68 @@
 						<ed:Type oid="!ed/2d4664/47DB/1548/57d278b74334"/>
 					</pragmas>
 				</Type>
+				<Type name="length_t">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2c8d57/4E/1304/57da7f355a09"/>
+					</pragmas>
+				</Type>
+				<Type name="fd_t">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2c8d72/4E/1304/57da7f67340c"/>
+					</pragmas>
+				</Type>
+				<Type name="port_t">
+					<definition>
+						<NamedType>
+							<type>
+								<TypeRef name="int"/>
+							</type>
+						</NamedType>
+					</definition>
+					<pragmas>
+						<ed:Type oid="!ed/2c8d8d/4E/1304/57da7f8124dd"/>
+					</pragmas>
+				</Type>
 				<Operator kind="function" external="imported" name="recvfrom">
 					<inputs>
 						<Variable name="fd">
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="int"/>
+										<TypeRef name="fd_t"/>
 									</type>
 								</NamedType>
 							</type>
 							<pragmas>
 								<ed:Variable oid="!ed/2d460a/47DB/1548/57d277e2e95" hidden="true"/>
+							</pragmas>
+						</Variable>
+						<Variable name="latest">
+							<type>
+								<NamedType>
+									<type>
+										<TypeRef name="bool"/>
+									</type>
+								</NamedType>
+							</type>
+							<pragmas>
+								<ed:Variable oid="!ed/2c8d56/4E/1304/57da7f1a3dac" hidden="true" xmlns="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5">
+									<comment>true: only get the last packet, flush everything before</comment>
+								</ed:Variable>
 							</pragmas>
 						</Variable>
 					</inputs>
@@ -160,7 +225,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="int"/>
+										<TypeRef name="length_t"/>
 									</type>
 								</NamedType>
 							</type>
@@ -207,7 +272,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="int"/>
+										<TypeRef name="port_t"/>
 									</type>
 								</NamedType>
 							</type>
@@ -226,7 +291,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="int"/>
+										<TypeRef name="length_t"/>
 									</type>
 								</NamedType>
 							</type>
@@ -273,7 +338,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="int"/>
+										<TypeRef name="port_t"/>
 									</type>
 								</NamedType>
 							</type>
@@ -285,7 +350,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="int"/>
+										<TypeRef name="fd_t"/>
 									</type>
 								</NamedType>
 							</type>
@@ -330,7 +395,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="int"/>
+										<TypeRef name="port_t"/>
 									</type>
 								</NamedType>
 							</type>
@@ -356,7 +421,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="int"/>
+										<TypeRef name="fd_t"/>
 									</type>
 								</NamedType>
 							</type>
@@ -460,7 +525,7 @@
 											<type>
 												<NamedType>
 													<type>
-														<TypeRef name="int"/>
+														<TypeRef name="fd_t"/>
 													</type>
 												</NamedType>
 											</type>
@@ -611,7 +676,7 @@
 											<type>
 												<NamedType>
 													<type>
-														<TypeRef name="int"/>
+														<TypeRef name="length_t"/>
 													</type>
 												</NamedType>
 											</type>
@@ -654,7 +719,7 @@
 											<type>
 												<NamedType>
 													<type>
-														<TypeRef name="int"/>
+														<TypeRef name="port_t"/>
 													</type>
 												</NamedType>
 											</type>
@@ -743,7 +808,7 @@
 												<ed:Equation oid="!ed/2d4628/47DB/1548/57d277e228b0"/>
 											</pragmas>
 										</Equation>
-										<!-- _L2, _L3, _L4, _L5, _L6 = recvfrom(sock); -->
+										<!-- _L2, _L3, _L4, _L5, _L6 = recvfrom(sock, false); -->
 										<Equation>
 											<lefts>
 												<VariableRef name="_L2"/>
@@ -753,7 +818,7 @@
 												<VariableRef name="_L6"/>
 											</lefts>
 											<right>
-												<!-- recvfrom(sock) -->
+												<!-- recvfrom(sock, false) -->
 												<CallExpression>
 													<operator>
 														<OpCall name="1">
@@ -768,6 +833,7 @@
 																<ConstVarRef name="sock"/>
 															</path>
 														</IdExpression>
+														<ConstValue value="false"/>
 													</callParameters>
 												</CallExpression>
 											</right>
@@ -1297,7 +1363,7 @@
 							<type>
 								<NamedType>
 									<type>
-										<TypeRef name="int"/>
+										<TypeRef name="fd_t"/>
 									</type>
 								</NamedType>
 							</type>
