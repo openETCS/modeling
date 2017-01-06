@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Operator xmlns="http://www.esterel-technologies.com/ns/scade/4" xmlns:ed="http://www.esterel-technologies.com/ns/scade/pragmas/editor/5" xmlns:kcg="http://www.esterel-technologies.com/ns/scade/pragmas/codegen/2" kind="function" name="MRSP_to_DMI">
+	<sizeParameters>
+		<SizeParameter name="MRSPs">
+			<pragmas>
+				<ed:SizeParameter oid="!ed/262985/4FEF/1F00/586e708e63f4"/>
+			</pragmas>
+		</SizeParameter>
+	</sizeParameters>
 	<inputs>
 		<Variable name="fresh">
 			<type>
@@ -15,11 +22,22 @@
 		</Variable>
 		<Variable name="MRSP_in">
 			<type>
-				<NamedType>
+				<Table>
 					<type>
-						<TypeRef name="TrackAtlasTypes::MRSP_Profile_t"/>
+						<NamedType>
+							<type>
+								<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+							</type>
+						</NamedType>
 					</type>
-				</NamedType>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="MRSPs"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
 			</type>
 			<pragmas>
 				<ed:Variable oid="!ed/1302e7/135E/850/576033266376"/>
@@ -55,11 +73,22 @@
 	<locals>
 		<Variable name="_L657">
 			<type>
-				<NamedType>
+				<Table>
 					<type>
-						<TypeRef name="TrackAtlasTypes::MRSP_Profile_t"/>
+						<NamedType>
+							<type>
+								<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+							</type>
+						</NamedType>
 					</type>
-				</NamedType>
+					<size>
+						<IdExpression>
+							<path>
+								<ConstVarRef name="MRSPs"/>
+							</path>
+						</IdExpression>
+					</size>
+				</Table>
 			</type>
 			<pragmas>
 				<ed:Variable oid="!ed/1302d8/135E/850/57603326273c"/>
@@ -81,11 +110,22 @@
 			<type>
 				<Table>
 					<type>
-						<NamedType>
+						<Table>
 							<type>
-								<TypeRef name="TrackAtlasTypes::MRSP_Profile_t"/>
+								<NamedType>
+									<type>
+										<TypeRef name="TrackAtlasTypes::MRSP_section_t"/>
+									</type>
+								</NamedType>
 							</type>
-						</NamedType>
+							<size>
+								<IdExpression>
+									<path>
+										<ConstVarRef name="MRSPs"/>
+									</path>
+								</IdExpression>
+							</size>
+						</Table>
 					</type>
 					<size>
 						<IdExpression>
@@ -359,14 +399,14 @@
 				<ed:Equation oid="!ed/1302cd/135E/850/576033261953"/>
 			</pragmas>
 		</Equation>
-		<!-- _L666, _L665 = (foldwi MRSP_reduction <<DMI_Types_Pkg::cDMI_maxSpeedProfile>> if ... -->
+		<!-- _L666, _L665 = (foldwi (MRSP_reduction<<MRSPs>>) <<DMI_Types_Pkg::cDMI_maxSpeedPr... -->
 		<Equation>
 			<lefts>
 				<VariableRef name="_L666"/>
 				<VariableRef name="_L665"/>
 			</lefts>
 			<right>
-				<!-- (foldwi MRSP_reduction <<DMI_Types_Pkg::cDMI_maxSpeedProfile>> if _L667)(_L660, _... -->
+				<!-- (foldwi (MRSP_reduction<<MRSPs>>) <<DMI_Types_Pkg::cDMI_maxSpeedProfile>> if _L66... -->
 				<CallExpression>
 					<operator>
 						<PartialIteratorOp name="1" iterator="foldwi">
@@ -375,6 +415,13 @@
 									<operator>
 										<OperatorRef name="MRSP_reduction"/>
 									</operator>
+									<instanceParameters>
+										<IdExpression>
+											<path>
+												<ConstVarRef name="MRSPs"/>
+											</path>
+										</IdExpression>
+									</instanceParameters>
 								</OpCall>
 							</operator>
 							<size>
@@ -660,10 +707,10 @@
 						</Edge>
 						<EquationGE presentable="!ed/1302cd/135E/850/576033261953">
 							<position>
-								<Point x="20188" y="6482"/>
+								<Point x="19809" y="6474"/>
 							</position>
 							<size>
-								<Size width="953" height="953"/>
+								<Size width="1710" height="969"/>
 							</size>
 						</EquationGE>
 						<EquationGE presentable="!ed/1302ce/135E/850/576033262449">
@@ -703,7 +750,7 @@
 								<Point x="17145" y="6985"/>
 								<Point x="18653" y="6985"/>
 								<Point x="18653" y="6985"/>
-								<Point x="20188" y="6985"/>
+								<Point x="19817" y="6985"/>
 							</positions>
 						</Edge>
 						<EquationGE kind="OBJ_LIT" presentable="!ed/1302d0/135E/850/576033262bb6">
@@ -771,7 +818,7 @@
 						</EquationGE>
 						<Edge leftVarIndex="1" rightExprIndex="1" srcEquation="!ed/1302cd/135E/850/576033261953" dstEquation="!ed/1302d6/135E/850/5760332643aa">
 							<positions>
-								<Point x="21140" y="6959"/>
+								<Point x="21511" y="6959"/>
 								<Point x="22463" y="6959"/>
 								<Point x="22463" y="8916"/>
 								<Point x="3863" y="8916"/>
