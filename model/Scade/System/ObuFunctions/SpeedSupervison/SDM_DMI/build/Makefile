@@ -22,6 +22,9 @@ endif
 udpDMI.exe: udpDMI.o bind_recv_send.o $(SCADEOBJS)
 	$(CC) $^ -g -o $@ $(LDFLAGS)
 
+bind_recv_send.o: ../../../../../../../../ew/net/bind_recv_send.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 	
