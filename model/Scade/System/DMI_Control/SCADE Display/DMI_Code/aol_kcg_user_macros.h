@@ -14,10 +14,28 @@
 
 #include "sgl_types.h"
 
+#ifndef ASSERT_SIZE
+#define ASSERT_SIZE(x,y) typedef char x ## _assert_size_t[-1+10*(sizeof(x) == (y))]
+#endif
+
+#ifndef kcg_bool
 #define kcg_bool SGLbool
+#endif
+
+#ifndef kcg_char
 #define kcg_char SGLuint8
+#endif
+
+#ifndef kcg_int
 #define kcg_int SGLint32
+#else
+/* just making sure, the existing definition is equally sized */
+ASSERT_SIZE(kcg_int, 4);
+#endif
+
+#ifndef kcg_real
 #define kcg_real SGLfloat
+#endif
 
 #include "./user_macros.h"
 
